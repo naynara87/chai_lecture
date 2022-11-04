@@ -1,0 +1,25 @@
+{
+  "title": "지난 레슨 확인하기",
+  "description": "녹음을 듣고 알맞은 발음을 고르세요.",
+  "template": {
+    "type": "TP01A",
+    "contents": [
+      {
+        "type": "chooseTextByAudio",
+        "data": {
+          "choices": ["ge", "ke"],
+          "answerIndex": 0,
+          "audioUrl": "https://audio_url1"
+        }
+      },
+      {
+        "type": "chooseTextByAudio",
+        "data": {
+          "choices": ["he", "ge"],
+          "answerIndex": 0,
+          "audioUrl": "https://audio_url2"
+        }
+      }
+    ]
+  }
+}
