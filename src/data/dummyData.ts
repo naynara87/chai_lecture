@@ -39,7 +39,9 @@ export const dummyData: AppData = {
                 data: {
                   choices: ["ge", "ke"],
                   answerIndex: 0,
-                  audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                  audio: {
+                    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                  },
                 },
               },
               {
@@ -47,7 +49,9 @@ export const dummyData: AppData = {
                 data: {
                   choices: ["he", "ge"],
                   answerIndex: 0,
-                  audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                  audio: {
+                    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                  },
                 },
               },
             ],
@@ -65,7 +69,9 @@ export const dummyData: AppData = {
                 data: {
                   choices: ["qi", "xi"],
                   answerIndex: 0,
-                  audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                  audio: {
+                    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                  },
                 },
               },
               {
@@ -73,7 +79,9 @@ export const dummyData: AppData = {
                 data: {
                   choices: ["ji", "qi"],
                   answerIndex: 0,
-                  audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                  audio: {
+                    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                  },
                 },
               },
             ],
@@ -108,23 +116,31 @@ export const dummyData: AppData = {
                 type: "listenWords",
                 data: [
                   {
-                    word: "a",
-                    audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    text: "a",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
                     meaning: "제 1성",
                   },
                   {
-                    word: "a",
-                    audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    text: "a",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
                     meaning: "제 2성",
                   },
                   {
-                    word: "a",
-                    audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    text: "a",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
                     meaning: "제 3성",
                   },
                   {
-                    word: "a",
-                    audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    text: "a",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
                     meaning: "제 4성",
                   },
                 ],
@@ -149,28 +165,40 @@ export const dummyData: AppData = {
                 type: "listenWords",
                 data: [
                   {
-                    word: "a",
-                    audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    text: "a",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
                   },
                   {
-                    word: "o",
-                    audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    text: "o",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
                   },
                   {
-                    word: "e",
-                    audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    text: "e",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
                   },
                   {
-                    word: "i",
-                    audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    text: "i",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
                   },
                   {
-                    word: "u",
-                    audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    text: "u",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
                   },
                   {
-                    word: "u",
-                    audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    text: "u",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
                   },
                 ],
               },

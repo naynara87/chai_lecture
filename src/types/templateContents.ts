@@ -7,7 +7,9 @@ export type ChooseTextByAudioContent = {
 type ChooseTextByAudioData = {
   choices: string[];
   answerIndex: number;
-  audioUrl: string;
+  audio: {
+    src: string;
+  };
 };
 
 export type TextContent = {
@@ -23,8 +25,12 @@ export type ListenImagesContent = {
 };
 
 type ListenImageData = {
-  image: string;
-  audio: string;
+  image: {
+    src: string;
+  };
+  audio: {
+    src: string;
+  };
 };
 
 export type ListenWordsContent = {
@@ -33,8 +39,10 @@ export type ListenWordsContent = {
 };
 
 type ListenWordData = {
-  word: string;
-  audioUrl?: string;
+  text: string;
+  audio: {
+    src: string;
+  };
   meaning?: string;
 };
 
