@@ -1,0 +1,13 @@
+import React from "react";
+
+import styled from "@emotion/styled";
+
+const Container = styled.div`
+  height: 100vh;
+`;
+
+const CommonPageLayout = ({ children }: { children: JSX.Element }) => {
+  return <Container>{children}</Container>;
+};
+
+export default CommonPageLayout;

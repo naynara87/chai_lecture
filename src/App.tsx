@@ -1,8 +1,16 @@
 import React from "react";
-import Course from "./components/pages/Course";
+import AppRouter from "./router/AppRouter";
+import { RecoilRoot } from "recoil";
+import { Global } from "@emotion/react";
+import globalStyle from "./styles/globalStyle";
 
 function App() {
-  return <Course />;
+  return (
+    <RecoilRoot>
+      <Global styles={globalStyle} />
+      <AppRouter />
+    </RecoilRoot>
+  );
 }
 
 export default App;

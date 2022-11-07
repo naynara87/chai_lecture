@@ -1,24 +1,24 @@
-import { ChooseTextByAudio } from "./contentComponents";
+import { TP01A, TP03A, TP03B } from "./pageTemplate";
 
-// 과정 > 레슨 > 코너 > 페이지
-type ID = number | string;
+// 과정(course) > 레슨(lesson) > 코너(corner) > 페이지(page)
+export type ID = number | string;
 
 export type AppData = {
-  meta: {
-    isCompleted: boolean;
-    // 과정
-    course: {
-      id: ID;
-      title: string;
-    };
-    lesson: {
-      id: ID;
-      title: string;
-    };
-    lastCornerId: ID;
-    lastPageId: ID;
+  isCompleted: boolean;
+  // 과정
+  course: {
+    id: ID;
+    title: string;
   };
-  CornerList: Corner[];
+  lesson: {
+    id: ID;
+    title: string;
+  };
+  lastCornerId: ID;
+  lastPageId: ID;
+  title: string;
+  description: string;
+  corners: Corner[];
 };
 
 type CornerType =
@@ -30,7 +30,7 @@ type CornerType =
   | "culture"
   | "practice";
 
-type Corner = {
+export type Corner = {
   id: ID;
   type: CornerType;
   title: string;
@@ -42,17 +42,6 @@ type Corner = {
   pages: Page[];
 };
 
-type Page = TP01A;
+export type Page = TP01A | TP03A | TP03B;
 
-type TP01A = {
-  title: string;
-  description: string;
-  template: TP01ATemplate;
-};
-
-type TP01ATemplate = {
-  type: string;
-  contents: TP01AContent[];
-};
-
-type TP01AContent = ChooseTextByAudio;
+export type TemplateType = Page["template"]["type"];
