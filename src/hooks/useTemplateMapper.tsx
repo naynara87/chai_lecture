@@ -1,9 +1,8 @@
 import TP01AComponent from "../components/templates/TP01AComponent";
 import { TemplateType } from "../types/appData";
+import { TemplateProps } from "../types/templates";
 
-interface UseTemplateMapperProps {
-  setPageCompleted: () => void;
-}
+export interface UseTemplateMapperProps extends TemplateProps {}
 const useTemplateMapper = (props: UseTemplateMapperProps) => {
   const templateMapper: Record<TemplateType, JSX.Element> = {
     TP01A: <TP01AComponent {...props} />,

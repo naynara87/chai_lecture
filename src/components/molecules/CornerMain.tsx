@@ -10,7 +10,7 @@ const CornerMain = ({ page, setIsPageCompleted }: CornerMainProps) => {
   const setPageCompleted = () => {
     setIsPageCompleted(true);
   };
-  const { getTemplateComponent } = useTemplateMapper({ setPageCompleted });
+  const { getTemplateComponent } = useTemplateMapper({ setPageCompleted, page });
   return <>{getTemplateComponent(page.template.type)}</>;
 };
 
