@@ -20,7 +20,7 @@ export const dummyData: AppData = {
       id: 1,
       type: "review",
       title: "복습",
-      isCompleted: true,
+      isCompleted: false,
       introduction: {
         title: "복습모달 제목",
         description: "복습 모달 문구",
@@ -31,7 +31,8 @@ export const dummyData: AppData = {
           title: "지난 레슨 확인하기",
           description: "녹음을 듣고 알맞은 발음을 고르세요.",
           template: {
-            type: "TP01A",
+            type: "TP01A", // TODO: iframe 타입 추가
+            // TODO: iframe에 따른 src 옵셔널로 추가
             contents: [
               {
                 type: "chooseTextByAudio",

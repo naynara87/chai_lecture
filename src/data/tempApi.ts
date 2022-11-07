@@ -13,7 +13,7 @@ export const getAppData = async (): Promise<AppData> => {
 // export const getLessonData = (lessonId: ID) => {
 
 export const getCorner = async (cornerId: ID) => {
-  return dummyData.corners.find((corner) => corner.id === cornerId);
+  return dummyData.corners.find((corner) => corner.id.toString() === cornerId.toString());
 };
 
 export const getPages = async (cornerId: ID) => {

@@ -37,7 +37,7 @@ const CornerListPage = () => {
             <main>
               {/* TODO: 현재 코너는 컬러 나머진 흑백 */}
               {appData.corners.map((corner) => (
-                <div>{corner.title}</div>
+                <div key={corner.id}>{corner.title}</div>
               ))}
             </main>
             <footer>

@@ -12,7 +12,11 @@ const FooterContainer = styled.footer`
   width: 100%;
 `;
 
-const Footer = () => {
+interface FooterProps {
+  handleClickNext: () => void;
+  isPageCompleted: boolean;
+}
+const Footer = ({ handleClickNext, isPageCompleted }: FooterProps) => {
   return (
     <FooterContainer>
       <div>
@@ -25,7 +29,9 @@ const Footer = () => {
         <span>v</span>
         <span>v</span>
       </div>
-      <div>{"다음 >"}</div>
+      <button type="button" onClick={handleClickNext} disabled={isPageCompleted}>
+        {"다음 >"}
+      </button>
     </FooterContainer>
   );
 };
