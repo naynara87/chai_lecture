@@ -1,4 +1,4 @@
-import { TP01A, TP03A, TP03B } from "./pageTemplate";
+import { TP01A, TP03A, TP03B, TP15A } from "./pageTemplate";
 
 // 과정(course) > 레슨(lesson) > 코너(corner) > 페이지(page)
 export type ID = number | string;
@@ -42,6 +42,6 @@ export type Corner = {
   pages: Page[];
 };
 
-export type Page = TP01A | TP03A | TP03B;
+export type Page = TP01A | TP03A | TP03B | TP15A;
 
 export type TemplateType = Page["template"]["type"];

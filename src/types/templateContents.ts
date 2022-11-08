@@ -1,5 +1,5 @@
 // 각 컴포넌트(컨텐츠)의 타입을 정의합니다.
-export type ChooseText = {
+export type ChooseTextContent = {
   type: "chooseText";
   data: {
     choices: string[];
@@ -25,7 +25,7 @@ type ChooseTextByAudioData = {
 export type HtmlContent = {
   type: "html";
   data: {
-    type?: "tip" | string;
+    kind?: "tip" | "title" | "description";
     text: string;
   };
 };
@@ -73,7 +73,7 @@ type TextBoxesData = {
   description?: string; // 박스 밖 설명글
 };
 
-export type IconText = {
+export type IconTextContent = {
   type: "iconText";
   data: {
     icon: {
@@ -83,12 +83,19 @@ export type IconText = {
   };
 };
 
-// TODO: 비디오 컴포넌트 자막 데이터 타입 정의
 export type VideoContent = {
   type: "video";
   data: {
     src: string;
+    tracks?: VideoTrack[];
   };
+};
+
+type VideoTrack = {
+  src: string; // 자막 파일 경로 e.g. https://video_track_url/track1.vtt
+  kind?: "subtitles" | "captions" | "descriptions" | "chapters" | "metadata";
+  srclang?: string; // 자막 언어 e.g. en, ko
+  default?: boolean; // 기본 자막 여부
 };
 
 export type AudioContent = {
@@ -101,4 +108,60 @@ export type AudioContent = {
 export type AudioRecordContent = {
   type: "audioRecord";
   data: "";
+};
+
+export type DragAndDropContent = {
+  type: "dragAndDrop";
+  data: {
+    choices: string[];
+    answerIndex: number;
+    explanation: string;
+  };
+};
+
+export type StudyWordsContent = {
+  type: "studyWords";
+  data: {
+    text: string; // html
+    pronunciation: string; // html
+    meaning: string; // html
+    audio: {
+      src: string;
+    };
+  }[];
+};
+
+export type DialogContent = {
+  type: "dialog";
+  data: DialogData[];
+};
+
+/**
+ * TODO
+ * - Dialog에 문제가 포함되어 있을 경우에 대한 데이터 추가 필요
+ * - 사람 구분 필요(색상, 이름 등)
+ */
+type DialogData = {
+  icon: {
+    src: string;
+  };
+  text: string;
+  // hasQuestion?: boolean;
+  pronunciation: string;
+  meaning: string;
+  audio: {
+    src: string;
+  };
+};
+
+export type NumberTableContent = {
+  type: "numberTable";
+  data: {
+    text: string;
+    pronunciation: string;
+    meaning: string;
+    audio: {
+      src: string;
+    };
+  }[];
 };

@@ -87,6 +87,125 @@ export const dummyData: AppData = {
             ],
           },
         },
+        {
+          id: 13,
+          title: "중국어의 개요",
+          description: "중국어의 개요에 대해 알아봅시다.",
+          template: {
+            type: "TP15A",
+            contents: [],
+            tabs: [
+              {
+                name: "한어",
+                contents: [
+                  {
+                    type: "html",
+                    data: {
+                      kind: "description",
+                      text: "<p>중국에서는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
+                    },
+                  },
+                  {
+                    type: "html",
+                    data: {
+                      kind: "tip",
+                      text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
+                    },
+                  },
+                  {
+                    type: "images",
+                    data: [
+                      {
+                        src: "https://i.picsum.photos/id/116/700/500.jpg?hmac=xnRVRAfW8IZ_-xe8038EpnpF2G2EFtHn32lCz1Nd2Mw",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                name: "보통화",
+                contents: [
+                  {
+                    type: "html",
+                    data: {
+                      kind: "description",
+                      text: "<p>보통화는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
+                    },
+                  },
+                  {
+                    type: "html",
+                    data: {
+                      kind: "tip",
+                      text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
+                    },
+                  },
+                  {
+                    type: "images",
+                    data: [
+                      {
+                        src: "https://i.picsum.photos/id/116/700/500.jpg?hmac=xnRVRAfW8IZ_-xe8038EpnpF2G2EFtHn32lCz1Nd2Mw",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                name: "중국어의 구성(한자)",
+                contents: [
+                  {
+                    type: "html",
+                    data: {
+                      kind: "description",
+                      text: "<p>중국어의 구성(한자)는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
+                    },
+                  },
+                  {
+                    type: "html",
+                    data: {
+                      kind: "tip",
+                      text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
+                    },
+                  },
+                  {
+                    type: "images",
+                    data: [
+                      {
+                        src: "https://i.picsum.photos/id/116/700/500.jpg?hmac=xnRVRAfW8IZ_-xe8038EpnpF2G2EFtHn32lCz1Nd2Mw",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                name: "중국어의 구성(병음)",
+                contents: [
+                  {
+                    type: "html",
+                    data: {
+                      kind: "description",
+                      text: "<p>중국어의 구성(병음)는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
+                    },
+                  },
+                  {
+                    type: "html",
+                    data: {
+                      kind: "tip",
+                      text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
+                    },
+                  },
+                  {
+                    type: "images",
+                    data: [
+                      {
+                        src: "https://i.picsum.photos/id/116/700/500.jpg?hmac=xnRVRAfW8IZ_-xe8038EpnpF2G2EFtHn32lCz1Nd2Mw",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        },
       ],
     },
     {
