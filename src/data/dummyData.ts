@@ -1,6 +1,6 @@
 import { AppData } from "../types/appData";
 
-// 과정(course) > 레슨(lesson) > 코너(corner) > 페이지(page)
+// 과정(course) > 레슨(lesson) > 회차(corner) > 페이지(page)
 export const dummyData: AppData = {
   isCompleted: false,
   course: {
@@ -107,7 +107,7 @@ export const dummyData: AppData = {
             type: "TP03A",
             contents: [
               {
-                type: "text",
+                type: "html",
                 data: {
                   text: "성조는 음의 높낮이와 그 변화를 표시한 것으로, 중국어에는 네 개의 성조가 있습니다.",
                 },
@@ -156,49 +156,31 @@ export const dummyData: AppData = {
             type: "TP03B",
             contents: [
               {
-                type: "text",
+                type: "html",
                 data: {
                   text: "운모는 음절에서 성모를 제외한 나머지 부분으로, 모두 36입니다.",
                 },
               },
               {
-                type: "listenWords",
+                type: "textBoxes",
                 data: [
                   {
-                    text: "a",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
+                    main: "a",
                   },
                   {
-                    text: "o",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
+                    main: "o",
                   },
                   {
-                    text: "e",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
+                    main: "e",
                   },
                   {
-                    text: "i",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
+                    main: "i",
                   },
                   {
-                    text: "u",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
+                    main: "u",
                   },
                   {
-                    text: "u",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
+                    main: "u2",
                   },
                 ],
               },
