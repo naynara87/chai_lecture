@@ -12,8 +12,8 @@ type ChooseTextByAudioData = {
   };
 };
 
-export type TextContent = {
-  type: "text";
+export type HtmlContent = {
+  type: "html";
   data: {
     text: string;
   };
@@ -38,7 +38,7 @@ export type ListenWordsContent = {
   data: ListenWordData[];
 };
 
-type ListenWordData = {
+export type ListenWordData = {
   text: string;
   audio: {
     src: string;

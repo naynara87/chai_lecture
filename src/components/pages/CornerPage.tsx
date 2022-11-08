@@ -39,7 +39,6 @@ const CornerPage = () => {
     setPageIndex((prev) => prev + 1);
     setIsPageCompleted(false);
   };
-
   return (
     <CommonPageLayout>
       <>

@@ -1,5 +1,5 @@
 import { ID } from "./appData";
-import { ChooseTextByAudioContent, ListenWordsContent, TextContent } from "./templateContents";
+import { ChooseTextByAudioContent, ListenWordsContent, HtmlContent } from "./templateContents";
 
 export type TP01A = {
   id: ID;
@@ -27,7 +27,7 @@ type TP03ATemplate = {
   contents: TP03AContent[];
 };
 
-type TP03AContent = TextContent | ListenWordsContent;
+export type TP03AContent = HtmlContent | ListenWordsContent;
 
 export type TP03B = {
   id: ID;
@@ -41,4 +41,4 @@ type TP03BTemplate = {
   contents: TP03BContent[];
 };
 
-type TP03BContent = TextContent | ListenWordsContent;
+type TP03BContent = HtmlContent | ListenWordsContent;
