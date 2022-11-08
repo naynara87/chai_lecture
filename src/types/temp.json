@@ -1,0 +1,16 @@
+{
+  "type": "textBoxes",
+  "data": {
+    "textList": [
+      {
+        "main": "경성",
+        "sub": ""
+      },
+      {
+        "main": "한어병음 표기 규칙",
+        "sub": ""
+      }
+    ],
+    "vertical": true
+  }
+}
