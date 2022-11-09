@@ -14,12 +14,25 @@ const TextCardWrapper = styled.div`
 const ListenWordContent = (datas: ListenWordContentProps) => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [audioSrc, setAudioSrc] = useState("");
-  const handleClickWordContent = (src: string) => {
-    setAudioSrc(src);
-    if (audioRef.current) {
+  const [audioIndex, setAudioIndex] = useState(0);
+  const [audioState, setAudioState] = useState("pause");
+  const handleClickWordContent = (src: string, index: number) => {
+    if (audioRef.current && audioIndex !== index) {
+      setAudioIndex(index);
+      setAudioSrc(src);
       audioRef.current.pause();
       audioRef.current.load();
       audioRef.current.play();
+      setAudioState("play");
+    }
+    if (audioRef.current && audioIndex === index) {
+      if (audioState === "play") {
+        audioRef.current.pause();
+        setAudioState("pause");
+      } else {
+        audioRef.current.play();
+        setAudioState("play");
+      }
     }
   };
   return (
@@ -32,6 +45,7 @@ const ListenWordContent = (datas: ListenWordContentProps) => {
           return (
             <WordsContentComponent
               key={index}
+              index={index}
               text={item.text}
               audio={item.audio}
               meaning={item.meaning}

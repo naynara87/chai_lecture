@@ -41,17 +41,15 @@ const CornerPage = () => {
   };
   return (
     <CommonPageLayout>
-      <>
-        <Header />
-        <CornerMainContainer>
-          {corner ? (
-            <CornerMain page={corner.pages[pageIndex]} setIsPageCompleted={setIsPageCompleted} />
-          ) : (
-            <div>로딩중</div>
-          )}
-        </CornerMainContainer>
-        <Footer handleClickNext={handleClickNext} isPageCompleted={isPageCompleted} />
-      </>
+      <Header />
+      <CornerMainContainer>
+        {corner ? (
+          <CornerMain page={corner.pages[pageIndex]} setIsPageCompleted={setIsPageCompleted} />
+        ) : (
+          <div>로딩중</div>
+        )}
+      </CornerMainContainer>
+      <Footer handleClickNext={handleClickNext} isPageCompleted={isPageCompleted} />
     </CommonPageLayout>
   );
 };

@@ -1,0 +1,45 @@
+import React from "react";
+import styled from "@emotion/styled";
+
+interface TitleContentProps {
+  title: string;
+  description: string;
+}
+
+const TitleWrapper = styled.div`
+  text-align: center;
+  padding-top: 25px;
+  height: 90px;
+  @media all and (max-width: 1024px) {
+    padding-top: 2.5vw;
+    height: 8.75vw;
+  }
+`;
+
+const MainTitle = styled.h2`
+  font-weight: 600;
+  font-size: 30px;
+  @media all and (max-width: 1024px) {
+    font-size: 2.9166666667vw;
+  }
+`;
+
+const SubTitle = styled.p`
+  margin-top: 9px;
+  font-weight: 500;
+  font-size: 15px;
+  @media all and (max-width: 1024px) {
+    margin-top: 0.8333333333vw;
+    font-size: 1.4583333333vw;
+  }
+`;
+
+const TitleContent = (props: TitleContentProps) => {
+  return (
+    <TitleWrapper>
+      <MainTitle>{props.title}</MainTitle>
+      <SubTitle>{props.description}</SubTitle>
+    </TitleWrapper>
+  );
+};
+export default TitleContent;

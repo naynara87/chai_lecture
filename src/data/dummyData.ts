@@ -1,6 +1,6 @@
 import { AppData } from "../types/appData";
 
-// 과정(course) > 레슨(lesson) > 코너(corner) > 페이지(page)
+// 과정(course) > 레슨(lesson) > 회차(corner) > 페이지(page)
 export const dummyData: AppData = {
   isCompleted: false,
   course: {
@@ -127,6 +127,125 @@ export const dummyData: AppData = {
             ],
           },
         },
+        {
+          id: 13,
+          title: "중국어의 개요",
+          description: "중국어의 개요에 대해 알아봅시다.",
+          template: {
+            type: "TP15A",
+            contents: [],
+            tabs: [
+              {
+                name: "한어",
+                contents: [
+                  {
+                    type: "html",
+                    data: {
+                      kind: "description",
+                      text: "<p>중국에서는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
+                    },
+                  },
+                  {
+                    type: "html",
+                    data: {
+                      kind: "tip",
+                      text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
+                    },
+                  },
+                  {
+                    type: "images",
+                    data: [
+                      {
+                        src: "https://i.picsum.photos/id/116/700/500.jpg?hmac=xnRVRAfW8IZ_-xe8038EpnpF2G2EFtHn32lCz1Nd2Mw",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                name: "보통화",
+                contents: [
+                  {
+                    type: "html",
+                    data: {
+                      kind: "description",
+                      text: "<p>보통화는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
+                    },
+                  },
+                  {
+                    type: "html",
+                    data: {
+                      kind: "tip",
+                      text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
+                    },
+                  },
+                  {
+                    type: "images",
+                    data: [
+                      {
+                        src: "https://i.picsum.photos/id/116/700/500.jpg?hmac=xnRVRAfW8IZ_-xe8038EpnpF2G2EFtHn32lCz1Nd2Mw",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                name: "중국어의 구성(한자)",
+                contents: [
+                  {
+                    type: "html",
+                    data: {
+                      kind: "description",
+                      text: "<p>중국어의 구성(한자)는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
+                    },
+                  },
+                  {
+                    type: "html",
+                    data: {
+                      kind: "tip",
+                      text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
+                    },
+                  },
+                  {
+                    type: "images",
+                    data: [
+                      {
+                        src: "https://i.picsum.photos/id/116/700/500.jpg?hmac=xnRVRAfW8IZ_-xe8038EpnpF2G2EFtHn32lCz1Nd2Mw",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                name: "중국어의 구성(병음)",
+                contents: [
+                  {
+                    type: "html",
+                    data: {
+                      kind: "description",
+                      text: "<p>중국어의 구성(병음)는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
+                    },
+                  },
+                  {
+                    type: "html",
+                    data: {
+                      kind: "tip",
+                      text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
+                    },
+                  },
+                  {
+                    type: "images",
+                    data: [
+                      {
+                        src: "https://i.picsum.photos/id/116/700/500.jpg?hmac=xnRVRAfW8IZ_-xe8038EpnpF2G2EFtHn32lCz1Nd2Mw",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        },
       ],
     },
     {
@@ -202,43 +321,25 @@ export const dummyData: AppData = {
                 },
               },
               {
-                type: "listenWords",
+                type: "textBoxes",
                 data: [
                   {
-                    text: "a",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
+                    main: "a",
                   },
                   {
-                    text: "o",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
+                    main: "o",
                   },
                   {
-                    text: "e",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
+                    main: "e",
                   },
                   {
-                    text: "i",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
+                    main: "i",
                   },
                   {
-                    text: "u",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
+                    main: "u",
                   },
                   {
-                    text: "u",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
+                    main: "u2",
                   },
                 ],
               },

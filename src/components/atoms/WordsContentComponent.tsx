@@ -3,7 +3,8 @@ import styled from "@emotion/styled";
 import { ListenWordData } from "../../types/templateContents";
 
 interface WordsContentComponentProps extends ListenWordData {
-  handleClickWordContent: (audioSrc: string) => void;
+  index: number;
+  handleClickWordContent: (audioSrc: string, index: number) => void;
 }
 
 const TextCardGrp = styled.div`
@@ -48,7 +49,9 @@ const MeaningText = styled.div`
 
 const WordsContentComponent = (props: WordsContentComponentProps) => {
   const handleClickWorkContent = () => {
-    props.handleClickWordContent(props.audio.src);
+    if (props.audio) {
+      props.handleClickWordContent(props.audio.src, props.index);
+    }
   };
   return (
     <TextCardGrp>
