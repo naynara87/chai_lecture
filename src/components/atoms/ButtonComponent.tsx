@@ -1,12 +1,10 @@
-// 폴더 생성을 위한 임시 파일입니다
-import { SerializedStyles } from "@emotion/react";
 import React from "react";
+import { SerializedStyles } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
-import { AppData, Corner } from "../../types/appData";
 
 interface ButtonProps {
-  customBtnCss: SerializedStyles;
+  customBtnCss?: SerializedStyles;
 }
 
 const Button = styled.button<ButtonProps>`
@@ -14,37 +12,37 @@ const Button = styled.button<ButtonProps>`
 `;
 
 interface TextComponentProps {
-  customTextCss: SerializedStyles;
+  customTextCss?: SerializedStyles;
 }
 
 const Text = styled.span<TextComponentProps>`
   ${(props) => props.customTextCss}
 `;
 
-interface ButtonComponentProps {
+interface ButtonComponentProps<S> {
   text: string;
   linkUrl: string;
-  linkState?: { appData: AppData; currentCorner: Corner };
-  customBtnCss: SerializedStyles;
-  customTextCss: SerializedStyles;
+  linkState?: S;
+  customBtnCss?: SerializedStyles;
+  customTextCss?: SerializedStyles;
   handleClickButton?: () => void;
 }
 
-const ButtonComponent = ({
+function ButtonComponent<LinkStateType = any>({
   text,
   customBtnCss,
   customTextCss,
   linkUrl,
   linkState,
   handleClickButton,
-}: ButtonComponentProps) => {
+}: ButtonComponentProps<LinkStateType>) {
   return (
-    <Button type="button" customBtnCss={customBtnCss} onClick={handleClickButton}>
-      <Link to={linkUrl} state={linkState} style={{ textDecoration: "none" }}>
+    <Link to={linkUrl} state={linkState} style={{ textDecoration: "none" }}>
+      <Button type="button" customBtnCss={customBtnCss} onClick={handleClickButton}>
         <Text customTextCss={customTextCss}>{text}</Text>
-      </Link>
-    </Button>
+      </Button>
+    </Link>
   );
-};
+}
 
 export default ButtonComponent;

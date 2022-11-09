@@ -1,11 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-interface TitleContentProps {
-  title: string;
-  description: string;
-}
-
 const TitleWrapper = styled.div`
   text-align: center;
   padding-top: 85px;
@@ -34,11 +29,17 @@ const SubTitle = styled.p`
   }
 `;
 
+interface TitleContentProps {
+  title: string;
+  description: string;
+  loading?: boolean;
+}
+
 const TitleContent = (props: TitleContentProps) => {
   return (
     <TitleWrapper>
-      <MainTitle>{props.title}</MainTitle>
-      <SubTitle>{props.description}</SubTitle>
+      <MainTitle>{props.loading ? <>타이틀 로딩 중</> : props.title}</MainTitle>
+      <SubTitle>{props.loading ? <>설명 로딩 중</> : props.description}</SubTitle>
     </TitleWrapper>
   );
 };
