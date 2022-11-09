@@ -2,8 +2,8 @@
 import { SerializedStyles } from "@emotion/react";
 import React from "react";
 import styled from "@emotion/styled";
-import { Link, LinkProps } from "react-router-dom";
-import { Corner } from "../../types/appData";
+import { Link } from "react-router-dom";
+import { AppData, Corner } from "../../types/appData";
 
 interface ButtonProps {
   customBtnCss: SerializedStyles;
@@ -24,7 +24,7 @@ const Text = styled.span<TextComponentProps>`
 interface ButtonComponentProps {
   text: string;
   linkUrl: string;
-  linkState?: Corner;
+  linkState?: { appData: AppData; currentCorner: Corner };
   customBtnCss: SerializedStyles;
   customTextCss: SerializedStyles;
   handleClickButton?: () => void;

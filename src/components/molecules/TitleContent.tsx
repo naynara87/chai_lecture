@@ -11,7 +11,7 @@ const TitleWrapper = styled.div`
   padding-top: 85px;
   height: 185px;
   @media all and (max-width: 1024px) {
-    padding-top: 6.5vw;
+    padding-top: 8vw;
     height: 15.75vw;
   }
 `;

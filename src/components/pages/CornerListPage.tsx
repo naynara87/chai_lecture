@@ -1,10 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
 import styled from "@emotion/styled";
-import { Link } from "react-router-dom";
 import { getAppData } from "../../data/tempApi";
 import { AppData, Corner, ID } from "../../types/appData";
 import ImageContentComponent from "../atoms/ImageContentComponent";
-import CommonPageLayout from "../Layouts/CommonPageLayout";
 import Header from "../molecules/Header";
 import { useSetRecoilState } from "recoil";
 import { courseAndLessonTitlesState } from "../../states/courseAndLessonTitlesState";
@@ -132,6 +130,10 @@ const startTextCss = css`
   color: ${colorPalette.white};
 `;
 
+const CornerListLayout = styled.div`
+  height: 100vh;
+`;
+
 const CornerListPage = () => {
   const [appData, setAppData] = useState<AppData>();
   const setCourseAndLessonTitles = useSetRecoilState(courseAndLessonTitlesState);
@@ -169,7 +171,7 @@ const CornerListPage = () => {
   );
 
   return (
-    <CommonPageLayout>
+    <CornerListLayout>
       <>
         <Header />
         {appData ? (
@@ -196,20 +198,22 @@ const CornerListPage = () => {
               ))}
             </CornerListWrapper>
             <CornerListFooter>
-              <ButtonComponent
-                text="시작하기"
-                customBtnCss={startBtnCss}
-                customTextCss={startTextCss}
-                linkUrl={`/corner/${currentCorner?.id}`}
-                linkState={currentCorner}
-              ></ButtonComponent>
+              {currentCorner && (
+                <ButtonComponent
+                  text="시작하기"
+                  customBtnCss={startBtnCss}
+                  customTextCss={startTextCss}
+                  linkUrl={`/corner/${currentCorner?.id}`}
+                  linkState={{ appData, currentCorner }}
+                />
+              )}
             </CornerListFooter>
           </>
         ) : (
           <div>로딩중</div>
         )}
       </>
-    </CommonPageLayout>
+    </CornerListLayout>
   );
 };
 

@@ -10,7 +10,6 @@ interface TP03AComponentProps extends TemplateProps {}
 
 const ContentsContainer = styled.div`
   overflow: auto;
-  height: 484px;
   padding-top: 42px;
   text-align: center;
   &::-webkit-scrollbar {
@@ -19,8 +18,6 @@ const ContentsContainer = styled.div`
   }
   @media all and (max-width: 1024px) {
     padding-top: 4.1666666667vw;
-    height: calc(100vh - 5.4166666667vw - 7.2916666667vw - 14.0625vw);
-    max-height: 584px;
   }
 `;
 
