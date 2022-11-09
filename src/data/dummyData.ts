@@ -233,7 +233,7 @@ export const dummyData: AppData = {
       id: 2,
       type: "study1",
       title: "학습 1",
-      isCompleted: false,
+      isCompleted: true,
       introduction: {
         title: "성조와 운모을 공부해봐요",
         description: "성조와 운모 학습 상세 사항",

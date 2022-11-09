@@ -43,8 +43,8 @@ const TP03AComponent = ({ setPageCompleted, page }: TP03AComponentProps) => {
     if (content.type === "html") {
       const html = content.data.text;
       return (
-        <HtmlWrapper>
-          <HtmlContentComponent key={index} html={html} />
+        <HtmlWrapper key={index}>
+          <HtmlContentComponent html={html} />
         </HtmlWrapper>
       );
     } else if (content.type === "listenWords") {
