@@ -8,11 +8,11 @@ interface TitleContentProps {
 
 const TitleWrapper = styled.div`
   text-align: center;
-  padding-top: 25px;
-  height: 90px;
+  padding-top: 85px;
+  height: 185px;
   @media all and (max-width: 1024px) {
-    padding-top: 2.5vw;
-    height: 8.75vw;
+    padding-top: 8vw;
+    height: 15.75vw;
   }
 `;
 

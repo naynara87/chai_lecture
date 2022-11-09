@@ -5,7 +5,7 @@ export const dummyData: AppData = {
   isCompleted: false,
   course: {
     id: 1,
-    title: "초급 1",
+    title: "빨강",
   },
   lesson: {
     id: 1,
@@ -25,6 +25,8 @@ export const dummyData: AppData = {
         title: "복습모달 제목",
         description: "복습 모달 문구",
       },
+      cornerIcon:
+        "https://i.picsum.photos/id/128/200/200.jpg?hmac=m4AGhjLVIqDjy9qPNhbZyp8Gm_K03UAgP3IZnItJMA4",
       pages: [
         {
           id: 11,
@@ -230,12 +232,14 @@ export const dummyData: AppData = {
     {
       id: 2,
       type: "study1",
-      title: "학습1",
-      isCompleted: false,
+      title: "학습 1",
+      isCompleted: true,
       introduction: {
         title: "성조와 운모을 공부해봐요",
         description: "성조와 운모 학습 상세 사항",
       },
+      cornerIcon:
+        "https://i.picsum.photos/id/623/200/200.jpg?hmac=xquTjHIYmAPV3XEGlIUaV_KWyEofkbortxrK79jJhWA",
       pages: [
         {
           id: 21,
@@ -329,13 +333,423 @@ export const dummyData: AppData = {
     },
     {
       id: 3,
-      type: "study2",
-      title: "학습2",
+      type: "study1",
+      title: "학습 2",
       isCompleted: false,
       introduction: {
         title: "성조와 운모을 공부해봐요",
         description: "성조와 운모 학습 상세 사항",
       },
+      cornerIcon:
+        "https://i.picsum.photos/id/40/200/200.jpg?hmac=xkvWvgGjMuaPySCsshiYpLBOaphxinRhPkMRgx-LIYQ",
+      pages: [
+        {
+          id: 21,
+          title: "성조",
+          description: "발음을 듣고 따라 읽어보세요.",
+          template: {
+            type: "TP03A",
+            contents: [
+              {
+                type: "html",
+                data: {
+                  text: "성조는 음의 높낮이와 그 변화를 표시한 것으로, 중국어에는 네 개의 성조가 있습니다.",
+                },
+              },
+              {
+                type: "listenWords",
+                data: [
+                  {
+                    text: "a",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                    meaning: "제 1성",
+                  },
+                  {
+                    text: "a",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                    meaning: "제 2성",
+                  },
+                  {
+                    text: "a",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                    meaning: "제 3성",
+                  },
+                  {
+                    text: "a",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                    meaning: "제 4성",
+                  },
+                ],
+              },
+            ],
+          },
+        },
+        {
+          id: 22,
+          title: "운모",
+          description: "운모에 대해 알아봅시다.",
+          template: {
+            type: "TP03B",
+            contents: [
+              {
+                type: "html",
+                data: {
+                  text: "운모는 음절에서 성모를 제외한 나머지 부분으로, 모두 36입니다.",
+                },
+              },
+              {
+                type: "textBoxes",
+                data: [
+                  {
+                    main: "a",
+                  },
+                  {
+                    main: "o",
+                  },
+                  {
+                    main: "e",
+                  },
+                  {
+                    main: "i",
+                  },
+                  {
+                    main: "u",
+                  },
+                  {
+                    main: "u2",
+                  },
+                ],
+              },
+            ],
+          },
+        },
+      ],
+    },
+    {
+      id: 4,
+      type: "study1",
+      title: "학습 3",
+      isCompleted: false,
+      introduction: {
+        title: "성조와 운모을 공부해봐요",
+        description: "성조와 운모 학습 상세 사항",
+      },
+      cornerIcon:
+        "https://i.picsum.photos/id/583/200/200.jpg?hmac=6WdmRS6vtdQqa1zktgLfV0t3Afny4XE1zeDdlJ2K_mo",
+      pages: [
+        {
+          id: 21,
+          title: "성조",
+          description: "발음을 듣고 따라 읽어보세요.",
+          template: {
+            type: "TP03A",
+            contents: [
+              {
+                type: "html",
+                data: {
+                  text: "성조는 음의 높낮이와 그 변화를 표시한 것으로, 중국어에는 네 개의 성조가 있습니다.",
+                },
+              },
+              {
+                type: "listenWords",
+                data: [
+                  {
+                    text: "a",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                    meaning: "제 1성",
+                  },
+                  {
+                    text: "a",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                    meaning: "제 2성",
+                  },
+                  {
+                    text: "a",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                    meaning: "제 3성",
+                  },
+                  {
+                    text: "a",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                    meaning: "제 4성",
+                  },
+                ],
+              },
+            ],
+          },
+        },
+        {
+          id: 22,
+          title: "운모",
+          description: "운모에 대해 알아봅시다.",
+          template: {
+            type: "TP03B",
+            contents: [
+              {
+                type: "html",
+                data: {
+                  text: "운모는 음절에서 성모를 제외한 나머지 부분으로, 모두 36입니다.",
+                },
+              },
+              {
+                type: "textBoxes",
+                data: [
+                  {
+                    main: "a",
+                  },
+                  {
+                    main: "o",
+                  },
+                  {
+                    main: "e",
+                  },
+                  {
+                    main: "i",
+                  },
+                  {
+                    main: "u",
+                  },
+                  {
+                    main: "u2",
+                  },
+                ],
+              },
+            ],
+          },
+        },
+      ],
+    },
+    {
+      id: 5,
+      type: "study1",
+      title: "회화",
+      isCompleted: false,
+      introduction: {
+        title: "성조와 운모을 공부해봐요",
+        description: "성조와 운모 학습 상세 사항",
+      },
+      cornerIcon:
+        "https://i.picsum.photos/id/112/200/200.jpg?hmac=a8Ve-HhSWAKC-SNBLKVosZ5gHmqMhgtNkPMYVMjEAbI",
+      pages: [
+        {
+          id: 21,
+          title: "성조",
+          description: "발음을 듣고 따라 읽어보세요.",
+          template: {
+            type: "TP03A",
+            contents: [
+              {
+                type: "html",
+                data: {
+                  text: "성조는 음의 높낮이와 그 변화를 표시한 것으로, 중국어에는 네 개의 성조가 있습니다.",
+                },
+              },
+              {
+                type: "listenWords",
+                data: [
+                  {
+                    text: "a",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                    meaning: "제 1성",
+                  },
+                  {
+                    text: "a",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                    meaning: "제 2성",
+                  },
+                  {
+                    text: "a",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                    meaning: "제 3성",
+                  },
+                  {
+                    text: "a",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                    meaning: "제 4성",
+                  },
+                ],
+              },
+            ],
+          },
+        },
+        {
+          id: 22,
+          title: "운모",
+          description: "운모에 대해 알아봅시다.",
+          template: {
+            type: "TP03B",
+            contents: [
+              {
+                type: "html",
+                data: {
+                  text: "운모는 음절에서 성모를 제외한 나머지 부분으로, 모두 36입니다.",
+                },
+              },
+              {
+                type: "textBoxes",
+                data: [
+                  {
+                    main: "a",
+                  },
+                  {
+                    main: "o",
+                  },
+                  {
+                    main: "e",
+                  },
+                  {
+                    main: "i",
+                  },
+                  {
+                    main: "u",
+                  },
+                  {
+                    main: "u2",
+                  },
+                ],
+              },
+            ],
+          },
+        },
+      ],
+    },
+    {
+      id: 6,
+      type: "study1",
+      title: "문화",
+      isCompleted: false,
+      introduction: {
+        title: "성조와 운모을 공부해봐요",
+        description: "성조와 운모 학습 상세 사항",
+      },
+      cornerIcon:
+        "https://i.picsum.photos/id/813/200/200.jpg?hmac=KPqV3ldCcUrVRZi3-HZU491hRCs8AZAagGXxoAomcYU",
+      pages: [
+        {
+          id: 21,
+          title: "성조",
+          description: "발음을 듣고 따라 읽어보세요.",
+          template: {
+            type: "TP03A",
+            contents: [
+              {
+                type: "html",
+                data: {
+                  text: "성조는 음의 높낮이와 그 변화를 표시한 것으로, 중국어에는 네 개의 성조가 있습니다.",
+                },
+              },
+              {
+                type: "listenWords",
+                data: [
+                  {
+                    text: "a",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                    meaning: "제 1성",
+                  },
+                  {
+                    text: "a",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                    meaning: "제 2성",
+                  },
+                  {
+                    text: "a",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                    meaning: "제 3성",
+                  },
+                  {
+                    text: "a",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                    meaning: "제 4성",
+                  },
+                ],
+              },
+            ],
+          },
+        },
+        {
+          id: 22,
+          title: "운모",
+          description: "운모에 대해 알아봅시다.",
+          template: {
+            type: "TP03B",
+            contents: [
+              {
+                type: "html",
+                data: {
+                  text: "운모는 음절에서 성모를 제외한 나머지 부분으로, 모두 36입니다.",
+                },
+              },
+              {
+                type: "textBoxes",
+                data: [
+                  {
+                    main: "a",
+                  },
+                  {
+                    main: "o",
+                  },
+                  {
+                    main: "e",
+                  },
+                  {
+                    main: "i",
+                  },
+                  {
+                    main: "u",
+                  },
+                  {
+                    main: "u2",
+                  },
+                ],
+              },
+            ],
+          },
+        },
+      ],
+    },
+    {
+      id: 7,
+      type: "study1",
+      title: "연습문제",
+      isCompleted: false,
+      introduction: {
+        title: "성조와 운모을 공부해봐요",
+        description: "성조와 운모 학습 상세 사항",
+      },
+      cornerIcon:
+        "https://i.picsum.photos/id/787/200/200.jpg?hmac=CBLWRcHYFRDgc9zVqCgHmh5o2J6ADdShlYwX6ZKfqA4",
       pages: [
         {
           id: 21,
