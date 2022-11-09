@@ -6,7 +6,7 @@ const Container = styled.div`
   height: 100vh;
 `;
 
-const CommonPageLayout = ({ children }: { children: JSX.Element }) => {
+const CommonPageLayout = ({ children }: { children: JSX.Element | JSX.Element[] }) => {
   return <Container>{children}</Container>;
 };
 

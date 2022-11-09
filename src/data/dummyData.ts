@@ -31,28 +31,47 @@ export const dummyData: AppData = {
           title: "지난 레슨 확인하기",
           description: "녹음을 듣고 알맞은 발음을 고르세요.",
           template: {
-            type: "TP01A", // TODO: iframe 타입 추가
+            type: "TP03A", // TODO: iframe 타입 추가
             // TODO: iframe에 따른 src 옵셔널로 추가
             contents: [
               {
-                type: "chooseTextByAudio",
+                type: "html",
                 data: {
-                  choices: ["ge", "ke"],
-                  answerIndex: 0,
-                  audio: {
-                    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                  },
+                  text: "<p>성조는 음의 높낮이와 그 변화를 표시한 것으로, 중국어에는 네 개의 성조가 있습니다.</p>",
                 },
               },
               {
-                type: "chooseTextByAudio",
-                data: {
-                  choices: ["he", "ge"],
-                  answerIndex: 0,
-                  audio: {
-                    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                type: "listenWords",
+                data: [
+                  {
+                    text: "a",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                    meaning: "<p>제 1성</p>",
                   },
-                },
+                  {
+                    text: "a",
+                    audio: {
+                      src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
+                    },
+                    meaning: "<p>제 2성</p>",
+                  },
+                  {
+                    text: "a",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                    meaning: "<p>제 3성</p>",
+                  },
+                  {
+                    text: "a",
+                    audio: {
+                      src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
+                    },
+                    meaning: "<p>제 4성</p>",
+                  },
+                ],
               },
             ],
           },

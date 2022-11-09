@@ -42,7 +42,7 @@ type TP03ATemplate = {
   contents: TP03AContent[];
 };
 
-type TP03AContent = HtmlContent | ListenWordsContent;
+export type TP03AContent = HtmlContent | ListenWordsContent;
 
 export type TP03B = {
   id: ID;

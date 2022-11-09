@@ -4,7 +4,7 @@ import { TemplateProps } from "../../types/templates";
 interface TP01AComponentProps extends TemplateProps {}
 const TP01AComponent = ({ setPageCompleted, page }: TP01AComponentProps) => {
   useEffect(() => {
-    console.log("page", page);
+    console.log("page", page.template.contents);
   });
   return <div>TP01AComponent</div>;
 };

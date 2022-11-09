@@ -51,7 +51,7 @@ export type ListenWordsContent = {
   data: ListenWordData[];
 };
 
-type ListenWordData = {
+export type ListenWordData = {
   text: string;
   audio?: {
     src: string;
