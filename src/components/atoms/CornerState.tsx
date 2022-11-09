@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import styled from "@emotion/styled";
 import { colorPalette } from "../../styles/colorPalette";
-import IconCheck from "../svg/IconCheck";
+import IconCheck from "./svg/IconCheck";
 import { CornerStateType } from "../../types/corner";
 
 interface CornerStateItemProps {

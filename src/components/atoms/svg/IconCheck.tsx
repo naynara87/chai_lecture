@@ -1,5 +1,5 @@
 import React from "react";
-import { colorPalette } from "../../styles/colorPalette";
+import { colorPalette } from "../../../styles/colorPalette";
 
 interface IconCheckProps {
   color?: string;

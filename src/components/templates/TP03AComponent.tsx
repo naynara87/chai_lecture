@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import styled from "@emotion/styled";
 import { TP03A, TP03AContent } from "../../types/pageTemplate";
 import { TemplateProps } from "../../types/templates";
@@ -36,6 +36,9 @@ const HtmlWrapper = styled("div")`
 
 const TP03AComponent = ({ setPageCompleted, page }: TP03AComponentProps) => {
   const thisPage = page as TP03A;
+  useEffect(() => {
+    setPageCompleted();
+  }, [setPageCompleted]);
   const renderContents = useCallback((content: TP03AContent, index: number) => {
     if (content.type === "html") {
       const html = content.data.text;
