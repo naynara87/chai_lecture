@@ -1,12 +1,11 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import styled from "@emotion/styled";
 import { colorPalette } from "../../styles/colorPalette";
-import Button from "../atoms/Button";
-import ArrowRightNavy from "../svg/ArrowRightNavy";
-import { css } from "@emotion/react";
 import Spacing from "../atoms/Spacing";
 import CornerState from "../atoms/CornerState";
-import { FooterCornerState } from "../../hooks/useFooterState";
+import useFooterState from "../../hooks/useFooterState";
+import { AppData, Corner } from "../../types/appData";
+import FooterButton from "./FooterButton";
 
 const FooterContainer = styled.footer`
   background-color: ${colorPalette.deepBlue};
@@ -32,58 +31,66 @@ const CornerStateWrapper = styled.ul`
   vertical-align: middle;
 `;
 
-interface ButtonTextArrowProps {
-  left?: boolean;
-}
-const ButtonTextArrow = styled(Button)<ButtonTextArrowProps>`
-  position: relative;
-  height: auto;
-  padding: 8px 24px;
-  padding-right: 38px;
-  background-color: ${(props) =>
-    props.disabled ? colorPalette.disableBackground : colorPalette.white};
-  color: ${(props) => (props.disabled ? colorPalette.disableText : colorPalette.deepBlue)};
-  font-weight: 600;
-  font-size: 12px;
-  -webkit-transition: all 0.2s;
-  transition: all 0.2s;
-`;
-
-const arrowCss = css`
-  transform: scale(0.6);
-  position: absolute;
-  margin-left: 10px;
-  right: 16px;
-`;
-
 interface FooterProps {
   handleClickNext: () => void;
+  handleClickPrev: () => void;
   isPageCompleted: boolean;
-  cornerStateList: FooterCornerState[];
+  appData: AppData;
+  currentCorner: Corner;
+  pageIndex: number;
 }
-const Footer = ({ handleClickNext, isPageCompleted, cornerStateList }: FooterProps) => {
-  const isLastPage = false;
-  const isDisable = useMemo(() => {
+const Footer = ({
+  handleClickPrev,
+  handleClickNext,
+  isPageCompleted,
+  appData,
+  currentCorner,
+  pageIndex,
+}: FooterProps) => {
+  const { cornerStateList } = useFooterState({
+    appData,
+    currentCorner,
+  });
+  const isFirstPage = useMemo(() => {
+    return pageIndex === 0;
+  }, [pageIndex]);
+  const isLastPage = useMemo(() => {
+    return pageIndex === currentCorner.pages.length - 1;
+  }, [pageIndex, currentCorner]);
+
+  const isDisableNextButton = useMemo(() => {
     if (isLastPage) {
       return true;
     }
     return !isPageCompleted;
   }, [isPageCompleted, isLastPage]);
 
+  useEffect(() => {
+    console.log(`page: ${pageIndex + 1} / ${currentCorner.pages.length}`);
+  }, [pageIndex, currentCorner]);
+
   return (
     <FooterContainer>
-      {/* 이전 버튼 대신 영역 차지용 */}
-      <Spacing width="80px" />
+      {isFirstPage ? (
+        <Spacing width="80px" />
+      ) : (
+        <FooterButton text="이전" handleClick={handleClickPrev} direction="left" />
+      )}
       <CornerStateWrapper>
-        {/* TODO: corner 완료 여부 */}
         {cornerStateList.map((cornerState) => (
           <CornerState key={cornerState.id} state={cornerState.state} />
         ))}
       </CornerStateWrapper>
-      <ButtonTextArrow type="button" onClick={handleClickNext} disabled={isDisable}>
-        다음
-        <ArrowRightNavy customCss={arrowCss} disabled={isDisable} />
-      </ButtonTextArrow>
+      {isLastPage ? (
+        <Spacing width="80px" />
+      ) : (
+        <FooterButton
+          text="다음"
+          handleClick={handleClickNext}
+          isDisable={isDisableNextButton}
+          direction="right"
+        />
+      )}
     </FooterContainer>
   );
 };

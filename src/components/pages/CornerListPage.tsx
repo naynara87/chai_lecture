@@ -10,6 +10,7 @@ import { css } from "@emotion/react";
 import { colorPalette } from "../../styles/colorPalette";
 import TitleContent from "../molecules/TitleContent";
 import ButtonComponent from "../atoms/ButtonComponent";
+import { btnCss } from "../../styles/button";
 
 const CornerListWrapper = styled.main`
   display: -webkit-box;
@@ -86,36 +87,17 @@ const CornerName = styled.span`
 `;
 
 const startBtnCss = css`
-  border-radius: 0;
-  background-color: transparent;
-  border: 0;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  padding: 0;
-  outline: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+  ${btnCss}
   min-width: 149px;
   height: 43px;
   background-color: #6070cf;
   border-radius: 26px;
   font-weight: 600;
   font-size: 13px;
-  -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
   margin-top: 53px;
+  cursor: pointer;
 
   @media all and (max-width: 1024px) {
     min-width: 14.4791666667vw;
@@ -177,13 +159,12 @@ const CornerListPage = () => {
         {appData ? (
           <TitleContent title={appData.title} description={appData.description} />
         ) : (
-          "타이틀 로딩중"
+          <TitleContent title={""} description={""} loading />
         )}
-        {appData ? (
-          <>
-            <CornerListWrapper>
-              {/* TODO: 현재 코너는 컬러 나머진 흑백 */}
-              {appData.corners.map((corner) => (
+        <>
+          <CornerListWrapper>
+            {appData ? (
+              appData.corners.map((corner) => (
                 <CornerList key={corner.id}>
                   <CornerImageWrapper>
                     <ImageContentComponent
@@ -195,23 +176,23 @@ const CornerListPage = () => {
                   </CornerImageWrapper>
                   <CornerName>{corner.title}</CornerName>
                 </CornerList>
-              ))}
-            </CornerListWrapper>
-            <CornerListFooter>
-              {currentCorner && (
-                <ButtonComponent
-                  text="시작하기"
-                  customBtnCss={startBtnCss}
-                  customTextCss={startTextCss}
-                  linkUrl={`/corner/${currentCorner?.id}`}
-                  linkState={{ appData, currentCorner }}
-                />
-              )}
-            </CornerListFooter>
-          </>
-        ) : (
-          <div>로딩중</div>
-        )}
+              ))
+            ) : (
+              <div>"코너 로딩중"</div>
+            )}
+          </CornerListWrapper>
+          <CornerListFooter>
+            {currentCorner && appData && (
+              <ButtonComponent<{ appData: AppData; currentCorner: Corner }>
+                text="시작하기"
+                customBtnCss={startBtnCss}
+                customTextCss={startTextCss}
+                linkUrl={`/corner/${currentCorner?.id}`}
+                linkState={{ appData, currentCorner }}
+              />
+            )}
+          </CornerListFooter>
+        </>
       </>
     </CornerListLayout>
   );

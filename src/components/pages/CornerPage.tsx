@@ -7,14 +7,13 @@ import CommonPageLayout from "../Layouts/CommonPageLayout";
 import Footer from "../molecules/Footer";
 import Header from "../molecules/Header";
 import CornerMain from "../molecules/CornerMain";
-import useFooterState from "../../hooks/useFooterState";
 
 const CornerMainContainer = styled.main`
   height: 100%;
 `;
 
 const CornerPage = () => {
-  // get params from url
+  // get params from url => TODO: react query로 대체
   const {
     state: { appData: appDataByRouter, currentCorner: cornerByRouter },
   } = useLocation();
@@ -23,11 +22,6 @@ const CornerPage = () => {
 
   const [pageIndex, setPageIndex] = useState(0);
   const [isPageCompleted, setIsPageCompleted] = useState(false);
-
-  const { cornerStateList } = useFooterState({
-    appData: appDataByRouter,
-    currentCorner: cornerByRouter,
-  });
 
   const fetchCorner = useCallback(async () => {
     // NOTE: cornerByRouter가 있으면 cornerByRouter를 사용하고 없으면 cornerId로 corner를 가져옵니다
@@ -46,6 +40,11 @@ const CornerPage = () => {
     setIsPageCompleted(false);
   };
 
+  const handleClickPrev = () => {
+    setPageIndex((prev) => prev - 1);
+    setIsPageCompleted(false);
+  };
+
   return (
     <CommonPageLayout>
       <Header />
@@ -57,9 +56,12 @@ const CornerPage = () => {
         )}
       </CornerMainContainer>
       <Footer
+        pageIndex={pageIndex}
+        appData={appDataByRouter}
+        currentCorner={corner}
+        handleClickPrev={handleClickPrev}
         handleClickNext={handleClickNext}
         isPageCompleted={isPageCompleted}
-        cornerStateList={cornerStateList}
       />
     </CommonPageLayout>
   );
