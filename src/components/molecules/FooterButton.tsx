@@ -23,6 +23,7 @@ const ButtonTextArrow = styled(Button)<ButtonTextArrowProps>`
   font-size: 12px;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
+  cursor: ${(props) => (props.disabled ? "" : "pointer")};
 `;
 
 const arrowCss = css`
