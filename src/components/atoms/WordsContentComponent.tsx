@@ -18,7 +18,7 @@ const TextCard = styled.div`
   line-height: 84px;
   margin: 11px;
   padding: 11px 0;
-  border: 1px solid cololr(gray2);
+  border: 1px solid color(gray2);
   border-radius: 11px;
   font-size: 32px;
   -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
