@@ -35,6 +35,7 @@ export type Corner = {
   type: CornerType;
   title: string;
   isCompleted: boolean;
+  cornerIcon: string;
   introduction: {
     title: string;
     description: string;
