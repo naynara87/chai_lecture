@@ -73,27 +73,6 @@ export const dummyData: AppData = {
                   },
                 ],
               },
-
-              // {
-              //   type: "chooseTextByAudio",
-              //   data: {
-              //     choices: ["ge", "ke"],
-              //     answerIndex: 0,
-              //     audio: {
-              //       src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-              //     },
-              //   },
-              // },
-              // {
-              //   type: "chooseTextByAudio",
-              //   data: {
-              //     choices: ["he", "ge"],
-              //     answerIndex: 0,
-              //     audio: {
-              //       src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-              //     },
-              //   },
-              // },
             ],
           },
         },

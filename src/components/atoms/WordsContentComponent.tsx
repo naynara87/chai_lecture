@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { ListenWordData } from "../../types/templateContents";
+import HtmlContentComponent from "./HtmlContentComponent";
 
 interface WordsContentComponentProps extends ListenWordData {
   index: number;
@@ -36,7 +37,7 @@ const TextCard = styled.div`
   }
 `;
 
-const MeaningText = styled.div`
+const MeaningText = styled("div")`
   margin-top: 17px;
   font-weight: 600;
   font-size: 16px;
@@ -55,12 +56,13 @@ const WordsContentComponent = (props: WordsContentComponentProps) => {
   };
   return (
     <TextCardGrp>
-      <TextCard
-        onClick={handleClickWorkContent}
-        dangerouslySetInnerHTML={{ __html: props.text }}
-      ></TextCard>
+      <TextCard onClick={handleClickWorkContent}>
+        <HtmlContentComponent html={props.text} />
+      </TextCard>
       {props.meaning && (
-        <MeaningText dangerouslySetInnerHTML={{ __html: props.meaning }}></MeaningText>
+        <MeaningText>
+          <HtmlContentComponent html={props.meaning} />
+        </MeaningText>
       )}
     </TextCardGrp>
   );
