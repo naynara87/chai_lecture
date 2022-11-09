@@ -58,7 +58,8 @@ const exitButtonCss = css`
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
   border: none;
-  padding: 0 0;
+  padding: 15px 15px;
+  background-color: transparent;
   cursor: pointer;
   @media all and (max-width: 1024px) {
     right: 3.125vw;
