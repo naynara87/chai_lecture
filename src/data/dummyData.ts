@@ -20,7 +20,7 @@ export const dummyData: AppData = {
       id: 1,
       type: "review",
       title: "복습",
-      isCompleted: false,
+      isCompleted: true,
       introduction: {
         title: "복습모달 제목",
         description: "복습 모달 문구",
@@ -231,6 +231,106 @@ export const dummyData: AppData = {
       id: 2,
       type: "study1",
       title: "학습1",
+      isCompleted: false,
+      introduction: {
+        title: "성조와 운모을 공부해봐요",
+        description: "성조와 운모 학습 상세 사항",
+      },
+      pages: [
+        {
+          id: 21,
+          title: "성조",
+          description: "발음을 듣고 따라 읽어보세요.",
+          template: {
+            type: "TP03A",
+            contents: [
+              {
+                type: "html",
+                data: {
+                  text: "성조는 음의 높낮이와 그 변화를 표시한 것으로, 중국어에는 네 개의 성조가 있습니다.",
+                },
+              },
+              {
+                type: "listenWords",
+                data: [
+                  {
+                    text: "a",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                    meaning: "제 1성",
+                  },
+                  {
+                    text: "a",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                    meaning: "제 2성",
+                  },
+                  {
+                    text: "a",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                    meaning: "제 3성",
+                  },
+                  {
+                    text: "a",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                    meaning: "제 4성",
+                  },
+                ],
+              },
+            ],
+          },
+        },
+        {
+          id: 22,
+          title: "운모",
+          description: "운모에 대해 알아봅시다.",
+          template: {
+            type: "TP03B",
+            contents: [
+              {
+                type: "html",
+                data: {
+                  text: "운모는 음절에서 성모를 제외한 나머지 부분으로, 모두 36입니다.",
+                },
+              },
+              {
+                type: "textBoxes",
+                data: [
+                  {
+                    main: "a",
+                  },
+                  {
+                    main: "o",
+                  },
+                  {
+                    main: "e",
+                  },
+                  {
+                    main: "i",
+                  },
+                  {
+                    main: "u",
+                  },
+                  {
+                    main: "u2",
+                  },
+                ],
+              },
+            ],
+          },
+        },
+      ],
+    },
+    {
+      id: 3,
+      type: "study2",
+      title: "학습2",
       isCompleted: false,
       introduction: {
         title: "성조와 운모을 공부해봐요",

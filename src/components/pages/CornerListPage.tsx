@@ -1,9 +1,13 @@
+import styled from "@emotion/styled";
 import React, { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getAppData } from "../../data/tempApi";
 import { AppData, Corner } from "../../types/appData";
-import CommonPageLayout from "../Layouts/CommonPageLayout";
 import Header from "../molecules/Header";
+
+const CornerListLayout = styled.div`
+  height: 100vh;
+`;
 
 const CornerListPage = () => {
   const [appData, setAppData] = useState<AppData>();
@@ -26,7 +30,7 @@ const CornerListPage = () => {
   }, [appData]);
 
   return (
-    <CommonPageLayout>
+    <CornerListLayout>
       <>
         <Header />
         <h1>{appData ? appData.title : "제목 로딩중"}</h1>
@@ -42,7 +46,7 @@ const CornerListPage = () => {
             </main>
             <footer>
               <button type="button">
-                <Link to={`/corner/${currentCorner?.id}`} state={currentCorner}>
+                <Link to={`/corner/${currentCorner?.id}`} state={{ appData, currentCorner }}>
                   시작하기
                 </Link>
               </button>
@@ -52,7 +56,7 @@ const CornerListPage = () => {
           <div>로딩중</div>
         )}
       </>
-    </CommonPageLayout>
+    </CornerListLayout>
   );
 };
 
