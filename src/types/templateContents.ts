@@ -1,3 +1,5 @@
+import { ID } from "./appData";
+
 // 각 컴포넌트(컨텐츠)의 타입을 정의합니다.
 export type ChooseTextContent = {
   type: "chooseText";
@@ -136,19 +138,20 @@ export type DialogContent = {
   data: DialogData[];
 };
 
-/**
- * TODO
- * - Dialog에 문제가 포함되어 있을 경우에 대한 데이터 추가 필요
- * - 사람 구분 필요(색상, 이름 등)
- */
 type DialogData = {
+  id: ID; // 대화를 구분하기 위한 id - 같은 사람이 여러번 말할 경우 구분하기 위함
   icon: {
     src: string;
   };
   text: string;
-  // hasQuestion?: boolean;
   pronunciation: string;
   meaning: string;
+  hasQuestion: boolean;
+  question?: {
+    blankQuestion: (string | "*blank*")[];
+    choices: string[];
+    answerIndex: number;
+  };
   audio: {
     src: string;
   };
