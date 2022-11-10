@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import React from "react";
 import { ImagesContent } from "../../types/templateContents";
+import ChaiSkeleton from "../atoms/ChaiSkeleton";
 
 const ImageContainer = styled.div`
   display: flex;
@@ -16,7 +17,7 @@ const ImagesContentComponent = ({ imagesContent }: ImagesContentComponentProps) 
       {imagesContent ? (
         imagesContent.data.map((image, index) => <img key={index} src={image.src} alt={""} />)
       ) : (
-        <>이미지 로딩 화면</>
+        <ChaiSkeleton width={"100%"} height={275} />
       )}
     </ImageContainer>
   );

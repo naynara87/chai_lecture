@@ -12,6 +12,7 @@ import TitleContent from "../molecules/TitleContent";
 import ButtonComponent from "../atoms/ButtonComponent";
 import { btnCss } from "../../styles/button";
 import CommonMainContainer from "../atoms/CommonMainContainer";
+import ChaiSkeleton from "../atoms/ChaiSkeleton";
 
 const CornerListWrapper = styled.main`
   display: -webkit-box;
@@ -77,7 +78,8 @@ const CornerList = styled.div`
 `;
 
 const CornerName = styled.span`
-  display: block;
+  display: flex;
+  justify-content: center;
   margin-top: 13px;
   font-weight: 600;
   font-size: 16px;
@@ -163,23 +165,32 @@ const CornerListPage = () => {
           <TitleContent title={""} description={""} loading />
         )}
         <CornerListWrapper>
-          {appData ? (
-            appData.corners.map((corner) => (
-              <CornerList key={corner.id}>
-                <CornerImageWrapper>
-                  <ImageContentComponent
-                    imageSrc={corner.cornerIcon}
-                    imageAlt={corner.title}
-                    filter={changeFilter(corner.id)}
-                    customCss={cornerImageCss}
-                  />
-                </CornerImageWrapper>
-                <CornerName>{corner.title}</CornerName>
-              </CornerList>
-            ))
-          ) : (
-            <div>"코너 로딩중"</div>
-          )}
+          {appData
+            ? appData.corners.map((corner) => (
+                <CornerList key={corner.id}>
+                  <CornerImageWrapper>
+                    <ImageContentComponent
+                      imageSrc={corner.cornerIcon}
+                      imageAlt={corner.title}
+                      filter={changeFilter(corner.id)}
+                      customCss={cornerImageCss}
+                    />
+                  </CornerImageWrapper>
+                  <CornerName>{corner.title}</CornerName>
+                </CornerList>
+              ))
+            : Array(7)
+                .fill(0)
+                .map((_, index) => (
+                  <CornerList key={index}>
+                    <CornerImageWrapper>
+                      <ChaiSkeleton width={90} height={90} variant="circular" />
+                    </CornerImageWrapper>
+                    <CornerName>
+                      <ChaiSkeleton width={50} height={19} variant="rounded" />
+                    </CornerName>
+                  </CornerList>
+                ))}
         </CornerListWrapper>
         <CornerListFooter>
           {currentCorner && appData && (

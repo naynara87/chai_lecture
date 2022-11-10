@@ -45,10 +45,8 @@ const CornerPage = () => {
     <CommonPageLayout>
       <Header />
       <CommonMainContainer>
-        {corner ? (
+        {corner && (
           <CornerMain page={corner.pages[pageIndex]} setIsPageCompleted={setIsPageCompleted} />
-        ) : (
-          <div>로딩중</div>
         )}
       </CommonMainContainer>
       <Footer
