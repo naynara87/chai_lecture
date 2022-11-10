@@ -1,12 +1,23 @@
 import { css } from "@emotion/react";
 
 const globalStyle = css`
-  * {
-    box-sizing: border-box;
-  }
   /* =================== base =================== */
   html,
   body,
+  div,
+  p,
+  span,
+  ul,
+  ol,
+  dl,
+  li,
+  footer,
+  header,
+  main,
+  section,
+  article,
+  aside,
+  nav,
   [class] {
     margin: 0;
     padding: 0;

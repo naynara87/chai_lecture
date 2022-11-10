@@ -7,7 +7,13 @@ import useFooterState from "../../hooks/useFooterState";
 import { AppData, Corner } from "../../types/appData";
 import FooterButton from "./FooterButton";
 
-const FooterContainer = styled.footer`
+const FooterWrapper = styled.footer`
+  position: relative;
+  width: 100%;
+  height: 100%;
+`;
+
+const FooterContainer = styled.div`
   background-color: ${colorPalette.deepBlue};
   color: ${colorPalette.white};
   width: 100%;
@@ -22,6 +28,8 @@ const FooterContainer = styled.footer`
   justify-content: space-between;
   height: 70px;
   padding: 0 43px;
+  position: absolute;
+  bottom: 0;
 `;
 
 const CornerStateWrapper = styled.ul`
@@ -70,28 +78,30 @@ const Footer = ({
   }, [pageIndex, currentCorner]);
 
   return (
-    <FooterContainer>
-      {isFirstPage ? (
-        <Spacing width="80px" />
-      ) : (
-        <FooterButton text="이전" handleClick={handleClickPrev} direction="left" />
-      )}
-      <CornerStateWrapper>
-        {cornerStateList.map((cornerState) => (
-          <CornerState key={cornerState.id} state={cornerState.state} />
-        ))}
-      </CornerStateWrapper>
-      {isLastPage ? (
-        <Spacing width="80px" />
-      ) : (
-        <FooterButton
-          text="다음"
-          handleClick={handleClickNext}
-          isDisable={isDisableNextButton}
-          direction="right"
-        />
-      )}
-    </FooterContainer>
+    <FooterWrapper>
+      <FooterContainer>
+        {isFirstPage ? (
+          <Spacing width="80px" />
+        ) : (
+          <FooterButton text="이전" handleClick={handleClickPrev} direction="left" />
+        )}
+        <CornerStateWrapper>
+          {cornerStateList.map((cornerState) => (
+            <CornerState key={cornerState.id} state={cornerState.state} />
+          ))}
+        </CornerStateWrapper>
+        {isLastPage ? (
+          <Spacing width="80px" />
+        ) : (
+          <FooterButton
+            text="다음"
+            handleClick={handleClickNext}
+            isDisable={isDisableNextButton}
+            direction="right"
+          />
+        )}
+      </FooterContainer>
+    </FooterWrapper>
   );
 };
 

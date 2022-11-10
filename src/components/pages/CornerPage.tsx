@@ -10,6 +10,7 @@ import CornerMain from "../molecules/CornerMain";
 
 const CornerMainContainer = styled.main`
   height: 100%;
+  padding: 8vh 8.3vw 2.2vh 8.3vw;
 `;
 
 const CornerPage = () => {

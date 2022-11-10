@@ -2,13 +2,9 @@ import React from "react";
 import styled from "@emotion/styled";
 
 const TitleWrapper = styled.div`
-  text-align: center;
-  padding-top: 85px;
-  height: 185px;
-  @media all and (max-width: 1024px) {
-    padding-top: 8vw;
-    height: 15.75vw;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const MainTitle = styled.h2`
