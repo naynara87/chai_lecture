@@ -1,7 +1,9 @@
 import styled from "@emotion/styled";
 import React from "react";
+import { templateContentsAreaHeight } from "../../constants/layout";
 
 const TP03LayoutStyle = styled.div`
+  height: ${templateContentsAreaHeight};
   display: grid;
   grid-template-rows: 20% 78%;
   gap: 2%;
