@@ -11,6 +11,7 @@ import { colorPalette } from "../../styles/colorPalette";
 import TitleContent from "../molecules/TitleContent";
 import ButtonComponent from "../atoms/ButtonComponent";
 import { btnCss } from "../../styles/button";
+import CommonMainContainer from "../atoms/CommonMainContainer";
 
 const CornerListWrapper = styled.main`
   display: -webkit-box;
@@ -154,46 +155,44 @@ const CornerListPage = () => {
 
   return (
     <CornerListLayout>
-      <>
-        <Header />
+      <Header />
+      <CommonMainContainer>
         {appData ? (
           <TitleContent title={appData.title} description={appData.description} />
         ) : (
           <TitleContent title={""} description={""} loading />
         )}
-        <>
-          <CornerListWrapper>
-            {appData ? (
-              appData.corners.map((corner) => (
-                <CornerList key={corner.id}>
-                  <CornerImageWrapper>
-                    <ImageContentComponent
-                      imageSrc={corner.cornerIcon}
-                      imageAlt={corner.title}
-                      filter={changeFilter(corner.id)}
-                      customCss={cornerImageCss}
-                    />
-                  </CornerImageWrapper>
-                  <CornerName>{corner.title}</CornerName>
-                </CornerList>
-              ))
-            ) : (
-              <div>"코너 로딩중"</div>
-            )}
-          </CornerListWrapper>
-          <CornerListFooter>
-            {currentCorner && appData && (
-              <ButtonComponent<{ appData: AppData; currentCorner: Corner }>
-                text="시작하기"
-                customBtnCss={startBtnCss}
-                customTextCss={startTextCss}
-                linkUrl={`/corner/${currentCorner?.id}`}
-                linkState={{ appData, currentCorner }}
-              />
-            )}
-          </CornerListFooter>
-        </>
-      </>
+        <CornerListWrapper>
+          {appData ? (
+            appData.corners.map((corner) => (
+              <CornerList key={corner.id}>
+                <CornerImageWrapper>
+                  <ImageContentComponent
+                    imageSrc={corner.cornerIcon}
+                    imageAlt={corner.title}
+                    filter={changeFilter(corner.id)}
+                    customCss={cornerImageCss}
+                  />
+                </CornerImageWrapper>
+                <CornerName>{corner.title}</CornerName>
+              </CornerList>
+            ))
+          ) : (
+            <div>"코너 로딩중"</div>
+          )}
+        </CornerListWrapper>
+        <CornerListFooter>
+          {currentCorner && appData && (
+            <ButtonComponent<{ appData: AppData; currentCorner: Corner }>
+              text="시작하기"
+              customBtnCss={startBtnCss}
+              customTextCss={startTextCss}
+              linkUrl={`/corner/${currentCorner?.id}`}
+              linkState={{ appData, currentCorner }}
+            />
+          )}
+        </CornerListFooter>
+      </CommonMainContainer>
     </CornerListLayout>
   );
 };
