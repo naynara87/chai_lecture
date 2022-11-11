@@ -1,19 +1,11 @@
 import React from "react";
 import styled from "@emotion/styled";
-
-interface TitleContentProps {
-  title: string;
-  description: string;
-}
+import ChaiSkeleton from "../atoms/ChaiSkeleton";
 
 const TitleWrapper = styled.div`
-  text-align: center;
-  padding-top: 85px;
-  height: 185px;
-  @media all and (max-width: 1024px) {
-    padding-top: 6.5vw;
-    height: 15.75vw;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const MainTitle = styled.h2`
@@ -34,11 +26,25 @@ const SubTitle = styled.p`
   }
 `;
 
+interface TitleContentProps {
+  title: string;
+  description: string;
+  loading?: boolean;
+}
+
 const TitleContent = (props: TitleContentProps) => {
   return (
     <TitleWrapper>
-      <MainTitle>{props.title}</MainTitle>
-      <SubTitle>{props.description}</SubTitle>
+      <MainTitle>
+        {props.loading ? <ChaiSkeleton width={130} height={36} animation={false} /> : props.title}
+      </MainTitle>
+      <SubTitle>
+        {props.loading ? (
+          <ChaiSkeleton width={253} height={17} animation={false} />
+        ) : (
+          props.description
+        )}
+      </SubTitle>
     </TitleWrapper>
   );
 };

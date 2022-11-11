@@ -30,6 +30,125 @@ export const dummyData: AppData = {
       pages: [
         {
           id: 11,
+          title: "중국어의 개요",
+          description: "중국어의 개요에 대해 알아봅시다.",
+          template: {
+            type: "TP15A",
+            contents: [],
+            tabs: [
+              {
+                name: "한어",
+                contents: [
+                  {
+                    type: "html",
+                    data: {
+                      kind: "description",
+                      text: "<p>중국에서는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
+                    },
+                  },
+                  {
+                    type: "html",
+                    data: {
+                      kind: "tip",
+                      text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
+                    },
+                  },
+                  {
+                    type: "images",
+                    data: [
+                      {
+                        src: "https://i.picsum.photos/id/116/700/500.jpg?hmac=xnRVRAfW8IZ_-xe8038EpnpF2G2EFtHn32lCz1Nd2Mw",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                name: "보통화",
+                contents: [
+                  {
+                    type: "html",
+                    data: {
+                      kind: "description",
+                      text: "<p>보통화는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
+                    },
+                  },
+                  {
+                    type: "html",
+                    data: {
+                      kind: "tip",
+                      text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
+                    },
+                  },
+                  {
+                    type: "images",
+                    data: [
+                      {
+                        src: "https://i.picsum.photos/id/116/700/500.jpg?hmac=xnRVRAfW8IZ_-xe8038EpnpF2G2EFtHn32lCz1Nd2Mw",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                name: "중국어의 구성(한자)",
+                contents: [
+                  {
+                    type: "html",
+                    data: {
+                      kind: "description",
+                      text: "<p>중국어의 구성(한자)는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
+                    },
+                  },
+                  {
+                    type: "html",
+                    data: {
+                      kind: "tip",
+                      text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
+                    },
+                  },
+                  {
+                    type: "images",
+                    data: [
+                      {
+                        src: "https://i.picsum.photos/id/116/700/500.jpg?hmac=xnRVRAfW8IZ_-xe8038EpnpF2G2EFtHn32lCz1Nd2Mw",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                name: "중국어의 구성(병음)",
+                contents: [
+                  {
+                    type: "html",
+                    data: {
+                      kind: "description",
+                      text: "<p>중국어의 구성(병음)는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
+                    },
+                  },
+                  {
+                    type: "html",
+                    data: {
+                      kind: "tip",
+                      text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
+                    },
+                  },
+                  {
+                    type: "images",
+                    data: [
+                      {
+                        src: "https://i.picsum.photos/id/116/700/500.jpg?hmac=xnRVRAfW8IZ_-xe8038EpnpF2G2EFtHn32lCz1Nd2Mw",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        },
+        {
+          id: 12,
           title: "지난 레슨 확인하기",
           description: "녹음을 듣고 알맞은 발음을 고르세요.",
           template: {
@@ -38,7 +157,7 @@ export const dummyData: AppData = {
               {
                 type: "html",
                 data: {
-                  text: "<p>성조는 음의 높낮이와 그 변화를 표시한 것으로, 중국어에는 네 개의 성조가 있습니다.</p>",
+                  text: "<p>성조는 음의 높낮이와 그 변화를 표시한 것으로, <br />중국어에는 네 개의 성조가 있습니다.</p>",
                 },
               },
               {
@@ -125,7 +244,7 @@ export const dummyData: AppData = {
           // },
         },
         {
-          id: 12,
+          id: 13,
           title: "단어 익히기",
           description: "녹음을 듣고 알맞은 발음을 고르세요.",
           template: {
@@ -156,8 +275,8 @@ export const dummyData: AppData = {
           },
         },
         {
-          id: 13,
-          title: "중국어의 개요",
+          id: 14,
+          title: "중국어의 개요123",
           description: "중국어의 개요에 대해 알아봅시다.",
           template: {
             type: "TP15A",
@@ -376,6 +495,55 @@ export const dummyData: AppData = {
             ],
           },
         },
+        {
+          id: 23,
+          title: "성조3",
+          description: "발음을 듣고 따라 읽어보세요.3",
+          template: {
+            type: "TP03A",
+            contents: [
+              {
+                type: "html",
+                data: {
+                  text: "성조는 음의 높낮이와 그 변화를 표시한 것으로, 중국어에는 네 개의 성조가 있습니다.",
+                },
+              },
+              {
+                type: "listenWords",
+                data: [
+                  {
+                    text: "a",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                    meaning: "제 1성",
+                  },
+                  {
+                    text: "a",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                    meaning: "제 2성",
+                  },
+                  {
+                    text: "a",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                    meaning: "제 3성",
+                  },
+                  {
+                    text: "a",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                    meaning: "제 4성",
+                  },
+                ],
+              },
+            ],
+          },
+        },
       ],
     },
     {
@@ -391,7 +559,7 @@ export const dummyData: AppData = {
         "https://i.picsum.photos/id/40/200/200.jpg?hmac=xkvWvgGjMuaPySCsshiYpLBOaphxinRhPkMRgx-LIYQ",
       pages: [
         {
-          id: 21,
+          id: 31,
           title: "성조",
           description: "발음을 듣고 따라 읽어보세요.",
           template: {
@@ -440,7 +608,7 @@ export const dummyData: AppData = {
           },
         },
         {
-          id: 22,
+          id: 32,
           title: "운모",
           description: "운모에 대해 알아봅시다.",
           template: {
@@ -472,6 +640,55 @@ export const dummyData: AppData = {
                   },
                   {
                     main: "u2",
+                  },
+                ],
+              },
+            ],
+          },
+        },
+        {
+          id: 33,
+          title: "성조3",
+          description: "발음을 듣고 따라 읽어보세요.3",
+          template: {
+            type: "TP03A",
+            contents: [
+              {
+                type: "html",
+                data: {
+                  text: "성조는 음의 높낮이와 그 변화를 표시한 것으로, 중국어에는 네 개의 성조가 있습니다.",
+                },
+              },
+              {
+                type: "listenWords",
+                data: [
+                  {
+                    text: "a",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                    meaning: "제 1성",
+                  },
+                  {
+                    text: "a",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                    meaning: "제 2성",
+                  },
+                  {
+                    text: "a",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                    meaning: "제 3성",
+                  },
+                  {
+                    text: "a",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                    meaning: "제 4성",
                   },
                 ],
               },

@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useMemo } from "react";
 import styled from "@emotion/styled";
 import { TP03B, TP03BContent } from "../../types/pageTemplate";
 import { TemplateProps } from "../../types/templates";
@@ -6,6 +6,10 @@ import TitleContent from "../molecules/TitleContent";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
 import ContentLayout from "../Layouts/ContentLayout";
 import TextBoxes from "../molecules/TextBoxes";
+import { HtmlContent, TextBoxesContent } from "../../types/templateContents";
+import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
+import TP03Layout from "../Layouts/TP03Layout";
+import ContentsBox from "../Layouts/ContentsBox";
 
 interface TP0BAComponentProps extends TemplateProps {}
 
@@ -24,26 +28,37 @@ const HtmlWrapper = styled("div")`
 
 const TP03BComponent = ({ setPageCompleted, page }: TP0BAComponentProps) => {
   const thisPage = page as TP03B;
-  const renderContents = useCallback((content: TP03BContent, index: number) => {
-    if (content.type === "html") {
-      const html = content.data.text;
-      return (
-        <HtmlWrapper key={index}>
-          <HtmlContentComponent html={html} />
-        </HtmlWrapper>
-      );
-    } else if (content.type === "textBoxes") {
-      return <TextBoxes key={index} textBoxes={content.data} />;
-    }
-  }, []);
+  useEffect(() => {
+    setPageCompleted();
+  }, [setPageCompleted]);
+
+  const htmlContentData = useMemo(() => {
+    return thisPage.template.contents.find((content) => content.type === "html") as
+      | HtmlContent
+      | undefined;
+  }, [thisPage.template.contents]);
+
+  const TextBoxesContentData = useMemo(() => {
+    return thisPage.template.contents.find((content) => content.type === "textBoxes") as
+      | TextBoxesContent
+      | undefined;
+  }, [thisPage.template.contents]);
+
   return (
     <>
-      <TitleContent title={thisPage.title} description={thisPage.description} />
-      <ContentLayout>
-        {thisPage.template.contents.map((item, index) => {
-          return renderContents(item, index) ?? <div>not loaded</div>;
-        })}
-      </ContentLayout>
+      <TemplateCommonLayout>
+        <TitleContent title={page.title} description={page.description} />
+        <TP03Layout>
+          <ContentsBox>
+            <HtmlWrapper>
+              <HtmlContentComponent html={htmlContentData?.data?.text ?? ""} />
+            </HtmlWrapper>
+          </ContentsBox>
+          <ContentsBox>
+            {TextBoxesContentData ? <TextBoxes datas={TextBoxesContentData.data} /> : <></>}
+          </ContentsBox>
+        </TP03Layout>
+      </TemplateCommonLayout>
     </>
   );
 };

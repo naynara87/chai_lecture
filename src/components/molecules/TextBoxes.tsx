@@ -1,15 +1,18 @@
 import React from "react";
 import styled from "@emotion/styled";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
-import { TextBoxesContent } from "../../types/templateContents";
+import { TextBoxesData } from "../../types/templateContents";
 
 interface TextBoxesProps {
-  textBoxes: TextBoxesContent["data"];
+  datas: TextBoxesData[];
 }
 
 const TextBoxesWrapper = styled.div`
-  max-width: 435px;
+  max-width: 528px;
   margin: 0 auto;
+  @media all and (max-width: 1024px) {
+    max-width: 51.6vw;
+  }
 `;
 
 const TextCardGrp = styled.div`
@@ -28,7 +31,6 @@ const TextCard = styled.div`
   -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
   text-align: center;
-  cursor: pointer;
 
   @media all and (max-width: 1024px) {
     width: 15vw;
@@ -52,10 +54,10 @@ const MeaningText = styled("div")`
   }
 `;
 
-const TextBoxes = ({ textBoxes }: TextBoxesProps) => {
+const TextBoxes = ({ datas }: TextBoxesProps) => {
   return (
     <TextBoxesWrapper>
-      {textBoxes.map((item, index) => {
+      {datas.map((item, index) => {
         return (
           <TextCardGrp key={index}>
             <TextCard>

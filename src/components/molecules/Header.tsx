@@ -7,18 +7,13 @@ import ButtonComponent from "../atoms/ButtonComponent";
 import { css } from "@emotion/react";
 
 const HeaderContainer = styled.header`
-  z-index: 10;
-  position: absolute;
-  top: 0;
-  left: 50%;
+  position: relative;
   width: 100%;
   height: 55px;
   padding: 0 32px;
   background-color: #40476b;
   -webkit-box-shadow: 0 3px 16px rgba(0, 0, 0, 0.4);
   box-shadow: 0 3px 16px rgba(0, 0, 0, 0.4);
-  -webkit-transform: translateX(-50%);
-  transform: translateX(-50%);
   @media all and (max-width: 1024px) {
     padding: 0 3.125vw;
     height: 5.4166666667vw;
@@ -65,6 +60,8 @@ const exitButtonCss = css`
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
   border: none;
+  padding: 15px 15px;
+  background-color: transparent;
   cursor: pointer;
   @media all and (max-width: 1024px) {
     right: 3.125vw;
@@ -162,6 +159,10 @@ const Header = () => {
   return (
     <HeaderContainer>
       <HeaderTitle>{renderTitle()}</HeaderTitle>
+      <HeaderTitle>
+        {courseAndLessonTitles.courseTitle ? `${courseAndLessonTitles.courseTitle} > ` : ""}
+        <LessonTitle>{courseAndLessonTitles.lessonTitle}</LessonTitle>
+      </HeaderTitle>
       <ButtonComponent
         text="X"
         linkUrl="/"

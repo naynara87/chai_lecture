@@ -1,11 +1,15 @@
-import React, { useCallback } from "react";
+import React, { useEffect, useMemo } from "react";
 import styled from "@emotion/styled";
-import { TP03A, TP03AContent } from "../../types/pageTemplate";
+import { TP03A } from "../../types/pageTemplate";
 import { TemplateProps } from "../../types/templates";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
 import ListenWordContent from "../molecules/ListenWordContent";
 import TitleContent from "../molecules/TitleContent";
-import ContentLayout from "../Layouts/ContentLayout";
+import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
+import TP03Layout from "../Layouts/TP03Layout";
+import ContentsBox from "../Layouts/ContentsBox";
+import { HtmlContent, ListenWordsContent } from "../../types/templateContents";
+import { colorPalette } from "../../styles/colorPalette";
 
 interface TP03AComponentProps extends TemplateProps {}
 
@@ -13,7 +17,7 @@ const HtmlWrapper = styled("div")`
   line-height: 1.5;
   font-weight: 400;
   font-size: 26px;
-  color: #666666;
+  color: ${colorPalette.descriptionText};
   white-space: pre-line;
   text-align: center;
 
@@ -24,27 +28,40 @@ const HtmlWrapper = styled("div")`
 
 const TP03AComponent = ({ setPageCompleted, page }: TP03AComponentProps) => {
   const thisPage = page as TP03A;
-  const renderContents = useCallback((content: TP03AContent, index: number) => {
-    if (content.type === "html") {
-      const html = content.data.text;
-      return (
-        <HtmlWrapper key={index}>
-          <HtmlContentComponent html={html} />
-        </HtmlWrapper>
-      );
-    } else if (content.type === "listenWords") {
-      return <ListenWordContent key={index} datas={content.data} />;
-    }
-  }, []);
+  useEffect(() => {
+    setPageCompleted();
+  }, [setPageCompleted]);
+
+  const htmlContentData = useMemo(() => {
+    return thisPage.template.contents.find((content) => content.type === "html") as
+      | HtmlContent
+      | undefined;
+  }, [thisPage.template.contents]);
+
+  const listenWordsContentData = useMemo(() => {
+    return thisPage.template.contents.find((content) => content.type === "listenWords") as
+      | ListenWordsContent
+      | undefined;
+  }, [thisPage.template.contents]);
+
   return (
-    <>
-      <TitleContent title={thisPage.title} description={thisPage.description} />
-      <ContentLayout>
-        {thisPage.template.contents.map((item, index) => {
-          return renderContents(item, index) ?? <div>not loaded</div>;
-        })}
-      </ContentLayout>
-    </>
+    <TemplateCommonLayout>
+      <TitleContent title={page.title} description={page.description} />
+      <TP03Layout>
+        <ContentsBox>
+          <HtmlWrapper>
+            <HtmlContentComponent html={htmlContentData?.data?.text ?? ""} />
+          </HtmlWrapper>
+        </ContentsBox>
+        <ContentsBox>
+          {listenWordsContentData ? (
+            <ListenWordContent datas={listenWordsContentData.data} />
+          ) : (
+            <></>
+          )}
+        </ContentsBox>
+      </TP03Layout>
+    </TemplateCommonLayout>
   );
 };
 
