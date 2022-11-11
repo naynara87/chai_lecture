@@ -8,7 +8,7 @@ const AppRouter = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<CornerListPage />} />
-        <Route path="corner/:id" element={<CornerPage />} />
+        <Route path="corner/:cornerId/page/:pageId" element={<CornerPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

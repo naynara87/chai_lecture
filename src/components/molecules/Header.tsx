@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { colorPalette } from "../../styles/colorPalette";
-import { useRecoilValue } from "recoil";
-import { courseAndLessonTitlesState } from "../../states/courseAndLessonTitlesState";
 import ButtonComponent from "../atoms/ButtonComponent";
 import { css } from "@emotion/react";
+import { useQuery } from "@tanstack/react-query";
+import { QUERY_KEY } from "../../constants/queryKey";
+import { getAppData } from "../../data/tempApi";
 
 const HeaderContainer = styled.header`
   position: relative;
@@ -136,7 +137,7 @@ const exitTextCss = css`
 `;
 
 const Header = () => {
-  const courseAndLessonTitles = useRecoilValue(courseAndLessonTitlesState);
+  const { data: appData } = useQuery([QUERY_KEY.APP_DATA], getAppData);
   const handleExitButton = () => {
     console.log("나가기 버튼");
     window.close();
@@ -144,8 +145,8 @@ const Header = () => {
   return (
     <HeaderContainer>
       <HeaderTitle>
-        {courseAndLessonTitles.courseTitle ? `${courseAndLessonTitles.courseTitle} > ` : ""}
-        <LessonTitle>{courseAndLessonTitles.lessonTitle}</LessonTitle>
+        {appData?.course.title ? `${appData?.course.title} > ` : ""}
+        <LessonTitle>{appData?.lesson.title}</LessonTitle>
       </HeaderTitle>
       <ButtonComponent
         text="X"

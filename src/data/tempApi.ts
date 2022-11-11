@@ -10,8 +10,6 @@ export const getAppData = async (): Promise<AppData> => {
   });
 };
 
-// export const getLessonData = (lessonId: ID) => {
-
 export const getCorner = async (cornerId: ID) => {
   return dummyData.corners.find((corner) => corner.id.toString() === cornerId.toString());
 };
@@ -19,4 +17,9 @@ export const getCorner = async (cornerId: ID) => {
 export const getPages = async (cornerId: ID) => {
   const corner = await getCorner(cornerId);
   return corner?.pages ?? [];
+};
+
+export const getPage = async (cornerId: ID, pageId: ID) => {
+  const pages = await getPages(cornerId);
+  return pages.find((page) => page.id.toString() === pageId.toString());
 };

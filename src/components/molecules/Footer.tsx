@@ -4,8 +4,11 @@ import { colorPalette } from "../../styles/colorPalette";
 import Spacing from "../atoms/Spacing";
 import CornerState from "../atoms/CornerState";
 import useFooterState from "../../hooks/useFooterState";
-import { AppData, Corner } from "../../types/appData";
 import FooterButton from "./FooterButton";
+import { useQuery } from "@tanstack/react-query";
+import { QUERY_KEY } from "../../constants/queryKey";
+import { getAppData } from "../../data/tempApi";
+import useCorner from "../../hooks/useCorner";
 
 const FooterWrapper = styled.footer`
   position: relative;
@@ -43,18 +46,11 @@ interface FooterProps {
   handleClickNext: () => void;
   handleClickPrev: () => void;
   isPageCompleted: boolean;
-  appData: AppData;
-  currentCorner: Corner;
   pageIndex: number;
 }
-const Footer = ({
-  handleClickPrev,
-  handleClickNext,
-  isPageCompleted,
-  appData,
-  currentCorner,
-  pageIndex,
-}: FooterProps) => {
+const Footer = ({ handleClickPrev, handleClickNext, isPageCompleted, pageIndex }: FooterProps) => {
+  const { data: appData } = useQuery([QUERY_KEY.APP_DATA], getAppData);
+  const { currentCorner } = useCorner();
   const { cornerStateList } = useFooterState({
     appData,
     currentCorner,
@@ -63,6 +59,9 @@ const Footer = ({
     return pageIndex === 0;
   }, [pageIndex]);
   const isLastPage = useMemo(() => {
+    if (currentCorner === undefined) {
+      return false;
+    }
     return pageIndex === currentCorner.pages.length - 1;
   }, [pageIndex, currentCorner]);
 
@@ -74,6 +73,9 @@ const Footer = ({
   }, [isPageCompleted, isLastPage]);
 
   useEffect(() => {
+    if (currentCorner === undefined) {
+      return;
+    }
     console.log(`page: ${pageIndex + 1} / ${currentCorner.pages.length}`);
   }, [pageIndex, currentCorner]);
 

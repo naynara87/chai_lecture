@@ -1,58 +1,43 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
-import { getCorner } from "../../data/tempApi";
-import { Corner } from "../../types/appData";
+import React, { useState } from "react";
 import CommonPageLayout from "../Layouts/CommonPageLayout";
 import Footer from "../molecules/Footer";
 import Header from "../molecules/Header";
 import CornerMain from "../molecules/CornerMain";
 import CommonMainContainer from "../atoms/CommonMainContainer";
+import useCorner from "../../hooks/useCorner";
+import usePage from "../../hooks/usePage";
+import { useNavigate } from "react-router-dom";
 
 const CornerPage = () => {
-  // get params from url => TODO: react query로 대체
-  const {
-    state: { appData: appDataByRouter, currentCorner: cornerByRouter },
-  } = useLocation();
-  const [corner, setCorner] = useState<Corner>(cornerByRouter);
-  const { id: cornerId } = useParams();
-
-  const [pageIndex, setPageIndex] = useState(0);
+  const { pageIds, cornerId } = useCorner();
   const [isPageCompleted, setIsPageCompleted] = useState(false);
+  const { page: currentPage } = usePage();
+  const navigate = useNavigate();
 
-  const fetchCorner = useCallback(async () => {
-    // NOTE: cornerByRouter가 있으면 cornerByRouter를 사용하고 없으면 cornerId로 corner를 가져옵니다
-    if (!corner && cornerId) {
-      const corner = await getCorner(cornerId);
-      if (corner) setCorner(corner);
-    }
-  }, [cornerId, corner]);
-
-  useEffect(() => {
-    fetchCorner();
-  }, [fetchCorner]);
+  const pageIndex = pageIds.findIndex((id) => id === currentPage?.id);
 
   const handleClickNext = () => {
-    setPageIndex((prev) => prev + 1);
+    navigate(`/corner/${cornerId}/page/${pageIds[pageIndex + 1]}`);
     setIsPageCompleted(false);
   };
 
   const handleClickPrev = () => {
-    setPageIndex((prev) => prev - 1);
+    navigate(`/corner/${cornerId}/page/${pageIds[pageIndex - 1]}`);
     setIsPageCompleted(false);
+  };
+
+  const setPageCompleted = () => {
+    setIsPageCompleted(true);
   };
 
   return (
     <CommonPageLayout>
       <Header />
       <CommonMainContainer>
-        {corner && (
-          <CornerMain page={corner.pages[pageIndex]} setIsPageCompleted={setIsPageCompleted} />
-        )}
+        {currentPage && <CornerMain page={currentPage} setPageCompleted={setPageCompleted} />}
       </CommonMainContainer>
       <Footer
         pageIndex={pageIndex}
-        appData={appDataByRouter}
-        currentCorner={corner}
         handleClickPrev={handleClickPrev}
         handleClickNext={handleClickNext}
         isPageCompleted={isPageCompleted}

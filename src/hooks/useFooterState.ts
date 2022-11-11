@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from "react";
-import { getAppData } from "../data/tempApi";
 import { AppData, Corner, ID } from "../types/appData";
 import { CornerStateType } from "../types/corner";
 
@@ -9,27 +8,13 @@ export interface FooterCornerState {
 }
 
 interface UseFooterStateProps {
-  appData: AppData;
-  currentCorner: Corner;
+  appData: AppData | undefined;
+  currentCorner: Corner | undefined;
 }
 const useFooterState = ({ appData, currentCorner }: UseFooterStateProps) => {
-  const [appDataState, setAppDataState] = useState<AppData>();
   const [cornerStateList, setCornerStateList] = useState<FooterCornerState[]>([]);
-  const fetchAppData = useCallback(async () => {
-    if (appData) {
-      setAppDataState(appData);
-      return;
-    }
-    const appDataFromServer = await getAppData();
-    setAppDataState(appDataFromServer);
-  }, [appData]);
-
-  useEffect(() => {
-    fetchAppData();
-  }, [fetchAppData]);
 
   const getCornerState = useCallback((currentCorner: Corner, comparingCorner: Corner) => {
-    // "current" | "completed" | "inCompleted";
     if (currentCorner.id === comparingCorner.id) {
       return "current";
     } else if (comparingCorner.isCompleted) {
@@ -40,8 +25,9 @@ const useFooterState = ({ appData, currentCorner }: UseFooterStateProps) => {
   }, []);
 
   useEffect(() => {
-    if (!appDataState) return;
-    const cornerStateList = appDataState.corners.map(
+    if (!appData) return;
+    if (!currentCorner) return;
+    const cornerStateList = appData.corners.map(
       (corner) =>
         ({
           id: corner.id,
@@ -49,10 +35,9 @@ const useFooterState = ({ appData, currentCorner }: UseFooterStateProps) => {
         } as FooterCornerState),
     );
     setCornerStateList(cornerStateList);
-  }, [appDataState, currentCorner, getCornerState]);
+  }, [appData, currentCorner, getCornerState]);
 
   return {
-    appData: appDataState,
     cornerStateList,
   };
 };
