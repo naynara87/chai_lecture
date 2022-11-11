@@ -1,10 +1,9 @@
-import React, { useCallback, useEffect, useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import styled from "@emotion/styled";
-import { TP03B, TP03BContent } from "../../types/pageTemplate";
+import { TP03B } from "../../types/pageTemplate";
 import { TemplateProps } from "../../types/templates";
 import TitleContent from "../molecules/TitleContent";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
-import ContentLayout from "../Layouts/ContentLayout";
 import TextBoxes from "../molecules/TextBoxes";
 import { HtmlContent, TextBoxesContent } from "../../types/templateContents";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
