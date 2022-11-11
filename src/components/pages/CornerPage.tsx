@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState } from "react";
-import styled from "@emotion/styled";
 import { useLocation, useParams } from "react-router-dom";
 import { getCorner } from "../../data/tempApi";
 import { Corner } from "../../types/appData";
@@ -7,10 +6,7 @@ import CommonPageLayout from "../Layouts/CommonPageLayout";
 import Footer from "../molecules/Footer";
 import Header from "../molecules/Header";
 import CornerMain from "../molecules/CornerMain";
-
-const CornerMainContainer = styled.main`
-  height: 100%;
-`;
+import CommonMainContainer from "../atoms/CommonMainContainer";
 
 const CornerPage = () => {
   // get params from url => TODO: react query로 대체
@@ -48,13 +44,11 @@ const CornerPage = () => {
   return (
     <CommonPageLayout>
       <Header />
-      <CornerMainContainer>
-        {corner ? (
+      <CommonMainContainer>
+        {corner && (
           <CornerMain page={corner.pages[pageIndex]} setIsPageCompleted={setIsPageCompleted} />
-        ) : (
-          <div>로딩중</div>
         )}
-      </CornerMainContainer>
+      </CommonMainContainer>
       <Footer
         pageIndex={pageIndex}
         appData={appDataByRouter}

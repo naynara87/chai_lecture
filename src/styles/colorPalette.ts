@@ -5,4 +5,6 @@ export const colorPalette = Object.freeze({
   borderGray: "#cccccc",
   disableBackground: "#cccccc",
   disableText: "#A0A1A4",
+  descriptionText: "#666666",
+  tabBackground: "#9b9b9b",
 });

@@ -11,6 +11,8 @@ import { colorPalette } from "../../styles/colorPalette";
 import TitleContent from "../molecules/TitleContent";
 import ButtonComponent from "../atoms/ButtonComponent";
 import { btnCss } from "../../styles/button";
+import CommonMainContainer from "../atoms/CommonMainContainer";
+import ChaiSkeleton from "../atoms/ChaiSkeleton";
 
 const CornerListWrapper = styled.main`
   display: -webkit-box;
@@ -76,7 +78,8 @@ const CornerList = styled.div`
 `;
 
 const CornerName = styled.span`
-  display: block;
+  display: flex;
+  justify-content: center;
   margin-top: 13px;
   font-weight: 600;
   font-size: 16px;
@@ -154,17 +157,16 @@ const CornerListPage = () => {
 
   return (
     <CornerListLayout>
-      <>
-        <Header />
+      <Header />
+      <CommonMainContainer>
         {appData ? (
           <TitleContent title={appData.title} description={appData.description} />
         ) : (
           <TitleContent title={""} description={""} loading />
         )}
-        <>
-          <CornerListWrapper>
-            {appData ? (
-              appData.corners.map((corner) => (
+        <CornerListWrapper>
+          {appData
+            ? appData.corners.map((corner) => (
                 <CornerList key={corner.id}>
                   <CornerImageWrapper>
                     <ImageContentComponent
@@ -177,23 +179,31 @@ const CornerListPage = () => {
                   <CornerName>{corner.title}</CornerName>
                 </CornerList>
               ))
-            ) : (
-              <div>"코너 로딩중"</div>
-            )}
-          </CornerListWrapper>
-          <CornerListFooter>
-            {currentCorner && appData && (
-              <ButtonComponent<{ appData: AppData; currentCorner: Corner }>
-                text="시작하기"
-                customBtnCss={startBtnCss}
-                customTextCss={startTextCss}
-                linkUrl={`/corner/${currentCorner?.id}`}
-                linkState={{ appData, currentCorner }}
-              />
-            )}
-          </CornerListFooter>
-        </>
-      </>
+            : Array(7)
+                .fill(0)
+                .map((_, index) => (
+                  <CornerList key={index}>
+                    <CornerImageWrapper>
+                      <ChaiSkeleton width={90} height={90} variant="circular" />
+                    </CornerImageWrapper>
+                    <CornerName>
+                      <ChaiSkeleton width={50} height={19} variant="rounded" />
+                    </CornerName>
+                  </CornerList>
+                ))}
+        </CornerListWrapper>
+        <CornerListFooter>
+          {currentCorner && appData && (
+            <ButtonComponent<{ appData: AppData; currentCorner: Corner }>
+              text="시작하기"
+              customBtnCss={startBtnCss}
+              customTextCss={startTextCss}
+              linkUrl={`/corner/${currentCorner?.id}`}
+              linkState={{ appData, currentCorner }}
+            />
+          )}
+        </CornerListFooter>
+      </CommonMainContainer>
     </CornerListLayout>
   );
 };
