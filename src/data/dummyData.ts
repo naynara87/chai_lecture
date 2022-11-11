@@ -260,12 +260,12 @@ export const dummyData: AppData = {
                 type: "textBoxes",
                 data: [
                   {
-                    main: "<h1>경성</h1>",
+                    main: "경성",
                     sub: "",
                     description: "<p>ai ao an ang</p>",
                   },
                   {
-                    main: "<h1>한어병음 표기 규칙</h1>",
+                    main: "한어",
                     sub: "",
                     description: "<p>ou ong</p>",
                   },

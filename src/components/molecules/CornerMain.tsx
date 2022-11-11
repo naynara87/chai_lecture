@@ -4,12 +4,9 @@ import { Page } from "../../types/appData";
 
 interface CornerMainProps {
   page: Page;
-  setIsPageCompleted: React.Dispatch<React.SetStateAction<boolean>>;
+  setPageCompleted(): void;
 }
-const CornerMain = ({ page, setIsPageCompleted }: CornerMainProps) => {
-  const setPageCompleted = () => {
-    setIsPageCompleted(true);
-  };
+const CornerMain = ({ page, setPageCompleted }: CornerMainProps) => {
   const { getTemplateComponent } = useTemplateMapper({ setPageCompleted, page });
   return <>{getTemplateComponent(page.template.type)}</>;
 };

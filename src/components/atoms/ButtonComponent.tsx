@@ -19,25 +19,23 @@ const Text = styled.span<TextComponentProps>`
   ${(props) => props.customTextCss}
 `;
 
-interface ButtonComponentProps<S> {
+interface ButtonComponentProps {
   text: string;
   linkUrl: string;
-  linkState?: S;
   customBtnCss?: SerializedStyles;
   customTextCss?: SerializedStyles;
   handleClickButton?: () => void;
 }
 
-function ButtonComponent<LinkStateType = any>({
+function ButtonComponent({
   text,
   customBtnCss,
   customTextCss,
   linkUrl,
-  linkState,
   handleClickButton,
-}: ButtonComponentProps<LinkStateType>) {
+}: ButtonComponentProps) {
   return (
-    <Link to={linkUrl} state={linkState} style={{ textDecoration: "none" }}>
+    <Link to={linkUrl} style={{ textDecoration: "none" }}>
       <Button type="button" customBtnCss={customBtnCss} onClick={handleClickButton}>
         <Text customTextCss={customTextCss}>{text}</Text>
       </Button>

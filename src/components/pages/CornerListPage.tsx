@@ -1,11 +1,9 @@
 import React, { useCallback, useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { getAppData } from "../../data/tempApi";
-import { AppData, Corner, ID } from "../../types/appData";
+import { Corner, ID } from "../../types/appData";
 import ImageContentComponent from "../atoms/ImageContentComponent";
 import Header from "../molecules/Header";
-import { useSetRecoilState } from "recoil";
-import { courseAndLessonTitlesState } from "../../states/courseAndLessonTitlesState";
 import { css } from "@emotion/react";
 import { colorPalette } from "../../styles/colorPalette";
 import TitleContent from "../molecules/TitleContent";
@@ -13,6 +11,8 @@ import ButtonComponent from "../atoms/ButtonComponent";
 import { btnCss } from "../../styles/button";
 import CommonMainContainer from "../atoms/CommonMainContainer";
 import ChaiSkeleton from "../atoms/ChaiSkeleton";
+import { useQuery } from "@tanstack/react-query";
+import { QUERY_KEY } from "../../constants/queryKey";
 
 const CornerListWrapper = styled.main`
   display: -webkit-box;
@@ -120,20 +120,7 @@ const CornerListLayout = styled.div`
 `;
 
 const CornerListPage = () => {
-  const [appData, setAppData] = useState<AppData>();
-  const setCourseAndLessonTitles = useSetRecoilState(courseAndLessonTitlesState);
-  const fetchAppData = useCallback(async () => {
-    const appData = await getAppData();
-    setCourseAndLessonTitles({
-      courseTitle: appData.course.title,
-      lessonTitle: appData.lesson.title,
-    });
-    setAppData(appData);
-  }, [setCourseAndLessonTitles]);
-
-  useEffect(() => {
-    fetchAppData();
-  }, [fetchAppData]);
+  const { data: appData } = useQuery([QUERY_KEY.APP_DATA], getAppData);
 
   const [currentCorner, setCurrentCorner] = useState<Corner>();
 
@@ -194,12 +181,13 @@ const CornerListPage = () => {
         </CornerListWrapper>
         <CornerListFooter>
           {currentCorner && appData && (
-            <ButtonComponent<{ appData: AppData; currentCorner: Corner }>
+            // TODO: 모달 창 띄우고 학습목표 보여준 다음 확인 누르면 이동하는 로직으로 변경하기
+            <ButtonComponent
               text="시작하기"
               customBtnCss={startBtnCss}
               customTextCss={startTextCss}
-              linkUrl={`/corner/${currentCorner?.id}`}
-              linkState={{ appData, currentCorner }}
+              // NOTE: API에서 전달되는 데이터가 변경되면 수정해야함
+              linkUrl={`/corner/${currentCorner?.id}/page/${currentCorner?.pages?.[0]?.id}`}
             />
           )}
         </CornerListFooter>
