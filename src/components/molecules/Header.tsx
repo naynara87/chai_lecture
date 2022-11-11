@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import styled from "@emotion/styled";
 import { colorPalette } from "../../styles/colorPalette";
 import { useRecoilValue } from "recoil";
@@ -137,10 +137,12 @@ const exitTextCss = css`
 
 const Header = () => {
   const courseAndLessonTitles = useRecoilValue(courseAndLessonTitlesState);
+
   const handleExitButton = () => {
     console.log("나가기 버튼");
     window.close();
   };
+
   return (
     <HeaderContainer>
       <HeaderTitle>

@@ -1,22 +1,21 @@
 import React, { useEffect, useMemo } from "react";
 import styled from "@emotion/styled";
-import { TP03A } from "../../types/pageTemplate";
+import { TP03B } from "../../types/pageTemplate";
 import { TemplateProps } from "../../types/templates";
-import HtmlContentComponent from "../atoms/HtmlContentComponent";
-import ListenWordContent from "../molecules/ListenWordContent";
 import TitleContent from "../molecules/TitleContent";
+import HtmlContentComponent from "../atoms/HtmlContentComponent";
+import TextBoxes from "../molecules/TextBoxes";
+import { HtmlContent, TextBoxesContent } from "../../types/templateContents";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TP03Layout from "../Layouts/TP03Layout";
-import { HtmlContent, ListenWordsContent } from "../../types/templateContents";
-import { colorPalette } from "../../styles/colorPalette";
 
-interface TP03AComponentProps extends TemplateProps {}
+interface TP0BAComponentProps extends TemplateProps {}
 
 const HtmlWrapper = styled("div")`
   line-height: 1.5;
   font-weight: 400;
   font-size: 26px;
-  color: ${colorPalette.descriptionText};
+  color: #666666;
   white-space: pre-line;
   text-align: center;
 
@@ -25,8 +24,8 @@ const HtmlWrapper = styled("div")`
   }
 `;
 
-const TP03AComponent = ({ setPageCompleted, page }: TP03AComponentProps) => {
-  const thisPage = page as TP03A;
+const TP03BComponent = ({ setPageCompleted, page }: TP0BAComponentProps) => {
+  const thisPage = page as TP03B;
   useEffect(() => {
     setPageCompleted();
   }, [setPageCompleted]);
@@ -37,9 +36,9 @@ const TP03AComponent = ({ setPageCompleted, page }: TP03AComponentProps) => {
       | undefined;
   }, [thisPage.template.contents]);
 
-  const listenWordsContentData = useMemo(() => {
-    return thisPage.template.contents.find((content) => content.type === "listenWords") as
-      | ListenWordsContent
+  const TextBoxesContentData = useMemo(() => {
+    return thisPage.template.contents.find((content) => content.type === "textBoxes") as
+      | TextBoxesContent
       | undefined;
   }, [thisPage.template.contents]);
 
@@ -50,10 +49,10 @@ const TP03AComponent = ({ setPageCompleted, page }: TP03AComponentProps) => {
         <HtmlWrapper>
           <HtmlContentComponent html={htmlContentData?.data?.text ?? ""} />
         </HtmlWrapper>
-        {listenWordsContentData ? <ListenWordContent datas={listenWordsContentData.data} /> : <></>}
+        {TextBoxesContentData ? <TextBoxes datas={TextBoxesContentData.data} /> : <></>}
       </TP03Layout>
     </TemplateCommonLayout>
   );
 };
 
-export default TP03AComponent;
+export default TP03BComponent;

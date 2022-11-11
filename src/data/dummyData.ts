@@ -152,8 +152,7 @@ export const dummyData: AppData = {
           title: "지난 레슨 확인하기",
           description: "녹음을 듣고 알맞은 발음을 고르세요.",
           template: {
-            type: "TP03A", // TODO: iframe 타입 추가
-            // TODO: iframe에 따른 src 옵셔널로 추가
+            type: "TP03B",
             contents: [
               {
                 type: "html",
@@ -162,67 +161,115 @@ export const dummyData: AppData = {
                 },
               },
               {
-                type: "listenWords",
+                type: "textBoxes",
                 data: [
                   {
-                    text: "a",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                    meaning: "<p>제 1성</p>",
+                    main: "a",
+                    sub: "",
+                    description: "",
                   },
                   {
-                    text: "a",
-                    audio: {
-                      src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
-                    },
-                    meaning: "<p>제 2성</p>",
+                    main: "o",
+                    sub: "",
+                    description: "",
                   },
                   {
-                    text: "a",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                    meaning: "<p>제 3성</p>",
+                    main: "e",
+                    sub: "",
+                    description: "",
                   },
                   {
-                    text: "a",
-                    audio: {
-                      src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
-                    },
-                    meaning: "<p>제 4성</p>",
+                    main: "i",
+                    sub: "",
+                    description: "",
+                  },
+                  {
+                    main: "u",
+                    sub: "",
+                    description: "",
+                  },
+                  {
+                    main: "u",
+                    sub: "",
+                    description: "",
                   },
                 ],
               },
             ],
           },
+          // template: {
+          //   type: "TP03A", // TODO: iframe 타입 추가
+          //   // TODO: iframe에 따른 src 옵셔널로 추가
+          //   contents: [
+          //     {
+          //       type: "html",
+          //       data: {
+          //         text: "<p>성조는 음의 높낮이와 그 변화를 표시한 것으로, 중국어에는 네 개의 성조가 있습니다.</p>",
+          //       },
+          //     },
+          //     {
+          //       type: "listenWords",
+          //       data: [
+          //         {
+          //           text: "a",
+          //           audio: {
+          //             src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+          //           },
+          //           meaning: "<p>제 1성</p>",
+          //         },
+          //         {
+          //           text: "a",
+          //           audio: {
+          //             src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
+          //           },
+          //           meaning: "<p>제 2성</p>",
+          //         },
+          //         {
+          //           text: "a",
+          //           audio: {
+          //             src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+          //           },
+          //           meaning: "<p>제 3성</p>",
+          //         },
+          //         {
+          //           text: "a",
+          //           audio: {
+          //             src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
+          //           },
+          //           meaning: "<p>제 4성</p>",
+          //         },
+          //       ],
+          //     },
+          //   ],
+          // },
         },
         {
           id: 13,
           title: "단어 익히기",
           description: "녹음을 듣고 알맞은 발음을 고르세요.",
           template: {
-            type: "TP01A",
+            type: "TP03B",
             contents: [
               {
-                type: "chooseTextByAudio",
+                type: "html",
                 data: {
-                  choices: ["qi", "xi"],
-                  answerIndex: 0,
-                  audio: {
-                    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                  },
+                  text: "운모는 음절에서 성모를 ...",
                 },
               },
               {
-                type: "chooseTextByAudio",
-                data: {
-                  choices: ["ji", "qi"],
-                  answerIndex: 0,
-                  audio: {
-                    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                type: "textBoxes",
+                data: [
+                  {
+                    main: "<h1>경성</h1>",
+                    sub: "",
+                    description: "<p>ai ao an ang</p>",
                   },
-                },
+                  {
+                    main: "<h1>한어병음 표기 규칙</h1>",
+                    sub: "",
+                    description: "<p>ou ong</p>",
+                  },
+                ],
               },
             ],
           },
@@ -352,7 +399,7 @@ export const dummyData: AppData = {
       id: 2,
       type: "study1",
       title: "학습 1",
-      isCompleted: true,
+      isCompleted: false,
       introduction: {
         title: "성조와 운모을 공부해봐요",
         description: "성조와 운모 학습 상세 사항",

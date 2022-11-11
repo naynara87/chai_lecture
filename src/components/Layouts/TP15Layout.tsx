@@ -10,6 +10,7 @@ const TP15LayoutStyle = styled.div`
 `;
 
 const MainContentArea = styled.div`
+  overflow-y: auto;
   display: grid;
   grid-template-columns: 45% 55%;
 `;

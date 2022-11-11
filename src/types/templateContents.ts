@@ -69,7 +69,7 @@ export type TextBoxesContent = {
   data: TextBoxesData[];
 };
 
-type TextBoxesData = {
+export type TextBoxesData = {
   main: string;
   sub?: string;
   description?: string; // 박스 밖 설명글
