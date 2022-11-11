@@ -4,7 +4,6 @@ import { TP15A } from "../../types/pageTemplate";
 import { HtmlContent, ImagesContent } from "../../types/templateContents";
 import { TabWithId, TemplateProps } from "../../types/templates";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
-import ContentsBox from "../Layouts/ContentsBox";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TP15Layout from "../Layouts/TP15Layout";
 import ImagesContentComponent from "../molecules/ImagesContentComponent";
@@ -63,24 +62,18 @@ const TP15AComponent = ({ setPageCompleted, page }: TP15AComponentProps) => {
     <TemplateCommonLayout>
       <TitleContent title={page.title} description={page.description} />
       <TP15Layout>
-        <ContentsBox>
-          <TabButtons
-            tabs={tabs as TabWithId[]}
-            currentTab={currentTab as TabWithId}
-            handleClickTab={handleClickTab}
-          />
-        </ContentsBox>
-        <ContentsBox>
-          <ImagesContentComponent imagesContent={imagesContent as ImagesContent} />
-        </ContentsBox>
-        <ContentsBox>
-          <HtmlContainer>
-            {htmlDescriptionContent && (
-              <HtmlContentComponent html={htmlDescriptionContent?.data.text} />
-            )}
-            {htmlTipContent && <TipComponent html={htmlTipContent?.data.text} />}
-          </HtmlContainer>
-        </ContentsBox>
+        <TabButtons
+          tabs={tabs as TabWithId[]}
+          currentTab={currentTab as TabWithId}
+          handleClickTab={handleClickTab}
+        />
+        <ImagesContentComponent imagesContent={imagesContent as ImagesContent} />
+        <HtmlContainer>
+          {htmlDescriptionContent && (
+            <HtmlContentComponent html={htmlDescriptionContent?.data.text} />
+          )}
+          {htmlTipContent && <TipComponent html={htmlTipContent?.data.text} />}
+        </HtmlContainer>
       </TP15Layout>
     </TemplateCommonLayout>
   );

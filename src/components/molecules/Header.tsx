@@ -142,6 +142,7 @@ const Header = () => {
     console.log("나가기 버튼");
     window.close();
   };
+
   return (
     <HeaderContainer>
       <HeaderTitle>

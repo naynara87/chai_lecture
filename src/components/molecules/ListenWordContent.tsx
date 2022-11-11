@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import styled from "@emotion/styled";
 import { ListenWordData } from "../../types/templateContents";
-import WordsContentComponent from "../atoms/WordsContentComponent";
+import WordsContentComponent from "../molecules/WordsContentComponent";
 
 interface ListenWordContentProps {
   datas: ListenWordData[];

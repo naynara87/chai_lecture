@@ -7,6 +7,7 @@ const TP03LayoutStyle = styled.div`
   display: grid;
   grid-template-rows: 20% 78%;
   gap: 2%;
+  overflow-y: auto;
 `;
 
 interface TP03LayoutProps {
