@@ -7,7 +7,6 @@ import ListenWordContent from "../molecules/ListenWordContent";
 import TitleContent from "../molecules/TitleContent";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TP03Layout from "../Layouts/TP03Layout";
-import ContentsBox from "../Layouts/ContentsBox";
 import { HtmlContent, ListenWordsContent } from "../../types/templateContents";
 import { colorPalette } from "../../styles/colorPalette";
 
@@ -48,18 +47,10 @@ const TP03AComponent = ({ setPageCompleted, page }: TP03AComponentProps) => {
     <TemplateCommonLayout>
       <TitleContent title={page.title} description={page.description} />
       <TP03Layout>
-        <ContentsBox>
-          <HtmlWrapper>
-            <HtmlContentComponent html={htmlContentData?.data?.text ?? ""} />
-          </HtmlWrapper>
-        </ContentsBox>
-        <ContentsBox>
-          {listenWordsContentData ? (
-            <ListenWordContent datas={listenWordsContentData.data} />
-          ) : (
-            <></>
-          )}
-        </ContentsBox>
+        <HtmlWrapper>
+          <HtmlContentComponent html={htmlContentData?.data?.text ?? ""} />
+        </HtmlWrapper>
+        {listenWordsContentData ? <ListenWordContent datas={listenWordsContentData.data} /> : <></>}
       </TP03Layout>
     </TemplateCommonLayout>
   );

@@ -54,6 +54,11 @@ const MeaningText = styled("div")`
   }
 `;
 
+/**
+ * TODO: TP03F에서 props로 description이랑 description 위치를 받아서 구현
+ * description 정렬
+ * sub 확인
+ */
 const TextBoxes = ({ datas }: TextBoxesProps) => {
   return (
     <TextBoxesWrapper>

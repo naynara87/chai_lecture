@@ -8,7 +8,6 @@ import TextBoxes from "../molecules/TextBoxes";
 import { HtmlContent, TextBoxesContent } from "../../types/templateContents";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TP03Layout from "../Layouts/TP03Layout";
-import ContentsBox from "../Layouts/ContentsBox";
 
 interface TP0BAComponentProps extends TemplateProps {}
 
@@ -44,21 +43,15 @@ const TP03BComponent = ({ setPageCompleted, page }: TP0BAComponentProps) => {
   }, [thisPage.template.contents]);
 
   return (
-    <>
-      <TemplateCommonLayout>
-        <TitleContent title={page.title} description={page.description} />
-        <TP03Layout>
-          <ContentsBox>
-            <HtmlWrapper>
-              <HtmlContentComponent html={htmlContentData?.data?.text ?? ""} />
-            </HtmlWrapper>
-          </ContentsBox>
-          <ContentsBox>
-            {TextBoxesContentData ? <TextBoxes datas={TextBoxesContentData.data} /> : <></>}
-          </ContentsBox>
-        </TP03Layout>
-      </TemplateCommonLayout>
-    </>
+    <TemplateCommonLayout>
+      <TitleContent title={page.title} description={page.description} />
+      <TP03Layout>
+        <HtmlWrapper>
+          <HtmlContentComponent html={htmlContentData?.data?.text ?? ""} />
+        </HtmlWrapper>
+        {TextBoxesContentData ? <TextBoxes datas={TextBoxesContentData.data} /> : <></>}
+      </TP03Layout>
+    </TemplateCommonLayout>
   );
 };
 

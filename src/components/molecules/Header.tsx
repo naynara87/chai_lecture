@@ -51,8 +51,6 @@ const LessonTitle = styled.b`
 const exitButtonCss = css`
   position: absolute;
   top: 50%;
-  padding: 20px 10px;
-  background-color: transparent;
   left: auto;
   right: 32px;
   -webkit-transform: translateY(-50%);
@@ -145,20 +143,8 @@ const Header = () => {
     window.close();
   };
 
-  const renderTitle = useCallback(() => {
-    if (courseAndLessonTitles.courseTitle) {
-      return (
-        <>
-          {`${courseAndLessonTitles.courseTitle} >`}
-          <LessonTitle>{courseAndLessonTitles.lessonTitle}</LessonTitle>
-        </>
-      );
-    }
-  }, [courseAndLessonTitles.courseTitle, courseAndLessonTitles.lessonTitle]);
-
   return (
     <HeaderContainer>
-      <HeaderTitle>{renderTitle()}</HeaderTitle>
       <HeaderTitle>
         {courseAndLessonTitles.courseTitle ? `${courseAndLessonTitles.courseTitle} > ` : ""}
         <LessonTitle>{courseAndLessonTitles.lessonTitle}</LessonTitle>
