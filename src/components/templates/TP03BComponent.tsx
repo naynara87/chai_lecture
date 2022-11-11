@@ -1,13 +1,13 @@
 import React, { useCallback } from "react";
 import styled from "@emotion/styled";
-import { TP03A, TP03AContent } from "../../types/pageTemplate";
+import { TP03B, TP03BContent } from "../../types/pageTemplate";
 import { TemplateProps } from "../../types/templates";
-import HtmlContentComponent from "../atoms/HtmlContentComponent";
-import ListenWordContent from "../molecules/ListenWordContent";
 import TitleContent from "../molecules/TitleContent";
+import HtmlContentComponent from "../atoms/HtmlContentComponent";
 import ContentLayout from "../Layouts/ContentLayout";
+import TextBoxes from "../molecules/TextBoxes";
 
-interface TP03AComponentProps extends TemplateProps {}
+interface TP0BAComponentProps extends TemplateProps {}
 
 const HtmlWrapper = styled("div")`
   line-height: 1.5;
@@ -22,9 +22,9 @@ const HtmlWrapper = styled("div")`
   }
 `;
 
-const TP03AComponent = ({ setPageCompleted, page }: TP03AComponentProps) => {
-  const thisPage = page as TP03A;
-  const renderContents = useCallback((content: TP03AContent, index: number) => {
+const TP03BComponent = ({ setPageCompleted, page }: TP0BAComponentProps) => {
+  const thisPage = page as TP03B;
+  const renderContents = useCallback((content: TP03BContent, index: number) => {
     if (content.type === "html") {
       const html = content.data.text;
       return (
@@ -32,8 +32,8 @@ const TP03AComponent = ({ setPageCompleted, page }: TP03AComponentProps) => {
           <HtmlContentComponent html={html} />
         </HtmlWrapper>
       );
-    } else if (content.type === "listenWords") {
-      return <ListenWordContent key={index} datas={content.data} />;
+    } else if (content.type === "textBoxes") {
+      return <TextBoxes key={index} textBoxes={content.data} />;
     }
   }, []);
   return (
@@ -48,4 +48,4 @@ const TP03AComponent = ({ setPageCompleted, page }: TP03AComponentProps) => {
   );
 };
 
-export default TP03AComponent;
+export default TP03BComponent;

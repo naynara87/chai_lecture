@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import styled from "@emotion/styled";
 import { colorPalette } from "../../styles/colorPalette";
 import { useRecoilValue } from "recoil";
@@ -56,6 +56,8 @@ const LessonTitle = styled.b`
 const exitButtonCss = css`
   position: absolute;
   top: 50%;
+  padding: 20px 10px;
+  background-color: transparent;
   left: auto;
   right: 32px;
   -webkit-transform: translateY(-50%);
@@ -63,7 +65,6 @@ const exitButtonCss = css`
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
   border: none;
-  padding: 0 0;
   cursor: pointer;
   @media all and (max-width: 1024px) {
     right: 3.125vw;
@@ -141,19 +142,29 @@ const exitTextCss = css`
 
 const Header = () => {
   const courseAndLessonTitles = useRecoilValue(courseAndLessonTitlesState);
+
   const handleExitButton = () => {
     console.log("나가기 버튼");
     window.close();
   };
+
+  const renderTitle = useCallback(() => {
+    if (courseAndLessonTitles.courseTitle) {
+      return (
+        <>
+          {`${courseAndLessonTitles.courseTitle} >`}
+          <LessonTitle>{courseAndLessonTitles.lessonTitle}</LessonTitle>
+        </>
+      );
+    }
+  }, [courseAndLessonTitles.courseTitle, courseAndLessonTitles.lessonTitle]);
+
   return (
     <HeaderContainer>
-      <HeaderTitle>
-        {courseAndLessonTitles.courseTitle + " > "}
-        <LessonTitle>{courseAndLessonTitles.lessonTitle}</LessonTitle>
-      </HeaderTitle>
+      <HeaderTitle>{renderTitle()}</HeaderTitle>
       <ButtonComponent
         text="X"
-        linkUrl="http://localhost:3000/"
+        linkUrl="/"
         customBtnCss={exitButtonCss}
         customTextCss={exitTextCss}
         handleClickButton={handleExitButton}

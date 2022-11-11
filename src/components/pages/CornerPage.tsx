@@ -19,7 +19,6 @@ const CornerPage = () => {
   const { state: cornerByRouter } = useLocation();
   const [corner, setCorner] = useState<Corner>(cornerByRouter);
   const { id: cornerId } = useParams();
-
   const [pageIndex, setPageIndex] = useState(0);
   const [isPageCompleted, setIsPageCompleted] = useState(false);
 
