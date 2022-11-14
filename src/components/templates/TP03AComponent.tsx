@@ -37,6 +37,14 @@ const TP03AComponent = ({ setPageCompleted, page }: TP03AComponentProps) => {
       | undefined;
   }, [thisPage.template.contents]);
 
+  const htmlString = useMemo(() => {
+    if (!htmlContentData) {
+      return;
+    }
+    const [htmlData] = htmlContentData.data;
+    return htmlData?.text;
+  }, [htmlContentData]);
+
   const listenWordsContentData = useMemo(() => {
     return thisPage.template.contents.find((content) => content.type === "listenWords") as
       | ListenWordsContent
@@ -48,7 +56,7 @@ const TP03AComponent = ({ setPageCompleted, page }: TP03AComponentProps) => {
       <TitleContent title={page.title} description={page.description} />
       <TP03Layout>
         <HtmlWrapper>
-          <HtmlContentComponent html={htmlContentData?.data?.text ?? ""} />
+          <HtmlContentComponent html={htmlString ?? ""} />
         </HtmlWrapper>
         {listenWordsContentData ? <ListenWordContent datas={listenWordsContentData.data} /> : <></>}
       </TP03Layout>

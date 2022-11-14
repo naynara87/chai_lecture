@@ -8,12 +8,12 @@ export type ChooseTextContent = {
     answerIndex: number;
     tip: string; // html
     explanation: string; // html
-  };
+  }[];
 };
 
 export type ChooseTextByAudioContent = {
   type: "chooseTextByAudio";
-  data: ChooseTextByAudioData;
+  data: ChooseTextByAudioData[];
 };
 
 type ChooseTextByAudioData = {
@@ -29,7 +29,7 @@ export type HtmlContent = {
   data: {
     kind?: "tip" | "title" | "description";
     text: string;
-  };
+  }[];
 };
 
 export type ListenImagesContent = {
@@ -82,7 +82,7 @@ export type IconTextContent = {
       src: string;
     };
     text: string;
-  };
+  }[];
 };
 
 export type VideoContent = {
@@ -90,7 +90,7 @@ export type VideoContent = {
   data: {
     src: string;
     tracks?: VideoTrack[];
-  };
+  }[];
 };
 
 type VideoTrack = {
@@ -104,7 +104,7 @@ export type AudioContent = {
   type: "audio";
   data: {
     src: string;
-  };
+  }[];
 };
 
 export type AudioRecordContent = {
@@ -118,7 +118,7 @@ export type DragAndDropContent = {
     choices: string[];
     answerIndex: number;
     explanation: string;
-  };
+  }[];
 };
 
 export type StudyWordsContent = {

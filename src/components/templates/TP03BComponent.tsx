@@ -37,6 +37,14 @@ const TP03BComponent = ({ setPageCompleted, page }: TP0BAComponentProps) => {
       | undefined;
   }, [thisPage.template.contents]);
 
+  const htmlString = useMemo(() => {
+    if (!htmlContentData) {
+      return;
+    }
+    const [htmlData] = htmlContentData.data;
+    return htmlData?.text;
+  }, [htmlContentData]);
+
   const TextBoxesContentData = useMemo(() => {
     return thisPage.template.contents.find((content) => content.type === "textBoxes") as
       | TextBoxesContent
@@ -48,7 +56,7 @@ const TP03BComponent = ({ setPageCompleted, page }: TP0BAComponentProps) => {
       <TitleContent title={page.title} description={page.description} />
       <TP03Layout>
         <HtmlWrapper>
-          <HtmlContentComponent html={htmlContentData?.data?.text ?? ""} />
+          <HtmlContentComponent html={htmlString ?? ""} />
         </HtmlWrapper>
         {TextBoxesContentData ? <TextBoxes datas={TextBoxesContentData.data} /> : <></>}
       </TP03Layout>
