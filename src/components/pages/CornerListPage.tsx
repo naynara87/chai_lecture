@@ -14,6 +14,7 @@ import ChaiSkeleton from "../atoms/ChaiSkeleton";
 import { useQuery } from "@tanstack/react-query";
 import { QUERY_KEY } from "../../constants/queryKey";
 import ModalStart from "../modal/ModalStart";
+import { getPageUrl } from "../../utils/url";
 
 const CornerListWrapper = styled.main`
   display: -webkit-box;
@@ -188,7 +189,6 @@ const CornerListPage = () => {
         </CornerListWrapper>
         <CornerListFooter>
           {currentCorner && appData && (
-            // TODO: 모달 창 띄우고 학습목표 보여준 다음 확인 누르면 이동하는 로직으로 변경하기
             <ButtonComponent
               text="시작하기"
               handleClickButton={modalOpen}
@@ -203,7 +203,9 @@ const CornerListPage = () => {
         description={currentCorner?.introduction.description ?? ""}
         isModalOpen={isModalCloseOpen}
         // NOTE: API에서 전달되는 데이터가 변경되면 수정해야함
-        linkUrl={`/corner/${currentCorner?.id}/page/${currentCorner?.pages?.[0]?.id}`}
+        linkUrl={
+          currentCorner?.pages?.[0] && getPageUrl(currentCorner.id, currentCorner?.pages?.[0]?.id)
+        }
         setIsModalOpen={setIsModalCloseOpen}
       />
     </CornerListLayout>

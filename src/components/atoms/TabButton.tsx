@@ -2,11 +2,12 @@ import styled from "@emotion/styled";
 import React from "react";
 import { colorPalette } from "../../styles/colorPalette";
 import { ID } from "../../types/appData";
-import { TabWithId } from "../../types/templates";
+import { Tab } from "../../types/pageTemplate";
 import Button from "./Button";
 
 interface TabButtonStyleProps {
   active: boolean;
+  cursorPointer: boolean;
 }
 const TabButtonStyle = styled(Button)<TabButtonStyleProps>`
   display: inline-block;
@@ -20,16 +21,22 @@ const TabButtonStyle = styled(Button)<TabButtonStyleProps>`
   font-weight: 600;
   font-size: 16px;
   color: ${colorPalette.white};
+  cursor: ${(props) => (props.cursorPointer ? "pointer" : "default")};
 `;
 
 interface TabButtonProps {
   isActive: boolean;
-  tab: TabWithId;
-  handleClickTab(id: ID): void;
+  tab: Tab;
+  handleClickTab: (pageId?: ID) => void;
 }
 const TabButton = ({ tab, handleClickTab, isActive }: TabButtonProps) => {
   return (
-    <TabButtonStyle type="button" onClick={() => handleClickTab(tab.index)} active={isActive}>
+    <TabButtonStyle
+      type="button"
+      onClick={() => handleClickTab(tab.pageId)}
+      active={isActive}
+      cursorPointer={!!tab.pageId}
+    >
       {tab.name}
     </TabButtonStyle>
   );

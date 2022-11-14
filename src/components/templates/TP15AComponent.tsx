@@ -1,8 +1,11 @@
 import styled from "@emotion/styled";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { ID } from "../../types/appData";
 import { TP15A } from "../../types/pageTemplate";
 import { HtmlContent, ImagesContent } from "../../types/templateContents";
-import { TabWithId, TemplateProps } from "../../types/templates";
+import { TemplateProps } from "../../types/templates";
+import { getPageUrl } from "../../utils/url";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TP15Layout from "../Layouts/TP15Layout";
@@ -22,35 +25,28 @@ interface TP15AComponentProps extends TemplateProps {}
 
 const TP15AComponent = ({ setPageCompleted, page }: TP15AComponentProps) => {
   const thisPage = page as TP15A;
-  const [tabIndex, setTabIndex] = useState<number>(0);
+  const navigate = useNavigate();
+  const { cornerId } = useParams();
 
   useEffect(() => {
     setPageCompleted();
   }, [setPageCompleted]);
 
-  const tabs = useMemo(() => {
-    return thisPage.template.tabs.map((tab, index) => ({
-      index,
-      ...tab,
-    }));
-  }, [thisPage.template.tabs]);
-  const handleClickTab = (tabIndex: number) => {
-    setTabIndex(tabIndex);
+  const handleClickTab = (pageId?: ID) => {
+    if (cornerId && pageId) {
+      navigate(getPageUrl(cornerId, pageId));
+    }
   };
 
-  const currentTab = useMemo(() => {
-    return tabs[tabIndex];
-  }, [tabs, tabIndex]);
-
   const imagesContent = useMemo(() => {
-    return currentTab.contents.find((content) => content.type === "images");
-  }, [currentTab.contents]);
+    return thisPage.template.contents.find((content) => content.type === "images");
+  }, [thisPage]);
 
   const htmlContent = useMemo(() => {
-    return currentTab.contents.find((content) => content.type === "html") as
+    return thisPage.template.contents.find((content) => content.type === "html") as
       | HtmlContent
       | undefined;
-  }, [currentTab.contents]);
+  }, [thisPage]);
 
   const htmlTipString = useMemo(() => {
     const htmlTipData = htmlContent?.data.find((content) => content.kind === "tip");
@@ -66,11 +62,7 @@ const TP15AComponent = ({ setPageCompleted, page }: TP15AComponentProps) => {
     <TemplateCommonLayout>
       <TitleContent title={page.title} description={page.description} />
       <TP15Layout>
-        <TabButtons
-          tabs={tabs as TabWithId[]}
-          currentTab={currentTab as TabWithId}
-          handleClickTab={handleClickTab}
-        />
+        <TabButtons tabs={thisPage.tabs ?? []} handleClickTab={handleClickTab} />
         <ImagesContentComponent imagesContent={imagesContent as ImagesContent} />
         <HtmlContainer>
           {htmlDescriptionString && <HtmlContentComponent html={htmlDescriptionString} />}

@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { TabWithId } from "../../types/templates";
+import { ID } from "../../types/appData";
+import { Tab } from "../../types/pageTemplate";
 import TabButton from "../atoms/TabButton";
 
 const TabContainer = styled.div`
@@ -10,19 +11,18 @@ const TabContainer = styled.div`
 `;
 
 interface TabButtonsProps {
-  tabs: TabWithId[];
-  currentTab: TabWithId;
-  handleClickTab: (id: number) => void;
+  tabs: Tab[];
+  handleClickTab: (pageId?: ID) => void;
 }
-const TabButtons = ({ tabs, currentTab, handleClickTab }: TabButtonsProps) => {
+const TabButtons = ({ tabs, handleClickTab }: TabButtonsProps) => {
   return (
     <TabContainer>
       {tabs.map((tab) => (
         <TabButton
-          key={tab.index}
+          key={tab.pageId}
           tab={tab}
           handleClickTab={handleClickTab}
-          isActive={tab.index === currentTab.index}
+          isActive={tab.active}
         />
       ))}
     </TabContainer>

@@ -1,11 +1,8 @@
 import React from "react";
 import useTemplateMapper from "../../hooks/useTemplateMapper";
-import { Page } from "../../types/appData";
+import { TemplateProps } from "../../types/templates";
 
-interface CornerMainProps {
-  page: Page;
-  setPageCompleted(): void;
-}
+interface CornerMainProps extends TemplateProps {}
 const CornerMain = ({ page, setPageCompleted }: CornerMainProps) => {
   const { getTemplateComponent } = useTemplateMapper({ setPageCompleted, page });
   return <>{getTemplateComponent(page.template.type)}</>;
