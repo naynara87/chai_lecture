@@ -8,6 +8,7 @@ import TextBoxes from "../molecules/TextBoxes";
 import { HtmlContent, TextBoxesContent } from "../../types/templateContents";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TP03Layout from "../Layouts/TP03Layout";
+import { colorPalette } from "../../styles/colorPalette";
 
 interface TP0BAComponentProps extends TemplateProps {}
 
@@ -15,7 +16,7 @@ const HtmlWrapper = styled("div")`
   line-height: 1.5;
   font-weight: 400;
   font-size: 26px;
-  color: #666666;
+  color: ${colorPalette.descriptionText};
   white-space: pre-line;
   text-align: center;
 

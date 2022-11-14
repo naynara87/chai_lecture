@@ -21,7 +21,7 @@ const Text = styled.span<TextComponentProps>`
 
 interface ButtonComponentProps {
   text: string;
-  linkUrl: string;
+  linkUrl?: string;
   customBtnCss?: SerializedStyles;
   customTextCss?: SerializedStyles;
   handleClickButton?: () => void;
@@ -35,7 +35,7 @@ function ButtonComponent({
   handleClickButton,
 }: ButtonComponentProps) {
   return (
-    <Link to={linkUrl} style={{ textDecoration: "none" }}>
+    <Link to={linkUrl ?? ""}>
       <Button type="button" customBtnCss={customBtnCss} onClick={handleClickButton}>
         <Text customTextCss={customTextCss}>{text}</Text>
       </Button>
