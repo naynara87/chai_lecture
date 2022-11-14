@@ -15,7 +15,7 @@ const TabButtonStyle = styled(Button)<TabButtonStyleProps>`
   padding: 4px 26px;
   border-radius: 9px;
   background-color: ${(props) =>
-    props.active ? colorPalette.lightBlue : colorPalette.tabBackground};
+    props.active ? colorPalette.confirmBtn : colorPalette.tabBackground};
   line-height: 1.6;
   font-weight: 600;
   font-size: 16px;

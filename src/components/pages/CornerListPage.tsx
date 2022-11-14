@@ -13,6 +13,7 @@ import CommonMainContainer from "../atoms/CommonMainContainer";
 import ChaiSkeleton from "../atoms/ChaiSkeleton";
 import { useQuery } from "@tanstack/react-query";
 import { QUERY_KEY } from "../../constants/queryKey";
+import ModalStart from "../modal/ModalStart";
 
 const CornerListWrapper = styled.main`
   display: -webkit-box;
@@ -93,7 +94,7 @@ const startBtnCss = css`
   ${btnCss}
   min-width: 149px;
   height: 43px;
-  background-color: #6070cf;
+  background-color: ${colorPalette.confirmBtn};
   border-radius: 26px;
   font-weight: 600;
   font-size: 13px;
@@ -117,13 +118,15 @@ const startTextCss = css`
 
 const CornerListLayout = styled.div`
   height: 100vh;
+  display: flex;
+  flex-direction: column;
 `;
 
 const CornerListPage = () => {
   const { data: appData } = useQuery([QUERY_KEY.APP_DATA], getAppData);
 
   const [currentCorner, setCurrentCorner] = useState<Corner>();
-
+  const [isModalCloseOpen, setIsModalCloseOpen] = useState(false);
   useEffect(() => {
     if (!appData) return;
     const { corners } = appData;
@@ -141,6 +144,10 @@ const CornerListPage = () => {
     },
     [currentCorner],
   );
+
+  const modalOpen = () => {
+    setIsModalCloseOpen(true);
+  };
 
   return (
     <CornerListLayout>
@@ -184,14 +191,21 @@ const CornerListPage = () => {
             // TODO: 모달 창 띄우고 학습목표 보여준 다음 확인 누르면 이동하는 로직으로 변경하기
             <ButtonComponent
               text="시작하기"
+              handleClickButton={modalOpen}
               customBtnCss={startBtnCss}
               customTextCss={startTextCss}
-              // NOTE: API에서 전달되는 데이터가 변경되면 수정해야함
-              linkUrl={`/corner/${currentCorner?.id}/page/${currentCorner?.pages?.[0]?.id}`}
             />
           )}
         </CornerListFooter>
       </CommonMainContainer>
+      <ModalStart
+        title={currentCorner?.introduction.title ?? ""}
+        description={currentCorner?.introduction.description ?? ""}
+        isModalOpen={isModalCloseOpen}
+        // NOTE: API에서 전달되는 데이터가 변경되면 수정해야함
+        linkUrl={`/corner/${currentCorner?.id}/page/${currentCorner?.pages?.[0]?.id}`}
+        setIsModalOpen={setIsModalCloseOpen}
+      />
     </CornerListLayout>
   );
 };
