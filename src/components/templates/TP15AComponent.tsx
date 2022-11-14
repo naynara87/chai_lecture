@@ -46,17 +46,21 @@ const TP15AComponent = ({ setPageCompleted, page }: TP15AComponentProps) => {
     return currentTab.contents.find((content) => content.type === "images");
   }, [currentTab.contents]);
 
-  const htmlContents = useMemo(() => {
-    return currentTab.contents.filter((content) => content.type === "html") as HtmlContent[];
+  const htmlContent = useMemo(() => {
+    return currentTab.contents.find((content) => content.type === "html") as
+      | HtmlContent
+      | undefined;
   }, [currentTab.contents]);
 
-  const htmlTipContent = useMemo(() => {
-    return htmlContents.find((content) => content?.data?.kind === "tip");
-  }, [htmlContents]);
+  const htmlTipString = useMemo(() => {
+    const htmlTipData = htmlContent?.data.find((content) => content.kind === "tip");
+    return htmlTipData?.text;
+  }, [htmlContent]);
 
-  const htmlDescriptionContent = useMemo(() => {
-    return htmlContents.find((content) => content?.data?.kind !== "tip");
-  }, [htmlContents]);
+  const htmlDescriptionString = useMemo(() => {
+    const htmlDescriptionData = htmlContent?.data.find((content) => content.kind !== "tip");
+    return htmlDescriptionData?.text;
+  }, [htmlContent]);
 
   return (
     <TemplateCommonLayout>
@@ -69,10 +73,8 @@ const TP15AComponent = ({ setPageCompleted, page }: TP15AComponentProps) => {
         />
         <ImagesContentComponent imagesContent={imagesContent as ImagesContent} />
         <HtmlContainer>
-          {htmlDescriptionContent && (
-            <HtmlContentComponent html={htmlDescriptionContent?.data.text} />
-          )}
-          {htmlTipContent && <TipComponent html={htmlTipContent?.data.text} />}
+          {htmlDescriptionString && <HtmlContentComponent html={htmlDescriptionString} />}
+          {htmlTipString && <TipComponent html={htmlTipString} />}
         </HtmlContainer>
       </TP15Layout>
     </TemplateCommonLayout>

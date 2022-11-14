@@ -41,17 +41,16 @@ export const dummyData: AppData = {
                 contents: [
                   {
                     type: "html",
-                    data: {
-                      kind: "description",
-                      text: "<p>중국에서는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
-                    },
-                  },
-                  {
-                    type: "html",
-                    data: {
-                      kind: "tip",
-                      text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
-                    },
+                    data: [
+                      {
+                        kind: "description",
+                        text: "<p>중국에서는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
+                      },
+                      {
+                        kind: "tip",
+                        text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
+                      },
+                    ],
                   },
                   {
                     type: "images",
@@ -68,17 +67,16 @@ export const dummyData: AppData = {
                 contents: [
                   {
                     type: "html",
-                    data: {
-                      kind: "description",
-                      text: "<p>보통화는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
-                    },
-                  },
-                  {
-                    type: "html",
-                    data: {
-                      kind: "tip",
-                      text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
-                    },
+                    data: [
+                      {
+                        kind: "description",
+                        text: "<p>보통화는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
+                      },
+                      {
+                        kind: "tip",
+                        text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
+                      },
+                    ],
                   },
                   {
                     type: "images",
@@ -95,17 +93,16 @@ export const dummyData: AppData = {
                 contents: [
                   {
                     type: "html",
-                    data: {
-                      kind: "description",
-                      text: "<p>중국어의 구성(한자)는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
-                    },
-                  },
-                  {
-                    type: "html",
-                    data: {
-                      kind: "tip",
-                      text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
-                    },
+                    data: [
+                      {
+                        kind: "description",
+                        text: "<p>중국어의 구성(한자)는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
+                      },
+                      {
+                        kind: "tip",
+                        text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
+                      },
+                    ],
                   },
                   {
                     type: "images",
@@ -122,17 +119,16 @@ export const dummyData: AppData = {
                 contents: [
                   {
                     type: "html",
-                    data: {
-                      kind: "description",
-                      text: "<p>중국어의 구성(병음)는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
-                    },
-                  },
-                  {
-                    type: "html",
-                    data: {
-                      kind: "tip",
-                      text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
-                    },
+                    data: [
+                      {
+                        kind: "description",
+                        text: "<p>중국어의 구성(병음)는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
+                      },
+                      {
+                        kind: "tip",
+                        text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
+                      },
+                    ],
                   },
                   {
                     type: "images",
@@ -156,9 +152,11 @@ export const dummyData: AppData = {
             contents: [
               {
                 type: "html",
-                data: {
-                  text: "<p>성조는 음의 높낮이와 그 변화를 표시한 것으로, <br />중국어에는 네 개의 성조가 있습니다.</p>",
-                },
+                data: [
+                  {
+                    text: "<p>성조는 음의 높낮이와 그 변화를 표시한 것으로, <br />중국어에는 네 개의 성조가 있습니다.</p>",
+                  },
+                ],
               },
               {
                 type: "textBoxes",
@@ -252,9 +250,11 @@ export const dummyData: AppData = {
             contents: [
               {
                 type: "html",
-                data: {
-                  text: "운모는 음절에서 성모를 ...",
-                },
+                data: [
+                  {
+                    text: "운모는 음절에서 성모를 ...",
+                  },
+                ],
               },
               {
                 type: "textBoxes",
@@ -287,17 +287,16 @@ export const dummyData: AppData = {
                 contents: [
                   {
                     type: "html",
-                    data: {
-                      kind: "description",
-                      text: "<p>중국에서는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
-                    },
-                  },
-                  {
-                    type: "html",
-                    data: {
-                      kind: "tip",
-                      text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
-                    },
+                    data: [
+                      {
+                        kind: "description",
+                        text: "<p>중국에서는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
+                      },
+                      {
+                        kind: "tip",
+                        text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
+                      },
+                    ],
                   },
                   {
                     type: "images",
@@ -314,17 +313,16 @@ export const dummyData: AppData = {
                 contents: [
                   {
                     type: "html",
-                    data: {
-                      kind: "description",
-                      text: "<p>보통화는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
-                    },
-                  },
-                  {
-                    type: "html",
-                    data: {
-                      kind: "tip",
-                      text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
-                    },
+                    data: [
+                      {
+                        kind: "description",
+                        text: "<p>보통화는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
+                      },
+                      {
+                        kind: "tip",
+                        text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
+                      },
+                    ],
                   },
                   {
                     type: "images",
@@ -341,17 +339,16 @@ export const dummyData: AppData = {
                 contents: [
                   {
                     type: "html",
-                    data: {
-                      kind: "description",
-                      text: "<p>중국어의 구성(한자)는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
-                    },
-                  },
-                  {
-                    type: "html",
-                    data: {
-                      kind: "tip",
-                      text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
-                    },
+                    data: [
+                      {
+                        kind: "description",
+                        text: "<p>중국어의 구성(한자)는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
+                      },
+                      {
+                        kind: "tip",
+                        text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
+                      },
+                    ],
                   },
                   {
                     type: "images",
@@ -368,17 +365,16 @@ export const dummyData: AppData = {
                 contents: [
                   {
                     type: "html",
-                    data: {
-                      kind: "description",
-                      text: "<p>중국어의 구성(병음)는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
-                    },
-                  },
-                  {
-                    type: "html",
-                    data: {
-                      kind: "tip",
-                      text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
-                    },
+                    data: [
+                      {
+                        kind: "description",
+                        text: "<p>중국어의 구성(병음)는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
+                      },
+                      {
+                        kind: "tip",
+                        text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
+                      },
+                    ],
                   },
                   {
                     type: "images",
@@ -416,9 +412,11 @@ export const dummyData: AppData = {
             contents: [
               {
                 type: "html",
-                data: {
-                  text: "성조는 음의 높낮이와 그 변화를 표시한 것으로, 중국어에는 네 개의 성조가 있습니다.",
-                },
+                data: [
+                  {
+                    text: "성조는 음의 높낮이와 그 변화를 표시한 것으로, 중국어에는 네 개의 성조가 있습니다.",
+                  },
+                ],
               },
               {
                 type: "listenWords",
@@ -465,9 +463,11 @@ export const dummyData: AppData = {
             contents: [
               {
                 type: "html",
-                data: {
-                  text: "운모는 음절에서 성모를 제외한 나머지 부분으로, 모두 36입니다.",
-                },
+                data: [
+                  {
+                    text: "운모는 음절에서 성모를 제외한 나머지 부분으로, 모두 36입니다.",
+                  },
+                ],
               },
               {
                 type: "textBoxes",
@@ -504,9 +504,11 @@ export const dummyData: AppData = {
             contents: [
               {
                 type: "html",
-                data: {
-                  text: "성조는 음의 높낮이와 그 변화를 표시한 것으로, 중국어에는 네 개의 성조가 있습니다.",
-                },
+                data: [
+                  {
+                    text: "성조는 음의 높낮이와 그 변화를 표시한 것으로, 중국어에는 네 개의 성조가 있습니다.",
+                  },
+                ],
               },
               {
                 type: "listenWords",
@@ -567,9 +569,11 @@ export const dummyData: AppData = {
             contents: [
               {
                 type: "html",
-                data: {
-                  text: "성조는 음의 높낮이와 그 변화를 표시한 것으로, 중국어에는 네 개의 성조가 있습니다.",
-                },
+                data: [
+                  {
+                    text: "성조는 음의 높낮이와 그 변화를 표시한 것으로, 중국어에는 네 개의 성조가 있습니다.",
+                  },
+                ],
               },
               {
                 type: "listenWords",
@@ -616,9 +620,11 @@ export const dummyData: AppData = {
             contents: [
               {
                 type: "html",
-                data: {
-                  text: "운모는 음절에서 성모를 제외한 나머지 부분으로, 모두 36입니다.",
-                },
+                data: [
+                  {
+                    text: "운모는 음절에서 성모를 제외한 나머지 부분으로, 모두 36입니다.",
+                  },
+                ],
               },
               {
                 type: "textBoxes",
@@ -655,9 +661,11 @@ export const dummyData: AppData = {
             contents: [
               {
                 type: "html",
-                data: {
-                  text: "성조는 음의 높낮이와 그 변화를 표시한 것으로, 중국어에는 네 개의 성조가 있습니다.",
-                },
+                data: [
+                  {
+                    text: "성조는 음의 높낮이와 그 변화를 표시한 것으로, 중국어에는 네 개의 성조가 있습니다.",
+                  },
+                ],
               },
               {
                 type: "listenWords",
@@ -718,9 +726,11 @@ export const dummyData: AppData = {
             contents: [
               {
                 type: "html",
-                data: {
-                  text: "성조는 음의 높낮이와 그 변화를 표시한 것으로, 중국어에는 네 개의 성조가 있습니다.",
-                },
+                data: [
+                  {
+                    text: "성조는 음의 높낮이와 그 변화를 표시한 것으로, 중국어에는 네 개의 성조가 있습니다.",
+                  },
+                ],
               },
               {
                 type: "listenWords",
@@ -767,9 +777,11 @@ export const dummyData: AppData = {
             contents: [
               {
                 type: "html",
-                data: {
-                  text: "운모는 음절에서 성모를 제외한 나머지 부분으로, 모두 36입니다.",
-                },
+                data: [
+                  {
+                    text: "운모는 음절에서 성모를 제외한 나머지 부분으로, 모두 36입니다.",
+                  },
+                ],
               },
               {
                 type: "textBoxes",
@@ -820,9 +832,11 @@ export const dummyData: AppData = {
             contents: [
               {
                 type: "html",
-                data: {
-                  text: "성조는 음의 높낮이와 그 변화를 표시한 것으로, 중국어에는 네 개의 성조가 있습니다.",
-                },
+                data: [
+                  {
+                    text: "성조는 음의 높낮이와 그 변화를 표시한 것으로, 중국어에는 네 개의 성조가 있습니다.",
+                  },
+                ],
               },
               {
                 type: "listenWords",
@@ -869,9 +883,11 @@ export const dummyData: AppData = {
             contents: [
               {
                 type: "html",
-                data: {
-                  text: "운모는 음절에서 성모를 제외한 나머지 부분으로, 모두 36입니다.",
-                },
+                data: [
+                  {
+                    text: "운모는 음절에서 성모를 제외한 나머지 부분으로, 모두 36입니다.",
+                  },
+                ],
               },
               {
                 type: "textBoxes",
@@ -922,9 +938,11 @@ export const dummyData: AppData = {
             contents: [
               {
                 type: "html",
-                data: {
-                  text: "성조는 음의 높낮이와 그 변화를 표시한 것으로, 중국어에는 네 개의 성조가 있습니다.",
-                },
+                data: [
+                  {
+                    text: "성조는 음의 높낮이와 그 변화를 표시한 것으로, 중국어에는 네 개의 성조가 있습니다.",
+                  },
+                ],
               },
               {
                 type: "listenWords",
@@ -971,9 +989,11 @@ export const dummyData: AppData = {
             contents: [
               {
                 type: "html",
-                data: {
-                  text: "운모는 음절에서 성모를 제외한 나머지 부분으로, 모두 36입니다.",
-                },
+                data: [
+                  {
+                    text: "운모는 음절에서 성모를 제외한 나머지 부분으로, 모두 36입니다.",
+                  },
+                ],
               },
               {
                 type: "textBoxes",
@@ -1024,9 +1044,11 @@ export const dummyData: AppData = {
             contents: [
               {
                 type: "html",
-                data: {
-                  text: "성조는 음의 높낮이와 그 변화를 표시한 것으로, 중국어에는 네 개의 성조가 있습니다.",
-                },
+                data: [
+                  {
+                    text: "성조는 음의 높낮이와 그 변화를 표시한 것으로, 중국어에는 네 개의 성조가 있습니다.",
+                  },
+                ],
               },
               {
                 type: "listenWords",
@@ -1073,9 +1095,11 @@ export const dummyData: AppData = {
             contents: [
               {
                 type: "html",
-                data: {
-                  text: "운모는 음절에서 성모를 제외한 나머지 부분으로, 모두 36입니다.",
-                },
+                data: [
+                  {
+                    text: "운모는 음절에서 성모를 제외한 나머지 부분으로, 모두 36입니다.",
+                  },
+                ],
               },
               {
                 type: "textBoxes",
