@@ -16,6 +16,12 @@ import {
   NumberTableContent,
 } from "./templateContents";
 
+export type Tab = {
+  name: string;
+  active: boolean;
+  pageId?: ID;
+};
+
 export type TP01A = {
   id: ID;
   title: string;
@@ -162,14 +168,8 @@ export type TP12A = {
   description: string;
   template: {
     type: "TP12A";
-    contents: [];
-    tabs: TP12ATab[];
+    contents: TP12AContent[];
   };
-};
-
-type TP12ATab = {
-  name: string;
-  contents: TP12AContent[];
 };
 
 type TP12AContent = IconTextContent | ChooseTextContent;
@@ -183,14 +183,8 @@ export type TP12B = {
   description: string;
   template: {
     type: "TP12B";
-    contents: [];
-    tabs: TP12BTab[];
+    contents: TP12BContent[];
   };
-};
-
-type TP12BTab = {
-  name: string;
-  contents: TP12BContent[];
 };
 
 type TP12BContent = VideoContent;
@@ -201,14 +195,8 @@ export type TP13A = {
   description: string;
   template: {
     type: "TP13A";
-    contents: [];
-    tabs: TP13ATab[];
+    contents: TP13AContent[];
   };
-};
-
-type TP13ATab = {
-  name: string;
-  contents: TP13AContent[];
 };
 
 type TP13AContent = ImagesContent | HtmlContent | AudioContent;
@@ -219,14 +207,8 @@ export type TP14A = {
   description: string;
   template: {
     type: "TP14A";
-    contents: [];
-    tabs: TP14ATab[];
+    contents: TP14AContent[];
   };
-};
-
-type TP14ATab = {
-  name: string;
-  contents: TP14AContent[];
 };
 
 type TP14AContent = TextBoxesContent | AudioContent;
@@ -237,14 +219,8 @@ export type TP14B = {
   description: string;
   template: {
     type: "TP14B";
-    contents: [];
-    tabs: TP14BTab[];
+    contents: TP14BContent[];
   };
-};
-
-type TP14BTab = {
-  name: string;
-  contents: TP14BContent[];
 };
 
 type TP14BContent = TextBoxesContent | AudioRecordContent;
@@ -253,16 +229,11 @@ export type TP15A = {
   id: ID;
   title: string;
   description: string;
+  tabs?: Tab[];
   template: {
     type: "TP15A";
-    contents: [];
-    tabs: TP15ATab[];
+    contents: TP15AContent[];
   };
-};
-
-type TP15ATab = {
-  name: string;
-  contents: TP15AContent[];
 };
 
 type TP15AContent = HtmlContent | ImagesContent;
@@ -273,14 +244,8 @@ export type TP16A = {
   description: string;
   template: {
     type: "TP16A";
-    contents: [];
-    tabs: TP16ATab[];
+    contents: TP16AContent[];
   };
-};
-
-type TP16ATab = {
-  name: string;
-  contents: TP16AContent[];
 };
 
 type TP16AContent = HtmlContent | ImagesContent | AudioContent;
@@ -291,14 +256,8 @@ export type TP17A = {
   description: string;
   template: {
     type: "TP17A";
-    contents: [];
-    tabs: TP17ATab[];
+    contents: TP17AContent[];
   };
-};
-
-type TP17ATab = {
-  name: string;
-  contents: TP17AContent[];
 };
 
 type TP17AContent = HtmlContent | TextBoxesContent | VideoContent | AudioRecordContent;
@@ -309,14 +268,8 @@ export type TP21A = {
   description: string;
   template: {
     type: "TP21A";
-    contents: [];
-    tabs: TP21ATab[];
+    contents: TP21AContent[];
   };
-};
-
-type TP21ATab = {
-  name: string;
-  contents: TP21AContent[];
 };
 
 type TP21AContent = ImagesContent | DragAndDropContent;
@@ -327,14 +280,8 @@ export type TP21B = {
   description: string;
   template: {
     type: "TP21B";
-    contents: [];
-    tabs: TP21BTab[];
+    contents: TP21BContent[];
   };
-};
-
-type TP21BTab = {
-  name: string;
-  contents: TP21BContent[];
 };
 
 type TP21BContent = HtmlContent | ChooseTextContent;
@@ -432,14 +379,8 @@ export type TP13B = {
   description: string;
   template: {
     type: "TP13B";
-    contents: [];
-    tabs: TP13BTab[];
+    contents: TP13BContent[];
   };
-};
-
-type TP13BTab = {
-  name: string;
-  contents: TP13BContent[];
 };
 
 type TP13BContent = HtmlContent | ImagesContent;

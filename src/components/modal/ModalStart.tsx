@@ -10,7 +10,7 @@ interface ModalStartProps {
   title: string;
   description: string;
   isModalOpen: boolean;
-  linkUrl: string;
+  linkUrl?: string;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -143,7 +143,7 @@ const ModalStart = ({
             <ModalDescription>{description}</ModalDescription>
           </ModalDescriptionWrap>
         </ModalBody>
-        <Link to={linkUrl}>
+        <Link to={linkUrl ?? ""}>
           <StartButton>확인</StartButton>
         </Link>
       </ModalInnerBox>

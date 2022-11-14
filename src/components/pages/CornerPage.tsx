@@ -7,6 +7,7 @@ import CommonMainContainer from "../atoms/CommonMainContainer";
 import useCorner from "../../hooks/useCorner";
 import usePage from "../../hooks/usePage";
 import { useNavigate } from "react-router-dom";
+import { getPageUrl } from "../../utils/url";
 
 const CornerPage = () => {
   const { pageIds, cornerId } = useCorner();
@@ -17,12 +18,16 @@ const CornerPage = () => {
   const pageIndex = pageIds.findIndex((id) => id === currentPage?.id);
 
   const handleClickNext = () => {
-    navigate(`/corner/${cornerId}/page/${pageIds[pageIndex + 1]}`);
+    if (cornerId) {
+      navigate(getPageUrl(cornerId, pageIds[pageIndex + 1]));
+    }
     setIsPageCompleted(false);
   };
 
   const handleClickPrev = () => {
-    navigate(`/corner/${cornerId}/page/${pageIds[pageIndex - 1]}`);
+    if (cornerId) {
+      navigate(getPageUrl(cornerId, pageIds[pageIndex - 1]));
+    }
     setIsPageCompleted(false);
   };
 
