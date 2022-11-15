@@ -9,6 +9,7 @@ import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TP03Layout from "../Layouts/TP03Layout";
 import { HtmlContent, ListenWordsContent } from "../../types/templateContents";
 import { colorPalette } from "../../styles/colorPalette";
+import { breakPoints } from "../../constants/layout";
 
 interface TP03AComponentProps extends TemplateProps {}
 
@@ -20,7 +21,7 @@ const HtmlWrapper = styled("div")`
   white-space: pre-line;
   text-align: center;
 
-  @media all and (max-width: 1024px) {
+  @media all and (max-width: ${breakPoints.tablet}) {
     font-size: 2.5vw;
   }
 `;
@@ -58,7 +59,9 @@ const TP03AComponent = ({ setPageCompleted, page }: TP03AComponentProps) => {
         <HtmlWrapper>
           <HtmlContentComponent html={htmlString ?? ""} />
         </HtmlWrapper>
+        {/* TODO : audio 컴포넌트 삽입 및 ListenWordContent 템플릿 수정 */}
         {listenWordsContentData ? <ListenWordContent datas={listenWordsContentData.data} /> : <></>}
+        <></>
       </TP03Layout>
     </TemplateCommonLayout>
   );

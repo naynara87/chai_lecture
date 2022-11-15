@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import styled from "@emotion/styled";
 import IconSpeaker from "./svg/IconSpeaker";
 import IconPlaying from "./svg/IconPlaying";
@@ -6,10 +6,11 @@ import { colorPalette } from "../../styles/colorPalette";
 
 interface AudioProps {
   audioHide?: boolean;
-  audioUrl: string;
-  audioIndex: number;
-  currentAudioIndex: number;
-  audioHandler: (src: string, index: number) => void;
+  audioUrl?: string;
+  audioIndex?: number;
+  currentAudioIndex?: number;
+  isAudio: boolean;
+  audioHandler?: (src: string, index: number) => void;
 }
 
 const AudioButton = styled.button`
@@ -27,9 +28,11 @@ const Audio = ({
   audioUrl,
   audioIndex,
   currentAudioIndex,
+  isAudio,
   audioHandler,
 }: AudioProps) => {
   const [isPlayed, setIsPlayed] = useState<boolean>(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
     if (currentAudioIndex !== audioIndex) {
@@ -41,12 +44,17 @@ const Audio = ({
     if (audioHide) {
       return;
     }
-    audioHandler(audioUrl, audioIndex);
+
+    if (audioHandler) {
+      audioHandler(audioUrl ?? "", audioIndex ?? 0);
+    }
 
     if (isPlayed) {
       setIsPlayed(false);
+      audioRef.current && audioRef.current.pause();
     } else {
       setIsPlayed(true);
+      audioRef.current && audioRef.current.play();
     }
   };
 
@@ -58,7 +66,18 @@ const Audio = ({
     }
   }, [isPlayed]);
 
-  return <AudioButton onClick={handleClickAudioButton}>{renderAudioIcon}</AudioButton>;
+  return (
+    <AudioButton onClick={handleClickAudioButton}>
+      {isAudio ? (
+        <audio ref={audioRef}>
+          <source src={audioUrl} />
+        </audio>
+      ) : (
+        <></>
+      )}
+      {renderAudioIcon}
+    </AudioButton>
+  );
 };
 
 export default Audio;

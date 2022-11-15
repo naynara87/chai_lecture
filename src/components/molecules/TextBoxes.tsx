@@ -2,6 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
 import { TextBoxesData } from "../../types/templateContents";
+import { breakPoints } from "../../constants/layout";
 
 interface TextBoxesProps {
   datas: TextBoxesData[];
@@ -10,7 +11,7 @@ interface TextBoxesProps {
 const TextBoxesWrapper = styled.div`
   max-width: 528px;
   margin: 0 auto;
-  @media all and (max-width: 1024px) {
+  @media all and (max-width: ${breakPoints.tablet}) {
     max-width: 51.6vw;
   }
 `;
@@ -32,7 +33,7 @@ const TextCard = styled.div`
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
   text-align: center;
 
-  @media all and (max-width: 1024px) {
+  @media all and (max-width: ${breakPoints.tablet}) {
     width: 15vw;
     height: 10.4166666667vw;
     line-height: 8.3333333333vw;
@@ -48,7 +49,7 @@ const MeaningText = styled("div")`
   font-weight: 600;
   font-size: 16px;
 
-  @media all and (max-width: 1024px) {
+  @media all and (max-width: ${breakPoints.tablet}) {
     margin-top: 1.6666666667vw;
     font-size: 1.5625vw;
   }

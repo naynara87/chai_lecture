@@ -6,6 +6,7 @@ import { css } from "@emotion/react";
 import { useQuery } from "@tanstack/react-query";
 import { QUERY_KEY } from "../../constants/queryKey";
 import { getAppData } from "../../data/tempApi";
+import { breakPoints } from "../../constants/layout";
 import CornerSignPost from "../atoms/CornerSignPost";
 
 const HeaderContainer = styled.header`
@@ -13,9 +14,12 @@ const HeaderContainer = styled.header`
   width: 100%;
   height: 55px;
   padding: 0 32px;
-  z-index: 1;
-  background-color: ${colorPalette.deepBlue};
-  @media all and (max-width: 1024px) {
+  background-color: #40476b;
+  -webkit-box-shadow: 0 3px 16px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 3px 16px rgba(0, 0, 0, 0.4);
+  @media all and (max-width: ${breakPoints.tablet}) {
+    z-index: 1;
+    background-color: ${colorPalette.deepBlue};
     padding: 0 3.125vw;
   }
 `;
@@ -34,7 +38,7 @@ const HeaderTitle = styled.h1`
   font-size: 12px;
   color: ${colorPalette.white};
   font-weight: 400;
-  @media all and (max-width: 1024px) {
+  @media all and (max-width: ${breakPoints.tablet}) {
     font-size: 1.25vw;
   }
 `;
@@ -43,7 +47,7 @@ const LessonTitle = styled.b`
   margin-left: 4px;
   font-weight: 600;
   font-size: 16px;
-  @media all and (max-width: 1024px) {
+  @media all and (max-width: ${breakPoints.tablet}) {
     font-size: 1.5625vw;
   }
 `;
@@ -61,7 +65,7 @@ const exitButtonCss = css`
   padding: 15px 15px;
   background-color: transparent;
   cursor: pointer;
-  @media all and (max-width: 1024px) {
+  @media all and (max-width: ${breakPoints.tablet}) {
     right: 3.125vw;
   }
 
@@ -90,7 +94,7 @@ const exitTextCss = css`
   transform: translate(-50%, -50%);
   -webkit-transition: all 0.4s;
   transition: all 0.4s;
-  @media all and (max-width: 1024px) {
+  @media all and (max-width: ${breakPoints.tablet}) {
     width: 2.2916666667vw;
   }
   &:before {
@@ -108,7 +112,7 @@ const exitTextCss = css`
     -webkit-transition: all 0.4s;
     transition: all 0.4s;
   }
-  @media all and (max-width: 1024px) {
+  @media all and (max-width: ${breakPoints.tablet}) {
     &:before {
       height: 0.3125vw;
     }
@@ -128,7 +132,7 @@ const exitTextCss = css`
     -webkit-transition: all 0.4s;
     transition: all 0.4s;
   }
-  @media all and (max-width: 1024px) {
+  @media all and (max-width: ${breakPoints.tablet}) {
     &:after {
       height: 0.3125vw;
     }

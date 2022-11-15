@@ -2,6 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import { ListenWordData } from "../../types/templateContents";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
+import { breakPoints } from "../../constants/layout";
 
 interface WordsContentComponentProps extends ListenWordData {
   index: number;
@@ -26,7 +27,7 @@ const TextCard = styled.div`
   text-align: center;
   cursor: pointer;
 
-  @media all and (max-width: 1024px) {
+  @media all and (max-width: ${breakPoints.tablet}) {
     width: 15vw;
     height: 10.4166666667vw;
     line-height: 8.3333333333vw;
@@ -42,7 +43,7 @@ const MeaningText = styled("div")`
   font-weight: 600;
   font-size: 16px;
 
-  @media all and (max-width: 1024px) {
+  @media all and (max-width: ${breakPoints.tablet}) {
     margin-top: 1.6666666667vw;
     font-size: 1.5625vw;
   }

@@ -5,6 +5,7 @@ import IconCheckYellow from "../atoms/svg/IconCheckYellow";
 import IconModalCharacter from "../atoms/svg/IconModalCharacter";
 import { colorPalette } from "../../styles/colorPalette";
 import { Link } from "react-router-dom";
+import { breakPoints } from "../../constants/layout";
 
 interface ModalStartProps {
   title: string;
@@ -110,7 +111,7 @@ const StartButton = styled.button`
   margin-top: 53px;
   cursor: pointer;
 
-  @media all and (max-width: 1024px) {
+  @media all and (max-width: ${breakPoints.tablet}) {
     min-width: 14.4791666667vw;
     height: 4.1666666667vw;
     border-radius: 2.5vw;

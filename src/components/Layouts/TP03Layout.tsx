@@ -5,13 +5,13 @@ import { templateContentsAreaHeight } from "../../constants/layout";
 const TP03LayoutStyle = styled.div`
   height: ${templateContentsAreaHeight};
   display: grid;
-  grid-template-rows: 20% 78%;
+  grid-template-rows: 1fr max-content 1fr;
   gap: 2%;
   overflow-y: auto;
 `;
 
 interface TP03LayoutProps {
-  children: [JSX.Element, JSX.Element];
+  children: [JSX.Element, JSX.Element, JSX.Element];
 }
 const TP03Layout = ({ children }: TP03LayoutProps) => {
   return <TP03LayoutStyle>{children}</TP03LayoutStyle>;
