@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 import styled from "@emotion/styled";
-import { TP03B } from "../../types/pageTemplate";
+import { TP03B, TP03C, TP03D } from "../../types/pageTemplate";
 import { TemplateProps } from "../../types/templates";
 import TitleContent from "../molecules/TitleContent";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
@@ -37,7 +37,7 @@ const AudioWrapper = styled.div`
  * template type에 따라 TP03B, TP03C를 렌더함.
  */
 const TP03BComponent = ({ setPageCompleted, page }: TP0BAComponentProps) => {
-  const thisPage = page as TP03B;
+  const thisPage = page as TP03B | TP03C | TP03D;
   useEffect(() => {
     setPageCompleted();
   }, [setPageCompleted]);
@@ -74,13 +74,13 @@ const TP03BComponent = ({ setPageCompleted, page }: TP0BAComponentProps) => {
     }
     const { type: templateType } = thisPage.template;
     const { src: audioUrl } = AudioContentData?.data[0];
-    if (templateType === "TP03B") {
+    if (templateType === "TP03C") {
       return (
-        <TP03Layout>
+        <TP03Layout isReverse={true}>
+          <TextBoxes datas={TextBoxesContentData.data} />
           <HtmlWrapper>
             <HtmlContentComponent html={htmlString ?? ""} />
           </HtmlWrapper>
-          <TextBoxes datas={TextBoxesContentData.data} />
           <AudioWrapper>
             <AudioButton isAudio={true} audioUrl={audioUrl} />
           </AudioWrapper>
@@ -89,10 +89,13 @@ const TP03BComponent = ({ setPageCompleted, page }: TP0BAComponentProps) => {
     } else {
       return (
         <TP03Layout>
-          <TextBoxes datas={TextBoxesContentData.data} />
           <HtmlWrapper>
             <HtmlContentComponent html={htmlString ?? ""} />
           </HtmlWrapper>
+          <TextBoxes
+            datas={TextBoxesContentData.data}
+            isHorizontal={templateType === "TP03D" ? true : false}
+          />
           <AudioWrapper>
             <AudioButton isAudio={true} audioUrl={audioUrl} />
           </AudioWrapper>

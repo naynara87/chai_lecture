@@ -4,10 +4,6 @@ import HtmlContentComponent from "../atoms/HtmlContentComponent";
 import { TextBoxesData } from "../../types/templateContents";
 import { breakPoints } from "../../constants/layout";
 
-interface TextBoxesProps {
-  datas: TextBoxesData[];
-}
-
 const TextBoxesWrapper = styled.div`
   max-width: 528px;
   margin: 0 auto;
@@ -18,6 +14,14 @@ const TextBoxesWrapper = styled.div`
 
 const TextCardGrp = styled.div`
   display: inline-block;
+  text-align: center;
+  color: #3c3c3c;
+  font-weight: 400;
+
+  &.horizontal {
+    display: flex;
+    align-items: center;
+  }
 `;
 
 const TextCard = styled.div`
@@ -31,7 +35,12 @@ const TextCard = styled.div`
   font-size: 32px;
   -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &.horizontal {
+    height: 56px;
+  }
 
   @media all and (max-width: ${breakPoints.tablet}) {
     width: 15vw;
@@ -49,27 +58,42 @@ const MeaningText = styled("div")`
   font-weight: 600;
   font-size: 16px;
 
+  &.horizontal {
+    margin-top: 0;
+    font-size: 24px;
+    margin-left: 17px;
+    font-weight: 500;
+  }
+
   @media all and (max-width: ${breakPoints.tablet}) {
     margin-top: 1.6666666667vw;
     font-size: 1.5625vw;
+
+    &.horizontal {
+      font-size: 2.5625vw;
+    }
   }
 `;
 
+interface TextBoxesProps {
+  datas: TextBoxesData[];
+  isHorizontal?: boolean;
+}
 /**
  * TODO: TP03F에서 props로 description이랑 description 위치를 받아서 구현
  * description 정렬
  * sub 확인
  */
-const TextBoxes = ({ datas }: TextBoxesProps) => {
+const TextBoxes = ({ datas, isHorizontal }: TextBoxesProps) => {
   return (
     <TextBoxesWrapper>
       {datas.map((item, index) => {
         return (
-          <TextCardGrp key={index}>
-            <TextCard>
+          <TextCardGrp key={index} className={isHorizontal ? "horizontal" : ""}>
+            <TextCard className={isHorizontal ? "horizontal" : ""}>
               <HtmlContentComponent html={item.main} />
             </TextCard>
-            <MeaningText>
+            <MeaningText className={isHorizontal ? "horizontal" : ""}>
               <HtmlContentComponent html={item.description ?? ""} />
             </MeaningText>
           </TextCardGrp>
