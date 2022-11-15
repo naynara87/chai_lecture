@@ -6,18 +6,17 @@ import { css } from "@emotion/react";
 import { useQuery } from "@tanstack/react-query";
 import { QUERY_KEY } from "../../constants/queryKey";
 import { getAppData } from "../../data/tempApi";
+import CornerSignPost from "../atoms/CornerSignPost";
 
 const HeaderContainer = styled.header`
   position: relative;
   width: 100%;
   height: 55px;
   padding: 0 32px;
-  background-color: #40476b;
-  -webkit-box-shadow: 0 3px 16px rgba(0, 0, 0, 0.4);
-  box-shadow: 0 3px 16px rgba(0, 0, 0, 0.4);
+  z-index: 1;
+  background-color: ${colorPalette.deepBlue};
   @media all and (max-width: 1024px) {
     padding: 0 3.125vw;
-    height: 5.4166666667vw;
   }
 `;
 
@@ -136,8 +135,13 @@ const exitTextCss = css`
   }
 `;
 
-const Header = () => {
+interface HeaderProps {
+  cornerName?: string;
+}
+
+const Header = ({ cornerName }: HeaderProps) => {
   const { data: appData } = useQuery([QUERY_KEY.APP_DATA], getAppData);
+
   const handleExitButton = () => {
     console.log("나가기 버튼");
     window.close();
@@ -156,6 +160,7 @@ const Header = () => {
         customTextCss={exitTextCss}
         handleClickButton={handleExitButton}
       />
+      {cornerName ? <CornerSignPost cornerName={cornerName} /> : <></>}
     </HeaderContainer>
   );
 };

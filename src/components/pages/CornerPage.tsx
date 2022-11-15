@@ -12,7 +12,9 @@ import { getPageUrl } from "../../utils/url";
 const CornerPage = () => {
   const { pageIds, cornerId } = useCorner();
   const [isPageCompleted, setIsPageCompleted] = useState(false);
+
   const { page: currentPage } = usePage();
+  const { currentCorner } = useCorner();
   const navigate = useNavigate();
 
   const pageIndex = pageIds.findIndex((id) => id === currentPage?.id);
@@ -37,7 +39,7 @@ const CornerPage = () => {
 
   return (
     <CommonPageLayout>
-      <Header />
+      <Header cornerName={currentCorner?.title} />
       <CommonMainContainer>
         {currentPage && <CornerMain page={currentPage} setPageCompleted={setPageCompleted} />}
       </CommonMainContainer>
