@@ -13,6 +13,7 @@ const useTemplateMapper = (props: UseTemplateMapperProps) => {
     TP03B: <TP03BComponent {...props} />,
     TP15A: <TP15AComponent {...props} />,
     TP03C: <TP03BComponent {...props} />,
+    TP03D: <TP03BComponent {...props} />,
   };
 
   const getTemplateComponent = (templateType: TemplateType) => {
