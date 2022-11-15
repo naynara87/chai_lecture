@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import CommonPageLayout from "../Layouts/CommonPageLayout";
 import Footer from "../molecules/Footer";
 import Header from "../molecules/Header";
@@ -8,27 +8,17 @@ import useCorner from "../../hooks/useCorner";
 import usePage from "../../hooks/usePage";
 import { useNavigate } from "react-router-dom";
 import { getPageUrl } from "../../utils/url";
-import CornerSignPost from "../atoms/CornerSignPost";
-import { getCorner } from "../../data/tempApi";
 
 const CornerPage = () => {
   const { pageIds, cornerId } = useCorner();
   const [isPageCompleted, setIsPageCompleted] = useState(false);
-  const [cornerTitle, setCornerTitle] = useState("");
+
   const { page: currentPage } = usePage();
+  const { currentCorner } = useCorner();
   const navigate = useNavigate();
 
   const pageIndex = pageIds.findIndex((id) => id === currentPage?.id);
-  useEffect(() => {
-    if (!cornerId) {
-      return;
-    }
-    const getCurrentCorner = async () => {
-      const currentCorner = await getCorner(cornerId);
-      setCornerTitle(currentCorner?.title ?? "");
-    };
-    getCurrentCorner();
-  }, [cornerId]);
+
   const handleClickNext = () => {
     if (cornerId) {
       navigate(getPageUrl(cornerId, pageIds[pageIndex + 1]));
@@ -49,7 +39,7 @@ const CornerPage = () => {
 
   return (
     <CommonPageLayout>
-      <Header />
+      <Header cornerName={currentCorner?.title} />
       <CommonMainContainer>
         {currentPage && <CornerMain page={currentPage} setPageCompleted={setPageCompleted} />}
       </CommonMainContainer>
@@ -59,7 +49,6 @@ const CornerPage = () => {
         handleClickNext={handleClickNext}
         isPageCompleted={isPageCompleted}
       />
-      <CornerSignPost cornerName={cornerTitle} />
     </CommonPageLayout>
   );
 };

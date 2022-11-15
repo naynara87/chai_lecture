@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import React from "react";
-import IconSignPost from "./svg/IconSignPost";
+import IconSignPost from "../../images/iconSignPost.svg";
+import { colorPalette } from "../../styles/colorPalette";
 
 interface CornerSignPostProps {
   cornerName: string;
@@ -8,42 +9,45 @@ interface CornerSignPostProps {
 
 const SignPost = styled.div`
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
-  transform: translateX(50%) translateY(50%);
+  z-index: 1;
+  transform: translateX(100%) translateY(100%);
   width: 6.0416666667vw;
-  min-width: 48px;
-  height: 6.2777777778vh;
-  min-height: 76px;
+  min-width: 53px;
+  max-width: 75px;
+  height: 8.2777777778vh;
+  min-height: 66px;
   padding: 0 1.0416666667vw;
-  padding-top: 0.625vh;
   line-height: 1.5;
   font-weight: 600;
-  font-size: 1.25vw;
-  color: #ffffff;
+  font-size: clamp(12px, 1.25vw, 18px);
+  color: ${colorPalette.white};
   display: flex;
   justify-content: center;
   align-items: center;
+  background-position: center -10px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url(${IconSignPost});
   @media all and (max-width: 1024px) {
-    font-size: 12px;
+    height: 6.2777777778vh;
   }
 `;
 
 const SignTitle = styled.span`
-  position: relative;
+  position: absolute;
   z-index: 1;
   text-align: center;
-  text-shadow: -1px 0 #293db5, 0 1px #293db5, 1px 0 #293db5, 0 -1px #293db5;
-  margin-top: 1vw;
-  @media all and (max-width: 1024px) {
-    margin-top: 0;
-  }
+  top: 0;
+  transform: translateY(50%);
+  text-shadow: -1px 0 ${colorPalette.signPostTextBorer}, 0 1px ${colorPalette.signPostTextBorer},
+    1px 0 ${colorPalette.signPostTextBorer}, 0 -1px ${colorPalette.signPostTextBorer};
 `;
 
 const CornerSignPost = ({ cornerName }: CornerSignPostProps) => {
   return (
     <SignPost>
-      <IconSignPost />
       <SignTitle>{cornerName}</SignTitle>
     </SignPost>
   );
