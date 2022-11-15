@@ -20,7 +20,7 @@ export const dummyData: AppData = {
       id: 1,
       type: "review",
       title: "복습",
-      isCompleted: false,
+      isCompleted: true,
       introduction: {
         title: "복습모달 제목",
         description: "복습 모달 문구",
@@ -403,6 +403,56 @@ export const dummyData: AppData = {
       cornerIcon:
         "https://i.picsum.photos/id/623/200/200.jpg?hmac=xquTjHIYmAPV3XEGlIUaV_KWyEofkbortxrK79jJhWA",
       pages: [
+        {
+          id: 10,
+          title: "중국어의 개요",
+          description: "중국어의 개요에 대해 알아봅시다.",
+          template: {
+            type: "TP01A",
+            contents: [
+              {
+                type: "chooseTextByAudio",
+                data: [
+                  {
+                    choices: ["he", "ge"],
+                    answerIndex: 0,
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                  },
+                  {
+                    choices: ["he", "ge"],
+                    answerIndex: 1,
+                    audio: {
+                      src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
+                    },
+                  },
+                  {
+                    choices: ["qi", "xi"],
+                    answerIndex: 0,
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                  },
+                  {
+                    choices: ["ji", "qi"],
+                    answerIndex: 0,
+                    audio: {
+                      src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
+                    },
+                  },
+                  {
+                    choices: ["ying", "wang"],
+                    answerIndex: 1,
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                  },
+                ],
+              },
+            ],
+          },
+        },
         {
           id: 21,
           title: "성조",

@@ -16,7 +16,7 @@ export type ChooseTextByAudioContent = {
   data: ChooseTextByAudioData[];
 };
 
-type ChooseTextByAudioData = {
+export type ChooseTextByAudioData = {
   choices: string[];
   answerIndex: number;
   audio: {
