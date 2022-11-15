@@ -3,14 +3,14 @@ import styled from "@emotion/styled";
 
 const Svg = styled.svg`
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 17%;
   width: 100%;
+  /* height: 100%; */
 `;
 
 const IconSignPost = () => {
   return (
-    <Svg viewBox="0 0 120 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <Svg viewBox="0 0 125 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g filter="url(#filter0_d_256_37847)">
         <path d="M10 7H114V135L61.1613 107.837L10 135V7Z" fill="#6070CF" />
       </g>

@@ -13,7 +13,8 @@ const SignPost = styled.div`
   transform: translateX(50%) translateY(50%);
   width: 6.0416666667vw;
   min-width: 48px;
-  height: 10.2777777778vh;
+  height: 6.2777777778vh;
+  min-height: 76px;
   padding: 0 1.0416666667vw;
   padding-top: 0.625vh;
   line-height: 1.5;
@@ -28,7 +29,12 @@ const SignPost = styled.div`
 const SignTitle = styled.span`
   position: relative;
   z-index: 1;
+  text-align: center;
   text-shadow: -1px 0 #293db5, 0 1px #293db5, 1px 0 #293db5, 0 -1px #293db5;
+  margin-top: 1vw;
+  @media all and (max-width: 1024px) {
+    margin-top: 0;
+  }
 `;
 
 const CornerSignPost = ({ cornerName }: CornerSignPostProps) => {
