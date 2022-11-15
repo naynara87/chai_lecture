@@ -24,6 +24,9 @@ const SignPost = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media all and (max-width: 1024px) {
+    font-size: 12px;
+  }
 `;
 
 const SignTitle = styled.span`
