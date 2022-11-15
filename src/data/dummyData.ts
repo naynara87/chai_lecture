@@ -20,7 +20,7 @@ export const dummyData: AppData = {
       id: 1,
       type: "review",
       title: "복습",
-      isCompleted: false,
+      isCompleted: true,
       introduction: {
         title: "복습모달 제목",
         description: "복습 모달 문구",

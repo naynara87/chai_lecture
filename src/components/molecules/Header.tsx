@@ -12,12 +12,13 @@ const HeaderContainer = styled.header`
   width: 100%;
   height: 55px;
   padding: 0 32px;
+  z-index: 1;
   background-color: #40476b;
   -webkit-box-shadow: 0 3px 16px rgba(0, 0, 0, 0.4);
   box-shadow: 0 3px 16px rgba(0, 0, 0, 0.4);
   @media all and (max-width: 1024px) {
     padding: 0 3.125vw;
-    height: 5.4166666667vw;
+    /* height: 5.4166666667vw; */
   }
 `;
 
