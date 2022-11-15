@@ -1,9 +1,15 @@
 import React from "react";
+import styled from "@emotion/styled";
+
+const Svg = styled.svg`
+  position: relative;
+  z-index: 1;
+`;
 
 const IconModalCharacter = () => {
   return (
-    <svg viewBox="-50 0 360 168" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <g clip-path="url(#clip0_363_17322)">
+    <Svg viewBox="-50 0 360 168" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g clipPath="url(#clip0_363_17322)">
         <path
           d="M200.675 17.8773C195.56 17.8773 190.601 18.4869 185.831 19.6174C171.608 7.40362 153.113 0 132.888 0C112.663 0 94.0247 7.45903 79.7796 19.7614C74.8315 18.5423 69.6504 17.8773 64.3251 17.8773C28.801 17.8773 0 46.6494 0 82.1491C0 117.649 28.801 146.41 64.3251 146.41C70.2717 146.41 76.0297 145.59 81.4992 144.071C95.5003 155.498 113.384 162.37 132.888 162.37C152.392 162.37 170.099 155.565 184.067 144.237C189.37 145.645 194.928 146.41 200.675 146.41C236.199 146.41 265 117.638 265 82.1491C265 46.6605 236.199 17.8884 200.675 17.8884V17.8773Z"
           fill="#A6C4E3"
@@ -46,7 +52,7 @@ const IconModalCharacter = () => {
           <rect width="265" height="168" fill="white" />
         </clipPath>
       </defs>
-    </svg>
+    </Svg>
   );
 };
 
