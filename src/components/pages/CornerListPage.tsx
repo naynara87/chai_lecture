@@ -15,6 +15,7 @@ import { useQuery } from "@tanstack/react-query";
 import { QUERY_KEY } from "../../constants/queryKey";
 import ModalStart from "../modal/ModalStart";
 import { getPageUrl } from "../../utils/url";
+import { breakPoints } from "../../constants/layout";
 
 const CornerListWrapper = styled.main`
   display: -webkit-box;
@@ -35,7 +36,7 @@ const CornerListWrapper = styled.main`
   &.layout7 {
     max-width: 581px;
   }
-  @media all and (max-width: 1024px) {
+  @media all and (max-width: ${breakPoints.tablet}) {
     gap: 4.1666666667vw;
     max-width: 54.6666666667vw;
     margin-top: 4.1666666667vw;
@@ -53,7 +54,7 @@ const CornerImageWrapper = styled.div`
   border: 8px solid ${colorPalette.white};
   -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
-  @media all and (max-width: 1024px) {
+  @media all and (max-width: ${breakPoints.tablet}) {
     width: 10.4166666667vw;
     height: 10.4166666667vw;
     border-width: 0.8333333333vw;
@@ -85,7 +86,7 @@ const CornerName = styled.span`
   margin-top: 13px;
   font-weight: 600;
   font-size: 16px;
-  @media all and (max-width: 1024px) {
+  @media all and (max-width: ${breakPoints.tablet}) {
     margin-top: 1.25vw;
     font-size: 1.5625vw;
   }
@@ -104,7 +105,7 @@ const startBtnCss = css`
   margin-top: 53px;
   cursor: pointer;
 
-  @media all and (max-width: 1024px) {
+  @media all and (max-width: ${breakPoints.tablet}) {
     min-width: 14.4791666667vw;
     height: 4.1666666667vw;
     border-radius: 2.5vw;

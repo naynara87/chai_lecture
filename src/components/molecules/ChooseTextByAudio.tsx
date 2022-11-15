@@ -139,6 +139,7 @@ const ChooseTextByAudio = ({
         audioUrl={audioUrl}
         audioIndex={index}
         audioHandler={handleClickAudio}
+        isAudio={false}
         currentAudioIndex={currentAudioIndex}
       />
     </QuestionList>

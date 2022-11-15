@@ -1,4 +1,5 @@
 import { css } from "@emotion/react";
+import { colorPalette } from "./colorPalette";
 
 const globalStyle = css`
   /* =================== base =================== */
@@ -11,6 +12,12 @@ const globalStyle = css`
   ol,
   dl,
   li,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
   footer,
   header,
   main,
@@ -81,6 +88,15 @@ const globalStyle = css`
   img {
     max-width: 100%;
     height: auto;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    line-height: 5.2vw;
+    color: ${colorPalette.textBoxesTitle};
+    font-weight: 700;
   }
 
   /* =================== fonts =================== */

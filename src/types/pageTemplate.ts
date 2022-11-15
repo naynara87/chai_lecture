@@ -62,7 +62,7 @@ type TP03BTemplate = {
   contents: TP03BContent[];
 };
 
-export type TP03BContent = HtmlContent | TextBoxesContent;
+export type TP03BContent = HtmlContent | TextBoxesContent | AudioContent;
 
 export type TP03C = {
   id: ID;
@@ -76,7 +76,7 @@ type TP03CTemplate = {
   contents: TP03CContent[];
 };
 
-type TP03CContent = HtmlContent | TextBoxesContent;
+type TP03CContent = HtmlContent | TextBoxesContent | AudioContent;
 
 export type TP03D = {
   id: ID;

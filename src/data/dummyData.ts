@@ -532,6 +532,14 @@ export const dummyData: AppData = {
                   },
                 ],
               },
+              {
+                type: "audio",
+                data: [
+                  {
+                    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                  },
+                ],
+              },
             ],
           },
         },
@@ -540,46 +548,35 @@ export const dummyData: AppData = {
           title: "성조3",
           description: "발음을 듣고 따라 읽어보세요.3",
           template: {
-            type: "TP03A",
+            type: "TP03C",
             contents: [
               {
-                type: "html",
+                type: "textBoxes",
                 data: [
                   {
-                    text: "성조는 음의 높낮이와 그 변화를 표시한 것으로, 중국어에는 네 개의 성조가 있습니다.",
+                    main: "a",
+                  },
+                  {
+                    main: "o",
+                  },
+                  {
+                    main: "e",
                   },
                 ],
               },
               {
-                type: "listenWords",
+                type: "html",
                 data: [
                   {
-                    text: "a",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                    meaning: "제 1성",
+                    text: "<h4>설면음</h4>혀뿌리를 입천장 뒤쪽에 가까이 대고 발음합니다.",
                   },
+                ],
+              },
+              {
+                type: "audio",
+                data: [
                   {
-                    text: "a",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                    meaning: "제 2성",
-                  },
-                  {
-                    text: "a",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                    meaning: "제 3성",
-                  },
-                  {
-                    text: "a",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                    meaning: "제 4성",
+                    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
                   },
                 ],
               },
