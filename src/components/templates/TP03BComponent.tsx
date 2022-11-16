@@ -15,6 +15,10 @@ import { css } from "@emotion/react";
 
 const customBoxCss = css`
   height: 80px;
+
+  @media all and (max-width: ${breakPoints.tablet}) {
+    height: 8vw;
+  }
 `;
 
 interface TP0BAComponentProps extends TemplateProps {}

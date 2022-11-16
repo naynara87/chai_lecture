@@ -705,6 +705,44 @@ export const dummyData: AppData = {
             ],
           },
         },
+        {
+          id: 28,
+          title: "운모",
+          description: "i, u, o와 결합한 운모를 알아봅시다..",
+          template: {
+            type: "TP05A",
+            contents: [
+              {
+                type: "textBoxes",
+                data: [
+                  {
+                    main: "i",
+                    description:
+                      "<p>ia ie iao iou ian in iang ing iong<br />(yi: ya ye yao you yan yin yang ying young)</p>",
+                  },
+                  {
+                    main: "u",
+                    description:
+                      "<p>ua uo uai uei uan uen uang ueng<br />(wu: wa wo wai wei wan wen wang weng)</p>",
+                  },
+                  {
+                    main: "u",
+                    description: "ue uan un (yu: yue yuan yun)",
+                  },
+                ],
+              },
+              {
+                type: "html",
+                data: [
+                  {
+                    kind: "tip",
+                    text: "ie, uei, ue의 e는 '으'와 '어'의 중간 소리가 아닌 '에'에 가깝게 발읍합니다. ian, uan의 a는 '아'가 아닌 '에'에 가깝게 발음합니다. ( )의 발음 표기는 성모 없이 운모만 쓸 때의 표기법입니다. 운모 iou, uei, uen 앞에 성모가 오면 가운데 운모는 생략합니다.",
+                  },
+                ],
+              },
+            ],
+          },
+        },
       ],
     },
     {
