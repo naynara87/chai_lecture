@@ -684,6 +684,27 @@ export const dummyData: AppData = {
             ],
           },
         },
+        {
+          id: 27,
+          title: "중국어 경성, 한어병음 표기 규칙",
+          description: "한어병음 표기 규칙에 대해 알아봅시다.",
+          template: {
+            type: "TP02M",
+            contents: [
+              {
+                type: "textBoxes",
+                data: [
+                  {
+                    main: "경성",
+                  },
+                  {
+                    main: "한어병음 표기 규칙",
+                  },
+                ],
+              },
+            ],
+          },
+        },
       ],
     },
     {
