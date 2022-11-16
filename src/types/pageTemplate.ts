@@ -132,7 +132,7 @@ type TP04ATemplate = {
   contents: TP04AContent[];
 };
 
-type TP04AContent = ImagesContent | HtmlContent;
+type TP04AContent = ImagesContent | HtmlContent | AudioContent;
 
 export type TP05 = {
   id: ID;
