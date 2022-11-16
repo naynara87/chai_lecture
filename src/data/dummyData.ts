@@ -666,6 +666,24 @@ export const dummyData: AppData = {
             ],
           },
         },
+        {
+          id: 26,
+          title: "성모",
+          description: "성모 g, k는 음절의 첫소리로, 모두 21개입니다.",
+          template: {
+            type: "TP02C",
+            contents: [
+              {
+                type: "images",
+                data: [
+                  {
+                    src: "https://i.picsum.photos/id/474/800/400.jpg?hmac=CwQKBMVE4mgQWYJ56eO34xu7DuJ_O_WtUcvqm_kQcaI",
+                  },
+                ],
+              },
+            ],
+          },
+        },
       ],
     },
     {

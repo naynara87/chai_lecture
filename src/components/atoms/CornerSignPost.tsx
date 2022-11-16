@@ -26,7 +26,7 @@ const SignPost = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-position: center -10px;
+  background-position: bottom;
   background-size: cover;
   background-repeat: no-repeat;
   background-image: url(${IconSignPost});
