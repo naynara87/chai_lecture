@@ -44,8 +44,6 @@ const TextCard = styled.div<TextCardProps>`
   justify-content: center;
   align-items: center;
 
-  ${(props) => props.customCss}
-
   @media all and (max-width: ${breakPoints.tablet}) {
     width: 15vw;
     height: 10.4166666667vw;
@@ -55,6 +53,8 @@ const TextCard = styled.div<TextCardProps>`
     padding: 1.0416666667vw 0;
     font-size: 3.125vw;
   }
+
+  ${(props) => props.customCss}
 `;
 
 const MeaningText = styled("div")`
