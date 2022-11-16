@@ -1,10 +1,21 @@
 import React from "react";
+import styled from "@emotion/styled";
+import { SerializedStyles } from "@emotion/react";
 interface HtmlContentComponentProps {
   html: string;
+  customCss?: SerializedStyles;
 }
 
-const HtmlContentComponent = ({ html }: HtmlContentComponentProps) => {
-  return <div dangerouslySetInnerHTML={{ __html: html }}></div>;
+interface ImageComponentProps {
+  customCss?: SerializedStyles;
+}
+
+const Html = styled.div<ImageComponentProps>`
+  ${(props) => props.customCss};
+`;
+
+const HtmlContentComponent = ({ html, customCss }: HtmlContentComponentProps) => {
+  return <Html dangerouslySetInnerHTML={{ __html: html }} customCss={customCss}></Html>;
 };
 
 export default HtmlContentComponent;

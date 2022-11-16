@@ -2,6 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import ChaiSkeleton from "../atoms/ChaiSkeleton";
 import { breakPoints } from "../../constants/layout";
+import { colorPalette } from "../../styles/colorPalette";
 
 const TitleWrapper = styled.div`
   display: flex;
@@ -21,6 +22,7 @@ const SubTitle = styled.p`
   margin-top: 9px;
   font-weight: 500;
   font-size: 15px;
+  color: ${colorPalette.descriptionText};
   @media all and (max-width: ${breakPoints.tablet}) {
     margin-top: 0.8333333333vw;
     font-size: 1.4583333333vw;

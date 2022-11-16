@@ -113,7 +113,6 @@ const ChooseTextByAudio = ({
 
   const QuizAnswerContents = useMemo(() => {
     return choices.map((choice, index) => {
-      console.log(checkIndex, index);
       return (
         <QuizAnswer
           key={index}
