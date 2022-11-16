@@ -1,5 +1,6 @@
 import { css } from "@emotion/react";
 import React, { useEffect, useMemo } from "react";
+import { breakPoints } from "../../constants/layout";
 import { TP02M } from "../../types/pageTemplate";
 import { TextBoxesContent } from "../../types/templateContents";
 import { TemplateProps } from "../../types/templates";
@@ -10,6 +11,10 @@ import TitleContent from "../molecules/TitleContent";
 
 const customBoxCss = css`
   width: 300px;
+
+  @media all and (max-width: ${breakPoints.tablet}) {
+    width: 27vw;
+  }
 `;
 
 interface TP02MComponentProps extends TemplateProps {}
