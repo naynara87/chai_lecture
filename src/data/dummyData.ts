@@ -718,12 +718,12 @@ export const dummyData: AppData = {
                   {
                     main: "i",
                     description:
-                      "ia ie iao iou ian in iang ing iong (yi: ya ye yao you yan yin yang ying young)",
+                      "<p>ia ie iao iou ian in iang ing iong<br />(yi: ya ye yao you yan yin yang ying young)</p>",
                   },
                   {
                     main: "u",
                     description:
-                      "ua uo uai uei uan uen uang ueng (wu: wa wo wai wei wan wen wang weng)",
+                      "<p>ua uo uai uei uan uen uang ueng<br />(wu: wa wo wai wei wan wen wang weng)</p>",
                   },
                   {
                     main: "u",

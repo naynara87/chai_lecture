@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useMemo } from "react";
 import styled from "@emotion/styled";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
 import { TextBoxesData } from "../../types/templateContents";
@@ -101,36 +101,6 @@ interface TextBoxesProps {
  * sub 확인
  */
 const TextBoxes = ({ datas, isHorizontal, customBoxCss, customBoxWrapperCss }: TextBoxesProps) => {
-  const divideTextToBrackets = (text: string) => {
-    const firstBracketIndex = text.indexOf("(");
-    const secondBracketIndex = text.indexOf(")");
-
-    const firstText = text.slice(0, firstBracketIndex);
-    const secondText = text.slice(firstBracketIndex, secondBracketIndex + 1);
-    const thirdText = text.slice(secondBracketIndex, -1);
-
-    return {
-      firstText,
-      secondText,
-      thirdText,
-    };
-  };
-
-  const renderDescription = useCallback((description: string) => {
-    if (description.indexOf("(") >= 0) {
-      const divideText = divideTextToBrackets(description);
-      return (
-        <>
-          <HtmlContentComponent html={divideText.firstText ?? ""} />
-          <HtmlContentComponent html={divideText.secondText ?? ""} />
-          <HtmlContentComponent html={divideText.thirdText ?? ""} />
-        </>
-      );
-    } else {
-      return <HtmlContentComponent html={description ?? ""} />;
-    }
-  }, []);
-
   const renderTextBoxes = useMemo(() => {
     return datas.map((textBox, index) => {
       return (
@@ -143,12 +113,12 @@ const TextBoxes = ({ datas, isHorizontal, customBoxCss, customBoxWrapperCss }: T
             <HtmlContentComponent html={textBox.main} customCss={htmlCustomCss} />
           </TextCard>
           <MeaningText className={isHorizontal ? "horizontal" : ""}>
-            {textBox.description && renderDescription(textBox.description)}
+            <HtmlContentComponent html={textBox.description ?? ""} />
           </MeaningText>
         </TextCardGrp>
       );
     });
-  }, [customBoxCss, customBoxWrapperCss, datas, isHorizontal, renderDescription]);
+  }, [customBoxCss, customBoxWrapperCss, datas, isHorizontal]);
 
   return <TextBoxesWrapper>{renderTextBoxes}</TextBoxesWrapper>;
 };
