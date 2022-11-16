@@ -3,6 +3,11 @@ import styled from "@emotion/styled";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
 import { TextBoxesData } from "../../types/templateContents";
 import { breakPoints } from "../../constants/layout";
+import { css, SerializedStyles } from "@emotion/react";
+
+interface TextCardProps {
+  customCss?: SerializedStyles;
+}
 
 const TextBoxesWrapper = styled.div`
   max-width: 528px;
@@ -24,7 +29,7 @@ const TextCardGrp = styled.div`
   }
 `;
 
-const TextCard = styled.div`
+const TextCard = styled.div<TextCardProps>`
   width: 154px;
   height: 106px;
   line-height: 84px;
@@ -38,9 +43,6 @@ const TextCard = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  &.horizontal {
-    height: 56px;
-  }
 
   @media all and (max-width: ${breakPoints.tablet}) {
     width: 15vw;
@@ -51,6 +53,8 @@ const TextCard = styled.div`
     padding: 1.0416666667vw 0;
     font-size: 3.125vw;
   }
+
+  ${(props) => props.customCss}
 `;
 
 const MeaningText = styled("div")`
@@ -75,23 +79,27 @@ const MeaningText = styled("div")`
   }
 `;
 
+const htmlCustomCss = css`
+  white-space: nowrap;
+`;
 interface TextBoxesProps {
   datas: TextBoxesData[];
   isHorizontal?: boolean;
+  customBoxCss?: SerializedStyles;
 }
 /**
  * TODO: TP03F에서 props로 description이랑 description 위치를 받아서 구현
  * description 정렬
  * sub 확인
  */
-const TextBoxes = ({ datas, isHorizontal }: TextBoxesProps) => {
+const TextBoxes = ({ datas, isHorizontal, customBoxCss }: TextBoxesProps) => {
   return (
     <TextBoxesWrapper>
       {datas.map((item, index) => {
         return (
           <TextCardGrp key={index} className={isHorizontal ? "horizontal" : ""}>
-            <TextCard className={isHorizontal ? "horizontal" : ""}>
-              <HtmlContentComponent html={item.main} />
+            <TextCard className={isHorizontal ? "horizontal" : ""} customCss={customBoxCss}>
+              <HtmlContentComponent html={item.main} customCss={htmlCustomCss} />
             </TextCard>
             <MeaningText className={isHorizontal ? "horizontal" : ""}>
               <HtmlContentComponent html={item.description ?? ""} />

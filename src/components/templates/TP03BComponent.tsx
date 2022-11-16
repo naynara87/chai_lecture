@@ -11,6 +11,11 @@ import TP03Layout from "../Layouts/TP03Layout";
 import { colorPalette } from "../../styles/colorPalette";
 import AudioButton from "../atoms/AudioButton";
 import { breakPoints } from "../../constants/layout";
+import { css } from "@emotion/react";
+
+const customBoxCss = css`
+  height: 80px;
+`;
 
 interface TP0BAComponentProps extends TemplateProps {}
 
@@ -95,6 +100,7 @@ const TP03BComponent = ({ setPageCompleted, page }: TP0BAComponentProps) => {
           <TextBoxes
             datas={TextBoxesContentData.data}
             isHorizontal={templateType === "TP03D" ? true : false}
+            customBoxCss={templateType === "TP03D" ? customBoxCss : undefined}
           />
           <AudioWrapper>
             <AudioButton isAudio={true} audioUrl={audioUrl} />
