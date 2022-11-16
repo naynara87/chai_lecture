@@ -1,20 +1,52 @@
 import styled from "@emotion/styled";
 import React, { useState } from "react";
+import { ChooseTextContent } from "../../types/templateContents";
+import QuizAnswer from "../atoms/QuizAnswer";
 import Explanation from "../molecules/Explanation";
 
-const ChooseText = () => {
-  const [showExplanation, setShowExplanation] = useState(true);
+const QuizAnswerContainer = styled.ul`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+`;
+
+interface ChooseTextProps {
+  contentData: ChooseTextContent;
+}
+const ChooseText = ({ contentData }: ChooseTextProps) => {
+  const {
+    data: [{ choices, answerIndex, explanation }],
+  } = contentData;
+  const [showExplanation, setShowExplanation] = useState(false);
   const handleClickCloseExplanation = () => {
     setShowExplanation(false);
   };
+
+  const [isCorrect, setIsCorrect] = useState(false);
+
+  const handleClickAnswer = (selectedIndex: number) => {
+    setShowExplanation(true);
+    setIsCorrect(selectedIndex === answerIndex);
+  };
+
   return (
     <div>
-      <div>그렇다 / 아니다</div>
+      <QuizAnswerContainer>
+        {choices.map((choice, index) => (
+          <QuizAnswer
+            key={index}
+            answerText={choice}
+            isCorrect={answerIndex === index}
+            index={index}
+            onClickAnswer={handleClickAnswer}
+          />
+        ))}
+      </QuizAnswerContainer>
       {showExplanation && (
         <Explanation
-          explanationText={"해설 팝업"}
+          explanationText={explanation}
           handleClickClose={handleClickCloseExplanation}
-          isCorrect
+          isCorrect={isCorrect}
         />
       )}
     </div>

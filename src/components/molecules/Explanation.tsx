@@ -4,6 +4,8 @@ import { footerHeightNormal } from "../../constants/layout";
 import { colorPalette } from "../../styles/colorPalette";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
 import OIcon from "../atoms/svg/OIcon";
+import { css } from "@emotion/react";
+import XIcon from "../atoms/svg/XIcon";
 
 const ExplanationWrapper = styled.div`
   position: fixed;
@@ -16,6 +18,8 @@ const ExplanationWrapper = styled.div`
 
 const ExplanationContainer = styled.div`
   width: 53%;
+  min-width: 375px;
+  max-width: 650px;
   display: grid;
   grid-template-columns: max-content 1fr;
   gap: 16px;
@@ -28,7 +32,7 @@ const CloseButton = styled.button`
   padding: 15px;
   top: 0;
   right: 0;
-  transform: translate3d(-10%, -25%, 0);
+  transform: translateX(-20%);
   background-image: url("${process.env.PUBLIC_URL}/images/icon/icon_close.svg");
   background-repeat: no-repeat;
   background-position: center;
@@ -41,15 +45,10 @@ const TextBox = styled.div`
   display: -ms-flexbox;
   display: flex;
   position: relative;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
   width: 100%;
-  height: 100%;
-  padding: 10px 30px;
+  height: 95%;
+  padding: 10px 40px;
   background-position: left 3px;
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -63,7 +62,30 @@ const ImageWrapper = styled.div`
 `;
 
 const OXWrapper = styled.div`
-  width: 50px;
+  width: 40px;
+  min-width: 40px;
+  height: 100%;
+  padding-top: 4px;
+  margin-right: 16px;
+  display: flex;
+  align-content: center;
+`;
+
+const ExplanationTextCss = css`
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+`;
+
+const Text = styled.div`
+  padding-top: 12px;
+  padding-bottom: 8px;
+  ${ExplanationTextCss}
+`;
+
+const ExplanationHtmlCss = css`
+  max-height: 50px;
+  overflow: auto;
 `;
 
 interface ExplanationProps {
@@ -78,19 +100,25 @@ const Explanation = ({ explanationText, isCorrect, handleClickClose }: Explanati
     }
     return `${process.env.PUBLIC_URL}/images/img/bg_wrong_character.png`;
   }, [isCorrect]);
+
+  const infoText = useMemo(() => {
+    if (isCorrect) {
+      return "정답입니다!";
+    }
+    return "오답입니다!";
+  }, [isCorrect]);
   return (
     <ExplanationWrapper>
       <ExplanationContainer>
-        {/* <HtmlContentComponent html={explanationText} /> */}
         <ImageWrapper>
           <img src={iconUrl} alt="" />
-          {/* background-image: url("${process.env.PUBLIC_URL}/images/img/bg_wrong_character.png"); */}
         </ImageWrapper>
         <TextBox>
-          <OXWrapper>
-            <OIcon />
-          </OXWrapper>
-          <HtmlContentComponent html={explanationText} />
+          <OXWrapper>{isCorrect ? <OIcon /> : <XIcon />}</OXWrapper>
+          <Text>
+            <div>{infoText}</div>
+            <HtmlContentComponent html={explanationText} css={ExplanationHtmlCss} />
+          </Text>
           <CloseButton onClick={handleClickClose} />
         </TextBox>
       </ExplanationContainer>

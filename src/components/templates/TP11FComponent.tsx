@@ -4,7 +4,7 @@ import React, { useEffect, useMemo } from "react";
 import { breakPoints } from "../../constants/layout";
 import { colorPalette } from "../../styles/colorPalette";
 import { TP11F } from "../../types/pageTemplate";
-import { IconTextContent } from "../../types/templateContents";
+import { ChooseTextContent, IconTextContent } from "../../types/templateContents";
 import { TemplateProps } from "../../types/templates";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
 import QuestionIcon from "../atoms/QuestionIcon";
@@ -47,6 +47,14 @@ const TP11FComponent = ({ page, setPageCompleted }: TP11FComponentProps) => {
     [thisPage],
   );
 
+  const chooseTextContent = useMemo(
+    () =>
+      thisPage.template.contents.find((content) => content.type === "chooseText") as
+        | ChooseTextContent
+        | undefined,
+    [thisPage],
+  );
+
   useEffect(() => {
     console.log("thisPage", thisPage);
   }, [thisPage]);
@@ -57,9 +65,9 @@ const TP11FComponent = ({ page, setPageCompleted }: TP11FComponentProps) => {
       <TP11Layout>
         <QuestionContainer>
           <QuestionIcon />
-          <HtmlContentComponent html={iconTextContent?.data?.[0].text ?? ""} css={htmlCss} />
+          <HtmlContentComponent html={iconTextContent?.data?.[0]?.text ?? ""} css={htmlCss} />
         </QuestionContainer>
-        <ChooseText />
+        {chooseTextContent ? <ChooseText contentData={chooseTextContent} /> : <></>}
       </TP11Layout>
     </TemplateCommonLayout>
   );

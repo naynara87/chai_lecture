@@ -9,10 +9,12 @@ const COLORS = {
   blue500: "#6070CF",
   blue700: "#40476B",
   yellow700: "#F5BE54",
+  red500: "#F65555",
 };
 
 export const colorPalette = Object.freeze({
   white: "#FFFFFF",
+  backgroundWhite: COLORS.gray100,
   confirmBtn: COLORS.blue500,
   deepBlue: COLORS.blue700,
   borderGray: COLORS.gray200,
@@ -25,4 +27,5 @@ export const colorPalette = Object.freeze({
   tabBackground: COLORS.gray500,
   modalCheckIcon: COLORS.yellow700,
   questionTitle: COLORS.gray800,
+  wrongAnswer: COLORS.red500,
 });
