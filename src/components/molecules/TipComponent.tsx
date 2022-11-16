@@ -1,9 +1,15 @@
+import { SerializedStyles } from "@emotion/react";
 import styled from "@emotion/styled";
 import React from "react";
+import { breakPoints } from "../../constants/layout";
 import { colorPalette } from "../../styles/colorPalette";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
 
-const TipWrapper = styled.div`
+interface TipWrapperProps {
+  customCss?: SerializedStyles;
+}
+
+const TipWrapper = styled.div<TipWrapperProps>`
   background-position: left top;
   background-size: 40px;
   background-repeat: no-repeat;
@@ -17,14 +23,20 @@ const TipWrapper = styled.div`
   text-align: left;
   white-space: pre-line;
   color: ${colorPalette.descriptionText};
+
+  @media all and (max-width: ${breakPoints.tablet}) {
+    font-size: 1.5625vw;
+  }
+  ${(props) => props.customCss}
 `;
 
 interface TipComponentProps {
   html: string;
+  customCss?: SerializedStyles;
 }
-const TipComponent = ({ html }: TipComponentProps) => {
+const TipComponent = ({ html, customCss }: TipComponentProps) => {
   return (
-    <TipWrapper>
+    <TipWrapper customCss={customCss}>
       <HtmlContentComponent html={html} />
     </TipWrapper>
   );

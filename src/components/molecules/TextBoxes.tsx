@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useMemo } from "react";
 import styled from "@emotion/styled";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
 import { TextBoxesData } from "../../types/templateContents";
@@ -6,6 +6,10 @@ import { breakPoints } from "../../constants/layout";
 import { css, SerializedStyles } from "@emotion/react";
 
 interface TextCardProps {
+  customCss?: SerializedStyles;
+}
+
+interface TextCardGrpProps {
   customCss?: SerializedStyles;
 }
 
@@ -17,7 +21,7 @@ const TextBoxesWrapper = styled.div`
   }
 `;
 
-const TextCardGrp = styled.div`
+const TextCardGrp = styled.div<TextCardGrpProps>`
   display: inline-block;
   text-align: center;
   color: #3c3c3c;
@@ -27,6 +31,8 @@ const TextCardGrp = styled.div`
     display: flex;
     align-items: center;
   }
+
+  ${(props) => props.customCss}
 `;
 
 const TextCard = styled.div<TextCardProps>`
@@ -64,7 +70,7 @@ const MeaningText = styled("div")`
 
   &.horizontal {
     margin-top: 0;
-    font-size: 24px;
+    font-size: 22px;
     margin-left: 17px;
     font-weight: 500;
   }
@@ -74,7 +80,7 @@ const MeaningText = styled("div")`
     font-size: 1.5625vw;
 
     &.horizontal {
-      font-size: 2.5625vw;
+      font-size: 1.825vw;
     }
   }
 `;
@@ -86,29 +92,65 @@ interface TextBoxesProps {
   datas: TextBoxesData[];
   isHorizontal?: boolean;
   customBoxCss?: SerializedStyles;
+  customBoxWrapperCss?: SerializedStyles;
 }
+
 /**
  * TODO: TP03F에서 props로 description이랑 description 위치를 받아서 구현
  * description 정렬
  * sub 확인
  */
-const TextBoxes = ({ datas, isHorizontal, customBoxCss }: TextBoxesProps) => {
-  return (
-    <TextBoxesWrapper>
-      {datas.map((item, index) => {
-        return (
-          <TextCardGrp key={index} className={isHorizontal ? "horizontal" : ""}>
-            <TextCard className={isHorizontal ? "horizontal" : ""} customCss={customBoxCss}>
-              <HtmlContentComponent html={item.main} customCss={htmlCustomCss} />
-            </TextCard>
-            <MeaningText className={isHorizontal ? "horizontal" : ""}>
-              <HtmlContentComponent html={item.description ?? ""} />
-            </MeaningText>
-          </TextCardGrp>
-        );
-      })}
-    </TextBoxesWrapper>
-  );
+const TextBoxes = ({ datas, isHorizontal, customBoxCss, customBoxWrapperCss }: TextBoxesProps) => {
+  const divideTextToBrackets = (text: string) => {
+    const firstBracketIndex = text.indexOf("(");
+    const secondBracketIndex = text.indexOf(")");
+
+    const firstText = text.slice(0, firstBracketIndex);
+    const secondText = text.slice(firstBracketIndex, secondBracketIndex + 1);
+    const thirdText = text.slice(secondBracketIndex, -1);
+
+    return {
+      firstText,
+      secondText,
+      thirdText,
+    };
+  };
+
+  const renderDescription = useCallback((description: string) => {
+    if (description.indexOf("(") >= 0) {
+      const divideText = divideTextToBrackets(description);
+      return (
+        <>
+          <HtmlContentComponent html={divideText.firstText ?? ""} />
+          <HtmlContentComponent html={divideText.secondText ?? ""} />
+          <HtmlContentComponent html={divideText.thirdText ?? ""} />
+        </>
+      );
+    } else {
+      return <HtmlContentComponent html={description ?? ""} />;
+    }
+  }, []);
+
+  const renderTextBoxes = useMemo(() => {
+    return datas.map((textBox, index) => {
+      return (
+        <TextCardGrp
+          key={index}
+          className={isHorizontal ? "horizontal" : ""}
+          customCss={customBoxWrapperCss}
+        >
+          <TextCard className={isHorizontal ? "horizontal" : ""} customCss={customBoxCss}>
+            <HtmlContentComponent html={textBox.main} customCss={htmlCustomCss} />
+          </TextCard>
+          <MeaningText className={isHorizontal ? "horizontal" : ""}>
+            {textBox.description && renderDescription(textBox.description)}
+          </MeaningText>
+        </TextCardGrp>
+      );
+    });
+  }, [customBoxCss, customBoxWrapperCss, datas, isHorizontal, renderDescription]);
+
+  return <TextBoxesWrapper>{renderTextBoxes}</TextBoxesWrapper>;
 };
 
 export default TextBoxes;

@@ -134,19 +134,19 @@ type TP04ATemplate = {
 
 type TP04AContent = ImagesContent | HtmlContent | AudioContent;
 
-export type TP05 = {
+export type TP05A = {
   id: ID;
   title: string;
   description: string;
-  template: TP05Template;
+  template: TP05ATemplate;
 };
 
-type TP05Template = {
-  type: "TP05";
-  contents: TP05Content[];
+type TP05ATemplate = {
+  type: "TP05A";
+  contents: TP05AContent[];
 };
 
-type TP05Content = TextBoxesContent | HtmlContent;
+type TP05AContent = TextBoxesContent | HtmlContent;
 
 export type TP11F = {
   id: ID;
