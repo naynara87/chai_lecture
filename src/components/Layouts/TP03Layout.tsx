@@ -1,12 +1,12 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { templateContentsAreaHeight } from "../../constants/layout";
+import { gridContentLayoutCommonGap, templateContentsAreaHeight } from "../../constants/layout";
 
 const TP03LayoutStyle = styled.div`
   height: ${templateContentsAreaHeight};
   display: grid;
   grid-template-rows: 12% max-content 20%;
-  gap: 2%;
+  gap: ${gridContentLayoutCommonGap};
   overflow-y: auto;
 
   &.reverse {

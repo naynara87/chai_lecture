@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import XIcon from "../atoms/svg/XIcon";
 import OIcon from "../atoms/svg/OIcon";
 import AudioButton from "../atoms/AudioButton";
+import { css } from "@emotion/react";
 
 interface ChooseTextByAudioProps {
   index: number;
@@ -81,6 +82,10 @@ const QuizWord = styled.div`
   }
 `;
 
+const OXIconCss = css`
+  position: absolute;
+`;
+
 const ChooseTextByAudio = ({
   index,
   choices,
@@ -97,9 +102,9 @@ const ChooseTextByAudio = ({
       return;
     }
     if (isCheck) {
-      return <OIcon />;
+      return <OIcon css={OXIconCss} />;
     } else {
-      return <XIcon />;
+      return <XIcon css={OXIconCss} />;
     }
   }, [isCheck]);
 
@@ -113,7 +118,6 @@ const ChooseTextByAudio = ({
 
   const QuizAnswerContents = useMemo(() => {
     return choices.map((choice, index) => {
-      console.log(checkIndex, index);
       return (
         <QuizAnswer
           key={index}

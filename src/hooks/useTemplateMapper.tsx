@@ -1,6 +1,7 @@
 import TP01AComponent from "../components/templates/TP01AComponent";
 import TP03AComponent from "../components/templates/TP03AComponent";
 import TP03BComponent from "../components/templates/TP03BComponent";
+import TP11FComponent from "../components/templates/TP11FComponent";
 import TP15AComponent from "../components/templates/TP15AComponent";
 import { TemplateType } from "../types/appData";
 import { TemplateProps } from "../types/templates";
@@ -14,6 +15,8 @@ const useTemplateMapper = (props: UseTemplateMapperProps) => {
     TP15A: <TP15AComponent {...props} />,
     TP03C: <TP03BComponent {...props} />,
     TP03D: <TP03BComponent {...props} />,
+    TP11A: <TP11FComponent {...props} />,
+    TP11F: <TP11FComponent {...props} />,
   };
 
   const getTemplateComponent = (templateType: TemplateType) => {

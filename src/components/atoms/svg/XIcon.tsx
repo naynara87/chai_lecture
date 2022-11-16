@@ -1,11 +1,15 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { SerializedStyles } from "@emotion/react";
 
-const Svg = styled.svg`
-  position: absolute;
+interface XIconProps {
+  css?: SerializedStyles;
+}
+const Svg = styled.svg<XIconProps>`
+  ${({ css }) => css}
 `;
 
-const XIcon = () => {
+const XIcon = ({ css }: XIconProps) => {
   return (
     <Svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
       <mask

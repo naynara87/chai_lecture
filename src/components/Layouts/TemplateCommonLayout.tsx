@@ -4,7 +4,8 @@ import React from "react";
 const TemplateCommon = styled.div`
   height: 100%;
   display: grid;
-  grid-template-rows: 16% 84%;
+  grid-template-rows: 12% 84%;
+  grid-gap: 4%;
 `;
 
 interface TemplateCommonLayoutProps {

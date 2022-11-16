@@ -9,6 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 import { QUERY_KEY } from "../../constants/queryKey";
 import { getAppData } from "../../data/tempApi";
 import useCorner from "../../hooks/useCorner";
+import { footerHeight } from "../../styles/layout";
 
 const FooterWrapper = styled.footer`
   position: relative;
@@ -29,7 +30,7 @@ const FooterContainer = styled.div`
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  height: 70px;
+  ${footerHeight}
   padding: 0 43px;
   position: absolute;
   bottom: 0;

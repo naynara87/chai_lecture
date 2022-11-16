@@ -24,4 +24,5 @@ export const colorPalette = Object.freeze({
   signPostTextBorer: COLORS.blue300,
   tabBackground: COLORS.gray500,
   modalCheckIcon: COLORS.yellow700,
+  questionTitle: COLORS.gray800,
 });
