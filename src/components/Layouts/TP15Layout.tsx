@@ -1,12 +1,12 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { templateContentsAreaHeight } from "../../constants/layout";
+import { tabTemplateGridGap, templateContentsAreaHeight } from "../../constants/layout";
 
 const TP15LayoutStyle = styled.div`
   height: ${templateContentsAreaHeight};
   display: grid;
   grid-template-rows: max-content 84.5%;
-  gap: 7.7%;
+  gap: ${tabTemplateGridGap};
 `;
 
 const MainContentArea = styled.div`

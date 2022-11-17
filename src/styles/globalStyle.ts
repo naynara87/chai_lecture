@@ -48,6 +48,10 @@ const globalStyle = css`
     scroll-behavior: smooth;
   }
 
+  body {
+    background-color: ${colorPalette.backgroundWhite};
+  }
+
   a {
     outline: 0;
     background-color: transparent;
@@ -58,7 +62,8 @@ const globalStyle = css`
 
   ol,
   ul,
-  dl {
+  dl,
+  li {
     list-style: none;
   }
 

@@ -14,12 +14,9 @@ const HeaderContainer = styled.header`
   width: 100%;
   height: 55px;
   padding: 0 32px;
-  background-color: #40476b;
-  -webkit-box-shadow: 0 3px 16px rgba(0, 0, 0, 0.4);
-  box-shadow: 0 3px 16px rgba(0, 0, 0, 0.4);
+  background-color: ${colorPalette.deepBlue};
   @media all and (max-width: ${breakPoints.tablet}) {
     z-index: 1;
-    background-color: ${colorPalette.deepBlue};
     padding: 0 3.125vw;
   }
 `;

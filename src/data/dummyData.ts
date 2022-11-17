@@ -20,7 +20,7 @@ export const dummyData: AppData = {
       id: 1,
       type: "review",
       title: "복습",
-      isCompleted: true,
+      isCompleted: false,
       introduction: {
         title: "복습모달 제목",
         description: "복습 모달 문구",
@@ -28,6 +28,38 @@ export const dummyData: AppData = {
       cornerIcon:
         "https://i.picsum.photos/id/128/200/200.jpg?hmac=m4AGhjLVIqDjy9qPNhbZyp8Gm_K03UAgP3IZnItJMA4",
       pages: [
+        {
+          id: 18,
+          title: "워밍업 퀴즈",
+          description: "중국의 크기를 알고 있나요?",
+          template: {
+            type: "TP11F",
+            contents: [
+              {
+                type: "iconText",
+                data: [
+                  {
+                    icon: {
+                      src: "https://i.picsum.photos/id/128/200/200.jpg?hmac=m4AGhj",
+                    },
+                    text: "<p>중국의 면적은 약 960만 km²로 매우 넓습니다.<br />한국의 면적은 약 100만 km²입니다.</p>",
+                  },
+                ],
+              },
+              {
+                type: "chooseText",
+                data: [
+                  {
+                    choices: ["그렇다", "아니다"],
+                    answerIndex: 0,
+                    tip: "",
+                    explanation: "<p>성조는 운모 위에 표시합니다.</p>",
+                  },
+                ],
+              },
+            ],
+          },
+        },
         {
           id: 11,
           title: "중국어의 개요",
