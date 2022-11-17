@@ -32,7 +32,7 @@ const FooterContainer = styled.div`
   justify-content: space-between;
   ${footerHeight}
   padding: 0 43px;
-  position: absolute;
+  position: fixed;
   bottom: 0;
 `;
 
