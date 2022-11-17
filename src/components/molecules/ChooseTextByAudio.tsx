@@ -117,14 +117,14 @@ const ChooseTextByAudio = ({
         <QuizAnswer
           key={index}
           onClick={() => {
-            handleClickAnswer(index);
+            !isHide && handleClickAnswer(index);
           }}
         >
           <QuizWord className={checkIndex === index ? "checked" : ""}>{choice}</QuizWord>
         </QuizAnswer>
       );
     });
-  }, [choices, handleClickAnswer, checkIndex]);
+  }, [choices, handleClickAnswer, checkIndex, isHide]);
 
   return (
     <QuestionList className={isHide === true ? "hide" : ""}>

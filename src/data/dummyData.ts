@@ -743,6 +743,24 @@ export const dummyData: AppData = {
             ],
           },
         },
+        {
+          id: 29,
+          title: "회화 미리보기",
+          description: "무슨 이야기를 하고 있을까요?",
+          template: {
+            type: "TP02F",
+            contents: [
+              {
+                type: "video",
+                data: [
+                  {
+                    src: "https://cdn.bubblecon.io/videos/45.mp4",
+                  },
+                ],
+              },
+            ],
+          },
+        },
       ],
     },
     {

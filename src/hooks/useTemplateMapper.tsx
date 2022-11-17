@@ -1,5 +1,6 @@
 import TP01AComponent from "../components/templates/TP01AComponent";
 import TP02CComponent from "../components/templates/TP02CComponent";
+import TP02FComponent from "../components/templates/TP02FComponent";
 import TP02MComponent from "../components/templates/TP02MComponent";
 import TP03AComponent from "../components/templates/TP03AComponent";
 import TP03BComponent from "../components/templates/TP03BComponent";
@@ -14,6 +15,7 @@ const useTemplateMapper = (props: UseTemplateMapperProps) => {
   const templateMapper: Record<TemplateType, JSX.Element> = {
     TP01A: <TP01AComponent {...props} />,
     TP02C: <TP02CComponent {...props} />,
+    TP02F: <TP02FComponent {...props} />,
     TP02M: <TP02MComponent {...props} />,
     TP03A: <TP03AComponent {...props} />,
     TP03B: <TP03BComponent {...props} />,
