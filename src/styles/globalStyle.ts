@@ -104,6 +104,22 @@ const globalStyle = css`
     font-weight: 700;
   }
 
+  .c1 {
+    color: ${colorPalette.c1tag};
+  }
+
+  .c2 {
+    color: ${colorPalette.c2tag};
+  }
+
+  .c3 {
+    color: ${colorPalette.c3tag};
+  }
+
+  .c4 {
+    color: ${colorPalette.c4tag};
+  }
+
   /* =================== fonts =================== */
   /* ---------- pretendard ---------- */
   @font-face {
