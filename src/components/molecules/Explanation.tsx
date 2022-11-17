@@ -117,7 +117,7 @@ const Explanation = ({ explanationText, isCorrect, handleClickClose }: Explanati
           <OXWrapper>{isCorrect ? <OIcon /> : <XIcon />}</OXWrapper>
           <Text>
             <div>{infoText}</div>
-            <HtmlContentComponent html={explanationText} css={ExplanationHtmlCss} />
+            <HtmlContentComponent html={explanationText} customCss={ExplanationHtmlCss} />
           </Text>
           <CloseButton onClick={handleClickClose} />
         </TextBox>

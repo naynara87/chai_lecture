@@ -65,7 +65,7 @@ const TP11FComponent = ({ page, setPageCompleted }: TP11FComponentProps) => {
       <TP11Layout>
         <QuestionContainer>
           <QuestionIcon />
-          <HtmlContentComponent html={iconTextContent?.data?.[0]?.text ?? ""} css={htmlCss} />
+          <HtmlContentComponent html={iconTextContent?.data?.[0]?.text ?? ""} customCss={htmlCss} />
         </QuestionContainer>
         {chooseTextContent ? <ChooseText contentData={chooseTextContent} /> : <></>}
       </TP11Layout>

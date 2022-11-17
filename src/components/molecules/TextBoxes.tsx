@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useMemo } from "react";
 import styled from "@emotion/styled";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
 import { TextBoxesData } from "../../types/templateContents";
 import { breakPoints } from "../../constants/layout";
+import { css, SerializedStyles } from "@emotion/react";
+
+interface TextCardProps {
+  customCss?: SerializedStyles;
+}
+
+interface TextCardGrpProps {
+  customCss?: SerializedStyles;
+}
 
 const TextBoxesWrapper = styled.div`
   max-width: 528px;
@@ -12,7 +21,7 @@ const TextBoxesWrapper = styled.div`
   }
 `;
 
-const TextCardGrp = styled.div`
+const TextCardGrp = styled.div<TextCardGrpProps>`
   display: inline-block;
   text-align: center;
   color: #3c3c3c;
@@ -22,9 +31,11 @@ const TextCardGrp = styled.div`
     display: flex;
     align-items: center;
   }
+
+  ${(props) => props.customCss}
 `;
 
-const TextCard = styled.div`
+const TextCard = styled.div<TextCardProps>`
   width: 154px;
   height: 106px;
   line-height: 84px;
@@ -38,9 +49,6 @@ const TextCard = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  &.horizontal {
-    height: 56px;
-  }
 
   @media all and (max-width: ${breakPoints.tablet}) {
     width: 15vw;
@@ -51,6 +59,8 @@ const TextCard = styled.div`
     padding: 1.0416666667vw 0;
     font-size: 3.125vw;
   }
+
+  ${(props) => props.customCss}
 `;
 
 const MeaningText = styled("div")`
@@ -60,7 +70,7 @@ const MeaningText = styled("div")`
 
   &.horizontal {
     margin-top: 0;
-    font-size: 24px;
+    font-size: 22px;
     margin-left: 17px;
     font-weight: 500;
   }
@@ -70,37 +80,47 @@ const MeaningText = styled("div")`
     font-size: 1.5625vw;
 
     &.horizontal {
-      font-size: 2.5625vw;
+      font-size: 1.825vw;
     }
   }
 `;
 
+const htmlCustomCss = css`
+  white-space: nowrap;
+`;
 interface TextBoxesProps {
   datas: TextBoxesData[];
   isHorizontal?: boolean;
+  customBoxCss?: SerializedStyles;
+  customBoxWrapperCss?: SerializedStyles;
 }
+
 /**
  * TODO: TP03F에서 props로 description이랑 description 위치를 받아서 구현
  * description 정렬
  * sub 확인
  */
-const TextBoxes = ({ datas, isHorizontal }: TextBoxesProps) => {
-  return (
-    <TextBoxesWrapper>
-      {datas.map((item, index) => {
-        return (
-          <TextCardGrp key={index} className={isHorizontal ? "horizontal" : ""}>
-            <TextCard className={isHorizontal ? "horizontal" : ""}>
-              <HtmlContentComponent html={item.main} />
-            </TextCard>
-            <MeaningText className={isHorizontal ? "horizontal" : ""}>
-              <HtmlContentComponent html={item.description ?? ""} />
-            </MeaningText>
-          </TextCardGrp>
-        );
-      })}
-    </TextBoxesWrapper>
-  );
+const TextBoxes = ({ datas, isHorizontal, customBoxCss, customBoxWrapperCss }: TextBoxesProps) => {
+  const renderTextBoxes = useMemo(() => {
+    return datas.map((textBox, index) => {
+      return (
+        <TextCardGrp
+          key={index}
+          className={isHorizontal ? "horizontal" : ""}
+          customCss={customBoxWrapperCss}
+        >
+          <TextCard className={isHorizontal ? "horizontal" : ""} customCss={customBoxCss}>
+            <HtmlContentComponent html={textBox.main} customCss={htmlCustomCss} />
+          </TextCard>
+          <MeaningText className={isHorizontal ? "horizontal" : ""}>
+            <HtmlContentComponent html={textBox.description ?? ""} />
+          </MeaningText>
+        </TextCardGrp>
+      );
+    });
+  }, [customBoxCss, customBoxWrapperCss, datas, isHorizontal]);
+
+  return <TextBoxesWrapper>{renderTextBoxes}</TextBoxesWrapper>;
 };
 
 export default TextBoxes;

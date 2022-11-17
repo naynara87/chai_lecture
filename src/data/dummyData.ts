@@ -600,7 +600,7 @@ export const dummyData: AppData = {
                 type: "html",
                 data: [
                   {
-                    text: "<h4>설면음</h4>혀뿌리를 입천장 뒤쪽에 가까이 대고 발음합니다.",
+                    text: "<h4>설면음</h4><p>혀뿌리를 입천장 뒤쪽에 가까이 대고 발음합니다.</p>",
                   },
                 ],
               },
@@ -652,6 +652,123 @@ export const dummyData: AppData = {
                 data: [
                   {
                     src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                  },
+                ],
+              },
+            ],
+          },
+        },
+        {
+          id: 25,
+          title: "성모",
+          description: "성모는 음절의 첫소리로, 모두 21개입니다.",
+          template: {
+            type: "TP04A",
+            contents: [
+              {
+                type: "images",
+                data: [
+                  {
+                    src: "https://i.picsum.photos/id/474/800/400.jpg?hmac=CwQKBMVE4mgQWYJ56eO34xu7DuJ_O_WtUcvqm_kQcaI",
+                  },
+                  {
+                    src: "https://i.picsum.photos/id/32/800/400.jpg?hmac=uHYnFiU5OPiGKsmFMu3z66361eMQZzV3ZAF7L5BDgnY",
+                  },
+                ],
+              },
+              {
+                type: "html",
+                data: [
+                  {
+                    text: "<h4>쌍순음</h4><p>윗입술과 아랫입술을 붙였다 떼면서 발음합니다.</p>",
+                  },
+                  {
+                    text: "<h4>순치음</h4><p>윗니를 아랫입술에 살짝 댓다 떼면서 발음합니다.</p>",
+                  },
+                ],
+              },
+              {
+                type: "audio",
+                data: [
+                  {
+                    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                  },
+                ],
+              },
+            ],
+          },
+        },
+        {
+          id: 26,
+          title: "성모",
+          description: "성모 g, k는 음절의 첫소리로, 모두 21개입니다.",
+          template: {
+            type: "TP02C",
+            contents: [
+              {
+                type: "images",
+                data: [
+                  {
+                    src: "https://i.picsum.photos/id/474/800/400.jpg?hmac=CwQKBMVE4mgQWYJ56eO34xu7DuJ_O_WtUcvqm_kQcaI",
+                  },
+                ],
+              },
+            ],
+          },
+        },
+        {
+          id: 27,
+          title: "중국어 경성, 한어병음 표기 규칙",
+          description: "한어병음 표기 규칙에 대해 알아봅시다.",
+          template: {
+            type: "TP02M",
+            contents: [
+              {
+                type: "textBoxes",
+                data: [
+                  {
+                    main: "경성",
+                  },
+                  {
+                    main: "한어병음 표기 규칙",
+                  },
+                ],
+              },
+            ],
+          },
+        },
+        {
+          id: 28,
+          title: "운모",
+          description: "i, u, o와 결합한 운모를 알아봅시다..",
+          template: {
+            type: "TP05A",
+            contents: [
+              {
+                type: "textBoxes",
+                data: [
+                  {
+                    main: "i",
+                    description:
+                      "<p>ia ie iao iou ian in iang ing iong<br />(yi: ya ye yao you yan yin yang ying young)</p>",
+                  },
+                  {
+                    main: "u",
+                    description:
+                      "<p>ua uo uai uei uan uen uang ueng<br />(wu: wa wo wai wei wan wen wang weng)</p>",
+                  },
+                  {
+                    main: "u",
+                    description: "ue uan un (yu: yue yuan yun)",
+                  },
+                ],
+              },
+              {
+                type: "html",
+                data: [
+                  {
+                    kind: "tip",
+                    text: "ie, uei, ue의 e는 '으'와 '어'의 중간 소리가 아닌 '에'에 가깝게 발읍합니다. ian, uan의 a는 '아'가 아닌 '에'에 가깝게 발음합니다. ( )의 발음 표기는 성모 없이 운모만 쓸 때의 표기법입니다. 운모 iou, uei, uen 앞에 성모가 오면 가운데 운모는 생략합니다.",
                   },
                 ],
               },

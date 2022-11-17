@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bubblecon LX Player</title>
+    <link
+      rel="shortcut icon"
+      href="./assets/image/favicon.ico"
+      type="image/x-icon"
+    />
+    <link
+      href="./assets/css/lx-player-new.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!-- <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    /> -->
+    <style>
+      html,
+      body,
+      .container {
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <video
+        id="lx-player"
+        class="video-js bubble vjs-16-9"
+        controls
+        preload="auto"
+        playsinline
+        data-setup='{ "controlBar": {"pictureInPictureToggle": false} }'
+      >
+        <!-- 동영상 자막 지원 -->
+        <track
+          kind="captions"
+          src="./assets/track/sample.vtt"
+          srclang="en"
+          label="English"
+          default
+        />
+        <p class="vjs-no-js">
+          영상 로드중 문제가 발생하였습니다. 영상을 시청하시려면 자바스크립트를
+          활성화해주세요.
+        </p>
+      </video>
+      <div class="subtitle" id="transcript"></div>
+    </div>
+    <!-- <script src="/assets/js/jquery.min.js"></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script> -->
+    <script src="./assets/js/lx-player.js"></script>
+    <!-- <script src="/assets/js/lx-player-test.js"></script> -->
+    <script>
+      // 재생 call_back function
+      var played_callback = function () {
+        const data = {
+          type: "video_start",
+        };
+        window.parent.postMessage(data, "*");
+        console.log("재생 콜백 함수");
+      };
+
+      // 학습 완료 call_back function
+      var complete_callback = function (actualLearningTime) {
+        // 최종 학습 현재 시간
+        // var current_time = lxPlayer.currentTime();
+        const lxPlayer = document.querySelector("#lx-player");
+        const data = {
+          type: "video_end",
+          body: {
+            actualLearningTime: actualLearningTime,
+            total_time: lxPlayer.player.duration(),
+            current_time: lxPlayer.player.currentTime(),
+            percent: Math.round(
+              (lxPlayer.player.currentTime() / lxPlayer.player.duration()) * 100
+            ),
+          },
+        };
+        window.parent.postMessage(data, "*");
+        console.log("학습 완료 콜백 함수");
+      };
+
+      // 주기적 발생 call_back function
+      var interval_callback = function (actualLearningTime) {
+        // 현재 학습 시간
+        const lxPlayer = document.querySelector("#lx-player");
+        // var current_time = lxPlayer.currentTime();
+        const data = {
+          type: "video_time",
+          body: {
+            actualLearningTime: actualLearningTime,
+            total_time: lxPlayer.player.duration(),
+            current_time: lxPlayer.player.currentTime(),
+            percent: Math.round(
+              (lxPlayer.player.currentTime() / lxPlayer.player.duration()) * 100
+            ),
+          },
+        };
+        window.parent.postMessage(data, "*");
+        console.log("콘탠츠 연속성 콜백 함수");
+      };
+
+      var pause_callback = function (actualLearningTime) {
+        // 동영상 전체 시간
+        // var duration = lxPlayer.duration();
+        // 현재 플레이 시간 추출 함수
+        // var current_time = lxPlayer.currentTime();
+        const lxPlayer = document.querySelector("#lx-player");
+        // 수강 시간 구하는 예제
+        // DB에 저장된 최종 학습 시간 - current_time = 수강시간
+        const data = {
+          type: "video_pause",
+          body: {
+            actualLearningTime: actualLearningTime,
+            total_time: lxPlayer.player.duration(),
+            current_time: lxPlayer.player.currentTime(),
+            percent: Math.round(
+              (lxPlayer.player.currentTime() / lxPlayer.player.duration()) * 100
+            ),
+          },
+        };
+        window.parent.postMessage(data, "*");
+        console.log("정지 콜백 함수");
+      };
+
+      var book_marked_callback = function (marker_list) {
+        console.log(marker_list);
+      };
+
+      var playback_rate_callback = function () {
+        const lxPlayer = document.querySelector("#lx-player");
+        const data = {
+          type: "video_playback_rate",
+          body: {
+            playbackRate: lxPlayer.player.playbackRate(),
+          },
+        };
+        window.parent.postMessage(data, "*");
+      };
+
+      var volume_callback = function (volume) {
+        const lxPlayer = document.querySelector("#lx-player");
+        const data = {
+          type: "video_volume",
+          body: {
+            volume: lxPlayer.player.volume(),
+          },
+        };
+        window.parent.postMessage(data, "*");
+      };
+
+      var preview_callback = function () {
+        const data = {
+          type: "preview_video_end",
+        };
+        window.parent.postMessage(data, "*");
+        console.log("미리보기 시간이 종료되었습니다.");
+      };
+
+      // 학습 진도율 % 구하기
+      function getPercent() {
+        let duration = lxPlayer.duration();
+        let currentTime = lxPlayer.currentTime();
+        console.log(Math.round((currentTime / duration) * 100));
+      }
+
+      // 북마크 현재 json 구하기
+      function getMarkerList() {
+        console.log(lxPlayer.markers.getMarkers());
+      }
+
+      // 동영상 변경 콜백
+      var video_complete_callback = function () {
+        console.log("동영상 완료 콜백");
+        // 비디오 영상 길이 구하기
+        var duration = Math.floor(lxPlayer.duration());
+        // console.log(duration);
+
+        // 비디오 현재 시점 구하기
+        var currentTime = Math.floor(lxPlayer.currentTime());
+        sendRequest(currentTime, duration);
+      };
+
+      // options 값 넘겨주지 않을시 디폴트값입니다.
+      const options = {
+        interval_callback: interval_callback, // 콘텐츠 연속성 콜백 함수.interval_sec 값에 따라 실행되는 함수
+        complete_callback: complete_callback, // 학습 완료 콜백 함수
+        pause_callback: pause_callback, // 학습 중지시 발생되는 함수
+        book_marked_callback: book_marked_callback, // 북마크 리스트 반환 콜백 함수
+        played_callback: played_callback, // 재생 콜백 함수
+        volume_callback: volume_callback, // 볼륨 수정 콜백 함수
+        playback_rate_callback: playback_rate_callback, // 배속 수정 콜백 함수
+        preview_callback: preview_callback,
+      };
+
+      // 실제 비디오에 반영되는 값입니다.
+      window.addEventListener("message", (e) => {
+        if (e.data) {
+          // options.interval_sec = e.data.interval_term_save_progress ?? 5;
+          options.url = e.data.src ?? "";
+          // const contexts = e.data.datas.contexts ?? null;
+          // options.playback_rate = contexts?.playback_rate ?? [
+          //   0.5, 0.75, 1, 1.25, 1.5,
+          // ];
+          // options.control_bar = contexts?.control_bar ?? true;
+          // options.forward_btn = contexts?.forward_btn ?? true;
+          // options.rewind_btn = contexts?.rewind_btn ?? true;
+          // options.time = contexts?.last_learning_time ?? 0;
+          // options.bookmarks = contexts?.bookmarks ?? [];
+          // options.watermark = contexts?.watermarks ?? "";
+          // options.playback_rate_value = e.data.playbackRate ?? 1;
+          // options.volume_value = e.data.volume ?? 1;
+          // if (contexts?.previewTime) {
+          //   options.previewTime = contexts.previewTime;
+          //   options.lrsUrl = null;
+          //   options.interval_callback = null;
+          //   options.complete_callback = null;
+          //   options.pause_callback = null;
+          //   options.book_marked_callback = null;
+          //   options.played_callback = null;
+          //   options.volume_callback = null;
+          //   options.playback_rate_callback = null;
+          // } else {
+          //   options.lrsUrl = contexts?.lrsUrl ?? "";
+          //   options.name = contexts?.name ?? "";
+          //   options.content_name = contexts?.content_name ?? "";
+          //   options.state_id = contexts?.state_id ?? "";
+          //   options.description = contexts?.description ?? "";
+          //   options.object_context = contexts?.object_context ?? "";
+          //   options.result_extensions = contexts?.result_extensions ?? "";
+          //   options.context_details = contexts?.context_details ?? "";
+          //   options.extension_details = contexts?.extension_details ?? "";
+          //   options.account_name = contexts?.account_name ?? "";
+          //   options.homePage = contexts?.homepage ?? "";
+          // }
+          var initPlayer = initLxPlayer();
+          initPlayer(options);
+        }
+      });
+    </script>
+  </body>
+</html>

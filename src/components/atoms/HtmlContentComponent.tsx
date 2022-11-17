@@ -3,18 +3,20 @@ import styled from "@emotion/styled";
 import React from "react";
 
 interface HtmlWrapperProps {
-  css?: SerializedStyles;
+  customCss?: SerializedStyles;
 }
 
 const HtmlWrapper = styled.div<HtmlWrapperProps>`
-  ${(props) => props.css}
+  ${(props) => props.customCss}
 `;
 
 interface HtmlContentComponentProps extends HtmlWrapperProps {
   html: string;
 }
-const HtmlContentComponent = ({ html, css }: HtmlContentComponentProps) => {
-  return <HtmlWrapper dangerouslySetInnerHTML={{ __html: html }} css={css}></HtmlWrapper>;
+const HtmlContentComponent = ({ html, customCss }: HtmlContentComponentProps) => {
+  return (
+    <HtmlWrapper dangerouslySetInnerHTML={{ __html: html }} customCss={customCss}></HtmlWrapper>
+  );
 };
 
 export default HtmlContentComponent;
