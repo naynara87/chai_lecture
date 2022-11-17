@@ -16,9 +16,10 @@ const SignPost = styled.div`
   width: 6.0416666667vw;
   min-width: 53px;
   max-width: 97px;
-  height: 11.2777777778vh;
+  height: 12.0777777778vh;
   min-height: 66px;
   /* padding: 0 1.0416666667vw; */
+
   line-height: 1.5;
   font-weight: 600;
   color: ${colorPalette.white};
@@ -40,13 +41,13 @@ const SignTitle = styled.span`
   text-align: center;
   top: 0;
   /* transform: translateY(50%); */
-  padding: 1vw 1.5vw 0;
+  padding: 1vw 15px 0;
   font-size: clamp(12px, 1.45vw, 18px);
 
   text-shadow: -1px 0 ${colorPalette.signPostTextBorer}, 0 1px ${colorPalette.signPostTextBorer},
     1px 0 ${colorPalette.signPostTextBorer}, 0 -1px ${colorPalette.signPostTextBorer};
   @media all and (max-width: 1024px) {
-    padding: 1.2vw 1.5vw 0;
+    padding: 1.2vw 10px 0;
   }
 `;
 

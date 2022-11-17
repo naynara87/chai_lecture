@@ -61,7 +61,6 @@ const TP03AComponent = ({ setPageCompleted, page }: TP03AComponentProps) => {
         </HtmlWrapper>
         {/* TODO : audio 컴포넌트 삽입 및 ListenWordContent 템플릿 수정 */}
         {listenWordsContentData ? <ListenWordContent datas={listenWordsContentData.data} /> : <></>}
-        <></>
       </TP03Layout>
     </TemplateCommonLayout>
   );

@@ -16,7 +16,11 @@ import TitleContent from "../molecules/TitleContent";
 const htmlCss = css`
   margin-left: 16px;
   /* padding-top: 4px; */
+  /* font-size: 24px; */
   font-size: 24px;
+  @media all and (max-width: ${breakPoints.tablet}) {
+    font-size: 2vw;
+  }
   line-height: 40px;
 `;
 
