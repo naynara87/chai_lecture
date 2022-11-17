@@ -8,6 +8,7 @@ import TP01Layout from "../Layouts/TP01Layout";
 import ChooseTextByAudio from "../molecules/ChooseTextByAudio";
 import TitleContent from "../molecules/TitleContent";
 import { colorPalette } from "../../styles/colorPalette";
+import useAudio from "../../hooks/useAudio";
 
 interface TP01AComponentProps extends TemplateProps {}
 
@@ -54,10 +55,9 @@ const CheckButton = styled.button`
 const TP01AComponent = ({ setPageCompleted, page }: TP01AComponentProps) => {
   const [userAnswers, setUserAnswers] = useState<number[]>([]);
   const [checkAnswers, setCheckAnswers] = useState<boolean[]>([]);
-  const [audioSrc, setAudioSrc] = useState("");
-  const [audioIndex, setAudioIndex] = useState(0);
-  const [audioState, setAudioState] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
+
+  const { handleClickAudioButton, audioIndex, audioSrc } = useAudio(audioRef);
 
   const thisPage = page as TP01A;
   useEffect(() => {
@@ -73,31 +73,6 @@ const TP01AComponent = ({ setPageCompleted, page }: TP01AComponentProps) => {
   const handleCheckAnswer = (answer: number) => {
     setUserAnswers((prev) => [...prev, answer]);
   };
-
-  const handleClickAudioButton = useCallback(
-    (src: string, index: number) => {
-      if (!audioRef.current) {
-        return;
-      }
-      if (audioIndex !== index) {
-        setAudioIndex(index);
-        setAudioSrc(src);
-        setAudioState(true);
-        audioRef.current.pause();
-        audioRef.current.load();
-        audioRef.current.play();
-      } else {
-        if (audioState) {
-          audioRef.current.pause();
-          setAudioState(false);
-        } else {
-          audioRef.current.play();
-          setAudioState(true);
-        }
-      }
-    },
-    [setAudioSrc, audioState, audioIndex, setAudioIndex],
-  );
 
   const handleCheckButton = useCallback(() => {
     if (userAnswers.length !== ChooseTextByAudioContentData!.data.length) {

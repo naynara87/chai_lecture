@@ -110,10 +110,13 @@ const ChooseTextByAudio = ({
 
   const handleClickAnswer = useCallback(
     (index: number) => {
+      if (isCheck) {
+        return;
+      }
       setCheckIndex(index);
       checkAnswer(index);
     },
-    [checkAnswer],
+    [checkAnswer, isCheck],
   );
 
   const QuizAnswerContents = useMemo(() => {

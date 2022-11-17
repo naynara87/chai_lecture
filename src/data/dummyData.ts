@@ -793,6 +793,37 @@ export const dummyData: AppData = {
             ],
           },
         },
+        {
+          id: 30,
+          title: "단어 익히기",
+          description: "단어를 확인해 보세요.",
+          template: {
+            type: "TP02N",
+            contents: [
+              {
+                type: "studyWords",
+                data: [
+                  {
+                    text: "对不起",
+                    pronunciation: "duibuqi",
+                    meaning: "미안합니다",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                  },
+                  {
+                    text: "没关系",
+                    pronunciation: "méi guanxi",
+                    meaning: "괜찮습니다",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                  },
+                ],
+              },
+            ],
+          },
+        },
       ],
     },
     {

@@ -3,11 +3,8 @@ import styled from "@emotion/styled";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
 import { TextBoxesData } from "../../types/templateContents";
 import { breakPoints } from "../../constants/layout";
-import { css, SerializedStyles } from "@emotion/react";
-
-interface TextCardProps {
-  customCss?: SerializedStyles;
-}
+import { SerializedStyles } from "@emotion/react";
+import TextBox from "../atoms/TextBox";
 
 interface TextCardGrpProps {
   customCss?: SerializedStyles;
@@ -35,34 +32,6 @@ const TextCardGrp = styled.div<TextCardGrpProps>`
   ${(props) => props.customCss}
 `;
 
-const TextCard = styled.div<TextCardProps>`
-  width: 154px;
-  height: 106px;
-  line-height: 84px;
-  margin: 11px;
-  padding: 11px 0;
-  border: 1px solid color(gray2);
-  border-radius: 11px;
-  font-size: 32px;
-  -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  @media all and (max-width: ${breakPoints.tablet}) {
-    width: 15vw;
-    height: 10.4166666667vw;
-    line-height: 8.3333333333vw;
-    margin: 1.0416666667vw;
-    border-radius: 1.0416666667vw;
-    padding: 1.0416666667vw 0;
-    font-size: 3.125vw;
-  }
-
-  ${(props) => props.customCss}
-`;
-
 const MeaningText = styled("div")`
   margin-top: 17px;
   font-weight: 600;
@@ -85,9 +54,6 @@ const MeaningText = styled("div")`
   }
 `;
 
-const htmlCustomCss = css`
-  white-space: nowrap;
-`;
 interface TextBoxesProps {
   datas: TextBoxesData[];
   isHorizontal?: boolean;
@@ -109,16 +75,14 @@ const TextBoxes = ({ datas, isHorizontal, customBoxCss, customBoxWrapperCss }: T
           className={isHorizontal ? "horizontal" : ""}
           customCss={customBoxWrapperCss}
         >
-          <TextCard className={isHorizontal ? "horizontal" : ""} customCss={customBoxCss}>
-            <HtmlContentComponent html={textBox.main} customCss={htmlCustomCss} />
-          </TextCard>
+          <TextBox text={textBox.main} customBoxCss={customBoxCss} />
           <MeaningText className={isHorizontal ? "horizontal" : ""}>
             <HtmlContentComponent html={textBox.description ?? ""} />
           </MeaningText>
         </TextCardGrp>
       );
     });
-  }, [customBoxCss, customBoxWrapperCss, datas, isHorizontal]);
+  }, [customBoxWrapperCss, datas, isHorizontal]);
 
   return <TextBoxesWrapper>{renderTextBoxes}</TextBoxesWrapper>;
 };
