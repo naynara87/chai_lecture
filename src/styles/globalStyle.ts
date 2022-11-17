@@ -1,4 +1,5 @@
 import { css } from "@emotion/react";
+import { changePXtoVW } from "../utils/styles";
 import { colorPalette } from "./colorPalette";
 
 const globalStyle = css`
@@ -33,8 +34,8 @@ const globalStyle = css`
     vertical-align: baseline;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    font-size: 100%;
-    font: inherit;
+    /* font-size: 100%; */
+    /* font: inherit; */
     font-family: "Apple SD Gothic", "pretendard", sans-serif;
     letter-spacing: -0.04em;
     word-break: keep-all;
@@ -95,13 +96,24 @@ const globalStyle = css`
     height: auto;
   }
 
-  h1,
-  h2,
-  h3,
+  h1 {
+    font-size: ${changePXtoVW(42)};
+  }
+
+  h2 {
+    font-size: ${changePXtoVW(38)};
+  }
+
+  h3 {
+    font-size: ${changePXtoVW(30)};
+  }
+
   h4 {
-    line-height: 5.2vw;
-    color: ${colorPalette.textBoxesTitle};
-    font-weight: 700;
+    font-size: ${changePXtoVW(28)};
+  }
+
+  h5 {
+    font-size: ${changePXtoVW(24)};
   }
 
   .c1 {

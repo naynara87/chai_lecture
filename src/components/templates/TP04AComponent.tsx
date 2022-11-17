@@ -23,14 +23,15 @@ const ContainerWrapper = styled.div`
   display: grid;
   grid-template-columns: 33% 33%;
   width: 100%;
+  /* line-height: 1.15vw; */
   gap: 2%;
   align-items: center;
   margin: 0 auto;
-  font-size: 26px;
+  font-size: 22px;
   justify-content: center;
-  color: ${colorPalette.descriptionText};
+  /* color: ${colorPalette.descriptionText}; */
   @media all and (max-width: ${breakPoints.tablet}) {
-    font-size: 2.5vw;
+    font-size: 2.4vw;
   }
 `;
 

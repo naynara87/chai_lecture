@@ -24,7 +24,9 @@ const TextCard = styled.div`
   font-size: 32px;
   -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
 
   @media all and (max-width: ${breakPoints.tablet}) {
