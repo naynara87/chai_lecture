@@ -1,13 +1,17 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { SerializedStyles } from "@emotion/react";
 
-const Svg = styled.svg`
-  position: absolute;
+interface OIconProps {
+  css?: SerializedStyles;
+}
+const Svg = styled.svg<OIconProps>`
+  ${({ css }) => css}
 `;
 
-const OIcon = () => {
+const OIcon = ({ css }: OIconProps) => {
   return (
-    <Svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <Svg css={css} viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g filter="url(#filter0_i_1987_12306)">
         <path
           fillRule="evenodd"

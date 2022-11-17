@@ -4,6 +4,7 @@ import TP02FComponent from "../components/templates/TP02FComponent";
 import TP02MComponent from "../components/templates/TP02MComponent";
 import TP03AComponent from "../components/templates/TP03AComponent";
 import TP03BComponent from "../components/templates/TP03BComponent";
+import TP11FComponent from "../components/templates/TP11FComponent";
 import TP04AComponent from "../components/templates/TP04AComponent";
 import TP05AComponent from "../components/templates/TP05AComponent";
 import TP15AComponent from "../components/templates/TP15AComponent";
@@ -21,6 +22,8 @@ const useTemplateMapper = (props: UseTemplateMapperProps) => {
     TP03B: <TP03BComponent {...props} />,
     TP03C: <TP03BComponent {...props} />,
     TP03D: <TP03BComponent {...props} />,
+    TP11A: <TP11FComponent {...props} />,
+    TP11F: <TP11FComponent {...props} />,
     TP04A: <TP04AComponent {...props} />,
     TP05A: <TP05AComponent {...props} />,
     TP15A: <TP15AComponent {...props} />,

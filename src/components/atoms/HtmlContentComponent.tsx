@@ -1,21 +1,22 @@
-import React from "react";
-import styled from "@emotion/styled";
 import { SerializedStyles } from "@emotion/react";
-interface HtmlContentComponentProps {
-  html: string;
+import styled from "@emotion/styled";
+import React from "react";
+
+interface HtmlWrapperProps {
   customCss?: SerializedStyles;
 }
 
-interface ImageComponentProps {
-  customCss?: SerializedStyles;
-}
-
-const Html = styled.div<ImageComponentProps>`
-  ${(props) => props.customCss};
+const HtmlWrapper = styled.div<HtmlWrapperProps>`
+  ${(props) => props.customCss}
 `;
 
+interface HtmlContentComponentProps extends HtmlWrapperProps {
+  html: string;
+}
 const HtmlContentComponent = ({ html, customCss }: HtmlContentComponentProps) => {
-  return <Html dangerouslySetInnerHTML={{ __html: html }} customCss={customCss}></Html>;
+  return (
+    <HtmlWrapper dangerouslySetInnerHTML={{ __html: html }} customCss={customCss}></HtmlWrapper>
+  );
 };
 
 export default HtmlContentComponent;
