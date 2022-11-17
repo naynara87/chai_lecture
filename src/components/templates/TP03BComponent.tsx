@@ -78,7 +78,7 @@ const TP03BComponent = ({ setPageCompleted, page }: TP0BAComponentProps) => {
       | undefined;
   }, [thisPage.template.contents]);
 
-  const mainContents = useCallback(
+  const getMainContents = useCallback(
     (templateType: TemplateType) => {
       if (!TextBoxesContentData?.data) {
         return <></>;
@@ -114,17 +114,17 @@ const TP03BComponent = ({ setPageCompleted, page }: TP0BAComponentProps) => {
     const { type: templateType } = thisPage.template;
     return (
       <TP03Layout isReverse={true}>
-        {mainContents(templateType)}
-        {AudioContentData ? (
+        {getMainContents(templateType)}
+        {AudioContentData?.data?.[0]?.src ? (
           <AudioWrapper>
-            <AudioButton isAudio={true} audioUrl={AudioContentData?.data[0].src} />
+            <AudioButton isAudio={true} audioUrl={AudioContentData.data[0].src} />
           </AudioWrapper>
         ) : (
           <></>
         )}
       </TP03Layout>
     );
-  }, [thisPage.template, AudioContentData, mainContents]);
+  }, [thisPage.template, AudioContentData, getMainContents]);
 
   return (
     <TemplateCommonLayout>
