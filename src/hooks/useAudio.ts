@@ -1,5 +1,8 @@
 import React, { RefObject, useCallback, useState } from "react";
 
+/**
+ * audioButton에서 isAudio: false 일때 사용가능한 hooks
+ */
 const useAudio = (audioRef: RefObject<HTMLAudioElement>) => {
   const [audioSrc, setAudioSrc] = useState("");
   const [audioIndex, setAudioIndex] = useState(0);
