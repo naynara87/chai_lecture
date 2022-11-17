@@ -41,7 +41,8 @@ interface TP02NComponentProps extends TemplateProps {}
 
 const TP02NComponent = ({ setPageCompleted, page }: TP02NComponentProps) => {
   const audioRef = useRef<HTMLAudioElement>(null);
-  const { handleClickAudioButton, audioSrc, audioIndex } = useAudio(audioRef);
+
+  const { handleClickAudioButton, audioIndex, audioSrc } = useAudio(audioRef);
 
   const thisPage = page as TP02N;
 

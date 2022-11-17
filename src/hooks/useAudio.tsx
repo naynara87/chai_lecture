@@ -35,8 +35,8 @@ const useAudio = (audioRef: RefObject<HTMLAudioElement>) => {
 
   return {
     handleClickAudioButton,
-    audioSrc,
     audioIndex,
+    audioSrc,
   };
 };
 

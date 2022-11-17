@@ -2,6 +2,7 @@ import { SerializedStyles } from "@emotion/react";
 import styled from "@emotion/styled";
 import React from "react";
 import { breakPoints } from "../../constants/layout";
+import { changePXtoVW } from "../../utils/styles";
 import HtmlContentComponent from "./HtmlContentComponent";
 
 interface TextCardProps {
@@ -16,7 +17,7 @@ const TextCard = styled.div<TextCardProps>`
   padding: 11px 0;
   border: 1px solid color(gray2);
   border-radius: 11px;
-  font-size: 32px;
+  font-size: ${changePXtoVW(48)};
   -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
   display: flex;
@@ -30,7 +31,7 @@ const TextCard = styled.div<TextCardProps>`
     margin: 1.0416666667vw;
     border-radius: 1.0416666667vw;
     padding: 1.0416666667vw 0;
-    font-size: 3.125vw;
+    /* font-size: 3.125vw; */
   }
 
   ${(props) => props.customCss}

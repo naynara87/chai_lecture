@@ -70,8 +70,19 @@ const TP01AComponent = ({ setPageCompleted, page }: TP01AComponentProps) => {
       | undefined;
   }, [thisPage.template.contents]);
 
-  const handleCheckAnswer = (answer: number) => {
-    setUserAnswers((prev) => [...prev, answer]);
+  const handleCheckAnswer = (answer: number, index: number) => {
+    if (userAnswers.length >= ChooseTextByAudioContentData!.data.length) {
+      return;
+    }
+    if (userAnswers[index - 1] !== undefined) {
+      setUserAnswers((prev) => [
+        ...prev.slice(0, index - 1),
+        answer,
+        ...prev.slice(index, userAnswers.length),
+      ]);
+    } else {
+      setUserAnswers((prev) => [...prev, answer]);
+    }
   };
 
   const handleCheckButton = useCallback(() => {
@@ -104,7 +115,7 @@ const TP01AComponent = ({ setPageCompleted, page }: TP01AComponentProps) => {
         <ChooseTextByAudio
           key={index}
           isHide={userAnswers.length < index}
-          index={index + 1}
+          contentIndex={index + 1}
           choices={choices}
           isCheck={checkAnswers[index]}
           checkAnswer={handleCheckAnswer}

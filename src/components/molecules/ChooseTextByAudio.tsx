@@ -6,11 +6,11 @@ import AudioButton from "../atoms/AudioButton";
 import { css } from "@emotion/react";
 
 interface ChooseTextByAudioProps {
-  index: number;
+  contentIndex: number;
   choices: string[];
   isCheck: boolean;
   audioUrl: string;
-  checkAnswer: (answer: number) => void;
+  checkAnswer: (answer: number, contentIndex: number) => void;
   isHide: boolean;
   handleClickAudio: (src: string, index: number) => void;
   currentAudioIndex: number;
@@ -87,7 +87,7 @@ const OXIconCss = css`
 `;
 
 const ChooseTextByAudio = ({
-  index,
+  contentIndex,
   choices,
   isCheck,
   checkAnswer,
@@ -110,13 +110,13 @@ const ChooseTextByAudio = ({
 
   const handleClickAnswer = useCallback(
     (index: number) => {
-      if (isCheck) {
+      if (isCheck !== undefined) {
         return;
       }
       setCheckIndex(index);
-      checkAnswer(index);
+      checkAnswer(index, contentIndex);
     },
-    [checkAnswer, isCheck],
+    [checkAnswer, isCheck, contentIndex],
   );
 
   const QuizAnswerContents = useMemo(() => {
@@ -137,14 +137,14 @@ const ChooseTextByAudio = ({
   return (
     <QuestionList className={isHide === true ? "hide" : ""}>
       <QuizIndex>
-        {`${index}.`}
+        {`${contentIndex}.`}
         {renderCheckIcon}
       </QuizIndex>
       <QuizAnswerWrap>{QuizAnswerContents}</QuizAnswerWrap>
       <AudioButton
         audioHide={isHide}
         audioUrl={audioUrl}
-        audioIndex={index}
+        audioIndex={contentIndex}
         audioHandler={handleClickAudio}
         isAudio={false}
         currentAudioIndex={currentAudioIndex}
