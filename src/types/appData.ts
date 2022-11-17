@@ -12,6 +12,7 @@ import {
   TP02F,
   TP11F,
   TP11A,
+  TP02N,
 } from "./pageTemplate";
 
 // 과정(course) > 레슨(lesson) > 회차(corner) > 페이지(page)
@@ -62,6 +63,7 @@ export type Page =
   | TP02C
   | TP02F
   | TP02M
+  | TP02N
   | TP03A
   | TP03B
   | TP03C

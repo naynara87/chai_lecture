@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import ChaiSkeleton from "../atoms/ChaiSkeleton";
 import { breakPoints } from "../../constants/layout";
 import { colorPalette } from "../../styles/colorPalette";
+import { changePXtoVW } from "../../utils/styles";
 
 const TitleWrapper = styled.div`
   display: flex;
@@ -12,20 +13,16 @@ const TitleWrapper = styled.div`
 
 const MainTitle = styled.h2`
   font-weight: 600;
-  font-size: 30px;
-  @media all and (max-width: ${breakPoints.tablet}) {
-    font-size: 2.9166666667vw;
-  }
+  font-size: ${changePXtoVW(56)};
 `;
 
 const SubTitle = styled.p`
   margin-top: 9px;
   font-weight: 500;
-  font-size: 15px;
+  font-size: ${changePXtoVW(28)};
   color: ${colorPalette.descriptionText};
   @media all and (max-width: ${breakPoints.tablet}) {
     margin-top: 0.8333333333vw;
-    font-size: 1.4583333333vw;
   }
 `;
 

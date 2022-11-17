@@ -37,7 +37,7 @@ const globalStyle = css`
     /* font-size: 100%; */
     /* font: inherit; */
     font-family: "Apple SD Gothic", "pretendard", sans-serif;
-    letter-spacing: -0.04em;
+    /* letter-spacing: -0.04em; */
     word-break: keep-all;
     overflow-wrap: break-word;
   }
