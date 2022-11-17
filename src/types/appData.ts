@@ -9,6 +9,7 @@ import {
   TP04A,
   TP02M,
   TP05A,
+  TP02F,
   TP11F,
   TP11A,
 } from "./pageTemplate";
@@ -59,6 +60,7 @@ export type Corner = {
 export type Page =
   | TP01A
   | TP02C
+  | TP02F
   | TP02M
   | TP03A
   | TP03B
