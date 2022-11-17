@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useCallback, useEffect, useMemo } from "react";
 import styled from "@emotion/styled";
 import { TP03B, TP03C, TP03D } from "../../types/pageTemplate";
 import { TemplateProps } from "../../types/templates";
@@ -12,6 +12,7 @@ import { colorPalette } from "../../styles/colorPalette";
 import AudioButton from "../atoms/AudioButton";
 import { breakPoints } from "../../constants/layout";
 import { css } from "@emotion/react";
+import { TemplateType } from "../../types/appData";
 
 const customBoxCss = css`
   height: 80px;
@@ -77,47 +78,58 @@ const TP03BComponent = ({ setPageCompleted, page }: TP0BAComponentProps) => {
       | undefined;
   }, [thisPage.template.contents]);
 
+  const mainContents = useCallback(
+    (templateType: TemplateType) => {
+      if (!TextBoxesContentData?.data) {
+        return <></>;
+      }
+      if (templateType === "TP03C") {
+        return (
+          <>
+            <TextBoxes datas={TextBoxesContentData.data} />
+            <HtmlWrapper>
+              <HtmlContentComponent html={htmlString ?? ""} />
+            </HtmlWrapper>
+          </>
+        );
+      } else {
+        return (
+          <>
+            <HtmlWrapper>
+              <HtmlContentComponent html={htmlString ?? ""} />
+            </HtmlWrapper>
+            <TextBoxes
+              datas={TextBoxesContentData.data}
+              isHorizontal={templateType === "TP03D" ? true : false}
+              customBoxCss={templateType === "TP03D" ? customBoxCss : undefined}
+            />
+          </>
+        );
+      }
+    },
+    [TextBoxesContentData?.data, htmlString],
+  );
+
   const renderTP03BAndCComponents = useMemo(() => {
-    if (!TextBoxesContentData?.data || !AudioContentData?.data) {
-      return <></>;
-    }
     const { type: templateType } = thisPage.template;
-    const { src: audioUrl } = AudioContentData?.data[0];
-    if (templateType === "TP03C") {
-      return (
-        <TP03Layout isReverse={true}>
-          <TextBoxes datas={TextBoxesContentData.data} />
-          <HtmlWrapper>
-            <HtmlContentComponent html={htmlString ?? ""} />
-          </HtmlWrapper>
+    return (
+      <TP03Layout isReverse={true}>
+        {mainContents(templateType)}
+        {AudioContentData ? (
           <AudioWrapper>
-            <AudioButton isAudio={true} audioUrl={audioUrl} />
+            <AudioButton isAudio={true} audioUrl={AudioContentData?.data[0].src} />
           </AudioWrapper>
-        </TP03Layout>
-      );
-    } else {
-      return (
-        <TP03Layout>
-          <HtmlWrapper>
-            <HtmlContentComponent html={htmlString ?? ""} />
-          </HtmlWrapper>
-          <TextBoxes
-            datas={TextBoxesContentData.data}
-            isHorizontal={templateType === "TP03D" ? true : false}
-            customBoxCss={templateType === "TP03D" ? customBoxCss : undefined}
-          />
-          <AudioWrapper>
-            <AudioButton isAudio={true} audioUrl={audioUrl} />
-          </AudioWrapper>
-        </TP03Layout>
-      );
-    }
-  }, [TextBoxesContentData?.data, htmlString, thisPage.template, AudioContentData?.data]);
+        ) : (
+          <></>
+        )}
+      </TP03Layout>
+    );
+  }, [thisPage.template, AudioContentData, mainContents]);
 
   return (
     <TemplateCommonLayout>
       <TitleContent title={page.title} description={page.description} />
-      {renderTP03BAndCComponents}
+      {renderTP03BAndCComponents ?? <></>}
     </TemplateCommonLayout>
   );
 };

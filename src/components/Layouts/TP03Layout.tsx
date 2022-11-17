@@ -5,17 +5,13 @@ import { gridContentLayoutCommonGap, templateContentsAreaHeight } from "../../co
 const TP03LayoutStyle = styled.div`
   height: ${templateContentsAreaHeight};
   display: grid;
-  grid-template-rows: 12% max-content 20%;
+  grid-template-rows: max-content max-content max-content;
   gap: ${gridContentLayoutCommonGap};
   overflow-y: auto;
-
-  &.reverse {
-    grid-template-rows: max-content max-content 20%;
-  }
 `;
 
 interface TP03LayoutProps {
-  children: [JSX.Element, JSX.Element, JSX.Element];
+  children: [JSX.Element, JSX.Element];
   isReverse?: boolean;
 }
 const TP03Layout = ({ children, isReverse }: TP03LayoutProps) => {
