@@ -10,10 +10,16 @@ const COLORS = {
   blue700: "#40476B",
   yellow700: "#F5BE54",
   red500: "#F65555",
+  white: "#FFFFFF",
+  black: "#222222",
 };
 
 export const colorPalette = Object.freeze({
-  white: "#FFFFFF",
+  white: COLORS.white,
+  c1tag: COLORS.black,
+  c2tag: COLORS.blue500,
+  c3tag: COLORS.red500,
+  c4tag: COLORS.gray700,
   backgroundWhite: COLORS.gray100,
   confirmBtn: COLORS.blue500,
   deepBlue: COLORS.blue700,
