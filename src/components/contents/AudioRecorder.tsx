@@ -107,7 +107,6 @@ const AudioRecorder = ({ audioUrl }: AudioRecorderProps) => {
     if (status === "idle" || status === "stopped") {
       startRecording();
       setRecordingAudioState("record");
-      audioRef.current.pause();
       setRecordedAudioState(false);
     } else {
       stopRecording();
@@ -123,14 +122,6 @@ const AudioRecorder = ({ audioUrl }: AudioRecorderProps) => {
     } else {
       return currentBackground;
     }
-    // switch (recordingAudioState) {
-    //   case "record":
-    //     return whiteBackground;
-    //   case "recordAudioPlaying":
-    //     return grayBackground;
-    //   default:
-    //     return currentBackground;
-    // }
   }, [recordingAudioState, pronounceAudio]);
 
   const handlePronounceAudio = useCallback((src: string, index: number, isPlayed: boolean) => {
