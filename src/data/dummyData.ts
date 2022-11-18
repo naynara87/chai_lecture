@@ -1494,6 +1494,110 @@ export const dummyData: AppData = {
             ],
           },
         },
+        {
+          id: 28,
+          title: "단어 & 회화",
+          description: "중국어로 숫자를 배워봅시다.",
+          template: {
+            type: "TP08G",
+            contents: [
+              {
+                type: "numberTable",
+                data: [
+                  {
+                    text: "一",
+                    pronunciation: "yi",
+                    meaning: "1",
+                    audio: {
+                      src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
+                    },
+                  },
+                  {
+                    text: "二",
+                    pronunciation: "er",
+                    meaning: "2",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                  },
+                  {
+                    text: "三",
+                    pronunciation: "san",
+                    meaning: "3",
+                    audio: {
+                      src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
+                    },
+                  },
+                  {
+                    text: "四",
+                    pronunciation: "si",
+                    meaning: "4",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                  },
+                  {
+                    text: "五",
+                    pronunciation: "wu",
+                    meaning: "5",
+                    audio: {
+                      src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
+                    },
+                  },
+                  {
+                    text: "六",
+                    pronunciation: "liu",
+                    meaning: "6",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                  },
+                  {
+                    text: "七",
+                    pronunciation: "qi",
+                    meaning: "7",
+                    audio: {
+                      src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
+                    },
+                  },
+                  {
+                    text: "八",
+                    pronunciation: "ba",
+                    meaning: "8",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                  },
+                  {
+                    text: "九",
+                    pronunciation: "jiu",
+                    meaning: "9",
+                    audio: {
+                      src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
+                    },
+                  },
+                  {
+                    text: "十",
+                    pronunciation: "shi",
+                    meaning: "10",
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                  },
+                ],
+              },
+              {
+                type: "html",
+                data: [
+                  {
+                    kind: "tip",
+                    text: "liù, jiǔ는 운모 iou 앞에 성모가 와서 가운데 운모 o가 생략된 형태입니다. 또한 운모 i와 u가 함께 있으면 뒤에 있는 운모 위에 성조를 표기합니다.",
+                  },
+                ],
+              },
+            ],
+          },
+        },
       ],
     },
     {
