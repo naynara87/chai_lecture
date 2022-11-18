@@ -7,9 +7,10 @@ import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TP02Layout from "../Layouts/TP02Layout";
 import TitleContent from "../molecules/TitleContent";
 import { css } from "@emotion/react";
+import { changePXtoVW } from "../../utils/styles";
 
 const customVideoCss = css`
-  width: 57vw;
+  width: ${changePXtoVW(800)};
   height: 100%;
   margin: 0 auto;
 `;
