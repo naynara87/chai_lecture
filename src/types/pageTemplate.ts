@@ -347,7 +347,7 @@ export type TP08G = {
   };
 };
 
-type TP08GContent = NumberTableContent;
+type TP08GContent = NumberTableContent | HtmlContent;
 
 export type TP03F = {
   id: ID;

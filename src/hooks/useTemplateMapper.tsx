@@ -12,6 +12,7 @@ import { TemplateType } from "../types/appData";
 import { TemplateProps } from "../types/templates";
 import TP02NComponent from "../components/templates/TP02NComponent";
 import TP07AComponent from "../components/templates/TP07AComponent";
+import TP08GComponent from "../components/templates/TP08GComponent";
 
 export interface UseTemplateMapperProps extends TemplateProps {}
 const useTemplateMapper = (props: UseTemplateMapperProps) => {
@@ -30,6 +31,7 @@ const useTemplateMapper = (props: UseTemplateMapperProps) => {
     TP04A: <TP04AComponent {...props} />,
     TP05A: <TP05AComponent {...props} />,
     TP07A: <TP07AComponent {...props} />,
+    TP08G: <TP08GComponent {...props} />,
     TP15A: <TP15AComponent {...props} />,
   };
 
