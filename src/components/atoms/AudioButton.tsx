@@ -13,7 +13,7 @@ interface AudioProps {
   currentAudioIndex?: number;
   isAudio: boolean;
   customCss?: SerializedStyles;
-  audioHandler?: (src: string, index: number) => void;
+  audioHandler?: (src: string, index: number, isPlayed: boolean) => void;
 }
 
 interface AudioButtonProps {
@@ -27,7 +27,6 @@ const AudioButton = styled.button<AudioButtonProps>`
   margin: 0 0.5208333333vw;
   background-color: ${colorPalette.confirmBtn};
   position: relative;
-  transition: all ease-in 0.3s;
   cursor: pointer;
   ${(props) => props.customCss}
 `;
@@ -56,7 +55,7 @@ const Audio = ({
     }
 
     if (audioHandler) {
-      audioHandler(audioUrl ?? "", audioIndex ?? 0);
+      audioHandler(audioUrl ?? "", audioIndex ?? 0, isPlayed);
     }
 
     if (isPlayed) {

@@ -1,6 +1,6 @@
 import { css, SerializedStyles } from "@emotion/react";
 import styled from "@emotion/styled";
-import React, { useRef, useState } from "react";
+import React, { useCallback, useMemo, useRef, useState } from "react";
 import { useReactMediaRecorder } from "react-media-recorder";
 import { colorPalette } from "../../styles/colorPalette";
 import { changePXtoVW } from "../../utils/styles";
@@ -19,7 +19,6 @@ const RecordedAudioButton = styled.button<RecordedAudioButtonProps>`
   border-radius: 50%;
   margin: 0 0.5208333333vw;
   position: relative;
-  transition: all ease-in 0.3s;
 
   ${(props) => props.customCss}
 `;
@@ -33,7 +32,6 @@ const RecordingAudioButton = styled.button<RecordingAudioButtonProps>`
   height: ${changePXtoVW(80)};
   border-radius: 50%;
   margin: 0 0.5208333333vw;
-  transition: all ease-in 0.3s;
   position: relative;
 
   ${(props) => props.customCss}
@@ -69,6 +67,7 @@ interface AudioRecorderProps {
 
 const AudioRecorder = ({ audioUrl }: AudioRecorderProps) => {
   const audioRef = useRef<HTMLAudioElement>(null);
+  const [pronounceAudio, setPronounceAudio] = useState(false);
   const [recordedAudioState, setRecordedAudioState] = useState(false);
   const [recordingAudioState, setRecordingAudioState] = useState<recordingAudioState>("pause");
   const { status, startRecording, stopRecording, mediaBlobUrl } = useReactMediaRecorder({
@@ -78,8 +77,8 @@ const AudioRecorder = ({ audioUrl }: AudioRecorderProps) => {
     },
   });
 
-  const handleClickRecordedAudioButton = () => {
-    if (!audioRef.current) {
+  const handleClickRecordedAudioButton = useCallback(() => {
+    if (!audioRef.current || pronounceAudio) {
       return;
     }
 
@@ -94,15 +93,15 @@ const AudioRecorder = ({ audioUrl }: AudioRecorderProps) => {
       setRecordedAudioState(false);
       setRecordingAudioState("pause");
     }
-  };
+  }, [recordedAudioState, status, pronounceAudio]);
 
   audioRef.current?.addEventListener("ended", () => {
     setRecordedAudioState(false);
     setRecordingAudioState("pause");
   });
 
-  const handleClickRecordingAudioButton = () => {
-    if (!audioRef.current || recordedAudioState) {
+  const handleClickRecordingAudioButton = useCallback(() => {
+    if (!audioRef.current || recordedAudioState || pronounceAudio) {
       return;
     }
     if (status === "idle" || status === "stopped") {
@@ -114,40 +113,48 @@ const AudioRecorder = ({ audioUrl }: AudioRecorderProps) => {
       stopRecording();
       setRecordingAudioState("pause");
     }
-  };
+  }, [pronounceAudio, recordedAudioState, startRecording, status, stopRecording]);
 
-  const recodingAudioButtonColor = (isButton: boolean) => {
-    if (isButton) {
-      switch (recordingAudioState) {
-        case "record":
-          return whiteBackground;
-        case "recordAudioPlaying":
-          return grayBackground;
-        default:
-          return currentBackground;
-      }
+  const recodingAudioButtonColor = useMemo(() => {
+    if (recordingAudioState === "record") {
+      return whiteBackground;
+    } else if (recordingAudioState === "recordAudioPlaying" || pronounceAudio) {
+      return grayBackground;
     } else {
-      switch (recordingAudioState) {
-        case "record":
-          return "black";
-        default:
-          return "white";
-      }
+      return currentBackground;
     }
-  };
+    // switch (recordingAudioState) {
+    //   case "record":
+    //     return whiteBackground;
+    //   case "recordAudioPlaying":
+    //     return grayBackground;
+    //   default:
+    //     return currentBackground;
+    // }
+  }, [recordingAudioState, pronounceAudio]);
+
+  const handlePronounceAudio = useCallback((src: string, index: number, isPlayed: boolean) => {
+    if (!isPlayed) {
+      setPronounceAudio(true);
+      setRecordedAudioState(false);
+      setRecordingAudioState("pause");
+    } else {
+      setPronounceAudio(false);
+    }
+  }, []);
 
   return (
     <AudioRecorderStyle>
       {/* <p>{status}</p> */}
       <RecordedAudioButton
         onClick={handleClickRecordedAudioButton}
-        customCss={status === "stopped" ? currentBackground : grayBackground}
+        customCss={status === "stopped" && !pronounceAudio ? currentBackground : grayBackground}
       >
         {recordedAudioState ? <IconPlaying /> : <IconHeadset />}
       </RecordedAudioButton>
       <RecordingAudioButton
         onClick={handleClickRecordingAudioButton}
-        customCss={recodingAudioButtonColor(true)}
+        customCss={recodingAudioButtonColor}
       >
         <IconMic color={recordingAudioState === "record" ? "black" : "white"} />
       </RecordingAudioButton>
@@ -157,9 +164,10 @@ const AudioRecorder = ({ audioUrl }: AudioRecorderProps) => {
       <AudioButton
         audioUrl={audioUrl}
         isAudio={true}
-        audioHide={recordedAudioState && recordingAudioState !== "pause" ? true : false}
+        audioHandler={handlePronounceAudio}
+        audioHide={recordedAudioState || recordingAudioState !== "pause" ? true : false}
         customCss={
-          recordedAudioState && recordingAudioState !== "pause" ? grayBackground : currentBackground
+          recordedAudioState || recordingAudioState !== "pause" ? grayBackground : currentBackground
         }
       />
     </AudioRecorderStyle>

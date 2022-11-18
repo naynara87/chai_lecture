@@ -46,6 +46,10 @@ const imageCustomCss = css`
   height: ${changePXtoVW(575)};
 `;
 
+const layoutCustomCss = css`
+  height: 100%;
+`;
+
 interface TP07AComponentProps extends TemplateProps {}
 
 const TP07AComponent = ({ setPageCompleted, page }: TP07AComponentProps) => {
@@ -104,7 +108,7 @@ const TP07AComponent = ({ setPageCompleted, page }: TP07AComponentProps) => {
   return (
     <TemplateCommonLayout>
       <TitleContent title={thisPage.title} description={thisPage.description} />
-      <TP07Layout>
+      <TP07Layout customCss={layoutCustomCss}>
         <QuestionContainer>
           <QuestionIcon />
           <HtmlContentComponent html={iconTextContent?.data?.[0]?.text ?? ""} customCss={htmlCss} />
