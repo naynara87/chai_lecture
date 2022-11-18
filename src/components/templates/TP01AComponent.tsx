@@ -70,20 +70,23 @@ const TP01AComponent = ({ setPageCompleted, page }: TP01AComponentProps) => {
       | undefined;
   }, [thisPage.template.contents]);
 
-  const handleCheckAnswer = (answer: number, index: number) => {
-    if (userAnswers.length >= ChooseTextByAudioContentData!.data.length) {
-      return;
-    }
-    if (userAnswers[index - 1] !== undefined) {
-      setUserAnswers((prev) => [
-        ...prev.slice(0, index - 1),
-        answer,
-        ...prev.slice(index, userAnswers.length),
-      ]);
-    } else {
-      setUserAnswers((prev) => [...prev, answer]);
-    }
-  };
+  const handleCheckAnswer = useCallback(
+    (answer: number, index: number) => {
+      if (userAnswers.length >= ChooseTextByAudioContentData!.data.length) {
+        return;
+      }
+      if (userAnswers[index - 1] !== undefined) {
+        setUserAnswers((prev) => [
+          ...prev.slice(0, index - 1),
+          answer,
+          ...prev.slice(index, userAnswers.length),
+        ]);
+      } else {
+        setUserAnswers((prev) => [...prev, answer]);
+      }
+    },
+    [ChooseTextByAudioContentData, userAnswers],
+  );
 
   const handleCheckButton = useCallback(() => {
     if (userAnswers.length !== ChooseTextByAudioContentData!.data.length) {
@@ -125,7 +128,14 @@ const TP01AComponent = ({ setPageCompleted, page }: TP01AComponentProps) => {
         />
       );
     });
-  }, [ChooseTextByAudioContentData, userAnswers, checkAnswers, handleClickAudioButton, audioIndex]);
+  }, [
+    ChooseTextByAudioContentData,
+    userAnswers,
+    checkAnswers,
+    handleClickAudioButton,
+    audioIndex,
+    handleCheckAnswer,
+  ]);
   return (
     <TemplateCommonLayout>
       <TitleContent title={page.title} description={page.description} />
