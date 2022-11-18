@@ -43,7 +43,8 @@ const MainContainer = styled.div`
 
 const imageCustomCss = css`
   width: ${changePXtoVW(723)};
-  height: ${changePXtoVW(575)};
+  height: ${changePXtoVW(350)};
+  object-fit: contain;
 `;
 
 const layoutCustomCss = css`

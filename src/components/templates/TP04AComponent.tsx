@@ -10,13 +10,13 @@ import TitleContent from "../molecules/TitleContent";
 import ImageContentComponent from "../atoms/ImageContentComponent";
 import { css } from "@emotion/react";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
-import { breakPoints } from "../../constants/layout";
 import { colorPalette } from "../../styles/colorPalette";
+import { changePXtoVW } from "../../utils/styles";
 
 const imageCustomCss = css`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: ${changePXtoVW(600)};
+  height: ${changePXtoVW(200)};
+  object-fit: contain;
 `;
 
 const ContainerWrapper = styled.div`
@@ -24,15 +24,12 @@ const ContainerWrapper = styled.div`
   grid-template-columns: 33% 33%;
   width: 100%;
   /* line-height: 1.15vw; */
-  gap: 2%;
+  gap: 4%;
   align-items: center;
   margin: 0 auto;
-  font-size: 22px;
+  font-size: ${changePXtoVW(36)};
   justify-content: center;
   /* color: ${colorPalette.descriptionText}; */
-  @media all and (max-width: ${breakPoints.tablet}) {
-    font-size: 2.4vw;
-  }
 `;
 
 const AudioWrapper = styled.div`
