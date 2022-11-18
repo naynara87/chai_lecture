@@ -109,7 +109,11 @@ export type AudioContent = {
 
 export type AudioRecordContent = {
   type: "audioRecord";
-  data: "";
+  data: {
+    audio: {
+      src: string;
+    };
+  }[];
 };
 
 export type DragAndDropContent = {

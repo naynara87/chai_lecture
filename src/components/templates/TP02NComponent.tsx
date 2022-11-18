@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import styled from "@emotion/styled";
 import { TP02N } from "../../types/pageTemplate";
 import { StudyWordsContent } from "../../types/templateContents";
@@ -12,6 +12,7 @@ import TextBox from "../atoms/TextBox";
 import { css } from "@emotion/react";
 import { changePXtoVW } from "../../utils/styles";
 import useAudio from "../../hooks/useAudio";
+import { colorPalette } from "../../styles/colorPalette";
 
 const ContentContainer = styled.div`
   width: 100%;
@@ -29,7 +30,7 @@ const customLayoutCss = css`
 
 const customPronunciationCss = css`
   margin-top: ${changePXtoVW(32)};
-  color: #989898;
+  color: ${colorPalette.pronunciationText};
 `;
 
 const customMeaningCss = css`

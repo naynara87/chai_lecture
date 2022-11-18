@@ -82,7 +82,7 @@ const TextBoxes = ({ datas, isHorizontal, customBoxCss, customBoxWrapperCss }: T
         </TextCardGrp>
       );
     });
-  }, [customBoxWrapperCss, datas, isHorizontal]);
+  }, [customBoxWrapperCss, datas, isHorizontal, customBoxCss]);
 
   return <TextBoxesWrapper>{renderTextBoxes}</TextBoxesWrapper>;
 };

@@ -824,6 +824,53 @@ export const dummyData: AppData = {
             ],
           },
         },
+        {
+          id: 31,
+          title: "회화 알아보기",
+          description: "따라 읽어 보세요.",
+          template: {
+            type: "TP07A",
+            contents: [
+              {
+                type: "iconText",
+                data: [
+                  {
+                    icon: {
+                      src: "",
+                    },
+                    text: "따라 읽어 보세요.",
+                  },
+                ],
+              },
+              {
+                type: "images",
+                data: [
+                  {
+                    src: "https://i.picsum.photos/id/474/800/400.jpg?hmac=CwQKBMVE4mgQWYJ56eO34xu7DuJ_O_WtUcvqm_kQcaI",
+                  },
+                ],
+              },
+              {
+                type: "html",
+                data: [
+                  {
+                    text: "<h1>对不起。</h1><p>Duìbuqǐ.</p>",
+                  },
+                ],
+              },
+              {
+                type: "audioRecord",
+                data: [
+                  {
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                  },
+                ],
+              },
+            ],
+          },
+        },
       ],
     },
     {
