@@ -138,7 +138,7 @@ const TP01AComponent = ({ setPageCompleted, page }: TP01AComponentProps) => {
   ]);
   return (
     <TemplateCommonLayout>
-      <TitleContent title={page.title} description={page.description} />
+      <TitleContent title={thisPage.title} description={thisPage.description} />
       <TP01Layout>
         {ChooseTextByAudioContentData ? ChooseTextByAudioContents() : <></>}
         <CheckButton

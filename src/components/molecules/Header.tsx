@@ -8,6 +8,7 @@ import { QUERY_KEY } from "../../constants/queryKey";
 import { getAppData } from "../../data/tempApi";
 import { breakPoints } from "../../constants/layout";
 import CornerSignPost from "../atoms/CornerSignPost";
+import { CORNER_LIST_URL } from "../../constants/url";
 
 const HeaderContainer = styled.header`
   position: sticky;
@@ -157,7 +158,7 @@ const Header = ({ cornerName }: HeaderProps) => {
       </HeaderTitle>
       <ButtonComponent
         text="X"
-        linkUrl="/"
+        linkUrl={CORNER_LIST_URL}
         customBtnCss={exitButtonCss}
         customTextCss={exitTextCss}
         handleClickButton={handleExitButton}

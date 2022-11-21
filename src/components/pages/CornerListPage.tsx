@@ -16,6 +16,8 @@ import { QUERY_KEY } from "../../constants/queryKey";
 import ModalStart from "../modal/ModalStart";
 import { getPageUrl } from "../../utils/url";
 import { breakPoints } from "../../constants/layout";
+import { useRecoilState } from "recoil";
+import { cornersState } from "../../state/corners";
 
 const CornerListWrapper = styled.main`
   display: -webkit-box;
@@ -127,14 +129,35 @@ const CornerListLayout = styled.div`
 const CornerListPage = () => {
   const { data: appData } = useQuery([QUERY_KEY.APP_DATA], getAppData);
 
+  const [completedCorners, setCompletedCorners] = useRecoilState(cornersState);
   const [currentCorner, setCurrentCorner] = useState<Corner>();
   const [isModalCloseOpen, setIsModalCloseOpen] = useState(false);
+
+  // useEffect(() => {
+  //   if (!appData) return;
+  //   const { corners } = appData;
+  //   const _currentCorner = corners.find((corner) => !corner.isCompleted);
+  //   setCurrentCorner(_currentCorner);
+  // }, [appData]);
+
   useEffect(() => {
     if (!appData) return;
-    const { corners } = appData;
-    const currentCorner = corners.find((corner) => !corner.isCompleted);
-    setCurrentCorner(currentCorner);
-  }, [appData]);
+    if (completedCorners.length === 0) {
+      setCompletedCorners(
+        appData.corners.map((corner) => ({ id: corner.id, isCompleted: corner.isCompleted })),
+      );
+    }
+  }, [appData, setCompletedCorners, completedCorners]);
+
+  useEffect(() => {
+    if (!appData) return;
+    const currentCompletedCorner = completedCorners.find((corner) => !corner.isCompleted);
+    if (!currentCompletedCorner) return;
+    const _currentCorner = appData.corners.find(
+      (corner) => corner.id.toString() === currentCompletedCorner.id.toString(),
+    );
+    setCurrentCorner(_currentCorner);
+  }, [appData, completedCorners]);
 
   const changeFilter = useCallback(
     (cornerId: ID) => {
@@ -162,19 +185,21 @@ const CornerListPage = () => {
         )}
         <CornerListWrapper>
           {appData
-            ? appData.corners.map((corner) => (
-                <CornerList key={corner.id}>
-                  <CornerImageWrapper>
-                    <ImageContentComponent
-                      imageSrc={corner.cornerIcon}
-                      imageAlt={corner.title}
-                      filter={changeFilter(corner.id)}
-                      customCss={cornerImageCss}
-                    />
-                  </CornerImageWrapper>
-                  <CornerName>{corner.title}</CornerName>
-                </CornerList>
-              ))
+            ? appData.corners.map((corner) => {
+                return (
+                  <CornerList key={corner.id}>
+                    <CornerImageWrapper>
+                      <ImageContentComponent
+                        imageSrc={corner.cornerIcon}
+                        imageAlt={corner.title}
+                        filter={changeFilter(corner.id)}
+                        customCss={cornerImageCss}
+                      />
+                    </CornerImageWrapper>
+                    <CornerName>{corner.title}</CornerName>
+                  </CornerList>
+                );
+              })
             : Array(7)
                 .fill(0)
                 .map((_, index) => (

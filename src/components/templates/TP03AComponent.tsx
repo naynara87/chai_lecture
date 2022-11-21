@@ -54,7 +54,7 @@ const TP03AComponent = ({ setPageCompleted, page }: TP03AComponentProps) => {
 
   return (
     <TemplateCommonLayout>
-      <TitleContent title={page.title} description={page.description} />
+      <TitleContent title={thisPage.title} description={thisPage.description} />
       <TP03Layout>
         <HtmlWrapper>
           <HtmlContentComponent html={htmlString ?? ""} />

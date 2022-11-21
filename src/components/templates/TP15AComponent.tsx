@@ -60,7 +60,7 @@ const TP15AComponent = ({ setPageCompleted, page }: TP15AComponentProps) => {
 
   return (
     <TemplateCommonLayout>
-      <TitleContent title={page.title} description={page.description} />
+      <TitleContent title={thisPage.title} description={thisPage.description} />
       <TP15Layout>
         <TabButtons tabs={thisPage.tabs ?? []} handleClickTab={handleClickTab} />
         <ImagesContentComponent imagesContent={imagesContent as ImagesContent} />

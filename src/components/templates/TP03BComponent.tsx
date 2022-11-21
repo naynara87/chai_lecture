@@ -128,7 +128,7 @@ const TP03BComponent = ({ setPageCompleted, page }: TP0BAComponentProps) => {
 
   return (
     <TemplateCommonLayout>
-      <TitleContent title={page.title} description={page.description} />
+      <TitleContent title={thisPage.title} description={thisPage.description} />
       {renderTP03BAndCComponents ?? <></>}
     </TemplateCommonLayout>
   );

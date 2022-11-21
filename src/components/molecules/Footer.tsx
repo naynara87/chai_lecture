@@ -59,19 +59,19 @@ const Footer = ({ handleClickPrev, handleClickNext, isPageCompleted, pageIndex }
   const isFirstPage = useMemo(() => {
     return pageIndex === 0;
   }, [pageIndex]);
-  const isLastPage = useMemo(() => {
-    if (currentCorner === undefined) {
-      return false;
-    }
-    return pageIndex === currentCorner.pages.length - 1;
-  }, [pageIndex, currentCorner]);
+  // const isLastPage = useMemo(() => {
+  //   if (currentCorner === undefined) {
+  //     return false;
+  //   }
+  //   return pageIndex === currentCorner.pages.length - 1;
+  // }, [pageIndex, currentCorner]);
 
   const isDisableNextButton = useMemo(() => {
-    if (isLastPage) {
-      return true;
-    }
+    // if (isLastPage) {
+    //   return true;
+    // }
     return !isPageCompleted;
-  }, [isPageCompleted, isLastPage]);
+  }, [isPageCompleted]);
 
   useEffect(() => {
     if (currentCorner === undefined) {
@@ -93,16 +93,12 @@ const Footer = ({ handleClickPrev, handleClickNext, isPageCompleted, pageIndex }
             <CornerState key={cornerState.id} state={cornerState.state} />
           ))}
         </CornerStateWrapper>
-        {isLastPage ? (
-          <Spacing width="80px" />
-        ) : (
-          <FooterButton
-            text="다음"
-            handleClick={handleClickNext}
-            isDisable={isDisableNextButton}
-            direction="right"
-          />
-        )}
+        <FooterButton
+          text="다음"
+          handleClick={handleClickNext}
+          isDisable={isDisableNextButton}
+          direction="right"
+        />
       </FooterContainer>
     </FooterWrapper>
   );

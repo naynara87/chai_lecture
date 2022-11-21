@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import CommonPageLayout from "../Layouts/CommonPageLayout";
 import Footer from "../molecules/Footer";
 import Header from "../molecules/Header";
@@ -8,10 +8,15 @@ import useCorner from "../../hooks/useCorner";
 import usePage from "../../hooks/usePage";
 import { useNavigate } from "react-router-dom";
 import { getPageUrl } from "../../utils/url";
+import { useRecoilState } from "recoil";
+import { cornersState } from "../../state/corners";
+import { CORNER_LIST_URL } from "../../constants/url";
 
 const CornerPage = () => {
   const { pageIds, cornerId } = useCorner();
   const [isPageCompleted, setIsPageCompleted] = useState(false);
+
+  const [, setCompletedCorners] = useRecoilState(cornersState);
 
   const { page: currentPage } = usePage();
   const { currentCorner } = useCorner();
@@ -19,7 +24,18 @@ const CornerPage = () => {
 
   const pageIndex = pageIds.findIndex((id) => id === currentPage?.id);
 
+  const isLastPage = useMemo(() => {
+    if (currentCorner === undefined) {
+      return false;
+    }
+    return pageIndex === currentCorner.pages.length - 1;
+  }, [pageIndex, currentCorner]);
+
   const handleClickNext = () => {
+    if (isLastPage) {
+      navigate(CORNER_LIST_URL);
+      return;
+    }
     if (cornerId) {
       navigate(getPageUrl(cornerId, pageIds[pageIndex + 1]));
     }
@@ -36,6 +52,23 @@ const CornerPage = () => {
   const setPageCompleted = () => {
     setIsPageCompleted(true);
   };
+
+  useEffect(() => {
+    if (isLastPage) {
+      // TODO: post corner completed
+      console.log("post corner completed");
+
+      // FIXME: 임시로 뷰잉을 위한 로컬 완료 로직
+      setCompletedCorners((prev) => {
+        return prev.map((corner) => {
+          if (corner.id.toString() === cornerId?.toString()) {
+            return { id: corner.id, isCompleted: true };
+          }
+          return corner;
+        });
+      });
+    }
+  }, [isLastPage, cornerId, setCompletedCorners]);
 
   return (
     <CommonPageLayout>
