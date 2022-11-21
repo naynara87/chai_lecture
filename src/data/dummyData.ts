@@ -1598,6 +1598,119 @@ export const dummyData: AppData = {
             ],
           },
         },
+        {
+          id: 29,
+          title: "회화 알아보기",
+          description: "회화를 들어보세요.",
+          template: {
+            type: "TP02K",
+            contents: [
+              {
+                type: "dialog",
+                data: [
+                  {
+                    id: "a",
+                    icon: {
+                      src: "http://icon_url",
+                    },
+                    text: "<p>点点十分。</p>",
+                    pronunciation: "<p>Méi xiǎngdào zài lùshang yùjiàn nǐ.</p>",
+                    meaning: "<p>2시 10분.</p>",
+                    hasQuestion: false,
+                    audio: {
+                      src: "https://www.random.org/audio-noise/?channels=2&volume=100&rate=16000&size=8&date=2022-11-21&format=wav&deliver=browser",
+                    },
+                  },
+                  {
+                    id: "b",
+                    icon: {
+                      src: "http://icon_url",
+                    },
+                    text: "<p>你几点 *blank*</p>",
+                    pronunciation: "<p>Méi xiǎngdào zài lùshang yùjiàn nǐ.</p>",
+                    meaning: "<p>너 몇 시에 집에 돌아가니?</p>",
+                    hasQuestion: true,
+                    question: {
+                      choices: ["回家", "现在"],
+                      answerIndex: 0,
+                    },
+                    audio: {
+                      src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
+                    },
+                  },
+                  {
+                    id: "a",
+                    icon: {
+                      src: "http://icon_url",
+                    },
+                    text: "<p>*blank* 四点回家。</p>",
+                    pronunciation: "<p>Méi xiǎngdào zài lùshang yùjiàn nǐ.</p>",
+                    meaning: "<p>오후 4시에 돌아가.</p>",
+                    hasQuestion: true,
+                    question: {
+                      choices: ["下午", "十午"],
+                      answerIndex: 0,
+                    },
+                    audio: {
+                      src: "https://www.random.org/audio-noise/?channels=2&volume=100&rate=16000&size=8&date=2022-11-21&format=wav&deliver=browser",
+                    },
+                  },
+                  {
+                    id: "a",
+                    icon: {
+                      src: "http://icon_url",
+                    },
+                    text: "<p>*blank* 四点回家。</p>",
+                    pronunciation: "<p>Méi xiǎngdào zài lùshang yùjiàn nǐ.</p>",
+                    meaning: "<p>오후 4시에 돌아가.</p>",
+                    hasQuestion: true,
+                    question: {
+                      choices: ["下午", "十午"],
+                      answerIndex: 0,
+                    },
+                    audio: {
+                      src: "https://www.random.org/audio-noise/?channels=2&volume=100&rate=16000&size=8&date=2022-11-21&format=wav&deliver=browser",
+                    },
+                  },
+                  {
+                    id: "a",
+                    icon: {
+                      src: "http://icon_url",
+                    },
+                    text: "<p>*blank* 四点回家。</p>",
+                    pronunciation: "<p>Méi xiǎngdào zài lùshang yùjiàn nǐ.</p>",
+                    meaning: "<p>오후 4시에 돌아가.</p>",
+                    hasQuestion: true,
+                    question: {
+                      choices: ["下午", "十午"],
+                      answerIndex: 0,
+                    },
+                    audio: {
+                      src: "https://www.random.org/audio-noise/?channels=2&volume=100&rate=16000&size=8&date=2022-11-21&format=wav&deliver=browser",
+                    },
+                  },
+                  {
+                    id: "a",
+                    icon: {
+                      src: "http://icon_url",
+                    },
+                    text: "<p>*blank* 四点回家。</p>",
+                    pronunciation: "<p>Méi xiǎngdào zài lùshang yùjiàn nǐ.</p>",
+                    meaning: "<p>오후 4시에 돌아가.</p>",
+                    hasQuestion: true,
+                    question: {
+                      choices: ["下午", "十午"],
+                      answerIndex: 0,
+                    },
+                    audio: {
+                      src: "https://www.random.org/audio-noise/?channels=2&volume=100&rate=16000&size=8&date=2022-11-21&format=wav&deliver=browser",
+                    },
+                  },
+                ],
+              },
+            ],
+          },
+        },
       ],
     },
     {

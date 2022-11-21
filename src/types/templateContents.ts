@@ -152,7 +152,6 @@ type DialogData = {
   meaning: string;
   hasQuestion: boolean;
   question?: {
-    blankQuestion: (string | "*blank*")[];
     choices: string[];
     answerIndex: number;
   };

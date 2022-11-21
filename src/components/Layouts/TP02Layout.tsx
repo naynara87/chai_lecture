@@ -17,11 +17,19 @@ const TP02LayoutStyle = styled.div<TP02LayoutStyleProps>`
 `;
 
 interface TP02LayoutProps {
-  children: [JSX.Element | JSX.Element[], JSX.Element] | JSX.Element;
+  children:
+    | [JSX.Element | JSX.Element[], JSX.Element]
+    | [JSX.Element, JSX.Element | JSX.Element[], JSX.Element]
+    | JSX.Element;
   customCss?: SerializedStyles;
+  id?: string;
 }
-const TP02Layout = ({ children, customCss }: TP02LayoutProps) => {
-  return <TP02LayoutStyle customCss={customCss}>{children}</TP02LayoutStyle>;
+const TP02Layout = ({ children, customCss, id }: TP02LayoutProps) => {
+  return (
+    <TP02LayoutStyle customCss={customCss} id={id}>
+      {children}
+    </TP02LayoutStyle>
+  );
 };
 
 export default TP02Layout;
