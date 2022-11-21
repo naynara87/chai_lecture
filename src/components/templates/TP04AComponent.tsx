@@ -7,9 +7,9 @@ import AudioButton from "../atoms/AudioButton";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TP04Layout from "../Layouts/TP04Layout";
 import TitleContent from "../molecules/TitleContent";
-import ImageContentComponent from "../atoms/ImageContentComponent";
+import ImageContentComponent from "../contents/ImageContentComponent";
 import { css } from "@emotion/react";
-import HtmlContentComponent from "../atoms/HtmlContentComponent";
+import HtmlContentComponent from "../contents/HtmlContentComponent";
 import { colorPalette } from "../../styles/colorPalette";
 import { changePXtoVW } from "../../utils/styles";
 

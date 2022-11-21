@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 import React from "react";
 import { changePXtoVW } from "../../utils/styles";
-import HtmlContentComponent from "../atoms/HtmlContentComponent";
+import HtmlContentComponent from "./HtmlContentComponent";
 
 interface NumberTableProps {
   text: string;

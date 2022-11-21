@@ -5,7 +5,7 @@ import { ChooseTextByAudioContent } from "../../types/templateContents";
 import { TemplateProps } from "../../types/templates";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TP01Layout from "../Layouts/TP01Layout";
-import ChooseTextByAudio from "../molecules/ChooseTextByAudio";
+import ChooseTextByAudio from "../contents/ChooseTextByAudio";
 import TitleContent from "../molecules/TitleContent";
 import { colorPalette } from "../../styles/colorPalette";
 import useAudio from "../../hooks/useAudio";

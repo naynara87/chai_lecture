@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import React from "react";
 import { breakPoints } from "../../constants/layout";
 import { changePXtoVW } from "../../utils/styles";
-import HtmlContentComponent from "./HtmlContentComponent";
+import HtmlContentComponent from "../contents/HtmlContentComponent";
 
 interface TextCardProps {
   customCss?: SerializedStyles;

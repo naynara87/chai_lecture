@@ -11,8 +11,8 @@ import {
 } from "../../types/templateContents";
 import { TemplateProps } from "../../types/templates";
 import { changePXtoVW } from "../../utils/styles";
-import HtmlContentComponent from "../atoms/HtmlContentComponent";
-import ImageContentComponent from "../atoms/ImageContentComponent";
+import HtmlContentComponent from "../contents/HtmlContentComponent";
+import ImageContentComponent from "../contents/ImageContentComponent";
 import QuestionIcon from "../atoms/QuestionIcon";
 import AudioRecorder from "../contents/AudioRecorder";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";

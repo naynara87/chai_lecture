@@ -6,7 +6,7 @@ import { colorPalette } from "../../styles/colorPalette";
 import { TP11F } from "../../types/pageTemplate";
 import { ChooseTextContent, IconTextContent } from "../../types/templateContents";
 import { TemplateProps } from "../../types/templates";
-import HtmlContentComponent from "../atoms/HtmlContentComponent";
+import HtmlContentComponent from "../contents/HtmlContentComponent";
 import QuestionIcon from "../atoms/QuestionIcon";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TP11Layout from "../Layouts/TP11Layout";

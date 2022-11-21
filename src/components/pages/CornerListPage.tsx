@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { getAppData } from "../../data/tempApi";
 import { Corner, ID } from "../../types/appData";
-import ImageContentComponent from "../atoms/ImageContentComponent";
+import ImageContentComponent from "../contents/ImageContentComponent";
 import Header from "../molecules/Header";
 import { css } from "@emotion/react";
 import { colorPalette } from "../../styles/colorPalette";

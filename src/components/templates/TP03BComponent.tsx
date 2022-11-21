@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { TP03B, TP03C, TP03D } from "../../types/pageTemplate";
 import { TemplateProps } from "../../types/templates";
 import TitleContent from "../molecules/TitleContent";
-import HtmlContentComponent from "../atoms/HtmlContentComponent";
+import HtmlContentComponent from "../contents/HtmlContentComponent";
 import TextBoxes from "../molecules/TextBoxes";
 import { AudioContent, HtmlContent, TextBoxesContent } from "../../types/templateContents";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
