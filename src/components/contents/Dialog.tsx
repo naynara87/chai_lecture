@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import styled from "@emotion/styled";
-import HtmlContentComponent from "../atoms/HtmlContentComponent";
+import HtmlContentComponent from "./HtmlContentComponent";
 import { css } from "@emotion/react";
 import AudioButton from "../atoms/AudioButton";
 
