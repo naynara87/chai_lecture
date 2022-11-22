@@ -29,8 +29,8 @@ const ModalInnerBox = styled.img`
   position: absolute;
   top: 50%;
   left: 50%;
-  width: ${changePXtoVW(1000)};
-  height: ${changePXtoVW(1000)};
+  width: ${changePXtoVW(1360)};
+  height: ${changePXtoVW(680)};
   padding-bottom: 3.3333333333vh;
   /* border-radius: 2.0833333333vw; */
   background-color: ${colorPalette.white};
