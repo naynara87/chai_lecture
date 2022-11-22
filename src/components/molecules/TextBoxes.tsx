@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import styled from "@emotion/styled";
-import HtmlContentComponent from "../atoms/HtmlContentComponent";
+import HtmlContentComponent from "../contents/HtmlContentComponent";
 import { TextBoxesData } from "../../types/templateContents";
 import { breakPoints } from "../../constants/layout";
 import { SerializedStyles } from "@emotion/react";

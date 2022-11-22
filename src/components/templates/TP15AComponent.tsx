@@ -6,10 +6,10 @@ import { TP15A } from "../../types/pageTemplate";
 import { HtmlContent, ImagesContent } from "../../types/templateContents";
 import { TemplateProps } from "../../types/templates";
 import { getPageUrl } from "../../utils/url";
-import HtmlContentComponent from "../atoms/HtmlContentComponent";
+import HtmlContentComponent from "../contents/HtmlContentComponent";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TP15Layout from "../Layouts/TP15Layout";
-import ImagesContentComponent from "../molecules/ImagesContentComponent";
+import ImagesContentComponent from "../contents/ImagesContentComponent";
 import TabButtons from "../molecules/TabButtons";
 import TipComponent from "../molecules/TipComponent";
 import TitleContent from "../molecules/TitleContent";
@@ -60,7 +60,7 @@ const TP15AComponent = ({ setPageCompleted, page }: TP15AComponentProps) => {
 
   return (
     <TemplateCommonLayout>
-      <TitleContent title={page.title} description={page.description} />
+      <TitleContent title={thisPage.title} description={thisPage.description} />
       <TP15Layout>
         <TabButtons tabs={thisPage.tabs ?? []} handleClickTab={handleClickTab} />
         <ImagesContentComponent imagesContent={imagesContent as ImagesContent} />

@@ -2,8 +2,8 @@ import React, { useEffect, useMemo } from "react";
 import styled from "@emotion/styled";
 import { TP03A } from "../../types/pageTemplate";
 import { TemplateProps } from "../../types/templates";
-import HtmlContentComponent from "../atoms/HtmlContentComponent";
-import ListenWordContent from "../molecules/ListenWordContent";
+import HtmlContentComponent from "../contents/HtmlContentComponent";
+import ListenWordContent from "../contents/ListenWordContent";
 import TitleContent from "../molecules/TitleContent";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TP03Layout from "../Layouts/TP03Layout";
@@ -54,7 +54,7 @@ const TP03AComponent = ({ setPageCompleted, page }: TP03AComponentProps) => {
 
   return (
     <TemplateCommonLayout>
-      <TitleContent title={page.title} description={page.description} />
+      <TitleContent title={thisPage.title} description={thisPage.description} />
       <TP03Layout>
         <HtmlWrapper>
           <HtmlContentComponent html={htmlString ?? ""} />

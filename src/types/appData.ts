@@ -15,6 +15,7 @@ import {
   TP02N,
   TP07A,
   TP08G,
+  TPIframe,
 } from "./pageTemplate";
 
 // 과정(course) > 레슨(lesson) > 회차(corner) > 페이지(page)
@@ -76,6 +77,7 @@ export type Page =
   | TP08G
   | TP11F
   | TP11A
-  | TP15A;
+  | TP15A
+  | TPIframe;
 
 export type TemplateType = Page["template"]["type"];
