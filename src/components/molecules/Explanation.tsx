@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import styled from "@emotion/styled";
 import { footerHeightNormal } from "../../constants/layout";
 import { colorPalette } from "../../styles/colorPalette";
-import HtmlContentComponent from "../atoms/HtmlContentComponent";
+import HtmlContentComponent from "../contents/HtmlContentComponent";
 import OIcon from "../atoms/svg/OIcon";
 import { css } from "@emotion/react";
 import XIcon from "../atoms/svg/XIcon";

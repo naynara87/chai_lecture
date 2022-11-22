@@ -5,7 +5,7 @@ import { ChooseTextByAudioContent } from "../../types/templateContents";
 import { TemplateProps } from "../../types/templates";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TP01Layout from "../Layouts/TP01Layout";
-import ChooseTextByAudio from "../molecules/ChooseTextByAudio";
+import ChooseTextByAudio from "../contents/ChooseTextByAudio";
 import TitleContent from "../molecules/TitleContent";
 import { colorPalette } from "../../styles/colorPalette";
 import useAudio from "../../hooks/useAudio";
@@ -138,7 +138,7 @@ const TP01AComponent = ({ setPageCompleted, page }: TP01AComponentProps) => {
   ]);
   return (
     <TemplateCommonLayout>
-      <TitleContent title={page.title} description={page.description} />
+      <TitleContent title={thisPage.title} description={thisPage.description} />
       <TP01Layout>
         {ChooseTextByAudioContentData ? ChooseTextByAudioContents() : <></>}
         <CheckButton

@@ -20,7 +20,7 @@ export const dummyData: AppData = {
       id: 1,
       type: "review",
       title: "복습",
-      isCompleted: true,
+      isCompleted: false,
       introduction: {
         title: "지난 시간에 배운 내용을 복습해 봐요.",
         description: "지난 시간 복습 상세 사항.",
@@ -28,730 +28,72 @@ export const dummyData: AppData = {
       cornerIcon: `${process.env.PUBLIC_URL}/images/icon/img_sort_page01.png`,
       pages: [
         {
-          id: 10,
-          title: "워밍업 퀴즈",
-          description: "중국의 크기를 알고 있나요?",
-          template: {
-            type: "TP11F",
-            contents: [
-              {
-                type: "iconText",
-                data: [
-                  {
-                    icon: {
-                      src: "https://i.picsum.photos/id/128/200/200.jpg?hmac=m4AGhj",
-                    },
-                    text: "<p>중국의 면적은 약 960만 km²로 매우 넓습니다.<br />한국의 면적은 약 100만 km²입니다.</p>",
-                  },
-                ],
-              },
-              {
-                type: "chooseText",
-                data: [
-                  {
-                    choices: ["그렇다", "아니다"],
-                    answerIndex: 0,
-                    tip: "",
-                    explanation: "<p>성조는 운모 위에 표시합니다.</p>",
-                  },
-                ],
-              },
-            ],
-          },
-        },
-        {
           id: 11,
-          title: "중국어의 개요",
-          description: "중국어의 개요에 대해 알아봅시다.",
-          tabs: [
-            {
-              name: "한어",
-              active: true,
-              pageId: 11,
-            },
-            {
-              name: "보통화",
-              active: false,
-              pageId: 13,
-            },
-            {
-              name: "중국어의 구성(한자)",
-              active: false,
-              pageId: 15,
-            },
-            {
-              name: "중국어의 구성(한어 병음)",
-              active: false,
-              pageId: 17,
-            },
-          ],
           template: {
-            type: "TP15A",
-            contents: [
-              {
-                type: "html",
-                data: [
-                  {
-                    kind: "description",
-                    text: "<p>중국에서는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
-                  },
-                  {
-                    kind: "tip",
-                    text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
-                  },
-                ],
-              },
-              {
-                type: "images",
-                data: [
-                  {
-                    src: `${process.env.PUBLIC_URL}/images/icon/tabs_image.png`,
-                  },
-                ],
-              },
-            ],
+            type: "TPIframe",
+            url: "http://md-admin.bubblecon.io/bubble/embed/2242",
           },
         },
         {
           id: 12,
-          title: "지난 레슨 확인하기",
-          description: "녹음을 듣고 알맞은 발음을 고르세요.",
           template: {
-            type: "TP03B",
-            contents: [
-              {
-                type: "html",
-                data: [
-                  {
-                    text: "<p>성조는 음의 높낮이와 그 변화를 표시한 것으로, <br />중국어에는 네 개의 성조가 있습니다.</p>",
-                  },
-                ],
-              },
-              {
-                type: "textBoxes",
-                data: [
-                  {
-                    main: "a",
-                    sub: "",
-                    description: "",
-                  },
-                  {
-                    main: "o",
-                    sub: "",
-                    description: "",
-                  },
-                  {
-                    main: "e",
-                    sub: "",
-                    description: "",
-                  },
-                  {
-                    main: "i",
-                    sub: "",
-                    description: "",
-                  },
-                  {
-                    main: "u",
-                    sub: "",
-                    description: "",
-                  },
-                  {
-                    main: "u",
-                    sub: "",
-                    description: "",
-                  },
-                ],
-              },
-            ],
+            type: "TPIframe",
+            url: "http://md-admin.bubblecon.io/bubble/embed/2243",
           },
         },
         {
           id: 13,
-          title: "중국어의 개요13",
-          description: "중국어의 개요에 대해 알아봅시다.",
-          tabs: [
-            {
-              name: "한어",
-              active: false,
-              pageId: 11,
-            },
-            {
-              name: "보통화",
-              active: true,
-              pageId: 13,
-            },
-            {
-              name: "중국어의 구성(한자)",
-              active: false,
-              pageId: 15,
-            },
-            {
-              name: "중국어의 구성(한어 병음)",
-              active: false,
-              pageId: 17,
-            },
-          ],
+          title: "문제 템플릿 3",
+          description: "문제 템플릿 3 상세 사항.",
           template: {
-            type: "TP15A",
-            contents: [
-              {
-                type: "html",
-                data: [
-                  {
-                    kind: "description",
-                    text: "<p>중국에서는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
-                  },
-                  {
-                    kind: "tip",
-                    text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
-                  },
-                ],
-              },
-              {
-                type: "images",
-                data: [
-                  {
-                    src: `${process.env.PUBLIC_URL}/images/icon/tabs_image.png`,
-                  },
-                ],
-              },
-            ],
+            type: "TPIframe",
+            url: "http://md-admin.bubblecon.io/bubble/embed/2244",
           },
         },
         {
           id: 14,
-          title: "단어 익히기",
-          description: "녹음을 듣고 알맞은 발음을 고르세요.",
           template: {
-            type: "TP03B",
-            contents: [
-              {
-                type: "html",
-                data: [
-                  {
-                    text: "운모는 음절에서 성모를 ...",
-                  },
-                ],
-              },
-              {
-                type: "textBoxes",
-                data: [
-                  {
-                    main: "경성",
-                    sub: "",
-                    description: "<p>ai ao an ang</p>",
-                  },
-                  {
-                    main: "한어",
-                    sub: "",
-                    description: "<p>ou ong</p>",
-                  },
-                ],
-              },
-            ],
+            type: "TPIframe",
+            url: "http://md-admin.bubblecon.io/bubble/embed/2245",
           },
         },
         {
           id: 15,
-          title: "중국어의 개요15",
-          description: "중국어의 개요에 대해 알아봅시다.",
-          tabs: [
-            {
-              name: "한어",
-              active: false,
-              pageId: 11,
-            },
-            {
-              name: "보통화",
-              active: false,
-              pageId: 13,
-            },
-            {
-              name: "중국어의 구성(한자)",
-              active: true,
-              pageId: 15,
-            },
-            {
-              name: "중국어의 구성(한어 병음)",
-              active: false,
-              pageId: 17,
-            },
-          ],
+          title: "문제 템플릿 5",
+          description: "문제 템플릿 5 상세 사항.",
           template: {
-            type: "TP15A",
-            contents: [
-              {
-                type: "html",
-                data: [
-                  {
-                    kind: "description",
-                    text: "<p>중국에서는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
-                  },
-                  {
-                    kind: "tip",
-                    text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
-                  },
-                ],
-              },
-              {
-                type: "images",
-                data: [
-                  {
-                    src: `${process.env.PUBLIC_URL}/images/icon/tabs_image.png`,
-                  },
-                ],
-              },
-            ],
+            type: "TPIframe",
+            url: "http://md-admin.bubblecon.io/bubble/embed/2246",
           },
         },
         {
           id: 16,
-          title: "지난 레슨 확인하기",
-          description: "녹음을 듣고 알맞은 발음을 고르세요.",
+          title: "문제 템플릿 6",
+          description: "문제 템플릿 6 상세 사항.",
           template: {
-            type: "TP01A",
-            contents: [
-              {
-                type: "chooseTextByAudio",
-                data: [
-                  {
-                    choices: ["he", "ge"],
-                    answerIndex: 0,
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                  },
-                  {
-                    choices: ["he", "ge"],
-                    answerIndex: 1,
-                    audio: {
-                      src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
-                    },
-                  },
-                  {
-                    choices: ["qi", "xi"],
-                    answerIndex: 0,
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                  },
-                  {
-                    choices: ["ji", "qi"],
-                    answerIndex: 0,
-                    audio: {
-                      src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
-                    },
-                  },
-                  {
-                    choices: ["ying", "wang"],
-                    answerIndex: 1,
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                  },
-                ],
-              },
-            ],
+            type: "TPIframe",
+            url: "http://md-admin.bubblecon.io/bubble/embed/2247",
           },
         },
         {
           id: 17,
-          title: "중국어의 개요17",
-          description: "중국어의 개요에 대해 알아봅시다.",
-          tabs: [
-            {
-              name: "한어",
-              active: false,
-              pageId: 11,
-            },
-            {
-              name: "보통화",
-              active: false,
-              pageId: 13,
-            },
-            {
-              name: "중국어의 구성(한자)",
-              active: false,
-              pageId: 15,
-            },
-            {
-              name: "중국어의 구성(한어 병음)",
-              active: true,
-              pageId: 17,
-            },
-          ],
           template: {
-            type: "TP15A",
-            contents: [
-              {
-                type: "html",
-                data: [
-                  {
-                    kind: "description",
-                    text: "<p>중국에서는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
-                  },
-                  {
-                    kind: "tip",
-                    text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
-                  },
-                ],
-              },
-              {
-                type: "images",
-                data: [
-                  {
-                    src: `${process.env.PUBLIC_URL}/images/icon/tabs_image.png`,
-                  },
-                ],
-              },
-            ],
+            type: "TPIframe",
+            url: "http://md-admin.bubblecon.io/bubble/embed/2248",
           },
         },
         {
           id: 18,
-          title: "성조",
-          description: "발음을 듣고 따라 읽어보세요.",
           template: {
-            type: "TP03A",
-            contents: [
-              {
-                type: "html",
-                data: [
-                  {
-                    text: "성조는 음의 높낮이와 그 변화를 표시한 것으로, 중국어에는 네 개의 성조가 있습니다.",
-                  },
-                ],
-              },
-              {
-                type: "listenWords",
-                data: [
-                  {
-                    text: "a",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                    meaning: "제 1성",
-                  },
-                  {
-                    text: "a",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                    meaning: "제 2성",
-                  },
-                  {
-                    text: "a",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                    meaning: "제 3성",
-                  },
-                  {
-                    text: "a",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                    meaning: "제 4성",
-                  },
-                ],
-              },
-            ],
+            type: "TPIframe",
+            url: "http://md-admin.bubblecon.io/bubble/embed/2249",
           },
         },
         {
           id: 19,
-          title: "성조3",
-          description: "발음을 듣고 따라 읽어보세요.3",
           template: {
-            type: "TP03C",
-            contents: [
-              {
-                type: "textBoxes",
-                data: [
-                  {
-                    main: "a",
-                  },
-                  {
-                    main: "o",
-                  },
-                  {
-                    main: "e",
-                  },
-                ],
-              },
-              {
-                type: "html",
-                data: [
-                  {
-                    text: "<h4>설면음</h4><p>혀뿌리를 입천장 뒤쪽에 가까이 대고 발음합니다.</p>",
-                  },
-                ],
-              },
-              {
-                type: "audio",
-                data: [
-                  {
-                    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                  },
-                ],
-              },
-            ],
-          },
-        },
-        {
-          id: 20,
-          title: "운모",
-          description: "운모에 대해 알아봅시다",
-          template: {
-            type: "TP03D",
-            contents: [
-              {
-                type: "html",
-                data: [
-                  {
-                    text: "운모는 음절에서 성모를 제외한 나머지 부분으로, 모두 36입니다.",
-                  },
-                ],
-              },
-              {
-                type: "textBoxes",
-                data: [
-                  {
-                    main: "a",
-                    description: "ai ao an ang",
-                  },
-                  {
-                    main: "o",
-                    description: "ou ong",
-                  },
-                  {
-                    main: "e",
-                    description: "ei en eng er",
-                  },
-                ],
-              },
-              {
-                type: "audio",
-                data: [
-                  {
-                    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                  },
-                ],
-              },
-            ],
-          },
-        },
-        {
-          id: 21,
-          title: "성모",
-          description: "성모는 음절의 첫소리로, 모두 21개입니다.",
-          template: {
-            type: "TP04A",
-            contents: [
-              {
-                type: "images",
-                data: [
-                  {
-                    src: `${process.env.PUBLIC_URL}/images/icon/tp04a_image1.png`,
-                  },
-                  {
-                    src: `${process.env.PUBLIC_URL}/images/icon/tp04a_image2.png`,
-                  },
-                ],
-              },
-              {
-                type: "html",
-                data: [
-                  {
-                    text: "<h2>쌍순음</h2><p>윗입술과 아랫입술을 붙였다 떼면서 발음합니다.</p>",
-                  },
-                  {
-                    text: "<h2>순치음</h2><p>윗니를 아랫입술에 살짝 댓다 떼면서 발음합니다.</p>",
-                  },
-                ],
-              },
-              {
-                type: "audio",
-                data: [
-                  {
-                    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                  },
-                ],
-              },
-            ],
-          },
-        },
-        {
-          id: 22,
-          title: "성모",
-          description: "성모 g, k는 음절의 첫소리로, 모두 21개입니다.",
-          template: {
-            type: "TP02C",
-            contents: [
-              {
-                type: "images",
-                data: [
-                  {
-                    src: `${process.env.PUBLIC_URL}/images/icon/tp02c_image.png`,
-                  },
-                ],
-              },
-            ],
-          },
-        },
-        {
-          id: 23,
-          title: "중국어 경성, 한어병음 표기 규칙",
-          description: "한어병음 표기 규칙에 대해 알아봅시다.",
-          template: {
-            type: "TP02M",
-            contents: [
-              {
-                type: "textBoxes",
-                data: [
-                  {
-                    main: "경성",
-                  },
-                  {
-                    main: "한어병음 표기 규칙",
-                  },
-                ],
-              },
-            ],
-          },
-        },
-        {
-          id: 24,
-          title: "운모",
-          description: "i, u, o와 결합한 운모를 알아봅시다..",
-          template: {
-            type: "TP05A",
-            contents: [
-              {
-                type: "textBoxes",
-                data: [
-                  {
-                    main: "i",
-                    description:
-                      "<p>ia ie iao iou ian in iang ing iong<br />(yi: ya ye yao you yan yin yang ying young)</p>",
-                  },
-                  {
-                    main: "u",
-                    description:
-                      "<p>ua uo uai uei uan uen uang ueng<br />(wu: wa wo wai wei wan wen wang weng)</p>",
-                  },
-                  {
-                    main: "u",
-                    description: "ue uan un (yu: yue yuan yun)",
-                  },
-                ],
-              },
-              {
-                type: "html",
-                data: [
-                  {
-                    kind: "tip",
-                    text: "ie, uei, ue의 e는 '으'와 '어'의 중간 소리가 아닌 '에'에 가깝게 발읍합니다. ian, uan의 a는 '아'가 아닌 '에'에 가깝게 발음합니다. ( )의 발음 표기는 성모 없이 운모만 쓸 때의 표기법입니다. 운모 iou, uei, uen 앞에 성모가 오면 가운데 운모는 생략합니다.",
-                  },
-                ],
-              },
-            ],
-          },
-        },
-        {
-          id: 25,
-          title: "회화 미리보기",
-          description: "무슨 이야기를 하고 있을까요?",
-          template: {
-            type: "TP02F",
-            contents: [
-              {
-                type: "video",
-                data: [
-                  {
-                    src: "https://cdn.bubblecon.io/videos/45.mp4",
-                  },
-                ],
-              },
-            ],
-          },
-        },
-        {
-          id: 26,
-          title: "단어 익히기",
-          description: "단어를 확인해 보세요.",
-          template: {
-            type: "TP02N",
-            contents: [
-              {
-                type: "studyWords",
-                data: [
-                  {
-                    text: "对不起",
-                    pronunciation: "duibuqi",
-                    meaning: "미안합니다",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                  },
-                  {
-                    text: "没关系",
-                    pronunciation: "méi guanxi",
-                    meaning: "괜찮습니다",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                  },
-                ],
-              },
-            ],
-          },
-        },
-        {
-          id: 27,
-          title: "회화 알아보기",
-          description: "따라 읽어 보세요.",
-          template: {
-            type: "TP07A",
-            contents: [
-              {
-                type: "iconText",
-                data: [
-                  {
-                    icon: {
-                      src: "",
-                    },
-                    text: "따라 읽어 보세요.",
-                  },
-                ],
-              },
-              {
-                type: "images",
-                data: [
-                  {
-                    src: `${process.env.PUBLIC_URL}/images/icon/tp07a_image.png`,
-                  },
-                ],
-              },
-              {
-                type: "html",
-                data: [
-                  {
-                    text: "<h1>对不起。</h1><p>Duìbuqǐ.</p>",
-                  },
-                ],
-              },
-              {
-                type: "audioRecord",
-                data: [
-                  {
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                  },
-                ],
-              },
-            ],
+            type: "TPIframe",
+            url: "http://md-admin.bubblecon.io/bubble/embed/2250",
           },
         },
       ],
@@ -799,59 +141,7 @@ export const dummyData: AppData = {
             ],
           },
         },
-        {
-          id: 11,
-          title: "중국어의 개요",
-          description: "중국어의 개요에 대해 알아봅시다.",
-          tabs: [
-            {
-              name: "한어",
-              active: true,
-              pageId: 11,
-            },
-            {
-              name: "보통화",
-              active: false,
-              pageId: 13,
-            },
-            {
-              name: "중국어의 구성(한자)",
-              active: false,
-              pageId: 15,
-            },
-            {
-              name: "중국어의 구성(한어 병음)",
-              active: false,
-              pageId: 17,
-            },
-          ],
-          template: {
-            type: "TP15A",
-            contents: [
-              {
-                type: "html",
-                data: [
-                  {
-                    kind: "description",
-                    text: "<p>중국에서는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
-                  },
-                  {
-                    kind: "tip",
-                    text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
-                  },
-                ],
-              },
-              {
-                type: "images",
-                data: [
-                  {
-                    src: `${process.env.PUBLIC_URL}/images/icon/tabs_image.png`,
-                  },
-                ],
-              },
-            ],
-          },
-        },
+
         {
           id: 12,
           title: "지난 레슨 확인하기",
@@ -905,59 +195,7 @@ export const dummyData: AppData = {
             ],
           },
         },
-        {
-          id: 13,
-          title: "중국어의 개요13",
-          description: "중국어의 개요에 대해 알아봅시다.",
-          tabs: [
-            {
-              name: "한어",
-              active: false,
-              pageId: 11,
-            },
-            {
-              name: "보통화",
-              active: true,
-              pageId: 13,
-            },
-            {
-              name: "중국어의 구성(한자)",
-              active: false,
-              pageId: 15,
-            },
-            {
-              name: "중국어의 구성(한어 병음)",
-              active: false,
-              pageId: 17,
-            },
-          ],
-          template: {
-            type: "TP15A",
-            contents: [
-              {
-                type: "html",
-                data: [
-                  {
-                    kind: "description",
-                    text: "<p>중국에서는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
-                  },
-                  {
-                    kind: "tip",
-                    text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
-                  },
-                ],
-              },
-              {
-                type: "images",
-                data: [
-                  {
-                    src: `${process.env.PUBLIC_URL}/images/icon/tabs_image.png`,
-                  },
-                ],
-              },
-            ],
-          },
-        },
+
         {
           id: 14,
           title: "단어 익히기",
@@ -991,59 +229,7 @@ export const dummyData: AppData = {
             ],
           },
         },
-        {
-          id: 15,
-          title: "중국어의 개요15",
-          description: "중국어의 개요에 대해 알아봅시다.",
-          tabs: [
-            {
-              name: "한어",
-              active: false,
-              pageId: 11,
-            },
-            {
-              name: "보통화",
-              active: false,
-              pageId: 13,
-            },
-            {
-              name: "중국어의 구성(한자)",
-              active: true,
-              pageId: 15,
-            },
-            {
-              name: "중국어의 구성(한어 병음)",
-              active: false,
-              pageId: 17,
-            },
-          ],
-          template: {
-            type: "TP15A",
-            contents: [
-              {
-                type: "html",
-                data: [
-                  {
-                    kind: "description",
-                    text: "<p>중국에서는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
-                  },
-                  {
-                    kind: "tip",
-                    text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
-                  },
-                ],
-              },
-              {
-                type: "images",
-                data: [
-                  {
-                    src: `${process.env.PUBLIC_URL}/images/icon/tabs_image.png`,
-                  },
-                ],
-              },
-            ],
-          },
-        },
+
         {
           id: 16,
           title: "지난 레슨 확인하기",
@@ -1094,59 +280,7 @@ export const dummyData: AppData = {
             ],
           },
         },
-        {
-          id: 17,
-          title: "중국어의 개요17",
-          description: "중국어의 개요에 대해 알아봅시다.",
-          tabs: [
-            {
-              name: "한어",
-              active: false,
-              pageId: 11,
-            },
-            {
-              name: "보통화",
-              active: false,
-              pageId: 13,
-            },
-            {
-              name: "중국어의 구성(한자)",
-              active: false,
-              pageId: 15,
-            },
-            {
-              name: "중국어의 구성(한어 병음)",
-              active: true,
-              pageId: 17,
-            },
-          ],
-          template: {
-            type: "TP15A",
-            contents: [
-              {
-                type: "html",
-                data: [
-                  {
-                    kind: "description",
-                    text: "<p>중국에서는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
-                  },
-                  {
-                    kind: "tip",
-                    text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
-                  },
-                ],
-              },
-              {
-                type: "images",
-                data: [
-                  {
-                    src: `${process.env.PUBLIC_URL}/images/icon/tabs_image.png`,
-                  },
-                ],
-              },
-            ],
-          },
-        },
+
         {
           id: 18,
           title: "성조",
@@ -1752,59 +886,7 @@ export const dummyData: AppData = {
             ],
           },
         },
-        {
-          id: 11,
-          title: "중국어의 개요",
-          description: "중국어의 개요에 대해 알아봅시다.",
-          tabs: [
-            {
-              name: "한어",
-              active: true,
-              pageId: 11,
-            },
-            {
-              name: "보통화",
-              active: false,
-              pageId: 13,
-            },
-            {
-              name: "중국어의 구성(한자)",
-              active: false,
-              pageId: 15,
-            },
-            {
-              name: "중국어의 구성(한어 병음)",
-              active: false,
-              pageId: 17,
-            },
-          ],
-          template: {
-            type: "TP15A",
-            contents: [
-              {
-                type: "html",
-                data: [
-                  {
-                    kind: "description",
-                    text: "<p>중국에서는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
-                  },
-                  {
-                    kind: "tip",
-                    text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
-                  },
-                ],
-              },
-              {
-                type: "images",
-                data: [
-                  {
-                    src: `${process.env.PUBLIC_URL}/images/icon/tabs_image.png`,
-                  },
-                ],
-              },
-            ],
-          },
-        },
+
         {
           id: 12,
           title: "지난 레슨 확인하기",
@@ -1858,59 +940,7 @@ export const dummyData: AppData = {
             ],
           },
         },
-        {
-          id: 13,
-          title: "중국어의 개요13",
-          description: "중국어의 개요에 대해 알아봅시다.",
-          tabs: [
-            {
-              name: "한어",
-              active: false,
-              pageId: 11,
-            },
-            {
-              name: "보통화",
-              active: true,
-              pageId: 13,
-            },
-            {
-              name: "중국어의 구성(한자)",
-              active: false,
-              pageId: 15,
-            },
-            {
-              name: "중국어의 구성(한어 병음)",
-              active: false,
-              pageId: 17,
-            },
-          ],
-          template: {
-            type: "TP15A",
-            contents: [
-              {
-                type: "html",
-                data: [
-                  {
-                    kind: "description",
-                    text: "<p>중국에서는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
-                  },
-                  {
-                    kind: "tip",
-                    text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
-                  },
-                ],
-              },
-              {
-                type: "images",
-                data: [
-                  {
-                    src: `${process.env.PUBLIC_URL}/images/icon/tabs_image.png`,
-                  },
-                ],
-              },
-            ],
-          },
-        },
+
         {
           id: 14,
           title: "단어 익히기",
@@ -1944,59 +974,7 @@ export const dummyData: AppData = {
             ],
           },
         },
-        {
-          id: 15,
-          title: "중국어의 개요15",
-          description: "중국어의 개요에 대해 알아봅시다.",
-          tabs: [
-            {
-              name: "한어",
-              active: false,
-              pageId: 11,
-            },
-            {
-              name: "보통화",
-              active: false,
-              pageId: 13,
-            },
-            {
-              name: "중국어의 구성(한자)",
-              active: true,
-              pageId: 15,
-            },
-            {
-              name: "중국어의 구성(한어 병음)",
-              active: false,
-              pageId: 17,
-            },
-          ],
-          template: {
-            type: "TP15A",
-            contents: [
-              {
-                type: "html",
-                data: [
-                  {
-                    kind: "description",
-                    text: "<p>중국에서는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
-                  },
-                  {
-                    kind: "tip",
-                    text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
-                  },
-                ],
-              },
-              {
-                type: "images",
-                data: [
-                  {
-                    src: `${process.env.PUBLIC_URL}/images/icon/tabs_image.png`,
-                  },
-                ],
-              },
-            ],
-          },
-        },
+
         {
           id: 16,
           title: "지난 레슨 확인하기",
@@ -2047,59 +1025,7 @@ export const dummyData: AppData = {
             ],
           },
         },
-        {
-          id: 17,
-          title: "중국어의 개요17",
-          description: "중국어의 개요에 대해 알아봅시다.",
-          tabs: [
-            {
-              name: "한어",
-              active: false,
-              pageId: 11,
-            },
-            {
-              name: "보통화",
-              active: false,
-              pageId: 13,
-            },
-            {
-              name: "중국어의 구성(한자)",
-              active: false,
-              pageId: 15,
-            },
-            {
-              name: "중국어의 구성(한어 병음)",
-              active: true,
-              pageId: 17,
-            },
-          ],
-          template: {
-            type: "TP15A",
-            contents: [
-              {
-                type: "html",
-                data: [
-                  {
-                    kind: "description",
-                    text: "<p>중국에서는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
-                  },
-                  {
-                    kind: "tip",
-                    text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
-                  },
-                ],
-              },
-              {
-                type: "images",
-                data: [
-                  {
-                    src: `${process.env.PUBLIC_URL}/images/icon/tabs_image.png`,
-                  },
-                ],
-              },
-            ],
-          },
-        },
+
         {
           id: 18,
           title: "성조",
@@ -2492,59 +1418,7 @@ export const dummyData: AppData = {
             ],
           },
         },
-        {
-          id: 11,
-          title: "중국어의 개요",
-          description: "중국어의 개요에 대해 알아봅시다.",
-          tabs: [
-            {
-              name: "한어",
-              active: true,
-              pageId: 11,
-            },
-            {
-              name: "보통화",
-              active: false,
-              pageId: 13,
-            },
-            {
-              name: "중국어의 구성(한자)",
-              active: false,
-              pageId: 15,
-            },
-            {
-              name: "중국어의 구성(한어 병음)",
-              active: false,
-              pageId: 17,
-            },
-          ],
-          template: {
-            type: "TP15A",
-            contents: [
-              {
-                type: "html",
-                data: [
-                  {
-                    kind: "description",
-                    text: "<p>중국에서는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
-                  },
-                  {
-                    kind: "tip",
-                    text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
-                  },
-                ],
-              },
-              {
-                type: "images",
-                data: [
-                  {
-                    src: `${process.env.PUBLIC_URL}/images/icon/tabs_image.png`,
-                  },
-                ],
-              },
-            ],
-          },
-        },
+
         {
           id: 12,
           title: "지난 레슨 확인하기",
@@ -2598,59 +1472,7 @@ export const dummyData: AppData = {
             ],
           },
         },
-        {
-          id: 13,
-          title: "중국어의 개요13",
-          description: "중국어의 개요에 대해 알아봅시다.",
-          tabs: [
-            {
-              name: "한어",
-              active: false,
-              pageId: 11,
-            },
-            {
-              name: "보통화",
-              active: true,
-              pageId: 13,
-            },
-            {
-              name: "중국어의 구성(한자)",
-              active: false,
-              pageId: 15,
-            },
-            {
-              name: "중국어의 구성(한어 병음)",
-              active: false,
-              pageId: 17,
-            },
-          ],
-          template: {
-            type: "TP15A",
-            contents: [
-              {
-                type: "html",
-                data: [
-                  {
-                    kind: "description",
-                    text: "<p>중국에서는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
-                  },
-                  {
-                    kind: "tip",
-                    text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
-                  },
-                ],
-              },
-              {
-                type: "images",
-                data: [
-                  {
-                    src: `${process.env.PUBLIC_URL}/images/icon/tabs_image.png`,
-                  },
-                ],
-              },
-            ],
-          },
-        },
+
         {
           id: 14,
           title: "단어 익히기",
@@ -2684,59 +1506,7 @@ export const dummyData: AppData = {
             ],
           },
         },
-        {
-          id: 15,
-          title: "중국어의 개요15",
-          description: "중국어의 개요에 대해 알아봅시다.",
-          tabs: [
-            {
-              name: "한어",
-              active: false,
-              pageId: 11,
-            },
-            {
-              name: "보통화",
-              active: false,
-              pageId: 13,
-            },
-            {
-              name: "중국어의 구성(한자)",
-              active: true,
-              pageId: 15,
-            },
-            {
-              name: "중국어의 구성(한어 병음)",
-              active: false,
-              pageId: 17,
-            },
-          ],
-          template: {
-            type: "TP15A",
-            contents: [
-              {
-                type: "html",
-                data: [
-                  {
-                    kind: "description",
-                    text: "<p>중국에서는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
-                  },
-                  {
-                    kind: "tip",
-                    text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
-                  },
-                ],
-              },
-              {
-                type: "images",
-                data: [
-                  {
-                    src: `${process.env.PUBLIC_URL}/images/icon/tabs_image.png`,
-                  },
-                ],
-              },
-            ],
-          },
-        },
+
         {
           id: 16,
           title: "지난 레슨 확인하기",
@@ -2787,59 +1557,7 @@ export const dummyData: AppData = {
             ],
           },
         },
-        {
-          id: 17,
-          title: "중국어의 개요17",
-          description: "중국어의 개요에 대해 알아봅시다.",
-          tabs: [
-            {
-              name: "한어",
-              active: false,
-              pageId: 11,
-            },
-            {
-              name: "보통화",
-              active: false,
-              pageId: 13,
-            },
-            {
-              name: "중국어의 구성(한자)",
-              active: false,
-              pageId: 15,
-            },
-            {
-              name: "중국어의 구성(한어 병음)",
-              active: true,
-              pageId: 17,
-            },
-          ],
-          template: {
-            type: "TP15A",
-            contents: [
-              {
-                type: "html",
-                data: [
-                  {
-                    kind: "description",
-                    text: "<p>중국에서는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
-                  },
-                  {
-                    kind: "tip",
-                    text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
-                  },
-                ],
-              },
-              {
-                type: "images",
-                data: [
-                  {
-                    src: `${process.env.PUBLIC_URL}/images/icon/tabs_image.png`,
-                  },
-                ],
-              },
-            ],
-          },
-        },
+
         {
           id: 18,
           title: "성조",
@@ -3232,59 +1950,7 @@ export const dummyData: AppData = {
             ],
           },
         },
-        {
-          id: 11,
-          title: "중국어의 개요",
-          description: "중국어의 개요에 대해 알아봅시다.",
-          tabs: [
-            {
-              name: "한어",
-              active: true,
-              pageId: 11,
-            },
-            {
-              name: "보통화",
-              active: false,
-              pageId: 13,
-            },
-            {
-              name: "중국어의 구성(한자)",
-              active: false,
-              pageId: 15,
-            },
-            {
-              name: "중국어의 구성(한어 병음)",
-              active: false,
-              pageId: 17,
-            },
-          ],
-          template: {
-            type: "TP15A",
-            contents: [
-              {
-                type: "html",
-                data: [
-                  {
-                    kind: "description",
-                    text: "<p>중국에서는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
-                  },
-                  {
-                    kind: "tip",
-                    text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
-                  },
-                ],
-              },
-              {
-                type: "images",
-                data: [
-                  {
-                    src: `${process.env.PUBLIC_URL}/images/icon/tabs_image.png`,
-                  },
-                ],
-              },
-            ],
-          },
-        },
+
         {
           id: 12,
           title: "지난 레슨 확인하기",
@@ -3338,59 +2004,7 @@ export const dummyData: AppData = {
             ],
           },
         },
-        {
-          id: 13,
-          title: "중국어의 개요13",
-          description: "중국어의 개요에 대해 알아봅시다.",
-          tabs: [
-            {
-              name: "한어",
-              active: false,
-              pageId: 11,
-            },
-            {
-              name: "보통화",
-              active: true,
-              pageId: 13,
-            },
-            {
-              name: "중국어의 구성(한자)",
-              active: false,
-              pageId: 15,
-            },
-            {
-              name: "중국어의 구성(한어 병음)",
-              active: false,
-              pageId: 17,
-            },
-          ],
-          template: {
-            type: "TP15A",
-            contents: [
-              {
-                type: "html",
-                data: [
-                  {
-                    kind: "description",
-                    text: "<p>중국에서는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
-                  },
-                  {
-                    kind: "tip",
-                    text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
-                  },
-                ],
-              },
-              {
-                type: "images",
-                data: [
-                  {
-                    src: `${process.env.PUBLIC_URL}/images/icon/tabs_image.png`,
-                  },
-                ],
-              },
-            ],
-          },
-        },
+
         {
           id: 14,
           title: "단어 익히기",
@@ -3424,59 +2038,7 @@ export const dummyData: AppData = {
             ],
           },
         },
-        {
-          id: 15,
-          title: "중국어의 개요15",
-          description: "중국어의 개요에 대해 알아봅시다.",
-          tabs: [
-            {
-              name: "한어",
-              active: false,
-              pageId: 11,
-            },
-            {
-              name: "보통화",
-              active: false,
-              pageId: 13,
-            },
-            {
-              name: "중국어의 구성(한자)",
-              active: true,
-              pageId: 15,
-            },
-            {
-              name: "중국어의 구성(한어 병음)",
-              active: false,
-              pageId: 17,
-            },
-          ],
-          template: {
-            type: "TP15A",
-            contents: [
-              {
-                type: "html",
-                data: [
-                  {
-                    kind: "description",
-                    text: "<p>중국에서는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
-                  },
-                  {
-                    kind: "tip",
-                    text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
-                  },
-                ],
-              },
-              {
-                type: "images",
-                data: [
-                  {
-                    src: `${process.env.PUBLIC_URL}/images/icon/tabs_image.png`,
-                  },
-                ],
-              },
-            ],
-          },
-        },
+
         {
           id: 16,
           title: "지난 레슨 확인하기",
@@ -3527,59 +2089,7 @@ export const dummyData: AppData = {
             ],
           },
         },
-        {
-          id: 17,
-          title: "중국어의 개요17",
-          description: "중국어의 개요에 대해 알아봅시다.",
-          tabs: [
-            {
-              name: "한어",
-              active: false,
-              pageId: 11,
-            },
-            {
-              name: "보통화",
-              active: false,
-              pageId: 13,
-            },
-            {
-              name: "중국어의 구성(한자)",
-              active: false,
-              pageId: 15,
-            },
-            {
-              name: "중국어의 구성(한어 병음)",
-              active: true,
-              pageId: 17,
-            },
-          ],
-          template: {
-            type: "TP15A",
-            contents: [
-              {
-                type: "html",
-                data: [
-                  {
-                    kind: "description",
-                    text: "<p>중국에서는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
-                  },
-                  {
-                    kind: "tip",
-                    text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
-                  },
-                ],
-              },
-              {
-                type: "images",
-                data: [
-                  {
-                    src: `${process.env.PUBLIC_URL}/images/icon/tabs_image.png`,
-                  },
-                ],
-              },
-            ],
-          },
-        },
+
         {
           id: 18,
           title: "성조",
@@ -3972,59 +2482,7 @@ export const dummyData: AppData = {
             ],
           },
         },
-        {
-          id: 11,
-          title: "중국어의 개요",
-          description: "중국어의 개요에 대해 알아봅시다.",
-          tabs: [
-            {
-              name: "한어",
-              active: true,
-              pageId: 11,
-            },
-            {
-              name: "보통화",
-              active: false,
-              pageId: 13,
-            },
-            {
-              name: "중국어의 구성(한자)",
-              active: false,
-              pageId: 15,
-            },
-            {
-              name: "중국어의 구성(한어 병음)",
-              active: false,
-              pageId: 17,
-            },
-          ],
-          template: {
-            type: "TP15A",
-            contents: [
-              {
-                type: "html",
-                data: [
-                  {
-                    kind: "description",
-                    text: "<p>중국에서는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
-                  },
-                  {
-                    kind: "tip",
-                    text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
-                  },
-                ],
-              },
-              {
-                type: "images",
-                data: [
-                  {
-                    src: `${process.env.PUBLIC_URL}/images/icon/tabs_image.png`,
-                  },
-                ],
-              },
-            ],
-          },
-        },
+
         {
           id: 12,
           title: "지난 레슨 확인하기",
@@ -4078,59 +2536,7 @@ export const dummyData: AppData = {
             ],
           },
         },
-        {
-          id: 13,
-          title: "중국어의 개요13",
-          description: "중국어의 개요에 대해 알아봅시다.",
-          tabs: [
-            {
-              name: "한어",
-              active: false,
-              pageId: 11,
-            },
-            {
-              name: "보통화",
-              active: true,
-              pageId: 13,
-            },
-            {
-              name: "중국어의 구성(한자)",
-              active: false,
-              pageId: 15,
-            },
-            {
-              name: "중국어의 구성(한어 병음)",
-              active: false,
-              pageId: 17,
-            },
-          ],
-          template: {
-            type: "TP15A",
-            contents: [
-              {
-                type: "html",
-                data: [
-                  {
-                    kind: "description",
-                    text: "<p>중국에서는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
-                  },
-                  {
-                    kind: "tip",
-                    text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
-                  },
-                ],
-              },
-              {
-                type: "images",
-                data: [
-                  {
-                    src: `${process.env.PUBLIC_URL}/images/icon/tabs_image.png`,
-                  },
-                ],
-              },
-            ],
-          },
-        },
+
         {
           id: 14,
           title: "단어 익히기",
@@ -4164,59 +2570,7 @@ export const dummyData: AppData = {
             ],
           },
         },
-        {
-          id: 15,
-          title: "중국어의 개요15",
-          description: "중국어의 개요에 대해 알아봅시다.",
-          tabs: [
-            {
-              name: "한어",
-              active: false,
-              pageId: 11,
-            },
-            {
-              name: "보통화",
-              active: false,
-              pageId: 13,
-            },
-            {
-              name: "중국어의 구성(한자)",
-              active: true,
-              pageId: 15,
-            },
-            {
-              name: "중국어의 구성(한어 병음)",
-              active: false,
-              pageId: 17,
-            },
-          ],
-          template: {
-            type: "TP15A",
-            contents: [
-              {
-                type: "html",
-                data: [
-                  {
-                    kind: "description",
-                    text: "<p>중국에서는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
-                  },
-                  {
-                    kind: "tip",
-                    text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
-                  },
-                ],
-              },
-              {
-                type: "images",
-                data: [
-                  {
-                    src: `${process.env.PUBLIC_URL}/images/icon/tabs_image.png`,
-                  },
-                ],
-              },
-            ],
-          },
-        },
+
         {
           id: 16,
           title: "지난 레슨 확인하기",
@@ -4267,59 +2621,7 @@ export const dummyData: AppData = {
             ],
           },
         },
-        {
-          id: 17,
-          title: "중국어의 개요17",
-          description: "중국어의 개요에 대해 알아봅시다.",
-          tabs: [
-            {
-              name: "한어",
-              active: false,
-              pageId: 11,
-            },
-            {
-              name: "보통화",
-              active: false,
-              pageId: 13,
-            },
-            {
-              name: "중국어의 구성(한자)",
-              active: false,
-              pageId: 15,
-            },
-            {
-              name: "중국어의 구성(한어 병음)",
-              active: true,
-              pageId: 17,
-            },
-          ],
-          template: {
-            type: "TP15A",
-            contents: [
-              {
-                type: "html",
-                data: [
-                  {
-                    kind: "description",
-                    text: "<p>중국에서는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
-                  },
-                  {
-                    kind: "tip",
-                    text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
-                  },
-                ],
-              },
-              {
-                type: "images",
-                data: [
-                  {
-                    src: `${process.env.PUBLIC_URL}/images/icon/tabs_image.png`,
-                  },
-                ],
-              },
-            ],
-          },
-        },
+
         {
           id: 18,
           title: "성조",
@@ -4712,59 +3014,7 @@ export const dummyData: AppData = {
             ],
           },
         },
-        {
-          id: 11,
-          title: "중국어의 개요",
-          description: "중국어의 개요에 대해 알아봅시다.",
-          tabs: [
-            {
-              name: "한어",
-              active: true,
-              pageId: 11,
-            },
-            {
-              name: "보통화",
-              active: false,
-              pageId: 13,
-            },
-            {
-              name: "중국어의 구성(한자)",
-              active: false,
-              pageId: 15,
-            },
-            {
-              name: "중국어의 구성(한어 병음)",
-              active: false,
-              pageId: 17,
-            },
-          ],
-          template: {
-            type: "TP15A",
-            contents: [
-              {
-                type: "html",
-                data: [
-                  {
-                    kind: "description",
-                    text: "<p>중국에서는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
-                  },
-                  {
-                    kind: "tip",
-                    text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
-                  },
-                ],
-              },
-              {
-                type: "images",
-                data: [
-                  {
-                    src: `${process.env.PUBLIC_URL}/images/icon/tabs_image.png`,
-                  },
-                ],
-              },
-            ],
-          },
-        },
+
         {
           id: 12,
           title: "지난 레슨 확인하기",
@@ -4818,59 +3068,7 @@ export const dummyData: AppData = {
             ],
           },
         },
-        {
-          id: 13,
-          title: "중국어의 개요13",
-          description: "중국어의 개요에 대해 알아봅시다.",
-          tabs: [
-            {
-              name: "한어",
-              active: false,
-              pageId: 11,
-            },
-            {
-              name: "보통화",
-              active: true,
-              pageId: 13,
-            },
-            {
-              name: "중국어의 구성(한자)",
-              active: false,
-              pageId: 15,
-            },
-            {
-              name: "중국어의 구성(한어 병음)",
-              active: false,
-              pageId: 17,
-            },
-          ],
-          template: {
-            type: "TP15A",
-            contents: [
-              {
-                type: "html",
-                data: [
-                  {
-                    kind: "description",
-                    text: "<p>중국에서는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
-                  },
-                  {
-                    kind: "tip",
-                    text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
-                  },
-                ],
-              },
-              {
-                type: "images",
-                data: [
-                  {
-                    src: `${process.env.PUBLIC_URL}/images/icon/tabs_image.png`,
-                  },
-                ],
-              },
-            ],
-          },
-        },
+
         {
           id: 14,
           title: "단어 익히기",
@@ -4898,59 +3096,6 @@ export const dummyData: AppData = {
                     main: "한어",
                     sub: "",
                     description: "<p>ou ong</p>",
-                  },
-                ],
-              },
-            ],
-          },
-        },
-        {
-          id: 15,
-          title: "중국어의 개요15",
-          description: "중국어의 개요에 대해 알아봅시다.",
-          tabs: [
-            {
-              name: "한어",
-              active: false,
-              pageId: 11,
-            },
-            {
-              name: "보통화",
-              active: false,
-              pageId: 13,
-            },
-            {
-              name: "중국어의 구성(한자)",
-              active: true,
-              pageId: 15,
-            },
-            {
-              name: "중국어의 구성(한어 병음)",
-              active: false,
-              pageId: 17,
-            },
-          ],
-          template: {
-            type: "TP15A",
-            contents: [
-              {
-                type: "html",
-                data: [
-                  {
-                    kind: "description",
-                    text: "<p>중국에서는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
-                  },
-                  {
-                    kind: "tip",
-                    text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
-                  },
-                ],
-              },
-              {
-                type: "images",
-                data: [
-                  {
-                    src: `${process.env.PUBLIC_URL}/images/icon/tabs_image.png`,
                   },
                 ],
               },
@@ -5001,59 +3146,6 @@ export const dummyData: AppData = {
                     audio: {
                       src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
                     },
-                  },
-                ],
-              },
-            ],
-          },
-        },
-        {
-          id: 17,
-          title: "중국어의 개요17",
-          description: "중국어의 개요에 대해 알아봅시다.",
-          tabs: [
-            {
-              name: "한어",
-              active: false,
-              pageId: 11,
-            },
-            {
-              name: "보통화",
-              active: false,
-              pageId: 13,
-            },
-            {
-              name: "중국어의 구성(한자)",
-              active: false,
-              pageId: 15,
-            },
-            {
-              name: "중국어의 구성(한어 병음)",
-              active: true,
-              pageId: 17,
-            },
-          ],
-          template: {
-            type: "TP15A",
-            contents: [
-              {
-                type: "html",
-                data: [
-                  {
-                    kind: "description",
-                    text: "<p>중국에서는 기존의 복잡한 한자(번체자)를 쉽고 간단하게 만든 '간화자'를 사용합니다.</p>",
-                  },
-                  {
-                    kind: "tip",
-                    text: "<p>'간화자'는 간체자'라고도 합니다.</p>",
-                  },
-                ],
-              },
-              {
-                type: "images",
-                data: [
-                  {
-                    src: `${process.env.PUBLIC_URL}/images/icon/tabs_image.png`,
                   },
                 ],
               },

@@ -3,7 +3,7 @@ import React, { useEffect, useMemo } from "react";
 import { TP02C } from "../../types/pageTemplate";
 import { ImagesContent } from "../../types/templateContents";
 import { TemplateProps } from "../../types/templates";
-import ImageContentComponent from "../atoms/ImageContentComponent";
+import ImageContentComponent from "../contents/ImageContentComponent";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TP02Layout from "../Layouts/TP02Layout";
 import TitleContent from "../molecules/TitleContent";

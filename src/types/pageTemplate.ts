@@ -22,6 +22,18 @@ export type Tab = {
   pageId?: ID;
 };
 
+export type TPIframe = {
+  id: ID;
+  // title: string;
+  // description: string;
+  template: TPIframeTemplate;
+};
+
+export type TPIframeTemplate = {
+  type: "TPIframe";
+  url: string;
+};
+
 export type TP01A = {
   id: ID;
   title: string;

@@ -2,7 +2,7 @@ import React, { useEffect, useMemo } from "react";
 import { TP02F } from "../../types/pageTemplate";
 import { VideoContent } from "../../types/templateContents";
 import { TemplateProps } from "../../types/templates";
-import VideoContentComponent from "../atoms/VideoContentComponent";
+import VideoContentComponent from "../contents/VideoContentComponent";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TP02Layout from "../Layouts/TP02Layout";
 import TitleContent from "../molecules/TitleContent";
