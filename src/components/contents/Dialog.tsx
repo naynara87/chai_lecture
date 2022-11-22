@@ -2,6 +2,11 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import styled from "@emotion/styled";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
 import { css } from "@emotion/react";
+import AudioButton from "../atoms/AudioButton";
+
+interface PropfileProps {
+  icon: string;
+}
 
 const DialogWrapper = styled.div`
   &.hide {
@@ -13,22 +18,39 @@ const TalkBubbleGrp = styled.div`
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: start;
-  -ms-flex-align: start;
-  align-items: flex-start;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: start;
   -ms-flex-pack: start;
   justify-content: flex-start;
   margin: 2.0833333333vw 0;
 `;
 
-const Profile = styled.div`
+const Profile = styled.div<PropfileProps>`
   width: 6.25vw;
   height: 6.25vw;
   border-radius: 50%;
   overflow: hidden;
   background-color: #6070cf;
   color: #6070cf;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: relative;
+  z-index: 2;
+
+  background: url(${(props) => props.icon});
+  background-size: cover;
+  background-position: center center;
+`;
+
+const NullProfile = styled.div`
+  width: 6.25vw;
+  height: 6.25vw;
+  border-radius: 50%;
+  overflow: hidden;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -97,7 +119,7 @@ const AnswerChoice = styled.div`
   -ms-flex-pack: center;
   justify-content: center;
   padding: 0.5555555556vh 2.5vw;
-  border: 4px solid #9b9b9b;
+  border: 2px solid #9b9b9b;
   border-radius: 2.7083333333vw;
   font-weight: 400;
   font-size: 1.5625vw;
@@ -105,6 +127,16 @@ const AnswerChoice = styled.div`
   cursor: pointer;
   &:last-child {
     margin-left: 0.8333333333vw;
+  }
+
+  &.correct {
+    border-color: #40476b;
+    color: #40476b;
+  }
+
+  &.incorrect {
+    border-color: #f65555;
+    color: #f65555;
   }
 `;
 
@@ -130,9 +162,13 @@ const QuestionBlank = styled.span`
   transform: translateY(-7%);
 `;
 
+const AudioWrapper = styled.div`
+  margin-left: 10px;
+`;
+
 const wordCss = css`
   font-size: 1.5625vw;
-  color: #6070cf;
+  color: #222222;
 `;
 
 const pronunciationCss = css`
@@ -151,13 +187,20 @@ interface DialogProps {
   icon?: string;
   text: string;
   index: number;
+  renderProfile: boolean;
   pronunciation: string;
   meaning: string;
   hasQuestion: boolean;
+  audioUrl: string;
+  currentAudioIndex: number;
   choices: string[];
+  answerIndex: number;
+  audioState: boolean;
   isHide: boolean;
+  totalAudioPlayed: boolean;
   showPinyin: boolean;
   showTranslate: boolean;
+  audioHandler: (src: string, index: number) => void;
   handleChangeContent: (index: number) => void;
   getCurrentShowDialog: (dialog: HTMLCollectionOf<Element>) => void;
 }
@@ -168,15 +211,23 @@ const Dialog = ({
   text,
   pronunciation,
   meaning,
+  renderProfile,
   hasQuestion,
   choices,
+  answerIndex,
+  totalAudioPlayed,
   isHide,
+  audioUrl,
+  audioState,
+  currentAudioIndex,
+  audioHandler,
   handleChangeContent,
   getCurrentShowDialog,
   showPinyin,
   showTranslate,
 }: DialogProps) => {
   const [userAnswer, setUserAnswer] = useState<number>(100);
+  const [correct, setCorrect] = useState<undefined | boolean>(undefined);
 
   useEffect(() => {
     if (!isHide) {
@@ -186,14 +237,30 @@ const Dialog = ({
   }, [isHide, getCurrentShowDialog]);
 
   const selectedAnswer = useCallback(
-    (answerIndex: number) => {
-      if (isHide) {
+    (userChoiceIndex: number) => {
+      if (isHide || userAnswer < 2) {
         return;
       }
       handleChangeContent(index);
-      setUserAnswer(answerIndex);
+      setUserAnswer(userChoiceIndex);
+      setCorrect(userChoiceIndex === answerIndex);
     },
-    [isHide, handleChangeContent, index],
+    [isHide, handleChangeContent, index, answerIndex, userAnswer],
+  );
+
+  const answerClassName = useCallback(
+    (choice: string): string => {
+      if (choices[userAnswer] === choice) {
+        if (correct) {
+          return "correct";
+        } else {
+          return "incorrect";
+        }
+      } else {
+        return "";
+      }
+    },
+    [choices, userAnswer, correct],
   );
 
   const renderQuiz = useMemo(() => {
@@ -206,6 +273,7 @@ const Dialog = ({
               onClick={() => {
                 selectedAnswer(index);
               }}
+              className={answerClassName(choice)}
             >
               {choice}
             </AnswerChoice>
@@ -213,13 +281,18 @@ const Dialog = ({
         })}
       </AnswerWrapper>
     );
-  }, [choices, selectedAnswer]);
+  }, [choices, selectedAnswer, answerClassName]);
 
   const questionContents = useMemo(() => {
     const questions = text.replace(/<[^>]*>?/g, "").split(/(\*.*\*)/);
     return questions.map((question, index) => {
       if (question === "*blank*") {
-        return <QuestionBlank key={index}>{choices[userAnswer]}</QuestionBlank>;
+        const blankWidth = `${Math.max(choices[0].length, choices[1].length) * 25}px`;
+        return (
+          <QuestionBlank key={index} style={{ width: blankWidth }}>
+            {choices[userAnswer]}
+          </QuestionBlank>
+        );
       } else {
         return <HtmlContentComponent key={index} html={question} customCss={wordCss} />;
       }
@@ -229,12 +302,24 @@ const Dialog = ({
   return (
     <DialogWrapper className={isHide ? "hide" : "dialog"}>
       <TalkBubbleGrp>
-        <Profile />
+        {renderProfile ? <Profile icon={icon ?? ""} /> : <NullProfile />}
         <TalkBubble>
           <QuestionWrapper>{questionContents}</QuestionWrapper>
           {showPinyin && <HtmlContentComponent html={pronunciation} customCss={pronunciationCss} />}
           {showTranslate && <HtmlContentComponent html={meaning} customCss={meaningCss} />}
         </TalkBubble>
+        <AudioWrapper>
+          <AudioButton
+            otherAudioPlayed={totalAudioPlayed}
+            audioUrl={audioUrl}
+            audioHide={isHide}
+            audioState={audioState}
+            audioIndex={index + 1}
+            audioHandler={audioHandler}
+            isAudio={false}
+            currentAudioIndex={currentAudioIndex}
+          />
+        </AudioWrapper>
       </TalkBubbleGrp>
       {hasQuestion && renderQuiz}
     </DialogWrapper>

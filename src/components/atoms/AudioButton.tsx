@@ -10,8 +10,10 @@ interface AudioProps {
   audioHide?: boolean;
   audioUrl?: string;
   audioIndex?: number;
+  audioState?: boolean;
   currentAudioIndex?: number;
   isAudio: boolean;
+  otherAudioPlayed?: boolean;
   customCss?: SerializedStyles;
   audioHandler?: (src: string, index: number, isPlayed: boolean) => void;
 }
@@ -35,7 +37,9 @@ const Audio = ({
   audioHide,
   audioUrl,
   audioIndex,
+  audioState,
   currentAudioIndex,
+  otherAudioPlayed,
   isAudio,
   customCss,
   audioHandler,
@@ -68,12 +72,19 @@ const Audio = ({
   };
 
   const renderAudioIcon = useMemo(() => {
+    if (otherAudioPlayed && isPlayed) {
+      setIsPlayed(false);
+      return <IconSpeaker />;
+    }
+    if (!audioState) {
+      setIsPlayed(false);
+    }
     if (isPlayed) {
       return <IconPlaying />;
     } else {
       return <IconSpeaker />;
     }
-  }, [isPlayed]);
+  }, [isPlayed, otherAudioPlayed, audioState]);
 
   return (
     <AudioButton onClick={handleClickAudioButton} customCss={customCss}>
