@@ -1,11 +1,14 @@
 import { SerializedStyles } from "@emotion/react";
 import styled from "@emotion/styled";
-import React from "react";
+import React, { useState } from "react";
+import ModalImage from "../modal/ModalImage";
 
 interface ImageComponentProps {
   customCss: SerializedStyles;
 }
 const ImageComponent = styled.img<ImageComponentProps>`
+  cursor: pointer;
+  -webkit-user-drag: none;
   ${(props) => props.customCss}
 `;
 
@@ -21,13 +24,23 @@ const ImageContentComponent = ({
   filter,
   customCss,
 }: ImageContentComponentProps) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleClickModalOpen = () => {
+    setIsModalOpen(true);
+  };
+
   return (
-    <ImageComponent
-      src={imageSrc}
-      alt={imageAlt}
-      style={{ filter: filter }}
-      customCss={customCss}
-    />
+    <>
+      <ModalImage isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} imageSrc={imageSrc} />
+      <ImageComponent
+        onClick={handleClickModalOpen}
+        src={imageSrc}
+        alt={imageAlt}
+        style={{ filter: filter }}
+        customCss={customCss}
+      />
+    </>
   );
 };
 
