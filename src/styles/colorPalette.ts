@@ -20,7 +20,7 @@ export const colorPalette = Object.freeze({
   c2tag: COLORS.blue500,
   c3tag: COLORS.red500,
   c4tag: COLORS.gray700,
-  backgroundWhite: COLORS.white, // TODO: gray100
+  backgroundWhite: COLORS.gray100,
   confirmBtn: COLORS.blue500,
   deepBlue: COLORS.blue700,
   borderGray: COLORS.gray200,
