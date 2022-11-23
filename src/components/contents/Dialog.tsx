@@ -8,6 +8,7 @@ import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import { colorPalette } from "../../styles/colorPalette";
 import OIcon from "../atoms/svg/OIcon";
 import XIcon from "../atoms/svg/XIcon";
+import QuestionBlank from "../atoms/QuestionBlank";
 
 interface ProfileProps {
   icon: string;
@@ -159,23 +160,6 @@ const AnswerChoice = styled.div<AnswerChoiceProps>`
 const QuestionWrapper = styled.div`
   display: flex;
   align-items: center;
-`;
-
-const QuestionBlank = styled.span`
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  min-width: 5vw;
-  height: 25px;
-  margin-right: 8px;
-  margin-left: 8px;
-  border: 3px dashed ${colorPalette.blankBorderColor};
-  border-radius: 0.625vw;
-  background-color: ${colorPalette.white};
-  color: ${colorPalette.deepBlue};
-  text-align: center;
-  user-select: none;
-  transform: translateY(-7%);
 `;
 
 const AudioWrapper = styled.div`
@@ -339,9 +323,11 @@ const Dialog = ({
         });
         const blankWidth = `${choiceMaxLength * 25}px`;
         return (
-          <QuestionBlank key={index} style={{ width: blankWidth }}>
-            {dialogQuestions.choices[userAnswer]}
-          </QuestionBlank>
+          <QuestionBlank
+            key={index}
+            width={blankWidth}
+            text={dialogQuestions.choices[userAnswer]}
+          />
         );
       } else {
         return <HtmlContentComponent key={index} html={question} customCss={wordCss} />;

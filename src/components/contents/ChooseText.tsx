@@ -44,7 +44,7 @@ const ChooseText = ({ contentData }: ChooseTextProps) => {
       </QuizAnswerContainer>
       {showExplanation && (
         <Explanation
-          explanationText={explanation}
+          explanation={explanation}
           handleClickClose={handleClickCloseExplanation}
           isCorrect={isCorrect}
         />

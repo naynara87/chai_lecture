@@ -14,6 +14,7 @@ import {
   StudyWordsContent,
   DialogContent,
   NumberTableContent,
+  WordQuizCardContent,
 } from "./templateContents";
 
 export type Tab = {
@@ -118,6 +119,18 @@ type TP03DTemplate = {
 
 type TP03DContent = HtmlContent | TextBoxesContent | AudioContent;
 
+export type TP03F = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP03F";
+    contents: TP03FContent[];
+  };
+};
+
+type TP03FContent = HtmlContent | TextBoxesContent;
+
 export type TP02C = {
   id: ID;
   title: string;
@@ -145,6 +158,18 @@ type TP02MTemplate = {
 };
 
 type TP02MContent = TextBoxesContent;
+
+export type TP02K = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP02K";
+    contents: TP02KContent[];
+  };
+};
+
+type TP02KContent = DialogContent;
 
 export type TP04A = {
   id: ID;
@@ -174,6 +199,30 @@ type TP05ATemplate = {
 
 type TP05AContent = TextBoxesContent | HtmlContent;
 
+export type TP11A = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP11A";
+    contents: TP11AContent[];
+  };
+};
+
+type TP11AContent = IconTextContent | ChooseTextContent;
+
+export type TP10A = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP10A";
+    contents: TP10AContent[];
+  };
+};
+
+type TP10AContent = WordQuizCardContent;
+
 export type TP11F = {
   id: ID;
   title: string;
@@ -200,9 +249,6 @@ export type TP12A = {
 
 type TP12AContent = IconTextContent | ChooseTextContent;
 
-/**
- * TP12B, TP12C
- */
 export type TP12B = {
   id: ID;
   title: string;
@@ -226,6 +272,18 @@ export type TP13A = {
 };
 
 type TP13AContent = ImagesContent | HtmlContent | AudioContent;
+
+export type TP13B = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP13B";
+    contents: TP13BContent[];
+  };
+};
+
+type TP13BContent = HtmlContent | ImagesContent;
 
 export type TP14A = {
   id: ID;
@@ -348,21 +406,6 @@ export type TP07A = {
 
 type TP07AContent = IconTextContent | ImagesContent | HtmlContent | AudioRecordContent;
 
-/**
- * TP02K, TP02H, TP02J
- */
-export type TP02K = {
-  id: ID;
-  title: string;
-  description: string;
-  template: {
-    type: "TP02K";
-    contents: TP02KContent[];
-  };
-};
-
-type TP02KContent = DialogContent;
-
 export type TP08G = {
   id: ID;
   title: string;
@@ -374,39 +417,3 @@ export type TP08G = {
 };
 
 type TP08GContent = NumberTableContent | HtmlContent;
-
-export type TP03F = {
-  id: ID;
-  title: string;
-  description: string;
-  template: {
-    type: "TP03F";
-    contents: TP03FContent[];
-  };
-};
-
-type TP03FContent = HtmlContent | TextBoxesContent;
-
-export type TP11A = {
-  id: ID;
-  title: string;
-  description: string;
-  template: {
-    type: "TP11A";
-    contents: TP11AContent[];
-  };
-};
-
-type TP11AContent = IconTextContent | ChooseTextContent;
-
-export type TP13B = {
-  id: ID;
-  title: string;
-  description: string;
-  template: {
-    type: "TP13B";
-    contents: TP13BContent[];
-  };
-};
-
-type TP13BContent = HtmlContent | ImagesContent;
