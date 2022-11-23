@@ -98,7 +98,7 @@ const TalkBubble = styled.div<TalkBubbleProps>`
     left: -22px;
     width: 52px;
     height: 30px;
-    background: #f5f5f5;
+    background: ${colorPalette.backgroundWhite};
     -webkit-border-bottom-right-radius: 110px 50px;
     -moz-border-radius-bottomright: 110px 50px;
     border-bottom-right-radius: 110px 50px;
