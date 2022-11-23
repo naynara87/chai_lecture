@@ -23,10 +23,11 @@ interface TP02LayoutProps {
     | JSX.Element;
   customCss?: SerializedStyles;
   id?: string;
+  layoutRef?: React.RefObject<HTMLDivElement>;
 }
-const TP02Layout = ({ children, customCss, id }: TP02LayoutProps) => {
+const TP02Layout = ({ children, customCss, id, layoutRef }: TP02LayoutProps) => {
   return (
-    <TP02LayoutStyle customCss={customCss} id={id}>
+    <TP02LayoutStyle customCss={customCss} id={id} ref={layoutRef}>
       {children}
     </TP02LayoutStyle>
   );

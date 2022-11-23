@@ -1,17 +1,16 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import useAudio from "../../hooks/useAudio";
-import { ID } from "../../types/appData";
 import { TP02K } from "../../types/pageTemplate";
 import { DialogContent } from "../../types/templateContents";
 import { TemplateProps } from "../../types/templates";
 import DialogAudio from "../atoms/DialogAudio";
 import DialogOptionButton from "../atoms/DialogOptionButton";
-import Dialog from "../contents/Dialog";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TP02Layout from "../Layouts/TP02Layout";
 import TitleContent from "../molecules/TitleContent";
+import DialogContainer from "../molecules/DialogContainer";
 
 const DialogHeader = styled.div`
   display: flex;
@@ -31,11 +30,12 @@ const TP02KComponent = ({ setPageCompleted, page }: TP02KComponentProps) => {
   const [audioSrc, setAudioSrc] = useState("");
   const [audioState, setAudioState] = useState(false);
   const [translateOption, setTranslateOption] = useState(true);
-  const [currentContentIndex, setCurrentContentIndex] = useState(0);
+  const [currentContentIndex, setCurrentContentIndex] = useState(1);
   const [currentHeight, setCurrentHeight] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
   const dialogAudioRef = useRef<HTMLAudioElement>(null);
-  const dialogIdRef = useRef<ID>("");
+  const layoutRef = useRef<HTMLDivElement>(null);
+
   const {
     audioIndex,
     audioSrc: dialogAudioSrc,
@@ -43,8 +43,6 @@ const TP02KComponent = ({ setPageCompleted, page }: TP02KComponentProps) => {
     audioState: dialogAudioState,
     setAudioState: setDialogAudioState,
   } = useAudio(dialogAudioRef);
-
-  const layout02 = document.getElementById("layout_02");
 
   const thisPage = page as TP02K;
 
@@ -66,83 +64,6 @@ const TP02KComponent = ({ setPageCompleted, page }: TP02KComponentProps) => {
       audioRef.current.play();
     }
   }, [currentContentIndex, DialogContentData?.data, audioState]);
-
-  const handleChangeContent = useCallback(
-    (index: number) => {
-      if (DialogContentData?.data[index + 1]) {
-        setCurrentContentIndex(index + 1);
-        setAudioState(true);
-        layout02?.scrollTo({
-          top: currentHeight,
-          left: 0,
-          behavior: "smooth",
-        });
-      }
-    },
-    [DialogContentData?.data, currentHeight, layout02],
-  );
-
-  const getCurrentShowDialog = useCallback((dialogs: HTMLCollectionOf<Element>) => {
-    setCurrentHeight(Math.round(dialogs[dialogs.length - 1].scrollHeight) * dialogs.length);
-  }, []);
-
-  const handleClickDialogAudio = useCallback(
-    (src: string, index: number) => {
-      handleClickDialogAudioButton(src, index);
-      if (!dialogAudioState && audioRef.current) {
-        audioRef.current.pause();
-        setAudioState(false);
-      }
-    },
-    [handleClickDialogAudioButton, dialogAudioState],
-  );
-
-  const mainContents = useMemo(() => {
-    if (!DialogContentData?.data) {
-      return <></>;
-    }
-
-    return DialogContentData?.data.map((content, index) => {
-      const { id, icon, text, pronunciation, meaning, audio, hasQuestion, question } = content;
-      const isSameId = id !== dialogIdRef.current;
-      dialogIdRef.current = id;
-      return (
-        <Dialog
-          key={index}
-          icon={icon.src}
-          index={index}
-          text={text}
-          renderProfile={index === 0 ? true : isSameId}
-          pronunciation={pronunciation}
-          meaning={meaning}
-          audioUrl={audio.src}
-          audioHandler={handleClickDialogAudio}
-          currentAudioIndex={audioIndex}
-          totalAudioPlayed={audioState}
-          audioState={dialogAudioState}
-          hasQuestion={hasQuestion}
-          choices={question?.choices ?? []}
-          answerIndex={question?.answerIndex ?? 100}
-          isHide={currentContentIndex >= index ? false : true}
-          handleChangeContent={handleChangeContent}
-          getCurrentShowDialog={getCurrentShowDialog}
-          showPinyin={pinyinOption}
-          showTranslate={translateOption}
-        />
-      );
-    });
-  }, [
-    DialogContentData?.data,
-    pinyinOption,
-    translateOption,
-    audioIndex,
-    audioState,
-    currentContentIndex,
-    handleChangeContent,
-    getCurrentShowDialog,
-    handleClickDialogAudio,
-    dialogAudioState,
-  ]);
 
   const handleClickPinyinOption = () => {
     setPinyinOption(!pinyinOption);
@@ -177,7 +98,7 @@ const TP02KComponent = ({ setPageCompleted, page }: TP02KComponentProps) => {
       setTimeout(() => {
         setCurrentContentIndex(currentContentIndex + 1);
         setAudioState(true);
-        layout02?.scrollTo({
+        layoutRef.current?.scrollTo({
           top: currentHeight,
           left: 0,
           behavior: "smooth",
@@ -197,7 +118,7 @@ const TP02KComponent = ({ setPageCompleted, page }: TP02KComponentProps) => {
         setCurrentContentIndex(currentContentIndex + 1);
         setDialogAudioState(false);
         setAudioState(true);
-        layout02?.scrollTo({
+        layoutRef.current?.scrollTo({
           top: currentHeight,
           left: 0,
           behavior: "smooth",
@@ -209,7 +130,7 @@ const TP02KComponent = ({ setPageCompleted, page }: TP02KComponentProps) => {
   return (
     <TemplateCommonLayout>
       <TitleContent title={thisPage.title} description={thisPage.description} />
-      <TP02Layout customCss={layoutCss} id="layout_02">
+      <TP02Layout customCss={layoutCss} layoutRef={layoutRef}>
         <DialogHeader>
           <DialogAudio audioHandler={handleClickAudioButton} audioState={audioState} />
           <DialogOptionButton
@@ -223,7 +144,22 @@ const TP02KComponent = ({ setPageCompleted, page }: TP02KComponentProps) => {
             handleClickOption={handleClickTranslateOption}
           />
         </DialogHeader>
-        {mainContents}
+        <DialogContainer
+          datas={DialogContentData?.data ?? []}
+          audioIndex={audioIndex}
+          currentHeight={currentHeight}
+          handleClickDialogAudioButton={handleClickDialogAudioButton}
+          currentContentIndex={currentContentIndex}
+          setCurrentContentIndex={setCurrentContentIndex}
+          layoutRef={layoutRef}
+          audioState={audioState}
+          pinyinOption={pinyinOption}
+          translateOption={translateOption}
+          setCurrentHeight={setCurrentHeight}
+          setAudioState={setAudioState}
+          dialogAudioState={dialogAudioState}
+          audioRef={audioRef}
+        />
         <div>
           <audio ref={audioRef}>
             <source src={audioSrc} />

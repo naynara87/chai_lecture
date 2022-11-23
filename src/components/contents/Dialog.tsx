@@ -1,11 +1,14 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import styled from "@emotion/styled";
-import HtmlContentComponent from "./HtmlContentComponent";
+import HtmlContentComponent from "../contents/HtmlContentComponent";
 import { css } from "@emotion/react";
 import AudioButton from "../atoms/AudioButton";
+import { DialogData } from "../../types/templateContents";
+import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 
-interface PropfileProps {
+interface ProfileProps {
   icon: string;
+  profileColor?: string;
 }
 
 const DialogWrapper = styled.div`
@@ -27,9 +30,9 @@ const TalkBubbleGrp = styled.div`
   margin: 2.0833333333vw 0;
 `;
 
-const Profile = styled.div<PropfileProps>`
-  width: 6.25vw;
-  height: 6.25vw;
+const Profile = styled.div<ProfileProps>`
+  width: ${changePXtoVW(120)};
+  height: ${changePXtoVW(120)};
   border-radius: 50%;
   overflow: hidden;
   background-color: #6070cf;
@@ -47,8 +50,8 @@ const Profile = styled.div<PropfileProps>`
 `;
 
 const NullProfile = styled.div`
-  width: 6.25vw;
-  height: 6.25vw;
+  width: ${changePXtoVW(120)};
+  height: ${changePXtoVW(120)};
   border-radius: 50%;
   overflow: hidden;
   -webkit-user-select: none;
@@ -59,13 +62,17 @@ const NullProfile = styled.div`
   z-index: 2;
 `;
 
-const TalkBubble = styled.div`
+interface TalkBubbleProps {
+  bubbleColor?: string;
+}
+
+const TalkBubble = styled.div<TalkBubbleProps>`
   position: relative;
-  min-width: 16.6666666667vw;
+  min-width: ${changePXtoVW(440)};
   margin-left: 2.9166666667vw;
-  padding: 1.1111111111vh 1.3541666667vw;
+  padding: ${changePXtoVW(20)} ${changePXtoVW(25)};
   border-radius: 1.25vw;
-  background-color: #fff;
+  background-color: ${(props) => props.bubbleColor};
   text-align: left;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
 
@@ -76,8 +83,8 @@ const TalkBubble = styled.div`
     left: -42px;
     top: 40%;
     height: 18px;
-    border-right: 47px solid #fff;
-    background: #fff;
+    border-right: 47px solid ${(props) => props.bubbleColor};
+    background: ${(props) => props.bubbleColor};
     border-top-left-radius: 111px 50px;
     transform: translate(0, -2px);
   }
@@ -103,12 +110,18 @@ const TalkBubble = styled.div`
 `;
 
 const AnswerWrapper = styled.div`
-  margin-top: -1.875vh;
-  margin-left: 9.1666666667vw;
+  margin-top: ${changePXtoVW(-30)};
+  margin-left: ${changePXtoVW(180)};
   text-align: left;
 `;
 
-const AnswerChoice = styled.div`
+interface AnswerChoiceProps {
+  correctColor?: string;
+  inCorrectColor?: string;
+  choiceDefaultColor?: string;
+}
+
+const AnswerChoice = styled.div<AnswerChoiceProps>`
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -118,25 +131,25 @@ const AnswerChoice = styled.div`
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  padding: 0.5555555556vh 2.5vw;
-  border: 2px solid #9b9b9b;
+  padding: ${changePXtoVH(10)} ${changePXtoVW(50)};
+  border: 2px solid ${(props) => props.choiceDefaultColor};
   border-radius: 2.7083333333vw;
   font-weight: 400;
-  font-size: 1.5625vw;
-  color: #9b9b9b;
+  font-size: ${changePXtoVW(30)};
+  color: ${(props) => props.choiceDefaultColor};
   cursor: pointer;
   &:last-child {
-    margin-left: 0.8333333333vw;
+    margin-left: ${changePXtoVW(15)};
   }
 
   &.correct {
-    border-color: #40476b;
-    color: #40476b;
+    border-color: ${(props) => props.correctColor};
+    color: ${(props) => props.correctColor};
   }
 
   &.incorrect {
-    border-color: #f65555;
-    color: #f65555;
+    border-color: ${(props) => props.inCorrectColor};
+    color: ${(props) => props.inCorrectColor};
   }
 `;
 
@@ -184,73 +197,73 @@ const meaningCss = css`
 `;
 
 interface DialogProps {
-  icon?: string;
-  text: string;
+  dialogContent: DialogData;
   index: number;
   renderProfile: boolean;
-  pronunciation: string;
-  meaning: string;
-  hasQuestion: boolean;
-  audioUrl: string;
-  currentAudioIndex: number;
-  choices: string[];
-  answerIndex: number;
-  audioState: boolean;
-  isHide: boolean;
-  totalAudioPlayed: boolean;
-  showPinyin: boolean;
-  showTranslate: boolean;
-  audioHandler: (src: string, index: number) => void;
-  handleChangeContent: (index: number) => void;
-  getCurrentShowDialog: (dialog: HTMLCollectionOf<Element>) => void;
+  currentAudioIndex?: number;
+  audioState?: boolean;
+  isHide?: boolean;
+  totalAudioPlayed?: boolean;
+  showPinyin?: boolean;
+  showTranslate?: boolean;
+  showAudioButton?: boolean;
+  audioHandler?: (src: string, index: number) => void;
+  handleClickAnswer: (index: number) => void;
+  correctColor?: string;
+  inCorrectColor?: string;
+  choiceDefaultColor?: string;
+  bubbleColor?: string;
+  profileColor?: string;
 }
 
 const Dialog = ({
-  icon,
+  dialogContent,
   index,
-  text,
-  pronunciation,
-  meaning,
-  renderProfile,
-  hasQuestion,
-  choices,
-  answerIndex,
+  renderProfile = true,
   totalAudioPlayed,
-  isHide,
-  audioUrl,
+  isHide = false,
   audioState,
   currentAudioIndex,
   audioHandler,
-  handleChangeContent,
-  getCurrentShowDialog,
-  showPinyin,
-  showTranslate,
+  handleClickAnswer,
+  showPinyin = true,
+  showTranslate = true,
+  showAudioButton,
+  correctColor = "#40476b",
+  inCorrectColor = "#f65555",
+  choiceDefaultColor = "#9b9b9b",
+  bubbleColor = "#fff",
+  profileColor = "#40476b",
 }: DialogProps) => {
-  const [userAnswer, setUserAnswer] = useState<number>(100);
+  const {
+    icon,
+    text,
+    pronunciation,
+    meaning,
+    hasQuestion,
+    question: dialogQuestions,
+    audio,
+  } = dialogContent;
+  const { src: audioUrl } = audio;
+  const [userAnswer, setUserAnswer] = useState<number>(dialogQuestions?.choices.length ?? 0);
   const [correct, setCorrect] = useState<undefined | boolean>(undefined);
-
-  useEffect(() => {
-    if (!isHide) {
-      const dialogs = document.getElementsByClassName("dialog");
-      getCurrentShowDialog(dialogs);
-    }
-  }, [isHide, getCurrentShowDialog]);
+  const [choiceMaxLength, setChoiceMaxLength] = useState(0);
 
   const selectedAnswer = useCallback(
     (userChoiceIndex: number) => {
-      if (isHide || userAnswer < 2) {
+      if (isHide || (dialogQuestions && userAnswer < dialogQuestions.choices.length)) {
         return;
       }
-      handleChangeContent(index);
+      handleClickAnswer(index);
       setUserAnswer(userChoiceIndex);
-      setCorrect(userChoiceIndex === answerIndex);
+      setCorrect(userChoiceIndex === dialogQuestions?.answerIndex);
     },
-    [isHide, handleChangeContent, index, answerIndex, userAnswer],
+    [isHide, handleClickAnswer, index, userAnswer, dialogQuestions],
   );
 
   const answerClassName = useCallback(
     (choice: string): string => {
-      if (choices[userAnswer] === choice) {
+      if (dialogQuestions?.choices[userAnswer] === choice) {
         if (correct) {
           return "correct";
         } else {
@@ -260,15 +273,21 @@ const Dialog = ({
         return "";
       }
     },
-    [choices, userAnswer, correct],
+    [userAnswer, correct, dialogQuestions],
   );
 
   const renderQuiz = useMemo(() => {
+    if (!dialogQuestions) {
+      return;
+    }
     return (
       <AnswerWrapper>
-        {choices.map((choice, index) => {
+        {dialogQuestions.choices.map((choice, index) => {
           return (
             <AnswerChoice
+              correctColor={correctColor}
+              inCorrectColor={inCorrectColor}
+              choiceDefaultColor={choiceDefaultColor}
               key={index}
               onClick={() => {
                 selectedAnswer(index);
@@ -281,45 +300,66 @@ const Dialog = ({
         })}
       </AnswerWrapper>
     );
-  }, [choices, selectedAnswer, answerClassName]);
+  }, [
+    selectedAnswer,
+    answerClassName,
+    dialogQuestions,
+    correctColor,
+    inCorrectColor,
+    choiceDefaultColor,
+  ]);
 
   const questionContents = useMemo(() => {
     const questions = text.replace(/<[^>]*>?/g, "").split(/(\*.*\*)/);
     return questions.map((question, index) => {
       if (question === "*blank*") {
-        const blankWidth = `${Math.max(choices[0].length, choices[1].length) * 25}px`;
+        if (!dialogQuestions) {
+          return <></>;
+        }
+        dialogQuestions.choices.forEach((choice) => {
+          if (choice.length > choiceMaxLength) {
+            setChoiceMaxLength(choice.length);
+          }
+        });
+        const blankWidth = `${choiceMaxLength * 25}px`;
         return (
           <QuestionBlank key={index} style={{ width: blankWidth }}>
-            {choices[userAnswer]}
+            {dialogQuestions.choices[userAnswer]}
           </QuestionBlank>
         );
       } else {
         return <HtmlContentComponent key={index} html={question} customCss={wordCss} />;
       }
     });
-  }, [text, userAnswer, choices]);
+  }, [text, userAnswer, dialogQuestions, choiceMaxLength]);
 
   return (
     <DialogWrapper className={isHide ? "hide" : "dialog"}>
       <TalkBubbleGrp>
-        {renderProfile ? <Profile icon={icon ?? ""} /> : <NullProfile />}
-        <TalkBubble>
+        {renderProfile ? (
+          <Profile icon={icon.src ?? ""} profileColor={profileColor} />
+        ) : (
+          <NullProfile />
+        )}
+        <TalkBubble bubbleColor={bubbleColor}>
           <QuestionWrapper>{questionContents}</QuestionWrapper>
           {showPinyin && <HtmlContentComponent html={pronunciation} customCss={pronunciationCss} />}
           {showTranslate && <HtmlContentComponent html={meaning} customCss={meaningCss} />}
         </TalkBubble>
-        <AudioWrapper>
-          <AudioButton
-            otherAudioPlayed={totalAudioPlayed}
-            audioUrl={audioUrl}
-            audioHide={isHide}
-            audioState={audioState}
-            audioIndex={index + 1}
-            audioHandler={audioHandler}
-            isAudio={false}
-            currentAudioIndex={currentAudioIndex}
-          />
-        </AudioWrapper>
+        {showAudioButton && (
+          <AudioWrapper>
+            <AudioButton
+              otherAudioPlayed={totalAudioPlayed}
+              audioUrl={audioUrl}
+              audioHide={isHide}
+              audioState={audioState}
+              audioIndex={index + 1}
+              audioHandler={audioHandler}
+              isAudio={false}
+              currentAudioIndex={currentAudioIndex}
+            />
+          </AudioWrapper>
+        )}
       </TalkBubbleGrp>
       {hasQuestion && renderQuiz}
     </DialogWrapper>

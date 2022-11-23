@@ -142,7 +142,7 @@ export type DialogContent = {
   data: DialogData[];
 };
 
-type DialogData = {
+export type DialogData = {
   id: ID; // 대화를 구분하기 위한 id - 같은 사람이 여러번 말할 경우 구분하기 위함
   icon: {
     src: string;
