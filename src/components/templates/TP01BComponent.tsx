@@ -19,6 +19,7 @@ interface TP01BComponentProps extends TemplateProps {}
 const TP01BComponent = ({ setPageCompleted, page }: TP01BComponentProps) => {
   const [currentContentIndex, setCurrentContentIndex] = useState(0);
   const [currentHeight, setCurrentHeight] = useState(0);
+  const [isShowCorrect, setIsShowCorrect] = useState(false);
   const layoutRef = useRef<HTMLDivElement>(null);
 
   const thisPage = page as TP01B;
@@ -45,6 +46,8 @@ const TP01BComponent = ({ setPageCompleted, page }: TP01BComponentProps) => {
           setCurrentHeight={setCurrentHeight}
           layoutRef={layoutRef}
           customCss={dialogContainerStyles}
+          isShowCorrect={isShowCorrect}
+          setIsShowCorrect={setIsShowCorrect}
         />
       </TP02Layout>
     </TemplateCommonLayout>

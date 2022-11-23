@@ -4,7 +4,7 @@ import { DialogData } from "../../types/templateContents";
 import Dialog from "../contents/Dialog";
 import styled from "@emotion/styled";
 import { SerializedStyles } from "@emotion/react";
-
+import CheckButton from "../atoms/CheckButton";
 interface DialogContainerStylesProps {
   customCss?: SerializedStyles;
 }
@@ -28,6 +28,8 @@ interface DialogContainerProps {
   setCurrentHeight: React.Dispatch<React.SetStateAction<number>>;
   handleClickDialogAudioButton?: (src: string, index: number) => void;
   customCss?: SerializedStyles;
+  isShowCorrect?: boolean;
+  setIsShowCorrect?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const DialogContainer = ({
@@ -46,6 +48,8 @@ const DialogContainer = ({
   setCurrentHeight,
   handleClickDialogAudioButton,
   customCss,
+  isShowCorrect,
+  setIsShowCorrect,
 }: DialogContainerProps) => {
   const dialogIdRef = useRef<ID>("");
 
@@ -65,19 +69,17 @@ const DialogContainer = ({
 
   const handleChangeContent = useCallback(
     (index: number) => {
-      if (datas[index + 1]) {
-        setCurrentContentIndex(index + 1);
-        if (setAudioState) {
-          setAudioState(true);
-        }
-        layoutRef.current?.scrollTo({
-          top: currentHeight,
-          left: 0,
-          behavior: "smooth",
-        });
+      setCurrentContentIndex(index + 1);
+      if (setAudioState) {
+        setAudioState(true);
       }
+      layoutRef.current?.scrollTo({
+        top: currentHeight,
+        left: 0,
+        behavior: "smooth",
+      });
     },
-    [datas, currentHeight, layoutRef, setAudioState, setCurrentContentIndex],
+    [currentHeight, layoutRef, setAudioState, setCurrentContentIndex],
   );
 
   const getCurrentShowDialog = useCallback(
@@ -113,6 +115,7 @@ const DialogContainer = ({
             showPinyin={pinyinOption}
             showTranslate={translateOption}
             showAudioButton={content.audio ? true : false}
+            isShowCorrect={isShowCorrect}
           />
         );
       });
@@ -126,10 +129,28 @@ const DialogContainer = ({
       handleClickDialogAudio,
       pinyinOption,
       translateOption,
+      isShowCorrect,
     ],
   );
 
-  return <DialogContainerStyles customCss={customCss}>{mainContents(datas)}</DialogContainerStyles>;
+  const handleClickCheckButton = () => {
+    if (setIsShowCorrect) {
+      setIsShowCorrect(true);
+    }
+  };
+
+  return (
+    <DialogContainerStyles customCss={customCss}>
+      {mainContents(datas)}
+      {setIsShowCorrect && (
+        <CheckButton
+          text="채점하기"
+          handleClickCheckButton={handleClickCheckButton}
+          isHide={currentContentIndex === datas.length ? false : true}
+        />
+      )}
+    </DialogContainerStyles>
+  );
 };
 
 export default DialogContainer;
