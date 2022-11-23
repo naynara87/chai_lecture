@@ -66,19 +66,17 @@ const TP08GComponent = ({ setPageCompleted, page }: TP08GComponentProps) => {
 
   const mainContents = useMemo(() => {
     return numberTableContentData?.data.map((content, index) => {
+      const { text, pronunciation, meaning, audio } = content;
       return (
-        <NumberTableContainer>
+        <NumberTableContainer key={index}>
           <NumberTable
-            text={content.text}
-            pronunciation={content.pronunciation}
-            meaning={content.meaning}
-          />
-          <AudioButton
-            audioUrl={content.audio.src}
-            audioIndex={index}
-            isAudio={false}
-            currentAudioIndex={audioIndex}
+            text={text}
+            pronunciation={pronunciation}
+            meaning={meaning}
             audioHandler={handleClickAudioButton}
+            audioIndex={index + 1}
+            audioUrl={audio.src}
+            currentAudioIndex={audioIndex}
           />
         </NumberTableContainer>
       );

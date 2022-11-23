@@ -15,6 +15,7 @@ import {
   TP02N,
   TP07A,
   TP08G,
+  TP02K,
   TPIframe,
 } from "./pageTemplate";
 
@@ -67,6 +68,7 @@ export type Page =
   | TP02F
   | TP02M
   | TP02N
+  | TP02K
   | TP03A
   | TP03B
   | TP03C

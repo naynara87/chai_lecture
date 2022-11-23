@@ -13,6 +13,7 @@ const useAudio = (audioRef: RefObject<HTMLAudioElement>) => {
       if (!audioRef.current) {
         return;
       }
+
       if (audioIndex !== index) {
         setAudioIndex(index);
         setAudioSrc(src);
@@ -37,6 +38,8 @@ const useAudio = (audioRef: RefObject<HTMLAudioElement>) => {
     handleClickAudioButton,
     audioIndex,
     audioSrc,
+    audioState,
+    setAudioState,
   };
 };
 

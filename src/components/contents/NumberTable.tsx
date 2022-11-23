@@ -1,12 +1,17 @@
 import { css } from "@emotion/react";
 import React from "react";
 import { changePXtoVW } from "../../utils/styles";
+import AudioButton from "../atoms/AudioButton";
 import HtmlContentComponent from "./HtmlContentComponent";
 
 interface NumberTableProps {
   text: string;
   pronunciation: string;
   meaning: string;
+  audioUrl: string;
+  audioIndex: number;
+  currentAudioIndex: number;
+  audioHandler: (src: string, index: number) => void;
 }
 
 const htmlCustomCss = css`
@@ -14,12 +19,27 @@ const htmlCustomCss = css`
   font-weight: 500;
 `;
 
-const NumberTable = ({ text, pronunciation, meaning }: NumberTableProps) => {
+const NumberTable = ({
+  text,
+  pronunciation,
+  meaning,
+  audioUrl,
+  audioHandler,
+  audioIndex,
+  currentAudioIndex,
+}: NumberTableProps) => {
   return (
     <>
       <HtmlContentComponent html={text} customCss={htmlCustomCss} />
       <HtmlContentComponent html={pronunciation} customCss={htmlCustomCss} />
       <HtmlContentComponent html={meaning} customCss={htmlCustomCss} />
+      <AudioButton
+        isAudio={false}
+        currentAudioIndex={currentAudioIndex}
+        audioHandler={audioHandler}
+        audioUrl={audioUrl}
+        audioIndex={audioIndex}
+      />
     </>
   );
 };
