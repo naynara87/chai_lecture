@@ -11,6 +11,7 @@ import { getPageUrl } from "../../utils/url";
 import { useRecoilState } from "recoil";
 import { cornersState } from "../../state/corners";
 import { CORNER_LIST_URL } from "../../constants/url";
+// import usePageLcms from "../../hooks/api/usePageLcms";
 
 const CornerPage = () => {
   const { pageIds, cornerId } = useCorner();
@@ -18,8 +19,10 @@ const CornerPage = () => {
 
   const [, setCompletedCorners] = useRecoilState(cornersState);
 
-  const { page: currentPage } = usePage();
-  const { currentCorner } = useCorner();
+  // const { currentPageData, pageList } = usePageLcms(); // TODO: pageList로 부터 pageIds를 추출하자(handleClickNext, Prev에 적용) => BBC-602
+
+  const { page: currentPage } = usePage(); // TODO: 실제 데이터 붙일 때 삭제 예정 => BBC-602
+  const { currentCorner } = useCorner(); // TODO: 실제 데이터 붙일 때 삭제 예정 => BBC-602
   const navigate = useNavigate();
 
   const pageIndex = pageIds.findIndex((id) => id === currentPage?.id);

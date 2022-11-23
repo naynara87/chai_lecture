@@ -28,21 +28,21 @@ export const dummyData: AppData = {
       cornerIcon: `${process.env.PUBLIC_URL}/images/icon/img_sort_page01.png`,
       pages: [
         {
-          id: 11,
+          id: 1,
           template: {
             type: "TPIframe",
             url: "http://md-admin.bubblecon.io/bubble/embed/2242",
           },
         },
         {
-          id: 12,
+          id: 2,
           template: {
             type: "TPIframe",
             url: "http://md-admin.bubblecon.io/bubble/embed/2243",
           },
         },
         {
-          id: 13,
+          id: 3,
           title: "문제 템플릿 3",
           description: "문제 템플릿 3 상세 사항.",
           template: {
