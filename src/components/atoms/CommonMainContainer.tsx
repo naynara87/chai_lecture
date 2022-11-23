@@ -1,8 +1,9 @@
 import styled from "@emotion/styled";
+import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 
 const CommonMainContainer = styled.main`
   height: 100%;
-  padding: 8vh 8.3vw 2.2vh 8.3vw;
+  padding: ${changePXtoVH(100)} ${changePXtoVW(160)} ${changePXtoVH(100)} ${changePXtoVW(160)};
 `;
 
 export default CommonMainContainer;

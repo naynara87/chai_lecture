@@ -30,7 +30,7 @@ const TP02KComponent = ({ setPageCompleted, page }: TP02KComponentProps) => {
   const [audioSrc, setAudioSrc] = useState("");
   const [audioState, setAudioState] = useState(false);
   const [translateOption, setTranslateOption] = useState(true);
-  const [currentContentIndex, setCurrentContentIndex] = useState(1);
+  const [currentContentIndex, setCurrentContentIndex] = useState(0);
   const [currentHeight, setCurrentHeight] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
   const dialogAudioRef = useRef<HTMLAudioElement>(null);

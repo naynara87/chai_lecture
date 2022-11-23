@@ -34,7 +34,7 @@ const CheckButtonContainer = styled.button`
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
-  margin: 2.5vh auto 0;
+  margin: 2.5vh auto 1vh;
   cursor: pointer;
 
   &.hide {
