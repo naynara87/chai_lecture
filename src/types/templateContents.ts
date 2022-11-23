@@ -8,6 +8,9 @@ export type ChooseTextContent = {
     answerIndex: number;
     tip: string; // html
     explanation: {
+      audio?: {
+        src: string;
+      };
       correctMessage: string;
       wrongMessage: string;
       text: string;
@@ -126,8 +129,11 @@ export type DragAndDropContent = {
     choices: string[];
     answerIndex: number;
     explanation: {
-      correctMessage: string;
-      wrongMessage: string;
+      audio?: {
+        src: string;
+      };
+      correctMessage?: string;
+      wrongMessage?: string;
       text: string;
     };
   }[];
@@ -194,6 +200,9 @@ export type WordQuizCardData = {
     src: string;
   };
   explanation: {
+    audio?: {
+      src: string;
+    };
     correctMessage: string;
     wrongMessage: string;
     text: string;

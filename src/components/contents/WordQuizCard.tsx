@@ -100,9 +100,7 @@ const WordQuizCard = ({ datas }: WordQuizCardProps) => {
 
       {showExplanation && (
         <Explanation
-          correctMessage={explanation.correctMessage}
-          inCorrectMessage={explanation.wrongMessage}
-          explanationText={explanation.text}
+          explanation={explanation}
           isCorrect={selectedIndex === answerIndex}
           handleClickClose={handleClickCloseExplanation}
         />

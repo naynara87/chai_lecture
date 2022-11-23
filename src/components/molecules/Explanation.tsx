@@ -6,6 +6,8 @@ import HtmlContentComponent from "../contents/HtmlContentComponent";
 import OIcon from "../atoms/svg/OIcon";
 import { css } from "@emotion/react";
 import XIcon from "../atoms/svg/XIcon";
+import AudioButton from "../atoms/AudioButton";
+import { changePXtoVW } from "../../utils/styles";
 
 const ExplanationWrapper = styled.div`
   position: fixed;
@@ -83,25 +85,48 @@ const Text = styled.div`
   ${ExplanationTextCss}
 `;
 
-const ExplanationHtmlCss = css`
-  max-height: 50px;
-  overflow: auto;
+const ExplanationTitle = styled.div`
+  font-size: ${changePXtoVW(30)};
+  color: ${colorPalette.deepBlue};
 `;
 
-interface ExplanationProps {
-  explanationText: string;
-  isCorrect: boolean;
+const ExplanationHtmlCss = css`
+  max-height: 50px;
+  font-size: ${changePXtoVW(24)};
+  color: ${colorPalette.descriptionText};
+  font-weight: 400;
+`;
+
+const InfoWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: ${changePXtoVW(5)};
+`;
+
+const audioCss = css`
+  width: ${changePXtoVW(40)};
+  height: ${changePXtoVW(40)};
+  transform: translateY(${changePXtoVW(-10)});
+  margin-left: ${changePXtoVW(12)};
+`;
+
+type ExplanationData = {
+  audio?: {
+    src: string;
+  };
   correctMessage: string;
-  inCorrectMessage: string;
+  wrongMessage: string;
+  text: string;
+};
+
+interface ExplanationProps {
+  explanation: ExplanationData;
+  isCorrect: boolean;
   handleClickClose: () => void;
 }
-const Explanation = ({
-  explanationText,
-  isCorrect,
-  correctMessage,
-  inCorrectMessage,
-  handleClickClose,
-}: ExplanationProps) => {
+const Explanation = ({ isCorrect, explanation, handleClickClose }: ExplanationProps) => {
+  const { audio, correctMessage, wrongMessage, text } = explanation;
+
   const iconUrl = useMemo(() => {
     if (isCorrect) {
       return `${process.env.PUBLIC_URL}/images/img/bg_right_character.png`;
@@ -113,8 +138,8 @@ const Explanation = ({
     if (isCorrect) {
       return correctMessage;
     }
-    return inCorrectMessage;
-  }, [isCorrect, correctMessage, inCorrectMessage]);
+    return wrongMessage;
+  }, [isCorrect, correctMessage, wrongMessage]);
   return (
     <ExplanationWrapper>
       <ExplanationContainer>
@@ -124,8 +149,11 @@ const Explanation = ({
         <TextBox>
           <OXWrapper>{isCorrect ? <OIcon /> : <XIcon />}</OXWrapper>
           <Text>
-            <div>{infoText}</div>
-            <HtmlContentComponent html={explanationText} customCss={ExplanationHtmlCss} />
+            <InfoWrapper>
+              <ExplanationTitle>{infoText}</ExplanationTitle>
+              {audio && <AudioButton isAudio={true} audioUrl={audio.src} customCss={audioCss} />}
+            </InfoWrapper>
+            <HtmlContentComponent html={text} customCss={ExplanationHtmlCss} />
           </Text>
           <CloseButton onClick={handleClickClose} />
         </TextBox>
