@@ -2,22 +2,34 @@ import React, { useCallback, useEffect, useRef } from "react";
 import { ID } from "../../types/appData";
 import { DialogData } from "../../types/templateContents";
 import Dialog from "../contents/Dialog";
+import styled from "@emotion/styled";
+import { SerializedStyles } from "@emotion/react";
+import CheckButton from "../atoms/CheckButton";
+interface DialogContainerStylesProps {
+  customCss?: SerializedStyles;
+}
 
+const DialogContainerStyles = styled.div<DialogContainerStylesProps>`
+  ${(props) => props.customCss}
+`;
 interface DialogContainerProps {
   datas: DialogData[];
-  audioIndex: number;
-  dialogAudioState: boolean;
+  audioIndex?: number;
+  dialogAudioState?: boolean;
   layoutRef: React.RefObject<HTMLDivElement>;
-  audioRef: React.RefObject<HTMLAudioElement>;
-  audioState: boolean;
+  audioRef?: React.RefObject<HTMLAudioElement>;
+  audioState?: boolean;
   currentContentIndex: number;
   currentHeight: number;
-  pinyinOption: boolean;
-  translateOption: boolean;
-  setAudioState: React.Dispatch<React.SetStateAction<boolean>>;
+  pinyinOption?: boolean;
+  translateOption?: boolean;
+  setAudioState?: React.Dispatch<React.SetStateAction<boolean>>;
   setCurrentContentIndex: React.Dispatch<React.SetStateAction<number>>;
   setCurrentHeight: React.Dispatch<React.SetStateAction<number>>;
-  handleClickDialogAudioButton: (src: string, index: number) => void;
+  handleClickDialogAudioButton?: (src: string, index: number) => void;
+  customCss?: SerializedStyles;
+  isShowCorrect?: boolean;
+  setIsShowCorrect?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const DialogContainer = ({
@@ -35,13 +47,19 @@ const DialogContainer = ({
   setCurrentContentIndex,
   setCurrentHeight,
   handleClickDialogAudioButton,
+  customCss,
+  isShowCorrect,
+  setIsShowCorrect,
 }: DialogContainerProps) => {
   const dialogIdRef = useRef<ID>("");
 
   const handleClickDialogAudio = useCallback(
     (src: string, index: number) => {
+      if (!audioRef?.current || !handleClickDialogAudioButton) {
+        return;
+      }
       handleClickDialogAudioButton(src, index);
-      if (!dialogAudioState && audioRef.current) {
+      if (!dialogAudioState && audioRef.current && setAudioState) {
         audioRef.current.pause();
         setAudioState(false);
       }
@@ -51,17 +69,17 @@ const DialogContainer = ({
 
   const handleChangeContent = useCallback(
     (index: number) => {
-      if (datas[index + 1]) {
-        setCurrentContentIndex(index + 1);
+      setCurrentContentIndex(index + 1);
+      if (setAudioState) {
         setAudioState(true);
-        layoutRef.current?.scrollTo({
-          top: currentHeight,
-          left: 0,
-          behavior: "smooth",
-        });
       }
+      layoutRef.current?.scrollTo({
+        top: currentHeight,
+        left: 0,
+        behavior: "smooth",
+      });
     },
-    [datas, currentHeight, layoutRef, setAudioState, setCurrentContentIndex],
+    [currentHeight, layoutRef, setAudioState, setCurrentContentIndex],
   );
 
   const getCurrentShowDialog = useCallback(
@@ -96,7 +114,8 @@ const DialogContainer = ({
             handleClickAnswer={handleChangeContent}
             showPinyin={pinyinOption}
             showTranslate={translateOption}
-            showAudioButton
+            showAudioButton={content.audio ? true : false}
+            isShowCorrect={isShowCorrect}
           />
         );
       });
@@ -110,10 +129,28 @@ const DialogContainer = ({
       handleClickDialogAudio,
       pinyinOption,
       translateOption,
+      isShowCorrect,
     ],
   );
 
-  return <>{mainContents(datas)}</>;
+  const handleClickCheckButton = () => {
+    if (setIsShowCorrect) {
+      setIsShowCorrect(true);
+    }
+  };
+
+  return (
+    <DialogContainerStyles customCss={customCss}>
+      {mainContents(datas)}
+      {setIsShowCorrect && (
+        <CheckButton
+          text="채점하기"
+          handleClickCheckButton={handleClickCheckButton}
+          isHide={currentContentIndex === datas.length ? false : true}
+        />
+      )}
+    </DialogContainerStyles>
+  );
 };
 
 export default DialogContainer;

@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import styled from "@emotion/styled";
 import { TP01A } from "../../types/pageTemplate";
 import { ChooseTextByAudioContent } from "../../types/templateContents";
 import { TemplateProps } from "../../types/templates";
@@ -7,50 +6,10 @@ import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TP01Layout from "../Layouts/TP01Layout";
 import ChooseTextByAudio from "../contents/ChooseTextByAudio";
 import TitleContent from "../molecules/TitleContent";
-import { colorPalette } from "../../styles/colorPalette";
 import useAudio from "../../hooks/useAudio";
+import CheckButton from "../atoms/CheckButton";
 
 interface TP01AComponentProps extends TemplateProps {}
-
-const CheckButton = styled.button`
-  border-radius: 0;
-  background-color: transparent;
-  border: 0;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  padding: 1.3888888889vh 2.5vw 1.3888888889vh 2.5vw;
-  outline: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  width: 12.4791666667vw;
-  min-width: 12.4791666667vw;
-  height: 5.5555555556vh;
-  background-color: ${colorPalette.confirmBtn};
-  border-radius: 2.5vw;
-  font-weight: 600;
-  font-size: 1.25vw;
-  color: ${colorPalette.white};
-  -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  margin: 2.5vh auto 0;
-  cursor: pointer;
-
-  &.hide {
-    background-color: ${colorPalette.disableBackground};
-  }
-`;
 
 const TP01AComponent = ({ setPageCompleted, page }: TP01AComponentProps) => {
   const [userAnswers, setUserAnswers] = useState<number[]>([]);
@@ -88,7 +47,7 @@ const TP01AComponent = ({ setPageCompleted, page }: TP01AComponentProps) => {
     [ChooseTextByAudioContentData, userAnswers],
   );
 
-  const handleCheckButton = useCallback(() => {
+  const handleClickCheckButton = useCallback(() => {
     if (userAnswers.length !== ChooseTextByAudioContentData!.data.length) {
       return;
     }
@@ -142,11 +101,10 @@ const TP01AComponent = ({ setPageCompleted, page }: TP01AComponentProps) => {
       <TP01Layout>
         {ChooseTextByAudioContentData ? ChooseTextByAudioContents() : <></>}
         <CheckButton
-          className={userAnswers.length >= ChooseTextByAudioContentData!.data.length ? "" : "hide"}
-          onClick={handleCheckButton}
-        >
-          채점하기
-        </CheckButton>
+          text="채점하기"
+          handleClickCheckButton={handleClickCheckButton}
+          isHide={userAnswers.length >= ChooseTextByAudioContentData!.data.length}
+        />
         <audio ref={audioRef}>
           <source src={audioSrc} />
         </audio>

@@ -6,6 +6,8 @@ import AudioButton from "../atoms/AudioButton";
 import { DialogData } from "../../types/templateContents";
 import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import { colorPalette } from "../../styles/colorPalette";
+import OIcon from "../atoms/svg/OIcon";
+import XIcon from "../atoms/svg/XIcon";
 
 interface ProfileProps {
   icon: string;
@@ -197,6 +199,14 @@ const meaningCss = css`
   color: ${colorPalette.descriptionText};
 `;
 
+const iconCss = css`
+  width: ${changePXtoVW(80)};
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+`;
+
 interface DialogProps {
   dialogContent: DialogData;
   index: number;
@@ -215,6 +225,7 @@ interface DialogProps {
   choiceDefaultColor?: string;
   bubbleColor?: string;
   profileColor?: string;
+  isShowCorrect?: boolean;
 }
 
 const Dialog = ({
@@ -229,12 +240,13 @@ const Dialog = ({
   handleClickAnswer,
   showPinyin = true,
   showTranslate = true,
-  showAudioButton,
+  showAudioButton = false,
   correctColor = `${colorPalette.deepBlue}`,
   inCorrectColor = `${colorPalette.wrongAnswer}`,
   choiceDefaultColor = `${colorPalette.dialogChoiceDefaultColor}`,
   bubbleColor = `${colorPalette.white}`,
   profileColor = `${colorPalette.deepBlue}`,
+  isShowCorrect = undefined,
 }: DialogProps) => {
   const {
     icon,
@@ -245,7 +257,7 @@ const Dialog = ({
     question: dialogQuestions,
     audio,
   } = dialogContent;
-  const { src: audioUrl } = audio;
+  const { src: audioUrl } = audio ?? {};
   const [userAnswer, setUserAnswer] = useState<number>(dialogQuestions?.choices.length ?? 0);
   const [correct, setCorrect] = useState<undefined | boolean>(undefined);
   const [choiceMaxLength, setChoiceMaxLength] = useState(0);
@@ -287,7 +299,9 @@ const Dialog = ({
           return (
             <AnswerChoice
               correctColor={correctColor}
-              inCorrectColor={inCorrectColor}
+              inCorrectColor={
+                isShowCorrect === undefined || isShowCorrect ? inCorrectColor : correctColor
+              }
               choiceDefaultColor={choiceDefaultColor}
               key={index}
               onClick={() => {
@@ -308,6 +322,7 @@ const Dialog = ({
     correctColor,
     inCorrectColor,
     choiceDefaultColor,
+    isShowCorrect,
   ]);
 
   const questionContents = useMemo(() => {
@@ -334,11 +349,27 @@ const Dialog = ({
     });
   }, [text, userAnswer, dialogQuestions, choiceMaxLength]);
 
+  const showCorrectIcon = useMemo(() => {
+    if (!isShowCorrect) {
+      return;
+    }
+
+    if (correct) {
+      return <OIcon css={iconCss} />;
+    } else if (correct === undefined) {
+      return "";
+    } else {
+      return <XIcon css={iconCss} />;
+    }
+  }, [correct, isShowCorrect]);
+
   return (
     <DialogWrapper className={isHide ? "hide" : "dialog"}>
       <TalkBubbleGrp>
         {renderProfile ? (
-          <Profile icon={icon.src ?? ""} profileColor={profileColor} />
+          <Profile icon={icon.src ?? ""} profileColor={profileColor}>
+            {showCorrectIcon}
+          </Profile>
         ) : (
           <NullProfile />
         )}

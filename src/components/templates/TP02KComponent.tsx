@@ -56,14 +56,18 @@ const TP02KComponent = ({ setPageCompleted, page }: TP02KComponentProps) => {
       | undefined;
   }, [thisPage.template.contents]);
 
+  const isNextContent = useMemo(() => {
+    return audioRef.current && audioState && DialogContentData?.data[currentContentIndex + 1];
+  }, [DialogContentData?.data, audioState, currentContentIndex]);
+
   useEffect(() => {
-    if (audioRef.current && audioState) {
-      setAudioSrc(DialogContentData?.data[currentContentIndex].audio.src ?? "");
+    if (isNextContent && audioRef.current) {
+      setAudioSrc(DialogContentData?.data[currentContentIndex].audio!.src ?? "");
       audioRef.current.pause();
       audioRef.current.load();
       audioRef.current.play();
     }
-  }, [currentContentIndex, DialogContentData?.data, audioState]);
+  }, [currentContentIndex, audioState, DialogContentData?.data, isNextContent]);
 
   const handleClickPinyinOption = () => {
     setPinyinOption(!pinyinOption);

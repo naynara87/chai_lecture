@@ -15,11 +15,13 @@ import TP07AComponent from "../components/templates/TP07AComponent";
 import TP08GComponent from "../components/templates/TP08GComponent";
 import TP02KComponent from "../components/templates/TP02KComponent";
 import TPIframeComponent from "../components/templates/TPIframeComponent";
+import TP01BComponent from "../components/templates/TP01BComponent";
 
 export interface UseTemplateMapperProps extends TemplateProps {}
 const useTemplateMapper = (props: UseTemplateMapperProps) => {
   const templateMapper: Record<TemplateType, JSX.Element> = {
     TP01A: <TP01AComponent {...props} />,
+    TP01B: <TP01BComponent {...props} />,
     TP02C: <TP02CComponent {...props} />,
     TP02F: <TP02FComponent {...props} />,
     TP02M: <TP02MComponent {...props} />,
