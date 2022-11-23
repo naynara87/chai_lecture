@@ -2,7 +2,7 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import React, { useCallback, useMemo, useState } from "react";
 import { colorPalette } from "../../styles/colorPalette";
-import { WordQuizCardData } from "../../types/templateContents";
+import { WordQuizData } from "../../types/templateContents";
 import { changePXtoVW } from "../../utils/styles";
 import QuestionBlank from "../atoms/QuestionBlank";
 import WordQuizAnswer from "../atoms/WordQuizAnswer";
@@ -57,12 +57,12 @@ const customBoxCss = css`
   width: ${changePXtoVW(208)};
   height: ${changePXtoVW(108)};
 `;
-interface WordQuizCardProps {
-  datas: WordQuizCardData[];
-  pageType: Page["template"]["type"];
+interface WordQuizProps {
+  datas: WordQuizData[];
+  reverse?: boolean;
 }
 
-const WordQuizCard = ({ datas, pageType }: WordQuizCardProps) => {
+const WordQuiz = ({ datas, reverse = false }: WordQuizProps) => {
   const { text, choices, explanation, meaning, answerIndex, audio } = datas?.[0];
   const [selectedIndex, setSelectedIndex] = useState<number | undefined>(undefined);
   const [showExplanation, setShowExplanation] = useState(false);
@@ -89,19 +89,19 @@ const WordQuizCard = ({ datas, pageType }: WordQuizCardProps) => {
 
   return (
     <WordQuizCardWrapper>
-      {pageType !== "TP10A" && (
+      {reverse && (
         <TextBoxWrapper>
           <TextBox text={text} customBoxCss={customBoxCss} />
         </TextBoxWrapper>
       )}
-      {pageType !== "TP10A" && (
+      {reverse && (
         <AudioWrapper>
           <AudioButton isAudio={true} audioUrl={audio.src} />
         </AudioWrapper>
       )}
       <QuestionBlank
         text={choices[selectedIndex!]}
-        width={pageType !== "TP10A" ? `${changePXtoVW(112)}` : `${changePXtoVW(240)}`}
+        width={reverse ? `${changePXtoVW(112)}` : `${changePXtoVW(240)}`}
         customCss={blankCss}
         backgroundColor={changeColor}
       />
@@ -119,7 +119,7 @@ const WordQuizCard = ({ datas, pageType }: WordQuizCardProps) => {
         })}
       </WordQuizAnswerWrapper>
       <HtmlContentComponent html={meaning} customCss={meaningCss} />
-      {pageType === "TP10A" && (
+      {!reverse && (
         <AudioWrapper>
           <AudioButton isAudio={true} audioUrl={audio.src} />
         </AudioWrapper>
@@ -135,4 +135,4 @@ const WordQuizCard = ({ datas, pageType }: WordQuizCardProps) => {
   );
 };
 
-export default WordQuizCard;
+export default WordQuiz;

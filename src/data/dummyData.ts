@@ -924,7 +924,7 @@ export const dummyData: AppData = {
             type: "TP10A",
             contents: [
               {
-                type: "wordQuizCard",
+                type: "wordQuiz",
                 data: [
                   {
                     text: "会",
@@ -953,7 +953,7 @@ export const dummyData: AppData = {
             type: "TP11G",
             contents: [
               {
-                type: "wordQuizCard",
+                type: "wordQuiz",
                 data: [
                   {
                     text: "打",

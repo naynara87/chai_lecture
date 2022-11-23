@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo } from "react";
 import { TP11G } from "../../types/pageTemplate";
-import { WordQuizCardContent } from "../../types/templateContents";
+import { WordQuizContent } from "../../types/templateContents";
 import { TemplateProps } from "../../types/templates";
-import WordQuizCard from "../contents/WordQuizCard";
+import WordQuiz from "../contents/WordQuiz";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TitleContent from "../molecules/TitleContent";
 
@@ -11,9 +11,9 @@ interface TP11GComponentProps extends TemplateProps {}
 const TP11GComponent = ({ setPageCompleted, page }: TP11GComponentProps) => {
   const thisPage = page as TP11G;
 
-  const wordQuizCardContentData = useMemo(() => {
-    return thisPage.template.contents.find((content) => content.type === "wordQuizCard") as
-      | WordQuizCardContent
+  const wordQuizContentData = useMemo(() => {
+    return thisPage.template.contents.find((content) => content.type === "wordQuiz") as
+      | WordQuizContent
       | undefined;
   }, [thisPage.template.contents]);
 
@@ -24,7 +24,7 @@ const TP11GComponent = ({ setPageCompleted, page }: TP11GComponentProps) => {
   return (
     <TemplateCommonLayout>
       <TitleContent title={thisPage.title} description={thisPage.description} />
-      <WordQuizCard datas={wordQuizCardContentData?.data ?? []} pageType={thisPage.template.type} />
+      <WordQuiz datas={wordQuizContentData?.data ?? []} reverse={true} />
     </TemplateCommonLayout>
   );
 };

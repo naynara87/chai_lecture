@@ -186,12 +186,12 @@ export type NumberTableContent = {
   }[];
 };
 
-export type WordQuizCardContent = {
-  type: "wordQuizCard";
-  data: WordQuizCardData[];
+export type WordQuizContent = {
+  type: "wordQuiz";
+  data: WordQuizData[];
 };
 
-export type WordQuizCardData = {
+export type WordQuizData = {
   text: string;
   choices: string[];
   answerIndex: number;

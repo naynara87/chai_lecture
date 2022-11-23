@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo } from "react";
 import { TP10A } from "../../types/pageTemplate";
-import { WordQuizCardContent } from "../../types/templateContents";
+import { WordQuizContent } from "../../types/templateContents";
 import { TemplateProps } from "../../types/templates";
-import WordQuizCard from "../contents/WordQuizCard";
+import WordQuiz from "../contents/WordQuiz";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TitleContent from "../molecules/TitleContent";
 
@@ -15,16 +15,16 @@ const TP10AComponent = ({ setPageCompleted, page }: TP10AComponentProps) => {
     setPageCompleted();
   }, [setPageCompleted]);
 
-  const wordQuizCardContentData = useMemo(() => {
-    return thisPage.template.contents.find((content) => content.type === "wordQuizCard") as
-      | WordQuizCardContent
+  const wordQuizContentData = useMemo(() => {
+    return thisPage.template.contents.find((content) => content.type === "wordQuiz") as
+      | WordQuizContent
       | undefined;
   }, [thisPage.template.contents]);
 
   return (
     <TemplateCommonLayout>
       <TitleContent title={thisPage.title} description={thisPage.description} />
-      <WordQuizCard datas={wordQuizCardContentData?.data ?? []} pageType={thisPage.template.type} />
+      <WordQuiz datas={wordQuizContentData?.data ?? []} />
     </TemplateCommonLayout>
   );
 };
