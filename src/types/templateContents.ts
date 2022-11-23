@@ -7,7 +7,11 @@ export type ChooseTextContent = {
     choices: string[];
     answerIndex: number;
     tip: string; // html
-    explanation: string; // html
+    explanation: {
+      correctMessage: string;
+      wrongMessage: string;
+      text: string;
+    };
   }[];
 };
 
@@ -121,7 +125,11 @@ export type DragAndDropContent = {
   data: {
     choices: string[];
     answerIndex: number;
-    explanation: string;
+    explanation: {
+      correctMessage: string;
+      wrongMessage: string;
+      text: string;
+    };
   }[];
 };
 
@@ -170,4 +178,24 @@ export type NumberTableContent = {
       src: string;
     };
   }[];
+};
+
+export type WordQuizCardContent = {
+  type: "wordQuizCard";
+  data: WordQuizCardData[];
+};
+
+export type WordQuizCardData = {
+  text: string;
+  choices: string[];
+  answerIndex: number;
+  meaning: string;
+  audio: {
+    src: string;
+  };
+  explanation: {
+    correctMessage: string;
+    wrongMessage: string;
+    text: string;
+  };
 };

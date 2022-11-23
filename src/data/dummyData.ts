@@ -134,7 +134,11 @@ export const dummyData: AppData = {
                     choices: ["그렇다", "아니다"],
                     answerIndex: 0,
                     tip: "",
-                    explanation: "<p>성조는 운모 위에 표시합니다.</p>",
+                    explanation: {
+                      correctMessage: "정답입니다!",
+                      wrongMessage: "오답입니다!",
+                      text: "<p>해설 문장이 블라블라~</p>",
+                    },
                   },
                 ],
               },
@@ -912,6 +916,35 @@ export const dummyData: AppData = {
             ],
           },
         },
+        {
+          id: 31,
+          title: "지난 레슨 확인하기",
+          description: "빈칸에 들어갈 알맞은 단러를 고르세요.",
+          template: {
+            type: "TP10A",
+            contents: [
+              {
+                type: "wordQuizCard",
+                data: [
+                  {
+                    text: "会",
+                    choices: ["会", "在"],
+                    answerIndex: 0,
+                    meaning: "~할 줄 알다.",
+                    audio: {
+                      src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
+                    },
+                    explanation: {
+                      correctMessage: "정답입니다!",
+                      wrongMessage: "오답입니다!",
+                      text: "<p>해설 문장이 블라블라~</p>",
+                    },
+                  },
+                ],
+              },
+            ],
+          },
+        },
       ],
     },
     {
@@ -950,7 +983,11 @@ export const dummyData: AppData = {
                     choices: ["그렇다", "아니다"],
                     answerIndex: 0,
                     tip: "",
-                    explanation: "<p>성조는 운모 위에 표시합니다.</p>",
+                    explanation: {
+                      correctMessage: "정답입니다!",
+                      wrongMessage: "오답입니다!",
+                      text: "<p>해설 문장이 블라블라~</p>",
+                    },
                   },
                 ],
               },
@@ -1482,7 +1519,11 @@ export const dummyData: AppData = {
                     choices: ["그렇다", "아니다"],
                     answerIndex: 0,
                     tip: "",
-                    explanation: "<p>성조는 운모 위에 표시합니다.</p>",
+                    explanation: {
+                      correctMessage: "정답입니다!",
+                      wrongMessage: "오답입니다!",
+                      text: "<p>해설 문장이 블라블라~</p>",
+                    },
                   },
                 ],
               },
@@ -2014,7 +2055,11 @@ export const dummyData: AppData = {
                     choices: ["그렇다", "아니다"],
                     answerIndex: 0,
                     tip: "",
-                    explanation: "<p>성조는 운모 위에 표시합니다.</p>",
+                    explanation: {
+                      correctMessage: "정답입니다!",
+                      wrongMessage: "오답입니다!",
+                      text: "<p>해설 문장이 블라블라~</p>",
+                    },
                   },
                 ],
               },
@@ -2546,7 +2591,11 @@ export const dummyData: AppData = {
                     choices: ["그렇다", "아니다"],
                     answerIndex: 0,
                     tip: "",
-                    explanation: "<p>성조는 운모 위에 표시합니다.</p>",
+                    explanation: {
+                      correctMessage: "정답입니다!",
+                      wrongMessage: "오답입니다!",
+                      text: "<p>해설 문장이 블라블라~</p>",
+                    },
                   },
                 ],
               },
@@ -3078,7 +3127,11 @@ export const dummyData: AppData = {
                     choices: ["그렇다", "아니다"],
                     answerIndex: 0,
                     tip: "",
-                    explanation: "<p>성조는 운모 위에 표시합니다.</p>",
+                    explanation: {
+                      correctMessage: "정답입니다!",
+                      wrongMessage: "오답입니다!",
+                      text: "<p>해설 문장이 블라블라~</p>",
+                    },
                   },
                 ],
               },

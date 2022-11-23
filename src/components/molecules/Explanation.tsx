@@ -91,9 +91,17 @@ const ExplanationHtmlCss = css`
 interface ExplanationProps {
   explanationText: string;
   isCorrect: boolean;
+  correctMessage: string;
+  inCorrectMessage: string;
   handleClickClose: () => void;
 }
-const Explanation = ({ explanationText, isCorrect, handleClickClose }: ExplanationProps) => {
+const Explanation = ({
+  explanationText,
+  isCorrect,
+  correctMessage,
+  inCorrectMessage,
+  handleClickClose,
+}: ExplanationProps) => {
   const iconUrl = useMemo(() => {
     if (isCorrect) {
       return `${process.env.PUBLIC_URL}/images/img/bg_right_character.png`;
@@ -103,10 +111,10 @@ const Explanation = ({ explanationText, isCorrect, handleClickClose }: Explanati
 
   const infoText = useMemo(() => {
     if (isCorrect) {
-      return "정답입니다!";
+      return correctMessage;
     }
-    return "오답입니다!";
-  }, [isCorrect]);
+    return inCorrectMessage;
+  }, [isCorrect, correctMessage, inCorrectMessage]);
   return (
     <ExplanationWrapper>
       <ExplanationContainer>
