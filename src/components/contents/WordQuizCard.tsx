@@ -8,6 +8,7 @@ import QuestionBlank from "../atoms/QuestionBlank";
 import WordQuizAnswer from "../atoms/WordQuizAnswer";
 import HtmlContentComponent from "./HtmlContentComponent";
 import Explanation from "../molecules/Explanation";
+import AudioButton from "../atoms/AudioButton";
 
 const WordQuizCardWrapper = styled.div`
   display: flex;
@@ -20,6 +21,10 @@ const WordQuizAnswerWrapper = styled.div`
   margin: ${changePXtoVW(32)} 0 ${changePXtoVW(64)};
   width: ${changePXtoVW(382)};
   justify-content: space-between;
+`;
+
+const AudioWrapper = styled.div`
+  margin-top: ${changePXtoVW(64)};
 `;
 
 const blankCss = css`
@@ -44,7 +49,7 @@ interface WordQuizCardProps {
 }
 
 const WordQuizCard = ({ datas }: WordQuizCardProps) => {
-  const { choices, explanation, meaning, answerIndex } = datas?.[0];
+  const { choices, explanation, meaning, answerIndex, audio } = datas?.[0];
   const [selectedIndex, setSelectedIndex] = useState<number | undefined>(undefined);
   const [showExplanation, setShowExplanation] = useState(false);
   const handleClickCloseExplanation = () => {
@@ -89,6 +94,10 @@ const WordQuizCard = ({ datas }: WordQuizCardProps) => {
         })}
       </WordQuizAnswerWrapper>
       <HtmlContentComponent html={meaning} customCss={meaningCss} />
+      <AudioWrapper>
+        <AudioButton isAudio={true} audioUrl={audio.src} />
+      </AudioWrapper>
+
       {showExplanation && (
         <Explanation
           correctMessage={explanation.correctMessage}

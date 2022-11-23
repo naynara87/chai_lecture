@@ -75,8 +75,7 @@ const Audio = ({
     if (otherAudioPlayed && isPlayed) {
       setIsPlayed(false);
       return <IconSpeaker />;
-    }
-    if (!audioState) {
+    } else if (otherAudioPlayed && !audioState) {
       setIsPlayed(false);
     }
     if (isPlayed) {
