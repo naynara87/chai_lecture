@@ -1,19 +1,15 @@
 import React, { useEffect, useMemo } from "react";
-import { TP10A } from "../../types/pageTemplate";
+import { TP11G } from "../../types/pageTemplate";
 import { WordQuizContent } from "../../types/templateContents";
 import { TemplateProps } from "../../types/templates";
 import WordQuiz from "../contents/WordQuiz";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TitleContent from "../molecules/TitleContent";
 
-interface TP10AComponentProps extends TemplateProps {}
+interface TP11GComponentProps extends TemplateProps {}
 
-const TP10AComponent = ({ setPageCompleted, page }: TP10AComponentProps) => {
-  const thisPage = page as TP10A;
-
-  useEffect(() => {
-    setPageCompleted();
-  }, [setPageCompleted]);
+const TP11GComponent = ({ setPageCompleted, page }: TP11GComponentProps) => {
+  const thisPage = page as TP11G;
 
   const wordQuizContentData = useMemo(() => {
     return thisPage.template.contents.find((content) => content.type === "wordQuiz") as
@@ -21,12 +17,16 @@ const TP10AComponent = ({ setPageCompleted, page }: TP10AComponentProps) => {
       | undefined;
   }, [thisPage.template.contents]);
 
+  useEffect(() => {
+    setPageCompleted();
+  }, [setPageCompleted]);
+
   return (
     <TemplateCommonLayout>
       <TitleContent title={thisPage.title} description={thisPage.description} />
-      <WordQuiz datas={wordQuizContentData?.data ?? []} />
+      <WordQuiz datas={wordQuizContentData?.data ?? []} reverse={true} />
     </TemplateCommonLayout>
   );
 };
 
-export default TP10AComponent;
+export default TP11GComponent;

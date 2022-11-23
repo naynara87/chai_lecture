@@ -14,7 +14,7 @@ import {
   StudyWordsContent,
   DialogContent,
   NumberTableContent,
-  WordQuizCardContent,
+  WordQuizContent,
 } from "./templateContents";
 
 export type Tab = {
@@ -221,7 +221,7 @@ export type TP10A = {
   };
 };
 
-type TP10AContent = WordQuizCardContent;
+type TP10AContent = WordQuizContent;
 
 export type TP11F = {
   id: ID;
@@ -236,6 +236,20 @@ type TP11FTemplate = {
 };
 
 type TP11FContent = IconTextContent | ChooseTextContent;
+
+export type TP11G = {
+  id: ID;
+  title: string;
+  description: string;
+  template: TP11GTemplate;
+};
+
+type TP11GTemplate = {
+  type: "TP11G";
+  contents: TP11GContent[];
+};
+
+type TP11GContent = WordQuizContent;
 
 export type TP12A = {
   id: ID;

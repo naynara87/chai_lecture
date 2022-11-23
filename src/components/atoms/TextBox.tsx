@@ -10,8 +10,8 @@ interface TextCardProps {
 }
 
 const TextCard = styled.div<TextCardProps>`
-  width: 154px;
-  height: 106px;
+  width: ${changePXtoVW(154)};
+  height: ${changePXtoVW(106)};
   line-height: 84px;
   margin: 11px;
   padding: 11px 0;
@@ -25,8 +25,6 @@ const TextCard = styled.div<TextCardProps>`
   align-items: center;
 
   @media all and (max-width: ${breakPoints.tablet}) {
-    width: 15vw;
-    height: 10.4166666667vw;
     line-height: 8.3333333333vw;
     margin: 1.0416666667vw;
     border-radius: 1.0416666667vw;

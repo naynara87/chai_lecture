@@ -19,6 +19,7 @@ import {
   TPIframe,
   TP01B,
   TP10A,
+  TP11G,
 } from "./pageTemplate";
 
 // 과정(course) > 레슨(lesson) > 회차(corner) > 페이지(page)
@@ -83,6 +84,7 @@ export type Page =
   | TP10A
   | TP11A
   | TP11F
+  | TP11G
   | TP15A
   | TPIframe;
 
