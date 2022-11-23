@@ -237,6 +237,20 @@ type TP11FTemplate = {
 
 type TP11FContent = IconTextContent | ChooseTextContent;
 
+export type TP11G = {
+  id: ID;
+  title: string;
+  description: string;
+  template: TP11GTemplate;
+};
+
+type TP11GTemplate = {
+  type: "TP11G";
+  contents: TP11GContent[];
+};
+
+type TP11GContent = WordQuizCardContent;
+
 export type TP12A = {
   id: ID;
   title: string;

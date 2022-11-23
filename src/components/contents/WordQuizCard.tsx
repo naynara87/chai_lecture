@@ -3,18 +3,22 @@ import styled from "@emotion/styled";
 import React, { useCallback, useMemo, useState } from "react";
 import { colorPalette } from "../../styles/colorPalette";
 import { WordQuizCardData } from "../../types/templateContents";
-import { changePXtoVH, changePXtoVW } from "../../utils/styles";
+import { changePXtoVW } from "../../utils/styles";
 import QuestionBlank from "../atoms/QuestionBlank";
 import WordQuizAnswer from "../atoms/WordQuizAnswer";
 import HtmlContentComponent from "./HtmlContentComponent";
 import Explanation from "../molecules/Explanation";
 import AudioButton from "../atoms/AudioButton";
+import { Page } from "../../types/appData";
+import TextBox from "../atoms/TextBox";
 
 const WordQuizCardWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  justify-content: center;
   align-items: center;
-  padding-top: ${changePXtoVW(80)};
+  padding-top: ${changePXtoVW(40)};
+  grid-template-rows: max-content;
+  overflow-y: auto;
 `;
 const WordQuizAnswerWrapper = styled.div`
   display: flex;
@@ -24,32 +28,42 @@ const WordQuizAnswerWrapper = styled.div`
 `;
 
 const AudioWrapper = styled.div`
-  margin-top: ${changePXtoVW(64)};
+  margin: ${changePXtoVW(48)} auto;
+`;
+
+const TextBoxWrapper = styled.div`
+  margin: 0 auto;
 `;
 
 const blankCss = css`
-  width: ${changePXtoVW(240)};
-  height: ${changePXtoVH(104)};
+  height: ${changePXtoVW(104)};
   font-weight: 700;
   font-size: ${changePXtoVW(38)};
   display: flex;
   justify-content: center;
   align-items: center;
   color: ${colorPalette.white};
+  margin: 0 auto;
 `;
 
 const meaningCss = css`
   font-weight: 500;
   font-size: ${changePXtoVW(48)};
   color: ${colorPalette.black};
+  margin: 0 auto;
 `;
 
+const customBoxCss = css`
+  width: ${changePXtoVW(208)};
+  height: ${changePXtoVW(108)};
+`;
 interface WordQuizCardProps {
   datas: WordQuizCardData[];
+  pageType: Page["template"]["type"];
 }
 
-const WordQuizCard = ({ datas }: WordQuizCardProps) => {
-  const { choices, explanation, meaning, answerIndex, audio } = datas?.[0];
+const WordQuizCard = ({ datas, pageType }: WordQuizCardProps) => {
+  const { text, choices, explanation, meaning, answerIndex, audio } = datas?.[0];
   const [selectedIndex, setSelectedIndex] = useState<number | undefined>(undefined);
   const [showExplanation, setShowExplanation] = useState(false);
   const handleClickCloseExplanation = () => {
@@ -75,8 +89,19 @@ const WordQuizCard = ({ datas }: WordQuizCardProps) => {
 
   return (
     <WordQuizCardWrapper>
+      {pageType !== "TP10A" && (
+        <TextBoxWrapper>
+          <TextBox text={text} customBoxCss={customBoxCss} />
+        </TextBoxWrapper>
+      )}
+      {pageType !== "TP10A" && (
+        <AudioWrapper>
+          <AudioButton isAudio={true} audioUrl={audio.src} />
+        </AudioWrapper>
+      )}
       <QuestionBlank
         text={choices[selectedIndex!]}
+        width={pageType !== "TP10A" ? `${changePXtoVW(112)}` : `${changePXtoVW(240)}`}
         customCss={blankCss}
         backgroundColor={changeColor}
       />
@@ -94,10 +119,11 @@ const WordQuizCard = ({ datas }: WordQuizCardProps) => {
         })}
       </WordQuizAnswerWrapper>
       <HtmlContentComponent html={meaning} customCss={meaningCss} />
-      <AudioWrapper>
-        <AudioButton isAudio={true} audioUrl={audio.src} />
-      </AudioWrapper>
-
+      {pageType === "TP10A" && (
+        <AudioWrapper>
+          <AudioButton isAudio={true} audioUrl={audio.src} />
+        </AudioWrapper>
+      )}
       {showExplanation && (
         <Explanation
           explanation={explanation}

@@ -919,7 +919,7 @@ export const dummyData: AppData = {
         {
           id: 31,
           title: "지난 레슨 확인하기",
-          description: "빈칸에 들어갈 알맞은 단러를 고르세요.",
+          description: "빈칸에 들어갈 알맞은 단어를 고르세요.",
           template: {
             type: "TP10A",
             contents: [
@@ -931,6 +931,35 @@ export const dummyData: AppData = {
                     choices: ["会", "在"],
                     answerIndex: 0,
                     meaning: "~할 줄 알다.",
+                    audio: {
+                      src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
+                    },
+                    explanation: {
+                      correctMessage: "정답입니다!",
+                      wrongMessage: "오답입니다!",
+                      text: "<p>해설 문장이 블라블라~</p>",
+                    },
+                  },
+                ],
+              },
+            ],
+          },
+        },
+        {
+          id: 32,
+          title: "단어 익히기",
+          description: "발음을 듣고 알맞은 한어병음을 고르세요.",
+          template: {
+            type: "TP11G",
+            contents: [
+              {
+                type: "wordQuizCard",
+                data: [
+                  {
+                    text: "打",
+                    choices: ["da", "ta"],
+                    answerIndex: 0,
+                    meaning: "(놀이, 운동을) 하다.",
                     audio: {
                       src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
                     },
