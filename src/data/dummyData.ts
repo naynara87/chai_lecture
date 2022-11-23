@@ -841,6 +841,77 @@ export const dummyData: AppData = {
             ],
           },
         },
+        {
+          id: 30,
+          title: "지난 레슨 확인하기",
+          description: "빈칸에 들어갈 알맞은 단러를 고르세요.",
+          template: {
+            type: "TP01B",
+            contents: [
+              {
+                type: "dialog",
+                data: [
+                  {
+                    id: "a",
+                    icon: {
+                      src: "https://i.picsum.photos/id/152/200/200.jpg?hmac=jxm74qVoEmDIDdKJ1_I2QT6AhtYcq-KN75l_iotKiOw",
+                    },
+                    text: "<p>现在*blank*点?</p>",
+                    pronunciation: "<p>Méi xiǎngdào zài lùshang yùjiàn nǐ.</p>",
+                    meaning: "<p>지금 몇 시야?</p>",
+                    hasQuestion: true,
+                    question: {
+                      choices: ["几", "回"],
+                      answerIndex: 0,
+                    },
+                  },
+                  {
+                    id: "b",
+                    icon: {
+                      src: "https://i.picsum.photos/id/336/200/200.jpg?hmac=VZ7MzNM30jINYNf5Oj_8zqPLTDAyKDk6eXWTGnNb4bU",
+                    },
+                    text: "<p>点*blank*十分。</p>",
+                    pronunciation: "<p>Méi xiǎngdào zài lùshang yùjiàn nǐ.</p>",
+                    meaning: "<p>2시 10분.</p>",
+                    hasQuestion: true,
+                    question: {
+                      choices: ["点", "几"],
+                      answerIndex: 0,
+                    },
+                  },
+                  {
+                    id: "a",
+                    icon: {
+                      src: "https://i.picsum.photos/id/152/200/200.jpg?hmac=jxm74qVoEmDIDdKJ1_I2QT6AhtYcq-KN75l_iotKiOw",
+                    },
+                    text: "<p>你几点*blank*</p>",
+                    pronunciation: "<p>Méi xiǎngdào zài lùshang yùjiàn nǐ.</p>",
+                    meaning: "<p>너 몇 시에 집에 돌아가니?</p>",
+                    hasQuestion: true,
+                    question: {
+                      choices: ["回家", "现在"],
+                      answerIndex: 0,
+                    },
+                  },
+                  {
+                    id: "b",
+                    icon: {
+                      src: "https://i.picsum.photos/id/336/200/200.jpg?hmac=VZ7MzNM30jINYNf5Oj_8zqPLTDAyKDk6eXWTGnNb4bU",
+                    },
+                    text: "<p>*blank* 四点回家。</p>",
+                    pronunciation: "<p>Méi xiǎngdào zài lùshang yùjiàn nǐ.</p>",
+                    meaning: "<p>오후 4시에 돌아가.</p>",
+                    hasQuestion: true,
+                    question: {
+                      choices: ["下午", "十午"],
+                      answerIndex: 0,
+                    },
+                  },
+                ],
+              },
+            ],
+          },
+        },
       ],
     },
     {

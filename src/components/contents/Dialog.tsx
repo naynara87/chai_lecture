@@ -229,7 +229,7 @@ const Dialog = ({
   handleClickAnswer,
   showPinyin = true,
   showTranslate = true,
-  showAudioButton,
+  showAudioButton = false,
   correctColor = `${colorPalette.deepBlue}`,
   inCorrectColor = `${colorPalette.wrongAnswer}`,
   choiceDefaultColor = `${colorPalette.dialogChoiceDefaultColor}`,
@@ -245,7 +245,7 @@ const Dialog = ({
     question: dialogQuestions,
     audio,
   } = dialogContent;
-  const { src: audioUrl } = audio;
+  const { src: audioUrl } = audio ?? {};
   const [userAnswer, setUserAnswer] = useState<number>(dialogQuestions?.choices.length ?? 0);
   const [correct, setCorrect] = useState<undefined | boolean>(undefined);
   const [choiceMaxLength, setChoiceMaxLength] = useState(0);

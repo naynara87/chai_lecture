@@ -2,22 +2,32 @@ import React, { useCallback, useEffect, useRef } from "react";
 import { ID } from "../../types/appData";
 import { DialogData } from "../../types/templateContents";
 import Dialog from "../contents/Dialog";
+import styled from "@emotion/styled";
+import { SerializedStyles } from "@emotion/react";
 
+interface DialogContainerStylesProps {
+  customCss?: SerializedStyles;
+}
+
+const DialogContainerStyles = styled.div<DialogContainerStylesProps>`
+  ${(props) => props.customCss}
+`;
 interface DialogContainerProps {
   datas: DialogData[];
-  audioIndex: number;
-  dialogAudioState: boolean;
+  audioIndex?: number;
+  dialogAudioState?: boolean;
   layoutRef: React.RefObject<HTMLDivElement>;
-  audioRef: React.RefObject<HTMLAudioElement>;
-  audioState: boolean;
+  audioRef?: React.RefObject<HTMLAudioElement>;
+  audioState?: boolean;
   currentContentIndex: number;
   currentHeight: number;
-  pinyinOption: boolean;
-  translateOption: boolean;
-  setAudioState: React.Dispatch<React.SetStateAction<boolean>>;
+  pinyinOption?: boolean;
+  translateOption?: boolean;
+  setAudioState?: React.Dispatch<React.SetStateAction<boolean>>;
   setCurrentContentIndex: React.Dispatch<React.SetStateAction<number>>;
   setCurrentHeight: React.Dispatch<React.SetStateAction<number>>;
-  handleClickDialogAudioButton: (src: string, index: number) => void;
+  handleClickDialogAudioButton?: (src: string, index: number) => void;
+  customCss?: SerializedStyles;
 }
 
 const DialogContainer = ({
@@ -35,13 +45,17 @@ const DialogContainer = ({
   setCurrentContentIndex,
   setCurrentHeight,
   handleClickDialogAudioButton,
+  customCss,
 }: DialogContainerProps) => {
   const dialogIdRef = useRef<ID>("");
 
   const handleClickDialogAudio = useCallback(
     (src: string, index: number) => {
+      if (!audioRef?.current || !handleClickDialogAudioButton) {
+        return;
+      }
       handleClickDialogAudioButton(src, index);
-      if (!dialogAudioState && audioRef.current) {
+      if (!dialogAudioState && audioRef.current && setAudioState) {
         audioRef.current.pause();
         setAudioState(false);
       }
@@ -53,7 +67,9 @@ const DialogContainer = ({
     (index: number) => {
       if (datas[index + 1]) {
         setCurrentContentIndex(index + 1);
-        setAudioState(true);
+        if (setAudioState) {
+          setAudioState(true);
+        }
         layoutRef.current?.scrollTo({
           top: currentHeight,
           left: 0,
@@ -96,7 +112,7 @@ const DialogContainer = ({
             handleClickAnswer={handleChangeContent}
             showPinyin={pinyinOption}
             showTranslate={translateOption}
-            showAudioButton
+            showAudioButton={content.audio ? true : false}
           />
         );
       });
@@ -113,7 +129,7 @@ const DialogContainer = ({
     ],
   );
 
-  return <>{mainContents(datas)}</>;
+  return <DialogContainerStyles customCss={customCss}>{mainContents(datas)}</DialogContainerStyles>;
 };
 
 export default DialogContainer;

@@ -48,6 +48,20 @@ type TP01ATemplate = {
 
 type TP01AContent = ChooseTextByAudioContent;
 
+export type TP01B = {
+  id: ID;
+  title: string;
+  description: string;
+  template: TP01BTemplate;
+};
+
+type TP01BTemplate = {
+  type: "TP01B";
+  contents: TP01BContent[];
+};
+
+type TP01BContent = DialogContent;
+
 export type TP03A = {
   id: ID;
   title: string;

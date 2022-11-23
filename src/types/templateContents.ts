@@ -155,7 +155,7 @@ export type DialogData = {
     choices: string[];
     answerIndex: number;
   };
-  audio: {
+  audio?: {
     src: string;
   };
 };

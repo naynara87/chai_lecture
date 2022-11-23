@@ -30,7 +30,7 @@ const TP02KComponent = ({ setPageCompleted, page }: TP02KComponentProps) => {
   const [audioSrc, setAudioSrc] = useState("");
   const [audioState, setAudioState] = useState(false);
   const [translateOption, setTranslateOption] = useState(true);
-  const [currentContentIndex, setCurrentContentIndex] = useState(0);
+  const [currentContentIndex, setCurrentContentIndex] = useState(1);
   const [currentHeight, setCurrentHeight] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
   const dialogAudioRef = useRef<HTMLAudioElement>(null);
@@ -58,7 +58,7 @@ const TP02KComponent = ({ setPageCompleted, page }: TP02KComponentProps) => {
 
   useEffect(() => {
     if (audioRef.current && audioState) {
-      setAudioSrc(DialogContentData?.data[currentContentIndex].audio.src ?? "");
+      setAudioSrc(DialogContentData?.data[currentContentIndex].audio!.src ?? "");
       audioRef.current.pause();
       audioRef.current.load();
       audioRef.current.play();
