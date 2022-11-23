@@ -6,7 +6,7 @@ import CornerMain from "../molecules/CornerMain";
 import CommonMainContainer from "../atoms/CommonMainContainer";
 import useCorner from "../../hooks/useCorner";
 import usePage from "../../hooks/usePage";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getPageUrl } from "../../utils/url";
 import { useRecoilState } from "recoil";
 import { cornersState } from "../../state/corners";
@@ -24,6 +24,8 @@ const CornerPage = () => {
 
   const pageIndex = pageIds.findIndex((id) => id === currentPage?.id);
 
+  const { courseId, lessonId } = useParams();
+
   const isLastPage = useMemo(() => {
     if (currentCorner === undefined) {
       return false;
@@ -36,15 +38,15 @@ const CornerPage = () => {
       navigate(CORNER_LIST_URL);
       return;
     }
-    if (cornerId) {
-      navigate(getPageUrl(cornerId, pageIds[pageIndex + 1]));
+    if (cornerId && courseId && lessonId) {
+      navigate(getPageUrl(courseId, lessonId, cornerId, pageIds[pageIndex + 1]));
     }
     setIsPageCompleted(false);
   };
 
   const handleClickPrev = () => {
-    if (cornerId) {
-      navigate(getPageUrl(cornerId, pageIds[pageIndex - 1]));
+    if (cornerId && courseId && lessonId) {
+      navigate(getPageUrl(courseId, lessonId, cornerId, pageIds[pageIndex - 1]));
     }
     setIsPageCompleted(false);
   };
