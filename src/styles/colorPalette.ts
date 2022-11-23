@@ -16,6 +16,7 @@ const COLORS = {
 
 export const colorPalette = Object.freeze({
   white: COLORS.white,
+  black: COLORS.black,
   c1tag: COLORS.black,
   c2tag: COLORS.blue500,
   c3tag: COLORS.red500,
@@ -32,6 +33,8 @@ export const colorPalette = Object.freeze({
   descriptionText: COLORS.gray700,
   signPostTextBorer: COLORS.blue300,
   tabBackground: COLORS.gray500,
+  dialogChoiceDefaultColor: COLORS.gray500,
+  blankBorderColor: COLORS.gray500,
   pronunciationText: COLORS.gray500,
   modalCheckIcon: COLORS.yellow700,
   questionTitle: COLORS.gray800,

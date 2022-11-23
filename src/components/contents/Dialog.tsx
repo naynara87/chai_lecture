@@ -5,6 +5,7 @@ import { css } from "@emotion/react";
 import AudioButton from "../atoms/AudioButton";
 import { DialogData } from "../../types/templateContents";
 import { changePXtoVH, changePXtoVW } from "../../utils/styles";
+import { colorPalette } from "../../styles/colorPalette";
 
 interface ProfileProps {
   icon: string;
@@ -35,8 +36,8 @@ const Profile = styled.div<ProfileProps>`
   height: ${changePXtoVW(120)};
   border-radius: 50%;
   overflow: hidden;
-  background-color: #6070cf;
-  color: #6070cf;
+  background-color: ${(props) => props.profileColor};
+  color: ${(props) => props.profileColor};
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -166,10 +167,10 @@ const QuestionBlank = styled.span`
   height: 25px;
   margin-right: 8px;
   margin-left: 8px;
-  border: 3px dashed #9b9b9b;
+  border: 3px dashed ${colorPalette.blankBorderColor};
   border-radius: 0.625vw;
-  background-color: #ffffff;
-  color: #40476b;
+  background-color: ${colorPalette.white};
+  color: ${colorPalette.deepBlue};
   text-align: center;
   user-select: none;
   transform: translateY(-7%);
@@ -181,19 +182,19 @@ const AudioWrapper = styled.div`
 
 const wordCss = css`
   font-size: 1.5625vw;
-  color: #222222;
+  color: ${colorPalette.black};
 `;
 
 const pronunciationCss = css`
   margin-top: 0.4166666667vh;
   font-size: 1.25vw;
   font-size: 13px;
-  color: #666666;
+  color: ${colorPalette.descriptionText};
 `;
 
 const meaningCss = css`
   font-size: 1.25vw;
-  color: #666666;
+  color: ${colorPalette.descriptionText};
 `;
 
 interface DialogProps {
@@ -229,11 +230,11 @@ const Dialog = ({
   showPinyin = true,
   showTranslate = true,
   showAudioButton,
-  correctColor = "#40476b",
-  inCorrectColor = "#f65555",
-  choiceDefaultColor = "#9b9b9b",
-  bubbleColor = "#fff",
-  profileColor = "#40476b",
+  correctColor = `${colorPalette.deepBlue}`,
+  inCorrectColor = `${colorPalette.wrongAnswer}`,
+  choiceDefaultColor = `${colorPalette.dialogChoiceDefaultColor}`,
+  bubbleColor = `${colorPalette.white}`,
+  profileColor = `${colorPalette.deepBlue}`,
 }: DialogProps) => {
   const {
     icon,

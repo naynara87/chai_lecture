@@ -17,10 +17,7 @@ const TP02LayoutStyle = styled.div<TP02LayoutStyleProps>`
 `;
 
 interface TP02LayoutProps {
-  children:
-    | [JSX.Element | JSX.Element[], JSX.Element]
-    | [JSX.Element, JSX.Element | JSX.Element[], JSX.Element]
-    | JSX.Element;
+  children: JSX.Element | JSX.Element[];
   customCss?: SerializedStyles;
   id?: string;
   layoutRef?: React.RefObject<HTMLDivElement>;

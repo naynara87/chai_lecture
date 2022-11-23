@@ -37,7 +37,6 @@ const DialogContainer = ({
   handleClickDialogAudioButton,
 }: DialogContainerProps) => {
   const dialogIdRef = useRef<ID>("");
-  // TODO: userAnswerList 만들기
 
   const handleClickDialogAudio = useCallback(
     (src: string, index: number) => {

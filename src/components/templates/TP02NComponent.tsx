@@ -86,10 +86,12 @@ const TP02NComponent = ({ setPageCompleted, page }: TP02NComponentProps) => {
     <TemplateCommonLayout>
       <TitleContent title={thisPage.title} description={thisPage.description} />
       <TP02Layout customCss={customLayoutCss}>
-        {mainContents}
-        <audio ref={audioRef}>
-          <source src={audioSrc} />
-        </audio>
+        <>
+          {mainContents}
+          <audio ref={audioRef}>
+            <source src={audioSrc} />
+          </audio>
+        </>
       </TP02Layout>
     </TemplateCommonLayout>
   );

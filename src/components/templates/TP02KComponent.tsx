@@ -30,7 +30,7 @@ const TP02KComponent = ({ setPageCompleted, page }: TP02KComponentProps) => {
   const [audioSrc, setAudioSrc] = useState("");
   const [audioState, setAudioState] = useState(false);
   const [translateOption, setTranslateOption] = useState(true);
-  const [currentContentIndex, setCurrentContentIndex] = useState(1);
+  const [currentContentIndex, setCurrentContentIndex] = useState(0);
   const [currentHeight, setCurrentHeight] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
   const dialogAudioRef = useRef<HTMLAudioElement>(null);
@@ -90,11 +90,15 @@ const TP02KComponent = ({ setPageCompleted, page }: TP02KComponentProps) => {
     }
   };
 
-  audioRef.current?.addEventListener("ended", () => {
-    if (
+  const isNextContentAndHasQuestion = useMemo(() => {
+    return (
       DialogContentData?.data?.[currentContentIndex + 1] &&
       !DialogContentData?.data?.[currentContentIndex].hasQuestion
-    ) {
+    );
+  }, [DialogContentData?.data, currentContentIndex]);
+
+  audioRef.current?.addEventListener("ended", () => {
+    if (isNextContentAndHasQuestion) {
       setTimeout(() => {
         setCurrentContentIndex(currentContentIndex + 1);
         setAudioState(true);
@@ -110,10 +114,7 @@ const TP02KComponent = ({ setPageCompleted, page }: TP02KComponentProps) => {
   });
 
   dialogAudioRef.current?.addEventListener("ended", () => {
-    if (
-      DialogContentData?.data?.[currentContentIndex + 1] &&
-      !DialogContentData?.data?.[currentContentIndex].hasQuestion
-    ) {
+    if (isNextContentAndHasQuestion) {
       setTimeout(() => {
         setCurrentContentIndex(currentContentIndex + 1);
         setDialogAudioState(false);
