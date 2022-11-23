@@ -4,16 +4,7 @@ import ModalCommon from "./ModalCommon";
 import IconCheckYellow from "../atoms/svg/IconCheckYellow";
 import IconModalCharacter from "../atoms/svg/IconModalCharacter";
 import { colorPalette } from "../../styles/colorPalette";
-import { Link } from "react-router-dom";
 import { breakPoints } from "../../constants/layout";
-
-interface ModalStartProps {
-  title: string;
-  description: string;
-  isModalOpen: boolean;
-  linkUrl?: string;
-  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
 
 const ModalInnerBox = styled.div`
   overflow: hidden;
@@ -120,12 +111,20 @@ const StartButton = styled.button`
   }
 `;
 
+interface ModalStartProps {
+  title: string;
+  description: string;
+  isModalOpen: boolean;
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  handleClickStart(): void;
+}
+
 const ModalStart = ({
   title,
   description,
   isModalOpen,
-  linkUrl,
   setIsModalOpen,
+  handleClickStart,
 }: ModalStartProps) => {
   const handleClose = () => {
     setIsModalOpen(false);
@@ -144,9 +143,7 @@ const ModalStart = ({
             <ModalDescription>{description}</ModalDescription>
           </ModalDescriptionWrap>
         </ModalBody>
-        <Link to={linkUrl ?? ""}>
-          <StartButton>확인</StartButton>
-        </Link>
+        <StartButton onClick={handleClickStart}>확인</StartButton>
       </ModalInnerBox>
     </ModalCommon>
   );

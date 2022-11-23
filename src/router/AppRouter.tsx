@@ -9,7 +9,10 @@ const AppRouter = () => {
     <BrowserRouter>
       <Routes>
         <Route path={CORNER_LIST_URL} element={<CornerListPage />} />
-        <Route path="corner/:cornerId/page/:pageId" element={<CornerPage />} />
+        <Route
+          path="course/:courseId/lesson/:lessonId/corner/:cornerId/page/:pageId"
+          element={<CornerPage />}
+        />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

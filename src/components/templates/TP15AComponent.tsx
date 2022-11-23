@@ -26,15 +26,15 @@ interface TP15AComponentProps extends TemplateProps {}
 const TP15AComponent = ({ setPageCompleted, page }: TP15AComponentProps) => {
   const thisPage = page as TP15A;
   const navigate = useNavigate();
-  const { cornerId } = useParams();
+  const { courseId, lessonId, cornerId } = useParams();
 
   useEffect(() => {
     setPageCompleted();
   }, [setPageCompleted]);
 
   const handleClickTab = (pageId?: ID) => {
-    if (cornerId && pageId) {
-      navigate(getPageUrl(cornerId, pageId));
+    if (courseId && lessonId && cornerId && pageId) {
+      navigate(getPageUrl(courseId, lessonId, cornerId, pageId));
     }
   };
 

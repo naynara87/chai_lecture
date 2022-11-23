@@ -18,6 +18,7 @@ import { getPageUrl } from "../../utils/url";
 import { breakPoints } from "../../constants/layout";
 import { useRecoilState } from "recoil";
 import { cornersState } from "../../state/corners";
+import { useNavigate } from "react-router-dom";
 
 const CornerListWrapper = styled.main`
   display: -webkit-box;
@@ -133,6 +134,8 @@ const CornerListPage = () => {
   const [currentCorner, setCurrentCorner] = useState<Corner>();
   const [isModalCloseOpen, setIsModalCloseOpen] = useState(false);
 
+  const navigate = useNavigate();
+
   // useEffect(() => {
   //   if (!appData) return;
   //   const { corners } = appData;
@@ -172,6 +175,18 @@ const CornerListPage = () => {
 
   const modalOpen = () => {
     setIsModalCloseOpen(true);
+  };
+
+  const handleClickStart = () => {
+    if (!currentCorner) return;
+    if (!appData) return;
+    const url = getPageUrl(
+      appData.course.id,
+      appData.lesson.id,
+      currentCorner.id,
+      currentCorner?.pages?.[0]?.id,
+    );
+    navigate(url);
   };
 
   return (
@@ -228,10 +243,7 @@ const CornerListPage = () => {
         title={currentCorner?.introduction.title ?? ""}
         description={currentCorner?.introduction.description ?? ""}
         isModalOpen={isModalCloseOpen}
-        // NOTE: API에서 전달되는 데이터가 변경되면 수정해야함
-        linkUrl={
-          currentCorner?.pages?.[0] && getPageUrl(currentCorner.id, currentCorner?.pages?.[0]?.id)
-        }
+        handleClickStart={handleClickStart}
         setIsModalOpen={setIsModalCloseOpen}
       />
     </CornerListLayout>
