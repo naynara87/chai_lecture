@@ -2,7 +2,6 @@ import React, { useEffect, useMemo } from "react";
 import styled from "@emotion/styled";
 import { TP03A } from "../../types/pageTemplate";
 import { TemplateProps } from "../../types/templates";
-import HtmlContentComponent from "../contents/HtmlContentComponent";
 import ListenWordContent from "../contents/ListenWordContent";
 import TitleContent from "../molecules/TitleContent";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
@@ -10,6 +9,7 @@ import TP03Layout from "../Layouts/TP03Layout";
 import { HtmlContent, ListenWordsContent } from "../../types/templateContents";
 import { colorPalette } from "../../styles/colorPalette";
 import { breakPoints } from "../../constants/layout";
+import HtmlContentComponent from "../molecules/HtmlContentComponent";
 
 interface TP03AComponentProps extends TemplateProps {}
 

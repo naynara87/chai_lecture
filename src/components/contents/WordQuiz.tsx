@@ -6,10 +6,10 @@ import { WordQuizData } from "../../types/templateContents";
 import { changePXtoVW } from "../../utils/styles";
 import QuestionBlank from "../atoms/QuestionBlank";
 import WordQuizAnswer from "../atoms/WordQuizAnswer";
-import HtmlContentComponent from "./HtmlContentComponent";
 import Explanation from "../molecules/Explanation";
 import AudioButton from "../atoms/AudioButton";
 import TextBox from "../atoms/TextBox";
+import HtmlContentComponent from "../molecules/HtmlContentComponent";
 
 const WordQuizWrapper = styled.div`
   display: grid;

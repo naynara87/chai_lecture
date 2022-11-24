@@ -3,7 +3,6 @@ import styled from "@emotion/styled";
 import { TP02N } from "../../types/pageTemplate";
 import { StudyWordsContent } from "../../types/templateContents";
 import { TemplateProps } from "../../types/templates";
-import HtmlContentComponent from "../contents/HtmlContentComponent";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TP02Layout from "../Layouts/TP02Layout";
 import TitleContent from "../molecules/TitleContent";
@@ -13,6 +12,7 @@ import { css } from "@emotion/react";
 import { changePXtoVW } from "../../utils/styles";
 import useAudio from "../../hooks/useAudio";
 import { colorPalette } from "../../styles/colorPalette";
+import HtmlContentComponent from "../molecules/HtmlContentComponent";
 
 const ContentContainer = styled.div`
   width: 100%;

@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import React from "react";
 import { breakPoints } from "../../constants/layout";
 import { colorPalette } from "../../styles/colorPalette";
-import HtmlContentComponent from "../contents/HtmlContentComponent";
+import HtmlContentComponent from "./HtmlContentComponent";
 
 interface TipWrapperProps {
   customCss?: SerializedStyles;

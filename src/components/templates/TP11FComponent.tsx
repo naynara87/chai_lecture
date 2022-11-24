@@ -6,12 +6,12 @@ import { colorPalette } from "../../styles/colorPalette";
 import { TP11F } from "../../types/pageTemplate";
 import { ChooseTextContent, IconTextContent } from "../../types/templateContents";
 import { TemplateProps } from "../../types/templates";
-import HtmlContentComponent from "../contents/HtmlContentComponent";
 import QuestionIcon from "../atoms/QuestionIcon";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TP11Layout from "../Layouts/TP11Layout";
 import ChooseText from "../contents/ChooseText";
 import TitleContent from "../molecules/TitleContent";
+import HtmlContentComponent from "../molecules/HtmlContentComponent";
 
 const htmlCss = css`
   margin-left: 16px;

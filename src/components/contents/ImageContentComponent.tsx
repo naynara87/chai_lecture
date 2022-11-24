@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import ModalImage from "../modal/ModalImage";
 
 interface ImageComponentProps {
-  customCss: SerializedStyles;
+  customCss?: SerializedStyles;
 }
 const ImageComponent = styled.img<ImageComponentProps>`
   cursor: pointer;
@@ -16,7 +16,7 @@ interface ImageContentComponentProps {
   imageSrc: string;
   imageAlt: string;
   filter: string;
-  customCss: SerializedStyles;
+  customCss?: SerializedStyles;
 }
 const ImageContentComponent = ({
   imageSrc,

@@ -19,6 +19,7 @@ import TP01BComponent from "../components/templates/TP01BComponent";
 import TP10AComponent from "../components/templates/TP10AComponent";
 import TP11GComponent from "../components/templates/TP11GComponent";
 import TP24AComponent from "../components/templates/TP24AComponent";
+import TP09AComponent from "../components/templates/TP09AComponent";
 
 export interface UseTemplateMapperProps extends TemplateProps {}
 const useTemplateMapper = (props: UseTemplateMapperProps) => {
@@ -34,14 +35,15 @@ const useTemplateMapper = (props: UseTemplateMapperProps) => {
     TP03B: <TP03BComponent {...props} />,
     TP03C: <TP03BComponent {...props} />,
     TP03D: <TP03BComponent {...props} />,
-    TP11A: <TP11FComponent {...props} />,
-    TP10A: <TP10AComponent {...props} />,
-    TP11F: <TP11FComponent {...props} />,
-    TP11G: <TP11GComponent {...props} />,
     TP04A: <TP04AComponent {...props} />,
     TP05A: <TP05AComponent {...props} />,
     TP07A: <TP07AComponent {...props} />,
     TP08G: <TP08GComponent {...props} />,
+    TP09A: <TP09AComponent {...props} />,
+    TP10A: <TP10AComponent {...props} />,
+    TP11A: <TP11FComponent {...props} />,
+    TP11F: <TP11FComponent {...props} />,
+    TP11G: <TP11GComponent {...props} />,
     TP15A: <TP15AComponent {...props} />,
     TP24A: <TP24AComponent {...props} />,
     TPIframe: <TPIframeComponent {...props} />,
