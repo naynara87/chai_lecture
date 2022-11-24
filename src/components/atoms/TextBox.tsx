@@ -14,7 +14,7 @@ const TextCard = styled.div<TextCardProps>`
   height: ${changePXtoVW(106)};
   line-height: 84px;
   margin: 11px;
-  padding: 11px 0;
+  padding: ${changePXtoVW(33)} 0;
   border: 1px solid color(gray2);
   border-radius: 11px;
   font-size: ${changePXtoVW(48)};
@@ -28,7 +28,6 @@ const TextCard = styled.div<TextCardProps>`
     line-height: 8.3333333333vw;
     margin: 1.0416666667vw;
     border-radius: 1.0416666667vw;
-    padding: 1.0416666667vw 0;
     /* font-size: 3.125vw; */
   }
 

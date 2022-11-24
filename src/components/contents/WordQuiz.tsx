@@ -9,10 +9,9 @@ import WordQuizAnswer from "../atoms/WordQuizAnswer";
 import HtmlContentComponent from "./HtmlContentComponent";
 import Explanation from "../molecules/Explanation";
 import AudioButton from "../atoms/AudioButton";
-import { Page } from "../../types/appData";
 import TextBox from "../atoms/TextBox";
 
-const WordQuizCardWrapper = styled.div`
+const WordQuizWrapper = styled.div`
   display: grid;
   justify-content: center;
   align-items: center;
@@ -88,7 +87,7 @@ const WordQuiz = ({ datas, reverse = false }: WordQuizProps) => {
   }, [selectedIndex]);
 
   return (
-    <WordQuizCardWrapper>
+    <WordQuizWrapper>
       {reverse && (
         <TextBoxWrapper>
           <TextBox text={text} customBoxCss={customBoxCss} />
@@ -131,7 +130,7 @@ const WordQuiz = ({ datas, reverse = false }: WordQuizProps) => {
           handleClickClose={handleClickCloseExplanation}
         />
       )}
-    </WordQuizCardWrapper>
+    </WordQuizWrapper>
   );
 };
 
