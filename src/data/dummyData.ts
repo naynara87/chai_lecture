@@ -974,6 +974,44 @@ export const dummyData: AppData = {
             ],
           },
         },
+        {
+          id: 33,
+          title: "문장",
+          description: "단어를 알맞게 배열하여 문장을 완성하세요.",
+          template: {
+            type: "TP24A",
+            contents: [
+              {
+                type: "images",
+                data: [
+                  {
+                    src: `${process.env.PUBLIC_URL}/images/icon/tp02c_image.png`,
+                  },
+                ],
+              },
+              {
+                type: "sortWords",
+                data: [
+                  {
+                    text: "*我*会*游泳*가나다*라*",
+                    fakeChoices: ["가", "나", "다"],
+                    audio: {
+                      src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
+                    },
+                    explanation: {
+                      audio: {
+                        src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
+                      },
+                      correctMessage: "我会游泳",
+                      wrongMessage: "오답입니다!",
+                      text: "<p>Wǒ  huì  yóuyǒng.</p><p>나는 수영할 줄 압니다.</p>",
+                    },
+                  },
+                ],
+              },
+            ],
+          },
+        },
       ],
     },
     {

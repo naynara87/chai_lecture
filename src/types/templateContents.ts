@@ -208,3 +208,24 @@ export type WordQuizData = {
     text: string;
   };
 };
+
+export type SortWordsContent = {
+  type: "sortWords";
+  data: SortWordsData[];
+};
+
+export type SortWordsData = {
+  text: string;
+  fakeChoices?: string[];
+  audio?: {
+    src: string;
+  };
+  explanation: {
+    audio?: {
+      src: string;
+    };
+    correctMessage: string;
+    wrongMessage: string;
+    text: string;
+  };
+};

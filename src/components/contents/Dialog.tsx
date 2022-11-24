@@ -310,17 +310,22 @@ const Dialog = ({
   ]);
 
   const questionContents = useMemo(() => {
-    const questions = text.replace(/<[^>]*>?/g, "").split(/(\*.*\*)/);
+    const questions = text
+      .replace(/<[^>]*>?/g, "")
+      .split(/(\*.*?\*)/)
+      .filter((content) => {
+        return content.length > 0;
+      });
+    if (!dialogQuestions) {
+      return <></>;
+    }
+    dialogQuestions.choices.forEach((choice) => {
+      if (choice.length > choiceMaxLength) {
+        setChoiceMaxLength(choice.length);
+      }
+    });
     return questions.map((question, index) => {
       if (question === "*blank*") {
-        if (!dialogQuestions) {
-          return <></>;
-        }
-        dialogQuestions.choices.forEach((choice) => {
-          if (choice.length > choiceMaxLength) {
-            setChoiceMaxLength(choice.length);
-          }
-        });
         const blankWidth = `${choiceMaxLength * 25}px`;
         return (
           <QuestionBlank

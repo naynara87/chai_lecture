@@ -15,6 +15,7 @@ import {
   DialogContent,
   NumberTableContent,
   WordQuizContent,
+  SortWordsContent,
 } from "./templateContents";
 
 export type Tab = {
@@ -62,6 +63,70 @@ type TP01BTemplate = {
 };
 
 type TP01BContent = DialogContent;
+
+export type TP02C = {
+  id: ID;
+  title: string;
+  description: string;
+  template: TP02CTemplate;
+};
+
+type TP02CTemplate = {
+  type: "TP02C";
+  contents: TP02CContent[];
+};
+
+type TP02CContent = ImagesContent;
+
+export type TP02F = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP02F";
+    contents: TP02FContent[];
+  };
+};
+
+type TP02FContent = VideoContent;
+
+export type TP02M = {
+  id: ID;
+  title: string;
+  description: string;
+  template: TP02MTemplate;
+};
+
+type TP02MTemplate = {
+  type: "TP02M";
+  contents: TP02MContent[];
+};
+
+type TP02MContent = TextBoxesContent;
+
+export type TP02N = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP02N";
+    contents: TP02NContent[];
+  };
+};
+
+type TP02NContent = StudyWordsContent;
+
+export type TP02K = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP02K";
+    contents: TP02KContent[];
+  };
+};
+
+type TP02KContent = DialogContent;
 
 export type TP03A = {
   id: ID;
@@ -131,46 +196,6 @@ export type TP03F = {
 
 type TP03FContent = HtmlContent | TextBoxesContent;
 
-export type TP02C = {
-  id: ID;
-  title: string;
-  description: string;
-  template: TP02CTemplate;
-};
-
-type TP02CTemplate = {
-  type: "TP02C";
-  contents: TP02CContent[];
-};
-
-type TP02CContent = ImagesContent;
-
-export type TP02M = {
-  id: ID;
-  title: string;
-  description: string;
-  template: TP02MTemplate;
-};
-
-type TP02MTemplate = {
-  type: "TP02M";
-  contents: TP02MContent[];
-};
-
-type TP02MContent = TextBoxesContent;
-
-export type TP02K = {
-  id: ID;
-  title: string;
-  description: string;
-  template: {
-    type: "TP02K";
-    contents: TP02KContent[];
-  };
-};
-
-type TP02KContent = DialogContent;
-
 export type TP04A = {
   id: ID;
   title: string;
@@ -199,17 +224,29 @@ type TP05ATemplate = {
 
 type TP05AContent = TextBoxesContent | HtmlContent;
 
-export type TP11A = {
+export type TP07A = {
   id: ID;
   title: string;
   description: string;
   template: {
-    type: "TP11A";
-    contents: TP11AContent[];
+    type: "TP07A";
+    contents: TP07AContent[];
   };
 };
 
-type TP11AContent = IconTextContent | ChooseTextContent;
+type TP07AContent = IconTextContent | ImagesContent | HtmlContent | AudioRecordContent;
+
+export type TP08G = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP08G";
+    contents: TP08GContent[];
+  };
+};
+
+type TP08GContent = NumberTableContent | HtmlContent;
 
 export type TP10A = {
   id: ID;
@@ -222,6 +259,18 @@ export type TP10A = {
 };
 
 type TP10AContent = WordQuizContent;
+
+export type TP11A = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP11A";
+    contents: TP11AContent[];
+  };
+};
+
+type TP11AContent = IconTextContent | ChooseTextContent;
 
 export type TP11F = {
   id: ID;
@@ -384,50 +433,14 @@ export type TP21B = {
 
 type TP21BContent = HtmlContent | ChooseTextContent;
 
-export type TP02F = {
+export type TP24A = {
   id: ID;
   title: string;
   description: string;
   template: {
-    type: "TP02F";
-    contents: TP02FContent[];
+    type: "TP24A";
+    contents: TP24AContent[];
   };
 };
 
-type TP02FContent = VideoContent;
-
-export type TP02N = {
-  id: ID;
-  title: string;
-  description: string;
-  template: {
-    type: "TP02N";
-    contents: TP02NContent[];
-  };
-};
-
-type TP02NContent = StudyWordsContent;
-
-export type TP07A = {
-  id: ID;
-  title: string;
-  description: string;
-  template: {
-    type: "TP07A";
-    contents: TP07AContent[];
-  };
-};
-
-type TP07AContent = IconTextContent | ImagesContent | HtmlContent | AudioRecordContent;
-
-export type TP08G = {
-  id: ID;
-  title: string;
-  description: string;
-  template: {
-    type: "TP08G";
-    contents: TP08GContent[];
-  };
-};
-
-type TP08GContent = NumberTableContent | HtmlContent;
+type TP24AContent = SortWordsContent | ImagesContent;
