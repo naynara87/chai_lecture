@@ -4,4 +4,7 @@ export const QUERY_KEY = Object.freeze({
   CORNER: "corner", // getCorner
   PAGES: "pages", // getPages
   PAGE: "page", // getPage
+
+  // api
+  PAGE_LIST: "pageListByCornerId",
 });
