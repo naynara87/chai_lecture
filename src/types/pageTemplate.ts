@@ -16,6 +16,7 @@ import {
   NumberTableContent,
   WordQuizContent,
   SortWordsContent,
+  BottomTabsContent,
 } from "./templateContents";
 
 export type Tab = {
@@ -247,6 +248,18 @@ export type TP08G = {
 };
 
 type TP08GContent = NumberTableContent | HtmlContent;
+
+export type TP09A = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP09A";
+    contents: TP09AContent[];
+  };
+};
+
+type TP09AContent = HtmlContent | BottomTabsContent;
 
 export type TP10A = {
   id: ID;

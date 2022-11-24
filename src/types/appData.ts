@@ -21,7 +21,27 @@ import {
   TP10A,
   TP11G,
   TP24A,
+  TP09A,
 } from "./pageTemplate";
+import {
+  AudioContent,
+  AudioRecordContent,
+  ChooseTextByAudioContent,
+  ChooseTextContent,
+  DialogContent,
+  DragAndDropContent,
+  HtmlContent,
+  IconTextContent,
+  ImagesContent,
+  ListenImagesContent,
+  ListenWordsContent,
+  NumberTableContent,
+  SortWordsContent,
+  StudyWordsContent,
+  TextBoxesContent,
+  VideoContent,
+  WordQuizContent,
+} from "./templateContents";
 
 // 과정(course) > 레슨(lesson) > 회차(corner) > 페이지(page)
 export type ID = number | string;
@@ -83,6 +103,7 @@ export type Page =
   | TP07A
   | TP08G
   | TP10A
+  | TP09A
   | TP11A
   | TP11F
   | TP11G
@@ -91,3 +112,44 @@ export type Page =
   | TPIframe;
 
 export type TemplateType = Page["template"]["type"];
+
+export type Content =
+  | ChooseTextContent
+  | ChooseTextByAudioContent
+  | HtmlContent
+  | ListenImagesContent
+  | ListenWordsContent
+  | ImagesContent
+  | TextBoxesContent
+  | IconTextContent
+  | VideoContent
+  | AudioContent
+  | AudioRecordContent
+  | DragAndDropContent
+  | StudyWordsContent
+  | DialogContent
+  | NumberTableContent
+  | WordQuizContent
+  | SortWordsContent;
+
+// 나중에 저작도구에서 bottomContent에서 허용할 컨텐트 컴포넌트
+export type BottomContent = Exclude<
+  Content,
+  | DialogContent
+  | NumberTableContent
+  | ChooseTextByAudioContent
+  | ListenImagesContent
+  | ListenWordsContent
+  | TextBoxesContent
+  | IconTextContent
+  | DragAndDropContent
+  | StudyWordsContent
+  | DialogContent
+  | NumberTableContent
+  | WordQuizContent
+  | SortWordsContent
+>;
+
+export type BottomContentType = BottomContent["type"];
+
+export type ContentsType = Content["type"];

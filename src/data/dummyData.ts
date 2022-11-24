@@ -1012,6 +1012,79 @@ export const dummyData: AppData = {
             ],
           },
         },
+        {
+          id: 34,
+          title: "~ 跟 ~ 一样",
+          description: "~ 跟 ~ 一样 ~gēn~yíyàng 에 대해 알아봅시다.",
+          template: {
+            type: "TP09A",
+            contents: [
+              {
+                type: "html",
+                data: [
+                  {
+                    text: "<h1>你跟以前一样帅啊。</h1><p class='c4'>Nǐ gēn yǐqián yíyàng shuài a.</p><h2>너는 예전과 같이 멋있구나.</h2><h4 class='c4'>‘~跟…一样’은 ‘~은(는) …와(과) 같다’라는 뜻으로, 사람 또는 사물의 성격이나 성질의 공통점을 비교하는 표현입니다. 부정형은 不一样입니다.</h4>",
+                  },
+                ],
+              },
+              {
+                type: "bottomTabs",
+                data: [
+                  {
+                    tabNames: "예문",
+                    contents: [
+                      {
+                        type: "html",
+                        data: [
+                          {
+                            text: "<h3 class='c2'>~跟…一样 / ~跟…不一样</h3>",
+                          },
+                        ],
+                      },
+                      {
+                        type: "html",
+                        data: [
+                          {
+                            text: "<h3>他的爱好跟我(的爱好)一样。</h3><p>Tā de àihào gēn wǒ (de àihào) yíyàng.</p><p>그의 취미는 나(의 취미)와 같다.</p>",
+                          },
+                        ],
+                      },
+                      {
+                        type: "html",
+                        data: [
+                          {
+                            text: "<h3>你好，你是张明吗 ?</h3><p>Nǐ hǎo, Nǐ shì Zhāng Míng ma ?</p><p>안녕, 너 장밍이니 ?</p>",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    tabNames: "단어",
+                    contents: [
+                      {
+                        type: "images",
+                        data: [
+                          {
+                            src: `${process.env.PUBLIC_URL}/images/icon/tp04a_image1.png`,
+                          },
+                        ],
+                      },
+                      {
+                        type: "html",
+                        data: [
+                          {
+                            text: "<h3>가나다라</h3><p>마바사</p><p>아자차</p><h3>카타파</h3><p>하</p>",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        },
       ],
     },
     {

@@ -6,7 +6,6 @@ import { TP08G } from "../../types/pageTemplate";
 import { HtmlContent, NumberTableContent } from "../../types/templateContents";
 import { TemplateProps } from "../../types/templates";
 import { changePXtoVW } from "../../utils/styles";
-import AudioButton from "../atoms/AudioButton";
 import NumberTable from "../contents/NumberTable";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TP08Layout from "../Layouts/TP08Layout";

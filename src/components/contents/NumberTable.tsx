@@ -2,7 +2,7 @@ import { css } from "@emotion/react";
 import React from "react";
 import { changePXtoVW } from "../../utils/styles";
 import AudioButton from "../atoms/AudioButton";
-import HtmlContentComponent from "./HtmlContentComponent";
+import HtmlContentComponent from "../molecules/HtmlContentComponent";
 
 interface NumberTableProps {
   text: string;

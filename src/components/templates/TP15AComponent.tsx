@@ -6,13 +6,13 @@ import { TP15A } from "../../types/pageTemplate";
 import { HtmlContent, ImagesContent } from "../../types/templateContents";
 import { TemplateProps } from "../../types/templates";
 import { getPageUrl } from "../../utils/url";
-import HtmlContentComponent from "../contents/HtmlContentComponent";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TP15Layout from "../Layouts/TP15Layout";
 import ImagesContentComponent from "../contents/ImagesContentComponent";
 import TabButtons from "../molecules/TabButtons";
 import TipComponent from "../molecules/TipComponent";
 import TitleContent from "../molecules/TitleContent";
+import HtmlContentComponent from "../molecules/HtmlContentComponent";
 
 const HtmlContainer = styled.div`
   display: flex;

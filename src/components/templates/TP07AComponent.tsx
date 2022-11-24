@@ -11,13 +11,13 @@ import {
 } from "../../types/templateContents";
 import { TemplateProps } from "../../types/templates";
 import { changePXtoVW } from "../../utils/styles";
-import HtmlContentComponent from "../contents/HtmlContentComponent";
 import ImageContentComponent from "../contents/ImageContentComponent";
 import QuestionIcon from "../atoms/QuestionIcon";
 import AudioRecorder from "../contents/AudioRecorder";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TP07Layout from "../Layouts/TP07Layout";
 import TitleContent from "../molecules/TitleContent";
+import HtmlContentComponent from "../molecules/HtmlContentComponent";
 
 const htmlCss = css`
   margin-left: ${changePXtoVW(24)};

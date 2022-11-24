@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { ListenWordData } from "../../types/templateContents";
-import HtmlContentComponent from "./HtmlContentComponent";
 import { breakPoints } from "../../constants/layout";
+import HtmlContentComponent from "../molecules/HtmlContentComponent";
 
 interface WordsContentComponentProps extends ListenWordData {
   index: number;

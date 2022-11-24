@@ -1,6 +1,5 @@
 import React, { useCallback, useMemo, useState } from "react";
 import styled from "@emotion/styled";
-import HtmlContentComponent from "../contents/HtmlContentComponent";
 import { css } from "@emotion/react";
 import AudioButton from "../atoms/AudioButton";
 import { DialogData } from "../../types/templateContents";
@@ -9,6 +8,7 @@ import { colorPalette } from "../../styles/colorPalette";
 import OIcon from "../atoms/svg/OIcon";
 import XIcon from "../atoms/svg/XIcon";
 import QuestionBlank from "../atoms/QuestionBlank";
+import HtmlContentComponent from "../molecules/HtmlContentComponent";
 
 interface ProfileProps {
   icon: string;

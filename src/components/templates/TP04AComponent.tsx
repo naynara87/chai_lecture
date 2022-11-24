@@ -9,9 +9,9 @@ import TP04Layout from "../Layouts/TP04Layout";
 import TitleContent from "../molecules/TitleContent";
 import ImageContentComponent from "../contents/ImageContentComponent";
 import { css } from "@emotion/react";
-import HtmlContentComponent from "../contents/HtmlContentComponent";
 import { colorPalette } from "../../styles/colorPalette";
 import { changePXtoVW } from "../../utils/styles";
+import HtmlContentComponent from "../molecules/HtmlContentComponent";
 
 const imageCustomCss = css`
   width: ${changePXtoVW(600)};

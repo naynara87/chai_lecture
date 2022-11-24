@@ -1,4 +1,4 @@
-import { ID } from "./appData";
+import { BottomContent, ID } from "./appData";
 
 // 각 컴포넌트(컨텐츠)의 타입을 정의합니다.
 export type ChooseTextContent = {
@@ -228,4 +228,14 @@ export type SortWordsData = {
     wrongMessage: string;
     text: string;
   };
+};
+
+export type BottomTabsContent = {
+  type: "bottomTabs";
+  data: BottomTabsData[];
+};
+
+export type BottomTabsData = {
+  tabNames: string;
+  contents: BottomContent[];
 };
