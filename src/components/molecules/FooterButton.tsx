@@ -51,9 +51,13 @@ const FooterButton = ({ handleClick, isDisable = false, text, direction }: Foote
     <ButtonTextArrow type="button" onClick={handleClick} disabled={isDisable} direction={direction}>
       {text}
       {direction === "right" ? (
-        <ArrowRight customCss={arrowCss} disabled={isDisable} />
+        <ArrowRight customCss={arrowCss} disabled={isDisable} activeColor={colorPalette.deepBlue} />
       ) : (
-        <ArrowLeft customCss={arrowCssLeft} disabled={isDisable} />
+        <ArrowLeft
+          customCss={arrowCssLeft}
+          disabled={isDisable}
+          activeColor={colorPalette.deepBlue}
+        />
       )}
     </ButtonTextArrow>
   );

@@ -17,6 +17,7 @@ import {
   WordQuizContent,
   SortWordsContent,
   BottomTabsContent,
+  StudySentencesWithVocabularyContent,
 } from "./templateContents";
 
 export type Tab = {
@@ -421,6 +422,18 @@ export type TP17A = {
 };
 
 type TP17AContent = HtmlContent | TextBoxesContent | VideoContent | AudioRecordContent;
+
+export type TP19A = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP19A";
+    contents: TP19AContent[];
+  };
+};
+
+type TP19AContent = StudySentencesWithVocabularyContent;
 
 export type TP21A = {
   id: ID;

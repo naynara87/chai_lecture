@@ -83,7 +83,7 @@ const TP01AComponent = ({ setPageCompleted, page }: TP01AComponentProps) => {
           checkAnswer={handleCheckAnswer}
           handleClickAudio={handleClickAudioButton}
           audioUrl={audio.src}
-          currentAudioIndex={audioIndex}
+          currentAudioIndex={audioIndex ?? 0}
         />
       );
     });

@@ -75,7 +75,7 @@ const TP08GComponent = ({ setPageCompleted, page }: TP08GComponentProps) => {
             audioHandler={handleClickAudioButton}
             audioIndex={index + 1}
             audioUrl={audio.src}
-            currentAudioIndex={audioIndex}
+            currentAudioIndex={audioIndex ?? 0}
           />
         </NumberTableContainer>
       );
