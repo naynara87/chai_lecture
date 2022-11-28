@@ -38,7 +38,7 @@ const tipCustomCss = css`
 
 interface TP08GComponentProps extends TemplateProps {}
 
-const TP08GComponent = ({ setPageCompleted, page }: TP08GComponentProps) => {
+const TP08GComponent = ({ setPageCompleted, page, showHeader = true }: TP08GComponentProps) => {
   const thisPage = page as TP08G;
   const audioRef = useRef<HTMLAudioElement>(null);
   const { audioSrc, audioIndex, handleClickAudioButton } = useAudio(audioRef);
@@ -84,7 +84,11 @@ const TP08GComponent = ({ setPageCompleted, page }: TP08GComponentProps) => {
 
   return (
     <TemplateCommonLayout>
-      <TitleContent title={thisPage.title} description={thisPage.description} />
+      {showHeader ? (
+        <TitleContent title={thisPage.title} description={thisPage.description} />
+      ) : (
+        <></>
+      )}
       <TP08Layout>
         <MainContainer>{mainContents ?? <></>}</MainContainer>
         <TipComponent html={htmlTipString ?? ""} customCss={tipCustomCss}></TipComponent>

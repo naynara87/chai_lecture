@@ -21,5 +21,5 @@ export const getPages = async (cornerId: ID) => {
 
 export const getPage = async (cornerId: ID, pageId: ID) => {
   const pages = await getPages(cornerId);
-  return pages.find((page) => page.id.toString() === pageId.toString());
+  return pages.find((page) => page.id!.toString() === pageId.toString());
 };

@@ -17,7 +17,7 @@ const imageCustomCss = css`
 
 interface TP02CComponentProps extends TemplateProps {}
 
-const TP02CComponent = ({ setPageCompleted, page }: TP02CComponentProps) => {
+const TP02CComponent = ({ setPageCompleted, page, showHeader = true }: TP02CComponentProps) => {
   const thisPage = page as TP02C;
 
   useEffect(() => {
@@ -40,7 +40,11 @@ const TP02CComponent = ({ setPageCompleted, page }: TP02CComponentProps) => {
 
   return (
     <TemplateCommonLayout>
-      <TitleContent title={thisPage.title} description={thisPage.description} />
+      {showHeader ? (
+        <TitleContent title={thisPage.title} description={thisPage.description} />
+      ) : (
+        <></>
+      )}
       <TP02Layout>
         <ImageContentComponent
           imageSrc={imageSrc ?? ""}

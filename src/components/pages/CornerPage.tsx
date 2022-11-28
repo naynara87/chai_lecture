@@ -42,14 +42,14 @@ const CornerPage = () => {
       return;
     }
     if (cornerId && courseId && lessonId) {
-      navigate(getPageUrl(courseId, lessonId, cornerId, pageIds[pageIndex + 1]));
+      navigate(getPageUrl(courseId, lessonId, cornerId, pageIds[pageIndex + 1]!));
     }
     setIsPageCompleted(false);
   };
 
   const handleClickPrev = () => {
     if (cornerId && courseId && lessonId) {
-      navigate(getPageUrl(courseId, lessonId, cornerId, pageIds[pageIndex - 1]));
+      navigate(getPageUrl(courseId, lessonId, cornerId, pageIds[pageIndex - 1]!));
     }
     setIsPageCompleted(false);
   };

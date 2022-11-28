@@ -1,4 +1,4 @@
-import { ID } from "./appData";
+import { ID, Page } from "./appData";
 import {
   ChooseTextByAudioContent,
   ListenWordsContent,
@@ -21,13 +21,14 @@ import {
 } from "./templateContents";
 
 export type Tab = {
-  name: string;
+  tabName: string;
   active: boolean;
   pageId?: ID;
+  tabPages?: Exclude<Page, TPIframe>[];
 };
 
 export type TPIframe = {
-  id: ID;
+  id?: ID;
   // title: string;
   // description: string;
   template: TPIframeTemplate;
@@ -39,7 +40,7 @@ export type TPIframeTemplate = {
 };
 
 export type TP01A = {
-  id: ID;
+  id?: ID;
   title: string;
   description: string;
   template: TP01ATemplate;
@@ -53,7 +54,7 @@ type TP01ATemplate = {
 type TP01AContent = ChooseTextByAudioContent;
 
 export type TP01B = {
-  id: ID;
+  id?: ID;
   title: string;
   description: string;
   template: TP01BTemplate;
@@ -67,7 +68,7 @@ type TP01BTemplate = {
 type TP01BContent = DialogContent;
 
 export type TP02C = {
-  id: ID;
+  id?: ID;
   title: string;
   description: string;
   template: TP02CTemplate;
@@ -81,7 +82,7 @@ type TP02CTemplate = {
 type TP02CContent = ImagesContent;
 
 export type TP02F = {
-  id: ID;
+  id?: ID;
   title: string;
   description: string;
   template: {
@@ -93,7 +94,7 @@ export type TP02F = {
 type TP02FContent = VideoContent;
 
 export type TP02M = {
-  id: ID;
+  id?: ID;
   title: string;
   description: string;
   template: TP02MTemplate;
@@ -107,7 +108,7 @@ type TP02MTemplate = {
 type TP02MContent = TextBoxesContent;
 
 export type TP02N = {
-  id: ID;
+  id?: ID;
   title: string;
   description: string;
   template: {
@@ -119,7 +120,7 @@ export type TP02N = {
 type TP02NContent = StudyWordsContent;
 
 export type TP02K = {
-  id: ID;
+  id?: ID;
   title: string;
   description: string;
   template: {
@@ -131,7 +132,7 @@ export type TP02K = {
 type TP02KContent = DialogContent;
 
 export type TP03A = {
-  id: ID;
+  id?: ID;
   title: string;
   description: string;
   template: TP03ATemplate;
@@ -145,7 +146,7 @@ type TP03ATemplate = {
 export type TP03AContent = HtmlContent | ListenWordsContent;
 
 export type TP03B = {
-  id: ID;
+  id?: ID;
   title: string;
   description: string;
   template: TP03BTemplate;
@@ -159,7 +160,7 @@ type TP03BTemplate = {
 export type TP03BContent = HtmlContent | TextBoxesContent | AudioContent;
 
 export type TP03C = {
-  id: ID;
+  id?: ID;
   title: string;
   description: string;
   template: TP03CTemplate;
@@ -173,7 +174,7 @@ type TP03CTemplate = {
 type TP03CContent = HtmlContent | TextBoxesContent | AudioContent;
 
 export type TP03D = {
-  id: ID;
+  id?: ID;
   title: string;
   description: string;
   template: TP03DTemplate;
@@ -187,7 +188,7 @@ type TP03DTemplate = {
 type TP03DContent = HtmlContent | TextBoxesContent | AudioContent;
 
 export type TP03F = {
-  id: ID;
+  id?: ID;
   title: string;
   description: string;
   template: {
@@ -199,7 +200,7 @@ export type TP03F = {
 type TP03FContent = HtmlContent | TextBoxesContent;
 
 export type TP04A = {
-  id: ID;
+  id?: ID;
   title: string;
   description: string;
   template: TP04ATemplate;
@@ -213,7 +214,7 @@ type TP04ATemplate = {
 type TP04AContent = ImagesContent | HtmlContent | AudioContent;
 
 export type TP05A = {
-  id: ID;
+  id?: ID;
   title: string;
   description: string;
   template: TP05ATemplate;
@@ -227,7 +228,7 @@ type TP05ATemplate = {
 type TP05AContent = TextBoxesContent | HtmlContent;
 
 export type TP07A = {
-  id: ID;
+  id?: ID;
   title: string;
   description: string;
   template: {
@@ -239,7 +240,7 @@ export type TP07A = {
 type TP07AContent = IconTextContent | ImagesContent | HtmlContent | AudioRecordContent;
 
 export type TP08G = {
-  id: ID;
+  id?: ID;
   title: string;
   description: string;
   template: {
@@ -251,7 +252,7 @@ export type TP08G = {
 type TP08GContent = NumberTableContent | HtmlContent;
 
 export type TP09A = {
-  id: ID;
+  id?: ID;
   title: string;
   description: string;
   template: {
@@ -263,7 +264,7 @@ export type TP09A = {
 type TP09AContent = HtmlContent | BottomTabsContent;
 
 export type TP10A = {
-  id: ID;
+  id?: ID;
   title: string;
   description: string;
   template: {
@@ -275,7 +276,7 @@ export type TP10A = {
 type TP10AContent = WordQuizContent;
 
 export type TP11A = {
-  id: ID;
+  id?: ID;
   title: string;
   description: string;
   template: {
@@ -287,7 +288,7 @@ export type TP11A = {
 type TP11AContent = IconTextContent | ChooseTextContent;
 
 export type TP11F = {
-  id: ID;
+  id?: ID;
   title: string;
   description: string;
   template: TP11FTemplate;
@@ -301,7 +302,7 @@ type TP11FTemplate = {
 type TP11FContent = IconTextContent | ChooseTextContent;
 
 export type TP11G = {
-  id: ID;
+  id?: ID;
   title: string;
   description: string;
   template: TP11GTemplate;
@@ -315,7 +316,7 @@ type TP11GTemplate = {
 type TP11GContent = WordQuizContent;
 
 export type TP12A = {
-  id: ID;
+  id?: ID;
   title: string;
   description: string;
   template: {
@@ -327,7 +328,7 @@ export type TP12A = {
 type TP12AContent = IconTextContent | ChooseTextContent;
 
 export type TP12B = {
-  id: ID;
+  id?: ID;
   title: string;
   description: string;
   template: {
@@ -339,7 +340,7 @@ export type TP12B = {
 type TP12BContent = VideoContent;
 
 export type TP13A = {
-  id: ID;
+  id?: ID;
   title: string;
   description: string;
   template: {
@@ -351,7 +352,7 @@ export type TP13A = {
 type TP13AContent = ImagesContent | HtmlContent | AudioContent;
 
 export type TP13B = {
-  id: ID;
+  id?: ID;
   title: string;
   description: string;
   template: {
@@ -363,7 +364,7 @@ export type TP13B = {
 type TP13BContent = HtmlContent | ImagesContent;
 
 export type TP14A = {
-  id: ID;
+  id?: ID;
   title: string;
   description: string;
   template: {
@@ -375,7 +376,7 @@ export type TP14A = {
 type TP14AContent = TextBoxesContent | AudioContent;
 
 export type TP14B = {
-  id: ID;
+  id?: ID;
   title: string;
   description: string;
   template: {
@@ -387,20 +388,17 @@ export type TP14B = {
 type TP14BContent = TextBoxesContent | AudioRecordContent;
 
 export type TP15A = {
-  id: ID;
+  id?: ID;
   title: string;
   description: string;
-  tabs?: Tab[];
   template: {
     type: "TP15A";
-    contents: TP15AContent[];
+    tabs: Tab[];
   };
 };
 
-type TP15AContent = HtmlContent | ImagesContent;
-
 export type TP16A = {
-  id: ID;
+  id?: ID;
   title: string;
   description: string;
   template: {
@@ -412,7 +410,7 @@ export type TP16A = {
 type TP16AContent = HtmlContent | ImagesContent | AudioContent;
 
 export type TP17A = {
-  id: ID;
+  id?: ID;
   title: string;
   description: string;
   template: {
@@ -424,7 +422,7 @@ export type TP17A = {
 type TP17AContent = HtmlContent | TextBoxesContent | VideoContent | AudioRecordContent;
 
 export type TP19A = {
-  id: ID;
+  id?: ID;
   title: string;
   description: string;
   template: {
@@ -436,7 +434,7 @@ export type TP19A = {
 type TP19AContent = StudySentencesWithVocabularyContent;
 
 export type TP21A = {
-  id: ID;
+  id?: ID;
   title: string;
   description: string;
   template: {
@@ -448,7 +446,7 @@ export type TP21A = {
 type TP21AContent = ImagesContent | DragAndDropContent;
 
 export type TP21B = {
-  id: ID;
+  id?: ID;
   title: string;
   description: string;
   template: {
@@ -460,7 +458,7 @@ export type TP21B = {
 type TP21BContent = HtmlContent | ChooseTextContent;
 
 export type TP24A = {
-  id: ID;
+  id?: ID;
   title: string;
   description: string;
   template: {

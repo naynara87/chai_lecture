@@ -11,7 +11,7 @@ import CheckButton from "../atoms/CheckButton";
 
 interface TP01AComponentProps extends TemplateProps {}
 
-const TP01AComponent = ({ setPageCompleted, page }: TP01AComponentProps) => {
+const TP01AComponent = ({ setPageCompleted, page, showHeader = true }: TP01AComponentProps) => {
   const [userAnswers, setUserAnswers] = useState<number[]>([]);
   const [checkAnswers, setCheckAnswers] = useState<boolean[]>([]);
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -97,7 +97,11 @@ const TP01AComponent = ({ setPageCompleted, page }: TP01AComponentProps) => {
   ]);
   return (
     <TemplateCommonLayout>
-      <TitleContent title={thisPage.title} description={thisPage.description} />
+      {showHeader ? (
+        <TitleContent title={thisPage.title} description={thisPage.description} />
+      ) : (
+        <></>
+      )}
       <TP01Layout>
         {ChooseTextByAudioContentData ? ChooseTextByAudioContents() : <></>}
         <CheckButton

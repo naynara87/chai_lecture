@@ -8,7 +8,7 @@ import TitleContent from "../molecules/TitleContent";
 
 interface TP10AComponentProps extends TemplateProps {}
 
-const TP10AComponent = ({ setPageCompleted, page }: TP10AComponentProps) => {
+const TP10AComponent = ({ setPageCompleted, page, showHeader = true }: TP10AComponentProps) => {
   const thisPage = page as TP10A;
 
   useEffect(() => {
@@ -23,7 +23,11 @@ const TP10AComponent = ({ setPageCompleted, page }: TP10AComponentProps) => {
 
   return (
     <TemplateCommonLayout>
-      <TitleContent title={thisPage.title} description={thisPage.description} />
+      {showHeader ? (
+        <TitleContent title={thisPage.title} description={thisPage.description} />
+      ) : (
+        <></>
+      )}
       <WordQuiz datas={wordQuizContentData?.data ?? []} />
     </TemplateCommonLayout>
   );

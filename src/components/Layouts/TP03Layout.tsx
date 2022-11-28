@@ -7,7 +7,7 @@ const TP03LayoutStyle = styled.div`
   display: grid;
   grid-template-rows: max-content max-content max-content;
   gap: ${gridContentLayoutCommonGap};
-  overflow-y: auto;
+  /* overflow-y: auto; */
 `;
 
 interface TP03LayoutProps {

@@ -6,7 +6,7 @@ const TP10LayoutStyle = styled.div`
   height: ${templateContentsAreaHeight};
   display: grid;
   gap: ${gridContentLayoutCommonGap};
-  overflow-y: auto;
+  /* overflow-y: auto; */
   text-align: center;
 `;
 

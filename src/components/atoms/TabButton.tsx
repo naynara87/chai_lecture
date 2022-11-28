@@ -27,17 +27,18 @@ const TabButtonStyle = styled(Button)<TabButtonStyleProps>`
 interface TabButtonProps {
   isActive: boolean;
   tab: Tab;
+  tabId: ID;
   handleClickTab: (pageId?: ID) => void;
 }
-const TabButton = ({ tab, handleClickTab, isActive }: TabButtonProps) => {
+const TabButton = ({ tab, handleClickTab, isActive, tabId }: TabButtonProps) => {
   return (
     <TabButtonStyle
       type="button"
-      onClick={() => handleClickTab(tab.pageId)}
+      onClick={() => handleClickTab(tabId)}
       active={isActive}
-      cursorPointer={!!tab.pageId}
+      cursorPointer={!!tabId}
     >
-      {tab.name}
+      {tab.tabName}
     </TabButtonStyle>
   );
 };

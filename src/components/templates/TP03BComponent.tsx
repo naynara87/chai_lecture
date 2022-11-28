@@ -13,10 +13,15 @@ import { breakPoints } from "../../constants/layout";
 import { css } from "@emotion/react";
 import { TemplateType } from "../../types/appData";
 import HtmlContentComponent from "../molecules/HtmlContentComponent";
+import { changePXtoVW } from "../../utils/styles";
+
+const customBoxContainerCss = css`
+  justify-content: flex-start;
+  width: ${changePXtoVW(450)};
+`;
 
 const customBoxCss = css`
   height: 80px;
-
   @media all and (max-width: ${breakPoints.tablet}) {
     height: 8vw;
   }
@@ -46,7 +51,7 @@ const AudioWrapper = styled.div`
 /**
  * template type에 따라 TP03B, TP03C를 렌더함.
  */
-const TP03BComponent = ({ setPageCompleted, page }: TP0BAComponentProps) => {
+const TP03BComponent = ({ setPageCompleted, page, showHeader = true }: TP0BAComponentProps) => {
   const thisPage = page as TP03B | TP03C | TP03D;
   useEffect(() => {
     setPageCompleted();
@@ -80,6 +85,7 @@ const TP03BComponent = ({ setPageCompleted, page }: TP0BAComponentProps) => {
 
   const getMainContents = useCallback(
     (templateType: TemplateType) => {
+      console.log(templateType);
       if (!TextBoxesContentData?.data) {
         return <></>;
       }
@@ -102,6 +108,7 @@ const TP03BComponent = ({ setPageCompleted, page }: TP0BAComponentProps) => {
               datas={TextBoxesContentData.data}
               isHorizontal={templateType === "TP03D" ? true : false}
               customBoxCss={templateType === "TP03D" ? customBoxCss : undefined}
+              customBoxContainerCss={templateType === "TP03D" ? customBoxContainerCss : undefined}
             />
           </>
         );
@@ -128,7 +135,11 @@ const TP03BComponent = ({ setPageCompleted, page }: TP0BAComponentProps) => {
 
   return (
     <TemplateCommonLayout>
-      <TitleContent title={thisPage.title} description={thisPage.description} />
+      {showHeader ? (
+        <TitleContent title={thisPage.title} description={thisPage.description} />
+      ) : (
+        <></>
+      )}
       {renderTP03BAndCComponents ?? <></>}
     </TemplateCommonLayout>
   );

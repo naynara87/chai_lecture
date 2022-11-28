@@ -53,7 +53,7 @@ const layoutCustomCss = css`
 
 interface TP07AComponentProps extends TemplateProps {}
 
-const TP07AComponent = ({ setPageCompleted, page }: TP07AComponentProps) => {
+const TP07AComponent = ({ setPageCompleted, page, showHeader = true }: TP07AComponentProps) => {
   const thisPage = page as TP07A;
 
   useEffect(() => {
@@ -108,7 +108,11 @@ const TP07AComponent = ({ setPageCompleted, page }: TP07AComponentProps) => {
 
   return (
     <TemplateCommonLayout>
-      <TitleContent title={thisPage.title} description={thisPage.description} />
+      {showHeader ? (
+        <TitleContent title={thisPage.title} description={thisPage.description} />
+      ) : (
+        <></>
+      )}
       <TP07Layout customCss={layoutCustomCss}>
         <QuestionContainer>
           <QuestionIcon />

@@ -10,7 +10,7 @@ interface TP02LayoutStyleProps {
 const TP02LayoutStyle = styled.div<TP02LayoutStyleProps>`
   height: ${templateContentsAreaHeight};
   display: grid;
-  overflow-y: auto;
+  /* overflow-y: auto; */
   text-align: center;
 
   ${(props) => props.customCss}

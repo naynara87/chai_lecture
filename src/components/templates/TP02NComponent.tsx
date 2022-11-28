@@ -40,7 +40,7 @@ const customMeaningCss = css`
 
 interface TP02NComponentProps extends TemplateProps {}
 
-const TP02NComponent = ({ setPageCompleted, page }: TP02NComponentProps) => {
+const TP02NComponent = ({ setPageCompleted, page, showHeader = true }: TP02NComponentProps) => {
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const { handleClickAudioButton, audioIndex, audioSrc } = useAudio(audioRef);
@@ -84,7 +84,11 @@ const TP02NComponent = ({ setPageCompleted, page }: TP02NComponentProps) => {
 
   return (
     <TemplateCommonLayout>
-      <TitleContent title={thisPage.title} description={thisPage.description} />
+      {showHeader ? (
+        <TitleContent title={thisPage.title} description={thisPage.description} />
+      ) : (
+        <></>
+      )}
       <TP02Layout customCss={customLayoutCss}>
         <>
           {mainContents}

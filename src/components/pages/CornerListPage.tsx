@@ -187,7 +187,7 @@ const CornerListPage = () => {
       appData.course.id,
       appData.lesson.id,
       currentCorner.id,
-      currentCorner?.pages?.[0]?.id,
+      currentCorner?.pages?.[0]?.id!,
       // pageList?.[0]?.id, // TODO: 실제 데이터 적용하기 => BBC-602
     );
     navigate(url);

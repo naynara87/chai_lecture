@@ -8,7 +8,7 @@ import TitleContent from "../molecules/TitleContent";
 
 interface TP11GComponentProps extends TemplateProps {}
 
-const TP11GComponent = ({ setPageCompleted, page }: TP11GComponentProps) => {
+const TP11GComponent = ({ setPageCompleted, page, showHeader = true }: TP11GComponentProps) => {
   const thisPage = page as TP11G;
 
   const wordQuizContentData = useMemo(() => {
@@ -23,7 +23,11 @@ const TP11GComponent = ({ setPageCompleted, page }: TP11GComponentProps) => {
 
   return (
     <TemplateCommonLayout>
-      <TitleContent title={thisPage.title} description={thisPage.description} />
+      {showHeader ? (
+        <TitleContent title={thisPage.title} description={thisPage.description} />
+      ) : (
+        <></>
+      )}
       <WordQuiz datas={wordQuizContentData?.data ?? []} reverse={true} />
     </TemplateCommonLayout>
   );

@@ -46,7 +46,7 @@ const globalStyle = css`
     -webkit-tap-highlight-color: transparent;
     -webkit-text-size-adjust: 100%;
     font-size: 16px;
-    scroll-behavior: smooth;
+    /* scroll-behavior: smooth; */
   }
 
   body {
