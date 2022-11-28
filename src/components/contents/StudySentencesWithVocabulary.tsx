@@ -127,8 +127,9 @@ const ShowAllSentencesButton = styled.button`
   height: 30px;
   border: 3px solid ${colorPalette.sentenceAllButton};
   border-radius: 28px;
-  font-size: ${changePXtoVW(20)};
+  font-size: 16px;
   font-weight: 700;
+  line-height: 26px;
   cursor: pointer;
   color: ${colorPalette.sentenceAllButton};
 `;

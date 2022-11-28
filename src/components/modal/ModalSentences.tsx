@@ -57,23 +57,29 @@ const ModalHeader = styled.div`
   font-weight: 700;
 `;
 
-const ModalContent = styled.div`
+interface ModalContentProps {
+  sentenceLength: number;
+}
+
+const ModalContent = styled.div<ModalContentProps>`
+  padding: ${changePXtoVW(50)};
   width: 100%;
   position: absolute;
   bottom: 0;
   height: 82%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: repeat(${(props) => props.sentenceLength}, max-content);
   overflow-y: auto;
 `;
 
 const Sentence = styled.div`
-  padding: 0 20px;
+  padding: ${changePXtoVW(10)} ${changePXtoVW(40)} 0;
   display: flex;
   font-weight: 400;
+
   justify-content: space-between;
-  width: 50%;
+  width: 100%;
   align-items: center;
   margin: 0 auto ${changePXtoVW(20)};
 `;
@@ -132,7 +138,7 @@ const ModalSentences = ({ isModalOpen, setIsModalOpen, sentences }: ModalSentenc
     <ModalCommon open={isModalOpen} onClose={handleClose}>
       <ModalInnerBox>
         <ModalHeader>전체단어</ModalHeader>
-        <ModalContent>{sentencesContents}</ModalContent>
+        <ModalContent sentenceLength={sentences.length}>{sentencesContents}</ModalContent>
       </ModalInnerBox>
       <audio ref={audioRef}>
         <source src={audioSrc} />
