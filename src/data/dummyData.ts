@@ -1159,110 +1159,22 @@ export const dummyData: AppData = {
                               src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
                             },
                           },
-                          // {
-                          //   text: "所以",
-                          //   pronunciation: "Suǒyǐ",
-                          //   meaning: "마바사",
-                          //   audio: {
-                          //     src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
-                          //   },
-                          // },
-                          // {
-                          //   text: "所以",
-                          //   pronunciation: "Suǒyǐ",
-                          //   meaning: "마바사",
-                          //   audio: {
-                          //     src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
-                          //   },
-                          // },
-                          // {
-                          //   text: "所以",
-                          //   pronunciation: "Suǒyǐ",
-                          //   meaning: "마바사",
-                          //   audio: {
-                          //     src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
-                          //   },
-                          // },
-                          // {
-                          //   text: "所以",
-                          //   pronunciation: "Suǒyǐ",
-                          //   meaning: "마바사",
-                          //   audio: {
-                          //     src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
-                          //   },
-                          // },
-                          // {
-                          //   text: "所以",
-                          //   pronunciation: "Suǒyǐ",
-                          //   meaning: "마바사",
-                          //   audio: {
-                          //     src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
-                          //   },
-                          // },
-                          // {
-                          //   text: "所以",
-                          //   pronunciation: "Suǒyǐ",
-                          //   meaning: "마바사",
-                          //   audio: {
-                          //     src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
-                          //   },
-                          // },
-                          // {
-                          //   text: "所以",
-                          //   pronunciation: "Suǒyǐ",
-                          //   meaning: "마바사",
-                          //   audio: {
-                          //     src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
-                          //   },
-                          // },
-                          // {
-                          //   text: "所以",
-                          //   pronunciation: "Suǒyǐ",
-                          //   meaning: "마바사",
-                          //   audio: {
-                          //     src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
-                          //   },
-                          // },
-                          // {
-                          //   text: "所以",
-                          //   pronunciation: "Suǒyǐ",
-                          //   meaning: "마바사",
-                          //   audio: {
-                          //     src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
-                          //   },
-                          // },
-                          // {
-                          //   text: "所以",
-                          //   pronunciation: "Suǒyǐ",
-                          //   meaning: "마바사",
-                          //   audio: {
-                          //     src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
-                          //   },
-                          // },
-                          // {
-                          //   text: "所以",
-                          //   pronunciation: "Suǒyǐ",
-                          //   meaning: "마바사",
-                          //   audio: {
-                          //     src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
-                          //   },
-                          // },
-                          // {
-                          //   text: "所以",
-                          //   pronunciation: "Suǒyǐ",
-                          //   meaning: "마바사",
-                          //   audio: {
-                          //     src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
-                          //   },
-                          // },
-                          // {
-                          //   text: "所以",
-                          //   pronunciation: "Suǒyǐ",
-                          //   meaning: "마바사",
-                          //   audio: {
-                          //     src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
-                          //   },
-                          // },
+                          {
+                            text: "所以",
+                            pronunciation: "Suǒyǐ",
+                            meaning: "마바사",
+                            audio: {
+                              src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
+                            },
+                          },
+                          {
+                            text: "所以",
+                            pronunciation: "Suǒyǐ",
+                            meaning: "아자차",
+                            audio: {
+                              src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
+                            },
+                          },
                         ],
                       },
                     ],

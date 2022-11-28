@@ -26,7 +26,9 @@ const TP19AComponent = ({ setPageCompleted, page }: TP19AComponentProps) => {
     <TemplateCommonLayout>
       <TitleContent title={thisPage.title} description={thisPage.description} />
       <TP19Layout>
-        <StudySentencesWithVocabulary datas={studySentencesWithVocabularyContent?.data ?? []} />
+        <StudySentencesWithVocabulary
+          studySentencesWithVocabularyDatas={studySentencesWithVocabularyContent?.data ?? []}
+        />
       </TP19Layout>
     </TemplateCommonLayout>
   );

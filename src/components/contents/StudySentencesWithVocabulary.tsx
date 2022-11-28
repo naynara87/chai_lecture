@@ -188,13 +188,15 @@ const SentencesOption = styled.button<SentencesOptionProps>`
 `;
 
 interface StudySentencesWithVocabularyProps {
-  datas: StudySentencesWithVocabularyData[];
+  studySentencesWithVocabularyDatas: StudySentencesWithVocabularyData[];
 }
 
 type SentenceOption = "all" | "one";
 
-const StudySentencesWithVocabulary = ({ datas }: StudySentencesWithVocabularyProps) => {
-  const { sentences, image } = datas?.[0];
+const StudySentencesWithVocabulary = ({
+  studySentencesWithVocabularyDatas,
+}: StudySentencesWithVocabularyProps) => {
+  const { sentences, image } = studySentencesWithVocabularyDatas?.[0];
   const [sentencesOption, setSentencesOption] = useState<SentenceOption>("all");
   const [languageOption, setLanguageOption] = useState(false);
   const [currentSentenceIndex, setCurrentSentenceIndex] = useState(0);
