@@ -21,7 +21,6 @@ interface HeaderContainerProps {
 const HeaderContainer = styled.div<HeaderContainerProps>`
   padding: calc(${footerHeightNormal} + ${changePXtoVW(50)}) 0 6px;
   box-shadow: ${(props) => props.isScroll && `0 4px 20px -2px hsl(0deg 0% 81% / 50%)`};
-  transition: box-shadow 0.3s ease-in;
   position: fixed;
   z-index: 1;
   top: 0;
