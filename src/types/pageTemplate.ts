@@ -1,7 +1,6 @@
 import { ID, Page } from "./appData";
 import {
   ChooseTextByAudioContent,
-  ListenWordsContent,
   HtmlContent,
   ImagesContent,
   TextBoxesContent,
@@ -143,7 +142,7 @@ type TP03ATemplate = {
   contents: TP03AContent[];
 };
 
-export type TP03AContent = HtmlContent | ListenWordsContent;
+export type TP03AContent = HtmlContent | TextBoxesContent | AudioContent;
 
 export type TP03B = {
   id?: ID;
