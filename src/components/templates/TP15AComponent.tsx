@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { footerHeightNormal } from "../../constants/layout";
+import { headerHeightNormal } from "../../constants/layout";
 import { colorPalette } from "../../styles/colorPalette";
 import { ID } from "../../types/appData";
 import { TP15A } from "../../types/pageTemplate";
@@ -19,7 +19,7 @@ interface HeaderContainerProps {
 }
 
 const HeaderContainer = styled.div<HeaderContainerProps>`
-  padding: calc(${footerHeightNormal} + ${changePXtoVW(50)}) 0 6px;
+  padding: calc(${headerHeightNormal} + ${changePXtoVW(50)}) 0 6px;
   box-shadow: ${(props) => props.isScroll && `0 4px 20px -2px hsl(0deg 0% 81% / 50%)`};
   position: fixed;
   z-index: 1;
@@ -140,11 +140,14 @@ const TP15AComponent = ({ setPageCompleted, page }: TP15AComponentProps) => {
     tabIdSetting();
   }, [setPageCompleted, tabIdSetting]);
 
-  const handleClickTab = (pageId?: ID) => {
-    if (courseId && lessonId && cornerId && pageId) {
-      navigate(getPageUrl(courseId, lessonId, cornerId, pageId));
-    }
-  };
+  const handleClickTab = useCallback(
+    (pageId?: ID) => {
+      if (courseId && lessonId && cornerId && pageId) {
+        navigate(getPageUrl(courseId, lessonId, cornerId, pageId));
+      }
+    },
+    [cornerId, lessonId, courseId, navigate],
+  );
 
   const renderTemplate = useMemo(() => {
     if (!currentTab?.tabPages) {

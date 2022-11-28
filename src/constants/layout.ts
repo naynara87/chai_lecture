@@ -8,5 +8,6 @@ export const gridContentLayoutCommonGap = "4%";
 export const tabTemplateGridGap = "7%";
 
 export const footerHeightNormal = "70px";
+export const headerHeightNormal = "65px";
 
 export const tabletBreakPoint = 768;

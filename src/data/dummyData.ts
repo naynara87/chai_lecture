@@ -1,4 +1,3 @@
-import { title } from "process";
 import { AppData } from "../types/appData";
 
 // 과정(course) > 레슨(lesson) > 회차(corner) > 페이지(page)
