@@ -1085,6 +1085,108 @@ export const dummyData: AppData = {
             ],
           },
         },
+        {
+          id: 35,
+          title: "중국의 블랙프라이데이 ‘双十一",
+          description: "중국의 블랙프라이데이에 대해 알아봅시다.",
+          template: {
+            type: "TP19A",
+            contents: [
+              {
+                type: "studySentencesWithVocabulary",
+                data: [
+                  {
+                    sentences: [
+                      {
+                        text: "11月11日是光棍节.光棍有单身的意思.所以这天是庆祝自己单身生活的娱乐性节日. ",
+                        pronunciation:
+                          "Shíyī yuè shíyī rì shì Guānggùnjié, guānggùn yǒu dānshēn de yìsi, suǒyǐ zhè tiān shì qìngzhù zìjǐ dānshēn shēnghuó de yúlèxìng jiérì.",
+                        meaning:
+                          "11월 11일은 광군절이다. 光棍(빛나는 막대기)은 독신의 의미가 있어서, 이날은 축하하는 오락성 기념일이다.",
+                        audio: {
+                          src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
+                        },
+                        words: [
+                          {
+                            text: "光棍节",
+                            pronunciation: "yóuyǒng",
+                            meaning: "싱글의 날",
+                            audio: {
+                              src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
+                            },
+                          },
+                          {
+                            text: "所以",
+                            pronunciation: "Suǒyǐ",
+                            meaning: "그래서",
+                            audio: {
+                              src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
+                            },
+                          },
+                          {
+                            text: "光棍节",
+                            pronunciation: "yóuyǒng",
+                            meaning: "싱글의 날",
+                            audio: {
+                              src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
+                            },
+                          },
+                          {
+                            text: "所以",
+                            pronunciation: "Suǒyǐ",
+                            meaning: "그래서",
+                            audio: {
+                              src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
+                            },
+                          },
+                        ],
+                      },
+                      {
+                        text: "这个节日是在校园里流行起来的.慢慢地通过网络传播成了一种节日文化。但是.现在更多的人把这天叫“双十一”.是中国网络购物节.",
+                        pronunciation:
+                          "Shíyī yuè shíyī rì shì Guānggùnjié, guānggùn yǒu dānshēn de yìsi, suǒyǐ zhè tiān shì qìngzhù zìjǐ dānshēn shēnghuó de yúlèxìng jiérì.",
+                        meaning:
+                          "이 축제는 교내에서 인기를 얻었고 인터넷을 통해 서서히 축제 문화로 확산되었습니다. 하지만 지금은 중국 온라인 쇼핑 축제인 '더블 일레븐'으로 불리는 날이 많아졌다.",
+                        audio: {
+                          src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
+                        },
+                        words: [
+                          {
+                            text: "光棍节",
+                            pronunciation: "yóuyǒng",
+                            meaning: "가나다라",
+                            audio: {
+                              src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
+                            },
+                          },
+                          {
+                            text: "所以",
+                            pronunciation: "Suǒyǐ",
+                            meaning: "마바사",
+                            audio: {
+                              src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
+                            },
+                          },
+                          {
+                            text: "所以",
+                            pronunciation: "Suǒyǐ",
+                            meaning: "아자차",
+                            audio: {
+                              src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
+                            },
+                          },
+                        ],
+                      },
+                    ],
+                    image: {
+                      src: `${process.env.PUBLIC_URL}/images/icon/tp02c_image.png`,
+                    },
+                  },
+                ],
+              },
+            ],
+          },
+        },
       ],
     },
     {

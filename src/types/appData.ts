@@ -22,6 +22,7 @@ import {
   TP11G,
   TP24A,
   TP09A,
+  TP19A,
 } from "./pageTemplate";
 import {
   AudioContent,
@@ -108,6 +109,7 @@ export type Page =
   | TP11F
   | TP11G
   | TP15A
+  | TP19A
   | TP24A
   | TPIframe;
 

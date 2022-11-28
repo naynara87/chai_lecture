@@ -6,7 +6,7 @@ import { TP02K } from "../../types/pageTemplate";
 import { DialogContent } from "../../types/templateContents";
 import { TemplateProps } from "../../types/templates";
 import DialogAudio from "../atoms/DialogAudio";
-import DialogOptionButton from "../atoms/DialogOptionButton";
+import OptionButton from "../atoms/OptionButton";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TP02Layout from "../Layouts/TP02Layout";
 import TitleContent from "../molecules/TitleContent";
@@ -138,12 +138,12 @@ const TP02KComponent = ({ setPageCompleted, page }: TP02KComponentProps) => {
       <TP02Layout customCss={layoutCss} layoutRef={layoutRef}>
         <DialogHeader>
           <DialogAudio audioHandler={handleClickAudioButton} audioState={audioState} />
-          <DialogOptionButton
+          <OptionButton
             text="병음"
             active={pinyinOption}
             handleClickOption={handleClickPinyinOption}
           />
-          <DialogOptionButton
+          <OptionButton
             text="해석"
             active={translateOption}
             handleClickOption={handleClickTranslateOption}

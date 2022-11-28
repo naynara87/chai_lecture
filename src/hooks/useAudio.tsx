@@ -5,7 +5,7 @@ import React, { RefObject, useCallback, useState } from "react";
  */
 const useAudio = (audioRef: RefObject<HTMLAudioElement>) => {
   const [audioSrc, setAudioSrc] = useState("");
-  const [audioIndex, setAudioIndex] = useState(0);
+  const [audioIndex, setAudioIndex] = useState<number | undefined>(undefined);
   const [audioState, setAudioState] = useState(false);
 
   const handleClickAudioButton = useCallback(

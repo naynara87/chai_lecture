@@ -239,3 +239,34 @@ export type BottomTabsData = {
   tabNames: string;
   contents: BottomContent[];
 };
+
+export type StudySentencesWithVocabularyContent = {
+  type: "studySentencesWithVocabulary";
+  data: StudySentencesWithVocabularyData[];
+};
+
+export type StudySentencesWithVocabularyData = {
+  sentences: Sentence[];
+  image: {
+    src: string;
+  };
+};
+
+type Sentence = {
+  text: string;
+  pronunciation: string;
+  meaning: string;
+  audio?: {
+    src: string;
+  };
+  words: SentenceWord[];
+};
+
+export type SentenceWord = {
+  text: string;
+  pronunciation: string;
+  meaning: string;
+  audio?: {
+    src: string;
+  };
+};
