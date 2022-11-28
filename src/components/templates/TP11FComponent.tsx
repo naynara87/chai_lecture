@@ -36,7 +36,7 @@ const QuestionContainer = styled.div`
 `;
 
 interface TP11FComponentProps extends TemplateProps {}
-const TP11FComponent = ({ page, setPageCompleted }: TP11FComponentProps) => {
+const TP11FComponent = ({ page, setPageCompleted, showHeader = true }: TP11FComponentProps) => {
   const thisPage = page as TP11F;
 
   useEffect(() => {
@@ -65,7 +65,11 @@ const TP11FComponent = ({ page, setPageCompleted }: TP11FComponentProps) => {
 
   return (
     <TemplateCommonLayout>
-      <TitleContent title={thisPage.title} description={thisPage.description} />
+      {showHeader ? (
+        <TitleContent title={thisPage.title} description={thisPage.description} />
+      ) : (
+        <></>
+      )}
       <TP11Layout>
         <QuestionContainer>
           <QuestionIcon />

@@ -1,33 +1,23 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { tabTemplateGridGap, templateContentsAreaHeight } from "../../constants/layout";
+import { templateContentsAreaHeight } from "../../constants/layout";
 
 const TP15LayoutStyle = styled.div`
   height: ${templateContentsAreaHeight};
-  display: grid;
-  grid-template-rows: max-content 84.5%;
-  gap: ${tabTemplateGridGap};
+  margin-bottom: 70px;
+  padding-top: 80px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 `;
 
-const MainContentArea = styled.div`
-  overflow-y: auto;
-  display: grid;
-  grid-template-columns: 45% 55%;
-`;
-
-interface TP03LayoutProps {
-  children: [JSX.Element, JSX.Element, JSX.Element];
+interface TP15LayoutProps {
+  children: JSX.Element | JSX.Element[];
+  LayoutRef: React.RefObject<HTMLDivElement>;
 }
-const TP15Layout = ({ children }: TP03LayoutProps) => {
-  return (
-    <TP15LayoutStyle>
-      <div>{children[0]}</div>
-      <MainContentArea>
-        <div>{children[1]}</div>
-        <div>{children[2]}</div>
-      </MainContentArea>
-    </TP15LayoutStyle>
-  );
+const TP15Layout = ({ children, LayoutRef }: TP15LayoutProps) => {
+  return <TP15LayoutStyle ref={LayoutRef}>{children}</TP15LayoutStyle>;
 };
 
 export default TP15Layout;

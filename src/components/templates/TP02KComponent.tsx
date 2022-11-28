@@ -25,7 +25,7 @@ const layoutCss = css`
 
 interface TP02KComponentProps extends TemplateProps {}
 
-const TP02KComponent = ({ setPageCompleted, page }: TP02KComponentProps) => {
+const TP02KComponent = ({ setPageCompleted, page, showHeader = true }: TP02KComponentProps) => {
   const [pinyinOption, setPinyinOption] = useState(true);
   const [audioSrc, setAudioSrc] = useState("");
   const [audioState, setAudioState] = useState(false);
@@ -134,7 +134,11 @@ const TP02KComponent = ({ setPageCompleted, page }: TP02KComponentProps) => {
 
   return (
     <TemplateCommonLayout>
-      <TitleContent title={thisPage.title} description={thisPage.description} />
+      {showHeader ? (
+        <TitleContent title={thisPage.title} description={thisPage.description} />
+      ) : (
+        <></>
+      )}
       <TP02Layout customCss={layoutCss} layoutRef={layoutRef}>
         <DialogHeader>
           <DialogAudio audioHandler={handleClickAudioButton} audioState={audioState} />

@@ -11,7 +11,7 @@ const TP07LayoutStyle = styled.div<TP07LayoutStyleProps>`
   height: ${templateContentsAreaHeight};
   display: grid;
   gap: ${gridContentLayoutCommonGap};
-  overflow-y: auto;
+  /* overflow-y: auto; */
 
   ${(props) => props.customCss}
 `;

@@ -9,16 +9,17 @@ import { getAppData } from "../../data/tempApi";
 import { breakPoints } from "../../constants/layout";
 import CornerSignPost from "../atoms/CornerSignPost";
 import { CORNER_LIST_URL } from "../../constants/url";
+import { footerHeight } from "../../styles/layout";
 
 const HeaderContainer = styled.header`
-  position: sticky;
+  position: fixed;
   top: 0;
   width: 100%;
-  height: 55px;
+  ${footerHeight}
   padding: 0 32px;
   background-color: ${colorPalette.deepBlue};
+  z-index: 2;
   @media all and (max-width: ${breakPoints.tablet}) {
-    z-index: 1;
     padding: 0 3.125vw;
   }
 `;

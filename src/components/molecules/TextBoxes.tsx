@@ -5,17 +5,23 @@ import { breakPoints } from "../../constants/layout";
 import { SerializedStyles } from "@emotion/react";
 import TextBox from "../atoms/TextBox";
 import HtmlContentComponent from "./HtmlContentComponent";
+import { changePXtoVW } from "../../utils/styles";
 
 interface TextCardGrpProps {
   customCss?: SerializedStyles;
 }
+interface TextBoxesWrapperProps {
+  customCss?: SerializedStyles;
+}
 
-const TextBoxesWrapper = styled.div`
-  max-width: 528px;
+const TextBoxesWrapper = styled.div<TextBoxesWrapperProps>`
+  width: ${changePXtoVW(600)};
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
   margin: 0 auto;
-  @media all and (max-width: ${breakPoints.tablet}) {
-    max-width: 51.6vw;
-  }
+  ${(props) => props.customCss}
 `;
 
 const TextCardGrp = styled.div<TextCardGrpProps>`
@@ -59,14 +65,16 @@ interface TextBoxesProps {
   isHorizontal?: boolean;
   customBoxCss?: SerializedStyles;
   customBoxWrapperCss?: SerializedStyles;
+  customBoxContainerCss?: SerializedStyles;
 }
 
-/**
- * TODO: TP03F에서 props로 description이랑 description 위치를 받아서 구현
- * description 정렬
- * sub 확인
- */
-const TextBoxes = ({ datas, isHorizontal, customBoxCss, customBoxWrapperCss }: TextBoxesProps) => {
+const TextBoxes = ({
+  datas,
+  isHorizontal,
+  customBoxCss,
+  customBoxWrapperCss,
+  customBoxContainerCss,
+}: TextBoxesProps) => {
   const renderTextBoxes = useMemo(() => {
     return datas.map((textBox, index) => {
       return (
@@ -84,7 +92,7 @@ const TextBoxes = ({ datas, isHorizontal, customBoxCss, customBoxWrapperCss }: T
     });
   }, [customBoxWrapperCss, datas, isHorizontal, customBoxCss]);
 
-  return <TextBoxesWrapper>{renderTextBoxes}</TextBoxesWrapper>;
+  return <TextBoxesWrapper customCss={customBoxContainerCss}>{renderTextBoxes}</TextBoxesWrapper>;
 };
 
 export default TextBoxes;

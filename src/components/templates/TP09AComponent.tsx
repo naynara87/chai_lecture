@@ -21,7 +21,7 @@ const htmlCss = css`
 
 interface TP09AComponentProps extends TemplateProps {}
 
-const TP09AComponent = ({ setPageCompleted, page }: TP09AComponentProps) => {
+const TP09AComponent = ({ setPageCompleted, page, showHeader = true }: TP09AComponentProps) => {
   const thisPage = page as TP09A;
 
   useEffect(() => {
@@ -42,7 +42,11 @@ const TP09AComponent = ({ setPageCompleted, page }: TP09AComponentProps) => {
 
   return (
     <TemplateCommonLayout>
-      <TitleContent title={thisPage.title} description={thisPage.description} />
+      {showHeader ? (
+        <TitleContent title={thisPage.title} description={thisPage.description} />
+      ) : (
+        <></>
+      )}
       <TP09Layout>
         <HtmlContentComponent html={htmlContentData?.data?.[0].text ?? ""} customCss={htmlCss} />
         <BottomTabs datas={bottomTabsContentData?.data ?? []} />

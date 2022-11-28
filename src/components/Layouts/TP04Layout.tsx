@@ -6,7 +6,7 @@ const TP04LayoutStyle = styled.div`
   height: ${templateContentsAreaHeight};
   display: grid;
   gap: 4%;
-  overflow-y: auto;
+  /* overflow-y: auto; */
 `;
 
 interface TP04LayoutProps {

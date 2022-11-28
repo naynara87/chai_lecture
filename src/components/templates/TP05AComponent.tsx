@@ -40,7 +40,7 @@ const customTipCss = css`
 
 interface TP05AComponentProps extends TemplateProps {}
 
-const TP05AComponent = ({ setPageCompleted, page }: TP05AComponentProps) => {
+const TP05AComponent = ({ setPageCompleted, page, showHeader = true }: TP05AComponentProps) => {
   const thisPage = page as TP05A;
 
   useEffect(() => {
@@ -66,7 +66,11 @@ const TP05AComponent = ({ setPageCompleted, page }: TP05AComponentProps) => {
 
   return (
     <TemplateCommonLayout>
-      <TitleContent title={thisPage.title} description={thisPage.description} />
+      {showHeader ? (
+        <TitleContent title={thisPage.title} description={thisPage.description} />
+      ) : (
+        <></>
+      )}
       <TP05Layout>
         <TextBoxes
           datas={TextBoxesContentData?.data ?? []}

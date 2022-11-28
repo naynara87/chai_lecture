@@ -6,7 +6,7 @@ const TP05LayoutStyle = styled.div`
   height: ${templateContentsAreaHeight};
   display: grid;
   gap: 2%;
-  overflow-y: auto;
+  /* overflow-y: auto; */
   text-align: center;
 `;
 

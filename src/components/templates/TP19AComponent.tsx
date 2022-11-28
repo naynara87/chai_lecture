@@ -9,7 +9,7 @@ import TitleContent from "../molecules/TitleContent";
 
 interface TP19AComponentProps extends TemplateProps {}
 
-const TP19AComponent = ({ setPageCompleted, page }: TP19AComponentProps) => {
+const TP19AComponent = ({ setPageCompleted, page, showHeader = true }: TP19AComponentProps) => {
   const thisPage = page as TP19A;
 
   useEffect(() => {
@@ -24,7 +24,11 @@ const TP19AComponent = ({ setPageCompleted, page }: TP19AComponentProps) => {
 
   return (
     <TemplateCommonLayout>
-      <TitleContent title={thisPage.title} description={thisPage.description} />
+      {showHeader ? (
+        <TitleContent title={thisPage.title} description={thisPage.description} />
+      ) : (
+        <></>
+      )}
       <TP19Layout>
         <StudySentencesWithVocabulary
           studySentencesWithVocabularyDatas={studySentencesWithVocabularyContent?.data ?? []}

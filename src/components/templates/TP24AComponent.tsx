@@ -18,7 +18,7 @@ const imageCss = css`
 
 interface TP24AComponentProps extends TemplateProps {}
 
-const TP24AComponent = ({ setPageCompleted, page }: TP24AComponentProps) => {
+const TP24AComponent = ({ setPageCompleted, page, showHeader = true }: TP24AComponentProps) => {
   const thisPage = page as TP24A;
 
   useEffect(() => {
@@ -39,7 +39,11 @@ const TP24AComponent = ({ setPageCompleted, page }: TP24AComponentProps) => {
 
   return (
     <TemplateCommonLayout>
-      <TitleContent title={thisPage.title} description={thisPage.description} />
+      {showHeader ? (
+        <TitleContent title={thisPage.title} description={thisPage.description} />
+      ) : (
+        <></>
+      )}
       <TP24Layout>
         <ImageContentComponent
           imageSrc={imagesContent?.data?.[0].src ?? ""}

@@ -44,7 +44,7 @@ const htmlCustomCss = css`
 
 interface TP0BAComponentProps extends TemplateProps {}
 
-const TP04AComponent = ({ setPageCompleted, page }: TP0BAComponentProps) => {
+const TP04AComponent = ({ setPageCompleted, page, showHeader = true }: TP0BAComponentProps) => {
   const thisPage = page as TP04A;
 
   useEffect(() => {
@@ -98,7 +98,11 @@ const TP04AComponent = ({ setPageCompleted, page }: TP0BAComponentProps) => {
   }, [htmlContentData, imagesContentData]);
   return (
     <TemplateCommonLayout>
-      <TitleContent title={thisPage.title} description={thisPage.description} />
+      {showHeader ? (
+        <TitleContent title={thisPage.title} description={thisPage.description} />
+      ) : (
+        <></>
+      )}
       <TP04Layout>
         {renderContents}
         <AudioWrapper>

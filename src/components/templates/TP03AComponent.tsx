@@ -26,7 +26,7 @@ const HtmlWrapper = styled("div")`
   }
 `;
 
-const TP03AComponent = ({ setPageCompleted, page }: TP03AComponentProps) => {
+const TP03AComponent = ({ setPageCompleted, page, showHeader = true }: TP03AComponentProps) => {
   const thisPage = page as TP03A;
   useEffect(() => {
     setPageCompleted();
@@ -54,7 +54,11 @@ const TP03AComponent = ({ setPageCompleted, page }: TP03AComponentProps) => {
 
   return (
     <TemplateCommonLayout>
-      <TitleContent title={thisPage.title} description={thisPage.description} />
+      {showHeader ? (
+        <TitleContent title={thisPage.title} description={thisPage.description} />
+      ) : (
+        <></>
+      )}
       <TP03Layout>
         <HtmlWrapper>
           <HtmlContentComponent html={htmlString ?? ""} />

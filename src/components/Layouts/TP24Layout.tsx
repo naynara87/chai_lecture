@@ -8,7 +8,7 @@ const TP24LayoutStyle = styled.div`
   gap: ${gridContentLayoutCommonGap};
   grid-template-columns: 40% 56%;
   grid-template-rows: 1fr;
-  overflow-y: auto;
+  /* overflow-y: auto; */
   align-items: center;
   justify-content: start;
 `;

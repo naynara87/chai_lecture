@@ -19,7 +19,7 @@ const customBoxCss = css`
 
 interface TP02MComponentProps extends TemplateProps {}
 
-const TP02MComponent = ({ setPageCompleted, page }: TP02MComponentProps) => {
+const TP02MComponent = ({ setPageCompleted, page, showHeader = true }: TP02MComponentProps) => {
   const thisPage = page as TP02M;
 
   useEffect(() => {
@@ -34,7 +34,11 @@ const TP02MComponent = ({ setPageCompleted, page }: TP02MComponentProps) => {
 
   return (
     <TemplateCommonLayout>
-      <TitleContent title={thisPage.title} description={thisPage.description} />
+      {showHeader ? (
+        <TitleContent title={thisPage.title} description={thisPage.description} />
+      ) : (
+        <></>
+      )}
       <TP02Layout>
         <TextBoxes
           datas={TextBoxesContentData?.data ?? []}

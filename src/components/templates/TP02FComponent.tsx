@@ -10,14 +10,14 @@ import { css } from "@emotion/react";
 
 const customVideoCss = css`
   width: 100%;
-  max-width: 800px;
+  max-width: 550px;
   height: 100%;
   margin: 0 auto;
 `;
 
 interface TP02FComponentProps extends TemplateProps {}
 
-const TP02FComponent = ({ setPageCompleted, page }: TP02FComponentProps) => {
+const TP02FComponent = ({ setPageCompleted, page, showHeader = true }: TP02FComponentProps) => {
   const thisPage = page as TP02F;
 
   useEffect(() => {
@@ -37,7 +37,11 @@ const TP02FComponent = ({ setPageCompleted, page }: TP02FComponentProps) => {
 
   return (
     <TemplateCommonLayout>
-      <TitleContent title={thisPage.title} description={thisPage.description} />
+      {showHeader ? (
+        <TitleContent title={thisPage.title} description={thisPage.description} />
+      ) : (
+        <></>
+      )}
       <TP02Layout>
         <VideoContentComponent videoUrl={videoUrlString?.src ?? ""} customCss={customVideoCss} />
       </TP02Layout>
