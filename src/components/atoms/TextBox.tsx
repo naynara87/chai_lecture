@@ -10,11 +10,10 @@ interface TextCardProps {
 }
 
 const TextCard = styled.div<TextCardProps>`
-  width: ${changePXtoVW(154)};
-  height: ${changePXtoVW(106)};
+  min-width: 100px;
   line-height: 84px;
   margin: 11px;
-  padding: ${changePXtoVW(33)} 0;
+  padding: ${changePXtoVW(33)} ${changePXtoVW(33)};
   border: 1px solid color(gray2);
   border-radius: 11px;
   font-size: ${changePXtoVW(48)};
