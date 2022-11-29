@@ -9,9 +9,6 @@ import TitleContent from "../molecules/TitleContent";
 import { css } from "@emotion/react";
 
 const customVideoCss = css`
-  width: 100%;
-  max-width: 550px;
-  height: 100%;
   margin: 0 auto;
 `;
 
@@ -23,7 +20,6 @@ const TP02FComponent = ({ setPageCompleted, page, showHeader = true }: TP02FComp
   useEffect(() => {
     setPageCompleted();
   }, [setPageCompleted]);
-
   const videoContentData = useMemo(() => {
     return thisPage.template.contents.find((content) => content.type === "video") as
       | VideoContent

@@ -15,16 +15,27 @@ import { TemplateType } from "../../types/appData";
 import HtmlContentComponent from "../molecules/HtmlContentComponent";
 import { changePXtoVW } from "../../utils/styles";
 
-const customBoxContainerCss = css`
+const customBox03DContainerCss = css`
   justify-content: flex-start;
   width: ${changePXtoVW(450)};
+  margin: ${changePXtoVW(50)} auto;
 `;
 
-const customBoxCss = css`
+const customBox03DCss = css`
   height: 80px;
   @media all and (max-width: ${breakPoints.tablet}) {
     height: 8vw;
   }
+`;
+const customBox03BContainerCss = css`
+  margin-top: ${changePXtoVW(50)};
+`;
+
+const tp03CHtmlCss = css`
+  height: ${changePXtoVW(200)};
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 `;
 
 interface TP0BAComponentProps extends TemplateProps {}
@@ -56,7 +67,6 @@ const TP03BComponent = ({ setPageCompleted, page, showHeader = true }: TP0BAComp
   useEffect(() => {
     setPageCompleted();
   }, [setPageCompleted]);
-
   const htmlContentData = useMemo(() => {
     return thisPage.template.contents.find((content) => content.type === "html") as
       | HtmlContent
@@ -85,7 +95,6 @@ const TP03BComponent = ({ setPageCompleted, page, showHeader = true }: TP0BAComp
 
   const getMainContents = useCallback(
     (templateType: TemplateType) => {
-      console.log(templateType);
       if (!TextBoxesContentData?.data) {
         return <></>;
       }
@@ -94,7 +103,7 @@ const TP03BComponent = ({ setPageCompleted, page, showHeader = true }: TP0BAComp
           <>
             <TextBoxes datas={TextBoxesContentData.data} />
             <HtmlWrapper>
-              <HtmlContentComponent html={htmlString ?? ""} />
+              <HtmlContentComponent html={htmlString ?? ""} customCss={tp03CHtmlCss} />
             </HtmlWrapper>
           </>
         );
@@ -107,8 +116,10 @@ const TP03BComponent = ({ setPageCompleted, page, showHeader = true }: TP0BAComp
             <TextBoxes
               datas={TextBoxesContentData.data}
               isHorizontal={templateType === "TP03D" ? true : false}
-              customBoxCss={templateType === "TP03D" ? customBoxCss : undefined}
-              customBoxContainerCss={templateType === "TP03D" ? customBoxContainerCss : undefined}
+              customBoxCss={templateType === "TP03D" ? customBox03DCss : undefined}
+              customBoxContainerCss={
+                templateType === "TP03D" ? customBox03DContainerCss : customBox03BContainerCss
+              }
             />
           </>
         );

@@ -15,7 +15,7 @@ import { useQuery } from "@tanstack/react-query";
 import { QUERY_KEY } from "../../constants/queryKey";
 import ModalStart from "../modal/ModalStart";
 import { getPageUrl } from "../../utils/url";
-import { breakPoints } from "../../constants/layout";
+import { breakPoints, headerHeightNormal } from "../../constants/layout";
 import { useRecoilState } from "recoil";
 import { cornersState } from "../../state/corners";
 import { useNavigate } from "react-router-dom";
@@ -35,7 +35,7 @@ const CornerListWrapper = styled.main`
   flex-wrap: wrap;
   gap: 43px;
   max-width: 553px;
-  margin: 43px auto 0;
+  margin: 155px auto 0;
 
   &.layout7 {
     max-width: 581px;
@@ -43,7 +43,6 @@ const CornerListWrapper = styled.main`
   @media all and (max-width: ${breakPoints.tablet}) {
     gap: 4.1666666667vw;
     max-width: 54.6666666667vw;
-    margin-top: 4.1666666667vw;
     &.layout7 {
       max-width: 56.6666666667vw;
     }
@@ -123,7 +122,7 @@ const startTextCss = css`
 `;
 
 const CornerListLayout = styled.div`
-  height: 100vh;
+  margin-top: ${headerHeightNormal};
   display: flex;
   flex-direction: column;
 `;

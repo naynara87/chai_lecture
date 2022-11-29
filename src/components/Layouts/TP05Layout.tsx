@@ -5,8 +5,6 @@ import { templateContentsAreaHeight } from "../../constants/layout";
 const TP05LayoutStyle = styled.div`
   height: ${templateContentsAreaHeight};
   display: grid;
-  gap: 2%;
-  /* overflow-y: auto; */
   text-align: center;
 `;
 

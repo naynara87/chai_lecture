@@ -1,6 +1,7 @@
 import React, { useCallback, useRef } from "react";
 import styled from "@emotion/styled";
 import { SerializedStyles } from "@emotion/react";
+import { changePXtoVW } from "../../utils/styles";
 
 interface VideoContentComponentProps {
   videoUrl: string;
@@ -12,6 +13,9 @@ interface IframeProps {
 }
 
 const Iframe = styled.iframe<IframeProps>`
+  width: ${changePXtoVW(1000)};
+  height: ${changePXtoVW(600)};
+  margin: 0 auto;
   ${(props) => props.customCss}
 `;
 

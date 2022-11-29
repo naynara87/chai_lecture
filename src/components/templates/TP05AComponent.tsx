@@ -19,14 +19,19 @@ const customBoxCss = css`
 `;
 
 const customBoxWrapperCss = css`
+  width: 100%;
   text-align: left;
-  display: grid !important;
-  grid-template-columns: 32% 80%;
   align-items: center;
   line-height: 30px;
   @media all and (max-width: ${breakPoints.tablet}) {
     line-height: 3vw;
   }
+`;
+
+const customBoxContainerCss = css`
+  width: auto;
+  display: flex;
+  flex-direction: column;
 `;
 
 const customTipCss = css`
@@ -77,6 +82,7 @@ const TP05AComponent = ({ setPageCompleted, page, showHeader = true }: TP05AComp
           isHorizontal={true}
           customBoxCss={customBoxCss}
           customBoxWrapperCss={customBoxWrapperCss}
+          customBoxContainerCss={customBoxContainerCss}
         />
         <TipComponent html={htmlTipString ?? ""} customCss={customTipCss} />
       </TP05Layout>

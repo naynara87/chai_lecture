@@ -15,8 +15,8 @@ const htmlCss = css`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
-  height: ${changePXtoVW(500)};
+  justify-content: space-between;
+  height: ${changePXtoVW(400)};
 `;
 
 interface TP09AComponentProps extends TemplateProps {}

@@ -5,11 +5,13 @@ import Dialog from "../contents/Dialog";
 import styled from "@emotion/styled";
 import { SerializedStyles } from "@emotion/react";
 import CheckButton from "../atoms/CheckButton";
+import { footerHeightNormal } from "../../constants/layout";
 interface DialogContainerStylesProps {
   customCss?: SerializedStyles;
 }
 
 const DialogContainerStyles = styled.div<DialogContainerStylesProps>`
+  padding-bottom: ${footerHeightNormal};
   ${(props) => props.customCss}
 `;
 interface DialogContainerProps {

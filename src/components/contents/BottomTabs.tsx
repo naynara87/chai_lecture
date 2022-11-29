@@ -12,7 +12,7 @@ interface BottomTabsWrapperProps {
 const BottomTabsWrapper = styled.div<BottomTabsWrapperProps>`
   width: ${changePXtoVW(1680)};
   height: ${(props) => (props.open ? `${changePXtoVH(451)}` : `${changePXtoVH(160)}`)};
-  position: absolute;
+  position: fixed;
   bottom: ${(props) => (props.open ? "60px" : 0)};
   left: 50%;
   transform: translateX(-50%);
@@ -59,6 +59,9 @@ const BottomTabMainContainer = styled.div<BottomTabMainContainerProps>`
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   & img {
     width: ${changePXtoVW(300)};

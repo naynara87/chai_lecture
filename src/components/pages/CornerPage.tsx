@@ -11,6 +11,7 @@ import { getPageUrl } from "../../utils/url";
 import { useRecoilState } from "recoil";
 import { cornersState } from "../../state/corners";
 import { CORNER_LIST_URL } from "../../constants/url";
+import IframeMainContainer from "../atoms/IframeMainContainer";
 // import usePageLcms from "../../hooks/api/usePageLcms";
 
 const CornerPage = () => {
@@ -24,6 +25,12 @@ const CornerPage = () => {
   const { page: currentPage } = usePage(); // TODO: 실제 데이터 붙일 때 삭제 예정 => BBC-602
   const { currentCorner } = useCorner(); // TODO: 실제 데이터 붙일 때 삭제 예정 => BBC-602
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (process.env.NODE_ENV === "development") {
+      console.log(currentPage?.template.type);
+    }
+  }, [currentPage]);
 
   const pageIndex = pageIds.findIndex((id) => id === currentPage?.id);
 
@@ -75,12 +82,20 @@ const CornerPage = () => {
     }
   }, [isLastPage, cornerId, setCompletedCorners]);
 
+  const renderMainPage = useMemo(() => {
+    if (currentPage) {
+      return <CornerMain page={currentPage} setPageCompleted={setPageCompleted} />;
+    }
+  }, [currentPage]);
+
   return (
     <CommonPageLayout>
       <Header cornerName={currentCorner?.title} />
-      <CommonMainContainer>
-        {currentPage && <CornerMain page={currentPage} setPageCompleted={setPageCompleted} />}
-      </CommonMainContainer>
+      {currentPage?.template.type === "TPIframe" ? (
+        <IframeMainContainer>{renderMainPage}</IframeMainContainer>
+      ) : (
+        <CommonMainContainer>{renderMainPage}</CommonMainContainer>
+      )}
       <Footer
         pageIndex={pageIndex}
         handleClickPrev={handleClickPrev}

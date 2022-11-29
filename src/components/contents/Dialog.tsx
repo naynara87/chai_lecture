@@ -241,10 +241,17 @@ const Dialog = ({
     question: dialogQuestions,
     audio,
   } = dialogContent;
+
   const { src: audioUrl } = audio ?? {};
   const [userAnswer, setUserAnswer] = useState<number>(dialogQuestions?.choices.length ?? 0);
   const [correct, setCorrect] = useState<undefined | boolean>(undefined);
   const [choiceMaxLength, setChoiceMaxLength] = useState(0);
+  const questions = text
+    .replace(/<[^>]*>?/g, "")
+    .split(/(\*.*?\*)/)
+    .filter((content) => {
+      return content.length > 0;
+    });
 
   const selectedAnswer = useCallback(
     (userChoiceIndex: number) => {
@@ -309,37 +316,6 @@ const Dialog = ({
     isShowCorrect,
   ]);
 
-  const questionContents = useMemo(() => {
-    const questions = text
-      .replace(/<[^>]*>?/g, "")
-      .split(/(\*.*?\*)/)
-      .filter((content) => {
-        return content.length > 0;
-      });
-    if (!dialogQuestions) {
-      return <></>;
-    }
-    dialogQuestions.choices.forEach((choice) => {
-      if (choice.length > choiceMaxLength) {
-        setChoiceMaxLength(choice.length);
-      }
-    });
-    return questions.map((question, index) => {
-      if (question === "*blank*") {
-        const blankWidth = `${choiceMaxLength * 25}px`;
-        return (
-          <QuestionBlank
-            key={index}
-            width={blankWidth}
-            text={dialogQuestions.choices[userAnswer]}
-          />
-        );
-      } else {
-        return <HtmlContentComponent key={index} html={question} customCss={wordCss} />;
-      }
-    });
-  }, [text, userAnswer, dialogQuestions, choiceMaxLength]);
-
   const showCorrectIcon = useMemo(() => {
     if (!isShowCorrect) {
       return;
@@ -353,6 +329,36 @@ const Dialog = ({
       return <XIcon css={iconCss} />;
     }
   }, [correct, isShowCorrect]);
+
+  const questionContents = useMemo(() => {
+    if (!questions) {
+      return <></>;
+    }
+    if (dialogQuestions) {
+      dialogQuestions.choices.forEach((choice) => {
+        if (choice.length > choiceMaxLength) {
+          setChoiceMaxLength(choice.length);
+        }
+      });
+    }
+    return questions.map((question, questionIndex) => {
+      if (question === "*blank*") {
+        const blankWidth = `${choiceMaxLength * 25}px`;
+        if (!dialogQuestions) {
+          return <></>;
+        }
+        return (
+          <QuestionBlank
+            key={questionIndex}
+            width={blankWidth}
+            text={dialogQuestions.choices[userAnswer]}
+          />
+        );
+      } else {
+        return <HtmlContentComponent key={questionIndex} html={question} customCss={wordCss} />;
+      }
+    });
+  }, [userAnswer, dialogQuestions, choiceMaxLength, questions]);
 
   return (
     <DialogWrapper className={isHide ? "hide" : "dialog"}>

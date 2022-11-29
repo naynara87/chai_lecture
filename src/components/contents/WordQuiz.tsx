@@ -15,9 +15,7 @@ const WordQuizWrapper = styled.div`
   display: grid;
   justify-content: center;
   align-items: center;
-  padding-top: ${changePXtoVW(40)};
   grid-template-rows: max-content;
-  /* overflow-y: auto; */
 `;
 const WordQuizAnswerWrapper = styled.div`
   display: flex;
@@ -80,9 +78,14 @@ const WordQuiz = ({ datas, reverse = false }: WordQuizProps) => {
     [selectedIndex],
   );
 
-  const changeColor = useMemo(() => {
+  const changeDeebBlueColor = useMemo(() => {
     if (selectedIndex !== undefined) {
       return colorPalette.deepBlue;
+    }
+  }, [selectedIndex]);
+  const changeWhiteColor = useMemo(() => {
+    if (selectedIndex !== undefined) {
+      return colorPalette.white;
     }
   }, [selectedIndex]);
 
@@ -102,7 +105,8 @@ const WordQuiz = ({ datas, reverse = false }: WordQuizProps) => {
         text={choices[selectedIndex!]}
         width={reverse ? `${changePXtoVW(112)}` : `${changePXtoVW(240)}`}
         customCss={blankCss}
-        backgroundColor={changeColor}
+        backgroundColor={changeDeebBlueColor}
+        borderColor={changeWhiteColor}
       />
       <WordQuizAnswerWrapper>
         {choices.map((choice, index) => {
@@ -112,7 +116,7 @@ const WordQuiz = ({ datas, reverse = false }: WordQuizProps) => {
               text={choice}
               index={index}
               onClickAnswer={handleClickQuizAnswer}
-              color={index === selectedIndex ? changeColor : undefined}
+              color={index === selectedIndex ? changeDeebBlueColor : undefined}
             />
           );
         })}

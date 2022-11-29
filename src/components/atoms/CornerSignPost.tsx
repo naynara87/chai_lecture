@@ -18,7 +18,6 @@ const SignPost = styled.div`
   max-width: 97px;
   height: 12.0777777778vh;
   min-height: 66px;
-  /* padding: 0 1.0416666667vw; */
 
   line-height: 1.5;
   font-weight: 600;
@@ -40,7 +39,6 @@ const SignTitle = styled.span`
   z-index: 1;
   text-align: center;
   top: 0;
-  /* transform: translateY(50%); */
   padding: 1vw 15px 0;
   font-size: clamp(12px, 1.45vw, 18px);
 

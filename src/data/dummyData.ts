@@ -1238,6 +1238,23 @@ export const dummyData: AppData = {
                     },
                   },
                   {
+                    title: "video test",
+                    description: "video tests",
+                    template: {
+                      type: "TP02F",
+                      contents: [
+                        {
+                          type: "video",
+                          data: [
+                            {
+                              src: "https://cdn.bubblecon.io/videos/45.mp4",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  },
+                  {
                     title: "중국어의 개요1-2",
                     description: "중국어의 개요에 대해 알아봅시다1-2.",
                     template: {

@@ -15,7 +15,6 @@ const TP19AComponent = ({ setPageCompleted, page, showHeader = true }: TP19AComp
   useEffect(() => {
     setPageCompleted();
   }, [setPageCompleted]);
-
   const studySentencesWithVocabularyContent = useMemo(() => {
     return thisPage.template.contents.find(
       (content) => content.type === "studySentencesWithVocabulary",

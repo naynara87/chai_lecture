@@ -18,7 +18,7 @@ const SentencesOptionContainer = styled.div`
   width: ${changePXtoVW(630)};
   display: flex;
   justify-content: space-between;
-  margin: 0 auto;
+  margin: 0 auto ${changePXtoVW(30)};
   height: auto;
 `;
 
@@ -100,9 +100,8 @@ const OptionButtonWrapper = styled.div`
 `;
 
 const TextContainer = styled.div`
-  overflow-y: auto;
   width: 100%;
-  height: ${changePXtoVW(350)};
+  height: auto;
   font-size: ${changePXtoVW(48)};
   font-weight: 400;
   color: ${colorPalette.descriptionText};

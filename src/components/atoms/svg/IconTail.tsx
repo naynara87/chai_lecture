@@ -14,7 +14,6 @@ interface SvgProps {
 const Svg = styled.svg<SvgProps>`
   position: absolute;
   transform: translateX(55%) translateY(100%);
-  /* transition: all 0.3s ease-in; */
   ${(props) => props.customCss}
 `;
 
