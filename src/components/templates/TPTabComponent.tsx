@@ -4,12 +4,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import { headerHeightNormal } from "../../constants/layout";
 import { colorPalette } from "../../styles/colorPalette";
 import { ID, Page } from "../../types/appData";
-import { TP15A } from "../../types/pageTemplate";
+import { TPTab } from "../../types/pageTemplate";
 import { TemplateProps } from "../../types/templates";
 import { changePXtoVW } from "../../utils/styles";
 import { getPageUrl } from "../../utils/url";
-import Template15Layout from "../Layouts/Template15Layout";
-import TP15Layout from "../Layouts/TP15Layout";
+import TemplateTabLayout from "../Layouts/TemplateTabLayout";
+import TPTabLayout from "../Layouts/TPTabLayout";
 import TabButtons from "../molecules/TabButtons";
 import TabMain from "../molecules/TabMain";
 import TitleContent from "../molecules/TitleContent";
@@ -45,10 +45,10 @@ interface PageHeader {
   description: string;
 }
 
-interface TP15AComponentProps extends TemplateProps {}
+interface TPTabComponentProps extends TemplateProps {}
 
-const TP15AComponent = ({ setPageCompleted, page }: TP15AComponentProps) => {
-  const thisPage = page as TP15A;
+const TPTabComponent = ({ setPageCompleted, page }: TPTabComponentProps) => {
+  const thisPage = page as TPTab;
   const [tabIdxToId, setTabIdxToId] = useState<TabIndexes[]>([]);
   const [pageHeader, setPageHeader] = useState<PageHeader>({ title: "", description: "" });
   const navigate = useNavigate();
@@ -167,7 +167,7 @@ const TP15AComponent = ({ setPageCompleted, page }: TP15AComponentProps) => {
   }, [currentTab, setPageCompleted, thisPage.id]);
 
   return (
-    <Template15Layout>
+    <TemplateTabLayout>
       <HeaderContainer isScroll={isScroll}>
         <TitleContent title={pageHeader.title} description={pageHeader.description} isTab={true} />
         <TabButtons
@@ -176,9 +176,9 @@ const TP15AComponent = ({ setPageCompleted, page }: TP15AComponentProps) => {
           handleClickTab={handleClickTab}
         />
       </HeaderContainer>
-      <TP15Layout LayoutRef={LayoutRef}>{renderTemplate}</TP15Layout>
-    </Template15Layout>
+      <TPTabLayout LayoutRef={LayoutRef}>{renderTemplate}</TPTabLayout>
+    </TemplateTabLayout>
   );
 };
 
-export default TP15AComponent;
+export default TPTabComponent;

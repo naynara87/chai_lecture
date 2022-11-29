@@ -3,22 +3,22 @@ import React from "react";
 import { templateContentsAreaHeight } from "../../constants/layout";
 import { changePXtoVW } from "../../utils/styles";
 
-const TP15LayoutStyle = styled.div`
+const TPTabLayoutStyle = styled.div`
   height: ${templateContentsAreaHeight};
   margin-bottom: 70px;
-  padding-top: ${changePXtoVW(50)};
+  padding-top: ${changePXtoVW(70)};
 
   &:last-child {
     margin-bottom: 0;
   }
 `;
 
-interface TP15LayoutProps {
+interface TPTabLayoutProps {
   children: JSX.Element | JSX.Element[];
   LayoutRef: React.RefObject<HTMLDivElement>;
 }
-const TP15Layout = ({ children, LayoutRef }: TP15LayoutProps) => {
-  return <TP15LayoutStyle ref={LayoutRef}>{children}</TP15LayoutStyle>;
+const TPTabLayout = ({ children, LayoutRef }: TPTabLayoutProps) => {
+  return <TPTabLayoutStyle ref={LayoutRef}>{children}</TPTabLayoutStyle>;
 };
 
-export default TP15Layout;
+export default TPTabLayout;

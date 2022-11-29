@@ -10,7 +10,7 @@ const TP04LayoutStyle = styled.div`
 `;
 
 interface TP04LayoutProps {
-  children: [JSX.Element[] | undefined, JSX.Element];
+  children: JSX.Element | JSX.Element[];
 }
 const TP04Layout = ({ children }: TP04LayoutProps) => {
   return <TP04LayoutStyle>{children}</TP04LayoutStyle>;

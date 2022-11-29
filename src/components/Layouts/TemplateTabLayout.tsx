@@ -7,11 +7,11 @@ const TemplateCommon = styled.div`
   grid-template-rows: max-content 84%;
 `;
 
-interface Template15LayoutProps {
+interface TemplateTabLayoutProps {
   children: [JSX.Element, JSX.Element];
 }
-const Template15Layout = ({ children }: Template15LayoutProps) => {
+const TemplateTabLayout = ({ children }: TemplateTabLayoutProps) => {
   return <TemplateCommon>{children}</TemplateCommon>;
 };
 
-export default Template15Layout;
+export default TemplateTabLayout;

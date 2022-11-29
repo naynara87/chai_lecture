@@ -14,6 +14,7 @@ interface HtmlContentComponentProps extends HtmlWrapperProps {
   html: string;
 }
 const HtmlContentComponent = ({ html, customCss }: HtmlContentComponentProps) => {
+  console.log(html);
   return (
     <HtmlWrapper dangerouslySetInnerHTML={{ __html: html }} customCss={customCss}></HtmlWrapper>
   );

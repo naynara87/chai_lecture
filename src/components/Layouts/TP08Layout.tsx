@@ -1,11 +1,13 @@
 import styled from "@emotion/styled";
 import React from "react";
 import { templateContentsAreaHeight } from "../../constants/layout";
+import { changePXtoVW } from "../../utils/styles";
 
 const TP08LayoutStyle = styled.div`
   height: ${templateContentsAreaHeight};
   display: grid;
   text-align: center;
+  padding-top: ${changePXtoVW(100)};
 `;
 
 interface TP08LayoutProps {

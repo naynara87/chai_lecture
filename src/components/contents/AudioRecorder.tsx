@@ -76,7 +76,6 @@ const AudioRecorder = ({ audioUrl }: AudioRecorderProps) => {
       type: "audio/wav",
     },
   });
-
   const handleClickRecordedAudioButton = useCallback(() => {
     if (!audioRef.current || pronounceAudio) {
       return;

@@ -98,22 +98,27 @@ const globalStyle = css`
 
   h1 {
     font-size: ${changePXtoVW(42)};
+    line-height: 1.5;
   }
 
   h2 {
     font-size: ${changePXtoVW(38)};
+    line-height: 1.5;
   }
 
   h3 {
     font-size: ${changePXtoVW(30)};
+    line-height: 1.5;
   }
 
   h4 {
     font-size: ${changePXtoVW(28)};
+    line-height: 1.5;
   }
 
   h5 {
     font-size: ${changePXtoVW(24)};
+    line-height: 1.5;
   }
 
   .c1 {

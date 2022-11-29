@@ -13,8 +13,8 @@ interface IframeProps {
 }
 
 const Iframe = styled.iframe<IframeProps>`
-  width: ${changePXtoVW(1000)};
-  height: ${changePXtoVW(600)};
+  width: ${changePXtoVW(800)};
+  height: ${changePXtoVW(450)};
   margin: 0 auto;
   ${(props) => props.customCss}
 `;

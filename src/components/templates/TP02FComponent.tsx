@@ -7,9 +7,11 @@ import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TP02Layout from "../Layouts/TP02Layout";
 import TitleContent from "../molecules/TitleContent";
 import { css } from "@emotion/react";
+import { changePXtoVW } from "../../utils/styles";
 
 const customVideoCss = css`
   margin: 0 auto;
+  height: ${changePXtoVW(600)};
 `;
 
 interface TP02FComponentProps extends TemplateProps {}

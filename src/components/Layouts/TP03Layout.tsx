@@ -4,8 +4,9 @@ import { templateContentsAreaHeight } from "../../constants/layout";
 
 const TP03LayoutStyle = styled.div`
   height: ${templateContentsAreaHeight};
-  display: grid;
-  grid-template-rows: max-content max-content max-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 interface TP03LayoutProps {
