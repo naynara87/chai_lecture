@@ -301,35 +301,35 @@ export const dummyData: AppData = {
                 ],
               },
               {
-                type: "listenWords",
+                type: "textBoxes",
                 data: [
                   {
-                    text: "a",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                    meaning: "제 1성",
+                    main: "a",
+                    sub: "",
+                    description: "<p>제 1성</p>",
                   },
                   {
-                    text: "a",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                    meaning: "제 2성",
+                    main: "a",
+                    sub: "",
+                    description: "<p>제 2성</p>",
                   },
                   {
-                    text: "a",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                    meaning: "제 3성",
+                    main: "a",
+                    sub: "",
+                    description: "<p>제 3성</p>",
                   },
                   {
-                    text: "a",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                    meaning: "제 4성",
+                    main: "a",
+                    sub: "",
+                    description: "<p>제 4성</p>",
+                  },
+                ],
+              },
+              {
+                type: "audio",
+                data: [
+                  {
+                    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
                   },
                 ],
               },
@@ -1999,35 +1999,35 @@ export const dummyData: AppData = {
                 ],
               },
               {
-                type: "listenWords",
+                type: "textBoxes",
                 data: [
                   {
-                    text: "a",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                    meaning: "제 1성",
+                    main: "a",
+                    sub: "",
+                    description: "<p>제 1성</p>",
                   },
                   {
-                    text: "a",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                    meaning: "제 2성",
+                    main: "a",
+                    sub: "",
+                    description: "<p>제 2성</p>",
                   },
                   {
-                    text: "a",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                    meaning: "제 3성",
+                    main: "a",
+                    sub: "",
+                    description: "<p>제 3성</p>",
                   },
                   {
-                    text: "a",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                    meaning: "제 4성",
+                    main: "a",
+                    sub: "",
+                    description: "<p>제 4성</p>",
+                  },
+                ],
+              },
+              {
+                type: "audio",
+                data: [
+                  {
+                    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
                   },
                 ],
               },
@@ -2535,35 +2535,35 @@ export const dummyData: AppData = {
                 ],
               },
               {
-                type: "listenWords",
+                type: "textBoxes",
                 data: [
                   {
-                    text: "a",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                    meaning: "제 1성",
+                    main: "a",
+                    sub: "",
+                    description: "<p>제 1성</p>",
                   },
                   {
-                    text: "a",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                    meaning: "제 2성",
+                    main: "a",
+                    sub: "",
+                    description: "<p>제 2성</p>",
                   },
                   {
-                    text: "a",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                    meaning: "제 3성",
+                    main: "a",
+                    sub: "",
+                    description: "<p>제 3성</p>",
                   },
                   {
-                    text: "a",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                    meaning: "제 4성",
+                    main: "a",
+                    sub: "",
+                    description: "<p>제 4성</p>",
+                  },
+                ],
+              },
+              {
+                type: "audio",
+                data: [
+                  {
+                    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
                   },
                 ],
               },
@@ -3071,35 +3071,35 @@ export const dummyData: AppData = {
                 ],
               },
               {
-                type: "listenWords",
+                type: "textBoxes",
                 data: [
                   {
-                    text: "a",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                    meaning: "제 1성",
+                    main: "a",
+                    sub: "",
+                    description: "<p>제 1성</p>",
                   },
                   {
-                    text: "a",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                    meaning: "제 2성",
+                    main: "a",
+                    sub: "",
+                    description: "<p>제 2성</p>",
                   },
                   {
-                    text: "a",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                    meaning: "제 3성",
+                    main: "a",
+                    sub: "",
+                    description: "<p>제 3성</p>",
                   },
                   {
-                    text: "a",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                    meaning: "제 4성",
+                    main: "a",
+                    sub: "",
+                    description: "<p>제 4성</p>",
+                  },
+                ],
+              },
+              {
+                type: "audio",
+                data: [
+                  {
+                    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
                   },
                 ],
               },
@@ -3607,35 +3607,35 @@ export const dummyData: AppData = {
                 ],
               },
               {
-                type: "listenWords",
+                type: "textBoxes",
                 data: [
                   {
-                    text: "a",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                    meaning: "제 1성",
+                    main: "a",
+                    sub: "",
+                    description: "<p>제 1성</p>",
                   },
                   {
-                    text: "a",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                    meaning: "제 2성",
+                    main: "a",
+                    sub: "",
+                    description: "<p>제 2성</p>",
                   },
                   {
-                    text: "a",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                    meaning: "제 3성",
+                    main: "a",
+                    sub: "",
+                    description: "<p>제 3성</p>",
                   },
                   {
-                    text: "a",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                    meaning: "제 4성",
+                    main: "a",
+                    sub: "",
+                    description: "<p>제 4성</p>",
+                  },
+                ],
+              },
+              {
+                type: "audio",
+                data: [
+                  {
+                    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
                   },
                 ],
               },
@@ -4141,35 +4141,35 @@ export const dummyData: AppData = {
                 ],
               },
               {
-                type: "listenWords",
+                type: "textBoxes",
                 data: [
                   {
-                    text: "a",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                    meaning: "제 1성",
+                    main: "a",
+                    sub: "",
+                    description: "<p>제 1성</p>",
                   },
                   {
-                    text: "a",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                    meaning: "제 2성",
+                    main: "a",
+                    sub: "",
+                    description: "<p>제 2성</p>",
                   },
                   {
-                    text: "a",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                    meaning: "제 3성",
+                    main: "a",
+                    sub: "",
+                    description: "<p>제 3성</p>",
                   },
                   {
-                    text: "a",
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                    meaning: "제 4성",
+                    main: "a",
+                    sub: "",
+                    description: "<p>제 4성</p>",
+                  },
+                ],
+              },
+              {
+                type: "audio",
+                data: [
+                  {
+                    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
                   },
                 ],
               },
