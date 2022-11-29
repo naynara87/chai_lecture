@@ -9,9 +9,9 @@ import TitleContent from "../molecules/TitleContent";
 import { css } from "@emotion/react";
 
 const customVideoCss = css`
-  width: 100%;
+  /* width: 100%;
   max-width: 550px;
-  height: 100%;
+  height: 100%; */
   margin: 0 auto;
 `;
 

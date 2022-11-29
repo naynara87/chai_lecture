@@ -107,7 +107,7 @@ const TP01AComponent = ({ setPageCompleted, page, showHeader = true }: TP01AComp
         <CheckButton
           text="채점하기"
           handleClickCheckButton={handleClickCheckButton}
-          isHide={userAnswers.length >= ChooseTextByAudioContentData!.data.length}
+          isHide={userAnswers.length < ChooseTextByAudioContentData!.data.length}
         />
         <audio ref={audioRef}>
           <source src={audioSrc} />

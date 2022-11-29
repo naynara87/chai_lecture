@@ -15,7 +15,7 @@ import { useQuery } from "@tanstack/react-query";
 import { QUERY_KEY } from "../../constants/queryKey";
 import ModalStart from "../modal/ModalStart";
 import { getPageUrl } from "../../utils/url";
-import { breakPoints } from "../../constants/layout";
+import { breakPoints, headerHeightNormal } from "../../constants/layout";
 import { useRecoilState } from "recoil";
 import { cornersState } from "../../state/corners";
 import { useNavigate } from "react-router-dom";
@@ -123,7 +123,8 @@ const startTextCss = css`
 `;
 
 const CornerListLayout = styled.div`
-  height: 100vh;
+  /* height: 100vh; */
+  margin-top: ${headerHeightNormal};
   display: flex;
   flex-direction: column;
 `;

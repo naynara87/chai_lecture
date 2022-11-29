@@ -11,6 +11,7 @@ import { getPageUrl } from "../../utils/url";
 import { useRecoilState } from "recoil";
 import { cornersState } from "../../state/corners";
 import { CORNER_LIST_URL } from "../../constants/url";
+import IframeMainContainer from "../atoms/IframeMainContainer";
 // import usePageLcms from "../../hooks/api/usePageLcms";
 
 const CornerPage = () => {
@@ -75,12 +76,20 @@ const CornerPage = () => {
     }
   }, [isLastPage, cornerId, setCompletedCorners]);
 
+  const renderMainPage = useMemo(() => {
+    if (currentPage) {
+      return <CornerMain page={currentPage} setPageCompleted={setPageCompleted} />;
+    }
+  }, [currentPage]);
+
   return (
     <CommonPageLayout>
       <Header cornerName={currentCorner?.title} />
-      <CommonMainContainer>
-        {currentPage && <CornerMain page={currentPage} setPageCompleted={setPageCompleted} />}
-      </CommonMainContainer>
+      {currentPage?.template.type === "TPIframe" ? (
+        <IframeMainContainer>{renderMainPage}</IframeMainContainer>
+      ) : (
+        <CommonMainContainer>{renderMainPage}</CommonMainContainer>
+      )}
       <Footer
         pageIndex={pageIndex}
         handleClickPrev={handleClickPrev}
