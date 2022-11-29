@@ -43,9 +43,8 @@ const TP08GComponent = ({ setPageCompleted, page, showHeader = true }: TP08GComp
   const audioRef = useRef<HTMLAudioElement>(null);
   const { audioSrc, audioIndex, handleClickAudioButton } = useAudio(audioRef);
   useEffect(() => {
-    console.log(thisPage.template.type);
     setPageCompleted();
-  }, [setPageCompleted, thisPage.template.type]);
+  }, [setPageCompleted]);
 
   const numberTableContentData = useMemo(() => {
     return thisPage.template.contents.find((content) => content.type === "numberTable") as

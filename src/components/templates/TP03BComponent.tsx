@@ -65,9 +65,8 @@ const AudioWrapper = styled.div`
 const TP03BComponent = ({ setPageCompleted, page, showHeader = true }: TP0BAComponentProps) => {
   const thisPage = page as TP03B | TP03C | TP03D;
   useEffect(() => {
-    console.log(thisPage.template.type);
     setPageCompleted();
-  }, [setPageCompleted, thisPage.template.type]);
+  }, [setPageCompleted]);
   const htmlContentData = useMemo(() => {
     return thisPage.template.contents.find((content) => content.type === "html") as
       | HtmlContent

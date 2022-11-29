@@ -9,7 +9,7 @@ const TP03LayoutStyle = styled.div`
 `;
 
 interface TP03LayoutProps {
-  children: [JSX.Element, JSX.Element];
+  children: JSX.Element | JSX.Element[];
   isReverse?: boolean;
 }
 const TP03Layout = ({ children, isReverse }: TP03LayoutProps) => {

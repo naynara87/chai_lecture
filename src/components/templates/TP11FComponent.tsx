@@ -16,8 +16,6 @@ import { changePXtoVW } from "../../utils/styles";
 
 const htmlCss = css`
   margin-left: 16px;
-  /* padding-top: 4px; */
-  /* font-size: 24px; */
   font-size: 24px;
   @media all and (max-width: ${breakPoints.tablet}) {
     font-size: 2vw;
@@ -38,10 +36,8 @@ const TP11FComponent = ({ page, setPageCompleted, showHeader = true }: TP11FComp
   const thisPage = page as TP11F;
 
   useEffect(() => {
-    console.log(thisPage.template.type);
     setPageCompleted();
-  }, [setPageCompleted, thisPage.template.type]);
-
+  }, [setPageCompleted]);
   const iconTextContent = useMemo(
     () =>
       thisPage.template.contents.find((content) => content.type === "iconText") as

@@ -100,7 +100,6 @@ const OptionButtonWrapper = styled.div`
 `;
 
 const TextContainer = styled.div`
-  overflow-y: auto;
   width: 100%;
   height: ${changePXtoVW(350)};
   font-size: ${changePXtoVW(48)};

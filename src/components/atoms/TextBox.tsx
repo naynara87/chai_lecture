@@ -28,7 +28,6 @@ const TextCard = styled.div<TextCardProps>`
     line-height: 8.3333333333vw;
     margin: 1.0416666667vw;
     border-radius: 1.0416666667vw;
-    /* font-size: 3.125vw; */
   }
 
   ${(props) => props.customCss}

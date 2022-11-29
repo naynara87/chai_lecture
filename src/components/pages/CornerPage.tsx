@@ -26,6 +26,12 @@ const CornerPage = () => {
   const { currentCorner } = useCorner(); // TODO: 실제 데이터 붙일 때 삭제 예정 => BBC-602
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (process.env.NODE_ENV === "development") {
+      console.log(currentPage?.template.type);
+    }
+  }, [currentPage]);
+
   const pageIndex = pageIds.findIndex((id) => id === currentPage?.id);
 
   const { courseId, lessonId } = useParams();

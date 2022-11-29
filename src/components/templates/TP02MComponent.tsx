@@ -23,9 +23,8 @@ const TP02MComponent = ({ setPageCompleted, page, showHeader = true }: TP02MComp
   const thisPage = page as TP02M;
 
   useEffect(() => {
-    console.log(thisPage.template.type);
     setPageCompleted();
-  }, [setPageCompleted, thisPage.template.type]);
+  }, [setPageCompleted]);
 
   const TextBoxesContentData = useMemo(() => {
     return thisPage.template.contents.find((content) => content.type === "textBoxes") as

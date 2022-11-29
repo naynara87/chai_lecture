@@ -25,9 +25,8 @@ const TP01BComponent = ({ setPageCompleted, page, showHeader = true }: TP01BComp
   const thisPage = page as TP01B;
 
   useEffect(() => {
-    console.log(thisPage.template.type);
     setPageCompleted();
-  }, [setPageCompleted, thisPage.template.type]);
+  }, [setPageCompleted]);
 
   const DialogContentData = useMemo(() => {
     return thisPage.template.contents.find((content) => content.type === "dialog") as

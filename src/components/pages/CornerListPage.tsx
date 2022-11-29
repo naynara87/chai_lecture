@@ -123,7 +123,6 @@ const startTextCss = css`
 `;
 
 const CornerListLayout = styled.div`
-  /* height: 100vh; */
   margin-top: ${headerHeightNormal};
   display: flex;
   flex-direction: column;

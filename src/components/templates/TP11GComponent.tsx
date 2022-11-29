@@ -17,10 +17,8 @@ const TP11GComponent = ({ setPageCompleted, page, showHeader = true }: TP11GComp
       | undefined;
   }, [thisPage.template.contents]);
   useEffect(() => {
-    console.log(thisPage.template.type);
     setPageCompleted();
-  }, [setPageCompleted, thisPage.template.type]);
-
+  }, [setPageCompleted]);
   return (
     <TemplateCommonLayout>
       {showHeader ? (

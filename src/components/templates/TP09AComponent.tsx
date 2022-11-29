@@ -25,9 +25,8 @@ const TP09AComponent = ({ setPageCompleted, page, showHeader = true }: TP09AComp
   const thisPage = page as TP09A;
 
   useEffect(() => {
-    console.log(thisPage.template.type);
     setPageCompleted();
-  }, [setPageCompleted, thisPage.template.type]);
+  }, [setPageCompleted]);
 
   const htmlContentData = useMemo(() => {
     return thisPage.template.contents.find((content) => content.type === "html") as

@@ -22,9 +22,8 @@ const TP24AComponent = ({ setPageCompleted, page, showHeader = true }: TP24AComp
   const thisPage = page as TP24A;
 
   useEffect(() => {
-    console.log(thisPage.template.type);
     setPageCompleted();
-  }, [setPageCompleted, thisPage.template.type]);
+  }, [setPageCompleted]);
   const imagesContent = useMemo(() => {
     return thisPage.template.contents.find((content) => content.type === "images") as
       | ImagesContent

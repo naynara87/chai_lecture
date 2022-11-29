@@ -11,6 +11,10 @@ const TextCardWrapper = styled.div`
   text-align: center;
 `;
 
+/**
+ * @deprecated
+ * textBoxes and audioComponent를 사용
+ */
 const ListenWordContent = (datas: ListenWordContentProps) => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [audioSrc, setAudioSrc] = useState("");

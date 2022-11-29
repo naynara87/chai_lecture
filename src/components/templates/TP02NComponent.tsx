@@ -48,9 +48,8 @@ const TP02NComponent = ({ setPageCompleted, page, showHeader = true }: TP02NComp
   const thisPage = page as TP02N;
 
   useEffect(() => {
-    console.log(thisPage.template.type);
     setPageCompleted();
-  }, [setPageCompleted, thisPage.template.type]);
+  }, [setPageCompleted]);
 
   const StudyWordsContentData = useMemo(() => {
     return thisPage.template.contents.find((content) => content.type === "studyWords") as
