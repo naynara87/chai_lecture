@@ -77,7 +77,9 @@ const Footer = ({ handleClickPrev, handleClickNext, isPageCompleted, pageIndex }
     if (currentCorner === undefined) {
       return;
     }
-    console.log(`page: ${pageIndex + 1} / ${currentCorner.pages.length}`);
+    if (process.env.NODE_ENV === "development") {
+      console.log(`page: ${pageIndex + 1} / ${currentCorner.pages.length}`);
+    }
   }, [pageIndex, currentCorner]);
 
   return (
