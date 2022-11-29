@@ -1,7 +1,7 @@
 import { SerializedStyles } from "@emotion/react";
 import styled from "@emotion/styled";
 import React from "react";
-import { gridContentLayoutCommonGap, templateContentsAreaHeight } from "../../constants/layout";
+import { templateContentsAreaHeight } from "../../constants/layout";
 
 interface TP07LayoutStyleProps {
   customCss?: SerializedStyles;
@@ -10,8 +10,6 @@ interface TP07LayoutStyleProps {
 const TP07LayoutStyle = styled.div<TP07LayoutStyleProps>`
   height: ${templateContentsAreaHeight};
   display: grid;
-  gap: ${gridContentLayoutCommonGap};
-  /* overflow-y: auto; */
 
   ${(props) => props.customCss}
 `;

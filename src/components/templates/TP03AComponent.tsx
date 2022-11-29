@@ -10,6 +10,7 @@ import { HtmlContent, ListenWordsContent } from "../../types/templateContents";
 import { colorPalette } from "../../styles/colorPalette";
 import { breakPoints } from "../../constants/layout";
 import HtmlContentComponent from "../molecules/HtmlContentComponent";
+import { changePXtoVW } from "../../utils/styles";
 
 interface TP03AComponentProps extends TemplateProps {}
 
@@ -20,6 +21,7 @@ const HtmlWrapper = styled("div")`
   color: ${colorPalette.descriptionText};
   white-space: pre-line;
   text-align: center;
+  margin-bottom: ${changePXtoVW(50)};
 
   @media all and (max-width: ${breakPoints.tablet}) {
     font-size: 2.5vw;
@@ -29,8 +31,9 @@ const HtmlWrapper = styled("div")`
 const TP03AComponent = ({ setPageCompleted, page, showHeader = true }: TP03AComponentProps) => {
   const thisPage = page as TP03A;
   useEffect(() => {
+    console.log(thisPage.template.type);
     setPageCompleted();
-  }, [setPageCompleted]);
+  }, [setPageCompleted, thisPage.template.type]);
 
   const htmlContentData = useMemo(() => {
     return thisPage.template.contents.find((content) => content.type === "html") as

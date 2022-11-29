@@ -102,6 +102,7 @@ const DialogContainer = ({
         const { id } = content;
         const isSameId = id !== dialogIdRef.current;
         dialogIdRef.current = id;
+        console.log(content, index);
         return (
           <Dialog
             dialogContent={content}

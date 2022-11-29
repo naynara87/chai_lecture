@@ -7,7 +7,6 @@ const TemplateCommon = styled.div`
   padding-top: ${footerHeightNormal};
   display: grid;
   grid-template-rows: max-content 84%;
-  grid-gap: 4%;
 `;
 
 interface TemplateCommonLayoutProps {

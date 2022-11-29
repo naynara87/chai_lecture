@@ -21,8 +21,9 @@ const TP02CComponent = ({ setPageCompleted, page, showHeader = true }: TP02CComp
   const thisPage = page as TP02C;
 
   useEffect(() => {
+    console.log(thisPage.template.type);
     setPageCompleted();
-  }, [setPageCompleted]);
+  }, [setPageCompleted, thisPage.template.type]);
 
   const imagesContentData = useMemo(() => {
     return thisPage.template.contents.find((content) => content.type === "images") as

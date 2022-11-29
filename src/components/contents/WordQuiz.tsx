@@ -15,9 +15,7 @@ const WordQuizWrapper = styled.div`
   display: grid;
   justify-content: center;
   align-items: center;
-  padding-top: ${changePXtoVW(40)};
   grid-template-rows: max-content;
-  /* overflow-y: auto; */
 `;
 const WordQuizAnswerWrapper = styled.div`
   display: flex;

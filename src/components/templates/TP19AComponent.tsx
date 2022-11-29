@@ -13,8 +13,9 @@ const TP19AComponent = ({ setPageCompleted, page, showHeader = true }: TP19AComp
   const thisPage = page as TP19A;
 
   useEffect(() => {
+    console.log(thisPage.template.type);
     setPageCompleted();
-  }, [setPageCompleted]);
+  }, [setPageCompleted, thisPage.template.type]);
 
   const studySentencesWithVocabularyContent = useMemo(() => {
     return thisPage.template.contents.find(

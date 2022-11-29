@@ -21,8 +21,9 @@ const TP02FComponent = ({ setPageCompleted, page, showHeader = true }: TP02FComp
   const thisPage = page as TP02F;
 
   useEffect(() => {
+    console.log(thisPage.template.type);
     setPageCompleted();
-  }, [setPageCompleted]);
+  }, [setPageCompleted, thisPage.template.type]);
 
   const videoContentData = useMemo(() => {
     return thisPage.template.contents.find((content) => content.type === "video") as

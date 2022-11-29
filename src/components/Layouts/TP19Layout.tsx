@@ -1,12 +1,10 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { gridContentLayoutCommonGap, templateContentsAreaHeight } from "../../constants/layout";
+import { templateContentsAreaHeight } from "../../constants/layout";
 
 const TP19LayoutStyle = styled.div`
   height: ${templateContentsAreaHeight};
   display: grid;
-  gap: ${gridContentLayoutCommonGap};
-  /* overflow-y: auto; */
   text-align: center;
   &::-webkit-scrollbar {
     display: none;

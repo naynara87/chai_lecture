@@ -20,8 +20,9 @@ const TP01AComponent = ({ setPageCompleted, page, showHeader = true }: TP01AComp
 
   const thisPage = page as TP01A;
   useEffect(() => {
+    console.log(thisPage.template.type);
     setPageCompleted();
-  }, [setPageCompleted]);
+  }, [setPageCompleted, thisPage.template.type]);
 
   const ChooseTextByAudioContentData = useMemo(() => {
     return thisPage.template.contents.find((content) => content.type === "chooseTextByAudio") as
@@ -95,6 +96,7 @@ const TP01AComponent = ({ setPageCompleted, page, showHeader = true }: TP01AComp
     audioIndex,
     handleCheckAnswer,
   ]);
+
   return (
     <TemplateCommonLayout>
       {showHeader ? (

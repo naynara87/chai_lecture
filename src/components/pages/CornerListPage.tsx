@@ -35,7 +35,7 @@ const CornerListWrapper = styled.main`
   flex-wrap: wrap;
   gap: 43px;
   max-width: 553px;
-  margin: 43px auto 0;
+  margin: 0 auto;
 
   &.layout7 {
     max-width: 581px;

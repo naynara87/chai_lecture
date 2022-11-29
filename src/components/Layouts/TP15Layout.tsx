@@ -1,11 +1,12 @@
 import styled from "@emotion/styled";
 import React from "react";
 import { templateContentsAreaHeight } from "../../constants/layout";
+import { changePXtoVW } from "../../utils/styles";
 
 const TP15LayoutStyle = styled.div`
   height: ${templateContentsAreaHeight};
   margin-bottom: 70px;
-  padding-top: 80px;
+  padding-top: ${changePXtoVW(160)};
 
   &:last-child {
     margin-bottom: 0;

@@ -18,7 +18,7 @@ const SentencesOptionContainer = styled.div`
   width: ${changePXtoVW(630)};
   display: flex;
   justify-content: space-between;
-  margin: ${changePXtoVW(50)} auto ${changePXtoVW(30)};
+  margin: 0 auto ${changePXtoVW(30)};
   height: auto;
 `;
 

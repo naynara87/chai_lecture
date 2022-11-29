@@ -19,7 +19,7 @@ interface HeaderContainerProps {
 }
 
 const HeaderContainer = styled.div<HeaderContainerProps>`
-  padding: calc(${headerHeightNormal} + ${changePXtoVW(50)}) 0 6px;
+  padding: calc(${headerHeightNormal} + ${changePXtoVW(80)}) 0 6px;
   box-shadow: ${(props) => props.isScroll && `0 4px 20px -2px hsl(0deg 0% 81% / 50%)`};
   position: fixed;
   z-index: 1;
@@ -33,7 +33,6 @@ const HeaderContainer = styled.div<HeaderContainerProps>`
 `;
 
 const PageContainer = styled.div`
-  /* height: auto; */
   margin-bottom: ${changePXtoVW(300)};
 `;
 interface TabIndexes {
@@ -136,9 +135,10 @@ const TP15AComponent = ({ setPageCompleted, page }: TP15AComponentProps) => {
   }, [currentPageIdx, thisPage]);
 
   useEffect(() => {
+    console.log(thisPage.template.type);
     setPageCompleted();
     tabIdSetting();
-  }, [setPageCompleted, tabIdSetting]);
+  }, [setPageCompleted, thisPage.template.type, tabIdSetting]);
 
   const handleClickTab = useCallback(
     (pageId?: ID) => {

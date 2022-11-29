@@ -12,8 +12,9 @@ const TP10AComponent = ({ setPageCompleted, page, showHeader = true }: TP10AComp
   const thisPage = page as TP10A;
 
   useEffect(() => {
+    console.log(thisPage.template.type);
     setPageCompleted();
-  }, [setPageCompleted]);
+  }, [setPageCompleted, thisPage.template.type]);
 
   const wordQuizContentData = useMemo(() => {
     return thisPage.template.contents.find((content) => content.type === "wordQuiz") as

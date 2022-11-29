@@ -57,8 +57,9 @@ const TP07AComponent = ({ setPageCompleted, page, showHeader = true }: TP07AComp
   const thisPage = page as TP07A;
 
   useEffect(() => {
+    console.log(thisPage.template.type);
     setPageCompleted();
-  }, [setPageCompleted]);
+  }, [setPageCompleted, thisPage.template.type]);
 
   const iconTextContent = useMemo(
     () =>

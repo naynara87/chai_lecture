@@ -12,6 +12,7 @@ import TP11Layout from "../Layouts/TP11Layout";
 import ChooseText from "../contents/ChooseText";
 import TitleContent from "../molecules/TitleContent";
 import HtmlContentComponent from "../molecules/HtmlContentComponent";
+import { changePXtoVW } from "../../utils/styles";
 
 const htmlCss = css`
   margin-left: 16px;
@@ -29,10 +30,7 @@ const QuestionContainer = styled.div`
   grid-template-columns: max-content 1fr;
   color: ${colorPalette.questionTitle};
   font-weight: 400;
-  font-size: 26px;
-  @media all and (max-width: ${breakPoints.tablet}) {
-    font-size: 2.5vw;
-  }
+  font-size: ${changePXtoVW(26)};
 `;
 
 interface TP11FComponentProps extends TemplateProps {}
@@ -40,8 +38,9 @@ const TP11FComponent = ({ page, setPageCompleted, showHeader = true }: TP11FComp
   const thisPage = page as TP11F;
 
   useEffect(() => {
+    console.log(thisPage.template.type);
     setPageCompleted();
-  }, [setPageCompleted]);
+  }, [setPageCompleted, thisPage.template.type]);
 
   const iconTextContent = useMemo(
     () =>
@@ -58,10 +57,6 @@ const TP11FComponent = ({ page, setPageCompleted, showHeader = true }: TP11FComp
         | undefined,
     [thisPage],
   );
-
-  useEffect(() => {
-    console.log("thisPage", thisPage);
-  }, [thisPage]);
 
   return (
     <TemplateCommonLayout>

@@ -2,14 +2,12 @@ import styled from "@emotion/styled";
 import React, { useMemo } from "react";
 import { ID } from "../../types/appData";
 import { Tab } from "../../types/pageTemplate";
-import { changePXtoVW } from "../../utils/styles";
 import TabButton from "../atoms/TabButton";
 
 const TabContainer = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  padding-top: ${changePXtoVW(40)};
 `;
 
 interface TabButtonsProps {
