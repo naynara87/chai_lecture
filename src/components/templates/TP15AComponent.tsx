@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom";
 import { headerHeightNormal } from "../../constants/layout";
 import { colorPalette } from "../../styles/colorPalette";
-import { ID } from "../../types/appData";
+import { ID, Page } from "../../types/appData";
 import { TP15A } from "../../types/pageTemplate";
 import { TemplateProps } from "../../types/templates";
 import { changePXtoVW } from "../../utils/styles";
@@ -155,13 +155,17 @@ const TP15AComponent = ({ setPageCompleted, page }: TP15AComponentProps) => {
     }
 
     return currentTab?.tabPages.map((tabPage, index) => {
+      const page: Page = {
+        id: `${thisPage.id}_${index}`,
+        ...tabPage,
+      } as Page;
       return (
         <PageContainer key={index}>
-          <TabMain setPageCompleted={setPageCompleted} page={tabPage} />
+          <TabMain setPageCompleted={setPageCompleted} page={page} />
         </PageContainer>
       );
     });
-  }, [currentTab, setPageCompleted]);
+  }, [currentTab, setPageCompleted, thisPage.id]);
 
   return (
     <TemplateCommonLayout>
