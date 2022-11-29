@@ -17,6 +17,7 @@ import { changePXtoVW } from "../../utils/styles";
 const htmlCss = css`
   margin-left: 16px;
   font-size: 24px;
+  margin-bottom: 24px;
   @media all and (max-width: ${breakPoints.tablet}) {
     font-size: 2vw;
   }

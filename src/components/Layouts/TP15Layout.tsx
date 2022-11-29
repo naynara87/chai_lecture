@@ -6,7 +6,7 @@ import { changePXtoVW } from "../../utils/styles";
 const TP15LayoutStyle = styled.div`
   height: ${templateContentsAreaHeight};
   margin-bottom: 70px;
-  padding-top: ${changePXtoVW(160)};
+  padding-top: ${changePXtoVW(50)};
 
   &:last-child {
     margin-bottom: 0;

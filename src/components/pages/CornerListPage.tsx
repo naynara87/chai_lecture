@@ -35,7 +35,7 @@ const CornerListWrapper = styled.main`
   flex-wrap: wrap;
   gap: 43px;
   max-width: 553px;
-  margin: 0 auto;
+  margin: 155px auto 0;
 
   &.layout7 {
     max-width: 581px;
@@ -43,7 +43,6 @@ const CornerListWrapper = styled.main`
   @media all and (max-width: ${breakPoints.tablet}) {
     gap: 4.1666666667vw;
     max-width: 54.6666666667vw;
-    margin-top: 4.1666666667vw;
     &.layout7 {
       max-width: 56.6666666667vw;
     }

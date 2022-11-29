@@ -6,6 +6,8 @@ const TP19LayoutStyle = styled.div`
   height: ${templateContentsAreaHeight};
   display: grid;
   text-align: center;
+  padding-top: 20px;
+
   &::-webkit-scrollbar {
     display: none;
   }

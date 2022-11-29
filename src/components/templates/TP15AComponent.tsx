@@ -8,7 +8,7 @@ import { TP15A } from "../../types/pageTemplate";
 import { TemplateProps } from "../../types/templates";
 import { changePXtoVW } from "../../utils/styles";
 import { getPageUrl } from "../../utils/url";
-import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
+import Template15Layout from "../Layouts/Template15Layout";
 import TP15Layout from "../Layouts/TP15Layout";
 import TabButtons from "../molecules/TabButtons";
 import TabMain from "../molecules/TabMain";
@@ -167,9 +167,9 @@ const TP15AComponent = ({ setPageCompleted, page }: TP15AComponentProps) => {
   }, [currentTab, setPageCompleted, thisPage.id]);
 
   return (
-    <TemplateCommonLayout>
+    <Template15Layout>
       <HeaderContainer isScroll={isScroll}>
-        <TitleContent title={pageHeader.title} description={pageHeader.description} />
+        <TitleContent title={pageHeader.title} description={pageHeader.description} isTab={true} />
         <TabButtons
           tabs={thisPage.template.tabs ?? []}
           tabIds={tabIdxToId}
@@ -177,7 +177,7 @@ const TP15AComponent = ({ setPageCompleted, page }: TP15AComponentProps) => {
         />
       </HeaderContainer>
       <TP15Layout LayoutRef={LayoutRef}>{renderTemplate}</TP15Layout>
-    </TemplateCommonLayout>
+    </Template15Layout>
   );
 };
 
