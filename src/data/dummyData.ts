@@ -1217,7 +1217,7 @@ export const dummyData: AppData = {
                   },
                   {
                     title: "중국어의 개요",
-                    description: "중국어의 개요에 대해 알아봅시다.",
+                    description: "영상을 보고 중국어에 대해 알아봅시다.",
                     template: {
                       type: "TP02",
                       contents: [

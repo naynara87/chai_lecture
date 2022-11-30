@@ -33,7 +33,8 @@ const HeaderContainer = styled.div<HeaderContainerProps>`
 `;
 
 const PageContainer = styled.div`
-  margin-bottom: ${changePXtoVW(300)};
+  margin-top: ${changePXtoVW(50)};
+  margin-bottom: ${changePXtoVW(350)};
 `;
 interface TabIndexes {
   index: number;
@@ -55,9 +56,6 @@ const TPTabComponent = ({ setPageCompleted, page }: TPTabComponentProps) => {
   const { courseId, lessonId, cornerId, pageId } = useParams();
   const LayoutRef = useRef<HTMLDivElement>(null);
   const [isScroll, setIsScroll] = useState(false);
-  const currentPageIdx = thisPage.template.tabs.findIndex((tab) => {
-    return tab.active === true;
-  });
 
   useEffect(() => {
     window.scrollTo({
@@ -78,29 +76,39 @@ const TPTabComponent = ({ setPageCompleted, page }: TPTabComponentProps) => {
     });
   }, []);
 
+  const currentPageIdx = useCallback(() => {
+    return thisPage.template.tabs.findIndex((tab, index) => {
+      return tab.active === true;
+    });
+  }, [thisPage]);
+
   const tabIdSetting = useCallback(() => {
     if (!thisPage.id) {
       return;
     }
+
     setPageHeader({
-      title: thisPage.template.tabs[currentPageIdx].tabPages?.[0].title ?? "",
-      description: thisPage.template.tabs[currentPageIdx].tabPages?.[0].description ?? "",
+      title: thisPage.template.tabs[currentPageIdx()].tabPages?.[0].title ?? "",
+      description: thisPage.template.tabs[currentPageIdx()].tabPages?.[0].description ?? "",
     });
 
     thisPage.template.tabs.forEach((tab, index) => {
-      if (currentPageIdx > index) {
+      if (tabIdxToId.length > thisPage.template.tabs.length) {
+        return;
+      }
+      if (currentPageIdx() > index) {
         setTabIdxToId((prev) => [
           ...prev,
-          { index: index, id: +thisPage.id! - (currentPageIdx - index) },
+          { index: index, id: +thisPage.id! - (currentPageIdx() - index) },
         ]);
       } else {
         setTabIdxToId((prev) => [
           ...prev,
-          { index: index, id: +thisPage.id! + (index - currentPageIdx) },
+          { index: index, id: +thisPage.id! + (index - currentPageIdx()) },
         ]);
       }
     });
-  }, [thisPage, currentPageIdx]);
+  }, [thisPage, tabIdxToId.length, currentPageIdx]);
 
   const currentTab = useMemo(() => {
     return thisPage.template.tabs.find((tab) => {
@@ -112,31 +120,42 @@ const TPTabComponent = ({ setPageCompleted, page }: TPTabComponentProps) => {
     if (!LayoutRef.current?.children) {
       return;
     }
+
     const observer = new IntersectionObserver(
-      (entries, observe) => {
-        entries.forEach((entry, index) => {
+      (entries) => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const targetIndex = parseInt(entries[0].target.classList[1].slice(-1));
+            const targetIndex = parseInt(entry.target.classList[1].slice(-1));
             setPageHeader({
-              title: thisPage.template.tabs[currentPageIdx].tabPages?.[targetIndex].title ?? "",
+              title: thisPage.template.tabs[currentPageIdx()].tabPages?.[targetIndex].title ?? "",
               description:
-                thisPage.template.tabs[currentPageIdx].tabPages?.[targetIndex].description ?? "",
+                thisPage.template.tabs[currentPageIdx()].tabPages?.[targetIndex].description ?? "",
             });
           }
         });
       },
-      { threshold: 0.5 },
+      {
+        threshold: 0.5,
+      },
     );
+
     for (let i = 0; i < LayoutRef.current?.children.length; i++) {
       const element = LayoutRef.current?.children[i];
       element.classList.add("observe" + i);
       observer.observe(element);
     }
-  }, [currentPageIdx, thisPage]);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [thisPage, currentPageIdx]);
 
   useEffect(() => {
     setPageCompleted();
     tabIdSetting();
+    return () => {
+      setTabIdxToId([]);
+    };
   }, [setPageCompleted, tabIdSetting]);
 
   const handleClickTab = useCallback(

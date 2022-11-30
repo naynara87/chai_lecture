@@ -10,7 +10,7 @@ const TextBoxesAdapter = ({ content }: TextBoxesAdapterProps) => {
 
   return (
     <>
-      <TextBoxes datas={data} />;
+      <TextBoxes datas={data} />
     </>
   );
 };

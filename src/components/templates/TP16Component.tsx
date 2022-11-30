@@ -52,9 +52,16 @@ const TP16Component = ({ setPageCompleted, page, showHeader = true }: TP16Compon
         <></>
       )}
       <TP16Layout>
-        <ContentContainer>{getContentComponent(thisPage.template.contents[0])}</ContentContainer>
-        <ContentContainer>{getContentComponent(thisPage.template.contents[1])}</ContentContainer>
-        <LongContainer>{getContentComponent(thisPage.template.contents[2])}</LongContainer>
+        {thisPage.template.contents.map((content, index) => {
+          if (content) {
+            if (index === 2) {
+              return <LongContainer key={index}>{getContentComponent(content)}</LongContainer>;
+            }
+            return <ContentContainer key={index}>{getContentComponent(content)}</ContentContainer>;
+          } else {
+            return <></>;
+          }
+        })}
       </TP16Layout>
     </TemplateCommonLayout>
   );

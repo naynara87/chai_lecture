@@ -29,9 +29,13 @@ const TextCardGrp = styled.div<TextCardGrpProps>`
   text-align: center;
   color: #3c3c3c;
   font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   &.horizontal {
     display: flex;
+    flex-direction: row;
     align-items: center;
   }
 

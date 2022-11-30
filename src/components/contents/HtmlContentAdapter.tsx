@@ -18,7 +18,7 @@ const HtmlContentAdapter = ({ content }: HtmlContentAdapterProps) => {
     <HtmlWrapper>
       {data.map((htmlData, index) => {
         if (htmlData.kind === "tip") {
-          return <TipComponent html={htmlData.text} />;
+          return <TipComponent key={index} html={htmlData.text} />;
         }
         return <HtmlContentComponent key={index} html={htmlData.text} />;
       })}

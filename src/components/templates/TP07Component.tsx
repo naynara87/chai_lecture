@@ -53,10 +53,16 @@ const TP07Component = ({ setPageCompleted, page, showHeader = true }: TP07Compon
         <></>
       )}
       <TP07Layout>
-        <LongContainer>{getContentComponent(thisPage.template.contents[0])}</LongContainer>
-        <ContentContainer>{getContentComponent(thisPage.template.contents[1])}</ContentContainer>
-        <ContentContainer>{getContentComponent(thisPage.template.contents[2])}</ContentContainer>
-        <LongContainer>{getContentComponent(thisPage.template.contents[3])}</LongContainer>
+        {thisPage.template.contents.map((content, index) => {
+          if (content) {
+            if (index === 0 || index === 3) {
+              return <LongContainer key={index}>{getContentComponent(content)}</LongContainer>;
+            }
+            return <ContentContainer key={index}>{getContentComponent(content)}</ContentContainer>;
+          } else {
+            return <></>;
+          }
+        })}
       </TP07Layout>
     </TemplateCommonLayout>
   );

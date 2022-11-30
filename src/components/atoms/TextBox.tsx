@@ -10,6 +10,7 @@ interface TextCardProps {
 }
 
 const TextCard = styled.div<TextCardProps>`
+  width: 11vw;
   min-width: 100px;
   line-height: 84px;
   margin: 11px;

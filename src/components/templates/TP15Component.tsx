@@ -51,9 +51,16 @@ const TP15Component = ({ setPageCompleted, page, showHeader = true }: TP15Compon
         <></>
       )}
       <TP15Layout>
-        <LongContainer>{getContentComponent(thisPage.template.contents[0])}</LongContainer>
-        <ContentContainer>{getContentComponent(thisPage.template.contents[1])}</ContentContainer>
-        <ContentContainer>{getContentComponent(thisPage.template.contents[2])}</ContentContainer>
+        {thisPage.template.contents.map((content, index) => {
+          if (content) {
+            if (index === 0) {
+              return <LongContainer key={index}>{getContentComponent(content)}</LongContainer>;
+            }
+            return <ContentContainer key={index}>{getContentComponent(content)}</ContentContainer>;
+          } else {
+            return <></>;
+          }
+        })}
       </TP15Layout>
     </TemplateCommonLayout>
   );

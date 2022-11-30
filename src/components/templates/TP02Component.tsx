@@ -41,7 +41,13 @@ const TP02Component = ({ setPageCompleted, page, showHeader = true }: TP02Compon
         <></>
       )}
       <TP02Layout>
-        <ContentContainer>{getContentComponent(thisPage.template.contents[0])}</ContentContainer>
+        {thisPage.template.contents.map((content, index) => {
+          if (content) {
+            return <ContentContainer key={index}>{getContentComponent(content)}</ContentContainer>;
+          } else {
+            return <></>;
+          }
+        })}
       </TP02Layout>
     </TemplateCommonLayout>
   );
