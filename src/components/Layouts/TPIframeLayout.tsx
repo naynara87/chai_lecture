@@ -1,11 +1,13 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { templateContentsAreaHeight } from "../../constants/layout";
 
 const TPIframeLayoutStyle = styled.div`
-  height: ${templateContentsAreaHeight};
-  overflow-y: auto;
+  height: 100%;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
 `;
 
 interface TPIframeLayoutProps {
