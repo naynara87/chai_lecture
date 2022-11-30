@@ -20,7 +20,7 @@ export const dummyData: AppData = {
       id: 1,
       type: "review",
       title: "복습",
-      isCompleted: true,
+      isCompleted: false,
       introduction: {
         title: "지난 시간에 배운 내용을 복습해 봐요.",
         description: "지난 시간 복습 상세 사항.",
