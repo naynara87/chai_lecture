@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
-import React from "react";
+import React, { useMemo } from "react";
 import { colorPalette } from "../../styles/colorPalette";
 
 interface QuizAnswerStyleProps {
-  isCorrect: boolean;
+  color: string;
 }
 
 // TODO: vw, vh 를 px 단위로 변경
@@ -49,16 +49,14 @@ const QuizAnswerStyle = styled.li<QuizAnswerStyleProps>`
     text-align: left;
   }
 
-  .inp-quiz-answer:checked ~ .label-quiz-answer {
-    color: ${(props) => (props.isCorrect ? colorPalette.deepBlue : colorPalette.wrongAnswer)};
+  .inp-quiz-answer ~ .label-quiz-answer {
+    color: ${(props) => props.color};
   }
-  .inp-quiz-answer:checked ~ .label-quiz-answer .word-wrap {
-    border-color: ${(props) =>
-      props.isCorrect ? colorPalette.deepBlue : colorPalette.wrongAnswer};
+  .inp-quiz-answer ~ .label-quiz-answer .word-wrap {
+    border-color: ${(props) => props.color};
   }
-  .inp-quiz-answer:checked ~ .label-quiz-answer .word-wrap .img-wrap {
-    background-color: ${(props) =>
-      props.isCorrect ? colorPalette.deepBlue : colorPalette.wrongAnswer};
+  .inp-quiz-answer ~ .label-quiz-answer .word-wrap .img-wrap {
+    background-color: ${(props) => props.color};
   }
 
   .none {
@@ -70,15 +68,34 @@ interface QuizAnswerProps {
   answerText: string;
   isCorrect: boolean;
   index: number;
+  checked: boolean;
   onClickAnswer: (answerIndex: number) => void;
 }
-const QuizAnswer = ({ answerText, isCorrect, index, onClickAnswer }: QuizAnswerProps) => {
+const QuizAnswer = ({
+  answerText,
+  isCorrect,
+  index,
+  onClickAnswer,
+  checked = false,
+}: QuizAnswerProps) => {
   const handleClickAnswer = () => {
     onClickAnswer(index);
   };
 
+  const changeColor = useMemo(() => {
+    if (checked) {
+      if (isCorrect) {
+        return colorPalette.deepBlue;
+      } else {
+        return colorPalette.wrongAnswer;
+      }
+    } else {
+      return colorPalette.disableBackground;
+    }
+  }, [checked, isCorrect]);
+
   return (
-    <QuizAnswerStyle className="quiz-answer-list" isCorrect={isCorrect}>
+    <QuizAnswerStyle className="quiz-answer-list" color={changeColor}>
       <input type="radio" id={answerText} name="quiz-answer" className="inp-quiz-answer none" />
       <label htmlFor={answerText} className="label-quiz-answer" onClick={handleClickAnswer}>
         <div className="word-wrap">

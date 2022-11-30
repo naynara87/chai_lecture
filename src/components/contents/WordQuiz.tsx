@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { colorPalette } from "../../styles/colorPalette";
 import { WordQuizData } from "../../types/templateContents";
 import { changePXtoVW } from "../../utils/styles";
@@ -63,6 +63,13 @@ const WordQuiz = ({ datas, reverse = false }: WordQuizProps) => {
   const { text, choices, explanation, meaning, answerIndex, audio } = datas?.[0];
   const [selectedIndex, setSelectedIndex] = useState<number | undefined>(undefined);
   const [showExplanation, setShowExplanation] = useState(false);
+  const [sortList, setSortList] = useState<string[]>([]);
+
+  useEffect(() => {
+    const choicesCopy = [...choices];
+    setSortList(choicesCopy.sort(() => Math.random() - 0.5));
+  }, [answerIndex, choices]);
+
   const handleClickCloseExplanation = () => {
     setShowExplanation(false);
   };
@@ -80,7 +87,7 @@ const WordQuiz = ({ datas, reverse = false }: WordQuizProps) => {
 
   const renderColor = useMemo(() => {
     if (selectedIndex !== undefined) {
-      if (selectedIndex === answerIndex) {
+      if (choices[answerIndex] === sortList[selectedIndex]) {
         return colorPalette.deepBlue;
       } else {
         return colorPalette.wrongAnswer;
@@ -88,7 +95,7 @@ const WordQuiz = ({ datas, reverse = false }: WordQuizProps) => {
     } else {
       return colorPalette.backgroundWhite;
     }
-  }, [selectedIndex, answerIndex]);
+  }, [selectedIndex, choices, answerIndex, sortList]);
 
   return (
     <WordQuizWrapper>
@@ -103,14 +110,14 @@ const WordQuiz = ({ datas, reverse = false }: WordQuizProps) => {
         </AudioWrapper>
       )}
       <QuestionBlank
-        text={choices[selectedIndex!]}
+        text={selectedIndex !== undefined ? sortList[selectedIndex] : ""}
         width={reverse ? `${changePXtoVW(112)}` : `${changePXtoVW(240)}`}
         customCss={blankCss}
         backgroundColor={renderColor}
         borderColor={selectedIndex !== undefined ? colorPalette.white : undefined}
       />
       <WordQuizAnswerWrapper>
-        {choices.map((choice, index) => {
+        {sortList.map((choice, index) => {
           return (
             <WordQuizAnswer
               key={index}
@@ -131,7 +138,7 @@ const WordQuiz = ({ datas, reverse = false }: WordQuizProps) => {
       {showExplanation && explanation && (
         <Explanation
           explanation={explanation}
-          isCorrect={selectedIndex === answerIndex}
+          isCorrect={choices[answerIndex] === sortList[selectedIndex!]}
           handleClickClose={handleClickCloseExplanation}
         />
       )}
