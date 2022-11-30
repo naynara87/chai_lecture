@@ -17,6 +17,7 @@ const TipWrapper = styled.div<TipWrapperProps>`
   display: inline-block;
   margin-top: 2.2222222222vh;
   padding-top: 1.1111111111vh;
+  padding-bottom: 1.1111111111vh;
   padding-left: 40px;
   line-height: 1.3;
   font-size: 14px;

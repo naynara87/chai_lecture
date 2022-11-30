@@ -4,12 +4,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import { headerHeightNormal } from "../../constants/layout";
 import { colorPalette } from "../../styles/colorPalette";
 import { ID, Page } from "../../types/appData";
-import { TP15A } from "../../types/pageTemplate";
+import { TPTab } from "../../types/pageTemplate";
 import { TemplateProps } from "../../types/templates";
 import { changePXtoVW } from "../../utils/styles";
 import { getPageUrl } from "../../utils/url";
-import Template15Layout from "../Layouts/Template15Layout";
-import TP15Layout from "../Layouts/TP15Layout";
+import TemplateTabLayout from "../Layouts/TemplateTabLayout";
+import TPTabLayout from "../Layouts/TPTabLayout";
 import TabButtons from "../molecules/TabButtons";
 import TabMain from "../molecules/TabMain";
 import TitleContent from "../molecules/TitleContent";
@@ -33,7 +33,8 @@ const HeaderContainer = styled.div<HeaderContainerProps>`
 `;
 
 const PageContainer = styled.div`
-  margin-bottom: ${changePXtoVW(300)};
+  margin-top: ${changePXtoVW(50)};
+  margin-bottom: ${changePXtoVW(350)};
 `;
 interface TabIndexes {
   index: number;
@@ -45,19 +46,16 @@ interface PageHeader {
   description: string;
 }
 
-interface TP15AComponentProps extends TemplateProps {}
+interface TPTabComponentProps extends TemplateProps {}
 
-const TP15AComponent = ({ setPageCompleted, page }: TP15AComponentProps) => {
-  const thisPage = page as TP15A;
+const TPTabComponent = ({ setPageCompleted, page }: TPTabComponentProps) => {
+  const thisPage = page as TPTab;
   const [tabIdxToId, setTabIdxToId] = useState<TabIndexes[]>([]);
   const [pageHeader, setPageHeader] = useState<PageHeader>({ title: "", description: "" });
   const navigate = useNavigate();
   const { courseId, lessonId, cornerId, pageId } = useParams();
   const LayoutRef = useRef<HTMLDivElement>(null);
   const [isScroll, setIsScroll] = useState(false);
-  const currentPageIdx = thisPage.template.tabs.findIndex((tab) => {
-    return tab.active === true;
-  });
 
   useEffect(() => {
     window.scrollTo({
@@ -78,29 +76,39 @@ const TP15AComponent = ({ setPageCompleted, page }: TP15AComponentProps) => {
     });
   }, []);
 
+  const currentPageIdx = useCallback(() => {
+    return thisPage.template.tabs.findIndex((tab, index) => {
+      return tab.active === true;
+    });
+  }, [thisPage]);
+
   const tabIdSetting = useCallback(() => {
     if (!thisPage.id) {
       return;
     }
+
     setPageHeader({
-      title: thisPage.template.tabs[currentPageIdx].tabPages?.[0].title ?? "",
-      description: thisPage.template.tabs[currentPageIdx].tabPages?.[0].description ?? "",
+      title: thisPage.template.tabs[currentPageIdx()].tabPages?.[0].title ?? "",
+      description: thisPage.template.tabs[currentPageIdx()].tabPages?.[0].description ?? "",
     });
 
     thisPage.template.tabs.forEach((tab, index) => {
-      if (currentPageIdx > index) {
+      if (tabIdxToId.length > thisPage.template.tabs.length) {
+        return;
+      }
+      if (currentPageIdx() > index) {
         setTabIdxToId((prev) => [
           ...prev,
-          { index: index, id: +thisPage.id! - (currentPageIdx - index) },
+          { index: index, id: +thisPage.id! - (currentPageIdx() - index) },
         ]);
       } else {
         setTabIdxToId((prev) => [
           ...prev,
-          { index: index, id: +thisPage.id! + (index - currentPageIdx) },
+          { index: index, id: +thisPage.id! + (index - currentPageIdx()) },
         ]);
       }
     });
-  }, [thisPage, currentPageIdx]);
+  }, [thisPage, tabIdxToId.length, currentPageIdx]);
 
   const currentTab = useMemo(() => {
     return thisPage.template.tabs.find((tab) => {
@@ -112,31 +120,42 @@ const TP15AComponent = ({ setPageCompleted, page }: TP15AComponentProps) => {
     if (!LayoutRef.current?.children) {
       return;
     }
+
     const observer = new IntersectionObserver(
-      (entries, observe) => {
-        entries.forEach((entry, index) => {
+      (entries) => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const targetIndex = parseInt(entries[0].target.classList[1].slice(-1));
+            const targetIndex = parseInt(entry.target.classList[1].slice(-1));
             setPageHeader({
-              title: thisPage.template.tabs[currentPageIdx].tabPages?.[targetIndex].title ?? "",
+              title: thisPage.template.tabs[currentPageIdx()].tabPages?.[targetIndex].title ?? "",
               description:
-                thisPage.template.tabs[currentPageIdx].tabPages?.[targetIndex].description ?? "",
+                thisPage.template.tabs[currentPageIdx()].tabPages?.[targetIndex].description ?? "",
             });
           }
         });
       },
-      { threshold: 0.5 },
+      {
+        threshold: 0.5,
+      },
     );
+
     for (let i = 0; i < LayoutRef.current?.children.length; i++) {
       const element = LayoutRef.current?.children[i];
       element.classList.add("observe" + i);
       observer.observe(element);
     }
-  }, [currentPageIdx, thisPage]);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [thisPage, currentPageIdx]);
 
   useEffect(() => {
     setPageCompleted();
     tabIdSetting();
+    return () => {
+      setTabIdxToId([]);
+    };
   }, [setPageCompleted, tabIdSetting]);
 
   const handleClickTab = useCallback(
@@ -167,7 +186,7 @@ const TP15AComponent = ({ setPageCompleted, page }: TP15AComponentProps) => {
   }, [currentTab, setPageCompleted, thisPage.id]);
 
   return (
-    <Template15Layout>
+    <TemplateTabLayout>
       <HeaderContainer isScroll={isScroll}>
         <TitleContent title={pageHeader.title} description={pageHeader.description} isTab={true} />
         <TabButtons
@@ -176,9 +195,9 @@ const TP15AComponent = ({ setPageCompleted, page }: TP15AComponentProps) => {
           handleClickTab={handleClickTab}
         />
       </HeaderContainer>
-      <TP15Layout LayoutRef={LayoutRef}>{renderTemplate}</TP15Layout>
-    </Template15Layout>
+      <TPTabLayout LayoutRef={LayoutRef}>{renderTemplate}</TPTabLayout>
+    </TemplateTabLayout>
   );
 };
 
-export default TP15AComponent;
+export default TPTabComponent;

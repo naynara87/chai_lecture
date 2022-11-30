@@ -31,6 +31,7 @@ const QuestionList = styled.div`
   align-items: center;
   gap: 2.5vw;
   position: relative;
+  margin-top: 12px;
   &.hide {
     opacity: 0.4;
   }

@@ -131,7 +131,7 @@ const BottomTabs = ({ datas }: BottomTabsProps) => {
 
   const mainContents = useMemo(() => {
     return datas[currentIndex].contents.map((content, index) => {
-      return getContentComponent(content);
+      return <div key={index}>{getContentComponent(content)}</div>;
     });
   }, [currentIndex, datas, getContentComponent]);
 

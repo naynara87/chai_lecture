@@ -1,4 +1,4 @@
-import { ID, Page } from "./appData";
+import { ApproveContent, ID, Page } from "./appData";
 import {
   ChooseTextByAudioContent,
   HtmlContent,
@@ -19,7 +19,7 @@ import {
   StudySentencesWithVocabularyContent,
 } from "./templateContents";
 
-export type ContentPage = Exclude<Page, TPIframe | TP15A>;
+export type ContentPage = Exclude<Page, TPIframe | TPTab>;
 
 export type TabPage = Omit<ContentPage, "id">;
 
@@ -69,6 +69,16 @@ type TP01BTemplate = {
 };
 
 type TP01BContent = DialogContent;
+
+export type TP02 = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP02";
+    contents: ApproveContent[];
+  };
+};
 
 export type TP02C = {
   id: ID;
@@ -133,6 +143,16 @@ export type TP02K = {
 };
 
 type TP02KContent = DialogContent;
+
+export type TP03 = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP03";
+    contents: ApproveContent[];
+  };
+};
 
 export type TP03A = {
   id: ID;
@@ -202,6 +222,16 @@ export type TP03F = {
 
 type TP03FContent = HtmlContent | TextBoxesContent;
 
+export type TP04 = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP04";
+    contents: ApproveContent[];
+  };
+};
+
 export type TP04A = {
   id: ID;
   title: string;
@@ -216,6 +246,16 @@ type TP04ATemplate = {
 
 type TP04AContent = ImagesContent | HtmlContent | AudioContent;
 
+export type TP05 = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP05";
+    contents: ApproveContent[];
+  };
+};
+
 export type TP05A = {
   id: ID;
   title: string;
@@ -229,6 +269,16 @@ type TP05ATemplate = {
 };
 
 type TP05AContent = TextBoxesContent | HtmlContent;
+
+export type TP07 = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP07";
+    contents: ApproveContent[];
+  };
+};
 
 export type TP07A = {
   id: ID;
@@ -342,6 +392,16 @@ export type TP12B = {
 
 type TP12BContent = VideoContent;
 
+export type TP13 = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP13";
+    contents: ApproveContent[];
+  };
+};
+
 export type TP13A = {
   id: ID;
   title: string;
@@ -390,13 +450,23 @@ export type TP14B = {
 
 type TP14BContent = TextBoxesContent | AudioRecordContent;
 
-export type TP15A = {
+export type TP15 = {
   id: ID;
   title: string;
   description: string;
   template: {
-    type: "TP15A";
-    tabs: Tab[];
+    type: "TP15";
+    contents: ApproveContent[];
+  };
+};
+
+export type TP16 = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP16";
+    contents: ApproveContent[];
   };
 };
 
@@ -471,3 +541,13 @@ export type TP24A = {
 };
 
 type TP24AContent = SortWordsContent | ImagesContent;
+
+export type TPTab = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TPTab";
+    tabs: Tab[];
+  };
+};

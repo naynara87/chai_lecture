@@ -20,7 +20,7 @@ export const dummyData: AppData = {
       id: 1,
       type: "review",
       title: "복습",
-      isCompleted: false,
+      isCompleted: true,
       introduction: {
         title: "지난 시간에 배운 내용을 복습해 봐요.",
         description: "지난 시간 복습 상세 사항.",
@@ -1192,45 +1192,23 @@ export const dummyData: AppData = {
           title: "",
           description: "",
           template: {
-            type: "TP15A",
+            type: "TPTab",
             tabs: [
               {
                 tabName: "한어",
                 active: true,
                 tabPages: [
                   {
-                    title: "중국어의 개요 1-1",
-                    description: "중국어의 개요에 대해 알아봅시다.1-1",
+                    title: "중국어의 개요",
+                    description: "중국어의 개요에 대해 알아봅시다.",
                     template: {
-                      type: "TP04A",
+                      type: "TP02",
                       contents: [
-                        {
-                          type: "images",
-                          data: [
-                            {
-                              src: `${process.env.PUBLIC_URL}/images/icon/tp04a_image1.png`,
-                            },
-                            {
-                              src: `${process.env.PUBLIC_URL}/images/icon/tp04a_image2.png`,
-                            },
-                          ],
-                        },
                         {
                           type: "html",
                           data: [
                             {
-                              text: "<h2>쌍순음</h2><p>윗입술과 아랫입술을 붙였다 떼면서 발음합니다.</p>",
-                            },
-                            {
-                              text: "<h2>순치음</h2><p>윗니를 아랫입술에 살짝 댓다 떼면서 발음합니다.</p>",
-                            },
-                          ],
-                        },
-                        {
-                          type: "audio",
-                          data: [
-                            {
-                              src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                              text: "<h2>한어는 무엇인가요?</h2><p>중국 인구의 대다수를 차지하는 한족이 쓰는 언어, 즉 '한어'라고 합니다.</p>",
                             },
                           ],
                         },
@@ -1238,10 +1216,10 @@ export const dummyData: AppData = {
                     },
                   },
                   {
-                    title: "video test",
-                    description: "video tests",
+                    title: "중국어의 개요",
+                    description: "영상을 보고 중국어에 대해 알아봅시다.",
                     template: {
-                      type: "TP02F",
+                      type: "TP02",
                       contents: [
                         {
                           type: "video",
@@ -1255,19 +1233,16 @@ export const dummyData: AppData = {
                     },
                   },
                   {
-                    title: "중국어의 개요1-2",
-                    description: "중국어의 개요에 대해 알아봅시다1-2.",
+                    title: "성조",
+                    description: "발음을 듣고 따라 읽어 보세요.",
                     template: {
-                      type: "TP04A",
+                      type: "TP13",
                       contents: [
                         {
                           type: "images",
                           data: [
                             {
-                              src: `${process.env.PUBLIC_URL}/images/icon/tp04a_image1.png`,
-                            },
-                            {
-                              src: `${process.env.PUBLIC_URL}/images/icon/tp04a_image2.png`,
+                              src: `${process.env.PUBLIC_URL}/images/icon/tp07a_image.png`,
                             },
                           ],
                         },
@@ -1275,18 +1250,7 @@ export const dummyData: AppData = {
                           type: "html",
                           data: [
                             {
-                              text: "<h2>쌍순음2</h2><p>윗입술과 아랫입술을 붙였다 떼면서 발음합니다.</p>",
-                            },
-                            {
-                              text: "<h2>순치음2</h2><p>윗니를 아랫입술에 살짝 댓다 떼면서 발음합니다.</p>",
-                            },
-                          ],
-                        },
-                        {
-                          type: "audio",
-                          data: [
-                            {
-                              src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                              text: "<h2>ma 엄마</h2><p>성모와 운모가 같더라도 성조가 다르면 뜻이 달라져요.</p>",
                             },
                           ],
                         },
@@ -1294,30 +1258,16 @@ export const dummyData: AppData = {
                     },
                   },
                   {
-                    title: "중국어의 개요1-3",
-                    description: "중국어의 개요에 대해 알아봅시다1-3",
+                    title: "성모",
+                    description: "발음을 연습해 보세요.",
                     template: {
-                      type: "TP04A",
+                      type: "TP05",
                       contents: [
                         {
                           type: "images",
                           data: [
                             {
-                              src: `${process.env.PUBLIC_URL}/images/icon/tp04a_image1.png`,
-                            },
-                            {
-                              src: `${process.env.PUBLIC_URL}/images/icon/tp04a_image2.png`,
-                            },
-                          ],
-                        },
-                        {
-                          type: "html",
-                          data: [
-                            {
-                              text: "<h2>쌍순음3</h2><p>윗입술과 아랫입술을 붙였다 떼면서 발음합니다.</p>",
-                            },
-                            {
-                              text: "<h2>순치음3</h2><p>윗니를 아랫입술에 살짝 댓다 떼면서 발음합니다.</p>",
+                              src: `${process.env.PUBLIC_URL}/images/icon/tp07a_image.png`,
                             },
                           ],
                         },
@@ -1357,7 +1307,7 @@ export const dummyData: AppData = {
           title: "",
           description: "",
           template: {
-            type: "TP15A",
+            type: "TPTab",
             tabs: [
               {
                 tabName: "한어",
@@ -1369,36 +1319,27 @@ export const dummyData: AppData = {
                 active: true,
                 tabPages: [
                   {
-                    title: "보통화의 개요2-1",
-                    description: "보통화의 개요에 대해 알아봅시다2-1",
+                    title: "성모",
+                    description: "발음을 듣고 따라 읽어 보세요.",
                     template: {
-                      type: "TP05A",
+                      type: "TP05",
                       contents: [
                         {
                           type: "textBoxes",
                           data: [
                             {
-                              main: "i",
-                              description:
-                                "<p>ia ie iao iou ian in iang ing iong<br />(yi: ya ye yao you yan yin yang ying young)</p>",
-                            },
-                            {
-                              main: "u",
-                              description:
-                                "<p>ua uo uai uei uan uen uang ueng<br />(wu: wa wo wai wei wan wen wang weng)</p>",
-                            },
-                            {
-                              main: "u",
-                              description: "ue uan un (yu: yue yuan yun)",
+                              main: "ge",
+                              description: "<p>혀뿌리를 입천장 뒤쪽에 가까이 대고 발음합니다.</p>",
                             },
                           ],
                         },
                         {
-                          type: "html",
+                          type: "audioRecord",
                           data: [
                             {
-                              kind: "tip",
-                              text: "ie, uei, ue의 e는 '으'와 '어'의 중간 소리가 아닌 '에'에 가깝게 발읍합니다. ian, uan의 a는 '아'가 아닌 '에'에 가깝게 발음합니다. ( )의 발음 표기는 성모 없이 운모만 쓸 때의 표기법입니다. 운모 iou, uei, uen 앞에 성모가 오면 가운데 운모는 생략합니다.",
+                              audio: {
+                                src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                              },
                             },
                           ],
                         },
@@ -1406,27 +1347,24 @@ export const dummyData: AppData = {
                     },
                   },
                   {
-                    title: "보통화의 개요2-2",
-                    description: "보통화의 개요에 대해 알아봅시다2-2",
+                    title: "중국어 개요",
+                    description: "중국어의 개요에 대해 알아봅시다.",
                     template: {
-                      type: "TP05A",
+                      type: "TP15",
                       contents: [
                         {
-                          type: "textBoxes",
+                          type: "html",
                           data: [
                             {
-                              main: "i",
-                              description:
-                                "<p>ia ie iao iou ian in iang ing iong<br />(yi: ya ye yao you yan yin yang ying young)</p>",
+                              text: "<h2>중국어의 구성에서 한자를 알아봐요.</h2>",
                             },
+                          ],
+                        },
+                        {
+                          type: "images",
+                          data: [
                             {
-                              main: "u",
-                              description:
-                                "<p>ua uo uai uei uan uen uang ueng<br />(wu: wa wo wai wei wan wen wang weng)</p>",
-                            },
-                            {
-                              main: "u",
-                              description: "ue uan un (yu: yue yuan yun)",
+                              src: `${process.env.PUBLIC_URL}/images/icon/tp07a_image.png`,
                             },
                           ],
                         },
@@ -1434,45 +1372,11 @@ export const dummyData: AppData = {
                           type: "html",
                           data: [
                             {
-                              kind: "tip",
-                              text: "ie, uei, ue의 e는 '으'와 '어'의 중간 소리가 아닌 '에'에 가깝게 발읍합니다. ian, uan의 a는 '아'가 아닌 '에'에 가깝게 발음합니다. ( )의 발음 표기는 성모 없이 운모만 쓸 때의 표기법입니다. 운모 iou, uei, uen 앞에 성모가 오면 가운데 운모는 생략합니다.",
+                              text: "<p>중국에서는 기존의 복잡한 한자(변체자)를 쉽고 간단하게 만든 '간화자'를 사용 합니다.</p>",
                             },
-                          ],
-                        },
-                      ],
-                    },
-                  },
-                  {
-                    title: "보통화의 개요2-3",
-                    description: "보통화의 개요에 대해 알아봅시다2-3",
-                    template: {
-                      type: "TP05A",
-                      contents: [
-                        {
-                          type: "textBoxes",
-                          data: [
-                            {
-                              main: "i",
-                              description:
-                                "<p>ia ie iao iou ian in iang ing iong<br />(yi: ya ye yao you yan yin yang ying young)</p>",
-                            },
-                            {
-                              main: "u",
-                              description:
-                                "<p>ua uo uai uei uan uen uang ueng<br />(wu: wa wo wai wei wan wen wang weng)</p>",
-                            },
-                            {
-                              main: "u",
-                              description: "ue uan un (yu: yue yuan yun)",
-                            },
-                          ],
-                        },
-                        {
-                          type: "html",
-                          data: [
                             {
                               kind: "tip",
-                              text: "ie, uei, ue의 e는 '으'와 '어'의 중간 소리가 아닌 '에'에 가깝게 발읍합니다. ian, uan의 a는 '아'가 아닌 '에'에 가깝게 발음합니다. ( )의 발음 표기는 성모 없이 운모만 쓸 때의 표기법입니다. 운모 iou, uei, uen 앞에 성모가 오면 가운데 운모는 생략합니다.",
+                              text: "'간화자'는 간체자라고도 합니다.",
                             },
                           ],
                         },
@@ -1499,7 +1403,7 @@ export const dummyData: AppData = {
           title: "",
           description: "",
           template: {
-            type: "TP15A",
+            type: "TPTab",
             tabs: [
               {
                 tabName: "한어",
@@ -1516,22 +1420,11 @@ export const dummyData: AppData = {
                 active: true,
                 tabPages: [
                   {
-                    title: "중국어의 구성3-1",
-                    description: "중국어의 구성에 대해 알아봅시다3-1.",
+                    title: "성모",
+                    description: "따라 읽어 보세요.",
                     template: {
-                      type: "TP07A",
+                      type: "TP16",
                       contents: [
-                        {
-                          type: "iconText",
-                          data: [
-                            {
-                              icon: {
-                                src: "",
-                              },
-                              text: "따라 읽어 보세요.",
-                            },
-                          ],
-                        },
                         {
                           type: "images",
                           data: [
@@ -1544,17 +1437,15 @@ export const dummyData: AppData = {
                           type: "html",
                           data: [
                             {
-                              text: "<h1>对不起。</h1><p>Duìbuqǐ.</p>",
+                              text: "<h1>gou</h1><p>개</p>",
                             },
                           ],
                         },
                         {
-                          type: "audioRecord",
+                          type: "audio",
                           data: [
                             {
-                              audio: {
-                                src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                              },
+                              src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
                             },
                           ],
                         },
@@ -1562,19 +1453,16 @@ export const dummyData: AppData = {
                     },
                   },
                   {
-                    title: "중국어의 구성3-2",
-                    description: "중국어의 구성에 대해 알아봅시다.3-2",
+                    title: "성조",
+                    description: "발음을 듣고 따라 읽어 보세요.",
                     template: {
-                      type: "TP07A",
+                      type: "TP07",
                       contents: [
                         {
-                          type: "iconText",
+                          type: "html",
                           data: [
                             {
-                              icon: {
-                                src: "",
-                              },
-                              text: "따라 읽어 보세요.",
+                              text: "<p>성조에서 제 1성은 가장 높은 음에서 길고 평평하게 발음합니다.</p>",
                             },
                           ],
                         },
@@ -1587,10 +1475,10 @@ export const dummyData: AppData = {
                           ],
                         },
                         {
-                          type: "html",
+                          type: "video",
                           data: [
                             {
-                              text: "<h1>对不起。</h1><p>Duìbuqǐ.</p>",
+                              src: "https://cdn.bubblecon.io/videos/45.mp4",
                             },
                           ],
                         },
@@ -1611,19 +1499,8 @@ export const dummyData: AppData = {
                     title: "중국어의 구성3-3",
                     description: "중국어의 구성에 대해 알아봅시다.3-3",
                     template: {
-                      type: "TP07A",
+                      type: "TP04",
                       contents: [
-                        {
-                          type: "iconText",
-                          data: [
-                            {
-                              icon: {
-                                src: "",
-                              },
-                              text: "따라 읽어 보세요.",
-                            },
-                          ],
-                        },
                         {
                           type: "images",
                           data: [
@@ -1633,19 +1510,15 @@ export const dummyData: AppData = {
                           ],
                         },
                         {
-                          type: "html",
+                          type: "chooseText",
                           data: [
                             {
-                              text: "<h1>对不起。</h1><p>Duìbuqǐ.</p>",
-                            },
-                          ],
-                        },
-                        {
-                          type: "audioRecord",
-                          data: [
-                            {
-                              audio: {
-                                src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                              choices: ["ai", "ao"],
+                              answerIndex: 0,
+                              explanation: {
+                                correctMessage: "정답입니다!",
+                                wrongMessage: "오답입니다!",
+                                text: "<p>해설 문장이 블라블라~</p>",
                               },
                             },
                           ],
@@ -1668,7 +1541,7 @@ export const dummyData: AppData = {
           title: "",
           description: "",
           template: {
-            type: "TP15A",
+            type: "TPTab",
             tabs: [
               {
                 tabName: "한어",
@@ -1690,38 +1563,34 @@ export const dummyData: AppData = {
                 active: true,
                 tabPages: [
                   {
-                    title: "중국어의 구성4-1",
-                    description: "중국어의 구성에 대해 알아봅시다4-1.",
+                    title: "중국의 면적",
+                    description: "중국의 면적에 대해 알아봅시다.",
                     template: {
-                      type: "TP03C",
+                      type: "TP03",
                       contents: [
                         {
-                          type: "textBoxes",
+                          type: "iconText",
                           data: [
                             {
-                              main: "a",
-                            },
-                            {
-                              main: "o",
-                            },
-                            {
-                              main: "e",
+                              icon: {
+                                src: "",
+                              },
+                              text: "운모 a와 운모o가 동시에...",
                             },
                           ],
                         },
                         {
-                          type: "html",
+                          type: "chooseText",
                           data: [
                             {
-                              text: "<h4>설면음</h4><p>혀뿌리를 입천장 뒤쪽에 가까이 대고 발음합니다.</p>",
-                            },
-                          ],
-                        },
-                        {
-                          type: "audio",
-                          data: [
-                            {
-                              src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                              choices: ["a", "o"],
+                              answerIndex: 0,
+                              tip: "성조는 운모 위에 표기하며...",
+                              explanation: {
+                                correctMessage: "정답입니다!",
+                                wrongMessage: "오답입니다!",
+                                text: "<p>해설 문장</p>",
+                              },
                             },
                           ],
                         },
@@ -1729,22 +1598,16 @@ export const dummyData: AppData = {
                     },
                   },
                   {
-                    title: "중국어의 구성4-2",
-                    description: "중국어의 구성에 대해 알아봅시다4-2.",
+                    title: "성조",
+                    description: "발음을 듣고 따라 읽어 보세요",
                     template: {
-                      type: "TP03C",
+                      type: "TP13",
                       contents: [
                         {
-                          type: "textBoxes",
+                          type: "images",
                           data: [
                             {
-                              main: "a",
-                            },
-                            {
-                              main: "o",
-                            },
-                            {
-                              main: "e",
+                              src: `${process.env.PUBLIC_URL}/images/icon/tp07a_image.png`,
                             },
                           ],
                         },
@@ -1752,54 +1615,7 @@ export const dummyData: AppData = {
                           type: "html",
                           data: [
                             {
-                              text: "<h4>설면음</h4><p>혀뿌리를 입천장 뒤쪽에 가까이 대고 발음합니다.</p>",
-                            },
-                          ],
-                        },
-                        {
-                          type: "audio",
-                          data: [
-                            {
-                              src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  },
-                  {
-                    title: "중국어의 구성4-3",
-                    description: "중국어의 구성에 대해 알아봅시다4-3.",
-                    template: {
-                      type: "TP03C",
-                      contents: [
-                        {
-                          type: "textBoxes",
-                          data: [
-                            {
-                              main: "a",
-                            },
-                            {
-                              main: "o",
-                            },
-                            {
-                              main: "e",
-                            },
-                          ],
-                        },
-                        {
-                          type: "html",
-                          data: [
-                            {
-                              text: "<h4>설면음</h4><p>혀뿌리를 입천장 뒤쪽에 가까이 대고 발음합니다.</p>",
-                            },
-                          ],
-                        },
-                        {
-                          type: "audio",
-                          data: [
-                            {
-                              src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                              text: "<h3>중국의 면적</h3><p>중국의면적은 약 960만km로 매우 넓습니다. 한반도 크기의 약 44배에 이릅니다.</p>",
                             },
                           ],
                         },
@@ -1829,31 +1645,13 @@ export const dummyData: AppData = {
           title: "워밍업 퀴즈",
           description: "중국의 크기를 알고 있나요?",
           template: {
-            type: "TP11F",
+            type: "TP02",
             contents: [
               {
-                type: "iconText",
+                type: "html",
                 data: [
                   {
-                    icon: {
-                      src: "https://i.picsum.photos/id/128/200/200.jpg?hmac=m4AGhj",
-                    },
-                    text: "<p>중국의 면적은 약 960만 km²로 매우 넓습니다.<br />한국의 면적은 약 100만 km²입니다.</p>",
-                  },
-                ],
-              },
-              {
-                type: "chooseText",
-                data: [
-                  {
-                    choices: ["그렇다", "아니다"],
-                    answerIndex: 0,
-                    tip: "",
-                    explanation: {
-                      correctMessage: "정답입니다!",
-                      wrongMessage: "오답입니다!",
-                      text: "<p>해설 문장이 블라블라~</p>",
-                    },
+                    text: "<h3>한어는 무엇인가요?</h3><p>중국 인구의 대다수를 차지하는 한족이 쓰는 언어, 즉 한어라고 합니다.</p>",
                   },
                 ],
               },
@@ -1866,177 +1664,81 @@ export const dummyData: AppData = {
           title: "지난 레슨 확인하기",
           description: "녹음을 듣고 알맞은 발음을 고르세요.",
           template: {
-            type: "TP03B",
+            type: "TP03",
             contents: [
               {
-                type: "html",
+                type: "iconText",
                 data: [
                   {
-                    text: "<p>성조는 음의 높낮이와 그 변화를 표시한 것으로, <br />중국어에는 네 개의 성조가 있습니다.</p>",
+                    icon: {
+                      src: "",
+                    },
+                    text: "운모a와 운모o가 동시에 나오면 성조는 어느 운모 위에 표시 할까요?",
                   },
                 ],
               },
               {
-                type: "textBoxes",
+                type: "chooseText",
                 data: [
                   {
-                    main: "a",
-                    sub: "",
-                    description: "",
-                  },
-                  {
-                    main: "o",
-                    sub: "",
-                    description: "",
-                  },
-                  {
-                    main: "e",
-                    sub: "",
-                    description: "",
-                  },
-                  {
-                    main: "i",
-                    sub: "",
-                    description: "",
-                  },
-                  {
-                    main: "u",
-                    sub: "",
-                    description: "",
-                  },
-                  {
-                    main: "u",
-                    sub: "",
-                    description: "",
+                    choices: ["a", "o"],
+                    answerIndex: 0,
+                    tip: "성조는 운모 위에 표기하며, 운모가 여러 개이면 a > o,e > i, u, u 순서로 성조를 표기합니다. 예)jia, tian, hao,jie",
+                    explanation: {
+                      correctMessage: "정답입니다!",
+                      wrongMessage: "오답입니다!",
+                      text: "<p>해설 문장이 블라블라~</p>",
+                    },
                   },
                 ],
               },
             ],
           },
         },
-
         {
           id: 14,
           title: "단어 익히기",
           description: "녹음을 듣고 알맞은 발음을 고르세요.",
           template: {
-            type: "TP03B",
+            type: "TP04",
             contents: [
               {
-                type: "html",
+                type: "images",
                 data: [
                   {
-                    text: "운모는 음절에서 성모를 ...",
+                    src: `${process.env.PUBLIC_URL}/images/icon/tp04a_image1.png`,
                   },
                 ],
               },
               {
-                type: "textBoxes",
+                type: "chooseText",
                 data: [
                   {
-                    main: "경성",
-                    sub: "",
-                    description: "<p>ai ao an ang</p>",
-                  },
-                  {
-                    main: "한어",
-                    sub: "",
-                    description: "<p>ou ong</p>",
+                    choices: ["a", "o"],
+                    answerIndex: 0,
+                    explanation: {
+                      correctMessage: "정답입니다!",
+                      wrongMessage: "오답입니다!",
+                      text: "<p>해설 문장이 블라블라~</p>",
+                    },
                   },
                 ],
               },
             ],
           },
         },
-
         {
-          id: 16,
-          title: "지난 레슨 확인하기",
+          id: 15,
+          title: "단어 익히기",
           description: "녹음을 듣고 알맞은 발음을 고르세요.",
           template: {
-            type: "TP01A",
+            type: "TP05",
             contents: [
               {
-                type: "chooseTextByAudio",
+                type: "images",
                 data: [
                   {
-                    choices: ["he", "ge"],
-                    answerIndex: 0,
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                  },
-                  {
-                    choices: ["he", "ge"],
-                    answerIndex: 1,
-                    audio: {
-                      src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
-                    },
-                  },
-                  {
-                    choices: ["qi", "xi"],
-                    answerIndex: 0,
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                  },
-                  {
-                    choices: ["ji", "qi"],
-                    answerIndex: 0,
-                    audio: {
-                      src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
-                    },
-                  },
-                  {
-                    choices: ["ying", "wang"],
-                    answerIndex: 1,
-                    audio: {
-                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                    },
-                  },
-                ],
-              },
-            ],
-          },
-        },
-
-        {
-          id: 18,
-          title: "성조",
-          description: "발음을 듣고 따라 읽어보세요.",
-          template: {
-            type: "TP03A",
-            contents: [
-              {
-                type: "html",
-                data: [
-                  {
-                    text: "성조는 음의 높낮이와 그 변화를 표시한 것으로, 중국어에는 네 개의 성조가 있습니다.",
-                  },
-                ],
-              },
-              {
-                type: "textBoxes",
-                data: [
-                  {
-                    main: "a",
-                    sub: "",
-                    description: "<p>제 1성</p>",
-                  },
-                  {
-                    main: "a",
-                    sub: "",
-                    description: "<p>제 2성</p>",
-                  },
-                  {
-                    main: "a",
-                    sub: "",
-                    description: "<p>제 3성</p>",
-                  },
-                  {
-                    main: "a",
-                    sub: "",
-                    description: "<p>제 4성</p>",
+                    src: `${process.env.PUBLIC_URL}/images/icon/tp04a_image1.png`,
                   },
                 ],
               },
@@ -2051,24 +1753,63 @@ export const dummyData: AppData = {
             ],
           },
         },
+
         {
-          id: 19,
-          title: "성조3",
-          description: "발음을 듣고 따라 읽어보세요.3",
+          id: 16,
+          title: "지난 레슨 확인하기",
+          description: "녹음을 듣고 알맞은 발음을 고르세요.",
           template: {
-            type: "TP03C",
+            type: "TP07",
             contents: [
               {
-                type: "textBoxes",
+                type: "html",
                 data: [
                   {
-                    main: "a",
+                    text: "성조는 음의 높낮이와 그 변화를 표시한 것으로, 중국어에는 네 개의 성조가 있습니다.",
                   },
+                ],
+              },
+              {
+                type: "images",
+                data: [
                   {
-                    main: "o",
+                    src: `${process.env.PUBLIC_URL}/images/icon/tp04a_image1.png`,
                   },
+                ],
+              },
+              {
+                type: "video",
+                data: [
                   {
-                    main: "e",
+                    src: "https://cdn.bubblecon.io/videos/45.mp4",
+                  },
+                ],
+              },
+              {
+                type: "audioRecord",
+                data: [
+                  {
+                    audio: {
+                      src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    },
+                  },
+                ],
+              },
+            ],
+          },
+        },
+        {
+          id: 18,
+          title: "성조",
+          description: "발음을 듣고 따라 읽어보세요.",
+          template: {
+            type: "TP13",
+            contents: [
+              {
+                type: "images",
+                data: [
+                  {
+                    src: `${process.env.PUBLIC_URL}/images/icon/tp04a_image1.png`,
                   },
                 ],
               },
@@ -2076,7 +1817,33 @@ export const dummyData: AppData = {
                 type: "html",
                 data: [
                   {
-                    text: "<h4>설면음</h4><p>혀뿌리를 입천장 뒤쪽에 가까이 대고 발음합니다.</p>",
+                    text: "<h3>중국의 면적</h3><p>중국의면적은 약 960만km로 매우 넓습니다. 한반도 크기의 약 44배에 이릅니다.</p>",
+                  },
+                ],
+              },
+            ],
+          },
+        },
+        {
+          id: 19,
+          title: "성조3",
+          description: "발음을 듣고 따라 읽어보세요.3",
+          template: {
+            type: "TP16",
+            contents: [
+              {
+                type: "images",
+                data: [
+                  {
+                    src: `${process.env.PUBLIC_URL}/images/icon/tp04a_image1.png`,
+                  },
+                ],
+              },
+              {
+                type: "html",
+                data: [
+                  {
+                    text: "<h3>중국의 면적</h3><p>중국의면적은 약 960만km로 매우 넓습니다. 한반도 크기의 약 44배에 이릅니다.</p>",
                   },
                 ],
               },
@@ -2096,38 +1863,21 @@ export const dummyData: AppData = {
           title: "운모",
           description: "운모에 대해 알아봅시다",
           template: {
-            type: "TP03D",
+            type: "TP13",
             contents: [
+              {
+                type: "images",
+                data: [
+                  {
+                    src: `${process.env.PUBLIC_URL}/images/icon/tp04a_image1.png`,
+                  },
+                ],
+              },
               {
                 type: "html",
                 data: [
                   {
-                    text: "운모는 음절에서 성모를 제외한 나머지 부분으로, 모두 36입니다.",
-                  },
-                ],
-              },
-              {
-                type: "textBoxes",
-                data: [
-                  {
-                    main: "a",
-                    description: "ai ao an ang",
-                  },
-                  {
-                    main: "o",
-                    description: "ou ong",
-                  },
-                  {
-                    main: "e",
-                    description: "ei en eng er",
-                  },
-                ],
-              },
-              {
-                type: "audio",
-                data: [
-                  {
-                    src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                    text: "<h3>중국의 면적</h3><p>중국의면적은 약 960만km로 매우 넓습니다. 한반도 크기의 약 44배에 이릅니다.</p>",
                   },
                 ],
               },

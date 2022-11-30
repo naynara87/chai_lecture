@@ -3,9 +3,11 @@ import AudioContentAdapter from "../components/contents/AudioContentAdapter";
 import AudioRecorderAdapter from "../components/contents/AudioRecorderAdapter";
 import ChooseText from "../components/contents/ChooseText";
 import HtmlContentAdapter from "../components/contents/HtmlContentAdapter";
+import IconTextAdapter from "../components/contents/IconTextAdapter";
 import ImageContentAdapter from "../components/contents/ImageContentAdapter";
+import TextBoxesAdapter from "../components/contents/TextBoxesAdapter";
 import VideoContentAdapter from "../components/contents/VideoContentAdapter";
-import { BottomContent, BottomContentType } from "../types/appData";
+import { ApproveContent, ApproveContentType } from "../types/appData";
 import {
   AudioContent,
   HtmlContent,
@@ -13,12 +15,16 @@ import {
   VideoContent,
   AudioRecordContent,
   ChooseTextContent,
+  TextBoxesContent,
+  IconTextContent,
 } from "../types/templateContents";
 
 const useContentMapper = () => {
-  const getContentComponent = (content: BottomContent) => {
-    const contentMapper: Record<BottomContentType, JSX.Element | JSX.Element[]> = {
+  const getContentComponent = (content: ApproveContent) => {
+    const contentMapper: Record<ApproveContentType, JSX.Element | JSX.Element[]> = {
       chooseText: <ChooseText contentData={content as ChooseTextContent} />,
+      iconText: <IconTextAdapter content={content as IconTextContent} />,
+      textBoxes: <TextBoxesAdapter content={content as TextBoxesContent} />,
       html: <HtmlContentAdapter content={content as HtmlContent} />,
       images: <ImageContentAdapter content={content as ImagesContent} />,
       video: <VideoContentAdapter content={content as VideoContent} />,

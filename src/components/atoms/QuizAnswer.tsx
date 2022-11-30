@@ -13,6 +13,7 @@ const QuizAnswerStyle = styled.li<QuizAnswerStyleProps>`
     color: #9b9b9b;
     margin: 16px;
     margin-top: 0;
+    cursor: pointer;
   }
   .label-quiz-answer .word-wrap {
     position: relative;
@@ -77,9 +78,9 @@ const QuizAnswer = ({ answerText, isCorrect, index, onClickAnswer }: QuizAnswerP
   };
 
   return (
-    <QuizAnswerStyle className="quiz-answer-list" onClick={handleClickAnswer} isCorrect={isCorrect}>
+    <QuizAnswerStyle className="quiz-answer-list" isCorrect={isCorrect}>
       <input type="radio" id={answerText} name="quiz-answer" className="inp-quiz-answer none" />
-      <label htmlFor={answerText} className="label-quiz-answer">
+      <label htmlFor={answerText} className="label-quiz-answer" onClick={handleClickAnswer}>
         <div className="word-wrap">
           <div className="img-wrap">
             <img

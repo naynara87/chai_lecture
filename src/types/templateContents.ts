@@ -1,4 +1,4 @@
-import { BottomContent, ID } from "./appData";
+import { ApproveContent, ID } from "./appData";
 
 // 각 컴포넌트(컨텐츠)의 타입을 정의합니다.
 export type ChooseTextContent = {
@@ -6,7 +6,7 @@ export type ChooseTextContent = {
   data: {
     choices: string[];
     answerIndex: number;
-    tip: string; // html
+    tip?: string; // html
     explanation: {
       audio?: {
         src: string;
@@ -237,7 +237,7 @@ export type BottomTabsContent = {
 
 export type BottomTabsData = {
   tabNames: string;
-  contents: BottomContent[];
+  contents: ApproveContent[];
 };
 
 export type StudySentencesWithVocabularyContent = {

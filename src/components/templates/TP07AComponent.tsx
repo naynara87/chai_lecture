@@ -1,7 +1,6 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import React, { useEffect, useMemo } from "react";
-import { colorPalette } from "../../styles/colorPalette";
 import { TP07A } from "../../types/pageTemplate";
 import {
   AudioRecordContent,
@@ -12,27 +11,12 @@ import {
 import { TemplateProps } from "../../types/templates";
 import { changePXtoVW } from "../../utils/styles";
 import ImageContentComponent from "../contents/ImageContentComponent";
-import QuestionIcon from "../atoms/QuestionIcon";
 import AudioRecorder from "../contents/AudioRecorder";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TP07Layout from "../Layouts/TP07Layout";
 import TitleContent from "../molecules/TitleContent";
 import HtmlContentComponent from "../molecules/HtmlContentComponent";
-
-const htmlCss = css`
-  margin-left: ${changePXtoVW(24)};
-  font-size: ${changePXtoVW(38)};
-  line-height: 40px;
-`;
-
-const QuestionContainer = styled.div`
-  color: ${colorPalette.questionTitle};
-  font-weight: 400;
-  font-size: ${changePXtoVW(27)};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+import IconText from "../molecules/IconText";
 
 const MainContainer = styled.div`
   display: flex;
@@ -114,10 +98,7 @@ const TP07AComponent = ({ setPageCompleted, page, showHeader = true }: TP07AComp
         <></>
       )}
       <TP07Layout customCss={layoutCustomCss}>
-        <QuestionContainer>
-          <QuestionIcon />
-          <HtmlContentComponent html={iconTextContent?.data?.[0]?.text ?? ""} customCss={htmlCss} />
-        </QuestionContainer>
+        <IconText text={iconTextContent?.data?.[0]?.text ?? ""} />
         {mainContents}
         {audioRecorderContent ? (
           <AudioRecorder audioUrl={audioRecorderContent?.data?.[0].audio.src} />

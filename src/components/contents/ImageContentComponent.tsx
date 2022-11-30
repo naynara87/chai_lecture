@@ -9,6 +9,9 @@ interface ImageComponentProps {
 const ImageComponent = styled.img<ImageComponentProps>`
   cursor: pointer;
   -webkit-user-drag: none;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
   ${(props) => props.customCss}
 `;
 

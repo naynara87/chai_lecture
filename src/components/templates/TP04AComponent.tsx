@@ -101,7 +101,7 @@ const TP04AComponent = ({ setPageCompleted, page, showHeader = true }: TP0BAComp
         <></>
       )}
       <TP04Layout>
-        {renderContents}
+        {<>{renderContents}</>}
         <AudioWrapper>
           <AudioButton isAudio={true} audioUrl={AudioContentData?.data[0].src} />
         </AudioWrapper>

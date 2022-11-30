@@ -32,7 +32,7 @@ const TabButtons = ({ tabs, handleClickTab, tabIds }: TabButtonsProps) => {
           />
         );
       } else {
-        return <></>;
+        return <div key={index}></div>;
       }
     });
   }, [tabs, handleClickTab, tabIds]);

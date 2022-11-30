@@ -40,7 +40,7 @@ const blankCss = css`
   justify-content: center;
   align-items: center;
   color: ${colorPalette.white};
-  margin: 0 auto;
+  margin: 12px auto 0;
 `;
 
 const meaningCss = css`
