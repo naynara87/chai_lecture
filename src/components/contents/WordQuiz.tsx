@@ -78,13 +78,7 @@ const WordQuiz = ({ datas, reverse = false }: WordQuizProps) => {
     [selectedIndex],
   );
 
-  const changeDeepBlueColor = useMemo(() => {
-    if (selectedIndex !== undefined) {
-      return colorPalette.deepBlue;
-    }
-  }, [selectedIndex]);
-
-  const renderBlankBackgroundColor = useMemo(() => {
+  const renderColor = useMemo(() => {
     if (selectedIndex !== undefined) {
       if (selectedIndex === answerIndex) {
         return colorPalette.deepBlue;
@@ -112,8 +106,8 @@ const WordQuiz = ({ datas, reverse = false }: WordQuizProps) => {
         text={choices[selectedIndex!]}
         width={reverse ? `${changePXtoVW(112)}` : `${changePXtoVW(240)}`}
         customCss={blankCss}
-        backgroundColor={renderBlankBackgroundColor}
-        borderColor={showExplanation ? colorPalette.white : undefined}
+        backgroundColor={renderColor}
+        borderColor={selectedIndex !== undefined ? colorPalette.white : undefined}
       />
       <WordQuizAnswerWrapper>
         {choices.map((choice, index) => {
@@ -123,7 +117,7 @@ const WordQuiz = ({ datas, reverse = false }: WordQuizProps) => {
               text={choice}
               index={index}
               onClickAnswer={handleClickQuizAnswer}
-              color={index === selectedIndex ? changeDeepBlueColor : undefined}
+              color={index === selectedIndex ? renderColor : undefined}
             />
           );
         })}
