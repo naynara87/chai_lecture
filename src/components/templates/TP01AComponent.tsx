@@ -12,7 +12,7 @@ import CheckButton from "../atoms/CheckButton";
 interface TP01AComponentProps extends TemplateProps {}
 
 const TP01AComponent = ({ setPageCompleted, page, showHeader = true }: TP01AComponentProps) => {
-  const [userAnswers, setUserAnswers] = useState<number[]>([]);
+  const [userAnswers, setUserAnswers] = useState<string[]>([]);
   const [checkAnswers, setCheckAnswers] = useState<boolean[]>([]);
   const audioRef = useRef<HTMLAudioElement>(null);
 
@@ -30,7 +30,7 @@ const TP01AComponent = ({ setPageCompleted, page, showHeader = true }: TP01AComp
   }, [thisPage.template.contents]);
 
   const handleCheckAnswer = useCallback(
-    (answer: number, index: number) => {
+    (answer: string, index: number) => {
       if (userAnswers.length >= ChooseTextByAudioContentData!.data.length) {
         return;
       }
@@ -51,9 +51,9 @@ const TP01AComponent = ({ setPageCompleted, page, showHeader = true }: TP01AComp
     if (userAnswers.length !== ChooseTextByAudioContentData!.data.length) {
       return;
     }
-    const correctAnswers: number[] =
+    const correctAnswers: string[] =
       ChooseTextByAudioContentData?.data.map((item) => {
-        return item.answerIndex;
+        return item.choices[item.answerIndex];
       }) ?? [];
     userAnswers.forEach((answer, index) => {
       if (answer === correctAnswers[index]) {
