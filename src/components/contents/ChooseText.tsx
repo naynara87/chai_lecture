@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { ChooseTextContent } from "../../types/templateContents";
 import QuizAnswer from "../atoms/QuizAnswer";
 import Explanation from "../molecules/Explanation";
@@ -19,15 +19,27 @@ const ChooseText = ({ contentData }: ChooseTextProps) => {
     data: [{ choices, answerIndex, explanation }],
   } = contentData;
   const [showExplanation, setShowExplanation] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState<number | undefined>(undefined);
   const handleClickCloseExplanation = () => {
     setShowExplanation(false);
   };
 
+  const [sortList, setSortList] = useState<string[]>([]);
+
+  useEffect(() => {
+    const choicesCopy = [...choices];
+    setSortList(choicesCopy.sort(() => Math.random() - 0.5));
+  }, [choices]);
+
   const [isCorrect, setIsCorrect] = useState(false);
 
-  const handleClickAnswer = (selectedIndex: number) => {
+  const handleClickAnswer = (index: number) => {
+    if (selectedIndex !== undefined) {
+      return;
+    }
     setShowExplanation(true);
-    setIsCorrect(selectedIndex === answerIndex);
+    setSelectedIndex(index);
+    setIsCorrect(sortList[index] === choices[answerIndex]);
   };
 
   const tipContentData = useMemo(() => {
@@ -37,13 +49,19 @@ const ChooseText = ({ contentData }: ChooseTextProps) => {
   return (
     <div>
       <QuizAnswerContainer>
-        {choices.map((choice, index) => (
+        {sortList.map((choice, index) => (
           <QuizAnswer
             key={index}
             answerText={choice}
-            isCorrect={answerIndex === index}
+            isCorrect={sortList[answerIndex] === choices[index]}
             index={index}
-            onClickAnswer={handleClickAnswer}
+            checked={selectedIndex === index ? true : false}
+            onClickAnswer={() => {
+              if (selectedIndex !== undefined) {
+                return;
+              }
+              handleClickAnswer(index);
+            }}
           />
         ))}
       </QuizAnswerContainer>
