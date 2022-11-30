@@ -934,11 +934,11 @@ export const dummyData: AppData = {
                     audio: {
                       src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
                     },
-                    explanation: {
-                      correctMessage: "정답입니다!",
-                      wrongMessage: "오답입니다!",
-                      text: "<p>해설 문장이 블라블라~</p>",
-                    },
+                    // explanation: {
+                    //   correctMessage: "정답입니다!",
+                    //   wrongMessage: "오답입니다!",
+                    //   text: "<p>해설 문장이 블라블라~</p>",
+                    // },
                   },
                 ],
               },

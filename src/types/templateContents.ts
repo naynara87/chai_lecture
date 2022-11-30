@@ -199,7 +199,7 @@ export type WordQuizData = {
   audio: {
     src: string;
   };
-  explanation: {
+  explanation?: {
     audio?: {
       src: string;
     };

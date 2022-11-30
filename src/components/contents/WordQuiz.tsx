@@ -78,16 +78,17 @@ const WordQuiz = ({ datas, reverse = false }: WordQuizProps) => {
     [selectedIndex],
   );
 
-  const changeDeebBlueColor = useMemo(() => {
+  const renderColor = useMemo(() => {
     if (selectedIndex !== undefined) {
-      return colorPalette.deepBlue;
+      if (selectedIndex === answerIndex) {
+        return colorPalette.deepBlue;
+      } else {
+        return colorPalette.wrongAnswer;
+      }
+    } else {
+      return colorPalette.backgroundWhite;
     }
-  }, [selectedIndex]);
-  const changeWhiteColor = useMemo(() => {
-    if (selectedIndex !== undefined) {
-      return colorPalette.white;
-    }
-  }, [selectedIndex]);
+  }, [selectedIndex, answerIndex]);
 
   return (
     <WordQuizWrapper>
@@ -105,8 +106,8 @@ const WordQuiz = ({ datas, reverse = false }: WordQuizProps) => {
         text={choices[selectedIndex!]}
         width={reverse ? `${changePXtoVW(112)}` : `${changePXtoVW(240)}`}
         customCss={blankCss}
-        backgroundColor={changeDeebBlueColor}
-        borderColor={changeWhiteColor}
+        backgroundColor={renderColor}
+        borderColor={selectedIndex !== undefined ? colorPalette.white : undefined}
       />
       <WordQuizAnswerWrapper>
         {choices.map((choice, index) => {
@@ -116,7 +117,7 @@ const WordQuiz = ({ datas, reverse = false }: WordQuizProps) => {
               text={choice}
               index={index}
               onClickAnswer={handleClickQuizAnswer}
-              color={index === selectedIndex ? changeDeebBlueColor : undefined}
+              color={index === selectedIndex ? renderColor : undefined}
             />
           );
         })}
@@ -127,7 +128,7 @@ const WordQuiz = ({ datas, reverse = false }: WordQuizProps) => {
           <AudioButton isAudio={true} audioUrl={audio.src} />
         </AudioWrapper>
       )}
-      {showExplanation && (
+      {showExplanation && explanation && (
         <Explanation
           explanation={explanation}
           isCorrect={selectedIndex === answerIndex}
