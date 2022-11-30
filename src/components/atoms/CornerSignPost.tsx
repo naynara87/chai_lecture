@@ -16,7 +16,7 @@ const SignPost = styled.div`
   width: 6.0416666667vw;
   min-width: 53px;
   max-width: 97px;
-  height: 12.0777777778vh;
+  height: 12.0377777778vh;
   min-height: 66px;
 
   line-height: 1.5;
