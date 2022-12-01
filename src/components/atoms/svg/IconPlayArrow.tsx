@@ -4,7 +4,7 @@ import React from "react";
 const Svg = styled.svg`
   position: absolute;
   left: 25%;
-  top: 30%;
+  top: 27%;
   width: 60%;
   height: 60%;
 `;
