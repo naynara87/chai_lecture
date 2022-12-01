@@ -11,7 +11,7 @@ const MediaTextContainer = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  margin: 10px 0 10px 20px;
+  margin: 20px 0 20px 20px;
 `;
 
 interface ChooseMediaTextProps {
