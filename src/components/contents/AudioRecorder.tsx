@@ -8,6 +8,7 @@ import AudioButton from "../atoms/AudioButton";
 import IconHeadset from "../atoms/svg/IconHeadset";
 import IconMic from "../atoms/svg/IconMic";
 import IconPlaying from "../atoms/svg/IconPlaying";
+import IconRetry from "../atoms/svg/IconRetry";
 
 interface RecordedAudioButtonProps {
   customCss?: SerializedStyles;
@@ -40,11 +41,6 @@ const RecordingAudioButton = styled.button<RecordingAudioButtonProps>`
 const grayBackground = css`
   background-color: ${colorPalette.iconGray};
   cursor: default;
-`;
-
-const whiteBackground = css`
-  background-color: ${colorPalette.white};
-  cursor: pointer;
 `;
 
 const currentBackground = css`
@@ -114,9 +110,7 @@ const AudioRecorder = ({ audioUrl }: AudioRecorderProps) => {
   }, [pronounceAudio, recordedAudioState, startRecording, status, stopRecording]);
 
   const recodingAudioButtonColor = useMemo(() => {
-    if (recordingAudioState === "record") {
-      return whiteBackground;
-    } else if (recordingAudioState === "recordAudioPlaying" || pronounceAudio) {
+    if (recordingAudioState === "recordAudioPlaying" || pronounceAudio) {
       return grayBackground;
     } else {
       return currentBackground;
@@ -133,6 +127,18 @@ const AudioRecorder = ({ audioUrl }: AudioRecorderProps) => {
     }
   }, []);
 
+  const renderRecordingAudioIcon = useMemo(() => {
+    if (status === "recording") {
+      return <IconPlaying />;
+    } else {
+      if (status === "idle") {
+        return <IconMic />;
+      } else if (status === "stopped") {
+        return <IconRetry />;
+      }
+    }
+  }, [status]);
+
   return (
     <AudioRecorderStyle>
       {/* <p>{status}</p> */}
@@ -146,7 +152,7 @@ const AudioRecorder = ({ audioUrl }: AudioRecorderProps) => {
         onClick={handleClickRecordingAudioButton}
         customCss={recodingAudioButtonColor}
       >
-        <IconMic color={recordingAudioState === "record" ? "black" : "white"} />
+        {renderRecordingAudioIcon}
       </RecordingAudioButton>
       <audio ref={audioRef} src={mediaBlobUrl}>
         <track kind="captions" />

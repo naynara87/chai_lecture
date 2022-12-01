@@ -1,9 +1,12 @@
 import styled from "@emotion/styled";
-import { changePXtoVH, changePXtoVW } from "../../utils/styles";
+import { footerHeightNormal, headerHeightNormal } from "../../constants/layout";
+import { changePXtoVW } from "../../utils/styles";
 
 const CommonMainContainer = styled.main`
-  height: 100%;
-  padding: ${changePXtoVH(100)} ${changePXtoVW(160)} ${changePXtoVH(100)} ${changePXtoVW(160)};
+  width: 100%;
+  height: calc(100% - ${headerHeightNormal} - ${footerHeightNormal});
+  margin: ${headerHeightNormal} 0 ${footerHeightNormal};
+  padding: 0 ${changePXtoVW(160)} 0;
 `;
 
 export default CommonMainContainer;
