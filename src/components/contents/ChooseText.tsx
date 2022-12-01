@@ -20,6 +20,8 @@ const ChooseText = ({ contentData }: ChooseTextProps) => {
   } = contentData;
   const [showExplanation, setShowExplanation] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState<number | undefined>(undefined);
+  const [isCorrect, setIsCorrect] = useState(false);
+
   const handleClickCloseExplanation = () => {
     setShowExplanation(false);
   };
@@ -30,8 +32,6 @@ const ChooseText = ({ contentData }: ChooseTextProps) => {
     const choicesCopy = [...choices];
     setSortList(choicesCopy.sort(() => Math.random() - 0.5));
   }, [choices]);
-
-  const [isCorrect, setIsCorrect] = useState(false);
 
   const handleClickAnswer = (index: number) => {
     if (selectedIndex !== undefined) {

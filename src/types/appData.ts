@@ -31,10 +31,12 @@ import {
   TP15,
   TP16,
   TP13,
+  TP24B,
 } from "./pageTemplate";
 import {
   AudioContent,
   AudioRecordContent,
+  ChooseMediaTextContent,
   ChooseTextByAudioContent,
   ChooseTextContent,
   DialogContent,
@@ -127,6 +129,7 @@ export type Page =
   | TP16
   | TP19A
   | TP24A
+  | TP24B
   | TPIframe;
 
 export type TemplateType = Page["template"]["type"];
@@ -146,6 +149,7 @@ export type Content =
   | DragAndDropContent
   | StudyWordsContent
   | DialogContent
+  | ChooseMediaTextContent
   | NumberTableContent
   | WordQuizContent
   | SortWordsContent;

@@ -110,6 +110,51 @@ export const dummyData: AppData = {
       cornerIcon: `${process.env.PUBLIC_URL}/images/icon/img_sort_page02.png`,
       pages: [
         {
+          id: 9,
+          title: "연습하기",
+          description: "그림에 알맞은 문장을 고르세요.",
+          template: {
+            type: "TP24B",
+            contents: [
+              {
+                type: "images",
+                data: [
+                  {
+                    src: `${process.env.PUBLIC_URL}/images/icon/tp02c_image.png`,
+                  },
+                ],
+              },
+              {
+                type: "chooseMediaText",
+                data: [
+                  {
+                    choices: [
+                      {
+                        text: "我坐火车去",
+                        audio: {
+                          src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                        },
+                      },
+                      {
+                        text: "我会弹钢琴",
+                        audio: {
+                          src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                        },
+                      },
+                    ],
+                    answerIndex: 0,
+                    explanation: {
+                      correctMessage: "정답입니다!",
+                      wrongMessage: "오답입니다!",
+                      text: "<p>Wǒ zuò huǒchē qù.</p><p>나는 기차를 타고 가요.</p>",
+                    },
+                  },
+                ],
+              },
+            ],
+          },
+        },
+        {
           id: 10,
           title: "워밍업 퀴즈",
           description: "중국의 크기를 알고 있나요?",

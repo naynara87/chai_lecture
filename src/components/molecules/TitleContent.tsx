@@ -35,7 +35,7 @@ const SubTitle = styled.p`
   font-weight: 500;
   font-size: ${changePXtoVW(28)};
   color: ${colorPalette.descriptionText};
-  margin-bottom: ${changePXtoVW(80)};
+  margin-bottom: ${changePXtoVW(25)};
   @media all and (max-width: ${breakPoints.tablet}) {
     margin-top: 0.8333333333vw;
   }

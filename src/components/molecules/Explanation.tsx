@@ -58,7 +58,7 @@ const TextBox = styled.div`
 `;
 
 const ImageWrapper = styled.div`
-  width: 50px;
+  width: 70px;
   display: flex;
   flex-basis: flex-end;
 `;
@@ -110,6 +110,12 @@ const audioCss = css`
   margin-left: ${changePXtoVW(12)};
 `;
 
+const IconImg = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+`;
+
 type ExplanationData = {
   audio?: {
     src: string;
@@ -144,7 +150,7 @@ const Explanation = ({ isCorrect, explanation, handleClickClose }: ExplanationPr
     <ExplanationWrapper>
       <ExplanationContainer>
         <ImageWrapper>
-          <img src={iconUrl} alt="" />
+          <IconImg src={iconUrl} alt="" />
         </ImageWrapper>
         <TextBox>
           <OXWrapper>{isCorrect ? <OIcon /> : <XIcon />}</OXWrapper>
