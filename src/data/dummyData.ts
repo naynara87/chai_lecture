@@ -114,7 +114,7 @@ export const dummyData: AppData = {
           title: "연습하기",
           description: "그림에 알맞은 문장을 고르세요.",
           template: {
-            type: "TP13",
+            type: "TP24B",
             contents: [
               {
                 type: "images",

@@ -17,6 +17,7 @@ import {
   SortWordsContent,
   BottomTabsContent,
   StudySentencesWithVocabularyContent,
+  ChooseMediaTextContent,
 } from "./templateContents";
 
 export type ContentPage = Exclude<Page, TPIframe | TPTab>;
@@ -541,6 +542,18 @@ export type TP24A = {
 };
 
 type TP24AContent = SortWordsContent | ImagesContent;
+
+export type TP24B = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP24B";
+    contents: TP24BContent[];
+  };
+};
+
+type TP24BContent = ChooseMediaTextContent | ImagesContent;
 
 export type TPTab = {
   id: ID;

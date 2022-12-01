@@ -2,18 +2,16 @@ import styled from "@emotion/styled";
 import { useEffect, useRef, useState } from "react";
 import useAudio from "../../hooks/useAudio";
 import { ChooseMediaTextAudio, ChooseMediaTextData } from "../../types/templateContents";
-import MediaText from "../atoms/MediaText";
+import AudioButton from "../atoms/AudioButton";
+import QuizAnswer from "../atoms/QuizAnswer";
 import Explanation from "./Explanation";
 
 const MediaTextContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
+  margin: 10px 0 10px 20px;
 `;
 
 interface ChooseMediaTextProps {
@@ -51,22 +49,32 @@ const ChooseMediaText = ({ datas }: ChooseMediaTextProps) => {
 
   return (
     <div>
-      <MediaTextContainer>
-        {sortList.map((content, index) => {
-          return (
-            <MediaText
+      {sortList.map((content, index) => {
+        return (
+          <MediaTextContainer>
+            <QuizAnswer
               key={index}
+              answerText={content.text}
+              isCorrect={sortList[answerIndex] === choices[index]}
               index={index}
-              text={content.text}
-              onClickMediaText={handleClickAnswer}
-              audioUrl={content.audio?.src}
-              currentAudioIndex={audioIndex}
-              onClickAudioButton={handleClickAudioButton}
-              check={selectedIndex !== undefined && index === selectedIndex ? isCorrect : undefined}
+              checked={selectedIndex === index ? true : false}
+              onClickAnswer={() => {
+                if (selectedIndex !== undefined) {
+                  return;
+                }
+                handleClickAnswer(index);
+              }}
             />
-          );
-        })}
-      </MediaTextContainer>
+            <AudioButton
+              isAudio={false}
+              audioUrl={content.audio?.src}
+              audioHandler={handleClickAudioButton}
+              currentAudioIndex={audioIndex}
+              audioIndex={index}
+            />
+          </MediaTextContainer>
+        );
+      })}
       {showExplanation && (
         <Explanation
           explanation={explanation}

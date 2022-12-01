@@ -11,7 +11,7 @@ const QuizAnswerStyle = styled.li<QuizAnswerStyleProps>`
   .label-quiz-answer {
     display: inline-block;
     color: #9b9b9b;
-    margin: 16px;
+    margin: 0 16px;
     margin-top: 0;
     cursor: pointer;
   }

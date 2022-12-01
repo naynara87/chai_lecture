@@ -31,6 +31,7 @@ import {
   TP15,
   TP16,
   TP13,
+  TP24B,
 } from "./pageTemplate";
 import {
   AudioContent,
@@ -128,6 +129,7 @@ export type Page =
   | TP16
   | TP19A
   | TP24A
+  | TP24B
   | TPIframe;
 
 export type TemplateType = Page["template"]["type"];
