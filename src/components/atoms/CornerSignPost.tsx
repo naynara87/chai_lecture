@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import React from "react";
-import IconSignPost from "../../images/iconSignPost.svg";
 import { colorPalette } from "../../styles/colorPalette";
 
 interface CornerSignPostProps {
@@ -28,7 +27,7 @@ const SignPost = styled.div`
   background-position: top;
   background-size: cover;
   background-repeat: no-repeat;
-  background-image: url(${IconSignPost});
+  background-image: url("${process.env.PUBLIC_URL}/images/img/icon_sign_post.svg");
   @media all and (max-width: 1024px) {
     height: 9.2777777778vh;
   }

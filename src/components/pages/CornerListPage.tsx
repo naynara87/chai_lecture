@@ -19,6 +19,7 @@ import { breakPoints, headerHeightNormal } from "../../constants/layout";
 import { useRecoilState } from "recoil";
 import { cornersState } from "../../state/corners";
 import { useNavigate } from "react-router-dom";
+import { changePXtoVW } from "../../utils/styles";
 // import usePageList from "../../hooks/api/usePageList";
 
 const CornerListWrapper = styled.main`
@@ -35,7 +36,7 @@ const CornerListWrapper = styled.main`
   flex-wrap: wrap;
   gap: 43px;
   max-width: 553px;
-  margin: 155px auto 0;
+  margin: ${changePXtoVW(200)} auto 0;
 
   &.layout7 {
     max-width: 581px;

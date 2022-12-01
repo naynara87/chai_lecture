@@ -35,6 +35,7 @@ import {
 import {
   AudioContent,
   AudioRecordContent,
+  ChooseMediaTextContent,
   ChooseTextByAudioContent,
   ChooseTextContent,
   DialogContent,
@@ -146,6 +147,7 @@ export type Content =
   | DragAndDropContent
   | StudyWordsContent
   | DialogContent
+  | ChooseMediaTextContent
   | NumberTableContent
   | WordQuizContent
   | SortWordsContent;

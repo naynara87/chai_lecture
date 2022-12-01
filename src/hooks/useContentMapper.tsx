@@ -1,6 +1,7 @@
 import React from "react";
 import AudioContentAdapter from "../components/contents/AudioContentAdapter";
 import AudioRecorderAdapter from "../components/contents/AudioRecorderAdapter";
+import ChooseMediaTextAdapter from "../components/contents/ChooseMediaTextAdapter";
 import ChooseText from "../components/contents/ChooseText";
 import HtmlContentAdapter from "../components/contents/HtmlContentAdapter";
 import IconTextAdapter from "../components/contents/IconTextAdapter";
@@ -17,6 +18,7 @@ import {
   ChooseTextContent,
   TextBoxesContent,
   IconTextContent,
+  ChooseMediaTextContent,
 } from "../types/templateContents";
 
 const useContentMapper = () => {
@@ -30,6 +32,7 @@ const useContentMapper = () => {
       video: <VideoContentAdapter content={content as VideoContent} />,
       audio: <AudioContentAdapter content={content as AudioContent} />,
       audioRecord: <AudioRecorderAdapter content={content as AudioRecordContent} />,
+      chooseMediaText: <ChooseMediaTextAdapter content={content as ChooseMediaTextContent} />,
     };
 
     return contentMapper[content.type];
