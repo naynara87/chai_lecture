@@ -16,7 +16,7 @@ const TP01AComponent = ({ setPageCompleted, page, showHeader = true }: TP01AComp
   const [checkAnswers, setCheckAnswers] = useState<boolean[]>([]);
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  const { handleClickAudioButton, audioIndex, audioSrc } = useAudio(audioRef);
+  const { handleClickAudioButton, audioIndex, audioSrc, audioState } = useAudio(audioRef);
 
   const thisPage = page as TP01A;
   useEffect(() => {
@@ -84,6 +84,7 @@ const TP01AComponent = ({ setPageCompleted, page, showHeader = true }: TP01AComp
           handleClickAudio={handleClickAudioButton}
           audioUrl={audio.src}
           currentAudioIndex={audioIndex ?? 0}
+          audioState={audioState}
         />
       );
     });
@@ -94,6 +95,7 @@ const TP01AComponent = ({ setPageCompleted, page, showHeader = true }: TP01AComp
     handleClickAudioButton,
     audioIndex,
     handleCheckAnswer,
+    audioState,
   ]);
 
   return (

@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import useAudio from "../../hooks/useAudio";
 import { TP02K } from "../../types/pageTemplate";
 import { DialogContent } from "../../types/templateContents";
@@ -11,6 +11,7 @@ import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TP02Layout from "../Layouts/TP02Layout";
 import TitleContent from "../molecules/TitleContent";
 import DialogContainer from "../molecules/DialogContainer";
+import useThrottle from "../../hooks/useThrottle";
 
 const DialogHeader = styled.div`
   display: flex;
@@ -30,11 +31,13 @@ const TP02KComponent = ({ setPageCompleted, page, showHeader = true }: TP02KComp
   const [audioSrc, setAudioSrc] = useState("");
   const [audioState, setAudioState] = useState(false);
   const [translateOption, setTranslateOption] = useState(true);
-  const [currentContentIndex, setCurrentContentIndex] = useState(0);
   const [currentHeight, setCurrentHeight] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
   const dialogAudioRef = useRef<HTMLAudioElement>(null);
   const layoutRef = useRef<HTMLDivElement>(null);
+  const currentContentIndex = useRef(0);
+
+  const { addThrottle } = useThrottle();
 
   const {
     audioIndex,
@@ -57,12 +60,14 @@ const TP02KComponent = ({ setPageCompleted, page, showHeader = true }: TP02KComp
   }, [thisPage.template.contents]);
 
   const isNextContent = useMemo(() => {
-    return audioRef.current && audioState && DialogContentData?.data[currentContentIndex + 1];
+    return (
+      audioRef.current && audioState && DialogContentData?.data[currentContentIndex.current + 1]
+    );
   }, [DialogContentData?.data, audioState, currentContentIndex]);
 
   useEffect(() => {
     if (isNextContent && audioRef.current) {
-      setAudioSrc(DialogContentData?.data[currentContentIndex].audio!.src ?? "");
+      setAudioSrc(DialogContentData?.data[currentContentIndex.current].audio!.src ?? "");
       audioRef.current.pause();
       audioRef.current.load();
       audioRef.current.play();
@@ -94,43 +99,50 @@ const TP02KComponent = ({ setPageCompleted, page, showHeader = true }: TP02KComp
     }
   };
 
-  const isNextContentAndHasQuestion = useMemo(() => {
-    return (
-      DialogContentData?.data?.[currentContentIndex + 1] &&
-      !DialogContentData?.data?.[currentContentIndex].hasQuestion
-    );
-  }, [DialogContentData?.data, currentContentIndex]);
-
-  audioRef.current?.addEventListener("ended", () => {
-    if (isNextContentAndHasQuestion) {
-      setTimeout(() => {
-        setCurrentContentIndex(currentContentIndex + 1);
-        setAudioState(true);
-        layoutRef.current?.scrollTo({
-          top: currentHeight,
-          left: 0,
-          behavior: "smooth",
+  // end event는 한번먹히기때문에
+  const handleEndTotalAudio = useCallback(() => {
+    audioRef.current?.addEventListener("ended", () => {
+      if (!DialogContentData?.data?.[currentContentIndex.current].hasQuestion) {
+        addThrottle(500, () => {
+          currentContentIndex.current += 1;
+          setAudioState(false);
+          layoutRef.current?.scrollTo({
+            top: currentHeight,
+            left: 0,
+            behavior: "smooth",
+          });
         });
-      }, 2000);
-    } else {
-      setAudioState(false);
-    }
-  });
+      } else {
+        setAudioState(false);
+      }
+    });
+  }, [addThrottle, currentHeight, DialogContentData?.data]);
 
-  dialogAudioRef.current?.addEventListener("ended", () => {
-    if (isNextContentAndHasQuestion) {
-      setTimeout(() => {
-        setCurrentContentIndex(currentContentIndex + 1);
+  const handleEndDialogAudio = useCallback(() => {
+    dialogAudioRef.current?.addEventListener("ended", () => {
+      addThrottle(500, () => {
+        currentContentIndex.current += 1;
         setDialogAudioState(false);
-        setAudioState(true);
+        setAudioState(false);
         layoutRef.current?.scrollTo({
           top: currentHeight,
           left: 0,
           behavior: "smooth",
         });
-      }, 2000);
+      });
+    });
+  }, [addThrottle, currentHeight, setDialogAudioState]);
+
+  useEffect(() => {
+    if (
+      !DialogContentData?.data?.[currentContentIndex.current].hasQuestion &&
+      DialogContentData?.data?.[currentContentIndex.current + 1]
+    ) {
+      console.log("Asdfasdfasf");
+      handleEndTotalAudio();
+      handleEndDialogAudio();
     }
-  });
+  }, [handleEndTotalAudio, handleEndDialogAudio, DialogContentData?.data, currentContentIndex]);
 
   return (
     <TemplateCommonLayout>
@@ -159,7 +171,6 @@ const TP02KComponent = ({ setPageCompleted, page, showHeader = true }: TP02KComp
           currentHeight={currentHeight}
           handleClickDialogAudioButton={handleClickDialogAudioButton}
           currentContentIndex={currentContentIndex}
-          setCurrentContentIndex={setCurrentContentIndex}
           layoutRef={layoutRef}
           audioState={audioState}
           pinyinOption={pinyinOption}

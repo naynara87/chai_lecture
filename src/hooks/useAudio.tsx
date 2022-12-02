@@ -26,6 +26,7 @@ const useAudio = (audioRef: RefObject<HTMLAudioElement>) => {
           audioRef.current.pause();
           setAudioState(false);
         } else {
+          audioRef.current.load();
           audioRef.current.play();
           setAudioState(true);
         }
@@ -33,6 +34,10 @@ const useAudio = (audioRef: RefObject<HTMLAudioElement>) => {
     },
     [setAudioSrc, audioState, audioIndex, setAudioIndex, audioRef],
   );
+
+  audioRef.current?.addEventListener("ended", () => {
+    setAudioState(false);
+  });
 
   return {
     handleClickAudioButton,

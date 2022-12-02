@@ -21,16 +21,16 @@ interface DialogContainerProps {
   layoutRef: React.RefObject<HTMLDivElement>;
   audioRef?: React.RefObject<HTMLAudioElement>;
   audioState?: boolean;
-  currentContentIndex: number;
+  currentContentIndex: React.MutableRefObject<number>;
   currentHeight: number;
   pinyinOption?: boolean;
   translateOption?: boolean;
   setAudioState?: React.Dispatch<React.SetStateAction<boolean>>;
-  setCurrentContentIndex: React.Dispatch<React.SetStateAction<number>>;
   setCurrentHeight: React.Dispatch<React.SetStateAction<number>>;
   handleClickDialogAudioButton?: (src: string, index: number) => void;
   customCss?: SerializedStyles;
   isShowCorrect?: boolean;
+  saveCurrentContentIndex?: React.MutableRefObject<number>;
   setIsShowCorrect?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -46,11 +46,11 @@ const DialogContainer = ({
   pinyinOption,
   translateOption,
   setAudioState,
-  setCurrentContentIndex,
   setCurrentHeight,
   handleClickDialogAudioButton,
   customCss,
   isShowCorrect,
+  saveCurrentContentIndex,
   setIsShowCorrect,
 }: DialogContainerProps) => {
   const dialogIdRef = useRef<ID>("");
@@ -71,7 +71,7 @@ const DialogContainer = ({
 
   const handleChangeContent = useCallback(
     (index: number) => {
-      setCurrentContentIndex(index + 1);
+      currentContentIndex.current += 1;
       if (setAudioState) {
         setAudioState(true);
       }
@@ -81,7 +81,7 @@ const DialogContainer = ({
         behavior: "smooth",
       });
     },
-    [currentHeight, layoutRef, setAudioState, setCurrentContentIndex],
+    [currentHeight, layoutRef, setAudioState, currentContentIndex],
   );
 
   const getCurrentShowDialog = useCallback(
@@ -112,7 +112,7 @@ const DialogContainer = ({
             currentAudioIndex={audioIndex}
             totalAudioPlayed={audioState}
             audioState={dialogAudioState}
-            isHide={currentContentIndex >= index ? false : true}
+            isHide={currentContentIndex.current >= index ? false : true}
             handleClickAnswer={handleChangeContent}
             showPinyin={pinyinOption}
             showTranslate={translateOption}
@@ -148,7 +148,7 @@ const DialogContainer = ({
         <CheckButton
           text="채점하기"
           handleClickCheckButton={handleClickCheckButton}
-          isHide={currentContentIndex === datas.length ? false : true}
+          isHide={currentContentIndex.current === datas.length ? false : true}
         />
       )}
     </DialogContainerStyles>

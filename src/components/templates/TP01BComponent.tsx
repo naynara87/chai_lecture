@@ -17,10 +17,11 @@ const dialogContainerStyles = css`
 interface TP01BComponentProps extends TemplateProps {}
 
 const TP01BComponent = ({ setPageCompleted, page, showHeader = true }: TP01BComponentProps) => {
-  const [currentContentIndex, setCurrentContentIndex] = useState(0);
+  // const [currentContentIndex, setCurrentContentIndex] = useState(0);
   const [currentHeight, setCurrentHeight] = useState(0);
   const [isShowCorrect, setIsShowCorrect] = useState(false);
   const layoutRef = useRef<HTMLDivElement>(null);
+  const currentContentIndex = useRef(0);
 
   const thisPage = page as TP01B;
 
@@ -45,7 +46,6 @@ const TP01BComponent = ({ setPageCompleted, page, showHeader = true }: TP01BComp
         <DialogContainer
           datas={DialogContentData?.data ?? []}
           currentContentIndex={currentContentIndex}
-          setCurrentContentIndex={setCurrentContentIndex}
           currentHeight={currentHeight}
           setCurrentHeight={setCurrentHeight}
           layoutRef={layoutRef}

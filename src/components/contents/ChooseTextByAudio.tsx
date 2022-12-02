@@ -85,6 +85,7 @@ interface ChooseTextByAudioProps {
   isHide: boolean;
   handleClickAudio: (src: string, index: number) => void;
   currentAudioIndex: number;
+  audioState: boolean;
 }
 
 const ChooseTextByAudio = ({
@@ -96,6 +97,7 @@ const ChooseTextByAudio = ({
   currentAudioIndex,
   handleClickAudio,
   isHide,
+  audioState,
 }: ChooseTextByAudioProps) => {
   const [checkIndex, setCheckIndex] = useState<number>(100);
   const [sortList, setSortList] = useState<string[]>([]);
@@ -156,6 +158,7 @@ const ChooseTextByAudio = ({
         audioHandler={handleClickAudio}
         isAudio={false}
         currentAudioIndex={currentAudioIndex}
+        audioState={audioState}
       />
     </QuestionList>
   );
