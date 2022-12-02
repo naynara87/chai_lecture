@@ -10,10 +10,11 @@ const AppRouter = () => {
       <Routes>
         <Route path={CORNER_LIST_URL} element={<CornerListPage />} />
         <Route
-          path="course/:courseId/lesson/:lessonId/corner/:cornerId/page/:pageId"
+          path={`${process.env.PUBLIC_URL}/course/:courseId/lesson/:lessonId/corner/:cornerId/page/:pageId`}
           element={<CornerPage />}
         />
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path={`/v1/bubble-player`} element={<CornerPage />} />
+        <Route path="*" element={<Navigate to={`${process.env.PUBLIC_URL}`} replace />} />
       </Routes>
     </BrowserRouter>
   );
