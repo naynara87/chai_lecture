@@ -82,6 +82,18 @@ export type TP02 = {
   };
 };
 
+export type TP02A = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP02A";
+    contents: TP02AContent[];
+  };
+};
+
+type TP02AContent = AudioContent;
+
 export type TP02C = {
   id: ID;
   title: string;
