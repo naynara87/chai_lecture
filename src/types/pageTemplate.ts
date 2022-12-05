@@ -94,6 +94,18 @@ export type TP02A = {
 
 type TP02AContent = AudioContent;
 
+export type TP02B = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP02B";
+    contents: TP02BContent[];
+  };
+};
+
+type TP02BContent = TextBoxesContent;
+
 export type TP02C = {
   id: ID;
   title: string;
