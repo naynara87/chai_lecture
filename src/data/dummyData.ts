@@ -117,6 +117,69 @@ export const dummyData: AppData = {
       cornerIcon: `${process.env.PUBLIC_URL}/images/icon/img_sort_page02.png`,
       pages: [
         {
+          id: 6,
+          title: "문장 1",
+          description: "들어보세요.",
+          template: {
+            type: "TP02A",
+            contents: [
+              {
+                type: "audio",
+                data: [
+                  {
+                    src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/LFyQz1Y3wfFFtjgcGsSi7hDFNBR2ysL1/MftxlG4XynzRKLX1m1SCZp6XRKyswkO1/64d78f6118690039f8b0ae9fe39b6f31f7706881b3cca49b7ae422dc98b1ed45.mp3",
+                  },
+                ],
+              },
+            ],
+          },
+        },
+        {
+          id: 8,
+          title: "문장",
+          description: "잘 들어 보세요.",
+          template: {
+            type: "TP08A",
+            contents: [
+              {
+                type: "images",
+                data: [
+                  {
+                    src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/V2ttKeLUE1zq7F7gyKtSPzqm6RSe9Gnv/PNGSHQlh7tgbGkS3upjF6KuoFpqsqarj/2b7daa5e3089566937e10f0d71680a999855a5c235975e51062007b346ef9bc2.png",
+                  },
+                ],
+              },
+              {
+                type: "html",
+                data: [
+                  {
+                    text: "<h1>我会游泳。</h4>",
+                  },
+                  {
+                    text: "<p class='c4'>Wǒ  huì  yóuyǒng.</>",
+                  },
+                  {
+                    text: "<p>나는  수영할 줄 압니다.</p>",
+                  },
+                ],
+              },
+              {
+                type: "sentenceWord",
+                data: [
+                  {
+                    text: "游泳",
+                    pronunciation: "yóuyǒng",
+                    meaning: "수영하다",
+                    audio: {
+                      src: "string",
+                    },
+                  },
+                ],
+              },
+            ],
+          },
+        },
+        {
           id: 8,
           title: "문장",
           description: "잘 들어 보세요.",
