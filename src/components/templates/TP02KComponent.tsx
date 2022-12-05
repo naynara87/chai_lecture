@@ -35,7 +35,7 @@ const TP02KComponent = ({ setPageCompleted, page, showHeader = true }: TP02KComp
   const audioRef = useRef<HTMLAudioElement>(null);
   const dialogAudioRef = useRef<HTMLAudioElement>(null);
   const layoutRef = useRef<HTMLDivElement>(null);
-  const currentContentIndex = useRef(0);
+  const [currentContentIndex, setCurrentContentIndex] = useState(0);
 
   const { addThrottle } = useThrottle();
 
@@ -59,20 +59,22 @@ const TP02KComponent = ({ setPageCompleted, page, showHeader = true }: TP02KComp
       | undefined;
   }, [thisPage.template.contents]);
 
-  const isNextContent = useMemo(() => {
-    return (
-      audioRef.current && audioState && DialogContentData?.data[currentContentIndex.current + 1]
-    );
-  }, [DialogContentData?.data, audioState, currentContentIndex]);
-
   useEffect(() => {
-    if (isNextContent && audioRef.current) {
-      setAudioSrc(DialogContentData?.data[currentContentIndex.current].audio!.src ?? "");
+    if (!DialogContentData?.data[currentContentIndex]) {
+      return;
+    }
+    if (audioRef.current && audioState) {
+      setAudioSrc(DialogContentData?.data[currentContentIndex].audio!.src ?? "");
       audioRef.current.pause();
       audioRef.current.load();
       audioRef.current.play();
+      layoutRef.current?.scrollTo({
+        top: currentHeight,
+        left: 0,
+        behavior: "smooth",
+      });
     }
-  }, [currentContentIndex, audioState, DialogContentData?.data, isNextContent]);
+  }, [currentContentIndex, DialogContentData?.data, currentHeight, audioState]);
 
   const handleClickPinyinOption = () => {
     setPinyinOption(!pinyinOption);
@@ -99,50 +101,41 @@ const TP02KComponent = ({ setPageCompleted, page, showHeader = true }: TP02KComp
     }
   };
 
-  // end event는 한번먹히기때문에
-  const handleEndTotalAudio = useCallback(() => {
-    audioRef.current?.addEventListener("ended", () => {
-      if (!DialogContentData?.data?.[currentContentIndex.current].hasQuestion) {
-        addThrottle(500, () => {
-          currentContentIndex.current += 1;
-          setAudioState(false);
-          layoutRef.current?.scrollTo({
-            top: currentHeight,
-            left: 0,
-            behavior: "smooth",
-          });
-        });
-      } else {
+  const onEndTotalAudio = useCallback(() => {
+    addThrottle(500, () => {
+      if (DialogContentData?.data?.[currentContentIndex].hasQuestion) {
+        setAudioState(false);
+        return;
+      }
+
+      if (
+        !DialogContentData?.data?.[currentContentIndex].hasQuestion &&
+        DialogContentData?.data?.[currentContentIndex + 1]
+      ) {
+        setCurrentContentIndex((prev) => prev + 1);
         setAudioState(false);
       }
     });
-  }, [addThrottle, currentHeight, DialogContentData?.data]);
+  }, [DialogContentData?.data, currentContentIndex, addThrottle]);
 
   const handleEndDialogAudio = useCallback(() => {
     dialogAudioRef.current?.addEventListener("ended", () => {
       addThrottle(500, () => {
-        currentContentIndex.current += 1;
         setDialogAudioState(false);
-        setAudioState(false);
-        layoutRef.current?.scrollTo({
-          top: currentHeight,
-          left: 0,
-          behavior: "smooth",
-        });
       });
     });
-  }, [addThrottle, currentHeight, setDialogAudioState]);
+  }, [addThrottle, setDialogAudioState]);
 
   useEffect(() => {
-    if (
-      !DialogContentData?.data?.[currentContentIndex.current].hasQuestion &&
-      DialogContentData?.data?.[currentContentIndex.current + 1]
-    ) {
-      console.log("Asdfasdfasf");
-      handleEndTotalAudio();
-      handleEndDialogAudio();
-    }
-  }, [handleEndTotalAudio, handleEndDialogAudio, DialogContentData?.data, currentContentIndex]);
+    audioRef.current?.addEventListener("ended", onEndTotalAudio);
+    handleEndDialogAudio();
+
+    return () => {
+      // NOTE kjw currentContentIndex가 ended 이벤트에서 반영이 되지않아 useEffect 상에서 클린업함수를 이용하였음.
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      audioRef.current?.removeEventListener("ended", onEndTotalAudio);
+    };
+  }, [handleEndDialogAudio, onEndTotalAudio]);
 
   return (
     <TemplateCommonLayout>
@@ -167,10 +160,12 @@ const TP02KComponent = ({ setPageCompleted, page, showHeader = true }: TP02KComp
         </DialogHeader>
         <DialogContainer
           datas={DialogContentData?.data ?? []}
+          tpType={thisPage.template.type}
           audioIndex={audioIndex}
           currentHeight={currentHeight}
           handleClickDialogAudioButton={handleClickDialogAudioButton}
           currentContentIndex={currentContentIndex}
+          setCurrentContentIndex={setCurrentContentIndex}
           layoutRef={layoutRef}
           audioState={audioState}
           pinyinOption={pinyinOption}

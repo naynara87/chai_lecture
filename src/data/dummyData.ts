@@ -801,7 +801,7 @@ export const dummyData: AppData = {
                     meaning: "<p>2시 10분.</p>",
                     hasQuestion: false,
                     audio: {
-                      src: "https://www.random.org/audio-noise/?channels=2&volume=100&rate=16000&size=8&date=2022-11-21&format=wav&deliver=browser",
+                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/4XHXWp6WJ7RSHKFJFH0z62xhYXPzut1H/D0iEYpI93UtL4UlTlnY6PPkkoEF4P3LA/3f73ea258fc409f3446aa464ea13c76e222edf48857c9ca40a09c51ba86404aa.mp3",
                     },
                   },
                   {
@@ -818,7 +818,7 @@ export const dummyData: AppData = {
                       answerIndex: 0,
                     },
                     audio: {
-                      src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
+                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/DbaWYblk9dE2PKag3t9EpH3b56TcXkKU/1dYjyjjFpWkS4230TARI5kVkvSzMRpQD/68650ca72a8f5acf89c877300d15a97d7b57772c10707050f05f490576043a92.mp3",
                     },
                   },
                   {
@@ -835,7 +835,7 @@ export const dummyData: AppData = {
                       answerIndex: 0,
                     },
                     audio: {
-                      src: "https://www.random.org/audio-noise/?channels=2&volume=100&rate=16000&size=8&date=2022-11-21&format=wav&deliver=browser",
+                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/EguuqeQeKD8NAg8FJCoMw9gX8kMnYRdA/wYEwRG3Yne50uqVIuUHv9wEWTU9NX0h8/126494e4dd02caba9c06ff96cf0600a4b5b1f1b43b2b56cc97628488f969b3c7.mp3",
                     },
                   },
                   {
@@ -852,7 +852,7 @@ export const dummyData: AppData = {
                       answerIndex: 0,
                     },
                     audio: {
-                      src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
+                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/4XHXWp6WJ7RSHKFJFH0z62xhYXPzut1H/D0iEYpI93UtL4UlTlnY6PPkkoEF4P3LA/3f73ea258fc409f3446aa464ea13c76e222edf48857c9ca40a09c51ba86404aa.mp3",
                     },
                   },
                   {
@@ -865,7 +865,7 @@ export const dummyData: AppData = {
                     meaning: "<p>오후 4시에 돌아가.</p>",
                     hasQuestion: false,
                     audio: {
-                      src: "https://www.random.org/audio-noise/?channels=2&volume=100&rate=16000&size=8&date=2022-11-21&format=wav&deliver=browser",
+                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/DbaWYblk9dE2PKag3t9EpH3b56TcXkKU/1dYjyjjFpWkS4230TARI5kVkvSzMRpQD/68650ca72a8f5acf89c877300d15a97d7b57772c10707050f05f490576043a92.mp3",
                     },
                   },
                   {
@@ -882,7 +882,7 @@ export const dummyData: AppData = {
                       answerIndex: 0,
                     },
                     audio: {
-                      src: "https://files.musopen.org/recordings/0d2b20df-6ba6-46c9-b058-62f5e7976cb0.mp3?filename=Cello+Suite+no.+1+-+Prelude+in+G,+BWV+1007.mp3&preview",
+                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/EguuqeQeKD8NAg8FJCoMw9gX8kMnYRdA/wYEwRG3Yne50uqVIuUHv9wEWTU9NX0h8/126494e4dd02caba9c06ff96cf0600a4b5b1f1b43b2b56cc97628488f969b3c7.mp3",
                     },
                   },
                 ],

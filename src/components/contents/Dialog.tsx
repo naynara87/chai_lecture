@@ -210,6 +210,7 @@ interface DialogProps {
   bubbleColor?: string;
   profileColor?: string;
   isShowCorrect?: boolean;
+  isBlockedCheck?: boolean;
 }
 
 const Dialog = ({
@@ -230,6 +231,7 @@ const Dialog = ({
   choiceDefaultColor = `${colorPalette.dialogChoiceDefaultColor}`,
   bubbleColor = `${colorPalette.white}`,
   profileColor = `${colorPalette.deepBlue}`,
+  isBlockedCheck,
   isShowCorrect = undefined,
 }: DialogProps) => {
   const {
@@ -247,7 +249,6 @@ const Dialog = ({
   const [correct, setCorrect] = useState<undefined | boolean>(undefined);
   const [choiceMaxLength, setChoiceMaxLength] = useState(0);
   const [sortList, setSortList] = useState<string[]>([]);
-
   useEffect(() => {
     if (!dialogQuestions?.choices) {
       return;
@@ -265,7 +266,7 @@ const Dialog = ({
 
   const selectedAnswer = useCallback(
     (userChoiceIndex: number) => {
-      if (isHide || !dialogQuestions?.choices) {
+      if (isHide || !dialogQuestions?.choices || isShowCorrect || isBlockedCheck) {
         return;
       }
       handleClickAnswer(index);
@@ -274,7 +275,7 @@ const Dialog = ({
         sortList[userChoiceIndex] === dialogQuestions?.choices[dialogQuestions.answerIndex],
       );
     },
-    [isHide, handleClickAnswer, dialogQuestions, index, sortList],
+    [isHide, handleClickAnswer, dialogQuestions, index, sortList, isShowCorrect, isBlockedCheck],
   );
 
   const answerClassName = useCallback(

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useMemo, useRef } from "react";
 import { ID } from "../../types/appData";
 import { DialogData } from "../../types/templateContents";
 import Dialog from "../contents/Dialog";
@@ -16,26 +16,28 @@ const DialogContainerStyles = styled.div<DialogContainerStylesProps>`
 `;
 interface DialogContainerProps {
   datas: DialogData[];
+  tpType?: string;
   audioIndex?: number;
   dialogAudioState?: boolean;
   layoutRef: React.RefObject<HTMLDivElement>;
   audioRef?: React.RefObject<HTMLAudioElement>;
   audioState?: boolean;
-  currentContentIndex: React.MutableRefObject<number>;
+  currentContentIndex: number;
   currentHeight: number;
   pinyinOption?: boolean;
   translateOption?: boolean;
   setAudioState?: React.Dispatch<React.SetStateAction<boolean>>;
   setCurrentHeight: React.Dispatch<React.SetStateAction<number>>;
   handleClickDialogAudioButton?: (src: string, index: number) => void;
+  setCurrentContentIndex: React.Dispatch<React.SetStateAction<number>>;
   customCss?: SerializedStyles;
   isShowCorrect?: boolean;
-  saveCurrentContentIndex?: React.MutableRefObject<number>;
   setIsShowCorrect?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const DialogContainer = ({
   datas,
+  tpType,
   audioIndex,
   dialogAudioState,
   layoutRef,
@@ -43,6 +45,7 @@ const DialogContainer = ({
   audioState,
   currentHeight,
   currentContentIndex,
+  setCurrentContentIndex,
   pinyinOption,
   translateOption,
   setAudioState,
@@ -50,7 +53,6 @@ const DialogContainer = ({
   handleClickDialogAudioButton,
   customCss,
   isShowCorrect,
-  saveCurrentContentIndex,
   setIsShowCorrect,
 }: DialogContainerProps) => {
   const dialogIdRef = useRef<ID>("");
@@ -71,17 +73,21 @@ const DialogContainer = ({
 
   const handleChangeContent = useCallback(
     (index: number) => {
-      currentContentIndex.current += 1;
+      if (index >= currentContentIndex) {
+        setCurrentContentIndex((prev) => prev + 1);
+      }
+
       if (setAudioState) {
         setAudioState(true);
       }
+
       layoutRef.current?.scrollTo({
         top: currentHeight,
         left: 0,
         behavior: "smooth",
       });
     },
-    [currentHeight, layoutRef, setAudioState, currentContentIndex],
+    [currentHeight, layoutRef, setAudioState, currentContentIndex, setCurrentContentIndex],
   );
 
   const getCurrentShowDialog = useCallback(
@@ -96,44 +102,44 @@ const DialogContainer = ({
     getCurrentShowDialog(dialogs);
   }, [getCurrentShowDialog, currentContentIndex]);
 
-  const mainContents = useCallback(
-    (datas: DialogData[]) => {
-      return datas.map((content, index) => {
-        const { id } = content;
-        const isSameId = id !== dialogIdRef.current;
-        dialogIdRef.current = id;
-        return (
-          <Dialog
-            dialogContent={content}
-            key={index}
-            index={index}
-            renderProfile={index === 0 ? true : isSameId}
-            audioHandler={handleClickDialogAudio}
-            currentAudioIndex={audioIndex}
-            totalAudioPlayed={audioState}
-            audioState={dialogAudioState}
-            isHide={currentContentIndex.current >= index ? false : true}
-            handleClickAnswer={handleChangeContent}
-            showPinyin={pinyinOption}
-            showTranslate={translateOption}
-            showAudioButton={content.audio ? true : false}
-            isShowCorrect={isShowCorrect}
-          />
-        );
-      });
-    },
-    [
-      audioIndex,
-      audioState,
-      currentContentIndex,
-      dialogAudioState,
-      handleChangeContent,
-      handleClickDialogAudio,
-      pinyinOption,
-      translateOption,
-      isShowCorrect,
-    ],
-  );
+  const mainContents = useMemo(() => {
+    return datas.map((content, index) => {
+      const { id } = content;
+      const isSameId = id !== dialogIdRef.current;
+      dialogIdRef.current = id;
+      return (
+        <Dialog
+          dialogContent={content}
+          key={index}
+          index={index}
+          renderProfile={index === 0 ? true : isSameId}
+          audioHandler={handleClickDialogAudio}
+          currentAudioIndex={audioIndex}
+          totalAudioPlayed={audioState}
+          audioState={dialogAudioState}
+          isHide={currentContentIndex >= index ? false : true}
+          handleClickAnswer={handleChangeContent}
+          showPinyin={pinyinOption}
+          showTranslate={translateOption}
+          showAudioButton={content.audio ? true : false}
+          isShowCorrect={isShowCorrect}
+          isBlockedCheck={tpType === "TP02K" && currentContentIndex !== index ? true : undefined}
+        />
+      );
+    });
+  }, [
+    audioIndex,
+    audioState,
+    currentContentIndex,
+    dialogAudioState,
+    handleChangeContent,
+    handleClickDialogAudio,
+    pinyinOption,
+    translateOption,
+    isShowCorrect,
+    datas,
+    tpType,
+  ]);
 
   const handleClickCheckButton = () => {
     if (setIsShowCorrect) {
@@ -143,12 +149,12 @@ const DialogContainer = ({
 
   return (
     <DialogContainerStyles customCss={customCss}>
-      {mainContents(datas)}
+      {mainContents}
       {setIsShowCorrect && (
         <CheckButton
           text="채점하기"
           handleClickCheckButton={handleClickCheckButton}
-          isHide={currentContentIndex.current === datas.length ? false : true}
+          isHide={currentContentIndex === datas.length ? false : true}
         />
       )}
     </DialogContainerStyles>

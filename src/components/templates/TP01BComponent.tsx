@@ -17,23 +17,38 @@ const dialogContainerStyles = css`
 interface TP01BComponentProps extends TemplateProps {}
 
 const TP01BComponent = ({ setPageCompleted, page, showHeader = true }: TP01BComponentProps) => {
-  // const [currentContentIndex, setCurrentContentIndex] = useState(0);
   const [currentHeight, setCurrentHeight] = useState(0);
   const [isShowCorrect, setIsShowCorrect] = useState(false);
   const layoutRef = useRef<HTMLDivElement>(null);
-  const currentContentIndex = useRef(0);
+  const [currentContentIndex, setCurrentContentIndex] = useState(0);
 
   const thisPage = page as TP01B;
 
   useEffect(() => {
     setPageCompleted();
-  }, [setPageCompleted]);
+  }, [setPageCompleted, currentContentIndex]);
 
   const DialogContentData = useMemo(() => {
     return thisPage.template.contents.find((content) => content.type === "dialog") as
       | DialogContent
       | undefined;
   }, [thisPage.template.contents]);
+
+  const mainContent = useMemo(() => {
+    return (
+      <DialogContainer
+        datas={DialogContentData?.data ?? []}
+        currentContentIndex={currentContentIndex}
+        setCurrentContentIndex={setCurrentContentIndex}
+        currentHeight={currentHeight}
+        setCurrentHeight={setCurrentHeight}
+        layoutRef={layoutRef}
+        customCss={dialogContainerStyles}
+        isShowCorrect={isShowCorrect}
+        setIsShowCorrect={setIsShowCorrect}
+      />
+    );
+  }, [DialogContentData?.data, currentHeight, isShowCorrect, currentContentIndex]);
 
   return (
     <TemplateCommonLayout>
@@ -42,18 +57,7 @@ const TP01BComponent = ({ setPageCompleted, page, showHeader = true }: TP01BComp
       ) : (
         <></>
       )}
-      <TP02Layout layoutRef={layoutRef}>
-        <DialogContainer
-          datas={DialogContentData?.data ?? []}
-          currentContentIndex={currentContentIndex}
-          currentHeight={currentHeight}
-          setCurrentHeight={setCurrentHeight}
-          layoutRef={layoutRef}
-          customCss={dialogContainerStyles}
-          isShowCorrect={isShowCorrect}
-          setIsShowCorrect={setIsShowCorrect}
-        />
-      </TP02Layout>
+      <TP02Layout layoutRef={layoutRef}>{mainContent}</TP02Layout>
     </TemplateCommonLayout>
   );
 };
