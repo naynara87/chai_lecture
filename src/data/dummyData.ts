@@ -117,6 +117,26 @@ export const dummyData: AppData = {
       cornerIcon: `${process.env.PUBLIC_URL}/images/icon/img_sort_page02.png`,
       pages: [
         {
+          id: 7,
+          title: "문장 1",
+          description: "중국어를 확인해 보세요.",
+          template: {
+            type: "TP02B",
+            contents: [
+              {
+                type: "textBoxes",
+                data: [
+                  {
+                    main: "早上好!",
+                    sub: "Zǎoshang hǎo!",
+                    description: "",
+                  },
+                ],
+              },
+            ],
+          },
+        },
+        {
           id: 8,
           title: "문장",
           description: "잘 들어 보세요.",
