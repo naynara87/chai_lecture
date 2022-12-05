@@ -41,7 +41,7 @@ interface TP08GComponentProps extends TemplateProps {}
 const TP08GComponent = ({ setPageCompleted, page, showHeader = true }: TP08GComponentProps) => {
   const thisPage = page as TP08G;
   const audioRef = useRef<HTMLAudioElement>(null);
-  const { audioSrc, audioIndex, handleClickAudioButton } = useAudio(audioRef);
+  const { audioSrc, audioIndex, handleClickAudioButton, audioState } = useAudio(audioRef);
   useEffect(() => {
     setPageCompleted();
   }, [setPageCompleted]);
@@ -76,11 +76,12 @@ const TP08GComponent = ({ setPageCompleted, page, showHeader = true }: TP08GComp
             audioIndex={index + 1}
             audioUrl={audio.src}
             currentAudioIndex={audioIndex ?? 0}
+            audioState={audioState}
           />
         </NumberTableContainer>
       );
     });
-  }, [numberTableContentData?.data, audioIndex, handleClickAudioButton]);
+  }, [numberTableContentData?.data, audioIndex, handleClickAudioButton, audioState]);
 
   return (
     <TemplateCommonLayout>

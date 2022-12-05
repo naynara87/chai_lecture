@@ -27,7 +27,7 @@ const ChooseMediaText = ({ datas }: ChooseMediaTextProps) => {
 
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  const { audioSrc, audioIndex, handleClickAudioButton } = useAudio(audioRef);
+  const { audioSrc, audioIndex, handleClickAudioButton, audioState } = useAudio(audioRef);
 
   const handleClickCloseExplanation = () => {
     setShowExplanation(false);
@@ -71,6 +71,7 @@ const ChooseMediaText = ({ datas }: ChooseMediaTextProps) => {
               audioHandler={handleClickAudioButton}
               currentAudioIndex={audioIndex}
               audioIndex={index}
+              audioState={audioState}
             />
           </MediaTextContainer>
         );

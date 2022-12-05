@@ -11,6 +11,7 @@ interface NumberTableProps {
   audioUrl: string;
   audioIndex: number;
   currentAudioIndex: number;
+  audioState: boolean;
   audioHandler: (src: string, index: number) => void;
 }
 
@@ -25,6 +26,7 @@ const NumberTable = ({
   meaning,
   audioUrl,
   audioHandler,
+  audioState,
   audioIndex,
   currentAudioIndex,
 }: NumberTableProps) => {
@@ -39,6 +41,7 @@ const NumberTable = ({
         audioHandler={audioHandler}
         audioUrl={audioUrl}
         audioIndex={audioIndex}
+        audioState={audioState}
       />
     </>
   );

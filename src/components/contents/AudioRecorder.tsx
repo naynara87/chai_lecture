@@ -118,7 +118,7 @@ const AudioRecorder = ({ audioUrl }: AudioRecorderProps) => {
   }, [recordingAudioState, pronounceAudio]);
 
   const handlePronounceAudio = useCallback((src: string, index: number, isPlayed: boolean) => {
-    if (!isPlayed) {
+    if (isPlayed) {
       setPronounceAudio(true);
       setRecordedAudioState(false);
       setRecordingAudioState("pause");
