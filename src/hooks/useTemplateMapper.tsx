@@ -31,6 +31,7 @@ import TP15Component from "../components/templates/TP15Component";
 import TP16Component from "../components/templates/TP16Component";
 import TP24BComponent from "../components/templates/TP24BComponent";
 import TP08AComponent from "../components/templates/TP08AComponent";
+import TP06AComponent from "../components/templates/TP06AComponent";
 
 export interface UseTemplateMapperProps extends TemplateProps {}
 const useTemplateMapper = (props: UseTemplateMapperProps) => {
@@ -52,6 +53,7 @@ const useTemplateMapper = (props: UseTemplateMapperProps) => {
     TP04A: <TP04AComponent {...props} />,
     TP05: <TP05Component {...props} />,
     TP05A: <TP05AComponent {...props} />,
+    TP06A: <TP06AComponent {...props} />,
     TP07: <TP07Component {...props} />,
     TP07A: <TP07AComponent {...props} />,
     TP08A: <TP08AComponent {...props} />,

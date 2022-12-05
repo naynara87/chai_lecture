@@ -117,6 +117,97 @@ export const dummyData: AppData = {
       cornerIcon: `${process.env.PUBLIC_URL}/images/icon/img_sort_page02.png`,
       pages: [
         {
+          id: 7,
+          title: "회화 이해하기",
+          description: "따라 읽어 보세요.",
+          template: {
+            type: "TP06A",
+            contents: [
+              {
+                type: "iconText",
+                data: [
+                  {
+                    icon: {
+                      src: "https://i.picsum.photos/id/128/200/200.jpg?hmac=m4AGhj",
+                    },
+                    text: "<p>따라 읽어 보세요.</p>",
+                  },
+                ],
+              },
+              {
+                type: "dialog",
+                data: [
+                  {
+                    id: "a",
+                    icon: {
+                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/V2ttKeLUE1zq7F7gyKtSPzqm6RSe9Gnv/PNGSHQlh7tgbGkS3upjF6KuoFpqsqarj/2b7daa5e3089566937e10f0d71680a999855a5c235975e51062007b346ef9bc2.png",
+                    },
+                    text: "<p>你会打篮球吗？</p>",
+                    pronunciation: "<p>Nî huì dâ lánqiú ma?</p>",
+                    meaning: "<p>너 농구할 줄 아니?</p>",
+                    hasQuestion: false,
+                  },
+                ],
+              },
+              {
+                type: "audioRecord",
+                data: [
+                  {
+                    audio: {
+                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/LFyQz1Y3wfFFtjgcGsSi7hDFNBR2ysL1/MftxlG4XynzRKLX1m1SCZp6XRKyswkO1/64d78f6118690039f8b0ae9fe39b6f31f7706881b3cca49b7ae422dc98b1ed45.mp3",
+                    },
+                  },
+                ],
+              },
+            ],
+          },
+        },
+        {
+          id: 8,
+          title: "문장",
+          description: "잘 들어 보세요.",
+          template: {
+            type: "TP08A",
+            contents: [
+              {
+                type: "images",
+                data: [
+                  {
+                    src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/V2ttKeLUE1zq7F7gyKtSPzqm6RSe9Gnv/PNGSHQlh7tgbGkS3upjF6KuoFpqsqarj/2b7daa5e3089566937e10f0d71680a999855a5c235975e51062007b346ef9bc2.png",
+                  },
+                ],
+              },
+              {
+                type: "html",
+                data: [
+                  {
+                    text: "<h1>我会游泳。</h4>",
+                  },
+                  {
+                    text: "<p class='c4'>Wǒ  huì  yóuyǒng.</>",
+                  },
+                  {
+                    text: "<p>나는  수영할 줄 압니다.</p>",
+                  },
+                ],
+              },
+              {
+                type: "sentenceWord",
+                data: [
+                  {
+                    text: "游泳",
+                    pronunciation: "yóuyǒng",
+                    meaning: "수영하다",
+                    audio: {
+                      src: "string",
+                    },
+                  },
+                ],
+              },
+            ],
+          },
+        },
+        {
           id: 8,
           title: "문장",
           description: "잘 들어 보세요.",

@@ -19,17 +19,17 @@ interface DialogContainerProps {
   tpType?: string;
   audioIndex?: number;
   dialogAudioState?: boolean;
-  layoutRef: React.RefObject<HTMLDivElement>;
+  layoutRef?: React.RefObject<HTMLDivElement>;
   audioRef?: React.RefObject<HTMLAudioElement>;
   audioState?: boolean;
   currentContentIndex: number;
-  currentHeight: number;
+  currentHeight?: number;
   pinyinOption?: boolean;
   translateOption?: boolean;
   setAudioState?: React.Dispatch<React.SetStateAction<boolean>>;
-  setCurrentHeight: React.Dispatch<React.SetStateAction<number>>;
+  setCurrentHeight?: React.Dispatch<React.SetStateAction<number>>;
   handleClickDialogAudioButton?: (src: string, index: number) => void;
-  setCurrentContentIndex: React.Dispatch<React.SetStateAction<number>>;
+  setCurrentContentIndex?: React.Dispatch<React.SetStateAction<number>>;
   customCss?: SerializedStyles;
   isShowCorrect?: boolean;
   setIsShowCorrect?: React.Dispatch<React.SetStateAction<boolean>>;
@@ -73,7 +73,11 @@ const DialogContainer = ({
 
   const handleChangeContent = useCallback(
     (index: number) => {
-      if (index >= currentContentIndex) {
+      if (!currentContentIndex) {
+        return;
+      }
+
+      if (index >= currentContentIndex && setCurrentContentIndex) {
         setCurrentContentIndex((prev) => prev + 1);
       }
 
@@ -81,17 +85,22 @@ const DialogContainer = ({
         setAudioState(true);
       }
 
-      layoutRef.current?.scrollTo({
-        top: currentHeight,
-        left: 0,
-        behavior: "smooth",
-      });
+      if (layoutRef) {
+        layoutRef.current?.scrollTo({
+          top: currentHeight,
+          left: 0,
+          behavior: "smooth",
+        });
+      }
     },
     [currentHeight, layoutRef, setAudioState, currentContentIndex, setCurrentContentIndex],
   );
 
   const getCurrentShowDialog = useCallback(
     (dialogs: HTMLCollectionOf<Element>) => {
+      if (!setCurrentHeight) {
+        return;
+      }
       setCurrentHeight(Math.round(dialogs[dialogs.length - 1].scrollHeight) * dialogs.length);
     },
     [setCurrentHeight],
@@ -107,6 +116,7 @@ const DialogContainer = ({
       const { id } = content;
       const isSameId = id !== dialogIdRef.current;
       dialogIdRef.current = id;
+
       return (
         <Dialog
           dialogContent={content}
