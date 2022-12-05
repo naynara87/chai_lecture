@@ -82,6 +82,18 @@ export type TP02 = {
   };
 };
 
+export type TP02A = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP02A";
+    contents: TP02AContent[];
+  };
+};
+
+type TP02AContent = AudioContent;
+
 export type TP02B = {
   id: ID;
   title: string;
@@ -283,6 +295,20 @@ type TP05ATemplate = {
 };
 
 type TP05AContent = TextBoxesContent | HtmlContent;
+
+export type TP06A = {
+  id: ID;
+  title: string;
+  description: string;
+  template: TP06ATemplate;
+};
+
+type TP06ATemplate = {
+  type: "TP06A";
+  contents: TP06AContent[];
+};
+
+type TP06AContent = IconTextContent | DialogContent | AudioRecordContent;
 
 export type TP07 = {
   id: ID;
