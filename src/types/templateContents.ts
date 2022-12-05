@@ -270,3 +270,8 @@ export type SentenceWord = {
     src: string;
   };
 };
+
+export type SentenceWordContent = {
+  type: "sentenceWord";
+  data: SentenceWord[];
+};
