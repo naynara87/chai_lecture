@@ -1,8 +1,8 @@
-import { css } from "@emotion/react";
+import { css, SerializedStyles } from "@emotion/react";
 import styled from "@emotion/styled";
 import React, { useMemo, useState } from "react";
 import { colorPalette } from "../../styles/colorPalette";
-import { StudySentencesWithVocabularyData } from "../../types/templateContents";
+import { SentenceWord } from "../../types/templateContents";
 import { changePXtoVW } from "../../utils/styles";
 import AudioButton from "../atoms/AudioButton";
 import ArrowLeft from "../atoms/svg/ArrowLeft";
@@ -12,11 +12,17 @@ import IconTail from "../atoms/svg/IconTail";
 import XIcon from "../atoms/svg/XIcon";
 import HtmlContentComponent from "./HtmlContentComponent";
 
-const BubbleContainer = styled.div`
+interface BubbleContainerProps {
+  containerCss?: SerializedStyles;
+}
+
+const BubbleContainer = styled.div<BubbleContainerProps>`
   display: flex;
   width: ${changePXtoVW(360)};
   margin: 10px auto 0;
   position: relative;
+
+  ${(props) => props.containerCss}
 `;
 
 interface SentenceBubbleProps {
@@ -88,68 +94,71 @@ const audioCss = css`
 `;
 
 interface SentenceBubbleComponentProps {
-  sentences: StudySentencesWithVocabularyData["sentences"];
-  currentSentenceIndex: number;
-  currentBubbleSentenceIndex: number;
-  setCurrentBubbleSentenceIndex: React.Dispatch<React.SetStateAction<number>>;
+  sentences: SentenceWord[];
+  containerCss?: SerializedStyles;
+  currentBubbleSentenceIndex?: number;
+  setCurrentBubbleSentenceIndex?: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const SentenceBubbleComponent = ({
   sentences,
-  currentSentenceIndex,
-  currentBubbleSentenceIndex,
+  containerCss,
+  currentBubbleSentenceIndex = 0,
   setCurrentBubbleSentenceIndex,
 }: SentenceBubbleComponentProps) => {
   const [isSentenceMoreOpen, setIsSentenceMoreOpen] = useState(false);
-
   const bubbleSentence = useMemo(() => {
     return (
       <>
-        <ArrowLeft
-          disabled={!sentences[currentSentenceIndex].words[currentBubbleSentenceIndex - 1]}
-          activeColor={colorPalette.black}
-          customCss={arrowCss}
-          onClickIcon={() => {
-            if (sentences[currentSentenceIndex].words[currentBubbleSentenceIndex - 1]) {
-              setCurrentBubbleSentenceIndex((prev) => prev - 1);
-            }
-          }}
-        />
+        {setCurrentBubbleSentenceIndex && (
+          <ArrowLeft
+            disabled={!sentences[currentBubbleSentenceIndex - 1]}
+            activeColor={colorPalette.black}
+            customCss={arrowCss}
+            onClickIcon={() => {
+              if (sentences[currentBubbleSentenceIndex - 1]) {
+                setCurrentBubbleSentenceIndex((prev) => prev - 1);
+              }
+            }}
+          />
+        )}
         <HtmlContentComponent
-          html={sentences[currentSentenceIndex].words[currentBubbleSentenceIndex].text}
+          html={sentences[currentBubbleSentenceIndex].text}
           customCss={htmlCss}
         />
         <HtmlContentComponent
-          html={sentences[currentSentenceIndex].words[currentBubbleSentenceIndex].pronunciation}
+          html={sentences[currentBubbleSentenceIndex].pronunciation}
           customCss={htmlCss}
         />
         <HtmlContentComponent
-          html={sentences[currentSentenceIndex].words[currentBubbleSentenceIndex].meaning}
+          html={sentences[currentBubbleSentenceIndex].meaning}
           customCss={htmlCss}
         />
-        {sentences[currentSentenceIndex].audio && (
+        {sentences[currentBubbleSentenceIndex].audio && (
           <AudioButton
             isAudio={true}
-            audioUrl={sentences[currentSentenceIndex].audio?.src}
+            audioUrl={sentences[currentBubbleSentenceIndex].audio?.src}
             customCss={audioCss}
           />
         )}
-        <ArrowRight
-          disabled={!sentences[currentSentenceIndex].words[currentBubbleSentenceIndex + 1]}
-          activeColor={colorPalette.black}
-          customCss={arrowCss}
-          onClickIcon={() => {
-            if (sentences[currentSentenceIndex].words[currentBubbleSentenceIndex + 1]) {
-              setCurrentBubbleSentenceIndex((prev) => prev + 1);
-            }
-          }}
-        />
+        {setCurrentBubbleSentenceIndex && (
+          <ArrowRight
+            disabled={!sentences[currentBubbleSentenceIndex + 1]}
+            activeColor={colorPalette.black}
+            customCss={arrowCss}
+            onClickIcon={() => {
+              if (sentences[currentBubbleSentenceIndex + 1]) {
+                setCurrentBubbleSentenceIndex((prev) => prev + 1);
+              }
+            }}
+          />
+        )}
       </>
     );
-  }, [sentences, currentBubbleSentenceIndex, currentSentenceIndex, setCurrentBubbleSentenceIndex]);
+  }, [sentences, currentBubbleSentenceIndex, setCurrentBubbleSentenceIndex]);
 
   return (
-    <BubbleContainer>
+    <BubbleContainer containerCss={containerCss}>
       <IconSentenceCharacter />
       {!isSentenceMoreOpen && <IconTail color={colorPalette.sentenceBubble} />}
       <SentenceBubble open={isSentenceMoreOpen}>

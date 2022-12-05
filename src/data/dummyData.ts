@@ -138,10 +138,10 @@ export const dummyData: AppData = {
                     text: "<h1>我会游泳。</h4>",
                   },
                   {
-                    text: "<p>Wǒ  huì  yóuyǒng.</p>",
+                    text: "<p class='c4'>Wǒ  huì  yóuyǒng.</>",
                   },
                   {
-                    text: "<h4>나는  수영할 줄 압니다.</h4>",
+                    text: "<p>나는  수영할 줄 압니다.</p>",
                   },
                 ],
               },

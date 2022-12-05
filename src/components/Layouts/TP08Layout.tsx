@@ -9,7 +9,7 @@ const TP08LayoutStyle = styled.div`
 `;
 
 interface TP08LayoutProps {
-  children: [JSX.Element | JSX.Element[], JSX.Element, JSX.Element];
+  children: JSX.Element | JSX.Element[];
 }
 const TP08Layout = ({ children }: TP08LayoutProps) => {
   return <TP08LayoutStyle>{children}</TP08LayoutStyle>;

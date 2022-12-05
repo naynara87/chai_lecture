@@ -280,9 +280,8 @@ const StudySentencesWithVocabulary = ({
           />
           {sentencesOption === "one" && (
             <SentenceBubbleComponent
-              sentences={sentences}
+              sentences={sentences[currentSentenceIndex].words}
               currentBubbleSentenceIndex={currentBubbleSentenceIndex}
-              currentSentenceIndex={currentSentenceIndex}
               setCurrentBubbleSentenceIndex={setCurrentBubbleSentenceIndex}
             />
           )}
