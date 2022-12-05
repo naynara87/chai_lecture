@@ -128,8 +128,8 @@ export const dummyData: AppData = {
                 data: [
                   {
                     main: "早上好!",
-                    sub: "Zǎoshang hǎo!",
-                    description: "",
+                    sub: "",
+                    description: "Zǎoshang hǎo!",
                   },
                 ],
               },

@@ -2,11 +2,10 @@ import React, { useMemo } from "react";
 import styled from "@emotion/styled";
 import { TextBoxesData } from "../../types/templateContents";
 import { breakPoints } from "../../constants/layout";
-import { css, SerializedStyles } from "@emotion/react";
+import { SerializedStyles } from "@emotion/react";
 import TextBox from "../atoms/TextBox";
 import HtmlContentComponent from "./HtmlContentComponent";
 import { changePXtoVW } from "../../utils/styles";
-import { colorPalette } from "../../styles/colorPalette";
 
 interface TextCardGrpProps {
   customCss?: SerializedStyles;
@@ -65,17 +64,13 @@ const MeaningText = styled("div")`
   }
 `;
 
-const subHtmlCss = css`
-  color: ${colorPalette.boxSubtitle};
-  font-size: ${changePXtoVW(30)};
-`;
-
 interface TextBoxesProps {
   datas: TextBoxesData[];
   isHorizontal?: boolean;
   customBoxCss?: SerializedStyles;
   customBoxWrapperCss?: SerializedStyles;
   customBoxContainerCss?: SerializedStyles;
+  customDescriptionCss?: SerializedStyles;
 }
 
 const TextBoxes = ({
@@ -84,6 +79,7 @@ const TextBoxes = ({
   customBoxCss,
   customBoxWrapperCss,
   customBoxContainerCss,
+  customDescriptionCss,
 }: TextBoxesProps) => {
   const renderTextBoxes = useMemo(() => {
     return datas.map((textBox, index) => {
@@ -94,14 +90,16 @@ const TextBoxes = ({
           customCss={customBoxWrapperCss}
         >
           <TextBox text={textBox.main} customBoxCss={customBoxCss} />
-          {textBox.sub && <HtmlContentComponent html={textBox.sub} customCss={subHtmlCss} />}
           <MeaningText className={isHorizontal ? "horizontal" : ""}>
-            <HtmlContentComponent html={textBox.description ?? ""} />
+            <HtmlContentComponent
+              html={textBox.description ?? ""}
+              customCss={customDescriptionCss}
+            />
           </MeaningText>
         </TextCardGrp>
       );
     });
-  }, [customBoxWrapperCss, datas, isHorizontal, customBoxCss]);
+  }, [customBoxWrapperCss, datas, isHorizontal, customBoxCss, customDescriptionCss]);
 
   return <TextBoxesWrapper customCss={customBoxContainerCss}>{renderTextBoxes}</TextBoxesWrapper>;
 };
