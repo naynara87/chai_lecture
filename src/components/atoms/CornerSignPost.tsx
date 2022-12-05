@@ -1,51 +1,42 @@
 import styled from "@emotion/styled";
 import React from "react";
 import { colorPalette } from "../../styles/colorPalette";
+import { changePXtoVH, changePXtoVW } from "../../utils/styles";
+import { headerHeight } from "../../styles/layout";
 
 interface CornerSignPostProps {
   cornerName: string;
 }
 
 const SignPost = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 0;
   z-index: 1;
-  transform: translateX(100%) translateY(100%);
-  width: 6.0416666667vw;
-  min-width: 53px;
-  max-width: 97px;
-  height: 12.0377777778vh;
-  min-height: 66px;
-
   line-height: 1.5;
   font-weight: 600;
   color: ${colorPalette.white};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-position: top;
-  background-size: cover;
+
+	position: absolute;
+	top: ${headerHeight};
+	left: ${changePXtoVW(80)};
+	width: ${changePXtoVW(124)};
+	height: ${changePXtoVH(148)};
+	padding: 0 ${changePXtoVW(20)};
+	padding-top: ${changePXtoVH(9)};
+	line-height: 1.5;
+	font-weight: 600;
+  font-size: ${changePXtoVW(24)};
+	text-align: center;
+
+  background-position: center -10px;
+  background-size: contain;
   background-repeat: no-repeat;
   background-image: url("${process.env.PUBLIC_URL}/images/img/icon_sign_post.svg");
-  @media all and (max-width: 1024px) {
-    height: 9.2777777778vh;
-  }
 `;
 
 const SignTitle = styled.span`
-  position: absolute;
-  z-index: 1;
   text-align: center;
-  top: 0;
-  padding: 1vw 15px 0;
-  font-size: clamp(12px, 1.45vw, 18px);
-
+  font-size: ${changePXtoVW(24)};
   text-shadow: -1px 0 ${colorPalette.signPostTextBorer}, 0 1px ${colorPalette.signPostTextBorer},
     1px 0 ${colorPalette.signPostTextBorer}, 0 -1px ${colorPalette.signPostTextBorer};
-  @media all and (max-width: 1024px) {
-    padding: 1.2vw 10px 0;
-  }
 `;
 
 const CornerSignPost = ({ cornerName }: CornerSignPostProps) => {
