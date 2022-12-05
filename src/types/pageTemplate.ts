@@ -284,6 +284,20 @@ type TP05ATemplate = {
 
 type TP05AContent = TextBoxesContent | HtmlContent;
 
+export type TP06A = {
+  id: ID;
+  title: string;
+  description: string;
+  template: TP06ATemplate;
+};
+
+type TP06ATemplate = {
+  type: "TP06A";
+  contents: TP06AContent[];
+};
+
+type TP06AContent = IconTextContent | DialogContent | AudioRecordContent;
+
 export type TP07 = {
   id: ID;
   title: string;

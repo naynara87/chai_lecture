@@ -33,6 +33,7 @@ import {
   TP13,
   TP24B,
   TP08A,
+  TP06A,
   TP02A,
 } from "./pageTemplate";
 import {
@@ -118,6 +119,7 @@ export type Page =
   | TP04A
   | TP05
   | TP05A
+  | TP06A
   | TP07
   | TP07A
   | TP08A
