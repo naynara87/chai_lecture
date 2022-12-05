@@ -18,6 +18,7 @@ import {
   BottomTabsContent,
   StudySentencesWithVocabularyContent,
   ChooseMediaTextContent,
+  SentenceWordContent,
 } from "./templateContents";
 
 export type ContentPage = Exclude<Page, TPIframe | TPTab>;
@@ -292,6 +293,18 @@ export type TP07A = {
 };
 
 type TP07AContent = IconTextContent | ImagesContent | HtmlContent | AudioRecordContent;
+
+export type TP08A = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP08A";
+    contents: TP08AContent[];
+  };
+};
+
+type TP08AContent = ImagesContent | HtmlContent | SentenceWordContent;
 
 export type TP08G = {
   id: ID;
