@@ -92,7 +92,11 @@ const TP08GComponent = ({ setPageCompleted, page, showHeader = true }: TP08GComp
       )}
       <TP08Layout>
         <MainContainer>{mainContents ?? <></>}</MainContainer>
-        <TipComponent html={htmlTipString ?? ""} customCss={tipCustomCss}></TipComponent>
+        {htmlTipString ? (
+          <TipComponent html={htmlTipString ?? ""} customCss={tipCustomCss}></TipComponent>
+        ) : (
+          <></>
+        )}
         <audio ref={audioRef}>
           <source src={audioSrc} />
         </audio>

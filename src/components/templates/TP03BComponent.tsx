@@ -28,6 +28,8 @@ const customBox03DCss = css`
   }
 `;
 const customBox03BContainerCss = css`
+  width: ${changePXtoVW(800)};
+  max-width: 400px;
   margin-top: ${changePXtoVW(50)};
 `;
 
@@ -127,6 +129,7 @@ const TP03BComponent = ({ setPageCompleted, page, showHeader = true }: TP0BAComp
     },
     [TextBoxesContentData?.data, htmlString],
   );
+  console.log(!!AudioContentData?.data[0].src);
 
   const renderTP03BAndCComponents = useMemo(() => {
     const { type: templateType } = thisPage.template;
