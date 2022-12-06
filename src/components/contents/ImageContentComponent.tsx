@@ -21,16 +21,21 @@ interface ImageContentComponentProps {
   imageAlt: string;
   filter: string;
   customCss?: SerializedStyles;
+  isZoom?: boolean;
 }
 const ImageContentComponent = ({
   imageSrc,
   imageAlt,
   filter,
   customCss,
+  isZoom = true,
 }: ImageContentComponentProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleClickModalOpen = () => {
+    if (!isZoom) {
+      return;
+    }
     setIsModalOpen(true);
   };
 
