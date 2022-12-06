@@ -32,6 +32,10 @@ import {
   TP16,
   TP13,
   TP24B,
+  TP08A,
+  TP02B,
+  TP06A,
+  TP02A,
 } from "./pageTemplate";
 import {
   AudioContent,
@@ -101,6 +105,8 @@ export type Page =
   | TP01A
   | TP01B
   | TP02
+  | TP02B
+  | TP02A
   | TP02C
   | TP02F
   | TP02M
@@ -115,8 +121,10 @@ export type Page =
   | TP04A
   | TP05
   | TP05A
+  | TP06A
   | TP07
   | TP07A
+  | TP08A
   | TP08G
   | TP10A
   | TP09A

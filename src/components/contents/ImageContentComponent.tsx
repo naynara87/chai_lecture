@@ -10,6 +10,7 @@ const ImageComponent = styled.img<ImageComponentProps>`
   cursor: pointer;
   -webkit-user-drag: none;
   width: 100%;
+  max-width: 500px;
   height: 100%;
   object-fit: contain;
   ${(props) => props.customCss}

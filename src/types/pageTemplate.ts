@@ -18,6 +18,7 @@ import {
   BottomTabsContent,
   StudySentencesWithVocabularyContent,
   ChooseMediaTextContent,
+  SentenceWordContent,
 } from "./templateContents";
 
 export type ContentPage = Exclude<Page, TPIframe | TPTab>;
@@ -80,6 +81,30 @@ export type TP02 = {
     contents: ApproveContent[];
   };
 };
+
+export type TP02A = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP02A";
+    contents: TP02AContent[];
+  };
+};
+
+type TP02AContent = AudioContent;
+
+export type TP02B = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP02B";
+    contents: TP02BContent[];
+  };
+};
+
+type TP02BContent = TextBoxesContent;
 
 export type TP02C = {
   id: ID;
@@ -271,6 +296,20 @@ type TP05ATemplate = {
 
 type TP05AContent = TextBoxesContent | HtmlContent;
 
+export type TP06A = {
+  id: ID;
+  title: string;
+  description: string;
+  template: TP06ATemplate;
+};
+
+type TP06ATemplate = {
+  type: "TP06A";
+  contents: TP06AContent[];
+};
+
+type TP06AContent = IconTextContent | DialogContent | AudioRecordContent;
+
 export type TP07 = {
   id: ID;
   title: string;
@@ -292,6 +331,18 @@ export type TP07A = {
 };
 
 type TP07AContent = IconTextContent | ImagesContent | HtmlContent | AudioRecordContent;
+
+export type TP08A = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP08A";
+    contents: TP08AContent[];
+  };
+};
+
+type TP08AContent = ImagesContent | HtmlContent | SentenceWordContent;
 
 export type TP08G = {
   id: ID;
