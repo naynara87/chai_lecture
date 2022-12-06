@@ -51,9 +51,8 @@ const ChooseMediaText = ({ datas }: ChooseMediaTextProps) => {
     <div>
       {sortList.map((content, index) => {
         return (
-          <MediaTextContainer>
+          <MediaTextContainer key={index}>
             <QuizAnswer
-              key={index}
               answerText={content.text}
               isCorrect={sortList[answerIndex] === choices[index]}
               index={index}
