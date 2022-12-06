@@ -211,6 +211,8 @@ const CornerListPage = () => {
                 return (
                   <CornerList key={corner.id}>
                     <CornerImageWrapper>
+                      {
+                      getCornerIcon(corner.title) ?
                       <ImageContentComponent
                         imageSrc={getCornerIcon(corner.title)}
                         imageAlt={corner.title}
@@ -218,6 +220,10 @@ const CornerListPage = () => {
                         customCss={cornerImageCss}
                         isZoom={false}
                       />
+                      :
+                      <ChaiSkeleton width={90} height={90} variant="circular" animation={false}/>
+                    }
+
                     </CornerImageWrapper>
                     <CornerName>{corner.title}</CornerName>
                   </CornerList>
