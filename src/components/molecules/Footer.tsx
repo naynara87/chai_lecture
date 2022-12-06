@@ -10,6 +10,7 @@ import { QUERY_KEY } from "../../constants/queryKey";
 import { getAppData } from "../../data/tempApi";
 import useCorner from "../../hooks/useCorner";
 import { footerHeight } from "../../styles/layout";
+import { changePXtoVW } from "../../utils/styles";
 
 const FooterWrapper = styled.footer`
   position: fixed;
@@ -21,7 +22,7 @@ const FooterWrapper = styled.footer`
   justify-content: space-between;
   width: 100%;
   ${footerHeight};
-  padding: 0 43px;
+  padding: 0 ${changePXtoVW(43)};
   background-color: ${colorPalette.deepBlue};
   color: ${colorPalette.white};
 `;

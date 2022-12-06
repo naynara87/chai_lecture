@@ -26,7 +26,7 @@ const SignPost = styled.div`
   font-size: ${changePXtoVW(24)};
 	text-align: center;
 
-  background-position: center -10px;
+  background-position: center ${changePXtoVH(-10)};
   background-size: contain;
   background-repeat: no-repeat;
   background-image: url("${process.env.PUBLIC_URL}/images/img/icon_sign_post.svg");

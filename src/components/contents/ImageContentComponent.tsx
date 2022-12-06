@@ -1,6 +1,7 @@
 import { SerializedStyles } from "@emotion/react";
 import styled from "@emotion/styled";
 import React, { useState } from "react";
+import { changePXtoVW } from "../../utils/styles";
 import ModalImage from "../modal/ModalImage";
 
 interface ImageComponentProps {
@@ -8,9 +9,8 @@ interface ImageComponentProps {
 }
 const ImageComponent = styled.img<ImageComponentProps>`
   cursor: pointer;
-  -webkit-user-drag: none;
   width: 100%;
-  max-width: 500px;
+  max-width: ${changePXtoVW(500)};
   height: 100%;
   object-fit: contain;
   ${(props) => props.customCss}

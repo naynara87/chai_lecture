@@ -1,8 +1,8 @@
 import { SerializedStyles } from "@emotion/react";
 import styled from "@emotion/styled";
 import React from "react";
-import { breakPoints } from "../../constants/layout";
 import { colorPalette } from "../../styles/colorPalette";
+import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import HtmlContentComponent from "./HtmlContentComponent";
 
 interface TipWrapperProps {
@@ -11,23 +11,19 @@ interface TipWrapperProps {
 
 const TipWrapper = styled.div<TipWrapperProps>`
   background-position: left top;
-  background-size: 40px;
+  background-size: ${changePXtoVW(40)};
   background-repeat: no-repeat;
   background-image: url("${process.env.PUBLIC_URL}/images/icon/icon_tipbuble.svg");
   display: inline-block;
-  margin-top: 2.2222222222vh;
-  padding-top: 1.1111111111vh;
-  padding-bottom: 1.1111111111vh;
-  padding-left: 40px;
+  margin-top: ${changePXtoVH(32)};
+  padding-top: ${changePXtoVH(16)};
+  padding-bottom: ${changePXtoVH(16)};
+  padding-left: ${changePXtoVW(40)};
   line-height: 1.3;
-  font-size: 14px;
+  font-size: ${changePXtoVW(30)};
   text-align: left;
   white-space: pre-line;
   color: ${colorPalette.descriptionText};
-
-  @media all and (max-width: ${breakPoints.tablet}) {
-    font-size: 1.5625vw;
-  }
   ${(props) => props.customCss}
 `;
 

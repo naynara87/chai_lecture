@@ -9,11 +9,10 @@ import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TP03Layout from "../Layouts/TP03Layout";
 import { colorPalette } from "../../styles/colorPalette";
 import AudioButton from "../atoms/AudioButton";
-import { breakPoints } from "../../constants/layout";
 import { css } from "@emotion/react";
 import { TemplateType } from "../../types/appData";
 import HtmlContentComponent from "../molecules/HtmlContentComponent";
-import { changePXtoVW } from "../../utils/styles";
+import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 
 const customBox03DContainerCss = css`
   justify-content: flex-start;
@@ -22,10 +21,7 @@ const customBox03DContainerCss = css`
 `;
 
 const customBox03DCss = css`
-  height: 80px;
-  @media all and (max-width: ${breakPoints.tablet}) {
-    height: 8vw;
-  }
+  height: ${changePXtoVH(154)};
 `;
 const customBox03BContainerCss = css`
   margin-top: ${changePXtoVW(50)};
@@ -43,14 +39,10 @@ interface TP0BAComponentProps extends TemplateProps {}
 const HtmlWrapper = styled("div")`
   line-height: 1.5;
   font-weight: 400;
-  font-size: 26px;
+  font-size: ${changePXtoVW(48)};
   color: ${colorPalette.descriptionText};
   white-space: pre-line;
   text-align: center;
-
-  @media all and (max-width: ${breakPoints.tablet}) {
-    font-size: 2.5vw;
-  }
 `;
 
 const AudioWrapper = styled.div`

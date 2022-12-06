@@ -1,9 +1,9 @@
 import { css } from "@emotion/react";
 import React, { useEffect, useMemo } from "react";
-import { breakPoints } from "../../constants/layout";
 import { TP05A } from "../../types/pageTemplate";
 import { HtmlContent, TextBoxesContent } from "../../types/templateContents";
 import { TemplateProps } from "../../types/templates";
+import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TP05Layout from "../Layouts/TP05Layout";
 import TextBoxes from "../molecules/TextBoxes";
@@ -11,21 +11,14 @@ import TipComponent from "../molecules/TipComponent";
 import TitleContent from "../molecules/TitleContent";
 
 const customBoxCss = css`
-  height: 80px;
-
-  @media all and (max-width: ${breakPoints.tablet}) {
-    height: 8vw;
-  }
+  height: ${changePXtoVH(154)};
 `;
 
 const customBoxWrapperCss = css`
   width: 100%;
   text-align: left;
   align-items: center;
-  line-height: 30px;
-  @media all and (max-width: ${breakPoints.tablet}) {
-    line-height: 3vw;
-  }
+  line-height: ${changePXtoVW(58)};
 `;
 
 const customBoxContainerCss = css`
@@ -35,12 +28,8 @@ const customBoxContainerCss = css`
 `;
 
 const customTipCss = css`
-  width: 414px;
+  width: ${changePXtoVW(884)};
   margin: 0 auto;
-
-  @media all and (max-width: ${breakPoints.tablet}) {
-    width: 46vw;
-  }
 `;
 
 interface TP05AComponentProps extends TemplateProps {}

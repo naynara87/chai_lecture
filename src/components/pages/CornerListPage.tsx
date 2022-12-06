@@ -15,11 +15,11 @@ import { useQuery } from "@tanstack/react-query";
 import { QUERY_KEY } from "../../constants/queryKey";
 import ModalStart from "../modal/ModalStart";
 import { getPageUrl } from "../../utils/url";
-import { breakPoints, headerHeightNormal } from "../../constants/layout";
+import { headerHeightNormal } from "../../constants/layout";
 import { useRecoilState } from "recoil";
 import { cornersState } from "../../state/corners";
 import { useNavigate } from "react-router-dom";
-import { changePXtoVW } from "../../utils/styles";
+import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 // import usePageList from "../../hooks/api/usePageList";
 
 const CornerListWrapper = styled.main`
@@ -28,17 +28,17 @@ const CornerListWrapper = styled.main`
   justify-content: center;
   flex-wrap: wrap;
   gap: 43px;
-  max-width: 553px;
+  max-width: ${changePXtoVW(792)};
   margin: ${changePXtoVW(200)} auto 0;
 
   &.layout7 {
-    max-width: 581px;
+    max-width: ${changePXtoVW(1088)};
   }
 `;
 
 const CornerImageWrapper = styled.div`
-  width: 106px;
-  height: 106px;
+  width: ${changePXtoVW(200)};
+  height: ${changePXtoVW(200)};
   border-radius: 50%;
   overflow: hidden;
   border: 8px solid ${colorPalette.white};
@@ -64,21 +64,21 @@ const CornerList = styled.div`
 const CornerName = styled.span`
   display: flex;
   justify-content: center;
-  margin-top: 13px;
+  margin-top: ${changePXtoVH(24)};
   font-weight: 600;
-  font-size: 16px;
+  font-size: ${changePXtoVW(30)};
 `;
 
 const startBtnCss = css`
   ${btnCss}
-  min-width: 149px;
-  height: 43px;
+  min-width: ${changePXtoVW(278)};
+  height: ${changePXtoVH(80)};
   background-color: ${colorPalette.confirmBtn};
-  border-radius: 26px;
+  border-radius: ${changePXtoVW(40)};
   font-weight: 600;
-  font-size: 13px;
+  font-size: ${changePXtoVW(30)};
   transition: all 0.3s;
-  margin-top: 53px;
+  margin-top: ${changePXtoVH(136)};
   cursor: pointer;
 `;
 

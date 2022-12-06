@@ -6,7 +6,7 @@ import OIcon from "../atoms/svg/OIcon";
 import { css } from "@emotion/react";
 import XIcon from "../atoms/svg/XIcon";
 import AudioButton from "../atoms/AudioButton";
-import { changePXtoVW } from "../../utils/styles";
+import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import HtmlContentComponent from "./HtmlContentComponent";
 
 const ExplanationWrapper = styled.div`
@@ -20,8 +20,8 @@ const ExplanationWrapper = styled.div`
 
 const ExplanationContainer = styled.div`
   width: 53%;
-  min-width: 375px;
-  max-width: 650px;
+  min-width: ${changePXtoVW(375)};
+  max-width: ${changePXtoVW(650)};
   display: grid;
   grid-template-columns: max-content 1fr;
   gap: 16px;
@@ -31,7 +31,7 @@ const CloseButton = styled.button`
   position: absolute;
   background-color: ${colorPalette.deepBlue};
   border-radius: 100%;
-  padding: 15px;
+  padding: ${changePXtoVH(15)} ${changePXtoVW(15)};
   top: 0;
   right: 0;
   transform: translateX(-20%);
@@ -43,14 +43,12 @@ const CloseButton = styled.button`
 `;
 
 const TextBox = styled.div`
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   position: relative;
   align-items: center;
   width: 100%;
   height: 95%;
-  padding: 10px 40px;
+  padding: ${changePXtoVH(10)} ${changePXtoVW(40)};
   background-position: left 3px;
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -58,30 +56,30 @@ const TextBox = styled.div`
 `;
 
 const ImageWrapper = styled.div`
-  width: 70px;
+  width: ${changePXtoVW(70)};
   display: flex;
   flex-basis: flex-end;
 `;
 
 const OXWrapper = styled.div`
-  width: 40px;
-  min-width: 40px;
+  width: ${changePXtoVW(40)};
+  min-width: ${changePXtoVW(40)};
   height: 100%;
-  padding-top: 4px;
-  margin-right: 16px;
+  padding-top: ${changePXtoVH(4)};
+  margin-right: ${changePXtoVW(16)};
   display: flex;
   align-content: center;
 `;
 
 const ExplanationTextCss = css`
-  font-size: 16px;
-  line-height: 24px;
+  font-size: ${changePXtoVW(16)};
+  line-height: ${changePXtoVW(24)};
   font-weight: 600;
 `;
 
 const Text = styled.div`
-  padding-top: 12px;
-  padding-bottom: 8px;
+  padding-top: ${changePXtoVH(12)};
+  padding-bottom: ${changePXtoVH(8)};
   ${ExplanationTextCss}
 `;
 
@@ -91,7 +89,7 @@ const ExplanationTitle = styled.div`
 `;
 
 const ExplanationHtmlCss = css`
-  max-height: 50px;
+  max-height: ${changePXtoVH(50)};
   font-size: ${changePXtoVW(24)};
   color: ${colorPalette.descriptionText};
   font-weight: 400;

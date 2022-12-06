@@ -15,11 +15,11 @@ interface QuestionBlankStylesProps {
 const QuestionBlankStyles = styled.span<QuestionBlankStylesProps>`
   position: relative;
   display: inline-block;
-  min-width: 5vw;
-  margin-right: 8px;
-  margin-left: 8px;
+  min-width: ${changePXtoVW(96)};
+  margin-right: ${changePXtoVW(8)};
+  margin-left: ${changePXtoVW(8)};
   border: 3px dashed ${(props) => props.borderColor};
-  border-radius: 0.625vw;
+  border-radius: ${changePXtoVW(12)};
   background-color: ${(props) => props.backgroundColor};
   color: ${colorPalette.deepBlue};
   text-align: center;

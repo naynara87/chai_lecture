@@ -32,7 +32,6 @@ const globalStyle = css`
     border: 0;
     line-height: 1.15;
     vertical-align: baseline;
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     /* font-size: 100%; */
     /* font: inherit; */
@@ -43,8 +42,6 @@ const globalStyle = css`
   }
 
   html {
-    -webkit-tap-highlight-color: transparent;
-    -webkit-text-size-adjust: 100%;
     font-size: 16px;
     /* scroll-behavior: smooth; */
   }
@@ -74,11 +71,6 @@ const globalStyle = css`
 
   select {
     padding: 5px 10px;
-  }
-
-  /* ie 화살표 제거 */
-  select::-ms-expand {
-    display: none;
   }
 
   address {

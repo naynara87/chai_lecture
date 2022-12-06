@@ -81,7 +81,7 @@ const CloseButton = styled.button<CloseButtonProps>`
   position: absolute;
   background-color: ${colorPalette.deepBlue};
   border-radius: 100%;
-  padding: 15px;
+  padding: ${changePXtoVH(15)} ${changePXtoVW(15)};
   top: 0;
   right: 3%;
   transform: translateY(-50%);

@@ -16,8 +16,8 @@ const ButtonTextArrow = styled(Button)<ButtonTextArrowProps>`
   position: relative;
   height: auto;
   padding: ${changePXtoVH(16)} ${changePXtoVW(48)};
-  padding-right: ${({ direction }) => (direction === "right" ? "3.75vw" : "2.5vw")};
-  padding-left: ${({ direction }) => (direction === "left" ? "3.75vw" : "2.5vw")};
+  padding-right: ${({ direction }) => (direction === "right" ? `${changePXtoVW(72)}` : `${changePXtoVW(32)}`)};
+  padding-left: ${({ direction }) => (direction === "left" ? `${changePXtoVW(72)}` : `${changePXtoVW(32)}`)};
   border-radius: ${changePXtoVH(48)};
   background-color: ${(props) =>
     props.disabled ? colorPalette.disableBackground : colorPalette.white};
@@ -31,15 +31,15 @@ const ButtonTextArrow = styled(Button)<ButtonTextArrowProps>`
 const arrowCss = css`
   transform: scale(0.6);
   position: absolute;
-  margin-left: 10px;
-  right: 16px;
+  margin-left: ${changePXtoVW(10)};
+  right: ${changePXtoVW(16)};
 `;
 
 const arrowCssLeft = css`
   transform: scale(0.6);
   position: absolute;
-  margin-right: 10px;
-  left: 16px;
+  margin-right: ${changePXtoVW(10)};
+  left: ${changePXtoVW(16)};
 `;
 
 interface FooterButtonProps {

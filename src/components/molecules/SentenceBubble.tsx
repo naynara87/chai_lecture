@@ -57,7 +57,7 @@ const SentenceBubble = styled.div<SentenceBubbleProps>`
   right: 0;
   transform: ${(props) => props.open && `translateX(${changePXtoVW(550)})`};
   transition: all 0.3s ease-in;
-  margin-left: 20px;
+  margin-left: ${changePXtoVW(20)};
 `;
 
 interface BubbleMoreIconProps {
@@ -89,8 +89,8 @@ const htmlCss = css`
 `;
 
 const audioCss = css`
-  width: 30px;
-  height: 30px;
+  width: ${changePXtoVW(30)};
+  height: ${changePXtoVW(30)};
 `;
 
 interface SentenceBubbleComponentProps {

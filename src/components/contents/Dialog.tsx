@@ -22,16 +22,10 @@ const DialogWrapper = styled.div`
 `;
 
 const TalkBubbleGrp = styled.div`
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: start;
-  -ms-flex-pack: start;
   justify-content: flex-start;
-  margin: 2.0833333333vw 0;
+  margin: ${changePXtoVW(40)} 0;
 `;
 
 const Profile = styled.div<ProfileProps>`
@@ -41,9 +35,6 @@ const Profile = styled.div<ProfileProps>`
   overflow: hidden;
   background-color: ${(props) => props.profileColor};
   color: ${(props) => props.profileColor};
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
   position: relative;
   z-index: 2;
@@ -58,9 +49,6 @@ const NullProfile = styled.div`
   height: ${changePXtoVW(120)};
   border-radius: 50%;
   overflow: hidden;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
   position: relative;
   z-index: 2;
@@ -73,9 +61,9 @@ interface TalkBubbleProps {
 const TalkBubble = styled.div<TalkBubbleProps>`
   position: relative;
   min-width: ${changePXtoVW(440)};
-  margin-left: 2.9166666667vw;
+  margin-left: ${changePXtoVW(56)};
   padding: ${changePXtoVW(20)} ${changePXtoVW(25)};
-  border-radius: 1.25vw;
+  border-radius: ${changePXtoVW(24)};
   background-color: ${(props) => props.bubbleColor};
   text-align: left;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
@@ -102,13 +90,7 @@ const TalkBubble = styled.div<TalkBubbleProps>`
     width: 52px;
     height: 30px;
     background: ${colorPalette.backgroundWhite};
-    -webkit-border-bottom-right-radius: 110px 50px;
-    -moz-border-radius-bottomright: 110px 50px;
     border-bottom-right-radius: 110px 50px;
-    -webkit-transform: translate(-30px, -2px);
-    -moz-transform: translate(-30px, -2px);
-    -ms-transform: translate(-30px, -2px);
-    -o-transform: translate(-30px, -2px);
     transform: translate(-30px, -2px);
   }
 `;
@@ -126,18 +108,12 @@ interface AnswerChoiceProps {
 }
 
 const AnswerChoice = styled.div<AnswerChoiceProps>`
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
   display: inline-flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
   padding: ${changePXtoVH(10)} ${changePXtoVW(50)};
   border: 2px solid ${(props) => props.choiceDefaultColor};
-  border-radius: 2.7083333333vw;
+  border-radius: ${changePXtoVW(52)};
   font-weight: 400;
   font-size: ${changePXtoVW(30)};
   color: ${(props) => props.choiceDefaultColor};
@@ -163,23 +139,22 @@ const QuestionWrapper = styled.div`
 `;
 
 const AudioWrapper = styled.div`
-  margin-left: 10px;
+  margin-left: ${changePXtoVW(10)};
 `;
 
 const wordCss = css`
-  font-size: 1.5625vw;
+  font-size:${changePXtoVW(30)};
   color: ${colorPalette.black};
 `;
 
 const pronunciationCss = css`
-  margin-top: 0.4166666667vh;
-  font-size: 1.25vw;
-  font-size: 13px;
+  margin-top: ${changePXtoVH(6)};
+  font-size: ${changePXtoVW(13)};
   color: ${colorPalette.descriptionText};
 `;
 
 const meaningCss = css`
-  font-size: 1.25vw;
+  font-size: ${changePXtoVW(24)};
   color: ${colorPalette.descriptionText};
 `;
 

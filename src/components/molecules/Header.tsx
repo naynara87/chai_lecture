@@ -6,7 +6,6 @@ import { css } from "@emotion/react";
 import { useQuery } from "@tanstack/react-query";
 import { QUERY_KEY } from "../../constants/queryKey";
 import { getAppData } from "../../data/tempApi";
-import { breakPoints } from "../../constants/layout";
 import CornerSignPost from "../atoms/CornerSignPost";
 import { CORNER_LIST_URL } from "../../constants/url";
 import { headerHeight } from "../../styles/layout";
@@ -33,7 +32,7 @@ const HeaderTitle = styled.h1`
 `;
 
 const LessonTitle = styled.b`
-  margin-left: 4px;
+  margin-left: ${changePXtoVW(4)};
   font-weight: 600;
   font-size: ${changePXtoVW(30)};
 `;

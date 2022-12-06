@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { colorPalette } from "../../styles/colorPalette";
 import IconCheck from "./svg/IconCheck";
 import { CornerStateType } from "../../types/corner";
-import { changePXtoVW } from "../../utils/styles";
+import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 
 interface CornerStateItemProps {
   backgroundColor: string;
@@ -17,7 +17,7 @@ const CornerStateItem = styled.li<CornerStateItemProps>`
   width: ${changePXtoVW(32)};
   height: ${changePXtoVW(32)};
   border-radius: 50%;
-  margin: 4px 5px;
+  margin: ${changePXtoVH(4)} ${changePXtoVW(5)};
   border: 1px solid ${(props) => props.borderColor};
   background-color: ${(props) => props.backgroundColor};
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);

@@ -3,6 +3,7 @@ import React from "react";
 import { colorPalette } from "../../styles/colorPalette";
 import { ID } from "../../types/appData";
 import { Tab } from "../../types/pageTemplate";
+import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import Button from "./Button";
 
 interface TabButtonStyleProps {
@@ -11,15 +12,15 @@ interface TabButtonStyleProps {
 }
 const TabButtonStyle = styled(Button)<TabButtonStyleProps>`
   display: inline-block;
-  margin: 0 6px;
-  margin-bottom: 6px;
-  padding: 4px 26px;
-  border-radius: 9px;
+  margin: 0 ${changePXtoVW(6)};
+  margin-bottom: ${changePXtoVH(6)};
+  padding: ${changePXtoVH(4)} ${changePXtoVW(26)};
+  border-radius: ${changePXtoVW(9)};
   background-color: ${(props) =>
     props.active ? colorPalette.confirmBtn : colorPalette.tabBackground};
   line-height: 1.6;
   font-weight: 600;
-  font-size: 16px;
+  font-size: ${changePXtoVW(16)};
   color: ${colorPalette.white};
   cursor: ${(props) => (props.cursorPointer ? "pointer" : "default")};
 `;

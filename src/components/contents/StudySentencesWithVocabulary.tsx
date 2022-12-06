@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import styled from "@emotion/styled";
 import { SentenceWord, StudySentencesWithVocabularyData } from "../../types/templateContents";
 import ImageContentComponent from "./ImageContentComponent";
-import { changePXtoVW } from "../../utils/styles";
+import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import { colorPalette } from "../../styles/colorPalette";
 import OptionButton from "../atoms/OptionButton";
 import HtmlContentComponent from "../molecules/HtmlContentComponent";
@@ -35,7 +35,7 @@ const OptionContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: ${changePXtoVW(10)};
 `;
 
 const OptionButtonWrapper = styled.div`
@@ -60,42 +60,42 @@ interface ChangeSentenceIndexButtonProps {
 
 const ChangeSentenceIndexButton = styled.div<ChangeSentenceIndexButtonProps>`
   cursor: ${(props) => (props.isLast ? "pointer" : "default")};
-  margin-left: 10px;
+  margin-left: ${changePXtoVW(10)};
   display: flex;
   align-items: center;
   opacity: ${(props) => !props.isLast && 0.3};
 `;
 
 const ShowAllSentencesButton = styled.button`
-  width: 108px;
-  height: 30px;
+  width: ${changePXtoVW(108)};
+  height: ${changePXtoVH(30)};
   border: 3px solid ${colorPalette.sentenceAllButton};
-  border-radius: 28px;
-  font-size: 16px;
+  border-radius: ${changePXtoVW(28)};
+  font-size: ${changePXtoVW(16)};
   font-weight: 700;
-  line-height: 26px;
+  line-height: ${changePXtoVW(26)};
   cursor: pointer;
   color: ${colorPalette.sentenceAllButton};
 `;
 
 const optionButtonCss = css`
-  width: 100px;
+  width: ${changePXtoVW(100)};
 `;
 
 const optionIconCss = css`
   &.active {
-    left: 65px;
+    left: ${changePXtoVW(65)};
   }
 `;
 
 const optionTextCss = css`
   &.active {
-    right: 50px;
+    right: ${changePXtoVW(50)};
   }
 `;
 
 const htmlCss = css`
-  margin-bottom: 10px;
+  margin-bottom: ${changePXtoVH(10)};
   line-height: 1.35;
 `;
 
@@ -116,7 +116,7 @@ const SentencesOption = styled.button<SentencesOptionProps>`
   width: ${changePXtoVW(300)};
   height: ${changePXtoVW(72)};
   background-color: ${(props) => props.bgColor || colorPalette.disableBackground};
-  border-radius: 8px;
+  border-radius: ${changePXtoVW(8)};
   color: ${colorPalette.white};
   font-size: ${changePXtoVW(30)};
   cursor: pointer;

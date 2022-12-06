@@ -9,7 +9,7 @@ export const breakPoints = {
 export const gridContentLayoutCommonGap = "4%";
 export const tabTemplateGridGap = "7%";
 
-export const footerHeightNormal = `${changePXtoVH(104)}`;
-export const headerHeightNormal = `${changePXtoVH(112)}`;
+export const footerHeightNormal = "7.2222222222vh";
+export const headerHeightNormal = "7.7777777778vh";
 
 export const tabletBreakPoint = 768;

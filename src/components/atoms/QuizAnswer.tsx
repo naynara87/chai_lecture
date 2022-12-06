@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import React, { useMemo } from "react";
 import { colorPalette } from "../../styles/colorPalette";
+import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 
 interface QuizAnswerStyleProps {
   color: string;
@@ -11,28 +12,27 @@ const QuizAnswerStyle = styled.li<QuizAnswerStyleProps>`
   .label-quiz-answer {
     display: inline-block;
     color: #9b9b9b;
-    margin: 0 16px;
+    margin: 0 ${changePXtoVW(16)};
     margin-top: 0;
     cursor: pointer;
   }
   .label-quiz-answer .word-wrap {
     position: relative;
     display: inline-block;
-    padding: 1.3888888889vh 2.5vw 1.3888888889vh 4.5833333333vw;
+    padding: ${changePXtoVH(20)} ${changePXtoVW(32)} ${changePXtoVH(20)} ${changePXtoVW(88)};
     border: 0.2083333333vw solid #9b9b9b;
-    border-radius: 2.7083333333vw;
+    border-radius: ${changePXtoVW(52)};
     font-weight: 600;
-    font-size: 1.5625vw;
+    font-size: ${changePXtoVW(30)};
   }
   .label-quiz-answer .word-wrap .img-wrap {
-    width: 2.5vw;
-    height: 2.5vw;
+    width: ${changePXtoVW(32)};
+    height: ${changePXtoVW(32)};
     border-radius: 50%;
     position: absolute;
     top: 50%;
-    left: 1.25vw;
+    left: ${changePXtoVW(24)};
     background-color: #9b9b9b;
-    -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
     display: flex;
     justify-content: center;
@@ -42,10 +42,10 @@ const QuizAnswerStyle = styled.li<QuizAnswerStyleProps>`
     width: 58%;
   }
   .label-quiz-answer .phonetic-wrap {
-    margin-top: 1.1111111111vh;
-    padding-left: 4.5833333333vw;
+    margin-top: ${changePXtoVH(16)};
+    padding-left: ${changePXtoVW(88)};
     font-weight: 500;
-    font-size: 1.5625vw;
+    font-size:${changePXtoVW(30)};
     text-align: left;
   }
 

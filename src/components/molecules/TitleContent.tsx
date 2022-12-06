@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import ChaiSkeleton from "../atoms/ChaiSkeleton";
-import { breakPoints } from "../../constants/layout";
 import { colorPalette } from "../../styles/colorPalette";
 import { changePXtoVW } from "../../utils/styles";
 
@@ -31,14 +30,11 @@ const MainTitle = styled.h2`
 `;
 
 const SubTitle = styled.p`
-  margin-top: 9px;
+  margin-top: ${changePXtoVW(16)};
   font-weight: 500;
   font-size: ${changePXtoVW(28)};
   color: ${colorPalette.descriptionText};
   margin-bottom: ${changePXtoVW(25)};
-  @media all and (max-width: ${breakPoints.tablet}) {
-    margin-top: 0.8333333333vw;
-  }
 `;
 
 interface TitleContentProps {
