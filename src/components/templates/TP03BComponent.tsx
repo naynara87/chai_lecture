@@ -129,7 +129,6 @@ const TP03BComponent = ({ setPageCompleted, page, showHeader = true }: TP0BAComp
     },
     [TextBoxesContentData?.data, htmlString],
   );
-  console.log(!!AudioContentData?.data[0].src);
 
   const renderTP03BAndCComponents = useMemo(() => {
     const { type: templateType } = thisPage.template;
