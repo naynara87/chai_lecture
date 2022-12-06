@@ -213,6 +213,7 @@ const CornerListPage = () => {
                         imageAlt={corner.title}
                         filter={changeFilter(corner.id)}
                         customCss={cornerImageCss}
+                        isZoom={false}
                       />
                     </CornerImageWrapper>
                     <CornerName>{corner.title}</CornerName>
