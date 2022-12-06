@@ -28,6 +28,8 @@ const customBox03DCss = css`
   }
 `;
 const customBox03BContainerCss = css`
+  width: ${changePXtoVW(800)};
+  max-width: 400px;
   margin-top: ${changePXtoVW(50)};
 `;
 

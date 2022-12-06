@@ -84,7 +84,11 @@ const TP05AComponent = ({ setPageCompleted, page, showHeader = true }: TP05AComp
           customBoxWrapperCss={customBoxWrapperCss}
           customBoxContainerCss={customBoxContainerCss}
         />
-        <TipComponent html={htmlTipString ?? ""} customCss={customTipCss} />
+        {htmlTipString ? (
+          <TipComponent html={htmlTipString ?? ""} customCss={customTipCss}></TipComponent>
+        ) : (
+          <></>
+        )}
       </TP05Layout>
     </TemplateCommonLayout>
   );
