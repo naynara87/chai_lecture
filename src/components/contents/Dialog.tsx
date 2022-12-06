@@ -26,7 +26,7 @@ const TalkBubbleGrp = styled.div`
   align-items: center;
   justify-content: flex-start;
   margin: ${changePXtoVW(40)} 0;
-`;
+  `;
 
 const Profile = styled.div<ProfileProps>`
   width: ${changePXtoVW(120)};
@@ -38,11 +38,11 @@ const Profile = styled.div<ProfileProps>`
   user-select: none;
   position: relative;
   z-index: 2;
-
+  
   background: url(${(props) => props.icon});
   background-size: cover;
   background-position: center center;
-`;
+  `;
 
 const NullProfile = styled.div`
   width: ${changePXtoVW(120)};
@@ -52,7 +52,7 @@ const NullProfile = styled.div`
   user-select: none;
   position: relative;
   z-index: 2;
-`;
+  `;
 
 interface TalkBubbleProps {
   bubbleColor?: string;
@@ -67,7 +67,13 @@ const TalkBubble = styled.div<TalkBubbleProps>`
   background-color: ${(props) => props.bubbleColor};
   text-align: left;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+  background: pink;
 
+  /* >div > span {
+    font-size: ${changePXtoVW(30)};
+    line-height: ${changePXtoVW(45)};
+  } */
+  
   &:before {
     content: "";
     position: absolute;
@@ -80,7 +86,7 @@ const TalkBubble = styled.div<TalkBubbleProps>`
     border-top-left-radius: 111px 50px;
     transform: translate(0, -2px);
   }
-
+  
   &:after {
     content: "";
     position: absolute;
@@ -118,6 +124,7 @@ const AnswerChoice = styled.div<AnswerChoiceProps>`
   font-size: ${changePXtoVW(30)};
   color: ${(props) => props.choiceDefaultColor};
   cursor: pointer;
+
   &:last-child {
     margin-left: ${changePXtoVW(15)};
   }
@@ -140,23 +147,25 @@ const QuestionWrapper = styled.div`
 
 const AudioWrapper = styled.div`
   margin-left: ${changePXtoVW(10)};
-`;
+  `;
 
 const wordCss = css`
-  font-size:${changePXtoVW(30)};
+  font-size: ${changePXtoVW(30)};
   color: ${colorPalette.black};
-`;
+  `;
 
 const pronunciationCss = css`
-  margin-top: ${changePXtoVH(6)};
-  font-size: ${changePXtoVW(13)};
-  color: ${colorPalette.descriptionText};
-`;
-
-const meaningCss = css`
+  margin-top: ${changePXtoVH(8)};
   font-size: ${changePXtoVW(24)};
   color: ${colorPalette.descriptionText};
-`;
+  `;
+
+const meaningCss = css`
+  margin-top: ${changePXtoVH(8)};
+  font-weight: 500;
+  font-size: ${changePXtoVW(24)};
+  color: ${colorPalette.descriptionText};
+  `;
 
 const iconCss = css`
   width: ${changePXtoVW(80)};

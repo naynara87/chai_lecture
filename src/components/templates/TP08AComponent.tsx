@@ -27,6 +27,16 @@ const HtmlContainer = styled.div`
 
 const htmlCss = css`
   margin-bottom: ${changePXtoVH(10)};
+
+  > h1 {
+    font-size: ${changePXtoVW(64)};
+  }
+
+  > p {
+    margin-top: ${changePXtoVH(24)};
+    font-weight: 500;
+    font-size: ${changePXtoVW(48)};
+  }
 `;
 
 const imageCss = css`
@@ -36,7 +46,7 @@ const imageCss = css`
 const sentenceContainerCss = css`
   position: absolute;
   left: 25%;
-  bottom: ${footerHeightNormal};
+  bottom: calc(${footerHeightNormal} + ${changePXtoVH(20)});
   margin-bottom: ${changePXtoVH(5)};
 `;
 

@@ -42,7 +42,7 @@ const BubbleText = styled.div<BubbleTextProps>`
   align-items: center;
   color: ${colorPalette.white};
   font-size: ${changePXtoVW(30)};
-  font-weight: 700;
+  font-weight: 500;
   display: flex;
   justify-content: ${(props) => props.open && "space-between"};
 `;

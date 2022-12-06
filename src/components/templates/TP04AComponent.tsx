@@ -9,7 +9,7 @@ import TP04Layout from "../Layouts/TP04Layout";
 import TitleContent from "../molecules/TitleContent";
 import ImageContentComponent from "../contents/ImageContentComponent";
 import { css } from "@emotion/react";
-import { changePXtoVW } from "../../utils/styles";
+import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import HtmlContentComponent from "../molecules/HtmlContentComponent";
 
 const imageCustomCss = css`
@@ -19,14 +19,14 @@ const imageCustomCss = css`
 `;
 
 const ContainerWrapper = styled.div`
-  display: grid;
+  display: flex;
   grid-template-columns: 33% 33%;
   width: 100%;
-  gap: 4%;
+  min-height: ${changePXtoVH(384)};
   align-items: center;
   margin: 0 auto;
   font-size: ${changePXtoVW(36)};
-  justify-content: center;
+  margin-top: ${changePXtoVH(32)};
 `;
 
 const AudioWrapper = styled.div`
@@ -36,7 +36,21 @@ const AudioWrapper = styled.div`
 `;
 
 const htmlCustomCss = css`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
   text-align: left;
+  font-size: ${changePXtoVW(48)};
+  font-weight: 500;
+
+  > h2 {
+    font-size: ${changePXtoVW(48)};
+  }
+
+  > p {
+    margin-top: ${changePXtoVH(32)};
+  }
 `;
 
 interface TP0BAComponentProps extends TemplateProps {}

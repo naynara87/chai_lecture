@@ -11,20 +11,22 @@ interface TipWrapperProps {
 
 const TipWrapper = styled.div<TipWrapperProps>`
   background-position: left top;
-  background-size: ${changePXtoVW(40)};
+  background-size: ${changePXtoVW(56)};
   background-repeat: no-repeat;
   background-image: url("${process.env.PUBLIC_URL}/images/icon/icon_tipbuble.svg");
   display: inline-block;
-  margin-top: ${changePXtoVH(32)};
-  padding-top: ${changePXtoVH(16)};
   padding-bottom: ${changePXtoVH(16)};
-  padding-left: ${changePXtoVW(40)};
-  line-height: 1.3;
+  padding-left: ${changePXtoVW(56)};
   font-size: ${changePXtoVW(30)};
   text-align: left;
   white-space: pre-line;
   color: ${colorPalette.descriptionText};
   ${(props) => props.customCss}
+  margin-top: ${changePXtoVH(48)};
+
+  > div {
+  line-height: 1.6;
+  }
 `;
 
 interface TipComponentProps {

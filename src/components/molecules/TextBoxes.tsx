@@ -14,7 +14,7 @@ interface TextBoxesWrapperProps {
 }
 
 const TextBoxesWrapper = styled.div<TextBoxesWrapperProps>`
-  width: ${changePXtoVW(600)};
+  width: ${changePXtoVW(944)};
   display: flex;
   justify-content: center;
   flex-direction: row;
@@ -31,6 +31,11 @@ const TextCardGrp = styled.div<TextCardGrpProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  > div:first-child {
+  min-width: ${changePXtoVW(288)};
+  height: ${changePXtoVH(160)};
+}
 
   &.horizontal {
     display: flex;

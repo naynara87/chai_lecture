@@ -11,7 +11,7 @@ import HtmlContentComponent from "./HtmlContentComponent";
 
 const ExplanationWrapper = styled.div`
   position: fixed;
-  bottom: ${footerHeightNormal};
+  bottom: calc(${footerHeightNormal} + ${changePXtoVH(10)});
   left: 0;
   width: 100%;
   display: flex;
@@ -19,26 +19,28 @@ const ExplanationWrapper = styled.div`
 `;
 
 const ExplanationContainer = styled.div`
-  width: 53%;
-  min-width: ${changePXtoVW(375)};
-  max-width: ${changePXtoVW(650)};
-  display: grid;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  width: 100%;
+  max-width: ${changePXtoVW(1340)};
+  min-height: ${changePXtoVH(160)};
   grid-template-columns: max-content 1fr;
-  gap: 16px;
 `;
 
 const CloseButton = styled.button`
   position: absolute;
-  background-color: ${colorPalette.deepBlue};
-  border-radius: 100%;
-  padding: ${changePXtoVH(15)} ${changePXtoVW(15)};
   top: 0;
   right: 0;
-  transform: translateX(-20%);
+  width: ${changePXtoVW(56)};
+  height: ${changePXtoVW(56)};
+  border-radius: 50%;
+  background-color: ${colorPalette.deepBlue};
   background-image: url("${process.env.PUBLIC_URL}/images/icon/icon_close.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 40%;
+  transform: translateX(-20%);
   cursor: pointer;
 `;
 
@@ -46,8 +48,8 @@ const TextBox = styled.div`
   display: flex;
   position: relative;
   align-items: center;
-  width: 100%;
-  height: 95%;
+  width: calc(100% - ${changePXtoVW(120)});
+  height: ${changePXtoVH(160)};
   padding: ${changePXtoVH(10)} ${changePXtoVW(40)};
   background-position: left 3px;
   background-size: 100% 100%;
@@ -56,19 +58,17 @@ const TextBox = styled.div`
 `;
 
 const ImageWrapper = styled.div`
-  width: ${changePXtoVW(70)};
-  display: flex;
-  flex-basis: flex-end;
+  width: ${changePXtoVW(120)};
 `;
 
 const OXWrapper = styled.div`
-  width: ${changePXtoVW(40)};
-  min-width: ${changePXtoVW(40)};
+  width: ${changePXtoVW(96)};
+  min-width: ${changePXtoVW(96)};
   height: 100%;
   padding-top: ${changePXtoVH(4)};
-  margin-right: ${changePXtoVW(16)};
+  margin-left: ${changePXtoVW(40)};
+  margin-right: ${changePXtoVW(32)};
   display: flex;
-  align-content: center;
 `;
 
 const ExplanationTextCss = css`
