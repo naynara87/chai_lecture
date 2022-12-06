@@ -45,5 +45,6 @@ export const colorPalette = Object.freeze({
   pronunciationText: COLORS.gray600,
   modalCheckIcon: COLORS.yellow700,
   questionTitle: COLORS.gray800,
+  loadingModalDescription: COLORS.gray800,
   wrongAnswer: COLORS.red500,
 });
