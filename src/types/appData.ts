@@ -1,3 +1,4 @@
+import { CornerNameType } from "./cornerName";
 import {
   TP01A,
   TP03A,
@@ -91,7 +92,7 @@ type CornerType =
 export type Corner = {
   id: ID;
   type: CornerType;
-  title: string;
+  title: CornerNameType;
   isCompleted: boolean;
   cornerIcon: string;
   introduction: {
