@@ -103,7 +103,7 @@ export type VideoContent = {
   }[];
 };
 
-type VideoTrack = {
+export type VideoTrack = {
   src: string; // 자막 파일 경로 e.g. https://video_track_url/track1.vtt
   kind?: "subtitles" | "captions" | "descriptions" | "chapters" | "metadata";
   srclang?: string; // 자막 언어 e.g. en, ko

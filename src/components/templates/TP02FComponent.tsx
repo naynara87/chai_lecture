@@ -33,6 +33,11 @@ const TP02FComponent = ({ setPageCompleted, page, showHeader = true }: TP02FComp
     return videoUrlData;
   }, [videoContentData]);
 
+  const videoTracks = useMemo(() => {
+    const videoTracksData = videoContentData?.data.find((content) => content.tracks);
+    return videoTracksData;
+  }, [videoContentData]);
+
   return (
     <TemplateCommonLayout>
       {showHeader ? (
@@ -41,7 +46,11 @@ const TP02FComponent = ({ setPageCompleted, page, showHeader = true }: TP02FComp
         <></>
       )}
       <TP02Layout>
-        <VideoContentComponent videoUrl={videoUrlString?.src ?? ""} customCss={customVideoCss} />
+        <VideoContentComponent
+          videoUrl={videoUrlString?.src ?? ""}
+          customCss={customVideoCss}
+          tracks={videoTracks?.tracks?.[0]}
+        />
       </TP02Layout>
     </TemplateCommonLayout>
   );

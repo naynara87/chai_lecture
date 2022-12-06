@@ -673,6 +673,14 @@ export const dummyData: AppData = {
                 data: [
                   {
                     src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/Z0THYmwEtAzmFlvBjbF4fN2dCnGGaxPZ/FHb33f8T/A01_video_gm.01.m3u8",
+                    tracks: [
+                      {
+                        kind: "captions",
+                        src: `${process.env.PUBLIC_URL}/assets/track/sample.vtt`,
+                        srclang: "en",
+                        default: true,
+                      },
+                    ],
                   },
                 ],
               },
