@@ -33,6 +33,7 @@
     "test": "craco test",
     "eject": "craco eject"
   },
+  "homepage": "/new_assets/bubble-player",
   "eslintConfig": {
     "extends": [
       "react-app",

@@ -20,6 +20,7 @@ import { useRecoilState } from "recoil";
 import { cornersState } from "../../state/corners";
 import { useNavigate } from "react-router-dom";
 import { changePXtoVW } from "../../utils/styles";
+import useCornerIconMapper from "../../hooks/useCornerIconMapper";
 // import usePageList from "../../hooks/api/usePageList";
 
 const CornerListWrapper = styled.main`
@@ -135,6 +136,8 @@ const CornerListPage = () => {
   const [currentCorner, setCurrentCorner] = useState<Corner>();
   const [isModalCloseOpen, setIsModalCloseOpen] = useState(false);
 
+  const { getCornerIcon } = useCornerIconMapper();
+
   const navigate = useNavigate();
 
   // const {pageList} = usePageList(currentCorner?.id); // TODO: 실제 데이터 적용하기 => BBC-602
@@ -209,7 +212,7 @@ const CornerListPage = () => {
                   <CornerList key={corner.id}>
                     <CornerImageWrapper>
                       <ImageContentComponent
-                        imageSrc={corner.cornerIcon}
+                        imageSrc={getCornerIcon(corner.title)}
                         imageAlt={corner.title}
                         filter={changeFilter(corner.id)}
                         customCss={cornerImageCss}
