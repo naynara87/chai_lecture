@@ -17,7 +17,7 @@ const OptionWrapper = styled.div<OptionWrapperProps>`
   position: relative;
   transition: all 0.3s ease-in;
   cursor: pointer;
-  margin-left: ${changePXtoVW(10)};;
+  margin-left: ${changePXtoVW(10)};
 
   &.active {
     background: ${colorPalette.deepBlue};

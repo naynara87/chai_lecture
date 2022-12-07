@@ -12,15 +12,15 @@ interface TabButtonStyleProps {
 }
 const TabButtonStyle = styled(Button)<TabButtonStyleProps>`
   display: inline-block;
-  margin: 0 ${changePXtoVW(6)};
-  margin-bottom: ${changePXtoVH(6)};
-  padding: ${changePXtoVH(4)} ${changePXtoVW(26)};
+  margin: 0 ${changePXtoVW(24)};
+  margin-bottom: ${changePXtoVH(30)};
+  padding: ${changePXtoVH(12)} ${changePXtoVW(64)};
   border-radius: ${changePXtoVW(9)};
   background-color: ${(props) =>
     props.active ? colorPalette.confirmBtn : colorPalette.tabBackground};
   line-height: 1.6;
   font-weight: 600;
-  font-size: ${changePXtoVW(16)};
+  font-size: ${changePXtoVW(30)};
   color: ${colorPalette.white};
   cursor: ${(props) => (props.cursorPointer ? "pointer" : "default")};
 `;

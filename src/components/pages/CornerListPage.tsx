@@ -19,7 +19,7 @@ import { headerHeightNormal } from "../../constants/layout";
 import { useRecoilState } from "recoil";
 import { cornersState } from "../../state/corners";
 import { useNavigate } from "react-router-dom";
-import { changePXtoVW } from "../../utils/styles";
+import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import useCornerIconMapper from "../../hooks/useCornerIconMapper";
 // import usePageList from "../../hooks/api/usePageList";
 
@@ -28,13 +28,9 @@ const CornerListWrapper = styled.main`
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 43px;
+  gap: ${changePXtoVH(80)} ${changePXtoVW(80)};
   max-width: ${changePXtoVW(792)};
   margin: ${changePXtoVW(200)} auto 0;
-
-  &.layout7 {
-    max-width: ${changePXtoVW(1088)};
-  }
 `;
 
 const CornerImageWrapper = styled.div`

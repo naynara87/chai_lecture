@@ -4,6 +4,7 @@ import { BottomTabsData } from "../../types/templateContents";
 import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import { colorPalette } from "../../styles/colorPalette";
 import useContentMapper from "../../hooks/useContentMapper";
+import { footerHeightNormal } from "../../constants/layout";
 
 interface BottomTabsWrapperProps {
   open: boolean;
@@ -13,7 +14,8 @@ const BottomTabsWrapper = styled.div<BottomTabsWrapperProps>`
   width: ${changePXtoVW(1680)};
   height: ${(props) => (props.open ? `${changePXtoVH(451)}` : `${changePXtoVH(160)}`)};
   position: fixed;
-  bottom: ${(props) => (props.open ? "60px" : 0)};
+  bottom: ${(props) => (props.open ? `${footerHeightNormal}` : 0)};
+  /* bottom: ; */
   left: 50%;
   transform: translateX(-50%);
   transition: all 0.3s ease-in-out;
@@ -31,16 +33,18 @@ interface TabHeaderProps {
   isFocus: boolean;
 }
 const TabHeader = styled.div<TabHeaderProps>`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: ${changePXtoVW(200)};
   height: ${changePXtoVW(64)};
   border-radius: 16px 16px 0 0;
   background-color: ${(props) =>
     props.isFocus ? colorPalette.bottomTabBorder : colorPalette.disableBottomTabHeader};
+    font-weight: bold;
+    font-size: ${changePXtoVW(24)};
   color: ${(props) => (props.isFocus ? colorPalette.white : colorPalette.black)};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
   cursor: pointer;
 `;
 
@@ -49,22 +53,41 @@ interface BottomTabMainContainerProps {
 }
 
 const BottomTabMainContainer = styled.div<BottomTabMainContainerProps>`
+  overflow-y: auto;
   width: 100%;
   height: 100%;
-  overflow-y: auto;
-  background-color: ${colorPalette.backgroundWhite};
-  border-radius: 40px 40px 0 0;
+  padding: ${changePXtoVH(25)} ${changePXtoVW(80)} ${changePXtoVH(50)};
   border: 4px solid ${colorPalette.bottomTabBorder};
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
+  border-radius: ${changePXtoVW(40)} ${changePXtoVW(40)} 0 0;
+  background-color: ${colorPalette.backgroundWhite};
+  text-align: left;
+
   &::-webkit-scrollbar {
     display: none;
   }
 
   & img {
     width: ${changePXtoVW(300)};
+  }
+
+  > div {
+    margin-top: ${changePXtoVH(24)};
+  }
+
+  h3 {
+    font-size: ${changePXtoVW(30)};
+    line-height: 1.6;
+
+    &.c2 {
+      font-weight: 400;
+      font-size: ${changePXtoVW(38)};
+    }
+  }
+
+  p {
+    margin-top: ${changePXtoVH(4)};
+    font-size: ${changePXtoVW(24)};
+    line-height: 1.4;
   }
 
   & * {
@@ -78,20 +101,22 @@ interface CloseButtonProps {
 }
 
 const CloseButton = styled.button<CloseButtonProps>`
+  opacity: ${(props) => !props.open && 0};
   position: absolute;
-  background-color: ${colorPalette.deepBlue};
-  border-radius: 100%;
-  padding: ${changePXtoVH(15)} ${changePXtoVW(15)};
   top: 0;
-  right: 3%;
-  transform: translateY(-50%);
+  left: auto;
+  right: ${changePXtoVW(24)};
+  width: ${changePXtoVW(56)};
+  height: ${changePXtoVW(56)};
+  border-radius: 100%;
+  background-color: ${colorPalette.deepBlue};
   background-image: url("${process.env.PUBLIC_URL}/images/icon/icon_close.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 40%;
+  transform: translateY(calc(-100% - 8px));
   transition: all 0.3s ease-in-out;
   cursor: ${(props) => props.open && "pointer"};
-  opacity: ${(props) => !props.open && 0};
 `;
 
 interface BottomTabsProps {

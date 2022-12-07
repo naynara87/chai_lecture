@@ -40,7 +40,7 @@ const OptionContainer = styled.div`
 
 const OptionButtonWrapper = styled.div`
   display: flex;
-  height: ${changePXtoVW(70)};
+  /* height: ${changePXtoVW(70)}; */
   align-items: center;
 `;
 
@@ -50,8 +50,9 @@ const TextContainer = styled.div`
   font-size: ${changePXtoVW(48)};
   font-weight: 400;
   color: ${colorPalette.descriptionText};
-  white-space: pre-wrap;
+  white-space: pre-line;
   text-align: left;
+  padding: ${changePXtoVH(50)} 0;
 `;
 
 interface ChangeSentenceIndexButtonProps {
@@ -67,30 +68,34 @@ const ChangeSentenceIndexButton = styled.div<ChangeSentenceIndexButtonProps>`
 `;
 
 const ShowAllSentencesButton = styled.button`
-  width: ${changePXtoVW(108)};
-  height: ${changePXtoVH(30)};
+  min-width: ${changePXtoVW(100)};
+  height: ${changePXtoVH(64)};
+  padding: 0 ${changePXtoVW(48)};
   border: 3px solid ${colorPalette.sentenceAllButton};
   border-radius: ${changePXtoVW(28)};
-  font-size: ${changePXtoVW(16)};
-  font-weight: 700;
-  line-height: ${changePXtoVW(26)};
-  cursor: pointer;
+  font-weight: 600;
+  font-size: ${changePXtoVW(24)};
   color: ${colorPalette.sentenceAllButton};
+  cursor: pointer;
 `;
 
 const optionButtonCss = css`
-  width: ${changePXtoVW(100)};
+  min-width: ${changePXtoVW(200)};
 `;
 
 const optionIconCss = css`
   &.active {
-    left: ${changePXtoVW(65)};
+    left: calc(100% - ${changePXtoVW(15)});
+    transform: translateX(-100%) translateY(-50%);
   }
 `;
 
 const optionTextCss = css`
+    left: calc(100% - ${changePXtoVW(30)});
+    transform: translateX(-100%) translateY(-50%);
   &.active {
-    right: ${changePXtoVW(50)};
+    left: ${changePXtoVW(30)};
+    transform: translateY(-50%);
   }
 `;
 

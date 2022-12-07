@@ -24,8 +24,7 @@ const customBox03DCss = css`
   height: ${changePXtoVH(154)};
 `;
 const customBox03BContainerCss = css`
-  width: ${changePXtoVW(800)};
-  max-width: 400px;
+  /* width: ${changePXtoVW(800)}; */
   margin-top: ${changePXtoVW(50)};
 `;
 

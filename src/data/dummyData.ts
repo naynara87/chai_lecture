@@ -1375,7 +1375,14 @@ export const dummyData: AppData = {
                           type: "html",
                           data: [
                             {
-                              text: "<h2>ma 엄마</h2><p>성모와 운모가 같더라도 성조가 다르면 뜻이 달라져요.</p>",
+                              text: "<h2>ma</h2>",
+                            },
+                            {
+                              text: "<p>엄마</p>",
+                            },
+                            {
+                               kind: "tip",
+                              text: "<p>성모와 운모가 같더라도 성조가 다르면 뜻이 달라져요.</p>",
                             },
                           ],
                         },

@@ -1,6 +1,7 @@
 import { css, SerializedStyles } from "@emotion/react";
 import styled from "@emotion/styled";
 import React, { useMemo, useState } from "react";
+import { footerHeightNormal } from "../../constants/layout";
 import { colorPalette } from "../../styles/colorPalette";
 import { SentenceWord } from "../../types/templateContents";
 import { changePXtoVW } from "../../utils/styles";
@@ -17,10 +18,16 @@ interface BubbleContainerProps {
 }
 
 const BubbleContainer = styled.div<BubbleContainerProps>`
+  z-index: 5;
+  position: fixed;
+  left: 50%;
+  top: auto;
+  bottom: calc(${footerHeightNormal} + 15px);
   display: flex;
-  width: ${changePXtoVW(360)};
-  margin: 10px auto 0;
-  position: relative;
+  justify-content: flex-start;
+  /* width: ${changePXtoVW(360)}; */
+  width: ${changePXtoVW(1600)};
+  transform: translateX(-50%);
 
   ${(props) => props.containerCss}
 `;
@@ -38,26 +45,26 @@ const BubbleText = styled.div<BubbleTextProps>`
   margin: 0 auto;
   height: 100%;
   display: flex;
+  /* justify-content: ${(props) => props.open && "space-between"}; */
   justify-content: center;
   align-items: center;
   color: ${colorPalette.white};
   font-size: ${changePXtoVW(30)};
   font-weight: 500;
-  display: flex;
-  justify-content: ${(props) => props.open && "space-between"};
 `;
 
 const SentenceBubble = styled.div<SentenceBubbleProps>`
-  width: ${(props) => (props.open ? changePXtoVW(670) : changePXtoVW(130))};
+  min-width: ${(props) => (props.open ? changePXtoVW(670) : changePXtoVW(130))};
+  width: auto;
   height: ${changePXtoVW(130)};
   border-radius: ${(props) => (props.open ? "92px" : "50%")};
   background-color: ${(props) => (props.open ? colorPalette.white : colorPalette.sentenceBubble)};
   border: 2px dashed ${colorPalette.sentenceBubble};
   position: absolute;
-  right: 0;
-  transform: ${(props) => props.open && `translateX(${changePXtoVW(550)})`};
+  left: ${changePXtoVW(200)};
+  /* transform: ${(props) => props.open && `translateX(${changePXtoVW(550)})`}; */
   transition: all 0.3s ease-in;
-  margin-left: ${changePXtoVW(20)};
+  /* margin-left: ${changePXtoVW(20)}; */
 `;
 
 interface BubbleMoreIconProps {

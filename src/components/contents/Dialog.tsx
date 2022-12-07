@@ -37,7 +37,6 @@ const Profile = styled.div<ProfileProps>`
   color: ${(props) => props.profileColor};
   user-select: none;
   position: relative;
-  z-index: 2;
   
   background: url(${(props) => props.icon});
   background-size: cover;
@@ -51,7 +50,6 @@ const NullProfile = styled.div`
   overflow: hidden;
   user-select: none;
   position: relative;
-  z-index: 2;
   `;
 
 interface TalkBubbleProps {
@@ -67,17 +65,10 @@ const TalkBubble = styled.div<TalkBubbleProps>`
   background-color: ${(props) => props.bubbleColor};
   text-align: left;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
-  background: pink;
-
-  /* >div > span {
-    font-size: ${changePXtoVW(30)};
-    line-height: ${changePXtoVW(45)};
-  } */
   
   &:before {
     content: "";
     position: absolute;
-    z-index: 1;
     left: -42px;
     top: 40%;
     height: 18px;
@@ -90,7 +81,6 @@ const TalkBubble = styled.div<TalkBubbleProps>`
   &:after {
     content: "";
     position: absolute;
-    z-index: 1;
     top: 30%;
     left: -22px;
     width: 52px;

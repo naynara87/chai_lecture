@@ -18,14 +18,18 @@ const QuestionBlankStyles = styled.span<QuestionBlankStylesProps>`
   min-width: ${changePXtoVW(96)};
   margin-right: ${changePXtoVW(8)};
   margin-left: ${changePXtoVW(8)};
+  padding: 0 ${changePXtoVW(10)};
   border: 3px dashed ${(props) => props.borderColor};
   border-radius: ${changePXtoVW(12)};
-  background-color: ${(props) => props.backgroundColor};
+  background-color: white;
+  /* background-color: ${(props) => props.backgroundColor}; */
+  font-size: ${changePXtoVW(30)};
+  line-height: 1.5;
   color: ${colorPalette.deepBlue};
   text-align: center;
   user-select: none;
   transform: translateY(-7%);
-  width: ${(props) => props.width};
+  /* width: ${(props) => props.width}; */
   height: ${(props) => props.height};
   ${(props) => props.customCss};
 `;
