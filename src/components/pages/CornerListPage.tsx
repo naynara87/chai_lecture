@@ -19,7 +19,8 @@ import { headerHeightNormal } from "../../constants/layout";
 import { useRecoilState } from "recoil";
 import { cornersState } from "../../state/corners";
 import { useNavigate } from "react-router-dom";
-import { changePXtoVH, changePXtoVW } from "../../utils/styles";
+import { changePXtoVW } from "../../utils/styles";
+import useCornerIconMapper from "../../hooks/useCornerIconMapper";
 // import usePageList from "../../hooks/api/usePageList";
 
 const CornerListWrapper = styled.main`
@@ -99,6 +100,8 @@ const CornerListPage = () => {
   const [currentCorner, setCurrentCorner] = useState<Corner>();
   const [isModalCloseOpen, setIsModalCloseOpen] = useState(false);
 
+  const { getCornerIcon } = useCornerIconMapper();
+
   const navigate = useNavigate();
 
   // const {pageList} = usePageList(currentCorner?.id); // TODO: 실제 데이터 적용하기 => BBC-602
@@ -172,12 +175,19 @@ const CornerListPage = () => {
                 return (
                   <CornerList key={corner.id}>
                     <CornerImageWrapper>
+                      {
+                      getCornerIcon(corner.title) ?
                       <ImageContentComponent
-                        imageSrc={corner.cornerIcon}
+                        imageSrc={getCornerIcon(corner.title)}
                         imageAlt={corner.title}
                         filter={changeFilter(corner.id)}
                         customCss={cornerImageCss}
+                        isZoom={false}
                       />
+                      :
+                      <ChaiSkeleton width={90} height={90} variant="circular" animation={false}/>
+                    }
+
                     </CornerImageWrapper>
                     <CornerName>{corner.title}</CornerName>
                   </CornerList>
