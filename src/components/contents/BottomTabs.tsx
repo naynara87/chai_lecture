@@ -85,7 +85,7 @@ const CloseButton = styled.button<CloseButtonProps>`
   top: 0;
   right: 3%;
   transform: translateY(-50%);
-  background-image: url("${process.env.PUBLIC_URL}/images/icon/icon_close.svg");
+  background-image: url("${process.env.REACT_APP_BASE_URL}/images/icon/icon_close.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 40%;

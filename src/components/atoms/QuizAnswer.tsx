@@ -101,7 +101,7 @@ const QuizAnswer = ({
         <div className="word-wrap">
           <div className="img-wrap">
             <img
-              src={`${process.env.PUBLIC_URL}/images/icon/icon_check.svg`}
+              src={`${process.env.REACT_APP_BASE_URL}/images/icon/icon_check.svg`}
               alt=""
               className="icon"
             />
