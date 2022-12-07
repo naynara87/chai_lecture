@@ -16,7 +16,7 @@ const VideoContentAdapter = ({ content }: VideoContentAdapterProps) => {
           <VideoContentComponent
             key={index}
             videoUrl={videoData.src}
-            tracks={videoData.tracks?.[0]}
+            tracks={videoData.tracks}
           />
         );
       })}

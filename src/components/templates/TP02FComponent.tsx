@@ -49,7 +49,7 @@ const TP02FComponent = ({ setPageCompleted, page, showHeader = true }: TP02FComp
         <VideoContentComponent
           videoUrl={videoUrlString?.src ?? ""}
           customCss={customVideoCss}
-          tracks={videoTracks?.tracks?.[0]}
+          tracks={videoTracks?.tracks}
         />
       </TP02Layout>
     </TemplateCommonLayout>

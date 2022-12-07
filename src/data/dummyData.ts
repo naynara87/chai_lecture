@@ -672,7 +672,6 @@ export const dummyData: AppData = {
                 type: "video",
                 data: [
                   {
-<<<<<<< HEAD
                     src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/Z0THYmwEtAzmFlvBjbF4fN2dCnGGaxPZ/FHb33f8T/A01_video_gm.01.m3u8",
                     tracks: [
                       {
@@ -681,10 +680,13 @@ export const dummyData: AppData = {
                         srclang: "en",
                         default: true,
                       },
+                      {
+                        kind: "captions",
+                        src: `${process.env.PUBLIC_URL}/assets/track/sample_korean.vtt`,
+                        srclang: "ko",
+                        default: true,
+                      },
                     ],
-=======
-                    src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/ns6nflQ5AGjU8SojSjOg8IHHWsvvnRvv/qIz8l5z6/A02_video_gm.01.m3u8",
->>>>>>> 7d30c1f5e0dcaf09ead8bf49b327db73f25781d1
                   },
                 ],
               },

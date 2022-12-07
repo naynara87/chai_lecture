@@ -7,7 +7,7 @@ import { VideoTrack } from "../../types/templateContents";
 interface VideoContentComponentProps {
   videoUrl: string;
   customCss?: SerializedStyles;
-  tracks?: VideoTrack;
+  tracks?: VideoTrack[];
 }
 
 interface IframeProps {
