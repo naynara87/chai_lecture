@@ -13,7 +13,7 @@ const TipWrapper = styled.div<TipWrapperProps>`
   background-position: left top;
   background-size: 40px;
   background-repeat: no-repeat;
-  background-image: url("${process.env.PUBLIC_URL}/images/icon/icon_tipbuble.svg");
+  background-image: url("${process.env.REACT_APP_BASE_URL}/images/icon/icon_tipbuble.svg");
   display: inline-block;
   margin-top: 2.2222222222vh;
   padding-top: 1.1111111111vh;

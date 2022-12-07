@@ -29,7 +29,7 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "GENERATE_SOURCEMAP=false craco build",
+    "build": "GENERATE_SOURCEMAP=false env craco build",
     "test": "craco test",
     "eject": "craco eject"
   },

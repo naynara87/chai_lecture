@@ -36,7 +36,7 @@ const VideoContentComponent = ({ videoUrl, customCss, tracks }: VideoContentComp
       ref={iframeRef}
       customCss={customCss}
       onLoad={sendDataVideoIframe}
-      src={`${process.env.PUBLIC_URL}/video-index.html`}
+      src={`${process.env.REACT_APP_BASE_URL}/video-index.html`}
       frameBorder="0"
     ></Iframe>
   );

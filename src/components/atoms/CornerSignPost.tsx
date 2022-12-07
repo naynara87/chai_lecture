@@ -27,7 +27,7 @@ const SignPost = styled.div`
   background-position: top;
   background-size: cover;
   background-repeat: no-repeat;
-  background-image: url("${process.env.PUBLIC_URL}/images/img/icon_sign_post.svg");
+  background-image: url("${process.env.REACT_APP_BASE_URL}/images/img/icon_sign_post.svg");
   @media all and (max-width: 1024px) {
     height: 9.2777777778vh;
   }
