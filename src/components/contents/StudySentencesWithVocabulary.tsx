@@ -117,6 +117,8 @@ interface SentencesOptionProps {
   bgColor: string | false;
 }
 
+type LanguageType = "korean" | "chinese";
+
 const SentencesOption = styled.button<SentencesOptionProps>`
   width: ${changePXtoVW(300)};
   height: ${changePXtoVW(72)};
@@ -138,7 +140,7 @@ const StudySentencesWithVocabulary = ({
 }: StudySentencesWithVocabularyProps) => {
   const { sentences, image } = studySentencesWithVocabularyDatas?.[0];
   const [sentencesOption, setSentencesOption] = useState<SentenceOption>("all");
-  const [languageOption, setLanguageOption] = useState(false);
+  const [languageOption, setLanguageOption] = useState<LanguageType>("chinese");
   const [currentSentenceIndex, setCurrentSentenceIndex] = useState(0);
   const [texts, setTexts] = useState<string[]>([]);
   const [pronunciations, setPronunciations] = useState<string[]>([]);
@@ -194,8 +196,12 @@ const StudySentencesWithVocabulary = ({
       return sentences.map((sentence, index) => {
         return (
           <div key={index}>
-            <HtmlContentComponent html={sentence.text} customCss={htmlCss} />
-            {languageOption && <HtmlContentComponent html={sentence.meaning} customCss={htmlCss} />}
+            {languageOption === "chinese" && (
+              <HtmlContentComponent html={sentence.text} customCss={htmlCss} />
+            )}
+            {languageOption === "korean" && (
+              <HtmlContentComponent html={sentence.meaning} customCss={htmlCss} />
+            )}
           </div>
         );
       });
@@ -218,10 +224,20 @@ const StudySentencesWithVocabulary = ({
             customIconCss={optionIconCss}
             customWrapperCss={optionButtonCss}
             customTextCss={optionTextCss}
-            text="한국어"
-            active={languageOption}
+            text="중국어"
+            active={languageOption === "chinese"}
             handleClickOption={() => {
-              setLanguageOption(!languageOption);
+              setLanguageOption("chinese");
+            }}
+          />
+          <OptionButton
+            customIconCss={optionIconCss}
+            customWrapperCss={optionButtonCss}
+            customTextCss={optionTextCss}
+            text="한국어"
+            active={languageOption === "korean"}
+            handleClickOption={() => {
+              setLanguageOption("korean");
             }}
           />
         </OptionButtonWrapper>

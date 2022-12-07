@@ -29,7 +29,8 @@ const SignPost = styled.div`
   background-position: center ${changePXtoVH(-10)};
   background-size: contain;
   background-repeat: no-repeat;
-  background-image: url("${process.env.PUBLIC_URL}/images/img/icon_sign_post.svg");
+  background-image: url("${process.env.REACT_APP_BASE_URL}/images/img/icon_sign_post.svg");
+
 `;
 
 const SignTitle = styled.span`

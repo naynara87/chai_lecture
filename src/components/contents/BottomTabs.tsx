@@ -110,7 +110,7 @@ const CloseButton = styled.button<CloseButtonProps>`
   height: ${changePXtoVW(56)};
   border-radius: 100%;
   background-color: ${colorPalette.deepBlue};
-  background-image: url("${process.env.PUBLIC_URL}/images/icon/icon_close.svg");
+  background-image: url("${process.env.REACT_APP_BASE_URL}/images/icon/icon_close.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 40%;

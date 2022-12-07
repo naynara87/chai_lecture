@@ -15,7 +15,7 @@ interface QuestionIconProps {
 }
 const QuestionIconStyle = styled.div<QuestionIconProps>`
   ${questionIconSize}
-  background-image: url("${process.env.PUBLIC_URL}/images/icon/icon_question.svg");
+  background-image: url("${process.env.REACT_APP_BASE_URL}/images/icon/icon_question.svg");
   background-repeat: no-repeat;
   background-size: cover;
   ${(props) => props.css}

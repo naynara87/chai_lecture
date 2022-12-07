@@ -36,7 +36,7 @@ const CloseButton = styled.button`
   height: ${changePXtoVW(56)};
   border-radius: 50%;
   background-color: ${colorPalette.deepBlue};
-  background-image: url("${process.env.PUBLIC_URL}/images/icon/icon_close.svg");
+  background-image: url("${process.env.REACT_APP_BASE_URL}/images/icon/icon_close.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 40%;
@@ -54,7 +54,7 @@ const TextBox = styled.div`
   background-position: left 3px;
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  background-image: url("${process.env.PUBLIC_URL}/images/img/bg_answer_balloon.png");
+  background-image: url("${process.env.REACT_APP_BASE_URL}/images/img/bg_answer_balloon.png");
 `;
 
 const ImageWrapper = styled.div`
@@ -133,9 +133,9 @@ const Explanation = ({ isCorrect, explanation, handleClickClose }: ExplanationPr
 
   const iconUrl = useMemo(() => {
     if (isCorrect) {
-      return `${process.env.PUBLIC_URL}/images/img/bg_right_character.png`;
+      return `${process.env.REACT_APP_BASE_URL}/images/img/bg_right_character.png`;
     }
-    return `${process.env.PUBLIC_URL}/images/img/bg_wrong_character.png`;
+    return `${process.env.REACT_APP_BASE_URL}/images/img/bg_wrong_character.png`;
   }, [isCorrect]);
 
   const infoText = useMemo(() => {
