@@ -672,7 +672,21 @@ export const dummyData: AppData = {
                 type: "video",
                 data: [
                   {
-                    src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/ns6nflQ5AGjU8SojSjOg8IHHWsvvnRvv/qIz8l5z6/A02_video_gm.01.m3u8",
+                    src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/Z0THYmwEtAzmFlvBjbF4fN2dCnGGaxPZ/FHb33f8T/A01_video_gm.01.m3u8",
+                    tracks: [
+                      {
+                        kind: "captions",
+                        src: `${process.env.PUBLIC_URL}/assets/track/sample.vtt`,
+                        srclang: "en",
+                        default: true,
+                      },
+                      {
+                        kind: "captions",
+                        src: `${process.env.PUBLIC_URL}/assets/track/sample_korean.vtt`,
+                        srclang: "ko",
+                        default: true,
+                      },
+                    ],
                   },
                 ],
               },
