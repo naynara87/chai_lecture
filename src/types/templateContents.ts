@@ -1,20 +1,23 @@
-import { BottomContent, ID } from "./appData";
+import { ApproveContent, ID } from "./appData";
 
 // 각 컴포넌트(컨텐츠)의 타입을 정의합니다.
+
+type Explanation = {
+  audio?: {
+    src: string;
+  };
+  correctMessage: string;
+  wrongMessage: string;
+  text: string;
+};
+
 export type ChooseTextContent = {
   type: "chooseText";
   data: {
     choices: string[];
     answerIndex: number;
-    tip: string; // html
-    explanation: {
-      audio?: {
-        src: string;
-      };
-      correctMessage: string;
-      wrongMessage: string;
-      text: string;
-    };
+    tip?: string; // html
+    explanation: Explanation;
   }[];
 };
 
@@ -100,7 +103,7 @@ export type VideoContent = {
   }[];
 };
 
-type VideoTrack = {
+export type VideoTrack = {
   src: string; // 자막 파일 경로 e.g. https://video_track_url/track1.vtt
   kind?: "subtitles" | "captions" | "descriptions" | "chapters" | "metadata";
   srclang?: string; // 자막 언어 e.g. en, ko
@@ -128,14 +131,7 @@ export type DragAndDropContent = {
   data: {
     choices: string[];
     answerIndex: number;
-    explanation: {
-      audio?: {
-        src: string;
-      };
-      correctMessage?: string;
-      wrongMessage?: string;
-      text: string;
-    };
+    explanation: Explanation;
   }[];
 };
 
@@ -199,14 +195,7 @@ export type WordQuizData = {
   audio: {
     src: string;
   };
-  explanation: {
-    audio?: {
-      src: string;
-    };
-    correctMessage: string;
-    wrongMessage: string;
-    text: string;
-  };
+  explanation?: Explanation;
 };
 
 export type SortWordsContent = {
@@ -220,13 +209,24 @@ export type SortWordsData = {
   audio?: {
     src: string;
   };
-  explanation: {
-    audio?: {
-      src: string;
-    };
-    correctMessage: string;
-    wrongMessage: string;
-    text: string;
+  explanation: Explanation;
+};
+
+export type ChooseMediaTextContent = {
+  type: "chooseMediaText";
+  data: ChooseMediaTextData[];
+};
+
+export type ChooseMediaTextData = {
+  choices: ChooseMediaTextAudio[];
+  answerIndex: number;
+  explanation: Explanation;
+};
+
+export type ChooseMediaTextAudio = {
+  text: string;
+  audio?: {
+    src: string;
   };
 };
 
@@ -237,7 +237,7 @@ export type BottomTabsContent = {
 
 export type BottomTabsData = {
   tabNames: string;
-  contents: BottomContent[];
+  contents: ApproveContent[];
 };
 
 export type StudySentencesWithVocabularyContent = {
@@ -269,4 +269,9 @@ export type SentenceWord = {
   audio?: {
     src: string;
   };
+};
+
+export type SentenceWordContent = {
+  type: "sentenceWord";
+  data: SentenceWord[];
 };

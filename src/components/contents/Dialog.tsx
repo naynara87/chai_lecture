@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import AudioButton from "../atoms/AudioButton";
@@ -210,6 +210,7 @@ interface DialogProps {
   bubbleColor?: string;
   profileColor?: string;
   isShowCorrect?: boolean;
+  isBlockedCheck?: boolean;
 }
 
 const Dialog = ({
@@ -230,6 +231,7 @@ const Dialog = ({
   choiceDefaultColor = `${colorPalette.dialogChoiceDefaultColor}`,
   bubbleColor = `${colorPalette.white}`,
   profileColor = `${colorPalette.deepBlue}`,
+  isBlockedCheck,
   isShowCorrect = undefined,
 }: DialogProps) => {
   const {
@@ -241,26 +243,44 @@ const Dialog = ({
     question: dialogQuestions,
     audio,
   } = dialogContent;
+
   const { src: audioUrl } = audio ?? {};
   const [userAnswer, setUserAnswer] = useState<number>(dialogQuestions?.choices.length ?? 0);
   const [correct, setCorrect] = useState<undefined | boolean>(undefined);
   const [choiceMaxLength, setChoiceMaxLength] = useState(0);
+  const [sortList, setSortList] = useState<string[]>([]);
+  useEffect(() => {
+    if (!dialogQuestions?.choices) {
+      return;
+    }
+    const choicesCopy = [...dialogQuestions?.choices];
+    setSortList(choicesCopy.sort(() => Math.random() - 0.5));
+  }, [dialogQuestions?.choices]);
+
+  const questions = text
+    .replace(/<[^>]*>?/g, "")
+    .split(/(\*.*?\*)/)
+    .filter((content) => {
+      return content.length > 0;
+    });
 
   const selectedAnswer = useCallback(
     (userChoiceIndex: number) => {
-      if (isHide || (dialogQuestions && userAnswer < dialogQuestions.choices.length)) {
+      if (isHide || !dialogQuestions?.choices || isShowCorrect || isBlockedCheck) {
         return;
       }
       handleClickAnswer(index);
       setUserAnswer(userChoiceIndex);
-      setCorrect(userChoiceIndex === dialogQuestions?.answerIndex);
+      setCorrect(
+        sortList[userChoiceIndex] === dialogQuestions?.choices[dialogQuestions.answerIndex],
+      );
     },
-    [isHide, handleClickAnswer, index, userAnswer, dialogQuestions],
+    [isHide, handleClickAnswer, dialogQuestions, index, sortList, isShowCorrect, isBlockedCheck],
   );
 
   const answerClassName = useCallback(
     (choice: string): string => {
-      if (dialogQuestions?.choices[userAnswer] === choice) {
+      if (sortList[userAnswer] === choice) {
         if (correct) {
           return "correct";
         } else {
@@ -270,7 +290,7 @@ const Dialog = ({
         return "";
       }
     },
-    [userAnswer, correct, dialogQuestions],
+    [userAnswer, correct, sortList],
   );
 
   const renderQuiz = useMemo(() => {
@@ -279,7 +299,7 @@ const Dialog = ({
     }
     return (
       <AnswerWrapper>
-        {dialogQuestions.choices.map((choice, index) => {
+        {sortList.map((choice, index) => {
           return (
             <AnswerChoice
               correctColor={correctColor}
@@ -307,38 +327,8 @@ const Dialog = ({
     inCorrectColor,
     choiceDefaultColor,
     isShowCorrect,
+    sortList,
   ]);
-
-  const questionContents = useMemo(() => {
-    const questions = text
-      .replace(/<[^>]*>?/g, "")
-      .split(/(\*.*?\*)/)
-      .filter((content) => {
-        return content.length > 0;
-      });
-    if (!dialogQuestions) {
-      return <></>;
-    }
-    dialogQuestions.choices.forEach((choice) => {
-      if (choice.length > choiceMaxLength) {
-        setChoiceMaxLength(choice.length);
-      }
-    });
-    return questions.map((question, index) => {
-      if (question === "*blank*") {
-        const blankWidth = `${choiceMaxLength * 25}px`;
-        return (
-          <QuestionBlank
-            key={index}
-            width={blankWidth}
-            text={dialogQuestions.choices[userAnswer]}
-          />
-        );
-      } else {
-        return <HtmlContentComponent key={index} html={question} customCss={wordCss} />;
-      }
-    });
-  }, [text, userAnswer, dialogQuestions, choiceMaxLength]);
 
   const showCorrectIcon = useMemo(() => {
     if (!isShowCorrect) {
@@ -353,6 +343,30 @@ const Dialog = ({
       return <XIcon css={iconCss} />;
     }
   }, [correct, isShowCorrect]);
+
+  const questionContents = useMemo(() => {
+    if (!questions) {
+      return <></>;
+    }
+    if (dialogQuestions) {
+      dialogQuestions.choices.forEach((choice) => {
+        if (choice.length > choiceMaxLength) {
+          setChoiceMaxLength(choice.length);
+        }
+      });
+    }
+    return questions.map((question, questionIndex) => {
+      if (question === "*blank*") {
+        const blankWidth = `${choiceMaxLength * 25}px`;
+        if (!dialogQuestions) {
+          return <></>;
+        }
+        return <QuestionBlank key={questionIndex} width={blankWidth} text={sortList[userAnswer]} />;
+      } else {
+        return <HtmlContentComponent key={questionIndex} html={question} customCss={wordCss} />;
+      }
+    });
+  }, [userAnswer, dialogQuestions, sortList, choiceMaxLength, questions]);
 
   return (
     <DialogWrapper className={isHide ? "hide" : "dialog"}>

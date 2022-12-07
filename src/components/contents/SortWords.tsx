@@ -9,7 +9,9 @@ import TextBox from "../atoms/TextBox";
 import WordQuizAnswer from "../atoms/WordQuizAnswer";
 import Explanation from "../molecules/Explanation";
 
-const SortWordsWrapper = styled.div``;
+const SortWordsWrapper = styled.div`
+  margin-left: ${changePXtoVW(40)};
+`;
 
 const QuestionWrapper = styled.div`
   display: flex;

@@ -8,6 +8,7 @@ import AudioButton from "../atoms/AudioButton";
 import IconHeadset from "../atoms/svg/IconHeadset";
 import IconMic from "../atoms/svg/IconMic";
 import IconPlaying from "../atoms/svg/IconPlaying";
+import IconRetry from "../atoms/svg/IconRetry";
 
 interface RecordedAudioButtonProps {
   customCss?: SerializedStyles;
@@ -42,11 +43,6 @@ const grayBackground = css`
   cursor: default;
 `;
 
-const whiteBackground = css`
-  background-color: ${colorPalette.white};
-  cursor: pointer;
-`;
-
 const currentBackground = css`
   background-color: ${colorPalette.confirmBtn};
   cursor: pointer;
@@ -76,7 +72,6 @@ const AudioRecorder = ({ audioUrl }: AudioRecorderProps) => {
       type: "audio/wav",
     },
   });
-
   const handleClickRecordedAudioButton = useCallback(() => {
     if (!audioRef.current || pronounceAudio) {
       return;
@@ -115,9 +110,7 @@ const AudioRecorder = ({ audioUrl }: AudioRecorderProps) => {
   }, [pronounceAudio, recordedAudioState, startRecording, status, stopRecording]);
 
   const recodingAudioButtonColor = useMemo(() => {
-    if (recordingAudioState === "record") {
-      return whiteBackground;
-    } else if (recordingAudioState === "recordAudioPlaying" || pronounceAudio) {
+    if (recordingAudioState === "recordAudioPlaying" || pronounceAudio) {
       return grayBackground;
     } else {
       return currentBackground;
@@ -125,7 +118,7 @@ const AudioRecorder = ({ audioUrl }: AudioRecorderProps) => {
   }, [recordingAudioState, pronounceAudio]);
 
   const handlePronounceAudio = useCallback((src: string, index: number, isPlayed: boolean) => {
-    if (!isPlayed) {
+    if (isPlayed) {
       setPronounceAudio(true);
       setRecordedAudioState(false);
       setRecordingAudioState("pause");
@@ -133,6 +126,18 @@ const AudioRecorder = ({ audioUrl }: AudioRecorderProps) => {
       setPronounceAudio(false);
     }
   }, []);
+
+  const renderRecordingAudioIcon = useMemo(() => {
+    if (status === "recording") {
+      return <IconPlaying />;
+    } else {
+      if (status === "idle") {
+        return <IconMic />;
+      } else if (status === "stopped") {
+        return <IconRetry />;
+      }
+    }
+  }, [status]);
 
   return (
     <AudioRecorderStyle>
@@ -147,7 +152,7 @@ const AudioRecorder = ({ audioUrl }: AudioRecorderProps) => {
         onClick={handleClickRecordingAudioButton}
         customCss={recodingAudioButtonColor}
       >
-        <IconMic color={recordingAudioState === "record" ? "black" : "white"} />
+        {renderRecordingAudioIcon}
       </RecordingAudioButton>
       <audio ref={audioRef} src={mediaBlobUrl}>
         <track kind="captions" />

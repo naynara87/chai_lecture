@@ -1,4 +1,4 @@
-import React, { useMemo, useRef } from "react";
+import React, { useMemo } from "react";
 import styled from "@emotion/styled";
 import ModalCommon from "./ModalCommon";
 import { colorPalette } from "../../styles/colorPalette";
@@ -6,8 +6,7 @@ import { changePXtoVW } from "../../utils/styles";
 import { SentenceWord } from "../../types/templateContents";
 import HtmlContentComponent from "../molecules/HtmlContentComponent";
 import { css } from "@emotion/react";
-import AudioButton from "../atoms/AudioButton";
-import useAudio from "../../hooks/useAudio";
+import XIcon from "../atoms/svg/XIcon";
 
 interface ModalSentencesProps {
   sentences: SentenceWord[];
@@ -101,14 +100,28 @@ const meaningCss = css`
   width: auto;
 `;
 
-const audioCss = css`
-  width: ${changePXtoVW(40)};
-  height: ${changePXtoVW(40)};
+const IconWrapper = styled.div`
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  right: 2%;
+  cursor: pointer;
+  background-color: ${colorPalette.backgroundWhite};
+  border-radius: 50%;
 `;
 
+const xIconCss = css`
+  transform: scale(0.4);
+`;
+
+// const audioCss = css`
+//   width: ${changePXtoVW(40)};
+//   height: ${changePXtoVW(40)};
+// `;
+
 const ModalSentences = ({ isModalOpen, setIsModalOpen, sentences }: ModalSentencesProps) => {
-  const audioRef = useRef<HTMLAudioElement>(null);
-  const { audioIndex, handleClickAudioButton, audioSrc } = useAudio(audioRef);
+  // const audioRef = useRef<HTMLAudioElement>(null);
+  // const { audioIndex, handleClickAudioButton, audioSrc } = useAudio(audioRef);
 
   const handleClose = () => {
     setIsModalOpen(false);
@@ -121,28 +134,37 @@ const ModalSentences = ({ isModalOpen, setIsModalOpen, sentences }: ModalSentenc
           <HtmlContentComponent html={sentence.text} customCss={textCss} />
           <HtmlContentComponent html={sentence.pronunciation} customCss={pronunciationCss} />
           <HtmlContentComponent html={sentence.meaning} customCss={meaningCss} />
-          <AudioButton
+          {/* <AudioButton
             isAudio={false}
             audioUrl={sentence.audio?.src}
             currentAudioIndex={audioIndex}
             audioIndex={index}
             audioHandler={handleClickAudioButton}
             customCss={audioCss}
-          />
+          /> */}
         </Sentence>
       );
     });
-  }, [sentences, audioIndex, handleClickAudioButton]);
+  }, [sentences]);
 
   return (
     <ModalCommon open={isModalOpen} onClose={handleClose}>
       <ModalInnerBox>
-        <ModalHeader>전체단어</ModalHeader>
+        <ModalHeader>
+          전체단어
+          <IconWrapper
+            onClick={() => {
+              setIsModalOpen(false);
+            }}
+          >
+            <XIcon css={xIconCss} color={colorPalette.deepBlue} />
+          </IconWrapper>
+        </ModalHeader>
         <ModalContent sentenceLength={sentences.length}>{sentencesContents}</ModalContent>
       </ModalInnerBox>
-      <audio ref={audioRef}>
+      {/* <audio ref={audioRef}>
         <source src={audioSrc} />
-      </audio>
+      </audio> */}
     </ModalCommon>
   );
 };

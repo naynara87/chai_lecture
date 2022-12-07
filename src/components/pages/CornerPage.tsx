@@ -6,10 +6,11 @@ import CornerMain from "../molecules/CornerMain";
 import CommonMainContainer from "../atoms/CommonMainContainer";
 import { useNavigate, useParams } from "react-router-dom";
 import { getPageUrl } from "../../utils/url";
-import { CORNER_LIST_URL } from "../../constants/url";
 import { useRecoilState } from "recoil";
 import { cornersState } from "../../state/corners";
 import useCornerPage from "../../hooks/useCornerPage";
+import { CORNER_LIST_URL } from "../../constants/url";
+import IframeMainContainer from "../atoms/IframeMainContainer";
 
 const CornerPage = () => {
   const { courseId, cornerId, lessonId, pageId } = useParams();
@@ -87,12 +88,29 @@ const CornerPage = () => {
     console.log(`page: ${pageIndex + 1} / ${pages?.length}`);
   }, [pageIndex, pages]);
 
+  const renderMainPage = useMemo(() => {
+    if (currentPage) {
+      return <CornerMain page={currentPage} setPageCompleted={setPageCompleted} />;
+    }
+  }, [currentPage]);
+
+  useEffect(() => {
+    if (process.env.NODE_ENV === "development") {
+      console.log(currentPage?.template.type);
+    }
+  }, [currentPage]);
+
   return (
     <CommonPageLayout>
       <Header currentCorner={currentCorner} appMetaData={appMetaData} showCornerLabel />
-      <CommonMainContainer>
+      {/* <CommonMainContainer>
         {currentPage && <CornerMain page={currentPage} setPageCompleted={setPageCompleted} />}
-      </CommonMainContainer>
+      </CommonMainContainer> */}
+      {currentPage?.template.type === "TPIframe" ? (
+        <IframeMainContainer>{renderMainPage}</IframeMainContainer>
+      ) : (
+        <CommonMainContainer>{renderMainPage}</CommonMainContainer>
+      )}
       <Footer
         pageIndex={pageIndex}
         handleClickPrev={handleClickPrev}

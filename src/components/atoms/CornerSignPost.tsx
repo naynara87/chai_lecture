@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import React from "react";
-import IconSignPost from "../../images/iconSignPost.svg";
 import { colorPalette } from "../../styles/colorPalette";
 
 interface CornerSignPostProps {
@@ -16,9 +15,8 @@ const SignPost = styled.div`
   width: 6.0416666667vw;
   min-width: 53px;
   max-width: 97px;
-  height: 12.0777777778vh;
+  height: 12.0377777778vh;
   min-height: 66px;
-  /* padding: 0 1.0416666667vw; */
 
   line-height: 1.5;
   font-weight: 600;
@@ -29,7 +27,7 @@ const SignPost = styled.div`
   background-position: top;
   background-size: cover;
   background-repeat: no-repeat;
-  background-image: url(${IconSignPost});
+  background-image: url("${process.env.REACT_APP_BASE_URL}/images/img/icon_sign_post.svg");
   @media all and (max-width: 1024px) {
     height: 9.2777777778vh;
   }
@@ -40,7 +38,6 @@ const SignTitle = styled.span`
   z-index: 1;
   text-align: center;
   top: 0;
-  /* transform: translateY(50%); */
   padding: 1vw 15px 0;
   font-size: clamp(12px, 1.45vw, 18px);
 

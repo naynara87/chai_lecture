@@ -2,7 +2,7 @@ import {
   TP01A,
   TP03A,
   TP03B,
-  TP15A,
+  TPTab,
   TP03C,
   TP03D,
   TP02C,
@@ -23,10 +23,24 @@ import {
   TP24A,
   TP09A,
   TP19A,
+  TP02,
+  TP03,
+  TP04,
+  TP05,
+  TP07,
+  TP15,
+  TP16,
+  TP13,
+  TP24B,
+  TP08A,
+  TP02B,
+  TP06A,
+  TP02A,
 } from "./pageTemplate";
 import {
   AudioContent,
   AudioRecordContent,
+  ChooseMediaTextContent,
   ChooseTextByAudioContent,
   ChooseTextContent,
   DialogContent,
@@ -101,27 +115,40 @@ export type Corner2 = Omit<Corner, "pages" | "isCompleted"> & {
 export type Page =
   | TP01A
   | TP01B
+  | TP02
+  | TP02B
+  | TP02A
   | TP02C
   | TP02F
   | TP02M
   | TP02N
   | TP02K
+  | TP03
   | TP03A
   | TP03B
   | TP03C
   | TP03D
+  | TP04
   | TP04A
+  | TP05
   | TP05A
+  | TP06A
+  | TP07
   | TP07A
+  | TP08A
   | TP08G
   | TP10A
   | TP09A
   | TP11A
   | TP11F
   | TP11G
-  | TP15A
+  | TP13
+  | TP15
+  | TPTab
+  | TP16
   | TP19A
   | TP24A
+  | TP24B
   | TPIframe;
 
 export type TemplateType = Page["template"]["type"];
@@ -141,20 +168,19 @@ export type Content =
   | DragAndDropContent
   | StudyWordsContent
   | DialogContent
+  | ChooseMediaTextContent
   | NumberTableContent
   | WordQuizContent
   | SortWordsContent;
 
 // 나중에 저작도구에서 bottomContent에서 허용할 컨텐트 컴포넌트
-export type BottomContent = Exclude<
+export type ApproveContent = Exclude<
   Content,
   | DialogContent
   | NumberTableContent
   | ChooseTextByAudioContent
   | ListenImagesContent
   | ListenWordsContent
-  | TextBoxesContent
-  | IconTextContent
   | DragAndDropContent
   | StudyWordsContent
   | DialogContent
@@ -163,6 +189,6 @@ export type BottomContent = Exclude<
   | SortWordsContent
 >;
 
-export type BottomContentType = BottomContent["type"];
+export type ApproveContentType = ApproveContent["type"];
 
 export type ContentsType = Content["type"];

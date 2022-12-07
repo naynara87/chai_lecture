@@ -7,12 +7,11 @@ import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TP02Layout from "../Layouts/TP02Layout";
 import TitleContent from "../molecules/TitleContent";
 import { css } from "@emotion/react";
+import { changePXtoVW } from "../../utils/styles";
 
 const customVideoCss = css`
-  width: 100%;
-  max-width: 550px;
-  height: 100%;
   margin: 0 auto;
+  height: ${changePXtoVW(600)};
 `;
 
 interface TP02FComponentProps extends TemplateProps {}
@@ -23,7 +22,6 @@ const TP02FComponent = ({ setPageCompleted, page, showHeader = true }: TP02FComp
   useEffect(() => {
     setPageCompleted();
   }, [setPageCompleted]);
-
   const videoContentData = useMemo(() => {
     return thisPage.template.contents.find((content) => content.type === "video") as
       | VideoContent
@@ -35,6 +33,11 @@ const TP02FComponent = ({ setPageCompleted, page, showHeader = true }: TP02FComp
     return videoUrlData;
   }, [videoContentData]);
 
+  const videoTracks = useMemo(() => {
+    const videoTracksData = videoContentData?.data.find((content) => content.tracks);
+    return videoTracksData;
+  }, [videoContentData]);
+
   return (
     <TemplateCommonLayout>
       {showHeader ? (
@@ -43,7 +46,11 @@ const TP02FComponent = ({ setPageCompleted, page, showHeader = true }: TP02FComp
         <></>
       )}
       <TP02Layout>
-        <VideoContentComponent videoUrl={videoUrlString?.src ?? ""} customCss={customVideoCss} />
+        <VideoContentComponent
+          videoUrl={videoUrlString?.src ?? ""}
+          customCss={customVideoCss}
+          tracks={videoTracks?.tracks}
+        />
       </TP02Layout>
     </TemplateCommonLayout>
   );

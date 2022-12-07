@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
-import React from "react";
+import React, { useMemo } from "react";
 import { colorPalette } from "../../styles/colorPalette";
 
 interface QuizAnswerStyleProps {
-  isCorrect: boolean;
+  color: string;
 }
 
 // TODO: vw, vh 를 px 단위로 변경
@@ -11,8 +11,9 @@ const QuizAnswerStyle = styled.li<QuizAnswerStyleProps>`
   .label-quiz-answer {
     display: inline-block;
     color: #9b9b9b;
-    margin: 16px;
+    margin: 0 16px;
     margin-top: 0;
+    cursor: pointer;
   }
   .label-quiz-answer .word-wrap {
     position: relative;
@@ -48,16 +49,14 @@ const QuizAnswerStyle = styled.li<QuizAnswerStyleProps>`
     text-align: left;
   }
 
-  .inp-quiz-answer:checked ~ .label-quiz-answer {
-    color: ${(props) => (props.isCorrect ? colorPalette.deepBlue : colorPalette.wrongAnswer)};
+  .inp-quiz-answer ~ .label-quiz-answer {
+    color: ${(props) => props.color};
   }
-  .inp-quiz-answer:checked ~ .label-quiz-answer .word-wrap {
-    border-color: ${(props) =>
-      props.isCorrect ? colorPalette.deepBlue : colorPalette.wrongAnswer};
+  .inp-quiz-answer ~ .label-quiz-answer .word-wrap {
+    border-color: ${(props) => props.color};
   }
-  .inp-quiz-answer:checked ~ .label-quiz-answer .word-wrap .img-wrap {
-    background-color: ${(props) =>
-      props.isCorrect ? colorPalette.deepBlue : colorPalette.wrongAnswer};
+  .inp-quiz-answer ~ .label-quiz-answer .word-wrap .img-wrap {
+    background-color: ${(props) => props.color};
   }
 
   .none {
@@ -69,21 +68,40 @@ interface QuizAnswerProps {
   answerText: string;
   isCorrect: boolean;
   index: number;
+  checked: boolean;
   onClickAnswer: (answerIndex: number) => void;
 }
-const QuizAnswer = ({ answerText, isCorrect, index, onClickAnswer }: QuizAnswerProps) => {
+const QuizAnswer = ({
+  answerText,
+  isCorrect,
+  index,
+  onClickAnswer,
+  checked = false,
+}: QuizAnswerProps) => {
   const handleClickAnswer = () => {
     onClickAnswer(index);
   };
 
+  const changeColor = useMemo(() => {
+    if (checked) {
+      if (isCorrect) {
+        return colorPalette.deepBlue;
+      } else {
+        return colorPalette.wrongAnswer;
+      }
+    } else {
+      return colorPalette.disableBackground;
+    }
+  }, [checked, isCorrect]);
+
   return (
-    <QuizAnswerStyle className="quiz-answer-list" onClick={handleClickAnswer} isCorrect={isCorrect}>
+    <QuizAnswerStyle className="quiz-answer-list" color={changeColor}>
       <input type="radio" id={answerText} name="quiz-answer" className="inp-quiz-answer none" />
-      <label htmlFor={answerText} className="label-quiz-answer">
+      <label htmlFor={answerText} className="label-quiz-answer" onClick={handleClickAnswer}>
         <div className="word-wrap">
           <div className="img-wrap">
             <img
-              src={`${process.env.PUBLIC_URL}/images/icon/icon_check.svg`}
+              src={`${process.env.REACT_APP_BASE_URL}/images/icon/icon_check.svg`}
               alt=""
               className="icon"
             />

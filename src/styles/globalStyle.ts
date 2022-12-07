@@ -2,6 +2,14 @@ import { css } from "@emotion/react";
 import { changePXtoVW } from "../utils/styles";
 import { colorPalette } from "./colorPalette";
 
+const getPublicUrl = () => {
+  if (process.env.NODE_ENV === "production") {
+    return process.env.REACT_APP_BASE_URL;
+  } else {
+    return "";
+  }
+};
+
 const globalStyle = css`
   /* =================== base =================== */
   html,
@@ -98,22 +106,27 @@ const globalStyle = css`
 
   h1 {
     font-size: ${changePXtoVW(42)};
+    line-height: 1.5;
   }
 
   h2 {
     font-size: ${changePXtoVW(38)};
+    line-height: 1.5;
   }
 
   h3 {
     font-size: ${changePXtoVW(30)};
+    line-height: 1.5;
   }
 
   h4 {
     font-size: ${changePXtoVW(28)};
+    line-height: 1.5;
   }
 
   h5 {
     font-size: ${changePXtoVW(24)};
+    line-height: 1.5;
   }
 
   .c1 {
@@ -137,31 +150,31 @@ const globalStyle = css`
   @font-face {
     font-family: "pretendard";
     font-weight: 400;
-    src: url("${process.env.PUBLIC_URL}/fonts/Pretendard-Regular.woff2") format("woff2"),
-      url("${process.env.PUBLIC_URL}/fonts/Pretendard-Regular.woff") format("woff"),
-      url("${process.env.PUBLIC_URL}/fonts/Pretendard-Regular.otf") format("opentype");
+    src: url("${getPublicUrl()}/fonts/Pretendard-Regular.woff2") format("woff2"),
+      url("${getPublicUrl()}/fonts/Pretendard-Regular.woff") format("woff"),
+      url("${getPublicUrl()}/fonts/Pretendard-Regular.otf") format("opentype");
   }
   @font-face {
     font-family: "pretendard";
     font-weight: 600;
-    src: url("${process.env.PUBLIC_URL}/fonts/Pretendard-Bold.woff2") format("woff2"),
-      url("${process.env.PUBLIC_URL}/fonts/Pretendard-Bold.woff") format("woff"),
-      url("${process.env.PUBLIC_URL}/fonts/Pretendard-Bold.otf") format("opentype");
+    src: url("${getPublicUrl()}/fonts/Pretendard-Bold.woff2") format("woff2"),
+      url("${getPublicUrl()}/fonts/Pretendard-Bold.woff") format("woff"),
+      url("${getPublicUrl()}/fonts/Pretendard-Bold.otf") format("opentype");
   }
   /* ---------- inter ---------- */
   @font-face {
     font-family: "inter";
     font-weight: 400;
-    src: url("${process.env.PUBLIC_URL}/fonts/Inter-Regular.woff2") format("woff2"),
-      url("${process.env.PUBLIC_URL}/fonts/Inter-Regular.woff") format("woff"),
-      url("${process.env.PUBLIC_URL}/fonts/Inter-Regular.otf") format("opentype");
+    src: url("${getPublicUrl()}/fonts/Inter-Regular.woff2") format("woff2"),
+      url("${getPublicUrl()}/fonts/Inter-Regular.woff") format("woff"),
+      url("${getPublicUrl()}/fonts/Inter-Regular.otf") format("opentype");
   }
   @font-face {
     font-family: "inter";
     font-weight: 600;
-    src: url("${process.env.PUBLIC_URL}/fonts/Inter-Bold.woff2") format("woff2"),
-      url("${process.env.PUBLIC_URL}/fonts/Inter-Bold.woff") format("woff"),
-      url("${process.env.PUBLIC_URL}/fonts/Inter-Bold.otf") format("opentype");
+    src: url("${getPublicUrl()}/fonts/Inter-Bold.woff2") format("woff2"),
+      url("${getPublicUrl()}/fonts/Inter-Bold.woff") format("woff"),
+      url("${getPublicUrl()}/fonts/Inter-Bold.otf") format("opentype");
   }
 
   /* ******************************************************************************   Tostify  */

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import styled from "@emotion/styled";
 import IconSpeaker from "./svg/IconSpeaker";
 import IconPlaying from "./svg/IconPlaying";
@@ -47,13 +47,19 @@ const Audio = ({
   const [isPlayed, setIsPlayed] = useState<boolean>(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
+  if (isAudio) {
+    audioRef.current?.addEventListener("ended", () => {
+      setIsPlayed(false);
+    });
+  }
+
   useEffect(() => {
     if (currentAudioIndex !== audioIndex) {
       setIsPlayed(false);
     }
   }, [audioIndex, currentAudioIndex]);
 
-  const handleClickAudioButton = () => {
+  const handleClickAudioButton = useCallback(() => {
     if (audioHide) {
       return;
     }
@@ -69,21 +75,33 @@ const Audio = ({
       setIsPlayed(true);
       audioRef.current && audioRef.current.play();
     }
-  };
+  }, [audioHandler, audioHide, audioIndex, audioUrl, isPlayed]);
 
   const renderAudioIcon = useMemo(() => {
-    if (otherAudioPlayed && isPlayed) {
-      setIsPlayed(false);
-      return <IconSpeaker />;
-    } else if (otherAudioPlayed && !audioState) {
-      setIsPlayed(false);
+    if (!isAudio) {
+      if (!isPlayed || !audioState) {
+        setIsPlayed(false);
+        return <IconSpeaker />;
+      } else {
+        setIsPlayed(true);
+        return <IconPlaying />;
+      }
     }
-    if (isPlayed) {
-      return <IconPlaying />;
-    } else {
-      return <IconSpeaker />;
+
+    if (isAudio) {
+      if (audioHandler) {
+        audioHandler(audioUrl ?? "", audioIndex ?? 0, isPlayed);
+      }
+
+      if (isPlayed) {
+        setIsPlayed(true);
+        return <IconPlaying />;
+      } else {
+        setIsPlayed(false);
+        return <IconSpeaker />;
+      }
     }
-  }, [isPlayed, otherAudioPlayed, audioState]);
+  }, [isPlayed, audioState, isAudio, audioHandler, audioUrl, audioIndex]);
 
   return (
     <AudioButton onClick={handleClickAudioButton} customCss={customCss}>

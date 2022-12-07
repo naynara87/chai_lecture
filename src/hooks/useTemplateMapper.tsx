@@ -7,7 +7,6 @@ import TP03BComponent from "../components/templates/TP03BComponent";
 import TP11FComponent from "../components/templates/TP11FComponent";
 import TP04AComponent from "../components/templates/TP04AComponent";
 import TP05AComponent from "../components/templates/TP05AComponent";
-import TP15AComponent from "../components/templates/TP15AComponent";
 import { TemplateType } from "../types/appData";
 import { TemplateProps } from "../types/templates";
 import TP02NComponent from "../components/templates/TP02NComponent";
@@ -21,34 +20,61 @@ import TP11GComponent from "../components/templates/TP11GComponent";
 import TP24AComponent from "../components/templates/TP24AComponent";
 import TP09AComponent from "../components/templates/TP09AComponent";
 import TP19AComponent from "../components/templates/TP19AComponent";
+import TPTabComponent from "../components/templates/TPTabComponent";
+import TP02Component from "../components/templates/TP02Component";
+import TP03Component from "../components/templates/TP03Component";
+import TP04Component from "../components/templates/TP04Component";
+import TP05Component from "../components/templates/TP05Component";
+import TP07Component from "../components/templates/TP07Component";
+import TP13Component from "../components/templates/TP13Component";
+import TP15Component from "../components/templates/TP15Component";
+import TP16Component from "../components/templates/TP16Component";
+import TP24BComponent from "../components/templates/TP24BComponent";
+import TP08AComponent from "../components/templates/TP08AComponent";
+import TP02BComponent from "../components/templates/TP02BComponent";
+import TP06AComponent from "../components/templates/TP06AComponent";
+import TP02AComponent from "../components/templates/TP02AComponent";
 
 export interface UseTemplateMapperProps extends TemplateProps {}
 const useTemplateMapper = (props: UseTemplateMapperProps) => {
   const templateMapper: Record<TemplateType, JSX.Element> = {
     TP01A: <TP01AComponent {...props} />,
     TP01B: <TP01BComponent {...props} />,
+    TP02: <TP02Component {...props} />,
+    TP02B: <TP02BComponent {...props} />,
+    TP02A: <TP02AComponent {...props} />,
     TP02C: <TP02CComponent {...props} />,
     TP02F: <TP02FComponent {...props} />,
     TP02M: <TP02MComponent {...props} />,
     TP02N: <TP02NComponent {...props} />,
     TP02K: <TP02KComponent {...props} />,
+    TP03: <TP03Component {...props} />,
     TP03A: <TP03AComponent {...props} />,
     TP03B: <TP03BComponent {...props} />,
     TP03C: <TP03BComponent {...props} />,
     TP03D: <TP03BComponent {...props} />,
+    TP04: <TP04Component {...props} />,
     TP04A: <TP04AComponent {...props} />,
+    TP05: <TP05Component {...props} />,
     TP05A: <TP05AComponent {...props} />,
+    TP06A: <TP06AComponent {...props} />,
+    TP07: <TP07Component {...props} />,
     TP07A: <TP07AComponent {...props} />,
+    TP08A: <TP08AComponent {...props} />,
     TP08G: <TP08GComponent {...props} />,
     TP09A: <TP09AComponent {...props} />,
     TP10A: <TP10AComponent {...props} />,
     TP11A: <TP11FComponent {...props} />,
     TP11F: <TP11FComponent {...props} />,
     TP11G: <TP11GComponent {...props} />,
-    TP15A: <TP15AComponent {...props} />,
+    TP13: <TP13Component {...props} />,
+    TP15: <TP15Component {...props} />,
+    TP16: <TP16Component {...props} />,
     TP19A: <TP19AComponent {...props} />,
     TP24A: <TP24AComponent {...props} />,
+    TP24B: <TP24BComponent {...props} />,
     TPIframe: <TPIframeComponent {...props} />,
+    TPTab: <TPTabComponent {...props} />,
   };
 
   const getTemplateComponent = (templateType: TemplateType) => {

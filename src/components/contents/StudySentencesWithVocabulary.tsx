@@ -8,74 +8,19 @@ import OptionButton from "../atoms/OptionButton";
 import HtmlContentComponent from "../molecules/HtmlContentComponent";
 import { css } from "@emotion/react";
 import ModalSentences from "../modal/ModalSentences";
-import IconSentenceCharacter from "../atoms/svg/IconSentenceCharacter";
-import IconTail from "../atoms/svg/IconTail";
 import ArrowRight from "../atoms/svg/ArrowRight";
-import XIcon from "../atoms/svg/XIcon";
 import ArrowLeft from "../atoms/svg/ArrowLeft";
+import SentenceBubbleComponent from "../molecules/SentenceBubble";
 
 const SentencesOptionContainer = styled.div`
   width: ${changePXtoVW(630)};
   display: flex;
   justify-content: space-between;
-  margin: 0 auto;
+  margin: 0 auto ${changePXtoVW(30)};
   height: auto;
 `;
 
 const LeftContainer = styled.div``;
-
-const BubbleContainer = styled.div`
-  display: flex;
-  width: ${changePXtoVW(360)};
-  margin: 10px auto 0;
-  position: relative;
-`;
-
-interface SentenceBubbleProps {
-  open: boolean;
-}
-
-const SentenceBubble = styled.div<SentenceBubbleProps>`
-  width: ${(props) => (props.open ? changePXtoVW(670) : changePXtoVW(130))};
-  height: ${changePXtoVW(130)};
-  border-radius: ${(props) => (props.open ? "25px" : "50%")};
-  background-color: ${colorPalette.sentenceBubble};
-  position: absolute;
-  right: 0;
-  transform: ${(props) => props.open && `translateX(${changePXtoVW(550)})`};
-  transition: all 0.3s ease-in;
-  margin-left: 20px;
-`;
-
-interface BubbleTextProps {
-  open: boolean;
-}
-
-const BubbleText = styled.div<BubbleTextProps>`
-  width: ${(props) => (props.open ? "80%" : "100%")};
-  margin: 0 auto;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: ${colorPalette.white};
-  font-size: ${changePXtoVW(30)};
-  font-weight: 700;
-  display: flex;
-  justify-content: ${(props) => props.open && "space-between"};
-`;
-
-const BubbleMoreIcon = styled.button`
-  position: absolute;
-  width: ${changePXtoVW(40)};
-  height: ${changePXtoVW(40)};
-  border-radius: 50%;
-  top: 0;
-  transform: translateY(100%) translateX(40%);
-  right: 0;
-  background-color: white;
-  cursor: pointer;
-`;
 
 const RightContainer = styled.div`
   display: grid;
@@ -100,9 +45,8 @@ const OptionButtonWrapper = styled.div`
 `;
 
 const TextContainer = styled.div`
-  overflow-y: auto;
   width: 100%;
-  height: ${changePXtoVW(350)};
+  height: auto;
   font-size: ${changePXtoVW(48)};
   font-weight: 400;
   color: ${colorPalette.descriptionText};
@@ -164,18 +108,11 @@ const arrowCss = css`
   cursor: pointer;
 `;
 
-const bubbleArrowCss = css`
-  transform: scale(0.6);
-  cursor: pointer;
-`;
-
-const xIconCss = css`
-  transform: scale(0.4);
-`;
-
 interface SentencesOptionProps {
   bgColor: string | false;
 }
+
+type LanguageType = "korean" | "chinese";
 
 const SentencesOption = styled.button<SentencesOptionProps>`
   width: ${changePXtoVW(300)};
@@ -198,14 +135,13 @@ const StudySentencesWithVocabulary = ({
 }: StudySentencesWithVocabularyProps) => {
   const { sentences, image } = studySentencesWithVocabularyDatas?.[0];
   const [sentencesOption, setSentencesOption] = useState<SentenceOption>("all");
-  const [languageOption, setLanguageOption] = useState(false);
+  const [languageOption, setLanguageOption] = useState<LanguageType>("chinese");
   const [currentSentenceIndex, setCurrentSentenceIndex] = useState(0);
   const [texts, setTexts] = useState<string[]>([]);
   const [pronunciations, setPronunciations] = useState<string[]>([]);
   const [meanings, setMeanings] = useState<string[]>([]);
   const [words, setWords] = useState<SentenceWord[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isSentenceMoreOpen, setIsSentenceMoreOpen] = useState(false);
   const [currentBubbleSentenceIndex, setCurrentBubbleSentenceIndex] = useState(0);
 
   const firstSetting = useCallback(() => {
@@ -255,8 +191,12 @@ const StudySentencesWithVocabulary = ({
       return sentences.map((sentence, index) => {
         return (
           <div key={index}>
-            <HtmlContentComponent html={sentence.text} customCss={htmlCss} />
-            {languageOption && <HtmlContentComponent html={sentence.meaning} customCss={htmlCss} />}
+            {languageOption === "chinese" && (
+              <HtmlContentComponent html={sentence.text} customCss={htmlCss} />
+            )}
+            {languageOption === "korean" && (
+              <HtmlContentComponent html={sentence.meaning} customCss={htmlCss} />
+            )}
           </div>
         );
       });
@@ -279,10 +219,20 @@ const StudySentencesWithVocabulary = ({
             customIconCss={optionIconCss}
             customWrapperCss={optionButtonCss}
             customTextCss={optionTextCss}
-            text="한국어"
-            active={languageOption}
+            text="중국어"
+            active={languageOption === "chinese"}
             handleClickOption={() => {
-              setLanguageOption(!languageOption);
+              setLanguageOption("chinese");
+            }}
+          />
+          <OptionButton
+            customIconCss={optionIconCss}
+            customWrapperCss={optionButtonCss}
+            customTextCss={optionTextCss}
+            text="한국어"
+            active={languageOption === "korean"}
+            handleClickOption={() => {
+              setLanguageOption("korean");
             }}
           />
         </OptionButtonWrapper>
@@ -316,67 +266,6 @@ const StudySentencesWithVocabulary = ({
     currentSentenceIndex,
   ]);
 
-  const bubbleSentence = useMemo(() => {
-    return (
-      <>
-        <ArrowLeft
-          disabled={!sentences[currentSentenceIndex].words[currentBubbleSentenceIndex - 1]}
-          activeColor={colorPalette.white}
-          customCss={bubbleArrowCss}
-          onClickIcon={() => {
-            if (sentences[currentSentenceIndex].words[currentBubbleSentenceIndex - 1]) {
-              setCurrentBubbleSentenceIndex((prev) => prev - 1);
-            }
-          }}
-        />
-        <HtmlContentComponent
-          html={sentences[currentSentenceIndex].words[currentBubbleSentenceIndex].text}
-        />
-        <HtmlContentComponent
-          html={sentences[currentSentenceIndex].words[currentBubbleSentenceIndex].pronunciation}
-        />
-        <HtmlContentComponent
-          html={sentences[currentSentenceIndex].words[currentBubbleSentenceIndex].meaning}
-        />
-        <ArrowRight
-          disabled={!sentences[currentSentenceIndex].words[currentBubbleSentenceIndex + 1]}
-          activeColor={colorPalette.white}
-          customCss={arrowCss}
-          onClickIcon={() => {
-            if (sentences[currentSentenceIndex].words[currentBubbleSentenceIndex + 1]) {
-              setCurrentBubbleSentenceIndex((prev) => prev + 1);
-            }
-          }}
-        />
-      </>
-    );
-  }, [sentences, currentBubbleSentenceIndex, currentSentenceIndex]);
-
-  const renderBubble = useMemo(() => {
-    return (
-      <BubbleContainer>
-        <IconSentenceCharacter />
-        {!isSentenceMoreOpen && <IconTail color={colorPalette.sentenceBubble} />}
-        <SentenceBubble open={isSentenceMoreOpen}>
-          <BubbleText open={isSentenceMoreOpen}>
-            {isSentenceMoreOpen ? bubbleSentence : "단어"}
-          </BubbleText>
-          <BubbleMoreIcon
-            onClick={() => {
-              setIsSentenceMoreOpen(!isSentenceMoreOpen);
-            }}
-          >
-            {isSentenceMoreOpen ? (
-              <XIcon css={xIconCss} color={colorPalette.black} />
-            ) : (
-              <ArrowRight customCss={arrowCss} />
-            )}
-          </BubbleMoreIcon>
-        </SentenceBubble>
-      </BubbleContainer>
-    );
-  }, [bubbleSentence, isSentenceMoreOpen]);
-
   return (
     <>
       <SentencesOptionContainer>
@@ -405,7 +294,13 @@ const StudySentencesWithVocabulary = ({
             filter="none"
             customCss={imageCss}
           />
-          {sentencesOption === "one" && renderBubble}
+          {sentencesOption === "one" && (
+            <SentenceBubbleComponent
+              sentences={sentences[currentSentenceIndex].words}
+              currentBubbleSentenceIndex={currentBubbleSentenceIndex}
+              setCurrentBubbleSentenceIndex={setCurrentBubbleSentenceIndex}
+            />
+          )}
         </LeftContainer>
 
         <SentenceWrapper>

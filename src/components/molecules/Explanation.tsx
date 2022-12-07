@@ -35,7 +35,7 @@ const CloseButton = styled.button`
   top: 0;
   right: 0;
   transform: translateX(-20%);
-  background-image: url("${process.env.PUBLIC_URL}/images/icon/icon_close.svg");
+  background-image: url("${process.env.REACT_APP_BASE_URL}/images/icon/icon_close.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 40%;
@@ -54,11 +54,11 @@ const TextBox = styled.div`
   background-position: left 3px;
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  background-image: url("${process.env.PUBLIC_URL}/images/img/bg_answer_balloon.png");
+  background-image: url("${process.env.REACT_APP_BASE_URL}/images/img/bg_answer_balloon.png");
 `;
 
 const ImageWrapper = styled.div`
-  width: 50px;
+  width: 70px;
   display: flex;
   flex-basis: flex-end;
 `;
@@ -110,6 +110,12 @@ const audioCss = css`
   margin-left: ${changePXtoVW(12)};
 `;
 
+const IconImg = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+`;
+
 type ExplanationData = {
   audio?: {
     src: string;
@@ -129,9 +135,9 @@ const Explanation = ({ isCorrect, explanation, handleClickClose }: ExplanationPr
 
   const iconUrl = useMemo(() => {
     if (isCorrect) {
-      return `${process.env.PUBLIC_URL}/images/img/bg_right_character.png`;
+      return `${process.env.REACT_APP_BASE_URL}/images/img/bg_right_character.png`;
     }
-    return `${process.env.PUBLIC_URL}/images/img/bg_wrong_character.png`;
+    return `${process.env.REACT_APP_BASE_URL}/images/img/bg_wrong_character.png`;
   }, [isCorrect]);
 
   const infoText = useMemo(() => {
@@ -144,7 +150,7 @@ const Explanation = ({ isCorrect, explanation, handleClickClose }: ExplanationPr
     <ExplanationWrapper>
       <ExplanationContainer>
         <ImageWrapper>
-          <img src={iconUrl} alt="" />
+          <IconImg src={iconUrl} alt="" />
         </ImageWrapper>
         <TextBox>
           <OXWrapper>{isCorrect ? <OIcon /> : <XIcon />}</OXWrapper>

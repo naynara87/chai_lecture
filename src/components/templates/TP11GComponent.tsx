@@ -16,11 +16,9 @@ const TP11GComponent = ({ setPageCompleted, page, showHeader = true }: TP11GComp
       | WordQuizContent
       | undefined;
   }, [thisPage.template.contents]);
-
   useEffect(() => {
     setPageCompleted();
   }, [setPageCompleted]);
-
   return (
     <TemplateCommonLayout>
       {showHeader ? (

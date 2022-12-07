@@ -12,9 +12,12 @@ import CommonMainContainer from "../atoms/CommonMainContainer";
 import ChaiSkeleton from "../atoms/ChaiSkeleton";
 import ModalStart from "../modal/ModalStart";
 import { getPageUrl } from "../../utils/url";
-import { breakPoints } from "../../constants/layout";
-import { useNavigate } from "react-router-dom";
 import useCornerListPage from "../../hooks/useCornerListPage";
+import { breakPoints, headerHeightNormal } from "../../constants/layout";
+import { useNavigate } from "react-router-dom";
+import { changePXtoVW } from "../../utils/styles";
+import useCornerIconMapper from "../../hooks/useCornerIconMapper";
+// import usePageList from "../../hooks/api/usePageList";
 
 const CornerListWrapper = styled.main`
   display: -webkit-box;
@@ -30,7 +33,7 @@ const CornerListWrapper = styled.main`
   flex-wrap: wrap;
   gap: 43px;
   max-width: 553px;
-  margin: 43px auto 0;
+  margin: ${changePXtoVW(200)} auto 0;
 
   &.layout7 {
     max-width: 581px;
@@ -38,7 +41,6 @@ const CornerListWrapper = styled.main`
   @media all and (max-width: ${breakPoints.tablet}) {
     gap: 4.1666666667vw;
     max-width: 54.6666666667vw;
-    margin-top: 4.1666666667vw;
     &.layout7 {
       max-width: 56.6666666667vw;
     }
@@ -118,13 +120,15 @@ const startTextCss = css`
 `;
 
 const CornerListLayout = styled.div`
-  height: 100vh;
+  margin-top: ${headerHeightNormal};
   display: flex;
   flex-direction: column;
 `;
 
 const CornerListPage = () => {
   const [isModalCloseOpen, setIsModalCloseOpen] = useState(false);
+
+  const { getCornerIcon } = useCornerIconMapper();
 
   const navigate = useNavigate();
 
@@ -183,12 +187,17 @@ const CornerListPage = () => {
                 return (
                   <CornerList key={corner.id}>
                     <CornerImageWrapper>
-                      <ImageContentComponent
-                        imageSrc={corner.cornerIcon}
-                        imageAlt={corner.title}
-                        filter={changeFilter(corner.id)}
-                        customCss={cornerImageCss}
-                      />
+                      {getCornerIcon(corner.title) ? (
+                        <ImageContentComponent
+                          imageSrc={getCornerIcon(corner.title)}
+                          imageAlt={corner.title}
+                          filter={changeFilter(corner.id)}
+                          customCss={cornerImageCss}
+                          isZoom={false}
+                        />
+                      ) : (
+                        <ChaiSkeleton width={90} height={90} variant="circular" animation={false} />
+                      )}
                     </CornerImageWrapper>
                     <CornerName>{corner.title}</CornerName>
                   </CornerList>

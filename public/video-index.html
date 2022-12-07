@@ -4,16 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Bubblecon LX Player</title>
-    <link
-      rel="shortcut icon"
-      href="./assets/image/favicon.ico"
-      type="image/x-icon"
-    />
-    <link
-      href="./assets/css/lx-player-new.css"
-      rel="stylesheet"
-      type="text/css"
-    />
+    <link rel="shortcut icon" href="./assets/image/favicon.ico" type="image/x-icon" />
+    <link href="./assets/css/lx-player-new.css" rel="stylesheet" type="text/css" />
     <!-- <link
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
       rel="stylesheet"
@@ -42,16 +34,15 @@
         data-setup='{ "controlBar": {"pictureInPictureToggle": false} }'
       >
         <!-- 동영상 자막 지원 -->
-        <track
+        <!-- <track
           kind="captions"
           src="./assets/track/sample.vtt"
           srclang="en"
           label="English"
           default
-        />
+        /> -->
         <p class="vjs-no-js">
-          영상 로드중 문제가 발생하였습니다. 영상을 시청하시려면 자바스크립트를
-          활성화해주세요.
+          영상 로드중 문제가 발생하였습니다. 영상을 시청하시려면 자바스크립트를 활성화해주세요.
         </p>
       </video>
       <div class="subtitle" id="transcript"></div>
@@ -85,9 +76,7 @@
             actualLearningTime: actualLearningTime,
             total_time: lxPlayer.player.duration(),
             current_time: lxPlayer.player.currentTime(),
-            percent: Math.round(
-              (lxPlayer.player.currentTime() / lxPlayer.player.duration()) * 100
-            ),
+            percent: Math.round((lxPlayer.player.currentTime() / lxPlayer.player.duration()) * 100),
           },
         };
         window.parent.postMessage(data, "*");
@@ -105,9 +94,7 @@
             actualLearningTime: actualLearningTime,
             total_time: lxPlayer.player.duration(),
             current_time: lxPlayer.player.currentTime(),
-            percent: Math.round(
-              (lxPlayer.player.currentTime() / lxPlayer.player.duration()) * 100
-            ),
+            percent: Math.round((lxPlayer.player.currentTime() / lxPlayer.player.duration()) * 100),
           },
         };
         window.parent.postMessage(data, "*");
@@ -128,9 +115,7 @@
             actualLearningTime: actualLearningTime,
             total_time: lxPlayer.player.duration(),
             current_time: lxPlayer.player.currentTime(),
-            percent: Math.round(
-              (lxPlayer.player.currentTime() / lxPlayer.player.duration()) * 100
-            ),
+            percent: Math.round((lxPlayer.player.currentTime() / lxPlayer.player.duration()) * 100),
           },
         };
         window.parent.postMessage(data, "*");
@@ -212,11 +197,12 @@
         if (e.data) {
           // options.interval_sec = e.data.interval_term_save_progress ?? 5;
           options.url = e.data.src ?? "";
+          options.tracks = e.data.tracks;
           // const contexts = e.data.datas.contexts ?? null;
           // options.playback_rate = contexts?.playback_rate ?? [
           //   0.5, 0.75, 1, 1.25, 1.5,
           // ];
-          // options.control_bar = contexts?.control_bar ?? true;
+          options.control_bar = e.data?.control_bar ?? true;
           // options.forward_btn = contexts?.forward_btn ?? true;
           // options.rewind_btn = contexts?.rewind_btn ?? true;
           // options.time = contexts?.last_learning_time ?? 0;

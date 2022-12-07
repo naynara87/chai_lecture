@@ -9,7 +9,6 @@ import TP04Layout from "../Layouts/TP04Layout";
 import TitleContent from "../molecules/TitleContent";
 import ImageContentComponent from "../contents/ImageContentComponent";
 import { css } from "@emotion/react";
-import { colorPalette } from "../../styles/colorPalette";
 import { changePXtoVW } from "../../utils/styles";
 import HtmlContentComponent from "../molecules/HtmlContentComponent";
 
@@ -23,13 +22,11 @@ const ContainerWrapper = styled.div`
   display: grid;
   grid-template-columns: 33% 33%;
   width: 100%;
-  /* line-height: 1.15vw; */
   gap: 4%;
   align-items: center;
   margin: 0 auto;
   font-size: ${changePXtoVW(36)};
   justify-content: center;
-  /* color: ${colorPalette.descriptionText}; */
 `;
 
 const AudioWrapper = styled.div`
@@ -104,7 +101,7 @@ const TP04AComponent = ({ setPageCompleted, page, showHeader = true }: TP0BAComp
         <></>
       )}
       <TP04Layout>
-        {renderContents}
+        {<>{renderContents}</>}
         <AudioWrapper>
           <AudioButton isAudio={true} audioUrl={AudioContentData?.data[0].src} />
         </AudioWrapper>

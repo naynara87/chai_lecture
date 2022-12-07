@@ -9,6 +9,10 @@ interface ImageComponentProps {
 const ImageComponent = styled.img<ImageComponentProps>`
   cursor: pointer;
   -webkit-user-drag: none;
+  width: 100%;
+  max-width: 500px;
+  height: 100%;
+  object-fit: contain;
   ${(props) => props.customCss}
 `;
 
@@ -17,16 +21,21 @@ interface ImageContentComponentProps {
   imageAlt: string;
   filter: string;
   customCss?: SerializedStyles;
+  isZoom?: boolean;
 }
 const ImageContentComponent = ({
   imageSrc,
   imageAlt,
   filter,
   customCss,
+  isZoom = true,
 }: ImageContentComponentProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleClickModalOpen = () => {
+    if (!isZoom) {
+      return;
+    }
     setIsModalOpen(true);
   };
 

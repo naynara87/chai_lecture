@@ -12,7 +12,13 @@ const VideoContentAdapter = ({ content }: VideoContentAdapterProps) => {
   return (
     <>
       {data.map((videoData, index) => {
-        return <VideoContentComponent key={index} videoUrl={videoData.src} />;
+        return (
+          <VideoContentComponent
+            key={index}
+            videoUrl={videoData.src}
+            tracks={videoData.tracks}
+          />
+        );
       })}
     </>
   );

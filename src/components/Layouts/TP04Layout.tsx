@@ -5,12 +5,10 @@ import { templateContentsAreaHeight } from "../../constants/layout";
 const TP04LayoutStyle = styled.div`
   height: ${templateContentsAreaHeight};
   display: grid;
-  gap: 4%;
-  /* overflow-y: auto; */
 `;
 
 interface TP04LayoutProps {
-  children: [JSX.Element[] | undefined, JSX.Element];
+  children: JSX.Element | JSX.Element[];
 }
 const TP04Layout = ({ children }: TP04LayoutProps) => {
   return <TP04LayoutStyle>{children}</TP04LayoutStyle>;

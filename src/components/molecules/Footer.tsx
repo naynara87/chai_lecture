@@ -12,6 +12,7 @@ const FooterWrapper = styled.footer`
   position: relative;
   width: 100%;
   height: 100%;
+  z-index: 4;
 `;
 
 const FooterContainer = styled.div`
@@ -69,7 +70,9 @@ const Footer = ({
     if (currentCorner === undefined) {
       return;
     }
-    console.log(`page: ${pageIndex + 1} / ${currentCorner.pages.length}`);
+    if (process.env.NODE_ENV === "development") {
+      console.log(`page: ${pageIndex + 1} / ${currentCorner.pages.length}`);
+    }
   }, [pageIndex, currentCorner]);
 
   return (

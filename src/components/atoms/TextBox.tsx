@@ -10,11 +10,10 @@ interface TextCardProps {
 }
 
 const TextCard = styled.div<TextCardProps>`
-  width: ${changePXtoVW(154)};
-  height: ${changePXtoVW(106)};
+  min-width: 100px;
   line-height: 84px;
   margin: 11px;
-  padding: ${changePXtoVW(33)} 0;
+  padding: ${changePXtoVW(33)} ${changePXtoVW(33)};
   border: 1px solid color(gray2);
   border-radius: 11px;
   font-size: ${changePXtoVW(48)};
@@ -28,7 +27,6 @@ const TextCard = styled.div<TextCardProps>`
     line-height: 8.3333333333vw;
     margin: 1.0416666667vw;
     border-radius: 1.0416666667vw;
-    /* font-size: 3.125vw; */
   }
 
   ${(props) => props.customCss}

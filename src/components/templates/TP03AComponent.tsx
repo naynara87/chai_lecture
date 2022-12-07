@@ -9,10 +9,12 @@ import { AudioContent, HtmlContent, TextBoxesContent } from "../../types/templat
 import { colorPalette } from "../../styles/colorPalette";
 import { breakPoints } from "../../constants/layout";
 import HtmlContentComponent from "../molecules/HtmlContentComponent";
+import { changePXtoVW } from "../../utils/styles";
 import TextBoxes from "../molecules/TextBoxes";
 import AudioButton from "../atoms/AudioButton";
 import { css } from "@emotion/react";
-import { changePXtoVW } from "../../utils/styles";
+
+interface TP03AComponentProps extends TemplateProps {}
 
 const HtmlWrapper = styled("div")`
   line-height: 1.5;
@@ -21,6 +23,7 @@ const HtmlWrapper = styled("div")`
   color: ${colorPalette.descriptionText};
   white-space: pre-line;
   text-align: center;
+  margin-bottom: ${changePXtoVW(50)};
 
   @media all and (max-width: ${breakPoints.tablet}) {
     font-size: 2.5vw;

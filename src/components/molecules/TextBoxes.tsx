@@ -29,9 +29,13 @@ const TextCardGrp = styled.div<TextCardGrpProps>`
   text-align: center;
   color: #3c3c3c;
   font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   &.horizontal {
     display: flex;
+    flex-direction: row;
     align-items: center;
   }
 
@@ -66,6 +70,7 @@ interface TextBoxesProps {
   customBoxCss?: SerializedStyles;
   customBoxWrapperCss?: SerializedStyles;
   customBoxContainerCss?: SerializedStyles;
+  customDescriptionCss?: SerializedStyles;
 }
 
 const TextBoxes = ({
@@ -74,6 +79,7 @@ const TextBoxes = ({
   customBoxCss,
   customBoxWrapperCss,
   customBoxContainerCss,
+  customDescriptionCss,
 }: TextBoxesProps) => {
   const renderTextBoxes = useMemo(() => {
     return datas.map((textBox, index) => {
@@ -85,12 +91,15 @@ const TextBoxes = ({
         >
           <TextBox text={textBox.main} customBoxCss={customBoxCss} />
           <MeaningText className={isHorizontal ? "horizontal" : ""}>
-            <HtmlContentComponent html={textBox.description ?? ""} />
+            <HtmlContentComponent
+              html={textBox.description ?? ""}
+              customCss={customDescriptionCss}
+            />
           </MeaningText>
         </TextCardGrp>
       );
     });
-  }, [customBoxWrapperCss, datas, isHorizontal, customBoxCss]);
+  }, [customBoxWrapperCss, datas, isHorizontal, customBoxCss, customDescriptionCss]);
 
   return <TextBoxesWrapper customCss={customBoxContainerCss}>{renderTextBoxes}</TextBoxesWrapper>;
 };

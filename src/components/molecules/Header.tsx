@@ -16,7 +16,7 @@ const HeaderContainer = styled.header`
   ${headerHeight}
   padding: 0 32px;
   background-color: ${colorPalette.deepBlue};
-  z-index: 2;
+  z-index: 4;
   @media all and (max-width: ${breakPoints.tablet}) {
     padding: 0 3.125vw;
   }

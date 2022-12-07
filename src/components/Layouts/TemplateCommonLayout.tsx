@@ -1,13 +1,11 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { footerHeightNormal } from "../../constants/layout";
 
 const TemplateCommon = styled.div`
   height: 100%;
-  padding-top: ${footerHeightNormal};
   display: grid;
   grid-template-rows: max-content 84%;
-  grid-gap: 4%;
+  padding-top: clamp(150px, 16.666666666666664vw, 320px);
 `;
 
 interface TemplateCommonLayoutProps {

@@ -12,11 +12,11 @@ import CheckButton from "../atoms/CheckButton";
 interface TP01AComponentProps extends TemplateProps {}
 
 const TP01AComponent = ({ setPageCompleted, page, showHeader = true }: TP01AComponentProps) => {
-  const [userAnswers, setUserAnswers] = useState<number[]>([]);
+  const [userAnswers, setUserAnswers] = useState<string[]>([]);
   const [checkAnswers, setCheckAnswers] = useState<boolean[]>([]);
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  const { handleClickAudioButton, audioIndex, audioSrc } = useAudio(audioRef);
+  const { handleClickAudioButton, audioIndex, audioSrc, audioState } = useAudio(audioRef);
 
   const thisPage = page as TP01A;
   useEffect(() => {
@@ -30,7 +30,7 @@ const TP01AComponent = ({ setPageCompleted, page, showHeader = true }: TP01AComp
   }, [thisPage.template.contents]);
 
   const handleCheckAnswer = useCallback(
-    (answer: number, index: number) => {
+    (answer: string, index: number) => {
       if (userAnswers.length >= ChooseTextByAudioContentData!.data.length) {
         return;
       }
@@ -51,9 +51,9 @@ const TP01AComponent = ({ setPageCompleted, page, showHeader = true }: TP01AComp
     if (userAnswers.length !== ChooseTextByAudioContentData!.data.length) {
       return;
     }
-    const correctAnswers: number[] =
+    const correctAnswers: string[] =
       ChooseTextByAudioContentData?.data.map((item) => {
-        return item.answerIndex;
+        return item.choices[item.answerIndex];
       }) ?? [];
     userAnswers.forEach((answer, index) => {
       if (answer === correctAnswers[index]) {
@@ -84,6 +84,7 @@ const TP01AComponent = ({ setPageCompleted, page, showHeader = true }: TP01AComp
           handleClickAudio={handleClickAudioButton}
           audioUrl={audio.src}
           currentAudioIndex={audioIndex ?? 0}
+          audioState={audioState}
         />
       );
     });
@@ -94,7 +95,9 @@ const TP01AComponent = ({ setPageCompleted, page, showHeader = true }: TP01AComp
     handleClickAudioButton,
     audioIndex,
     handleCheckAnswer,
+    audioState,
   ]);
+
   return (
     <TemplateCommonLayout>
       {showHeader ? (
@@ -107,7 +110,7 @@ const TP01AComponent = ({ setPageCompleted, page, showHeader = true }: TP01AComp
         <CheckButton
           text="채점하기"
           handleClickCheckButton={handleClickCheckButton}
-          isHide={userAnswers.length >= ChooseTextByAudioContentData!.data.length}
+          isHide={userAnswers.length < ChooseTextByAudioContentData!.data.length}
         />
         <audio ref={audioRef}>
           <source src={audioSrc} />

@@ -5,10 +5,7 @@ import { templateContentsAreaHeight } from "../../constants/layout";
 const TP11LayoutStyle = styled.div`
   height: ${templateContentsAreaHeight};
   display: grid;
-  grid-template-rows: max-content 1fr;
-  gap: 4.4vh;
   justify-items: center;
-  /* overflow-y: auto; */
 `;
 interface TP11LayoutProps {
   children: [JSX.Element, JSX.Element];

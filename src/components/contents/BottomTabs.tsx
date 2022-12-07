@@ -12,7 +12,7 @@ interface BottomTabsWrapperProps {
 const BottomTabsWrapper = styled.div<BottomTabsWrapperProps>`
   width: ${changePXtoVW(1680)};
   height: ${(props) => (props.open ? `${changePXtoVH(451)}` : `${changePXtoVH(160)}`)};
-  position: absolute;
+  position: fixed;
   bottom: ${(props) => (props.open ? "60px" : 0)};
   left: 50%;
   transform: translateX(-50%);
@@ -59,6 +59,9 @@ const BottomTabMainContainer = styled.div<BottomTabMainContainerProps>`
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   & img {
     width: ${changePXtoVW(300)};
@@ -82,7 +85,7 @@ const CloseButton = styled.button<CloseButtonProps>`
   top: 0;
   right: 3%;
   transform: translateY(-50%);
-  background-image: url("${process.env.PUBLIC_URL}/images/icon/icon_close.svg");
+  background-image: url("${process.env.REACT_APP_BASE_URL}/images/icon/icon_close.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 40%;
@@ -128,7 +131,7 @@ const BottomTabs = ({ datas }: BottomTabsProps) => {
 
   const mainContents = useMemo(() => {
     return datas[currentIndex].contents.map((content, index) => {
-      return getContentComponent(content);
+      return <div key={index}>{getContentComponent(content)}</div>;
     });
   }, [currentIndex, datas, getContentComponent]);
 

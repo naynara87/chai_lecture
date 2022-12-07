@@ -8,7 +8,6 @@ interface AudioRecorderAdapterProps {
 
 const AudioRecorderAdapter = ({ content }: AudioRecorderAdapterProps) => {
   const { data } = content;
-
   return (
     <>
       {data.map((audioRecorderData, index) => {
