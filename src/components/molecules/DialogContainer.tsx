@@ -73,7 +73,7 @@ const DialogContainer = ({
 
   const handleChangeContent = useCallback(
     (index: number) => {
-      if (!currentContentIndex) {
+      if (currentContentIndex === undefined) {
         return;
       }
 
