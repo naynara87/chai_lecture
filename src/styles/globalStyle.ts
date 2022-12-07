@@ -4,7 +4,7 @@ import { colorPalette } from "./colorPalette";
 
 const getPublicUrl = () => {
   if (process.env.NODE_ENV === "production") {
-    return "/new_assets/bubble-player";
+    return process.env.REACT_APP_BASE_URL;
   } else {
     return "";
   }
