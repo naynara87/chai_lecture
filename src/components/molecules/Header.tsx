@@ -3,13 +3,11 @@ import styled from "@emotion/styled";
 import { colorPalette } from "../../styles/colorPalette";
 import ButtonComponent from "../atoms/ButtonComponent";
 import { css } from "@emotion/react";
-import { useQuery } from "@tanstack/react-query";
-import { QUERY_KEY } from "../../constants/queryKey";
-import { getAppData } from "../../data/tempApi";
 import { breakPoints } from "../../constants/layout";
 import CornerSignPost from "../atoms/CornerSignPost";
 import { CORNER_LIST_URL } from "../../constants/url";
 import { headerHeight } from "../../styles/layout";
+import { AppMetaData, Corner2 } from "../../types/appData";
 
 const HeaderContainer = styled.header`
   position: fixed;
@@ -140,12 +138,12 @@ const exitTextCss = css`
 `;
 
 interface HeaderProps {
-  cornerName?: string;
+  currentCorner: Corner2 | undefined;
+  appMetaData: AppMetaData | undefined;
+  showCornerLabel?: boolean;
 }
 
-const Header = ({ cornerName }: HeaderProps) => {
-  const { data: appData } = useQuery([QUERY_KEY.APP_DATA], getAppData);
-
+const Header = ({ currentCorner, appMetaData, showCornerLabel = false }: HeaderProps) => {
   const handleExitButton = () => {
     console.log("나가기 버튼");
     window.close();
@@ -154,8 +152,8 @@ const Header = ({ cornerName }: HeaderProps) => {
   return (
     <HeaderContainer>
       <HeaderTitle>
-        {appData?.course.title ? `${appData?.course.title} > ` : ""}
-        <LessonTitle>{appData?.lesson.title}</LessonTitle>
+        {appMetaData?.courseName ? `${appMetaData.courseName} > ` : ""}
+        <LessonTitle>{appMetaData?.lessonName}</LessonTitle>
       </HeaderTitle>
       <ButtonComponent
         text="X"
@@ -164,7 +162,11 @@ const Header = ({ cornerName }: HeaderProps) => {
         customTextCss={exitTextCss}
         handleClickButton={handleExitButton}
       />
-      {cornerName ? <CornerSignPost cornerName={cornerName} /> : <></>}
+      {showCornerLabel && currentCorner ? (
+        <CornerSignPost cornerName={currentCorner.title} />
+      ) : (
+        <></>
+      )}
     </HeaderContainer>
   );
 };

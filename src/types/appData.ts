@@ -65,6 +65,13 @@ export type AppData = {
   corners: Corner[];
 };
 
+export type AppMetaData = {
+  courseId: ID;
+  courseName: string;
+  lessonId: ID;
+  lessonName: string;
+};
+
 type CornerType =
   | "review"
   | "study1"
@@ -76,7 +83,7 @@ type CornerType =
 
 export type Corner = {
   id: ID;
-  type: CornerType;
+  type?: CornerType;
   title: string;
   isCompleted: boolean;
   cornerIcon: string;
@@ -85,6 +92,10 @@ export type Corner = {
     description: string;
   };
   pages: Page[];
+};
+
+export type Corner2 = Omit<Corner, "pages" | "isCompleted"> & {
+  pages: ID[];
 };
 
 export type Page =

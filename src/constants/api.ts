@@ -1,3 +1,5 @@
+import { ID } from "../types/appData";
+
 export const API_KEY = "15968aad-ff43-484f-b5b5-b741fda1f521";
 
 // server url
@@ -11,14 +13,17 @@ export const LCMS_SUBJECT = "/lcms/subject";
  * - 레슨 : lesson -> lesson1
  * - 회차 : turn = corner -> 각 코너 - 복습, 회차1, ...
  */
-export const getLcmsSubjectLessonAllUrl = (subjectId: string) =>
+export const getLcmsSubjectLessonAllUrl = (subjectId: ID) =>
   `/lcms/subject/lesson-all/${subjectId}`;
 
-export const getLcmsSubjectLessonListUrl = (subjectId: string) =>
+export const getLcmsSubjectLessonListUrl = (subjectId: ID) =>
   `/lcms/subject/lesson-list/${subjectId}`;
 
-export const getLcmsSubjectTurnUrl = (turnId: string) => `/lcms/subject/turn/${turnId}`;
+export const getLcmsSubjectTurnUrl = (turnId: ID) => `/lcms/subject/turn/${turnId}`;
 
-export const getLcmsWordListUrl = (subjectId: string) => `/lcms/subject/word-list/${subjectId}`;
+export const getLcmsWordListUrl = (subjectId: ID) => `/lcms/subject/word-list/${subjectId}`;
 
-export const getLcmsSubjectUrl = (subjectId: string) => `/lcms/subject/${subjectId}`;
+export const getLcmsSubjectUrl = (subjectId: ID) => `/lcms/subject/${subjectId}`;
+
+export const getLcmsLessonDataUrl = (lessonId: ID) =>
+  `/lcms/subject/lesson-detail-list/${lessonId}`;

@@ -163,6 +163,21 @@ const globalStyle = css`
       url("${process.env.PUBLIC_URL}/fonts/Inter-Bold.woff") format("woff"),
       url("${process.env.PUBLIC_URL}/fonts/Inter-Bold.otf") format("opentype");
   }
+
+  /* ******************************************************************************   Tostify  */
+
+  .Toastify__toast {
+    padding: 0 !important;
+  }
+
+  .Toastify__toast-body {
+    padding: 0 !important;
+    margin: 0;
+  }
+
+  :root {
+    --toastify-toast-min-height: 0 !important;
+  }
 `;
 
 export default globalStyle;
