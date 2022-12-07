@@ -2,34 +2,30 @@ import styled from "@emotion/styled";
 import React from "react";
 import { colorPalette } from "../../styles/colorPalette";
 import { changePXtoVH, changePXtoVW } from "../../utils/styles";
-import { headerHeight } from "../../styles/layout";
+import { headerHeightNormal } from "../../constants/layout";
 
 interface CornerSignPostProps {
   cornerName: string;
 }
 
 const SignPost = styled.div`
-  z-index: 1;
-  line-height: 1.5;
-  font-weight: 600;
-  color: ${colorPalette.white};
-
-	position: absolute;
-	top: ${headerHeight};
+  z-index: 3;
+	position: fixed;
+	top: ${headerHeightNormal};
 	left: ${changePXtoVW(80)};
 	width: ${changePXtoVW(124)};
 	height: ${changePXtoVH(148)};
 	padding: 0 ${changePXtoVW(20)};
 	padding-top: ${changePXtoVH(9)};
-	line-height: 1.5;
-	font-weight: 600;
-  font-size: ${changePXtoVW(24)};
 	text-align: center;
-
-  background-position: center ${changePXtoVH(-10)};
+  background-position: center ${changePXtoVH(0)};
   background-size: contain;
   background-repeat: no-repeat;
   background-image: url("${process.env.REACT_APP_BASE_URL}/images/img/icon_sign_post.svg");
+  line-height: 1.5;
+  font-weight: 600;
+  color: ${colorPalette.white};
+  font-size: ${changePXtoVW(24)};
 
 `;
 

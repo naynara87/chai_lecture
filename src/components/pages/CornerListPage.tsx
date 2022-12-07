@@ -30,7 +30,7 @@ const CornerListWrapper = styled.main`
   flex-wrap: wrap;
   gap: ${changePXtoVH(80)} ${changePXtoVW(80)};
   max-width: ${changePXtoVW(792)};
-  margin: ${changePXtoVW(200)} auto 0;
+  margin: 0 auto;
 `;
 
 const CornerImageWrapper = styled.div`
@@ -84,7 +84,7 @@ const startTextCss = css`
 `;
 
 const CornerListLayout = styled.div`
-  margin-top: ${headerHeightNormal};
+  /* margin-top: ${headerHeightNormal}; */
   display: flex;
   flex-direction: column;
 `;

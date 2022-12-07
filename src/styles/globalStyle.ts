@@ -1,4 +1,5 @@
 import { css } from "@emotion/react";
+import { headerHeightNormal } from "../constants/layout";
 import { changePXtoVW } from "../utils/styles";
 import { colorPalette } from "./colorPalette";
 
@@ -38,7 +39,7 @@ const globalStyle = css`
     margin: 0;
     padding: 0;
     border: 0;
-    line-height: 1.15;
+    line-height: 1.4;
     vertical-align: baseline;
     box-sizing: border-box;
     /* font-size: 100%; */
@@ -140,6 +141,11 @@ const globalStyle = css`
 
   .c4 {
     color: ${colorPalette.c4tag};
+  }
+
+  div[role="presentation"] {
+    z-index: 5;
+    top: ${headerHeightNormal};
   }
 
   /* =================== fonts =================== */

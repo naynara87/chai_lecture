@@ -18,6 +18,10 @@ interface HeaderContainerProps {
   isScroll: boolean;
 }
 
+const HeaderTabContainer = styled.div`
+  height: calc(${headerHeightNormal} + ${changePXtoVW(80)});
+`;
+
 const HeaderContainer = styled.div<HeaderContainerProps>`
   padding: calc(${headerHeightNormal} + ${changePXtoVW(80)}) 0 6px;
   box-shadow: ${(props) => props.isScroll && `0 4px 20px -2px hsl(0deg 0% 81% / 50%)`};
@@ -187,14 +191,20 @@ const TPTabComponent = ({ setPageCompleted, page }: TPTabComponentProps) => {
 
   return (
     <TemplateTabLayout>
-      <HeaderContainer isScroll={isScroll}>
-        <TitleContent title={pageHeader.title} description={pageHeader.description} isTab={true} />
-        <TabButtons
-          tabs={thisPage.template.tabs ?? []}
-          tabIds={tabIdxToId}
-          handleClickTab={handleClickTab}
-        />
-      </HeaderContainer>
+      <HeaderTabContainer>
+        <HeaderContainer isScroll={isScroll}>
+          <TitleContent
+            title={pageHeader.title}
+            description={pageHeader.description}
+            isTab={true}
+          />
+          <TabButtons
+            tabs={thisPage.template.tabs ?? []}
+            tabIds={tabIdxToId}
+            handleClickTab={handleClickTab}
+          />
+        </HeaderContainer>
+      </HeaderTabContainer>
       <TPTabLayout LayoutRef={LayoutRef}>{renderTemplate}</TPTabLayout>
     </TemplateTabLayout>
   );

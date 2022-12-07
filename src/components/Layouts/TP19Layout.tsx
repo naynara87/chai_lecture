@@ -4,7 +4,6 @@ import { templateContentsAreaHeight } from "../../constants/layout";
 import { changePXtoVH } from "../../utils/styles";
 
 const TP19LayoutStyle = styled.div`
-  height: ${templateContentsAreaHeight};
   display: grid;
   text-align: center;
   padding-top: ${changePXtoVH(20)};

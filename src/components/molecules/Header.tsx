@@ -18,7 +18,7 @@ const HeaderContainer = styled.header`
   ${headerHeight}
   padding: 0 ${changePXtoVW(60)};
   background-color: ${colorPalette.deepBlue};
-  z-index: 4;
+  z-index: 10;
 `;
 
 const HeaderTitle = styled.h1`
@@ -41,13 +41,13 @@ const exitButtonCss = css`
   position: absolute;
   top: 50%;
   left: auto;
-	right: ${changePXtoVW(60)};
+  right: ${changePXtoVW(60)};
   transform: translateY(-50%);
   transition: all 0.2s;
   border: none;
   background-color: transparent;
   cursor: pointer;
-  
+
   &:hover,
   &:focus {
     transform: translateY(-50%) rotate(90deg);
@@ -110,20 +110,22 @@ const Header = ({ cornerName }: HeaderProps) => {
   };
 
   return (
-    <HeaderContainer>
-      <HeaderTitle>
-        {appData?.course.title ? `${appData?.course.title} > ` : ""}
-        <LessonTitle>{appData?.lesson.title}</LessonTitle>
-      </HeaderTitle>
-      <ButtonComponent
-        text="X"
-        linkUrl={CORNER_LIST_URL}
-        customBtnCss={exitButtonCss}
-        customTextCss={exitTextCss}
-        handleClickButton={handleExitButton}
-      />
+    <div>
+      <HeaderContainer>
+        <HeaderTitle>
+          {appData?.course.title ? `${appData?.course.title} > ` : ""}
+          <LessonTitle>{appData?.lesson.title}</LessonTitle>
+        </HeaderTitle>
+        <ButtonComponent
+          text="X"
+          linkUrl={CORNER_LIST_URL}
+          customBtnCss={exitButtonCss}
+          customTextCss={exitTextCss}
+          handleClickButton={handleExitButton}
+        />
+      </HeaderContainer>
       {cornerName ? <CornerSignPost cornerName={cornerName} /> : <></>}
-    </HeaderContainer>
+    </div>
   );
 };
 

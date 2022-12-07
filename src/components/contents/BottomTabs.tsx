@@ -80,7 +80,7 @@ const BottomTabMainContainer = styled.div<BottomTabMainContainerProps>`
 
     &.c2 {
       font-weight: 400;
-      font-size: ${changePXtoVW(38)};
+      font-size: ${changePXtoVW(48)};
     }
   }
 

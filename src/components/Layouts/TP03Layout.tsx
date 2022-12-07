@@ -3,7 +3,6 @@ import React from "react";
 import { templateContentsAreaHeight } from "../../constants/layout";
 
 const TP03LayoutStyle = styled.div`
-  height: ${templateContentsAreaHeight};
   display: flex;
   flex-direction: column;
   align-items: center;
