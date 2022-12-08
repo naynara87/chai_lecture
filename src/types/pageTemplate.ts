@@ -392,6 +392,18 @@ export type TP10A = {
 
 type TP10AContent = WordQuizContent;
 
+export type TP10C = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP10C";
+    contents: TP10CContent[];
+  };
+};
+
+type TP10CContent = WordQuizContent;
+
 export type TP11A = {
   id: ID;
   title: string;

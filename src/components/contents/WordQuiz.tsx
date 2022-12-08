@@ -104,7 +104,7 @@ const WordQuiz = ({ datas, reverse = false }: WordQuizProps) => {
           <TextBox text={text} customBoxCss={customBoxCss} />
         </TextBoxWrapper>
       )}
-      {reverse && (
+      {reverse && audio && (
         <AudioWrapper>
           <AudioButton isAudio={true} audioUrl={audio.src} />
         </AudioWrapper>
@@ -130,7 +130,7 @@ const WordQuiz = ({ datas, reverse = false }: WordQuizProps) => {
         })}
       </WordQuizAnswerWrapper>
       <HtmlContentComponent html={meaning} customCss={meaningCss} />
-      {!reverse && (
+      {!reverse && audio && (
         <AudioWrapper>
           <AudioButton isAudio={true} audioUrl={audio.src} />
         </AudioWrapper>

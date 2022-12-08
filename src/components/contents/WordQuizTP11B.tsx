@@ -131,9 +131,11 @@ const WordQuizTP11B = ({ datas }: WordQuizProps) => {
       </QuestionWrapper>
 
       <HtmlContentComponent html={meaning} customCss={meaningCss} />
-      <AudioWrapper>
-        <AudioButton isAudio={true} audioUrl={audio.src} />
-      </AudioWrapper>
+      {audio && (
+        <AudioWrapper>
+          <AudioButton isAudio={true} audioUrl={audio.src} />
+        </AudioWrapper>
+      )}
       <WordQuizAnswerWrapper>
         {sortList.map((choice, index) => {
           return (

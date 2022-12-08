@@ -1,6 +1,6 @@
 import { css, SerializedStyles } from "@emotion/react";
 import styled from "@emotion/styled";
-import React, { useCallback, useMemo, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useReactMediaRecorder } from "react-media-recorder";
 import { colorPalette } from "../../styles/colorPalette";
 import { changePXtoVW } from "../../utils/styles";
@@ -68,16 +68,36 @@ const AudioRecorder = ({ audioUrl }: AudioRecorderProps) => {
   const [recordingAudioState, setRecordingAudioState] = useState<recordingAudioState>("pause");
   const { status, startRecording, stopRecording, mediaBlobUrl } = useReactMediaRecorder({
     audio: true,
+    video: false,
+    askPermissionOnMount: true,
     blobPropertyBag: {
       type: "audio/wav",
     },
+    onStart: () => {
+      console.log("Asdfsdf");
+    },
+    onStop: () => {
+      console.log("end");
+    },
   });
+
+  const getLocalStream = useCallback(async () => {
+    return await navigator.mediaDevices.getUserMedia({
+      audio: true,
+    });
+  }, []);
+
+  useEffect(() => {
+    getLocalStream();
+  }, [getLocalStream]);
+
   const handleClickRecordedAudioButton = useCallback(() => {
     if (!audioRef.current || pronounceAudio) {
       return;
     }
 
     if (status === "stopped") {
+      console.log(mediaBlobUrl);
       audioRef.current.play();
       setRecordedAudioState(true);
       setRecordingAudioState("recordAudioPlaying");
@@ -88,7 +108,7 @@ const AudioRecorder = ({ audioUrl }: AudioRecorderProps) => {
       setRecordedAudioState(false);
       setRecordingAudioState("pause");
     }
-  }, [recordedAudioState, status, pronounceAudio]);
+  }, [recordedAudioState, status, pronounceAudio, mediaBlobUrl]);
 
   audioRef.current?.addEventListener("ended", () => {
     setRecordedAudioState(false);
@@ -141,7 +161,7 @@ const AudioRecorder = ({ audioUrl }: AudioRecorderProps) => {
 
   return (
     <AudioRecorderStyle>
-      {/* <p>{status}</p> */}
+      <p>{status}</p>
       <RecordedAudioButton
         onClick={handleClickRecordedAudioButton}
         customCss={status === "stopped" && !pronounceAudio ? currentBackground : grayBackground}
@@ -154,9 +174,7 @@ const AudioRecorder = ({ audioUrl }: AudioRecorderProps) => {
       >
         {renderRecordingAudioIcon}
       </RecordingAudioButton>
-      <audio ref={audioRef} src={mediaBlobUrl}>
-        <track kind="captions" />
-      </audio>
+      <audio ref={audioRef} src={mediaBlobUrl} />
       <AudioButton
         audioUrl={audioUrl}
         isAudio={true}
