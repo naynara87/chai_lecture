@@ -121,15 +121,37 @@ export const dummyData: AppData = {
           title: "문장 1",
           description: "중국어를 확인해 보세요.",
           template: {
-            type: "TP02B",
+            type: "TP08B",
             contents: [
               {
-                type: "textBoxes",
+                type: "images",
                 data: [
                   {
-                    main: "早上好!",
-                    sub: "",
-                    description: "Zǎoshang hǎo!",
+                    src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/4idBoYNNSffqeZGcT4SVVJ45fSsQZwse/Z9OB8U11bXMyKJNgS6aXX7MuLjFGmmZp/b048ddda487db85957d75c8950fe846043eb078617849e7a64e8c0c7c50cbd1a.png",
+                  },
+                ],
+              },
+              {
+                type: "html",
+                data: [
+                  {
+                    text: "<h1>我会游泳。</h4>",
+                  },
+                  {
+                    text: "<p class='c4'>Wǒ  huì  yóuyǒng.</>",
+                  },
+                  {
+                    text: "<p>나는  수영할 줄 압니다.</p>",
+                  },
+                ],
+              },
+              {
+                type: "audioRecord",
+                data: [
+                  {
+                    audio: {
+                      src: "string",
+                    },
                   },
                 ],
               },
