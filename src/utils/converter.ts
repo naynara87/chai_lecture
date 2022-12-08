@@ -10,16 +10,13 @@ export const pageDataConverter = (pageData: PageData): Page => {
 };
 
 export const cornerDataConverter = (cornerData: CornerData): Corner2 => {
-  const { turnId, turnName } = cornerData;
+  const { turnId, turnName, introduction, pages } = cornerData;
   return {
     id: turnId,
     title: turnName,
-    cornerIcon: `${process.env.PUBLIC_URL}/images/icon/img_sort_page01.png`, // TODO: 아이콘 매퍼를 추가해야 한다
-    introduction: {
-      title: cornerData.introduction.subTitle,
-      description: cornerData.introduction.contents[0],
-    },
-    pages: cornerData.pages,
+    cornerIcon: `${process.env.PUBLIC_URL}/images/icon/img_sort_page01.png`,
+    introduction,
+    pages,
   };
 };
 
