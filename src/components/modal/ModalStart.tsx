@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useMemo } from "react";
 import styled from "@emotion/styled";
 import ModalCommon from "./ModalCommon";
-import IconCheckYellow from "../atoms/svg/IconCheckYellow";
 import IconModalCharacter from "../atoms/svg/IconModalCharacter";
 import { colorPalette } from "../../styles/colorPalette";
 import { breakPoints } from "../../constants/layout";
+import { Introduction } from "../../types/appData";
+import StartModalContents from "../molecules/StartModalContents";
+import isEmpty from "lodash/isEmpty";
+import { changePXtoVH } from "../../utils/styles";
 
 const ModalInnerBox = styled.div`
   overflow: hidden;
@@ -63,23 +66,6 @@ const ModalSecondTitle = styled.h3`
   font-size: 1.5625vw;
 `;
 
-const ModalDescription = styled.p`
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  margin-top: 0.5555555556vh;
-  margin-left: 0.5vh;
-  font-weight: 500;
-  font-size: 1.25vw;
-  white-space: pre-line;
-`;
-
 const ModalDescriptionWrap = styled.div`
   position: relative;
   margin-top: -1.25vh;
@@ -89,7 +75,10 @@ const ModalDescriptionWrap = styled.div`
   background-color: ${colorPalette.modalDescriptionBackground};
 `;
 
-const StartButton = styled.button`
+interface StartButtonProps {
+  isIntroductionContentsEmpty: boolean;
+}
+const StartButton = styled.button<StartButtonProps>`
   min-width: 149px;
   height: 43px;
   background-color: ${colorPalette.confirmBtn};
@@ -99,7 +88,7 @@ const StartButton = styled.button`
   font-size: 13px;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
-  margin-top: 53px;
+  margin-top: ${(props) => (props.isIntroductionContentsEmpty ? "10px" : changePXtoVH(53))};
   cursor: pointer;
 
   @media all and (max-width: ${breakPoints.tablet}) {
@@ -112,16 +101,14 @@ const StartButton = styled.button`
 `;
 
 interface ModalStartProps {
-  title: string;
-  description: string;
+  introduction: Introduction;
   isModalOpen: boolean;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   handleClickStart(): void;
 }
 
 const ModalStart = ({
-  title,
-  description,
+  introduction,
   isModalOpen,
   setIsModalOpen,
   handleClickStart,
@@ -130,20 +117,31 @@ const ModalStart = ({
     setIsModalOpen(false);
   };
 
+  const isIntroductionContentsEmpty = useMemo(
+    () => isEmpty(introduction.contents),
+    [introduction.contents],
+  );
+
   return (
     <ModalCommon open={isModalOpen} onClose={handleClose}>
       <ModalInnerBox>
-        <ModalHeader>학습 목표</ModalHeader>
-        <ModalTitle>{title}</ModalTitle>
-        <ModalBody>
-          <IconModalCharacter />
-          <ModalDescriptionWrap>
-            <ModalSecondTitle>학습 내용</ModalSecondTitle>
-            <IconCheckYellow color={colorPalette.modalCheckIcon} />
-            <ModalDescription>{description}</ModalDescription>
-          </ModalDescriptionWrap>
-        </ModalBody>
-        <StartButton onClick={handleClickStart}>확인</StartButton>
+        <ModalHeader>{introduction.title || "학습 목표"}</ModalHeader>
+        <ModalTitle>{introduction.subTitle}</ModalTitle>
+        {!isIntroductionContentsEmpty && (
+          <ModalBody>
+            <IconModalCharacter />
+            <ModalDescriptionWrap>
+              <ModalSecondTitle>{introduction.contentsTitle || "학습 내용"}</ModalSecondTitle>
+              <StartModalContents introduction={introduction} />
+            </ModalDescriptionWrap>
+          </ModalBody>
+        )}
+        <StartButton
+          onClick={handleClickStart}
+          isIntroductionContentsEmpty={isIntroductionContentsEmpty}
+        >
+          {introduction.confirmButtonText || "확인"}
+        </StartButton>
       </ModalInnerBox>
     </ModalCommon>
   );

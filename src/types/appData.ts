@@ -101,12 +101,18 @@ export type Corner = {
   title: string;
   isCompleted: boolean;
   cornerIcon: string;
-  introduction: {
-    title: string;
-    description: string;
-  };
+  introduction: Introduction;
   pages: Page[];
 };
+
+export interface Introduction {
+  title?: string; // 학습 목표
+  subTitle: string;
+  contentsTitle?: string; // 학습 내용
+  contents?: string[];
+  contentsAlign?: "vertical" | "horizontal";
+  confirmButtonText?: string; // 확인
+}
 
 export type Corner2 = Omit<Corner, "pages" | "isCompleted"> & {
   pages: ID[];

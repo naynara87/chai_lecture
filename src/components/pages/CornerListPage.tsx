@@ -158,7 +158,7 @@ const CornerListPage = () => {
     if (!currentCorner) return;
     if (!appMetaData) return;
 
-    // TODO: 진도체크 API 호출 결과 반영하여 이어하기 기능 추가하기
+    // TODO: 진도체크 API 호출 결과 반영하여 이어하기 기능 추가하기 -> useEffect로 코너 간지 거치지 않고 바로 시작
     const url = getPageUrl(
       appMetaData.courseId,
       appMetaData.lessonId,
@@ -227,13 +227,14 @@ const CornerListPage = () => {
           )}
         </CornerListFooter>
       </CommonMainContainer>
-      <ModalStart
-        title={currentCorner?.introduction.title ?? ""}
-        description={currentCorner?.introduction?.description ?? ""}
-        isModalOpen={isModalCloseOpen}
-        handleClickStart={handleClickStart}
-        setIsModalOpen={setIsModalCloseOpen}
-      />
+      {currentCorner && (
+        <ModalStart
+          introduction={currentCorner.introduction}
+          isModalOpen={isModalCloseOpen}
+          handleClickStart={handleClickStart}
+          setIsModalOpen={setIsModalCloseOpen}
+        />
+      )}
     </CornerListLayout>
   );
 };

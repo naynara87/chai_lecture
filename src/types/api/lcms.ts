@@ -1,4 +1,4 @@
-import { ID, Page } from "../appData";
+import { ID, Introduction, Page } from "../appData";
 
 /**
  * /lcms/subject/turn/${turnId}
@@ -55,12 +55,4 @@ export interface CornerData {
   turnName: string;
   introduction: Introduction;
   pages: number[];
-}
-
-export interface Introduction {
-  title: string;
-  subTitle: string;
-  contentsTitle: string;
-  contents: string[];
-  confirmButtonText: string;
 }
