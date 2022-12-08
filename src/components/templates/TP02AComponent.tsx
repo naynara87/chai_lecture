@@ -15,7 +15,7 @@ const AudioWrapper = styled.div`
 
 interface TP02AComponentProps extends TemplateProps {}
 
-const TP02AComponent = ({ setPageCompleted, page }: TP02AComponentProps) => {
+const TP02AComponent = ({ setPageCompleted, page, showHeader = true }: TP02AComponentProps) => {
   const thisPage = page as TP02A;
 
   useEffect(() => {
@@ -30,7 +30,11 @@ const TP02AComponent = ({ setPageCompleted, page }: TP02AComponentProps) => {
 
   return (
     <TemplateCommonLayout>
-      <TitleContent title={thisPage.title} description={thisPage.description} />
+      {showHeader ? (
+        <TitleContent title={thisPage.title} description={thisPage.description} />
+      ) : (
+        <></>
+      )}
       <TP02Layout>
         <AudioWrapper>
           <AudioButton isAudio={true} audioUrl={AudioContentData?.data?.[0].src} />

@@ -1,25 +1,27 @@
 import React, { useEffect, useMemo } from "react";
-import { TP11G } from "../../types/pageTemplate";
+import { TP11B } from "../../types/pageTemplate";
 import { WordQuizContent } from "../../types/templateContents";
 import { TemplateProps } from "../../types/templates";
-import WordQuiz from "../contents/WordQuiz";
+import WordQuizTP11B from "../contents/WordQuizTP11B";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TP11Layout from "../Layouts/TP11Layout";
 import TitleContent from "../molecules/TitleContent";
 
-interface TP11GComponentProps extends TemplateProps {}
+interface TP11BComponentProps extends TemplateProps {}
 
-const TP11GComponent = ({ setPageCompleted, page, showHeader = true }: TP11GComponentProps) => {
-  const thisPage = page as TP11G;
+const TP11BComponent = ({ setPageCompleted, page, showHeader = true }: TP11BComponentProps) => {
+  const thisPage = page as TP11B;
+
+  useEffect(() => {
+    setPageCompleted();
+  }, [setPageCompleted]);
 
   const wordQuizContentData = useMemo(() => {
     return thisPage.template.contents.find((content) => content.type === "wordQuiz") as
       | WordQuizContent
       | undefined;
   }, [thisPage.template.contents]);
-  useEffect(() => {
-    setPageCompleted();
-  }, [setPageCompleted]);
+
   return (
     <TemplateCommonLayout>
       {showHeader ? (
@@ -28,10 +30,10 @@ const TP11GComponent = ({ setPageCompleted, page, showHeader = true }: TP11GComp
         <></>
       )}
       <TP11Layout>
-        <WordQuiz datas={wordQuizContentData?.data ?? []} reverse={true} />
+        <WordQuizTP11B datas={wordQuizContentData?.data ?? []} />
       </TP11Layout>
     </TemplateCommonLayout>
   );
 };
 
-export default TP11GComponent;
+export default TP11BComponent;

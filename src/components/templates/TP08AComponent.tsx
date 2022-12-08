@@ -42,7 +42,7 @@ const sentenceContainerCss = css`
 
 interface TP08AComponentProps extends TemplateProps {}
 
-const TP08AComponent = ({ setPageCompleted, page }: TP08AComponentProps) => {
+const TP08AComponent = ({ setPageCompleted, page, showHeader = true }: TP08AComponentProps) => {
   const thisPage = page as TP08A;
 
   useEffect(() => {
@@ -69,7 +69,11 @@ const TP08AComponent = ({ setPageCompleted, page }: TP08AComponentProps) => {
 
   return (
     <TemplateCommonLayout>
-      <TitleContent title={thisPage.title} description={thisPage.description} />
+      {showHeader ? (
+        <TitleContent title={thisPage.title} description={thisPage.description} />
+      ) : (
+        <></>
+      )}
       <TP08Layout>
         <MainContainer>
           <ImageContentComponent

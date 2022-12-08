@@ -120,8 +120,8 @@ type ExplanationData = {
   audio?: {
     src: string;
   };
-  correctMessage: string;
-  wrongMessage: string;
+  correctMessage?: string;
+  wrongMessage?: string;
   text: string;
 };
 
@@ -142,9 +142,9 @@ const Explanation = ({ isCorrect, explanation, handleClickClose }: ExplanationPr
 
   const infoText = useMemo(() => {
     if (isCorrect) {
-      return correctMessage;
+      return correctMessage ?? "정답입니다!";
     }
-    return wrongMessage;
+    return wrongMessage ?? "오답입니다!";
   }, [isCorrect, correctMessage, wrongMessage]);
   return (
     <ExplanationWrapper>

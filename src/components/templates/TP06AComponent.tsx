@@ -11,7 +11,7 @@ import TitleContent from "../molecules/TitleContent";
 
 interface TP06AComponentProps extends TemplateProps {}
 
-const TP06AComponent = ({ setPageCompleted, page }: TP06AComponentProps) => {
+const TP06AComponent = ({ setPageCompleted, page, showHeader = true }: TP06AComponentProps) => {
   const currentContentIndex = 0;
   const thisPage = page as TP06A;
 
@@ -39,7 +39,11 @@ const TP06AComponent = ({ setPageCompleted, page }: TP06AComponentProps) => {
 
   return (
     <TemplateCommonLayout>
-      <TitleContent title={thisPage.title} description={thisPage.description} />
+      {showHeader ? (
+        <TitleContent title={thisPage.title} description={thisPage.description} />
+      ) : (
+        <></>
+      )}
       <TP06Layout>
         <IconText text={IconTextContentData?.data?.[0].text ?? ""} />
         <DialogContainer

@@ -44,7 +44,7 @@ const imageCss = css`
 
 interface TP08BComponentProps extends TemplateProps {}
 
-const TP08BComponent = ({ setPageCompleted, page }: TP08BComponentProps) => {
+const TP08BComponent = ({ setPageCompleted, page, showHeader = true }: TP08BComponentProps) => {
   const thisPage = page as TP08B;
 
   useEffect(() => {
@@ -71,7 +71,11 @@ const TP08BComponent = ({ setPageCompleted, page }: TP08BComponentProps) => {
 
   return (
     <TemplateCommonLayout>
-      <TitleContent title={thisPage.title} description={thisPage.description} />
+      {showHeader ? (
+        <TitleContent title={thisPage.title} description={thisPage.description} />
+      ) : (
+        <></>
+      )}
       <TP08Layout>
         <MainContainer>
           <ImageContentComponent

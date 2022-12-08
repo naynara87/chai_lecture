@@ -8,7 +8,7 @@ const TP11LayoutStyle = styled.div`
   justify-items: center;
 `;
 interface TP11LayoutProps {
-  children: [JSX.Element, JSX.Element];
+  children: JSX.Element | JSX.Element[];
 }
 const TP11Layout = ({ children }: TP11LayoutProps) => {
   return <TP11LayoutStyle>{children}</TP11LayoutStyle>;

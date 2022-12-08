@@ -404,6 +404,18 @@ export type TP11A = {
 
 type TP11AContent = IconTextContent | ChooseTextContent;
 
+export type TP11B = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP11B";
+    contents: TP11BContent[];
+  };
+};
+
+type TP11BContent = WordQuizContent;
+
 export type TP11F = {
   id: ID;
   title: string;

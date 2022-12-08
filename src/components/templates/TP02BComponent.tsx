@@ -15,7 +15,7 @@ const descriptionCss = css`
 
 interface TP02BComponentProps extends TemplateProps {}
 
-const TP02BComponent = ({ setPageCompleted, page }: TP02BComponentProps) => {
+const TP02BComponent = ({ setPageCompleted, page, showHeader = true }: TP02BComponentProps) => {
   const thisPage = page as TP02B;
 
   useEffect(() => {
@@ -30,7 +30,11 @@ const TP02BComponent = ({ setPageCompleted, page }: TP02BComponentProps) => {
 
   return (
     <TemplateCommonLayout>
-      <TitleContent title={thisPage.title} description={thisPage.description} />
+      {showHeader ? (
+        <TitleContent title={thisPage.title} description={thisPage.description} />
+      ) : (
+        <></>
+      )}
       <TP02Layout>
         <TextBoxes datas={TextBoxesContentData?.data ?? []} customDescriptionCss={descriptionCss} />
       </TP02Layout>
