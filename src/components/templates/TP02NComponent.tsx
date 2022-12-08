@@ -30,12 +30,16 @@ const customLayoutCss = css`
 
 const customPronunciationCss = css`
   margin-top: ${changePXtoVW(32)};
+  font-weight: 500;
+  font-size: ${changePXtoVW(30)};
   color: ${colorPalette.pronunciationText};
 `;
 
 const customMeaningCss = css`
   margin-top: ${changePXtoVW(24)};
   margin-bottom: ${changePXtoVW(64)};
+  font-weight: 500;
+  font-size: ${changePXtoVW(30)};
 `;
 
 interface TP02NComponentProps extends TemplateProps {}

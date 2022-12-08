@@ -6,12 +6,12 @@ import OIcon from "../atoms/svg/OIcon";
 import { css } from "@emotion/react";
 import XIcon from "../atoms/svg/XIcon";
 import AudioButton from "../atoms/AudioButton";
-import { changePXtoVW } from "../../utils/styles";
+import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import HtmlContentComponent from "./HtmlContentComponent";
 
 const ExplanationWrapper = styled.div`
   position: fixed;
-  bottom: ${footerHeightNormal};
+  bottom: calc(${footerHeightNormal} + ${changePXtoVH(10)});
   left: 0;
   width: 100%;
   display: flex;
@@ -19,38 +19,38 @@ const ExplanationWrapper = styled.div`
 `;
 
 const ExplanationContainer = styled.div`
-  width: 53%;
-  min-width: 375px;
-  max-width: 650px;
-  display: grid;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  width: 100%;
+  max-width: ${changePXtoVW(1340)};
+  min-height: ${changePXtoVH(160)};
   grid-template-columns: max-content 1fr;
-  gap: 16px;
 `;
 
 const CloseButton = styled.button`
   position: absolute;
-  background-color: ${colorPalette.deepBlue};
-  border-radius: 100%;
-  padding: 15px;
   top: 0;
   right: 0;
-  transform: translateX(-20%);
+  width: ${changePXtoVW(56)};
+  height: ${changePXtoVW(56)};
+  border-radius: 50%;
+  background-color: ${colorPalette.deepBlue};
   background-image: url("${process.env.REACT_APP_BASE_URL}/images/icon/icon_close.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 40%;
+  transform: translateX(-20%);
   cursor: pointer;
 `;
 
 const TextBox = styled.div`
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   position: relative;
   align-items: center;
-  width: 100%;
-  height: 95%;
-  padding: 10px 40px;
+  width: calc(100% - ${changePXtoVW(120)});
+  height: ${changePXtoVH(160)};
+  padding: ${changePXtoVH(10)} ${changePXtoVW(40)};
   background-position: left 3px;
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -58,30 +58,28 @@ const TextBox = styled.div`
 `;
 
 const ImageWrapper = styled.div`
-  width: 70px;
-  display: flex;
-  flex-basis: flex-end;
+  width: ${changePXtoVW(120)};
 `;
 
 const OXWrapper = styled.div`
-  width: 40px;
-  min-width: 40px;
+  width: ${changePXtoVW(96)};
+  min-width: ${changePXtoVW(96)};
   height: 100%;
-  padding-top: 4px;
-  margin-right: 16px;
+  padding-top: ${changePXtoVH(4)};
+  margin-left: ${changePXtoVW(40)};
+  margin-right: ${changePXtoVW(32)};
   display: flex;
-  align-content: center;
 `;
 
 const ExplanationTextCss = css`
-  font-size: 16px;
-  line-height: 24px;
+  font-size: ${changePXtoVW(16)};
+  line-height: ${changePXtoVW(24)};
   font-weight: 600;
 `;
 
 const Text = styled.div`
-  padding-top: 12px;
-  padding-bottom: 8px;
+  padding-top: ${changePXtoVH(12)};
+  padding-bottom: ${changePXtoVH(8)};
   ${ExplanationTextCss}
 `;
 
@@ -91,7 +89,7 @@ const ExplanationTitle = styled.div`
 `;
 
 const ExplanationHtmlCss = css`
-  max-height: 50px;
+  max-height: ${changePXtoVH(50)};
   font-size: ${changePXtoVW(24)};
   color: ${colorPalette.descriptionText};
   font-weight: 400;
@@ -120,8 +118,8 @@ type ExplanationData = {
   audio?: {
     src: string;
   };
-  correctMessage: string;
-  wrongMessage: string;
+  correctMessage?: string;
+  wrongMessage?: string;
   text: string;
 };
 
@@ -142,9 +140,9 @@ const Explanation = ({ isCorrect, explanation, handleClickClose }: ExplanationPr
 
   const infoText = useMemo(() => {
     if (isCorrect) {
-      return correctMessage;
+      return correctMessage ?? "정답입니다!";
     }
-    return wrongMessage;
+    return wrongMessage ?? "오답입니다!";
   }, [isCorrect, correctMessage, wrongMessage]);
   return (
     <ExplanationWrapper>

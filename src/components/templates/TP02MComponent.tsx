@@ -1,20 +1,16 @@
 import { css } from "@emotion/react";
 import React, { useEffect, useMemo } from "react";
-import { breakPoints } from "../../constants/layout";
 import { TP02M } from "../../types/pageTemplate";
 import { TextBoxesContent } from "../../types/templateContents";
 import { TemplateProps } from "../../types/templates";
+import { changePXtoVW } from "../../utils/styles";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TP02Layout from "../Layouts/TP02Layout";
 import TextBoxes from "../molecules/TextBoxes";
 import TitleContent from "../molecules/TitleContent";
 
 const customBoxCss = css`
-  width: 300px;
-
-  @media all and (max-width: ${breakPoints.tablet}) {
-    width: 27vw;
-  }
+  width: ${changePXtoVW(519)};
 `;
 
 interface TP02MComponentProps extends TemplateProps {}

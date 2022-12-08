@@ -12,12 +12,14 @@ import TP02Layout from "../Layouts/TP02Layout";
 import TitleContent from "../molecules/TitleContent";
 import DialogContainer from "../molecules/DialogContainer";
 import useThrottle from "../../hooks/useThrottle";
+import { changePXtoVH } from "../../utils/styles";
 
 const DialogHeader = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
   width: 100%;
+  margin-top: ${changePXtoVH(12)};
 `;
 
 const layoutCss = css`

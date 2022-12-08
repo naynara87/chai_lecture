@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import { colorPalette } from "../../styles/colorPalette";
 import IconCheck from "./svg/IconCheck";
 import { CornerStateType } from "../../types/corner";
+import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 
 interface CornerStateItemProps {
   backgroundColor: string;
@@ -10,27 +11,21 @@ interface CornerStateItemProps {
 }
 
 const CornerStateItem = styled.li<CornerStateItemProps>`
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
   display: inline-flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  width: 17px;
-  height: 17px;
+  width: ${changePXtoVW(32)};
+  height: ${changePXtoVW(32)};
   border-radius: 50%;
-  margin: 4px 5px;
+  margin: ${changePXtoVH(4)} ${changePXtoVW(5)};
   border: 1px solid ${(props) => props.borderColor};
   background-color: ${(props) => props.backgroundColor};
-  -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
+
+  > svg {
+  width: ${changePXtoVW(25)};
+  }
 `;
 
 interface CornerStateProps {

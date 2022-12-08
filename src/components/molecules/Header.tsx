@@ -3,80 +3,57 @@ import styled from "@emotion/styled";
 import { colorPalette } from "../../styles/colorPalette";
 import ButtonComponent from "../atoms/ButtonComponent";
 import { css } from "@emotion/react";
-import { breakPoints } from "../../constants/layout";
 import CornerSignPost from "../atoms/CornerSignPost";
+import { AppMetaData, Corner2 } from "../../types/appData";
 import { CORNER_LIST_URL } from "../../constants/url";
 import { headerHeight } from "../../styles/layout";
-import { AppMetaData, Corner2 } from "../../types/appData";
+import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 
 const HeaderContainer = styled.header`
   position: fixed;
   top: 0;
   width: 100%;
   ${headerHeight}
-  padding: 0 32px;
+  padding: 0 ${changePXtoVW(60)};
   background-color: ${colorPalette.deepBlue};
-  z-index: 4;
-  @media all and (max-width: ${breakPoints.tablet}) {
-    padding: 0 3.125vw;
-  }
+  z-index: 10;
 `;
 
 const HeaderTitle = styled.h1`
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: start;
-  -ms-flex-pack: start;
   justify-content: flex-start;
   height: 100%;
-  font-size: 12px;
+  font-size: ${changePXtoVW(24)};
   color: ${colorPalette.white};
   font-weight: 400;
-  @media all and (max-width: ${breakPoints.tablet}) {
-    font-size: 1.25vw;
-  }
 `;
 
 const LessonTitle = styled.b`
-  margin-left: 4px;
+  margin-left: ${changePXtoVW(4)};
   font-weight: 600;
-  font-size: 16px;
-  @media all and (max-width: ${breakPoints.tablet}) {
-    font-size: 1.5625vw;
-  }
+  font-size: ${changePXtoVW(30)};
 `;
 
 const exitButtonCss = css`
   position: absolute;
   top: 50%;
   left: auto;
-  right: 32px;
-  -webkit-transform: translateY(-50%);
+  right: ${changePXtoVW(60)};
   transform: translateY(-50%);
-  -webkit-transition: all 0.2s;
   transition: all 0.2s;
   border: none;
-  padding: 15px 15px;
   background-color: transparent;
   cursor: pointer;
-  @media all and (max-width: ${breakPoints.tablet}) {
-    right: 3.125vw;
-  }
 
   &:hover,
   &:focus {
-    -webkit-transform: translateY(-50%) rotate(90deg);
     transform: translateY(-50%) rotate(90deg);
   }
 
   &:disabled,
   &:disabled:hover,
   &:disabled:focus {
-    -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
   }
 `;
@@ -85,55 +62,36 @@ const exitTextCss = css`
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 23px;
+  width: ${changePXtoVW(44)};
   height: 0;
   font-size: 0;
-  -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  -webkit-transition: all 0.4s;
   transition: all 0.4s;
-  @media all and (max-width: ${breakPoints.tablet}) {
-    width: 2.2916666667vw;
-  }
+
   &:before {
     content: "";
-    display: block;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 3px;
+    height: ${changePXtoVH(6)};
     border-radius: 3px;
     background-color: ${colorPalette.white};
-    -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
-    -webkit-transition: all 0.4s;
     transition: all 0.4s;
   }
-  @media all and (max-width: ${breakPoints.tablet}) {
-    &:before {
-      height: 0.3125vw;
-    }
-  }
+
   &:after {
     content: "";
-    display: block;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 3px;
+    height: ${changePXtoVH(6)};
     border-radius: 3px;
     background-color: ${colorPalette.white};
-    -webkit-transform: rotate(-45deg);
     transform: rotate(-45deg);
-    -webkit-transition: all 0.4s;
     transition: all 0.4s;
-  }
-  @media all and (max-width: ${breakPoints.tablet}) {
-    &:after {
-      height: 0.3125vw;
-    }
   }
 `;
 

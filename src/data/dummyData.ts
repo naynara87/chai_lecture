@@ -121,19 +121,68 @@ export const dummyData: AppData = {
       cornerIcon: `${process.env.REACT_APP_BASE_URL}/images/icon/img_sort_page02.png`,
       pages: [
         {
+          id: 1,
+          title: "확인 문장",
+          description: "빈칸에 들어갈 알맞은 단어를 고르세요.",
+          template: {
+            type: "TP11B",
+            contents: [
+              {
+                type: "wordQuiz",
+                data: [
+                  {
+                    text: "*好久*不见！",
+                    choices: ["好久", "最近"],
+                    answerIndex: 0,
+                    meaning: "오랜만이에요.",
+                    audio: {
+                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/Caz3M4TmaEdt5s0sHWFvLwp4YWhXYMwG/Kg6oSHwgWChv6GbegBd1DMZm7NYRzzya/088252d8f1d5b51f7635bdb4a6374d8396b603f68d045fdf48e18ea61938c078.mp3",
+                    },
+                    explanation: {
+                      text: "<p>해설 문장이 블라블라~</p>",
+                    },
+                  },
+                ],
+              },
+            ],
+          },
+        },
+        {
           id: 7,
           title: "문장 1",
           description: "중국어를 확인해 보세요.",
           template: {
-            type: "TP02B",
+            type: "TP08B",
             contents: [
               {
-                type: "textBoxes",
+                type: "images",
                 data: [
                   {
-                    main: "早上好!",
-                    sub: "",
-                    description: "Zǎoshang hǎo!",
+                    src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/4idBoYNNSffqeZGcT4SVVJ45fSsQZwse/Z9OB8U11bXMyKJNgS6aXX7MuLjFGmmZp/b048ddda487db85957d75c8950fe846043eb078617849e7a64e8c0c7c50cbd1a.png",
+                  },
+                ],
+              },
+              {
+                type: "html",
+                data: [
+                  {
+                    text: "<h1>我会游泳。</h4>",
+                  },
+                  {
+                    text: "<p class='c4'>Wǒ  huì  yóuyǒng.</>",
+                  },
+                  {
+                    text: "<p>나는  수영할 줄 압니다.</p>",
+                  },
+                ],
+              },
+              {
+                type: "audioRecord",
+                data: [
+                  {
+                    audio: {
+                      src: "string",
+                    },
                   },
                 ],
               },
@@ -1070,7 +1119,7 @@ export const dummyData: AppData = {
                 type: "wordQuiz",
                 data: [
                   {
-                    text: "会",
+                    text: "*会*",
                     choices: ["会", "在"],
                     answerIndex: 0,
                     meaning: "~할 줄 알다.",
@@ -1393,7 +1442,14 @@ export const dummyData: AppData = {
                           type: "html",
                           data: [
                             {
-                              text: "<h2>ma 엄마</h2><p>성모와 운모가 같더라도 성조가 다르면 뜻이 달라져요.</p>",
+                              text: "<h2>ma</h2>",
+                            },
+                            {
+                              text: "<p>엄마</p>",
+                            },
+                            {
+                               kind: "tip",
+                              text: "<p>성모와 운모가 같더라도 성조가 다르면 뜻이 달라져요.</p>",
                             },
                           ],
                         },

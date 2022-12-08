@@ -9,13 +9,14 @@ interface WordQuizAnswerStylesProps {
 }
 
 const WordQuizAnswerStyles = styled.div<WordQuizAnswerStylesProps>`
-  width: ${changePXtoVW(176)};
-  height: ${changePXtoVW(80)};
+  /* width: ${changePXtoVW(176)}; */
+  /* height: ${changePXtoVW(80)}; */
+  padding: 3px 20px;
   font-size: ${changePXtoVW(48)};
   font-weight: 400;
   color: ${(props) => props.color};
   border: 4px solid ${(props) => props.color};
-  border-radius: 52px;
+  border-radius: ${changePXtoVW(52)};
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -29,6 +30,7 @@ interface IconWrapperProps {
 const IconWrapper = styled.div<IconWrapperProps>`
   width: ${changePXtoVW(48)};
   height: ${changePXtoVW(48)};
+  margin-right: 5px;
   background-color: ${(props) => props.color};
   position: relative;
   display: flex;
@@ -59,7 +61,7 @@ const WordQuizAnswer = ({
       <IconWrapper color={color}>
         <IconCheck />
       </IconWrapper>
-      {text}
+      <div>{text}</div>
     </WordQuizAnswerStyles>
   );
 };

@@ -1,16 +1,15 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import React, { useEffect, useMemo } from "react";
-import { footerHeightNormal } from "../../constants/layout";
-import { TP08A } from "../../types/pageTemplate";
-import { HtmlContent, ImagesContent, SentenceWordContent } from "../../types/templateContents";
+import { TP08B } from "../../types/pageTemplate";
+import { AudioRecordContent, HtmlContent, ImagesContent } from "../../types/templateContents";
 import { TemplateProps } from "../../types/templates";
 import { changePXtoVH, changePXtoVW } from "../../utils/styles";
+import AudioRecorder from "../contents/AudioRecorder";
 import ImageContentComponent from "../contents/ImageContentComponent";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TP08Layout from "../Layouts/TP08Layout";
 import HtmlContentComponent from "../molecules/HtmlContentComponent";
-import SentenceBubbleComponent from "../molecules/SentenceBubble";
 import TitleContent from "../molecules/TitleContent";
 
 const MainContainer = styled.div`
@@ -43,17 +42,10 @@ const imageCss = css`
   width: ${changePXtoVW(524)};
 `;
 
-const sentenceContainerCss = css`
-  position: absolute;
-  left: 25%;
-  bottom: calc(${footerHeightNormal} + ${changePXtoVH(20)});
-  margin-bottom: ${changePXtoVH(5)};
-`;
+interface TP08BComponentProps extends TemplateProps {}
 
-interface TP08AComponentProps extends TemplateProps {}
-
-const TP08AComponent = ({ setPageCompleted, page, showHeader = true }: TP08AComponentProps) => {
-  const thisPage = page as TP08A;
+const TP08BComponent = ({ setPageCompleted, page, showHeader = true }: TP08BComponentProps) => {
+  const thisPage = page as TP08B;
 
   useEffect(() => {
     setPageCompleted();
@@ -71,9 +63,9 @@ const TP08AComponent = ({ setPageCompleted, page, showHeader = true }: TP08AComp
       | undefined;
   }, [thisPage.template.contents]);
 
-  const SentenceContentData = useMemo(() => {
-    return thisPage.template.contents.find((content) => content.type === "sentenceWord") as
-      | SentenceWordContent
+  const AudioRecorderContentData = useMemo(() => {
+    return thisPage.template.contents.find((content) => content.type === "audioRecord") as
+      | AudioRecordContent
       | undefined;
   }, [thisPage.template.contents]);
 
@@ -99,13 +91,10 @@ const TP08AComponent = ({ setPageCompleted, page, showHeader = true }: TP08AComp
           </HtmlContainer>
         </MainContainer>
 
-        <SentenceBubbleComponent
-          sentences={SentenceContentData?.data ?? []}
-          containerCss={sentenceContainerCss}
-        />
+        <AudioRecorder audioUrl={AudioRecorderContentData?.data?.[0].audio.src ?? ""} />
       </TP08Layout>
     </TemplateCommonLayout>
   );
 };
 
-export default TP08AComponent;
+export default TP08BComponent;

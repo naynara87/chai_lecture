@@ -2,6 +2,7 @@ import { SerializedStyles } from "@emotion/react";
 import styled from "@emotion/styled";
 import React from "react";
 import { colorPalette } from "../../../styles/colorPalette";
+import { changePXtoVH, changePXtoVW } from "../../../utils/styles";
 interface IconTailProps {
   color?: string;
   customCss?: SerializedStyles;
@@ -12,9 +13,12 @@ interface SvgProps {
 }
 
 const Svg = styled.svg<SvgProps>`
-  position: absolute;
-  transform: translateX(55%) translateY(100%);
   ${(props) => props.customCss}
+
+  position: absolute;
+  top: ${changePXtoVH(50)};
+  left: ${changePXtoVW(190)};
+  width: ${changePXtoVW(120)};
 `;
 
 const IconTail = ({ color = colorPalette.white, customCss }: IconTailProps) => {

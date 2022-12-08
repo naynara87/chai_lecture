@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { useEffect, useRef, useState } from "react";
 import useAudio from "../../hooks/useAudio";
 import { ChooseMediaTextAudio, ChooseMediaTextData } from "../../types/templateContents";
+import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import AudioButton from "../atoms/AudioButton";
 import QuizAnswer from "../atoms/QuizAnswer";
 import Explanation from "./Explanation";
@@ -11,7 +12,7 @@ const MediaTextContainer = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  margin: 20px 0 20px 20px;
+  margin: ${changePXtoVH(20)} 0 ${changePXtoVH(20)} ${changePXtoVW(20)};
 `;
 
 interface ChooseMediaTextProps {
