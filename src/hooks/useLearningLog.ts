@@ -11,7 +11,7 @@ const useLearningLog = (lessonId: ID | undefined) => {
 
   // 학습 이력 조회
   const { data: learningLogData } = useQuery(
-    [QUERY_KEY.LEARNING_LOG, lessonId],
+    [QUERY_KEY.LEARNING_LOG, String(lessonId)],
     () => {
       if (!lessonId) {
         return;

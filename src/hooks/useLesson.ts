@@ -16,7 +16,7 @@ const useLesson = (lessonId: ID | undefined) => {
 
   // 코너 리스트 조회
   useQuery(
-    [QUERY_KEY.CORNER_LIST, lessonId],
+    [QUERY_KEY.CORNER_LIST, String(lessonId)],
     () => {
       if (!lessonId) {
         return;
