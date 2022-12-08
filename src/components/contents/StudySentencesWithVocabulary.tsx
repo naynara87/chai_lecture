@@ -46,7 +46,8 @@ const OptionButtonWrapper = styled.div`
 
 const TextContainer = styled.div`
   width: 100%;
-  height: auto;
+  height: ${changePXtoVH(700)};
+  overflow: auto;
   font-size: ${changePXtoVW(48)};
   font-weight: 400;
   color: ${colorPalette.descriptionText};

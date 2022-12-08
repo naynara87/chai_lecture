@@ -26,7 +26,7 @@ const ContainerWrapper = styled.div`
   align-items: center;
   margin: 0 auto;
   font-size: ${changePXtoVW(36)};
-  margin-top: ${changePXtoVH(32)};
+  margin-top: ${changePXtoVH(20)};
 `;
 
 const AudioWrapper = styled.div`

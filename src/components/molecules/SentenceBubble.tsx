@@ -18,6 +18,8 @@ interface BubbleContainerProps {
 }
 
 const BubbleContainer = styled.div<BubbleContainerProps>`
+  ${(props) => props.containerCss}
+  
   z-index: 5;
   position: fixed;
   left: 50%;
@@ -29,7 +31,6 @@ const BubbleContainer = styled.div<BubbleContainerProps>`
   width: ${changePXtoVW(1600)};
   transform: translateX(-50%);
 
-  ${(props) => props.containerCss}
 `;
 
 interface SentenceBubbleProps {
