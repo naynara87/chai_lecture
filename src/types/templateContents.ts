@@ -6,8 +6,8 @@ type Explanation = {
   audio?: {
     src: string;
   };
-  correctMessage: string;
-  wrongMessage: string;
+  correctMessage?: string;
+  wrongMessage?: string;
   text: string;
 };
 
