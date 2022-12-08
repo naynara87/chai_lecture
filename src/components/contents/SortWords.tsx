@@ -34,7 +34,7 @@ const customBoxCss = css`
 `;
 
 const blankCss = css`
-  color: ${colorPalette.white};
+  /* color: ${colorPalette.white}; */
   display: flex;
   justify-content: center;
   align-items: center;

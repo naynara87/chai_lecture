@@ -7,7 +7,6 @@ import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TP03Layout from "../Layouts/TP03Layout";
 import { AudioContent, HtmlContent, TextBoxesContent } from "../../types/templateContents";
 import { colorPalette } from "../../styles/colorPalette";
-import { breakPoints } from "../../constants/layout";
 import HtmlContentComponent from "../molecules/HtmlContentComponent";
 import { changePXtoVW } from "../../utils/styles";
 import TextBoxes from "../molecules/TextBoxes";
@@ -19,15 +18,11 @@ interface TP03AComponentProps extends TemplateProps {}
 const HtmlWrapper = styled("div")`
   line-height: 1.5;
   font-weight: 400;
-  font-size: 26px;
+  font-size: ${changePXtoVW(48)};
   color: ${colorPalette.descriptionText};
   white-space: pre-line;
   text-align: center;
   margin-bottom: ${changePXtoVW(50)};
-
-  @media all and (max-width: ${breakPoints.tablet}) {
-    font-size: 2.5vw;
-  }
 `;
 
 const AudioWrapper = styled.div`

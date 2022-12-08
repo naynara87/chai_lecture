@@ -1,11 +1,10 @@
 import React, { useMemo } from "react";
 import styled from "@emotion/styled";
 import { TextBoxesData } from "../../types/templateContents";
-import { breakPoints } from "../../constants/layout";
 import { SerializedStyles } from "@emotion/react";
 import TextBox from "../atoms/TextBox";
 import HtmlContentComponent from "./HtmlContentComponent";
-import { changePXtoVW } from "../../utils/styles";
+import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 
 interface TextCardGrpProps {
   customCss?: SerializedStyles;
@@ -15,7 +14,7 @@ interface TextBoxesWrapperProps {
 }
 
 const TextBoxesWrapper = styled.div<TextBoxesWrapperProps>`
-  width: ${changePXtoVW(600)};
+  width: ${changePXtoVW(944)};
   display: flex;
   justify-content: center;
   flex-direction: row;
@@ -33,6 +32,11 @@ const TextCardGrp = styled.div<TextCardGrpProps>`
   flex-direction: column;
   align-items: center;
 
+  > div:first-child {
+  min-width: ${changePXtoVW(288)};
+  height: ${changePXtoVH(160)};
+}
+
   &.horizontal {
     display: flex;
     flex-direction: row;
@@ -43,24 +47,15 @@ const TextCardGrp = styled.div<TextCardGrpProps>`
 `;
 
 const MeaningText = styled("div")`
-  margin-top: 17px;
+  margin-top: ${changePXtoVH(32)};
   font-weight: 600;
-  font-size: 16px;
+  font-size: ${changePXtoVW(30)};
 
   &.horizontal {
     margin-top: 0;
-    font-size: 22px;
-    margin-left: 17px;
+    font-size: ${changePXtoVW(36)};
+    margin-left: ${changePXtoVW(17)};
     font-weight: 500;
-  }
-
-  @media all and (max-width: ${breakPoints.tablet}) {
-    margin-top: 1.6666666667vw;
-    font-size: 1.5625vw;
-
-    &.horizontal {
-      font-size: 1.825vw;
-    }
   }
 `;
 

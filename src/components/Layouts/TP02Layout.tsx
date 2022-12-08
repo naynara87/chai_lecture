@@ -2,15 +2,17 @@ import { SerializedStyles } from "@emotion/react";
 import styled from "@emotion/styled";
 import React from "react";
 import { templateContentsAreaHeight } from "../../constants/layout";
+import { changePXtoVH } from "../../utils/styles";
 
 interface TP02LayoutStyleProps {
   customCss?: SerializedStyles;
 }
 
 const TP02LayoutStyle = styled.div<TP02LayoutStyleProps>`
-  height: ${templateContentsAreaHeight};
-  display: grid;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: ${changePXtoVH(50)};
 
   ${(props) => props.customCss}
 `;

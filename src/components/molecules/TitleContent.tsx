@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import ChaiSkeleton from "../atoms/ChaiSkeleton";
-import { breakPoints } from "../../constants/layout";
 import { colorPalette } from "../../styles/colorPalette";
-import { changePXtoVW } from "../../utils/styles";
+import { changePXtoVH, changePXtoVW } from "../../utils/styles";
+import { titleHeightNormal } from "../../constants/layout";
 
 interface TitleWrapperProps {
   isTab?: boolean;
   isScroll?: boolean;
 }
+
+const TitleContainer = styled.div`
+  height: ${titleHeightNormal};
+`;
 
 const TitleWrapper = styled.div<TitleWrapperProps>`
   display: flex;
@@ -18,6 +22,7 @@ const TitleWrapper = styled.div<TitleWrapperProps>`
   top: ${(props) => !props.isTab && 0};
   padding-top: ${(props) => !props.isTab && "125px"};
   width: ${(props) => !props.isTab && "100%"};
+  /* height: ${titleHeightNormal}; */
   left: ${(props) => !props.isTab && "50%"};
   transform: ${(props) => !props.isTab && "translateX(-50%)"};
   background-color: ${(props) => !props.isTab && `${colorPalette.backgroundWhite}`};
@@ -31,14 +36,11 @@ const MainTitle = styled.h2`
 `;
 
 const SubTitle = styled.p`
-  margin-top: 9px;
+  margin-top: ${changePXtoVW(16)};
   font-weight: 500;
   font-size: ${changePXtoVW(28)};
   color: ${colorPalette.descriptionText};
   margin-bottom: ${changePXtoVW(25)};
-  @media all and (max-width: ${breakPoints.tablet}) {
-    margin-top: 0.8333333333vw;
-  }
 `;
 
 interface TitleContentProps {
@@ -61,18 +63,20 @@ const TitleContent = (props: TitleContentProps) => {
     });
   }, []);
   return (
-    <TitleWrapper isTab={props.isTab} isScroll={props.isTab ? undefined : isScroll}>
-      <MainTitle>
-        {props.loading ? <ChaiSkeleton width={130} height={36} animation={false} /> : props.title}
-      </MainTitle>
-      <SubTitle>
-        {props.loading ? (
-          <ChaiSkeleton width={253} height={17} animation={false} />
-        ) : (
-          props.description
-        )}
-      </SubTitle>
-    </TitleWrapper>
+    <TitleContainer>
+      <TitleWrapper isTab={props.isTab} isScroll={props.isTab ? undefined : isScroll}>
+        <MainTitle>
+          {props.loading ? <ChaiSkeleton width={130} height={36} animation={false} /> : props.title}
+        </MainTitle>
+        <SubTitle>
+          {props.loading ? (
+            <ChaiSkeleton width={253} height={17} animation={false} />
+          ) : (
+            props.description
+          )}
+        </SubTitle>
+      </TitleWrapper>
+    </TitleContainer>
   );
 };
 export default TitleContent;

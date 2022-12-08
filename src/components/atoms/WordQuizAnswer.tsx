@@ -16,7 +16,7 @@ const WordQuizAnswerStyles = styled.div<WordQuizAnswerStylesProps>`
   font-weight: 400;
   color: ${(props) => props.color};
   border: 4px solid ${(props) => props.color};
-  border-radius: 52px;
+  border-radius: ${changePXtoVW(52)};
   display: flex;
   justify-content: space-evenly;
   align-items: center;

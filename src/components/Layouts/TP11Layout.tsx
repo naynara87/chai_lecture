@@ -3,7 +3,6 @@ import React from "react";
 import { templateContentsAreaHeight } from "../../constants/layout";
 
 const TP11LayoutStyle = styled.div`
-  height: ${templateContentsAreaHeight};
   display: grid;
   justify-items: center;
 `;

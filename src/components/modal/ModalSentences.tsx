@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import styled from "@emotion/styled";
 import ModalCommon from "./ModalCommon";
 import { colorPalette } from "../../styles/colorPalette";
-import { changePXtoVW } from "../../utils/styles";
+import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import { SentenceWord } from "../../types/templateContents";
 import HtmlContentComponent from "../molecules/HtmlContentComponent";
 import { css } from "@emotion/react";
@@ -16,18 +16,9 @@ interface ModalSentencesProps {
 
 const ModalInnerBox = styled.div`
   overflow: hidden;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
   flex-direction: column;
   z-index: 2;
   position: absolute;
@@ -35,10 +26,9 @@ const ModalInnerBox = styled.div`
   left: 50%;
   width: ${changePXtoVW(1032)};
   height: ${changePXtoVW(682)};
-  padding-bottom: 3.3333333333vh;
-  border-radius: 2.0833333333vw;
+  padding-bottom: ${changePXtoVH(48)};
+  border-radius: ${changePXtoVW(40)};
   background-color: ${colorPalette.white};
-  -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 `;
 

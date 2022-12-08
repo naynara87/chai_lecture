@@ -1,8 +1,7 @@
 import { SerializedStyles } from "@emotion/react";
 import styled from "@emotion/styled";
 import React from "react";
-import { breakPoints } from "../../constants/layout";
-import { changePXtoVW } from "../../utils/styles";
+import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import HtmlContentComponent from "../molecules/HtmlContentComponent";
 
 interface TextCardProps {
@@ -10,24 +9,17 @@ interface TextCardProps {
 }
 
 const TextCard = styled.div<TextCardProps>`
-  min-width: 100px;
-  line-height: 84px;
-  margin: 11px;
+  min-width: ${changePXtoVW(100)};
+  line-height: ${changePXtoVH(84)};
+  margin: ${changePXtoVH(11)} ${changePXtoVW(11)};
   padding: ${changePXtoVW(33)} ${changePXtoVW(33)};
   border: 1px solid color(gray2);
-  border-radius: 11px;
+  border-radius: ${changePXtoVW(11)};
   font-size: ${changePXtoVW(48)};
-  -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
   display: flex;
   justify-content: center;
   align-items: center;
-
-  @media all and (max-width: ${breakPoints.tablet}) {
-    line-height: 8.3333333333vw;
-    margin: 1.0416666667vw;
-    border-radius: 1.0416666667vw;
-  }
 
   ${(props) => props.customCss}
 `;

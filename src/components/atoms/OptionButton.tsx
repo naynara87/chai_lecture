@@ -2,21 +2,22 @@ import React from "react";
 import styled from "@emotion/styled";
 import { colorPalette } from "../../styles/colorPalette";
 import { SerializedStyles } from "@emotion/react";
+import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 
 interface OptionWrapperProps {
   customCss?: SerializedStyles;
 }
 
 const OptionWrapper = styled.div<OptionWrapperProps>`
-  width: 75px;
-  height: 38px;
-  border-radius: 52px;
+  width: ${changePXtoVW(172)};
+  height: ${changePXtoVH(80)};
+  border-radius: ${changePXtoVW(52)};
   background: ${colorPalette.disableBackground};
   box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.2);
   position: relative;
   transition: all 0.3s ease-in;
   cursor: pointer;
-  margin-left: 10px;
+  margin-left: ${changePXtoVW(10)};
 
   &.active {
     background: ${colorPalette.deepBlue};
@@ -30,18 +31,19 @@ interface OptionButtonIconProps {
 }
 
 const OptionButtonIcon = styled.div<OptionButtonIconProps>`
-  width: 22px;
-  height: 22px;
+  width: ${changePXtoVW(48)};
+  height: ${changePXtoVW(48)};
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  left: 10px;
+  left: ${changePXtoVW(15)};
   background: ${colorPalette.white};
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.12);
   border-radius: 50%;
   transition: all 0.3s ease-in;
+
   &.active {
-    left: 40px;
+    left: calc(100% - ${changePXtoVW(60)});
   }
 
   ${(props) => props.customIconCss}
@@ -53,14 +55,15 @@ interface OptionTextProps {
 
 const OptionText = styled.div<OptionTextProps>`
   color: ${colorPalette.white};
-  font-size: 14px;
+  font-size: ${changePXtoVW(30)};
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  right: 10px;
+  left: calc(100% - 2em - ${changePXtoVW(20)});
   transition: all 0.3s ease-in;
+
   &.active {
-    right: 40px;
+    left: ${changePXtoVW(40)};
   }
 
   ${(props) => props.customTextCss}

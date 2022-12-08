@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import styled from "@emotion/styled";
 import { SentenceWord, StudySentencesWithVocabularyData } from "../../types/templateContents";
 import ImageContentComponent from "./ImageContentComponent";
-import { changePXtoVW } from "../../utils/styles";
+import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import { colorPalette } from "../../styles/colorPalette";
 import OptionButton from "../atoms/OptionButton";
 import HtmlContentComponent from "../molecules/HtmlContentComponent";
@@ -35,23 +35,25 @@ const OptionContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: ${changePXtoVW(10)};
 `;
 
 const OptionButtonWrapper = styled.div`
   display: flex;
-  height: ${changePXtoVW(70)};
+  /* height: ${changePXtoVW(70)}; */
   align-items: center;
 `;
 
 const TextContainer = styled.div`
   width: 100%;
-  height: auto;
+  height: ${changePXtoVH(700)};
+  overflow: auto;
   font-size: ${changePXtoVW(48)};
   font-weight: 400;
   color: ${colorPalette.descriptionText};
-  white-space: pre-wrap;
+  white-space: pre-line;
   text-align: left;
+  padding: ${changePXtoVH(50)} 0;
 `;
 
 interface ChangeSentenceIndexButtonProps {
@@ -60,42 +62,46 @@ interface ChangeSentenceIndexButtonProps {
 
 const ChangeSentenceIndexButton = styled.div<ChangeSentenceIndexButtonProps>`
   cursor: ${(props) => (props.isLast ? "pointer" : "default")};
-  margin-left: 10px;
+  margin-left: ${changePXtoVW(10)};
   display: flex;
   align-items: center;
   opacity: ${(props) => !props.isLast && 0.3};
 `;
 
 const ShowAllSentencesButton = styled.button`
-  width: 108px;
-  height: 30px;
+  min-width: ${changePXtoVW(100)};
+  height: ${changePXtoVH(64)};
+  padding: 0 ${changePXtoVW(48)};
   border: 3px solid ${colorPalette.sentenceAllButton};
-  border-radius: 28px;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 26px;
-  cursor: pointer;
+  border-radius: ${changePXtoVW(28)};
+  font-weight: 600;
+  font-size: ${changePXtoVW(24)};
   color: ${colorPalette.sentenceAllButton};
+  cursor: pointer;
 `;
 
 const optionButtonCss = css`
-  width: 100px;
+  min-width: ${changePXtoVW(200)};
 `;
 
 const optionIconCss = css`
   &.active {
-    left: 65px;
+    left: calc(100% - ${changePXtoVW(15)});
+    transform: translateX(-100%) translateY(-50%);
   }
 `;
 
 const optionTextCss = css`
+    left: calc(100% - ${changePXtoVW(30)});
+    transform: translateX(-100%) translateY(-50%);
   &.active {
-    right: 50px;
+    left: ${changePXtoVW(30)};
+    transform: translateY(-50%);
   }
 `;
 
 const htmlCss = css`
-  margin-bottom: 10px;
+  margin-bottom: ${changePXtoVH(10)};
   line-height: 1.35;
 `;
 
@@ -118,7 +124,7 @@ const SentencesOption = styled.button<SentencesOptionProps>`
   width: ${changePXtoVW(300)};
   height: ${changePXtoVW(72)};
   background-color: ${(props) => props.bgColor || colorPalette.disableBackground};
-  border-radius: 8px;
+  border-radius: ${changePXtoVW(8)};
   color: ${colorPalette.white};
   font-size: ${changePXtoVW(30)};
   cursor: pointer;

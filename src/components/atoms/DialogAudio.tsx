@@ -14,7 +14,7 @@ const Audio = styled.button<DialogAudioProps>`
   width: ${changePXtoVW(80)};
   height: ${changePXtoVW(80)};
   border-radius: 50%;
-  margin: 0 0.5208333333vw;
+  margin: 0 ${changePXtoVW(10)};
   background-color: ${colorPalette.confirmBtn};
   position: relative;
   cursor: pointer;

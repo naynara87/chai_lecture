@@ -1,4 +1,5 @@
 import { css } from "@emotion/react";
+import { headerHeightNormal } from "../constants/layout";
 import { changePXtoVW } from "../utils/styles";
 import { colorPalette } from "./colorPalette";
 
@@ -38,9 +39,8 @@ const globalStyle = css`
     margin: 0;
     padding: 0;
     border: 0;
-    line-height: 1.15;
+    line-height: 1.4;
     vertical-align: baseline;
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     /* font-size: 100%; */
     /* font: inherit; */
@@ -51,14 +51,17 @@ const globalStyle = css`
   }
 
   html {
-    -webkit-tap-highlight-color: transparent;
-    -webkit-text-size-adjust: 100%;
     font-size: 16px;
     /* scroll-behavior: smooth; */
   }
 
   body {
     background-color: ${colorPalette.backgroundWhite};
+  }
+
+  body::-webkit-scrollbar {
+    width: 1px;
+    height: 1px;
   }
 
   a {
@@ -82,11 +85,6 @@ const globalStyle = css`
 
   select {
     padding: 5px 10px;
-  }
-
-  /* ie 화살표 제거 */
-  select::-ms-expand {
-    display: none;
   }
 
   address {
@@ -143,6 +141,11 @@ const globalStyle = css`
 
   .c4 {
     color: ${colorPalette.c4tag};
+  }
+
+  div[role="presentation"] {
+    z-index: 5;
+    top: ${headerHeightNormal};
   }
 
   /* =================== fonts =================== */

@@ -18,7 +18,7 @@ const QuestionContainer = styled.div`
 const htmlCss = css`
   margin-left: ${changePXtoVW(24)};
   font-size: ${changePXtoVW(38)};
-  line-height: 40px;
+  line-height: ${changePXtoVW(40)};
 `;
 
 interface IconTextProps {
