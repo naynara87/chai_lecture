@@ -13,7 +13,7 @@ const useCorner = (cornerId: ID | undefined) => {
   const [pages, setPages] = useState<Page[]>([]);
 
   useQuery(
-    [QUERY_KEY.PAGE_LIST, cornerId],
+    [QUERY_KEY.PAGE_LIST, String(cornerId)],
     () => {
       if (!cornerId) {
         return;

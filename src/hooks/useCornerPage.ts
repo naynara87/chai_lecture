@@ -26,7 +26,7 @@ const useCornerPage = () => {
   }, [cornerId, currentCorner]);
 
   useQuery(
-    [QUERY_KEY.PAGE_LIST, cornerIdMemo],
+    [QUERY_KEY.PAGE_LIST, String(cornerIdMemo)],
     () => {
       if (!cornerIdMemo) {
         return;
