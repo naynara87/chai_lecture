@@ -344,6 +344,18 @@ export type TP08A = {
 
 type TP08AContent = ImagesContent | HtmlContent | SentenceWordContent;
 
+export type TP08B = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP08B";
+    contents: TP08BContent[];
+  };
+};
+
+type TP08BContent = ImagesContent | HtmlContent | AudioRecordContent;
+
 export type TP08G = {
   id: ID;
   title: string;
