@@ -121,19 +121,24 @@ export const dummyData: AppData = {
           title: "확인 문장",
           description: "빈칸에 들어갈 알맞은 단어를 고르세요.",
           template: {
-            type: "TP11B",
+            type: "TP10C",
             contents: [
               {
                 type: "wordQuiz",
                 data: [
                   {
-                    text: "*好久*不见！",
-                    choices: ["好久", "最近"],
+                    text: "",
+                    choices: [
+                      "안녕, 너 장밍이니?",
+                      "뜻밖에 길에서 널 보게 되네.",
+                      "맞아, 오랜만이야!",
+                      "너는 예전과 같이 멋있구나, 조금도 변하지 않았어. ",
+                      "엄마, 제가 소개 할게요.",
+                      "여기는 저의 오랜 친구, 장밍이에요.",
+                      "안녕! 만나서 반갑구나!",
+                    ],
                     answerIndex: 0,
-                    meaning: "오랜만이에요.",
-                    audio: {
-                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/Caz3M4TmaEdt5s0sHWFvLwp4YWhXYMwG/Kg6oSHwgWChv6GbegBd1DMZm7NYRzzya/088252d8f1d5b51f7635bdb4a6374d8396b603f68d045fdf48e18ea61938c078.mp3",
-                    },
+                    meaning: "Q1.你好，你是张明吗？.",
                     explanation: {
                       text: "<p>해설 문장이 블라블라~</p>",
                     },
