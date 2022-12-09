@@ -1,4 +1,4 @@
-import { ID } from "../appData";
+import { ID, Introduction, Page } from "../appData";
 
 /**
  * /lcms/subject/turn/${turnId}
@@ -22,9 +22,37 @@ export interface PageListDataMeta {
 }
 
 export interface PageData {
-  page_id: number;
-  // TODO: LCMS mock API 또는 데이터가 정상적으로 나올 때 타입 변경하기 -> Page
-  contents_data: {
-    id: ID;
-  }; // Page
+  page_id: ID;
+  contents_data: Omit<Page, "id">;
+}
+
+/**
+ * 코너리스트 API 응답 데이터
+ * 아직 API 나오지 않음
+ */
+export interface CornerListData {
+  body: CornerListDataBody;
+  code: number;
+  message: string;
+}
+
+export interface CornerListDataBody {
+  meta: CornerListDataMeta;
+  data: CornerData[];
+}
+
+export interface CornerListDataMeta {
+  subjectId: number; // TODO: 백엔드에 요청 후 데이터를 받아와야 한다
+  subjectName: string; // TODO: 백엔드에 요청 후 데이터를 받아와야 한다
+  // courseId: number; // TODO: 백엔드에 요청 후 데이터를 받아와야 한다
+  // courseName: string; // TODO: 백엔드에 요청 후 데이터를 받아와야 한다
+  lessonId: number;
+  lessonName: string;
+}
+
+export interface CornerData {
+  turnId: number;
+  turnName: string;
+  introduction: Introduction;
+  pages: number[];
 }

@@ -1,35 +1,38 @@
 import { useQuery } from "@tanstack/react-query";
-import { useMemo } from "react";
-import { useParams } from "react-router-dom";
+import { useState } from "react";
+import { getPageListData } from "../api/lcms";
 import { QUERY_KEY } from "../constants/queryKey";
-import { getCorner } from "../data/tempApi";
+import { ID, Page } from "../types/appData";
+import { pageDataConverter } from "../utils/converter";
+import useAuth from "./useAuth";
+import useToast from "./useToast";
 
-const useCorner = () => {
-  const { cornerId } = useParams();
-  const { data: corner } = useQuery(
-    [QUERY_KEY.CORNER, cornerId],
+const useCorner = (cornerId: ID | undefined) => {
+  const { isAuthorized } = useAuth();
+  const { addToast } = useToast();
+  const [pages, setPages] = useState<Page[]>([]);
+
+  useQuery(
+    [QUERY_KEY.PAGE_LIST, String(cornerId)],
     () => {
-      if (cornerId === undefined) {
-        throw new Error("cornerId is undefined");
+      if (!cornerId) {
+        return;
       }
-      return getCorner(cornerId);
+      return getPageListData(cornerId);
     },
     {
+      enabled: isAuthorized && !!cornerId,
+      onSuccess: (data) => {
+        const _pages = data?.body?.data?.map((pageData) => pageDataConverter(pageData));
+        setPages(_pages ?? []);
+      },
       onError: (error) => {
-        console.error(error);
+        addToast("페이지 리스트 조회 실패", "error");
       },
     },
   );
 
-  const pageIds = useMemo(() => {
-    return corner?.pages.map((page) => page.id) ?? [];
-  }, [corner]);
-
-  return {
-    cornerId,
-    currentCorner: corner,
-    pageIds,
-  };
+  return { pages };
 };
 
 export default useCorner;

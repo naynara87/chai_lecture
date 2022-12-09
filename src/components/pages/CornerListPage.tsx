@@ -1,7 +1,6 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import styled from "@emotion/styled";
-import { getAppData } from "../../data/tempApi";
-import { Corner, ID } from "../../types/appData";
+import { ID } from "../../types/appData";
 import ImageContentComponent from "../contents/ImageContentComponent";
 import Header from "../molecules/Header";
 import { css } from "@emotion/react";
@@ -11,13 +10,10 @@ import ButtonComponent from "../atoms/ButtonComponent";
 import { btnCss } from "../../styles/button";
 import CommonMainContainer from "../atoms/CommonMainContainer";
 import ChaiSkeleton from "../atoms/ChaiSkeleton";
-import { useQuery } from "@tanstack/react-query";
-import { QUERY_KEY } from "../../constants/queryKey";
 import ModalStart from "../modal/ModalStart";
 import { getPageUrl } from "../../utils/url";
+import useCornerListPage from "../../hooks/useCornerListPage";
 import { headerHeightNormal } from "../../constants/layout";
-import { useRecoilState } from "recoil";
-import { cornersState } from "../../state/corners";
 import { useNavigate } from "react-router-dom";
 import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import useCornerIconMapper from "../../hooks/useCornerIconMapper";
@@ -90,43 +86,13 @@ const CornerListLayout = styled.div`
 `;
 
 const CornerListPage = () => {
-  const { data: appData } = useQuery([QUERY_KEY.APP_DATA], getAppData);
-
-  const [completedCorners, setCompletedCorners] = useRecoilState(cornersState);
-  const [currentCorner, setCurrentCorner] = useState<Corner>();
   const [isModalCloseOpen, setIsModalCloseOpen] = useState(false);
 
   const { getCornerIcon } = useCornerIconMapper();
 
   const navigate = useNavigate();
 
-  // const {pageList} = usePageList(currentCorner?.id); // TODO: 실제 데이터 적용하기 => BBC-602
-
-  // useEffect(() => {
-  //   if (!appData) return;
-  //   const { corners } = appData;
-  //   const _currentCorner = corners.find((corner) => !corner.isCompleted);
-  //   setCurrentCorner(_currentCorner);
-  // }, [appData]);
-
-  useEffect(() => {
-    if (!appData) return;
-    if (completedCorners.length === 0) {
-      setCompletedCorners(
-        appData.corners.map((corner) => ({ id: corner.id, isCompleted: corner.isCompleted })),
-      );
-    }
-  }, [appData, setCompletedCorners, completedCorners]);
-
-  useEffect(() => {
-    if (!appData) return;
-    const currentCompletedCorner = completedCorners.find((corner) => !corner.isCompleted);
-    if (!currentCompletedCorner) return;
-    const _currentCorner = appData.corners.find(
-      (corner) => corner.id.toString() === currentCompletedCorner.id.toString(),
-    );
-    setCurrentCorner(_currentCorner);
-  }, [appData, completedCorners]);
+  const { currentCorner, appMetaData, corners } = useCornerListPage();
 
   const changeFilter = useCallback(
     (cornerId: ID) => {
@@ -143,47 +109,55 @@ const CornerListPage = () => {
     setIsModalCloseOpen(true);
   };
 
+  const pageIdMemo = useMemo(() => {
+    // TODO: 페이지 이어하기는 정책 필요 나중에 구현
+    return currentCorner?.pages?.[0];
+  }, [currentCorner]);
+
   const handleClickStart = () => {
     if (!currentCorner) return;
-    if (!appData) return;
+    if (!appMetaData) return;
+
+    // TODO: 진도체크 API 호출 결과 반영하여 이어하기 기능 추가하기 -> useEffect로 코너 간지 거치지 않고 바로 시작
     const url = getPageUrl(
-      appData.course.id,
-      appData.lesson.id,
+      appMetaData.courseId,
+      appMetaData.lessonId,
       currentCorner.id,
-      currentCorner?.pages?.[0]?.id!,
-      // pageList?.[0]?.id, // TODO: 실제 데이터 적용하기 => BBC-602
+      pageIdMemo!,
     );
     navigate(url);
   };
 
   return (
     <CornerListLayout>
-      <Header />
+      <Header currentCorner={currentCorner} appMetaData={appMetaData} />
       <CommonMainContainer>
-        {appData ? (
-          <TitleContent title={appData.title} description={appData.description} />
+        {currentCorner ? (
+          // NOTE: 앱 대제목과 소제목이 하드코딩되어 있는데 필요시 appMetaData로 같이 받아야 한다.
+          <TitleContent
+            title="학습 리스트"
+            description="중국과 중국어에 대해 학습을 통해 알아봅시다."
+          />
         ) : (
           <TitleContent title={""} description={""} loading />
         )}
         <CornerListWrapper>
-          {appData
-            ? appData.corners.map((corner) => {
+          {currentCorner
+            ? corners.map((corner) => {
                 return (
                   <CornerList key={corner.id}>
                     <CornerImageWrapper>
-                      {
-                      getCornerIcon(corner.title) ?
-                      <ImageContentComponent
-                        imageSrc={getCornerIcon(corner.title)}
-                        imageAlt={corner.title}
-                        filter={changeFilter(corner.id)}
-                        customCss={cornerImageCss}
-                        isZoom={false}
-                      />
-                      :
-                      <ChaiSkeleton width={90} height={90} variant="circular" animation={false}/>
-                    }
-
+                      {getCornerIcon(corner.title) ? (
+                        <ImageContentComponent
+                          imageSrc={getCornerIcon(corner.title)}
+                          imageAlt={corner.title}
+                          filter={changeFilter(corner.id)}
+                          customCss={cornerImageCss}
+                          isZoom={false}
+                        />
+                      ) : (
+                        <ChaiSkeleton width={90} height={90} variant="circular" animation={false} />
+                      )}
                     </CornerImageWrapper>
                     <CornerName>{corner.title}</CornerName>
                   </CornerList>
@@ -203,7 +177,7 @@ const CornerListPage = () => {
                 ))}
         </CornerListWrapper>
         <CornerListFooter>
-          {currentCorner && appData && (
+          {currentCorner && (
             <ButtonComponent
               text="시작하기"
               handleClickButton={modalOpen}
@@ -213,13 +187,14 @@ const CornerListPage = () => {
           )}
         </CornerListFooter>
       </CommonMainContainer>
-      <ModalStart
-        title={currentCorner?.introduction.title ?? ""}
-        description={currentCorner?.introduction.description ?? ""}
-        isModalOpen={isModalCloseOpen}
-        handleClickStart={handleClickStart}
-        setIsModalOpen={setIsModalCloseOpen}
-      />
+      {currentCorner && (
+        <ModalStart
+          introduction={currentCorner.introduction}
+          isModalOpen={isModalCloseOpen}
+          handleClickStart={handleClickStart}
+          setIsModalOpen={setIsModalCloseOpen}
+        />
+      )}
     </CornerListLayout>
   );
 };

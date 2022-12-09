@@ -1,4 +1,3 @@
-import { CornerNameType } from "./cornerName";
 import {
   TP01A,
   TP03A,
@@ -82,6 +81,13 @@ export type AppData = {
   corners: Corner[];
 };
 
+export type AppMetaData = {
+  courseId: ID;
+  courseName: string;
+  lessonId: ID;
+  lessonName: string;
+};
+
 type CornerType =
   | "review"
   | "study1"
@@ -93,15 +99,25 @@ type CornerType =
 
 export type Corner = {
   id: ID;
-  type: CornerType;
-  title: CornerNameType;
+  type?: CornerType;
+  title: string;
   isCompleted: boolean;
   cornerIcon: string;
-  introduction: {
-    title: string;
-    description: string;
-  };
+  introduction: Introduction;
   pages: Page[];
+};
+
+export interface Introduction {
+  title?: string; // 학습 목표
+  subTitle: string;
+  contentsTitle?: string; // 학습 내용
+  contents?: string[];
+  contentsAlign?: "vertical" | "horizontal";
+  confirmButtonText?: string; // 확인
+}
+
+export type Corner2 = Omit<Corner, "pages" | "isCompleted"> & {
+  pages: ID[];
 };
 
 export type Page =

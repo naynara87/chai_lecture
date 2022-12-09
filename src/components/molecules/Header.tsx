@@ -3,10 +3,8 @@ import styled from "@emotion/styled";
 import { colorPalette } from "../../styles/colorPalette";
 import ButtonComponent from "../atoms/ButtonComponent";
 import { css } from "@emotion/react";
-import { useQuery } from "@tanstack/react-query";
-import { QUERY_KEY } from "../../constants/queryKey";
-import { getAppData } from "../../data/tempApi";
 import CornerSignPost from "../atoms/CornerSignPost";
+import { AppMetaData, Corner2 } from "../../types/appData";
 import { CORNER_LIST_URL } from "../../constants/url";
 import { headerHeight } from "../../styles/layout";
 import { changePXtoVH, changePXtoVW } from "../../utils/styles";
@@ -98,34 +96,36 @@ const exitTextCss = css`
 `;
 
 interface HeaderProps {
-  cornerName?: string;
+  currentCorner: Corner2 | undefined;
+  appMetaData: AppMetaData | undefined;
+  showCornerLabel?: boolean;
 }
 
-const Header = ({ cornerName }: HeaderProps) => {
-  const { data: appData } = useQuery([QUERY_KEY.APP_DATA], getAppData);
-
+const Header = ({ currentCorner, appMetaData, showCornerLabel = false }: HeaderProps) => {
   const handleExitButton = () => {
     console.log("나가기 버튼");
     window.close();
   };
 
   return (
-    <div>
-      <HeaderContainer>
-        <HeaderTitle>
-          {appData?.course.title ? `${appData?.course.title} > ` : ""}
-          <LessonTitle>{appData?.lesson.title}</LessonTitle>
-        </HeaderTitle>
-        <ButtonComponent
-          text="X"
-          linkUrl={CORNER_LIST_URL}
-          customBtnCss={exitButtonCss}
-          customTextCss={exitTextCss}
-          handleClickButton={handleExitButton}
-        />
-      </HeaderContainer>
-      {cornerName ? <CornerSignPost cornerName={cornerName} /> : <></>}
-    </div>
+    <HeaderContainer>
+      <HeaderTitle>
+        {appMetaData?.courseName ? `${appMetaData.courseName} > ` : ""}
+        <LessonTitle>{appMetaData?.lessonName}</LessonTitle>
+      </HeaderTitle>
+      <ButtonComponent
+        text="X"
+        linkUrl={CORNER_LIST_URL}
+        customBtnCss={exitButtonCss}
+        customTextCss={exitTextCss}
+        handleClickButton={handleExitButton}
+      />
+      {showCornerLabel && currentCorner ? (
+        <CornerSignPost cornerName={currentCorner.title} />
+      ) : (
+        <></>
+      )}
+    </HeaderContainer>
   );
 };
 
