@@ -17,6 +17,7 @@ import IframeMainContainer from "../atoms/IframeMainContainer";
 const CornerPage = () => {
   const { pageIds, cornerId } = useCorner();
   const [isPageCompleted, setIsPageCompleted] = useState(false);
+  const [showLoadingPage, setShowLoadingPage] = useState(false);
 
   const [, setCompletedCorners] = useRecoilState(cornersState);
 
@@ -83,10 +84,20 @@ const CornerPage = () => {
   }, [isLastPage, cornerId, setCompletedCorners]);
 
   const renderMainPage = useMemo(() => {
+    if (showLoadingPage) {
+      setTimeout(() => {
+        setShowLoadingPage(false);
+      }, 0);
+      return <div />;
+    }
     if (currentPage) {
       return <CornerMain page={currentPage} setPageCompleted={setPageCompleted} />;
     }
-  }, [currentPage]);
+  }, [currentPage, showLoadingPage]);
+
+  useEffect(() => {
+    setShowLoadingPage(true);
+  }, [setShowLoadingPage, currentPage?.id]);
 
   return (
     <CommonPageLayout>

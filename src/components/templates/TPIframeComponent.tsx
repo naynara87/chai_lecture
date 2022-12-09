@@ -10,7 +10,6 @@ const IframeHeader = styled.div``;
 interface TPIframeComponentProps extends TemplateProps {}
 const TPIframeComponent = ({ setPageCompleted, page }: TPIframeComponentProps) => {
   const thisPage = page as TPIframe;
-  console.log(thisPage.template.url);
   useEffect(() => {
     setPageCompleted();
   }, [setPageCompleted]);

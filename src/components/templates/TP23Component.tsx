@@ -2,31 +2,45 @@ import styled from "@emotion/styled";
 import React, { useEffect } from "react";
 import { templateContentsAreaHeight } from "../../constants/layout";
 import useContentMapper from "../../hooks/useContentMapper";
-import { TP05 } from "../../types/pageTemplate";
+import { TP23 } from "../../types/pageTemplate";
 import { TemplateProps } from "../../types/templates";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TitleContent from "../molecules/TitleContent";
 
-const TP04Layout = styled.div`
+const TP23Layout = styled.div`
   height: ${templateContentsAreaHeight};
   display: grid;
-  grid-template-rows: 76% 20%;
+  grid-template-columns: 48% 48%;
   gap: 20px;
   justify-content: center;
 `;
 
-const ContentContainer = styled.div`
+const ColumnContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 100%;
+  grid-row-start: 1;
+  grid-row-end: 3;
 `;
 
-interface TP05ComponentProps extends TemplateProps {}
+interface ContentContainerProps {
+  isSecondContent: boolean;
+}
 
-const TP05Component = ({ setPageCompleted, page, showHeader = true }: TP05ComponentProps) => {
-  const thisPage = page as TP05;
+const ContentContainer = styled.div<ContentContainerProps>`
+  display: flex;
+  justify-content: flex-start;
+  align-items: ${(props) => (props.isSecondContent ? "flex-end" : "flex-start")};
+  width: 100%;
+  height: 100%;
+`;
+
+interface TP23ComponentProps extends TemplateProps {}
+
+const TP23Component = ({ setPageCompleted, page, showHeader = true }: TP23ComponentProps) => {
+  const thisPage = page as TP23;
 
   useEffect(() => {
     setPageCompleted();
@@ -41,11 +55,18 @@ const TP05Component = ({ setPageCompleted, page, showHeader = true }: TP05Compon
       ) : (
         <></>
       )}
-      <TP04Layout>
+      <TP23Layout>
         {thisPage.template.contents.map((content, index) => {
           if (content) {
+            if (index === 0) {
+              return (
+                <ColumnContainer key={index}>
+                  {getContentComponent(content, thisPage.id)}
+                </ColumnContainer>
+              );
+            }
             return (
-              <ContentContainer key={index}>
+              <ContentContainer key={index} isSecondContent={index === 1}>
                 {getContentComponent(content, thisPage.id)}
               </ContentContainer>
             );
@@ -53,9 +74,9 @@ const TP05Component = ({ setPageCompleted, page, showHeader = true }: TP05Compon
             return <></>;
           }
         })}
-      </TP04Layout>
+      </TP23Layout>
     </TemplateCommonLayout>
   );
 };
 
-export default TP05Component;
+export default TP23Component;
