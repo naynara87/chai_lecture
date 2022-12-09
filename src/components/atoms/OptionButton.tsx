@@ -10,7 +10,7 @@ interface OptionWrapperProps {
 
 const OptionWrapper = styled.div<OptionWrapperProps>`
   width: ${changePXtoVW(172)};
-  height: ${changePXtoVH(80)};
+  height: ${changePXtoVW(80)};
   border-radius: ${changePXtoVW(52)};
   background: ${colorPalette.disableBackground};
   box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.2);

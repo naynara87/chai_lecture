@@ -12,7 +12,8 @@ import TitleContent from "../molecules/TitleContent";
 
 const htmlCss = css`
   font-weight: 500;
-  line-height: ${changePXtoVH(72)};
+  line-height: 1.4;
+  /* line-height: ${changePXtoVH(72)}; */
   font-size: ${changePXtoVW(48)};
   text-align: center;
   color: ${colorPalette.descriptionText};

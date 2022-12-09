@@ -46,8 +46,8 @@ const OptionButtonWrapper = styled.div`
 
 const TextContainer = styled.div`
   width: 100%;
-  height: ${changePXtoVH(700)};
-  overflow: auto;
+  /* height: ${changePXtoVH(700)}; */
+  /* overflow: auto; */
   font-size: ${changePXtoVW(48)};
   font-weight: 400;
   color: ${colorPalette.descriptionText};
@@ -70,7 +70,7 @@ const ChangeSentenceIndexButton = styled.div<ChangeSentenceIndexButtonProps>`
 
 const ShowAllSentencesButton = styled.button`
   min-width: ${changePXtoVW(100)};
-  height: ${changePXtoVH(64)};
+  height: ${changePXtoVW(48)};
   padding: 0 ${changePXtoVW(48)};
   border: 3px solid ${colorPalette.sentenceAllButton};
   border-radius: ${changePXtoVW(28)};

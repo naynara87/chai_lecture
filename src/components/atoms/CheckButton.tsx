@@ -8,7 +8,7 @@ const CheckButtonContainer = styled.button`
   background-color: transparent;
   border: 0;
   appearance: none;
-  padding: ${changePXtoVH(20)} ${changePXtoVW(48)};
+  padding: ${changePXtoVW(24)} ${changePXtoVW(48)};
   outline: none;
   box-shadow: none;
   display: inline-flex;

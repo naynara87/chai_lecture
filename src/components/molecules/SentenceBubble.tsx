@@ -48,14 +48,14 @@ const BubbleText = styled.div<BubbleTextProps>`
   /* justify-content: ${(props) => props.open && "space-between"}; */
   justify-content: center;
   align-items: center;
-  gap: ${changePXtoVW(40)} ;
+  gap: ${changePXtoVW(20)};
   font-size: ${changePXtoVW(30)};
   font-weight: 500;
   color: ${colorPalette.white};
 `;
 
 const SentenceBubble = styled.div<SentenceBubbleProps>`
-  min-width: ${(props) => (props.open ? changePXtoVW(670) : changePXtoVW(130))};
+  min-width: ${(props) => (props.open ? changePXtoVW(1000) : changePXtoVW(130))};
   width: auto;
   height: ${changePXtoVW(130)};
   border-radius: ${(props) => (props.open ? "92px" : "50%")};

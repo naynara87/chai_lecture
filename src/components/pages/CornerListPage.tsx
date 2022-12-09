@@ -31,7 +31,8 @@ const CornerListWrapper = styled.main`
   gap: ${changePXtoVH(80)} ${changePXtoVW(96)};
   max-width: ${changePXtoVW(792)};
   margin: 0 auto;
-`;
+  padding-top: ${changePXtoVH(40)};
+  `;
 
 const CornerImageWrapper = styled.div`
   width: ${changePXtoVW(200)};
@@ -40,10 +41,11 @@ const CornerImageWrapper = styled.div`
   overflow: hidden;
   border: 8px solid ${colorPalette.white};
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
-`;
+  `;
 
 const CornerListFooter = styled.footer`
   text-align: center;
+  padding-bottom: ${changePXtoVH(80)};
 `;
 
 const cornerImageCss = css`
@@ -69,7 +71,7 @@ const CornerName = styled.span`
 const startBtnCss = css`
   ${btnCss}
   min-width: ${changePXtoVW(278)};
-  height: ${changePXtoVH(80)};
+  height: ${changePXtoVW(80)};
   background-color: ${colorPalette.confirmBtn};
   border-radius: ${changePXtoVW(40)};
   font-weight: 600;
