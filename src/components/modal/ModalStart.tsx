@@ -81,7 +81,7 @@ const ModalDescriptionWrap = styled.div`
 
 const StartButton = styled.button`
   min-width: ${changePXtoVW(278)};
-  height: ${changePXtoVH(80)};
+  height: ${changePXtoVW(80)};
   background-color: ${colorPalette.confirmBtn};
   color: ${colorPalette.white};
   border-radius: ${changePXtoVW(48)};

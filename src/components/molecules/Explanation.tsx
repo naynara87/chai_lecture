@@ -49,7 +49,7 @@ const TextBox = styled.div`
   position: relative;
   align-items: center;
   width: calc(100% - ${changePXtoVW(120)});
-  height: ${changePXtoVH(160)};
+  height: ${changePXtoVW(160)};
   padding: ${changePXtoVH(10)} ${changePXtoVW(40)};
   background-position: left 3px;
   background-size: 100% 100%;
@@ -78,6 +78,12 @@ const ExplanationTextCss = css`
   font-size: ${changePXtoVW(16)};
   line-height: ${changePXtoVW(24)};
   font-weight: 600;
+
+  &::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
 `;
 
 const Text = styled.div`

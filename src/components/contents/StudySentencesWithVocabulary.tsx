@@ -71,6 +71,7 @@ const ChangeSentenceIndexButton = styled.div<ChangeSentenceIndexButtonProps>`
 const ShowAllSentencesButton = styled.button`
   min-width: ${changePXtoVW(100)};
   height: ${changePXtoVW(48)};
+  line-height: ${changePXtoVW(40)};
   padding: 0 ${changePXtoVW(48)};
   border: 3px solid ${colorPalette.sentenceAllButton};
   border-radius: ${changePXtoVW(28)};
