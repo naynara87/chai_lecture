@@ -97,6 +97,7 @@ interface ModalStartProps {
   description: string;
   isModalOpen: boolean;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isCornerPage?: boolean;
   handleClickStart(): void;
 }
 
@@ -105,6 +106,7 @@ const ModalStart = ({
   description,
   isModalOpen,
   setIsModalOpen,
+  isCornerPage = false,
   handleClickStart,
 }: ModalStartProps) => {
   const handleClose = () => {
@@ -112,7 +114,7 @@ const ModalStart = ({
   };
 
   return (
-    <ModalCommon open={isModalOpen} onClose={handleClose}>
+    <ModalCommon open={isModalOpen} onClose={handleClose} isCornerPage={isCornerPage}>
       <ModalInnerBox>
         <ModalHeader>학습 목표</ModalHeader>
         <ModalTitle>{title}</ModalTitle>

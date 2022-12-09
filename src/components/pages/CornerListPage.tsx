@@ -28,7 +28,7 @@ const CornerListWrapper = styled.main`
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: ${changePXtoVH(80)} ${changePXtoVW(80)};
+  gap: ${changePXtoVH(80)} ${changePXtoVW(96)};
   max-width: ${changePXtoVW(792)};
   margin: 0 auto;
 `;
@@ -219,6 +219,7 @@ const CornerListPage = () => {
         isModalOpen={isModalCloseOpen}
         handleClickStart={handleClickStart}
         setIsModalOpen={setIsModalCloseOpen}
+        isCornerPage={true}
       />
     </CornerListLayout>
   );
