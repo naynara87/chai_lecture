@@ -87,7 +87,7 @@ const Text = styled.div`
 
   p {
     font-weight: 500;
-    font-size: ${changePXtoVW(30)};
+    font-size: ${changePXtoVW(30)} !important;
   }
 `;
 

@@ -15,31 +15,46 @@ interface ButtonTextArrowProps {
 const ButtonTextArrow = styled(Button)<ButtonTextArrowProps>`
   position: relative;
   height: auto;
-  padding: ${changePXtoVH(16)} ${changePXtoVW(48)};
-  padding-right: ${({ direction }) => (direction === "right" ? `${changePXtoVW(72)}` : `${changePXtoVW(32)}`)};
-  padding-left: ${({ direction }) => (direction === "left" ? `${changePXtoVW(72)}` : `${changePXtoVW(32)}`)};
+  padding: ${changePXtoVH(15)} ${changePXtoVW(48)};
+  padding-right: ${({ direction }) =>
+    direction === "right" ? `${changePXtoVW(72)}` : `${changePXtoVW(48)}`};
+  padding-left: ${({ direction }) =>
+    direction === "left" ? `${changePXtoVW(72)}` : `${changePXtoVW(48)}`};
   border-radius: ${changePXtoVH(48)};
   background-color: ${(props) =>
     props.disabled ? colorPalette.disableBackground : colorPalette.white};
   color: ${(props) => (props.disabled ? colorPalette.disableText : colorPalette.deepBlue)};
   font-weight: 600;
-  font-size: ${changePXtoVW(24)};
+  font-size: ${changePXtoVW(22)};
   transition: all 0.2s;
   cursor: ${(props) => (props.disabled ? "" : "pointer")};
 `;
 
 const arrowCss = css`
-  transform: scale(0.6);
   position: absolute;
-  margin-left: ${changePXtoVW(10)};
-  right: ${changePXtoVW(16)};
-`;
+  top: 50%;
+  left: auto;
+  right: ${changePXtoVW(40)};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: ${changePXtoVW(24)};
+  height: ${changePXtoVW(24)};
+  transform: translateY(-50%);
+  
+  > svg {
+    width: ${changePXtoVW(12)};
+  }
+  `;
 
 const arrowCssLeft = css`
-  transform: scale(0.6);
   position: absolute;
-  margin-right: ${changePXtoVW(10)};
-  left: ${changePXtoVW(16)};
+  left: ${changePXtoVW(40)};
+  width: ${changePXtoVW(12)};
+  
+  > svg {
+    max-width: 100%;
+  }
 `;
 
 interface FooterButtonProps {
