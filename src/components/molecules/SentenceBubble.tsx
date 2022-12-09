@@ -48,9 +48,10 @@ const BubbleText = styled.div<BubbleTextProps>`
   /* justify-content: ${(props) => props.open && "space-between"}; */
   justify-content: center;
   align-items: center;
-  color: ${colorPalette.white};
+  gap: ${changePXtoVW(40)} ;
   font-size: ${changePXtoVW(30)};
   font-weight: 500;
+  color: ${colorPalette.white};
 `;
 
 const SentenceBubble = styled.div<SentenceBubbleProps>`
@@ -107,7 +108,7 @@ const htmlCss = css`
 const audioCss = css`
   width: ${changePXtoVW(48)};
   height: ${changePXtoVW(48)};
-  margin-left: ${changePXtoVW(48)};
+  margin-left: ${changePXtoVW(8)};
 `;
 
 interface SentenceBubbleComponentProps {
