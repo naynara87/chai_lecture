@@ -1447,10 +1447,10 @@ export const dummyData: AppData = {
                       type: "TP02",
                       contents: [
                         {
-                          type: "video",
+                          type: "audio",
                           data: [
                             {
-                              src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/3kZrtRimhkoqmmBEWI0nuTSEOt4Y0hzW/i6vn7Ims/A04_video_gm.01.m3u8",
+                              src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/u4H9c8KFa1JnkJo0csZDCYoQgnPNatbu/585UQYvbcKsOEVL65yGjkb0bAbCYYy8y/b557e8abdc3f223e8b2787d2a4f8579e60fe4750065796cfe676b3aae47182dc.mp3",
                             },
                           ],
                         },
@@ -1574,10 +1574,10 @@ export const dummyData: AppData = {
                       type: "TP02",
                       contents: [
                         {
-                          type: "video",
+                          type: "audio",
                           data: [
                             {
-                              src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/4R5Sc3o3RkEfrc2KSdhOqUlQYRVzWnmP/oMvJsumz/A04_video_gm.02.m3u8",
+                              src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/3KSrl7OvG7v5oKilGRf0jkt9jT4ohs5E/m9rAiu0wUtxv6y3MrYo3F8evxVqAaXAB/e8dc9ad3b3e5d459036d5eab30a6b36d9ca2211919b3eccde9ddba4ff7f99975.mp3",
                             },
                           ],
                         },
