@@ -31,7 +31,7 @@ export const dummyData: AppData = {
           id: 1,
           template: {
             type: "TPIframe",
-            url: "http://md-admin.bubblecon.io/bubble/embed/9201",
+            url: "https://md-admin.bubblecon.io/bubble/embed/9201",
           },
         },
         {
@@ -93,14 +93,14 @@ export const dummyData: AppData = {
           id: 19,
           template: {
             type: "TPIframe",
-            url: "http://md-admin.bubblecon.io/bubble/embed/9193",
+            url: "https://md-admin.bubblecon.io/bubble/embed/9193",
           },
         },
         {
           id: 20,
           template: {
             type: "TPIframe",
-            url: "http://md-admin.bubblecon.io/bubble/embed/9194",
+            url: "https://md-admin.bubblecon.io/bubble/embed/9194",
           },
         },
       ],
