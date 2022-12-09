@@ -18,7 +18,7 @@ import TitleContent from "../molecules/TitleContent";
 import HtmlContentComponent from "../molecules/HtmlContentComponent";
 import IconText from "../molecules/IconText";
 
-const MainContainer = styled.div<MainContainerProps>`
+const MainContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
