@@ -163,7 +163,7 @@ const CornerListPage = () => {
                   </CornerList>
                 );
               })
-            : Array(7)
+            : Array(6)
                 .fill(0)
                 .map((_, index) => (
                   <CornerList key={index}>

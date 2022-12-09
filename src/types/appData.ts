@@ -202,3 +202,17 @@ export type ApproveContent = Exclude<
 export type ApproveContentType = ApproveContent["type"];
 
 export type ContentsType = Content["type"];
+
+// 저작도구로부터 cookie 에서 받아오는 초기데이터
+export interface InitialAppData {
+  uno: string;
+  uid: string;
+  applId: string;
+  turnId?: string;
+  courseId: string;
+  pageId?: string;
+  subjectId: string;
+  courseName: string;
+  lessonId: string;
+  lessonName: string;
+}

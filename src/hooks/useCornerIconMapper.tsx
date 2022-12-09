@@ -1,4 +1,3 @@
-// import { CornerNameType } from "../types/cornerName";
 const useCornerIconMapper = () => {
   const cornerIconMapper: Record<string, string> = {
     복습: `${process.env.REACT_APP_BASE_URL}/images/cornerIcon/reviseIcon.png`,
