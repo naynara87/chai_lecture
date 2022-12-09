@@ -25,7 +25,7 @@ const QuestionBlankStyles = styled.span<QuestionBlankStylesProps>`
   background-color: ${(props) => props.backgroundColor};
   font-size: ${changePXtoVW(30)};
   line-height: 1.5;
-  color: ${colorPalette.deepBlue};
+  color: ${colorPalette.white};
   text-align: center;
   user-select: none;
   transform: translateY(-7%);

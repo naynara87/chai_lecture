@@ -112,7 +112,6 @@ const InfoWrapper = styled.div`
 const audioCss = css`
   width: ${changePXtoVW(40)};
   height: ${changePXtoVW(40)};
-  transform: translateY(${changePXtoVW(-10)});
   margin-left: ${changePXtoVW(12)};
 `;
 

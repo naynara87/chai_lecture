@@ -20,8 +20,9 @@ const WordQuizWrapper = styled.div`
 const WordQuizAnswerWrapper = styled.div`
   display: flex;
   margin: ${changePXtoVW(32)} 0 ${changePXtoVW(64)};
-  width: ${changePXtoVW(382)};
-  justify-content: space-between;
+  /* width: ${changePXtoVW(382)}; */
+  justify-content: center;
+  gap: ${changePXtoVW(30)};
 `;
 
 const AudioWrapper = styled.div`
