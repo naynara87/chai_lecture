@@ -18,10 +18,6 @@ import TitleContent from "../molecules/TitleContent";
 import HtmlContentComponent from "../molecules/HtmlContentComponent";
 import IconText from "../molecules/IconText";
 
-interface MainContainerProps {
-  isImage: boolean;
-}
-
 const MainContainer = styled.div<MainContainerProps>`
   display: flex;
   justify-content: center;
@@ -96,10 +92,8 @@ const TP07AComponent = ({ setPageCompleted, page, showHeader = true }: TP07AComp
   );
 
   const mainContents = useMemo(() => {
-    console.log(!!imageContent?.data);
-
     return (
-      <MainContainer isImage={!!imageContent?.data}>
+      <MainContainer>
         {imageContent?.data && (
           <ImageContentComponent
             imageSrc={imageContent?.data?.[0]?.src ?? ""}
