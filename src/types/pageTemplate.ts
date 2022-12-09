@@ -618,6 +618,18 @@ export type TP21B = {
 
 type TP21BContent = HtmlContent | ChooseTextContent;
 
+export type TP23 = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP23";
+    contents: TP23Content[];
+  };
+};
+
+type TP23Content = ApproveContent;
+
 export type TP24A = {
   id: ID;
   title: string;
