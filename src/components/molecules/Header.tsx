@@ -10,6 +10,7 @@ import CornerSignPost from "../atoms/CornerSignPost";
 import { CORNER_LIST_URL } from "../../constants/url";
 import { headerHeight } from "../../styles/layout";
 import { changePXtoVH, changePXtoVW } from "../../utils/styles";
+import { Link } from "react-router-dom";
 
 const HeaderContainer = styled.header`
   position: fixed;
@@ -37,62 +38,74 @@ const LessonTitle = styled.b`
   font-size: ${changePXtoVW(30)};
 `;
 
-const exitButtonCss = css`
+// const BtnHeaderClose = css`
+//   position: absolute;
+//   top: 50%;
+//   left: auto;
+//   right: ${changePXtoVW(60)};
+//   width: ${changePXtoVW(40)};
+//   height: ${changePXtoVW(40)};
+//   border: none;
+//   background-color: transparent;
+//   transform: translateY(-50%);
+//   transition: all 0.2s;
+//   cursor: pointer;
+//   background: red;
+
+//   &:hover,
+//   &:focus {
+//     transform: translateY(-50%) rotate(90deg);
+//   }
+
+//   &:disabled,
+//   &:disabled:hover,
+//   &:disabled:focus {
+//     transform: translateY(-50%);
+//   }
+// `;
+
+const ExitTextCss = styled.span`
   position: absolute;
   top: 50%;
   left: auto;
   right: ${changePXtoVW(60)};
-  transform: translateY(-50%);
-  transition: all 0.2s;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-
-  &:hover,
-  &:focus {
-    transform: translateY(-50%) rotate(90deg);
-  }
-
-  &:disabled,
-  &:disabled:hover,
-  &:disabled:focus {
-    transform: translateY(-50%);
-  }
-`;
-
-const exitTextCss = css`
-  position: absolute;
-  top: 50%;
-  left: 50%;
   width: ${changePXtoVW(44)};
-  height: 0;
-  font-size: 0;
+  height: ${changePXtoVW(44)};
   transform: translate(-50%, -50%);
   transition: all 0.4s;
+
+  .voice-only {
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  color :transparent;
+  font-size: 1px;
+  }
 
   &:before {
     content: "";
     position: absolute;
-    top: 0;
+    top: 50%;
     left: 0;
     width: 100%;
     height: ${changePXtoVH(6)};
     border-radius: 3px;
     background-color: ${colorPalette.white};
-    transform: rotate(45deg);
+    transform: translateY(-50%) rotate(45deg);
     transition: all 0.4s;
   }
 
   &:after {
     content: "";
     position: absolute;
-    top: 0;
+    top: 50%;
     left: 0;
     width: 100%;
     height: ${changePXtoVH(6)};
     border-radius: 3px;
     background-color: ${colorPalette.white};
-    transform: rotate(-45deg);
+    transform: translateY(-50%) rotate(-45deg);
     transition: all 0.4s;
   }
 `;
@@ -116,13 +129,17 @@ const Header = ({ cornerName }: HeaderProps) => {
           {appData?.course.title ? `${appData?.course.title} > ` : ""}
           <LessonTitle>{appData?.lesson.title}</LessonTitle>
         </HeaderTitle>
-        <ButtonComponent
+        <Link to={CORNER_LIST_URL ?? ""} onClick={handleExitButton}>
+          <ExitTextCss><span className="voice-only">닫기</span></ExitTextCss>
+        </Link>
+          
+        {/* <ButtonComponent
           text="X"
           linkUrl={CORNER_LIST_URL}
           customBtnCss={exitButtonCss}
           customTextCss={exitTextCss}
           handleClickButton={handleExitButton}
-        />
+        /> */}
       </HeaderContainer>
       {cornerName ? <CornerSignPost cornerName={cornerName} /> : <></>}
     </div>
