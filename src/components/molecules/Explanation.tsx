@@ -72,6 +72,9 @@ const OXWrapper = styled.div`
 `;
 
 const ExplanationTextCss = css`
+  overflow: auto;
+  width: 100%;
+  height: 100%;
   font-size: ${changePXtoVW(16)};
   line-height: ${changePXtoVW(24)};
   font-weight: 600;
@@ -81,6 +84,11 @@ const Text = styled.div`
   padding-top: ${changePXtoVH(12)};
   padding-bottom: ${changePXtoVH(8)};
   ${ExplanationTextCss}
+
+  p {
+    font-weight: 500;
+    font-size: ${changePXtoVW(30)};
+  }
 `;
 
 const ExplanationTitle = styled.div`
