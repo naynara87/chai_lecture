@@ -664,13 +664,10 @@ export const dummyData: AppData = {
             type: "TP02M",
             contents: [
               {
-                type: "textBoxes",
+                type: "html",
                 data: [
                   {
-                    main: "경성",
-                  },
-                  {
-                    main: "한어병음 표기 규칙",
+                    text: "경성은 본래의 성조를 잃고, 짧고 가볍게 발음합니다. 성조 부호는 표기하지 않으며, 앞 음절의 성조에 따라 음높이가 달라집니다.",
                   },
                 ],
               },
@@ -1449,7 +1446,7 @@ export const dummyData: AppData = {
                               text: "<p>엄마</p>",
                             },
                             {
-                               kind: "tip",
+                              kind: "tip",
                               text: "<p>성모와 운모가 같더라도 성조가 다르면 뜻이 달라져요.</p>",
                             },
                           ],

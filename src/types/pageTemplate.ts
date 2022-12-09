@@ -144,7 +144,7 @@ type TP02MTemplate = {
   contents: TP02MContent[];
 };
 
-type TP02MContent = TextBoxesContent;
+type TP02MContent = HtmlContent;
 
 export type TP02N = {
   id: ID;

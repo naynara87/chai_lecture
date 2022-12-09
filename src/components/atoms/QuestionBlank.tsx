@@ -29,7 +29,7 @@ const QuestionBlankStyles = styled.span<QuestionBlankStylesProps>`
   text-align: center;
   user-select: none;
   transform: translateY(-7%);
-  /* width: ${(props) => props.width}; */
+  width: ${(props) => props.width};
   height: ${(props) => props.height};
   ${(props) => props.customCss};
 `;
