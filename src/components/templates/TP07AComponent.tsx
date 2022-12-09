@@ -18,12 +18,17 @@ import TitleContent from "../molecules/TitleContent";
 import HtmlContentComponent from "../molecules/HtmlContentComponent";
 import IconText from "../molecules/IconText";
 
-const MainContainer = styled.div`
+interface MainContainerProps {
+  isImage: boolean;
+}
+
+const MainContainer = styled.div<MainContainerProps>`
   display: flex;
   justify-content: center;
   align-items: center;
   gap: ${changePXtoVW(40)};
   width: 100%;
+  margin: ${changePXtoVH(80)} 0;
 
   > div {
     font-size: ${changePXtoVW(48)};
@@ -43,6 +48,10 @@ const imageCustomCss = css`
 
 const layoutCustomCss = css`
   height: 100%;
+`;
+
+const htmlCss = css`
+  width: ${changePXtoVW(433)};
 `;
 
 interface TP07AComponentProps extends TemplateProps {}
@@ -87,8 +96,10 @@ const TP07AComponent = ({ setPageCompleted, page, showHeader = true }: TP07AComp
   );
 
   const mainContents = useMemo(() => {
+    console.log(!!imageContent?.data);
+
     return (
-      <MainContainer>
+      <MainContainer isImage={!!imageContent?.data}>
         {imageContent?.data && (
           <ImageContentComponent
             imageSrc={imageContent?.data?.[0]?.src ?? ""}
@@ -98,7 +109,10 @@ const TP07AComponent = ({ setPageCompleted, page, showHeader = true }: TP07AComp
           />
         )}
 
-        <HtmlContentComponent html={htmlContent?.data?.[0].text ?? ""} />
+        <HtmlContentComponent
+          html={htmlContent?.data?.[0].text ?? ""}
+          customCss={!!imageContent?.data ? htmlCss : undefined}
+        />
       </MainContainer>
     );
   }, [htmlContent?.data, imageContent?.data]);
