@@ -60,7 +60,7 @@ interface WordQuizProps {
 }
 
 const WordQuizTP10C = ({ datas }: WordQuizProps) => {
-  const { text, choices, explanation, meaning, answerIndex, audio } = datas?.[0];
+  const { text, choices, explanation, meaning, answerIndex } = datas?.[0];
   const [selectedIndex, setSelectedIndex] = useState<number | undefined>(undefined);
   const [showExplanation, setShowExplanation] = useState(false);
   const [sortList, setSortList] = useState<string[]>([]);
@@ -103,6 +103,8 @@ const WordQuizTP10C = ({ datas }: WordQuizProps) => {
       return colorPalette.backgroundWhite;
     }
   }, [selectedIndex, choices, answerIndex, sortList]);
+
+  console.log(renderColor);
 
   const choiceMaxLength = useMemo(() => {
     return Math.max(choices[0].length, choices[1].length);

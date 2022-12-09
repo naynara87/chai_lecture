@@ -73,12 +73,6 @@ const AudioRecorder = ({ audioUrl }: AudioRecorderProps) => {
     blobPropertyBag: {
       type: "audio/wav",
     },
-    onStart: () => {
-      console.log("Asdfsdf");
-    },
-    onStop: () => {
-      console.log("end");
-    },
   });
 
   const getLocalStream = useCallback(async () => {
@@ -97,7 +91,6 @@ const AudioRecorder = ({ audioUrl }: AudioRecorderProps) => {
     }
 
     if (status === "stopped") {
-      console.log(mediaBlobUrl);
       audioRef.current.play();
       setRecordedAudioState(true);
       setRecordingAudioState("recordAudioPlaying");
@@ -108,7 +101,7 @@ const AudioRecorder = ({ audioUrl }: AudioRecorderProps) => {
       setRecordedAudioState(false);
       setRecordingAudioState("pause");
     }
-  }, [recordedAudioState, status, pronounceAudio, mediaBlobUrl]);
+  }, [recordedAudioState, status, pronounceAudio]);
 
   audioRef.current?.addEventListener("ended", () => {
     setRecordedAudioState(false);
