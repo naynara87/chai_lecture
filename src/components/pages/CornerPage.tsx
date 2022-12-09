@@ -6,16 +6,20 @@ import CornerMain from "../molecules/CornerMain";
 import CommonMainContainer from "../atoms/CommonMainContainer";
 import { useNavigate, useParams } from "react-router-dom";
 import { getPageUrl } from "../../utils/url";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { cornersState } from "../../state/corners";
 import useCornerPage from "../../hooks/useCornerPage";
 import { CORNER_LIST_URL } from "../../constants/url";
 import IframeMainContainer from "../atoms/IframeMainContainer";
+import { reviewCornerIndexState } from "../../state/reviewCornerIndexState";
+import { eduModeState } from "../../state/eduModeState";
 
 const CornerPage = () => {
   const { courseId, cornerId, lessonId, pageId } = useParams();
   const [isPageCompleted, setIsPageCompleted] = useState(false);
   const [, setCompletedCorners] = useRecoilState(cornersState);
+  const [, setReviewCornerIndex] = useRecoilState(reviewCornerIndexState);
+  const eduMode = useRecoilValue(eduModeState);
 
   const navigate = useNavigate();
 
@@ -45,18 +49,22 @@ const CornerPage = () => {
     }
     return pageIndex === currentCorner.pages.length - 1;
   }, [pageIndex, currentCorner]);
-
   const handleClickNext = () => {
     if (isLastPage) {
-      // NOTE: isCompleted를 서버에서 제공해주면 그것을 사용해야 함(현재는 클라이언트에서 관리)
-      setCompletedCorners((prev) => {
-        return prev.map((corner) => {
-          if (corner.id.toString() === currentCorner?.id?.toString()) {
-            return { id: corner.id, isCompleted: true };
-          }
-          return corner;
+      if (eduMode === "edu") {
+        // NOTE: isCompleted를 서버에서 제공해주면 그것을 사용해야 함(현재는 클라이언트에서 관리)
+        setCompletedCorners((prev) => {
+          return prev.map((corner) => {
+            if (corner.id.toString() === currentCorner?.id?.toString()) {
+              return { id: corner.id, isCompleted: true };
+            }
+            return corner;
+          });
         });
-      });
+      } else if (eduMode === "review") {
+        setReviewCornerIndex((prev) => prev + 1);
+      }
+
       navigate(CORNER_LIST_URL);
       return;
     }

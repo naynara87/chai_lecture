@@ -1,7 +1,7 @@
 // recoil state for corners
 
-import { atom } from 'recoil';
-import { ID } from '../types/appData';
+import { atom } from "recoil";
+import { ID } from "../types/appData";
 
 export type CornerCompleteState = {
   id: ID;
@@ -9,6 +9,6 @@ export type CornerCompleteState = {
 };
 
 export const cornersState = atom<CornerCompleteState[]>({
-  key: 'cornersState',
+  key: "cornersState",
   default: [],
 });
