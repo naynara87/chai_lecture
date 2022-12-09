@@ -149,6 +149,58 @@ export const dummyData: AppData = {
           },
         },
         {
+          id: 2,
+          title: "회화 미리보기",
+          description: "무슨 이야기를 하고 있을까요?",
+          template: {
+            type: "TP02F",
+            contents: [
+              {
+                type: "video",
+                data: [
+                  {
+                    src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/Z0THYmwEtAzmFlvBjbF4fN2dCnGGaxPZ/FHb33f8T/A01_video_gm.01.m3u8",
+                    tracks: [
+                      {
+                        kind: "captions",
+                        src: `${process.env.REACT_APP_BASE_URL}/assets/track/sample.vtt`,
+                        srclang: "en",
+                        default: true,
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        },
+        {
+          id: 3,
+          title: "회화 미리보기",
+          description: "무슨 이야기를 하고 있을까요?",
+          template: {
+            type: "TP02F",
+            contents: [
+              {
+                type: "video",
+                data: [
+                  {
+                    src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/4R5Sc3o3RkEfrc2KSdhOqUlQYRVzWnmP/oMvJsumz/A04_video_gm.02.m3u8",
+                    tracks: [
+                      {
+                        kind: "captions",
+                        src: `${process.env.REACT_APP_BASE_URL}/assets/track/sample_korean.vtt`,
+                        srclang: "ko",
+                        default: true,
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        },
+        {
           id: 7,
           title: "문장 1",
           description: "중국어를 확인해 보세요.",
@@ -1390,23 +1442,6 @@ export const dummyData: AppData = {
                 tabPages: [
                   {
                     title: "중국어의 개요",
-                    description: "중국어의 개요에 대해 알아봅시다.",
-                    template: {
-                      type: "TP02",
-                      contents: [
-                        {
-                          type: "html",
-                          data: [
-                            {
-                              text: "<h2>한어는 무엇인가요?</h2><p>중국 인구의 대다수를 차지하는 한족이 쓰는 언어, 즉 '한어'라고 합니다.</p>",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  },
-                  {
-                    title: "중국어의 개요",
                     description: "영상을 보고 중국어에 대해 알아봅시다.",
                     template: {
                       type: "TP02",
@@ -1416,6 +1451,23 @@ export const dummyData: AppData = {
                           data: [
                             {
                               src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/3kZrtRimhkoqmmBEWI0nuTSEOt4Y0hzW/i6vn7Ims/A04_video_gm.01.m3u8",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  },
+                  {
+                    title: "중국어의 개요",
+                    description: "중국어의 개요에 대해 알아봅시다.",
+                    template: {
+                      type: "TP02",
+                      contents: [
+                        {
+                          type: "html",
+                          data: [
+                            {
+                              text: "<h2>한어는 무엇인가요?</h2><p>중국 인구의 대다수를 차지하는 한족이 쓰는 언어, 즉 '한어'라고 합니다.</p>",
                             },
                           ],
                         },
@@ -1515,6 +1567,23 @@ export const dummyData: AppData = {
                 tabName: "보통화",
                 active: true,
                 tabPages: [
+                  {
+                    title: "중국어의 개요",
+                    description: "영상을 보고 중국어에 대해 알아봅시다.",
+                    template: {
+                      type: "TP02",
+                      contents: [
+                        {
+                          type: "video",
+                          data: [
+                            {
+                              src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/4R5Sc3o3RkEfrc2KSdhOqUlQYRVzWnmP/oMvJsumz/A04_video_gm.02.m3u8",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  },
                   {
                     title: "성모",
                     description: "발음을 듣고 따라 읽어 보세요.",

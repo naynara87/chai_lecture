@@ -47,6 +47,7 @@ const TP02FComponent = ({ setPageCompleted, page, showHeader = true }: TP02FComp
       )}
       <TP02Layout>
         <VideoContentComponent
+          videoId={thisPage.id}
           videoUrl={videoUrlString?.src ?? ""}
           customCss={customVideoCss}
           tracks={videoTracks?.tracks}

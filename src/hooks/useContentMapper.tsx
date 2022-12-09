@@ -8,7 +8,7 @@ import IconTextAdapter from "../components/contents/IconTextAdapter";
 import ImageContentAdapter from "../components/contents/ImageContentAdapter";
 import TextBoxesAdapter from "../components/contents/TextBoxesAdapter";
 import VideoContentAdapter from "../components/contents/VideoContentAdapter";
-import { ApproveContent, ApproveContentType } from "../types/appData";
+import { ApproveContent, ApproveContentType, ID } from "../types/appData";
 import {
   AudioContent,
   HtmlContent,
@@ -22,14 +22,14 @@ import {
 } from "../types/templateContents";
 
 const useContentMapper = () => {
-  const getContentComponent = (content: ApproveContent) => {
+  const getContentComponent = (content: ApproveContent, id: ID) => {
     const contentMapper: Record<ApproveContentType, JSX.Element | JSX.Element[]> = {
       chooseText: <ChooseText contentData={content as ChooseTextContent} />,
       iconText: <IconTextAdapter content={content as IconTextContent} />,
       textBoxes: <TextBoxesAdapter content={content as TextBoxesContent} />,
       html: <HtmlContentAdapter content={content as HtmlContent} />,
       images: <ImageContentAdapter content={content as ImagesContent} />,
-      video: <VideoContentAdapter content={content as VideoContent} />,
+      video: <VideoContentAdapter content={content as VideoContent} videoId={id} />,
       audio: <AudioContentAdapter content={content as AudioContent} />,
       audioRecord: <AudioRecorderAdapter content={content as AudioRecordContent} />,
       chooseMediaText: <ChooseMediaTextAdapter content={content as ChooseMediaTextContent} />,
