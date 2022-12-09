@@ -1,13 +1,18 @@
 import { Modal } from "@mui/material";
 import React, { ReactElement } from "react";
 import styled from "@emotion/styled";
+import { footerHeightNormal, headerHeightNormal } from "../../constants/layout";
 
 const ModalBackground = styled.div`
+  position: relative;
+  z-index: 2;
   width: 100%;
-  height: 100%;
+  height: calc(100vh - ${headerHeightNormal} - ${footerHeightNormal});
+  /* margin-top: ${headerHeightNormal}; */
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
 `;
 
 interface ModalCommonProps {

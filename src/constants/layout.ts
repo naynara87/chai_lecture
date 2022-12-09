@@ -1,3 +1,5 @@
+import { changePXtoVH } from "../utils/styles";
+
 export const templateContentsAreaHeight = "100%";
 
 export const breakPoints = {
@@ -7,7 +9,8 @@ export const breakPoints = {
 export const gridContentLayoutCommonGap = "4%";
 export const tabTemplateGridGap = "7%";
 
-export const footerHeightNormal = "70px";
-export const headerHeightNormal = "65px";
+export const footerHeightNormal = `${changePXtoVH(112)}`;
+export const headerHeightNormal = `${changePXtoVH(104)}`;
+export const titleHeightNormal = `${changePXtoVH(300)}`;
 
 export const tabletBreakPoint = 768;

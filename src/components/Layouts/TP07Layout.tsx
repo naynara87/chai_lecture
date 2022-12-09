@@ -8,8 +8,6 @@ interface TP07LayoutStyleProps {
 }
 
 const TP07LayoutStyle = styled.div<TP07LayoutStyleProps>`
-  height: ${templateContentsAreaHeight};
-  display: grid;
   ${(props) => props.customCss}
 `;
 

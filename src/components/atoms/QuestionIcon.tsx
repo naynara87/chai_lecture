@@ -1,12 +1,13 @@
 import { css, SerializedStyles } from "@emotion/react";
 import styled from "@emotion/styled";
 import React from "react";
+import { changePXtoVW } from "../../utils/styles";
 
 export const questionIconSize = css`
-  width: 4vw;
-  height: 4vw;
-  min-width: 30px;
-  min-height: 30px;
+  width: ${changePXtoVW(76)};
+  height: ${changePXtoVW(76)};
+  min-width: ${changePXtoVW(30)};
+  min-height: ${changePXtoVW(30)};
 `;
 
 interface QuestionIconProps {

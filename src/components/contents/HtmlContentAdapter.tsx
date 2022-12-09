@@ -1,12 +1,28 @@
 import styled from "@emotion/styled";
 import React from "react";
 import { HtmlContent } from "../../types/templateContents";
+import { changePXtoVW } from "../../utils/styles";
 import HtmlContentComponent from "../molecules/HtmlContentComponent";
 import TipComponent from "../molecules/TipComponent";
 
 const HtmlWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  
+  > div > h2 {
+    font-weight: 400;
+    font-size: ${changePXtoVW(64)};
+  }
+  
+  > div > h3 {
+    font-weight: 600;
+    font-size: ${changePXtoVW(48)};
+  }
+
+  > div > p {
+    font-weight: 400;
+    font-size: ${changePXtoVW(48)};
+  }
 `;
 interface HtmlContentAdapterProps {
   content: HtmlContent;

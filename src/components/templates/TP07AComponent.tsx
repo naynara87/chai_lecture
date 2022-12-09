@@ -9,7 +9,7 @@ import {
   ImagesContent,
 } from "../../types/templateContents";
 import { TemplateProps } from "../../types/templates";
-import { changePXtoVW } from "../../utils/styles";
+import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import ImageContentComponent from "../contents/ImageContentComponent";
 import AudioRecorder from "../contents/AudioRecorder";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
@@ -23,6 +23,15 @@ const MainContainer = styled.div`
   align-items: center;
   gap: ${changePXtoVW(40)};
   width: 100%;
+
+  >div {
+    font-size: ${changePXtoVW(48)};
+
+    > h1 {
+      margin-bottom: ${changePXtoVH(32)};
+      font-size: ${changePXtoVW(64)};
+    }
+  }
 `;
 
 const imageCustomCss = css`

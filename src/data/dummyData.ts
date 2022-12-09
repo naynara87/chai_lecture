@@ -182,7 +182,7 @@ export const dummyData: AppData = {
                 data: [
                   {
                     audio: {
-                      src: "string",
+                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/Caz3M4TmaEdt5s0sHWFvLwp4YWhXYMwG/Kg6oSHwgWChv6GbegBd1DMZm7NYRzzya/088252d8f1d5b51f7635bdb4a6374d8396b603f68d045fdf48e18ea61938c078.mp3",
                     },
                   },
                 ],
@@ -1443,7 +1443,14 @@ export const dummyData: AppData = {
                           type: "html",
                           data: [
                             {
-                              text: "<h2>ma 엄마</h2><p>성모와 운모가 같더라도 성조가 다르면 뜻이 달라져요.</p>",
+                              text: "<h2>ma</h2>",
+                            },
+                            {
+                              text: "<p>엄마</p>",
+                            },
+                            {
+                               kind: "tip",
+                              text: "<p>성모와 운모가 같더라도 성조가 다르면 뜻이 달라져요.</p>",
                             },
                           ],
                         },

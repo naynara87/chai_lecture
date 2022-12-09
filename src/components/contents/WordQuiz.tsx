@@ -39,7 +39,6 @@ const blankCss = css`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: ${colorPalette.white};
   margin: 12px auto 0;
 `;
 

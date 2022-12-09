@@ -1,14 +1,13 @@
 import React from "react";
-
 import styled from "@emotion/styled";
+import { footerHeightNormal, headerHeightNormal } from "../../constants/layout";
 
 const Container = styled.div`
-  width: 100%;
-  height: 100%;
-  margin: 0 auto;
-  display: grid;
-  grid-template-rows: 10% 94%;
-  overflow: visible;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  padding-top: ${headerHeightNormal};
+  padding-bottom: ${footerHeightNormal};
 `;
 
 const TemplateIframeLayout = ({ children }: { children: JSX.Element | JSX.Element[] }) => {

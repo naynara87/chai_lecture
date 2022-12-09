@@ -5,7 +5,7 @@ import { footerHeightNormal } from "../../constants/layout";
 import { TP08A } from "../../types/pageTemplate";
 import { HtmlContent, ImagesContent, SentenceWordContent } from "../../types/templateContents";
 import { TemplateProps } from "../../types/templates";
-import { changePXtoVW } from "../../utils/styles";
+import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import ImageContentComponent from "../contents/ImageContentComponent";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TP08Layout from "../Layouts/TP08Layout";
@@ -20,13 +20,23 @@ const MainContainer = styled.div`
 `;
 
 const HtmlContainer = styled.div`
-  margin-left: 20px;
+  margin-left: ${changePXtoVW(20)};
   text-align: left;
   width: ${changePXtoVW(500)};
 `;
 
 const htmlCss = css`
-  margin-bottom: 10px;
+  margin-bottom: ${changePXtoVH(10)};
+
+  > h1 {
+    font-size: ${changePXtoVW(64)};
+  }
+
+  > p {
+    margin-top: ${changePXtoVH(24)};
+    font-weight: 500;
+    font-size: ${changePXtoVW(48)};
+  }
 `;
 
 const imageCss = css`
@@ -36,8 +46,8 @@ const imageCss = css`
 const sentenceContainerCss = css`
   position: absolute;
   left: 25%;
-  bottom: ${footerHeightNormal};
-  margin-bottom: 5px;
+  bottom: calc(${footerHeightNormal} + ${changePXtoVH(20)});
+  margin-bottom: ${changePXtoVH(5)};
 `;
 
 interface TP08AComponentProps extends TemplateProps {}

@@ -4,111 +4,92 @@ import ModalCommon from "./ModalCommon";
 import IconCheckYellow from "../atoms/svg/IconCheckYellow";
 import IconModalCharacter from "../atoms/svg/IconModalCharacter";
 import { colorPalette } from "../../styles/colorPalette";
-import { breakPoints } from "../../constants/layout";
+import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 
 const ModalInnerBox = styled.div`
   overflow: hidden;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
   flex-direction: column;
   z-index: 2;
   position: absolute;
   top: 50%;
   left: 50%;
-  max-width: 37.5vw;
+  max-width: ${changePXtoVW(720)};
   width: 90%;
-  padding-bottom: 3.3333333333vh;
-  border-radius: 2.0833333333vw;
+  padding-bottom: ${changePXtoVH(48)};
+  border-radius: ${changePXtoVW(40)};
   background-color: ${colorPalette.white};
-  -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 `;
 
 const ModalHeader = styled.h2`
   width: 100%;
-  padding: 2.7777777778vh 0 2.2222222222vh;
+  padding: ${changePXtoVH(40)} 0 ${changePXtoVH(32)};
   background-color: ${colorPalette.confirmBtn};
   line-height: 1.5;
   font-weight: 600;
-  font-size: 2.5vw;
+  font-size: ${changePXtoVW(48)};
   color: ${colorPalette.white};
   text-align: center;
 `;
 
 const ModalTitle = styled.p`
+  margin: ${changePXtoVH(64)} 0;
   line-height: 3.5;
   font-weight: 500;
-  font-size: 1.5625vw;
+  font-size: ${changePXtoVW(30)};
+  line-height: 1.6;
   white-space: pre-line;
 `;
 
 const ModalBody = styled.div`
   width: 100%;
-  padding: 0 3.3333333333vw;
+  padding: 0 ${changePXtoVW(64)};
   text-align: center;
+
+  > svg {
+    max-width: ${changePXtoVW(265)};
+  }
 `;
 
 const ModalSecondTitle = styled.h3`
   font-weight: 600;
-  font-size: 1.5625vw;
+  font-size: ${changePXtoVW(30)};
 `;
 
 const ModalDescription = styled.p`
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
   display: inline-flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  margin-top: 0.5555555556vh;
-  margin-left: 0.5vh;
+  margin-top: ${changePXtoVH(16)};
+  margin-left: ${changePXtoVH(8)};
   font-weight: 500;
-  font-size: 1.25vw;
+  font-size: ${changePXtoVW(24)};
   white-space: pre-line;
 `;
 
 const ModalDescriptionWrap = styled.div`
   position: relative;
-  margin-top: -1.25vh;
-  padding: 1.1111111111vh 0 0.5555555556vh;
+  margin-top: ${changePXtoVH(-18)};
+  padding: ${changePXtoVH(16)} 0 ${changePXtoVH(8)};
   border: 2px dashed ${colorPalette.disableBackground};
-  border-radius: 1.25vw;
+  border-radius: ${changePXtoVW(24)};
   background-color: ${colorPalette.modalDescriptionBackground};
 `;
 
 const StartButton = styled.button`
-  min-width: 149px;
-  height: 43px;
+  min-width: ${changePXtoVW(278)};
+  height: ${changePXtoVH(80)};
   background-color: ${colorPalette.confirmBtn};
   color: ${colorPalette.white};
-  border-radius: 26px;
+  border-radius: ${changePXtoVW(48)};
   font-weight: 600;
-  font-size: 13px;
-  -webkit-transition: all 0.3s;
+  font-size: ${changePXtoVW(24)};
   transition: all 0.3s;
-  margin-top: 53px;
+  margin-top: ${changePXtoVH(100)};
   cursor: pointer;
-
-  @media all and (max-width: ${breakPoints.tablet}) {
-    min-width: 14.4791666667vw;
-    height: 4.1666666667vw;
-    border-radius: 2.5vw;
-    font-size: 1.25vw;
-    margin-top: 5.2083333333vw;
-  }
 `;
 
 interface ModalStartProps {

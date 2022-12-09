@@ -8,17 +8,6 @@ const Svg = styled.svg`
   width: 60%;
   height: 70%;
 
-  @-webkit-keyframes obj_blink {
-    0% {
-      opacity: 0.2;
-    }
-    90% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
   @keyframes obj_blink {
     0% {
       opacity: 0.2;
@@ -31,15 +20,10 @@ const Svg = styled.svg`
     }
   }
 
-  -webkit-animation-name: obj_blink;
   animation-name: obj_blink;
-  -webkit-animation-duration: 0.8s;
   animation-duration: 0.8s;
-  -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
-  -webkit-animation-timing-function: ease-out;
   animation-timing-function: ease-out;
-  -webkit-animation-direction: alternate;
   animation-direction: alternate;
 `;
 

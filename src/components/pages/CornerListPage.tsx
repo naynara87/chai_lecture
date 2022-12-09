@@ -15,55 +15,31 @@ import { useQuery } from "@tanstack/react-query";
 import { QUERY_KEY } from "../../constants/queryKey";
 import ModalStart from "../modal/ModalStart";
 import { getPageUrl } from "../../utils/url";
-import { breakPoints, headerHeightNormal } from "../../constants/layout";
+import { headerHeightNormal } from "../../constants/layout";
 import { useRecoilState } from "recoil";
 import { cornersState } from "../../state/corners";
 import { useNavigate } from "react-router-dom";
-import { changePXtoVW } from "../../utils/styles";
+import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import useCornerIconMapper from "../../hooks/useCornerIconMapper";
 // import usePageList from "../../hooks/api/usePageList";
 
 const CornerListWrapper = styled.main`
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  gap: 43px;
-  max-width: 553px;
-  margin: ${changePXtoVW(200)} auto 0;
-
-  &.layout7 {
-    max-width: 581px;
-  }
-  @media all and (max-width: ${breakPoints.tablet}) {
-    gap: 4.1666666667vw;
-    max-width: 54.6666666667vw;
-    &.layout7 {
-      max-width: 56.6666666667vw;
-    }
-  }
+  gap: ${changePXtoVH(80)} ${changePXtoVW(80)};
+  max-width: ${changePXtoVW(792)};
+  margin: 0 auto;
 `;
 
 const CornerImageWrapper = styled.div`
-  width: 106px;
-  height: 106px;
+  width: ${changePXtoVW(200)};
+  height: ${changePXtoVW(200)};
   border-radius: 50%;
   overflow: hidden;
   border: 8px solid ${colorPalette.white};
-  -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
-  @media all and (max-width: ${breakPoints.tablet}) {
-    width: 10.4166666667vw;
-    height: 10.4166666667vw;
-    border-width: 0.8333333333vw;
-  }
 `;
 
 const CornerListFooter = styled.footer`
@@ -73,11 +49,8 @@ const CornerListFooter = styled.footer`
 const cornerImageCss = css`
   width: 100%;
   height: 100%;
-  -webkit-filter: grayscale(1);
   filter: grayscale(1);
-  -o-object-fit: cover;
   object-fit: cover;
-  -webkit-transition: all 0.3s;
   transition: all 0.3s;
 `;
 
@@ -88,35 +61,22 @@ const CornerList = styled.div`
 const CornerName = styled.span`
   display: flex;
   justify-content: center;
-  margin-top: 13px;
+  margin-top: ${changePXtoVH(24)};
   font-weight: 600;
-  font-size: 16px;
-  @media all and (max-width: ${breakPoints.tablet}) {
-    margin-top: 1.25vw;
-    font-size: 1.5625vw;
-  }
+  font-size: ${changePXtoVW(30)};
 `;
 
 const startBtnCss = css`
   ${btnCss}
-  min-width: 149px;
-  height: 43px;
+  min-width: ${changePXtoVW(278)};
+  height: ${changePXtoVH(80)};
   background-color: ${colorPalette.confirmBtn};
-  border-radius: 26px;
+  border-radius: ${changePXtoVW(40)};
   font-weight: 600;
-  font-size: 13px;
-  -webkit-transition: all 0.3s;
+  font-size: ${changePXtoVW(30)};
   transition: all 0.3s;
-  margin-top: 53px;
+  margin-top: ${changePXtoVH(136)};
   cursor: pointer;
-
-  @media all and (max-width: ${breakPoints.tablet}) {
-    min-width: 14.4791666667vw;
-    height: 4.1666666667vw;
-    border-radius: 2.5vw;
-    font-size: 1.25vw;
-    margin-top: 5.2083333333vw;
-  }
 `;
 
 const startTextCss = css`
@@ -124,7 +84,7 @@ const startTextCss = css`
 `;
 
 const CornerListLayout = styled.div`
-  margin-top: ${headerHeightNormal};
+  /* margin-top: ${headerHeightNormal}; */
   display: flex;
   flex-direction: column;
 `;

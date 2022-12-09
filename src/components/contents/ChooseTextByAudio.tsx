@@ -4,23 +4,17 @@ import XIcon from "../atoms/svg/XIcon";
 import OIcon from "../atoms/svg/OIcon";
 import AudioButton from "../atoms/AudioButton";
 import { css } from "@emotion/react";
+import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 
 const QuestionList = styled.div`
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  gap: 2.5vw;
+  gap: ${changePXtoVW(32)};
   position: relative;
-  margin-top: 12px;
+  margin-top: ${changePXtoVH(12)};
+
   &.hide {
     opacity: 0.4;
   }
@@ -29,26 +23,20 @@ const QuestionList = styled.div`
 const QuizIndex = styled.div`
   position: relative;
   font-weight: 600;
-  font-size: 2.5vw;
-  width: 4vw;
+  font-size: ${changePXtoVW(32)};
+  width: ${changePXtoVW(76)};
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 0.5208333333vw;
+  margin: 0 ${changePXtoVW(10)};
 `;
 
 const QuizAnswerWrap = styled.div`
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  gap: 2.0833333333vw;
+  gap: ${changePXtoVW(40)};
 `;
 
 const QuizAnswer = styled.div`
@@ -59,12 +47,12 @@ const QuizAnswer = styled.div`
 const QuizWord = styled.div`
   position: relative;
   display: inline-block;
-  min-width: 10vw;
-  padding: 1.3888888889vh 2.5vw 1.3888888889vh 2.5vw;
+  min-width: ${changePXtoVW(192)};
+  padding: ${changePXtoVH(20)} ${changePXtoVW(32)};
   border: 0.2083333333vw solid #9b9b9b;
-  border-radius: 2.7083333333vw;
+  border-radius: ${changePXtoVW(52)};
   font-weight: 600;
-  font-size: 1.5625vw;
+  font-size:${changePXtoVW(30)};
   cursor: pointer;
 
   &.checked {

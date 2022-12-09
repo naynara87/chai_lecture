@@ -5,23 +5,25 @@ import Button from "../atoms/Button";
 import ArrowRight from "../atoms/svg/ArrowRight";
 import { css } from "@emotion/react";
 import ArrowLeft from "../atoms/svg/ArrowLeft";
+import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 
 interface ButtonTextArrowProps {
   left?: boolean;
   direction: "left" | "right";
 }
+
 const ButtonTextArrow = styled(Button)<ButtonTextArrowProps>`
   position: relative;
   height: auto;
-  padding: 8px 24px;
-  padding-right: ${({ direction }) => (direction === "right" ? "38px" : "24px")};
-  padding-left: ${({ direction }) => (direction === "left" ? "38px" : "24px")};
+  padding: ${changePXtoVH(16)} ${changePXtoVW(48)};
+  padding-right: ${({ direction }) => (direction === "right" ? `${changePXtoVW(72)}` : `${changePXtoVW(32)}`)};
+  padding-left: ${({ direction }) => (direction === "left" ? `${changePXtoVW(72)}` : `${changePXtoVW(32)}`)};
+  border-radius: ${changePXtoVH(48)};
   background-color: ${(props) =>
     props.disabled ? colorPalette.disableBackground : colorPalette.white};
   color: ${(props) => (props.disabled ? colorPalette.disableText : colorPalette.deepBlue)};
   font-weight: 600;
-  font-size: 12px;
-  -webkit-transition: all 0.2s;
+  font-size: ${changePXtoVW(24)};
   transition: all 0.2s;
   cursor: ${(props) => (props.disabled ? "" : "pointer")};
 `;
@@ -29,15 +31,15 @@ const ButtonTextArrow = styled(Button)<ButtonTextArrowProps>`
 const arrowCss = css`
   transform: scale(0.6);
   position: absolute;
-  margin-left: 10px;
-  right: 16px;
+  margin-left: ${changePXtoVW(10)};
+  right: ${changePXtoVW(16)};
 `;
 
 const arrowCssLeft = css`
   transform: scale(0.6);
   position: absolute;
-  margin-right: 10px;
-  left: 16px;
+  margin-right: ${changePXtoVW(10)};
+  left: ${changePXtoVW(16)};
 `;
 
 interface FooterButtonProps {
