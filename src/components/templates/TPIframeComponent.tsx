@@ -13,12 +13,13 @@ const TPIframeComponent = ({ setPageCompleted, page }: TPIframeComponentProps) =
   useEffect(() => {
     setPageCompleted();
   }, [setPageCompleted]);
+
   return (
     <TemplateIframeLayout>
       <IframeHeader />
       <TPIframeLayout>
         <iframe
-          src={thisPage.template.url}
+          src={`${process.env.REACT_APP_IFRAME_URL}${thisPage.template.url}`}
           title={thisPage.template.url}
           width="100%"
           height="100%"
