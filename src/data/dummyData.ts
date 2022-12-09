@@ -793,14 +793,14 @@ export const dummyData: AppData = {
                   },
                 ],
               },
-              {
-                type: "images",
-                data: [
-                  {
-                    src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/oLP5T8qnpYoZfwJEv3AVklyGUcWgnJXV/mOUcxyDK4Yh54jncnyRhbMVNkSXWLgNJ/0f96755f1f5b3073c4e2cb9140b3f0a070eedabb8b21084388c8e9992f23258b.png",
-                  },
-                ],
-              },
+              // {
+              //   type: "images",
+              //   data: [
+              //     {
+              //       src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/oLP5T8qnpYoZfwJEv3AVklyGUcWgnJXV/mOUcxyDK4Yh54jncnyRhbMVNkSXWLgNJ/0f96755f1f5b3073c4e2cb9140b3f0a070eedabb8b21084388c8e9992f23258b.png",
+              //     },
+              //   ],
+              // },
               {
                 type: "html",
                 data: [

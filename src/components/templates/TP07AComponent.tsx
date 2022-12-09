@@ -20,11 +20,12 @@ import IconText from "../molecules/IconText";
 
 const MainContainer = styled.div`
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: ${changePXtoVW(40)};
   width: 100%;
 
-  >div {
+  > div {
     font-size: ${changePXtoVW(48)};
 
     > h1 {
@@ -88,12 +89,15 @@ const TP07AComponent = ({ setPageCompleted, page, showHeader = true }: TP07AComp
   const mainContents = useMemo(() => {
     return (
       <MainContainer>
-        <ImageContentComponent
-          imageSrc={imageContent?.data?.[0]?.src ?? ""}
-          imageAlt={htmlContent?.data?.[0].text ?? ""}
-          filter="none"
-          customCss={imageCustomCss}
-        />
+        {imageContent?.data && (
+          <ImageContentComponent
+            imageSrc={imageContent?.data?.[0]?.src ?? ""}
+            imageAlt={htmlContent?.data?.[0].text ?? ""}
+            filter="none"
+            customCss={imageCustomCss}
+          />
+        )}
+
         <HtmlContentComponent html={htmlContent?.data?.[0].text ?? ""} />
       </MainContainer>
     );
