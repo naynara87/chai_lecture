@@ -1571,6 +1571,45 @@ export const dummyData: AppData = {
                     title: "중국어의 개요",
                     description: "영상을 보고 중국어에 대해 알아봅시다.",
                     template: {
+                      type: "TP23",
+                      contents: [
+                        {
+                          type: "images",
+                          data: [
+                            {
+                              src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/WJLv0EWXP6P2Vbk6lH2y7lXdAhMEM8T3/mURLhzKrNjJ803Y84F1th0x3b8kfrKFl/0d9b2bc5f0159539fd4a15c9210209dc31ba138da29c311977da8dec1d609700.png",
+                            },
+                          ],
+                        },
+                        {
+                          type: "audio",
+                          data: [
+                            {
+                              src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/3KSrl7OvG7v5oKilGRf0jkt9jT4ohs5E/m9rAiu0wUtxv6y3MrYo3F8evxVqAaXAB/e8dc9ad3b3e5d459036d5eab30a6b36d9ca2211919b3eccde9ddba4ff7f99975.mp3",
+                            },
+                          ],
+                        },
+                        {
+                          type: "chooseText",
+                          data: [
+                            {
+                              choices: ["ai", "ao"],
+                              answerIndex: 0,
+                              explanation: {
+                                correctMessage: "정답입니다!",
+                                wrongMessage: "오답입니다!",
+                                text: "<p>해설 문장이 블라블라~</p>",
+                              },
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  },
+                  {
+                    title: "중국어의 개요",
+                    description: "영상을 보고 중국어에 대해 알아봅시다.",
+                    template: {
                       type: "TP02",
                       contents: [
                         {
