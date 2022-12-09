@@ -24,6 +24,7 @@ const MainContainer = styled.div`
   align-items: center;
   gap: ${changePXtoVW(40)};
   width: 100%;
+  margin: ${changePXtoVH(80)} 0;
 
   > div {
     font-size: ${changePXtoVW(48)};
@@ -43,6 +44,10 @@ const imageCustomCss = css`
 
 const layoutCustomCss = css`
   height: 100%;
+`;
+
+const htmlCss = css`
+  width: ${changePXtoVW(433)};
 `;
 
 interface TP07AComponentProps extends TemplateProps {}
@@ -98,7 +103,10 @@ const TP07AComponent = ({ setPageCompleted, page, showHeader = true }: TP07AComp
           />
         )}
 
-        <HtmlContentComponent html={htmlContent?.data?.[0].text ?? ""} />
+        <HtmlContentComponent
+          html={htmlContent?.data?.[0].text ?? ""}
+          customCss={!!imageContent?.data ? htmlCss : undefined}
+        />
       </MainContainer>
     );
   }, [htmlContent?.data, imageContent?.data]);
