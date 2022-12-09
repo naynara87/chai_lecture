@@ -9,15 +9,15 @@ interface CornerSignPostProps {
 }
 
 const SignPost = styled.div`
-  z-index: 3;
-	position: fixed;
-	top: ${headerHeightNormal};
-	left: ${changePXtoVW(80)};
-	width: ${changePXtoVW(124)};
-	height: ${changePXtoVH(148)};
-	padding: 0 ${changePXtoVW(20)};
-	padding-top: ${changePXtoVH(9)};
-	text-align: center;
+  z-index: 4;
+  position: fixed;
+  top: ${headerHeightNormal};
+  left: ${changePXtoVW(80)};
+  width: ${changePXtoVW(124)};
+  height: ${changePXtoVH(148)};
+  padding: 0 ${changePXtoVW(20)};
+  padding-top: ${changePXtoVH(9)};
+  text-align: center;
   background-position: center ${changePXtoVH(0)};
   background-size: contain;
   background-repeat: no-repeat;
@@ -26,7 +26,6 @@ const SignPost = styled.div`
   font-weight: 600;
   color: ${colorPalette.white};
   font-size: ${changePXtoVW(24)};
-
 `;
 
 const SignTitle = styled.span`

@@ -15,7 +15,6 @@ const BottomTabsWrapper = styled.div<BottomTabsWrapperProps>`
   height: ${(props) => (props.open ? `${changePXtoVH(451)}` : `${changePXtoVH(160)}`)};
   position: fixed;
   bottom: ${(props) => (props.open ? `${footerHeightNormal}` : 0)};
-  /* bottom: ; */
   left: 50%;
   transform: translateX(-50%);
   transition: all 0.3s ease-in-out;
@@ -42,8 +41,8 @@ const TabHeader = styled.div<TabHeaderProps>`
   border-radius: 16px 16px 0 0;
   background-color: ${(props) =>
     props.isFocus ? colorPalette.bottomTabBorder : colorPalette.disableBottomTabHeader};
-    font-weight: bold;
-    font-size: ${changePXtoVW(24)};
+  font-weight: bold;
+  font-size: ${changePXtoVW(24)};
   color: ${(props) => (props.isFocus ? colorPalette.white : colorPalette.black)};
   cursor: pointer;
 `;
@@ -156,7 +155,7 @@ const BottomTabs = ({ datas }: BottomTabsProps) => {
 
   const mainContents = useMemo(() => {
     return datas[currentIndex].contents.map((content, index) => {
-      return <div key={index}>{getContentComponent(content)}</div>;
+      return <div key={index}>{getContentComponent(content, index)}</div>;
     });
   }, [currentIndex, datas, getContentComponent]);
 
