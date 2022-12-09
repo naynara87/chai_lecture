@@ -64,6 +64,7 @@ const WordQuizTP10C = ({ datas }: WordQuizProps) => {
   const [selectedIndex, setSelectedIndex] = useState<number | undefined>(undefined);
   const [showExplanation, setShowExplanation] = useState(false);
   const [sortList, setSortList] = useState<string[]>([]);
+  const [choiceMaxLength, setChoiceMaxLength] = useState(0);
 
   const texts = text
     .replace(/<[^>]*>?/g, "")
@@ -75,7 +76,12 @@ const WordQuizTP10C = ({ datas }: WordQuizProps) => {
   useEffect(() => {
     const choicesCopy = [...choices];
     setSortList(choicesCopy.sort(() => Math.random() - 0.5));
-  }, [answerIndex, choices]);
+    choices.forEach((choice) => {
+      if (choice.length > choiceMaxLength) {
+        setChoiceMaxLength(choice.length);
+      }
+    });
+  }, [answerIndex, choices, choiceMaxLength]);
 
   const handleClickCloseExplanation = () => {
     setShowExplanation(false);
@@ -103,13 +109,7 @@ const WordQuizTP10C = ({ datas }: WordQuizProps) => {
       return colorPalette.backgroundWhite;
     }
   }, [selectedIndex, choices, answerIndex, sortList]);
-
-  console.log(renderColor);
-
-  const choiceMaxLength = useMemo(() => {
-    return Math.max(choices[0].length, choices[1].length);
-  }, [choices]);
-
+  console.log(choiceMaxLength);
   return (
     <WordQuizWrapper>
       <WordQuizAnswerWrapper>
@@ -129,7 +129,7 @@ const WordQuizTP10C = ({ datas }: WordQuizProps) => {
       <QuestionWrapper>
         <QuestionBlank
           text={selectedIndex !== undefined ? sortList[selectedIndex] : ""}
-          width={`${choiceMaxLength * 60}px`}
+          width={`${choiceMaxLength * 20}px`}
           customCss={blankCss}
           backgroundColor={renderColor}
           borderColor={selectedIndex !== undefined ? colorPalette.white : undefined}
