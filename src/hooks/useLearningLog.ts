@@ -5,6 +5,9 @@ import { ID } from "../types/appData";
 import useAuth from "./useAuth";
 import useToast from "./useToast";
 
+/**
+ * @deprecated
+ */
 const useLearningLog = (lessonId: ID | undefined) => {
   const { isAuthorized } = useAuth();
   const { addToast } = useToast();
