@@ -84,6 +84,7 @@ const AudioRecorder = ({ audioUrl }: AudioRecorderProps) => {
   useEffect(() => {
     getLocalStream();
   }, [getLocalStream]);
+
   const handleClickRecordedAudioButton = useCallback(() => {
     if (!audioRef.current || pronounceAudio) {
       return;
@@ -153,7 +154,7 @@ const AudioRecorder = ({ audioUrl }: AudioRecorderProps) => {
 
   return (
     <AudioRecorderStyle>
-      {/* <p>{status}</p> */}
+      <p>{status}</p>
       <RecordedAudioButton
         onClick={handleClickRecordedAudioButton}
         customCss={status === "stopped" && !pronounceAudio ? currentBackground : grayBackground}
