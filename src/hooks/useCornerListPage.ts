@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { cornersState } from "../state/corners";
+import { eduModeState } from "../state/eduModeState";
+import { reviewCornerIndexState } from "../state/reviewCornerIndexState";
 import { Corner2 } from "../types/appData";
 import useInitialData from "./useInitialData";
 
@@ -10,6 +12,9 @@ const useCornerListPage = () => {
   const [currentCorner, setCurrentCorner] = useState<Corner2>();
   const [completedCorners, setCompletedCorners] = useRecoilState(cornersState);
   // 코너 리스트에 현재 진행할 코너가 어떤 것인지 알 수 있어야 함
+
+  const [eduMode, setEduMode] = useRecoilState(eduModeState);
+  const [reviewCornerIndex, setReviewCornerIndex] = useRecoilState(reviewCornerIndexState);
 
   // 시작 코너 - initial
   useEffect(() => {
@@ -33,12 +38,31 @@ const useCornerListPage = () => {
 
   // 현재코너 - 최초: initial, 이후: current
   useEffect(() => {
-    const currentCompletedCorner = completedCorners.find((corner) => corner.isCompleted === false);
-    if (currentCompletedCorner) {
-      const _currentCorner = corners.find((corner) => corner.id === currentCompletedCorner.id);
-      setCurrentCorner(_currentCorner);
+    if (
+      completedCorners.filter((corner) => {
+        return corner.isCompleted === true;
+      }).length >= corners.length
+    ) {
+      setEduMode("review");
+    } else {
+      setEduMode("edu");
     }
-  }, [completedCorners, corners]);
+    if (eduMode === "edu") {
+      const currentCompletedCorner = completedCorners.find(
+        (corner) => corner.isCompleted === false,
+      );
+      if (currentCompletedCorner) {
+        const _currentCorner = corners.find((corner) => corner.id === currentCompletedCorner.id);
+        setCurrentCorner(_currentCorner);
+      }
+    } else if (eduMode === "review") {
+      if (reviewCornerIndex >= completedCorners.length) {
+        setReviewCornerIndex(0);
+      } else {
+        setCurrentCorner(corners[reviewCornerIndex]);
+      }
+    }
+  }, [completedCorners, corners, eduMode, reviewCornerIndex, setEduMode, setReviewCornerIndex]);
 
   // NOTE: 추후 initialPage가 필요할 수 있음
 
