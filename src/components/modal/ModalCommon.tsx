@@ -5,13 +5,16 @@ import { footerHeightNormal, headerHeightNormal } from "../../constants/layout";
 
 interface ModalBackgroundProps {
   isCornerPage?: boolean;
-} 
+}
 
 const ModalBackground = styled.div<ModalBackgroundProps>`
   position: relative;
   z-index: 2;
   width: 100%;
-  height: ${props => props.isCornerPage ? `calc(100vh - ${headerHeightNormal})` :`calc(100vh - ${headerHeightNormal} - ${footerHeightNormal})`};
+  height: ${(props) =>
+    props.isCornerPage
+      ? `calc(100vh - ${headerHeightNormal} - ${footerHeightNormal})`
+      : `calc(100vh - ${headerHeightNormal})`};
   /* margin-top: ${headerHeightNormal}; */
   display: flex;
   justify-content: center;
@@ -29,7 +32,7 @@ interface ModalCommonProps {
 /**
  * @param children 모달창이 열리면 보여질 컴포넌트
  */
-const ModalCommon = ({ children, open, onClose,isCornerPage = false }: ModalCommonProps) => {
+const ModalCommon = ({ children, open, onClose, isCornerPage = false }: ModalCommonProps) => {
   const handleClose = (event: React.MouseEvent<HTMLDivElement>) => {
     if (event.target === event.currentTarget) {
       onClose();
@@ -38,7 +41,9 @@ const ModalCommon = ({ children, open, onClose,isCornerPage = false }: ModalComm
 
   return (
     <Modal open={open}>
-      <ModalBackground onClick={handleClose} isCornerPage={isCornerPage}>{children}</ModalBackground>
+      <ModalBackground onClick={handleClose} isCornerPage={isCornerPage}>
+        {children}
+      </ModalBackground>
     </Modal>
   );
 };
