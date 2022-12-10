@@ -1,12 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { colorPalette } from "../../styles/colorPalette";
-import ButtonComponent from "../atoms/ButtonComponent";
-import { css } from "@emotion/react";
-import { useQuery } from "@tanstack/react-query";
-import { QUERY_KEY } from "../../constants/queryKey";
-import { getAppData } from "../../data/tempApi";
 import CornerSignPost from "../atoms/CornerSignPost";
+import { AppMetaData, Corner2 } from "../../types/appData";
 import { CORNER_LIST_URL } from "../../constants/url";
 import { headerHeight } from "../../styles/layout";
 import { changePXtoVH, changePXtoVW } from "../../utils/styles";
@@ -75,12 +71,12 @@ const ExitTextCss = styled.span`
   transition: all 0.4s;
 
   .voice-only {
-  overflow: hidden;
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  color :transparent;
-  font-size: 1px;
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    color: transparent;
+    font-size: 1px;
   }
 
   &:before {
@@ -111,12 +107,12 @@ const ExitTextCss = styled.span`
 `;
 
 interface HeaderProps {
-  cornerName?: string;
+  currentCorner: Corner2 | undefined;
+  appMetaData: AppMetaData | undefined;
+  showCornerLabel?: boolean;
 }
 
-const Header = ({ cornerName }: HeaderProps) => {
-  const { data: appData } = useQuery([QUERY_KEY.APP_DATA], getAppData);
-
+const Header = ({ currentCorner, appMetaData, showCornerLabel = false }: HeaderProps) => {
   const handleExitButton = () => {
     console.log("나가기 버튼");
     window.close();
@@ -126,13 +122,15 @@ const Header = ({ cornerName }: HeaderProps) => {
     <div>
       <HeaderContainer>
         <HeaderTitle>
-          {appData?.course.title ? `${appData?.course.title} > ` : ""}
-          <LessonTitle>{appData?.lesson.title}</LessonTitle>
+          {appMetaData?.courseName ? `${appMetaData?.courseName} > ` : ""}
+          <LessonTitle>{appMetaData?.lessonName}</LessonTitle>
         </HeaderTitle>
         <Link to={CORNER_LIST_URL ?? ""} onClick={handleExitButton}>
-          <ExitTextCss><span className="voice-only">닫기</span></ExitTextCss>
+          <ExitTextCss>
+            <span className="voice-only">닫기</span>
+          </ExitTextCss>
         </Link>
-          
+
         {/* <ButtonComponent
           text="X"
           linkUrl={CORNER_LIST_URL}
@@ -141,7 +139,11 @@ const Header = ({ cornerName }: HeaderProps) => {
           handleClickButton={handleExitButton}
         /> */}
       </HeaderContainer>
-      {cornerName ? <CornerSignPost cornerName={cornerName} /> : <></>}
+      {showCornerLabel && currentCorner ? (
+        <CornerSignPost cornerName={currentCorner.title} />
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

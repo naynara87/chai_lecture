@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { CornerCompleteState, cornersState } from "../state/corners";
-import { AppData, Corner, ID } from "../types/appData";
+import { Corner2, ID } from "../types/appData";
 import { CornerStateType } from "../types/corner";
 
 export interface FooterCornerState {
@@ -10,25 +10,14 @@ export interface FooterCornerState {
 }
 
 interface UseFooterStateProps {
-  appData: AppData | undefined;
-  currentCorner: Corner | undefined;
+  currentCorner: Corner2 | undefined;
 }
-const useFooterState = ({ appData, currentCorner }: UseFooterStateProps) => {
+const useFooterState = ({ currentCorner }: UseFooterStateProps) => {
   const [cornerStateList, setCornerStateList] = useState<FooterCornerState[]>([]);
   const [completedCorners] = useRecoilState(cornersState);
 
-  // const getCornerState = useCallback((currentCorner: Corner, comparingCorner: Corner) => {
-  //   if (currentCorner.id === comparingCorner.id) {
-  //     return "current";
-  //   } else if (comparingCorner.isCompleted) {
-  //     return "completed";
-  //   } else {
-  //     return "inCompleted";
-  //   }
-  // }, []);
-
   const getCornerState = useCallback(
-    (currentCorner: Corner, comparingCorner: CornerCompleteState) => {
+    (currentCorner: Corner2, comparingCorner: CornerCompleteState) => {
       if (currentCorner.id === comparingCorner.id) {
         return "current";
       } else if (comparingCorner.isCompleted) {
@@ -41,15 +30,7 @@ const useFooterState = ({ appData, currentCorner }: UseFooterStateProps) => {
   );
 
   useEffect(() => {
-    // if (!appData) return;
     if (!currentCorner) return;
-    // const cornerStateList = appData.corners.map(
-    //   (corner) =>
-    //     ({
-    //       id: corner.id,
-    //       state: getCornerState(currentCorner, corner),
-    //     } as FooterCornerState),
-    // );
     const cornerStateList = completedCorners.map(
       (corner) =>
         ({

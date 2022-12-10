@@ -4,38 +4,46 @@ import Footer from "../molecules/Footer";
 import Header from "../molecules/Header";
 import CornerMain from "../molecules/CornerMain";
 import CommonMainContainer from "../atoms/CommonMainContainer";
-import useCorner from "../../hooks/useCorner";
-import usePage from "../../hooks/usePage";
 import { useNavigate, useParams } from "react-router-dom";
 import { getPageUrl } from "../../utils/url";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { cornersState } from "../../state/corners";
+import useCornerPage from "../../hooks/useCornerPage";
 import { CORNER_LIST_URL } from "../../constants/url";
 import IframeMainContainer from "../atoms/IframeMainContainer";
-// import usePageLcms from "../../hooks/api/usePageLcms";
+import { reviewCornerIndexState } from "../../state/reviewCornerIndexState";
+import { eduModeState } from "../../state/eduModeState";
 
 const CornerPage = () => {
-  const { pageIds, cornerId } = useCorner();
+  const { courseId, cornerId, lessonId, pageId } = useParams();
   const [isPageCompleted, setIsPageCompleted] = useState(false);
   const [showLoadingPage, setShowLoadingPage] = useState(false);
 
   const [, setCompletedCorners] = useRecoilState(cornersState);
+  const [, setReviewCornerIndex] = useRecoilState(reviewCornerIndexState);
+  const eduMode = useRecoilValue(eduModeState);
 
-  // const { currentPageData, pageList } = usePageLcms(); // TODO: pageList로 부터 pageIds를 추출하자(handleClickNext, Prev에 적용) => BBC-602
-
-  const { page: currentPage } = usePage(); // TODO: 실제 데이터 붙일 때 삭제 예정 => BBC-602
-  const { currentCorner } = useCorner(); // TODO: 실제 데이터 붙일 때 삭제 예정 => BBC-602
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (process.env.NODE_ENV === "development") {
-      console.log(currentPage?.template.type);
+  const { currentCorner, pages, appMetaData } = useCornerPage();
+
+  const pageIndex = useMemo(() => {
+    if (!pages || !pageId) {
+      return -1;
     }
-  }, [currentPage]);
+    return pages.findIndex((page) => page.id.toString() === pageId.toString());
+  }, [pages, pageId]);
 
-  const pageIndex = pageIds.findIndex((id) => id === currentPage?.id);
+  const currentPage = useMemo(() => {
+    if (!pages || !pageId) {
+      return undefined;
+    }
+    return pages.find((page) => page.id.toString() === pageId.toString());
+  }, [pages, pageId]);
 
-  const { courseId, lessonId } = useParams();
+  const pageIds = useMemo(() => {
+    return pages?.map((page) => page.id);
+  }, [pages]);
 
   const isLastPage = useMemo(() => {
     if (currentCorner === undefined) {
@@ -43,21 +51,34 @@ const CornerPage = () => {
     }
     return pageIndex === currentCorner.pages.length - 1;
   }, [pageIndex, currentCorner]);
-
   const handleClickNext = () => {
     if (isLastPage) {
+      if (eduMode === "edu") {
+        // NOTE: isCompleted를 서버에서 제공해주면 그것을 사용해야 함(현재는 클라이언트에서 관리)
+        setCompletedCorners((prev) => {
+          return prev.map((corner) => {
+            if (corner.id.toString() === currentCorner?.id?.toString()) {
+              return { id: corner.id, isCompleted: true };
+            }
+            return corner;
+          });
+        });
+      } else if (eduMode === "review") {
+        setReviewCornerIndex((prev) => prev + 1);
+      }
+
       navigate(CORNER_LIST_URL);
       return;
     }
-    if (cornerId && courseId && lessonId) {
-      navigate(getPageUrl(courseId, lessonId, cornerId, pageIds[pageIndex + 1]!));
+    if (cornerId && courseId && lessonId && pageIds) {
+      navigate(getPageUrl(courseId, lessonId, cornerId, pageIds[pageIndex + 1]));
     }
     setIsPageCompleted(false);
   };
 
   const handleClickPrev = () => {
-    if (cornerId && courseId && lessonId) {
-      navigate(getPageUrl(courseId, lessonId, cornerId, pageIds[pageIndex - 1]!));
+    if (cornerId && courseId && lessonId && pageIds) {
+      navigate(getPageUrl(courseId, lessonId, cornerId, pageIds[pageIndex - 1]));
     }
     setIsPageCompleted(false);
   };
@@ -67,21 +88,15 @@ const CornerPage = () => {
   };
 
   useEffect(() => {
-    if (isLastPage) {
-      // TODO: post corner completed
-      console.log("post corner completed");
-
-      // FIXME: 임시로 뷰잉을 위한 로컬 완료 로직
-      setCompletedCorners((prev) => {
-        return prev.map((corner) => {
-          if (corner.id.toString() === cornerId?.toString()) {
-            return { id: corner.id, isCompleted: true };
-          }
-          return corner;
-        });
-      });
+    // pageId가 없으면 코너 리스트 페이지로 이동
+    if (pages && pageId === "undefined") {
+      navigate(CORNER_LIST_URL, { replace: true });
     }
-  }, [isLastPage, cornerId, setCompletedCorners]);
+  }, [pages, pageId, navigate]);
+
+  useEffect(() => {
+    console.log(`page: ${pageIndex + 1} / ${pages?.length}`);
+  }, [pageIndex, pages]);
 
   const renderMainPage = useMemo(() => {
     if (showLoadingPage) {
@@ -99,9 +114,18 @@ const CornerPage = () => {
     setShowLoadingPage(true);
   }, [setShowLoadingPage, currentPage?.id]);
 
+  useEffect(() => {
+    if (process.env.NODE_ENV === "development") {
+      console.log(currentPage?.template.type);
+    }
+  }, [currentPage]);
+
   return (
     <CommonPageLayout>
-      <Header cornerName={currentCorner?.title} />
+      <Header currentCorner={currentCorner} appMetaData={appMetaData} showCornerLabel />
+      {/* <CommonMainContainer>
+        {currentPage && <CornerMain page={currentPage} setPageCompleted={setPageCompleted} />}
+      </CommonMainContainer> */}
       {currentPage?.template.type === "TPIframe" ? (
         <IframeMainContainer>{renderMainPage}</IframeMainContainer>
       ) : (
@@ -112,6 +136,7 @@ const CornerPage = () => {
         handleClickPrev={handleClickPrev}
         handleClickNext={handleClickNext}
         isPageCompleted={isPageCompleted}
+        currentCorner={currentCorner}
       />
     </CommonPageLayout>
   );

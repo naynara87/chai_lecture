@@ -22,8 +22,12 @@ export const dummyData: AppData = {
       title: "복습",
       isCompleted: false,
       introduction: {
-        title: "지난 시간에 배운 내용을 복습해 봐요.",
-        description: "지난 시간 복습 상세 사항.",
+        title: "", // 학습 목표
+        subTitle: "지난 시간에 배운 내용을 복습해 봐요.",
+        contentsTitle: "",
+        contents: ["지난 시간 복습 상세 사항."],
+        contentsAlign: "vertical",
+        confirmButtonText: "시작하기",
       },
       cornerIcon: `${process.env.REACT_APP_BASE_URL}/images/icon/img_sort_page01.png`,
       pages: [
@@ -111,8 +115,8 @@ export const dummyData: AppData = {
       title: "학습 1",
       isCompleted: false,
       introduction: {
-        title: "성조와 운모을 공부해봐요",
-        description: "성조와 운모 학습 상세 사항",
+        subTitle: "성조와 운모을 공부해봐요",
+        contents: ["성조와 운모 학습 상세 사항"],
       },
       cornerIcon: `${process.env.REACT_APP_BASE_URL}/images/icon/img_sort_page02.png`,
       pages: [
@@ -1940,8 +1944,8 @@ export const dummyData: AppData = {
       title: "학습 2",
       isCompleted: false,
       introduction: {
-        title: "성조와 운모을 공부해봐요",
-        description: "성조와 운모 학습 상세 사항",
+        subTitle: "성조와 운모을 공부해봐요",
+        contents: ["성조와 운모 학습 상세 사항"],
       },
       cornerIcon: `${process.env.REACT_APP_BASE_URL}/images/icon/img_sort_page03.png`,
       pages: [
@@ -1971,8 +1975,8 @@ export const dummyData: AppData = {
       title: "학습 3",
       isCompleted: false,
       introduction: {
-        title: "성조와 운모을 공부해봐요",
-        description: "성조와 운모 학습 상세 사항",
+        subTitle: "성조와 운모을 공부해봐요",
+        contents: ["성조와 운모 학습 상세 사항"],
       },
       cornerIcon: `${process.env.REACT_APP_BASE_URL}/images/icon/img_sort_page04.png`,
       pages: [
@@ -2020,8 +2024,8 @@ export const dummyData: AppData = {
       title: "회화",
       isCompleted: false,
       introduction: {
-        title: "성조와 운모을 공부해봐요",
-        description: "성조와 운모 학습 상세 사항",
+        subTitle: "성조와 운모을 공부해봐요",
+        contents: ["성조와 운모 학습 상세 사항"],
       },
       cornerIcon: `${process.env.REACT_APP_BASE_URL}/images/icon/img_sort_page05.png`,
       pages: [
@@ -2069,8 +2073,8 @@ export const dummyData: AppData = {
       title: "문화",
       isCompleted: false,
       introduction: {
-        title: "성조와 운모을 공부해봐요",
-        description: "성조와 운모 학습 상세 사항",
+        subTitle: "성조와 운모을 공부해봐요",
+        contents: ["성조와 운모 학습 상세 사항"],
       },
       cornerIcon: `${process.env.REACT_APP_BASE_URL}/images/icon/img_sort_page06.png`,
       pages: [
@@ -2118,8 +2122,8 @@ export const dummyData: AppData = {
       title: "연습문제",
       isCompleted: false,
       introduction: {
-        title: "성조와 운모을 공부해봐요",
-        description: "성조와 운모 학습 상세 사항",
+        subTitle: "성조와 운모을 공부해봐요",
+        contents: ["성조와 운모 학습 상세 사항"],
       },
       cornerIcon: `${process.env.REACT_APP_BASE_URL}/images/icon/img_sort_page07.png`,
       pages: [
