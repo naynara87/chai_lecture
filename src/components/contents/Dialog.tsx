@@ -72,6 +72,7 @@ const TalkBubble = styled.div<TalkBubbleProps>`
     left: -42px;
     top: 40%;
     height: 18px;
+    z-index: -1;
     border-right: 47px solid ${(props) => props.bubbleColor};
     background: ${(props) => props.bubbleColor};
     border-top-left-radius: 111px 50px;
@@ -84,6 +85,7 @@ const TalkBubble = styled.div<TalkBubbleProps>`
     top: 30%;
     left: -22px;
     width: 52px;
+    z-index: -1;
     height: 30px;
     background: ${colorPalette.backgroundWhite};
     border-bottom-right-radius: 110px 50px;
@@ -156,7 +158,7 @@ const meaningCss = css`
   margin-top: ${changePXtoVH(8)};
   font-weight: 500;
   color: ${colorPalette.descriptionText};
-  
+
   > p {
     font-size: ${changePXtoVW(24)} !important;
   }
@@ -168,6 +170,10 @@ const iconCss = css`
   left: 50%;
   top: 50%;
   transform: translateX(-50%) translateY(-50%);
+`;
+
+const blankCss = css`
+  color: ${colorPalette.deepBlue};
 `;
 
 interface DialogProps {
@@ -340,7 +346,14 @@ const Dialog = ({
         if (!dialogQuestions) {
           return <></>;
         }
-        return <QuestionBlank key={questionIndex} width={blankWidth} text={sortList[userAnswer]} />;
+        return (
+          <QuestionBlank
+            key={questionIndex}
+            width={blankWidth}
+            text={sortList[userAnswer]}
+            customCss={blankCss}
+          />
+        );
       } else {
         return <HtmlContentComponent key={questionIndex} html={question} customCss={wordCss} />;
       }
