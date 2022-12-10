@@ -987,7 +987,7 @@ export const dummyData: AppData = {
           title: "회화 알아보기",
           description: "회화를 들어보세요.",
           template: {
-            type: "TP02K",
+            type: "TP02G",
             contents: [
               {
                 type: "dialog",
