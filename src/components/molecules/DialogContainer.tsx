@@ -134,7 +134,7 @@ const DialogContainer = ({
           showTranslate={translateOption}
           showAudioButton={content.audio ? true : false}
           isShowCorrect={isShowCorrect}
-          isBlockedCheck={tpType === "TP02K" && currentContentIndex !== index ? true : undefined}
+          isBlockedCheck={tpType === "TP02G" && currentContentIndex !== index ? true : undefined}
         />
       );
     });

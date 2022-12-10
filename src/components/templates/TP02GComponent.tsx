@@ -2,7 +2,7 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import useAudio from "../../hooks/useAudio";
-import { TP02K } from "../../types/pageTemplate";
+import { TP02G } from "../../types/pageTemplate";
 import { DialogContent } from "../../types/templateContents";
 import { TemplateProps } from "../../types/templates";
 import DialogAudio from "../atoms/DialogAudio";
@@ -26,9 +26,9 @@ const layoutCss = css`
   display: block;
 `;
 
-interface TP02KComponentProps extends TemplateProps {}
+interface TP02GComponentProps extends TemplateProps {}
 
-const TP02KComponent = ({ setPageCompleted, page, showHeader = true }: TP02KComponentProps) => {
+const TP02GComponent = ({ setPageCompleted, page, showHeader = true }: TP02GComponentProps) => {
   const [pinyinOption, setPinyinOption] = useState(true);
   const [audioSrc, setAudioSrc] = useState("");
   const [audioState, setAudioState] = useState(false);
@@ -49,7 +49,7 @@ const TP02KComponent = ({ setPageCompleted, page, showHeader = true }: TP02KComp
     setAudioState: setDialogAudioState,
   } = useAudio(dialogAudioRef);
 
-  const thisPage = page as TP02K;
+  const thisPage = page as TP02G;
 
   useEffect(() => {
     setPageCompleted();
@@ -190,4 +190,4 @@ const TP02KComponent = ({ setPageCompleted, page, showHeader = true }: TP02KComp
   );
 };
 
-export default TP02KComponent;
+export default TP02GComponent;

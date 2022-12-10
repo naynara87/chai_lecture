@@ -12,7 +12,7 @@ import { TemplateProps } from "../types/templates";
 import TP02NComponent from "../components/templates/TP02NComponent";
 import TP07AComponent from "../components/templates/TP07AComponent";
 import TP08GComponent from "../components/templates/TP08GComponent";
-import TP02KComponent from "../components/templates/TP02KComponent";
+import TP02GComponent from "../components/templates/TP02GComponent";
 import TPIframeComponent from "../components/templates/TPIframeComponent";
 import TP01BComponent from "../components/templates/TP01BComponent";
 import TP10AComponent from "../components/templates/TP10AComponent";
@@ -49,7 +49,8 @@ const useTemplateMapper = (props: UseTemplateMapperProps) => {
     TP02F: <TP02FComponent {...props} />,
     TP02M: <TP02MComponent {...props} />,
     TP02N: <TP02NComponent {...props} />,
-    TP02K: <TP02KComponent {...props} />,
+    TP02G: <TP02GComponent {...props} />,
+    TP02I: <TP02GComponent {...props} />,
     TP03: <TP03Component {...props} />,
     TP03A: <TP03AComponent {...props} />,
     TP03B: <TP03BComponent {...props} />,

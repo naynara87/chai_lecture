@@ -15,7 +15,7 @@ import {
   TP02N,
   TP07A,
   TP08G,
-  TP02K,
+  TP02G,
   TPIframe,
   TP01B,
   TP10A,
@@ -38,6 +38,7 @@ import {
   TP02A,
   TP08B,
   TP11B,
+  TP02I,
 } from "./pageTemplate";
 import {
   AudioContent,
@@ -130,7 +131,8 @@ export type Page =
   | TP02F
   | TP02M
   | TP02N
-  | TP02K
+  | TP02G
+  | TP02I
   | TP03
   | TP03A
   | TP03B

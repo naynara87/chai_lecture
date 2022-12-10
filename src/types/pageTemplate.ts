@@ -158,17 +158,27 @@ export type TP02N = {
 
 type TP02NContent = StudyWordsContent;
 
-export type TP02K = {
+export type TP02G = {
   id: ID;
   title: string;
   description: string;
   template: {
-    type: "TP02K";
-    contents: TP02KContent[];
+    type: "TP02G";
+    contents: TP02GContent[];
   };
 };
 
-type TP02KContent = DialogContent;
+export type TP02I = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP02I";
+    contents: TP02GContent[];
+  };
+};
+
+type TP02GContent = DialogContent;
 
 export type TP03 = {
   id: ID;

@@ -933,7 +933,7 @@ export const dummyData: AppData = {
           title: "회화 알아보기",
           description: "회화를 들어보세요.",
           template: {
-            type: "TP02K",
+            type: "TP02G",
             contents: [
               {
                 type: "dialog",
@@ -1448,7 +1448,7 @@ export const dummyData: AppData = {
                               text: "<p>엄마</p>",
                             },
                             {
-                               kind: "tip",
+                              kind: "tip",
                               text: "<p>성모와 운모가 같더라도 성조가 다르면 뜻이 달라져요.</p>",
                             },
                           ],
