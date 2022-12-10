@@ -60,6 +60,7 @@ const BottomTabMainContainer = styled.div<BottomTabMainContainerProps>`
   border-radius: ${changePXtoVW(40)} ${changePXtoVW(40)} 0 0;
   background-color: ${colorPalette.backgroundWhite};
   text-align: left;
+  border-bottom: none;
 
   &::-webkit-scrollbar {
     display: none;

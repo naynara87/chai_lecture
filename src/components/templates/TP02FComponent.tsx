@@ -11,7 +11,11 @@ import { changePXtoVW } from "../../utils/styles";
 
 const customVideoCss = css`
   margin: 0 auto;
-  height: ${changePXtoVW(600)};
+  /* height: ${changePXtoVW(600)}; */
+`;
+
+const layoutCss = css`
+  height: 100%;
 `;
 
 interface TP02FComponentProps extends TemplateProps {}
@@ -45,7 +49,7 @@ const TP02FComponent = ({ setPageCompleted, page, showHeader = true }: TP02FComp
       ) : (
         <></>
       )}
-      <TP02Layout>
+      <TP02Layout customCss={layoutCss}>
         <VideoContentComponent
           videoId={thisPage.id}
           videoUrl={videoUrlString?.src ?? ""}

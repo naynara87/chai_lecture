@@ -3,15 +3,23 @@ import styled from "@emotion/styled";
 import ChaiSkeleton from "../atoms/ChaiSkeleton";
 import { colorPalette } from "../../styles/colorPalette";
 import { changePXtoVH, changePXtoVW } from "../../utils/styles";
-import { headerHeightNormal, titleHeightNormal } from "../../constants/layout";
+import {
+  headerHeightNormal,
+  tabTitleHeightNormal,
+  titleHeightNormal,
+} from "../../constants/layout";
 
 interface TitleWrapperProps {
   isTab?: boolean;
   isScroll?: boolean;
 }
 
-const TitleContainer = styled.div`
-  height: ${titleHeightNormal};
+interface TitleContainerProps {
+  isTab?: boolean;
+}
+
+const TitleContainer = styled.div<TitleContainerProps>`
+  height: ${(props) => (props.isTab ? tabTitleHeightNormal : titleHeightNormal)};
 `;
 
 const TitleWrapper = styled.div<TitleWrapperProps>`
@@ -63,7 +71,7 @@ const TitleContent = (props: TitleContentProps) => {
     });
   }, []);
   return (
-    <TitleContainer>
+    <TitleContainer isTab={props.isTab}>
       <TitleWrapper isTab={props.isTab} isScroll={props.isTab ? undefined : isScroll}>
         <MainTitle>
           {props.loading ? <ChaiSkeleton width={130} height={36} animation={false} /> : props.title}

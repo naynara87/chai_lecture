@@ -991,20 +991,20 @@ export const dummyData: AppData = {
                   {
                     id: "a",
                     icon: {
-                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/ohbQHamQKzjMq4qPTH8YIlXuMrdvkSC3/rG47JwlUo4TVBxqGIiG7zwr5MSSvFNQY/ef3cbc2a8a6484db59b39f50a84b9238e1305dd47da4ae9474137f0e5629cd4a.png",
+                      src: `${process.env.PUBLIC_URL}/images/cornerIcon/conversationIcon.png`,
                     },
                     text: "<p>点点十分。</p>",
                     pronunciation: "<p>Méi xiǎngdào zài lùshang yùjiàn nǐ.</p>",
                     meaning: "<p>2시 10분.</p>",
                     hasQuestion: false,
                     audio: {
-                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/tRyassMxyA6IXskxdjGmcjcskeBtWDtO/tQdw8EzDPJJH8GdmwDsjTwrvmj998qnN/91fd287b33b76bb6da85d217f33f24283faf73b7825b117da59b4cbfdb7f611b.mp3",
+                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/eZTSEsc5jJxrt5eiV75hen8aoJuvNZRt/LcR3pI1dfJ2SJhyLvWsA2rPCKRwuPfY5/25d064dd6004a352e6ddcaaaae8a876008d16c6d11df1bda0a66e9e08c5aaaaf.mp3",
                     },
                   },
                   {
                     id: "a",
                     icon: {
-                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/ohbQHamQKzjMq4qPTH8YIlXuMrdvkSC3/rG47JwlUo4TVBxqGIiG7zwr5MSSvFNQY/ef3cbc2a8a6484db59b39f50a84b9238e1305dd47da4ae9474137f0e5629cd4a.png",
+                      src: `${process.env.PUBLIC_URL}/images/cornerIcon/conversationIcon.png`,
                     },
                     text: "<p>你几点 *blank*</p>",
                     pronunciation: "<p>Méi xiǎngdào zài lùshang yùjiàn nǐ.</p>",
@@ -1015,13 +1015,13 @@ export const dummyData: AppData = {
                       answerIndex: 0,
                     },
                     audio: {
-                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/eZTSEsc5jJxrt5eiV75hen8aoJuvNZRt/LcR3pI1dfJ2SJhyLvWsA2rPCKRwuPfY5/25d064dd6004a352e6ddcaaaae8a876008d16c6d11df1bda0a66e9e08c5aaaaf.mp3",
+                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/DbaWYblk9dE2PKag3t9EpH3b56TcXkKU/1dYjyjjFpWkS4230TARI5kVkvSzMRpQD/68650ca72a8f5acf89c877300d15a97d7b57772c10707050f05f490576043a92.mp3",
                     },
                   },
                   {
                     id: "b",
                     icon: {
-                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/FQmzZSlquy1VC9Y99Pu6kYNXfWEKqQMX/UTwWm5CwvqF1uGsvW3y57Q2ilKp5aGjw/60f7e6b7d23fc9dffdd1e85314d9fd96dcbb5a747bbcad7cf33f36a7ba21a25f.png",
+                      src: `${process.env.PUBLIC_URL}/images/cornerIcon/conversationIcon.png`,
                     },
                     text: "<p>*blank* 四点回家。</p>",
                     pronunciation: "<p>Méi xiǎngdào zài lùshang yùjiàn nǐ.</p>",
@@ -1038,7 +1038,7 @@ export const dummyData: AppData = {
                   {
                     id: "b",
                     icon: {
-                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/FQmzZSlquy1VC9Y99Pu6kYNXfWEKqQMX/UTwWm5CwvqF1uGsvW3y57Q2ilKp5aGjw/60f7e6b7d23fc9dffdd1e85314d9fd96dcbb5a747bbcad7cf33f36a7ba21a25f.png",
+                      src: `${process.env.PUBLIC_URL}/images/cornerIcon/conversationIcon.png`,
                     },
                     text: "<p>*blank* 四点回家。</p>",
                     pronunciation: "<p>Méi xiǎngdào zài lùshang yùjiàn nǐ.</p>",
@@ -1049,13 +1049,13 @@ export const dummyData: AppData = {
                       answerIndex: 0,
                     },
                     audio: {
-                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/nFGncFwDwnRrEFzpjr4MiVSmd25VsgCt/Jb2fECB2QhtKCw671BE61fjHRlbMzQl0/91aad8c55b09ad4134318894c8ad802f532d9fdc206454b20cb8d2fb0dabfd93.png",
+                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/DbaWYblk9dE2PKag3t9EpH3b56TcXkKU/1dYjyjjFpWkS4230TARI5kVkvSzMRpQD/68650ca72a8f5acf89c877300d15a97d7b57772c10707050f05f490576043a92.mp3",
                     },
                   },
                   {
                     id: "a",
                     icon: {
-                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/ohbQHamQKzjMq4qPTH8YIlXuMrdvkSC3/rG47JwlUo4TVBxqGIiG7zwr5MSSvFNQY/ef3cbc2a8a6484db59b39f50a84b9238e1305dd47da4ae9474137f0e5629cd4a.png",
+                      src: `${process.env.PUBLIC_URL}/images/cornerIcon/conversationIcon.png`,
                     },
                     text: "<p>四点回家。</p>",
                     pronunciation: "<p>Méi xiǎngdào zài lùshang yùjiàn nǐ.</p>",
@@ -1068,7 +1068,7 @@ export const dummyData: AppData = {
                   {
                     id: "b",
                     icon: {
-                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/FQmzZSlquy1VC9Y99Pu6kYNXfWEKqQMX/UTwWm5CwvqF1uGsvW3y57Q2ilKp5aGjw/60f7e6b7d23fc9dffdd1e85314d9fd96dcbb5a747bbcad7cf33f36a7ba21a25f.png",
+                      src: `${process.env.PUBLIC_URL}/images/cornerIcon/conversationIcon.png`,
                     },
                     text: "<p>*blank* 四点回家。</p>",
                     pronunciation: "<p>Méi xiǎngdào zài lùshang yùjiàn nǐ.</p>",
@@ -1079,7 +1079,7 @@ export const dummyData: AppData = {
                       answerIndex: 0,
                     },
                     audio: {
-                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/nFGncFwDwnRrEFzpjr4MiVSmd25VsgCt/Jb2fECB2QhtKCw671BE61fjHRlbMzQl0/91aad8c55b09ad4134318894c8ad802f532d9fdc206454b20cb8d2fb0dabfd93.png",
+                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/eZTSEsc5jJxrt5eiV75hen8aoJuvNZRt/LcR3pI1dfJ2SJhyLvWsA2rPCKRwuPfY5/25d064dd6004a352e6ddcaaaae8a876008d16c6d11df1bda0a66e9e08c5aaaaf.mp3",
                     },
                   },
                 ],
@@ -1447,10 +1447,10 @@ export const dummyData: AppData = {
                       type: "TP02",
                       contents: [
                         {
-                          type: "audio",
+                          type: "video",
                           data: [
                             {
-                              src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/u4H9c8KFa1JnkJo0csZDCYoQgnPNatbu/585UQYvbcKsOEVL65yGjkb0bAbCYYy8y/b557e8abdc3f223e8b2787d2a4f8579e60fe4750065796cfe676b3aae47182dc.mp3",
+                              src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/4R5Sc3o3RkEfrc2KSdhOqUlQYRVzWnmP/oMvJsumz/A04_video_gm.02.m3u8",
                             },
                           ],
                         },

@@ -4,7 +4,7 @@ import React, { useMemo, useState } from "react";
 import { footerHeightNormal } from "../../constants/layout";
 import { colorPalette } from "../../styles/colorPalette";
 import { SentenceWord } from "../../types/templateContents";
-import { changePXtoVH, changePXtoVW } from "../../utils/styles";
+import { changePXtoVW } from "../../utils/styles";
 import AudioButton from "../atoms/AudioButton";
 import ArrowLeft from "../atoms/svg/ArrowLeft";
 import ArrowRight from "../atoms/svg/ArrowRight";
@@ -64,7 +64,7 @@ const SentenceBubble = styled.div<SentenceBubbleProps>`
   position: absolute;
   left: ${changePXtoVW(200)};
   /* transform: ${(props) => props.open && `translateX(${changePXtoVW(550)})`}; */
-  transition: all 0.3s ease-in;
+  transition: all 0.3s ease;
   /* margin-left: ${changePXtoVW(20)}; */
 `;
 

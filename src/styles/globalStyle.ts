@@ -59,10 +59,10 @@ const globalStyle = css`
     background-color: ${colorPalette.backgroundWhite};
   }
 
-  body::-webkit-scrollbar {
+  /* body::-webkit-scrollbar {
     width: 1px;
     height: 1px;
-  }
+  } */
 
   a {
     outline: 0;

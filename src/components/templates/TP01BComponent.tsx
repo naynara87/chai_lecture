@@ -3,10 +3,10 @@ import { TP01B } from "../../types/pageTemplate";
 import { DialogContent } from "../../types/templateContents";
 import { TemplateProps } from "../../types/templates";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
-import TP02Layout from "../Layouts/TP02Layout";
 import TitleContent from "../molecules/TitleContent";
 import DialogContainer from "../molecules/DialogContainer";
 import { css } from "@emotion/react";
+import TP01Layout from "../Layouts/TP01Layout";
 
 const dialogContainerStyles = css`
   display: flex;
@@ -57,7 +57,7 @@ const TP01BComponent = ({ setPageCompleted, page, showHeader = true }: TP01BComp
       ) : (
         <></>
       )}
-      <TP02Layout layoutRef={layoutRef}>{mainContent}</TP02Layout>
+      <TP01Layout layoutRef={layoutRef}>{mainContent}</TP01Layout>
     </TemplateCommonLayout>
   );
 };
