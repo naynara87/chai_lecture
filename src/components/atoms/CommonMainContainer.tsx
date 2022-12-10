@@ -6,6 +6,7 @@ const CommonMainContainer = styled.main`
   width: 100%;
   height: 100vh;
   padding: ${headerHeightNormal} ${changePXtoVW(160)} ${footerHeightNormal};
+  overflow: auto;
 `;
 
 export default CommonMainContainer;

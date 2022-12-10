@@ -48,6 +48,7 @@ const ImageContentComponent = ({
         alt={imageAlt}
         style={{ filter: filter }}
         customCss={customCss}
+        draggable={false}
       />
     </>
   );
