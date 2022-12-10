@@ -157,13 +157,13 @@ const globalStyle = css`
       url("${getPublicUrl()}/fonts/Pretendard-Regular.woff") format("woff"),
       url("${getPublicUrl()}/fonts/Pretendard-Regular.otf") format("opentype");
   }
-  @font-face {
+  /* @font-face {
     font-family: "pretendard";
     font-weight: 600;
     src: url("${getPublicUrl()}/fonts/Pretendard-Bold.woff2") format("woff2"),
       url("${getPublicUrl()}/fonts/Pretendard-Bold.woff") format("woff"),
       url("${getPublicUrl()}/fonts/Pretendard-Bold.otf") format("opentype");
-  }
+  } */
   /* ---------- inter ---------- */
   @font-face {
     font-family: "inter";
