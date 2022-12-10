@@ -5,7 +5,7 @@ import { templateContentsAreaHeight } from "../../constants/layout";
 const TP24LayoutStyle = styled.div`
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: center;
 `;
 
 interface TP24LayoutProps {

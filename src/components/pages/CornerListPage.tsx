@@ -24,9 +24,10 @@ const CornerListWrapper = styled.main`
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: ${changePXtoVH(80)} ${changePXtoVW(80)};
+  gap: ${changePXtoVH(80)} ${changePXtoVW(96)};
   max-width: ${changePXtoVW(792)};
   margin: 0 auto;
+  padding-top: ${changePXtoVH(40)};
 `;
 
 const CornerImageWrapper = styled.div`
@@ -40,6 +41,7 @@ const CornerImageWrapper = styled.div`
 
 const CornerListFooter = styled.footer`
   text-align: center;
+  padding-bottom: ${changePXtoVH(80)};
 `;
 
 const cornerImageCss = css`
@@ -65,7 +67,7 @@ const CornerName = styled.span`
 const startBtnCss = css`
   ${btnCss}
   min-width: ${changePXtoVW(278)};
-  height: ${changePXtoVH(80)};
+  height: ${changePXtoVW(80)};
   background-color: ${colorPalette.confirmBtn};
   border-radius: ${changePXtoVW(40)};
   font-weight: 600;

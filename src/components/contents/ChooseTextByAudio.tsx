@@ -5,6 +5,7 @@ import OIcon from "../atoms/svg/OIcon";
 import AudioButton from "../atoms/AudioButton";
 import { css } from "@emotion/react";
 import { changePXtoVH, changePXtoVW } from "../../utils/styles";
+import { colorPalette } from "../../styles/colorPalette";
 
 const QuestionList = styled.div`
   display: flex;
@@ -44,7 +45,11 @@ const QuizAnswer = styled.div`
   color: #9b9b9b;
 `;
 
-const QuizWord = styled.div`
+interface QuizWordProps {
+  color: string;
+}
+
+const QuizWord = styled.div<QuizWordProps>`
   position: relative;
   display: inline-block;
   min-width: ${changePXtoVW(192)};
@@ -52,12 +57,11 @@ const QuizWord = styled.div`
   border: 0.2083333333vw solid #9b9b9b;
   border-radius: ${changePXtoVW(52)};
   font-weight: 600;
-  font-size:${changePXtoVW(30)};
+  font-size: ${changePXtoVW(30)};
   cursor: pointer;
 
-  &.checked {
-    border-color: #40476b;
-  }
+  border-color: ${(props) => props.color};
+  color: ${(props) => props.color};
 `;
 
 const OXIconCss = css`
@@ -117,6 +121,21 @@ const ChooseTextByAudio = ({
     [checkAnswer, isCheck, contentIndex],
   );
 
+  const getAnswerBorderColor = useCallback(
+    (index: number) => {
+      if (checkIndex === index) {
+        if (isCheck === false) {
+          return colorPalette.wrongAnswer;
+        } else {
+          return colorPalette.deepBlue;
+        }
+      } else {
+        return colorPalette.blankBorderColor;
+      }
+    },
+    [checkIndex, isCheck],
+  );
+
   const QuizAnswerContents = useMemo(() => {
     return sortList.map((choice, index) => {
       return (
@@ -126,11 +145,11 @@ const ChooseTextByAudio = ({
             !isHide && handleClickAnswer(choice, index);
           }}
         >
-          <QuizWord className={checkIndex === index ? "checked" : ""}>{choice}</QuizWord>
+          <QuizWord color={getAnswerBorderColor(index)}>{choice}</QuizWord>
         </QuizAnswer>
       );
     });
-  }, [sortList, handleClickAnswer, checkIndex, isHide]);
+  }, [sortList, handleClickAnswer, isHide, getAnswerBorderColor]);
 
   return (
     <QuestionList className={isHide === true ? "hide" : ""}>

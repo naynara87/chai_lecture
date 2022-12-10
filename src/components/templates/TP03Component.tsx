@@ -43,7 +43,11 @@ const TP03Component = ({ setPageCompleted, page, showHeader = true }: TP03Compon
       <TP03Layout>
         {thisPage.template.contents.map((content, index) => {
           if (content) {
-            return <ContentContainer key={index}>{getContentComponent(content)}</ContentContainer>;
+            return (
+              <ContentContainer key={index}>
+                {getContentComponent(content, thisPage.id)}
+              </ContentContainer>
+            );
           } else {
             return <></>;
           }

@@ -10,16 +10,16 @@ const IframeHeader = styled.div``;
 interface TPIframeComponentProps extends TemplateProps {}
 const TPIframeComponent = ({ setPageCompleted, page }: TPIframeComponentProps) => {
   const thisPage = page as TPIframe;
-  console.log(thisPage.template.url);
   useEffect(() => {
     setPageCompleted();
   }, [setPageCompleted]);
+
   return (
     <TemplateIframeLayout>
       <IframeHeader />
       <TPIframeLayout>
         <iframe
-          src={thisPage.template.url}
+          src={`${process.env.REACT_APP_IFRAME_URL}${thisPage.template.url}`}
           title={thisPage.template.url}
           width="100%"
           height="100%"

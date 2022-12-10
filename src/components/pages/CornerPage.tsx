@@ -17,6 +17,8 @@ import { eduModeState } from "../../state/eduModeState";
 const CornerPage = () => {
   const { courseId, cornerId, lessonId, pageId } = useParams();
   const [isPageCompleted, setIsPageCompleted] = useState(false);
+  const [showLoadingPage, setShowLoadingPage] = useState(false);
+
   const [, setCompletedCorners] = useRecoilState(cornersState);
   const [, setReviewCornerIndex] = useRecoilState(reviewCornerIndexState);
   const eduMode = useRecoilValue(eduModeState);
@@ -97,10 +99,20 @@ const CornerPage = () => {
   }, [pageIndex, pages]);
 
   const renderMainPage = useMemo(() => {
+    if (showLoadingPage) {
+      setTimeout(() => {
+        setShowLoadingPage(false);
+      }, 0);
+      return <div />;
+    }
     if (currentPage) {
       return <CornerMain page={currentPage} setPageCompleted={setPageCompleted} />;
     }
-  }, [currentPage]);
+  }, [currentPage, showLoadingPage]);
+
+  useEffect(() => {
+    setShowLoadingPage(true);
+  }, [setShowLoadingPage, currentPage?.id]);
 
   useEffect(() => {
     if (process.env.NODE_ENV === "development") {

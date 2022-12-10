@@ -125,22 +125,79 @@ export const dummyData: AppData = {
           title: "확인 문장",
           description: "빈칸에 들어갈 알맞은 단어를 고르세요.",
           template: {
-            type: "TP11B",
+            type: "TP10C",
             contents: [
               {
                 type: "wordQuiz",
                 data: [
                   {
-                    text: "*好久*不见！",
-                    choices: ["好久", "最近"],
+                    text: "",
+                    choices: [
+                      "안녕, 너 장밍이니?",
+                      "뜻밖에 길에서 널 보게 되네.",
+                      "맞아, 오랜만이야!",
+                      "너는 예전과 같이 멋있구나, 조금도 변하지 않았어. ",
+                      "엄마, 제가 소개 할게요.",
+                      "여기는 저의 오랜 친구, 장밍이에요.",
+                      "안녕! 만나서 반갑구나!",
+                    ],
                     answerIndex: 0,
-                    meaning: "오랜만이에요.",
-                    audio: {
-                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/Caz3M4TmaEdt5s0sHWFvLwp4YWhXYMwG/Kg6oSHwgWChv6GbegBd1DMZm7NYRzzya/088252d8f1d5b51f7635bdb4a6374d8396b603f68d045fdf48e18ea61938c078.mp3",
-                    },
+                    meaning: "Q1.你好，你是张明吗？.",
                     explanation: {
                       text: "<p>해설 문장이 블라블라~</p>",
                     },
+                  },
+                ],
+              },
+            ],
+          },
+        },
+        {
+          id: 2,
+          title: "회화 미리보기",
+          description: "무슨 이야기를 하고 있을까요?",
+          template: {
+            type: "TP02F",
+            contents: [
+              {
+                type: "video",
+                data: [
+                  {
+                    src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/Z0THYmwEtAzmFlvBjbF4fN2dCnGGaxPZ/FHb33f8T/A01_video_gm.01.m3u8",
+                    tracks: [
+                      {
+                        kind: "captions",
+                        src: `${process.env.REACT_APP_BASE_URL}/assets/track/sample.vtt`,
+                        srclang: "en",
+                        default: true,
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        },
+        {
+          id: 3,
+          title: "회화 미리보기",
+          description: "무슨 이야기를 하고 있을까요?",
+          template: {
+            type: "TP02F",
+            contents: [
+              {
+                type: "video",
+                data: [
+                  {
+                    src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/4R5Sc3o3RkEfrc2KSdhOqUlQYRVzWnmP/oMvJsumz/A04_video_gm.02.m3u8",
+                    tracks: [
+                      {
+                        kind: "captions",
+                        src: `${process.env.REACT_APP_BASE_URL}/assets/track/sample_korean.vtt`,
+                        srclang: "ko",
+                        default: true,
+                      },
+                    ],
                   },
                 ],
               },
@@ -181,7 +238,7 @@ export const dummyData: AppData = {
                 data: [
                   {
                     audio: {
-                      src: "string",
+                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/Caz3M4TmaEdt5s0sHWFvLwp4YWhXYMwG/Kg6oSHwgWChv6GbegBd1DMZm7NYRzzya/088252d8f1d5b51f7635bdb4a6374d8396b603f68d045fdf48e18ea61938c078.mp3",
                     },
                   },
                 ],
@@ -663,13 +720,10 @@ export const dummyData: AppData = {
             type: "TP02M",
             contents: [
               {
-                type: "textBoxes",
+                type: "html",
                 data: [
                   {
-                    main: "경성",
-                  },
-                  {
-                    main: "한어병음 표기 규칙",
+                    text: "경성은 본래의 성조를 잃고, 짧고 가볍게 발음합니다. 성조 부호는 표기하지 않으며, 앞 음절의 성조에 따라 음높이가 달라집니다.",
                   },
                 ],
               },
@@ -941,20 +995,20 @@ export const dummyData: AppData = {
                   {
                     id: "a",
                     icon: {
-                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/ohbQHamQKzjMq4qPTH8YIlXuMrdvkSC3/rG47JwlUo4TVBxqGIiG7zwr5MSSvFNQY/ef3cbc2a8a6484db59b39f50a84b9238e1305dd47da4ae9474137f0e5629cd4a.png",
+                      src: `${process.env.PUBLIC_URL}/images/cornerIcon/conversationIcon.png`,
                     },
                     text: "<p>点点十分。</p>",
                     pronunciation: "<p>Méi xiǎngdào zài lùshang yùjiàn nǐ.</p>",
                     meaning: "<p>2시 10분.</p>",
                     hasQuestion: false,
                     audio: {
-                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/tRyassMxyA6IXskxdjGmcjcskeBtWDtO/tQdw8EzDPJJH8GdmwDsjTwrvmj998qnN/91fd287b33b76bb6da85d217f33f24283faf73b7825b117da59b4cbfdb7f611b.mp3",
+                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/eZTSEsc5jJxrt5eiV75hen8aoJuvNZRt/LcR3pI1dfJ2SJhyLvWsA2rPCKRwuPfY5/25d064dd6004a352e6ddcaaaae8a876008d16c6d11df1bda0a66e9e08c5aaaaf.mp3",
                     },
                   },
                   {
                     id: "a",
                     icon: {
-                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/ohbQHamQKzjMq4qPTH8YIlXuMrdvkSC3/rG47JwlUo4TVBxqGIiG7zwr5MSSvFNQY/ef3cbc2a8a6484db59b39f50a84b9238e1305dd47da4ae9474137f0e5629cd4a.png",
+                      src: `${process.env.PUBLIC_URL}/images/cornerIcon/conversationIcon.png`,
                     },
                     text: "<p>你几点 *blank*</p>",
                     pronunciation: "<p>Méi xiǎngdào zài lùshang yùjiàn nǐ.</p>",
@@ -965,13 +1019,13 @@ export const dummyData: AppData = {
                       answerIndex: 0,
                     },
                     audio: {
-                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/eZTSEsc5jJxrt5eiV75hen8aoJuvNZRt/LcR3pI1dfJ2SJhyLvWsA2rPCKRwuPfY5/25d064dd6004a352e6ddcaaaae8a876008d16c6d11df1bda0a66e9e08c5aaaaf.mp3",
+                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/DbaWYblk9dE2PKag3t9EpH3b56TcXkKU/1dYjyjjFpWkS4230TARI5kVkvSzMRpQD/68650ca72a8f5acf89c877300d15a97d7b57772c10707050f05f490576043a92.mp3",
                     },
                   },
                   {
                     id: "b",
                     icon: {
-                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/FQmzZSlquy1VC9Y99Pu6kYNXfWEKqQMX/UTwWm5CwvqF1uGsvW3y57Q2ilKp5aGjw/60f7e6b7d23fc9dffdd1e85314d9fd96dcbb5a747bbcad7cf33f36a7ba21a25f.png",
+                      src: `${process.env.PUBLIC_URL}/images/cornerIcon/conversationIcon.png`,
                     },
                     text: "<p>*blank* 四点回家。</p>",
                     pronunciation: "<p>Méi xiǎngdào zài lùshang yùjiàn nǐ.</p>",
@@ -988,7 +1042,7 @@ export const dummyData: AppData = {
                   {
                     id: "b",
                     icon: {
-                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/FQmzZSlquy1VC9Y99Pu6kYNXfWEKqQMX/UTwWm5CwvqF1uGsvW3y57Q2ilKp5aGjw/60f7e6b7d23fc9dffdd1e85314d9fd96dcbb5a747bbcad7cf33f36a7ba21a25f.png",
+                      src: `${process.env.PUBLIC_URL}/images/cornerIcon/conversationIcon.png`,
                     },
                     text: "<p>*blank* 四点回家。</p>",
                     pronunciation: "<p>Méi xiǎngdào zài lùshang yùjiàn nǐ.</p>",
@@ -999,13 +1053,13 @@ export const dummyData: AppData = {
                       answerIndex: 0,
                     },
                     audio: {
-                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/nFGncFwDwnRrEFzpjr4MiVSmd25VsgCt/Jb2fECB2QhtKCw671BE61fjHRlbMzQl0/91aad8c55b09ad4134318894c8ad802f532d9fdc206454b20cb8d2fb0dabfd93.png",
+                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/DbaWYblk9dE2PKag3t9EpH3b56TcXkKU/1dYjyjjFpWkS4230TARI5kVkvSzMRpQD/68650ca72a8f5acf89c877300d15a97d7b57772c10707050f05f490576043a92.mp3",
                     },
                   },
                   {
                     id: "a",
                     icon: {
-                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/ohbQHamQKzjMq4qPTH8YIlXuMrdvkSC3/rG47JwlUo4TVBxqGIiG7zwr5MSSvFNQY/ef3cbc2a8a6484db59b39f50a84b9238e1305dd47da4ae9474137f0e5629cd4a.png",
+                      src: `${process.env.PUBLIC_URL}/images/cornerIcon/conversationIcon.png`,
                     },
                     text: "<p>四点回家。</p>",
                     pronunciation: "<p>Méi xiǎngdào zài lùshang yùjiàn nǐ.</p>",
@@ -1018,7 +1072,7 @@ export const dummyData: AppData = {
                   {
                     id: "b",
                     icon: {
-                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/FQmzZSlquy1VC9Y99Pu6kYNXfWEKqQMX/UTwWm5CwvqF1uGsvW3y57Q2ilKp5aGjw/60f7e6b7d23fc9dffdd1e85314d9fd96dcbb5a747bbcad7cf33f36a7ba21a25f.png",
+                      src: `${process.env.PUBLIC_URL}/images/cornerIcon/conversationIcon.png`,
                     },
                     text: "<p>*blank* 四点回家。</p>",
                     pronunciation: "<p>Méi xiǎngdào zài lùshang yùjiàn nǐ.</p>",
@@ -1029,7 +1083,7 @@ export const dummyData: AppData = {
                       answerIndex: 0,
                     },
                     audio: {
-                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/nFGncFwDwnRrEFzpjr4MiVSmd25VsgCt/Jb2fECB2QhtKCw671BE61fjHRlbMzQl0/91aad8c55b09ad4134318894c8ad802f532d9fdc206454b20cb8d2fb0dabfd93.png",
+                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/eZTSEsc5jJxrt5eiV75hen8aoJuvNZRt/LcR3pI1dfJ2SJhyLvWsA2rPCKRwuPfY5/25d064dd6004a352e6ddcaaaae8a876008d16c6d11df1bda0a66e9e08c5aaaaf.mp3",
                     },
                   },
                 ],
@@ -1392,6 +1446,23 @@ export const dummyData: AppData = {
                 tabPages: [
                   {
                     title: "중국어의 개요",
+                    description: "영상을 보고 중국어에 대해 알아봅시다.",
+                    template: {
+                      type: "TP02",
+                      contents: [
+                        {
+                          type: "video",
+                          data: [
+                            {
+                              src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/4R5Sc3o3RkEfrc2KSdhOqUlQYRVzWnmP/oMvJsumz/A04_video_gm.02.m3u8",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  },
+                  {
+                    title: "중국어의 개요",
                     description: "중국어의 개요에 대해 알아봅시다.",
                     template: {
                       type: "TP02",
@@ -1401,23 +1472,6 @@ export const dummyData: AppData = {
                           data: [
                             {
                               text: "<h2>한어는 무엇인가요?</h2><p>중국 인구의 대다수를 차지하는 한족이 쓰는 언어, 즉 '한어'라고 합니다.</p>",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  },
-                  {
-                    title: "중국어의 개요",
-                    description: "영상을 보고 중국어에 대해 알아봅시다.",
-                    template: {
-                      type: "TP02",
-                      contents: [
-                        {
-                          type: "video",
-                          data: [
-                            {
-                              src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/3kZrtRimhkoqmmBEWI0nuTSEOt4Y0hzW/i6vn7Ims/A04_video_gm.01.m3u8",
                             },
                           ],
                         },
@@ -1517,6 +1571,62 @@ export const dummyData: AppData = {
                 tabName: "보통화",
                 active: true,
                 tabPages: [
+                  {
+                    title: "중국어의 개요",
+                    description: "영상을 보고 중국어에 대해 알아봅시다.",
+                    template: {
+                      type: "TP23",
+                      contents: [
+                        {
+                          type: "images",
+                          data: [
+                            {
+                              src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/WJLv0EWXP6P2Vbk6lH2y7lXdAhMEM8T3/mURLhzKrNjJ803Y84F1th0x3b8kfrKFl/0d9b2bc5f0159539fd4a15c9210209dc31ba138da29c311977da8dec1d609700.png",
+                            },
+                          ],
+                        },
+                        {
+                          type: "audio",
+                          data: [
+                            {
+                              src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/3KSrl7OvG7v5oKilGRf0jkt9jT4ohs5E/m9rAiu0wUtxv6y3MrYo3F8evxVqAaXAB/e8dc9ad3b3e5d459036d5eab30a6b36d9ca2211919b3eccde9ddba4ff7f99975.mp3",
+                            },
+                          ],
+                        },
+                        {
+                          type: "chooseText",
+                          data: [
+                            {
+                              choices: ["ai", "ao"],
+                              answerIndex: 0,
+                              explanation: {
+                                correctMessage: "정답입니다!",
+                                wrongMessage: "오답입니다!",
+                                text: "<p>해설 문장이 블라블라~</p>",
+                              },
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  },
+                  {
+                    title: "중국어의 개요",
+                    description: "영상을 보고 중국어에 대해 알아봅시다.",
+                    template: {
+                      type: "TP02",
+                      contents: [
+                        {
+                          type: "audio",
+                          data: [
+                            {
+                              src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/3KSrl7OvG7v5oKilGRf0jkt9jT4ohs5E/m9rAiu0wUtxv6y3MrYo3F8evxVqAaXAB/e8dc9ad3b3e5d459036d5eab30a6b36d9ca2211919b3eccde9ddba4ff7f99975.mp3",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  },
                   {
                     title: "성모",
                     description: "발음을 듣고 따라 읽어 보세요.",

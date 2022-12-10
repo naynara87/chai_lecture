@@ -39,6 +39,8 @@ import {
   TP08B,
   TP11B,
   TP02I,
+  TP10C,
+  TP23,
 } from "./pageTemplate";
 import {
   AudioContent,
@@ -148,8 +150,9 @@ export type Page =
   | TP08A
   | TP08B
   | TP08G
-  | TP10A
   | TP09A
+  | TP10A
+  | TP10C
   | TP11A
   | TP11B
   | TP11F
@@ -159,6 +162,7 @@ export type Page =
   | TPTab
   | TP16
   | TP19A
+  | TP23
   | TP24A
   | TP24B
   | TPIframe;

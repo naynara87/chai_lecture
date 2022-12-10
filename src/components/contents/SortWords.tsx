@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { colorPalette } from "../../styles/colorPalette";
 import { SortWordsData } from "../../types/templateContents";
-import { changePXtoVW } from "../../utils/styles";
+import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import QuestionBlank from "../atoms/QuestionBlank";
 import TextBox from "../atoms/TextBox";
 import WordQuizAnswer from "../atoms/WordQuizAnswer";
@@ -21,9 +21,10 @@ const QuestionWrapper = styled.div`
 const AnswerWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
-  gap: 2%;
+  gap: ${changePXtoVH(32)} ${changePXtoVW(30)};
   flex-wrap: wrap;
-  height: ${changePXtoVW(200)};
+  margin-top: ${changePXtoVH(32)};
+  /* height: ${changePXtoVW(200)}; */
 `;
 
 const customBoxCss = css`

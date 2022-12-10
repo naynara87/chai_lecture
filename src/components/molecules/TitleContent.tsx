@@ -3,15 +3,23 @@ import styled from "@emotion/styled";
 import ChaiSkeleton from "../atoms/ChaiSkeleton";
 import { colorPalette } from "../../styles/colorPalette";
 import { changePXtoVH, changePXtoVW } from "../../utils/styles";
-import { titleHeightNormal } from "../../constants/layout";
+import {
+  headerHeightNormal,
+  tabTitleHeightNormal,
+  titleHeightNormal,
+} from "../../constants/layout";
 
 interface TitleWrapperProps {
   isTab?: boolean;
   isScroll?: boolean;
 }
 
-const TitleContainer = styled.div`
-  height: ${titleHeightNormal};
+interface TitleContainerProps {
+  isTab?: boolean;
+}
+
+const TitleContainer = styled.div<TitleContainerProps>`
+  height: ${(props) => (props.isTab ? tabTitleHeightNormal : titleHeightNormal)};
 `;
 
 const TitleWrapper = styled.div<TitleWrapperProps>`
@@ -20,14 +28,14 @@ const TitleWrapper = styled.div<TitleWrapperProps>`
   align-items: center;
   position: ${(props) => !props.isTab && "fixed"};
   top: ${(props) => !props.isTab && 0};
-  padding-top: ${(props) => !props.isTab && "125px"};
+  padding-top: ${(props) => !props.isTab && `calc(${headerHeightNormal} + ${changePXtoVH(96)})`};
   width: ${(props) => !props.isTab && "100%"};
   /* height: ${titleHeightNormal}; */
   left: ${(props) => !props.isTab && "50%"};
   transform: ${(props) => !props.isTab && "translateX(-50%)"};
   background-color: ${(props) => !props.isTab && `${colorPalette.backgroundWhite}`};
   box-shadow: ${(props) => props.isScroll && `0 4px 20px -2px hsl(0deg 0% 81% / 50%)`};
-  z-index: 3;
+  z-index: 2;
 `;
 
 const MainTitle = styled.h2`
@@ -63,7 +71,7 @@ const TitleContent = (props: TitleContentProps) => {
     });
   }, []);
   return (
-    <TitleContainer>
+    <TitleContainer isTab={props.isTab}>
       <TitleWrapper isTab={props.isTab} isScroll={props.isTab ? undefined : isScroll}>
         <MainTitle>
           {props.loading ? <ChaiSkeleton width={130} height={36} animation={false} /> : props.title}

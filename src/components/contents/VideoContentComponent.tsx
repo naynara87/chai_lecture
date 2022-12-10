@@ -3,8 +3,10 @@ import styled from "@emotion/styled";
 import { SerializedStyles } from "@emotion/react";
 import { changePXtoVW } from "../../utils/styles";
 import { VideoTrack } from "../../types/templateContents";
+import { ID } from "../../types/appData";
 
 interface VideoContentComponentProps {
+  videoId: ID;
   videoUrl: string;
   customCss?: SerializedStyles;
   tracks?: VideoTrack[];
@@ -15,13 +17,20 @@ interface IframeProps {
 }
 
 const Iframe = styled.iframe<IframeProps>`
-  width: ${changePXtoVW(800)};
-  height: ${changePXtoVW(450)};
+  /* width: ${changePXtoVW(800)}; */
+  /* height: ${changePXtoVW(450)}; */
+  width: 100%;
+  height: 100%;
   margin: 0 auto;
   ${(props) => props.customCss}
 `;
 
-const VideoContentComponent = ({ videoUrl, customCss, tracks }: VideoContentComponentProps) => {
+const VideoContentComponent = ({
+  videoUrl,
+  customCss,
+  tracks,
+  videoId,
+}: VideoContentComponentProps) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const sendDataVideoIframe = useCallback(() => {
     const videoData = {
@@ -33,6 +42,7 @@ const VideoContentComponent = ({ videoUrl, customCss, tracks }: VideoContentComp
 
   return (
     <Iframe
+      key={videoId}
       ref={iframeRef}
       customCss={customCss}
       onLoad={sendDataVideoIframe}
