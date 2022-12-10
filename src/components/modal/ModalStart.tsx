@@ -75,7 +75,7 @@ interface StartButtonProps {
 }
 const StartButton = styled.button<StartButtonProps>`
   min-width: ${changePXtoVW(278)};
-  height: ${changePXtoVH(80)};
+  height: ${changePXtoVW(80)};
   background-color: ${colorPalette.confirmBtn};
   color: ${colorPalette.white};
   border-radius: ${changePXtoVW(48)};
@@ -90,6 +90,7 @@ interface ModalStartProps {
   introduction: Introduction;
   isModalOpen: boolean;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isCornerPage?: boolean;
   handleClickStart(): void;
 }
 
@@ -97,6 +98,7 @@ const ModalStart = ({
   introduction,
   isModalOpen,
   setIsModalOpen,
+  isCornerPage = false,
   handleClickStart,
 }: ModalStartProps) => {
   const handleClose = () => {
@@ -109,7 +111,7 @@ const ModalStart = ({
   );
 
   return (
-    <ModalCommon open={isModalOpen} onClose={handleClose}>
+    <ModalCommon open={isModalOpen} onClose={handleClose} isCornerPage={isCornerPage}>
       <ModalInnerBox>
         <ModalHeader>{introduction.title || "학습 목표"}</ModalHeader>
         <ModalTitle>{introduction.subTitle}</ModalTitle>

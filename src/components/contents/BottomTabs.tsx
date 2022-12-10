@@ -15,7 +15,6 @@ const BottomTabsWrapper = styled.div<BottomTabsWrapperProps>`
   height: ${(props) => (props.open ? `${changePXtoVH(451)}` : `${changePXtoVH(160)}`)};
   position: fixed;
   bottom: ${(props) => (props.open ? `${footerHeightNormal}` : 0)};
-  /* bottom: ; */
   left: 50%;
   transform: translateX(-50%);
   transition: all 0.3s ease-in-out;
@@ -42,8 +41,8 @@ const TabHeader = styled.div<TabHeaderProps>`
   border-radius: 16px 16px 0 0;
   background-color: ${(props) =>
     props.isFocus ? colorPalette.bottomTabBorder : colorPalette.disableBottomTabHeader};
-    font-weight: bold;
-    font-size: ${changePXtoVW(24)};
+  font-weight: bold;
+  font-size: ${changePXtoVW(24)};
   color: ${(props) => (props.isFocus ? colorPalette.white : colorPalette.black)};
   cursor: pointer;
 `;
@@ -61,6 +60,7 @@ const BottomTabMainContainer = styled.div<BottomTabMainContainerProps>`
   border-radius: ${changePXtoVW(40)} ${changePXtoVW(40)} 0 0;
   background-color: ${colorPalette.backgroundWhite};
   text-align: left;
+  border-bottom: none;
 
   &::-webkit-scrollbar {
     display: none;
@@ -72,22 +72,22 @@ const BottomTabMainContainer = styled.div<BottomTabMainContainerProps>`
 
   > div {
     margin-top: ${changePXtoVH(24)};
-  }
 
-  h3 {
-    font-size: ${changePXtoVW(30)};
-    line-height: 1.6;
+    h3 {
+      font-size: ${changePXtoVW(30)};
+      line-height: 1.6;
 
-    &.c2 {
-      font-weight: 400;
-      font-size: ${changePXtoVW(48)};
+      &.c2 {
+        font-weight: 400;
+        font-size: ${changePXtoVW(48)};
+      }
     }
-  }
 
-  p {
-    margin-top: ${changePXtoVH(4)};
-    font-size: ${changePXtoVW(24)};
-    line-height: 1.4;
+    p {
+      margin-top: ${changePXtoVH(4)};
+      font-size: ${changePXtoVW(24)};
+      line-height: 1.4;
+    }
   }
 
   & * {
@@ -156,7 +156,7 @@ const BottomTabs = ({ datas }: BottomTabsProps) => {
 
   const mainContents = useMemo(() => {
     return datas[currentIndex].contents.map((content, index) => {
-      return <div key={index}>{getContentComponent(content)}</div>;
+      return <div key={index}>{getContentComponent(content, index)}</div>;
     });
   }, [currentIndex, datas, getContentComponent]);
 

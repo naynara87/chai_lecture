@@ -87,7 +87,7 @@ const DialogContainer = ({
       }
 
       if (layoutRef) {
-        layoutRef.current?.scrollTo({
+        document.querySelector("html")?.scrollTo({
           top: currentHeight,
           left: 0,
           behavior: "smooth",

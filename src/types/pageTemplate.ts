@@ -144,7 +144,7 @@ type TP02MTemplate = {
   contents: TP02MContent[];
 };
 
-type TP02MContent = TextBoxesContent;
+type TP02MContent = HtmlContent;
 
 export type TP02N = {
   id: ID;
@@ -392,6 +392,18 @@ export type TP10A = {
 
 type TP10AContent = WordQuizContent;
 
+export type TP10C = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP10C";
+    contents: TP10CContent[];
+  };
+};
+
+type TP10CContent = WordQuizContent;
+
 export type TP11A = {
   id: ID;
   title: string;
@@ -605,6 +617,18 @@ export type TP21B = {
 };
 
 type TP21BContent = HtmlContent | ChooseTextContent;
+
+export type TP23 = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP23";
+    contents: TP23Content[];
+  };
+};
+
+type TP23Content = ApproveContent;
 
 export type TP24A = {
   id: ID;

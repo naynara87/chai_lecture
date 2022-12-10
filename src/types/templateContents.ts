@@ -192,7 +192,7 @@ export type WordQuizData = {
   choices: string[];
   answerIndex: number;
   meaning: string;
-  audio: {
+  audio?: {
     src: string;
   };
   explanation?: Explanation;

@@ -12,7 +12,8 @@ import TP02Layout from "../Layouts/TP02Layout";
 import TitleContent from "../molecules/TitleContent";
 import DialogContainer from "../molecules/DialogContainer";
 import useThrottle from "../../hooks/useThrottle";
-import { changePXtoVH } from "../../utils/styles";
+import { changePXtoVH, changePXtoVW } from "../../utils/styles";
+import { titleHeight } from "../../constants/layout";
 
 const DialogHeader = styled.div`
   display: flex;
@@ -20,10 +21,15 @@ const DialogHeader = styled.div`
   align-items: center;
   width: 100%;
   margin-top: ${changePXtoVH(12)};
+  position: fixed;
+  top: calc(${changePXtoVH(titleHeight)} + ${changePXtoVW(80)});
+  right: 30px;
+  z-index: 1;
 `;
 
 const layoutCss = css`
   display: block;
+  position: relative;
 `;
 
 interface TP02KComponentProps extends TemplateProps {}
@@ -115,7 +121,8 @@ const TP02KComponent = ({ setPageCompleted, page, showHeader = true }: TP02KComp
         DialogContentData?.data?.[currentContentIndex + 1]
       ) {
         setCurrentContentIndex((prev) => prev + 1);
-        setAudioState(false);
+        // NOTE kjw 다이얼로그 콘텐츠 인덱스가 바뀌며 전체오디오의 상태를 변경해줌 -> 다음 오디오가 재생이됨.
+        setAudioState(true);
       }
     });
   }, [DialogContentData?.data, currentContentIndex, addThrottle]);

@@ -10,8 +10,8 @@ const useInitialData = () => {
   const learningLogCookieData = getCookie<InitialAppData>("bubble-player");
 
   const lessonIdMemo: ID | undefined = useMemo(() => {
-    return learningLogCookieData.lessonId ?? 1;
-  }, [learningLogCookieData.lessonId]);
+    return learningLogCookieData?.lessonId ?? 1;
+  }, [learningLogCookieData?.lessonId]);
 
   // 코너 리스트 조회
   const { corners, appMetaData } = useLesson(lessonIdMemo);

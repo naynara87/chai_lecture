@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { colorPalette } from "../../styles/colorPalette";
 import { WordQuizData } from "../../types/templateContents";
-import { changePXtoVW } from "../../utils/styles";
+import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import QuestionBlank from "../atoms/QuestionBlank";
 import WordQuizAnswer from "../atoms/WordQuizAnswer";
 import Explanation from "../molecules/Explanation";
@@ -20,7 +20,8 @@ const WordQuizAnswerWrapper = styled.div`
   display: flex;
   margin: ${changePXtoVW(32)} auto ${changePXtoVW(64)};
   justify-content: space-between;
-  gap: 2%;
+  gap: ${changePXtoVH(32)} ${changePXtoVW(40)};
+  margin-top: ${changePXtoVH(32)};
 `;
 
 const AudioWrapper = styled.div`
@@ -131,9 +132,11 @@ const WordQuizTP11B = ({ datas }: WordQuizProps) => {
       </QuestionWrapper>
 
       <HtmlContentComponent html={meaning} customCss={meaningCss} />
-      <AudioWrapper>
-        <AudioButton isAudio={true} audioUrl={audio.src} />
-      </AudioWrapper>
+      {audio && (
+        <AudioWrapper>
+          <AudioButton isAudio={true} audioUrl={audio.src} />
+        </AudioWrapper>
+      )}
       <WordQuizAnswerWrapper>
         {sortList.map((choice, index) => {
           return (

@@ -49,7 +49,7 @@ const TextBox = styled.div`
   position: relative;
   align-items: center;
   width: calc(100% - ${changePXtoVW(120)});
-  height: ${changePXtoVH(160)};
+  height: ${changePXtoVW(160)};
   padding: ${changePXtoVH(10)} ${changePXtoVW(40)};
   background-position: left 3px;
   background-size: 100% 100%;
@@ -72,15 +72,30 @@ const OXWrapper = styled.div`
 `;
 
 const ExplanationTextCss = css`
+  overflow: auto;
+  width: 100%;
+  height: 100%;
   font-size: ${changePXtoVW(16)};
   line-height: ${changePXtoVW(24)};
   font-weight: 600;
+
+  &::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
 `;
 
 const Text = styled.div`
   padding-top: ${changePXtoVH(12)};
   padding-bottom: ${changePXtoVH(8)};
   ${ExplanationTextCss}
+
+  p {
+    font-weight: 500;
+    font-size: ${changePXtoVW(30)} !important;
+    text-align: left;
+  }
 `;
 
 const ExplanationTitle = styled.div`
@@ -104,7 +119,6 @@ const InfoWrapper = styled.div`
 const audioCss = css`
   width: ${changePXtoVW(40)};
   height: ${changePXtoVW(40)};
-  transform: translateY(${changePXtoVW(-10)});
   margin-left: ${changePXtoVW(12)};
 `;
 

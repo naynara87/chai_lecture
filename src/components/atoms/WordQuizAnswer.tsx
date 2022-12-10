@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import React from "react";
 import { colorPalette } from "../../styles/colorPalette";
-import { changePXtoVW } from "../../utils/styles";
+import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import IconCheck from "./svg/IconCheck";
 
 interface WordQuizAnswerStylesProps {
@@ -11,7 +11,7 @@ interface WordQuizAnswerStylesProps {
 const WordQuizAnswerStyles = styled.div<WordQuizAnswerStylesProps>`
   /* width: ${changePXtoVW(176)}; */
   /* height: ${changePXtoVW(80)}; */
-  padding: 3px 20px;
+  padding: ${changePXtoVH(3)} ${changePXtoVW(20)};
   font-size: ${changePXtoVW(48)};
   font-weight: 400;
   color: ${(props) => props.color};
