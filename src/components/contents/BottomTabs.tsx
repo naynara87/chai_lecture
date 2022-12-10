@@ -71,22 +71,22 @@ const BottomTabMainContainer = styled.div<BottomTabMainContainerProps>`
 
   > div {
     margin-top: ${changePXtoVH(24)};
-  }
 
-  h3 {
-    font-size: ${changePXtoVW(30)};
-    line-height: 1.6;
+    h3 {
+      font-size: ${changePXtoVW(30)};
+      line-height: 1.6;
 
-    &.c2 {
-      font-weight: 400;
-      font-size: ${changePXtoVW(48)};
+      &.c2 {
+        font-weight: 400;
+        font-size: ${changePXtoVW(48)};
+      }
     }
-  }
 
-  p {
-    margin-top: ${changePXtoVH(4)};
-    font-size: ${changePXtoVW(24)};
-    line-height: 1.4;
+    p {
+      margin-top: ${changePXtoVH(4)};
+      font-size: ${changePXtoVW(24)};
+      line-height: 1.4;
+    }
   }
 
   & * {

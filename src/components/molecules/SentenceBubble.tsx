@@ -4,7 +4,7 @@ import React, { useMemo, useState } from "react";
 import { footerHeightNormal } from "../../constants/layout";
 import { colorPalette } from "../../styles/colorPalette";
 import { SentenceWord } from "../../types/templateContents";
-import { changePXtoVW } from "../../utils/styles";
+import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import AudioButton from "../atoms/AudioButton";
 import ArrowLeft from "../atoms/svg/ArrowLeft";
 import ArrowRight from "../atoms/svg/ArrowRight";
@@ -19,7 +19,7 @@ interface BubbleContainerProps {
 
 const BubbleContainer = styled.div<BubbleContainerProps>`
   ${(props) => props.containerCss}
-  
+
   z-index: 5;
   position: fixed;
   left: 50%;
@@ -30,7 +30,6 @@ const BubbleContainer = styled.div<BubbleContainerProps>`
   /* width: ${changePXtoVW(360)}; */
   width: ${changePXtoVW(1600)};
   transform: translateX(-50%);
-
 `;
 
 interface SentenceBubbleProps {
@@ -49,13 +48,14 @@ const BubbleText = styled.div<BubbleTextProps>`
   /* justify-content: ${(props) => props.open && "space-between"}; */
   justify-content: center;
   align-items: center;
-  color: ${colorPalette.white};
+  gap: ${changePXtoVW(20)};
   font-size: ${changePXtoVW(30)};
   font-weight: 500;
+  color: ${colorPalette.white};
 `;
 
 const SentenceBubble = styled.div<SentenceBubbleProps>`
-  min-width: ${(props) => (props.open ? changePXtoVW(670) : changePXtoVW(130))};
+  min-width: ${(props) => (props.open ? changePXtoVW(1000) : changePXtoVW(130))};
   width: auto;
   height: ${changePXtoVW(130)};
   border-radius: ${(props) => (props.open ? "92px" : "50%")};
@@ -73,23 +73,32 @@ interface BubbleMoreIconProps {
 }
 const BubbleMoreIcon = styled.button<BubbleMoreIconProps>`
   position: absolute;
-  width: ${changePXtoVW(40)};
-  height: ${changePXtoVW(40)};
+  top: 50%;
+  left: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: ${(props) => (props.open ? `${changePXtoVW(-10)}` : `${changePXtoVW(-30)}`)};
+  width: ${changePXtoVW(56)};
+  height: ${changePXtoVW(56)};
   border-radius: 50%;
-  top: 0;
-  transform: translateY(100%) translateX(40%);
-  right: 0;
   background-color: ${(props) => (props.open ? colorPalette.deepBlue : colorPalette.white)};
+  transform: translateY(-50%);
   cursor: pointer;
 `;
 
 const xIconCss = css`
-  transform: scale(0.4);
+  width: ${changePXtoVW(23)};
+  transform: translateX(${changePXtoVW(1)});
 `;
 
 const arrowCss = css`
-  transform: scale(0.6);
+  width: ${changePXtoVW(15)};
   cursor: pointer;
+
+  > svg {
+    max-width: 100%;
+  }
 `;
 
 const htmlCss = css`
@@ -97,8 +106,9 @@ const htmlCss = css`
 `;
 
 const audioCss = css`
-  width: ${changePXtoVW(30)};
-  height: ${changePXtoVW(30)};
+  width: ${changePXtoVW(48)};
+  height: ${changePXtoVW(48)};
+  margin-left: ${changePXtoVW(8)};
 `;
 
 interface SentenceBubbleComponentProps {

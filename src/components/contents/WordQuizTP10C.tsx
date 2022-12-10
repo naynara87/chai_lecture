@@ -19,7 +19,7 @@ const WordQuizAnswerWrapper = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: ${changePXtoVH(10)} ${changePXtoVW(10)};
+  gap: ${changePXtoVH(32)} ${changePXtoVW(40)};
   margin: ${changePXtoVW(32)} auto ${changePXtoVW(64)};
   /* justify-content: space-between; */
 `;

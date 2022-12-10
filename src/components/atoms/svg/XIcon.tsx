@@ -18,11 +18,11 @@ const XIcon = ({ css, color = "#F65555" }: XIconProps) => {
         maskUnits="userSpaceOnUse"
         x="0.166907"
         y="0.166016"
-        width="74"
-        height="74"
+        width="80"
+        height="80"
         fill="black"
       >
-        <rect fill="white" x="0.166907" y="0.166016" width="74" height="74" />
+        <rect fill="white" x="0.166907" y="0.166016" width="80" height="80" />
         <path
           fillRule="evenodd"
           clipRule="evenodd"
@@ -47,8 +47,8 @@ const XIcon = ({ css, color = "#F65555" }: XIconProps) => {
           id="filter0_i_1987_12313"
           x="0.166907"
           y="0.166016"
-          width="74.6662"
-          height="74.666"
+          width="80"
+          height="80"
           filterUnits="userSpaceOnUse"
           colorInterpolationFilters="sRGB"
         >

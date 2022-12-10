@@ -4,7 +4,13 @@ import { footerHeightNormal, headerHeightNormal, titleHeightNormal } from "../..
 import { changePXtoVH } from "../../utils/styles";
 
 const TemplateCommon = styled.div`
+  overflow: auto;
   height: calc(100vh - ${headerHeightNormal} - ${footerHeightNormal});
+  padding: ${changePXtoVH(50)};
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 interface TemplateCommonLayoutProps {

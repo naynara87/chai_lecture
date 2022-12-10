@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import ChaiSkeleton from "../atoms/ChaiSkeleton";
 import { colorPalette } from "../../styles/colorPalette";
 import { changePXtoVH, changePXtoVW } from "../../utils/styles";
-import { titleHeightNormal } from "../../constants/layout";
+import { headerHeightNormal, titleHeightNormal } from "../../constants/layout";
 
 interface TitleWrapperProps {
   isTab?: boolean;
@@ -20,14 +20,14 @@ const TitleWrapper = styled.div<TitleWrapperProps>`
   align-items: center;
   position: ${(props) => !props.isTab && "fixed"};
   top: ${(props) => !props.isTab && 0};
-  padding-top: ${(props) => !props.isTab && "125px"};
+  padding-top: ${(props) => !props.isTab && `calc(${headerHeightNormal} + ${changePXtoVH(96)})`};
   width: ${(props) => !props.isTab && "100%"};
   /* height: ${titleHeightNormal}; */
   left: ${(props) => !props.isTab && "50%"};
   transform: ${(props) => !props.isTab && "translateX(-50%)"};
   background-color: ${(props) => !props.isTab && `${colorPalette.backgroundWhite}`};
   box-shadow: ${(props) => props.isScroll && `0 4px 20px -2px hsl(0deg 0% 81% / 50%)`};
-  z-index: 3;
+  z-index: 2;
 `;
 
 const MainTitle = styled.h2`
