@@ -209,7 +209,7 @@ const SortWords = ({ datas }: SortWordsProps) => {
     <SortWordsWrapper>
       <QuestionWrapper>{questionContents}</QuestionWrapper>
       <AnswerWrapper>{answerContents}</AnswerWrapper>
-      {showExplanation && (
+      {showExplanation && explanation && (
         <Explanation
           explanation={explanation}
           isCorrect={isUserAnswerCorrect}
