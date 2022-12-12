@@ -9,22 +9,19 @@ import TitleContent from "../molecules/TitleContent";
 import AudioButton from "../atoms/AudioButton";
 import TextBox from "../atoms/TextBox";
 import { css } from "@emotion/react";
-import { changePXtoVW } from "../../utils/styles";
+import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import useAudio from "../../hooks/useAudio";
 import { colorPalette } from "../../styles/colorPalette";
 import HtmlContentComponent from "../molecules/HtmlContentComponent";
 
 const ContentContainer = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  padding: ${changePXtoVH(15)} ${changePXtoVW(15)};
+  text-align: center;
 `;
 
 const customLayoutCss = css`
   display: flex;
-  width: 50%;
+  flex-wrap: wrap;
   margin: 0 auto;
 `;
 

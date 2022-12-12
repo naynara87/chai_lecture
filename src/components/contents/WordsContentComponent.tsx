@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import { ListenWordData } from "../../types/templateContents";
 import HtmlContentComponent from "../molecules/HtmlContentComponent";
 import { changePXtoVH, changePXtoVW } from "../../utils/styles";
+import { colorPalette } from "../../styles/colorPalette";
 
 interface WordsContentComponentProps extends ListenWordData {
   index: number;
@@ -19,7 +20,8 @@ const TextCard = styled.div`
   line-height: ${changePXtoVW(200)};
   margin: ${changePXtoVW(20)};
   padding: ${changePXtoVH(20)} 0;
-  border: 1px solid color(gray2);
+  /* border: 1px solid color(gray2); */
+  border: 1px solid ${colorPalette.textBoxBorder};
   border-radius: ${changePXtoVW(20)};
   font-size: ${changePXtoVW(60)};
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
