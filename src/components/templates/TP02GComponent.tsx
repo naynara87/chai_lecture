@@ -111,7 +111,10 @@ const TP02GComponent = ({ setPageCompleted, page, showHeader = true }: TP02GComp
 
   const onEndTotalAudio = useCallback(() => {
     addThrottle(500, () => {
-      if (DialogContentData?.data?.[currentContentIndex].hasQuestion) {
+      if (
+        DialogContentData?.data?.[currentContentIndex].hasQuestion ||
+        !DialogContentData?.data?.[currentContentIndex + 1]
+      ) {
         setAudioState(false);
         return;
       }
