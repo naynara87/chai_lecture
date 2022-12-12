@@ -1,6 +1,6 @@
 import { css, SerializedStyles } from "@emotion/react";
 import styled from "@emotion/styled";
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { useCallback, useMemo, useRef, useState } from "react";
 import { useReactMediaRecorder } from "react-media-recorder";
 import { colorPalette } from "../../styles/colorPalette";
 import { changePXtoVW } from "../../utils/styles";
@@ -75,15 +75,41 @@ const AudioRecorder = ({ audioUrl }: AudioRecorderProps) => {
     },
   });
 
-  const getLocalStream = useCallback(async () => {
-    return await navigator.mediaDevices.getUserMedia({
-      audio: true,
-    });
-  }, []);
+  // const getLocalStream = useCallback(async () => {
+  // let navigatorCopy = navigator as any;
+  // if (navigatorCopy.mediaDevices === undefined) {
+  //   navigatorCopy.mediaDevices = {};
+  //   if (navigator.mediaDevices.getUserMedia === undefined) {
+  //     navigator.mediaDevices.getUserMedia = function (constraints) {
+  //       let getUserMedia =
+  //         (navigator as any).getUserMedia ||
+  //         (navigator as any).webkitGetUserMedia ||
+  //         (navigator as any).mozGetUserMedia ||
+  //         (navigator as any).msGetUserMedia;
 
-  useEffect(() => {
-    getLocalStream();
-  }, [getLocalStream]);
+  //       if (!getUserMedia) {
+  //         return Promise.reject(new Error("getUserMedia is not implemented in this browser"));
+  //       }
+
+  //       return new Promise(function (resolve, reject) {
+  //         getUserMedia.call(navigator, constraints, resolve, reject);
+  //       });
+  //     };
+  //   }
+  // }
+  // return await navigator.mediaDevices?.getUserMedia({ audio: true });
+  // new window.MediaRecorder(stream);
+  // }, []);
+
+  // useEffect(() => {
+  //   getLocalStream()
+  //     .then((stream) => {
+  //       console.log("stream", stream);
+  //     })
+  //     .catch((err) => {
+  //       console.log("err", err);
+  //     });
+  // }, [getLocalStream]);
 
   const handleClickRecordedAudioButton = useCallback(() => {
     if (!audioRef.current || pronounceAudio) {
@@ -167,7 +193,7 @@ const AudioRecorder = ({ audioUrl }: AudioRecorderProps) => {
       >
         {renderRecordingAudioIcon}
       </RecordingAudioButton>
-      <audio ref={audioRef} src={mediaBlobUrl} />
+      <audio ref={audioRef} src={mediaBlobUrl ?? ""} />
       <AudioButton
         audioUrl={audioUrl}
         isAudio={true}
