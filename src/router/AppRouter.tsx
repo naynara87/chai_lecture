@@ -2,6 +2,8 @@ import React from "react";
 import { Routes, Route, Navigate, HashRouter } from "react-router-dom";
 import CornerListPage from "../components/pages/CornerListPage";
 import CornerPage from "../components/pages/CornerPage";
+import MetaTestChoiceWord from "../components/pages/MetaTestChoiceWord";
+import MetaTestWordTest from "../components/pages/MetaTestWordTest";
 import { CORNER_LIST_URL } from "../constants/url";
 
 const AppRouter = () => {
@@ -14,6 +16,8 @@ const AppRouter = () => {
           element={<CornerPage />}
         />
         <Route path="*" element={<Navigate to={CORNER_LIST_URL} replace />} />
+        <Route path={'test-main'} element={<MetaTestChoiceWord />} />
+        <Route path={'test-word-test'} element={<MetaTestWordTest />} />
       </Routes>
     </HashRouter>
   );
