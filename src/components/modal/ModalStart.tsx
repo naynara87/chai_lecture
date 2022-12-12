@@ -8,7 +8,7 @@ import StartModalContents from "../molecules/StartModalContents";
 import isEmpty from "lodash/isEmpty";
 import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 
-const ModalInnerBox = styled.div`
+export const ModalInnerBox = styled.div`
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -26,7 +26,7 @@ const ModalInnerBox = styled.div`
   transform: translate(-50%, -50%);
 `;
 
-const ModalHeader = styled.h2`
+export const ModalHeader = styled.h2`
   width: 100%;
   padding: ${changePXtoVH(40)} 0 ${changePXtoVH(32)};
   background-color: ${colorPalette.confirmBtn};
@@ -37,7 +37,7 @@ const ModalHeader = styled.h2`
   text-align: center;
 `;
 
-const ModalTitle = styled.p`
+export const ModalTitle = styled.p`
   margin: ${changePXtoVH(64)} 0;
   line-height: 3.5;
   font-weight: 500;
@@ -46,7 +46,7 @@ const ModalTitle = styled.p`
   white-space: pre-line;
 `;
 
-const ModalBody = styled.div`
+export const ModalBody = styled.div`
   width: 100%;
   padding: 0 ${changePXtoVW(64)};
   text-align: center;
@@ -56,12 +56,12 @@ const ModalBody = styled.div`
   }
 `;
 
-const ModalSecondTitle = styled.h3`
+export const ModalSecondTitle = styled.h3`
   font-weight: 600;
   font-size: ${changePXtoVW(30)};
 `;
 
-const ModalDescriptionWrap = styled.div`
+export const ModalDescriptionWrap = styled.div`
   position: relative;
   margin-top: ${changePXtoVH(-18)};
   padding: ${changePXtoVH(16)} 0 ${changePXtoVH(8)};
@@ -73,7 +73,7 @@ const ModalDescriptionWrap = styled.div`
 interface StartButtonProps {
   isIntroductionContentsEmpty: boolean;
 }
-const StartButton = styled.button<StartButtonProps>`
+export const StartButton = styled.button<StartButtonProps>`
   min-width: ${changePXtoVW(278)};
   height: ${changePXtoVW(80)};
   background-color: ${colorPalette.confirmBtn};

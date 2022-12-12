@@ -1,12 +1,25 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { CORNER_LIST_URL } from "../constants/url";
 import { Corner2, ID, InitialAppData, Page } from "../types/appData";
 import { getCookie } from "../utils/cookie";
 import useCorner from "./useCorner";
 import useLesson from "./useLesson";
 
+interface ContinueLastLearningData {
+  isContinue: boolean;
+  courseId: ID;
+  lessonId: ID;
+  cornerId: ID;
+  pageId: ID;
+}
+
 const useInitialData = () => {
   const [initialCorner, setInitialCorner] = useState<Corner2>();
   const [initialPage, setCurrentPageOfCorner] = useState<Page>();
+  // const [isContinue, setHasLastLearningPageData] = useState(false); // 이어보기 전행 여부
+  const [continueLastLearningData, setContinueLastLearningData] =
+    useState<ContinueLastLearningData>(); // 이어보기 여부
+
   const learningLogCookieData = getCookie<InitialAppData>("bubble-player");
 
   const lessonIdMemo: ID | undefined = useMemo(() => {
@@ -22,10 +35,15 @@ const useInitialData = () => {
   // 현재 코너에 해당되는 페이지 리스트 조회
   const { pages: initialPages } = useCorner(initialCorner?.id);
 
+  const isPageListPage = useMemo(() => {
+    const url = window.location.href;
+    return url.includes(CORNER_LIST_URL);
+  }, []);
+
   const setInitialData = useCallback(() => {
     // 학습 이력 기반으로 현재 코너 결정
     const lastLearningCorner = corners.find(
-      (corner) => corner.id === learningLogCookieData?.turnId,
+      (corner) => corner.id.toString() === learningLogCookieData?.turnId?.toString(),
     );
 
     // 학습 이력 조회 데이터와 매칭되는 코너가 없는 경우
@@ -69,14 +87,38 @@ const useInitialData = () => {
         setCurrentPageOfCorner(initialPages?.[0]); // 첫 번째 페이지
         return;
       }
-      setCurrentPageOfCorner(
+      const nextPage =
         initialPages?.[
-          initialPages?.findIndex((page) => page.id.toString() === lastLearningPageId.toString()) +
-            1
-        ],
-      ); // 다음 페이지
+          initialPages?.findIndex(
+            (page) => page?.id?.toString() === lastLearningPageId?.toString(),
+          ) + 1
+        ];
+      setCurrentPageOfCorner(nextPage); // 다음 페이지
+      if (
+        appMetaData &&
+        isPageListPage &&
+        nextPage !== undefined &&
+        continueLastLearningData === undefined
+      ) {
+        setContinueLastLearningData({
+          isContinue: true,
+          courseId: appMetaData?.courseId,
+          lessonId: appMetaData?.lessonId,
+          cornerId: lastLearningCorner?.id,
+          pageId: nextPage?.id,
+        });
+      }
     }
-  }, [corners, learningLogCookieData, initialPages]);
+  }, [
+    corners,
+    learningLogCookieData,
+    initialPages,
+    setInitialCorner,
+    setCurrentPageOfCorner,
+    isPageListPage,
+    appMetaData,
+    continueLastLearningData,
+  ]);
 
   const initialCornerIndex = useMemo(() => {
     return corners?.findIndex((corner) => corner.id === initialCorner?.id);
@@ -93,6 +135,7 @@ const useInitialData = () => {
     initialCornerIndex,
     initialPage,
     appMetaData,
+    continueLastLearningData,
   };
 };
 
