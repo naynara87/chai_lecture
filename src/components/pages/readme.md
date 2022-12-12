@@ -44,4 +44,5 @@ const handleClickStart = () => {
 
 ## 이어보기
 
-- useInitialAppData에서 이어보기를 할 것인지를 체크한 후 해당 페이지로 redirect
+- useInitialAppData에서 이어보기를 할 것인지를 체크한 후
+- CornerListPage에서 모달창을 띄우고 확인 시 해당 페이지로 redirect

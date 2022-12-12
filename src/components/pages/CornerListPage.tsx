@@ -194,8 +194,8 @@ const CornerListPage = () => {
                         />
                       ) : (
                         <ChaiSkeleton
-                          width={180}
-                          height={180}
+                          width={changePXtoVW(200)}
+                          height={changePXtoVW(200)}
                           variant="circular"
                           animation={false}
                         />
