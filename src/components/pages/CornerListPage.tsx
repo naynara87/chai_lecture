@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import styled from "@emotion/styled";
 import { ID } from "../../types/appData";
 import ImageContentComponent from "../contents/ImageContentComponent";
@@ -17,6 +17,10 @@ import { headerHeightNormal } from "../../constants/layout";
 import { useNavigate } from "react-router-dom";
 import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import useCornerIconMapper from "../../hooks/useCornerIconMapper";
+import ModalContinue from "../modal/ModalConfirm";
+import useToast from "../../hooks/useToast";
+import { useRecoilState } from "recoil";
+import { isAppStartedState } from "../../state/isAppStartedState";
 // import usePageList from "../../hooks/api/usePageList";
 
 const CornerListWrapper = styled.main`
@@ -89,12 +93,15 @@ const CornerListLayout = styled.div`
 
 const CornerListPage = () => {
   const [isModalCloseOpen, setIsModalCloseOpen] = useState(false);
+  const [isContinueModalOpen, setIsContinueModalOpen] = useState(false);
+  const [isAppStarted, setIsAppStarted] = useRecoilState(isAppStartedState);
 
   const { getCornerIcon } = useCornerIconMapper();
 
   const navigate = useNavigate();
+  const { addToast } = useToast();
 
-  const { currentCorner, appMetaData, corners } = useCornerListPage();
+  const { currentCorner, appMetaData, corners, continueLastLearningData } = useCornerListPage();
 
   const changeFilter = useCallback(
     (cornerId: ID) => {
@@ -130,6 +137,34 @@ const CornerListPage = () => {
     navigate(url);
   };
 
+  useEffect(() => {
+    if (continueLastLearningData?.isContinue && !isAppStarted) {
+      setIsContinueModalOpen(true);
+    }
+  }, [continueLastLearningData, isAppStarted]);
+
+  const startApp = useCallback(() => setIsAppStarted(true), [setIsAppStarted]);
+
+  const handleClickNotContinue = () => {
+    startApp();
+    setIsContinueModalOpen(false);
+  };
+
+  const handleClickContinue = () => {
+    startApp();
+    if (continueLastLearningData) {
+      const url = getPageUrl(
+        continueLastLearningData.courseId,
+        continueLastLearningData.lessonId,
+        continueLastLearningData.cornerId,
+        continueLastLearningData.pageId,
+      );
+      navigate(url);
+    } else {
+      addToast("이어보기 데이터가 없습니다.", "warning");
+    }
+  };
+
   return (
     <CornerListLayout>
       <Header currentCorner={currentCorner} appMetaData={appMetaData} />
@@ -158,7 +193,12 @@ const CornerListPage = () => {
                           isZoom={false}
                         />
                       ) : (
-                        <ChaiSkeleton width={90} height={90} variant="circular" animation={false} />
+                        <ChaiSkeleton
+                          width={180}
+                          height={180}
+                          variant="circular"
+                          animation={false}
+                        />
                       )}
                     </CornerImageWrapper>
                     <CornerName>{corner.title}</CornerName>
@@ -170,7 +210,11 @@ const CornerListPage = () => {
                 .map((_, index) => (
                   <CornerList key={index}>
                     <CornerImageWrapper>
-                      <ChaiSkeleton width={90} height={90} variant="circular" />
+                      <ChaiSkeleton
+                        width={changePXtoVW(200)}
+                        height={changePXtoVW(200)}
+                        variant="circular"
+                      />
                     </CornerImageWrapper>
                     <CornerName>
                       <ChaiSkeleton width={50} height={19} variant="rounded" />
@@ -197,6 +241,14 @@ const CornerListPage = () => {
           setIsModalOpen={setIsModalCloseOpen}
         />
       )}
+      <ModalContinue
+        isModalOpen={isContinueModalOpen}
+        setIsModalOpen={setIsContinueModalOpen}
+        handleClickLeftButton={handleClickNotContinue}
+        handleClickRightButton={handleClickContinue}
+        title="이어하기"
+        description={"지난 학습 이력이 있습니다.\n이어서 학습하시겠습니까?"}
+      />
     </CornerListLayout>
   );
 };

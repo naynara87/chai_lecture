@@ -7,7 +7,8 @@ import { Corner2 } from "../types/appData";
 import useInitialData from "./useInitialData";
 
 const useCornerListPage = () => {
-  const { initialCorner, corners, initialCornerIndex, appMetaData } = useInitialData();
+  const { initialCorner, corners, initialCornerIndex, appMetaData, continueLastLearningData } =
+    useInitialData();
   // NOTE: 처음을 제외하고 currentCorner 변경은 completedCorner 변경에 의해서만 변경되어야 함
   const [currentCorner, setCurrentCorner] = useState<Corner2>();
   const [completedCorners, setCompletedCorners] = useRecoilState(cornersState);
@@ -64,9 +65,7 @@ const useCornerListPage = () => {
     }
   }, [completedCorners, corners, eduMode, reviewCornerIndex, setEduMode, setReviewCornerIndex]);
 
-  // NOTE: 추후 initialPage가 필요할 수 있음
-
-  return { currentCorner, corners, appMetaData };
+  return { currentCorner, corners, appMetaData, continueLastLearningData };
 };
 
 export default useCornerListPage;

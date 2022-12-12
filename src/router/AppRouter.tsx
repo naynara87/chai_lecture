@@ -13,7 +13,7 @@ const AppRouter = () => {
           path="course/:courseId/lesson/:lessonId/corner/:cornerId/page/:pageId"
           element={<CornerPage />}
         />
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<Navigate to={CORNER_LIST_URL} replace />} />
       </Routes>
     </HashRouter>
   );
