@@ -41,3 +41,8 @@ const handleClickStart = () => {
 ## 페이지 완료 조건
 
 - 해당 코너의 마지막 페이지에서 다음 버튼 클릭 시 완료 처리(recoil state로 관리)
+
+## 이어보기
+
+- useInitialAppData에서 이어보기를 할 것인지를 체크한 후
+- CornerListPage에서 모달창을 띄우고 확인 시 해당 페이지로 redirect
