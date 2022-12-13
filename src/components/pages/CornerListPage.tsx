@@ -138,7 +138,7 @@ const CornerListPage = () => {
   };
 
   useEffect(() => {
-    if (continueLastLearningData?.isContinue && !isAppStarted) {
+    if (continueLastLearningData?.isContinue && !isAppStarted && continueLastLearningData?.pageId) {
       setIsContinueModalOpen(true);
     }
   }, [continueLastLearningData, isAppStarted]);
@@ -152,7 +152,7 @@ const CornerListPage = () => {
 
   const handleClickContinue = () => {
     startApp();
-    if (continueLastLearningData) {
+    if (continueLastLearningData?.pageId && continueLastLearningData?.cornerId) {
       const url = getPageUrl(
         continueLastLearningData.courseId,
         continueLastLearningData.lessonId,
