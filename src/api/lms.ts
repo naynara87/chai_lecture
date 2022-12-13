@@ -1,4 +1,4 @@
-import { saveLmsDataUrl } from "../constants/api";
+import { LMS_SAVE_DATA } from "../constants/api";
 import { learningLogData } from "../data/dummyData2";
 import httpLms from "../lib/axios/httpLms";
 import { ID } from "../types/appData";
@@ -43,7 +43,7 @@ export const saveLmsData = async ({
   envlCatgYn,
   complYn,
 }: saveLmsDataParams) => {
-  const res = await httpLms.post(saveLmsDataUrl(), {
+  const res = await httpLms.post(LMS_SAVE_DATA, {
     uno,
     applId,
     courseId,

@@ -7,6 +7,8 @@ export const TOKEN_URL = "/lcms/get-token";
 
 export const LCMS_SUBJECT = "/lcms/subject";
 
+export const LMS_SAVE_DATA = "/";
+
 /**
  * NOTE 서버에서 사용하는 명칭과 클라이언트에서 사용하는 명칭이 다름
  * - 과목 : subject = course -> 빨강
@@ -27,5 +29,3 @@ export const getLcmsSubjectUrl = (subjectId: ID) => `/lcms/subject/${subjectId}`
 
 export const getLcmsLessonDataUrl = (lessonId: ID) =>
   `/lcms/subject/lesson-detail-list/${lessonId}`;
-
-export const saveLmsDataUrl = () => `/`;
