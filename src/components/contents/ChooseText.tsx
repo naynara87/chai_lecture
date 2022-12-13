@@ -66,7 +66,7 @@ const ChooseText = ({ contentData }: ChooseTextProps) => {
         ))}
       </QuizAnswerContainer>
       {tipContentData && <TipComponent html={tipContentData} />}
-      {showExplanation && (
+      {showExplanation && explanation && (
         <Explanation
           explanation={explanation}
           handleClickClose={handleClickCloseExplanation}
