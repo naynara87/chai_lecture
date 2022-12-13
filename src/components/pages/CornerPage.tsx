@@ -107,7 +107,7 @@ const CornerPage = () => {
     console.log(`page: ${pageIndex + 1} / ${pages?.length}`);
   }, [pageIndex, pages]);
 
-  const saveData = useCallback(() => {
+  const saveData = useCallback(async () => {
     if (!currentPage) {
       return;
     }
@@ -117,14 +117,16 @@ const CornerPage = () => {
       const pasingUno = parseInt(uno);
       const parsingApplIdId = parseInt(applId);
       const parsingCornerId = parseInt(cornerId);
+      const parsingSubjectId = parseInt(subjectId);
+      const parsingLessonId = parseInt(lessonId);
       try {
-        saveLmsData({
+        await saveLmsData({
           uno: pasingUno,
           applId: parsingApplIdId,
           courseId: parsingCourseId,
-          subjectId,
+          subjectId: parsingSubjectId,
           cornerId: parsingCornerId,
-          lessonId,
+          lessonId: parsingLessonId,
           pageId: parsingPageId,
           progressRate: currentProgress(currentPage.id),
           envlCatgYn: 10, // FIXME: 임시로 10으로 설정 => 나중에 실제 데이터가 넘어오면 그때 적용 ex) appMetaData.envlCatgYn

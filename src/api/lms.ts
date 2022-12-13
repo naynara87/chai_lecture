@@ -22,9 +22,9 @@ interface saveLmsDataParams {
   uno: number;
   applId: number;
   courseId: number;
-  subjectId: string;
+  subjectId: number;
   cornerId: number;
-  lessonId: string;
+  lessonId: number;
   pageId: number;
   progressRate: number;
   envlCatgYn: number;
