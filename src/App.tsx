@@ -23,7 +23,7 @@ function App() {
           uno: "1",
           uid: "1",
           applId: "1",
-          turnId: "2",
+          turnId: "1",
           pageId: "3",
           courseId: "1",
           subjectId: "1",

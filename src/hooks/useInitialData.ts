@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { CORNER_LIST_URL } from "../constants/url";
 import { Corner2, ID, InitialAppData, Page } from "../types/appData";
 import { getCookie } from "../utils/cookie";
+import { findOneOrFirst } from "../utils/data";
 import useCorner from "./useCorner";
 import useLesson from "./useLesson";
 
@@ -9,14 +10,13 @@ interface ContinueLastLearningData {
   isContinue: boolean;
   courseId: ID;
   lessonId: ID;
-  cornerId: ID;
-  pageId: ID;
+  cornerId?: ID;
+  pageId?: ID;
 }
 
 const useInitialData = () => {
   const [initialCorner, setInitialCorner] = useState<Corner2>();
   const [initialPage, setCurrentPageOfCorner] = useState<Page>();
-  // const [isContinue, setHasLastLearningPageData] = useState(false); // 이어보기 전행 여부
   const [continueLastLearningData, setContinueLastLearningData] =
     useState<ContinueLastLearningData>(); // 이어보기 여부
 
@@ -132,6 +132,26 @@ const useInitialData = () => {
   useEffect(() => {
     setInitialData();
   }, [setInitialData]);
+
+  // 이어보기 페이지 설정
+  useEffect(() => {
+    if (appMetaData && isPageListPage && continueLastLearningData === undefined) {
+      const _cornerId = findOneOrFirst(
+        corners?.map((corner) => corner.id),
+        learningLogCookieData?.turnId ?? "not-found",
+      );
+      setContinueLastLearningData({
+        isContinue: true,
+        courseId: appMetaData?.courseId,
+        lessonId: appMetaData?.lessonId,
+        cornerId: _cornerId, // learningLogCookieData.turnId,
+        pageId: findOneOrFirst(
+          corners.find((corner) => corner.id?.toString() === _cornerId?.toString())?.pages ?? [],
+          learningLogCookieData?.pageId ?? "not-found",
+        ), // learningLogCookieData.pageId,
+      });
+    }
+  }, [appMetaData, isPageListPage, continueLastLearningData, learningLogCookieData, corners]);
 
   return {
     corners,
