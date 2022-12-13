@@ -107,11 +107,15 @@ const TP01AComponent = ({ setPageCompleted, page, showHeader = true }: TP01AComp
       )}
       <TP01Layout>
         <>{ChooseTextByAudioContentData ? ChooseTextByAudioContents() : <></>}</>
-        <CheckButton
-          text="채점하기"
-          handleClickCheckButton={handleClickCheckButton}
-          isHide={userAnswers.length < ChooseTextByAudioContentData!.data.length}
-        />
+        {checkAnswers.length < 1 ? (
+          <CheckButton
+            text="채점하기"
+            handleClickCheckButton={handleClickCheckButton}
+            isHide={userAnswers.length < ChooseTextByAudioContentData!.data.length}
+          />
+        ) : (
+          <></>
+        )}
         <audio ref={audioRef}>
           <source src={audioSrc} />
         </audio>
