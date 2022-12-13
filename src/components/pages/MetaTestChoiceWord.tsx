@@ -21,14 +21,14 @@ const MetaTestChoiceWord = () => {
             title="단어 메타인지 테스트"
             description="정확하게 아는 단어를 선택해 주세요 !"
           />
-          <main>
+          <main className="word-test-main">
             <div className="choice-card-wrap">
 
               {/* TODO: word card */}
               <div className="inp-grp">
                 <input type="checkbox" id="inputId" className="inp-chck" />
                 <label htmlFor="inputId" className="inp-card-layout">
-                  会
+                  { '会' }
                 </label>
               </div>
 
@@ -36,7 +36,7 @@ const MetaTestChoiceWord = () => {
               <div className="inp-grp">
                 <input type="checkbox" id="inputId2" className="inp-chck" checked />
                 <label htmlFor="inputId2" className="inp-card-layout">
-                  会
+                  { '会' }
                 </label>
               </div>
             </div>

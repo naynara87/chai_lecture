@@ -21,33 +21,34 @@ const MetaTestWordTest = () => {
             title="단어 메타인지 테스트"
             description="한자를 보고 한어병음과 뜻을 고르세요."
           />
-          <main>
+          <main className="word-test-main">
             <div className="word-test-wrap">
               <h2 className="metatest-title">
-                안다고 선택한 단어 : <b>13</b>개
+                안다고 선택한 단어 : <b>{ '13' }</b>개
               </h2>
               <ul>
-                {/* question */}
+                {/* question default */}
                 <li className="metatest-question-list">
                   <div className="text-wrap">
-                    <span className="number">1</span>
-                    <span className="word">打</span>
+                    <span className="number">{ '1' }</span>
+                    <span className="word">{ '打' }</span>
                   </div>
 
                   {/* choice word */}
                   <div className="choice-container">
-                    <div className="choice-wrap">
+                    {/* TODO: input이 check 되는 순간 .checked가 추가되고, 인풋은 disabled */}
+                    <div className="choice-wrap checked">
                       <h3 className="inp-title">한어병음</h3>
                       <div className="inp-grp">
-                        <input type="radio" id="inputId1" className="inp-radio" />
+                        <input type="radio" id="inputId1" className="inp-radio" disabled checked />
                         <label htmlFor="inputId1" className="inp-radio-layout">
-                          huì
+                          { 'huì' }
                         </label>
                       </div>
                       <div className="inp-grp">
-                        <input type="radio" id="inputId2" className="inp-radio" />
+                        <input type="radio" id="inputId2" className="inp-radio" disabled />
                         <label htmlFor="inputId2" className="inp-radio-layout">
-                          dǎ
+                          { 'dǎ' }
                         </label>
                       </div>
                     </div>
@@ -57,17 +58,167 @@ const MetaTestWordTest = () => {
                       <div className="inp-grp">
                         <input type="radio" id="inputId3" className="inp-radio" />
                         <label htmlFor="inputId3" className="inp-radio-layout">
-                        치다
+                        { '치다' }
                         </label>
                       </div>
                       <div className="inp-grp">
                         <input type="radio" id="inputId4" className="inp-radio" />
                         <label htmlFor="inputId4" className="inp-radio-layout">
-                        떨다
+                        { '떨다' }
                         </label>
                       </div>
                     </div>
                   </div>
+
+                  {/* TODO: 타이머는 병음 + 뜻 합쳐서 10초 카운트다운 */}
+                  {/* FIXME: 디자인누락. 디자인 나오면 스타일 변경 예정 */}
+                  <div className="test-timer">{ '10' }</div>
+                </li>
+                
+                {/* question disabled */}
+                {/* TODO: 문제 풀이시간이 0초가 되는 순간에 잠시 보일 레이아웃 */}
+                {/* TODO: 0초가 되었을 때 보인 후, .disabled 로 바로 변경된다 */}
+                <li className="metatest-question-list timeout">
+                  <div className="text-wrap">
+                    <span className="number">{ '1' }</span>
+                    <span className="word">{ '打' }</span>
+                  </div>
+
+                  {/* choice word */}
+                  <div className="choice-container">
+                    <div className="choice-wrap checked">
+                      <h3 className="inp-title">한어병음</h3>
+                      <div className="inp-grp">
+                        <input type="radio" id="inputId1" className="inp-radio" disabled checked />
+                        <label htmlFor="inputId1" className="inp-radio-layout">
+                          { 'huì' }
+                        </label>
+                      </div>
+                      <div className="inp-grp">
+                        <input type="radio" id="inputId2" className="inp-radio" disabled />
+                        <label htmlFor="inputId2" className="inp-radio-layout">
+                          { 'dǎ' }
+                        </label>
+                      </div>
+                    </div>
+
+                    <div className="choice-wrap">
+                      <h3 className="inp-title">뜻</h3>
+                      <div className="inp-grp">
+                        <input type="radio" id="inputId3" className="inp-radio" disabled />
+                        <label htmlFor="inputId3" className="inp-radio-layout">
+                        { '치다' }
+                        </label>
+                      </div>
+                      <div className="inp-grp">
+                        <input type="radio" id="inputId4" className="inp-radio" disabled />
+                        <label htmlFor="inputId4" className="inp-radio-layout">
+                        { '떨다' }
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* TODO: 타이머는 병음 + 뜻 합쳐서 10초 카운트 */}
+                  <div className="test-timer">{ '10' }</div>
+                </li>
+                
+                {/* question disabled */}
+                {/* TODO: 풀거나 시간이 지난 문제는 .disabled 가 추가되면서 비활성화되고, input들 disabled */}
+                <li className="metatest-question-list disabled">
+                  <div className="text-wrap">
+                    <span className="number">{ '1' }</span>
+                    <span className="word">{ '打' }</span>
+                  </div>
+
+                  {/* choice word */}
+                  <div className="choice-container">
+                    <div className="choice-wrap">
+                      <h3 className="inp-title">한어병음</h3>
+                      <div className="inp-grp">
+                        <input type="radio" id="inputId1" className="inp-radio" disabled checked />
+                        <label htmlFor="inputId1" className="inp-radio-layout">
+                          { 'huì' }
+                        </label>
+                      </div>
+                      <div className="inp-grp">
+                        <input type="radio" id="inputId2" className="inp-radio" disabled />
+                        <label htmlFor="inputId2" className="inp-radio-layout">
+                          { 'dǎ' }
+                        </label>
+                      </div>
+                    </div>
+
+                    <div className="choice-wrap">
+                      <h3 className="inp-title">뜻</h3>
+                      <div className="inp-grp">
+                        <input type="radio" id="inputId3" className="inp-radio" disabled checked />
+                        <label htmlFor="inputId3" className="inp-radio-layout">
+                        { '치다' }
+                        </label>
+                      </div>
+                      <div className="inp-grp">
+                        <input type="radio" id="inputId4" className="inp-radio" disabled />
+                        <label htmlFor="inputId4" className="inp-radio-layout">
+                        { '떨다' }
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* TODO: 타이머는 병음 + 뜻 합쳐서 10초 카운트 */}
+                  <div className="test-timer">{ '10' }</div>
+                </li>
+                
+                {/* question disabled */}
+                {/* TODO: timeout으로 인해 disabled가 되면 선택 못한 요소는 미선택 text가 들어감 */}
+                <li className="metatest-question-list disabled">
+                  <div className="text-wrap">
+                    <span className="number">{ '1' }</span>
+                    <span className="word">{ '打' }</span>
+                  </div>
+
+                  {/* choice word */}
+                  <div className="choice-container">
+                    <div className="choice-wrap">
+                      <h3 className="inp-title">한어병음</h3>
+                      <div className="inp-grp">
+                        <input type="radio" id="inputId1" className="inp-radio" disabled />
+                        <label htmlFor="inputId1" className="inp-radio-layout">
+                          { 'huì' }
+                        </label>
+                      </div>
+                      <div className="inp-grp">
+                        <input type="radio" id="inputId2" className="inp-radio" disabled />
+                        <label htmlFor="inputId2" className="inp-radio-layout">
+                          { 'dǎ' }
+                        </label>
+                      </div>
+                      {/* TODO: timeout disabled 에만 있는 태그 */}
+                      <p className="inp-radio-layout">미선택</p>
+                    </div>
+
+                    <div className="choice-wrap">
+                      <h3 className="inp-title">뜻</h3>
+                      <div className="inp-grp">
+                        <input type="radio" id="inputId3" className="inp-radio" disabled />
+                        <label htmlFor="inputId3" className="inp-radio-layout">
+                        { '치다' }
+                        </label>
+                      </div>
+                      <div className="inp-grp">
+                        <input type="radio" id="inputId4" className="inp-radio" disabled />
+                        <label htmlFor="inputId4" className="inp-radio-layout">
+                        { '떨다' }
+                        </label>
+                      </div>
+                      {/* TODO: timeout disabled 에만 있는 태그 */}
+                      <p className="inp-radio-layout">미선택</p>
+                    </div>
+                  </div>
+
+                  {/* TODO: 타이머는 병음 + 뜻 합쳐서 10초 카운트 */}
+                  <div className="test-timer">{ '10' }</div>
                 </li>
 
               </ul>
