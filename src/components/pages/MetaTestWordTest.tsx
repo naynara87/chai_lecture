@@ -25,9 +25,11 @@ const MetaTestWordTest = () => {
             <div className="word-test-wrap">
               <h2 className="metatest-title">
                 안다고 선택한 단어 : <b>{ '13' }</b>개
+                {/* 총 단어 개수 : <b>{ '20' }</b>개 */}
               </h2>
               <ul>
                 {/* question default */}
+                {/* TODO: 최대 20문항 */}
                 <li className="metatest-question-list">
                   <div className="text-wrap">
                     <span className="number">{ '1' }</span>
@@ -71,8 +73,10 @@ const MetaTestWordTest = () => {
                   </div>
 
                   {/* TODO: 타이머는 병음 + 뜻 합쳐서 10초 카운트다운 */}
-                  {/* FIXME: 디자인누락. 디자인 나오면 스타일 변경 예정 */}
-                  <div className="test-timer">{ '10' }</div>
+                  {/* FIXME: 플러그인 적용되면 스타일 변경 예정 */}
+                  {/* <div className="test-timer">{ '10' }</div> */}
+                  <div className="test-timer half">{ '5' }</div>
+                  {/* <div className="test-timer zero">{ '0' }</div> */}
                 </li>
                 
                 {/* question disabled */}

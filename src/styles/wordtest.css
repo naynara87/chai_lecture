@@ -60,7 +60,7 @@ label.inp-card-layout:focus {
 	background-color: #E4E4E4;
 }
 
-.inp-chck:checked ~ .inp-card-layout {
+.inp-chck:checked~.inp-card-layout {
 	border: 6px solid #F5BE54;
 	background-color: white;
 	line-height: 88px;
@@ -68,6 +68,10 @@ label.inp-card-layout:focus {
 }
 
 /* MetaTestWordTest.tsx */
+.word-test-wrap ul {
+	text-align: center;
+}
+
 .metatest-title {
 	font-weight: 600;
 	font-size: 38px;
@@ -80,14 +84,12 @@ label.inp-card-layout:focus {
 	color: #6070CF;
 }
 
-.metatest-question-list {
+.metatest-question-list,
+li.metatest-question-list {
 	position: relative;
-	display: flex;
-	justify-content: space-between;
+	display: inline-flex;
+	justify-content: center;
 	align-items: center;
-}
-
-.metatest-question-list:not(:first-child) {
 	margin-top: 64px;
 	margin-top: 3.3333333333vw;
 }
@@ -106,7 +108,7 @@ label.inp-card-layout:focus {
 	font-size: 32px;
 	font-size: 1.6666666667vw;
 	color: white;
-    vertical-align: middle;
+	vertical-align: middle;
 	box-shadow: 2px 6px 12px rgba(0, 0, 0, 0.15);
 }
 
@@ -120,7 +122,7 @@ label.inp-card-layout:focus {
 	font-size: 56px;
 	font-size: 2.9166666667vw;
 	text-align: center;
-    vertical-align: middle;
+	vertical-align: middle;
 }
 
 .metatest-question-list .choice-wrap {
@@ -140,17 +142,18 @@ label.inp-card-layout:focus {
 }
 
 .metatest-question-list .choice-wrap .inp-title {
-	position: absolute;
+	/* position: absolute;
 	top: 50%;
 	left: -20px;
-	left: -2.0833333333vw;
+	left: -2.0833333333vw; */
+	display: inline-block;
 	width: 4em;
 	font-weight: 400;
 	font-size: 30px;
 	font-size: 1.5625vw;
 	color: #666666;
 	text-align: center;
-	transform: translate(-100%, -50%);
+	/* transform: translate(-100%, -50%); */
 }
 
 .metatest-question-list .choice-wrap .inp-grp {
@@ -158,7 +161,8 @@ label.inp-card-layout:focus {
 	width: auto;
 }
 
-.inp-radio-layout, 
+.inp-radio-layout,
+p.inp-radio-layout,
 label.inp-radio-layout {
 	display: inline-flex;
 	justify-content: center;
@@ -176,31 +180,59 @@ label.inp-radio-layout {
 	color: #999999;
 }
 
-.inp-radio:checked ~ .inp-radio-layout {
+.inp-radio:checked~.inp-radio-layout {
 	border-color: #6070CF;
 	background-color: #6070CF;
 	color: white;
 }
 
-.test-timer {
+.metatest-question-list .test-timer {
 	position: absolute;
 	top: 50%;
 	left: auto;
-	right: -10px;
+	right: 0;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 56px;
-	height: 56px;
-	width: 2.9166666667vw;
-	height: 2.9166666667vw;
+	width: 96px;
+	height: 96px;
+	width: 5vw;
+	height: 5vw;
 	border-radius: 50%;
-	background-color: #6070CF;
-	color: white;
+	border: 12px solid #E4E4E4;
+	border: 0.625vw solid #E4E4E4;
+	color: #FFBE41;
 	font-weight: 600;
-	font-size: 24px;
-	font-size: 1.25vw;
+	font-size: 48px;
+	font-size: 2.5vw;
 	transform: translate(100%, -50%);
+}
+
+.metatest-question-list .test-timer.helf {
+	border-top-color:
+}
+
+.test-timer:before {
+	content: '';
+	z-index: 1;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 100%;
+	height: 100%;
+	border: 12px solid #FFBE41;
+	border: 0.625vw solid #FFBE41;
+	border-radius: 50%;
+	transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.metatest-question-list .test-timer.half:before {
+	border-top-color: transparent;
+	border-right-color: transparent;
+}
+
+.metatest-question-list .test-timer.zero:before {
+	border-color: transparent;
 }
 
 /* 시간 초과 */
@@ -239,7 +271,13 @@ label.inp-radio-layout {
 	display: none;
 }
 
-.metatest-question-list.disabled .inp-radio ~ .inp-radio-layout {
+.metatest-question-list.disabled .choice-wrap:first-child .inp-title {
+	display: inline-block;
+	color: transparent;
+	user-select: none;
+}
+
+.metatest-question-list.disabled .inp-radio~.inp-radio-layout {
 	display: none;
 }
 
@@ -254,7 +292,7 @@ label.inp-radio-layout {
 	background-color: transparent;
 }
 
-.metatest-question-list.disabled .inp-radio:checked ~ .inp-radio-layout {
+.metatest-question-list.disabled .inp-radio:checked~.inp-radio-layout {
 	display: inline-flex;
 }
 
@@ -268,14 +306,135 @@ label.inp-radio-layout {
 	display: none;
 }
 
-.metatest-question-list.disabled p.inp-radio-layout {
+/* MetaTestWordTestGrade */
+.test-grade-wrap .test-grade-conts {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 32px;
+	margin-top: 1.6666666667vw;
+}
+
+.test-grade-wrap .test-grade-head {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 32px;
+	margin-top: 1.6666666667vw;
+}
+
+.test-grade-head .test-word {
+	min-width: 240px;
+	min-width: 12.5vw;
+	margin-right: 20px;
+	margin-right: 1.0416666667vw;
+	color: #666666;
+	text-align: center;
+}
+
+.test-grade-head .inp-radio-layout {
+	margin: 0 16px;
+	margin: 0 0.8333333333vw;
+	border-color: transparent;
+	background-color: transparent;
+	font-size: 30px;
+	font-size: 1.5625vw;
+	color: #666666;
+}
+
+.test-grade-head .test-grade {
+	min-width: 240px;
+	min-width: 12.5vw;
+	color: #666666;
+	text-align: center;
+}
+
+.test-grade-conts .test-word {
+	min-width: 240px;
+	min-width: 12.5vw;
+	margin-right: 20px;
+	margin-right: 1.0416666667vw;
+	font-weight: 600;
+	font-size: 48px;
+	font-size: 2.5vw;
+	text-align: center;
+}
+
+.test-grade-conts .inp-radio-layout {
+	margin: 0 16px;
+	margin: 0 0.8333333333vw;
+	border-color: #6070CF;
 	background-color: #6070CF;
 	color: white;
+}
+
+.test-grade-conts .inp-radio-layout.wrong {
+	border-color: #F65555;
+	background-color: transparent;
+	color: #F65555;
+}
+
+.test-grade-conts .test-grade {
+	position: relative;
+	min-width: 240px;
+	min-width: 12.5vw;
+	font-size: 30px;
+	font-size: 1.5625vw;
+	text-align: center;
+	user-select: none;
+	color: transparent;
+}
+
+.test-grade-conts .test-grade:before {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 56px;
+	height: 56px;
+	width: 2.9166666667vw;
+	height: 2.9166666667vw;
+	border: 12px solid #6070CF;
+	border: 0.625vw solid #6070CF;
+	border-radius: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.test-grade-conts .test-grade.wrong:before {
+	border: none;
+	border-radius: 12px;
+	width: 74px;
+	width: 3.8541666667vw;
+	height: 12px;
+	height: 0.625vw;
+	background-color: #F65555;
+	transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.test-grade-conts .test-grade.wrong:after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	border: none;
+	border-radius: 12px;
+	width: 74px;
+	width: 3.8541666667vw;
+	height: 12px;
+	height: 0.625vw;
+	background-color: #F65555;
+	transform: translate(-50%, -50%) rotate(-45deg);
 }
 
 /* 
 	4px
 	0.2083333333vw
+
+	10px
+	0.5208333333vw
+
+	12px
+	0.625vw
 
 	16px
 	0.8333333333vw
@@ -306,6 +465,9 @@ label.inp-radio-layout {
 	
 	64px
 	3.3333333333vw
+
+	74px
+	3.8541666667vw
 
 	80px
 	4.1666666667vw
