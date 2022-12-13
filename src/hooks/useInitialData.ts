@@ -29,9 +29,6 @@ const useInitialData = () => {
   // 코너 리스트 조회
   const { corners, appMetaData } = useLesson(lessonIdMemo);
 
-  // 학습 이력 조회
-  // const { learningLogData } = useLearningLog(lessonIdMemo);
-
   // 현재 코너에 해당되는 페이지 리스트 조회
   const { pages: initialPages } = useCorner(initialCorner?.id);
 
@@ -57,11 +54,19 @@ const useInitialData = () => {
     if (lastLearningCorner) {
       // 지정된 페이지가 마지막 페이지 인 경우
       if (
-        lastLearningCorner?.pages?.[lastLearningCorner?.pages?.length - 1] ===
-        learningLogCookieData?.pageId
+        lastLearningCorner?.pages?.[lastLearningCorner?.pages?.length - 1] &&
+        learningLogCookieData?.pageId &&
+        lastLearningCorner?.pages?.[lastLearningCorner?.pages?.length - 1]?.toString() ===
+          learningLogCookieData?.pageId?.toString()
       ) {
         // 다음 코너가 있는 경우
-        if (corners?.[corners?.findIndex((corner) => corner.id === lastLearningCorner?.id) + 1]) {
+        if (
+          corners?.[
+            corners?.findIndex(
+              (corner) => corner?.id?.toString() === lastLearningCorner?.id?.toString(),
+            ) + 1
+          ]
+        ) {
           setInitialCorner(corners?.[corners?.indexOf(lastLearningCorner) + 1]); // 다음 코너
           setCurrentPageOfCorner(initialPages?.[0]); // 첫 번째 페이지
           return;
@@ -121,7 +126,7 @@ const useInitialData = () => {
   ]);
 
   const initialCornerIndex = useMemo(() => {
-    return corners?.findIndex((corner) => corner.id === initialCorner?.id);
+    return corners?.findIndex((corner) => corner.id?.toString() === initialCorner?.id?.toString());
   }, [corners, initialCorner]);
 
   useEffect(() => {

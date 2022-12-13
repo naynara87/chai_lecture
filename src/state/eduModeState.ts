@@ -2,7 +2,7 @@ import { atom } from "recoil";
 
 type EduModeType = "edu" | "review";
 
-export const eduModeState = atom<EduModeType>({
+export const eduModeState = atom<EduModeType | undefined>({
   key: "eduModeState",
-  default: "edu",
+  default: undefined,
 });
