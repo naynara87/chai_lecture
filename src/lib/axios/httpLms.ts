@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const httpLcms = axios.create({
-  baseURL: `${process.env.REACT_APP_LCMS_URL}`,
+const httpLms = axios.create({
+  baseURL: `${process.env.REACT_APP_LMS_URL}`,
 });
 
-httpLcms.interceptors.request.use(
+httpLms.interceptors.request.use(
   (config) => {
     // do something before request is sent
     return config;
@@ -15,7 +15,7 @@ httpLcms.interceptors.request.use(
   },
 );
 
-httpLcms.interceptors.response.use(
+httpLms.interceptors.response.use(
   (response) => {
     // do something with response data
     return response;
@@ -27,11 +27,11 @@ httpLcms.interceptors.response.use(
 );
 
 export const setHttpLcmsToken = (token: string) => {
-  httpLcms.defaults.headers.common.Authorization = `${token}`;
+  httpLms.defaults.headers.common.Authorization = `${token}`;
 };
 
 export const clearHttpLcmsToken = () => {
-  httpLcms.defaults.headers.common.Authorization = undefined;
+  httpLms.defaults.headers.common.Authorization = undefined;
 };
 
-export default httpLcms;
+export default httpLms;
