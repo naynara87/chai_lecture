@@ -24,11 +24,11 @@ function App() {
           uid: "1",
           applId: "1",
           turnId: "1",
-          pageId: "2",
+          pageId: "1",
           courseId: "1",
           subjectId: "1",
           courseName: "\ube68\uac15",
-          lessonId: "4",
+          lessonId: "2",
           lessonName: "\ub808\uc2a8+1",
         },
         {

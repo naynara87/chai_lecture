@@ -27,3 +27,5 @@ export const getLcmsSubjectUrl = (subjectId: ID) => `/lcms/subject/${subjectId}`
 
 export const getLcmsLessonDataUrl = (lessonId: ID) =>
   `/lcms/subject/lesson-detail-list/${lessonId}`;
+
+export const saveLmsDataUrl = () => `/`;

@@ -13,9 +13,14 @@ import { CORNER_LIST_URL } from "../../constants/url";
 import IframeMainContainer from "../atoms/IframeMainContainer";
 import { reviewCornerIndexState } from "../../state/reviewCornerIndexState";
 import { eduModeState } from "../../state/eduModeState";
+import { getCookie } from "../../utils/cookie";
+import { saveLmsData } from "../../api/lms";
+import useToast from "../../hooks/useToast";
+import useProgressRate from "../../hooks/useProgressRate";
 
 const CornerPage = () => {
   const { courseId, cornerId, lessonId, pageId } = useParams();
+  const { uno, applId, subjectId } = getCookie("bubble-player");
   const [isPageCompleted, setIsPageCompleted] = useState(false);
   const [showLoadingPage, setShowLoadingPage] = useState(false);
 
@@ -24,8 +29,10 @@ const CornerPage = () => {
   const eduMode = useRecoilValue(eduModeState);
 
   const navigate = useNavigate();
+  const { addToast } = useToast();
 
   const { currentCorner, pages, appMetaData } = useCornerPage();
+  const { currentProgress } = useProgressRate();
 
   const pageIndex = useMemo(() => {
     if (!pages || !pageId) {
@@ -51,6 +58,7 @@ const CornerPage = () => {
     }
     return pageIndex === currentCorner.pages.length - 1;
   }, [pageIndex, currentCorner]);
+
   const handleClickNext = () => {
     if (isLastPage) {
       if (eduMode === "edu") {
@@ -105,10 +113,45 @@ const CornerPage = () => {
       }, 0);
       return <div />;
     }
-    if (currentPage) {
+    if (currentPage && pages) {
+      if (courseId && cornerId && lessonId && pageId) {
+        const parsingCourseId = parseInt(courseId);
+        const parsingPageId = parseInt(pageId);
+        try {
+          saveLmsData({
+            uno,
+            applId,
+            courseId: parsingCourseId,
+            subjectId,
+            cornerId,
+            lessonId,
+            pageId: parsingPageId,
+            progressRate: currentProgress(currentPage.id),
+            envlCatgYn: 10,
+            complYn: isLastPage ? "y" : "n",
+          });
+        } catch (error) {
+          addToast("학습이력이 저장되지 않았습니다.", "error");
+        }
+      }
+
       return <CornerMain page={currentPage} setPageCompleted={setPageCompleted} />;
     }
-  }, [currentPage, showLoadingPage]);
+  }, [
+    currentPage,
+    showLoadingPage,
+    applId,
+    courseId,
+    cornerId,
+    lessonId,
+    pageId,
+    subjectId,
+    uno,
+    pages,
+    isLastPage,
+    currentProgress,
+    addToast,
+  ]);
 
   useEffect(() => {
     setShowLoadingPage(true);
