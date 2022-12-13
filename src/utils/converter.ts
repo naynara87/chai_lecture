@@ -26,5 +26,6 @@ export const appMetaDataConverter = (appMetaData: CornerListDataMeta): AppMetaDa
     courseName: appMetaData?.subjectName ?? "dummyCourseName",
     lessonId: appMetaData.lessonId,
     lessonName: appMetaData.lessonName,
+    lessonTpCd: appMetaData.lessonTpCd,
   };
 };
