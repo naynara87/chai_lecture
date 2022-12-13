@@ -23,7 +23,7 @@ interface saveLmsDataParams {
   applId: number;
   courseId: number;
   subjectId: string;
-  cornerId: string;
+  cornerId: number;
   lessonId: string;
   pageId: number;
   progressRate: number;

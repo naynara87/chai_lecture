@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import CommonPageLayout from "../Layouts/CommonPageLayout";
 import Footer from "../molecules/Footer";
 import Header from "../molecules/Header";
@@ -17,6 +17,7 @@ import { getCookie } from "../../utils/cookie";
 import { saveLmsData } from "../../api/lms";
 import useToast from "../../hooks/useToast";
 import useProgressRate from "../../hooks/useProgressRate";
+import { useDebounced } from "../../hooks/useDebounce";
 
 const CornerPage = () => {
   const { courseId, cornerId, lessonId, pageId } = useParams();
@@ -106,40 +107,35 @@ const CornerPage = () => {
     console.log(`page: ${pageIndex + 1} / ${pages?.length}`);
   }, [pageIndex, pages]);
 
-  const renderMainPage = useMemo(() => {
-    if (showLoadingPage) {
-      setTimeout(() => {
-        setShowLoadingPage(false);
-      }, 0);
-      return <div />;
+  const saveData = useCallback(() => {
+    if (!currentPage) {
+      return;
     }
-    if (currentPage && pages) {
-      if (courseId && cornerId && lessonId && pageId) {
-        const parsingCourseId = parseInt(courseId);
-        const parsingPageId = parseInt(pageId);
-        try {
-          saveLmsData({
-            uno,
-            applId,
-            courseId: parsingCourseId,
-            subjectId,
-            cornerId,
-            lessonId,
-            pageId: parsingPageId,
-            progressRate: currentProgress(currentPage.id),
-            envlCatgYn: 10, // FIXME: 임시로 10으로 설정 => 나중에 실제 데이터가 넘어오면 그때 적용 ex) appMetaData.envlCatgYn
-            complYn: isLastPage ? "y" : "n",
-          });
-        } catch (error) {
-          addToast("학습이력이 저장되지 않았습니다.", "error");
-        }
+    if (courseId && cornerId && lessonId && pageId) {
+      const parsingCourseId = parseInt(courseId);
+      const parsingPageId = parseInt(pageId);
+      const pasingUno = parseInt(uno);
+      const parsingApplIdId = parseInt(applId);
+      const parsingCornerId = parseInt(cornerId);
+      try {
+        saveLmsData({
+          uno: pasingUno,
+          applId: parsingApplIdId,
+          courseId: parsingCourseId,
+          subjectId,
+          cornerId: parsingCornerId,
+          lessonId,
+          pageId: parsingPageId,
+          progressRate: currentProgress(currentPage.id),
+          envlCatgYn: 10, // FIXME: 임시로 10으로 설정 => 나중에 실제 데이터가 넘어오면 그때 적용 ex) appMetaData.envlCatgYn
+          complYn: isLastPage ? "y" : "n",
+        });
+      } catch (error) {
+        addToast("학습이력이 저장되지 않았습니다.", "error");
+        console.log(error);
       }
-
-      return <CornerMain page={currentPage} setPageCompleted={setPageCompleted} />;
     }
   }, [
-    currentPage,
-    showLoadingPage,
     applId,
     courseId,
     cornerId,
@@ -147,11 +143,25 @@ const CornerPage = () => {
     pageId,
     subjectId,
     uno,
-    pages,
     isLastPage,
+    currentPage,
     currentProgress,
     addToast,
   ]);
+
+  useDebounced(saveData, 200);
+
+  const renderMainPage = useMemo(() => {
+    if (showLoadingPage) {
+      setTimeout(() => {
+        setShowLoadingPage(false);
+      }, 0);
+      return <div />;
+    }
+    if (currentPage) {
+      return <CornerMain page={currentPage} setPageCompleted={setPageCompleted} />;
+    }
+  }, [currentPage, showLoadingPage]);
 
   useEffect(() => {
     setShowLoadingPage(true);
