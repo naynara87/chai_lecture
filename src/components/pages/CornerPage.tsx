@@ -190,6 +190,7 @@ const CornerPage = () => {
         pageIndex={pageIndex}
         handleClickPrev={handleClickPrev}
         handleClickNext={handleClickNext}
+        appMetaData={appMetaData}
         isPageCompleted={isPageCompleted}
         currentCorner={currentCorner}
       />

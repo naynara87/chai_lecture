@@ -35,6 +35,23 @@ function App() {
           path: "/",
         },
       );
+
+      setCookie(
+        "quiz-data",
+        {
+          result: [
+            { id: 32, isCorrect: "correct" },
+            { id: 33, isCorrect: "correct" },
+            { id: 34, isCorrect: "inCorrect" },
+            { id: 35, isCorrect: "correct" },
+            { id: 36, isCorrect: "inCorrect" },
+            { id: 37, isCorrect: "current" },
+          ],
+        },
+        {
+          path: "/",
+        },
+      );
     }
   }, []);
 
