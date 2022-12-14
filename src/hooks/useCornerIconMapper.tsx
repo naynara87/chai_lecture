@@ -11,7 +11,9 @@ const useCornerIconMapper = () => {
     단어: `${process.env.REACT_APP_BASE_URL}/images/cornerIcon/wordIcon.png`,
     패턴중국어: `${process.env.REACT_APP_BASE_URL}/images/cornerIcon/patternIcon.png`,
     "주제별 표현(메타인지테스트)": `${process.env.REACT_APP_BASE_URL}/images/cornerIcon/metaIcon.png`,
-    퀴즈: `${process.env.REACT_APP_BASE_URL}/images/cornerIcon/quizIcon_maybe.png`,
+    종합테스트: `${process.env.REACT_APP_BASE_URL}/images/cornerIcon/practiceIcon.png`,
+    오답테스트: `${process.env.REACT_APP_BASE_URL}/images/cornerIcon/review_test_icon.png`,
+    단어테스트: `${process.env.REACT_APP_BASE_URL}/images/cornerIcon/word_test_icon.png`,
   };
 
   const getCornerIcon = (cornerName: string) => {
