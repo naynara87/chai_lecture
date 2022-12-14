@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { TP05C } from "../../types/pageTemplate";
 import { AudioRecordContent, TextBoxesContent } from "../../types/templateContents";
 import { TemplateProps } from "../../types/templates";
@@ -18,6 +18,10 @@ interface TP05CComponentProps extends TemplateProps {}
 
 const TP05CComponent = ({ setPageCompleted, page }: TP05CComponentProps) => {
   const thisPage = page as TP05C;
+
+  useEffect(() => {
+    setPageCompleted();
+  }, [setPageCompleted])
 
   const TextBoxesContentData = useMemo(() => {
     return thisPage.template.contents.find((content) => content.type === "textBoxes") as
