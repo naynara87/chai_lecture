@@ -2,7 +2,7 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import React, { useEffect, useMemo, useRef } from "react";
 import useAudio from "../../hooks/useAudio";
-import { TP08G } from "../../types/pageTemplate";
+import { TP05G } from "../../types/pageTemplate";
 import { HtmlContent, NumberTableContent } from "../../types/templateContents";
 import { TemplateProps } from "../../types/templates";
 import { changePXtoVW } from "../../utils/styles";
@@ -36,10 +36,10 @@ const tipCustomCss = css`
   margin: 0 auto;
 `;
 
-interface TP08GComponentProps extends TemplateProps {}
+interface TP05GComponentProps extends TemplateProps {}
 
-const TP08GComponent = ({ setPageCompleted, page, showHeader = true }: TP08GComponentProps) => {
-  const thisPage = page as TP08G;
+const TP05GComponent = ({ setPageCompleted, page, showHeader = true }: TP05GComponentProps) => {
+  const thisPage = page as TP05G;
   const audioRef = useRef<HTMLAudioElement>(null);
   const { audioSrc, audioIndex, handleClickAudioButton, audioState } = useAudio(audioRef);
   useEffect(() => {
@@ -105,4 +105,4 @@ const TP08GComponent = ({ setPageCompleted, page, showHeader = true }: TP08GComp
   );
 };
 
-export default TP08GComponent;
+export default TP05GComponent;
