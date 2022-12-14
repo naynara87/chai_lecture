@@ -8,7 +8,6 @@ import FooterButton from "./FooterButton";
 import { footerHeight } from "../../styles/layout";
 import { AppMetaData, Corner2 } from "../../types/appData";
 import { changePXtoVW } from "../../utils/styles";
-import QuizState from "../atoms/QuizState";
 
 const FooterWrapper = styled.footer`
   position: fixed;
@@ -47,7 +46,7 @@ const Footer = ({
   pageIndex,
   currentCorner,
 }: FooterProps) => {
-  const { cornerStateList, quizStateList } = useFooterState({
+  const { cornerStateList } = useFooterState({
     currentCorner,
   });
 
@@ -70,17 +69,17 @@ const Footer = ({
 
   const getFooterState = useMemo(() => {
     // TODO kjw lessonTpCd 값 넘어오는거 확인 후 if문 변경
-    if (appMetaData?.lessonTpCd !== "10") {
-      return cornerStateList.map((cornerState) => (
-        <CornerState key={cornerState.id} state={cornerState.state} />
-      ));
-    } else {
-      return quizStateList.map((quizState) => (
-        // TODO kjw 문제풀이 postEvent 작업 후 quizState 업데이트 로직 수정
-        <QuizState key={quizState.id} isCorrect={quizState.isCorrect} />
-      ));
-    }
-  }, [appMetaData?.lessonTpCd, cornerStateList, quizStateList]);
+    return cornerStateList.map((cornerState) => (
+      <CornerState key={cornerState.id} state={cornerState.state} />
+    ));
+    // if (appMetaData?.lessonTpCd !== "10") {
+    // } else {
+    //   return quizStateList.map((quizState) => (
+    //     // TODO kjw 문제풀이 postEvent 작업 후 quizState 업데이트 로직 수정
+    //     <QuizState key={quizState.id} isCorrect={quizState.isCorrect} />
+    //   ));
+    // }
+  }, [cornerStateList]);
 
   return (
     <FooterWrapper>

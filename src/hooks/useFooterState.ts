@@ -4,7 +4,6 @@ import { CornerCompleteState, cornersState } from "../state/corners";
 import { Corner2, ID } from "../types/appData";
 import { CornerStateType } from "../types/corner";
 import { QuizStateType } from "../types/quiz";
-import { getCookie } from "../utils/cookie";
 
 export interface FooterCornerState {
   id: ID;
@@ -21,7 +20,7 @@ interface UseFooterStateProps {
 }
 const useFooterState = ({ currentCorner }: UseFooterStateProps) => {
   const [cornerStateList, setCornerStateList] = useState<FooterCornerState[]>([]);
-  const [quizStateList, setQuizStateList] = useState<QuizState[]>([]);
+  // const [quizStateList, setQuizStateList] = useState<QuizState[]>([]);
   const [completedCorners] = useRecoilState(cornersState);
 
   const getCornerState = useCallback(
@@ -49,17 +48,17 @@ const useFooterState = ({ currentCorner }: UseFooterStateProps) => {
     setCornerStateList(cornerStateList);
   }, [completedCorners, currentCorner, getCornerState]);
 
-  useEffect(() => {
-    const quizStateList = getCookie("quiz-data").result.map((data: QuizState) => ({
-      id: data.id,
-      isCorrect: data.isCorrect,
-    }));
-    setQuizStateList(quizStateList);
-  }, []);
+  // useEffect(() => {
+  //   const quizStateList = getCookie("quiz-data").result.map((data: QuizState) => ({
+  //     id: data.id,
+  //     isCorrect: data.isCorrect,
+  //   }));
+  //   setQuizStateList(quizStateList);
+  // }, []);
 
   return {
     cornerStateList,
-    quizStateList,
+    // quizStateList,
   };
 };
 
