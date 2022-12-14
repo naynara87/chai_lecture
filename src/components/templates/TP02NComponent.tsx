@@ -9,23 +9,21 @@ import TitleContent from "../molecules/TitleContent";
 import AudioButton from "../atoms/AudioButton";
 import TextBox from "../atoms/TextBox";
 import { css } from "@emotion/react";
-import { changePXtoVW } from "../../utils/styles";
+import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import useAudio from "../../hooks/useAudio";
 import { colorPalette } from "../../styles/colorPalette";
 import HtmlContentComponent from "../molecules/HtmlContentComponent";
 
-const ContentContainer = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+const customLayoutCss = css`
+  flex-wrap: wrap;
+  align-items: stretch;
+  margin: 0 auto;
 `;
 
-const customLayoutCss = css`
-  display: flex;
-  width: 50%;
-  margin: 0 auto;
+const ContentContainer = styled.div`
+  max-width: 30%;
+  padding: ${changePXtoVH(15)} ${changePXtoVW(15)};
+  text-align: center;
 `;
 
 const customPronunciationCss = css`
@@ -33,7 +31,7 @@ const customPronunciationCss = css`
   font-weight: 500;
   font-size: ${changePXtoVW(30)};
   color: ${colorPalette.pronunciationText};
-`;
+  `;
 
 const customMeaningCss = css`
   margin-top: ${changePXtoVW(24)};

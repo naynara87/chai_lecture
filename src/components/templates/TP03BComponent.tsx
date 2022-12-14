@@ -15,17 +15,29 @@ import HtmlContentComponent from "../molecules/HtmlContentComponent";
 import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 
 const customBox03DContainerCss = css`
-  justify-content: flex-start;
-  width: ${changePXtoVW(450)};
+  /* width: ${changePXtoVW(1200)}; */
   margin: ${changePXtoVW(50)} auto;
+  /* flex-direction: column; */
+  display: inline-block;
+  width: auto;
+  text-align: center;
+
+  > .horizontal {
+    align-items: center;
+    
+    > div:first-child {
+      width: ${changePXtoVW(288)};
+    }
+  }
 `;
 
 const customBox03DCss = css`
   height: ${changePXtoVH(154)};
 `;
 const customBox03BContainerCss = css`
-  /* width: ${changePXtoVW(800)}; */
+  width: ${changePXtoVW(1200)};
   margin-top: ${changePXtoVW(50)};
+  gap: ${changePXtoVW(40)};
 `;
 
 const tp03CHtmlCss = css`
@@ -50,6 +62,7 @@ const AudioWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: ${changePXtoVW(40)};
 `;
 
 /**

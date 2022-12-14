@@ -12,7 +12,6 @@ const TP07Layout = styled.div`
   display: grid;
   grid-template-rows: 20% 54% 20%;
   grid-template-columns: 48% 48%;
-  gap: 20px;
   justify-content: center;
 `;
 

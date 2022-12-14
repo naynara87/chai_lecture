@@ -11,7 +11,6 @@ const TP15Layout = styled.div`
   height: ${templateContentsAreaHeight};
   display: grid;
   grid-template-columns: 48% 48%;
-  gap: 20px;
   justify-content: center;
 `;
 
