@@ -41,6 +41,7 @@ import {
   TP10C,
   TP23,
   TP05G,
+  TP05C,
 } from "./pageTemplate";
 import {
   AudioContent,
@@ -145,6 +146,7 @@ export type Page =
   | TP04A
   | TP05
   | TP05A
+  | TP05C
   | TP05G
   | TP06A
   | TP07
