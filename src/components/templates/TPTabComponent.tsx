@@ -37,8 +37,8 @@ const HeaderContainer = styled.div<HeaderContainerProps>`
 `;
 
 const PageContainer = styled.div`
-  margin-top: ${changePXtoVW(116)};
-  margin-bottom: ${changePXtoVW(50)};
+  padding-top: ${changePXtoVW(116)};
+  padding-bottom: ${changePXtoVW(50)};
 `;
 interface TabIndexes {
   index: number;

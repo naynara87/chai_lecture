@@ -14,11 +14,12 @@ interface TextBoxesWrapperProps {
 }
 
 const TextBoxesWrapper = styled.div<TextBoxesWrapperProps>`
-  width: ${changePXtoVW(944)};
+  width: ${changePXtoVW(1200)};
   display: flex;
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
+  gap: 0 ${changePXtoVW(40)};
   margin: 0 auto;
   ${(props) => props.customCss}
 `;
