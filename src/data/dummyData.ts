@@ -883,7 +883,7 @@ export const dummyData: AppData = {
           title: "단어 & 회화",
           description: "중국어로 숫자를 배워봅시다.",
           template: {
-            type: "TP08G",
+            type: "TP05G",
             contents: [
               {
                 type: "numberTable",
