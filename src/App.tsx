@@ -24,12 +24,29 @@ function App() {
           uid: "1",
           applId: "1",
           turnId: "1",
-          pageId: "2",
+          pageId: "3",
           courseId: "1",
           subjectId: "1",
           courseName: "\ube68\uac15",
-          lessonId: "4",
+          lessonId: "1",
           lessonName: "\ub808\uc2a8+1",
+        },
+        {
+          path: "/",
+        },
+      );
+
+      setCookie(
+        "quiz-data",
+        {
+          result: [
+            { id: 32, isCorrect: "correct" },
+            { id: 33, isCorrect: "correct" },
+            { id: 34, isCorrect: "inCorrect" },
+            { id: 35, isCorrect: "correct" },
+            { id: 36, isCorrect: "inCorrect" },
+            { id: 37, isCorrect: "current" },
+          ],
         },
         {
           path: "/",

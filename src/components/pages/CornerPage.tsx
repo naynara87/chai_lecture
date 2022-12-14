@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import CommonPageLayout from "../Layouts/CommonPageLayout";
 import Footer from "../molecules/Footer";
 import Header from "../molecules/Header";
@@ -13,9 +13,15 @@ import { CORNER_LIST_URL } from "../../constants/url";
 import IframeMainContainer from "../atoms/IframeMainContainer";
 import { reviewCornerIndexState } from "../../state/reviewCornerIndexState";
 import { eduModeState } from "../../state/eduModeState";
+import { getCookie } from "../../utils/cookie";
+import { saveLmsData } from "../../api/lms";
+import useToast from "../../hooks/useToast";
+import useProgressRate from "../../hooks/useProgressRate";
+import { useDebounced } from "../../hooks/useDebounce";
 
 const CornerPage = () => {
   const { courseId, cornerId, lessonId, pageId } = useParams();
+  const { uno, applId, subjectId } = getCookie("bubble-player");
   const [isPageCompleted, setIsPageCompleted] = useState(false);
   const [showLoadingPage, setShowLoadingPage] = useState(false);
 
@@ -24,8 +30,10 @@ const CornerPage = () => {
   const eduMode = useRecoilValue(eduModeState);
 
   const navigate = useNavigate();
+  const { addToast } = useToast();
 
   const { currentCorner, pages, appMetaData } = useCornerPage();
+  const { currentProgress } = useProgressRate();
 
   const pageIndex = useMemo(() => {
     if (!pages || !pageId) {
@@ -51,6 +59,7 @@ const CornerPage = () => {
     }
     return pageIndex === currentCorner.pages.length - 1;
   }, [pageIndex, currentCorner]);
+
   const handleClickNext = () => {
     if (isLastPage) {
       if (eduMode === "edu") {
@@ -98,6 +107,52 @@ const CornerPage = () => {
     console.log(`page: ${pageIndex + 1} / ${pages?.length}`);
   }, [pageIndex, pages]);
 
+  const saveData = useCallback(async () => {
+    if (!currentPage) {
+      return;
+    }
+    if (courseId && cornerId && lessonId && pageId) {
+      const parsingCourseId = parseInt(courseId);
+      const parsingPageId = parseInt(pageId);
+      const pasingUno = parseInt(uno);
+      const parsingApplIdId = parseInt(applId);
+      const parsingCornerId = parseInt(cornerId);
+      const parsingSubjectId = parseInt(subjectId);
+      const parsingLessonId = parseInt(lessonId);
+      try {
+        await saveLmsData({
+          uno: pasingUno,
+          applId: parsingApplIdId,
+          courseId: parsingCourseId,
+          subjectId: parsingSubjectId,
+          cornerId: parsingCornerId,
+          lessonId: parsingLessonId,
+          pageId: parsingPageId,
+          progressRate: currentProgress(currentPage.id),
+          envlCatgYn: 10, // FIXME: 임시로 10으로 설정 => 나중에 실제 데이터가 넘어오면 그때 적용 ex) appMetaData.envlCatgYn
+          complYn: isLastPage ? "y" : "n",
+        });
+      } catch (error) {
+        addToast("학습이력이 저장되지 않았습니다.", "error");
+        console.log(error);
+      }
+    }
+  }, [
+    applId,
+    courseId,
+    cornerId,
+    lessonId,
+    pageId,
+    subjectId,
+    uno,
+    isLastPage,
+    currentPage,
+    currentProgress,
+    addToast,
+  ]);
+
+  useDebounced(saveData, 200);
+
   const renderMainPage = useMemo(() => {
     if (showLoadingPage) {
       setTimeout(() => {
@@ -135,6 +190,7 @@ const CornerPage = () => {
         pageIndex={pageIndex}
         handleClickPrev={handleClickPrev}
         handleClickNext={handleClickNext}
+        appMetaData={appMetaData}
         isPageCompleted={isPageCompleted}
         currentCorner={currentCorner}
       />

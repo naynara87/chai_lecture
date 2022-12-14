@@ -89,6 +89,7 @@ export type AppMetaData = {
   courseName: string;
   lessonId: ID;
   lessonName: string;
+  lessonTpCd: "10" | "20" | "30";
 };
 
 type CornerType =
