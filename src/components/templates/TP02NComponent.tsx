@@ -14,15 +14,16 @@ import useAudio from "../../hooks/useAudio";
 import { colorPalette } from "../../styles/colorPalette";
 import HtmlContentComponent from "../molecules/HtmlContentComponent";
 
-const ContentContainer = styled.div`
-  padding: ${changePXtoVH(15)} ${changePXtoVW(15)};
-  text-align: center;
+const customLayoutCss = css`
+  flex-wrap: wrap;
+  align-items: stretch;
+  margin: 0 auto;
 `;
 
-const customLayoutCss = css`
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 auto;
+const ContentContainer = styled.div`
+  max-width: 30%;
+  padding: ${changePXtoVH(15)} ${changePXtoVW(15)};
+  text-align: center;
 `;
 
 const customPronunciationCss = css`
@@ -30,7 +31,7 @@ const customPronunciationCss = css`
   font-weight: 500;
   font-size: ${changePXtoVW(30)};
   color: ${colorPalette.pronunciationText};
-`;
+  `;
 
 const customMeaningCss = css`
   margin-top: ${changePXtoVW(24)};
