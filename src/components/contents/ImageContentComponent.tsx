@@ -9,9 +9,8 @@ interface ImageComponentProps {
 }
 const ImageComponent = styled.img<ImageComponentProps>`
   cursor: pointer;
-  width: 100%;
   max-width: ${changePXtoVW(500)};
-  height: 100%;
+  max-height: 100%;
   object-fit: contain;
   ${(props) => props.customCss}
 `;
