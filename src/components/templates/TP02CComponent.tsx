@@ -9,9 +9,8 @@ import TP02Layout from "../Layouts/TP02Layout";
 import TitleContent from "../molecules/TitleContent";
 
 const imageCustomCss = css`
-  width: 63%;
-  height: 100%;
-  object-fit: contain;
+  max-width: 100%;
+  max-height: 100%;
   margin: 0 auto;
 `;
 
