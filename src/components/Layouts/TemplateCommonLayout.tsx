@@ -3,21 +3,31 @@ import React from "react";
 import { footerHeightNormal, headerHeightNormal } from "../../constants/layout";
 import { changePXtoVH } from "../../utils/styles";
 
-const TemplateCommon = styled.div`
+interface TemplateCommonProps {
+  isOverFlowHidden?: boolean;
+}
+
+const TemplateCommon = styled.div<TemplateCommonProps>`
   overflow: auto;
+  overflow: ${props => props.isOverFlowHidden && "hidden"};
   height: calc(100vh - ${headerHeightNormal} - ${footerHeightNormal});
   padding: ${changePXtoVH(50)};
   
   &::-webkit-scrollbar {
     display: none;
   }
+
+  > div:last-child {
+    align-items: flex-start;
+  }
 `;
 
 interface TemplateCommonLayoutProps {
   children: [JSX.Element, JSX.Element];
+  isOverFlowHidden?: boolean;
 }
-const TemplateCommonLayout = ({ children }: TemplateCommonLayoutProps) => {
-  return <TemplateCommon>{children}</TemplateCommon>;
+const TemplateCommonLayout = ({ children, isOverFlowHidden }: TemplateCommonLayoutProps) => {
+  return <TemplateCommon isOverFlowHidden={isOverFlowHidden}>{children}</TemplateCommon>;
 };
 
 export default TemplateCommonLayout;

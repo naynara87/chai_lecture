@@ -4,6 +4,7 @@ import { SerializedStyles } from "@emotion/react";
 import { changePXtoVW } from "../../utils/styles";
 import { VideoTrack } from "../../types/templateContents";
 import { ID } from "../../types/appData";
+import { footerHeightNormal, headerHeightNormal } from "../../constants/layout";
 
 interface VideoContentComponentProps {
   videoId: ID;
@@ -17,10 +18,8 @@ interface IframeProps {
 }
 
 const Iframe = styled.iframe<IframeProps>`
-  /* width: ${changePXtoVW(800)}; */
-  /* height: ${changePXtoVW(450)}; */
-  width: 100%;
-  height: 100%;
+  width: 90%;
+  height: calc(100% - ${headerHeightNormal} - ${footerHeightNormal});
   margin: 0 auto;
   ${(props) => props.customCss}
 `;
