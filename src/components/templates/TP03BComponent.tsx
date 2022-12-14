@@ -15,9 +15,20 @@ import HtmlContentComponent from "../molecules/HtmlContentComponent";
 import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 
 const customBox03DContainerCss = css`
-  /* justify-content: flex-start; */
-  width: ${changePXtoVW(1200)};
+  /* width: ${changePXtoVW(1200)}; */
   margin: ${changePXtoVW(50)} auto;
+  /* flex-direction: column; */
+  display: inline-block;
+  width: auto;
+  text-align: center;
+
+  > .horizontal {
+    align-items: center;
+    
+    > div:first-child {
+      width: ${changePXtoVW(288)};
+    }
+  }
 `;
 
 const customBox03DCss = css`
