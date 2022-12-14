@@ -11,10 +11,11 @@ interface TextCardGrpProps {
 }
 interface TextBoxesWrapperProps {
   customCss?: SerializedStyles;
+  boxLength: number;
 }
 
 const TextBoxesWrapper = styled.div<TextBoxesWrapperProps>`
-  width: ${changePXtoVW(1200)};
+  width: ${(props) => `${props.boxLength > 4 ? changePXtoVW(1200) : changePXtoVW(1400)}`};
   display: flex;
   justify-content: center;
   flex-direction: row;
@@ -22,6 +23,7 @@ const TextBoxesWrapper = styled.div<TextBoxesWrapperProps>`
   gap: 0 ${changePXtoVW(40)};
   margin: 0 auto;
   ${(props) => props.customCss}
+
 `;
 
 const TextCardGrp = styled.div<TextCardGrpProps>`
@@ -35,6 +37,7 @@ const TextCardGrp = styled.div<TextCardGrpProps>`
 
   > div:first-child {
   min-width: ${changePXtoVW(288)};
+  width: auto;
   height: ${changePXtoVH(160)};
 }
 
@@ -97,7 +100,7 @@ const TextBoxes = ({
     });
   }, [customBoxWrapperCss, datas, isHorizontal, customBoxCss, customDescriptionCss]);
 
-  return <TextBoxesWrapper customCss={customBoxContainerCss}>{renderTextBoxes}</TextBoxesWrapper>;
+  return <TextBoxesWrapper customCss={customBoxContainerCss} boxLength={datas.length}>{renderTextBoxes}</TextBoxesWrapper>;
 };
 
 export default TextBoxes;

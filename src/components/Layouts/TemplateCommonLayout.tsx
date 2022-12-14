@@ -7,6 +7,7 @@ const TemplateCommon = styled.div`
   overflow: auto;
   height: calc(100vh - ${headerHeightNormal} - ${footerHeightNormal});
   padding: ${changePXtoVH(50)};
+  
   &::-webkit-scrollbar {
     display: none;
   }
