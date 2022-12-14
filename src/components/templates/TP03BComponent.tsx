@@ -15,8 +15,8 @@ import HtmlContentComponent from "../molecules/HtmlContentComponent";
 import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 
 const customBox03DContainerCss = css`
-  justify-content: flex-start;
-  width: ${changePXtoVW(450)};
+  /* justify-content: flex-start; */
+  width: ${changePXtoVW(1200)};
   margin: ${changePXtoVW(50)} auto;
 `;
 
