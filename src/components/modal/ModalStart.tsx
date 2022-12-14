@@ -105,10 +105,16 @@ const ModalStart = ({
     setIsModalOpen(false);
   };
 
-  const isIntroductionContentsEmpty = useMemo(
-    () => isEmpty(introduction.contents),
-    [introduction.contents],
-  );
+  const isIntroductionContentsEmpty = useMemo(() => {
+    const result = isEmpty(introduction.contents);
+    if (result === false) {
+      if (introduction.contents?.[0] === "") {
+        return true;
+      }
+      return result;
+    }
+    return result;
+  }, [introduction.contents]);
 
   return (
     <ModalCommon open={isModalOpen} onClose={handleClose} isCornerPage={isCornerPage}>
