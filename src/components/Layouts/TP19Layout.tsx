@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { templateContentsAreaHeight } from "../../constants/layout";
 import { changePXtoVH } from "../../utils/styles";
 
 const TP19LayoutStyle = styled.div`

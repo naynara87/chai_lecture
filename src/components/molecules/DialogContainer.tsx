@@ -23,7 +23,7 @@ interface DialogContainerProps {
   layoutRef?: React.RefObject<HTMLDivElement>;
   audioRef?: React.RefObject<HTMLAudioElement>;
   audioState?: boolean;
-  currentContentIndex: number;
+  currentContentIndex?: number;
   currentHeight?: number;
   pinyinOption?: boolean;
   translateOption?: boolean;
@@ -112,12 +112,26 @@ const DialogContainer = ({
     getCurrentShowDialog(dialogs);
   }, [getCurrentShowDialog, currentContentIndex]);
 
+  const isDialogHide = useCallback(
+    (index: number) => {
+      if (currentContentIndex !== undefined) {
+        if (currentContentIndex >= index) {
+          return false;
+        } else {
+          return true;
+        }
+      }
+      return false;
+    },
+    [currentContentIndex],
+  );
+
   const mainContents = useMemo(() => {
     return datas.map((content, index) => {
       const { id } = content;
       const isSameId = id !== dialogIdRef.current;
       dialogIdRef.current = id;
-
+      console.log(currentContentIndex);
       return (
         <Dialog
           dialogContent={content}
@@ -128,7 +142,7 @@ const DialogContainer = ({
           currentAudioIndex={audioIndex}
           totalAudioPlayed={audioState}
           audioState={dialogAudioState}
-          isHide={currentContentIndex >= index ? false : true}
+          isHide={isDialogHide(index)}
           handleClickAnswer={handleChangeContent}
           showPinyin={pinyinOption}
           showTranslate={translateOption}
@@ -147,6 +161,7 @@ const DialogContainer = ({
     handleClickDialogAudio,
     pinyinOption,
     translateOption,
+    isDialogHide,
     isShowCorrect,
     datas,
     tpType,

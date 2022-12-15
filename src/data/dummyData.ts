@@ -33,29 +33,201 @@ export const dummyData: AppData = {
       pages: [
         {
           id: 1,
+          title: "확인 문장",
+          description: "빈칸에 들어갈 알맞은 단어를 고르세요.",
           template: {
-            type: "TPIframe",
-            url: "http://md-admin.bubblecon.io/bubble/embed/9201",
+            type: "TP03E",
+            contents: [
+              {
+                type: "html",
+                data: [
+                  {
+                    text: "会 huì는 ‘~할 줄 알다’라는 뜻으로, 언어나 악기, 운동처럼 배워서 할 수 있는 능력을 말할 때 사용합니다. ‘huì 会’ 뒤에는 동사가 옵니다.",
+                  },
+                  {
+                    text: "<h2>나는 수영할 줄 압니다.</h2>",
+                  },
+                ],
+              },
+              {
+                type: "textBoxes",
+                data: [
+                  {
+                    main: "我",
+                    description: "Wǒ",
+                  },
+                  {
+                    main: "<span class='c3'>会</span>",
+                    description: "<span class='c3'>hui</span>",
+                  },
+                  {
+                    main: "游泳",
+                    description: "yóuyǒng",
+                  },
+                ],
+              },
+              {
+                type: "audio",
+                data: [
+                  {
+                    src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/Caz3M4TmaEdt5s0sHWFvLwp4YWhXYMwG/Kg6oSHwgWChv6GbegBd1DMZm7NYRzzya/088252d8f1d5b51f7635bdb4a6374d8396b603f68d045fdf48e18ea61938c078.mp3",
+                  },
+                ],
+              },
+            ],
           },
         },
         {
           id: 2,
+          title: "단어 익히기",
+          description: "쓰임을 알아봅시다.",
           template: {
-            type: "TPIframe",
-            url: "http://md-admin.bubblecon.io/bubble/embed/9202",
+            type: "TP03I",
+            contents: [
+              {
+                type: "html",
+                data: [
+                  {
+                    text: "‘坐 zuò’는 ‘앉다’라는 뜻으로, 교통수단과 함께 쓰면 ‘타다’라는 뜻을 나타냅니다. ‘坐 zuò’는 좌석에 앉아 가는 교통수단에 사용합니다.",
+                  },
+                ],
+              },
+              {
+                type: "textBoxes",
+                data: [
+                  {
+                    main: "我坐地铁去",
+                    sub: "Wǒ zuò dìtiě qù.",
+                    description: "나는 지하철을 타고 가요.",
+                  },
+                ],
+              },
+              {
+                type: "audio",
+                data: [
+                  {
+                    src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/Caz3M4TmaEdt5s0sHWFvLwp4YWhXYMwG/Kg6oSHwgWChv6GbegBd1DMZm7NYRzzya/088252d8f1d5b51f7635bdb4a6374d8396b603f68d045fdf48e18ea61938c078.mp3",
+                  },
+                ],
+              },
+            ],
           },
         },
         {
           id: 3,
-          title: "문제 템플릿 3",
-          description: "문제 템플릿 3 상세 사항.",
+          title: "회화 익히기",
+          description: "단어를 알맞게 배열하여 문장을 완성하세요.",
           template: {
-            type: "TPIframe",
-            url: "http://md-admin.bubblecon.io/bubble/embed/9199",
+            type: "TP05F",
+            contents: [
+              {
+                type: "dialog",
+                data: [
+                  {
+                    id: "a",
+                    icon: {
+                      src: `${process.env.PUBLIC_URL}/images/cornerIcon/conversationIcon.png`,
+                    },
+                    text: "<p>你好，你是张明吗？</p>",
+                    pronunciation: "<p>Nǐ hǎo, Nǐ shì Zhāng Míng ma?</p>",
+                    meaning: "<p>안녕, 너 장밍이니?</p>",
+                    hasQuestion: false,
+                    audio: {
+                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/eZTSEsc5jJxrt5eiV75hen8aoJuvNZRt/LcR3pI1dfJ2SJhyLvWsA2rPCKRwuPfY5/25d064dd6004a352e6ddcaaaae8a876008d16c6d11df1bda0a66e9e08c5aaaaf.mp3",
+                    },
+                  },
+                  {
+                    id: "a",
+                    icon: {
+                      src: `${process.env.PUBLIC_URL}/images/cornerIcon/conversationIcon.png`,
+                    },
+                    text: "<p>没想到在路上遇见你。</p>",
+                    pronunciation: "<p>Méi xiǎngdào zài lùshang yùjiàn nǐ</p>",
+                    meaning: "<p>뜻밖에 길에서 널 보게 되네.</p>",
+                    hasQuestion: false,
+                    audio: {
+                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/DbaWYblk9dE2PKag3t9EpH3b56TcXkKU/1dYjyjjFpWkS4230TARI5kVkvSzMRpQD/68650ca72a8f5acf89c877300d15a97d7b57772c10707050f05f490576043a92.mp3",
+                    },
+                  },
+                  {
+                    id: "b",
+                    icon: {
+                      src: `${process.env.PUBLIC_URL}/images/cornerIcon/conversationIcon.png`,
+                    },
+                    text: "<p>没错，最近怎么样？</p>",
+                    pronunciation: "<p>Méi cuò, hǎojiǔ bújiàn!</p>",
+                    meaning: "<p>맞아, 오랜만이야!</p>",
+                    hasQuestion: false,
+                    audio: {
+                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/eZTSEsc5jJxrt5eiV75hen8aoJuvNZRt/LcR3pI1dfJ2SJhyLvWsA2rPCKRwuPfY5/25d064dd6004a352e6ddcaaaae8a876008d16c6d11df1bda0a66e9e08c5aaaaf.mp3",
+                    },
+                  },
+                  {
+                    id: "b",
+                    icon: {
+                      src: `${process.env.PUBLIC_URL}/images/cornerIcon/conversationIcon.png`,
+                    },
+                    text: "<p>你跟以前一样帅啊，一点儿都没变。</p>",
+                    pronunciation: "<p>Nǐ gēn yǐqián yíyàng shuài a, yìdiǎnr dōu méi biàn.</p>",
+                    meaning: "<p>너는 예전과 같이 멋있구나, 조금도 변하지 않았어. </p>",
+                    hasQuestion: false,
+                    audio: {
+                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/DbaWYblk9dE2PKag3t9EpH3b56TcXkKU/1dYjyjjFpWkS4230TARI5kVkvSzMRpQD/68650ca72a8f5acf89c877300d15a97d7b57772c10707050f05f490576043a92.mp3",
+                    },
+                  },
+                ],
+              },
+              {
+                type: "audioRecord",
+                data: [
+                  {
+                    audio: {
+                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/DbaWYblk9dE2PKag3t9EpH3b56TcXkKU/1dYjyjjFpWkS4230TARI5kVkvSzMRpQD/68650ca72a8f5acf89c877300d15a97d7b57772c10707050f05f490576043a92.mp3",
+                    },
+                  },
+                ],
+              },
+            ],
           },
         },
         {
-          id: 14,
+          id: 4,
+          title: "워밍업 퀴즈",
+          description: "다음 문제를 풀어 보세요.",
+          template: {
+            type: "TP11E",
+            contents: [
+              {
+                type: "iconText",
+                data: [
+                  {
+                    icon: {
+                      src: "",
+                    },
+                    text: "会의 위치가 올바른 문장은?",
+                  },
+                ],
+              },
+              {
+                type: "chooseText",
+                data: [
+                  {
+                    choices: ["我会打篮球。", "我打会篮球。"],
+                    answerIndex: 0,
+                    tip: "",
+                    explanation: {
+                      correctMessage: "정답입니다!",
+                      wrongMessage: "오답입니다!",
+                      text: "<p>해설 문장이 블라블라~</p>",
+                    },
+                  },
+                ],
+              },
+            ],
+          },
+        },
+        {
+          id: 5,
           template: {
             type: "TPIframe",
             url: "http://md-admin.bubblecon.io/bubble/embed/9200",

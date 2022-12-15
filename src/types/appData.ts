@@ -36,12 +36,16 @@ import {
   TP06A,
   TP02A,
   TP08B,
-  TP11B,
-  TP02I,
   TP10C,
   TP23,
   TP05G,
   TP05C,
+  TP02L,
+  TP03E,
+  TP03I,
+  TP05F,
+  TP11D,
+  TP11E,
 } from "./pageTemplate";
 import {
   AudioContent,
@@ -136,17 +140,20 @@ export type Page =
   | TP02M
   | TP02N
   | TP02G
-  | TP02I
+  | TP02L
   | TP03
   | TP03A
   | TP03B
   | TP03C
   | TP03D
+  | TP03E
+  | TP03I
   | TP04
   | TP04A
   | TP05
   | TP05A
   | TP05C
+  | TP05F
   | TP05G
   | TP06A
   | TP07
@@ -157,8 +164,9 @@ export type Page =
   | TP10A
   | TP10C
   | TP11A
-  | TP11B
+  | TP11D
   | TP11F
+  | TP11E
   | TP11G
   | TP13
   | TP15
