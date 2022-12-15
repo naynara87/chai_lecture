@@ -10,6 +10,8 @@ import TitleContent from "../molecules/TitleContent";
 const TP04Layout = styled.div`
   height: ${templateContentsAreaHeight};
   display: grid;
+  grid-template-rows: max-content max-content max-content;
+  gap: 3%;
   justify-content: center;
 `;
 

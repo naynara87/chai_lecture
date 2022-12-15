@@ -306,6 +306,30 @@ type TP05ATemplate = {
 
 type TP05AContent = TextBoxesContent | HtmlContent;
 
+export type TP05C = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP05C";
+    contents: TP05CContent[];
+  };
+};
+
+type TP05CContent = TextBoxesContent | AudioRecordContent;
+
+export type TP05G = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP05G";
+    contents: TP05GContent[];
+  };
+};
+
+type TP05GContent = NumberTableContent | HtmlContent;
+
 export type TP06A = {
   id: ID;
   title: string;
@@ -365,18 +389,6 @@ export type TP08B = {
 };
 
 type TP08BContent = ImagesContent | HtmlContent | AudioRecordContent;
-
-export type TP08G = {
-  id: ID;
-  title: string;
-  description: string;
-  template: {
-    type: "TP08G";
-    contents: TP08GContent[];
-  };
-};
-
-type TP08GContent = NumberTableContent | HtmlContent;
 
 export type TP09A = {
   id: ID;
