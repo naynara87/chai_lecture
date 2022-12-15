@@ -43,7 +43,8 @@ const TP02FComponent = ({ setPageCompleted, page, showHeader = true }: TP02FComp
   }, [videoContentData]);
 
   return (
-    <TemplateCommonLayout isOverFlowHidden={true}>
+    // isOverFlowHidden={true}
+    <TemplateCommonLayout>
       {showHeader ? (
         <TitleContent title={thisPage.title} description={thisPage.description} />
       ) : (
