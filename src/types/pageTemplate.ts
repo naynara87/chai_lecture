@@ -168,12 +168,12 @@ export type TP02G = {
   };
 };
 
-export type TP02I = {
+export type TP02L = {
   id: ID;
   title: string;
   description: string;
   template: {
-    type: "TP02I";
+    type: "TP02L";
     contents: TP02GContent[];
   };
 };
@@ -246,6 +246,18 @@ type TP03DTemplate = {
 
 type TP03DContent = HtmlContent | TextBoxesContent | AudioContent;
 
+export type TP03E = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP03E";
+    contents: TP03EContent[];
+  };
+};
+
+type TP03EContent = TextBoxesContent | HtmlContent | AudioContent;
+
 export type TP03F = {
   id: ID;
   title: string;
@@ -257,6 +269,18 @@ export type TP03F = {
 };
 
 type TP03FContent = HtmlContent | TextBoxesContent;
+
+export type TP03I = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP03I";
+    contents: TP03IContent[];
+  };
+};
+
+type TP03IContent = HtmlContent | TextBoxesContent | AudioContent;
 
 export type TP04 = {
   id: ID;
@@ -317,6 +341,18 @@ export type TP05C = {
 };
 
 type TP05CContent = TextBoxesContent | AudioRecordContent;
+
+export type TP05F = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP05F";
+    contents: TP05FContent[];
+  };
+};
+
+type TP05FContent = DialogContent | AudioRecordContent;
 
 export type TP05G = {
   id: ID;
@@ -438,17 +474,29 @@ export type TP11A = {
 
 type TP11AContent = IconTextContent | ChooseTextContent;
 
-export type TP11B = {
+export type TP11D = {
   id: ID;
   title: string;
   description: string;
   template: {
-    type: "TP11B";
-    contents: TP11BContent[];
+    type: "TP11D";
+    contents: TP11DContent[];
   };
 };
 
-type TP11BContent = WordQuizContent;
+type TP11DContent = WordQuizContent;
+
+export type TP11E = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP11E";
+    contents: TP11EContent[];
+  };
+};
+
+type TP11EContent = IconTextContent | ChooseTextContent;
 
 export type TP11F = {
   id: ID;

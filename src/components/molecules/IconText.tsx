@@ -5,14 +5,21 @@ import { colorPalette } from "../../styles/colorPalette";
 import QuestionIcon from "../atoms/QuestionIcon";
 import HtmlContentComponent from "./HtmlContentComponent";
 import { css } from "@emotion/react";
+import { SerializedStyles } from "@mui/styled-engine";
 
-const QuestionContainer = styled.div`
+interface QuestionContainerProps {
+  customCss?: SerializedStyles;
+}
+
+const QuestionContainer = styled.div<QuestionContainerProps>`
   color: ${colorPalette.questionTitle};
   font-weight: 400;
   font-size: ${changePXtoVW(27)};
   display: flex;
   justify-content: center;
   align-items: center;
+
+  ${(props) => props.customCss}
 `;
 
 const htmlCss = css`
@@ -23,11 +30,12 @@ const htmlCss = css`
 
 interface IconTextProps {
   text: string;
+  customCss?: SerializedStyles;
 }
 
-const IconText = ({ text }: IconTextProps) => {
+const IconText = ({ text, customCss }: IconTextProps) => {
   return (
-    <QuestionContainer>
+    <QuestionContainer customCss={customCss}>
       <QuestionIcon />
       <HtmlContentComponent html={text} customCss={htmlCss} />
     </QuestionContainer>

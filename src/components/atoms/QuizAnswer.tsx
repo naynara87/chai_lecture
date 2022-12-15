@@ -1,3 +1,4 @@
+import { SerializedStyles } from "@emotion/react";
 import styled from "@emotion/styled";
 import React, { useMemo } from "react";
 import { colorPalette } from "../../styles/colorPalette";
@@ -5,6 +6,7 @@ import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 
 interface QuizAnswerStyleProps {
   color: string;
+  customCss?: SerializedStyles;
 }
 
 // TODO: vw, vh 를 px 단위로 변경
@@ -45,7 +47,7 @@ const QuizAnswerStyle = styled.li<QuizAnswerStyleProps>`
     margin-top: ${changePXtoVH(16)};
     padding-left: ${changePXtoVW(88)};
     font-weight: 500;
-    font-size:${changePXtoVW(30)};
+    font-size: ${changePXtoVW(30)};
     text-align: left;
   }
 
@@ -59,6 +61,8 @@ const QuizAnswerStyle = styled.li<QuizAnswerStyleProps>`
     background-color: ${(props) => props.color};
   }
 
+  ${(props) => props.customCss}
+
   .none {
     display: none;
   }
@@ -70,6 +74,7 @@ interface QuizAnswerProps {
   index: number;
   checked: boolean;
   onClickAnswer: (answerIndex: number) => void;
+  customCss?: SerializedStyles;
 }
 const QuizAnswer = ({
   answerText,
@@ -77,6 +82,7 @@ const QuizAnswer = ({
   index,
   onClickAnswer,
   checked = false,
+  customCss,
 }: QuizAnswerProps) => {
   const handleClickAnswer = () => {
     onClickAnswer(index);
@@ -95,7 +101,7 @@ const QuizAnswer = ({
   }, [checked, isCorrect]);
 
   return (
-    <QuizAnswerStyle className="quiz-answer-list" color={changeColor}>
+    <QuizAnswerStyle className="quiz-answer-list" color={changeColor} customCss={customCss}>
       <input type="radio" id={answerText} name="quiz-answer" className="inp-quiz-answer none" />
       <label htmlFor={answerText} className="label-quiz-answer" onClick={handleClickAnswer}>
         <div className="word-wrap">
