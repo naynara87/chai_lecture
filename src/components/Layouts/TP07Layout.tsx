@@ -1,7 +1,6 @@
 import { SerializedStyles } from "@emotion/react";
 import styled from "@emotion/styled";
 import React from "react";
-import { templateContentsAreaHeight } from "../../constants/layout";
 
 interface TP07LayoutStyleProps {
   customCss?: SerializedStyles;

@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo } from "react";
-import { TP11B } from "../../types/pageTemplate";
+import { TP11D } from "../../types/pageTemplate";
 import { WordQuizContent } from "../../types/templateContents";
 import { TemplateProps } from "../../types/templates";
 import WordQuizTP11B from "../contents/WordQuizTP11B";
@@ -7,10 +7,10 @@ import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TP11Layout from "../Layouts/TP11Layout";
 import TitleContent from "../molecules/TitleContent";
 
-interface TP11BComponentProps extends TemplateProps {}
+interface TP11DComponentProps extends TemplateProps {}
 
-const TP11BComponent = ({ setPageCompleted, page, showHeader = true }: TP11BComponentProps) => {
-  const thisPage = page as TP11B;
+const TP11DComponent = ({ setPageCompleted, page, showHeader = true }: TP11DComponentProps) => {
+  const thisPage = page as TP11D;
 
   useEffect(() => {
     setPageCompleted();
@@ -36,4 +36,4 @@ const TP11BComponent = ({ setPageCompleted, page, showHeader = true }: TP11BComp
   );
 };
 
-export default TP11BComponent;
+export default TP11DComponent;

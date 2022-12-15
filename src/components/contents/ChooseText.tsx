@@ -1,20 +1,30 @@
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import React, { useEffect, useMemo, useState } from "react";
 import { ChooseTextContent } from "../../types/templateContents";
+import { changePXtoVH } from "../../utils/styles";
 import QuizAnswer from "../atoms/QuizAnswer";
 import Explanation from "../molecules/Explanation";
 import TipComponent from "../molecules/TipComponent";
 
-const QuizAnswerContainer = styled.ul`
+interface QuizAnswerContainerProps {
+  isVertical?: boolean;
+}
+
+const QuizAnswerContainer = styled.ul<QuizAnswerContainerProps>`
   display: flex;
-  flex-direction: row;
+  flex-direction: ${(props) => (props.isVertical ? "column" : "row")};
   flex-wrap: wrap;
 `;
 
+const customQuizCss = css`
+  margin-bottom: ${changePXtoVH(30)};
+`;
 interface ChooseTextProps {
   contentData: ChooseTextContent;
+  isVertical?: boolean;
 }
-const ChooseText = ({ contentData }: ChooseTextProps) => {
+const ChooseText = ({ contentData, isVertical }: ChooseTextProps) => {
   const {
     data: [{ choices, answerIndex, explanation }],
   } = contentData;
@@ -48,7 +58,7 @@ const ChooseText = ({ contentData }: ChooseTextProps) => {
 
   return (
     <div>
-      <QuizAnswerContainer>
+      <QuizAnswerContainer isVertical={isVertical}>
         {sortList.map((choice, index) => (
           <QuizAnswer
             key={index}
@@ -62,6 +72,7 @@ const ChooseText = ({ contentData }: ChooseTextProps) => {
               }
               handleClickAnswer(index);
             }}
+            customCss={customQuizCss}
           />
         ))}
       </QuizAnswerContainer>

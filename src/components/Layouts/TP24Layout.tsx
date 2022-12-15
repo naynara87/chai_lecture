@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { templateContentsAreaHeight } from "../../constants/layout";
 
 const TP24LayoutStyle = styled.div`
   display: flex;
