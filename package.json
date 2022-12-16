@@ -17,6 +17,7 @@
     "@types/react": "18.0.24",
     "@types/react-dom": "18.0.8",
     "axios": "1.2.0",
+    "cross-env": "7.0.3",
     "immer": "9.0.16",
     "lodash": "4.17.21",
     "react": "18.2.0",
@@ -33,7 +34,8 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "GENERATE_SOURCEMAP=false env craco build",
+    "build": "GENERATE_SOURCEMAP=false env-cmd -f .env.development craco build",
+    "build:prod": "GENERATE_SOURCEMAP=false env-cmd -f .env.production craco build",
     "test": "craco test",
     "eject": "craco eject"
   },
@@ -58,6 +60,7 @@
   "devDependencies": {
     "@craco/craco": "7.0.0",
     "craco-html-webpack-plugin": "0.6.0",
+    "env-cmd": "10.1.0",
     "html-webpack-plugin": "5.5.0"
   }
 }
