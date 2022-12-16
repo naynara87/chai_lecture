@@ -7,7 +7,7 @@ import TitleContent from "../molecules/TitleContent";
 import CommonPageLayout from "../Layouts/CommonPageLayout";
 import "../../styles/wordtest.css";
 
-const MetaTestChoiceWord = () => {
+const MetaTestWordChoice = () => {
   const { currentCorner, pages, appMetaData } = useCornerPage();
 
   return (
@@ -49,4 +49,4 @@ const MetaTestChoiceWord = () => {
   );
 };
 
-export default MetaTestChoiceWord;
+export default MetaTestWordChoice;
