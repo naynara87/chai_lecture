@@ -2,6 +2,9 @@ import axios from "axios";
 
 const httpLms = axios.create({
   baseURL: `${process.env.REACT_APP_LMS_URL}`,
+  headers: {
+    "Access-Control-Allow-Origin": "*",
+  },
 });
 
 httpLms.interceptors.request.use(
