@@ -12,7 +12,7 @@ const TemplateCommon = styled.div<TemplateCommonProps>`
   overflow: ${props => props.isOverFlowHidden && "hidden"};
   height: calc(100vh - ${headerHeightNormal} - ${footerHeightNormal});
   padding: ${changePXtoVH(50)};
-  
+
   &::-webkit-scrollbar {
     display: none;
   }
@@ -24,10 +24,10 @@ const TemplateCommon = styled.div<TemplateCommonProps>`
 
 interface TemplateCommonLayoutProps {
   children: [JSX.Element, JSX.Element];
-  isOverFlowHidden?: boolean;
+  layoutRef?: React.RefObject<HTMLDivElement>;
 }
-const TemplateCommonLayout = ({ children, isOverFlowHidden }: TemplateCommonLayoutProps) => {
-  return <TemplateCommon isOverFlowHidden={isOverFlowHidden}>{children}</TemplateCommon>;
+const TemplateCommonLayout = ({ children, layoutRef }: TemplateCommonLayoutProps) => {
+  return <TemplateCommon ref={layoutRef}>{children}</TemplateCommon>;
 };
 
 export default TemplateCommonLayout;

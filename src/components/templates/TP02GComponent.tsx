@@ -44,6 +44,7 @@ const TP02GComponent = ({ setPageCompleted, page, showHeader = true }: TP02GComp
   const dialogAudioRef = useRef<HTMLAudioElement>(null);
   const layoutRef = useRef<HTMLDivElement>(null);
   const [currentContentIndex, setCurrentContentIndex] = useState(0);
+  const [endDialog, setEndDialog] = useState(false);
 
   const { addThrottle } = useThrottle();
 
@@ -76,11 +77,6 @@ const TP02GComponent = ({ setPageCompleted, page, showHeader = true }: TP02GComp
       audioRef.current.pause();
       audioRef.current.load();
       audioRef.current.play();
-      layoutRef.current?.scrollTo({
-        top: currentHeight,
-        left: 0,
-        behavior: "smooth",
-      });
     }
   }, [currentContentIndex, DialogContentData?.data, currentHeight, audioState]);
 
@@ -94,6 +90,16 @@ const TP02GComponent = ({ setPageCompleted, page, showHeader = true }: TP02GComp
   const handleClickAudioButton = () => {
     if (!audioRef.current) {
       return;
+    }
+
+    if (endDialog) {
+      setCurrentContentIndex(0);
+      setEndDialog(false);
+      layoutRef.current?.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
     }
 
     if (audioState) {
@@ -115,6 +121,7 @@ const TP02GComponent = ({ setPageCompleted, page, showHeader = true }: TP02GComp
         DialogContentData?.data?.[currentContentIndex].hasQuestion ||
         !DialogContentData?.data?.[currentContentIndex + 1]
       ) {
+        setEndDialog(true);
         setAudioState(false);
         return;
       }
@@ -123,12 +130,17 @@ const TP02GComponent = ({ setPageCompleted, page, showHeader = true }: TP02GComp
         !DialogContentData?.data?.[currentContentIndex].hasQuestion &&
         DialogContentData?.data?.[currentContentIndex + 1]
       ) {
+        layoutRef.current?.scrollTo({
+          top: currentHeight,
+          left: 0,
+          behavior: "smooth",
+        });
         setCurrentContentIndex((prev) => prev + 1);
         // NOTE kjw 다이얼로그 콘텐츠 인덱스가 바뀌며 전체오디오의 상태를 변경해줌 -> 다음 오디오가 재생이됨.
         setAudioState(true);
       }
     });
-  }, [DialogContentData?.data, currentContentIndex, addThrottle]);
+  }, [DialogContentData?.data, currentContentIndex, addThrottle, currentHeight]);
 
   const handleEndDialogAudio = useCallback(() => {
     dialogAudioRef.current?.addEventListener("ended", () => {
@@ -150,13 +162,13 @@ const TP02GComponent = ({ setPageCompleted, page, showHeader = true }: TP02GComp
   }, [handleEndDialogAudio, onEndTotalAudio]);
 
   return (
-    <TemplateCommonLayout>
+    <TemplateCommonLayout layoutRef={layoutRef}>
       {showHeader ? (
         <TitleContent title={thisPage.title} description={thisPage.description} />
       ) : (
         <></>
       )}
-      <TP02Layout customCss={layoutCss} layoutRef={layoutRef}>
+      <TP02Layout customCss={layoutCss}>
         <DialogHeader>
           <DialogAudio audioHandler={handleClickAudioButton} audioState={audioState} />
           <OptionButton
@@ -184,6 +196,7 @@ const TP02GComponent = ({ setPageCompleted, page, showHeader = true }: TP02GComp
           translateOption={translateOption}
           setCurrentHeight={setCurrentHeight}
           setAudioState={setAudioState}
+          setEndDialog={setEndDialog}
           dialogAudioState={dialogAudioState}
           audioRef={audioRef}
         />

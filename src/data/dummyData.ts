@@ -33,44 +33,107 @@ export const dummyData: AppData = {
       pages: [
         {
           id: 1,
-          title: "확인 문장",
-          description: "빈칸에 들어갈 알맞은 단어를 고르세요.",
+          title: "회화 알아보기",
+          description: "회화를 들어보세요.",
           template: {
-            type: "TP03E",
+            type: "TP02G",
             contents: [
               {
-                type: "html",
+                type: "dialog",
                 data: [
                   {
-                    text: "会 huì는 ‘~할 줄 알다’라는 뜻으로, 언어나 악기, 운동처럼 배워서 할 수 있는 능력을 말할 때 사용합니다. ‘huì 会’ 뒤에는 동사가 옵니다.",
+                    id: "a",
+                    icon: {
+                      src: `${process.env.PUBLIC_URL}/images/cornerIcon/conversationIcon.png`,
+                    },
+                    text: "<p>点点十分。</p>",
+                    pronunciation: "<p>Méi xiǎngdào zài lùshang yùjiàn nǐ.</p>",
+                    meaning: "<p>2시 10분.</p>",
+                    hasQuestion: false,
+                    audio: {
+                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/eZTSEsc5jJxrt5eiV75hen8aoJuvNZRt/LcR3pI1dfJ2SJhyLvWsA2rPCKRwuPfY5/25d064dd6004a352e6ddcaaaae8a876008d16c6d11df1bda0a66e9e08c5aaaaf.mp3",
+                    },
                   },
                   {
-                    text: "<h2>나는 수영할 줄 압니다.</h2>",
+                    id: "a",
+                    icon: {
+                      src: `${process.env.PUBLIC_URL}/images/cornerIcon/conversationIcon.png`,
+                    },
+                    text: "<p>你几点 *blank*</p>",
+                    pronunciation: "<p>Méi xiǎngdào zài lùshang yùjiàn nǐ.</p>",
+                    meaning: "<p>너 몇 시에 집에 돌아가니?</p>",
+                    hasQuestion: true,
+                    question: {
+                      choices: ["回家", "现在"],
+                      answerIndex: 0,
+                    },
+                    audio: {
+                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/DbaWYblk9dE2PKag3t9EpH3b56TcXkKU/1dYjyjjFpWkS4230TARI5kVkvSzMRpQD/68650ca72a8f5acf89c877300d15a97d7b57772c10707050f05f490576043a92.mp3",
+                    },
                   },
-                ],
-              },
-              {
-                type: "textBoxes",
-                data: [
                   {
-                    main: "我",
-                    description: "Wǒ",
+                    id: "b",
+                    icon: {
+                      src: `${process.env.PUBLIC_URL}/images/cornerIcon/conversationIcon.png`,
+                    },
+                    text: "<p>*blank* 四点回家。</p>",
+                    pronunciation: "<p>Méi xiǎngdào zài lùshang yùjiàn nǐ.</p>",
+                    meaning: "<p>오후 4시에 돌아가.</p>",
+                    hasQuestion: true,
+                    question: {
+                      choices: ["가나다라", "十午"],
+                      answerIndex: 0,
+                    },
+                    audio: {
+                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/eZTSEsc5jJxrt5eiV75hen8aoJuvNZRt/LcR3pI1dfJ2SJhyLvWsA2rPCKRwuPfY5/25d064dd6004a352e6ddcaaaae8a876008d16c6d11df1bda0a66e9e08c5aaaaf.mp3",
+                    },
                   },
                   {
-                    main: "<span class='c3'>会</span>",
-                    description: "<span class='c3'>hui</span>",
+                    id: "b",
+                    icon: {
+                      src: `${process.env.PUBLIC_URL}/images/cornerIcon/conversationIcon.png`,
+                    },
+                    text: "<p>*blank* 四点回家。</p>",
+                    pronunciation: "<p>Méi xiǎngdào zài lùshang yùjiàn nǐ.</p>",
+                    meaning: "<p>오후 4시에 돌아가.</p>",
+                    hasQuestion: true,
+                    question: {
+                      choices: ["下午", "十午"],
+                      answerIndex: 0,
+                    },
+                    audio: {
+                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/DbaWYblk9dE2PKag3t9EpH3b56TcXkKU/1dYjyjjFpWkS4230TARI5kVkvSzMRpQD/68650ca72a8f5acf89c877300d15a97d7b57772c10707050f05f490576043a92.mp3",
+                    },
                   },
                   {
-                    main: "游泳",
-                    description: "yóuyǒng",
+                    id: "a",
+                    icon: {
+                      src: `${process.env.PUBLIC_URL}/images/cornerIcon/conversationIcon.png`,
+                    },
+                    text: "<p>四点回家。</p>",
+                    pronunciation: "<p>Méi xiǎngdào zài lùshang yùjiàn nǐ.</p>",
+                    meaning: "<p>오후 4시에 돌아가.</p>",
+                    hasQuestion: false,
+                    audio: {
+                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/DbaWYblk9dE2PKag3t9EpH3b56TcXkKU/1dYjyjjFpWkS4230TARI5kVkvSzMRpQD/68650ca72a8f5acf89c877300d15a97d7b57772c10707050f05f490576043a92.mp3",
+                    },
                   },
-                ],
-              },
-              {
-                type: "audio",
-                data: [
                   {
-                    src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/Caz3M4TmaEdt5s0sHWFvLwp4YWhXYMwG/Kg6oSHwgWChv6GbegBd1DMZm7NYRzzya/088252d8f1d5b51f7635bdb4a6374d8396b603f68d045fdf48e18ea61938c078.mp3",
+                    id: "b",
+                    icon: {
+                      src: `${process.env.PUBLIC_URL}/images/cornerIcon/conversationIcon.png`,
+                    },
+                    text: "<p>*blank* 四点回家。</p>",
+                    pronunciation: "<p>Méi xiǎngdào zài lùshang yùjiàn nǐ.</p>",
+                    meaning: "<p>오후 4시에 돌아가.</p>",
+                    hasQuestion: true,
+                    question: {
+                      choices: ["下午", "十午"],
+                      answerIndex: 0,
+                    },
+                    audio: {
+                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/eZTSEsc5jJxrt5eiV75hen8aoJuvNZRt/LcR3pI1dfJ2SJhyLvWsA2rPCKRwuPfY5/25d064dd6004a352e6ddcaaaae8a876008d16c6d11df1bda0a66e9e08c5aaaaf.mp3",
+                    },
                   },
                 ],
               },

@@ -1,4 +1,6 @@
+import { LMS_SAVE_DATA } from "../constants/api";
 import { learningLogData } from "../data/dummyData2";
+import httpLms from "../lib/axios/httpLms";
 import { ID } from "../types/appData";
 
 /**
@@ -41,7 +43,7 @@ export const saveLmsData = async ({
   envlCatgYn,
   complYn,
 }: saveLmsDataParams) => {
-  console.log(`lesson: ${lessonId}, corner:${cornerId} page:${pageId} save api`, {
+  const res = await httpLms.post(LMS_SAVE_DATA, {
     uno,
     applId,
     courseId,
@@ -53,18 +55,5 @@ export const saveLmsData = async ({
     envlCatgYn,
     complYn,
   });
-
-  // const res = await httpLms.post(LMS_SAVE_DATA, {
-  //   uno,
-  //   applId,
-  //   courseId,
-  //   contsId: subjectId,
-  //   lessonId,
-  //   turnId: cornerId,
-  //   pageId,
-  //   progressRate,
-  //   envlCatgYn,
-  //   complYn,
-  // });
-  // return res.data;
+  return res.data;
 };
