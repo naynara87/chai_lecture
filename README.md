@@ -17,4 +17,6 @@
 
 - 빌드
   - npm run build
-    - 빌드시에 production 환경변수 변경원할시에는 root 디렉토리에 .env.production REACT_APP_BASE_URL 값을 변경해주시면 됩니다.
+    - 개발용 빌드시 사용 명령어입니다. 환경변수 변경원할시에는 root 디렉토리에 .env.development REACT_APP_BASE_URL 값을 변경해주시면 됩니다.
+  - npm run build:prod
+    - 배포용 빌드시 사용 명령어입니다. 환경변수 변경원할시에는 root 디렉토리에 .env.production REACT_APP_BASE_URL 값을 변경해주시면 됩니다.
