@@ -82,7 +82,7 @@ const DialogContainer = ({
         setCurrentContentIndex((prev) => prev + 1);
       }
 
-      if (setAudioState) {
+      if (setAudioState && datas[currentContentIndex + 1]) {
         setAudioState(true);
       }
 
@@ -94,7 +94,7 @@ const DialogContainer = ({
         });
       }
     },
-    [currentHeight, layoutRef, setAudioState, currentContentIndex, setCurrentContentIndex],
+    [currentHeight, layoutRef, setAudioState, currentContentIndex, setCurrentContentIndex, datas],
   );
 
   const getCurrentShowDialog = useCallback(

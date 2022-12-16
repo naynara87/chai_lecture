@@ -44,6 +44,7 @@ const TP02GComponent = ({ setPageCompleted, page, showHeader = true }: TP02GComp
   const dialogAudioRef = useRef<HTMLAudioElement>(null);
   const layoutRef = useRef<HTMLDivElement>(null);
   const [currentContentIndex, setCurrentContentIndex] = useState(0);
+  const [endDialog, setEndDialog] = useState(false);
 
   const { addThrottle } = useThrottle();
 
@@ -96,6 +97,11 @@ const TP02GComponent = ({ setPageCompleted, page, showHeader = true }: TP02GComp
       return;
     }
 
+    if (endDialog) {
+      setCurrentContentIndex(0);
+      setEndDialog(false);
+    }
+
     if (audioState) {
       setAudioState(false);
       audioRef.current.pause();
@@ -115,6 +121,7 @@ const TP02GComponent = ({ setPageCompleted, page, showHeader = true }: TP02GComp
         DialogContentData?.data?.[currentContentIndex].hasQuestion ||
         !DialogContentData?.data?.[currentContentIndex + 1]
       ) {
+        setEndDialog(true);
         setAudioState(false);
         return;
       }
