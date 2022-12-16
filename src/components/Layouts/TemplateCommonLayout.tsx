@@ -7,7 +7,7 @@ const TemplateCommon = styled.div`
   overflow: auto;
   height: calc(100vh - ${headerHeightNormal} - ${footerHeightNormal});
   padding: ${changePXtoVH(50)};
-  
+
   &::-webkit-scrollbar {
     display: none;
   }
@@ -15,9 +15,10 @@ const TemplateCommon = styled.div`
 
 interface TemplateCommonLayoutProps {
   children: [JSX.Element, JSX.Element];
+  layoutRef?: React.RefObject<HTMLDivElement>;
 }
-const TemplateCommonLayout = ({ children }: TemplateCommonLayoutProps) => {
-  return <TemplateCommon>{children}</TemplateCommon>;
+const TemplateCommonLayout = ({ children, layoutRef }: TemplateCommonLayoutProps) => {
+  return <TemplateCommon ref={layoutRef}>{children}</TemplateCommon>;
 };
 
 export default TemplateCommonLayout;

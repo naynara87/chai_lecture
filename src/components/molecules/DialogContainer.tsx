@@ -28,6 +28,7 @@ interface DialogContainerProps {
   pinyinOption?: boolean;
   translateOption?: boolean;
   setAudioState?: React.Dispatch<React.SetStateAction<boolean>>;
+  setEndDialog?: React.Dispatch<React.SetStateAction<boolean>>;
   setCurrentHeight?: React.Dispatch<React.SetStateAction<number>>;
   handleClickDialogAudioButton?: (src: string, index: number) => void;
   setCurrentContentIndex?: React.Dispatch<React.SetStateAction<number>>;
@@ -50,6 +51,7 @@ const DialogContainer = ({
   pinyinOption,
   translateOption,
   setAudioState,
+  setEndDialog,
   setCurrentHeight,
   handleClickDialogAudioButton,
   customCss,
@@ -84,17 +86,25 @@ const DialogContainer = ({
 
       if (setAudioState && datas[currentContentIndex + 1]) {
         setAudioState(true);
+      } else if (setAudioState && setEndDialog && !datas[currentContentIndex + 1]) {
+        setAudioState(false);
+        setEndDialog(true);
       }
-
-      if (layoutRef) {
-        document.querySelector("html")?.scrollTo({
-          top: currentHeight,
-          left: 0,
-          behavior: "smooth",
-        });
-      }
+      layoutRef?.current?.scrollTo({
+        top: currentHeight,
+        left: 0,
+        behavior: "smooth",
+      });
     },
-    [currentHeight, layoutRef, setAudioState, currentContentIndex, setCurrentContentIndex, datas],
+    [
+      currentHeight,
+      layoutRef,
+      setAudioState,
+      currentContentIndex,
+      setCurrentContentIndex,
+      datas,
+      setEndDialog,
+    ],
   );
 
   const getCurrentShowDialog = useCallback(
@@ -131,7 +141,6 @@ const DialogContainer = ({
       const { id } = content;
       const isSameId = id !== dialogIdRef.current;
       dialogIdRef.current = id;
-      console.log(currentContentIndex);
       return (
         <Dialog
           dialogContent={content}
