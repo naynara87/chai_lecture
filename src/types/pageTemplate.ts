@@ -120,6 +120,18 @@ type TP02CTemplate = {
 
 type TP02CContent = ImagesContent;
 
+export type TP02E = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP02E";
+    contents: TP02EContent[];
+  };
+};
+
+type TP02EContent = StudyWordsContent;
+
 export type TP02F = {
   id: ID;
   title: string;
@@ -157,6 +169,18 @@ export type TP02N = {
 };
 
 type TP02NContent = StudyWordsContent;
+
+export type TP02O = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP02O";
+    contents: TP02OContent[];
+  };
+};
+
+type TP02OContent = StudyWordsContent;
 
 export type TP02G = {
   id: ID;
@@ -342,6 +366,18 @@ export type TP05C = {
 
 type TP05CContent = TextBoxesContent | AudioRecordContent;
 
+export type TP05E = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP05E";
+    contents: TP05EContent[];
+  };
+};
+
+type TP05EContent = TextBoxesContent | AudioRecordContent;
+
 export type TP05F = {
   id: ID;
   title: string;
@@ -449,6 +485,18 @@ export type TP10A = {
 };
 
 type TP10AContent = WordQuizContent;
+
+export type TP10B = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP10B";
+    contents: TP10BContent[];
+  };
+};
+
+type TP10BContent = WordQuizContent;
 
 export type TP10C = {
   id: ID;
