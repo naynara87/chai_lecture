@@ -17,7 +17,7 @@ export type ChooseTextContent = {
     choices: string[];
     answerIndex: number;
     tip?: string; // html
-    explanation: Explanation;
+    explanation?: Explanation;
   }[];
 };
 
