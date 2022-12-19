@@ -436,12 +436,48 @@ export const dummyData: AppData = {
           },
         },
         {
-          id: 15,
-          title: "문제 템플릿 5",
-          description: "문제 템플릿 5 상세 사항.",
+          id: 6,
+          title: "문장",
+          description: "잘 들어 보세요.",
           template: {
-            type: "TPIframe",
-            url: "http://md-admin.bubblecon.io/bubble/embed/9195",
+            type: "TP08A",
+            contents: [
+              {
+                type: "images",
+                data: [
+                  {
+                    src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/4idBoYNNSffqeZGcT4SVVJ45fSsQZwse/Z9OB8U11bXMyKJNgS6aXX7MuLjFGmmZp/b048ddda487db85957d75c8950fe846043eb078617849e7a64e8c0c7c50cbd1a.png",
+                  },
+                ],
+              },
+              {
+                type: "html",
+                data: [
+                  {
+                    text: "<h1>我会游泳。</h4>",
+                  },
+                  {
+                    text: "<p class='c4'>Wǒ  huì  yóuyǒng.</>",
+                  },
+                  {
+                    text: "<p>나는  수영할 줄 압니다.</p>",
+                  },
+                ],
+              },
+              {
+                type: "sentenceWord",
+                data: [
+                  {
+                    text: "游泳",
+                    pronunciation: "yóuyǒng",
+                    meaning: "수영하다",
+                    audio: {
+                      src: "string",
+                    },
+                  },
+                ],
+              },
+            ],
           },
         },
         {

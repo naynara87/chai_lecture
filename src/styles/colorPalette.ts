@@ -36,6 +36,7 @@ export const colorPalette = Object.freeze({
   deepBlue: COLORS.blue700,
   borderGray: COLORS.gray400,
   textBoxBorder: COLORS.gray200,
+  sentenceBackground: COLORS.gray200,
   iconGray: COLORS.gray400,
   textBoxesTitle: COLORS.gray900,
   modalDescriptionBackground: COLORS.gray100,
