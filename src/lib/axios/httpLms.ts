@@ -3,7 +3,8 @@ import axios from "axios";
 const httpLms = axios.create({
   baseURL: `${process.env.REACT_APP_LMS_URL}`,
   headers: {
-    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Origin": `${process.env.REACT_APP_LMS_URL}`,
+    "Access-Control-Allow-Credentials": true,
   },
   withCredentials: true,
 });
