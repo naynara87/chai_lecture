@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useState } from "react";
 import styled from "@emotion/styled";
-import { BottomTabsData } from "../../types/templateContents";
+import { ApproveTabsData } from "../../types/templateContents";
 import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import { colorPalette } from "../../styles/colorPalette";
 import useContentMapper from "../../hooks/useContentMapper";
@@ -120,7 +120,7 @@ const CloseButton = styled.button<CloseButtonProps>`
 `;
 
 interface BottomTabsProps {
-  datas: BottomTabsData[];
+  datas: ApproveTabsData[];
 }
 
 const BottomTabs = ({ datas }: BottomTabsProps) => {
