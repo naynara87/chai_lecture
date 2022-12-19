@@ -291,9 +291,148 @@ export const dummyData: AppData = {
         },
         {
           id: 5,
+          title: "~ 跟 ~ 一样",
+          description: "~ 跟 ~ 一样 ~gēn~yíyàng 에 대해 알아봅시다.",
           template: {
-            type: "TPIframe",
-            url: "http://md-admin.bubblecon.io/bubble/embed/9200",
+            type: "TP02P",
+            contents: [
+              {
+                type: "html",
+                data: [
+                  {
+                    text: "<h1>你跟以前一样帅啊。<h1>",
+                  },
+                  {
+                    text: "<p class='c4'>Nǐ gēn yǐqián yíyàng shuài a.</p>",
+                  },
+                  {
+                    text: "<p>너는 예전과 같이 멋있구나.</p>",
+                  },
+                  {
+                    text: "<p class='c4'>‘~跟…一样’은 ‘~은(는) …와(과) 같다’라는 뜻으로, 사람 또는 사물의 성격이나 성질의 공통점을 비교하는 표현입니다. 부정형은 不一样입니다.</p>",
+                  },
+                ],
+              },
+              {
+                type: "sideTabs",
+                data: [
+                  {
+                    tabNames: "예문",
+                    contents: [
+                      {
+                        type: "html",
+                        data: [
+                          {
+                            text: "<h3>他的爱好跟我(的爱好)一样。</h3>",
+                          },
+                          {
+                            text: "<p>Tā de àihào gēn wǒ (de àihào) yíyàng.</p>",
+                          },
+                          {
+                            text: "<p>그의 취미는 나(의 취미)와 같다.</p>",
+                          },
+                        ],
+                      },
+                      {
+                        type: "audio",
+                        data: [
+                          {
+                            src: "",
+                          },
+                        ],
+                      },
+                      {
+                        type: "html",
+                        data: [
+                          {
+                            text: "<h3>他的汉语水平跟我一样好。</h3>",
+                          },
+                          {
+                            text: "<p>Tā de Hànyǔ shuǐpíng gēn wǒ yíyàng hǎo.</p>",
+                          },
+                          {
+                            text: "<p>그의 중국어 실력은 나의 중국어 실력과 같이 좋다.</p>",
+                          },
+                        ],
+                      },
+                      {
+                        type: "audio",
+                        data: [
+                          {
+                            src: "",
+                          },
+                        ],
+                      },
+                      {
+                        type: "html",
+                        data: [
+                          {
+                            text: "<h3>今天这家店满100元送50元现金券，现在买非常合适。</h3>",
+                          },
+                          {
+                            text: "<p>Jīntiān zhè jiā diàn mǎn yìbǎi yuán sòng wǔshí yuán xiànjīnquàn, xiànzài mǎi fēicháng héshì.</p>",
+                          },
+                          {
+                            text: "<p>오늘 이 가게에서 100위안 이상 구매하면 50위안의 현금 쿠폰을 주니, 지금 사는 게 매우 적합하다.</p>",
+                          },
+                        ],
+                      },
+                      {
+                        type: "audio",
+                        data: [
+                          {
+                            src: "",
+                          },
+                        ],
+                      },
+                      {
+                        type: "html",
+                        data: [
+                          {
+                            text: "<h3>这个东西不仅质量好，而且价格也很便宜。</h3>",
+                          },
+                          {
+                            text: "<p>Zhège dōngxi bùjǐn zhìliàng hǎo, érqiě jiàgé yě hěn piányi.</p>",
+                          },
+                          {
+                            text: "<p>이 물건은 품질이 좋을 뿐만 아니라, 가격도 저렴하다</p>",
+                          },
+                        ],
+                      },
+                      {
+                        type: "audio",
+                        data: [
+                          {
+                            src: "",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    tabNames: "단어",
+                    contents: [
+                      {
+                        type: "images",
+                        data: [
+                          {
+                            src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/isXTjVCtPQ1BWWwiJzapJr4iZqqWIP7n/960zqS7kFWzXePVAmtK3n39VE6kHDChR/e21539f26c9b21cf98bef94dcb522e31f6af3f734521347ad2c1f150fb84d135.png",
+                          },
+                        ],
+                      },
+                      {
+                        type: "html",
+                        data: [
+                          {
+                            text: "<h3>가나다라</h3><p>마바사</p><p>아자차</p><h3>카타파</h3><p>하</p>",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
           },
         },
         {

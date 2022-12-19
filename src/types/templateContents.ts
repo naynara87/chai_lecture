@@ -232,10 +232,15 @@ export type ChooseMediaTextAudio = {
 
 export type BottomTabsContent = {
   type: "bottomTabs";
-  data: BottomTabsData[];
+  data: ApproveTabsData[];
 };
 
-export type BottomTabsData = {
+export type SideTabsContent = {
+  type: "sideTabs";
+  data: ApproveTabsData[];
+}
+
+export type ApproveTabsData = {
   tabNames: string;
   contents: ApproveContent[];
 };

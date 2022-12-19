@@ -1,3 +1,4 @@
+import { SerializedStyles } from "@emotion/react";
 import React from "react";
 import AudioContentAdapter from "../components/contents/AudioContentAdapter";
 import AudioRecorderAdapter from "../components/contents/AudioRecorderAdapter";
@@ -22,15 +23,20 @@ import {
 } from "../types/templateContents";
 
 const useContentMapper = () => {
-  const getContentComponent = (content: ApproveContent, id: ID) => {
+  const getContentComponent = (
+    content: ApproveContent,
+    id: ID,
+    htmlCss?: SerializedStyles,
+    audioCss?: SerializedStyles,
+  ) => {
     const contentMapper: Record<ApproveContentType, JSX.Element | JSX.Element[]> = {
       chooseText: <ChooseText contentData={content as ChooseTextContent} />,
       iconText: <IconTextAdapter content={content as IconTextContent} />,
       textBoxes: <TextBoxesAdapter content={content as TextBoxesContent} />,
-      html: <HtmlContentAdapter content={content as HtmlContent} />,
+      html: <HtmlContentAdapter content={content as HtmlContent} htmlCss={htmlCss} />,
       images: <ImageContentAdapter content={content as ImagesContent} />,
       video: <VideoContentAdapter content={content as VideoContent} videoId={id} />,
-      audio: <AudioContentAdapter content={content as AudioContent} />,
+      audio: <AudioContentAdapter content={content as AudioContent} audioCss={audioCss} />,
       audioRecord: <AudioRecorderAdapter content={content as AudioRecordContent} />,
       chooseMediaText: <ChooseMediaTextAdapter content={content as ChooseMediaTextContent} />,
     };
