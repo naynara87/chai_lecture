@@ -19,6 +19,7 @@ import {
   StudySentencesWithVocabularyContent,
   ChooseMediaTextContent,
   SentenceWordContent,
+  SideTabsContent,
 } from "./templateContents";
 
 export type ContentPage = Exclude<Page, TPIframe | TPTab>;
@@ -181,6 +182,18 @@ export type TP02O = {
 };
 
 type TP02OContent = StudyWordsContent;
+
+export type TP02P = {
+  id:ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP02P";
+    contents: TP02PContent[];
+  }
+}
+
+type TP02PContent = HtmlContent | SideTabsContent;
 
 export type TP02G = {
   id: ID;

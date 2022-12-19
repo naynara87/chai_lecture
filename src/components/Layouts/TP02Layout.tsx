@@ -11,6 +11,7 @@ const TP02LayoutStyle = styled.div<TP02LayoutStyleProps>`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
   /* padding-top: ${changePXtoVH(50)}; */
 
   ${(props) => props.customCss}

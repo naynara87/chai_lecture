@@ -33,7 +33,7 @@
     "web-vitals": "2.1.4"
   },
   "scripts": {
-    "start": "craco start",
+    "start": "env-cmd -f .env craco start",
     "build": "GENERATE_SOURCEMAP=false env-cmd -f .env.development craco build",
     "build:prod": "GENERATE_SOURCEMAP=false env-cmd -f .env.production craco build",
     "test": "craco test",
