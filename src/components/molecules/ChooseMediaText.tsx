@@ -76,7 +76,7 @@ const ChooseMediaText = ({ datas }: ChooseMediaTextProps) => {
           </MediaTextContainer>
         );
       })}
-      {showExplanation && explanation && (
+      {showExplanation && (
         <Explanation
           explanation={explanation}
           handleClickClose={handleClickCloseExplanation}

@@ -135,7 +135,7 @@ const WordQuiz = ({ datas, reverse = false }: WordQuizProps) => {
           <AudioButton isAudio={true} audioUrl={audio.src} />
         </AudioWrapper>
       )}
-      {showExplanation && explanation && (
+      {showExplanation && (
         <Explanation
           explanation={explanation}
           isCorrect={choices[answerIndex] === sortList[selectedIndex!]}

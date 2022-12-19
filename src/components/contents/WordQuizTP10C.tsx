@@ -142,7 +142,7 @@ const WordQuizTP10C = ({ datas }: WordQuizProps) => {
           );
         })}
       </QuestionWrapper>
-      {showExplanation && explanation && (
+      {showExplanation && (
         <Explanation
           explanation={explanation}
           isCorrect={choices[answerIndex] === sortList[selectedIndex!]}
