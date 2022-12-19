@@ -86,10 +86,16 @@ const ExplanationTextCss = css`
   }
 `;
 
-const Text = styled.div`
+interface TextProps {
+  isText?: boolean;
+}
+
+const Text = styled.div<TextProps>`
   padding-top: ${changePXtoVH(12)};
   padding-bottom: ${changePXtoVH(8)};
   ${ExplanationTextCss}
+
+  height: ${props => !props.isText && "auto"};
 
   p {
     font-weight: 500;
@@ -134,15 +140,15 @@ type ExplanationData = {
   };
   correctMessage?: string;
   wrongMessage?: string;
-  text: string;
+  text?: string;
 };
 
 interface ExplanationProps {
-  explanation: ExplanationData;
+  explanation?: ExplanationData;
   isCorrect: boolean;
   handleClickClose: () => void;
 }
-const Explanation = ({ isCorrect, explanation, handleClickClose }: ExplanationProps) => {
+const Explanation = ({ isCorrect, explanation = {correctMessage: "정답입니다!", wrongMessage: "오답입니다!"}, handleClickClose }: ExplanationProps) => {
   const { audio, correctMessage, wrongMessage, text } = explanation;
 
   const iconUrl = useMemo(() => {
@@ -158,6 +164,7 @@ const Explanation = ({ isCorrect, explanation, handleClickClose }: ExplanationPr
     }
     return wrongMessage ?? "오답입니다!";
   }, [isCorrect, correctMessage, wrongMessage]);
+
   return (
     <ExplanationWrapper>
       <ExplanationContainer>
@@ -166,12 +173,12 @@ const Explanation = ({ isCorrect, explanation, handleClickClose }: ExplanationPr
         </ImageWrapper>
         <TextBox>
           <OXWrapper>{isCorrect ? <OIcon /> : <XIcon />}</OXWrapper>
-          <Text>
+          <Text isText={!!text}>
             <InfoWrapper>
               <ExplanationTitle>{infoText}</ExplanationTitle>
               {audio && <AudioButton isAudio={true} audioUrl={audio.src} customCss={audioCss} />}
             </InfoWrapper>
-            <HtmlContentComponent html={text} customCss={ExplanationHtmlCss} />
+            {text && <HtmlContentComponent html={text} customCss={ExplanationHtmlCss} />}
           </Text>
           <CloseButton onClick={handleClickClose} />
         </TextBox>

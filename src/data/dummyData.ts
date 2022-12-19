@@ -278,11 +278,11 @@ export const dummyData: AppData = {
                     choices: ["我会打篮球。", "我打会篮球。"],
                     answerIndex: 0,
                     tip: "",
-                    explanation: {
-                      correctMessage: "정답입니다!",
-                      wrongMessage: "오답입니다!",
-                      text: "<p>해설 문장이 블라블라~</p>",
-                    },
+                    // explanation: {
+                    //   correctMessage: "정답입니다!",
+                    //   wrongMessage: "오답입니다!",
+                    //   text: "<p>해설 문장이 블라블라~</p>",
+                    // },
                   },
                 ],
               },

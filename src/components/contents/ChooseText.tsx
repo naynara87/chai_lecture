@@ -77,7 +77,7 @@ const ChooseText = ({ contentData, isVertical }: ChooseTextProps) => {
         ))}
       </QuizAnswerContainer>
       {tipContentData && <TipComponent html={tipContentData} />}
-      {showExplanation && explanation && (
+      {showExplanation && (
         <Explanation
           explanation={explanation}
           handleClickClose={handleClickCloseExplanation}
