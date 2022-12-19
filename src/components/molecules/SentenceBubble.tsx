@@ -4,17 +4,16 @@ import React, { useMemo, useState } from "react";
 import { footerHeightNormal } from "../../constants/layout";
 import { colorPalette } from "../../styles/colorPalette";
 import { SentenceWord } from "../../types/templateContents";
-import { changePXtoVW } from "../../utils/styles";
+import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import AudioButton from "../atoms/AudioButton";
 import ArrowLeft from "../atoms/svg/ArrowLeft";
 import ArrowRight from "../atoms/svg/ArrowRight";
-import IconSentenceCharacter from "../atoms/svg/IconSentenceCharacter";
-import IconTail from "../atoms/svg/IconTail";
 import XIcon from "../atoms/svg/XIcon";
 import HtmlContentComponent from "./HtmlContentComponent";
 
 interface BubbleContainerProps {
   containerCss?: SerializedStyles;
+  open: boolean;
 }
 
 const BubbleContainer = styled.div<BubbleContainerProps>`
@@ -24,10 +23,9 @@ const BubbleContainer = styled.div<BubbleContainerProps>`
   position: fixed;
   left: 50%;
   top: auto;
-  bottom: calc(${footerHeightNormal} + 15px);
+  bottom: calc(${footerHeightNormal} + ${(props) => (props.open ? "60px" : "40px")});
   display: flex;
   justify-content: flex-start;
-  /* width: ${changePXtoVW(360)}; */
   width: ${changePXtoVW(1600)};
   transform: translateX(-50%);
 `;
@@ -41,54 +39,40 @@ interface BubbleTextProps {
 }
 
 const BubbleText = styled.div<BubbleTextProps>`
-  width: ${(props) => (props.open ? "80%" : "100%")};
-  margin: 0 auto;
+  width: 100%;
   height: 100%;
   display: flex;
-  /* justify-content: ${(props) => props.open && "space-between"}; */
-  justify-content: center;
+  justify-content: ${(props) => (props.open ? "flex-start" : "center")};
   align-items: center;
   gap: ${changePXtoVW(20)};
-  font-size: ${changePXtoVW(30)};
-  font-weight: 500;
-  color: ${colorPalette.white};
+  font-size: ${changePXtoVW(24)};
+  font-weight: 700;
+  color: ${colorPalette.deepBlue};
+  cursor: ${(props) => !props.open && "pointer"};
 `;
 
 const SentenceBubble = styled.div<SentenceBubbleProps>`
-  min-width: ${(props) => (props.open ? changePXtoVW(1000) : changePXtoVW(130))};
-  width: auto;
-  height: ${changePXtoVW(130)};
-  border-radius: ${(props) => (props.open ? "92px" : "50%")};
-  background-color: ${(props) => (props.open ? colorPalette.white : colorPalette.sentenceBubble)};
-  border: 2px dashed ${colorPalette.sentenceBubble};
+  width: ${(props) => (props.open ? "100%" : changePXtoVW(200))};
+  height: ${(props) => (props.open ? changePXtoVH(130) : changePXtoVW(64))};
+  border-radius: ${(props) => (props.open ? "0px" : "48px")};
+  background-color: ${(props) =>
+    props.open ? colorPalette.sentenceBackground : colorPalette.backgroundWhite};
+  border: 2px solid
+    ${(props) => (props.open ? colorPalette.sentenceBackground : colorPalette.deepBlue)};
+  padding: 0 ${(props) => props.open && changePXtoVW(50)};
   position: absolute;
-  left: ${changePXtoVW(200)};
-  /* transform: ${(props) => props.open && `translateX(${changePXtoVW(550)})`}; */
+  right: ${changePXtoVW(0)};
   transition: all 0.3s ease;
-  /* margin-left: ${changePXtoVW(20)}; */
 `;
 
-interface BubbleMoreIconProps {
-  open: boolean;
-}
-const BubbleMoreIcon = styled.button<BubbleMoreIconProps>`
-  position: absolute;
-  top: 50%;
-  left: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  right: ${(props) => (props.open ? `${changePXtoVW(-10)}` : `${changePXtoVW(-30)}`)};
-  width: ${changePXtoVW(56)};
-  height: ${changePXtoVW(56)};
-  border-radius: 50%;
-  background-color: ${(props) => (props.open ? colorPalette.deepBlue : colorPalette.white)};
-  transform: translateY(-50%);
-  cursor: pointer;
+const Sentence = styled.div`
+  font-size: ${changePXtoVW(30)};
+  font-weight: 700;
+  color: ${colorPalette.sentenceBubble};
 `;
 
 const xIconCss = css`
-  width: ${changePXtoVW(23)};
+  width: ${changePXtoVW(30)};
   transform: translateX(${changePXtoVW(1)});
 `;
 
@@ -103,12 +87,29 @@ const arrowCss = css`
 
 const htmlCss = css`
   color: ${colorPalette.black};
+  font-size: ${changePXtoVW(30)};
+  font-weight: 400;
 `;
 
 const audioCss = css`
   width: ${changePXtoVW(48)};
   height: ${changePXtoVW(48)};
   margin-left: ${changePXtoVW(8)};
+`;
+
+const XIconWrapper = styled.div`
+  width: ${changePXtoVW(64)};
+  height: ${changePXtoVW(64)};
+  background-color: ${colorPalette.deepBlue};
+  box-shadow: 2px 6px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  justify-content: center;
+  border-radius: 50%;
+  position: absolute;
+  right: 2%;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
 `;
 
 interface SentenceBubbleComponentProps {
@@ -176,28 +177,26 @@ const SentenceBubbleComponent = ({
   }, [sentences, currentBubbleSentenceIndex, setCurrentBubbleSentenceIndex]);
 
   return (
-    <BubbleContainer containerCss={containerCss}>
-      <IconSentenceCharacter />
-      {!isSentenceMoreOpen && <IconTail color={colorPalette.sentenceBubble} />}
+    <BubbleContainer open={isSentenceMoreOpen} containerCss={containerCss}>
       <SentenceBubble open={isSentenceMoreOpen}>
-        <BubbleText open={isSentenceMoreOpen}>
-          {isSentenceMoreOpen ? bubbleSentence : "단어"}
-        </BubbleText>
-        <BubbleMoreIcon
+        <BubbleText
           open={isSentenceMoreOpen}
           onClick={() => {
-            setIsSentenceMoreOpen(!isSentenceMoreOpen);
+            setIsSentenceMoreOpen(true);
           }}
         >
-          {isSentenceMoreOpen ? (
-            <XIcon
-              css={xIconCss}
-              color={isSentenceMoreOpen ? colorPalette.white : colorPalette.black}
-            />
-          ) : (
-            <ArrowRight customCss={arrowCss} />
-          )}
-        </BubbleMoreIcon>
+          {isSentenceMoreOpen && <Sentence>단어</Sentence>}
+          {isSentenceMoreOpen ? bubbleSentence : "단어보기"}
+        </BubbleText>
+        {isSentenceMoreOpen && (
+          <XIconWrapper
+            onClick={() => {
+              setIsSentenceMoreOpen(false);
+            }}
+          >
+            <XIcon color={colorPalette.backgroundWhite} css={xIconCss} />
+          </XIconWrapper>
+        )}
       </SentenceBubble>
     </BubbleContainer>
   );
