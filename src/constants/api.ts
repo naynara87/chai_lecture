@@ -7,7 +7,7 @@ export const TOKEN_URL = "/lcms/get-token";
 
 export const LCMS_SUBJECT = "/lcms/subject";
 
-export const LMS_SAVE_DATA = "/";
+export const LMS_SAVE_DATA = `${process.env.REACT_APP_LMS_SAVE_DATA_URL}`;
 
 /**
  * NOTE 서버에서 사용하는 명칭과 클라이언트에서 사용하는 명칭이 다름
