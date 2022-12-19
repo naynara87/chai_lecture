@@ -7,7 +7,7 @@ const TP05LayoutStyle = styled.div`
 `;
 
 interface TP05LayoutProps {
-  children: [JSX.Element, JSX.Element];
+  children: JSX.Element | JSX.Element[];
 }
 const TP05Layout = ({ children }: TP05LayoutProps) => {
   return <TP05LayoutStyle>{children}</TP05LayoutStyle>;
