@@ -440,13 +440,15 @@ export const dummyData: AppData = {
           title: "문장",
           description: "잘 들어 보세요.",
           template: {
-            type: "TP08A",
+            type: "TP05D",
             contents: [
               {
-                type: "images",
+                type: "textBoxes",
                 data: [
                   {
-                    src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/4idBoYNNSffqeZGcT4SVVJ45fSsQZwse/Z9OB8U11bXMyKJNgS6aXX7MuLjFGmmZp/b048ddda487db85957d75c8950fe846043eb078617849e7a64e8c0c7c50cbd1a.png",
+                    main: "早上好!",
+                    sub: "Zǎoshang hǎo!",
+                    description: "",
                   },
                 ],
               },
@@ -454,13 +456,20 @@ export const dummyData: AppData = {
                 type: "html",
                 data: [
                   {
-                    text: "<h1>我会游泳。</h4>",
+                    text: "<h2>안녕하세요.</h4>",
                   },
                   {
-                    text: "<p class='c4'>Wǒ  huì  yóuyǒng.</>",
+                    text: "<p class='c4'>아침에 만났을 때 인사하는 표현입니다.</>",
                   },
+                ],
+              },
+              {
+                type: "audioRecord",
+                data: [
                   {
-                    text: "<p>나는  수영할 줄 압니다.</p>",
+                    audio: {
+                      src: "",
+                    },
                   },
                 ],
               },
@@ -468,9 +477,17 @@ export const dummyData: AppData = {
                 type: "sentenceWord",
                 data: [
                   {
-                    text: "游泳",
-                    pronunciation: "yóuyǒng",
-                    meaning: "수영하다",
+                    text: "好久",
+                    pronunciation: "nǐ",
+                    meaning: "너",
+                    audio: {
+                      src: "string",
+                    },
+                  },
+                  {
+                    text: "不见",
+                    pronunciation: "nǐ",
+                    meaning: "너",
                     audio: {
                       src: "string",
                     },

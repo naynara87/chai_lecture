@@ -5,6 +5,7 @@ const httpLms = axios.create({
   headers: {
     "Access-Control-Allow-Origin": "*",
   },
+  withCredentials: true,
 });
 
 httpLms.interceptors.request.use(
