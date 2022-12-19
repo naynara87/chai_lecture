@@ -2,6 +2,8 @@ import { ID } from "../types/appData";
 
 export const API_KEY = "15968aad-ff43-484f-b5b5-b741fda1f521";
 
+export const AUTH_KEY = "Basic Y2hpaG9uZzpjaGlob25nMTIjJA==";
+
 // server url
 export const TOKEN_URL = "/lcms/get-token";
 
