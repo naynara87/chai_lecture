@@ -23,13 +23,14 @@ const ExplanationContainer = styled.div`
   justify-content: flex-start;
   align-items: flex-end;
   width: 100%;
-  max-width: ${changePXtoVW(1340)};
+  max-width: ${changePXtoVW(1600)};
   min-height: ${changePXtoVH(160)};
   grid-template-columns: max-content 1fr;
+  background-color: ${colorPalette.grayf7};
 `;
 
 const CloseButton = styled.button`
-  position: absolute;
+  /* position: absolute;
   top: 0;
   right: 0;
   width: ${changePXtoVW(56)};
@@ -41,7 +42,8 @@ const CloseButton = styled.button`
   background-position: center;
   background-size: 40%;
   transform: translateX(-20%);
-  cursor: pointer;
+  cursor: pointer; */
+  display: none;
 `;
 
 const TextBox = styled.div`
@@ -51,24 +53,16 @@ const TextBox = styled.div`
   width: calc(100% - ${changePXtoVW(120)});
   height: ${changePXtoVW(160)};
   padding: ${changePXtoVH(10)} ${changePXtoVW(40)};
-  background-position: left 3px;
+  /* background-position: left 3px;
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  background-image: url("${process.env.REACT_APP_BASE_URL}/images/img/bg_answer_balloon.png");
-`;
-
-const ImageWrapper = styled.div`
-  width: ${changePXtoVW(120)};
+  background-image: url("${process.env.REACT_APP_BASE_URL}/images/img/bg_answer_balloon.png"); */
 `;
 
 const OXWrapper = styled.div`
-  width: ${changePXtoVW(96)};
-  min-width: ${changePXtoVW(96)};
-  height: 100%;
-  padding-top: ${changePXtoVH(4)};
-  margin-left: ${changePXtoVW(40)};
-  margin-right: ${changePXtoVW(32)};
-  display: flex;
+  width: ${changePXtoVW(48)};
+  min-width: ${changePXtoVW(48)};
+  margin-right: ${changePXtoVW(16)};
 `;
 
 const ExplanationTextCss = css`
@@ -95,7 +89,7 @@ const Text = styled.div<TextProps>`
   padding-bottom: ${changePXtoVH(8)};
   ${ExplanationTextCss}
 
-  height: ${props => !props.isText && "auto"};
+  height: ${(props) => !props.isText && "auto"};
 
   p {
     font-weight: 500;
@@ -106,12 +100,13 @@ const Text = styled.div<TextProps>`
 
 const ExplanationTitle = styled.div`
   font-size: ${changePXtoVW(30)};
-  color: ${colorPalette.deepBlue};
+  color: ${colorPalette.lightBlue};
 `;
 
 const ExplanationHtmlCss = css`
-  max-height: ${changePXtoVH(50)};
-  font-size: ${changePXtoVW(24)};
+  /* max-height: ${changePXtoVH(50)}; */
+  margin-top: ${changePXtoVW(24)};
+  font-size: ${changePXtoVW(30)};
   color: ${colorPalette.descriptionText};
   font-weight: 400;
 `;
@@ -128,12 +123,6 @@ const audioCss = css`
   margin-left: ${changePXtoVW(12)};
 `;
 
-const IconImg = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-`;
-
 type ExplanationData = {
   audio?: {
     src: string;
@@ -148,7 +137,11 @@ interface ExplanationProps {
   isCorrect: boolean;
   handleClickClose: () => void;
 }
-const Explanation = ({ isCorrect, explanation = {correctMessage: "정답입니다!", wrongMessage: "오답입니다!"}, handleClickClose }: ExplanationProps) => {
+const Explanation = ({
+  isCorrect,
+  explanation = { correctMessage: "정답입니다!", wrongMessage: "오답입니다!" },
+  handleClickClose,
+}: ExplanationProps) => {
   const { audio, correctMessage, wrongMessage, text } = explanation;
 
   const iconUrl = useMemo(() => {
@@ -168,13 +161,10 @@ const Explanation = ({ isCorrect, explanation = {correctMessage: "정답입니�
   return (
     <ExplanationWrapper>
       <ExplanationContainer>
-        <ImageWrapper>
-          <IconImg src={iconUrl} alt="" />
-        </ImageWrapper>
         <TextBox>
-          <OXWrapper>{isCorrect ? <OIcon /> : <XIcon />}</OXWrapper>
           <Text isText={!!text}>
             <InfoWrapper>
+              <OXWrapper>{isCorrect ? <OIcon /> : <XIcon />}</OXWrapper>
               <ExplanationTitle>{infoText}</ExplanationTitle>
               {audio && <AudioButton isAudio={true} audioUrl={audio.src} customCss={audioCss} />}
             </InfoWrapper>
