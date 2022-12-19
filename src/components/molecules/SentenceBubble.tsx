@@ -56,9 +56,9 @@ const SentenceBubble = styled.div<SentenceBubbleProps>`
   height: ${(props) => (props.open ? changePXtoVH(130) : changePXtoVW(64))};
   border-radius: ${(props) => (props.open ? "0px" : "48px")};
   background-color: ${(props) =>
-    props.open ? colorPalette.sentenceBackground : colorPalette.backgroundWhite};
+    props.open ? colorPalette.grayf7 : colorPalette.backgroundWhite};
   border: 2px solid
-    ${(props) => (props.open ? colorPalette.sentenceBackground : colorPalette.deepBlue)};
+    ${(props) => (props.open ? colorPalette.grayf7 : colorPalette.deepBlue)};
   padding: 0 ${(props) => props.open && changePXtoVW(50)};
   position: absolute;
   right: ${changePXtoVW(0)};
