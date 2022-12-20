@@ -107,6 +107,18 @@ const CornerPage = () => {
     console.log(`page: ${pageIndex + 1} / ${pages?.length}`);
   }, [pageIndex, pages]);
 
+  const isLessonTp = useMemo(() => {
+    if (appMetaData?.lessonTpCd) {
+      if (parseInt(appMetaData.lessonTpCd) === 10) {
+        return "N";
+      } else {
+        return "Y";
+      }
+    } else {
+      return "N";
+    }
+  }, [appMetaData?.lessonTpCd]);
+
   const saveData = useCallback(async () => {
     if (!currentPage) {
       return;
@@ -129,7 +141,7 @@ const CornerPage = () => {
           lessonId: parsingLessonId,
           pageId: parsingPageId,
           progressRate: currentProgress(currentPage.id),
-          envlCatgYn: 10 ? "N" : "Y", // FIXME: 임시로 10으로 설정 => 나중에 실제 데이터가 넘어오면 그때 적용 ex) appMetaData.envlCatgYn
+          envlCatgYn: isLessonTp,
           complYn: isLastPage ? "Y" : "N",
         });
       } catch (error) {
@@ -149,6 +161,7 @@ const CornerPage = () => {
     currentPage,
     currentProgress,
     addToast,
+    isLessonTp,
   ]);
 
   useDebounced(saveData, 200);
