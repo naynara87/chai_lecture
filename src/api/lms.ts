@@ -27,7 +27,7 @@ interface saveLmsDataParams {
   lessonId: number;
   pageId: number;
   progressRate: number;
-  envlCatgYn: number;
+  envlCatgYn: string;
   complYn: string;
 }
 
