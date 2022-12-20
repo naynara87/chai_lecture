@@ -33,7 +33,6 @@ const TitleWrapper = styled.div<TitleWrapperProps>`
   /* height: ${titleHeightNormal}; */
   left: ${(props) => !props.isTab && "50%"};
   transform: ${(props) => !props.isTab && "translateX(-50%)"};
-  background-color: ${(props) => !props.isTab && `${colorPalette.backgroundWhite}`};
   box-shadow: ${(props) => props.isScroll && `0 4px 20px -2px hsl(0deg 0% 81% / 50%)`};
   z-index: 1;
 `;

@@ -55,10 +55,6 @@ const globalStyle = css`
     /* scroll-behavior: smooth; */
   }
 
-  body {
-    background-color: ${colorPalette.backgroundWhite};
-  }
-
   /* body::-webkit-scrollbar {
     width: 1px;
     height: 1px;
