@@ -184,14 +184,14 @@ export type TP02O = {
 type TP02OContent = StudyWordsContent;
 
 export type TP02P = {
-  id:ID;
+  id: ID;
   title: string;
   description: string;
   template: {
     type: "TP02P";
     contents: TP02PContent[];
-  }
-}
+  };
+};
 
 type TP02PContent = HtmlContent | SideTabsContent;
 
@@ -378,6 +378,18 @@ export type TP05C = {
 };
 
 type TP05CContent = TextBoxesContent | AudioRecordContent;
+
+export type TP05D = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP05D";
+    contents: TP05DContent[];
+  };
+};
+
+type TP05DContent = TextBoxesContent | HtmlContent | AudioRecordContent | SentenceWordContent;
 
 export type TP05E = {
   id: ID;

@@ -6,8 +6,6 @@ import { colorPalette } from "../../styles/colorPalette";
 import { SentenceWord } from "../../types/templateContents";
 import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import AudioButton from "../atoms/AudioButton";
-import ArrowLeft from "../atoms/svg/ArrowLeft";
-import ArrowRight from "../atoms/svg/ArrowRight";
 import XIcon from "../atoms/svg/XIcon";
 import HtmlContentComponent from "./HtmlContentComponent";
 
@@ -23,7 +21,7 @@ const BubbleContainer = styled.div<BubbleContainerProps>`
   position: fixed;
   left: 50%;
   top: auto;
-  bottom: calc(${footerHeightNormal} + ${(props) => (props.open ? "60px" : "40px")});
+  bottom: calc(${footerHeightNormal} + ${(props) => (props.open ? "100px" : "40px")});
   display: flex;
   justify-content: flex-start;
   width: ${changePXtoVW(1600)};
@@ -53,7 +51,7 @@ const BubbleText = styled.div<BubbleTextProps>`
 
 const SentenceBubble = styled.div<SentenceBubbleProps>`
   width: ${(props) => (props.open ? "100%" : changePXtoVW(200))};
-  height: ${(props) => (props.open ? changePXtoVH(130) : changePXtoVW(64))};
+  height: ${(props) => (props.open ? changePXtoVH(216) : changePXtoVW(64))};
   border-radius: ${(props) => (props.open ? "0px" : "48px")};
   background-color: ${(props) =>
     props.open ? colorPalette.grayf7 : colorPalette.backgroundWhite};
@@ -112,6 +110,18 @@ const XIconWrapper = styled.div`
   cursor: pointer;
 `;
 
+const TextWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${changePXtoVH(20)};
+`;
+
+const SentenceWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  gap: ${changePXtoVW(20)};
+`;
+
 interface SentenceBubbleComponentProps {
   sentences: SentenceWord[];
   containerCss?: SerializedStyles;
@@ -127,54 +137,46 @@ const SentenceBubbleComponent = ({
 }: SentenceBubbleComponentProps) => {
   const [isSentenceMoreOpen, setIsSentenceMoreOpen] = useState(false);
   const bubbleSentence = useMemo(() => {
-    return (
-      <>
-        {setCurrentBubbleSentenceIndex && (
-          <ArrowLeft
-            disabled={!sentences[currentBubbleSentenceIndex - 1]}
-            activeColor={colorPalette.black}
-            customCss={arrowCss}
-            onClickIcon={() => {
-              if (sentences[currentBubbleSentenceIndex - 1]) {
-                setCurrentBubbleSentenceIndex((prev) => prev - 1);
-              }
-            }}
-          />
-        )}
-        <HtmlContentComponent
-          html={sentences[currentBubbleSentenceIndex].text}
-          customCss={htmlCss}
-        />
-        <HtmlContentComponent
-          html={sentences[currentBubbleSentenceIndex].pronunciation}
-          customCss={htmlCss}
-        />
-        <HtmlContentComponent
-          html={sentences[currentBubbleSentenceIndex].meaning}
-          customCss={htmlCss}
-        />
-        {sentences[currentBubbleSentenceIndex].audio && (
-          <AudioButton
-            isAudio={true}
-            audioUrl={sentences[currentBubbleSentenceIndex].audio?.src}
-            customCss={audioCss}
-          />
-        )}
-        {setCurrentBubbleSentenceIndex && (
-          <ArrowRight
-            disabled={!sentences[currentBubbleSentenceIndex + 1]}
-            activeColor={colorPalette.black}
-            customCss={arrowCss}
-            onClickIcon={() => {
-              if (sentences[currentBubbleSentenceIndex + 1]) {
-                setCurrentBubbleSentenceIndex((prev) => prev + 1);
-              }
-            }}
-          />
-        )}
-      </>
-    );
-  }, [sentences, currentBubbleSentenceIndex, setCurrentBubbleSentenceIndex]);
+    return sentences.map((sentence, index) => {
+      return (
+        <SentenceWrapper key={index}>
+          <HtmlContentComponent html={sentence.text} customCss={htmlCss} />
+          <HtmlContentComponent html={sentence.pronunciation} customCss={htmlCss} />
+          <HtmlContentComponent html={sentence.meaning} customCss={htmlCss} />
+          {sentence.audio && (
+            <AudioButton isAudio={true} audioUrl={sentence.audio?.src} customCss={audioCss} />
+          )}
+        </SentenceWrapper>
+      );
+    });
+
+    // {
+    //   setCurrentBubbleSentenceIndex && (
+    //     <ArrowLeft
+    //       disabled={!sentences[currentBubbleSentenceIndex - 1]}
+    //       activeColor={colorPalette.black}
+    //       customCss={arrowCss}
+    //       onClickIcon={() => {
+    //         if (sentences[currentBubbleSentenceIndex - 1]) {
+    //           setCurrentBubbleSentenceIndex((prev) => prev - 1);
+    //         }
+    //       }}
+    //     />
+    //   );
+    // }
+    //  {setCurrentBubbleSentenceIndex && (
+    //       <ArrowRight
+    //         disabled={!sentences[currentBubbleSentenceIndex + 1]}
+    //         activeColor={colorPalette.black}
+    //         customCss={arrowCss}
+    //         onClickIcon={() => {
+    //           if (sentences[currentBubbleSentenceIndex + 1]) {
+    //             setCurrentBubbleSentenceIndex((prev) => prev + 1);
+    //           }
+    //         }}
+    //       />
+    //     )}
+  }, [sentences]);
 
   return (
     <BubbleContainer open={isSentenceMoreOpen} containerCss={containerCss}>
@@ -186,7 +188,7 @@ const SentenceBubbleComponent = ({
           }}
         >
           {isSentenceMoreOpen && <Sentence>단어</Sentence>}
-          {isSentenceMoreOpen ? bubbleSentence : "단어보기"}
+          <TextWrapper>{isSentenceMoreOpen ? bubbleSentence : "단어보기"}</TextWrapper>
         </BubbleText>
         {isSentenceMoreOpen && (
           <XIconWrapper

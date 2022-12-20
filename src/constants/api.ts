@@ -2,12 +2,14 @@ import { ID } from "../types/appData";
 
 export const API_KEY = "15968aad-ff43-484f-b5b5-b741fda1f521";
 
+export const AUTH_KEY = "Basic Y2hpaG9uZzpjaGlob25nMTIjJA==";
+
 // server url
 export const TOKEN_URL = "/lcms/get-token";
 
 export const LCMS_SUBJECT = "/lcms/subject";
 
-export const LMS_SAVE_DATA = "/";
+export const LMS_SAVE_DATA = `${process.env.REACT_APP_LMS_SAVE_DATA_URL}`;
 
 /**
  * NOTE 서버에서 사용하는 명칭과 클라이언트에서 사용하는 명칭이 다름
