@@ -37,11 +37,11 @@ const useCornerPage = () => {
     {
       enabled: isAuthorized && !!cornerIdMemo,
       onSuccess: async (data) => {
-        if (process.env.NODE_ENV === "development") {
-          const getPageList = await getPages(cornerId ?? 0);
-          setPages(getPageList ?? []);
-          return;
-        }
+        // if (process.env.NODE_ENV === "development") {
+        //   const getPageList = await getPages(cornerId ?? 0);
+        //   setPages(getPageList ?? []);
+        //   return;
+        // }
         const _pages = data?.body?.data?.map((pageData) => pageDataConverter(pageData));
         setPages(_pages ?? []);
       },
