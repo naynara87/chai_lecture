@@ -141,7 +141,7 @@ const CornerPage = () => {
           lessonId: parsingLessonId,
           pageId: parsingPageId,
           progressRate: currentProgress(currentPage.id),
-          envlCatgYn: isLessonTp, // FIXME: 임시로 10으로 설정 => 나중에 실제 데이터가 넘어오면 그때 적용 ex) appMetaData.envlCatgYn
+          envlCatgYn: isLessonTp,
           complYn: isLastPage ? "Y" : "N",
         });
       } catch (error) {

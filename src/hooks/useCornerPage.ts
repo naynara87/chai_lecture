@@ -3,7 +3,6 @@ import { useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getPageListData } from "../api/lcms";
 import { QUERY_KEY } from "../constants/queryKey";
-import { getPages } from "../data/tempApi";
 import { Page } from "../types/appData";
 import { pageDataConverter } from "../utils/converter";
 import useAuth from "./useAuth";
