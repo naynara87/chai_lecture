@@ -158,16 +158,23 @@ export type DialogData = {
     src: string;
   };
   text: string;
-  pronunciation: string;
-  meaning: string;
+  pronunciation?: string;
+  meaning?: string;
   hasQuestion: boolean;
   question?: {
-    choices: string[];
-    answerIndex: number;
+    choices?: string[];
+    answerIndex?: number;
+    multiChoices?: MultiChoice[];
   };
   audio?: {
     src: string;
   };
+};
+
+export type MultiChoice = {
+  text: string;
+  pronunciation: string;
+  answerIndex: number;
 };
 
 export type NumberTableContent = {
@@ -238,7 +245,7 @@ export type BottomTabsContent = {
 export type SideTabsContent = {
   type: "sideTabs";
   data: ApproveTabsData[];
-}
+};
 
 export type ApproveTabsData = {
   tabNames: string;

@@ -2,13 +2,14 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import AudioButton from "../atoms/AudioButton";
-import { DialogData } from "../../types/templateContents";
+import { DialogData, MultiChoice } from "../../types/templateContents";
 import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import { colorPalette } from "../../styles/colorPalette";
 import OIcon from "../atoms/svg/OIcon";
 import XIcon from "../atoms/svg/XIcon";
 import QuestionBlank from "../atoms/QuestionBlank";
 import HtmlContentComponent from "../molecules/HtmlContentComponent";
+import DialogTextBoxes from "../molecules/DialogTextBoxes";
 
 interface ProfileProps {
   icon: string;
@@ -176,6 +177,8 @@ const blankCss = css`
   color: ${colorPalette.deepBlue};
 `;
 
+const MultiChoicesAnswerWrapper = styled.div``;
+
 interface DialogProps {
   dialogContent: DialogData;
   index: number;
@@ -230,17 +233,28 @@ const Dialog = ({
   } = dialogContent;
 
   const { src: audioUrl } = audio ?? {};
-  const [userAnswer, setUserAnswer] = useState<number>(dialogQuestions?.choices.length ?? 0);
+  const [userAnswer, setUserAnswer] = useState<number>(dialogQuestions?.choices?.length ?? 0);
+  const [userMultiChoicesAnswer, setUserMultiChoicesAnswer] = useState<MultiChoice[]>([]);
   const [correct, setCorrect] = useState<undefined | boolean>(undefined);
   const [choiceMaxLength, setChoiceMaxLength] = useState(0);
-  const [sortList, setSortList] = useState<string[]>([]);
+  const [sortChoiceList, setSortChoiceList] = useState<string[]>([]);
+  const [sortMultiChoiceList, setSortMultiChoiceList] = useState<MultiChoice[]>([]);
+
   useEffect(() => {
     if (!dialogQuestions?.choices) {
       return;
     }
     const choicesCopy = [...dialogQuestions?.choices];
-    setSortList(choicesCopy.sort(() => Math.random() - 0.5));
+    setSortChoiceList(choicesCopy.sort(() => Math.random() - 0.5));
   }, [dialogQuestions?.choices]);
+
+  useEffect(() => {
+    if (!dialogQuestions?.multiChoices) {
+      return;
+    }
+    const choicesCopy = [...dialogQuestions?.multiChoices];
+    setSortMultiChoiceList(choicesCopy.sort(() => Math.random() - 0.5));
+  }, [dialogQuestions?.multiChoices]);
 
   const questions = text
     .replace(/<[^>]*>?/g, "")
@@ -256,16 +270,30 @@ const Dialog = ({
       }
       handleClickAnswer(index);
       setUserAnswer(userChoiceIndex);
-      setCorrect(
-        sortList[userChoiceIndex] === dialogQuestions?.choices[dialogQuestions.answerIndex],
-      );
+      if (dialogQuestions.answerIndex !== undefined) {
+        setCorrect(
+          sortChoiceList[userChoiceIndex] === dialogQuestions?.choices[dialogQuestions.answerIndex],
+        );
+      }
     },
-    [isHide, handleClickAnswer, dialogQuestions, index, sortList, isShowCorrect, isBlockedCheck],
+    [
+      isHide,
+      handleClickAnswer,
+      dialogQuestions,
+      index,
+      sortChoiceList,
+      isShowCorrect,
+      isBlockedCheck,
+    ],
   );
+
+  const selectedMultiChoiceAnswer = useCallback((choice: MultiChoice) => {
+    setUserMultiChoicesAnswer((prev) => [...prev, choice]);
+  }, []);
 
   const answerClassName = useCallback(
     (choice: string): string => {
-      if (sortList[userAnswer] === choice) {
+      if (sortChoiceList[userAnswer] === choice) {
         if (correct) {
           return "correct";
         } else {
@@ -275,16 +303,16 @@ const Dialog = ({
         return "";
       }
     },
-    [userAnswer, correct, sortList],
+    [userAnswer, correct, sortChoiceList],
   );
 
-  const renderQuiz = useMemo(() => {
+  const renderChoicesQuiz = useMemo(() => {
     if (!dialogQuestions) {
       return;
     }
     return (
       <AnswerWrapper>
-        {sortList.map((choice, index) => {
+        {sortChoiceList.map((choice, index) => {
           return (
             <AnswerChoice
               correctColor={correctColor}
@@ -312,8 +340,27 @@ const Dialog = ({
     inCorrectColor,
     choiceDefaultColor,
     isShowCorrect,
-    sortList,
+    sortChoiceList,
   ]);
+
+  const handleClickTextBox = useCallback(
+    (choice: MultiChoice) => {
+      selectedMultiChoiceAnswer(choice);
+    },
+    [selectedMultiChoiceAnswer],
+  );
+
+  const renderMultiChoicesQuiz = useMemo(() => {
+    return (
+      <MultiChoicesAnswerWrapper>
+        <DialogTextBoxes
+          datas={sortMultiChoiceList}
+          onClickTextBox={handleClickTextBox}
+          userSelectedChoice={userMultiChoicesAnswer}
+        />
+      </MultiChoicesAnswerWrapper>
+    );
+  }, [sortMultiChoiceList, handleClickTextBox, userMultiChoicesAnswer]);
 
   const showCorrectIcon = useMemo(() => {
     if (!isShowCorrect) {
@@ -333,7 +380,7 @@ const Dialog = ({
     if (!questions) {
       return <></>;
     }
-    if (dialogQuestions) {
+    if (dialogQuestions?.choices) {
       dialogQuestions.choices.forEach((choice) => {
         if (choice.length > choiceMaxLength) {
           setChoiceMaxLength(choice.length);
@@ -350,7 +397,7 @@ const Dialog = ({
           <QuestionBlank
             key={questionIndex}
             width={blankWidth}
-            text={sortList[userAnswer]}
+            text={sortChoiceList[userAnswer]}
             customCss={blankCss}
           />
         );
@@ -358,7 +405,7 @@ const Dialog = ({
         return <HtmlContentComponent key={questionIndex} html={question} customCss={wordCss} />;
       }
     });
-  }, [userAnswer, dialogQuestions, sortList, choiceMaxLength, questions]);
+  }, [userAnswer, dialogQuestions, sortChoiceList, choiceMaxLength, questions]);
 
   return (
     <DialogWrapper className={isHide ? "hide" : "dialog"}>
@@ -372,8 +419,12 @@ const Dialog = ({
         )}
         <TalkBubble bubbleColor={bubbleColor}>
           <QuestionWrapper>{questionContents}</QuestionWrapper>
-          {showPinyin && <HtmlContentComponent html={pronunciation} customCss={pronunciationCss} />}
-          {showTranslate && <HtmlContentComponent html={meaning} customCss={meaningCss} />}
+          {showPinyin && pronunciation && (
+            <HtmlContentComponent html={pronunciation} customCss={pronunciationCss} />
+          )}
+          {showTranslate && meaning && (
+            <HtmlContentComponent html={meaning} customCss={meaningCss} />
+          )}
         </TalkBubble>
         {showAudioButton && (
           <AudioWrapper>
@@ -390,7 +441,10 @@ const Dialog = ({
           </AudioWrapper>
         )}
       </TalkBubbleGrp>
-      {hasQuestion && renderQuiz}
+      <>
+        {hasQuestion && renderChoicesQuiz}
+        {hasQuestion && renderMultiChoicesQuiz}
+      </>
     </DialogWrapper>
   );
 };
