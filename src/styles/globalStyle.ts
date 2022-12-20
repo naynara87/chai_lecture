@@ -194,6 +194,15 @@ const globalStyle = css`
   :root {
     --toastify-toast-min-height: 0 !important;
   }
+
+  .btn-wrap {
+    margin-top: ${changePXtoVW(64)};
+    text-align: center;
+
+    > button:not(:first-child) {
+      margin-left: ${changePXtoVW(24)};
+    }
+  }
 `;
 
 export default globalStyle;
