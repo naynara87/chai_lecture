@@ -14,7 +14,6 @@ const MetaTestWordChoice = () => {
     <CommonPageLayout>
       <Header currentCorner={currentCorner} appMetaData={appMetaData} showCornerLabel />
       <CommonMainContainer>
-        {/* TemplateXXComponent */}
 
         <TemplateCommonLayout>
           <TitleContent

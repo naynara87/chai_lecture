@@ -7,6 +7,7 @@ import MetaTestWordTest from "../components/pages/MetaTestWordTest";
 import MetaTestWordTestGrade from "../components/pages/MetaTestWordTestGrade";
 import MetaTestWordTestReport from "../components/pages/MetaTestWordTestReport";
 import MetaTestWordLearning from "../components/pages/MetaTestWordLearning";
+import MetaTestSentenceChoice from "../components/pages/MetaTestSentenceChoice";
 import MetaTestSentenceReport from "../components/pages/MetaTestSentenceReport";
 import { CORNER_LIST_URL } from "../constants/url";
 
@@ -30,8 +31,10 @@ const AppRouter = () => {
         <Route path={"test-word-report"} element={<MetaTestWordTestReport />} />
         {/* 단어 학습-학습단어01, 02, 단어테스트 최종 결과 */}
         <Route path={"test-word-learning"} element={<MetaTestWordLearning />} />
+        {/* TP05B */}
+        <Route path={"test-sentence-choice"} element={<MetaTestSentenceChoice />} />
         {/* TP03H */}
-        <Route path={"test-sentence"} element={<MetaTestSentenceReport />} />
+        <Route path={"test-sentence-report"} element={<MetaTestSentenceReport />} />
       </Routes>
     </HashRouter>
   );

@@ -94,7 +94,6 @@ const MetaTestSentenceReport = () => {
     <CommonPageLayout>
       <Header currentCorner={currentCorner} appMetaData={appMetaData} showCornerLabel />
       <CommonMainContainer>
-        {/* TemplateXXComponent */}
 
         <TemplateCommonLayout>
           <TitleContent title="아는 문장 고르기" description="선택한 문장을 확인해 봅시다." />
