@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { useEffect, useRef, useState } from "react";
 import useAudio from "../../hooks/useAudio";
 import { ChooseMediaTextAudio, ChooseMediaTextData } from "../../types/templateContents";
+import { sortChoices } from "../../utils/sortChoices";
 import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import AudioButton from "../atoms/AudioButton";
 import QuizAnswer from "../atoms/QuizAnswer";
@@ -35,8 +36,7 @@ const ChooseMediaText = ({ datas }: ChooseMediaTextProps) => {
   };
 
   useEffect(() => {
-    const choicesCopy = [...choices];
-    setSortList(choicesCopy.sort(() => Math.random() - 0.5));
+    sortChoices(choices, setSortList);
   }, [choices]);
 
   const handleClickAnswer = (index: number) => {

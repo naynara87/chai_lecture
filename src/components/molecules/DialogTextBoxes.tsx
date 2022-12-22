@@ -9,7 +9,6 @@ import { colorPalette } from "../../styles/colorPalette";
 
 interface TextCardGrpProps {
   customCss?: SerializedStyles;
-  isChoice?: boolean;
 }
 interface TextBoxesWrapperProps {
   customCss?: SerializedStyles;
@@ -37,8 +36,6 @@ const TextCardGrp = styled.div<TextCardGrpProps>`
   align-items: center;
   cursor: pointer;
 
-  background-color: ${(props) => props.isChoice && colorPalette};
-
   > div:first-child {
     min-width: ${changePXtoVW(288)};
     width: auto;
@@ -64,39 +61,60 @@ const subTextCss = css`
   color: ${colorPalette.textBoxSub};
 `;
 
+const selectedBoxCss = css`
+  background-color: ${colorPalette.dialogSelectedTextBox};
+`;
+
 interface TextBoxesProps {
-  datas: MultiChoice[];
-  onClickTextBox: (data: MultiChoice) => void;
-  userSelectedChoice: MultiChoice[];
+  multiChoices: MultiChoice[];
+  onClickTextBox: (choice: MultiChoice, index: number) => void;
+  blankLength: number;
+  userSelectedIndexes: (number | undefined)[];
 }
 
-const DialogTextBoxes = ({ datas, userSelectedChoice, onClickTextBox }: TextBoxesProps) => {
+const DialogTextBoxes = ({
+  multiChoices,
+  onClickTextBox,
+  blankLength,
+  userSelectedIndexes,
+}: TextBoxesProps) => {
   const handleClickTextBox = useCallback(
     (index: number) => {
-      onClickTextBox(datas[index]);
+      if (userSelectedIndexes.length >= blankLength) {
+        return;
+      }
+
+      onClickTextBox(multiChoices[index], index);
     },
-    [onClickTextBox, datas],
+    [multiChoices, onClickTextBox, blankLength, userSelectedIndexes],
   );
 
-  const renderTextBoxes = useMemo(() => {
-    return datas.map((textBox, index) => {
+  const textBoxes = useMemo(() => {
+    return multiChoices.map((textBox, dataIndex) => {
+      const isSelectBox = userSelectedIndexes.findIndex((userSelect, index) => {
+        return userSelect === dataIndex;
+      });
+
       return (
         <TextCardGrp
-          key={index}
+          key={dataIndex}
           onClick={() => {
-            handleClickTextBox(index);
+            handleClickTextBox(dataIndex);
           }}
         >
-          <TextBox text={textBox.text} />
+          <TextBox
+            text={textBox.text}
+            customBoxCss={isSelectBox !== -1 ? selectedBoxCss : undefined}
+          />
           <SubText>
             <HtmlContentComponent html={textBox.pronunciation ?? ""} customCss={subTextCss} />
           </SubText>
         </TextCardGrp>
       );
     });
-  }, [datas, handleClickTextBox]);
+  }, [multiChoices, handleClickTextBox, userSelectedIndexes]);
 
-  return <TextBoxesWrapper boxLength={datas.length}>{renderTextBoxes}</TextBoxesWrapper>;
+  return <TextBoxesWrapper boxLength={multiChoices.length}>{textBoxes}</TextBoxesWrapper>;
 };
 
 export default DialogTextBoxes;

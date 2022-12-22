@@ -6,6 +6,7 @@ import AudioButton from "../atoms/AudioButton";
 import { css } from "@emotion/react";
 import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import { colorPalette } from "../../styles/colorPalette";
+import { sortChoices } from "../../utils/sortChoices";
 
 const QuestionList = styled.div`
   display: flex;
@@ -95,8 +96,7 @@ const ChooseTextByAudio = ({
   const [sortList, setSortList] = useState<string[]>([]);
 
   useEffect(() => {
-    const choicesCopy = [...choices];
-    setSortList(choicesCopy.sort(() => Math.random() - 0.5));
+    sortChoices(choices, setSortList);
   }, [choices]);
 
   const renderCheckIcon = useMemo(() => {

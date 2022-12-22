@@ -101,6 +101,8 @@ export const dummyData: AppData = {
                           answerIndex: 2,
                         },
                       ],
+                      choices: ["点", "几"],
+                      answerIndex: 0,
                     },
                   },
                 ],
@@ -258,34 +260,36 @@ export const dummyData: AppData = {
         },
         {
           id: 4,
-          title: "워밍업 퀴즈",
-          description: "다음 문제를 풀어 보세요.",
+          title: "문장",
+          description: "단어를 알맞게 배열하여 문장을 완성하세요.",
           template: {
-            type: "TP11E",
+            type: "TP24A",
             contents: [
               {
-                type: "iconText",
+                type: "images",
                 data: [
                   {
-                    icon: {
-                      src: "",
-                    },
-                    text: "会의 위치가 올바른 문장은?",
+                    src: `${process.env.REACT_APP_BASE_URL}/images/icon/tp02c_image.png`,
                   },
                 ],
               },
               {
-                type: "chooseText",
+                type: "sortWords",
                 data: [
                   {
-                    choices: ["我会打篮球。", "我打会篮球。"],
-                    answerIndex: 0,
-                    tip: "",
-                    // explanation: {
-                    //   correctMessage: "정답입니다!",
-                    //   wrongMessage: "오답입니다!",
-                    //   text: "<p>해설 문장이 블라블라~</p>",
-                    // },
+                    text: "*我*会*游泳*가나다*라*",
+                    fakeChoices: ["가", "나", "다"],
+                    audio: {
+                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/ygrYGfAu6peCO9rbA0zFUfdMf2avMJHP/DMbclRDLjDvnAyvpHW1l17IKxYklYprs/2351b48fe2bd40590dd2ce008f26cbfcd3057d61aa60696d8bb990a4a138b1c1.mp3",
+                    },
+                    explanation: {
+                      audio: {
+                        src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/ygrYGfAu6peCO9rbA0zFUfdMf2avMJHP/DMbclRDLjDvnAyvpHW1l17IKxYklYprs/2351b48fe2bd40590dd2ce008f26cbfcd3057d61aa60696d8bb990a4a138b1c1.mp3",
+                      },
+                      correctMessage: "我会游泳",
+                      wrongMessage: "오답입니다!",
+                      text: "<p>Wǒ  huì  yóuyǒng.</p><p>나는 수영할 줄 압니다.</p>",
+                    },
                   },
                 ],
               },

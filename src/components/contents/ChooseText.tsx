@@ -2,6 +2,7 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import React, { useEffect, useMemo, useState } from "react";
 import { ChooseTextContent } from "../../types/templateContents";
+import { sortChoices } from "../../utils/sortChoices";
 import { changePXtoVH } from "../../utils/styles";
 import QuizAnswer from "../atoms/QuizAnswer";
 import Explanation from "../molecules/Explanation";
@@ -39,8 +40,7 @@ const ChooseText = ({ contentData, isVertical }: ChooseTextProps) => {
   const [sortList, setSortList] = useState<string[]>([]);
 
   useEffect(() => {
-    const choicesCopy = [...choices];
-    setSortList(choicesCopy.sort(() => Math.random() - 0.5));
+    sortChoices(choices, setSortList);
   }, [choices]);
 
   const handleClickAnswer = (index: number) => {
