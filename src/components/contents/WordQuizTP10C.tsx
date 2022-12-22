@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { colorPalette } from "../../styles/colorPalette";
 import { WordQuizData } from "../../types/templateContents";
+import { sortChoices } from "../../utils/sortChoices";
 import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import QuestionBlank from "../atoms/QuestionBlank";
 import WordQuizAnswer from "../atoms/WordQuizAnswer";
@@ -74,8 +75,7 @@ const WordQuizTP10C = ({ datas }: WordQuizProps) => {
     });
 
   useEffect(() => {
-    const choicesCopy = [...choices];
-    setSortList(choicesCopy.sort(() => Math.random() - 0.5));
+    sortChoices(choices, setSortList);
     choices.forEach((choice) => {
       if (choice.length > choiceMaxLength) {
         setChoiceMaxLength(choice.length);

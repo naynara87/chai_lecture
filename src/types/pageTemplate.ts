@@ -499,6 +499,18 @@ export type TP09A = {
 
 type TP09AContent = HtmlContent | BottomTabsContent;
 
+export type TP09B = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP09B";
+    contents: TP09BContent[];
+  };
+};
+
+type TP09BContent = IconTextContent | DialogContent;
+
 export type TP10A = {
   id: ID;
   title: string;

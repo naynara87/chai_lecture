@@ -36,8 +36,19 @@ export const dummyData: AppData = {
           title: "회화 알아보기",
           description: "회화를 들어보세요.",
           template: {
-            type: "TP02G",
+            type: "TP09B",
             contents: [
+              {
+                type: "iconText",
+                data: [
+                  {
+                    icon: {
+                      src: "",
+                    },
+                    text: "문장에 맞게 글자와 발음을 순서대로 선택해 주세요.",
+                  },
+                ],
+              },
               {
                 type: "dialog",
                 data: [
@@ -46,93 +57,52 @@ export const dummyData: AppData = {
                     icon: {
                       src: `${process.env.PUBLIC_URL}/images/cornerIcon/conversationIcon.png`,
                     },
-                    text: "<p>点点十分。</p>",
-                    pronunciation: "<p>Méi xiǎngdào zài lùshang yùjiàn nǐ.</p>",
-                    meaning: "<p>2시 10분.</p>",
+                    text: "<p>我不会，你教教吧。</p>",
+                    pronunciation: "<p>Wô bú huì, nî jiãojiao wô ba.</p>",
+                    meaning: "<p>나는 할 줄 몰라. 너가 좀 가르쳐 주라.</p>",
                     hasQuestion: false,
                     audio: {
                       src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/eZTSEsc5jJxrt5eiV75hen8aoJuvNZRt/LcR3pI1dfJ2SJhyLvWsA2rPCKRwuPfY5/25d064dd6004a352e6ddcaaaae8a876008d16c6d11df1bda0a66e9e08c5aaaaf.mp3",
                     },
                   },
                   {
-                    id: "a",
-                    icon: {
-                      src: `${process.env.PUBLIC_URL}/images/cornerIcon/conversationIcon.png`,
-                    },
-                    text: "<p>你几点 *blank*</p>",
-                    pronunciation: "<p>Méi xiǎngdào zài lùshang yùjiàn nǐ.</p>",
-                    meaning: "<p>너 몇 시에 집에 돌아가니?</p>",
-                    hasQuestion: true,
-                    question: {
-                      choices: ["回家", "现在"],
-                      answerIndex: 0,
-                    },
-                    audio: {
-                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/DbaWYblk9dE2PKag3t9EpH3b56TcXkKU/1dYjyjjFpWkS4230TARI5kVkvSzMRpQD/68650ca72a8f5acf89c877300d15a97d7b57772c10707050f05f490576043a92.mp3",
-                    },
-                  },
-                  {
                     id: "b",
                     icon: {
                       src: `${process.env.PUBLIC_URL}/images/cornerIcon/conversationIcon.png`,
                     },
-                    text: "<p>*blank* 四点回家。</p>",
-                    pronunciation: "<p>Méi xiǎngdào zài lùshang yùjiàn nǐ.</p>",
-                    meaning: "<p>오후 4시에 돌아가.</p>",
+                    text: "<p>*blank**blank**blank*</p>",
+                    meaning: "<p>문제 없지</p>",
                     hasQuestion: true,
                     question: {
-                      choices: ["가나다라", "十午"],
+                      multiChoices: [
+                        {
+                          text: "没",
+                          pronunciation: "wo",
+                          answerIndex: 0,
+                        },
+                        {
+                          text: "问题",
+                          pronunciation: "ni",
+                          answerIndex: -1,
+                        },
+                        {
+                          text: "没",
+                          pronunciation: "mei",
+                          answerIndex: 1,
+                        },
+                        {
+                          text: "问题",
+                          pronunciation: "wenti",
+                          answerIndex: -1,
+                        },
+                        {
+                          text: "不",
+                          pronunciation: "bu",
+                          answerIndex: 2,
+                        },
+                      ],
+                      choices: ["点", "几"],
                       answerIndex: 0,
-                    },
-                    audio: {
-                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/eZTSEsc5jJxrt5eiV75hen8aoJuvNZRt/LcR3pI1dfJ2SJhyLvWsA2rPCKRwuPfY5/25d064dd6004a352e6ddcaaaae8a876008d16c6d11df1bda0a66e9e08c5aaaaf.mp3",
-                    },
-                  },
-                  {
-                    id: "b",
-                    icon: {
-                      src: `${process.env.PUBLIC_URL}/images/cornerIcon/conversationIcon.png`,
-                    },
-                    text: "<p>*blank* 四点回家。</p>",
-                    pronunciation: "<p>Méi xiǎngdào zài lùshang yùjiàn nǐ.</p>",
-                    meaning: "<p>오후 4시에 돌아가.</p>",
-                    hasQuestion: true,
-                    question: {
-                      choices: ["下午", "十午"],
-                      answerIndex: 0,
-                    },
-                    audio: {
-                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/DbaWYblk9dE2PKag3t9EpH3b56TcXkKU/1dYjyjjFpWkS4230TARI5kVkvSzMRpQD/68650ca72a8f5acf89c877300d15a97d7b57772c10707050f05f490576043a92.mp3",
-                    },
-                  },
-                  {
-                    id: "a",
-                    icon: {
-                      src: `${process.env.PUBLIC_URL}/images/cornerIcon/conversationIcon.png`,
-                    },
-                    text: "<p>四点回家。</p>",
-                    pronunciation: "<p>Méi xiǎngdào zài lùshang yùjiàn nǐ.</p>",
-                    meaning: "<p>오후 4시에 돌아가.</p>",
-                    hasQuestion: false,
-                    audio: {
-                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/DbaWYblk9dE2PKag3t9EpH3b56TcXkKU/1dYjyjjFpWkS4230TARI5kVkvSzMRpQD/68650ca72a8f5acf89c877300d15a97d7b57772c10707050f05f490576043a92.mp3",
-                    },
-                  },
-                  {
-                    id: "b",
-                    icon: {
-                      src: `${process.env.PUBLIC_URL}/images/cornerIcon/conversationIcon.png`,
-                    },
-                    text: "<p>*blank* 四点回家。</p>",
-                    pronunciation: "<p>Méi xiǎngdào zài lùshang yùjiàn nǐ.</p>",
-                    meaning: "<p>오후 4시에 돌아가.</p>",
-                    hasQuestion: true,
-                    question: {
-                      choices: ["下午", "十午"],
-                      answerIndex: 0,
-                    },
-                    audio: {
-                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/eZTSEsc5jJxrt5eiV75hen8aoJuvNZRt/LcR3pI1dfJ2SJhyLvWsA2rPCKRwuPfY5/25d064dd6004a352e6ddcaaaae8a876008d16c6d11df1bda0a66e9e08c5aaaaf.mp3",
                     },
                   },
                 ],
@@ -142,34 +112,69 @@ export const dummyData: AppData = {
         },
         {
           id: 2,
-          title: "단어 익히기",
-          description: "쓰임을 알아봅시다.",
+          title: "지난 레슨 확인하기",
+          description: "빈칸에 들어갈 알맞은 단러를 고르세요.",
           template: {
-            type: "TP03I",
+            type: "TP01B",
             contents: [
               {
-                type: "html",
+                type: "dialog",
                 data: [
                   {
-                    text: "‘坐 zuò’는 ‘앉다’라는 뜻으로, 교통수단과 함께 쓰면 ‘타다’라는 뜻을 나타냅니다. ‘坐 zuò’는 좌석에 앉아 가는 교통수단에 사용합니다.",
+                    id: "a",
+                    icon: {
+                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/ohbQHamQKzjMq4qPTH8YIlXuMrdvkSC3/rG47JwlUo4TVBxqGIiG7zwr5MSSvFNQY/ef3cbc2a8a6484db59b39f50a84b9238e1305dd47da4ae9474137f0e5629cd4a.png",
+                    },
+                    text: "<p>现在*blank*点?</p>",
+                    pronunciation: "<p>Méi xiǎngdào zài lùshang yùjiàn nǐ.</p>",
+                    meaning: "<p>지금 몇 시야?</p>",
+                    hasQuestion: true,
+                    question: {
+                      choices: ["几", "回"],
+                      answerIndex: 0,
+                    },
                   },
-                ],
-              },
-              {
-                type: "textBoxes",
-                data: [
                   {
-                    main: "我坐地铁去",
-                    sub: "Wǒ zuò dìtiě qù.",
-                    description: "나는 지하철을 타고 가요.",
+                    id: "b",
+                    icon: {
+                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/FQmzZSlquy1VC9Y99Pu6kYNXfWEKqQMX/UTwWm5CwvqF1uGsvW3y57Q2ilKp5aGjw/60f7e6b7d23fc9dffdd1e85314d9fd96dcbb5a747bbcad7cf33f36a7ba21a25f.png",
+                    },
+                    text: "<p>点*blank*十分。</p>",
+                    pronunciation: "<p>Méi xiǎngdào zài lùshang yùjiàn nǐ.</p>",
+                    meaning: "<p>2시 10분.</p>",
+                    hasQuestion: true,
+                    question: {
+                      choices: ["点", "几"],
+                      answerIndex: 0,
+                    },
                   },
-                ],
-              },
-              {
-                type: "audio",
-                data: [
                   {
-                    src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/Caz3M4TmaEdt5s0sHWFvLwp4YWhXYMwG/Kg6oSHwgWChv6GbegBd1DMZm7NYRzzya/088252d8f1d5b51f7635bdb4a6374d8396b603f68d045fdf48e18ea61938c078.mp3",
+                    id: "a",
+                    icon: {
+                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/ohbQHamQKzjMq4qPTH8YIlXuMrdvkSC3/rG47JwlUo4TVBxqGIiG7zwr5MSSvFNQY/ef3cbc2a8a6484db59b39f50a84b9238e1305dd47da4ae9474137f0e5629cd4a.png",
+                    },
+                    text: "<p>你几点*blank*</p>",
+                    pronunciation: "<p>Méi xiǎngdào zài lùshang yùjiàn nǐ.</p>",
+                    meaning: "<p>너 몇 시에 집에 돌아가니?</p>",
+                    hasQuestion: true,
+                    question: {
+                      choices: ["回家", "现在"],
+                      answerIndex: 0,
+                    },
+                  },
+                  {
+                    id: "b",
+                    icon: {
+                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/FQmzZSlquy1VC9Y99Pu6kYNXfWEKqQMX/UTwWm5CwvqF1uGsvW3y57Q2ilKp5aGjw/60f7e6b7d23fc9dffdd1e85314d9fd96dcbb5a747bbcad7cf33f36a7ba21a25f.png",
+                    },
+                    text: "<p>*blank* 四点回家。</p>",
+                    pronunciation: "<p>Méi xiǎngdào zài lùshang yùjiàn nǐ.</p>",
+                    meaning: "<p>오후 4시에 돌아가.</p>",
+                    hasQuestion: true,
+                    question: {
+                      choices: ["下午", "十午"],
+                      answerIndex: 0,
+                    },
                   },
                 ],
               },
@@ -255,34 +260,36 @@ export const dummyData: AppData = {
         },
         {
           id: 4,
-          title: "워밍업 퀴즈",
-          description: "다음 문제를 풀어 보세요.",
+          title: "문장",
+          description: "단어를 알맞게 배열하여 문장을 완성하세요.",
           template: {
-            type: "TP11E",
+            type: "TP24A",
             contents: [
               {
-                type: "iconText",
+                type: "images",
                 data: [
                   {
-                    icon: {
-                      src: "",
-                    },
-                    text: "会의 위치가 올바른 문장은?",
+                    src: `${process.env.REACT_APP_BASE_URL}/images/icon/tp02c_image.png`,
                   },
                 ],
               },
               {
-                type: "chooseText",
+                type: "sortWords",
                 data: [
                   {
-                    choices: ["我会打篮球。", "我打会篮球。"],
-                    answerIndex: 0,
-                    tip: "",
-                    // explanation: {
-                    //   correctMessage: "정답입니다!",
-                    //   wrongMessage: "오답입니다!",
-                    //   text: "<p>해설 문장이 블라블라~</p>",
-                    // },
+                    text: "*我*会*游泳*가나다*라*",
+                    fakeChoices: ["가", "나", "다"],
+                    audio: {
+                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/ygrYGfAu6peCO9rbA0zFUfdMf2avMJHP/DMbclRDLjDvnAyvpHW1l17IKxYklYprs/2351b48fe2bd40590dd2ce008f26cbfcd3057d61aa60696d8bb990a4a138b1c1.mp3",
+                    },
+                    explanation: {
+                      audio: {
+                        src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/ygrYGfAu6peCO9rbA0zFUfdMf2avMJHP/DMbclRDLjDvnAyvpHW1l17IKxYklYprs/2351b48fe2bd40590dd2ce008f26cbfcd3057d61aa60696d8bb990a4a138b1c1.mp3",
+                      },
+                      correctMessage: "我会游泳",
+                      wrongMessage: "오답입니다!",
+                      text: "<p>Wǒ  huì  yóuyǒng.</p><p>나는 수영할 줄 압니다.</p>",
+                    },
                   },
                 ],
               },

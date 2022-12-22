@@ -9,6 +9,7 @@ import WordQuizAnswer from "../atoms/WordQuizAnswer";
 import Explanation from "../molecules/Explanation";
 import AudioButton from "../atoms/AudioButton";
 import HtmlContentComponent from "../molecules/HtmlContentComponent";
+import { sortChoices } from "../../utils/sortChoices";
 
 const WordQuizWrapper = styled.div`
   display: grid;
@@ -77,8 +78,7 @@ const WordQuizTP11B = ({ datas }: WordQuizProps) => {
     });
 
   useEffect(() => {
-    const choicesCopy = [...choices];
-    setSortList(choicesCopy.sort(() => Math.random() - 0.5));
+    sortChoices(choices, setSortList);
   }, [answerIndex, choices]);
 
   const handleClickCloseExplanation = () => {

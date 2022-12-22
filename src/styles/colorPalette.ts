@@ -48,6 +48,7 @@ export const colorPalette = Object.freeze({
   blankBorderColor: COLORS.gray600,
   pronunciationText: COLORS.gray600,
   modalCheckIcon: COLORS.yellow700,
+  dialogSelectedTextBox: COLORS.yellow700,
   questionTitle: COLORS.gray900,
   loadingModalDescription: COLORS.gray900,
   wrongAnswer: COLORS.red500,
