@@ -16,21 +16,21 @@ const QuestionBlankStyles = styled.span<QuestionBlankStylesProps>`
   position: relative;
   display: inline-block;
   min-width: ${changePXtoVW(96)};
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
   margin-right: ${changePXtoVW(8)};
   margin-left: ${changePXtoVW(8)};
   padding: 0 ${changePXtoVW(10)};
   border: 3px dashed ${(props) => props.borderColor};
   border-radius: ${changePXtoVW(12)};
-  /* background-color: white; */
   background-color: ${(props) => props.backgroundColor};
   font-size: ${changePXtoVW(30)};
   line-height: 1.5;
   color: ${colorPalette.white};
   text-align: center;
-  user-select: none;
   transform: translateY(-7%);
-  width: ${(props) => props.width};
-  height: ${(props) => props.height};
+  user-select: none;
+  
   ${(props) => props.customCss};
 `;
 

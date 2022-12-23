@@ -8,12 +8,11 @@ import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import { colorPalette } from "../../styles/colorPalette";
 
 const QuestionList = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  align-items: center;
   gap: ${changePXtoVW(32)};
-  position: relative;
   margin-top: ${changePXtoVH(12)};
 
   &.hide {
@@ -23,14 +22,14 @@ const QuestionList = styled.div`
 
 const QuizIndex = styled.div`
   position: relative;
-  font-weight: 600;
-  font-size: ${changePXtoVW(32)};
-  width: ${changePXtoVW(76)};
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: ${changePXtoVW(76)};
+  height: 100%;
   margin: 0 ${changePXtoVW(10)};
+  font-weight: 600;
+  font-size: ${changePXtoVW(32)};
 `;
 
 const QuizAnswerWrap = styled.div`
@@ -55,13 +54,12 @@ const QuizWord = styled.div<QuizWordProps>`
   min-width: ${changePXtoVW(192)};
   padding: ${changePXtoVH(20)} ${changePXtoVW(32)};
   border: 0.2083333333vw solid #9b9b9b;
+  border-color: ${(props) => props.color};
   border-radius: ${changePXtoVW(52)};
   font-weight: 600;
   font-size: ${changePXtoVW(30)};
-  cursor: pointer;
-
-  border-color: ${(props) => props.color};
   color: ${(props) => props.color};
+  cursor: pointer;
 `;
 
 const OXIconCss = css`

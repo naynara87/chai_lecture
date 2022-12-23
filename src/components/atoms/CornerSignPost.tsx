@@ -18,14 +18,14 @@ const SignPost = styled.div`
   padding: 0 ${changePXtoVW(20)};
   padding-top: ${changePXtoVH(9)};
   text-align: center;
+  background-image: url("${process.env.REACT_APP_BASE_URL}/images/img/icon_sign_post.svg");
+  background-repeat: no-repeat;
   background-position: center ${changePXtoVH(0)};
   background-size: contain;
-  background-repeat: no-repeat;
-  background-image: url("${process.env.REACT_APP_BASE_URL}/images/img/icon_sign_post.svg");
-  line-height: 1.5;
   font-weight: 600;
-  color: ${colorPalette.white};
   font-size: ${changePXtoVW(24)};
+  line-height: 1.5;
+  color: ${colorPalette.white};
 `;
 
 const SignTitle = styled.span`

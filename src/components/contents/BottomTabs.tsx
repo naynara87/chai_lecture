@@ -11,20 +11,21 @@ interface BottomTabsWrapperProps {
 }
 
 const BottomTabsWrapper = styled.div<BottomTabsWrapperProps>`
-  width: ${changePXtoVW(1680)};
-  height: ${(props) => (props.open ? `${changePXtoVH(451)}` : `${changePXtoVH(160)}`)};
   position: fixed;
+  top: auto;
   bottom: ${(props) => (props.open ? `${footerHeightNormal}` : 0)};
   left: 50%;
+  width: ${changePXtoVW(1680)};
+  height: ${(props) => (props.open ? `${changePXtoVH(451)}` : `${changePXtoVH(160)}`)};
   transform: translateX(-50%);
   transition: all 0.3s ease-in-out;
 `;
 
 const TabHeaderContainer = styled.div`
-  display: flex;
   position: absolute;
   top: 0;
   left: 5%;
+  display: flex;
   transform: translateY(calc(-100%));
 `;
 
@@ -57,10 +58,10 @@ const BottomTabMainContainer = styled.div<BottomTabMainContainerProps>`
   height: 100%;
   padding: ${changePXtoVH(25)} ${changePXtoVW(80)} ${changePXtoVH(50)};
   border: 4px solid ${colorPalette.bottomTabBorder};
+  border-bottom: none;
   border-radius: ${changePXtoVW(40)} ${changePXtoVW(40)} 0 0;
   background-color: ${colorPalette.backgroundWhite};
   text-align: left;
-  border-bottom: none;
 
   &::-webkit-scrollbar {
     display: none;
@@ -91,8 +92,8 @@ const BottomTabMainContainer = styled.div<BottomTabMainContainerProps>`
   }
 
   & * {
-    transition: all 0.3s ease-in-out;
     opacity: ${(props) => !props.open && 0};
+    transition: all 0.3s ease-in-out;
   }
 `;
 

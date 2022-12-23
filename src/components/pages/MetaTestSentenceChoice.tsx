@@ -12,27 +12,26 @@ import { changePXtoVW } from "../../utils/styles";
 import { colorPalette } from "../../styles/colorPalette";
 
 export const btnReset = css`
-  border-radius: 0;
-  background-color: transparent;
-  border: 0;
-  appearance: none;
-  padding: 0;
-  outline: none;
-  box-shadow: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: ${changePXtoVW(278)};
   height: ${changePXtoVW(80)};
+  padding: 0;
+  border: 0;
   border-radius: 40px;
+  background-color: transparent;
   font-weight: 600;
   font-size: ${changePXtoVW(30)};
+  appearance: none;
+  outline: none;
   box-shadow: 2px 6px 12px rgba(0, 0, 0, 0.15);
   cursor: pointer;
 `;
 
 const MainButton = styled.button`
   ${btnReset}
+  
   border: ${changePXtoVW(4)} solid ${colorPalette.sentenceBubble};
   background-color: ${colorPalette.sentenceBubble};
   color: ${colorPalette.backgroundWhite};

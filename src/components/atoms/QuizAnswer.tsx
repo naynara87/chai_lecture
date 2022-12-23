@@ -13,9 +13,9 @@ interface QuizAnswerStyleProps {
 const QuizAnswerStyle = styled.li<QuizAnswerStyleProps>`
   .label-quiz-answer {
     display: inline-block;
-    color: #9b9b9b;
     margin: 0 ${changePXtoVW(16)};
     margin-top: 0;
+    color: #9b9b9b;
     cursor: pointer;
   }
   .label-quiz-answer .word-wrap {
@@ -28,17 +28,17 @@ const QuizAnswerStyle = styled.li<QuizAnswerStyleProps>`
     font-size: ${changePXtoVW(30)};
   }
   .label-quiz-answer .word-wrap .img-wrap {
-    width: ${changePXtoVW(32)};
-    height: ${changePXtoVW(32)};
-    border-radius: 50%;
     position: absolute;
     top: 50%;
     left: ${changePXtoVW(24)};
-    background-color: #9b9b9b;
-    transform: translateY(-50%);
     display: flex;
     justify-content: center;
     align-items: center;
+    width: ${changePXtoVW(32)};
+    height: ${changePXtoVW(32)};
+    border-radius: 50%;
+    background-color: #9b9b9b;
+    transform: translateY(-50%);
   }
   .label-quiz-answer .word-wrap .img-wrap .icon {
     width: 58%;

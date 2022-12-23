@@ -19,10 +19,9 @@ const WordQuizWrapper = styled.div`
 `;
 const WordQuizAnswerWrapper = styled.div`
   display: flex;
-  margin: ${changePXtoVW(32)} 0 ${changePXtoVW(64)};
-  /* width: ${changePXtoVW(382)}; */
   justify-content: center;
   gap: ${changePXtoVW(30)};
+  margin: ${changePXtoVW(32)} 0 ${changePXtoVW(64)};
 `;
 
 const AudioWrapper = styled.div`
@@ -34,20 +33,20 @@ const TextBoxWrapper = styled.div`
 `;
 
 const blankCss = css`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: ${changePXtoVW(104)};
+  margin: 12px auto 0;
   font-weight: 700;
   font-size: ${changePXtoVW(38)};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 12px auto 0;
 `;
 
 const meaningCss = css`
+  margin: 0 auto;
   font-weight: 500;
   font-size: ${changePXtoVW(48)};
   color: ${colorPalette.black};
-  margin: 0 auto;
 `;
 
 const customBoxCss = css`

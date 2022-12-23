@@ -10,18 +10,18 @@ interface TextCardProps {
 }
 
 const TextCard = styled.div<TextCardProps>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   min-width: ${changePXtoVW(288)};
   width: 100%;
-  line-height: ${changePXtoVH(84)};
   margin: ${changePXtoVH(11)} ${changePXtoVW(11)};
   padding: ${changePXtoVW(33)} ${changePXtoVW(33)};
   border: 1px solid ${colorPalette.textBoxBorder};
   border-radius: ${changePXtoVW(11)};
   font-size: ${changePXtoVW(48)};
+  line-height: ${changePXtoVH(84)};
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
   ${(props) => props.customCss}
 `;

@@ -23,13 +23,14 @@ interface AudioButtonProps {
 }
 
 const AudioButton = styled.button<AudioButtonProps>`
+  position: relative;
   width: ${changePXtoVW(80)};
   height: ${changePXtoVW(80)};
-  border-radius: 50%;
   margin: 0 ${changePXtoVW(10)};
+  border-radius: 50%;
   background-color: ${colorPalette.confirmBtn};
-  position: relative;
   cursor: pointer;
+  
   ${(props) => props.customCss}
 `;
 

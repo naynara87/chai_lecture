@@ -9,12 +9,12 @@ interface OptionWrapperProps {
 }
 
 const OptionWrapper = styled.div<OptionWrapperProps>`
+  position: relative;
   width: ${changePXtoVW(172)};
   height: ${changePXtoVW(80)};
   border-radius: ${changePXtoVW(52)};
   background: ${colorPalette.disableBackground};
   box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.2);
-  position: relative;
   transition: all 0.3s ease-in;
   cursor: pointer;
   margin-left: ${changePXtoVW(10)};
@@ -31,15 +31,15 @@ interface OptionButtonIconProps {
 }
 
 const OptionButtonIcon = styled.div<OptionButtonIconProps>`
-  width: ${changePXtoVW(48)};
-  height: ${changePXtoVW(48)};
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
   left: ${changePXtoVW(15)};
-  background: ${colorPalette.white};
-  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.12);
+  width: ${changePXtoVW(48)};
+  height: ${changePXtoVW(48)};
   border-radius: 50%;
+  background-color: ${colorPalette.white};
+  transform: translateY(-50%);
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.12);
   transition: all 0.3s ease-in;
 
   &.active {
@@ -54,12 +54,12 @@ interface OptionTextProps {
 }
 
 const OptionText = styled.div<OptionTextProps>`
-  color: ${colorPalette.white};
-  font-size: ${changePXtoVW(30)};
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
   left: calc(100% - 2em - ${changePXtoVW(20)});
+  font-size: ${changePXtoVW(30)};
+  color: ${colorPalette.white};
+  transform: translateY(-50%);
   transition: all 0.3s ease-in;
 
   &.active {

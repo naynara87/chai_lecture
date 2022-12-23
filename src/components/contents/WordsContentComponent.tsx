@@ -15,19 +15,18 @@ const TextCardGrp = styled.div`
 `;
 
 const TextCard = styled.div`
-  width: ${changePXtoVW(288)};
-  height: ${changePXtoVH(106)};
-  line-height: ${changePXtoVW(200)};
-  margin: ${changePXtoVW(20)};
-  padding: ${changePXtoVH(20)} 0;
-  /* border: 1px solid color(gray2); */
-  border: 1px solid ${colorPalette.textBoxBorder};
-  border-radius: ${changePXtoVW(20)};
-  font-size: ${changePXtoVW(60)};
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
   display: flex;
   justify-content: center;
   align-items: center;
+  width: ${changePXtoVW(288)};
+  height: ${changePXtoVH(106)};
+  margin: ${changePXtoVW(20)};
+  padding: ${changePXtoVH(20)} 0;
+  border: 1px solid ${colorPalette.textBoxBorder};
+  border-radius: ${changePXtoVW(20)};
+  font-size: ${changePXtoVW(60)};
+  line-height: ${changePXtoVW(200)};
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
   cursor: pointer;
 `;
 

@@ -21,6 +21,7 @@ const Iframe = styled.iframe<IframeProps>`
   width: 90%;
   height: calc(100% - ${headerHeightNormal} - ${footerHeightNormal});
   margin: 0 auto;
+  
   ${(props) => props.customCss}
 `;
 

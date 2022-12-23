@@ -21,21 +21,19 @@ const QuestionWrapper = styled.div`
 const AnswerWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
-  gap: ${changePXtoVH(32)} ${changePXtoVW(30)};
   flex-wrap: wrap;
+  gap: ${changePXtoVH(32)} ${changePXtoVW(30)};
   margin-top: ${changePXtoVH(32)};
-  /* height: ${changePXtoVW(200)}; */
 `;
 
 const customBoxCss = css`
   width: auto;
-  padding: ${changePXtoVW(20)};
   height: ${changePXtoVW(96)};
+  padding: ${changePXtoVW(20)};
   font-size: ${changePXtoVW(40)};
 `;
 
 const blankCss = css`
-  /* color: ${colorPalette.white}; */
   display: flex;
   justify-content: center;
   align-items: center;
