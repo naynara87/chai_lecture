@@ -87,13 +87,10 @@ const SortWords = ({ datas }: SortWordsProps) => {
   }, [firstAnswerRender]);
 
   const popBlankText = useCallback(
-    (text: string) => {
+    (blankIndex: number) => {
       if (userAnswerList.length >= answerList.length) {
         return;
       }
-      const blankIndex = userAnswerList.findIndex((answer) => {
-        return answer === text;
-      });
       const copyUserAnswerList = [...userAnswerList];
       copyUserAnswerList[blankIndex] = "";
 
@@ -138,8 +135,8 @@ const SortWords = ({ datas }: SortWordsProps) => {
 
         return (
           <QuestionBlank
-            key={index}
-            index={index}
+            key={blankIndex}
+            index={blankIndex}
             width={blankWidth}
             text={userAnswerList[blankIndex]}
             height={`${changePXtoVW(80)}`}

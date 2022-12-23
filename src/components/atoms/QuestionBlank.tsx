@@ -42,7 +42,7 @@ interface QuestionBlankProps {
   customCss?: SerializedStyles;
   backgroundColor?: string;
   borderColor?: string;
-  onClickBlank?: (text: string) => void;
+  onClickBlank?: (index: number) => void;
 }
 
 const QuestionBlank = ({
@@ -56,8 +56,8 @@ const QuestionBlank = ({
   onClickBlank,
 }: QuestionBlankProps) => {
   const handleClickBlank = () => {
-    if (onClickBlank && text !== undefined) {
-      onClickBlank(text);
+    if (onClickBlank && index !== undefined) {
+      onClickBlank(index);
     }
   };
 
