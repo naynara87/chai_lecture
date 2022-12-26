@@ -1,7 +1,7 @@
 # 인증 관련
 
 - API 요청 시 JWT와 apiKey를 같이 보내줘야 합니다
-- 참고 : http://106.248.245.114:28123/index.html
+- 참고 : https://caihong-api.bubblecon.io:28123/index.html
 
 ## JWT
 
