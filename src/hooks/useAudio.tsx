@@ -1,4 +1,4 @@
-import React, { RefObject, useCallback, useState } from "react";
+import { RefObject, useCallback, useState } from "react";
 
 /**
  * audioButton에서 isAudio: false 일때 사용가능한 hooks
