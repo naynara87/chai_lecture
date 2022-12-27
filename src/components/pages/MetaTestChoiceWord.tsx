@@ -8,7 +8,7 @@ import CommonPageLayout from "../Layouts/CommonPageLayout";
 import "../../styles/wordtest.css";
 
 const MetaTestChoiceWord = () => {
-  const { currentCorner, pages, appMetaData } = useCornerPage();
+  const { currentCorner, appMetaData } = useCornerPage();
 
   return (
     <CommonPageLayout>
