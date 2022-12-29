@@ -59,6 +59,7 @@
   },
   "devDependencies": {
     "@craco/craco": "7.0.0",
+    "@emotion/babel-plugin": "11.10.5",
     "craco-html-webpack-plugin": "0.6.0",
     "env-cmd": "10.1.0",
     "html-webpack-plugin": "5.5.0"

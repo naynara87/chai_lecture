@@ -2,7 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import { colorPalette } from "../../styles/colorPalette";
 import { SerializedStyles } from "@emotion/react";
-import { changePXtoVH, changePXtoVW } from "../../utils/styles";
+import { changePXtoVW } from "../../utils/styles";
 
 interface OptionWrapperProps {
   customCss?: SerializedStyles;

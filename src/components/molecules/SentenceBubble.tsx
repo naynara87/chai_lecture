@@ -74,15 +74,6 @@ const xIconCss = css`
   transform: translateX(${changePXtoVW(1)});
 `;
 
-const arrowCss = css`
-  width: ${changePXtoVW(15)};
-  cursor: pointer;
-
-  > svg {
-    max-width: 100%;
-  }
-`;
-
 const htmlCss = css`
   font-weight: 400;
   font-size: ${changePXtoVW(30)};

@@ -1,4 +1,5 @@
 const CracoHtmlWebpackPlugin = require("craco-html-webpack-plugin");
+const emotionBabelPlugin = require("@emotion/babel-plugin").default;
 
 module.exports = {
   plugins: [
@@ -16,4 +17,14 @@ module.exports = {
       },
     },
   ],
+  babel: {
+    plugins: [
+      [
+        emotionBabelPlugin,
+        {
+          autoLabel: "dev-only",
+        },
+      ],
+    ],
+  },
 };

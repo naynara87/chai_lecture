@@ -28,7 +28,7 @@ function App() {
           courseId: "1",
           subjectId: "1",
           courseName: "\ube68\uac15",
-          lessonId: "5",
+          lessonId: "1",
           lessonName: "\ub808\uc2a8+1",
         },
         {
