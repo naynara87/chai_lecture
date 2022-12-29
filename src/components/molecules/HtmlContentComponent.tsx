@@ -8,8 +8,6 @@ interface HtmlWrapperProps {
 }
 
 const HtmlWrapper = styled.div<HtmlWrapperProps>`
-  ${(props) => props.customCss}
-
   > h1 {
     font-size: ${changePXtoVW(64)};
   }
@@ -28,6 +26,7 @@ const HtmlWrapper = styled.div<HtmlWrapperProps>`
     font-weight: 400;
     font-size: ${changePXtoVW(48)};
   }
+  ${(props) => props.customCss}
 `;
 
 interface HtmlContentComponentProps extends HtmlWrapperProps {
