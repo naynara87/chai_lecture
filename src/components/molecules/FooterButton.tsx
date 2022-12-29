@@ -23,9 +23,9 @@ const ButtonTextArrow = styled(Button)<ButtonTextArrowProps>`
   border-radius: ${changePXtoVH(48)};
   background-color: ${(props) =>
     props.disabled ? colorPalette.disableBackground : colorPalette.white};
-  color: ${(props) => (props.disabled ? colorPalette.disableText : colorPalette.deepBlue)};
   font-weight: 600;
   font-size: ${changePXtoVW(22)};
+  color: ${(props) => (props.disabled ? colorPalette.disableText : colorPalette.deepBlue)};
   transition: all 0.2s;
   cursor: ${(props) => (props.disabled ? "" : "pointer")};
 `;

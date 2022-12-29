@@ -10,6 +10,7 @@ import { AppMetaData, Corner2 } from "../../types/appData";
 import { changePXtoVW } from "../../utils/styles";
 
 const FooterWrapper = styled.footer`
+  z-index: 10;
   position: fixed;
   top: auto;
   bottom: 0;
@@ -22,7 +23,6 @@ const FooterWrapper = styled.footer`
   padding: 0 ${changePXtoVW(43)};
   background-color: ${colorPalette.deepBlue};
   color: ${colorPalette.white};
-  z-index: 10;
 `;
 
 const CornerStateWrapper = styled.ul`

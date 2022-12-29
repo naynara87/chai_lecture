@@ -19,9 +19,9 @@ const BubbleContainer = styled.div<BubbleContainerProps>`
 
   z-index: 5;
   position: fixed;
-  left: 50%;
   top: auto;
   bottom: calc(${footerHeightNormal} + ${(props) => (props.open ? "100px" : "40px")});
+  left: 50%;
   display: flex;
   justify-content: flex-start;
   width: ${changePXtoVW(1600)};
@@ -37,35 +37,35 @@ interface BubbleTextProps {
 }
 
 const BubbleText = styled.div<BubbleTextProps>`
-  width: 100%;
-  height: 100%;
   display: flex;
   justify-content: ${(props) => (props.open ? "flex-start" : "center")};
   align-items: center;
   gap: ${changePXtoVW(20)};
-  font-size: ${changePXtoVW(24)};
+  width: 100%;
+  height: 100%;
   font-weight: 700;
+  font-size: ${changePXtoVW(24)};
   color: ${colorPalette.deepBlue};
   cursor: ${(props) => !props.open && "pointer"};
 `;
 
 const SentenceBubble = styled.div<SentenceBubbleProps>`
+  position: absolute;
+  right: ${changePXtoVW(0)};
   width: ${(props) => (props.open ? "100%" : changePXtoVW(200))};
   height: ${(props) => (props.open ? changePXtoVH(216) : changePXtoVW(64))};
+  padding: 0 ${(props) => props.open && changePXtoVW(50)};
+  border: 2px solid
+  ${(props) => (props.open ? colorPalette.grayf7 : colorPalette.deepBlue)};
   border-radius: ${(props) => (props.open ? "0px" : "48px")};
   background-color: ${(props) =>
     props.open ? colorPalette.grayf7 : colorPalette.backgroundWhite};
-  border: 2px solid
-    ${(props) => (props.open ? colorPalette.grayf7 : colorPalette.deepBlue)};
-  padding: 0 ${(props) => props.open && changePXtoVW(50)};
-  position: absolute;
-  right: ${changePXtoVW(0)};
   transition: all 0.3s ease;
 `;
 
 const Sentence = styled.div`
-  font-size: ${changePXtoVW(30)};
   font-weight: 700;
+  font-size: ${changePXtoVW(30)};
   color: ${colorPalette.sentenceBubble};
 `;
 
@@ -84,9 +84,9 @@ const arrowCss = css`
 `;
 
 const htmlCss = css`
-  color: ${colorPalette.black};
-  font-size: ${changePXtoVW(30)};
   font-weight: 400;
+  font-size: ${changePXtoVW(30)};
+  color: ${colorPalette.black};
 `;
 
 const audioCss = css`
@@ -96,16 +96,16 @@ const audioCss = css`
 `;
 
 const XIconWrapper = styled.div`
-  width: ${changePXtoVW(64)};
-  height: ${changePXtoVW(64)};
-  background-color: ${colorPalette.deepBlue};
-  box-shadow: 2px 6px 12px rgba(0, 0, 0, 0.15);
-  display: flex;
-  justify-content: center;
-  border-radius: 50%;
   position: absolute;
   right: 2%;
   top: 50%;
+  display: flex;
+  justify-content: center;
+  width: ${changePXtoVW(64)};
+  height: ${changePXtoVW(64)};
+  border-radius: 50%;
+  background-color: ${colorPalette.deepBlue};
+  box-shadow: 2px 6px 12px rgba(0, 0, 0, 0.15);
   transform: translateY(-50%);
   cursor: pointer;
 `;

@@ -16,29 +16,29 @@ interface TextBoxesWrapperProps {
 }
 
 const TextBoxesWrapper = styled.div<TextBoxesWrapperProps>`
-  width: 100%;
   display: flex;
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 0 ${changePXtoVW(40)};
+  width: 100%;
   margin: 0 auto;
   ${(props) => props.customCss}
 `;
 
 const TextCardGrp = styled.div<TextCardGrpProps>`
   display: inline-block;
-  text-align: center;
-  color: #3c3c3c;
-  font-weight: 400;
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-weight: 400;
+  color: #3c3c3c;
+  text-align: center;
   cursor: pointer;
 
   > div:first-child {
-    min-width: ${changePXtoVW(288)};
     width: auto;
+    min-width: ${changePXtoVW(288)};
     height: ${changePXtoVH(160)};
   }
 
@@ -56,8 +56,8 @@ const SubText = styled.div`
 `;
 
 const subTextCss = css`
-  font-size: ${changePXtoVW(30)};
   font-weight: 500;
+  font-size: ${changePXtoVW(30)};
   color: ${colorPalette.textBoxSub};
 `;
 

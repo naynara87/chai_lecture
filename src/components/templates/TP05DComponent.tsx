@@ -25,10 +25,10 @@ const MeaningContainer = styled.div`
 const MeaningShowButton = styled.button`
   width: ${changePXtoVW(278)};
   height: ${changePXtoVW(80)};
+  border-radius: 40px;
   background-color: ${colorPalette.sentenceBubble};
   color: ${colorPalette.backgroundWhite};
   box-shadow: 2px 6px 12px rgba(0, 0, 0, 0.15);
-  border-radius: 40px;
   cursor: pointer;
 `;
 

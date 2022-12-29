@@ -13,12 +13,12 @@ import TextBoxes from "../molecules/TextBoxes";
 import TitleContent from "../molecules/TitleContent";
 
 const htmlCss = css`
+  margin-bottom: ${changePXtoVH(64)};
+  font-weight: 500;
   font-size: ${changePXtoVW(48)};
   line-height: ${changePXtoVH(72)};
-  font-weight: 500;
-  text-align: center;
   color: ${colorPalette.black};
-  margin-bottom: ${changePXtoVH(64)};
+  text-align: center;
 `;
 
 const BoxContainerCss = css`

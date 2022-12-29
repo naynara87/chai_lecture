@@ -3,9 +3,9 @@ import styled from "@emotion/styled";
 import { footerHeightNormal, headerHeightNormal } from "../../constants/layout";
 
 const Container = styled.div`
+  overflow: auto;
   width: 100vw;
   height: 100vh;
-  overflow: auto;
   padding-top: ${headerHeightNormal};
   padding-bottom: ${footerHeightNormal};
 `;

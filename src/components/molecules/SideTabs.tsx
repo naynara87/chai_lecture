@@ -10,9 +10,9 @@ interface SideTabStylesProps {
 }
 
 const SideTabStyles = styled.div<SideTabStylesProps>`
-  transition: all 0.3s ease;
-  width: ${(props) => (props.isOpen ? "50%" : "0%")};
   opacity: ${(props) => (props.isOpen ? "100%" : "0%")};
+  width: ${(props) => (props.isOpen ? "50%" : "0%")};
+  transition: all 0.3s ease;
 `;
 
 interface SideTabMainContainerProps {
@@ -22,15 +22,15 @@ const SideTabMainContainer = styled.div<SideTabMainContainerProps>``;
 
 const htmlCss = css`
   > div > h3 {
+    margin-bottom: ${changePXtoVH(10)};
     font-weight: 600;
     font-size: ${changePXtoVW(30)};
-    margin-bottom: ${changePXtoVH(10)};
   }
 
   > div > p {
+    margin-bottom: ${changePXtoVH(8)};
     font-weight: 400;
     font-size: ${changePXtoVW(24)};
-    margin-bottom: ${changePXtoVH(8)};
   }
 `;
 

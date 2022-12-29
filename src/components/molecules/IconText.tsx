@@ -12,12 +12,12 @@ interface QuestionContainerProps {
 }
 
 const QuestionContainer = styled.div<QuestionContainerProps>`
-  color: ${colorPalette.questionTitle};
-  font-weight: 400;
-  font-size: ${changePXtoVW(27)};
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: 400;
+  font-size: ${changePXtoVW(27)};
+  color: ${colorPalette.questionTitle};
 
   ${(props) => props.customCss}
 `;

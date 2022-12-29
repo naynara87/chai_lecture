@@ -8,11 +8,10 @@ interface TP02LayoutStyleProps {
 }
 
 const TP02LayoutStyle = styled.div<TP02LayoutStyleProps>`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
-  /* padding-top: ${changePXtoVH(50)}; */
 
   ${(props) => props.customCss}
 `;

@@ -6,20 +6,20 @@ import ModalCommon from "./ModalCommon";
 import { ModalHeader as Title, ModalInnerBox, ModalTitle as Description } from "./ModalStart";
 
 const ButtonContainer = styled.div`
-  width: 100%;
   display: flex;
   justify-content: center;
+  width: 100%;
   padding: 0 ${changePXtoVW(20)};
 `;
 
 const ModalButton = styled.button`
   min-width: ${changePXtoVW(200)};
   height: ${changePXtoVW(80)};
-  background-color: ${colorPalette.confirmBtn};
-  color: ${colorPalette.white};
   border-radius: ${changePXtoVW(48)};
+  background-color: ${colorPalette.confirmBtn};
   font-weight: 600;
   font-size: ${changePXtoVW(24)};
+  color: ${colorPalette.white};
   transition: all 0.3s;
   cursor: pointer;
 

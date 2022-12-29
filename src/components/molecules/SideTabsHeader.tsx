@@ -6,8 +6,8 @@ import { ApproveTabsData } from "../../types/templateContents";
 import { changePXtoVW } from "../../utils/styles";
 
 const SideTabHeader = styled.div`
-  gap: 8px;
   display: flex;
+  gap: 8px;
 `;
 
 interface SideTabHeaderButtonProps {
@@ -20,18 +20,18 @@ const sideTabHeaderButtonFocusCss = css`
 `;
 
 const SideTabHeaderButton = styled.button<SideTabHeaderButtonProps>`
-  width: ${changePXtoVW(99)};
-  height: ${changePXtoVW(56)};
   display: flex;
   justify-content: center;
   align-items: center;
+  width: ${changePXtoVW(99)};
+  height: ${changePXtoVW(56)};
   border: 3px solid ${colorPalette.confirmBtn};
-  filter: drop-shadow(2px 6px 12px rgba(0, 0, 0, 0.15));
   border-radius: 28px;
-  font-size: ${changePXtoVW(20)};
   font-weight: 700;
+  font-size: ${changePXtoVW(20)};
   color: ${colorPalette.confirmBtn};
   text-shadow: 2px 6px 12px rgba(0, 0, 0, 0.15);
+  filter: drop-shadow(2px 6px 12px rgba(0, 0, 0, 0.15));
   cursor: pointer;
 
   ${(props) => props.isFocus && sideTabHeaderButtonFocusCss}

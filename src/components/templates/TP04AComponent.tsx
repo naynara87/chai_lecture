@@ -21,12 +21,11 @@ const imageCustomCss = css`
 const ContainerWrapper = styled.div`
   display: flex;
   grid-template-columns: 33% 33%;
+  align-items: center;
   width: 100%;
   min-height: ${changePXtoVH(384)};
-  align-items: center;
-  margin: 0 auto;
+  margin: ${changePXtoVH(20)} auto 0;
   font-size: ${changePXtoVW(36)};
-  margin-top: ${changePXtoVH(20)};
 `;
 
 const AudioWrapper = styled.div`
@@ -40,9 +39,9 @@ const htmlCustomCss = css`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  text-align: left;
-  font-size: ${changePXtoVW(48)};
   font-weight: 500;
+  font-size: ${changePXtoVW(48)};
+  text-align: left;
 
   > h2 {
     font-size: ${changePXtoVW(48)};

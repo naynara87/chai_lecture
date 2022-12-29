@@ -11,11 +11,12 @@ import HtmlContentComponent from "./HtmlContentComponent";
 
 const ExplanationWrapper = styled.div`
   position: fixed;
+  top: auto;
   bottom: calc(${footerHeightNormal} + ${changePXtoVH(10)});
   left: 0;
-  width: 100%;
   display: flex;
   justify-content: center;
+  width: 100%;
 `;
 
 const ExplanationContainer = styled.div`
@@ -25,7 +26,6 @@ const ExplanationContainer = styled.div`
   width: 100%;
   max-width: ${changePXtoVW(1600)};
   min-height: ${changePXtoVH(160)};
-  grid-template-columns: max-content 1fr;
   background-color: ${colorPalette.grayf7};
 `;
 
@@ -53,10 +53,6 @@ const TextBox = styled.div`
   width: calc(100% - ${changePXtoVW(120)});
   height: ${changePXtoVW(160)};
   padding: ${changePXtoVH(10)} ${changePXtoVW(40)};
-  /* background-position: left 3px;
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-image: url("${process.env.REACT_APP_BASE_URL}/images/img/bg_answer_balloon.png"); */
 `;
 
 const OXWrapper = styled.div`
@@ -69,9 +65,9 @@ const ExplanationTextCss = css`
   overflow: auto;
   width: 100%;
   height: 100%;
+  font-weight: 600;
   font-size: ${changePXtoVW(16)};
   line-height: ${changePXtoVW(24)};
-  font-weight: 600;
 
   &::-webkit-scrollbar {
     display: none;
@@ -85,11 +81,10 @@ interface TextProps {
 }
 
 const Text = styled.div<TextProps>`
+  height: ${(props) => !props.isText && "auto"};
   padding-top: ${changePXtoVH(12)};
   padding-bottom: ${changePXtoVH(8)};
   ${ExplanationTextCss}
-
-  height: ${(props) => !props.isText && "auto"};
 
   p {
     font-weight: 500;
@@ -104,11 +99,10 @@ const ExplanationTitle = styled.div`
 `;
 
 const ExplanationHtmlCss = css`
-  /* max-height: ${changePXtoVH(50)}; */
   margin-top: ${changePXtoVW(24)};
+  font-weight: 400;
   font-size: ${changePXtoVW(30)};
   color: ${colorPalette.descriptionText};
-  font-weight: 400;
 `;
 
 const InfoWrapper = styled.div`

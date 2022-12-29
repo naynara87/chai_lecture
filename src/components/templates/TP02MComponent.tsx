@@ -12,11 +12,10 @@ import TitleContent from "../molecules/TitleContent";
 
 const htmlCss = css`
   font-weight: 500;
-  line-height: 1.4;
-  /* line-height: ${changePXtoVH(72)}; */
   font-size: ${changePXtoVW(48)};
-  text-align: center;
+  line-height: 1.4;
   color: ${colorPalette.descriptionText};
+  text-align: center;
 `;
 
 interface TP02MComponentProps extends TemplateProps {}

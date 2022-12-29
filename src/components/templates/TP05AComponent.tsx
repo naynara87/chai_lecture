@@ -15,16 +15,16 @@ const customBoxCss = css`
 `;
 
 const customBoxWrapperCss = css`
-  width: 100%;
-  text-align: left;
   align-items: center;
+  width: 100%;
   line-height: ${changePXtoVW(58)};
+  text-align: left;
 `;
 
 const customBoxContainerCss = css`
-  width: auto;
   display: flex;
   flex-direction: column;
+  width: auto;
 `;
 
 const customTipCss = css`

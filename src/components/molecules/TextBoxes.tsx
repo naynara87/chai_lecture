@@ -16,24 +16,24 @@ interface TextBoxesWrapperProps {
 }
 
 const TextBoxesWrapper = styled.div<TextBoxesWrapperProps>`
-  width: ${(props) => `${props.boxLength > 4 ? changePXtoVW(1200) : changePXtoVW(1400)}`};
   display: flex;
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 0 ${changePXtoVW(40)};
+  width: ${(props) => `${props.boxLength > 4 ? changePXtoVW(1200) : changePXtoVW(1400)}`};
   margin: 0 auto;
+
   ${(props) => props.customCss}
 `;
 
 const TextCardGrp = styled.div<TextCardGrpProps>`
-  display: inline-block;
-  text-align: center;
-  color: #3c3c3c;
-  font-weight: 400;
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-weight: 400;
+  color: #3c3c3c;
+  text-align: center;
 
   > div:first-child {
     min-width: ${changePXtoVW(288)};
@@ -55,8 +55,8 @@ const SubText = styled.div`
 `;
 
 const subTextCss = css`
-  font-size: ${changePXtoVW(30)};
   font-weight: 500;
+  font-size: ${changePXtoVW(30)};
   color: ${colorPalette.textBoxSub};
 `;
 
@@ -67,9 +67,9 @@ const MeaningText = styled("div")`
 
   &.horizontal {
     margin-top: 0;
-    font-size: ${changePXtoVW(36)};
     margin-left: ${changePXtoVW(17)};
     font-weight: 500;
+    font-size: ${changePXtoVW(36)};
   }
 `;
 

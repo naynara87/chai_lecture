@@ -14,3 +14,11 @@ export const btnCss = css`
   border-radius: 21px;
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.12);
 `;
+
+export const btnFillMain = css`
+  color: red;
+  `;
+
+export const btnBorderMain = css`
+  border-color: red;
+  `;

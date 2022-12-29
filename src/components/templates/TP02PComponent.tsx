@@ -17,18 +17,17 @@ interface HtmlContainerProps {
 }
 
 const sideTabOpenToHtmlCss = css`
-  text-align: left;
-  width: 50%;
   align-items: flex-start;
+  width: 50%;
+  text-align: left;
 `;
 
 const HtmlContainer = styled.div<HtmlContainerProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
   width: 100%;
-
+  text-align: center;
   transition: all 0.3s ease;
 
   > div > h1 {

@@ -6,17 +6,17 @@ import { changePXtoVW } from "../../utils/styles";
 import { RotatingLines } from "react-loader-spinner";
 
 const ModalHeader = styled.h2`
-  color: ${colorPalette.black};
-  font-size: ${changePXtoVW(48)};
   margin-bottom: 16px;
   font-weight: 700;
+  font-size: ${changePXtoVW(48)};
+  color: ${colorPalette.black};
 `;
 
 const ModalDescription = styled.p`
-  color: ${colorPalette.loadingModalDescription};
-  font-size: ${changePXtoVW(30)};
-  font-weight: 500;
   margin-bottom: 24px;
+  font-weight: 500;
+  font-size: ${changePXtoVW(30)};
+  color: ${colorPalette.loadingModalDescription};
 `;
 
 interface ModalLoadingProps {
@@ -26,6 +26,10 @@ interface ModalLoadingProps {
 
 const ModalInnerBox = styled.div`
   overflow: hidden;
+  z-index: 2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -39,17 +43,13 @@ const ModalInnerBox = styled.div`
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  z-index: 2;
-  position: absolute;
-  top: 50%;
-  left: 50%;
   width: ${changePXtoVW(720)};
   height: ${changePXtoVW(472)};
   padding-bottom: 3.3333333333vh;
+  border-radius: 40px;
   background-color: ${colorPalette.white};
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  border-radius: 40px;
 `;
 
 const ModalLoading = ({ isModalOpen, setIsModalOpen }: ModalLoadingProps) => {
