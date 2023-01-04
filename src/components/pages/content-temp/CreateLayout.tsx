@@ -5,6 +5,7 @@ import { TemplateType } from "../../../types/appData";
 import { layouts } from "../../../data/contentCreate";
 import { useNavigate } from "react-router-dom";
 import { CREATE_CONTENT_COMPONENTS_URL } from "../../../constants/url";
+import "./CreateLayout.scss";
 
 const Header = styled.header`
   display: flex;
@@ -47,7 +48,7 @@ const CreateLayout = () => {
   return (
     <div>
       <Header>
-        <h1>레이아웃 설정</h1>
+        <h1 className="CreateLayout__header__title">레이아웃 설정</h1>
         <h4>페이지 레이아웃을 선택해주세요</h4>
       </Header>
       <Main>
