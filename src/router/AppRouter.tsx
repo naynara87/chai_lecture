@@ -25,7 +25,7 @@ const AppRouter = () => {
           path="course/:courseId/lesson/:lessonId/corner/:cornerId/page/:pageId"
           element={<CornerPage />}
         />
-        <Route path={"test-word-choice"} element={<MetaTestChoiceWord />} />
+        <Route path={"test-word-choice"} element={<MetaTestWordChoice />} />
         <Route path={"test-word-test"} element={<MetaTestWordTest />} />
         <Route path={"test-word-grade"} element={<MetaTestWordTestGrade />} />
         <Route path={"test-word-report"} element={<MetaTestWordTestReport />} />
