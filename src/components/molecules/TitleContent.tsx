@@ -32,6 +32,7 @@ const TitleWrapper = styled.div<TitleWrapperProps>`
   align-items: center;
   width: ${(props) => !props.isTab && "100%"};
   padding-top: ${(props) => !props.isTab && `calc(${headerHeightNormal} + ${changePXtoVH(96)})`};
+  background-color: ${colorPalette.white};
   box-shadow: ${(props) => props.isScroll && `0 4px 20px -2px hsl(0deg 0% 81% / 50%)`};
   transform: ${(props) => !props.isTab && "translateX(-50%)"};
 `;
