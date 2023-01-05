@@ -4,8 +4,8 @@ import { changePXtoVH } from "../../utils/styles";
 
 const TP19LayoutStyle = styled.div`
   display: grid;
-  text-align: center;
   padding-top: ${changePXtoVH(20)};
+  text-align: center;
 
   &::-webkit-scrollbar {
     display: none;

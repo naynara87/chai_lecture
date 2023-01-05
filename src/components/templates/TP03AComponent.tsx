@@ -16,13 +16,13 @@ import { css } from "@emotion/react";
 interface TP03AComponentProps extends TemplateProps {}
 
 const HtmlWrapper = styled("div")`
-  line-height: 1.5;
+  margin-bottom: ${changePXtoVW(50)};
   font-weight: 400;
   font-size: ${changePXtoVW(48)};
+  line-height: 1.5;
   color: ${colorPalette.descriptionText};
   white-space: pre-line;
   text-align: center;
-  margin-bottom: ${changePXtoVW(50)};
 `;
 
 const AudioWrapper = styled.div`

@@ -9,17 +9,15 @@ interface WordQuizAnswerStylesProps {
 }
 
 const WordQuizAnswerStyles = styled.div<WordQuizAnswerStylesProps>`
-  /* width: ${changePXtoVW(176)}; */
-  /* height: ${changePXtoVW(80)}; */
-  padding: ${changePXtoVH(3)} ${changePXtoVW(20)};
-  font-size: ${changePXtoVW(48)};
-  font-weight: 400;
-  color: ${(props) => props.color};
-  border: 4px solid ${(props) => props.color};
-  border-radius: ${changePXtoVW(52)};
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  border: 4px solid ${(props) => props.color};
+  border-radius: ${changePXtoVW(52)};
+  padding: ${changePXtoVH(3)} ${changePXtoVW(20)};
+  font-weight: 400;
+  font-size: ${changePXtoVW(48)};
+  color: ${(props) => props.color};
   cursor: pointer;
 `;
 
@@ -28,14 +26,14 @@ interface IconWrapperProps {
 }
 
 const IconWrapper = styled.div<IconWrapperProps>`
-  width: ${changePXtoVW(48)};
-  height: ${changePXtoVW(48)};
-  margin-right: 5px;
-  background-color: ${(props) => props.color};
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: ${changePXtoVW(48)};
+  height: ${changePXtoVW(48)};
+  margin-right: 5px;
+  background-color: ${(props) => props.color};
   border-radius: 50%;
 `;
 

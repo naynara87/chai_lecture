@@ -1,4 +1,5 @@
 const COLORS = {
+  grayf7: "#f7f7f7",
   gray100: "#f5f5f5",
   gray200: "#E4E4E4",
   gray300: "#D2D4DB",
@@ -25,12 +26,13 @@ export const colorPalette = Object.freeze({
   c2tag: COLORS.blue500,
   c3tag: COLORS.red500,
   c4tag: COLORS.gray800,
-  backgroundWhite: COLORS.gray100,
+  backgroundWhite: COLORS.white,
   confirmBtn: COLORS.blue500,
   bottomTabBorder: COLORS.blue500,
   sentenceBubble: COLORS.blue500,
   disableBottomTabHeader: COLORS.gray300,
   boxSubtitle: COLORS.gray600,
+  lightBlue: COLORS.blue500,
   deepBlue: COLORS.blue700,
   borderGray: COLORS.gray400,
   textBoxBorder: COLORS.gray200,
@@ -54,4 +56,5 @@ export const colorPalette = Object.freeze({
   wrongAnswer: COLORS.red500,
   boldText: COLORS.black100,
   textBoxSub: COLORS.gray700,
+  grayf7: COLORS.grayf7,
 });

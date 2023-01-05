@@ -4,6 +4,7 @@ import React from "react";
 const TP09LayoutStyle = styled.div`
   display: grid;
   text-align: center;
+  
   &::-webkit-scrollbar {
     display: none;
   }

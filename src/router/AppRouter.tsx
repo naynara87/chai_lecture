@@ -4,7 +4,7 @@ import CreateComponents from "../components/pages/content-temp/CreateComponents"
 import CreateLayout from "../components/pages/content-temp/CreateLayout";
 import CornerListPage from "../components/pages/CornerListPage";
 import CornerPage from "../components/pages/CornerPage";
-import MetaTestChoiceWord from "../components/pages/MetaTestChoiceWord";
+import MetaTestWordChoice from "../components/pages/MetaTestWordChoice";
 import MetaTestWordTest from "../components/pages/MetaTestWordTest";
 import MetaTestWordTestGrade from "../components/pages/MetaTestWordTestGrade";
 import MetaTestWordTestReport from "../components/pages/MetaTestWordTestReport";
@@ -25,7 +25,7 @@ const AppRouter = () => {
           path="course/:courseId/lesson/:lessonId/corner/:cornerId/page/:pageId"
           element={<CornerPage />}
         />
-        <Route path={"test-word-choice"} element={<MetaTestChoiceWord />} />
+        <Route path={"test-word-choice"} element={<MetaTestWordChoice />} />
         <Route path={"test-word-test"} element={<MetaTestWordTest />} />
         <Route path={"test-word-grade"} element={<MetaTestWordTestGrade />} />
         <Route path={"test-word-report"} element={<MetaTestWordTestReport />} />
@@ -43,3 +43,4 @@ const AppRouter = () => {
 };
 
 export default AppRouter;
+ 

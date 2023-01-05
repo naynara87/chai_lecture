@@ -2,12 +2,12 @@ import styled from "@emotion/styled";
 import React from "react";
 
 const TPIframeLayoutStyle = styled.div`
-  height: 100%;
-  text-align: center;
+  overflow: visible;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: visible;
+  height: 100%;
+  text-align: center;
 `;
 
 interface TPIframeLayoutProps {

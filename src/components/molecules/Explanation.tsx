@@ -11,11 +11,12 @@ import HtmlContentComponent from "./HtmlContentComponent";
 
 const ExplanationWrapper = styled.div`
   position: fixed;
+  top: auto;
   bottom: calc(${footerHeightNormal} + ${changePXtoVH(10)});
   left: 0;
-  width: 100%;
   display: flex;
   justify-content: center;
+  width: 100%;
 `;
 
 const ExplanationContainer = styled.div`
@@ -23,13 +24,13 @@ const ExplanationContainer = styled.div`
   justify-content: flex-start;
   align-items: flex-end;
   width: 100%;
-  max-width: ${changePXtoVW(1340)};
+  max-width: ${changePXtoVW(1600)};
   min-height: ${changePXtoVH(160)};
-  grid-template-columns: max-content 1fr;
+  background-color: ${colorPalette.grayf7};
 `;
 
 const CloseButton = styled.button`
-  position: absolute;
+  /* position: absolute;
   top: 0;
   right: 0;
   width: ${changePXtoVW(56)};
@@ -41,7 +42,8 @@ const CloseButton = styled.button`
   background-position: center;
   background-size: 40%;
   transform: translateX(-20%);
-  cursor: pointer;
+  cursor: pointer; */
+  display: none;
 `;
 
 const TextBox = styled.div`
@@ -51,33 +53,21 @@ const TextBox = styled.div`
   width: calc(100% - ${changePXtoVW(120)});
   height: ${changePXtoVW(160)};
   padding: ${changePXtoVH(10)} ${changePXtoVW(40)};
-  background-position: left 3px;
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-image: url("${process.env.REACT_APP_BASE_URL}/images/img/bg_answer_balloon.png");
-`;
-
-const ImageWrapper = styled.div`
-  width: ${changePXtoVW(120)};
 `;
 
 const OXWrapper = styled.div`
-  width: ${changePXtoVW(96)};
-  min-width: ${changePXtoVW(96)};
-  height: 100%;
-  padding-top: ${changePXtoVH(4)};
-  margin-left: ${changePXtoVW(40)};
-  margin-right: ${changePXtoVW(32)};
-  display: flex;
+  width: ${changePXtoVW(48)};
+  min-width: ${changePXtoVW(48)};
+  margin-right: ${changePXtoVW(16)};
 `;
 
 const ExplanationTextCss = css`
   overflow: auto;
   width: 100%;
   height: 100%;
+  font-weight: 600;
   font-size: ${changePXtoVW(16)};
   line-height: ${changePXtoVW(24)};
-  font-weight: 600;
 
   &::-webkit-scrollbar {
     display: none;
@@ -91,11 +81,10 @@ interface TextProps {
 }
 
 const Text = styled.div<TextProps>`
+  height: ${(props) => !props.isText && "auto"};
   padding-top: ${changePXtoVH(12)};
   padding-bottom: ${changePXtoVH(8)};
   ${ExplanationTextCss}
-
-  height: ${props => !props.isText && "auto"};
 
   p {
     font-weight: 500;
@@ -106,14 +95,14 @@ const Text = styled.div<TextProps>`
 
 const ExplanationTitle = styled.div`
   font-size: ${changePXtoVW(30)};
-  color: ${colorPalette.deepBlue};
+  color: ${colorPalette.lightBlue};
 `;
 
 const ExplanationHtmlCss = css`
-  max-height: ${changePXtoVH(50)};
-  font-size: ${changePXtoVW(24)};
-  color: ${colorPalette.descriptionText};
+  margin-top: ${changePXtoVW(24)};
   font-weight: 400;
+  font-size: ${changePXtoVW(30)};
+  color: ${colorPalette.descriptionText};
 `;
 
 const InfoWrapper = styled.div`
@@ -126,12 +115,6 @@ const audioCss = css`
   width: ${changePXtoVW(40)};
   height: ${changePXtoVW(40)};
   margin-left: ${changePXtoVW(12)};
-`;
-
-const IconImg = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
 `;
 
 type ExplanationData = {
@@ -148,7 +131,11 @@ interface ExplanationProps {
   isCorrect: boolean;
   handleClickClose: () => void;
 }
-const Explanation = ({ isCorrect, explanation = {correctMessage: "정답입니다!", wrongMessage: "오답입니다!"}, handleClickClose }: ExplanationProps) => {
+const Explanation = ({
+  isCorrect,
+  explanation = { correctMessage: "정답입니다!", wrongMessage: "오답입니다!" },
+  handleClickClose,
+}: ExplanationProps) => {
   const { audio, correctMessage, wrongMessage, text } = explanation;
 
   const iconUrl = useMemo(() => {
@@ -168,13 +155,10 @@ const Explanation = ({ isCorrect, explanation = {correctMessage: "정답입니�
   return (
     <ExplanationWrapper>
       <ExplanationContainer>
-        <ImageWrapper>
-          <IconImg src={iconUrl} alt="" />
-        </ImageWrapper>
         <TextBox>
-          <OXWrapper>{isCorrect ? <OIcon /> : <XIcon />}</OXWrapper>
           <Text isText={!!text}>
             <InfoWrapper>
+              <OXWrapper>{isCorrect ? <OIcon /> : <XIcon />}</OXWrapper>
               <ExplanationTitle>{infoText}</ExplanationTitle>
               {audio && <AudioButton isAudio={true} audioUrl={audio.src} customCss={audioCss} />}
             </InfoWrapper>

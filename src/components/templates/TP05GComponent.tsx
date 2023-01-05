@@ -21,14 +21,14 @@ const NumberTableContainer = styled.div`
 
 const MainContainer = styled.div`
   display: flex;
-  flex-direction: column;
   flex-wrap: wrap;
+  flex-direction: column;
   align-items: center;
   justify-content: space-around;
+  gap: 4%;
   margin: 0 auto;
   width: ${changePXtoVW(1093)};
   height: ${changePXtoVW(584)};
-  gap: 4%;
 `;
 
 const tipCustomCss = css`

@@ -18,9 +18,9 @@ const TabButtonStyle = styled(Button)<TabButtonStyleProps>`
   border-radius: ${changePXtoVW(9)};
   background-color: ${(props) =>
     props.active ? colorPalette.confirmBtn : colorPalette.tabBackground};
-  line-height: 1.6;
   font-weight: 600;
   font-size: ${changePXtoVW(30)};
+  line-height: 1.6;
   color: ${colorPalette.white};
   cursor: ${(props) => (props.cursorPointer ? "pointer" : "default")};
 `;

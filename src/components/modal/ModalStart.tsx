@@ -10,16 +10,16 @@ import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 
 export const ModalInnerBox = styled.div`
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
   z-index: 2;
   position: absolute;
   top: 50%;
   left: 50%;
-  max-width: ${changePXtoVW(720)};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   width: 90%;
+  max-width: ${changePXtoVW(720)};
   padding-bottom: ${changePXtoVH(48)};
   border-radius: ${changePXtoVW(40)};
   background-color: ${colorPalette.white};
@@ -30,16 +30,15 @@ export const ModalHeader = styled.h2`
   width: 100%;
   padding: ${changePXtoVH(40)} 0 ${changePXtoVH(32)};
   background-color: ${colorPalette.confirmBtn};
-  line-height: 1.5;
   font-weight: 600;
   font-size: ${changePXtoVW(48)};
+  line-height: 1.5;
   color: ${colorPalette.white};
   text-align: center;
 `;
 
 export const ModalTitle = styled.p`
   margin: ${changePXtoVH(64)} 0;
-  line-height: 3.5;
   font-weight: 500;
   font-size: ${changePXtoVW(30)};
   line-height: 1.6;
@@ -76,13 +75,13 @@ interface StartButtonProps {
 export const StartButton = styled.button<StartButtonProps>`
   min-width: ${changePXtoVW(278)};
   height: ${changePXtoVW(80)};
-  background-color: ${colorPalette.confirmBtn};
-  color: ${colorPalette.white};
+  margin-top: ${(props) => (props.isIntroductionContentsEmpty ? "10px" : changePXtoVH(100))};
   border-radius: ${changePXtoVW(48)};
+  background-color: ${colorPalette.confirmBtn};
   font-weight: 600;
   font-size: ${changePXtoVW(24)};
+  color: ${colorPalette.white};
   transition: all 0.3s;
-  margin-top: ${(props) => (props.isIntroductionContentsEmpty ? "10px" : changePXtoVH(100))};
   cursor: pointer;
 `;
 

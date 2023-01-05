@@ -8,10 +8,10 @@ import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TitleContent from "../molecules/TitleContent";
 
 const TP04Layout = styled.div`
-  height: ${templateContentsAreaHeight};
   display: grid;
   grid-template-rows: 48% 48%;
   justify-content: center;
+  height: ${templateContentsAreaHeight};
 `;
 
 const ContentContainer = styled.div`

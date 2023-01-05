@@ -9,13 +9,13 @@ import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import { Link } from "react-router-dom";
 
 const HeaderContainer = styled.header`
+  z-index: 10;
   position: fixed;
   top: 0;
   width: 100%;
   ${headerHeight}
   padding: 0 ${changePXtoVW(60)};
   background-color: ${colorPalette.deepBlue};
-  z-index: 10;
 `;
 
 const HeaderTitle = styled.h1`
@@ -23,9 +23,9 @@ const HeaderTitle = styled.h1`
   align-items: center;
   justify-content: flex-start;
   height: 100%;
+  font-weight: 400;
   font-size: ${changePXtoVW(24)};
   color: ${colorPalette.white};
-  font-weight: 400;
 `;
 
 const LessonTitle = styled.b`
@@ -73,10 +73,13 @@ const ExitTextCss = styled.span`
   .voice-only {
     overflow: hidden;
     position: absolute;
+    top: -1px;
+    left: -1px;
     width: 1px;
     height: 1px;
     color: transparent;
     font-size: 1px;
+    text-indent: -9999em;
   }
 
   &:before {

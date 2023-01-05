@@ -35,25 +35,25 @@ const CornerListWrapper = styled.main`
 `;
 
 const CornerImageWrapper = styled.div`
+  overflow: hidden;
   width: ${changePXtoVW(200)};
   height: ${changePXtoVW(200)};
-  border-radius: 50%;
-  overflow: hidden;
   border: 8px solid ${colorPalette.white};
+  border-radius: 50%;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
 `;
 
 const CornerListFooter = styled.footer`
-  text-align: center;
   padding-bottom: ${changePXtoVH(80)};
+  text-align: center;
 `;
 
 const cornerImageCss = css`
   width: 100%;
   height: 100%;
-  filter: grayscale(1);
   object-fit: cover;
   transition: all 0.3s;
+  filter: grayscale(1);
 `;
 
 const CornerList = styled.div`
@@ -70,14 +70,15 @@ const CornerName = styled.span`
 
 const startBtnCss = css`
   ${btnCss}
+
   min-width: ${changePXtoVW(278)};
   height: ${changePXtoVW(80)};
-  background-color: ${colorPalette.confirmBtn};
+  margin-top: ${changePXtoVH(136)};
   border-radius: ${changePXtoVW(40)};
+  background-color: ${colorPalette.confirmBtn};
   font-weight: 600;
   font-size: ${changePXtoVW(30)};
   transition: all 0.3s;
-  margin-top: ${changePXtoVH(136)};
   cursor: pointer;
 `;
 
@@ -86,7 +87,6 @@ const startTextCss = css`
 `;
 
 const CornerListLayout = styled.div`
-  /* margin-top: ${headerHeightNormal}; */
   display: flex;
   flex-direction: column;
 `;

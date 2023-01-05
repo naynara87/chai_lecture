@@ -10,17 +10,17 @@ interface TipWrapperProps {
 }
 
 const TipWrapper = styled.div<TipWrapperProps>`
+  display: inline-block;
+  padding-bottom: ${changePXtoVH(16)};
+  padding-left: ${changePXtoVW(56)};
   background-position: left top;
   background-size: ${changePXtoVW(56)};
   background-repeat: no-repeat;
   background-image: url("${process.env.REACT_APP_BASE_URL}/images/icon/icon_tipbuble.svg");
-  display: inline-block;
-  padding-bottom: ${changePXtoVH(16)};
-  padding-left: ${changePXtoVW(56)};
   font-size: ${changePXtoVW(30)};
+  color: ${colorPalette.descriptionText};
   text-align: left;
   white-space: pre-line;
-  color: ${colorPalette.descriptionText};
   ${(props) => props.customCss}
   margin-top: ${changePXtoVH(48)};
 

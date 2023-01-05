@@ -22,7 +22,6 @@ const WordQuizAnswerWrapper = styled.div`
   flex-wrap: wrap;
   gap: ${changePXtoVH(32)} ${changePXtoVW(40)};
   margin: ${changePXtoVW(32)} auto ${changePXtoVW(64)};
-  /* justify-content: space-between; */
 `;
 
 const QuestionWrapper = styled.div`
@@ -32,28 +31,28 @@ const QuestionWrapper = styled.div`
 `;
 
 const blankCss = css`
-  height: ${changePXtoVW(104)};
-  font-weight: 700;
-  font-size: ${changePXtoVW(38)};
   display: flex;
   justify-content: center;
   align-items: center;
-  color: ${colorPalette.white};
+  height: ${changePXtoVW(104)};
   margin: 12px auto 0;
+  font-weight: 700;
+  font-size: ${changePXtoVW(38)};
+  color: ${colorPalette.white};
 `;
 
 const meaningCss = css`
+  margin: 0 auto;
   font-weight: 500;
   font-size: ${changePXtoVW(48)};
   color: ${colorPalette.black};
-  margin: 0 auto;
 `;
 
 const htmlCss = css`
+  margin-left: 10px;
   font-size: ${changePXtoVW(64)};
   font-weight: 400;
   color: ${colorPalette.black};
-  margin-left: 10px;
 `;
 
 interface WordQuizProps {

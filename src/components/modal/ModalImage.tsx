@@ -12,14 +12,14 @@ interface ModalImageProps {
 
 const ModalInnerBox = styled.img`
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
   z-index: 2;
   position: absolute;
   top: 50%;
   left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   width: ${changePXtoVW(1360)};
   height: ${changePXtoVW(680)};
   padding-bottom: ${changePXtoVH(48)};

@@ -8,17 +8,16 @@ interface ModalBackgroundProps {
 }
 
 const ModalBackground = styled.div<ModalBackgroundProps>`
-  position: relative;
   z-index: 2;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: ${(props) =>
     props.isCornerPage
       ? `calc(100vh - ${headerHeightNormal} - ${footerHeightNormal})`
       : `calc(100vh - ${headerHeightNormal})`};
-  /* margin-top: ${headerHeightNormal}; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background-color: rgba(0, 0, 0, 0.6);
 `;
 

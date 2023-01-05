@@ -13,11 +13,11 @@ import ArrowLeft from "../atoms/svg/ArrowLeft";
 import SentenceBubbleComponent from "../molecules/SentenceBubble";
 
 const SentencesOptionContainer = styled.div`
-  width: ${changePXtoVW(630)};
   display: flex;
   justify-content: space-between;
-  margin: 0 auto ${changePXtoVW(30)};
+  width: ${changePXtoVW(630)};
   height: auto;
+  margin: 0 auto ${changePXtoVW(30)};
 `;
 
 const LeftContainer = styled.div``;
@@ -33,27 +33,24 @@ const SentenceWrapper = styled.div``;
 
 const OptionContainer = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   margin-bottom: ${changePXtoVW(10)};
 `;
 
 const OptionButtonWrapper = styled.div`
   display: flex;
-  /* height: ${changePXtoVW(70)}; */
   align-items: center;
 `;
 
 const TextContainer = styled.div`
   width: 100%;
-  /* height: ${changePXtoVH(700)}; */
-  /* overflow: auto; */
-  font-size: ${changePXtoVW(48)};
-  font-weight: 400;
-  color: ${colorPalette.descriptionText};
-  white-space: pre-line;
-  text-align: left;
   padding: ${changePXtoVH(50)} 0;
+  font-weight: 400;
+  font-size: ${changePXtoVW(48)};
+  color: ${colorPalette.descriptionText};
+  text-align: left;
+  white-space: pre-line;
 `;
 
 interface ChangeSentenceIndexButtonProps {
@@ -61,22 +58,22 @@ interface ChangeSentenceIndexButtonProps {
 }
 
 const ChangeSentenceIndexButton = styled.div<ChangeSentenceIndexButtonProps>`
-  cursor: ${(props) => (props.isLast ? "pointer" : "default")};
-  margin-left: ${changePXtoVW(10)};
+  opacity: ${(props) => !props.isLast && 0.3};
   display: flex;
   align-items: center;
-  opacity: ${(props) => !props.isLast && 0.3};
+  margin-left: ${changePXtoVW(10)};
+  cursor: ${(props) => (props.isLast ? "pointer" : "default")};
 `;
 
 const ShowAllSentencesButton = styled.button`
   min-width: ${changePXtoVW(100)};
   height: ${changePXtoVW(48)};
-  line-height: ${changePXtoVW(40)};
   padding: 0 ${changePXtoVW(48)};
   border: 3px solid ${colorPalette.sentenceAllButton};
   border-radius: ${changePXtoVW(28)};
   font-weight: 600;
   font-size: ${changePXtoVW(24)};
+  line-height: ${changePXtoVW(40)};
   color: ${colorPalette.sentenceAllButton};
   cursor: pointer;
 `;
@@ -95,6 +92,7 @@ const optionIconCss = css`
 const optionTextCss = css`
     left: calc(100% - ${changePXtoVW(30)});
     transform: translateX(-100%) translateY(-50%);
+    
   &.active {
     left: ${changePXtoVW(30)};
     transform: translateY(-50%);

@@ -15,11 +15,9 @@ import HtmlContentComponent from "../molecules/HtmlContentComponent";
 import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 
 const customBox03DContainerCss = css`
-  /* width: ${changePXtoVW(1200)}; */
-  margin: ${changePXtoVW(50)} auto;
-  /* flex-direction: column; */
   display: inline-block;
   width: auto;
+  margin: ${changePXtoVW(50)} auto;
   text-align: center;
 
   > .horizontal {
@@ -35,24 +33,24 @@ const customBox03DCss = css`
   height: ${changePXtoVH(154)};
 `;
 const customBox03BContainerCss = css`
+  gap: ${changePXtoVW(40)};
   width: ${changePXtoVW(1200)};
   margin-top: ${changePXtoVW(50)};
-  gap: ${changePXtoVW(40)};
 `;
 
 const tp03CHtmlCss = css`
-  height: ${changePXtoVW(200)};
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  height: ${changePXtoVW(200)};
 `;
 
 interface TP0BAComponentProps extends TemplateProps {}
 
 const HtmlWrapper = styled("div")`
-  line-height: 1.5;
   font-weight: 400;
   font-size: ${changePXtoVW(48)};
+  line-height: 1.5;
   color: ${colorPalette.descriptionText};
   white-space: pre-line;
   text-align: center;

@@ -16,14 +16,14 @@ interface ModalSentencesProps {
 
 const ModalInnerBox = styled.div`
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
   z-index: 2;
   position: absolute;
   top: 50%;
   left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   width: ${changePXtoVW(1032)};
   height: ${changePXtoVW(682)};
   padding-bottom: ${changePXtoVH(48)};
@@ -33,17 +33,17 @@ const ModalInnerBox = styled.div`
 `;
 
 const ModalHeader = styled.div`
-  width: 100%;
-  height: 18%;
-  background-color: ${colorPalette.deepBlue};
   position: absolute;
   top: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: ${colorPalette.white};
-  font-size: ${changePXtoVW(48)};
+  width: 100%;
+  height: 18%;
+  background-color: ${colorPalette.deepBlue};
   font-weight: 700;
+  font-size: ${changePXtoVW(48)};
+  color: ${colorPalette.white};
 `;
 
 interface ModalContentProps {
@@ -51,26 +51,25 @@ interface ModalContentProps {
 }
 
 const ModalContent = styled.div<ModalContentProps>`
-  padding: ${changePXtoVW(50)};
-  width: 100%;
+  overflow-y: auto;
   position: absolute;
   bottom: 0;
-  height: 82%;
   display: grid;
   grid-template-columns: 50% 50%;
   grid-template-rows: repeat(${(props) => props.sentenceLength}, max-content);
-  overflow-y: auto;
+  width: 100%;
+  height: 82%;
+  padding: ${changePXtoVW(50)};
 `;
 
 const Sentence = styled.div`
-  padding: ${changePXtoVW(10)} ${changePXtoVW(40)} 0;
   display: flex;
-  font-weight: 400;
-
   justify-content: space-between;
-  width: 100%;
   align-items: center;
+  width: 100%;
   margin: 0 auto ${changePXtoVW(20)};
+  padding: ${changePXtoVW(10)} ${changePXtoVW(40)} 0;
+  font-weight: 400;
 `;
 
 const textCss = css`
@@ -84,30 +83,25 @@ const pronunciationCss = css`
 `;
 
 const meaningCss = css`
+  width: auto;
+  font-weight: 500;
   font-size: ${changePXtoVW(24)};
   color: ${colorPalette.descriptionText};
-  font-weight: 500;
-  width: auto;
 `;
 
 const IconWrapper = styled.div`
-  width: 25px;
-  height: 25px;
   position: absolute;
   right: 2%;
-  cursor: pointer;
-  background-color: ${colorPalette.backgroundWhite};
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
+  background-color: ${colorPalette.backgroundWhite};
+  cursor: pointer;
 `;
 
 const xIconCss = css`
   transform: scale(0.4);
 `;
-
-// const audioCss = css`
-//   width: ${changePXtoVW(40)};
-//   height: ${changePXtoVW(40)};
-// `;
 
 const ModalSentences = ({ isModalOpen, setIsModalOpen, sentences }: ModalSentencesProps) => {
   // const audioRef = useRef<HTMLAudioElement>(null);

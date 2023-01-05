@@ -55,10 +55,6 @@ const globalStyle = css`
     /* scroll-behavior: smooth; */
   }
 
-  body {
-    background-color: ${colorPalette.backgroundWhite};
-  }
-
   /* body::-webkit-scrollbar {
     width: 1px;
     height: 1px;
@@ -193,6 +189,15 @@ const globalStyle = css`
 
   :root {
     --toastify-toast-min-height: 0 !important;
+  }
+
+  .btn-wrap {
+    margin-top: ${changePXtoVW(64)};
+    text-align: center;
+
+    > button:not(:first-child) {
+      margin-left: ${changePXtoVW(24)};
+    }
   }
 `;
 

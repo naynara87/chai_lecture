@@ -16,20 +16,20 @@ import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import { titleHeight } from "../../constants/layout";
 
 const DialogHeader = styled.div`
+  z-index: 1;
+  position: fixed;
+  top: calc(${changePXtoVH(titleHeight)} + ${changePXtoVW(80)});
+  right: 30px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   width: 100%;
   margin-top: ${changePXtoVH(12)};
-  position: fixed;
-  top: calc(${changePXtoVH(titleHeight)} + ${changePXtoVW(80)});
-  right: 30px;
-  z-index: 1;
 `;
 
 const layoutCss = css`
-  display: block;
   position: relative;
+  display: block;
 `;
 
 interface TP02GComponentProps extends TemplateProps {}

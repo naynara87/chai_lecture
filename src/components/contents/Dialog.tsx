@@ -31,27 +31,27 @@ const TalkBubbleGrp = styled.div`
 `;
 
 const Profile = styled.div<ProfileProps>`
+  overflow: hidden;
+  position: relative;
   width: ${changePXtoVW(120)};
   height: ${changePXtoVW(120)};
   border-radius: 50%;
-  overflow: hidden;
   background-color: ${(props) => props.profileColor};
   color: ${(props) => props.profileColor};
   user-select: none;
-  position: relative;
 
-  background: url(${(props) => props.icon});
-  background-size: cover;
+  background-image: url(${(props) => props.icon});
   background-position: center center;
+  background-size: cover;
 `;
 
 const NullProfile = styled.div`
+  overflow: hidden;
+  position: relative;
   width: ${changePXtoVW(120)};
   height: ${changePXtoVW(120)};
   border-radius: 50%;
-  overflow: hidden;
   user-select: none;
-  position: relative;
 `;
 
 interface TalkBubbleProps {

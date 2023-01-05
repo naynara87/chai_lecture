@@ -16,8 +16,8 @@ interface NumberTableProps {
 }
 
 const htmlCustomCss = css`
-  font-size: ${changePXtoVW(48)};
   font-weight: 500;
+  font-size: ${changePXtoVW(48)};
 `;
 
 const NumberTable = ({

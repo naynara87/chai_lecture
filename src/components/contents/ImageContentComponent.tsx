@@ -8,10 +8,10 @@ interface ImageComponentProps {
   customCss?: SerializedStyles;
 }
 const ImageComponent = styled.img<ImageComponentProps>`
-  cursor: pointer;
   max-width: ${changePXtoVW(500)};
   max-height: 100%;
   object-fit: contain;
+  cursor: pointer;
   ${(props) => props.customCss}
 `;
 

@@ -23,19 +23,18 @@ const TitleContainer = styled.div<TitleContainerProps>`
 `;
 
 const TitleWrapper = styled.div<TitleWrapperProps>`
+  z-index: 1;
+  position: ${(props) => !props.isTab && "fixed"};
+  top: ${(props) => !props.isTab && 0};
+  left: ${(props) => !props.isTab && "50%"};
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: ${(props) => !props.isTab && "fixed"};
-  top: ${(props) => !props.isTab && 0};
-  padding-top: ${(props) => !props.isTab && `calc(${headerHeightNormal} + ${changePXtoVH(96)})`};
   width: ${(props) => !props.isTab && "100%"};
-  /* height: ${titleHeightNormal}; */
-  left: ${(props) => !props.isTab && "50%"};
-  transform: ${(props) => !props.isTab && "translateX(-50%)"};
-  background-color: ${(props) => !props.isTab && `${colorPalette.backgroundWhite}`};
+  padding-top: ${(props) => !props.isTab && `calc(${headerHeightNormal} + ${changePXtoVH(96)})`};
+  background-color: ${colorPalette.white};
   box-shadow: ${(props) => props.isScroll && `0 4px 20px -2px hsl(0deg 0% 81% / 50%)`};
-  z-index: 2;
+  transform: ${(props) => !props.isTab && "translateX(-50%)"};
 `;
 
 const MainTitle = styled.h2`
@@ -45,10 +44,10 @@ const MainTitle = styled.h2`
 
 const SubTitle = styled.p`
   margin-top: ${changePXtoVW(16)};
+  margin-bottom: ${changePXtoVW(25)};
   font-weight: 500;
   font-size: ${changePXtoVW(28)};
   color: ${colorPalette.descriptionText};
-  margin-bottom: ${changePXtoVW(25)};
 `;
 
 interface TitleContentProps {

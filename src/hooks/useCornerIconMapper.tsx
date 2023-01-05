@@ -1,6 +1,7 @@
 const useCornerIconMapper = () => {
   const cornerIconMapper: Record<string, string> = {
     복습: `${process.env.REACT_APP_BASE_URL}/images/cornerIcon/reviseIcon.png`,
+    학습: `${process.env.REACT_APP_BASE_URL}/images/cornerIcon/eduIconOne.png`,
     학습1: `${process.env.REACT_APP_BASE_URL}/images/cornerIcon/eduIconOne.png`,
     학습2: `${process.env.REACT_APP_BASE_URL}/images/cornerIcon/eduIconTwo.png`,
     학습3: `${process.env.REACT_APP_BASE_URL}/images/cornerIcon/eduIconThree.png`,
@@ -11,7 +12,7 @@ const useCornerIconMapper = () => {
     단어: `${process.env.REACT_APP_BASE_URL}/images/cornerIcon/wordIcon.png`,
     패턴중국어: `${process.env.REACT_APP_BASE_URL}/images/cornerIcon/patternIcon.png`,
     "주제별 표현(메타인지테스트)": `${process.env.REACT_APP_BASE_URL}/images/cornerIcon/metaIcon.png`,
-    종합테스트: `${process.env.REACT_APP_BASE_URL}/images/cornerIcon/practiceIcon.png`,
+    "종합 테스트": `${process.env.REACT_APP_BASE_URL}/images/cornerIcon/practiceIcon.png`,
     오답테스트: `${process.env.REACT_APP_BASE_URL}/images/cornerIcon/review_test_icon.png`,
     단어테스트: `${process.env.REACT_APP_BASE_URL}/images/cornerIcon/word_test_icon.png`,
   };

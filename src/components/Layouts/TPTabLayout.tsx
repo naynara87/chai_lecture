@@ -5,9 +5,7 @@ import { changePXtoVW } from "../../utils/styles";
 
 const TPTabLayoutStyle = styled.div`
   height: ${templateContentsAreaHeight};
-
   margin-top: ${changePXtoVW(50)};
-
   margin-bottom: 0;
 `;
 

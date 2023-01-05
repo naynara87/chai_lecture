@@ -15,11 +15,11 @@ interface RecordedAudioButtonProps {
 }
 
 const RecordedAudioButton = styled.button<RecordedAudioButtonProps>`
+  position: relative;
   width: ${changePXtoVW(80)};
   height: ${changePXtoVW(80)};
-  border-radius: 50%;
   margin: 0 ${changePXtoVW(10)};
-  position: relative;
+  border-radius: 50%;
 
   ${(props) => props.customCss}
 `;
@@ -29,11 +29,11 @@ interface RecordingAudioButtonProps {
 }
 
 const RecordingAudioButton = styled.button<RecordingAudioButtonProps>`
+  position: relative;
   width: ${changePXtoVW(80)};
   height: ${changePXtoVW(80)};
   border-radius: 50%;
   margin: 0 ${changePXtoVW(10)};
-  position: relative;
 
   ${(props) => props.customCss}
 `;
@@ -51,8 +51,8 @@ const currentBackground = css`
 const AudioRecorderStyle = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: ${changePXtoVW(16)};
   gap: 1%;
+  margin-top: ${changePXtoVW(16)};
 `;
 
 type recordingAudioState = "record" | "pause" | "recordAudioPlaying";
