@@ -3,23 +3,29 @@ import styled from "@emotion/styled";
 import useCreateContent from "../../../hooks/useCreateContent";
 import { useNavigate } from "react-router-dom";
 import { CREATE_CONTENT_LAYOUT_URL } from "../../../constants/url";
-import "./CreateComponents.scss";
+import "./common.scss";
+import ModalLayoutChange from "./ModalLayoutChange";
+import ModalComponentChoice from "./ModalComponentChoice";
 
+// NOTE: 특정 페이지에서만 스타일이 변경될 시 사용
 const PageLayout = styled.div`
-  display: block;
+  .btn-wrap {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
 `;
 
 const CreateComponents = () => {
   const { contentLayout } = useCreateContent();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!contentLayout) {
-      // TODO: ModalAlert 으로 변경하기
-      alert("레이아웃을 먼저 설정해주세요");
-      navigate(CREATE_CONTENT_LAYOUT_URL);
-    }
-  }, [contentLayout, navigate]);
+  // useEffect(() => {
+  //   if (!contentLayout) {
+  //     // TODO: ModalAlert 으로 변경하기
+  //     alert("레이아웃을 먼저 설정해주세요");
+  //     navigate(CREATE_CONTENT_LAYOUT_URL);
+  //   }
+  // }, [contentLayout, navigate]);
 
   const handleLayoutClick = () => {
     console.log("레이아웃 설정 버튼 클릭");
@@ -32,12 +38,69 @@ const CreateComponents = () => {
 
   return (
     <PageLayout>
-      <header>로고영역</header>
-      <main>수정작업영역</main>
-      <footer>버튼영역</footer>
-    <button type="button" className="btn" onClick={handleLayoutClick}>
-      레이아웃 설정
-    </button>
+      <header className="layout-hd">
+        <div className="flex-btw-wrap">
+          <div className="left-wrap">
+            <h1 className="logo-wrap">
+              <img  src={`${process.env.PUBLIC_URL}images/bubblecon/bubblecon_logo.png`}
+            alt="bubblecon_logo" />
+            </h1>
+            <div className="btn-wrap">
+              <button className="btn btn-border-primary">뒤로</button>
+              <button className="btn btn-border-primary">앞으로</button>
+            </div>
+          </div>
+          <div className="right-wrap">
+            <div className="btn-wrap">
+              <span>자동저장</span>
+              <button className="btn btn-border-primary">저장</button>
+              <button className="btn btn-border-primary">복사 & 붙여넣기</button>
+            </div>
+            </div>
+        </div>
+      </header>
+      <main className="layout-main">
+        <div className="flex-btw-wrap">
+            <div className="btn-wrap">
+              <button className="btn btn-border-primary" onClick={handleLayoutClick}>레이아웃 설정</button>
+              {/* TODO: 레이아웃 설정 모달 */}
+              {/* <ModalLayoutChange /> */}
+            </div>
+
+            <div className="btn-wrap">
+              <button className="btn btn-border-primary">글자</button>
+              <button className="btn btn-border-primary">사진</button>
+              <button className="btn btn-border-primary">음원</button>
+              <button className="btn btn-border-primary">영상</button>
+              <button className="btn btn-border-primary">컴포넌트</button>
+            </div>
+          </div>
+
+        <div className="create-page-wrap">
+          <div className="page-title-wrap">제목의 높이는 이 프로젝트의 title height를 가져옴</div>
+          <div className="page-conts-wrap">콘텐츠의 높이는 지정하지 않음(유동적)</div>
+        </div>
+      </main>
+      <footer className="layout-ft">
+        <div className="flex-btw-wrap">
+          <div className="left-wrap">
+            <div className="btn-wrap">
+              <button className="btn btn-border-primary">이전</button>
+              <button className="btn btn-border-primary">삭제</button> 
+            </div>
+          </div>
+          <div className="center-wrap">{ '1' } / { '20' }</div>
+          <div className="right-wrap">
+            <div className="btn-wrap">
+              <button className="btn btn-border-primary">편집</button>
+              <button className="btn btn-border-primary">저장</button>
+              <button className="btn btn-border-primary">다음</button>
+            </div>
+          </div>
+        </div>
+        </footer>
+        {/* TODO: 컴포넌트 선택 모달 */}
+        <ModalComponentChoice />
     </PageLayout>
   );
 };

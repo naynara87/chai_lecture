@@ -1,0 +1,70 @@
+@import "utill";
+
+// modal base
+.modal-bg {
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0 , 0, 0, 0.7);
+}
+
+.modal-container {
+  overflow: auto;
+  z-index: 2;
+  position: fixed;
+  top: 50%;
+  left :50%;
+  width: auto;
+  max-width: 80vw;
+  height: auto;
+  max-height: 60vh;
+  background-color: color(white);
+  transform: translate(-50%, -50%);
+}
+
+// layout change modal
+.mocal-layout-change {
+  position: absolute;
+  top: calc(100% + 10px);
+  left :0;
+  max-width: vw(500);
+  padding: vw(10);
+  transform: none;
+}
+
+.acc-list-wrap {
+  width: 340px;
+
+  .acc-title {
+    font-size: vw(30);
+    text-align: left;
+  }
+
+  .grid-container {
+    display: none;
+    grid-template-columns: repeat(3, 1fr); ;
+    grid-auto-rows: 1fr;
+
+    &.active {
+      display: grid;
+    }
+  }
+
+  .btn-acc-choice {
+    width: 100px;
+    padding: 0;
+
+    img {
+      max-width: 100%;
+    }
+  }
+}
+
+// component choice modal
+.modal-component-choice {
+  width: 80vw;
+  padding: vw(20);
+}

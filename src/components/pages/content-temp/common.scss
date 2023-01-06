@@ -1,0 +1,113 @@
+@import "utill";
+
+// common class
+.flex-btw-wrap {
+  @include flex-btw;
+}
+
+.btn-wrap {
+  display: inline-block;
+  margin: 0;
+
+  .btn {
+    &:not(:first-child) {
+      margin-left: vw(10);
+    }
+  }
+}
+
+.btn {
+  @include input-reset;
+
+  height: $btn-height;
+  padding: vw(1) vw(10);
+  border-radius: vw(10);
+  font-size: vw(16);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.btn-fill-primary {
+  border:1px solid color(primary);
+  background-color: color(primary);
+  color: color(white);
+
+  @include hover {
+    background-color: transparent;
+  }
+}
+
+.btn-border-primary {
+  border: 1px solid color(primary);
+  color: color(primary);
+  
+    @include hover {
+      background-color: color(primary);
+      color: color(white);
+    }
+}
+
+// header
+.layout-hd {
+  height: $hd-height;
+  padding: 0 10px;
+  background-color: color(gray-100);
+
+  .logo-wrap {
+    @include flex-center(inline-flex);
+
+    height: $hd-height;
+    vertical-align: middle;
+    
+    > img {
+      max-width: vw(200);
+    }
+  }
+
+  .btn-wrap {
+    @include flex-center(inline-flex);
+
+    height: $hd-height;
+    margin-left: vw(10);
+  }
+}
+
+// main
+.layout-main {
+  overflow: auto;
+  height: calc(100vh - $hd-height - $ft-height);
+  padding: vw(10) 10px;
+
+  .btn-wrap {
+    position: relative;
+  }
+}
+
+.create-page-wrap {
+  min-height: calc(100vh - $hd-height - $ft-height - $btn-height - vw(20));
+  padding-top: vw(10);
+}
+
+.page-title-wrap {
+  height: $title-height;
+  background: beige;
+  text-align: center;
+}
+
+.page-conts-wrap {
+  padding-top: 10px;
+  text-align: center;
+}
+
+// footer
+.layout-ft {
+  height: $ft-height;
+  padding: 0 10px;
+  background-color: color(gray-100);
+
+  .btn-wrap {
+    @include flex-center;
+
+    height: $ft-height;
+  }
+}
