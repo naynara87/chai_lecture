@@ -7,7 +7,6 @@ import "./common.scss";
 import ModalLayoutChange from "./ModalLayoutChange";
 import ModalComponentChoice from "./ModalComponentChoice";
 
-// NOTE: 특정 페이지에서만 스타일이 변경될 시 사용
 const PageLayout = styled.div`
   .btn-wrap {
     margin-top: 0;
@@ -19,17 +18,8 @@ const CreateComponents = () => {
   const { contentLayout } = useCreateContent();
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (!contentLayout) {
-  //     // TODO: ModalAlert 으로 변경하기
-  //     alert("레이아웃을 먼저 설정해주세요");
-  //     navigate(CREATE_CONTENT_LAYOUT_URL);
-  //   }
-  // }, [contentLayout, navigate]);
-
   const handleLayoutClick = () => {
     console.log("레이아웃 설정 버튼 클릭");
-    // TODO: ModalConfirm 으로 변경하기
     const isConfirmed = window.confirm("레이아웃을 변경하시겠습니까?");
     if (isConfirmed) {
       navigate(CREATE_CONTENT_LAYOUT_URL);
@@ -63,8 +53,8 @@ const CreateComponents = () => {
         <div className="flex-btw-wrap">
             <div className="btn-wrap">
               <button className="btn btn-border-primary" onClick={handleLayoutClick}>레이아웃 설정</button>
-              {/* TODO: 레이아웃 설정 모달 */}
-              {/* <ModalLayoutChange /> */}
+
+              <ModalLayoutChange />
             </div>
 
             <div className="btn-wrap">
@@ -77,7 +67,7 @@ const CreateComponents = () => {
           </div>
 
         <div className="create-page-wrap">
-          <div className="page-title-wrap">제목의 높이는 이 프로젝트의 title height를 가져옴</div>
+          <div className="page-title-wrap">제목의 높이는 이 프로젝트의 title height를 scss에 옮겨서 가져옴</div>
           <div className="page-conts-wrap">콘텐츠의 높이는 지정하지 않음(유동적)</div>
         </div>
       </main>
@@ -99,7 +89,7 @@ const CreateComponents = () => {
           </div>
         </div>
         </footer>
-        {/* TODO: 컴포넌트 선택 모달 */}
+
         <ModalComponentChoice />
     </PageLayout>
   );

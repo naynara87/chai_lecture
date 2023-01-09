@@ -30,7 +30,7 @@
   position: absolute;
   top: calc(100% + 10px);
   left :0;
-  max-width: vw(500);
+  max-width: 500px;
   padding: vw(10);
   transform: none;
 }
@@ -63,8 +63,50 @@
   }
 }
 
+.modal-ttl {
+  z-index: 1;
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+
+  .btn {
+    position: absolute;
+    top: 0;
+    left: auto;
+    right: 0;
+    border: 1px solid;
+    border-radius: 0;
+  }
+}
+
 // component choice modal
 .modal-component-choice {
+  max-width: 1024px;
   width: 80vw;
   padding: vw(20);
+
+  .modal-ttl {
+    top: vw(-20);
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: vh(100);
+  }
+
+  .btn-component-choice {
+    height: 100%;
+    border-radius: 0;
+
+    &:nth-child(even) {
+      background-color: color(gray-100);
+    }
+
+    @include hover {
+      background-color: color(yellow);
+    }
+  }
 }
