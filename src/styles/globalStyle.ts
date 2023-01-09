@@ -34,8 +34,7 @@ const globalStyle = css`
   section,
   article,
   aside,
-  nav,
-  [class] {
+  nav {
     margin: 0;
     padding: 0;
     border: 0;

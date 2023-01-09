@@ -1,0 +1,151 @@
+// function
+@function color($color) {
+	@return map-get($color-set, $color);
+}
+
+@function vw($px) {
+	@return $px / 1920 * 100vw;
+}
+
+@function vh($px) {
+	@return $px / 1440 * 100vh;
+}
+
+// variable
+// colors
+$gray-0: #ffffff;
+$gray-100: #f5f5f5;
+$gray-200: #E4E4E4;
+$gray-300: #D2D4DB;
+$gray-400: #cccccc;
+$gray-500: #A0A1A4;
+$gray-600: #9b9b9b;
+$gray-700: #999999;
+$gray-800: #666666;
+$gray-900: #3C3C3C;
+$blue-300: #293db5;
+$blue-500: #6070CF;
+$blue-700: #40476B;
+$black: #222222;
+$red-500: #f65555;
+$orange-500: #ed7041;
+$yellow-500: #f5be54;
+$green-500: #75b997;
+$sky-500: #83b3fc;
+$navy-500: #4c549a;
+$violet-500: #8f64eb;
+
+$color-set: (
+  primary: $blue-300,
+  primary-light: $blue-500,
+  primary-dark: $blue-700,
+  text: $black,
+  blue: $blue-300,
+  blue-light: $blue-500,
+  blue-dark: $blue-700,
+  red: $red-500,
+  orange: $orange-500,
+  yellow: $yellow-500,
+  green: $green-500,
+  sky: $sky-500,
+  navy: $navy-500,
+  white: $gray-0,
+  gray-100: $gray-100,
+  gray-200: $gray-200,
+  gray-300: $gray-300,
+  gray-400: $gray-400,
+  gray-500: $gray-500,
+  gray-600: $gray-600,
+  gray-700: $gray-700,
+  gray-800: $gray-800,
+  gray-900: $gray-900,
+);
+
+// common
+$hd-height: vw(80);
+$ft-height: vw(50);
+$btn-height: vw(25);
+$title-height: vw(310);
+
+// mixin
+// size
+@mixin circle($s) {
+	width: $s;
+	height: $s;
+	border-radius: 50%;
+	@content;
+}
+
+@mixin square($s) {
+	width: $s;
+	height: $s;
+}
+
+@mixin full {
+	width: 100%;
+	height: 100%;
+}
+
+// flex
+@mixin flex($d: flex) {
+	display: $d;
+	@content;
+}
+
+@mixin flex-op($ai: null, $jc: null) {
+	align-items: $ai;
+	justify-content: $jc;
+}
+
+@mixin flex-center($d: flex) {
+	display: $d;
+	@include flex-op(center, center);
+
+	@content;
+}
+
+@mixin flex-btw($d: flex) {
+	display: $d;
+	@include flex-op(center, space-between);
+
+	@content;
+}
+
+// before, after
+@mixin make-before($c: "", $d: block) {
+	&:before {
+		content: $c;
+		display: $d;
+
+		@content;
+	}
+}
+
+@mixin make-after($c: "", $d: block) {
+	&:after {
+		content: $c;
+		display: $d;
+
+		@content;
+	}
+}
+
+// input
+@mixin input-reset {
+	border-radius: 0;
+	background-color: transparent;
+	border: 0;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	padding: 0;
+	outline: none;
+	box-shadow: none;
+}
+
+@mixin hover {
+	&:hover,
+	&:focus {
+		@content;
+	}
+}
