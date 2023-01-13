@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
-import useCreateContent from "../../../hooks/useCreateContent";
 import { useNavigate } from "react-router-dom";
 import { CREATE_CONTENT_LAYOUT_URL } from "../../../constants/url";
 import "./common.scss";
 import ModalLayoutChange from "./ModalLayoutChange";
 import ModalComponentChoice from "./ModalComponentChoice";
-import useCreateContentMapper from "../../../hooks/contentCreate/useCreateContentMapper";
-import { Content } from "../../../types/appData";
+import useCreateContent from "../../../hooks/contentCreate/useCreateContent";
 
 const PageLayout = styled.div`
   .btn-wrap {
@@ -19,10 +17,9 @@ const PageLayout = styled.div`
 const CreateComponentsTemp = () => {
   const { contentLayout } = useCreateContent();
   const navigate = useNavigate();
-  const [componentList, setComponentList] = useState<Content[]>([]);
 
-  const { getCreateContentComponent, getDefaultContentComponent, componentNames } =
-    useCreateContentMapper();
+  const { componentNames, components, addComponentToExistingComponent, addNewComponent } =
+    useCreateContent();
 
   useEffect(() => {
     console.log("contentLayout", contentLayout);
@@ -83,10 +80,10 @@ const CreateComponentsTemp = () => {
             {componentNames.map((componentName) => {
               return (
                 <button
+                  key={componentName}
                   className="btn btn-border-primary"
-                  onClick={() =>
-                    setComponentList((prev) => [...prev, getDefaultContentComponent(componentName)])
-                  }
+                  onClick={() => addComponentToExistingComponent(componentName)}
+                  // onClick={() => addNewComponent(componentName)}
                 >
                   {componentName}
                 </button>
@@ -103,9 +100,7 @@ const CreateComponentsTemp = () => {
           </div> */}
           <div className="page-conts-wrap">
             {/* 컴포넌트가 추가되는 영역 */}
-            {componentList.map((component) => {
-              return getCreateContentComponent(component);
-            })}
+            {components}
           </div>
         </div>
       </main>

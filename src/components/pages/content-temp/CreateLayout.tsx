@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import useCreateContent from "../../../hooks/useCreateContent";
+import useCreateContent from "../../../hooks/contentCreate/useCreateContent";
 import { TemplateType } from "../../../types/appData";
 import { layouts } from "../../../data/contentCreate";
 import { useNavigate } from "react-router-dom";
