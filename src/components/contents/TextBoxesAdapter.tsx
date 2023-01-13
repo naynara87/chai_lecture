@@ -2,7 +2,7 @@ import React from "react";
 import { TextBoxesContent } from "../../types/templateContents";
 import TextBoxes from "../molecules/TextBoxes";
 
-interface TextBoxesAdapterProps {
+export interface TextBoxesAdapterProps {
   content: TextBoxesContent;
 }
 const TextBoxesAdapter = ({ content }: TextBoxesAdapterProps) => {

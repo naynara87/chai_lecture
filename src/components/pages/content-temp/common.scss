@@ -28,7 +28,7 @@
 }
 
 .btn-fill-primary {
-  border:1px solid color(primary);
+  border: 1px solid color(primary);
   background-color: color(primary);
   color: color(white);
 
@@ -40,11 +40,11 @@
 .btn-border-primary {
   border: 1px solid color(primary);
   color: color(primary);
-  
-    @include hover {
-      background-color: color(primary);
-      color: color(white);
-    }
+
+  @include hover {
+    background-color: color(primary);
+    color: color(white);
+  }
 }
 
 // header
@@ -58,7 +58,7 @@
 
     height: $hd-height;
     vertical-align: middle;
-    
+
     > img {
       max-width: vw(200);
     }
@@ -75,7 +75,7 @@
 // main
 .layout-main {
   padding: vw(10) 10px;
-  
+
   .btn-wrap {
     position: relative;
   }
@@ -99,6 +99,8 @@
 .page-conts-wrap {
   padding-top: 10px;
   text-align: center;
+  height: 100%;
+  background-color: beige;
 }
 
 // footer

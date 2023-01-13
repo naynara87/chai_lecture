@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import styled from "@emotion/styled";
-import useCreateContent from "../../../hooks/contentCreate/useCreateContent";
 import { useNavigate } from "react-router-dom";
 import { CREATE_CONTENT_LAYOUT_URL } from "../../../constants/url";
 import "./common.scss";
 import ModalLayoutChange from "./ModalLayoutChange";
 import ModalComponentChoice from "./ModalComponentChoice";
+import useCreateContent from "../../../hooks/contentCreate/useCreateContent";
+import uuid from "react-uuid";
 
 const PageLayout = styled.div`
   .btn-wrap {
@@ -14,9 +15,19 @@ const PageLayout = styled.div`
   }
 `;
 
-const CreateComponents = () => {
+const CreateComponentsTemp = () => {
   const { contentLayout } = useCreateContent();
   const navigate = useNavigate();
+
+  const { componentNames, components, addNewComponent, addComponentToExistingComponentById } =
+    useCreateContent();
+
+  useEffect(() => {
+    console.log("contentLayout", contentLayout);
+    // if (!contentLayout) {
+    //   navigate(CREATE_CONTENT_LAYOUT_URL);
+    // }
+  }, [contentLayout, navigate]);
 
   const handleLayoutClick = () => {
     console.log("레이아웃 설정 버튼 클릭");
@@ -62,19 +73,51 @@ const CreateComponents = () => {
           </div>
 
           <div className="btn-wrap">
-            <button className="btn btn-border-primary">글자</button>
-            <button className="btn btn-border-primary">사진</button>
-            <button className="btn btn-border-primary">음원</button>
-            <button className="btn btn-border-primary">영상</button>
-            <button className="btn btn-border-primary">컴포넌트</button>
+            <div>컴포넌트 새로 추가</div>
+            {componentNames.map((componentName) => {
+              return (
+                <button
+                  key={componentName}
+                  className="btn btn-border-primary"
+                  onClick={() => addNewComponent(componentName)}
+                >
+                  {componentName}
+                </button>
+              );
+            })}
+            <div>
+              <div>기존 컴포넌트에 추가</div>
+              {componentNames.map((componentName) => {
+                return (
+                  <button
+                    key={componentName}
+                    className="btn btn-border-primary"
+                    // FIXME: 임시로 id를 설정 - 기존 컴포넌트에 추가되는 버튼(또는 함수실행)은 저작 컴포넌트 안으로 들어가야 함
+                    onClick={() =>
+                      addComponentToExistingComponentById(
+                        componentName,
+                        "49a56b39-02d8-5878-0db3-9f5a63a29e7b",
+                      )
+                    }
+                  >
+                    {componentName}
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
 
         <div className="create-page-wrap">
+          {/* 
+          제목 영역이 없어졌으므로 주석 처리
           <div className="page-title-wrap">
             제목의 높이는 이 프로젝트의 title height를 scss에 옮겨서 가져옴
+          </div> */}
+          <div className="page-conts-wrap">
+            {/* 컴포넌트가 추가되는 영역 */}
+            {components}
           </div>
-          <div className="page-conts-wrap">콘텐츠의 높이는 지정하지 않음(유동적)</div>
         </div>
       </main>
       <footer className="layout-ft">
@@ -103,4 +146,4 @@ const CreateComponents = () => {
   );
 };
 
-export default CreateComponents;
+export default CreateComponentsTemp;
