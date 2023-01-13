@@ -1,14 +1,25 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useRecoilState } from "recoil";
 import ChooseTextCreator from "../../components/contents/createContent/ChooseTextCreator";
 import TextBoxesCreator from "../../components/contents/createContent/TextBoxesCreator";
 import { defaultContentComponentData } from "../../data/contentCreate/defaultContentComponentData";
 import { contentLayoutState } from "../../state/createContent/contentLayoutState";
 import { Content } from "../../types/appData";
+import { TextBoxesContent } from "../../types/templateContents";
+import uuid from "react-uuid";
 
-const useCreateContentMapper = () => {
+export type CreatorContent = {
+  id: string;
+  content: Content;
+};
+
+const useCreateContent = () => {
   const [contentLayout, setContentLayout] = useRecoilState(contentLayoutState);
-  const [componentList, setComponentList] = useState<Content[]>([]);
+  const [componentList, setComponentList] = useState<CreatorContent[]>([]);
+
+  useEffect(() => {
+    console.log("componentList", componentList);
+  }, [componentList]);
 
   const getCreateContentComponent = useCallback((content: Content, key?: string) => {
     const contentCreatorMapper: Partial<Record<Content["type"], JSX.Element | JSX.Element[]>> = {
@@ -16,56 +27,62 @@ const useCreateContentMapper = () => {
       // chooseText: <ChooseText contentData={content as ChooseTextContent} />,
       // textBoxes: <TextBoxesAdapter content={content as TextBoxesContent} />,
       chooseText: <ChooseTextCreator key={key} />,
-      textBoxes: <TextBoxesCreator key={key} />,
+      textBoxes: (
+        <TextBoxesCreator
+          key={key}
+          content={content as TextBoxesContent}
+          onSave={() => console.log("save")}
+        />
+      ),
     };
 
     return contentCreatorMapper[content.type];
   }, []);
 
-  const getDefaultContentComponent = useCallback((contentType: Content["type"]) => {
-    return { type: contentType, data: defaultContentComponentData[contentType] } as Content;
+  const getDefaultContentComponent = useCallback((contentType: Content["type"], id: string) => {
+    return {
+      id,
+      content: { type: contentType, data: defaultContentComponentData[contentType] },
+    } as CreatorContent;
   }, []);
 
   const componentNames = Object.keys(defaultContentComponentData) as Content["type"][];
 
   const components = useMemo(() => {
-    return componentList.flatMap((content, listIndex) => {
-      const Components = content.data.map((_, dataIndex) =>
-        getCreateContentComponent(content, `${content.type}_${listIndex}_${dataIndex}`),
+    const _components = componentList.map((contentData, listIndex) => {
+      // NOTE : content data가 여러개 인 경우엔 렌더링 하는 컴포넌트에서 처리
+      return getCreateContentComponent(
+        contentData.content,
+        `${contentData.content.type}_${listIndex}`,
       );
-      // TODO: data에 여러개가 있다면 여러개를 표시
-      return Components;
     });
+    return _components;
   }, [componentList, getCreateContentComponent]);
 
-  const addComponentToExistingComponent = useCallback(
-    (contentType: Content["type"]) => {
-      const newComponent = getDefaultContentComponent(contentType);
-      setComponentList((prev) => {
-        // 같은 컴포넌트가 있는 경우
-        const sameComponent = prev.find((component) => component.type === newComponent.type);
-        if (sameComponent) {
-          return prev.map((component) => {
-            if (component.type === sameComponent.type) {
-              return {
-                ...component,
-                data: [...component.data, ...newComponent.data],
-              } as Content;
-            }
-            return component;
-          });
+  const addComponentToExistingComponentById = useCallback(
+    (contentType: Content["type"], id: string) => {
+      const newComponent = getDefaultContentComponent(contentType, id);
+      const addedComponentList = componentList.map((component) => {
+        if (component.id === id) {
+          return {
+            ...component,
+            content: {
+              ...component.content,
+              data: [...component.content.data, ...newComponent.content.data],
+            },
+          } as CreatorContent;
         }
-
-        // 같은 컴포넌트가 없을 경우
-        return [...prev, newComponent];
+        return component;
       });
+      setComponentList(addedComponentList);
     },
-    [getDefaultContentComponent],
+    [getDefaultContentComponent, componentList],
   );
 
   const addNewComponent = useCallback(
     (contentType: Content["type"]) => {
-      const newComponent = getDefaultContentComponent(contentType);
+      const newId = uuid();
+      const newComponent = getDefaultContentComponent(contentType, newId);
       setComponentList((prev) => {
         return [...prev, newComponent];
       });
@@ -80,9 +97,9 @@ const useCreateContentMapper = () => {
     contentLayout,
     setContentLayout,
     components,
-    addComponentToExistingComponent,
     addNewComponent,
+    addComponentToExistingComponentById,
   };
 };
 
-export default useCreateContentMapper;
+export default useCreateContent;

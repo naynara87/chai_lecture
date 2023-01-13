@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
 import { CREATE_CONTENT_LAYOUT_URL } from "../../../constants/url";
@@ -6,6 +6,7 @@ import "./common.scss";
 import ModalLayoutChange from "./ModalLayoutChange";
 import ModalComponentChoice from "./ModalComponentChoice";
 import useCreateContent from "../../../hooks/contentCreate/useCreateContent";
+import uuid from "react-uuid";
 
 const PageLayout = styled.div`
   .btn-wrap {
@@ -18,7 +19,7 @@ const CreateComponentsTemp = () => {
   const { contentLayout } = useCreateContent();
   const navigate = useNavigate();
 
-  const { componentNames, components, addComponentToExistingComponent, addNewComponent } =
+  const { componentNames, components, addNewComponent, addComponentToExistingComponentById } =
     useCreateContent();
 
   useEffect(() => {
@@ -72,23 +73,38 @@ const CreateComponentsTemp = () => {
           </div>
 
           <div className="btn-wrap">
-            {/* <button className="btn btn-border-primary">글자</button>
-            <button className="btn btn-border-primary">사진</button>
-            <button className="btn btn-border-primary">음원</button>
-            <button className="btn btn-border-primary">영상</button>
-            <button className="btn btn-border-primary">컴포넌트</button> */}
+            <div>컴포넌트 새로 추가</div>
             {componentNames.map((componentName) => {
               return (
                 <button
                   key={componentName}
                   className="btn btn-border-primary"
-                  onClick={() => addComponentToExistingComponent(componentName)}
-                  // onClick={() => addNewComponent(componentName)}
+                  onClick={() => addNewComponent(componentName)}
                 >
                   {componentName}
                 </button>
               );
             })}
+            <div>
+              <div>기존 컴포넌트에 추가</div>
+              {componentNames.map((componentName) => {
+                return (
+                  <button
+                    key={componentName}
+                    className="btn btn-border-primary"
+                    // FIXME: 임시로 id를 설정 - 기존 컴포넌트에 추가되는 버튼(또는 함수실행)은 저작 컴포넌트 안으로 들어가야 함
+                    onClick={() =>
+                      addComponentToExistingComponentById(
+                        componentName,
+                        "49a56b39-02d8-5878-0db3-9f5a63a29e7b",
+                      )
+                    }
+                  >
+                    {componentName}
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
 
