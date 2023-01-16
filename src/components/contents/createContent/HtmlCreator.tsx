@@ -1,6 +1,6 @@
 import { SerializedStyles } from "@emotion/react";
 import styled from "@emotion/styled";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { changePXtoVW } from "../../../utils/styles";
 
 interface HtmlWrapperProps {
@@ -36,8 +36,13 @@ interface HtmlCreatorProps extends HtmlWrapperProps {
 }
 
 const HtmlCreator = ({ html, customCss, onClickHtml, onSubmitHtml }: HtmlCreatorProps) => {
-  const [isSave, setIsSave] = useState(false);
+  const [isSave, setIsSave] = useState<boolean>();
   const [text, setText] = useState(html);
+
+  useEffect(() => {
+    setIsSave(html.length > 0);
+    setText(html);
+  }, [html]);
 
   const handleFixedHtml = useCallback(() => {
     setIsSave(false);
@@ -47,7 +52,7 @@ const HtmlCreator = ({ html, customCss, onClickHtml, onSubmitHtml }: HtmlCreator
     <>
       {isSave ? (
         <HtmlWrapper
-          dangerouslySetInnerHTML={{ __html: text }}
+          dangerouslySetInnerHTML={{ __html: html }}
           customCss={customCss}
           onClick={handleFixedHtml}
         ></HtmlWrapper>

@@ -1,75 +1,17 @@
 import { TextBoxesAdapterProps } from "../TextBoxesAdapter";
-import React, { useCallback, useEffect, useState } from "react";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-import { changePXtoVH, changePXtoVW } from "../../../utils/styles";
-import { colorPalette } from "../../../styles/colorPalette";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { TextBoxesContent, TextBoxesData } from "../../../types/templateContents";
 import { Content } from "../../../types/appData";
 import { CreatorContent } from "../../../hooks/contentCreate/useCreateContent";
 import HtmlCreator from "./HtmlCreator";
-
-const TextBoxesWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 0 ${changePXtoVW(40)};
-  width: ${changePXtoVW(1200)};
-  margin: 0 auto;
-`;
-
-const TextCardGrp = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-weight: 400;
-  color: #3c3c3c;
-  text-align: center;
-
-  > div:first-child {
-    min-width: ${changePXtoVW(288)};
-    width: auto;
-    height: ${changePXtoVH(160)};
-  }
-
-  &.horizontal {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-`;
-
-const SubText = styled.div`
-  margin-top: ${changePXtoVH(32)};
-`;
-
-const subTextCss = css`
-  font-weight: 500;
-  font-size: ${changePXtoVW(30)};
-  color: ${colorPalette.textBoxSub};
-`;
-
-const MeaningText = styled("div")`
-  margin-top: ${changePXtoVH(32)};
-  font-weight: 600;
-  font-size: ${changePXtoVW(30)};
-`;
-
-const TextCard = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-width: ${changePXtoVW(288)};
-  width: 100%;
-  margin: ${changePXtoVH(11)} ${changePXtoVW(11)};
-  padding: ${changePXtoVW(33)} ${changePXtoVW(33)};
-  border: 1px solid ${colorPalette.textBoxBorder};
-  border-radius: ${changePXtoVW(11)};
-  font-size: ${changePXtoVW(48)};
-  line-height: ${changePXtoVH(84)};
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
-`;
+import {
+  MeaningText,
+  SubText,
+  subTextCss,
+  TextBoxesWrapper,
+  TextCardGrp,
+} from "../../molecules/TextBoxes";
+import { TextCard } from "../../atoms/TextBox";
 
 interface TextBoxesCreatorProps extends TextBoxesAdapterProps {
   onSave(): void;
@@ -85,18 +27,25 @@ const TextBoxesCreator = ({
   setComponentList,
   addComponentToExistingComponentById,
 }: TextBoxesCreatorProps) => {
-  const [textBoxesData, setTextBoxesData] = useState<TextBoxesContent>();
-  const [contentIndex, setContentIndex] = useState<number | undefined>();
-  useEffect(() => {
+  const [textBoxesData, setTextBoxesData] = useState<TextBoxesContent | undefined>(undefined);
+  const [contentIndex, setContentIndex] = useState<number | undefined>(undefined);
+
+  const getData = useCallback(() => {
     const textBoxesContent = componentList.find((component) => {
       return component.id === id;
     })?.content as TextBoxesContent;
     const textBoxesContentIndex = componentList.findIndex((component) => {
       return component.id === id;
     });
+    if (contentIndex === undefined) {
+      setContentIndex(textBoxesContentIndex);
+    }
     setTextBoxesData(textBoxesContent);
-    setContentIndex(textBoxesContentIndex);
-  }, [componentList, id]);
+  }, [componentList, id, contentIndex]);
+
+  useEffect(() => {
+    getData();
+  }, [getData]);
 
   const handleSubmitText = useCallback(
     (
@@ -117,7 +66,6 @@ const TextBoxesCreator = ({
       }
       const copyComponentList = JSON.parse(JSON.stringify(componentList));
       copyComponentList[contentIndex].content.data = copyTextBoxesDataArr.data;
-      setTextBoxesData(copyTextBoxesDataArr);
       setComponentList(copyComponentList);
     },
     [textBoxesData, componentList, setComponentList, contentIndex],
@@ -140,7 +88,6 @@ const TextBoxesCreator = ({
       const copyTextBoxesDataArr = JSON.parse(JSON.stringify(textBoxesData)) as TextBoxesContent;
       copyTextBoxesDataArr.data.splice(index, 1);
       copyComponentList[contentIndex].content.data = copyTextBoxesDataArr.data;
-      setTextBoxesData(copyTextBoxesDataArr);
       setComponentList(copyComponentList);
     },
     [textBoxesData, componentList, contentIndex, setComponentList],
@@ -150,46 +97,51 @@ const TextBoxesCreator = ({
     addComponentToExistingComponentById("textBoxes", id);
   }, [addComponentToExistingComponentById, id]);
 
+  const textBoxes = useMemo(() => {
+    return textBoxesData?.data.map((textBox, index) => {
+      console.log("textBoxesData.data", textBoxesData.data);
+      return (
+        <TextCardGrp key={index}>
+          <TextCard>
+            <HtmlCreator
+              html={textBox.main}
+              onSubmitHtml={(event) => {
+                handleSubmitText(event, index, "main");
+              }}
+            />
+          </TextCard>
+          <SubText>
+            <HtmlCreator
+              html={textBox.sub ?? ""}
+              onSubmitHtml={(event) => {
+                handleSubmitText(event, index, "sub");
+              }}
+              customCss={subTextCss}
+            />
+          </SubText>
+          <MeaningText>
+            <HtmlCreator
+              html={textBox.description ?? ""}
+              onSubmitHtml={(event) => {
+                handleSubmitText(event, index, "description");
+              }}
+            />
+          </MeaningText>
+          <button
+            onClick={() => {
+              handleDeleteTextBox(index);
+            }}
+          >
+            삭제
+          </button>
+        </TextCardGrp>
+      );
+    });
+  }, [handleDeleteTextBox, handleSubmitText, textBoxesData?.data]);
+
   return (
     <TextBoxesWrapper>
-      {textBoxesData?.data.map((textBox, index) => {
-        return (
-          <TextCardGrp key={index}>
-            <TextCard>
-              <HtmlCreator
-                html={textBox.main}
-                onSubmitHtml={(event) => {
-                  handleSubmitText(event, index, "main");
-                }}
-              />
-            </TextCard>
-            <SubText>
-              <HtmlCreator
-                html={textBox.sub ?? ""}
-                onSubmitHtml={(event) => {
-                  handleSubmitText(event, index, "sub");
-                }}
-                customCss={subTextCss}
-              />
-            </SubText>
-            <MeaningText>
-              <HtmlCreator
-                html={textBox.description ?? ""}
-                onSubmitHtml={(event) => {
-                  handleSubmitText(event, index, "description");
-                }}
-              />
-            </MeaningText>
-            <button
-              onClick={() => {
-                handleDeleteTextBox(index);
-              }}
-            >
-              삭제
-            </button>
-          </TextCardGrp>
-        );
-      })}
+      {textBoxes}
       <button onClick={addTextBox}>+</button>
     </TextBoxesWrapper>
   );

@@ -9,7 +9,7 @@ interface TextCardProps {
   customCss?: SerializedStyles;
 }
 
-const TextCard = styled.div<TextCardProps>`
+export const TextCard = styled.div<TextCardProps>`
   display: flex;
   justify-content: center;
   align-items: center;
