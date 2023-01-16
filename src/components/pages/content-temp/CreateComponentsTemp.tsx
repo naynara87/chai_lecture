@@ -6,7 +6,8 @@ import "./common.scss";
 import ModalLayoutChange from "./ModalLayoutChange";
 import ModalComponentChoice from "./ModalComponentChoice";
 import useCreateContent from "../../../hooks/contentCreate/useCreateContent";
-import uuid from "react-uuid";
+import CreatePlusBox from "./CreatePlusBox";
+import useContextMenu from "../../../hooks/contentCreate/useContextMenu";
 
 const PageLayout = styled.div`
   .btn-wrap {
@@ -17,6 +18,8 @@ const PageLayout = styled.div`
 
 const CreateComponentsTemp = () => {
   const { contentLayout } = useCreateContent();
+  const { clicked, setClicked, points, setPoints } = useContextMenu({ isRightClick: false });
+
   const navigate = useNavigate();
 
   const { componentNames, components, addNewComponent, addComponentToExistingComponentById } =
@@ -116,6 +119,16 @@ const CreateComponentsTemp = () => {
           </div> */}
           <div className="page-conts-wrap">
             {/* 컴포넌트가 추가되는 영역 */}
+            {components.length === 0 && (
+              <CreatePlusBox
+                clicked={clicked}
+                setClicked={setClicked}
+                points={points}
+                setPoints={setPoints}
+                componentNames={componentNames}
+                addNewComponent={addNewComponent}
+              />
+            )}
             {components}
           </div>
         </div>
