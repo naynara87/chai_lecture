@@ -49,12 +49,10 @@ export type TP01A = {
   id: ID;
   title: string;
   description: string;
-  template: TP01ATemplate;
-};
-
-type TP01ATemplate = {
-  type: "TP01A";
-  contents: TP01AContent[];
+  template: {
+    type: "TP01A";
+    contents: TP01AContent[];
+  };
 };
 
 type TP01AContent = ChooseTextByAudioContent;

@@ -21,43 +21,12 @@ const useCreateContent = () => {
     console.log("componentList", componentList);
   }, [componentList]);
 
-  const getCreateContentComponent = useCallback((content: Content, key?: string) => {
-    const contentCreatorMapper: Partial<Record<Content["type"], JSX.Element | JSX.Element[]>> = {
-      // TODO: 저작도구용 컴포넌트 만들기(현재 보여지는 것은 뷰잉용)
-      // chooseText: <ChooseText contentData={content as ChooseTextContent} />,
-      // textBoxes: <TextBoxesAdapter content={content as TextBoxesContent} />,
-      chooseText: <ChooseTextCreator key={key} />,
-      textBoxes: (
-        <TextBoxesCreator
-          key={key}
-          content={content as TextBoxesContent}
-          onSave={() => console.log("save")}
-        />
-      ),
-    };
-
-    return contentCreatorMapper[content.type];
-  }, []);
-
   const getDefaultContentComponent = useCallback((contentType: Content["type"], id: string) => {
     return {
       id,
       content: { type: contentType, data: defaultContentComponentData[contentType] },
     } as CreatorContent;
   }, []);
-
-  const componentNames = Object.keys(defaultContentComponentData) as Content["type"][];
-
-  const components = useMemo(() => {
-    const _components = componentList.map((contentData, listIndex) => {
-      // NOTE : content data가 여러개 인 경우엔 렌더링 하는 컴포넌트에서 처리
-      return getCreateContentComponent(
-        contentData.content,
-        `${contentData.content.type}_${listIndex}`,
-      );
-    });
-    return _components;
-  }, [componentList, getCreateContentComponent]);
 
   const addComponentToExistingComponentById = useCallback(
     (contentType: Content["type"], id: string) => {
@@ -75,9 +44,43 @@ const useCreateContent = () => {
         return component;
       });
       setComponentList(addedComponentList);
+      console.log("newComponent", componentList);
     },
     [getDefaultContentComponent, componentList],
   );
+
+  const componentNames = Object.keys(defaultContentComponentData) as Content["type"][];
+
+  const getCreateContentComponent = useCallback(
+    (content: Content, key: string) => {
+      const contentCreatorMapper: Partial<Record<Content["type"], JSX.Element | JSX.Element[]>> = {
+        // TODO: 저작도구용 컴포넌트 만들기(현재 보여지는 것은 뷰잉용)
+        chooseText: <ChooseTextCreator key={key} />,
+        textBoxes: (
+          <TextBoxesCreator
+            key={key}
+            id={key}
+            content={content as TextBoxesContent}
+            onSave={() => console.log("save")}
+            addComponentToExistingComponentById={addComponentToExistingComponentById}
+            componentList={componentList}
+            setComponentList={setComponentList}
+          />
+        ),
+      };
+
+      return contentCreatorMapper[content.type];
+    },
+    [addComponentToExistingComponentById, componentList],
+  );
+
+  const components = useMemo(() => {
+    const _components = componentList.map((contentData) => {
+      // NOTE : content data가 여러개 인 경우엔 렌더링 하는 컴포넌트에서 처리
+      return getCreateContentComponent(contentData.content, contentData.id);
+    });
+    return _components;
+  }, [componentList, getCreateContentComponent]);
 
   const addNewComponent = useCallback(
     (contentType: Content["type"]) => {

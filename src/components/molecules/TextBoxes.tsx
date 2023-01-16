@@ -12,22 +12,23 @@ interface TextCardGrpProps {
 }
 interface TextBoxesWrapperProps {
   customCss?: SerializedStyles;
-  boxLength: number;
+  boxLength?: number;
 }
 
-const TextBoxesWrapper = styled.div<TextBoxesWrapperProps>`
+export const TextBoxesWrapper = styled.div<TextBoxesWrapperProps>`
   display: flex;
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 0 ${changePXtoVW(40)};
-  width: ${(props) => `${props.boxLength > 4 ? changePXtoVW(1200) : changePXtoVW(1400)}`};
+  width: ${(props) =>
+    `${props.boxLength && props.boxLength > 4 ? changePXtoVW(1200) : changePXtoVW(1400)}`};
   margin: 0 auto;
 
   ${(props) => props.customCss}
 `;
 
-const TextCardGrp = styled.div<TextCardGrpProps>`
+export const TextCardGrp = styled.div<TextCardGrpProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -50,17 +51,17 @@ const TextCardGrp = styled.div<TextCardGrpProps>`
   ${(props) => props.customCss}
 `;
 
-const SubText = styled.div`
+export const SubText = styled.div`
   margin-top: ${changePXtoVH(32)};
 `;
 
-const subTextCss = css`
+export const subTextCss = css`
   font-weight: 500;
   font-size: ${changePXtoVW(30)};
   color: ${colorPalette.textBoxSub};
 `;
 
-const MeaningText = styled("div")`
+export const MeaningText = styled("div")`
   margin-top: ${changePXtoVH(32)};
   font-weight: 600;
   font-size: ${changePXtoVW(30)};
