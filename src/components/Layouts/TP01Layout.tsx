@@ -1,9 +1,10 @@
 import styled from "@emotion/styled";
 import React from "react";
 
-const TP01LayoutStyle = styled.div`
+export const TP01LayoutStyle = styled.div`
   display: grid;
   text-align: center;
+  height: 100%;
 `;
 
 interface TP01LayoutProps {

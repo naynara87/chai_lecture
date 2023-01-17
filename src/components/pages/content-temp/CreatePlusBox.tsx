@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
+import useContextMenu from "../../../hooks/contentCreate/useContextMenu";
 import { Content } from "../../../types/appData";
 
 const PlusBoxWrapper = styled.div`
@@ -44,30 +45,14 @@ const ContextMenu = styled.div<ContextMenuProps>`
 `;
 
 interface CreatePlusBoxProps {
-  clicked: boolean;
-  points: {
-    x: number;
-    y: number;
-  };
-  setClicked: React.Dispatch<React.SetStateAction<boolean>>;
-  setPoints: React.Dispatch<
-    React.SetStateAction<{
-      x: number;
-      y: number;
-    }>
-  >;
   componentNames: Content["type"][];
-  addNewComponent: (contentType: Content["type"]) => void;
+  addNewComponent: (contentType: Content["type"], componentIndex: number) => void;
+  componentIndex: number;
 }
 
-const CreatePlusBox = ({
-  clicked,
-  setClicked,
-  points,
-  setPoints,
-  componentNames,
-  addNewComponent,
-}: CreatePlusBoxProps) => {
+const CreatePlusBox = ({ componentNames, addNewComponent, componentIndex }: CreatePlusBoxProps) => {
+  const { clicked, setClicked, points, setPoints } = useContextMenu({ isRightClick: false });
+
   return (
     <PlusBoxWrapper
       onClick={(event) => {
@@ -89,7 +74,7 @@ const CreatePlusBox = ({
                 <li
                   key={index}
                   onClick={() => {
-                    addNewComponent(componentName);
+                    addNewComponent(componentName, componentIndex);
                   }}
                 >
                   {componentName}

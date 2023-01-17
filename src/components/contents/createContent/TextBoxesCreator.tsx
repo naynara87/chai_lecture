@@ -31,10 +31,18 @@ const TextBoxesCreator = ({
 
   const getData = useCallback(() => {
     const textBoxesContent = componentList.find((component) => {
-      return component.id === id;
+      if (component) {
+        return component.id === id;
+      } else {
+        return undefined;
+      }
     })?.content as TextBoxesContent;
     const textBoxesContentIndex = componentList.findIndex((component) => {
-      return component.id === id;
+      if (component) {
+        return component.id === id;
+      } else {
+        return undefined;
+      }
     });
     setContentIndex(textBoxesContentIndex);
     setTextBoxesData(textBoxesContent);
@@ -76,7 +84,7 @@ const TextBoxesCreator = ({
 
       // NOTE kjw 텍스트박스가 하나일때 콘텐츠전체삭제
       if (textBoxesData?.data.length <= 1) {
-        copyComponentList.splice(contentIndex, 1);
+        copyComponentList.splice(contentIndex, 1, undefined);
         setComponentList(copyComponentList);
         return;
       }

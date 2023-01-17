@@ -15,22 +15,24 @@ interface ChooseTextProps {
   setComponentList: React.Dispatch<React.SetStateAction<CreatorContent[]>>;
   addComponentToExistingComponentById: (contentType: Content["type"], id: string) => void;
 }
-const ChooseTextCreator = ({
-  onSave,
-  id,
-  componentList,
-  setComponentList,
-  addComponentToExistingComponentById,
-}: ChooseTextProps) => {
+const ChooseTextCreator = ({ onSave, id, componentList, setComponentList }: ChooseTextProps) => {
   const [chooseTextData, setChooseTextData] = useState<ChooseTextContent | undefined>(undefined);
   const [contentIndex, setContentIndex] = useState<number | undefined>(undefined);
 
   const getData = useCallback(() => {
     const chooseTextContent = componentList.find((component) => {
-      return component.id === id;
+      if (component) {
+        return component.id === id;
+      } else {
+        return undefined;
+      }
     })?.content as ChooseTextContent;
     const chooseTextContentIndex = componentList.findIndex((component) => {
-      return component.id === id;
+      if (component) {
+        return component.id === id;
+      } else {
+        return undefined;
+      }
     });
     setContentIndex(chooseTextContentIndex);
     setChooseTextData(chooseTextContent);
@@ -56,7 +58,7 @@ const ChooseTextCreator = ({
   const handleDeleteChooseText = useCallback(() => {
     if (!chooseTextData?.data) return;
     const copyComponentList = JSON.parse(JSON.stringify(componentList));
-    copyComponentList.splice(contentIndex, 1);
+    copyComponentList.splice(contentIndex, 1, undefined);
     setComponentList(copyComponentList);
   }, [chooseTextData, componentList, setComponentList, contentIndex]);
 
@@ -107,14 +109,33 @@ const ChooseTextCreator = ({
     [chooseTextData, componentList, contentIndex, setComponentList],
   );
 
+  const handleClickCorrect = useCallback(
+    (index: number) => {
+      if (contentIndex === undefined) return;
+      const copyChooseTextDataArr = JSON.parse(JSON.stringify(chooseTextData)) as ChooseTextContent;
+      copyChooseTextDataArr.data[0].answerIndex = index;
+      const copyComponentList = JSON.parse(JSON.stringify(componentList));
+      copyComponentList[contentIndex].content.data = copyChooseTextDataArr.data;
+      setComponentList(copyComponentList);
+    },
+    [chooseTextData, componentList, contentIndex, setComponentList],
+  );
+
   const chooseText = useMemo(() => {
-    return chooseTextData?.data.map((choiceData) => {
+    return chooseTextData?.data.map((choiceData, choiceIndex) => {
       const choices = [choiceData.choices[0] ?? "", choiceData.choices[1] ?? ""];
       return (
-        <div>
+        <div key={choiceIndex}>
           {choices.map((choice, index) => {
             return (
-              <QuizAnswerStyle className="quiz-answer-list" color="#000">
+              <QuizAnswerStyle className="quiz-answer-list" color="#000" key={index}>
+                <input
+                  type="radio"
+                  name="correct"
+                  onClick={() => {
+                    handleClickCorrect(index);
+                  }}
+                />
                 <input type="radio" id={"id"} name="quiz-answer" className="inp-quiz-answer none" />
                 <label htmlFor={"label"} className="label-quiz-answer">
                   <div className="word-wrap">
@@ -153,6 +174,7 @@ const ChooseTextCreator = ({
     handleDeleteChooseText,
     handleSubmitTipText,
     submitExplanationText,
+    handleClickCorrect,
   ]);
 
   return (

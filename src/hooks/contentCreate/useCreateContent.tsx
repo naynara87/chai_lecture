@@ -84,20 +84,44 @@ const useCreateContent = () => {
   const components = useMemo(() => {
     const _components = componentList.map((contentData) => {
       // NOTE : content data가 여러개 인 경우엔 렌더링 하는 컴포넌트에서 처리
+      if (!contentData) {
+        return undefined;
+      }
       return getCreateContentComponent(contentData.content, contentData.id);
     });
     return _components;
   }, [componentList, getCreateContentComponent]);
 
   const addNewComponent = useCallback(
-    (contentType: Content["type"]) => {
+    (contentType: Content["type"], componentIndex?: number) => {
       const newId = uuid();
       const newComponent = getDefaultContentComponent(contentType, newId);
+      const copyComponentList = JSON.parse(JSON.stringify(componentList));
+      if (componentIndex !== undefined) {
+        for (let i = 0; i < componentIndex; i++) {
+          if (!copyComponentList[i]) {
+            copyComponentList[i] = undefined;
+          }
+        }
+        copyComponentList.splice(componentIndex, 1, newComponent);
+        setComponentList(copyComponentList);
+        return;
+      }
+      if (componentList.includes(undefined!) || componentList.includes(null!)) {
+        componentList.forEach((component, index) => {
+          if (component === undefined || component === null) {
+            copyComponentList.splice(index, 1, newComponent);
+            setComponentList(copyComponentList);
+            return;
+          }
+        });
+        return;
+      }
       setComponentList((prev) => {
         return [...prev, newComponent];
       });
     },
-    [getDefaultContentComponent],
+    [getDefaultContentComponent, componentList],
   );
 
   return {
@@ -107,6 +131,7 @@ const useCreateContent = () => {
     contentLayout,
     setContentLayout,
     components,
+    componentList,
     addNewComponent,
     addComponentToExistingComponentById,
   };
