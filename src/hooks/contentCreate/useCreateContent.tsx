@@ -14,7 +14,7 @@ export type CreatorContent = {
 
 const useCreateContent = () => {
   const [contentLayout, setContentLayout] = useRecoilState(contentLayoutState);
-  const [componentList, setComponentList] = useState<CreatorContent[]>([]);
+  const [componentList, setComponentList] = useState<(CreatorContent | undefined)[]>([]);
 
   useEffect(() => {
     console.log("componentList", componentList);
@@ -31,6 +31,7 @@ const useCreateContent = () => {
     (contentType: Content["type"], id: string) => {
       const newComponent = getDefaultContentComponent(contentType, id);
       const addedComponentList = componentList.map((component) => {
+        if (component === undefined) return component;
         if (component.id === id) {
           return {
             ...component,
@@ -96,7 +97,7 @@ const useCreateContent = () => {
     (contentType: Content["type"], componentIndex?: number) => {
       const newId = uuid();
       const newComponent = getDefaultContentComponent(contentType, newId);
-      const copyComponentList = JSON.parse(JSON.stringify(componentList));
+      const copyComponentList = [...componentList];
       if (componentIndex !== undefined) {
         for (let i = 0; i < componentIndex; i++) {
           if (!copyComponentList[i]) {

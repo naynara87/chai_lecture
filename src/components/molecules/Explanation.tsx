@@ -9,7 +9,7 @@ import AudioButton from "../atoms/AudioButton";
 import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import HtmlContentComponent from "./HtmlContentComponent";
 
-export const ExplanationWrapper = styled.div`
+const ExplanationWrapper = styled.div`
   position: fixed;
   top: auto;
   bottom: calc(${footerHeightNormal} + ${changePXtoVH(10)});

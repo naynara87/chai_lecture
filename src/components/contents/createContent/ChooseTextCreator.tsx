@@ -11,8 +11,8 @@ import HtmlCreator from "./HtmlCreator";
 interface ChooseTextProps {
   onSave(): void;
   id: string;
-  componentList: CreatorContent[];
-  setComponentList: React.Dispatch<React.SetStateAction<CreatorContent[]>>;
+  componentList: (CreatorContent | undefined)[];
+  setComponentList: React.Dispatch<React.SetStateAction<(CreatorContent | undefined)[]>>;
   addComponentToExistingComponentById: (contentType: Content["type"], id: string) => void;
 }
 const ChooseTextCreator = ({ onSave, id, componentList, setComponentList }: ChooseTextProps) => {
@@ -45,19 +45,21 @@ const ChooseTextCreator = ({ onSave, id, componentList, setComponentList }: Choo
   const handleSubmitText = useCallback(
     (event: React.FormEvent<HTMLFormElement>, index: number) => {
       if (contentIndex === undefined) return;
+      if (chooseTextData === undefined) return;
       const form = event.target as Element;
-      const copyChooseTextDataArr = JSON.parse(JSON.stringify(chooseTextData)) as ChooseTextContent;
-      copyChooseTextDataArr.data[0].choices[index] = form.querySelector("input")?.value ?? "";
-      const copyComponentList = JSON.parse(JSON.stringify(componentList));
-      copyComponentList[contentIndex].content.data = copyChooseTextDataArr.data;
+      const copyChooseTextDataArr = [...chooseTextData?.data];
+      copyChooseTextDataArr[0].choices[index] = form.querySelector("input")?.value ?? "";
+      const copyComponentList = [...componentList];
+      copyComponentList[contentIndex]!.content.data = copyChooseTextDataArr;
       setComponentList(copyComponentList);
     },
     [chooseTextData, componentList, contentIndex, setComponentList],
   );
 
   const handleDeleteChooseText = useCallback(() => {
+    if (contentIndex === undefined) return;
     if (!chooseTextData?.data) return;
-    const copyComponentList = JSON.parse(JSON.stringify(componentList));
+    const copyComponentList = [...componentList];
     copyComponentList.splice(contentIndex, 1, undefined);
     setComponentList(copyComponentList);
   }, [chooseTextData, componentList, setComponentList, contentIndex]);
@@ -65,11 +67,12 @@ const ChooseTextCreator = ({ onSave, id, componentList, setComponentList }: Choo
   const handleSubmitTipText = useCallback(
     (event: React.FormEvent<HTMLFormElement>) => {
       if (contentIndex === undefined) return;
+      if (chooseTextData === undefined) return;
       const form = event.target as Element;
-      const copyChooseTextDataArr = JSON.parse(JSON.stringify(chooseTextData)) as ChooseTextContent;
-      copyChooseTextDataArr.data[0].tip = form.querySelector("input")?.value ?? "";
-      const copyComponentList = JSON.parse(JSON.stringify(componentList));
-      copyComponentList[contentIndex].content.data = copyChooseTextDataArr.data;
+      const copyChooseTextDataArr = [...chooseTextData.data];
+      copyChooseTextDataArr[0].tip = form.querySelector("input")?.value ?? "";
+      const copyComponentList = [...componentList];
+      copyComponentList[contentIndex]!.content.data = copyChooseTextDataArr;
       setComponentList(copyComponentList);
     },
     [chooseTextData, componentList, contentIndex, setComponentList],
@@ -78,10 +81,11 @@ const ChooseTextCreator = ({ onSave, id, componentList, setComponentList }: Choo
   const submitExplanationText = useCallback(
     (event: React.FormEvent<HTMLFormElement>, keyName: string) => {
       if (contentIndex === undefined) return;
+      if (chooseTextData === undefined) return;
       const form = event.target as Element;
-      const copyChooseTextDataArr = JSON.parse(JSON.stringify(chooseTextData)) as ChooseTextContent;
-      if (!copyChooseTextDataArr.data[0].explanation) {
-        copyChooseTextDataArr.data[0].explanation = {
+      const copyChooseTextDataArr = [...chooseTextData?.data];
+      if (!copyChooseTextDataArr[0].explanation) {
+        copyChooseTextDataArr[0].explanation = {
           text: "",
           correctMessage: "",
           wrongMessage: "",
@@ -91,19 +95,18 @@ const ChooseTextCreator = ({ onSave, id, componentList, setComponentList }: Choo
         };
       }
       if (keyName === "text") {
-        copyChooseTextDataArr.data[0].explanation!.text = form.querySelector("input")?.value ?? "";
+        copyChooseTextDataArr[0].explanation!.text = form.querySelector("input")?.value ?? "";
       } else if (keyName === "correctMessage") {
-        copyChooseTextDataArr.data[0].explanation!.correctMessage =
+        copyChooseTextDataArr[0].explanation!.correctMessage =
           form.querySelector("input")?.value ?? "";
       } else if (keyName === "wrongMessage") {
-        copyChooseTextDataArr.data[0].explanation!.wrongMessage =
+        copyChooseTextDataArr[0].explanation!.wrongMessage =
           form.querySelector("input")?.value ?? "";
       } else if (keyName === "audio") {
-        copyChooseTextDataArr.data[0].explanation!.audio!.src =
-          form.querySelector("input")?.value ?? "";
+        copyChooseTextDataArr[0].explanation!.audio!.src = form.querySelector("input")?.value ?? "";
       }
-      const copyComponentList = JSON.parse(JSON.stringify(componentList));
-      copyComponentList[contentIndex].content.data = copyChooseTextDataArr.data;
+      const copyComponentList = [...componentList];
+      copyComponentList[contentIndex]!.content.data = copyChooseTextDataArr;
       setComponentList(copyComponentList);
     },
     [chooseTextData, componentList, contentIndex, setComponentList],
@@ -112,10 +115,11 @@ const ChooseTextCreator = ({ onSave, id, componentList, setComponentList }: Choo
   const handleClickCorrect = useCallback(
     (index: number) => {
       if (contentIndex === undefined) return;
-      const copyChooseTextDataArr = JSON.parse(JSON.stringify(chooseTextData)) as ChooseTextContent;
-      copyChooseTextDataArr.data[0].answerIndex = index;
-      const copyComponentList = JSON.parse(JSON.stringify(componentList));
-      copyComponentList[contentIndex].content.data = copyChooseTextDataArr.data;
+      if (chooseTextData === undefined) return;
+      const copyChooseTextDataArr = [...chooseTextData.data];
+      copyChooseTextDataArr[0].answerIndex = index;
+      const copyComponentList = [...componentList];
+      copyComponentList[contentIndex]!.content.data = copyChooseTextDataArr;
       setComponentList(copyComponentList);
     },
     [chooseTextData, componentList, contentIndex, setComponentList],

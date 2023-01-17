@@ -6,7 +6,7 @@ import CreatePlusBox from "../CreatePlusBox";
 
 interface TP01LayoutProps {
   components: (JSX.Element | JSX.Element[] | undefined)[];
-  componentList: CreatorContent[];
+  componentList: (CreatorContent | undefined)[];
   addNewComponent: (contentType: Content["type"]) => void;
   componentNames: Content["type"][];
   id?: string;

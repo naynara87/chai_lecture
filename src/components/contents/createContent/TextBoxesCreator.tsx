@@ -15,8 +15,8 @@ import { TextCard } from "../../atoms/TextBox";
 interface TextBoxesCreatorProps {
   onSave(): void;
   id: string;
-  componentList: CreatorContent[];
-  setComponentList: React.Dispatch<React.SetStateAction<CreatorContent[]>>;
+  componentList: (CreatorContent | undefined)[];
+  setComponentList: React.Dispatch<React.SetStateAction<(CreatorContent | undefined)[]>>;
   addComponentToExistingComponentById: (contentType: Content["type"], id: string) => void;
 }
 
@@ -60,17 +60,18 @@ const TextBoxesCreator = ({
     ) => {
       event.preventDefault();
       if (contentIndex === undefined) return;
+      if (textBoxesData === undefined) return;
       const form = event.target as Element;
-      const copyTextBoxesDataArr = JSON.parse(JSON.stringify(textBoxesData)) as TextBoxesContent;
+      const copyTextBoxesDataArr = JSON.parse(JSON.stringify(textBoxesData.data));
       if (keyName === "main") {
-        copyTextBoxesDataArr.data[index].main = form.querySelector("input")?.value ?? "";
+        copyTextBoxesDataArr[index].main = form.querySelector("input")?.value ?? "";
       } else if (keyName === "sub") {
-        copyTextBoxesDataArr.data[index].sub = form.querySelector("input")?.value ?? "";
+        copyTextBoxesDataArr[index].sub = form.querySelector("input")?.value ?? "";
       } else if (keyName === "description") {
-        copyTextBoxesDataArr.data[index].description = form.querySelector("input")?.value ?? "";
+        copyTextBoxesDataArr[index].description = form.querySelector("input")?.value ?? "";
       }
-      const copyComponentList = JSON.parse(JSON.stringify(componentList));
-      copyComponentList[contentIndex].content.data = copyTextBoxesDataArr.data;
+      const copyComponentList = [...componentList];
+      copyComponentList[contentIndex]!.content.data = copyTextBoxesDataArr;
       setComponentList(copyComponentList);
     },
     [textBoxesData, componentList, setComponentList, contentIndex],
@@ -80,7 +81,7 @@ const TextBoxesCreator = ({
     (index: number) => {
       if (contentIndex === undefined) return;
       if (!textBoxesData?.data) return;
-      const copyComponentList = JSON.parse(JSON.stringify(componentList));
+      const copyComponentList = [...componentList];
 
       // NOTE kjw 텍스트박스가 하나일때 콘텐츠전체삭제
       if (textBoxesData?.data.length <= 1) {
@@ -90,9 +91,9 @@ const TextBoxesCreator = ({
       }
 
       // NOTE kjw 텍스트박스가 여러개일때 해당 콘텐츠만 삭제
-      const copyTextBoxesDataArr = JSON.parse(JSON.stringify(textBoxesData)) as TextBoxesContent;
-      copyTextBoxesDataArr.data.splice(index, 1);
-      copyComponentList[contentIndex].content.data = copyTextBoxesDataArr.data;
+      const copyTextBoxesDataArr = [...textBoxesData.data];
+      copyTextBoxesDataArr.splice(index, 1);
+      copyComponentList[contentIndex]!.content.data = copyTextBoxesDataArr;
       setComponentList(copyComponentList);
     },
     [textBoxesData, componentList, contentIndex, setComponentList],

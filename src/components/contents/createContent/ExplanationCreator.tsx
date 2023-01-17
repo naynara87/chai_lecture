@@ -1,17 +1,29 @@
+import styled from "@emotion/styled";
 import React, { useState } from "react";
+import { footerHeightNormal } from "../../../constants/layout";
+import { changePXtoVH } from "../../../utils/styles";
 import OIcon from "../../atoms/svg/OIcon";
 import XIcon from "../../atoms/svg/XIcon";
 import {
   ExplanationContainer,
   ExplanationHtmlCss,
   ExplanationTitle,
-  ExplanationWrapper,
   InfoWrapper,
   OXWrapper,
   Text,
   TextBox,
 } from "../../molecules/Explanation";
 import HtmlCreator from "./HtmlCreator";
+
+const ExplanationWrapper = styled.div`
+  /* position: fixed;
+  top: auto;
+  bottom: calc(${footerHeightNormal} + ${changePXtoVH(10)});
+  left: 0; */
+  display: flex;
+  justify-content: center;
+  width: 100%;
+`;
 
 type ExplanationData = {
   audio?: {
