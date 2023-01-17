@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
 import { CREATE_CONTENT_LAYOUT_URL } from "../../../constants/url";
@@ -7,6 +7,8 @@ import ModalLayoutChange from "./ModalLayoutChange";
 import ModalComponentChoice from "./ModalComponentChoice";
 import useCreateContent from "../../../hooks/contentCreate/useCreateContent";
 import CreateTP01Layout from "./Layouts/CreateTP01Layout";
+import { DragDropContext, Draggable, Droppable, DropResult } from "react-beautiful-dnd";
+import { Content } from "../../../types/appData";
 
 const PageLayout = styled.div`
   .btn-wrap {
@@ -43,6 +45,19 @@ const CreateComponentsTemp = () => {
     }
   };
 
+  const handleDragEnd = useCallback(
+    (result: DropResult) => {
+      if (result.destination?.droppableId.slice(-1) === undefined) return;
+      const componentIndex = parseInt(result.destination?.droppableId.slice(-1)!);
+      if (componentList[componentIndex]) {
+        alert("이미 컴포넌트가 존재하는 칸입니다.");
+        return;
+      }
+      addNewComponent(result.draggableId as Content["type"], componentIndex);
+    },
+    [addNewComponent, componentList],
+  );
+
   return (
     <PageLayout>
       <header className="layout-hd">
@@ -69,64 +84,57 @@ const CreateComponentsTemp = () => {
         </div>
       </header>
       <main className="layout-main">
-        <div className="flex-btw-wrap">
-          <div className="btn-wrap">
-            <button className="btn btn-border-primary" onClick={handleLayoutClick}>
-              레이아웃 설정
-            </button>
+        <DragDropContext onDragEnd={handleDragEnd}>
+          <div className="flex-btw-wrap">
+            <div className="btn-wrap">
+              <button className="btn btn-border-primary" onClick={handleLayoutClick}>
+                레이아웃 설정
+              </button>
 
-            <ModalLayoutChange />
-          </div>
-
-          <div className="btn-wrap">
-            <div>컴포넌트 새로 추가</div>
-            {componentNames.map((componentName) => {
-              return (
-                <button
-                  key={componentName}
-                  className="btn btn-border-primary"
-                  onClick={() => addNewComponent(componentName)}
-                >
-                  {componentName}
-                </button>
-              );
-            })}
-            <div>
-              <div>기존 컴포넌트에 추가</div>
-              {componentNames.map((componentName) => {
-                return (
-                  <button
-                    key={componentName}
-                    className="btn btn-border-primary"
-                    // FIXME: 임시로 id를 설정 - 기존 컴포넌트에 추가되는 버튼(또는 함수실행)은 저작 컴포넌트 안으로 들어가야 함
-                    onClick={() =>
-                      addComponentToExistingComponentById(
-                        componentName,
-                        "49a56b39-02d8-5878-0db3-9f5a63a29e7b",
-                      )
-                    }
-                  >
-                    {componentName}
-                  </button>
-                );
-              })}
+              <ModalLayoutChange />
             </div>
-          </div>
-        </div>
 
-        <div className="create-page-wrap">
-          {/* 
+            <Droppable droppableId="btn-wrap" isDropDisabled={true}>
+              {(provided) => (
+                <div className="btn-wrap" {...provided.droppableProps} ref={provided.innerRef}>
+                  {componentNames.map((componentName, index) => {
+                    return (
+                      <Draggable draggableId={componentName} key={index} index={index}>
+                        {(provided) => (
+                          <span
+                            ref={provided.innerRef}
+                            {...provided.dragHandleProps}
+                            {...provided.draggableProps}
+                            key={componentName}
+                            className="btn btn-border-primary"
+                            onClick={() => addNewComponent(componentName)}
+                          >
+                            {componentName}
+                          </span>
+                        )}
+                      </Draggable>
+                    );
+                  })}
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
+          </div>
+
+          <div className="create-page-wrap">
+            {/* 
           제목 영역이 없어졌으므로 주석 처리
           <div className="page-title-wrap">
             제목의 높이는 이 프로젝트의 title height를 scss에 옮겨서 가져옴
           </div> */}
-          <CreateTP01Layout
-            componentList={componentList}
-            components={components}
-            addNewComponent={addNewComponent}
-            componentNames={componentNames}
-          />
-        </div>
+            <CreateTP01Layout
+              componentList={componentList}
+              components={components}
+              addNewComponent={addNewComponent}
+              componentNames={componentNames}
+            />
+          </div>
+        </DragDropContext>
       </main>
       <footer className="layout-ft">
         <div className="flex-btw-wrap">

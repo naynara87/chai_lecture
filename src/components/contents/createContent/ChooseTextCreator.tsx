@@ -1,3 +1,4 @@
+import { css } from "@emotion/react";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { CreatorContent } from "../../../hooks/contentCreate/useCreateContent";
 import { Content } from "../../../types/appData";
@@ -8,6 +9,10 @@ import { QuizAnswerContainer } from "../ChooseText";
 import ExplanationCreator from "./ExplanationCreator";
 import HtmlCreator from "./HtmlCreator";
 
+const chooseTextContainerCss = css`
+  display: flex;
+  justify-content: center;
+`;
 interface ChooseTextProps {
   onSave(): void;
   id: string;
@@ -183,7 +188,7 @@ const ChooseTextCreator = ({ onSave, id, componentList, setComponentList }: Choo
 
   return (
     <div>
-      <QuizAnswerContainer>
+      <QuizAnswerContainer customCss={chooseTextContainerCss}>
         <>{chooseText}</>
       </QuizAnswerContainer>
     </div>

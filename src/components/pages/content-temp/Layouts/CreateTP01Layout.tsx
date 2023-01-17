@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useMemo } from "react";
+import { Droppable } from "react-beautiful-dnd";
 import { CreatorContent } from "../../../../hooks/contentCreate/useCreateContent";
 import { Content } from "../../../../types/appData";
 import { TP01LayoutStyle } from "../../../Layouts/TP01Layout";
@@ -18,30 +19,38 @@ const CreateTP01Layout = ({
   componentNames,
   id,
 }: TP01LayoutProps) => {
+  const contents = useMemo(() => {
+    return Array(2)
+      .fill("")
+      .map((value, index) => {
+        return (
+          <Droppable droppableId={`componentList${index}`}>
+            {(provided) => (
+              <div
+                className={`page-conts-wrap componentList${index}`}
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+              >
+                {componentList[index] === undefined || componentList[index] === null ? (
+                  <CreatePlusBox
+                    componentNames={componentNames}
+                    addNewComponent={addNewComponent}
+                    componentIndex={index}
+                  />
+                ) : (
+                  components[index]
+                )}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+        );
+      });
+  }, [addNewComponent, componentList, componentNames, components]);
   return (
     <TP01LayoutStyle id={id}>
-      <div className="page-conts-wrap">
-        {/* 컴포넌트가 추가되는 영역 */}
-        {(componentList[0] === undefined || componentList[0] === null) && (
-          <CreatePlusBox
-            componentNames={componentNames}
-            addNewComponent={addNewComponent}
-            componentIndex={0}
-          />
-        )}
-        {components[0]}
-      </div>
-      <div className="page-conts-wrap">
-        {/* 컴포넌트가 추가되는 영역 */}
-        {(componentList[1] === undefined || componentList[1] === null) && (
-          <CreatePlusBox
-            componentNames={componentNames}
-            addNewComponent={addNewComponent}
-            componentIndex={1}
-          />
-        )}
-        {components[1]}
-      </div>
+      {/* 컴포넌트가 추가되는 영역 */}
+      {contents}
     </TP01LayoutStyle>
   );
 };
