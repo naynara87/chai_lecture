@@ -64,7 +64,12 @@ const HtmlCreator = ({ html, customCss, onSubmitHtml }: HtmlCreatorProps) => {
             onSubmitHtml(event);
           }}
         >
-          <input type="text" onChange={(event) => setText(event.target.value)} value={text} />
+          <input
+            type="text"
+            onChange={(event) => setText(event.target.value)}
+            value={text}
+            placeholder="입력해주세요."
+          />
         </form>
       )}
     </>
