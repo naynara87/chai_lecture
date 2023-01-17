@@ -32,10 +32,9 @@ const HtmlWrapper = styled.div<HtmlWrapperProps>`
 interface HtmlCreatorProps extends HtmlWrapperProps {
   html: string;
   onSubmitHtml: (event: React.FormEvent<HTMLFormElement>) => void;
-  onClickHtml?: () => void;
 }
 
-const HtmlCreator = ({ html, customCss, onClickHtml, onSubmitHtml }: HtmlCreatorProps) => {
+const HtmlCreator = ({ html, customCss, onSubmitHtml }: HtmlCreatorProps) => {
   const [isSave, setIsSave] = useState<boolean>();
   const [text, setText] = useState(html);
 
@@ -65,7 +64,12 @@ const HtmlCreator = ({ html, customCss, onClickHtml, onSubmitHtml }: HtmlCreator
             onSubmitHtml(event);
           }}
         >
-          <input type="text" onChange={(event) => setText(event.target.value)} value={text} />
+          <input
+            type="text"
+            onChange={(event) => setText(event.target.value)}
+            value={text}
+            placeholder="입력해주세요."
+          />
         </form>
       )}
     </>

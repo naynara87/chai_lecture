@@ -5,7 +5,6 @@ import TextBoxesCreator from "../../components/contents/createContent/TextBoxesC
 import { defaultContentComponentData } from "../../data/contentCreate/defaultContentComponentData";
 import { contentLayoutState } from "../../state/createContent/contentLayoutState";
 import { Content } from "../../types/appData";
-import { TextBoxesContent } from "../../types/templateContents";
 import uuid from "react-uuid";
 
 export type CreatorContent = {
@@ -15,7 +14,7 @@ export type CreatorContent = {
 
 const useCreateContent = () => {
   const [contentLayout, setContentLayout] = useRecoilState(contentLayoutState);
-  const [componentList, setComponentList] = useState<CreatorContent[]>([]);
+  const [componentList, setComponentList] = useState<(CreatorContent | undefined)[]>([]);
 
   useEffect(() => {
     console.log("componentList", componentList);
@@ -32,6 +31,7 @@ const useCreateContent = () => {
     (contentType: Content["type"], id: string) => {
       const newComponent = getDefaultContentComponent(contentType, id);
       const addedComponentList = componentList.map((component) => {
+        if (component === undefined) return component;
         if (component.id === id) {
           return {
             ...component,
@@ -55,12 +55,20 @@ const useCreateContent = () => {
     (content: Content, key: string) => {
       const contentCreatorMapper: Partial<Record<Content["type"], JSX.Element | JSX.Element[]>> = {
         // TODO: 저작도구용 컴포넌트 만들기(현재 보여지는 것은 뷰잉용)
-        chooseText: <ChooseTextCreator key={key} />,
+        chooseText: (
+          <ChooseTextCreator
+            key={key}
+            id={key}
+            onSave={() => console.log("save")}
+            addComponentToExistingComponentById={addComponentToExistingComponentById}
+            componentList={componentList}
+            setComponentList={setComponentList}
+          />
+        ),
         textBoxes: (
           <TextBoxesCreator
             key={key}
             id={key}
-            content={content as TextBoxesContent}
             onSave={() => console.log("save")}
             addComponentToExistingComponentById={addComponentToExistingComponentById}
             componentList={componentList}
@@ -77,20 +85,44 @@ const useCreateContent = () => {
   const components = useMemo(() => {
     const _components = componentList.map((contentData) => {
       // NOTE : content data가 여러개 인 경우엔 렌더링 하는 컴포넌트에서 처리
+      if (!contentData) {
+        return undefined;
+      }
       return getCreateContentComponent(contentData.content, contentData.id);
     });
     return _components;
   }, [componentList, getCreateContentComponent]);
 
   const addNewComponent = useCallback(
-    (contentType: Content["type"]) => {
+    (contentType: Content["type"], componentIndex?: number) => {
       const newId = uuid();
       const newComponent = getDefaultContentComponent(contentType, newId);
+      const copyComponentList = [...componentList];
+      if (componentIndex !== undefined) {
+        for (let i = 0; i < componentIndex; i++) {
+          if (!copyComponentList[i]) {
+            copyComponentList[i] = undefined;
+          }
+        }
+        copyComponentList.splice(componentIndex, 1, newComponent);
+        setComponentList(copyComponentList);
+        return;
+      }
+      if (componentList.includes(undefined!) || componentList.includes(null!)) {
+        componentList.forEach((component, index) => {
+          if (component === undefined || component === null) {
+            copyComponentList.splice(index, 1, newComponent);
+            setComponentList(copyComponentList);
+            return;
+          }
+        });
+        return;
+      }
       setComponentList((prev) => {
         return [...prev, newComponent];
       });
     },
-    [getDefaultContentComponent],
+    [getDefaultContentComponent, componentList],
   );
 
   return {
@@ -100,6 +132,7 @@ const useCreateContent = () => {
     contentLayout,
     setContentLayout,
     components,
+    componentList,
     addNewComponent,
     addComponentToExistingComponentById,
   };

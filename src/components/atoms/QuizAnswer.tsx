@@ -10,7 +10,7 @@ interface QuizAnswerStyleProps {
 }
 
 // TODO: vw, vh 를 px 단위로 변경
-const QuizAnswerStyle = styled.li<QuizAnswerStyleProps>`
+export const QuizAnswerStyle = styled.li<QuizAnswerStyleProps>`
   .label-quiz-answer {
     display: inline-block;
     margin: 0 ${changePXtoVW(16)};

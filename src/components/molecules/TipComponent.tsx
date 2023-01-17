@@ -9,7 +9,7 @@ interface TipWrapperProps {
   customCss?: SerializedStyles;
 }
 
-const TipWrapper = styled.div<TipWrapperProps>`
+export const TipWrapper = styled.div<TipWrapperProps>`
   display: inline-block;
   padding-bottom: ${changePXtoVH(16)};
   padding-left: ${changePXtoVW(56)};
@@ -25,7 +25,7 @@ const TipWrapper = styled.div<TipWrapperProps>`
   margin-top: ${changePXtoVH(48)};
 
   > div {
-  line-height: 1.6;
+    line-height: 1.6;
   }
 `;
 
