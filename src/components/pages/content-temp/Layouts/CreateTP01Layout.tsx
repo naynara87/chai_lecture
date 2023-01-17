@@ -20,30 +20,32 @@ const CreateTP01Layout = ({
   id,
 }: TP01LayoutProps) => {
   const contents = useMemo(() => {
-    return ["", ""].map((value, index) => {
-      return (
-        <Droppable droppableId={`componentList${index}`}>
-          {(provided) => (
-            <div
-              className={`page-conts-wrap componentList${index}`}
-              {...provided.droppableProps}
-              ref={provided.innerRef}
-            >
-              {componentList[index] === undefined || componentList[index] === null ? (
-                <CreatePlusBox
-                  componentNames={componentNames}
-                  addNewComponent={addNewComponent}
-                  componentIndex={index}
-                />
-              ) : (
-                components[index]
-              )}
-              {provided.placeholder}
-            </div>
-          )}
-        </Droppable>
-      );
-    });
+    return Array(2)
+      .fill("")
+      .map((value, index) => {
+        return (
+          <Droppable droppableId={`componentList${index}`}>
+            {(provided) => (
+              <div
+                className={`page-conts-wrap componentList${index}`}
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+              >
+                {componentList[index] === undefined || componentList[index] === null ? (
+                  <CreatePlusBox
+                    componentNames={componentNames}
+                    addNewComponent={addNewComponent}
+                    componentIndex={index}
+                  />
+                ) : (
+                  components[index]
+                )}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+        );
+      });
   }, [addNewComponent, componentList, componentNames, components]);
   return (
     <TP01LayoutStyle id={id}>

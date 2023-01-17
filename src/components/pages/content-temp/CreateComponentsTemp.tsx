@@ -47,6 +47,7 @@ const CreateComponentsTemp = () => {
 
   const handleDragEnd = useCallback(
     (result: DropResult) => {
+      if (result.destination?.droppableId.slice(-1) === undefined) return;
       const componentIndex = parseInt(result.destination?.droppableId.slice(-1)!);
       if (componentList[componentIndex]) {
         alert("이미 컴포넌트가 존재하는 칸입니다.");
@@ -83,7 +84,7 @@ const CreateComponentsTemp = () => {
         </div>
       </header>
       <main className="layout-main">
-        <DragDropContext onDragEnd={handleDragEnd} onDragStart={() => {}}>
+        <DragDropContext onDragEnd={handleDragEnd}>
           <div className="flex-btw-wrap">
             <div className="btn-wrap">
               <button className="btn btn-border-primary" onClick={handleLayoutClick}>

@@ -1,4 +1,4 @@
-import { css } from "@emotion/react";
+import { css, SerializedStyles } from "@emotion/react";
 import styled from "@emotion/styled";
 import React, { useEffect, useMemo, useState } from "react";
 import { ChooseTextContent } from "../../types/templateContents";
@@ -10,12 +10,14 @@ import TipComponent from "../molecules/TipComponent";
 
 interface QuizAnswerContainerProps {
   isVertical?: boolean;
+  customCss?: SerializedStyles;
 }
 
 export const QuizAnswerContainer = styled.ul<QuizAnswerContainerProps>`
   display: flex;
   flex-direction: ${(props) => (props.isVertical ? "column" : "row")};
   flex-wrap: wrap;
+  ${(props) => props.customCss}
 `;
 
 export const customQuizCss = css`
