@@ -1,4 +1,3 @@
-import { TextBoxesAdapterProps } from "../TextBoxesAdapter";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { TextBoxesContent, TextBoxesData } from "../../../types/templateContents";
 import { Content } from "../../../types/appData";
@@ -13,7 +12,7 @@ import {
 } from "../../molecules/TextBoxes";
 import { TextCard } from "../../atoms/TextBox";
 
-interface TextBoxesCreatorProps extends TextBoxesAdapterProps {
+interface TextBoxesCreatorProps {
   onSave(): void;
   id: string;
   componentList: CreatorContent[];
@@ -37,11 +36,9 @@ const TextBoxesCreator = ({
     const textBoxesContentIndex = componentList.findIndex((component) => {
       return component.id === id;
     });
-    if (contentIndex === undefined) {
-      setContentIndex(textBoxesContentIndex);
-    }
+    setContentIndex(textBoxesContentIndex);
     setTextBoxesData(textBoxesContent);
-  }, [componentList, id, contentIndex]);
+  }, [componentList, id]);
 
   useEffect(() => {
     getData();
@@ -99,7 +96,6 @@ const TextBoxesCreator = ({
 
   const textBoxes = useMemo(() => {
     return textBoxesData?.data.map((textBox, index) => {
-      console.log("textBoxesData.data", textBoxesData.data);
       return (
         <TextCardGrp key={index}>
           <TextCard>

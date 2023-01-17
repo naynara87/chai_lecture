@@ -12,13 +12,13 @@ interface QuizAnswerContainerProps {
   isVertical?: boolean;
 }
 
-const QuizAnswerContainer = styled.ul<QuizAnswerContainerProps>`
+export const QuizAnswerContainer = styled.ul<QuizAnswerContainerProps>`
   display: flex;
   flex-direction: ${(props) => (props.isVertical ? "column" : "row")};
   flex-wrap: wrap;
 `;
 
-const customQuizCss = css`
+export const customQuizCss = css`
   margin-bottom: ${changePXtoVH(30)};
 `;
 interface ChooseTextProps {

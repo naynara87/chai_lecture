@@ -5,7 +5,6 @@ import TextBoxesCreator from "../../components/contents/createContent/TextBoxesC
 import { defaultContentComponentData } from "../../data/contentCreate/defaultContentComponentData";
 import { contentLayoutState } from "../../state/createContent/contentLayoutState";
 import { Content } from "../../types/appData";
-import { TextBoxesContent } from "../../types/templateContents";
 import uuid from "react-uuid";
 
 export type CreatorContent = {
@@ -55,12 +54,20 @@ const useCreateContent = () => {
     (content: Content, key: string) => {
       const contentCreatorMapper: Partial<Record<Content["type"], JSX.Element | JSX.Element[]>> = {
         // TODO: 저작도구용 컴포넌트 만들기(현재 보여지는 것은 뷰잉용)
-        chooseText: <ChooseTextCreator key={key} />,
+        chooseText: (
+          <ChooseTextCreator
+            key={key}
+            id={key}
+            onSave={() => console.log("save")}
+            addComponentToExistingComponentById={addComponentToExistingComponentById}
+            componentList={componentList}
+            setComponentList={setComponentList}
+          />
+        ),
         textBoxes: (
           <TextBoxesCreator
             key={key}
             id={key}
-            content={content as TextBoxesContent}
             onSave={() => console.log("save")}
             addComponentToExistingComponentById={addComponentToExistingComponentById}
             componentList={componentList}

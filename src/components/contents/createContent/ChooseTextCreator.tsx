@@ -1,7 +1,167 @@
-import React from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { CreatorContent } from "../../../hooks/contentCreate/useCreateContent";
+import { Content } from "../../../types/appData";
+import { ChooseTextContent } from "../../../types/templateContents";
+import { QuizAnswerStyle } from "../../atoms/QuizAnswer";
+import { TipWrapper } from "../../molecules/TipComponent";
+import { QuizAnswerContainer } from "../ChooseText";
+import ExplanationCreator from "./ExplanationCreator";
+import HtmlCreator from "./HtmlCreator";
 
-const ChooseTextCreator = () => {
-  return <div>ChooseTextCreator</div>;
+interface ChooseTextProps {
+  onSave(): void;
+  id: string;
+  componentList: CreatorContent[];
+  setComponentList: React.Dispatch<React.SetStateAction<CreatorContent[]>>;
+  addComponentToExistingComponentById: (contentType: Content["type"], id: string) => void;
+}
+const ChooseTextCreator = ({
+  onSave,
+  id,
+  componentList,
+  setComponentList,
+  addComponentToExistingComponentById,
+}: ChooseTextProps) => {
+  const [chooseTextData, setChooseTextData] = useState<ChooseTextContent | undefined>(undefined);
+  const [contentIndex, setContentIndex] = useState<number | undefined>(undefined);
+
+  const getData = useCallback(() => {
+    const chooseTextContent = componentList.find((component) => {
+      return component.id === id;
+    })?.content as ChooseTextContent;
+    const chooseTextContentIndex = componentList.findIndex((component) => {
+      return component.id === id;
+    });
+    setContentIndex(chooseTextContentIndex);
+    setChooseTextData(chooseTextContent);
+  }, [componentList, id]);
+
+  useEffect(() => {
+    getData();
+  }, [getData]);
+
+  const handleSubmitText = useCallback(
+    (event: React.FormEvent<HTMLFormElement>, index: number) => {
+      if (contentIndex === undefined) return;
+      const form = event.target as Element;
+      const copyChooseTextDataArr = JSON.parse(JSON.stringify(chooseTextData)) as ChooseTextContent;
+      copyChooseTextDataArr.data[0].choices[index] = form.querySelector("input")?.value ?? "";
+      const copyComponentList = JSON.parse(JSON.stringify(componentList));
+      copyComponentList[contentIndex].content.data = copyChooseTextDataArr.data;
+      setComponentList(copyComponentList);
+    },
+    [chooseTextData, componentList, contentIndex, setComponentList],
+  );
+
+  const handleDeleteChooseText = useCallback(() => {
+    if (!chooseTextData?.data) return;
+    const copyComponentList = JSON.parse(JSON.stringify(componentList));
+    copyComponentList.splice(contentIndex, 1);
+    setComponentList(copyComponentList);
+  }, [chooseTextData, componentList, setComponentList, contentIndex]);
+
+  const handleSubmitTipText = useCallback(
+    (event: React.FormEvent<HTMLFormElement>) => {
+      if (contentIndex === undefined) return;
+      const form = event.target as Element;
+      const copyChooseTextDataArr = JSON.parse(JSON.stringify(chooseTextData)) as ChooseTextContent;
+      copyChooseTextDataArr.data[0].tip = form.querySelector("input")?.value ?? "";
+      const copyComponentList = JSON.parse(JSON.stringify(componentList));
+      copyComponentList[contentIndex].content.data = copyChooseTextDataArr.data;
+      setComponentList(copyComponentList);
+    },
+    [chooseTextData, componentList, contentIndex, setComponentList],
+  );
+
+  const submitExplanationText = useCallback(
+    (event: React.FormEvent<HTMLFormElement>, keyName: string) => {
+      if (contentIndex === undefined) return;
+      const form = event.target as Element;
+      const copyChooseTextDataArr = JSON.parse(JSON.stringify(chooseTextData)) as ChooseTextContent;
+      if (!copyChooseTextDataArr.data[0].explanation) {
+        copyChooseTextDataArr.data[0].explanation = {
+          text: "",
+          correctMessage: "",
+          wrongMessage: "",
+          audio: {
+            src: "",
+          },
+        };
+      }
+      if (keyName === "text") {
+        copyChooseTextDataArr.data[0].explanation!.text = form.querySelector("input")?.value ?? "";
+      } else if (keyName === "correctMessage") {
+        copyChooseTextDataArr.data[0].explanation!.correctMessage =
+          form.querySelector("input")?.value ?? "";
+      } else if (keyName === "wrongMessage") {
+        copyChooseTextDataArr.data[0].explanation!.wrongMessage =
+          form.querySelector("input")?.value ?? "";
+      } else if (keyName === "audio") {
+        copyChooseTextDataArr.data[0].explanation!.audio!.src =
+          form.querySelector("input")?.value ?? "";
+      }
+      const copyComponentList = JSON.parse(JSON.stringify(componentList));
+      copyComponentList[contentIndex].content.data = copyChooseTextDataArr.data;
+      setComponentList(copyComponentList);
+    },
+    [chooseTextData, componentList, contentIndex, setComponentList],
+  );
+
+  const chooseText = useMemo(() => {
+    return chooseTextData?.data.map((choiceData) => {
+      const choices = [choiceData.choices[0] ?? "", choiceData.choices[1] ?? ""];
+      return (
+        <div>
+          {choices.map((choice, index) => {
+            return (
+              <QuizAnswerStyle className="quiz-answer-list" color="#000">
+                <input type="radio" id={"id"} name="quiz-answer" className="inp-quiz-answer none" />
+                <label htmlFor={"label"} className="label-quiz-answer">
+                  <div className="word-wrap">
+                    <div className="img-wrap">
+                      <img
+                        src={`${process.env.REACT_APP_BASE_URL}/images/icon/icon_check.svg`}
+                        alt=""
+                        className="icon"
+                      />
+                    </div>
+                    <HtmlCreator
+                      html={choice}
+                      onSubmitHtml={(event) => {
+                        handleSubmitText(event, index);
+                      }}
+                    />
+                  </div>
+                </label>
+              </QuizAnswerStyle>
+            );
+          })}
+          <TipWrapper>
+            <HtmlCreator onSubmitHtml={handleSubmitTipText} html={choiceData.tip ?? ""} />
+          </TipWrapper>
+          <ExplanationCreator
+            explanation={choiceData.explanation}
+            submitExplanationText={submitExplanationText}
+          />
+          <button onClick={handleDeleteChooseText}>삭제</button>
+        </div>
+      );
+    });
+  }, [
+    chooseTextData,
+    handleSubmitText,
+    handleDeleteChooseText,
+    handleSubmitTipText,
+    submitExplanationText,
+  ]);
+
+  return (
+    <div>
+      <QuizAnswerContainer>
+        <>{chooseText}</>
+      </QuizAnswerContainer>
+    </div>
+  );
 };
 
 export default ChooseTextCreator;

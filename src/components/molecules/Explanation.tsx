@@ -9,7 +9,7 @@ import AudioButton from "../atoms/AudioButton";
 import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import HtmlContentComponent from "./HtmlContentComponent";
 
-const ExplanationWrapper = styled.div`
+export const ExplanationWrapper = styled.div`
   position: fixed;
   top: auto;
   bottom: calc(${footerHeightNormal} + ${changePXtoVH(10)});
@@ -19,7 +19,7 @@ const ExplanationWrapper = styled.div`
   width: 100%;
 `;
 
-const ExplanationContainer = styled.div`
+export const ExplanationContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
@@ -46,7 +46,7 @@ const CloseButton = styled.button`
   display: none;
 `;
 
-const TextBox = styled.div`
+export const TextBox = styled.div`
   display: flex;
   position: relative;
   align-items: center;
@@ -55,13 +55,13 @@ const TextBox = styled.div`
   padding: ${changePXtoVH(10)} ${changePXtoVW(40)};
 `;
 
-const OXWrapper = styled.div`
+export const OXWrapper = styled.div`
   width: ${changePXtoVW(48)};
   min-width: ${changePXtoVW(48)};
   margin-right: ${changePXtoVW(16)};
 `;
 
-const ExplanationTextCss = css`
+export const ExplanationTextCss = css`
   overflow: auto;
   width: 100%;
   height: 100%;
@@ -80,7 +80,7 @@ interface TextProps {
   isText?: boolean;
 }
 
-const Text = styled.div<TextProps>`
+export const Text = styled.div<TextProps>`
   height: ${(props) => !props.isText && "auto"};
   padding-top: ${changePXtoVH(12)};
   padding-bottom: ${changePXtoVH(8)};
@@ -93,19 +93,19 @@ const Text = styled.div<TextProps>`
   }
 `;
 
-const ExplanationTitle = styled.div`
+export const ExplanationTitle = styled.div`
   font-size: ${changePXtoVW(30)};
   color: ${colorPalette.lightBlue};
 `;
 
-const ExplanationHtmlCss = css`
+export const ExplanationHtmlCss = css`
   margin-top: ${changePXtoVW(24)};
   font-weight: 400;
   font-size: ${changePXtoVW(30)};
   color: ${colorPalette.descriptionText};
 `;
 
-const InfoWrapper = styled.div`
+export const InfoWrapper = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: ${changePXtoVW(5)};

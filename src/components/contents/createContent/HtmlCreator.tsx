@@ -32,10 +32,9 @@ const HtmlWrapper = styled.div<HtmlWrapperProps>`
 interface HtmlCreatorProps extends HtmlWrapperProps {
   html: string;
   onSubmitHtml: (event: React.FormEvent<HTMLFormElement>) => void;
-  onClickHtml?: () => void;
 }
 
-const HtmlCreator = ({ html, customCss, onClickHtml, onSubmitHtml }: HtmlCreatorProps) => {
+const HtmlCreator = ({ html, customCss, onSubmitHtml }: HtmlCreatorProps) => {
   const [isSave, setIsSave] = useState<boolean>();
   const [text, setText] = useState(html);
 
