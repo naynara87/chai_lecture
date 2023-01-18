@@ -45,6 +45,16 @@ export type TPIframeTemplate = {
   url: string;
 };
 
+export type TP01 = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP01";
+    contents: ApproveContent[];
+  };
+};
+
 export type TP01A = {
   id: ID;
   title: string;

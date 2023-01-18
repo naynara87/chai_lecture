@@ -44,7 +44,6 @@ const useCreateContent = () => {
         return component;
       });
       setComponentList(addedComponentList);
-      console.log("newComponent", componentList);
     },
     [getDefaultContentComponent, componentList],
   );
@@ -99,28 +98,10 @@ const useCreateContent = () => {
       const newComponent = getDefaultContentComponent(contentType, newId);
       const copyComponentList = [...componentList];
       if (componentIndex !== undefined) {
-        for (let i = 0; i < componentIndex; i++) {
-          if (!copyComponentList[i]) {
-            copyComponentList[i] = undefined;
-          }
-        }
         copyComponentList.splice(componentIndex, 1, newComponent);
         setComponentList(copyComponentList);
         return;
       }
-      if (componentList.includes(undefined!) || componentList.includes(null!)) {
-        componentList.forEach((component, index) => {
-          if (component === undefined || component === null) {
-            copyComponentList.splice(index, 1, newComponent);
-            setComponentList(copyComponentList);
-            return;
-          }
-        });
-        return;
-      }
-      setComponentList((prev) => {
-        return [...prev, newComponent];
-      });
     },
     [getDefaultContentComponent, componentList],
   );

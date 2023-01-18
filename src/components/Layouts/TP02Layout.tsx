@@ -1,13 +1,12 @@
 import { SerializedStyles } from "@emotion/react";
 import styled from "@emotion/styled";
 import React from "react";
-import { changePXtoVH } from "../../utils/styles";
 
 interface TP02LayoutStyleProps {
   customCss?: SerializedStyles;
 }
 
-const TP02LayoutStyle = styled.div<TP02LayoutStyleProps>`
+export const TP02LayoutStyle = styled.div<TP02LayoutStyleProps>`
   position: relative;
   display: flex;
   justify-content: center;
