@@ -104,10 +104,13 @@
 }
 
 .page-conts-wrap {
-  padding-top: 10px;
+  margin-top: 10px;
   text-align: center;
   height: 100%;
   background-color: beige;
+}
+.page-conts-wrap:first-child {
+  margin-top: 0;
 }
 
 // footer

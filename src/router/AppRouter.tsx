@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route, Navigate, HashRouter } from "react-router-dom";
-import CreateComponentsTemp from "../components/pages/content-temp/CreateComponentsTemp";
+import CreateComponents from "../components/pages/content-temp/CreateComponents";
 import CreateLayout from "../components/pages/content-temp/CreateLayout";
 import CornerListPage from "../components/pages/CornerListPage";
 import CornerPage from "../components/pages/CornerPage";
@@ -30,7 +30,7 @@ const AppRouter = () => {
         <Route path={"test-word-grade"} element={<MetaTestWordTestGrade />} />
         <Route path={"test-word-report"} element={<MetaTestWordTestReport />} />
         <Route path={CREATE_CONTENT_LAYOUT_URL} element={<CreateLayout />} />
-        <Route path={CREATE_CONTENT_COMPONENTS_URL} element={<CreateComponentsTemp />} />
+        <Route path={CREATE_CONTENT_COMPONENTS_URL} element={<CreateComponents />} />
         <Route
           path={CREATE_CONTENT_BASE_URL}
           element={<Navigate to={CREATE_CONTENT_LAYOUT_URL} replace />}

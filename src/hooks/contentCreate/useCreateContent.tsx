@@ -133,6 +133,7 @@ const useCreateContent = () => {
     setContentLayout,
     components,
     componentList,
+    setComponentList,
     addNewComponent,
     addComponentToExistingComponentById,
   };
