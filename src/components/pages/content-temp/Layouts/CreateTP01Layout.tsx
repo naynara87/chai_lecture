@@ -1,10 +1,24 @@
+import { css, SerializedStyles } from "@emotion/react";
+import styled from "@emotion/styled";
 import React, { useMemo } from "react";
-import { Droppable } from "react-beautiful-dnd";
+import { Draggable, Droppable } from "react-beautiful-dnd";
 import { CreatorContent } from "../../../../hooks/contentCreate/useCreateContent";
 import { Content } from "../../../../types/appData";
 import { TP01LayoutStyle } from "../../../Layouts/TP01Layout";
 import CreatePlusBox from "../CreatePlusBox";
+import { ControlCameraOutlined, PersonalVideoOutlined } from "@mui/icons-material";
 
+interface DropBoxProps {
+  customCss?: SerializedStyles;
+}
+
+const DropBox = styled.div<DropBoxProps>`
+  ${(props) => props.customCss}
+`;
+
+const overCss = css`
+  border: 1px dashed black;
+`;
 interface TP01LayoutProps {
   components: (JSX.Element | JSX.Element[] | undefined)[];
   componentList: (CreatorContent | undefined)[];
@@ -25,11 +39,12 @@ const CreateTP01Layout = ({
       .map((value, index) => {
         return (
           <Droppable droppableId={`componentList${index}`}>
-            {(provided) => (
-              <div
+            {(provided, snapshot) => (
+              <DropBox
                 className={`page-conts-wrap componentList${index}`}
                 {...provided.droppableProps}
                 ref={provided.innerRef}
+                customCss={snapshot.isDraggingOver ? overCss : undefined}
               >
                 {componentList[index] === undefined || componentList[index] === null ? (
                   <CreatePlusBox
@@ -38,10 +53,19 @@ const CreateTP01Layout = ({
                     componentIndex={index}
                   />
                 ) : (
-                  components[index]
+                  <Draggable draggableId={`content${index}`} key={`content${index}`} index={index}>
+                    {(provided) => (
+                      <div ref={provided.innerRef} {...provided.draggableProps}>
+                        <div {...provided.dragHandleProps}>
+                          <ControlCameraOutlined />
+                        </div>
+                        {components[index]}
+                      </div>
+                    )}
+                  </Draggable>
                 )}
                 {provided.placeholder}
-              </div>
+              </DropBox>
             )}
           </Droppable>
         );

@@ -1,49 +1,14 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect } from "react";
 import styled from "@emotion/styled";
-import useCreateContent from "../../../hooks/contentCreate/useCreateContent";
 import { useNavigate } from "react-router-dom";
 import { CREATE_CONTENT_LAYOUT_URL } from "../../../constants/url";
 import "./common.scss";
 import ModalLayoutChange from "./ModalLayoutChange";
 import ModalComponentChoice from "./ModalComponentChoice";
-import { DragDropContext, DropResult } from "react-beautiful-dnd";
-import CreateDropzone from "./CreateDropzone";
-import CreateContentList from "./CreateContentList";
-import uuid from "react-uuid";
-import { ApproveContent } from "../../../types/appData";
-import useCreateContents from "../../../hooks/useCreateContents";
-
-export interface content {
-  id: string;
-  type: string;
-  isSubmit?: boolean;
-  contents?: ApproveContent;
-  inputText?: React.MutableRefObject<string>;
-}
-
-interface HandleChangeAreaProps {
-  result: DropResult;
-  currentAreaName: string;
-  changeAreaName: string;
-  currentArea: content[];
-  changeArea: content[];
-  setCurrentArea: React.Dispatch<
-    React.SetStateAction<
-      {
-        id: string;
-        type: string;
-      }[]
-    >
-  >;
-  setChangeArea: React.Dispatch<
-    React.SetStateAction<
-      {
-        id: string;
-        type: string;
-      }[]
-    >
-  >;
-}
+import useCreateContent from "../../../hooks/contentCreate/useCreateContent";
+import CreateTP01Layout from "./Layouts/CreateTP01Layout";
+import { DragDropContext, Draggable, Droppable, DropResult } from "react-beautiful-dnd";
+import { Content } from "../../../types/appData";
 
 const PageLayout = styled.div`
   .btn-wrap {
@@ -52,48 +17,26 @@ const PageLayout = styled.div`
   }
 `;
 
-const contentList = [
-  { id: "1", type: "글자" },
-  { id: "2", type: "사진" },
-  { id: "3", type: "음원" },
-  { id: "4", type: "영상" },
-  { id: "5", type: "컴포넌트" },
-];
-
-const CreateComponents = () => {
+const CreateComponentsTemp = () => {
   const { contentLayout } = useCreateContent();
-  const { pageData, addContent } = useCreateContents("TP01A");
-  const [isDrag, setIsDrag] = useState(false);
-  const [pageContents1, setPageContents1] = useState<content[]>([]);
-  const [pageContents2, setPageContents2] = useState<content[]>([]);
+
   const navigate = useNavigate();
 
-  console.log(pageData);
+  const {
+    componentList,
+    componentNames,
+    components,
+    addNewComponent,
+    setComponentList,
+    addComponentToExistingComponentById,
+  } = useCreateContent();
 
-  const handleSubmitContent = useCallback(
-    (dropzoneName: string, contentId: string, inputText: React.MutableRefObject<string>) => {
-      if (dropzoneName === "pageContent1") {
-        const submitContentIndex = pageContents1.findIndex((content) => {
-          return content.id === contentId;
-        });
-        const copyArr = [...pageContents1];
-        copyArr[submitContentIndex].isSubmit = true;
-        copyArr[submitContentIndex].inputText = inputText;
-        setPageContents1(copyArr);
-      } else if (dropzoneName === "pageContent2") {
-        const submitContentIndex = pageContents2.findIndex((content) => {
-          return content.id === contentId;
-        });
-        const copyArr = [...pageContents2];
-        copyArr[submitContentIndex].isSubmit = true;
-        copyArr[submitContentIndex].inputText = inputText;
-        addContent(copyArr[submitContentIndex].type, inputText);
-
-        setPageContents2(copyArr);
-      }
-    },
-    [pageContents1, pageContents2, addContent],
-  );
+  useEffect(() => {
+    console.log("contentLayout", contentLayout);
+    // if (!contentLayout) {
+    //   navigate(CREATE_CONTENT_LAYOUT_URL);
+    // }
+  }, [contentLayout, navigate]);
 
   const handleLayoutClick = () => {
     console.log("레이아웃 설정 버튼 클릭");
@@ -103,76 +46,29 @@ const CreateComponents = () => {
     }
   };
 
-  const handleDragStart = useCallback((event: any) => {
-    console.log(event);
-    setIsDrag(true);
-  }, []);
-
-  const handleChangeArea = useCallback(
-    ({
-      result,
-      currentAreaName,
-      currentArea,
-      changeAreaName,
-      changeArea,
-      setCurrentArea,
-      setChangeArea,
-    }: HandleChangeAreaProps) => {
-      if (!result.destination) return;
-      if (result.source.droppableId === currentAreaName) {
-        const pageContentArr = [...currentArea];
-        const [reorderedItem] = pageContentArr.splice(result.source.index, 1);
-        pageContentArr.splice(result.destination.index, 0, reorderedItem);
-        setCurrentArea(pageContentArr);
-        return;
-      } else if (result.source.droppableId === changeAreaName) {
-        const pageContentArr1 = [...currentArea];
-        const pageContentArr2 = [...changeArea];
-        const [reorderedItem] = pageContentArr2.splice(result.source.index, 1);
-        pageContentArr1.splice(result.destination.index, 0, reorderedItem);
-        pageContentArr2.splice(result.source.index, 0);
-        setCurrentArea(pageContentArr1);
-        setChangeArea(pageContentArr2);
-        return;
-      }
-      const currentPageArea = [...currentArea];
-      currentPageArea.splice(result.destination.index, 0, {
-        id: uuid(),
-        type: contentList[result.source.index].type,
-      });
-      setCurrentArea(currentPageArea);
-    },
-    [],
-  );
-
   const handleDragEnd = useCallback(
     (result: DropResult) => {
-      if (!result.destination) return;
-      if (result.destination.droppableId === "pageContent1") {
-        handleChangeArea({
-          result,
-          currentAreaName: "pageContent1",
-          currentArea: pageContents1,
-          changeAreaName: "pageContent2",
-          changeArea: pageContents2,
-          setCurrentArea: setPageContents1,
-          setChangeArea: setPageContents2,
-        });
+      if (result.destination?.droppableId.slice(-1) === undefined) return;
+      if (result.destination.droppableId === result.source.droppableId) return;
+      // 컨텐츠를 옮길 위치
+      const componentIndex = parseInt(result.destination?.droppableId.slice(-1)!);
+      // 컨텐츠를 옮겨온 위치
+      const currentIndex = parseInt(result.source.droppableId.slice(-1)!);
+
+      if (componentList[componentIndex]) {
+        alert("이미 컴포넌트가 존재하는 칸입니다.");
+        return;
       }
-      if (result.destination.droppableId === "pageContent2") {
-        handleChangeArea({
-          result,
-          currentAreaName: "pageContent2",
-          currentArea: pageContents2,
-          changeAreaName: "pageContent1",
-          changeArea: pageContents1,
-          setCurrentArea: setPageContents2,
-          setChangeArea: setPageContents1,
-        });
+      if (result.source.droppableId === "btn-wrap") {
+        addNewComponent(result.draggableId as Content["type"], componentIndex);
+      } else {
+        const copyComponentList = [...componentList];
+        copyComponentList.splice(componentIndex, 1, componentList[currentIndex]);
+        copyComponentList.splice(currentIndex, 1, undefined);
+        setComponentList(copyComponentList);
       }
-      setIsDrag(false);
     },
-    [pageContents1, pageContents2, handleChangeArea],
+    [addNewComponent, componentList, setComponentList],
   );
 
   return (
@@ -201,7 +97,7 @@ const CreateComponents = () => {
         </div>
       </header>
       <main className="layout-main">
-        <DragDropContext onDragEnd={handleDragEnd} onDragStart={handleDragStart}>
+        <DragDropContext onDragEnd={handleDragEnd}>
           <div className="flex-btw-wrap">
             <div className="btn-wrap">
               <button className="btn btn-border-primary" onClick={handleLayoutClick}>
@@ -211,18 +107,44 @@ const CreateComponents = () => {
               <ModalLayoutChange />
             </div>
 
-            <CreateContentList contentList={contentList} />
+            <Droppable droppableId="btn-wrap" isDropDisabled={true}>
+              {(provided) => (
+                <div className="btn-wrap" {...provided.droppableProps} ref={provided.innerRef}>
+                  {componentNames.map((componentName, index) => {
+                    return (
+                      <Draggable draggableId={componentName} key={index} index={index}>
+                        {(provided) => (
+                          <span
+                            ref={provided.innerRef}
+                            {...provided.dragHandleProps}
+                            {...provided.draggableProps}
+                            key={componentName}
+                            className="btn btn-border-primary"
+                            onClick={() => addNewComponent(componentName)}
+                          >
+                            {componentName}
+                          </span>
+                        )}
+                      </Draggable>
+                    );
+                  })}
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
           </div>
-          <div className="page-wrap">
-            <CreateDropzone
-              dropzoneName="pageContent1"
-              contentList={pageContents1}
-              handleSubmitContent={handleSubmitContent}
-            />
-            <CreateDropzone
-              dropzoneName="pageContent2"
-              contentList={pageContents2}
-              handleSubmitContent={handleSubmitContent}
+
+          <div className="create-page-wrap">
+            {/* 
+          제목 영역이 없어졌으므로 주석 처리
+          <div className="page-title-wrap">
+            제목의 높이는 이 프로젝트의 title height를 scss에 옮겨서 가져옴
+          </div> */}
+            <CreateTP01Layout
+              componentList={componentList}
+              components={components}
+              addNewComponent={addNewComponent}
+              componentNames={componentNames}
             />
           </div>
         </DragDropContext>
@@ -253,4 +175,4 @@ const CreateComponents = () => {
   );
 };
 
-export default CreateComponents;
+export default CreateComponentsTemp;
