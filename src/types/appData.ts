@@ -53,6 +53,7 @@ import {
   TP02P,
   TP05D,
   TP09B,
+  TP01,
 } from "./pageTemplate";
 import {
   AudioContent,
@@ -193,6 +194,10 @@ export type Page =
   | TPIframe;
 
 export type TemplateType = Page["template"]["type"];
+
+export type CreateTemplatePage = TP01 | TP02 | TP03 | TP04 | TP05;
+
+export type CreateTemplateType = CreateTemplatePage["template"]["type"];
 
 export type Content =
   | ChooseTextContent

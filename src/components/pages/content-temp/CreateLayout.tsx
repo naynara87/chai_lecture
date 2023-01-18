@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import useCreateContent from "../../../hooks/contentCreate/useCreateContent";
-import { TemplateType } from "../../../types/appData";
+import { CreateTemplateType } from "../../../types/appData";
 import { layouts } from "../../../data/contentCreate";
 import { useNavigate } from "react-router-dom";
 import { CREATE_CONTENT_COMPONENTS_URL } from "../../../constants/url";
@@ -39,8 +39,8 @@ const CreateLayout = () => {
 
   const navigate = useNavigate();
 
-  const handleLayoutClick = (layoutName: TemplateType) => {
-    setContentLayout(layoutName);
+  const handleLayoutClick = (layoutName: CreateTemplateType, layoutAreaIndex: number) => {
+    setContentLayout({ layoutName, layoutAreaIndex });
     console.log("selected layout: ", layoutName);
     navigate(CREATE_CONTENT_COMPONENTS_URL);
   };
@@ -54,7 +54,10 @@ const CreateLayout = () => {
       <Main>
         <LayoutContainer>
           {layouts.map((layout) => (
-            <LayoutItem key={layout.name} onClick={() => handleLayoutClick(layout.name)}>
+            <LayoutItem
+              key={layout.name}
+              onClick={() => handleLayoutClick(layout.name, layout.layoutAreaIndex)}
+            >
               <h3>{layout.name}</h3>
               <img src={layout.image} alt={layout.name} draggable={false} />
             </LayoutItem>

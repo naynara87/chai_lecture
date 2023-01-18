@@ -52,7 +52,7 @@ const ChooseTextCreator = ({ onSave, id, componentList, setComponentList }: Choo
       if (contentIndex === undefined) return;
       if (chooseTextData === undefined) return;
       const form = event.target as Element;
-      const copyChooseTextDataArr = [...chooseTextData?.data];
+      const copyChooseTextDataArr = JSON.parse(JSON.stringify(chooseTextData.data));
       copyChooseTextDataArr[0].choices[index] = form.querySelector("input")?.value ?? "";
       const copyComponentList = [...componentList];
       copyComponentList[contentIndex]!.content.data = copyChooseTextDataArr;
@@ -74,7 +74,7 @@ const ChooseTextCreator = ({ onSave, id, componentList, setComponentList }: Choo
       if (contentIndex === undefined) return;
       if (chooseTextData === undefined) return;
       const form = event.target as Element;
-      const copyChooseTextDataArr = [...chooseTextData.data];
+      const copyChooseTextDataArr = JSON.parse(JSON.stringify(chooseTextData.data));
       copyChooseTextDataArr[0].tip = form.querySelector("input")?.value ?? "";
       const copyComponentList = [...componentList];
       copyComponentList[contentIndex]!.content.data = copyChooseTextDataArr;
@@ -88,7 +88,7 @@ const ChooseTextCreator = ({ onSave, id, componentList, setComponentList }: Choo
       if (contentIndex === undefined) return;
       if (chooseTextData === undefined) return;
       const form = event.target as Element;
-      const copyChooseTextDataArr = [...chooseTextData?.data];
+      const copyChooseTextDataArr = JSON.parse(JSON.stringify(chooseTextData.data));
       if (!copyChooseTextDataArr[0].explanation) {
         copyChooseTextDataArr[0].explanation = {
           text: "",
@@ -121,7 +121,7 @@ const ChooseTextCreator = ({ onSave, id, componentList, setComponentList }: Choo
     (index: number) => {
       if (contentIndex === undefined) return;
       if (chooseTextData === undefined) return;
-      const copyChooseTextDataArr = [...chooseTextData.data];
+      const copyChooseTextDataArr = JSON.parse(JSON.stringify(chooseTextData.data));
       copyChooseTextDataArr[0].answerIndex = index;
       const copyComponentList = [...componentList];
       copyComponentList[contentIndex]!.content.data = copyChooseTextDataArr;

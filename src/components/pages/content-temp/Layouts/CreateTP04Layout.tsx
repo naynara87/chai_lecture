@@ -2,10 +2,10 @@ import { css, SerializedStyles } from "@emotion/react";
 import styled from "@emotion/styled";
 import React, { useMemo } from "react";
 import { Draggable, Droppable } from "react-beautiful-dnd";
-import { TP01LayoutStyle } from "../../../Layouts/TP01Layout";
 import CreatePlusBox from "../CreatePlusBox";
 import { ControlCameraOutlined } from "@mui/icons-material";
 import { useCreateLayoutMapperProps } from "../../../../hooks/contentCreate/useCreateLayoutMapper";
+import { TP04LayoutStyle } from "../../../Layouts/TP04Layout";
 
 interface DropBoxProps {
   customCss?: SerializedStyles;
@@ -20,18 +20,19 @@ const overCss = css`
 `;
 
 const layoutCss = css`
-  grid-template-rows: 60% 38%;
+  grid-template-rows: 49% 49%;
+  height: 100%;
 `;
 
-interface TP01LayoutProps extends useCreateLayoutMapperProps {}
+interface TP04LayoutProps extends useCreateLayoutMapperProps {}
 
-const CreateTP01Layout = ({
+const CreateTP04Layout = ({
   components,
   componentList,
   addNewComponent,
   componentNames,
   id,
-}: TP01LayoutProps) => {
+}: TP04LayoutProps) => {
   const contents = useMemo(() => {
     return Array(2)
       .fill("")
@@ -71,11 +72,11 @@ const CreateTP01Layout = ({
       });
   }, [addNewComponent, componentList, componentNames, components]);
   return (
-    <TP01LayoutStyle id={id} customCss={layoutCss}>
+    <TP04LayoutStyle id={id} customCss={layoutCss}>
       {/* 컴포넌트가 추가되는 영역 */}
       {contents}
-    </TP01LayoutStyle>
+    </TP04LayoutStyle>
   );
 };
 
-export default CreateTP01Layout;
+export default CreateTP04Layout;

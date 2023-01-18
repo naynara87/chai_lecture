@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
 import { CREATE_CONTENT_LAYOUT_URL } from "../../../constants/url";
@@ -6,9 +6,9 @@ import "./common.scss";
 import ModalLayoutChange from "./ModalLayoutChange";
 import ModalComponentChoice from "./ModalComponentChoice";
 import useCreateContent from "../../../hooks/contentCreate/useCreateContent";
-import CreateTP01Layout from "./Layouts/CreateTP01Layout";
 import { DragDropContext, Draggable, Droppable, DropResult } from "react-beautiful-dnd";
 import { Content } from "../../../types/appData";
+import useCreateLayoutMapper from "../../../hooks/contentCreate/useCreateLayoutMapper";
 
 const PageLayout = styled.div`
   .btn-wrap {
@@ -19,7 +19,7 @@ const PageLayout = styled.div`
 
 const CreateComponentsTemp = () => {
   const { contentLayout } = useCreateContent();
-
+  const [isViewing, setIsViewing] = useState(false);
   const navigate = useNavigate();
 
   const {
@@ -31,12 +31,26 @@ const CreateComponentsTemp = () => {
     addComponentToExistingComponentById,
   } = useCreateContent();
 
+  const { getTemplateLayout } = useCreateLayoutMapper({
+    componentList,
+    componentNames,
+    components,
+    addNewComponent,
+  });
+
   useEffect(() => {
     console.log("contentLayout", contentLayout);
-    // if (!contentLayout) {
-    //   navigate(CREATE_CONTENT_LAYOUT_URL);
-    // }
-  }, [contentLayout, navigate]);
+    if (!isViewing) {
+      const copyComponentList = [...componentList];
+      Array(contentLayout?.layoutAreaIndex)
+        .fill(undefined)
+        .map((value, index) => {
+          return (copyComponentList[index] = value);
+        });
+      setComponentList(copyComponentList);
+      setIsViewing(true);
+    }
+  }, [contentLayout, navigate, componentList, isViewing, setComponentList]);
 
   const handleLayoutClick = () => {
     console.log("레이아웃 설정 버튼 클릭");
@@ -54,17 +68,22 @@ const CreateComponentsTemp = () => {
       const componentIndex = parseInt(result.destination?.droppableId.slice(-1)!);
       // 컨텐츠를 옮겨온 위치
       const currentIndex = parseInt(result.source.droppableId.slice(-1)!);
-
+      const copyComponentList = [...componentList];
       if (componentList[componentIndex]) {
-        alert("이미 컴포넌트가 존재하는 칸입니다.");
-        return;
+        const result = window.confirm("컴포넌트를 변경하시겠습니까?");
+        if (!result) {
+          return;
+        }
       }
       if (result.source.droppableId === "btn-wrap") {
         addNewComponent(result.draggableId as Content["type"], componentIndex);
       } else {
-        const copyComponentList = [...componentList];
         copyComponentList.splice(componentIndex, 1, componentList[currentIndex]);
-        copyComponentList.splice(currentIndex, 1, undefined);
+        if (componentList[componentIndex] === undefined) {
+          copyComponentList.splice(currentIndex, 1, undefined);
+        } else {
+          copyComponentList.splice(currentIndex, 1, componentList[componentIndex]);
+        }
         setComponentList(copyComponentList);
       }
     },
@@ -120,7 +139,16 @@ const CreateComponentsTemp = () => {
                             {...provided.draggableProps}
                             key={componentName}
                             className="btn btn-border-primary"
-                            onClick={() => addNewComponent(componentName)}
+                            onClick={() => {
+                              const nullIndex = componentList.findIndex(
+                                (component) => component === undefined,
+                              );
+                              if (nullIndex === -1) {
+                                return;
+                              } else {
+                                addNewComponent(componentName, nullIndex);
+                              }
+                            }}
                           >
                             {componentName}
                           </span>
@@ -140,12 +168,7 @@ const CreateComponentsTemp = () => {
           <div className="page-title-wrap">
             제목의 높이는 이 프로젝트의 title height를 scss에 옮겨서 가져옴
           </div> */}
-            <CreateTP01Layout
-              componentList={componentList}
-              components={components}
-              addNewComponent={addNewComponent}
-              componentNames={componentNames}
-            />
+            {getTemplateLayout(contentLayout?.layoutName!)}
           </div>
         </DragDropContext>
       </main>

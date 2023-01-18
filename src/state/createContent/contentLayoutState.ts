@@ -1,8 +1,13 @@
 // contentLayoutState
 import { atom } from "recoil";
-import { TemplateType } from "../../types/appData";
+import { CreateTemplateType } from "../../types/appData";
 
-export const contentLayoutState = atom<TemplateType | undefined>({
+interface contentLayoutStateType {
+  layoutName: CreateTemplateType;
+  layoutAreaIndex: number;
+}
+
+export const contentLayoutState = atom<contentLayoutStateType | undefined>({
   key: "contentLayoutState",
   default: undefined,
 });
