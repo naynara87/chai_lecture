@@ -70,9 +70,18 @@ const CreateComponentsTemp = () => {
       const currentIndex = parseInt(result.source.droppableId.slice(-1)!);
       const copyComponentList = [...componentList];
       if (componentList[componentIndex]) {
-        const result = window.confirm("컴포넌트를 변경하시겠습니까?");
-        if (!result) {
-          return;
+        if (result.source.droppableId === "btn-wrap") {
+          const confirm = window.confirm(
+            "기존의 컴포넌트의 내용이 사라집니다. 컴포넌트를 변경하시겠습니까?",
+          );
+          if (!confirm) {
+            return;
+          }
+        } else {
+          const confirm = window.confirm("컴포넌트의 위치를 변경하시겠습니까?");
+          if (!confirm) {
+            return;
+          }
         }
       }
       if (result.source.droppableId === "btn-wrap") {
@@ -144,6 +153,9 @@ const CreateComponentsTemp = () => {
                                 (component) => component === undefined,
                               );
                               if (nullIndex === -1) {
+                                alert(
+                                  "템플릿의 빈칸이 존재하지않아 컴포넌트를 추가할 수 없습니다.",
+                                );
                                 return;
                               } else {
                                 addNewComponent(componentName, nullIndex);
