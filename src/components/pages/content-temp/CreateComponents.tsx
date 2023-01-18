@@ -52,7 +52,6 @@ const CreateComponentsTemp = () => {
         });
       setComponentList(copyComponentList);
       setIsViewing(true);
-      console.log(componentList);
     }
   }, [contentLayout, navigate, componentList, isViewing, setComponentList]);
 

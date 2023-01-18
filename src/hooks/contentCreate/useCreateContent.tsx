@@ -155,6 +155,7 @@ const useCreateContent = () => {
     componentList.forEach((component) => {
       saveObject.contents.push(component?.content);
     });
+    console.log(saveObject);
   }, [contentLayout, componentList]);
 
   return {
