@@ -3,9 +3,22 @@ import { useRecoilState } from "recoil";
 import ChooseTextCreator from "../../components/contents/createContent/ChooseTextCreator";
 import TextBoxesCreator from "../../components/contents/createContent/TextBoxesCreator";
 import { defaultContentComponentData } from "../../data/contentCreate/defaultContentComponentData";
-import { contentLayoutState } from "../../state/createContent/contentLayoutState";
+import {
+  contentLayoutState,
+  contentLayoutStateType,
+} from "../../state/createContent/contentLayoutState";
 import { Content } from "../../types/appData";
 import uuid from "react-uuid";
+
+interface CopyContentObject {
+  type: contentLayoutStateType | undefined;
+  contents: (CreatorContent | undefined)[];
+}
+
+interface SaveContentObject {
+  type: contentLayoutStateType["layoutName"] | undefined;
+  contents: (Content | undefined)[];
+}
 
 export type CreatorContent = {
   id: string;
@@ -106,6 +119,44 @@ const useCreateContent = () => {
     [getDefaultContentComponent, componentList],
   );
 
+  const copyContents = useCallback(() => {
+    const contentObject: CopyContentObject = {
+      type: contentLayout,
+      contents: [],
+    };
+    componentList.forEach((component) => {
+      contentObject.contents.push(component);
+    });
+    localStorage.setItem("contentObject", JSON.stringify(contentObject));
+  }, [contentLayout, componentList]);
+
+  const pasteContents = useCallback(() => {
+    if (localStorage.getItem("contentObject")) {
+      const getStorageObject = JSON.parse(localStorage.getItem("contentObject")!);
+      const copyComponentList = [...componentList];
+      copyComponentList.forEach((component, index) => {
+        if (getStorageObject.contents[index] === null) {
+          copyComponentList[index] = undefined;
+        } else {
+          copyComponentList[index] = getStorageObject.contents[index];
+        }
+      });
+      setComponentList(copyComponentList);
+    } else {
+      alert("복사된 컴포넌트가 없습니다.");
+    }
+  }, [componentList]);
+
+  const saveContents = useCallback(() => {
+    const saveObject: SaveContentObject = {
+      type: contentLayout?.layoutName,
+      contents: [],
+    };
+    componentList.forEach((component) => {
+      saveObject.contents.push(component?.content);
+    });
+  }, [contentLayout, componentList]);
+
   return {
     getCreateContentComponent,
     getDefaultContentComponent,
@@ -114,6 +165,9 @@ const useCreateContent = () => {
     setContentLayout,
     components,
     componentList,
+    copyContents,
+    pasteContents,
+    saveContents,
     setComponentList,
     addNewComponent,
     addComponentToExistingComponentById,

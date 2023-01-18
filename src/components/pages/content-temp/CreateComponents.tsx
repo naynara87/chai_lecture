@@ -28,6 +28,9 @@ const CreateComponentsTemp = () => {
     components,
     addNewComponent,
     setComponentList,
+    copyContents,
+    saveContents,
+    pasteContents,
     addComponentToExistingComponentById,
   } = useCreateContent();
 
@@ -49,6 +52,7 @@ const CreateComponentsTemp = () => {
         });
       setComponentList(copyComponentList);
       setIsViewing(true);
+      console.log(componentList);
     }
   }, [contentLayout, navigate, componentList, isViewing, setComponentList]);
 
@@ -118,8 +122,15 @@ const CreateComponentsTemp = () => {
           <div className="right-wrap">
             <div className="btn-wrap">
               <span>자동저장</span>
-              <button className="btn btn-border-primary">저장</button>
-              <button className="btn btn-border-primary">복사 & 붙여넣기</button>
+              <button className="btn btn-border-primary" onClick={saveContents}>
+                저장
+              </button>
+              <button className="btn btn-border-primary" onClick={copyContents}>
+                복사
+              </button>
+              <button className="btn btn-border-primary" onClick={pasteContents}>
+                붙여넣기
+              </button>
             </div>
           </div>
         </div>
