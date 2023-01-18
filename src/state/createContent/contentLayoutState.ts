@@ -2,7 +2,7 @@
 import { atom } from "recoil";
 import { CreateTemplateType } from "../../types/appData";
 
-interface contentLayoutStateType {
+export interface contentLayoutStateType {
   layoutName: CreateTemplateType;
   layoutAreaIndex: number;
 }
