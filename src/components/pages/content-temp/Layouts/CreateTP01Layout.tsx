@@ -15,11 +15,16 @@ const DropBox = styled.div<DropBoxProps>`
   ${(props) => props.customCss}
 `;
 
+const DragBox = styled.div`
+  height: 100%;
+`;
+
 const overCss = css`
   border: 1px dashed black;
 `;
 
-const layoutCss = css`
+const ContentWrapper = styled.div`
+  display: grid;
   grid-template-rows: 60% 38%;
 `;
 
@@ -28,9 +33,9 @@ interface TP01LayoutProps extends useCreateLayoutMapperProps {}
 const CreateTP01Layout = ({
   components,
   componentList,
-  addNewComponent,
-  componentNames,
+  setComponentIndex,
   id,
+  contentsContextMenuRef,
 }: TP01LayoutProps) => {
   const contents = useMemo(() => {
     return Array(2)
@@ -44,22 +49,21 @@ const CreateTP01Layout = ({
                 {...provided.droppableProps}
                 ref={provided.innerRef}
                 customCss={snapshot.isDraggingOver ? overCss : undefined}
+                onContextMenu={() => {
+                  contentsContextMenuRef.current = index;
+                }}
               >
                 {componentList[index] === undefined || componentList[index] === null ? (
-                  <CreatePlusBox
-                    componentNames={componentNames}
-                    addNewComponent={addNewComponent}
-                    componentIndex={index}
-                  />
+                  <CreatePlusBox componentIndex={index} setComponentIndex={setComponentIndex} />
                 ) : (
                   <Draggable draggableId={`content${index}`} key={`content${index}`} index={index}>
                     {(provided) => (
-                      <div ref={provided.innerRef} {...provided.draggableProps}>
+                      <DragBox ref={provided.innerRef} {...provided.draggableProps}>
                         <div {...provided.dragHandleProps}>
                           <ControlCameraOutlined />
                         </div>
                         {components[index]}
-                      </div>
+                      </DragBox>
                     )}
                   </Draggable>
                 )}
@@ -69,11 +73,11 @@ const CreateTP01Layout = ({
           </Droppable>
         );
       });
-  }, [addNewComponent, componentList, componentNames, components]);
+  }, [componentList, components, setComponentIndex, contentsContextMenuRef]);
   return (
-    <TP01LayoutStyle id={id} customCss={layoutCss}>
+    <TP01LayoutStyle id={id}>
       {/* 컴포넌트가 추가되는 영역 */}
-      {contents}
+      <ContentWrapper>{contents}</ContentWrapper>
     </TP01LayoutStyle>
   );
 };

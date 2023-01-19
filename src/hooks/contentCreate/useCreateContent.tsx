@@ -9,6 +9,7 @@ import {
 } from "../../state/createContent/contentLayoutState";
 import { Content } from "../../types/appData";
 import uuid from "react-uuid";
+import { pasteComponentState } from "../../state/createContent/pasteComponentState";
 
 interface CopyContentObject {
   type: contentLayoutStateType | undefined;
@@ -27,6 +28,7 @@ export type CreatorContent = {
 
 const useCreateContent = () => {
   const [contentLayout, setContentLayout] = useRecoilState(contentLayoutState);
+  const [pasteComponent, setPasteComponent] = useRecoilState(pasteComponentState);
   const [componentList, setComponentList] = useState<(CreatorContent | undefined)[]>([]);
 
   useEffect(() => {
@@ -106,7 +108,7 @@ const useCreateContent = () => {
   }, [componentList, getCreateContentComponent]);
 
   const addNewComponent = useCallback(
-    (contentType: Content["type"], componentIndex?: number) => {
+    (contentType: Content["type"], componentIndex: number) => {
       const newId = uuid();
       const newComponent = getDefaultContentComponent(contentType, newId);
       const copyComponentList = [...componentList];
@@ -130,6 +132,13 @@ const useCreateContent = () => {
     localStorage.setItem("contentObject", JSON.stringify(contentObject));
   }, [contentLayout, componentList]);
 
+  const copyOnceContent = useCallback(
+    (contentIndex: number) => {
+      setPasteComponent(componentList[contentIndex]?.content);
+    },
+    [componentList, setPasteComponent],
+  );
+
   const pasteContents = useCallback(() => {
     if (localStorage.getItem("contentObject")) {
       const getStorageObject = JSON.parse(localStorage.getItem("contentObject")!);
@@ -147,6 +156,19 @@ const useCreateContent = () => {
     }
   }, [componentList]);
 
+  const pasteOnceContent = useCallback(
+    (contentIndex: number) => {
+      const copyComponentList = [...componentList];
+      const content = {
+        id: uuid(),
+        content: pasteComponent!,
+      };
+      copyComponentList[contentIndex] = content;
+      setComponentList(copyComponentList);
+    },
+    [componentList, pasteComponent],
+  );
+
   const saveContents = useCallback(() => {
     const saveObject: SaveContentObject = {
       type: contentLayout?.layoutName,
@@ -158,6 +180,15 @@ const useCreateContent = () => {
     console.log(saveObject);
   }, [contentLayout, componentList]);
 
+  const deleteOnceContent = useCallback(
+    (contentIndex: number) => {
+      const copyComponentList = [...componentList];
+      copyComponentList.splice(contentIndex, 1, undefined);
+      setComponentList(copyComponentList);
+    },
+    [componentList],
+  );
+
   return {
     getCreateContentComponent,
     getDefaultContentComponent,
@@ -167,8 +198,11 @@ const useCreateContent = () => {
     components,
     componentList,
     copyContents,
+    copyOnceContent,
     pasteContents,
+    pasteOnceContent,
     saveContents,
+    deleteOnceContent,
     setComponentList,
     addNewComponent,
     addComponentToExistingComponentById,

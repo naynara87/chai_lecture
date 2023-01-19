@@ -1,7 +1,5 @@
 import styled from "@emotion/styled";
 import React from "react";
-import useContextMenu from "../../../hooks/contentCreate/useContextMenu";
-import { Content } from "../../../types/appData";
 
 const PlusBoxWrapper = styled.div`
   width: 100%;
@@ -13,7 +11,6 @@ const PlusBoxWrapper = styled.div`
     background-color: rgb(119, 119, 119);
   }
 `;
-
 interface BarProps {
   isRotate?: boolean;
 }
@@ -28,64 +25,21 @@ const Bar = styled.div<BarProps>`
   transform: translate(-50%, -50%) ${(props) => props.isRotate && "rotate(90deg)"};
 `;
 
-interface ContextMenuProps {
-  top: number;
-  left: number;
-}
-
-const ContextMenu = styled.div<ContextMenuProps>`
-  position: absolute;
-  border: 1px solid #ffffff2d;
-  border-radius: 4px;
-  padding: 18px;
-  margin: 5px 0;
-  box-sizing: border-box;
-  top: ${(props) => `${props.top}px`};
-  left: ${(props) => `${props.left}px`};
-`;
-
 interface CreatePlusBoxProps {
-  componentNames: Content["type"][];
-  addNewComponent: (contentType: Content["type"], componentIndex: number) => void;
   componentIndex: number;
+  setComponentIndex: React.Dispatch<React.SetStateAction<number | undefined>>;
 }
 
-const CreatePlusBox = ({ componentNames, addNewComponent, componentIndex }: CreatePlusBoxProps) => {
-  const { clicked, setClicked, points, setPoints } = useContextMenu({ isRightClick: false });
-
+const CreatePlusBox = ({ componentIndex, setComponentIndex }: CreatePlusBoxProps) => {
   return (
     <PlusBoxWrapper
-      onClick={(event) => {
-        const target = event.target as Element;
-        const rect = target.getBoundingClientRect();
-        event.preventDefault();
-        setClicked(!clicked);
-        setPoints({
-          x: event.clientX - rect.x,
-          y: event.clientY - rect.y,
-        });
+      onClick={() => {
+        setComponentIndex(componentIndex);
       }}
+      className="plusBoxWrapper"
     >
-      {clicked && (
-        <ContextMenu top={points.y} left={points.x}>
-          <ul>
-            {componentNames.map((componentName, index) => {
-              return (
-                <li
-                  key={index}
-                  onClick={() => {
-                    addNewComponent(componentName, componentIndex);
-                  }}
-                >
-                  {componentName}
-                </li>
-              );
-            })}
-          </ul>
-        </ContextMenu>
-      )}
-      <Bar />
-      <Bar isRotate={true} />
+      <Bar className="plusBoxWrapper" />
+      <Bar isRotate={true} className="plusBoxWrapper" />
     </PlusBoxWrapper>
   );
 };
