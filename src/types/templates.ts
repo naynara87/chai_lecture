@@ -1,7 +1,7 @@
-import { Page } from "./appData";
+import { CreateTemplatePage, Page } from "./appData";
 
 export interface TemplateProps {
   setPageCompleted: () => void;
-  page: Page;
+  page: Page | CreateTemplatePage;
   showHeader?: boolean;
 }

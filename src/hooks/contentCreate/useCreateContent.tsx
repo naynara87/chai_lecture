@@ -7,7 +7,7 @@ import {
   contentLayoutState,
   contentLayoutStateType,
 } from "../../state/createContent/contentLayoutState";
-import { Content } from "../../types/appData";
+import { ApproveContent, Content } from "../../types/appData";
 import uuid from "react-uuid";
 import { pasteComponentState } from "../../state/createContent/pasteComponentState";
 
@@ -180,6 +180,22 @@ const useCreateContent = () => {
     console.log(saveObject);
   }, [contentLayout, componentList]);
 
+  const getPreviewObject = useCallback(() => {
+    const previewObject = {
+      id: 0,
+      title: "",
+      description: "",
+      template: {
+        type: contentLayout?.layoutName!,
+        contents: [] as ApproveContent[],
+      },
+    };
+    componentList.forEach((component) => {
+      previewObject.template.contents.push(component?.content! as ApproveContent);
+    });
+    return previewObject;
+  }, [componentList, contentLayout]);
+
   const deleteOnceContent = useCallback(
     (contentIndex: number) => {
       const copyComponentList = [...componentList];
@@ -204,6 +220,7 @@ const useCreateContent = () => {
     saveContents,
     deleteOnceContent,
     setComponentList,
+    getPreviewObject,
     addNewComponent,
     addComponentToExistingComponentById,
   };

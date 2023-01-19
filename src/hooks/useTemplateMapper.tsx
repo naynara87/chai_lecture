@@ -7,7 +7,7 @@ import TP03BComponent from "../components/templates/TP03BComponent";
 import TP11FComponent from "../components/templates/TP11FComponent";
 import TP04AComponent from "../components/templates/TP04AComponent";
 import TP05AComponent from "../components/templates/TP05AComponent";
-import { TemplateType } from "../types/appData";
+import { CreateTemplateType, TemplateType } from "../types/appData";
 import { TemplateProps } from "../types/templates";
 import TP02NComponent from "../components/templates/TP02NComponent";
 import TP07AComponent from "../components/templates/TP07AComponent";
@@ -46,10 +46,12 @@ import TP11EComponent from "../components/templates/TP11EComponent";
 import TP02PComponent from "../components/templates/TP02PComponent";
 import TP05DComponent from "../components/templates/TP05DComponent";
 import TP09BComponent from "../components/templates/TP09BComponent";
+import TP01Component from "../components/templates/TP01Component";
 
 export interface UseTemplateMapperProps extends TemplateProps {}
 const useTemplateMapper = (props: UseTemplateMapperProps) => {
   const templateMapper: Record<TemplateType, JSX.Element> = {
+    TP01: <TP01Component {...props} />,
     TP01A: <TP01AComponent {...props} />,
     TP01B: <TP01BComponent {...props} />,
     TP02: <TP02Component {...props} />,
@@ -106,7 +108,7 @@ const useTemplateMapper = (props: UseTemplateMapperProps) => {
     TPTab: <TPTabComponent {...props} />,
   };
 
-  const getTemplateComponent = (templateType: TemplateType) => {
+  const getTemplateComponent = (templateType: TemplateType | CreateTemplateType) => {
     return templateMapper[templateType];
   };
 
