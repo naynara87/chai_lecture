@@ -7,13 +7,13 @@ import ModalLayoutChange from "./ModalLayoutChange";
 import ModalComponentChoice from "./ModalComponentChoice";
 import useCreateContent from "../../../hooks/contentCreate/useCreateContent";
 import { DragDropContext, Draggable, Droppable, DropResult } from "react-beautiful-dnd";
-import { Content, CreateTemplatePage } from "../../../types/appData";
+import { Content } from "../../../types/appData";
 import useCreateLayoutMapper from "../../../hooks/contentCreate/useCreateLayoutMapper";
 import useContextMenu from "../../../hooks/contentCreate/useContextMenu";
 import CreateContextMenu from "../../atoms/createAtoms/CreateContextMenu";
 import { useRecoilValue } from "recoil";
 import { pasteComponentState } from "../../../state/createContent/pasteComponentState";
-import CornerMain from "../../molecules/CornerMain";
+import ModalCreatePreview from "../../modal/modalCreate/ModalCreatePreview";
 
 const PageLayout = styled.div`
   .btn-wrap {
@@ -34,7 +34,7 @@ const CreateComponentsTemp = () => {
   const [componentIndex, setComponentIndex] = useState<number | undefined>();
   const contentsContextMenuRef = useRef<number | undefined>(undefined);
   const [isPlusBoxClick, setIsPlusBoxClick] = useState(false);
-  const [isPreview, setIsPreview] = useState(false);
+  const [isPreviewModalOpen, setIsPreviewModalOpen] = useState(false);
 
   const [isViewing, setIsViewing] = useState(false);
   const navigate = useNavigate();
@@ -230,8 +230,11 @@ const CreateComponentsTemp = () => {
               <button className="btn btn-border-primary" onClick={handleLayoutClick}>
                 레이아웃 설정
               </button>
-              <button className="btn btn-border-primary" onClick={() => setIsPreview(!isPreview)}>
-                미리보기
+              <button
+                className="btn btn-border-primary"
+                onClick={() => setIsPreviewModalOpen(!isPreviewModalOpen)}
+              >
+                {isPreviewModalOpen ? "미리보기 해제" : "미리보기"}
               </button>
 
               <ModalLayoutChange />
@@ -322,18 +325,14 @@ const CreateComponentsTemp = () => {
           <div className="page-title-wrap">
             제목의 높이는 이 프로젝트의 title height를 scss에 옮겨서 가져옴
           </div> */}
-            {isPreview ? (
-              <>
-                <div style={{ width: "100%", height: "100%" }}>
-                  <CornerMain
-                    setPageCompleted={() => console.log("asdf")}
-                    page={getPreviewObject() as CreateTemplatePage}
-                  />
-                </div>
-              </>
-            ) : (
-              getTemplateLayout(contentLayout?.layoutName!)
+            {isPreviewModalOpen && (
+              <ModalCreatePreview
+                isModalOpen={isPreviewModalOpen}
+                setIsModalOpen={setIsPreviewModalOpen}
+                getPreviewObject={getPreviewObject}
+              />
             )}
+            {getTemplateLayout(contentLayout?.layoutName!)}
             {contextMenu}
           </div>
         </DragDropContext>

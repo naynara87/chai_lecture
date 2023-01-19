@@ -1,6 +1,7 @@
 import { css } from "@emotion/react";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { CreatorContent } from "../../../hooks/contentCreate/useCreateContent";
+import { colorPalette } from "../../../styles/colorPalette";
 import { Content } from "../../../types/appData";
 import { ChooseTextContent } from "../../../types/templateContents";
 import { QuizAnswerStyle } from "../../atoms/QuizAnswer";
@@ -137,14 +138,16 @@ const ChooseTextCreator = ({ onSave, id, componentList, setComponentList }: Choo
         <div key={choiceIndex}>
           {choices.map((choice, index) => {
             return (
-              <QuizAnswerStyle className="quiz-answer-list" color="#000" key={index}>
-                <input
-                  type="radio"
-                  name="correct"
-                  onClick={() => {
-                    handleClickCorrect(index);
-                  }}
-                />
+              <QuizAnswerStyle
+                className="quiz-answer-list"
+                color={
+                  chooseTextData.data[0].answerIndex === index ? "#000" : colorPalette.borderGray
+                }
+                key={index}
+                onClick={() => {
+                  handleClickCorrect(index);
+                }}
+              >
                 <input type="radio" id={"id"} name="quiz-answer" className="inp-quiz-answer none" />
                 <label htmlFor={"label"} className="label-quiz-answer">
                   <div className="word-wrap">
