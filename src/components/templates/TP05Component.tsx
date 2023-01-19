@@ -25,7 +25,7 @@ const ContentContainer = styled.div`
 
 interface TP05ComponentProps extends TemplateProps {}
 
-const TP05Component = ({ setPageCompleted, page, showHeader = true }: TP05ComponentProps) => {
+const TP05Component = ({ setPageCompleted, page, showHeader = false }: TP05ComponentProps) => {
   const thisPage = page as TP05;
 
   useEffect(() => {

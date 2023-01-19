@@ -24,7 +24,7 @@ const ContentContainer = styled.div`
 `;
 interface TP02ComponentProps extends TemplateProps {}
 
-const TP02Component = ({ setPageCompleted, page, showHeader = true }: TP02ComponentProps) => {
+const TP02Component = ({ setPageCompleted, page, showHeader = false }: TP02ComponentProps) => {
   const thisPage = page as TP02;
 
   useEffect(() => {

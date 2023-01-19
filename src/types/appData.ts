@@ -138,6 +138,7 @@ export type Corner2 = Omit<Corner, "pages" | "isCompleted"> & {
 };
 
 export type Page =
+  | TP01
   | TP01A
   | TP01B
   | TP02
