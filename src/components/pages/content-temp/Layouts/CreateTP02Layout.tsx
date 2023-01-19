@@ -19,6 +19,11 @@ const overCss = css`
   border: 1px dashed black;
 `;
 
+const ContentWrapper = styled.div`
+  display: block;
+  height: 100%;
+`;
+
 const layoutCss = css`
   display: block;
   height: 100%;
@@ -29,9 +34,9 @@ interface TP02LayoutProps extends useCreateLayoutMapperProps {}
 const CreateTP02Layout = ({
   components,
   componentList,
-  addNewComponent,
-  componentNames,
+  setComponentIndex,
   id,
+  contentsContextMenuRef,
 }: TP02LayoutProps) => {
   const contents = useMemo(() => {
     return Array(1)
@@ -45,13 +50,12 @@ const CreateTP02Layout = ({
                 {...provided.droppableProps}
                 ref={provided.innerRef}
                 customCss={snapshot.isDraggingOver ? overCss : undefined}
+                onContextMenu={() => {
+                  contentsContextMenuRef.current = index;
+                }}
               >
                 {componentList[index] === undefined || componentList[index] === null ? (
-                  <CreatePlusBox
-                    componentNames={componentNames}
-                    addNewComponent={addNewComponent}
-                    componentIndex={index}
-                  />
+                  <CreatePlusBox componentIndex={index} setComponentIndex={setComponentIndex} />
                 ) : (
                   <Draggable draggableId={`content${index}`} key={`content${index}`} index={index}>
                     {(provided) => (
@@ -70,11 +74,11 @@ const CreateTP02Layout = ({
           </Droppable>
         );
       });
-  }, [addNewComponent, componentList, componentNames, components]);
+  }, [componentList, components, setComponentIndex, contentsContextMenuRef]);
   return (
     <TP02LayoutStyle id={id} customCss={layoutCss}>
       {/* 컴포넌트가 추가되는 영역 */}
-      {contents}
+      <ContentWrapper>{contents}</ContentWrapper>
     </TP02LayoutStyle>
   );
 };

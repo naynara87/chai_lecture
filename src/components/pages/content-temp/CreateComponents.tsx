@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
 import { CREATE_CONTENT_LAYOUT_URL } from "../../../constants/url";
@@ -9,6 +9,10 @@ import useCreateContent from "../../../hooks/contentCreate/useCreateContent";
 import { DragDropContext, Draggable, Droppable, DropResult } from "react-beautiful-dnd";
 import { Content } from "../../../types/appData";
 import useCreateLayoutMapper from "../../../hooks/contentCreate/useCreateLayoutMapper";
+import useContextMenu from "../../../hooks/contentCreate/useContextMenu";
+import CreateContextMenu from "../../atoms/createAtoms/CreateContextMenu";
+import { useRecoilValue } from "recoil";
+import { pasteComponentState } from "../../../state/createContent/pasteComponentState";
 
 const PageLayout = styled.div`
   .btn-wrap {
@@ -18,27 +22,44 @@ const PageLayout = styled.div`
 `;
 
 const CreateComponentsTemp = () => {
-  const { contentLayout } = useCreateContent();
+  const pasteComponent = useRecoilValue(pasteComponentState);
+  const { clicked, setClicked, points, setPoints } = useContextMenu({ isRightClick: false });
+  const {
+    clicked: rightClicked,
+    setClicked: setRightClicked,
+    points: rightPoints,
+    setPoints: setRightPoints,
+  } = useContextMenu({ isRightClick: true });
+  const [componentIndex, setComponentIndex] = useState<number | undefined>();
+  const contentsContextMenuRef = useRef<number | undefined>(undefined);
+  const [isPlusBoxClick, setIsPlusBoxClick] = useState(false);
+
   const [isViewing, setIsViewing] = useState(false);
   const navigate = useNavigate();
 
   const {
+    contentLayout,
     componentList,
     componentNames,
     components,
     addNewComponent,
     setComponentList,
     copyContents,
+    copyOnceContent,
     saveContents,
     pasteContents,
+    pasteOnceContent,
+    deleteOnceContent,
     addComponentToExistingComponentById,
   } = useCreateContent();
 
   const { getTemplateLayout } = useCreateLayoutMapper({
     componentList,
+    setComponentIndex,
     componentNames,
     components,
     addNewComponent,
+    contentsContextMenuRef,
   });
 
   useEffect(() => {
@@ -101,6 +122,71 @@ const CreateComponentsTemp = () => {
     },
     [addNewComponent, componentList, setComponentList],
   );
+
+  const contextMenu = useMemo(() => {
+    if (clicked) {
+      return (
+        <CreateContextMenu top={points.y} left={points.x}>
+          <ul>
+            {componentNames.map((componentName, index) => {
+              return (
+                <li
+                  key={index}
+                  onClick={() => {
+                    if (componentIndex !== undefined) {
+                      addNewComponent(componentName, componentIndex);
+                    }
+                    setClicked(false);
+                  }}
+                >
+                  {componentName}
+                </li>
+              );
+            })}
+          </ul>
+        </CreateContextMenu>
+      );
+    }
+    if (rightClicked) {
+      if (!isPlusBoxClick) {
+        return (
+          <CreateContextMenu top={rightPoints.y} left={rightPoints.x}>
+            <li
+              onClick={() => {
+                copyOnceContent(contentsContextMenuRef.current!);
+              }}
+            >
+              복사
+            </li>
+            <li onClick={() => pasteOnceContent(contentsContextMenuRef.current!)}>붙여넣기</li>
+            <li onClick={() => deleteOnceContent(contentsContextMenuRef.current!)}>삭제</li>
+          </CreateContextMenu>
+        );
+      }
+      if (pasteComponent) {
+        return (
+          <CreateContextMenu top={rightPoints.y} left={rightPoints.x}>
+            <li onClick={() => pasteOnceContent(contentsContextMenuRef.current!)}>붙여넣기</li>
+          </CreateContextMenu>
+        );
+      }
+    }
+  }, [
+    addNewComponent,
+    clicked,
+    componentIndex,
+    componentNames,
+    copyOnceContent,
+    pasteOnceContent,
+    deleteOnceContent,
+    contentsContextMenuRef,
+    points,
+    rightClicked,
+    rightPoints,
+    setClicked,
+    isPlusBoxClick,
+    pasteComponent,
+  ]);
 
   return (
     <PageLayout>
@@ -184,13 +270,54 @@ const CreateComponentsTemp = () => {
             </Droppable>
           </div>
 
-          <div className="create-page-wrap">
+          <div
+            className="create-page-wrap"
+            onClick={(event) => {
+              event.preventDefault();
+              const target = event.target as Element;
+              if (target.classList.contains("plusBoxWrapper")) {
+                setClicked(!clicked);
+                setRightClicked(false);
+                setIsPlusBoxClick(true);
+              } else {
+                setClicked(false);
+                setRightClicked(false);
+                setIsPlusBoxClick(false);
+              }
+              setPoints({
+                x: event.pageX,
+                y: event.pageY,
+              });
+            }}
+            onContextMenu={(event) => {
+              event.preventDefault();
+              const target = event.target as Element;
+              setRightPoints({
+                x: event.pageX,
+                y: event.pageY,
+              });
+              if (target.classList.contains("plusBoxWrapper")) {
+                setRightClicked(!rightClicked);
+                setClicked(false);
+                setIsPlusBoxClick(true);
+                return;
+              }
+              if (contentsContextMenuRef.current !== undefined) {
+                setRightClicked(!rightClicked);
+                setIsPlusBoxClick(false);
+              } else {
+                setClicked(false);
+                setRightClicked(false);
+              }
+            }}
+          >
             {/* 
           제목 영역이 없어졌으므로 주석 처리
           <div className="page-title-wrap">
             제목의 높이는 이 프로젝트의 title height를 scss에 옮겨서 가져옴
           </div> */}
             {getTemplateLayout(contentLayout?.layoutName!)}
+            {contextMenu}
           </div>
         </DragDropContext>
       </main>

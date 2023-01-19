@@ -19,9 +19,14 @@ const overCss = css`
   border: 1px dashed black;
 `;
 
-const layoutCss = css`
+const ContentWrapper = styled.div`
   display: grid;
   grid-template-rows: 38% 60%;
+  height: 100%;
+`;
+
+const layoutCss = css`
+  display: block;
   height: 100%;
 `;
 
@@ -30,9 +35,9 @@ interface TP03LayoutProps extends useCreateLayoutMapperProps {}
 const CreateTP03Layout = ({
   components,
   componentList,
-  addNewComponent,
-  componentNames,
+  setComponentIndex,
   id,
+  contentsContextMenuRef,
 }: TP03LayoutProps) => {
   const contents = useMemo(() => {
     return Array(2)
@@ -46,13 +51,12 @@ const CreateTP03Layout = ({
                 {...provided.droppableProps}
                 ref={provided.innerRef}
                 customCss={snapshot.isDraggingOver ? overCss : undefined}
+                onContextMenu={() => {
+                  contentsContextMenuRef.current = index;
+                }}
               >
                 {componentList[index] === undefined || componentList[index] === null ? (
-                  <CreatePlusBox
-                    componentNames={componentNames}
-                    addNewComponent={addNewComponent}
-                    componentIndex={index}
-                  />
+                  <CreatePlusBox componentIndex={index} setComponentIndex={setComponentIndex} />
                 ) : (
                   <Draggable draggableId={`content${index}`} key={`content${index}`} index={index}>
                     {(provided) => (
@@ -71,11 +75,11 @@ const CreateTP03Layout = ({
           </Droppable>
         );
       });
-  }, [addNewComponent, componentList, componentNames, components]);
+  }, [componentList, components, setComponentIndex, contentsContextMenuRef]);
   return (
     <TP03LayoutStyle id={id} customCss={layoutCss}>
       {/* 컴포넌트가 추가되는 영역 */}
-      {contents}
+      <ContentWrapper>{contents}</ContentWrapper>
     </TP03LayoutStyle>
   );
 };

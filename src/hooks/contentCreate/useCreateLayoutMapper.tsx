@@ -9,8 +9,10 @@ import { CreatorContent } from "./useCreateContent";
 export interface useCreateLayoutMapperProps {
   components: (JSX.Element | JSX.Element[] | undefined)[];
   componentList: (CreatorContent | undefined)[];
-  addNewComponent: (contentType: Content["type"]) => void;
+  setComponentIndex: React.Dispatch<React.SetStateAction<number | undefined>>;
+  addNewComponent: (contentType: Content["type"], componentIndex: number) => void;
   componentNames: Content["type"][];
+  contentsContextMenuRef: React.MutableRefObject<number | undefined>;
   id?: string;
 }
 
