@@ -1,6 +1,5 @@
 import React, { useMemo } from "react";
 import styled from "@emotion/styled";
-import { footerHeightNormal } from "../../constants/layout";
 import { colorPalette } from "../../styles/colorPalette";
 import OIcon from "../atoms/svg/OIcon";
 import { css } from "@emotion/react";
@@ -12,7 +11,7 @@ import HtmlContentComponent from "./HtmlContentComponent";
 const ExplanationWrapper = styled.div`
   position: fixed;
   top: auto;
-  bottom: calc(${footerHeightNormal} + ${changePXtoVH(10)});
+  bottom: 0;
   left: 0;
   display: flex;
   justify-content: center;
