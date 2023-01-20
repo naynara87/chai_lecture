@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import React, { useMemo } from "react";
 import { colorPalette } from "../../styles/colorPalette";
 import { changePXtoVH, changePXtoVW } from "../../utils/styles";
+import HtmlContentComponent from "../molecules/HtmlContentComponent";
 
 interface QuizAnswerStyleProps {
   color: string;
@@ -112,7 +113,7 @@ const QuizAnswer = ({
               className="icon"
             />
           </div>
-          {answerText}
+          <HtmlContentComponent html={answerText} />
         </div>
       </label>
     </QuizAnswerStyle>

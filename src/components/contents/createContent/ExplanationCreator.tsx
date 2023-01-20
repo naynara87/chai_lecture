@@ -22,7 +22,8 @@ const ExplanationWrapper = styled.div`
   left: 0; */
   display: flex;
   justify-content: center;
-  width: 100%;
+  width: 467px;
+  height: 100px;
 `;
 
 type ExplanationData = {
@@ -36,7 +37,7 @@ type ExplanationData = {
 
 interface ExplanationProps {
   explanation?: ExplanationData;
-  submitExplanationText: (event: React.FormEvent<HTMLFormElement>, keyName: string) => void;
+  submitExplanationText: (text: string, keyName?: string) => void;
 }
 const ExplanationCreator = ({
   explanation = { correctMessage: "", wrongMessage: "" },
@@ -56,14 +57,14 @@ const ExplanationCreator = ({
                 {isCorrectMode ? (
                   <HtmlCreator
                     html={correctMessage ?? ""}
-                    onSubmitHtml={(event) => {
-                      submitExplanationText(event, "correctMessage");
-                    }}
+                    onSubmitHtml={submitExplanationText}
+                    keyName="correctMessage"
                   />
                 ) : (
                   <HtmlCreator
                     html={wrongMessage ?? ""}
-                    onSubmitHtml={(event) => submitExplanationText(event, "wrongMessage")}
+                    onSubmitHtml={submitExplanationText}
+                    keyName="wrongMessage"
                   />
                 )}
               </ExplanationTitle>
@@ -72,7 +73,8 @@ const ExplanationCreator = ({
             <HtmlCreator
               html={explanation.text ?? ""}
               customCss={ExplanationHtmlCss}
-              onSubmitHtml={(event) => submitExplanationText(event, "text")}
+              onSubmitHtml={submitExplanationText}
+              keyName="text"
             />
           </Text>
         </TextBox>

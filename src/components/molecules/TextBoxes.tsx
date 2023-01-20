@@ -39,7 +39,7 @@ export const TextCardGrp = styled.div<TextCardGrpProps>`
   > div:first-child {
     min-width: ${changePXtoVW(288)};
     width: auto;
-    height: ${changePXtoVH(160)};
+    min-height: ${changePXtoVH(160)};
   }
 
   &.horizontal {

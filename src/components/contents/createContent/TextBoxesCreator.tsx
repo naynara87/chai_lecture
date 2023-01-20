@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { TextBoxesContent, TextBoxesData } from "../../../types/templateContents";
+import { TextBoxesContent } from "../../../types/templateContents";
 import { Content } from "../../../types/appData";
 import { CreatorContent } from "../../../hooks/contentCreate/useCreateContent";
 import HtmlCreator from "./HtmlCreator";
@@ -53,22 +53,17 @@ const TextBoxesCreator = ({
   }, [getData]);
 
   const handleSubmitText = useCallback(
-    (
-      event: React.FormEvent<HTMLFormElement>,
-      index: number,
-      keyName: TextBoxesData["main"] | TextBoxesData["sub"] | TextBoxesData["description"],
-    ) => {
-      event.preventDefault();
+    (text: string, keyName?: string, index?: number) => {
       if (contentIndex === undefined) return;
       if (textBoxesData === undefined) return;
-      const form = event.target as Element;
+      if (index === undefined) return;
       const copyTextBoxesDataArr = JSON.parse(JSON.stringify(textBoxesData.data));
       if (keyName === "main") {
-        copyTextBoxesDataArr[index].main = form.querySelector("input")?.value ?? "";
+        copyTextBoxesDataArr[index].main = text ?? "";
       } else if (keyName === "sub") {
-        copyTextBoxesDataArr[index].sub = form.querySelector("input")?.value ?? "";
+        copyTextBoxesDataArr[index].sub = text ?? "";
       } else if (keyName === "description") {
-        copyTextBoxesDataArr[index].description = form.querySelector("input")?.value ?? "";
+        copyTextBoxesDataArr[index].description = text ?? "";
       }
       const copyComponentList = [...componentList];
       copyComponentList[contentIndex]!.content.data = copyTextBoxesDataArr;
@@ -110,26 +105,26 @@ const TextBoxesCreator = ({
           <TextCard>
             <HtmlCreator
               html={textBox.main}
-              onSubmitHtml={(event) => {
-                handleSubmitText(event, index, "main");
-              }}
+              onSubmitHtml={handleSubmitText}
+              keyName="main"
+              index={index}
             />
           </TextCard>
           <SubText>
             <HtmlCreator
               html={textBox.sub ?? ""}
-              onSubmitHtml={(event) => {
-                handleSubmitText(event, index, "sub");
-              }}
+              onSubmitHtml={handleSubmitText}
               customCss={subTextCss}
+              keyName="sub"
+              index={index}
             />
           </SubText>
           <MeaningText>
             <HtmlCreator
               html={textBox.description ?? ""}
-              onSubmitHtml={(event) => {
-                handleSubmitText(event, index, "description");
-              }}
+              onSubmitHtml={handleSubmitText}
+              keyName="description"
+              index={index}
             />
           </MeaningText>
           <button
