@@ -4,6 +4,7 @@
   "scripts": {
     "build": "nx run-many --target=build",
     "build:prod": "nx run-many --target=build:prod",
+    "build:ui": "nx run-many --target=build:ui",
     "dev": "nx run-many --target=dev"
   },
   "private": true,
