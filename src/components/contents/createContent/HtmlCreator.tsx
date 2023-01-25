@@ -1,11 +1,31 @@
 import { SerializedStyles } from "@emotion/react";
 import styled from "@emotion/styled";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { changePXtoVW } from "../../../utils/styles";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import QuillToolbar from "../../atoms/createAtoms/QuillToolbar";
 
 interface HtmlWrapperProps {
   customCss?: SerializedStyles;
 }
+
+const Font = ReactQuill.Quill.import("formats/font");
+Font.whitelist = ["sans-serif", "yahei", "Noto-sans"];
+ReactQuill.Quill.register(Font, true);
+
+const ReactQuillEditor = {
+  toolbar: {
+    container: "#toolbar",
+  },
+};
+
+const Page = styled.div`
+  color: #000;
+  /* border: 1px solid black; */
+  width: 100%;
+  height: 100%;
+`;
 
 const HtmlWrapper = styled.div<HtmlWrapperProps>`
   > h1 {
@@ -31,48 +51,72 @@ const HtmlWrapper = styled.div<HtmlWrapperProps>`
 
 interface HtmlCreatorProps extends HtmlWrapperProps {
   html: string;
-  onSubmitHtml: (event: React.FormEvent<HTMLFormElement>) => void;
+  onSubmitHtml: (text: string, keyName?: string, index?: number) => void;
+  keyName?: string;
+  index?: number;
+  id: string;
+  focusEditor: string | undefined;
+  onClickHtml: () => void;
 }
 
-const HtmlCreator = ({ html, customCss, onSubmitHtml }: HtmlCreatorProps) => {
-  const [isSave, setIsSave] = useState<boolean>();
+const HtmlCreator = ({
+  html,
+  customCss,
+  onSubmitHtml,
+  keyName,
+  index,
+  id,
+  focusEditor,
+  onClickHtml,
+}: HtmlCreatorProps) => {
   const [text, setText] = useState(html);
 
   useEffect(() => {
-    setIsSave(html.length > 0);
     setText(html);
   }, [html]);
 
-  const handleFixedHtml = useCallback(() => {
-    setIsSave(false);
-  }, []);
+  const handleSubmitHtml = useCallback(() => {
+    if (text.length > 0) {
+      setText(text);
+      onSubmitHtml(text, keyName, index);
+    }
+  }, [index, text, keyName, onSubmitHtml]);
 
-  return (
-    <>
-      {isSave ? (
-        <HtmlWrapper
-          dangerouslySetInnerHTML={{ __html: html }}
-          customCss={customCss}
-          onClick={handleFixedHtml}
-        ></HtmlWrapper>
-      ) : (
-        <form
-          onSubmit={(event) => {
-            event.preventDefault();
-            setIsSave(true);
-            setText(text);
-            onSubmitHtml(event);
+  const contents = useMemo(() => {
+    if (id === focusEditor) {
+      return (
+        <Page
+          onBlur={() => {
+            handleSubmitHtml();
           }}
         >
-          <input
-            type="text"
-            onChange={(event) => setText(event.target.value)}
-            value={text}
-            placeholder="입력해주세요."
-          />
-        </form>
-      )}
-    </>
+          <QuillToolbar />
+          <ReactQuill value={text} onChange={setText} theme="snow" modules={ReactQuillEditor} />
+        </Page>
+      );
+    } else {
+      if (text && text.length > 0) {
+        return (
+          <HtmlWrapper
+            dangerouslySetInnerHTML={{ __html: html }}
+            customCss={customCss}
+            onClick={onClickHtml}
+          ></HtmlWrapper>
+        );
+      } else {
+        return <div onClick={onClickHtml}>텍스트를 입력해주세요.</div>;
+      }
+    }
+  }, [id, focusEditor, customCss, html, text, onClickHtml, handleSubmitHtml]);
+
+  return (
+    <div
+      onClick={(event) => {
+        event.stopPropagation();
+      }}
+    >
+      {contents}
+    </div>
   );
 };
 

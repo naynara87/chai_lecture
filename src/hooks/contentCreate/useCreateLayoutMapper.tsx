@@ -13,6 +13,7 @@ export interface useCreateLayoutMapperProps {
   addNewComponent: (contentType: Content["type"], componentIndex: number) => void;
   componentNames: Content["type"][];
   contentsContextMenuRef: React.MutableRefObject<number | undefined>;
+  handleFocusHtml: (id?: string, type?: string, index?: number) => void;
   id?: string;
 }
 

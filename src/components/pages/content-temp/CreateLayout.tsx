@@ -35,7 +35,7 @@ const LayoutItem = styled.li`
 `;
 
 const CreateLayout = () => {
-  const { setContentLayout } = useCreateContent();
+  const { setContentLayout } = useCreateContent({});
 
   const navigate = useNavigate();
 

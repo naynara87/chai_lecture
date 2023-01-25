@@ -50,7 +50,7 @@ export const TextBox = styled.div`
   position: relative;
   align-items: center;
   width: calc(100% - ${changePXtoVW(120)});
-  height: ${changePXtoVW(160)};
+  height: 100%;
   padding: ${changePXtoVH(10)} ${changePXtoVW(40)};
 `;
 

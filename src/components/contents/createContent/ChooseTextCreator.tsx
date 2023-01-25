@@ -20,8 +20,18 @@ interface ChooseTextProps {
   componentList: (CreatorContent | undefined)[];
   setComponentList: React.Dispatch<React.SetStateAction<(CreatorContent | undefined)[]>>;
   addComponentToExistingComponentById: (contentType: Content["type"], id: string) => void;
+  handleFocusHtml?: (id?: string, type?: string, index?: number) => void;
+  focusEditor?: string;
 }
-const ChooseTextCreator = ({ onSave, id, componentList, setComponentList }: ChooseTextProps) => {
+
+const ChooseTextCreator = ({
+  onSave,
+  id,
+  componentList,
+  setComponentList,
+  handleFocusHtml,
+  focusEditor,
+}: ChooseTextProps) => {
   const [chooseTextData, setChooseTextData] = useState<ChooseTextContent | undefined>(undefined);
   const [contentIndex, setContentIndex] = useState<number | undefined>(undefined);
 
@@ -49,12 +59,12 @@ const ChooseTextCreator = ({ onSave, id, componentList, setComponentList }: Choo
   }, [getData]);
 
   const handleSubmitText = useCallback(
-    (event: React.FormEvent<HTMLFormElement>, index: number) => {
+    (text: string, keyName?: string, index?: string | number) => {
       if (contentIndex === undefined) return;
       if (chooseTextData === undefined) return;
-      const form = event.target as Element;
+      if (index === undefined) return;
       const copyChooseTextDataArr = JSON.parse(JSON.stringify(chooseTextData.data));
-      copyChooseTextDataArr[0].choices[index] = form.querySelector("input")?.value ?? "";
+      copyChooseTextDataArr[0].choices[index] = text ?? "";
       const copyComponentList = [...componentList];
       copyComponentList[contentIndex]!.content.data = copyChooseTextDataArr;
       setComponentList(copyComponentList);
@@ -71,12 +81,11 @@ const ChooseTextCreator = ({ onSave, id, componentList, setComponentList }: Choo
   }, [chooseTextData, componentList, setComponentList, contentIndex]);
 
   const handleSubmitTipText = useCallback(
-    (event: React.FormEvent<HTMLFormElement>) => {
+    (text: string) => {
       if (contentIndex === undefined) return;
       if (chooseTextData === undefined) return;
-      const form = event.target as Element;
       const copyChooseTextDataArr = JSON.parse(JSON.stringify(chooseTextData.data));
-      copyChooseTextDataArr[0].tip = form.querySelector("input")?.value ?? "";
+      copyChooseTextDataArr[0].tip = text ?? "";
       const copyComponentList = [...componentList];
       copyComponentList[contentIndex]!.content.data = copyChooseTextDataArr;
       setComponentList(copyComponentList);
@@ -85,10 +94,9 @@ const ChooseTextCreator = ({ onSave, id, componentList, setComponentList }: Choo
   );
 
   const submitExplanationText = useCallback(
-    (event: React.FormEvent<HTMLFormElement>, keyName: string) => {
+    (text: string, keyName?: string) => {
       if (contentIndex === undefined) return;
       if (chooseTextData === undefined) return;
-      const form = event.target as Element;
       const copyChooseTextDataArr = JSON.parse(JSON.stringify(chooseTextData.data));
       if (!copyChooseTextDataArr[0].explanation) {
         copyChooseTextDataArr[0].explanation = {
@@ -101,15 +109,13 @@ const ChooseTextCreator = ({ onSave, id, componentList, setComponentList }: Choo
         };
       }
       if (keyName === "text") {
-        copyChooseTextDataArr[0].explanation!.text = form.querySelector("input")?.value ?? "";
+        copyChooseTextDataArr[0].explanation!.text = text ?? "";
       } else if (keyName === "correctMessage") {
-        copyChooseTextDataArr[0].explanation!.correctMessage =
-          form.querySelector("input")?.value ?? "";
+        copyChooseTextDataArr[0].explanation!.correctMessage = text ?? "";
       } else if (keyName === "wrongMessage") {
-        copyChooseTextDataArr[0].explanation!.wrongMessage =
-          form.querySelector("input")?.value ?? "";
+        copyChooseTextDataArr[0].explanation!.wrongMessage = text ?? "";
       } else if (keyName === "audio") {
-        copyChooseTextDataArr[0].explanation!.audio!.src = form.querySelector("input")?.value ?? "";
+        copyChooseTextDataArr[0].explanation!.audio!.src = text ?? "";
       }
       const copyComponentList = [...componentList];
       copyComponentList[contentIndex]!.content.data = copyChooseTextDataArr;
@@ -160,8 +166,14 @@ const ChooseTextCreator = ({ onSave, id, componentList, setComponentList }: Choo
                     </div>
                     <HtmlCreator
                       html={choice}
-                      onSubmitHtml={(event) => {
-                        handleSubmitText(event, index);
+                      onSubmitHtml={handleSubmitText}
+                      id={id + "text" + index}
+                      index={index}
+                      focusEditor={focusEditor}
+                      keyName="text"
+                      onClickHtml={() => {
+                        if (!handleFocusHtml) return;
+                        handleFocusHtml(id, "text", index);
                       }}
                     />
                   </div>
@@ -170,11 +182,24 @@ const ChooseTextCreator = ({ onSave, id, componentList, setComponentList }: Choo
             );
           })}
           <TipWrapper>
-            <HtmlCreator onSubmitHtml={handleSubmitTipText} html={choiceData.tip ?? ""} />
+            <HtmlCreator
+              onSubmitHtml={handleSubmitTipText}
+              html={choiceData.tip ?? ""}
+              focusEditor={focusEditor}
+              keyName="tip"
+              onClickHtml={() => {
+                if (!handleFocusHtml) return;
+                handleFocusHtml(id, "tip", 0);
+              }}
+              id={id + "tip" + 0}
+            />
           </TipWrapper>
           <ExplanationCreator
+            id={id}
+            focusEditor={focusEditor}
             explanation={choiceData.explanation}
             submitExplanationText={submitExplanationText}
+            handleFocusHtml={handleFocusHtml}
           />
           <button onClick={handleDeleteChooseText}>삭제</button>
         </div>
@@ -187,6 +212,9 @@ const ChooseTextCreator = ({ onSave, id, componentList, setComponentList }: Choo
     handleSubmitTipText,
     submitExplanationText,
     handleClickCorrect,
+    focusEditor,
+    handleFocusHtml,
+    id,
   ]);
 
   return (

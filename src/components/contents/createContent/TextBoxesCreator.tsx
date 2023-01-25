@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { TextBoxesContent, TextBoxesData } from "../../../types/templateContents";
+import { TextBoxesContent } from "../../../types/templateContents";
 import { Content } from "../../../types/appData";
 import { CreatorContent } from "../../../hooks/contentCreate/useCreateContent";
 import HtmlCreator from "./HtmlCreator";
@@ -18,6 +18,8 @@ interface TextBoxesCreatorProps {
   componentList: (CreatorContent | undefined)[];
   setComponentList: React.Dispatch<React.SetStateAction<(CreatorContent | undefined)[]>>;
   addComponentToExistingComponentById: (contentType: Content["type"], id: string) => void;
+  focusEditor?: string;
+  handleFocusHtml?: (id?: string, type?: string, index?: number) => void;
 }
 
 const TextBoxesCreator = ({
@@ -25,6 +27,8 @@ const TextBoxesCreator = ({
   componentList,
   setComponentList,
   addComponentToExistingComponentById,
+  handleFocusHtml,
+  focusEditor,
 }: TextBoxesCreatorProps) => {
   const [textBoxesData, setTextBoxesData] = useState<TextBoxesContent | undefined>(undefined);
   const [contentIndex, setContentIndex] = useState<number | undefined>(undefined);
@@ -53,22 +57,17 @@ const TextBoxesCreator = ({
   }, [getData]);
 
   const handleSubmitText = useCallback(
-    (
-      event: React.FormEvent<HTMLFormElement>,
-      index: number,
-      keyName: TextBoxesData["main"] | TextBoxesData["sub"] | TextBoxesData["description"],
-    ) => {
-      event.preventDefault();
+    (text: string, keyName?: string, index?: number | string) => {
       if (contentIndex === undefined) return;
       if (textBoxesData === undefined) return;
-      const form = event.target as Element;
+      if (index === undefined) return;
       const copyTextBoxesDataArr = JSON.parse(JSON.stringify(textBoxesData.data));
       if (keyName === "main") {
-        copyTextBoxesDataArr[index].main = form.querySelector("input")?.value ?? "";
+        copyTextBoxesDataArr[index].main = text ?? "";
       } else if (keyName === "sub") {
-        copyTextBoxesDataArr[index].sub = form.querySelector("input")?.value ?? "";
+        copyTextBoxesDataArr[index].sub = text ?? "";
       } else if (keyName === "description") {
-        copyTextBoxesDataArr[index].description = form.querySelector("input")?.value ?? "";
+        copyTextBoxesDataArr[index].description = text ?? "";
       }
       const copyComponentList = [...componentList];
       copyComponentList[contentIndex]!.content.data = copyTextBoxesDataArr;
@@ -104,31 +103,43 @@ const TextBoxesCreator = ({
   }, [addComponentToExistingComponentById, id]);
 
   const textBoxes = useMemo(() => {
+    if (!handleFocusHtml) return;
     return textBoxesData?.data.map((textBox, index) => {
       return (
         <TextCardGrp key={index}>
           <TextCard>
             <HtmlCreator
               html={textBox.main}
-              onSubmitHtml={(event) => {
-                handleSubmitText(event, index, "main");
-              }}
+              onSubmitHtml={handleSubmitText}
+              keyName="main"
+              index={index}
+              id={id + "main" + index}
+              focusEditor={focusEditor}
+              onClickHtml={() => handleFocusHtml(id, "main", index)}
             />
           </TextCard>
           <SubText>
             <HtmlCreator
               html={textBox.sub ?? ""}
-              onSubmitHtml={(event) => {
-                handleSubmitText(event, index, "sub");
-              }}
+              onSubmitHtml={handleSubmitText}
               customCss={subTextCss}
+              keyName="sub"
+              index={index}
+              id={id + "sub" + index}
+              focusEditor={focusEditor}
+              onClickHtml={() => handleFocusHtml(id, "sub", index)}
             />
           </SubText>
           <MeaningText>
             <HtmlCreator
               html={textBox.description ?? ""}
-              onSubmitHtml={(event) => {
-                handleSubmitText(event, index, "description");
+              onSubmitHtml={handleSubmitText}
+              keyName="description"
+              index={index}
+              id={id + "description" + index}
+              focusEditor={focusEditor}
+              onClickHtml={() => {
+                handleFocusHtml(id, "description", index);
               }}
             />
           </MeaningText>
@@ -142,7 +153,14 @@ const TextBoxesCreator = ({
         </TextCardGrp>
       );
     });
-  }, [handleDeleteTextBox, handleSubmitText, textBoxesData?.data]);
+  }, [
+    handleDeleteTextBox,
+    handleSubmitText,
+    textBoxesData?.data,
+    focusEditor,
+    handleFocusHtml,
+    id,
+  ]);
 
   return (
     <TextBoxesWrapper>

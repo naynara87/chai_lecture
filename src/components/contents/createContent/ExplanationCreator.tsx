@@ -1,7 +1,5 @@
 import styled from "@emotion/styled";
 import React, { useState } from "react";
-import { footerHeightNormal } from "../../../constants/layout";
-import { changePXtoVH } from "../../../utils/styles";
 import OIcon from "../../atoms/svg/OIcon";
 import XIcon from "../../atoms/svg/XIcon";
 import {
@@ -16,13 +14,10 @@ import {
 import HtmlCreator from "./HtmlCreator";
 
 const ExplanationWrapper = styled.div`
-  /* position: fixed;
-  top: auto;
-  bottom: calc(${footerHeightNormal} + ${changePXtoVH(10)});
-  left: 0; */
   display: flex;
   justify-content: center;
-  width: 100%;
+  width: 467px;
+  height: 100px;
 `;
 
 type ExplanationData = {
@@ -35,12 +30,18 @@ type ExplanationData = {
 };
 
 interface ExplanationProps {
+  id: string;
+  focusEditor?: string;
   explanation?: ExplanationData;
-  submitExplanationText: (event: React.FormEvent<HTMLFormElement>, keyName: string) => void;
+  submitExplanationText: (text: string, keyName?: string) => void;
+  handleFocusHtml?: (id?: string, type?: string, index?: number) => void;
 }
 const ExplanationCreator = ({
+  id,
+  focusEditor,
   explanation = { correctMessage: "", wrongMessage: "" },
   submitExplanationText,
+  handleFocusHtml,
 }: ExplanationProps) => {
   const [isCorrectMode, setIsCorrectMode] = useState(true);
   const { audio, correctMessage, wrongMessage, text } = explanation;
@@ -55,24 +56,43 @@ const ExplanationCreator = ({
               <ExplanationTitle>
                 {isCorrectMode ? (
                   <HtmlCreator
+                    id={id + "correctMessage" + 0}
+                    focusEditor={focusEditor}
                     html={correctMessage ?? ""}
-                    onSubmitHtml={(event) => {
-                      submitExplanationText(event, "correctMessage");
+                    onSubmitHtml={submitExplanationText}
+                    keyName="correctMessage"
+                    onClickHtml={() => {
+                      if (!handleFocusHtml) return;
+                      handleFocusHtml(id, "correctMessage", 0);
                     }}
                   />
                 ) : (
                   <HtmlCreator
+                    id={id + "wrongMessage" + 0}
+                    focusEditor={focusEditor}
                     html={wrongMessage ?? ""}
-                    onSubmitHtml={(event) => submitExplanationText(event, "wrongMessage")}
+                    onSubmitHtml={submitExplanationText}
+                    keyName="wrongMessage"
+                    onClickHtml={() => {
+                      if (!handleFocusHtml) return;
+                      handleFocusHtml(id, "wrongMessage", 0);
+                    }}
                   />
                 )}
               </ExplanationTitle>
               {/* <AudioButton isAudio={true} audioUrl={audio.src} customCss={audioCss} /> */}
             </InfoWrapper>
             <HtmlCreator
+              id={id + "explanationText" + 0}
+              focusEditor={focusEditor}
               html={explanation.text ?? ""}
               customCss={ExplanationHtmlCss}
-              onSubmitHtml={(event) => submitExplanationText(event, "text")}
+              onSubmitHtml={submitExplanationText}
+              keyName="text"
+              onClickHtml={() => {
+                if (!handleFocusHtml) return;
+                handleFocusHtml(id, "explanationText", 0);
+              }}
             />
           </Text>
         </TextBox>
