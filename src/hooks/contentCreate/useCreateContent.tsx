@@ -28,7 +28,7 @@ export type CreatorContent = {
 
 export interface useCreateContentProps {
   focusEditor?: string;
-  handleFocusHtml?: (id?: string, type?: string, index?: number | string) => void;
+  handleFocusHtml?: (id?: string, type?: string, index?: number) => void;
 }
 
 const useCreateContent = ({ handleFocusHtml, focusEditor }: useCreateContentProps) => {
@@ -60,10 +60,7 @@ const useCreateContent = ({ handleFocusHtml, focusEditor }: useCreateContentProp
             ...component,
             content: {
               ...component.content,
-              data: [
-                ...component.content.data,
-                { ...newComponent.content.data, contentId: uuid() },
-              ],
+              data: [...component.content.data, ...newComponent.content.data],
             },
           } as CreatorContent;
         }

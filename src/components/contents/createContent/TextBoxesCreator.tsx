@@ -19,7 +19,7 @@ interface TextBoxesCreatorProps {
   setComponentList: React.Dispatch<React.SetStateAction<(CreatorContent | undefined)[]>>;
   addComponentToExistingComponentById: (contentType: Content["type"], id: string) => void;
   focusEditor?: string;
-  handleFocusHtml?: (id?: string, type?: string, index?: number | string) => void;
+  handleFocusHtml?: (id?: string, type?: string, index?: number) => void;
 }
 
 const TextBoxesCreator = ({
@@ -113,9 +113,9 @@ const TextBoxesCreator = ({
               onSubmitHtml={handleSubmitText}
               keyName="main"
               index={index}
-              id={id + "main" + textBox.contentId}
+              id={id + "main" + index}
               focusEditor={focusEditor}
-              onClickHtml={() => handleFocusHtml(id, "main", textBox.contentId)}
+              onClickHtml={() => handleFocusHtml(id, "main", index)}
             />
           </TextCard>
           <SubText>
@@ -125,9 +125,9 @@ const TextBoxesCreator = ({
               customCss={subTextCss}
               keyName="sub"
               index={index}
-              id={id + "sub" + textBox.contentId}
+              id={id + "sub" + index}
               focusEditor={focusEditor}
-              onClickHtml={() => handleFocusHtml(id, "sub", textBox.contentId)}
+              onClickHtml={() => handleFocusHtml(id, "sub", index)}
             />
           </SubText>
           <MeaningText>
@@ -136,10 +136,10 @@ const TextBoxesCreator = ({
               onSubmitHtml={handleSubmitText}
               keyName="description"
               index={index}
-              id={id + "description" + textBox.contentId}
+              id={id + "description" + index}
               focusEditor={focusEditor}
               onClickHtml={() => {
-                handleFocusHtml(id, "description", textBox.contentId);
+                handleFocusHtml(id, "description", index);
               }}
             />
           </MeaningText>

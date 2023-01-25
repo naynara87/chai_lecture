@@ -59,9 +59,10 @@ const ChooseTextCreator = ({
   }, [getData]);
 
   const handleSubmitText = useCallback(
-    (text: string, index: number) => {
+    (text: string, keyName?: string, index?: string | number) => {
       if (contentIndex === undefined) return;
       if (chooseTextData === undefined) return;
+      if (index === undefined) return;
       const copyChooseTextDataArr = JSON.parse(JSON.stringify(chooseTextData.data));
       copyChooseTextDataArr[0].choices[index] = text ?? "";
       const copyComponentList = [...componentList];
@@ -165,11 +166,11 @@ const ChooseTextCreator = ({
                     </div>
                     <HtmlCreator
                       html={choice}
-                      onSubmitHtml={(event) => {
-                        handleSubmitText(event, index);
-                      }}
+                      onSubmitHtml={handleSubmitText}
                       id={id + "text" + index}
+                      index={index}
                       focusEditor={focusEditor}
+                      keyName="text"
                       onClickHtml={() => {
                         if (!handleFocusHtml) return;
                         handleFocusHtml(id, "text", index);
@@ -185,6 +186,7 @@ const ChooseTextCreator = ({
               onSubmitHtml={handleSubmitTipText}
               html={choiceData.tip ?? ""}
               focusEditor={focusEditor}
+              keyName="tip"
               onClickHtml={() => {
                 if (!handleFocusHtml) return;
                 handleFocusHtml(id, "tip", 0);
