@@ -18,6 +18,8 @@ interface TextBoxesCreatorProps {
   componentList: (CreatorContent | undefined)[];
   setComponentList: React.Dispatch<React.SetStateAction<(CreatorContent | undefined)[]>>;
   addComponentToExistingComponentById: (contentType: Content["type"], id: string) => void;
+  focusEditor?: string;
+  handleFocusHtml?: (id?: string, type?: string, index?: number) => void;
 }
 
 const TextBoxesCreator = ({
@@ -25,6 +27,8 @@ const TextBoxesCreator = ({
   componentList,
   setComponentList,
   addComponentToExistingComponentById,
+  handleFocusHtml,
+  focusEditor,
 }: TextBoxesCreatorProps) => {
   const [textBoxesData, setTextBoxesData] = useState<TextBoxesContent | undefined>(undefined);
   const [contentIndex, setContentIndex] = useState<number | undefined>(undefined);
@@ -99,6 +103,7 @@ const TextBoxesCreator = ({
   }, [addComponentToExistingComponentById, id]);
 
   const textBoxes = useMemo(() => {
+    if (!handleFocusHtml) return;
     return textBoxesData?.data.map((textBox, index) => {
       return (
         <TextCardGrp key={index}>
@@ -108,6 +113,9 @@ const TextBoxesCreator = ({
               onSubmitHtml={handleSubmitText}
               keyName="main"
               index={index}
+              id={id + "main" + index}
+              focusEditor={focusEditor}
+              onClickHtml={() => handleFocusHtml(id, "main", index)}
             />
           </TextCard>
           <SubText>
@@ -117,6 +125,9 @@ const TextBoxesCreator = ({
               customCss={subTextCss}
               keyName="sub"
               index={index}
+              id={id + "sub" + index}
+              focusEditor={focusEditor}
+              onClickHtml={() => handleFocusHtml(id, "sub", index)}
             />
           </SubText>
           <MeaningText>
@@ -125,6 +136,11 @@ const TextBoxesCreator = ({
               onSubmitHtml={handleSubmitText}
               keyName="description"
               index={index}
+              id={id + "description" + index}
+              focusEditor={focusEditor}
+              onClickHtml={() => {
+                handleFocusHtml(id, "description", index);
+              }}
             />
           </MeaningText>
           <button
@@ -137,7 +153,14 @@ const TextBoxesCreator = ({
         </TextCardGrp>
       );
     });
-  }, [handleDeleteTextBox, handleSubmitText, textBoxesData?.data]);
+  }, [
+    handleDeleteTextBox,
+    handleSubmitText,
+    textBoxesData?.data,
+    focusEditor,
+    handleFocusHtml,
+    id,
+  ]);
 
   return (
     <TextBoxesWrapper>

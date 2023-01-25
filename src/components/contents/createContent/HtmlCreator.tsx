@@ -69,53 +69,70 @@ interface HtmlCreatorProps extends HtmlWrapperProps {
   onSubmitHtml: (text: string, keyName?: string, index?: number) => void;
   keyName?: string;
   index?: number;
+  id: string;
+  focusEditor: string | undefined;
+  onClickHtml: () => void;
 }
 
-const HtmlCreator = ({ html, customCss, onSubmitHtml, keyName, index }: HtmlCreatorProps) => {
-  const [isSave, setIsSave] = useState<boolean>(true);
+const HtmlCreator = ({
+  html,
+  customCss,
+  onSubmitHtml,
+  keyName,
+  index,
+  id,
+  focusEditor,
+  onClickHtml,
+}: HtmlCreatorProps) => {
   const [text, setText] = useState(html);
 
   useEffect(() => {
-    // setIsSave(html.length > 0);
     setText(html);
   }, [html]);
-
-  const handleFixedHtml = useCallback(() => {
-    setIsSave(false);
-  }, []);
 
   const handleSubmitHtml = useCallback(() => {
     if (text.length > 0) {
       setText(text);
       onSubmitHtml(text, keyName, index);
     }
-    setIsSave(true);
   }, [index, text, keyName, onSubmitHtml]);
 
   const contents = useMemo(() => {
-    if (isSave) {
+    if (id === focusEditor) {
+      return (
+        <Page
+          onBlur={() => {
+            handleSubmitHtml();
+          }}
+        >
+          <QuillToolbar />
+          <ReactQuill value={text} onChange={setText} theme="snow" modules={ReactQuillEditor} />
+        </Page>
+      );
+    } else {
       if (text.length > 0) {
         return (
           <HtmlWrapper
             dangerouslySetInnerHTML={{ __html: html }}
             customCss={customCss}
-            onClick={handleFixedHtml}
+            onClick={onClickHtml}
           ></HtmlWrapper>
         );
       } else {
-        return <div onClick={handleFixedHtml}>텍스트를 입력해주세요.</div>;
+        return <div onClick={onClickHtml}>텍스트를 입력해주세요.</div>;
       }
-    } else {
-      return (
-        <Page>
-          <QuillToolbar handleSubmitHtml={handleSubmitHtml} />
-          <ReactQuill value={text} onChange={setText} theme="snow" modules={ReactQuillEditor} />
-        </Page>
-      );
     }
-  }, [isSave, customCss, handleFixedHtml, html, text, handleSubmitHtml]);
+  }, [id, focusEditor, customCss, html, text, onClickHtml, handleSubmitHtml]);
 
-  return <>{contents}</>;
+  return (
+    <div
+      onClick={(event) => {
+        event.stopPropagation();
+      }}
+    >
+      {contents}
+    </div>
+  );
 };
 
 export default HtmlCreator;

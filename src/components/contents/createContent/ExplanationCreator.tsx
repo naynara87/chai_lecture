@@ -36,12 +36,18 @@ type ExplanationData = {
 };
 
 interface ExplanationProps {
+  id: string;
+  focusEditor?: string;
   explanation?: ExplanationData;
   submitExplanationText: (text: string, keyName?: string) => void;
+  handleFocusHtml?: (id?: string, type?: string, index?: number) => void;
 }
 const ExplanationCreator = ({
+  id,
+  focusEditor,
   explanation = { correctMessage: "", wrongMessage: "" },
   submitExplanationText,
+  handleFocusHtml,
 }: ExplanationProps) => {
   const [isCorrectMode, setIsCorrectMode] = useState(true);
   const { audio, correctMessage, wrongMessage, text } = explanation;
@@ -56,25 +62,43 @@ const ExplanationCreator = ({
               <ExplanationTitle>
                 {isCorrectMode ? (
                   <HtmlCreator
+                    id={id + "correctMessage" + 0}
+                    focusEditor={focusEditor}
                     html={correctMessage ?? ""}
                     onSubmitHtml={submitExplanationText}
                     keyName="correctMessage"
+                    onClickHtml={() => {
+                      if (!handleFocusHtml) return;
+                      handleFocusHtml(id, "correctMessage", 0);
+                    }}
                   />
                 ) : (
                   <HtmlCreator
+                    id={id + "wrongMessage" + 0}
+                    focusEditor={focusEditor}
                     html={wrongMessage ?? ""}
                     onSubmitHtml={submitExplanationText}
                     keyName="wrongMessage"
+                    onClickHtml={() => {
+                      if (!handleFocusHtml) return;
+                      handleFocusHtml(id, "wrongMessage", 0);
+                    }}
                   />
                 )}
               </ExplanationTitle>
               {/* <AudioButton isAudio={true} audioUrl={audio.src} customCss={audioCss} /> */}
             </InfoWrapper>
             <HtmlCreator
+              id={id + "explanationText" + 0}
+              focusEditor={focusEditor}
               html={explanation.text ?? ""}
               customCss={ExplanationHtmlCss}
               onSubmitHtml={submitExplanationText}
               keyName="text"
+              onClickHtml={() => {
+                if (!handleFocusHtml) return;
+                handleFocusHtml(id, "explanationText", 0);
+              }}
             />
           </Text>
         </TextBox>

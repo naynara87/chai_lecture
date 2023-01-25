@@ -1,10 +1,6 @@
-import SaveAltOutlinedIcon from "@mui/icons-material/SaveAltOutlined";
+// import SaveAltOutlinedIcon from "@mui/icons-material/SaveAltOutlined";
 
-interface QuillToolbarProps {
-  handleSubmitHtml: () => void;
-}
-
-const QuillToolbar = ({ handleSubmitHtml }: QuillToolbarProps) => (
+const QuillToolbar = () => (
   <div id="toolbar">
     <span className="ql-formats">
       {/* <select className="ql-font" defaultValue="arial">
@@ -60,11 +56,11 @@ const QuillToolbar = ({ handleSubmitHtml }: QuillToolbarProps) => (
       <button className="ql-code-block" />
       <button className="ql-clean" />
     </span> */}
-    <span className="ql-formats">
+    {/* <span className="ql-formats">
       <button className="ql-submit" onClick={handleSubmitHtml}>
         <SaveAltOutlinedIcon />
       </button>
-    </span>
+    </span> */}
   </div>
 );
 

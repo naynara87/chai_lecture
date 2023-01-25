@@ -20,8 +20,18 @@ interface ChooseTextProps {
   componentList: (CreatorContent | undefined)[];
   setComponentList: React.Dispatch<React.SetStateAction<(CreatorContent | undefined)[]>>;
   addComponentToExistingComponentById: (contentType: Content["type"], id: string) => void;
+  handleFocusHtml?: (id?: string, type?: string, index?: number) => void;
+  focusEditor?: string;
 }
-const ChooseTextCreator = ({ onSave, id, componentList, setComponentList }: ChooseTextProps) => {
+
+const ChooseTextCreator = ({
+  onSave,
+  id,
+  componentList,
+  setComponentList,
+  handleFocusHtml,
+  focusEditor,
+}: ChooseTextProps) => {
   const [chooseTextData, setChooseTextData] = useState<ChooseTextContent | undefined>(undefined);
   const [contentIndex, setContentIndex] = useState<number | undefined>(undefined);
 
@@ -158,6 +168,12 @@ const ChooseTextCreator = ({ onSave, id, componentList, setComponentList }: Choo
                       onSubmitHtml={(event) => {
                         handleSubmitText(event, index);
                       }}
+                      id={id + "text" + index}
+                      focusEditor={focusEditor}
+                      onClickHtml={() => {
+                        if (!handleFocusHtml) return;
+                        handleFocusHtml(id, "text", index);
+                      }}
                     />
                   </div>
                 </label>
@@ -165,11 +181,23 @@ const ChooseTextCreator = ({ onSave, id, componentList, setComponentList }: Choo
             );
           })}
           <TipWrapper>
-            <HtmlCreator onSubmitHtml={handleSubmitTipText} html={choiceData.tip ?? ""} />
+            <HtmlCreator
+              onSubmitHtml={handleSubmitTipText}
+              html={choiceData.tip ?? ""}
+              focusEditor={focusEditor}
+              onClickHtml={() => {
+                if (!handleFocusHtml) return;
+                handleFocusHtml(id, "tip", 0);
+              }}
+              id={id + "tip" + 0}
+            />
           </TipWrapper>
           <ExplanationCreator
+            id={id}
+            focusEditor={focusEditor}
             explanation={choiceData.explanation}
             submitExplanationText={submitExplanationText}
+            handleFocusHtml={handleFocusHtml}
           />
           <button onClick={handleDeleteChooseText}>삭제</button>
         </div>
@@ -182,6 +210,9 @@ const ChooseTextCreator = ({ onSave, id, componentList, setComponentList }: Choo
     handleSubmitTipText,
     submitExplanationText,
     handleClickCorrect,
+    focusEditor,
+    handleFocusHtml,
+    id,
   ]);
 
   return (

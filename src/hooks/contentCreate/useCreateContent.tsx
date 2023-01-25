@@ -26,7 +26,12 @@ export type CreatorContent = {
   content: Content;
 };
 
-const useCreateContent = () => {
+export interface useCreateContentProps {
+  focusEditor?: string;
+  handleFocusHtml?: (id?: string, type?: string, index?: number) => void;
+}
+
+const useCreateContent = ({ handleFocusHtml, focusEditor }: useCreateContentProps) => {
   const [contentLayout, setContentLayout] = useRecoilState(contentLayoutState);
   const [pasteComponent, setPasteComponent] = useRecoilState(pasteComponentState);
   const [componentList, setComponentList] = useState<(CreatorContent | undefined)[]>([]);
@@ -77,6 +82,8 @@ const useCreateContent = () => {
             addComponentToExistingComponentById={addComponentToExistingComponentById}
             componentList={componentList}
             setComponentList={setComponentList}
+            focusEditor={focusEditor}
+            handleFocusHtml={handleFocusHtml}
           />
         ),
         textBoxes: (
@@ -87,13 +94,15 @@ const useCreateContent = () => {
             addComponentToExistingComponentById={addComponentToExistingComponentById}
             componentList={componentList}
             setComponentList={setComponentList}
+            focusEditor={focusEditor}
+            handleFocusHtml={handleFocusHtml}
           />
         ),
       };
 
       return contentCreatorMapper[content.type];
     },
-    [addComponentToExistingComponentById, componentList],
+    [addComponentToExistingComponentById, componentList, focusEditor, handleFocusHtml],
   );
 
   const components = useMemo(() => {

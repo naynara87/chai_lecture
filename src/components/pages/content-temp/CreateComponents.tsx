@@ -35,9 +35,18 @@ const CreateComponentsTemp = () => {
   const contentsContextMenuRef = useRef<number | undefined>(undefined);
   const [isPlusBoxClick, setIsPlusBoxClick] = useState(false);
   const [isPreviewModalOpen, setIsPreviewModalOpen] = useState(false);
+  const [focusEditor, setFocusEditor] = useState<string | undefined>();
 
   const [isViewing, setIsViewing] = useState(false);
   const navigate = useNavigate();
+
+  const handleFocusHtml = useCallback((id?: string, type?: string, index?: number) => {
+    if (id && type && index !== undefined) {
+      setFocusEditor(id + type + index);
+    } else {
+      setFocusEditor(undefined);
+    }
+  }, []);
 
   const {
     contentLayout,
@@ -53,8 +62,10 @@ const CreateComponentsTemp = () => {
     pasteOnceContent,
     deleteOnceContent,
     getPreviewObject,
-    addComponentToExistingComponentById,
-  } = useCreateContent();
+  } = useCreateContent({
+    focusEditor,
+    handleFocusHtml,
+  });
 
   const { getTemplateLayout } = useCreateLayoutMapper({
     componentList,
@@ -63,6 +74,7 @@ const CreateComponentsTemp = () => {
     components,
     addNewComponent,
     contentsContextMenuRef,
+    handleFocusHtml,
   });
 
   useEffect(() => {

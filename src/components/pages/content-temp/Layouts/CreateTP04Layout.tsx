@@ -36,6 +36,7 @@ const CreateTP04Layout = ({
   componentList,
   setComponentIndex,
   id,
+  handleFocusHtml,
   contentsContextMenuRef,
 }: TP04LayoutProps) => {
   const contents = useMemo(() => {
@@ -52,6 +53,9 @@ const CreateTP04Layout = ({
                 customCss={snapshot.isDraggingOver ? overCss : undefined}
                 onContextMenu={() => {
                   contentsContextMenuRef.current = index;
+                }}
+                onClick={() => {
+                  handleFocusHtml();
                 }}
               >
                 {componentList[index] === undefined || componentList[index] === null ? (
@@ -74,7 +78,7 @@ const CreateTP04Layout = ({
           </Droppable>
         );
       });
-  }, [componentList, components, setComponentIndex, contentsContextMenuRef]);
+  }, [componentList, components, setComponentIndex, contentsContextMenuRef, handleFocusHtml]);
   return (
     <TP04LayoutStyle id={id} customCss={layoutCss}>
       {/* 컴포넌트가 추가되는 영역 */}
