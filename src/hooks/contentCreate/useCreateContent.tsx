@@ -28,7 +28,7 @@ export type CreatorContent = {
 
 export interface useCreateContentProps {
   focusEditor?: string;
-  handleFocusHtml?: (id?: string, type?: string, index?: number) => void;
+  handleFocusHtml?: (id?: string, type?: string, index?: number | string) => void;
 }
 
 const useCreateContent = ({ handleFocusHtml, focusEditor }: useCreateContentProps) => {
@@ -43,7 +43,10 @@ const useCreateContent = ({ handleFocusHtml, focusEditor }: useCreateContentProp
   const getDefaultContentComponent = useCallback((contentType: Content["type"], id: string) => {
     return {
       id,
-      content: { type: contentType, data: defaultContentComponentData[contentType] },
+      content: {
+        type: contentType,
+        data: defaultContentComponentData[contentType],
+      },
     } as CreatorContent;
   }, []);
 
@@ -57,7 +60,10 @@ const useCreateContent = ({ handleFocusHtml, focusEditor }: useCreateContentProp
             ...component,
             content: {
               ...component.content,
-              data: [...component.content.data, ...newComponent.content.data],
+              data: [
+                ...component.content.data,
+                { ...newComponent.content.data, contentId: uuid() },
+              ],
             },
           } as CreatorContent;
         }

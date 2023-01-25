@@ -40,7 +40,7 @@ const CreateComponentsTemp = () => {
   const [isViewing, setIsViewing] = useState(false);
   const navigate = useNavigate();
 
-  const handleFocusHtml = useCallback((id?: string, type?: string, index?: number) => {
+  const handleFocusHtml = useCallback((id?: string, type?: string, index?: number | string) => {
     if (id && type && index !== undefined) {
       setFocusEditor(id + type + index);
     } else {

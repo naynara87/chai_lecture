@@ -19,7 +19,7 @@ interface TextBoxesCreatorProps {
   setComponentList: React.Dispatch<React.SetStateAction<(CreatorContent | undefined)[]>>;
   addComponentToExistingComponentById: (contentType: Content["type"], id: string) => void;
   focusEditor?: string;
-  handleFocusHtml?: (id?: string, type?: string, index?: number) => void;
+  handleFocusHtml?: (id?: string, type?: string, index?: number | string) => void;
 }
 
 const TextBoxesCreator = ({
@@ -57,7 +57,7 @@ const TextBoxesCreator = ({
   }, [getData]);
 
   const handleSubmitText = useCallback(
-    (text: string, keyName?: string, index?: number) => {
+    (text: string, keyName?: string, index?: number | string) => {
       if (contentIndex === undefined) return;
       if (textBoxesData === undefined) return;
       if (index === undefined) return;
@@ -113,9 +113,9 @@ const TextBoxesCreator = ({
               onSubmitHtml={handleSubmitText}
               keyName="main"
               index={index}
-              id={id + "main" + index}
+              id={id + "main" + textBox.contentId}
               focusEditor={focusEditor}
-              onClickHtml={() => handleFocusHtml(id, "main", index)}
+              onClickHtml={() => handleFocusHtml(id, "main", textBox.contentId)}
             />
           </TextCard>
           <SubText>
@@ -125,9 +125,9 @@ const TextBoxesCreator = ({
               customCss={subTextCss}
               keyName="sub"
               index={index}
-              id={id + "sub" + index}
+              id={id + "sub" + textBox.contentId}
               focusEditor={focusEditor}
-              onClickHtml={() => handleFocusHtml(id, "sub", index)}
+              onClickHtml={() => handleFocusHtml(id, "sub", textBox.contentId)}
             />
           </SubText>
           <MeaningText>
@@ -136,10 +136,10 @@ const TextBoxesCreator = ({
               onSubmitHtml={handleSubmitText}
               keyName="description"
               index={index}
-              id={id + "description" + index}
+              id={id + "description" + textBox.contentId}
               focusEditor={focusEditor}
               onClickHtml={() => {
-                handleFocusHtml(id, "description", index);
+                handleFocusHtml(id, "description", textBox.contentId);
               }}
             />
           </MeaningText>

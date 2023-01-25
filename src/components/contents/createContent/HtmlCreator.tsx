@@ -66,9 +66,9 @@ const HtmlWrapper = styled.div<HtmlWrapperProps>`
 
 interface HtmlCreatorProps extends HtmlWrapperProps {
   html: string;
-  onSubmitHtml: (text: string, keyName?: string, index?: number) => void;
+  onSubmitHtml: (text: string, keyName?: string, index?: number | string) => void;
   keyName?: string;
-  index?: number;
+  index?: number | string;
   id: string;
   focusEditor: string | undefined;
   onClickHtml: () => void;
@@ -110,7 +110,7 @@ const HtmlCreator = ({
         </Page>
       );
     } else {
-      if (text.length > 0) {
+      if (text && text.length > 0) {
         return (
           <HtmlWrapper
             dangerouslySetInnerHTML={{ __html: html }}

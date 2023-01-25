@@ -83,6 +83,7 @@ export type TextBoxesData = {
   main: string;
   sub?: string;
   description?: string; // 박스 밖 설명글
+  contentId?: string;
 };
 
 export type IconTextContent = {
