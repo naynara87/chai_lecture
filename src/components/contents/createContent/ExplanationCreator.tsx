@@ -65,6 +65,7 @@ const ExplanationCreator = ({
                       if (!handleFocusHtml) return;
                       handleFocusHtml(id, "correctMessage", 0);
                     }}
+                    textMaxLength={10}
                   />
                 ) : (
                   <HtmlCreator
@@ -77,6 +78,7 @@ const ExplanationCreator = ({
                       if (!handleFocusHtml) return;
                       handleFocusHtml(id, "wrongMessage", 0);
                     }}
+                    textMaxLength={10}
                   />
                 )}
               </ExplanationTitle>
@@ -93,6 +95,7 @@ const ExplanationCreator = ({
                 if (!handleFocusHtml) return;
                 handleFocusHtml(id, "explanationText", 0);
               }}
+              textMaxLength={50}
             />
           </Text>
         </TextBox>

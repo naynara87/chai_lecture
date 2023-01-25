@@ -175,6 +175,7 @@ const ChooseTextCreator = ({
                         if (!handleFocusHtml) return;
                         handleFocusHtml(id, "text", index);
                       }}
+                      textMaxLength={20}
                     />
                   </div>
                 </label>
@@ -192,6 +193,7 @@ const ChooseTextCreator = ({
                 handleFocusHtml(id, "tip", 0);
               }}
               id={id + "tip" + 0}
+              textMaxLength={50}
             />
           </TipWrapper>
           <ExplanationCreator
