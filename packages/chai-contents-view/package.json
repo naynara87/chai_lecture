@@ -1,0 +1,73 @@
+{
+  "name": "chai-contents",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@emotion/react": "11.10.5",
+    "@emotion/styled": "11.10.5",
+    "@mui/icons-material": "^5.11.0",
+    "@mui/material": "5.10.13",
+    "@tanstack/react-query": "4.14.5",
+    "@tanstack/react-query-devtools": "4.14.5",
+    "@testing-library/jest-dom": "5.16.5",
+    "@testing-library/react": "13.4.0",
+    "@testing-library/user-event": "13.5.0",
+    "@types/jest": "27.5.2",
+    "@types/lodash": "4.14.191",
+    "@types/node": "16.18.3",
+    "@types/react": "18.0.24",
+    "@types/react-dom": "18.0.8",
+    "axios": "1.2.0",
+    "cross-env": "7.0.3",
+    "immer": "^9.0.16",
+    "lodash": "4.17.21",
+    "react": "18.2.0",
+    "react-beautiful-dnd": "^13.1.1",
+    "react-cookie": "4.1.1",
+    "react-dom": "18.2.0",
+    "react-loader-spinner": "5.3.4",
+    "react-media-recorder": "1.6.5",
+    "react-quill": "^2.0.0",
+    "react-router-dom": "6.4.3",
+    "react-scripts": "5.0.1",
+    "react-toastify": "9.1.1",
+    "react-uuid": "2.0.0",
+    "recoil": "0.7.6",
+    "sass": "1.57.1",
+    "typescript": "4.8.4",
+    "web-vitals": "2.1.4"
+  },
+  "scripts": {
+    "start": "env-cmd -f .env craco start",
+    "build": "GENERATE_SOURCEMAP=false env-cmd -f .env.development craco build",
+    "build:prod": "GENERATE_SOURCEMAP=false env-cmd -f .env.production craco build",
+    "test": "craco test",
+    "eject": "craco eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@craco/craco": "7.0.0",
+    "@emotion/babel-plugin": "11.10.5",
+    "@types/react-beautiful-dnd": "^13.1.3",
+    "craco-html-webpack-plugin": "0.6.0",
+    "env-cmd": "10.1.0",
+    "html-webpack-plugin": "5.5.0"
+  }
+}
