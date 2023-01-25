@@ -116,6 +116,7 @@ const TextBoxesCreator = ({
               id={id + "main" + index}
               focusEditor={focusEditor}
               onClickHtml={() => handleFocusHtml(id, "main", index)}
+              textMaxLength={5}
             />
           </TextCard>
           <SubText>
@@ -128,6 +129,7 @@ const TextBoxesCreator = ({
               id={id + "sub" + index}
               focusEditor={focusEditor}
               onClickHtml={() => handleFocusHtml(id, "sub", index)}
+              textMaxLength={5}
             />
           </SubText>
           <MeaningText>
@@ -141,6 +143,7 @@ const TextBoxesCreator = ({
               onClickHtml={() => {
                 handleFocusHtml(id, "description", index);
               }}
+              textMaxLength={5}
             />
           </MeaningText>
           <button

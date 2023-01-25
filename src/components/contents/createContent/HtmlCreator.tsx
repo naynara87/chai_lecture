@@ -57,6 +57,7 @@ interface HtmlCreatorProps extends HtmlWrapperProps {
   id: string;
   focusEditor: string | undefined;
   onClickHtml: () => void;
+  textMaxLength?: number;
 }
 
 const HtmlCreator = ({
@@ -68,6 +69,7 @@ const HtmlCreator = ({
   id,
   focusEditor,
   onClickHtml,
+  textMaxLength,
 }: HtmlCreatorProps) => {
   const [text, setText] = useState(html);
 
@@ -91,7 +93,19 @@ const HtmlCreator = ({
           }}
         >
           <QuillToolbar />
-          <ReactQuill value={text} onChange={setText} theme="snow" modules={ReactQuillEditor} />
+          <ReactQuill
+            value={text}
+            onChange={(event) => {
+              setText(event);
+            }}
+            onKeyDown={(event) => {
+              if (textMaxLength && event.target.textContent.length > textMaxLength) {
+                event.preventDefault();
+              }
+            }}
+            theme="snow"
+            modules={ReactQuillEditor}
+          />
         </Page>
       );
     } else {
@@ -107,7 +121,7 @@ const HtmlCreator = ({
         return <div onClick={onClickHtml}>텍스트를 입력해주세요.</div>;
       }
     }
-  }, [id, focusEditor, customCss, html, text, onClickHtml, handleSubmitHtml]);
+  }, [id, focusEditor, customCss, html, text, onClickHtml, handleSubmitHtml, textMaxLength]);
 
   return (
     <div
