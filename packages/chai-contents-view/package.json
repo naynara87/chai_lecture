@@ -1,5 +1,6 @@
 {
   "name": "chai-contents",
+  "main": "dist/index.js",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -33,6 +34,8 @@
     "react-toastify": "9.1.1",
     "react-uuid": "2.0.0",
     "recoil": "0.7.6",
+    "rollup": "^3.10.1",
+    "rollup-plugin-typescript2": "^0.34.1",
     "sass": "1.57.1",
     "typescript": "*",
     "web-vitals": "2.1.4"
@@ -42,6 +45,7 @@
     "start": "env-cmd -f .env craco start",
     "build": "GENERATE_SOURCEMAP=false env-cmd -f .env.development craco build",
     "build:prod": "GENERATE_SOURCEMAP=false env-cmd -f .env.production craco build",
+    "build:ui": "rollup -c",
     "test": "craco test",
     "eject": "craco eject"
   },
