@@ -21,7 +21,7 @@ import { Button } from "chai-ui";
 
 ## TODO
 
-- [ ] 리팩토링 필요
-  - 안쓰는 컴포넌트 삭제
-  - 미처 옮기지 못한 컴포넌트 마저 옮기기
+- [ ] 안쓰는 컴포넌트, 훅 삭제
+- [ ] 미처 옮기지 못한 컴포넌트 마저 옮기기
   - creator 관련 컴포넌트도 옮기기
+- [ ] 현재 컴포넌트만 export 하고 있는데 필요 시 constants, hooks, utils 등도 export 하도록 수정
