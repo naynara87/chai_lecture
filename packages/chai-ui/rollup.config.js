@@ -9,5 +9,4 @@ export default {
     preserveModules: true, // preserve source folder
   },
   plugins: [Ts()],
-  external: ['react', '@ds.e/foundation'],
 };
