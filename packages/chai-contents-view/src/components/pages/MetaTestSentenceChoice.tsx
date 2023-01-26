@@ -1,12 +1,14 @@
 import React from "react";
 import { css } from "@emotion/react";
 import useCornerPage from "../../hooks/useCornerPage";
-import Header from "../molecules/Header";
+import {
+  Header,
+  CommonMainContainer,
+  TitleContent,
+  TemplateCommonLayout,
+  CommonPageLayout,
+} from "chai-ui";
 import styled from "@emotion/styled";
-import CommonMainContainer from "../atoms/CommonMainContainer";
-import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
-import TitleContent from "../molecules/TitleContent";
-import CommonPageLayout from "../Layouts/CommonPageLayout";
 import "../../styles/wordtest.css";
 import { changePXtoVW } from "../../utils/styles";
 import { colorPalette } from "../../styles/colorPalette";
@@ -31,7 +33,7 @@ export const btnReset = css`
 
 const MainButton = styled.button`
   ${btnReset}
-  
+
   border: ${changePXtoVW(4)} solid ${colorPalette.sentenceBubble};
   background-color: ${colorPalette.sentenceBubble};
   color: ${colorPalette.backgroundWhite};
@@ -46,7 +48,7 @@ const TextWarning = styled.p`
 `;
 
 const MetaTestSentenceChoice = () => {
-  const { currentCorner, pages, appMetaData } = useCornerPage();
+  const { currentCorner, appMetaData } = useCornerPage();
 
   return (
     <CommonPageLayout>
@@ -58,8 +60,8 @@ const MetaTestSentenceChoice = () => {
             description="인사 관련하여 아는 문장을 고르세요."
           />
           <main className="word-test-main">
-            FIXME: QuizAnswer 컴포넌트를 가져올지 상의
-            메타인지부분 분리 고민중이라 분리 여부 결정후 컴포넌트도 상의하기
+            FIXME: QuizAnswer 컴포넌트를 가져올지 상의 메타인지부분 분리 고민중이라 분리 여부 결정후
+            컴포넌트도 상의하기
             <div className="btn-wrap">
               <MainButton>건너뛰기</MainButton>
             </div>

@@ -1,16 +1,13 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import CommonPageLayout from "../Layouts/CommonPageLayout";
 import Footer from "../molecules/Footer";
-import Header from "../molecules/Header";
-import CornerMain from "../molecules/CornerMain";
-import CommonMainContainer from "../atoms/CommonMainContainer";
+import { CornerMain, Header, CommonPageLayout } from "chai-ui";
 import { useNavigate, useParams } from "react-router-dom";
 import { getPageUrl } from "../../utils/url";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { cornersState } from "../../state/corners";
 import useCornerPage from "../../hooks/useCornerPage";
 import { CORNER_LIST_URL } from "../../constants/url";
-import IframeMainContainer from "../atoms/IframeMainContainer";
+import { IframeMainContainer, CommonMainContainer } from "chai-ui";
 import { reviewCornerIndexState } from "../../state/reviewCornerIndexState";
 import { eduModeState } from "../../state/eduModeState";
 import { getCookie } from "../../utils/cookie";

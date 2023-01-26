@@ -1,5 +1,5 @@
 import React from "react";
-import useTemplateMapper from "../../../../hooks/useTemplateMapper";
+import { useTemplateMapper } from "chai-ui";
 import { CreateTemplatePage } from "../../../../types/appData";
 
 interface PreviewMainProps {

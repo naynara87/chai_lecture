@@ -3,14 +3,7 @@ import { TextBoxesContent } from "../../../types/templateContents";
 import { Content } from "../../../types/appData";
 import { CreatorContent } from "../../../hooks/contentCreate/useCreateContent";
 import HtmlCreator from "./HtmlCreator";
-import {
-  MeaningText,
-  SubText,
-  subTextCss,
-  TextBoxesWrapper,
-  TextCardGrp,
-} from "../../molecules/TextBoxes";
-import { TextCard } from "../../atoms/TextBox";
+import { MeaningText, SubText, subTextCss, TextBoxesWrapper, TextCardGrp, TextCard } from "chai-ui";
 
 interface TextBoxesCreatorProps {
   onSave(): void;

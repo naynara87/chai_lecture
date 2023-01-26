@@ -5,7 +5,7 @@ import { Draggable, Droppable } from "react-beautiful-dnd";
 import CreatePlusBox from "../CreatePlusBox";
 import { ControlCameraOutlined } from "@mui/icons-material";
 import { useCreateLayoutMapperProps } from "../../../../hooks/contentCreate/useCreateLayoutMapper";
-import { TP03LayoutStyle } from "../../../Layouts/TP03Layout";
+import { TP03LayoutStyle } from "chai-ui";
 
 interface DropBoxProps {
   customCss?: SerializedStyles;
