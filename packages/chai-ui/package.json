@@ -13,9 +13,19 @@
   "license": "ISC",
   "dependencies": {
     "@types/react": "*",
+    "@emotion/styled": "*",
+    "@mui/icons-material": "*",
+    "@mui/material": "*",
+    "immer": "*",
+    "lodash": "*",
     "react": "*",
-    "typescript": "*",
+    "react-loader-spinner": "5.3.4",
+    "react-media-recorder": "1.6.5",
+    "react-toastify": "*",
+    "react-router-dom": "*",
     "rollup": "^3.10.1",
-    "rollup-plugin-typescript2": "^0.34.1"
+    "rollup-plugin-typescript2": "^0.34.1",
+    "sass": "*",
+    "typescript": "*"
   }
 }

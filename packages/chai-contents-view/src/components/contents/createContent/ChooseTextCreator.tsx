@@ -4,9 +4,7 @@ import { CreatorContent } from "../../../hooks/contentCreate/useCreateContent";
 import { colorPalette } from "../../../styles/colorPalette";
 import { Content } from "../../../types/appData";
 import { ChooseTextContent } from "../../../types/templateContents";
-import { QuizAnswerStyle } from "../../atoms/QuizAnswer";
-import { TipWrapper } from "../../molecules/TipComponent";
-import { QuizAnswerContainer } from "../ChooseText";
+import { QuizAnswerStyle, TipWrapper, QuizAnswerContainer } from "chai-ui";
 import ExplanationCreator from "./ExplanationCreator";
 import HtmlCreator from "./HtmlCreator";
 

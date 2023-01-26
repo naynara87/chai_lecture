@@ -1,12 +1,14 @@
 import React from "react";
 import { css } from "@emotion/react";
 import useCornerPage from "../../hooks/useCornerPage";
-import Header from "../molecules/Header";
+import {
+  Header,
+  CommonMainContainer,
+  TitleContent,
+  TemplateCommonLayout,
+  CommonPageLayout,
+} from "chai-ui";
 import styled from "@emotion/styled";
-import CommonMainContainer from "../atoms/CommonMainContainer";
-import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
-import TitleContent from "../molecules/TitleContent";
-import CommonPageLayout from "../Layouts/CommonPageLayout";
 import "../../styles/wordtest.css";
 import { changePXtoVW } from "../../utils/styles";
 import { colorPalette } from "../../styles/colorPalette";
@@ -71,7 +73,6 @@ export const btnReset = css`
   cursor: pointer;
 `;
 
-
 const MainButton = styled.button`
   ${btnReset}
 
@@ -81,20 +82,19 @@ const MainButton = styled.button`
 `;
 
 const MainBorderButton = styled.button`
-${btnReset}
+  ${btnReset}
 
   border: ${changePXtoVW(4)} solid ${colorPalette.sentenceBubble};
   color: ${colorPalette.sentenceBubble};
 `;
 
 const MetaTestSentenceReport = () => {
-  const { currentCorner, pages, appMetaData } = useCornerPage();
+  const { currentCorner, appMetaData } = useCornerPage();
 
   return (
     <CommonPageLayout>
       <Header currentCorner={currentCorner} appMetaData={appMetaData} showCornerLabel />
       <CommonMainContainer>
-
         <TemplateCommonLayout>
           <TitleContent title="아는 문장 고르기" description="선택한 문장을 확인해 봅시다." />
           <main className="word-test-main">

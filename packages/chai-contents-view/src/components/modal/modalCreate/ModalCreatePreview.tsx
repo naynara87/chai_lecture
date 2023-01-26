@@ -1,9 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
-import ModalCommon from "../ModalCommon";
+import { ModalCommon, CornerMain } from "chai-ui";
 import { changePXtoVH, changePXtoVW } from "../../../utils/styles";
 import { colorPalette } from "../../../styles/colorPalette";
-import CornerMain from "../../molecules/CornerMain";
 import { ApproveContent, CreateTemplatePage, CreateTemplateType, ID } from "../../../types/appData";
 
 interface ModalCreatePreviewProps {

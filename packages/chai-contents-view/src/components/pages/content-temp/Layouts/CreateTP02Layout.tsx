@@ -4,7 +4,7 @@ import React, { useMemo } from "react";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import CreatePlusBox from "../CreatePlusBox";
 import { ControlCameraOutlined } from "@mui/icons-material";
-import { TP02LayoutStyle } from "../../../Layouts/TP02Layout";
+import { TP02LayoutStyle } from "chai-ui";
 import { useCreateLayoutMapperProps } from "../../../../hooks/contentCreate/useCreateLayoutMapper";
 
 interface DropBoxProps {

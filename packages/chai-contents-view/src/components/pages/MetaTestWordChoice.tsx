@@ -1,10 +1,12 @@
 import React from "react";
 import useCornerPage from "../../hooks/useCornerPage";
-import Header from "../molecules/Header";
-import CommonMainContainer from "../atoms/CommonMainContainer";
-import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
-import TitleContent from "../molecules/TitleContent";
-import CommonPageLayout from "../Layouts/CommonPageLayout";
+import {
+  Header,
+  CommonMainContainer,
+  TitleContent,
+  TemplateCommonLayout,
+  CommonPageLayout,
+} from "chai-ui";
 import "../../styles/wordtest.css";
 
 const MetaTestWordChoice = () => {
@@ -14,7 +16,6 @@ const MetaTestWordChoice = () => {
     <CommonPageLayout>
       <Header currentCorner={currentCorner} appMetaData={appMetaData} showCornerLabel />
       <CommonMainContainer>
-
         <TemplateCommonLayout>
           <TitleContent
             title="단어 메타인지 테스트"
@@ -22,13 +23,12 @@ const MetaTestWordChoice = () => {
           />
           <main className="word-test-main">
             <div className="choice-card-wrap">
-
               {/* word card */}
               {/* TODO: 최대 20개. 5행 4줄 */}
               <div className="inp-grp">
                 <input type="checkbox" id="inputId" className="inp-chck" />
                 <label htmlFor="inputId" className="inp-card-layout">
-                  { '会' }
+                  {"会"}
                 </label>
               </div>
 
@@ -36,7 +36,7 @@ const MetaTestWordChoice = () => {
               <div className="inp-grp">
                 <input type="checkbox" id="inputId2" className="inp-chck" checked />
                 <label htmlFor="inputId2" className="inp-card-layout">
-                  { '会' }
+                  {"会"}
                 </label>
               </div>
             </div>

@@ -1,10 +1,8 @@
 import React, { useEffect, useMemo } from "react";
 import styled from "@emotion/styled";
 import { colorPalette } from "../../styles/colorPalette";
-import Spacing from "../atoms/Spacing";
-import CornerState from "../atoms/CornerState";
+import { Spacing, CornerState, FooterButton } from "chai-ui";
 import useFooterState from "../../hooks/useFooterState";
-import FooterButton from "./FooterButton";
 import { footerHeight } from "../../styles/layout";
 import { AppMetaData, Corner2 } from "../../types/appData";
 import { changePXtoVW } from "../../utils/styles";

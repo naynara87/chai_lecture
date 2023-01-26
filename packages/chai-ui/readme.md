@@ -16,9 +16,12 @@
 2. chai-ui에서 사용하려는 컴포넌트를 import 합니다
 
 ```js
-import { Button } from 'chai-ui';
+import { Button } from "chai-ui";
 ```
 
 ## TODO
 
-- [ ] chai-contents에 있는 공통 UI 컴포넌트 및 훅을 이곳으로 옮기기
+- [ ] 리팩토링 필요
+  - 안쓰는 컴포넌트 삭제
+  - 미처 옮기지 못한 컴포넌트 마저 옮기기
+  - creator 관련 컴포넌트도 옮기기

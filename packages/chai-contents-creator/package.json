@@ -14,9 +14,11 @@
     "react-dom": "*",
     "react-scripts": "*",
     "typescript": "*",
-    "web-vitals": "*"
+    "web-vitals": "*",
+    "chai-ui": "*"
   },
   "scripts": {
+    "dev": "react-scripts start",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

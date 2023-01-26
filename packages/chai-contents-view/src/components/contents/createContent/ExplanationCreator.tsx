@@ -1,16 +1,16 @@
 import styled from "@emotion/styled";
 import React, { useState } from "react";
-import OIcon from "../../atoms/svg/OIcon";
-import XIcon from "../../atoms/svg/XIcon";
 import {
+  OIcon,
+  XIcon,
   ExplanationContainer,
   ExplanationHtmlCss,
   ExplanationTitle,
   InfoWrapper,
   OXWrapper,
-  Text,
-  TextBox,
-} from "../../molecules/Explanation";
+  ExplanationTextBox,
+  ExplanationText,
+} from "chai-ui";
 import HtmlCreator from "./HtmlCreator";
 
 const ExplanationWrapper = styled.div`
@@ -44,13 +44,13 @@ const ExplanationCreator = ({
   handleFocusHtml,
 }: ExplanationProps) => {
   const [isCorrectMode, setIsCorrectMode] = useState(true);
-  const { audio, correctMessage, wrongMessage, text } = explanation;
+  const { correctMessage, wrongMessage, text } = explanation;
 
   return (
     <ExplanationWrapper>
       <ExplanationContainer>
-        <TextBox>
-          <Text isText={!!text}>
+        <ExplanationTextBox>
+          <ExplanationText isText={!!text}>
             <InfoWrapper>
               <OXWrapper>{isCorrectMode ? <OIcon /> : <XIcon />}</OXWrapper>
               <ExplanationTitle>
@@ -97,8 +97,8 @@ const ExplanationCreator = ({
               }}
               textMaxLength={50}
             />
-          </Text>
-        </TextBox>
+          </ExplanationText>
+        </ExplanationTextBox>
         <button onClick={() => setIsCorrectMode(!isCorrectMode)}>
           {isCorrectMode ? "오답화면으로 변경" : "정답화면으로 변경"}
         </button>

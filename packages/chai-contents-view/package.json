@@ -20,7 +20,7 @@
     "axios": "*",
     "cross-env": "7.0.3",
     "immer": "^9.0.16",
-    "lodash": "4.17.21",
+    "lodash": "*",
     "react": "*",
     "react-beautiful-dnd": "^13.1.1",
     "react-cookie": "4.1.1",
@@ -35,7 +35,8 @@
     "recoil": "0.7.6",
     "sass": "*",
     "typescript": "*",
-    "web-vitals": "*"
+    "web-vitals": "*",
+    "chai-ui": "*"
   },
   "scripts": {
     "dev": "env-cmd -f .env craco start",
