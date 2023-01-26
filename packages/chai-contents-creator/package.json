@@ -10,15 +10,16 @@
     "@types/node": "*",
     "@types/react": "*",
     "@types/react-dom": "*",
+    "chai-ui": "*",
+    "cross-env": "*",
     "react": "*",
     "react-dom": "*",
     "react-scripts": "*",
     "typescript": "*",
-    "web-vitals": "*",
-    "chai-ui": "*"
+    "web-vitals": "*"
   },
   "scripts": {
-    "dev": "export PORT=3001 && react-scripts start",
+    "dev": "cross-env PORT=3001 react-scripts start",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
