@@ -16,7 +16,8 @@
     "react-dom": "*",
     "react-scripts": "*",
     "typescript": "*",
-    "web-vitals": "*"
+    "web-vitals": "*",
+    "react-router-dom": "*"
   },
   "scripts": {
     "dev": "cross-env PORT=3001 react-scripts start",

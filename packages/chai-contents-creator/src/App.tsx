@@ -1,15 +1,8 @@
 import React from "react";
-import { ChaiSkeleton } from "chai-ui";
+import AppRouter from "./router/AppRouter";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <h1>chai-content-creator</h1>
-        <ChaiSkeleton width={100} height={100} />
-      </header>
-    </div>
-  );
+  return <AppRouter />;
 }
 
 export default App;
