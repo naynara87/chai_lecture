@@ -23,7 +23,7 @@ export const QuizAnswerContainer = styled.ul<QuizAnswerContainerProps>`
 export const customQuizCss = css`
   margin-bottom: ${changePXtoVH(30)};
 `;
-interface ChooseTextProps {
+export interface ChooseTextProps {
   contentData: ChooseTextContent;
   isVertical?: boolean;
 }
