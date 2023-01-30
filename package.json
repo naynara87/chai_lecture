@@ -21,6 +21,7 @@
     "cross-env": "^7.0.3",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
+    "react-cookie": "^4.1.1",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.7.0",
     "react-scripts": "^5.0.1",
@@ -30,11 +31,8 @@
     "web-vitals": "^3.1.1"
   },
   "devDependencies": {
-    "@nrwl/nx-cloud": "latest",
-    "env-cmd": "^10.1.0",
-    "nx": "15.6.2",
-    "prettier": "^2.6.2",
     "@babel/core": "^7.20.12",
+    "@nrwl/nx-cloud": "latest",
     "@storybook/addon-actions": "^6.5.16",
     "@storybook/addon-essentials": "^6.5.16",
     "@storybook/addon-interactions": "^6.5.16",
@@ -43,7 +41,10 @@
     "@storybook/manager-webpack4": "^6.5.16",
     "@storybook/react": "^6.5.16",
     "@storybook/testing-library": "^0.0.13",
-    "babel-loader": "^8.3.0"
+    "babel-loader": "^8.3.0",
+    "env-cmd": "^10.1.0",
+    "nx": "15.6.2",
+    "prettier": "^2.6.2"
   },
   "workspaces": [
     "packages/*"

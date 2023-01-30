@@ -20,5 +20,6 @@ export default {
     "react-router-dom",
     "react-toastify",
     "react-loader-spinner",
+    "react-cookie",
   ],
 };
