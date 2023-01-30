@@ -1,9 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
+import { ID, QUERY_KEY, useToast } from "chai-ui";
 import { getLearningLog } from "../api/lms";
-import { QUERY_KEY } from "../constants/queryKey";
-import { ID } from "../types/appData";
 import useAuth from "./useAuth";
-import useToast from "./useToast";
 
 /**
  * @deprecated

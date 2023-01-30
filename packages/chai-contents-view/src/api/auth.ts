@@ -1,6 +1,5 @@
-import { TOKEN_URL } from "../constants/api";
+import { PostAccessTokenData, TOKEN_URL } from "chai-ui";
 import httpLcms from "../lib/axios/httpLcms";
-import { PostAccessTokenData } from "../types/api/auth";
 
 /**
  * LCMS API: 토큰 발급

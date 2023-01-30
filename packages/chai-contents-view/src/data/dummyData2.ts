@@ -1,5 +1,5 @@
 // import { CornerListData } from "../types/api/lcms";
-import { LearningLogData } from "../types/api/lms";
+import { LearningLogData } from "chai-ui";
 
 // 과정(course, subject) > 레슨(lesson) > 회차(corner, turn) > 페이지(page)
 // export const lessonData: CornerListData = {

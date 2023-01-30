@@ -1,5 +1,5 @@
 import axios from "axios";
-import { AUTH_KEY } from "../../constants/api";
+import { AUTH_KEY } from "chai-ui";
 
 const httpLms = axios.create({
   baseURL: `${process.env.REACT_APP_LMS_URL}`,

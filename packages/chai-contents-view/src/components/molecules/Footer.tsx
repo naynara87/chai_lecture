@@ -1,11 +1,16 @@
 import React, { useEffect, useMemo } from "react";
 import styled from "@emotion/styled";
-import { colorPalette } from "../../styles/colorPalette";
-import { Spacing, CornerState, FooterButton } from "chai-ui";
+import {
+  Spacing,
+  CornerState,
+  FooterButton,
+  footerHeight,
+  changePXtoVW,
+  colorPalette,
+  AppMetaData,
+  Corner2,
+} from "chai-ui";
 import useFooterState from "../../hooks/useFooterState";
-import { footerHeight } from "../../styles/layout";
-import { AppMetaData, Corner2 } from "../../types/appData";
-import { changePXtoVW } from "../../utils/styles";
 
 const FooterWrapper = styled.footer`
   z-index: 10;

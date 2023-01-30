@@ -1,5 +1,5 @@
 // 과정(course) > 레슨(lesson) > 코너(corner) > 페이지(page)
-import { AppData, ID } from "../types/appData";
+import { AppData, ID } from "chai-ui";
 import { dummyData } from "./dummyData";
 
 export const getAppData = async (): Promise<AppData> => {

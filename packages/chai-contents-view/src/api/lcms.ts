@@ -1,13 +1,14 @@
 import {
   API_KEY,
-  getLcmsLessonDataUrl,
-  getLcmsSubjectTurnUrl,
+  CornerListData,
+  GetSubjectParams,
+  ID,
   LCMS_SUBJECT,
-} from "../constants/api";
+  OrderByCode,
+  PageListData,
+} from "chai-ui";
+import { getLcmsLessonDataUrl, getLcmsSubjectTurnUrl } from "../constants/api";
 import httpLcms from "../lib/axios/httpLcms";
-import { GetSubjectParams, OrderByCode } from "../types/api/auth";
-import { CornerListData, PageListData } from "../types/api/lcms";
-import { ID } from "../types/appData";
 
 export const getSubject = async (orderByCode: OrderByCode = "01") => {
   const res = await httpLcms.get(LCMS_SUBJECT, {

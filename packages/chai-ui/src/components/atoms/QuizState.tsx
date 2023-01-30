@@ -63,7 +63,10 @@ const QuizState = ({ isCorrect }: QuizStateProps) => {
   }, [isCorrect]);
 
   return (
-    <QuizStateItem backgroundColor={quizStateBackgroundColor} borderColor={quizStateBorderColor}>
+    <QuizStateItem
+      backgroundColor={quizStateBackgroundColor}
+      borderColor={quizStateBorderColor}
+    >
       <IconCheck color={quizStateIconColor} />
     </QuizStateItem>
   );

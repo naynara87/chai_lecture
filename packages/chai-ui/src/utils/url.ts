@@ -1,4 +1,4 @@
-import { ID } from "../types/appData";
+import { ID } from "chai-ui";
 
 // page
 export const getPageUrl = (courseId: ID, lessonId: ID, cornerId: ID, pageId: ID) => {

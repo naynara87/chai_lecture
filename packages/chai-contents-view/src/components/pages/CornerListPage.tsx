@@ -1,17 +1,24 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import styled from "@emotion/styled";
-import { ID } from "../../types/appData";
-import { Header, TitleContent, ButtonComponent, CommonMainContainer, ChaiSkeleton } from "chai-ui";
+import {
+  Header,
+  TitleContent,
+  ButtonComponent,
+  CommonMainContainer,
+  ChaiSkeleton,
+  colorPalette,
+  changePXtoVH,
+  changePXtoVW,
+  ID,
+  btnCss,
+  useToast,
+  getPageUrl,
+} from "chai-ui";
 import { css } from "@emotion/react";
-import { colorPalette } from "../../styles/colorPalette";
-import { btnCss } from "../../styles/button";
 import { ModalStart, ImageContentComponent, ModalConfirm as ModalContinue } from "chai-ui";
-import { getPageUrl } from "../../utils/url";
 import useCornerListPage from "../../hooks/useCornerListPage";
 import { useNavigate } from "react-router-dom";
-import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import useCornerIconMapper from "../../hooks/useCornerIconMapper";
-import useToast from "../../hooks/useToast";
 import { useRecoilState } from "recoil";
 import { isAppStartedState } from "../../state/isAppStartedState";
 // import usePageList from "../../hooks/api/usePageList";
