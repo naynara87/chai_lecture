@@ -4,7 +4,6 @@
   "scripts": {
     "build": "nx run-many --target=build",
     "build:prod": "nx run-many --target=build:prod",
-    "build:ui": "nx run-many --target=build:ui",
     "dev": "nx run-many --target=dev"
   },
   "private": true,
@@ -34,7 +33,17 @@
     "@nrwl/nx-cloud": "latest",
     "env-cmd": "^10.1.0",
     "nx": "15.6.2",
-    "prettier": "^2.6.2"
+    "prettier": "^2.6.2",
+    "@babel/core": "^7.20.12",
+    "@storybook/addon-actions": "^6.5.16",
+    "@storybook/addon-essentials": "^6.5.16",
+    "@storybook/addon-interactions": "^6.5.16",
+    "@storybook/addon-links": "^6.5.16",
+    "@storybook/builder-webpack4": "^6.5.16",
+    "@storybook/manager-webpack4": "^6.5.16",
+    "@storybook/react": "^6.5.16",
+    "@storybook/testing-library": "^0.0.13",
+    "babel-loader": "^8.3.0"
   },
   "workspaces": [
     "packages/*"

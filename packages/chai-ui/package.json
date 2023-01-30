@@ -6,26 +6,40 @@
   "type": "module",
   "scripts": {
     "build": "rollup -c",
-    "dev": "rollup -c --watch"
+    "dev": "rollup -c --watch",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/react": "*",
     "@emotion/styled": "*",
     "@mui/icons-material": "*",
     "@mui/material": "*",
+    "@types/react": "*",
     "immer": "*",
     "lodash": "*",
     "react": "*",
     "react-loader-spinner": "5.3.4",
     "react-media-recorder": "1.6.5",
-    "react-toastify": "*",
     "react-router-dom": "*",
+    "react-toastify": "*",
     "rollup": "^3.10.1",
     "rollup-plugin-typescript2": "^0.34.1",
     "sass": "*",
     "typescript": "*"
+  },
+  "devDependencies": {
+    "@babel/core": "*",
+    "@storybook/addon-actions": "*",
+    "@storybook/addon-essentials": "*",
+    "@storybook/addon-interactions": "*",
+    "@storybook/addon-links": "*",
+    "@storybook/builder-webpack4": "*",
+    "@storybook/manager-webpack4": "*",
+    "@storybook/react": "*",
+    "@storybook/testing-library": "*",
+    "babel-loader": "*"
   }
 }
