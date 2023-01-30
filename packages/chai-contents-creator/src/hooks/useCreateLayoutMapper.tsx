@@ -4,6 +4,7 @@ import CreateTP02Layout from "../components/layout/CreateTP02Layout";
 import CreateTP03Layout from "../components/layout/CreateTP03Layout";
 import CreateTP04Layout from "../components/layout/CreateTP04Layout";
 import CreateTP05Layout from "../components/layout/CreateTP05Layout";
+import CreateTP16Layout from "../components/layout/CreateTP16Layout";
 import { CreatorContent } from "./useCreateContent";
 
 export interface useCreateLayoutMapperProps {
@@ -27,6 +28,7 @@ const useCreateLayoutMapper = (props: useCreateLayoutMapperProps) => {
     TP03: <CreateTP03Layout {...props} />,
     TP04: <CreateTP04Layout {...props} />,
     TP05: <CreateTP05Layout {...props} />,
+    TP16: <CreateTP16Layout {...props} />,
   };
 
   const getTemplateLayout = (templateType: CreateTemplateType) => {

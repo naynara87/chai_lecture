@@ -1,22 +1,13 @@
 import styled from "@emotion/styled";
+import { ExplanationContainer, ExplanationHtmlCss, ExplanationText, ExplanationTextBox, ExplanationTitle, InfoWrapper, OIcon, OXWrapper, TextBox, XIcon } from "chai-ui";
 import React, { useState } from "react";
-import {
-  OIcon,
-  XIcon,
-  ExplanationContainer,
-  ExplanationHtmlCss,
-  ExplanationTitle,
-  InfoWrapper,
-  OXWrapper,
-  ExplanationTextBox,
-  ExplanationText,
-} from "chai-ui";
+
 import HtmlCreator from "./HtmlCreator";
 
 const ExplanationWrapper = styled.div`
   display: flex;
   justify-content: center;
-  width: 467px;
+  width: 100%;
   height: 100px;
 `;
 
@@ -44,7 +35,7 @@ const ExplanationCreator = ({
   handleFocusHtml,
 }: ExplanationProps) => {
   const [isCorrectMode, setIsCorrectMode] = useState(true);
-  const { correctMessage, wrongMessage, text } = explanation;
+  const { audio, correctMessage, wrongMessage, text } = explanation;
 
   return (
     <ExplanationWrapper>

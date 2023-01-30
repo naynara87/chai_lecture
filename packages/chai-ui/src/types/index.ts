@@ -132,6 +132,10 @@ export {
   DialogData,
   SentenceWord,
   VideoTrack,
+  ChooseTextOptions,
+  ChooseTextByAudioOptions,
+  TextBoxesOptions,
+  ImagesOptions,
 } from "./templateContents";
 
 export { TemplateProps } from "./templates";

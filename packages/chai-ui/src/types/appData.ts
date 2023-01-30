@@ -196,7 +196,7 @@ export type Page =
 
 export type TemplateType = Page["template"]["type"];
 
-export type CreateTemplatePage = TP01 | TP02 | TP03 | TP04 | TP05;
+export type CreateTemplatePage = TP01 | TP02 | TP03 | TP04 | TP05 | TP16;
 
 export type CreateTemplateType = CreateTemplatePage["template"]["type"];
 

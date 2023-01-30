@@ -8,7 +8,10 @@ export { default as ChooseTextByAudio } from "./ChooseTextByAudio";
 export { default as Dialog } from "./Dialog";
 export { default as HtmlContentAdapter } from "./HtmlContentAdapter";
 export { default as IconTextAdapter } from "./IconTextAdapter";
-export { default as ImageContentAdapter } from "./ImageContentAdapter";
+export {
+  default as ImageContentAdapter,
+  ImagesWrapper,
+} from "./ImageContentAdapter";
 export { default as ImageContentComponent } from "./ImageContentComponent";
 export { default as ImagesContentComponent } from "./ImagesContentComponent";
 export { default as ListenWordContent } from "./ListenWordContent";

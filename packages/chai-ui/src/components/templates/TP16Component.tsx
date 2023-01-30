@@ -7,12 +7,12 @@ import { TemplateProps } from "../../types/templates";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TitleContent from "../molecules/TitleContent";
 
-const TP16Layout = styled.div`
+export const TP16LayoutWrapper = styled.div`
   height: ${templateContentsAreaHeight};
   display: grid;
-  grid-template-columns: 48% 48%;
-  grid-template-rows: 60% 10%;
-  justify-content: center;
+  grid-template-columns: 49% 49%;
+  grid-template-rows: 60% 38%;
+  gap: 2%;
 `;
 
 const LongContainer = styled.div`
@@ -35,7 +35,11 @@ const ContentContainer = styled.div`
 
 interface TP16ComponentProps extends TemplateProps {}
 
-const TP16Component = ({ setPageCompleted, page, showHeader = true }: TP16ComponentProps) => {
+const TP16Component = ({
+  setPageCompleted,
+  page,
+  showHeader = true,
+}: TP16ComponentProps) => {
   const thisPage = page as TP16;
   useEffect(() => {
     setPageCompleted();
@@ -46,11 +50,14 @@ const TP16Component = ({ setPageCompleted, page, showHeader = true }: TP16Compon
   return (
     <TemplateCommonLayout>
       {showHeader ? (
-        <TitleContent title={thisPage.title} description={thisPage.description} />
+        <TitleContent
+          title={thisPage.title}
+          description={thisPage.description}
+        />
       ) : (
         <></>
       )}
-      <TP16Layout>
+      <TP16LayoutWrapper>
         {thisPage.template.contents.map((content, index) => {
           if (content) {
             if (index === 2) {
@@ -69,7 +76,7 @@ const TP16Component = ({ setPageCompleted, page, showHeader = true }: TP16Compon
             return <></>;
           }
         })}
-      </TP16Layout>
+      </TP16LayoutWrapper>
     </TemplateCommonLayout>
   );
 };

@@ -5,36 +5,52 @@ import { Draggable, Droppable } from "react-beautiful-dnd";
 import { ControlCameraOutlined } from "@mui/icons-material";
 import { useCreateLayoutMapperProps } from "../../hooks/useCreateLayoutMapper";
 import CreatePlusBox from "../pages/CreatePlusBox";
-import { TP02LayoutWrapper } from "chai-ui";
+import { TP16LayoutWrapper } from "chai-ui";
 
 interface DropBoxProps {
   customCss?: SerializedStyles;
+  isLong?: boolean;
 }
+
+const longCss = css`
+  grid-column-start: 1;
+  grid-column-end: 3;
+`;
 
 const DropBox = styled.div<DropBoxProps>`
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: relative;
   overflow-y: auto;
+
   ${(props) => props.customCss}
+  ${(props) => props.isLong && longCss}
+`;
+
+const DragBox = styled.div`
+  height: 100%;
 `;
 
 const overCss = css`
   border: 1px dashed black;
 `;
 
-interface TP02LayoutProps extends useCreateLayoutMapperProps {}
+interface TP16LayoutProps extends useCreateLayoutMapperProps {}
 
-const CreateTP02Layout = ({
+const CreateTP16Layout = ({
   components,
   componentList,
   setComponentIndex,
   id,
-  contentsContextMenuRef,
   handleFocusHtml,
-}: TP02LayoutProps) => {
+  contentsContextMenuRef,
+}: TP16LayoutProps) => {
   const contents = useMemo(() => {
-    return Array(1)
+    return Array(3)
       .fill("")
       .map((value, index) => {
         return (
@@ -51,6 +67,7 @@ const CreateTP02Layout = ({
                 onClick={() => {
                   handleFocusHtml();
                 }}
+                isLong={index === 2}
               >
                 {componentList[index] === undefined ||
                 componentList[index] === null ? (
@@ -65,12 +82,15 @@ const CreateTP02Layout = ({
                     index={index}
                   >
                     {(provided) => (
-                      <div ref={provided.innerRef} {...provided.draggableProps}>
+                      <DragBox
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                      >
                         <div {...provided.dragHandleProps}>
                           <ControlCameraOutlined />
                         </div>
                         {components[index]}
-                      </div>
+                      </DragBox>
                     )}
                   </Draggable>
                 )}
@@ -88,11 +108,11 @@ const CreateTP02Layout = ({
     handleFocusHtml,
   ]);
   return (
-    <TP02LayoutWrapper>
+    <TP16LayoutWrapper>
       {/* 컴포넌트가 추가되는 영역 */}
       {contents}
-    </TP02LayoutWrapper>
+    </TP16LayoutWrapper>
   );
 };
 
-export default CreateTP02Layout;
+export default CreateTP16Layout;

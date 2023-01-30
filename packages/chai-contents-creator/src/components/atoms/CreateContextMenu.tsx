@@ -3,7 +3,8 @@ import { colorPalette } from "chai-ui";
 
 interface ContextMenuProps {
   top: number;
-  left: number;
+  left?: number;
+  right?: number;
 }
 
 const ContextMenu = styled.div<ContextMenuProps>`
@@ -14,6 +15,7 @@ const ContextMenu = styled.div<ContextMenuProps>`
   box-sizing: border-box;
   top: ${(props) => `${props.top}px`};
   left: ${(props) => `${props.left}px`};
+  right: ${(props) => `${props.right}px`};
   background-color: ${colorPalette.blankBorderColor};
 
   & li {
@@ -25,12 +27,18 @@ const ContextMenu = styled.div<ContextMenuProps>`
 interface CreateContextMenuProps {
   children: JSX.Element | JSX.Element[];
   top: number;
-  left: number;
+  left?: number;
+  right?: number;
 }
 
-const CreateContextMenu = ({ children, top, left }: CreateContextMenuProps) => {
+const CreateContextMenu = ({
+  children,
+  top,
+  left,
+  right,
+}: CreateContextMenuProps) => {
   return (
-    <ContextMenu top={top} left={left}>
+    <ContextMenu top={top} left={left} right={right}>
       {children}
     </ContextMenu>
   );

@@ -17,7 +17,8 @@
     "react-scripts": "*",
     "typescript": "*",
     "web-vitals": "*",
-    "react-router-dom": "*"
+    "react-router-dom": "*",
+    "react-toastify": "*"
   },
   "devDependencies": {
     "env-cmd": "*"

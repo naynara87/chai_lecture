@@ -13,19 +13,24 @@ interface TextCardGrpProps {
 interface TextBoxesWrapperProps {
   customCss?: SerializedStyles;
   boxLength?: number;
+  isHorizontal?: boolean;
 }
 
 export const TextBoxesWrapper = styled.div<TextBoxesWrapperProps>`
   display: flex;
   justify-content: center;
-  flex-direction: row;
+  flex-direction: ${(props) => (props.isHorizontal ? "column" : "row")};
   flex-wrap: wrap;
+  align-items: center;
   gap: 0 ${changePXtoVW(40)};
   width: ${(props) =>
-    `${props.boxLength && props.boxLength > 4 ? changePXtoVW(1200) : changePXtoVW(1400)}`};
+    `${
+      props.boxLength && props.boxLength > 4
+        ? changePXtoVW(1200)
+        : changePXtoVW(1400)
+    }`};
   margin: 0 auto;
-
-  ${(props) => props.customCss}
+  ${(props) => props.customCss};
 `;
 
 export const TextCardGrp = styled.div<TextCardGrpProps>`
@@ -101,7 +106,10 @@ const TextBoxes = ({
         >
           <TextBox text={textBox.main} customBoxCss={customBoxCss} />
           <SubText>
-            <HtmlContentComponent html={textBox.sub ?? ""} customCss={subTextCss} />
+            <HtmlContentComponent
+              html={textBox.sub ?? ""}
+              customCss={subTextCss}
+            />
           </SubText>
           <MeaningText className={isHorizontal ? "horizontal" : ""}>
             <HtmlContentComponent
@@ -112,10 +120,20 @@ const TextBoxes = ({
         </TextCardGrp>
       );
     });
-  }, [customBoxWrapperCss, datas, isHorizontal, customBoxCss, customDescriptionCss]);
+  }, [
+    customBoxWrapperCss,
+    datas,
+    isHorizontal,
+    customBoxCss,
+    customDescriptionCss,
+  ]);
 
   return (
-    <TextBoxesWrapper customCss={customBoxContainerCss} boxLength={datas.length}>
+    <TextBoxesWrapper
+      customCss={customBoxContainerCss}
+      boxLength={datas.length}
+      isHorizontal={isHorizontal}
+    >
       {renderTextBoxes}
     </TextBoxesWrapper>
   );

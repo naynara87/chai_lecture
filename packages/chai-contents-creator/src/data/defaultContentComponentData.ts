@@ -1,6 +1,8 @@
 import { Content } from "chai-ui";
 
-export const defaultContentComponentData: Partial<Record<Content["type"], Content["data"]>> = {
+export const defaultContentComponentData: Partial<
+  Record<Content["type"], Content["data"]>
+> = {
   chooseText: [
     {
       choices: [],
@@ -14,6 +16,11 @@ export const defaultContentComponentData: Partial<Record<Content["type"], Conten
       main: "",
       sub: "",
       description: "", // 박스 밖 설명글
+    },
+  ],
+  images: [
+    {
+      src: "",
     },
   ],
 };
