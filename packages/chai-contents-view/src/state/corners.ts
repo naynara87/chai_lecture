@@ -1,7 +1,7 @@
 // recoil state for corners
 
+import { ID } from "chai-ui";
 import { atom } from "recoil";
-import { ID } from "../types/appData";
 
 export type CornerCompleteState = {
   id: ID;

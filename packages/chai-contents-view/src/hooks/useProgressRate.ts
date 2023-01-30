@@ -1,5 +1,5 @@
+import { ID } from "chai-ui";
 import { useMemo } from "react";
-import { ID } from "../types/appData";
 import useCornerListPage from "./useCornerListPage";
 
 const useProgressRate = () => {

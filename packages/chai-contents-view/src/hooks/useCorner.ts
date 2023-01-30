@@ -1,11 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
+import { ID, Page, PageData, pageDataConverter, QUERY_KEY, useToast } from "chai-ui";
 import { useState } from "react";
 import { getPageListData } from "../api/lcms";
-import { QUERY_KEY } from "../constants/queryKey";
-import { ID, Page } from "../types/appData";
-import { pageDataConverter } from "../utils/converter";
 import useAuth from "./useAuth";
-import useToast from "./useToast";
 
 const useCorner = (cornerId: ID | undefined) => {
   const { isAuthorized } = useAuth();
@@ -23,7 +20,7 @@ const useCorner = (cornerId: ID | undefined) => {
     {
       enabled: isAuthorized && !!cornerId,
       onSuccess: (data) => {
-        const _pages = data?.body?.data?.map((pageData) => pageDataConverter(pageData));
+        const _pages = data?.body?.data?.map((pageData: PageData) => pageDataConverter(pageData));
         setPages(_pages ?? []);
       },
       onError: (error) => {

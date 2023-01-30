@@ -1,7 +1,6 @@
-import { LMS_SAVE_DATA } from "../constants/api";
+import { ID, LMS_SAVE_DATA } from "chai-ui";
 import { learningLogData } from "../data/dummyData2";
 import httpLms from "../lib/axios/httpLms";
-import { ID } from "../types/appData";
 
 /**
  * 학습 이력 조회

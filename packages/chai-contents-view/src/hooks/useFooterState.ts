@@ -1,9 +1,7 @@
+import { Corner2, CornerStateType, ID, QuizStateType } from "chai-ui";
 import { useCallback, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { CornerCompleteState, cornersState } from "../state/corners";
-import { Corner2, ID } from "../types/appData";
-import { CornerStateType } from "../types/corner";
-import { QuizStateType } from "../types/quiz";
 
 export interface FooterCornerState {
   id: ID;

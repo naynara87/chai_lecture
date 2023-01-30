@@ -1,20 +1,25 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import Footer from "../molecules/Footer";
-import { CornerMain, Header, CommonPageLayout } from "chai-ui";
+import {
+  CornerMain,
+  Header,
+  CommonPageLayout,
+  getCookie,
+  useToast,
+  getPageUrl,
+  IframeMainContainer,
+  CommonMainContainer,
+  useDebounced,
+} from "chai-ui";
 import { useNavigate, useParams } from "react-router-dom";
-import { getPageUrl } from "../../utils/url";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { cornersState } from "../../state/corners";
 import useCornerPage from "../../hooks/useCornerPage";
 import { CORNER_LIST_URL } from "../../constants/url";
-import { IframeMainContainer, CommonMainContainer } from "chai-ui";
 import { reviewCornerIndexState } from "../../state/reviewCornerIndexState";
 import { eduModeState } from "../../state/eduModeState";
-import { getCookie } from "../../utils/cookie";
 import { saveLmsData } from "../../api/lms";
-import useToast from "../../hooks/useToast";
 import useProgressRate from "../../hooks/useProgressRate";
-import { useDebounced } from "../../hooks/useDebounce";
 
 const CornerPage = () => {
   const { courseId, cornerId, lessonId, pageId } = useParams();

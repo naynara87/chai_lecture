@@ -7,11 +7,11 @@ import {
   TitleContent,
   TemplateCommonLayout,
   CommonPageLayout,
+  changePXtoVW,
+  colorPalette,
 } from "chai-ui";
 import styled from "@emotion/styled";
 import "../../styles/wordtest.css";
-import { changePXtoVW } from "../../utils/styles";
-import { colorPalette } from "../../styles/colorPalette";
 
 const ReportTitle = styled.h2`
   margin-bottom: ${changePXtoVW(64)};

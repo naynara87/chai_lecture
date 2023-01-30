@@ -1,7 +1,6 @@
+import { Corner2, getCookie, ID, InitialAppData, Page } from "chai-ui";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { CORNER_LIST_URL } from "../constants/url";
-import { Corner2, ID, InitialAppData, Page } from "../types/appData";
-import { getCookie } from "../utils/cookie";
 import useCorner from "./useCorner";
 import useLesson from "./useLesson";
 

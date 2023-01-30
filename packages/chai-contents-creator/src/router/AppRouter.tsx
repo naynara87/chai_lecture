@@ -4,8 +4,8 @@ import {
   CREATE_CONTENT_LAYOUT_URL,
   CREATE_CONTENT_COMPONENTS_URL,
 } from "chai-ui/src/constants/url";
-import CreateComponents from "../pages/CreateComponents";
-import CreateLayout from "../pages/CreateLayout";
+import CreateLayout from "../components/pages/CreateLayout";
+import CreateComponents from "../components/pages/CreateComponents";
 
 const AppRouter = () => {
   return (

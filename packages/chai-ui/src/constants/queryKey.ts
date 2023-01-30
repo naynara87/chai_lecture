@@ -1,5 +1,5 @@
 // react-query key constants
-export const QUERY_KEY = Object.freeze({
+const QUERY_KEY = Object.freeze({
   // temp api
   APP_DATA: "appData", // getAppData
   CORNER: "corner", // getCorner
@@ -13,3 +13,5 @@ export const QUERY_KEY = Object.freeze({
   // api - lms
   LEARNING_LOG: "learningLogByLessonId",
 });
+
+export default QUERY_KEY;

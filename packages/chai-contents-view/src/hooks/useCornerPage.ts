@@ -1,13 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
+import { Page, PageData, pageDataConverter, QUERY_KEY, useToast } from "chai-ui";
 import { useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getPageListData } from "../api/lcms";
-import { QUERY_KEY } from "../constants/queryKey";
-import { Page } from "../types/appData";
-import { pageDataConverter } from "../utils/converter";
 import useAuth from "./useAuth";
 import useCornerListPage from "./useCornerListPage";
-import useToast from "./useToast";
 
 const useCornerPage = () => {
   const { addToast } = useToast();
@@ -41,7 +38,7 @@ const useCornerPage = () => {
         //   setPages(getPageList ?? []);
         //   return;
         // }
-        const _pages = data?.body?.data?.map((pageData) => pageDataConverter(pageData));
+        const _pages = data?.body?.data?.map((pageData: PageData) => pageDataConverter(pageData));
         setPages(_pages ?? []);
       },
       onError: (error) => {
