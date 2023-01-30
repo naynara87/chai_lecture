@@ -23,7 +23,7 @@
     "lodash": "*",
     "react": "*",
     "react-beautiful-dnd": "^13.1.1",
-    "react-cookie": "4.1.1",
+    "react-cookie": "*",
     "react-dom": "*",
     "react-loader-spinner": "5.3.4",
     "react-media-recorder": "1.6.5",
