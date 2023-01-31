@@ -6,6 +6,12 @@
 image: node:16
 
 pipelines:
+  default:
+      - step:
+          deployment: test
+          script:
+            - echo "start build test"
+            - npm run dev 
   branches:
     test:
       - step:
@@ -18,7 +24,7 @@ pipelines:
             - npm install
             - npm run build
             - npm run dev 
-    master:
+      master:
       - step:
           name: build pubilsh
           deployment: production
