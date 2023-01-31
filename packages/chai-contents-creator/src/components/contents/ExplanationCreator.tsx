@@ -1,22 +1,13 @@
 import styled from "@emotion/styled";
+import { ExplanationContainer, ExplanationHtmlCss, ExplanationText, ExplanationTextBox, ExplanationTitle, InfoWrapper, OIcon, OXWrapper, XIcon } from "chai-ui";
 import React, { useState } from "react";
-import {
-  OIcon,
-  XIcon,
-  ExplanationContainer,
-  ExplanationHtmlCss,
-  ExplanationTitle,
-  InfoWrapper,
-  OXWrapper,
-  ExplanationTextBox,
-  ExplanationText,
-} from "chai-ui";
+
 import HtmlCreator from "./HtmlCreator";
 
 const ExplanationWrapper = styled.div`
   display: flex;
   justify-content: center;
-  width: 467px;
+  width: 100%;
   height: 100px;
 `;
 

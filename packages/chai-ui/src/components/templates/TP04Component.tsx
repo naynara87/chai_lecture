@@ -7,10 +7,10 @@ import { TemplateProps } from "../../types/templates";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TitleContent from "../molecules/TitleContent";
 
-const TP04Layout = styled.div`
+export const TP04LayoutWrapper = styled.div`
   display: grid;
-  grid-template-rows: 48% 48%;
-  justify-content: center;
+  grid-template-rows: 49% 49%;
+  gap: 2%;
   height: ${templateContentsAreaHeight};
 `;
 
@@ -24,7 +24,11 @@ const ContentContainer = styled.div`
 
 interface TP04ComponentProps extends TemplateProps {}
 
-const TP04Component = ({ setPageCompleted, page, showHeader = false }: TP04ComponentProps) => {
+const TP04Component = ({
+  setPageCompleted,
+  page,
+  showHeader = false,
+}: TP04ComponentProps) => {
   const thisPage = page as TP04;
 
   useEffect(() => {
@@ -36,11 +40,14 @@ const TP04Component = ({ setPageCompleted, page, showHeader = false }: TP04Compo
   return (
     <TemplateCommonLayout>
       {showHeader ? (
-        <TitleContent title={thisPage.title} description={thisPage.description} />
+        <TitleContent
+          title={thisPage.title}
+          description={thisPage.description}
+        />
       ) : (
         <></>
       )}
-      <TP04Layout>
+      <TP04LayoutWrapper>
         {thisPage.template.contents.map((content, index) => {
           if (content) {
             return (
@@ -52,7 +59,7 @@ const TP04Component = ({ setPageCompleted, page, showHeader = false }: TP04Compo
             return <></>;
           }
         })}
-      </TP04Layout>
+      </TP04LayoutWrapper>
     </TemplateCommonLayout>
   );
 };

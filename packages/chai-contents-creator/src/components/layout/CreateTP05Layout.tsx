@@ -3,30 +3,24 @@ import styled from "@emotion/styled";
 import React, { useMemo } from "react";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import { ControlCameraOutlined } from "@mui/icons-material";
-import { TP05LayoutStyle } from "chai-ui";
 import { useCreateLayoutMapperProps } from "../../hooks/useCreateLayoutMapper";
 import CreatePlusBox from "../pages/CreatePlusBox";
+import { TP05LayoutWrapper } from "chai-ui";
 
 interface DropBoxProps {
   customCss?: SerializedStyles;
 }
 
 const DropBox = styled.div<DropBoxProps>`
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow-y: auto;
   ${(props) => props.customCss}
 `;
 
 const overCss = css`
   border: 1px dashed black;
-`;
-
-const ContentWrapper = styled.div`
-  display: grid;
-  grid-template-rows: 60% 38%;
-  height: 100%;
-`;
-
-const layoutCss = css`
-  height: 100%;
 `;
 
 interface TP05LayoutProps extends useCreateLayoutMapperProps {}
@@ -94,10 +88,10 @@ const CreateTP05Layout = ({
     handleFocusHtml,
   ]);
   return (
-    <TP05LayoutStyle id={id} customCss={layoutCss}>
+    <TP05LayoutWrapper>
       {/* 컴포넌트가 추가되는 영역 */}
-      <ContentWrapper>{contents}</ContentWrapper>
-    </TP05LayoutStyle>
+      {contents}
+    </TP05LayoutWrapper>
   );
 };
 

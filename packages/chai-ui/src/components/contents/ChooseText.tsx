@@ -32,7 +32,9 @@ const ChooseText = ({ contentData, isVertical }: ChooseTextProps) => {
     data: [{ choices, answerIndex, explanation }],
   } = contentData;
   const [showExplanation, setShowExplanation] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState<number | undefined>(undefined);
+  const [selectedIndex, setSelectedIndex] = useState<number | undefined>(
+    undefined
+  );
   const [isCorrect, setIsCorrect] = useState(false);
 
   const handleClickCloseExplanation = () => {
@@ -42,8 +44,12 @@ const ChooseText = ({ contentData, isVertical }: ChooseTextProps) => {
   const [sortList, setSortList] = useState<string[]>([]);
 
   useEffect(() => {
-    sortChoices(choices, setSortList);
-  }, [choices]);
+    if (contentData.options?.sortAnswer) {
+      sortChoices(choices, setSortList);
+    } else {
+      setSortList(choices);
+    }
+  }, [choices, contentData.options]);
 
   const handleClickAnswer = (index: number) => {
     if (selectedIndex !== undefined) {
@@ -60,7 +66,9 @@ const ChooseText = ({ contentData, isVertical }: ChooseTextProps) => {
 
   return (
     <div>
-      <QuizAnswerContainer isVertical={isVertical}>
+      <QuizAnswerContainer
+        isVertical={contentData.options?.isHorizontal || isVertical}
+      >
         {sortList.map((choice, index) => (
           <QuizAnswer
             key={index}

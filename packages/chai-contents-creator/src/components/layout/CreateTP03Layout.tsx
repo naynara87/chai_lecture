@@ -3,31 +3,24 @@ import styled from "@emotion/styled";
 import React, { useMemo } from "react";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import { ControlCameraOutlined } from "@mui/icons-material";
-import { TP03LayoutStyle } from "chai-ui";
 import { useCreateLayoutMapperProps } from "../../hooks/useCreateLayoutMapper";
 import CreatePlusBox from "../pages/CreatePlusBox";
+import { TP03LayoutWrapper } from "chai-ui";
 
 interface DropBoxProps {
   customCss?: SerializedStyles;
 }
 
 const DropBox = styled.div<DropBoxProps>`
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow-y: auto;
   ${(props) => props.customCss}
 `;
 
 const overCss = css`
   border: 1px dashed black;
-`;
-
-const ContentWrapper = styled.div`
-  display: grid;
-  grid-template-rows: 38% 60%;
-  height: 100%;
-`;
-
-const layoutCss = css`
-  display: block;
-  height: 100%;
 `;
 
 interface TP03LayoutProps extends useCreateLayoutMapperProps {}
@@ -59,10 +52,18 @@ const CreateTP03Layout = ({
                   handleFocusHtml();
                 }}
               >
-                {componentList[index] === undefined || componentList[index] === null ? (
-                  <CreatePlusBox componentIndex={index} setComponentIndex={setComponentIndex} />
+                {componentList[index] === undefined ||
+                componentList[index] === null ? (
+                  <CreatePlusBox
+                    componentIndex={index}
+                    setComponentIndex={setComponentIndex}
+                  />
                 ) : (
-                  <Draggable draggableId={`content${index}`} key={`content${index}`} index={index}>
+                  <Draggable
+                    draggableId={`content${index}`}
+                    key={`content${index}`}
+                    index={index}
+                  >
                     {(provided) => (
                       <div ref={provided.innerRef} {...provided.draggableProps}>
                         <div {...provided.dragHandleProps}>
@@ -79,12 +80,18 @@ const CreateTP03Layout = ({
           </Droppable>
         );
       });
-  }, [componentList, components, setComponentIndex, contentsContextMenuRef, handleFocusHtml]);
+  }, [
+    componentList,
+    components,
+    setComponentIndex,
+    contentsContextMenuRef,
+    handleFocusHtml,
+  ]);
   return (
-    <TP03LayoutStyle id={id} customCss={layoutCss}>
+    <TP03LayoutWrapper>
       {/* 컴포넌트가 추가되는 영역 */}
-      <ContentWrapper>{contents}</ContentWrapper>
-    </TP03LayoutStyle>
+      {contents}
+    </TP03LayoutWrapper>
   );
 };
 

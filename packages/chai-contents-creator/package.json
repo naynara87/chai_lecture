@@ -14,10 +14,12 @@
     "cross-env": "*",
     "react": "*",
     "react-dom": "*",
+    "react-quill": "^2.0.0",
+    "react-router-dom": "*",
     "react-scripts": "*",
+    "react-toastify": "*",
     "typescript": "*",
-    "web-vitals": "*",
-    "react-router-dom": "*"
+    "web-vitals": "*"
   },
   "devDependencies": {
     "env-cmd": "*"

@@ -7,7 +7,7 @@ import { TemplateProps } from "../../types/templates";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TitleContent from "../molecules/TitleContent";
 
-const TP02Layout = styled.div`
+export const TP02LayoutWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,7 +24,11 @@ const ContentContainer = styled.div`
 `;
 interface TP02ComponentProps extends TemplateProps {}
 
-const TP02Component = ({ setPageCompleted, page, showHeader = false }: TP02ComponentProps) => {
+const TP02Component = ({
+  setPageCompleted,
+  page,
+  showHeader = false,
+}: TP02ComponentProps) => {
   const thisPage = page as TP02;
 
   useEffect(() => {
@@ -36,11 +40,14 @@ const TP02Component = ({ setPageCompleted, page, showHeader = false }: TP02Compo
   return (
     <TemplateCommonLayout>
       {showHeader ? (
-        <TitleContent title={thisPage.title} description={thisPage.description} />
+        <TitleContent
+          title={thisPage.title}
+          description={thisPage.description}
+        />
       ) : (
         <></>
       )}
-      <TP02Layout>
+      <TP02LayoutWrapper>
         {thisPage.template.contents.map((content, index) => {
           if (content) {
             return (
@@ -52,7 +59,7 @@ const TP02Component = ({ setPageCompleted, page, showHeader = false }: TP02Compo
             return <></>;
           }
         })}
-      </TP02Layout>
+      </TP02LayoutWrapper>
     </TemplateCommonLayout>
   );
 };

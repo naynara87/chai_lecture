@@ -26,4 +26,9 @@ export const layouts: ContentLayoutType[] = [
     layoutAreaIndex: 2,
     image: "https://via.placeholder.com/150",
   },
+  {
+    name: "TP16",
+    layoutAreaIndex: 3,
+    image: "https://via.placeholder.com/150",
+  },
 ];

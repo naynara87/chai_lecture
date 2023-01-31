@@ -19,11 +19,22 @@ export type ChooseTextContent = {
     tip?: string; // html
     explanation?: Explanation;
   }[];
+  options?: ChooseTextOptions;
+};
+
+export type ChooseTextOptions = {
+  sortAnswer: boolean;
+  isHorizontal: boolean;
 };
 
 export type ChooseTextByAudioContent = {
   type: "chooseTextByAudio";
   data: ChooseTextByAudioData[];
+  options?: ChooseTextByAudioOptions;
+};
+
+export type ChooseTextByAudioOptions = {
+  sortAnswer: boolean;
 };
 
 export type ChooseTextByAudioData = {
@@ -40,11 +51,13 @@ export type HtmlContent = {
     kind?: "tip" | "title" | "description";
     text: string;
   }[];
+  options?: {};
 };
 
 export type ListenImagesContent = {
   type: "listenImages";
   data: ListenImageData[];
+  options?: {};
 };
 
 type ListenImageData = {
@@ -59,6 +72,7 @@ type ListenImageData = {
 export type ListenWordsContent = {
   type: "listenWords";
   data: ListenWordData[];
+  options?: {};
 };
 
 export type ListenWordData = {
@@ -72,18 +86,27 @@ export type ListenWordData = {
 export type ImagesContent = {
   type: "images";
   data: { src: string }[];
+  options?: ImagesOptions;
+};
+
+export type ImagesOptions = {
+  isHorizontal: boolean;
 };
 
 export type TextBoxesContent = {
   type: "textBoxes";
   data: TextBoxesData[];
+  options?: TextBoxesOptions;
+};
+
+export type TextBoxesOptions = {
+  isHorizontal: boolean;
 };
 
 export type TextBoxesData = {
   main: string;
   sub?: string;
   description?: string; // 박스 밖 설명글
-  contentId?: string;
 };
 
 export type IconTextContent = {
@@ -94,6 +117,7 @@ export type IconTextContent = {
     };
     text: string;
   }[];
+  options?: {};
 };
 
 export type VideoContent = {
@@ -102,6 +126,7 @@ export type VideoContent = {
     src: string;
     tracks?: VideoTrack[];
   }[];
+  options?: {};
 };
 
 export type VideoTrack = {
@@ -116,6 +141,7 @@ export type AudioContent = {
   data: {
     src: string;
   }[];
+  options?: {};
 };
 
 export type AudioRecordContent = {
@@ -125,6 +151,7 @@ export type AudioRecordContent = {
       src: string;
     };
   }[];
+  options?: {};
 };
 
 export type DragAndDropContent = {
@@ -134,6 +161,7 @@ export type DragAndDropContent = {
     answerIndex: number;
     explanation: Explanation;
   }[];
+  options?: {};
 };
 
 export type StudyWordsContent = {
@@ -146,11 +174,13 @@ export type StudyWordsContent = {
       src: string;
     };
   }[];
+  options?: {};
 };
 
 export type DialogContent = {
   type: "dialog";
   data: DialogData[];
+  options?: {};
 };
 
 export type DialogData = {
@@ -188,11 +218,13 @@ export type NumberTableContent = {
       src: string;
     };
   }[];
+  options?: {};
 };
 
 export type WordQuizContent = {
   type: "wordQuiz";
   data: WordQuizData[];
+  options?: {};
 };
 
 export type WordQuizData = {
@@ -209,6 +241,7 @@ export type WordQuizData = {
 export type SortWordsContent = {
   type: "sortWords";
   data: SortWordsData[];
+  options?: {};
 };
 
 export type SortWordsData = {
@@ -223,6 +256,7 @@ export type SortWordsData = {
 export type ChooseMediaTextContent = {
   type: "chooseMediaText";
   data: ChooseMediaTextData[];
+  options?: {};
 };
 
 export type ChooseMediaTextData = {

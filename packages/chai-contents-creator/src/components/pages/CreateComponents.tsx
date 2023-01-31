@@ -16,15 +16,17 @@ import {
   Droppable,
   DropResult,
 } from "react-beautiful-dnd";
+
 import { useRecoilValue } from "recoil";
 import { pasteComponentState } from "../../states/pasteComponentState";
 import useContextMenu from "../../hooks/useContextMenu";
+import { Content, ModalConfirm, useToast } from "chai-ui";
+import usePromiseConfirmModal from "../../hooks/usePromiseConfirmModal";
 import useCreateContent from "../../hooks/useCreateContent";
-import useCreateLayoutMapper from "../../hooks/useCreateLayoutMapper";
 import { CREATE_CONTENT_LAYOUT_URL } from "../../constants/url";
-import { Content } from "chai-ui";
-import CreateContextMenu from "../atoms/CreateContextMenu";
 import ModalCreatePreview from "../modal/ModalCreatePreview";
+import CreateContextMenu from "../atoms/CreateContextMenu";
+import useCreateLayoutMapper from "../../hooks/useCreateLayoutMapper";
 
 const PageLayout = styled.div`
   .btn-wrap {
@@ -49,6 +51,23 @@ const CreateComponents = () => {
   const [isPlusBoxClick, setIsPlusBoxClick] = useState(false);
   const [isPreviewModalOpen, setIsPreviewModalOpen] = useState(false);
   const [focusEditor, setFocusEditor] = useState<string | undefined>();
+  const [isLayoutChangeModalOpen, setIsLayoutChangeModalOpen] = useState(false);
+
+  const { addToast } = useToast();
+  const {
+    modalContent: contentReplaceByBtnModal,
+    showOpenModal: showOpenContentReplaceByBtnModal,
+  } = usePromiseConfirmModal({
+    title: "컴포넌트를 변경하시겠습니까?",
+    description: "기존의 컴포넌트의 내용이 사라집니다.",
+  });
+  const {
+    modalContent: contentReplaceByContentModal,
+    showOpenModal: showOpenContentReplaceByContentModal,
+  } = usePromiseConfirmModal({
+    title: "컴포넌트의 위치를 변경합니다.",
+    description: "위치를 변경하시겠습니까?",
+  });
 
   const [isViewing, setIsViewing] = useState(false);
   const navigate = useNavigate();
@@ -107,16 +126,8 @@ const CreateComponents = () => {
     }
   }, [contentLayout, navigate, componentList, isViewing, setComponentList]);
 
-  const handleLayoutClick = () => {
-    console.log("레이아웃 설정 버튼 클릭");
-    const isConfirmed = window.confirm("레이아웃을 변경하시겠습니까?");
-    if (isConfirmed) {
-      navigate(CREATE_CONTENT_LAYOUT_URL);
-    }
-  };
-
   const handleDragEnd = useCallback(
-    (result: DropResult) => {
+    async (result: DropResult) => {
       if (result.destination?.droppableId.slice(-1) === undefined) return;
       if (result.destination.droppableId === result.source.droppableId) return;
       // 컨텐츠를 옮길 위치
@@ -126,24 +137,19 @@ const CreateComponents = () => {
       // 컨텐츠를 옮겨온 위치
       const currentIndex = parseInt(result.source.droppableId.slice(-1)!);
       const copyComponentList = [...componentList];
-      if (componentList[componentIndex]) {
-        if (result.source.droppableId === "btn-wrap") {
-          const confirm = window.confirm(
-            "기존의 컴포넌트의 내용이 사라집니다. 컴포넌트를 변경하시겠습니까?"
-          );
-          if (!confirm) {
-            return;
-          }
-        } else {
-          const confirm = window.confirm("컴포넌트의 위치를 변경하시겠습니까?");
-          if (!confirm) {
-            return;
-          }
-        }
-      }
+
       if (result.source.droppableId === "btn-wrap") {
-        addNewComponent(result.draggableId as Content["type"], componentIndex);
-      } else {
+        const confirmResult = await showOpenContentReplaceByBtnModal();
+        if (confirmResult) {
+          addNewComponent(
+            result.draggableId as Content["type"],
+            componentIndex
+          );
+        }
+        return;
+      }
+      const confirmResult = await showOpenContentReplaceByContentModal();
+      if (confirmResult) {
         copyComponentList.splice(
           componentIndex,
           1,
@@ -161,7 +167,13 @@ const CreateComponents = () => {
         setComponentList(copyComponentList);
       }
     },
-    [addNewComponent, componentList, setComponentList]
+    [
+      addNewComponent,
+      componentList,
+      setComponentList,
+      showOpenContentReplaceByBtnModal,
+      showOpenContentReplaceByContentModal,
+    ]
   );
 
   const contextMenu = useMemo(() => {
@@ -248,7 +260,7 @@ const CreateComponents = () => {
           <div className="left-wrap">
             <h1 className="logo-wrap">
               <img
-                src={`/${process.env.PUBLIC_URL}images/bubblecon/bubblecon_logo.png`}
+                src={`${process.env.PUBLIC_URL}images/bubblecon/bubblecon_logo.png`}
                 alt="bubblecon_logo"
               />
             </h1>
@@ -282,7 +294,7 @@ const CreateComponents = () => {
             <div className="btn-wrap">
               <button
                 className="btn btn-border-primary"
-                onClick={handleLayoutClick}
+                onClick={() => setIsLayoutChangeModalOpen(true)}
               >
                 레이아웃 설정
               </button>
@@ -322,8 +334,9 @@ const CreateComponents = () => {
                                 (component) => component === undefined
                               );
                               if (nullIndex === -1) {
-                                alert(
-                                  "템플릿의 빈칸이 존재하지않아 컴포넌트를 추가할 수 없습니다."
+                                addToast(
+                                  "템플릿의 빈칸이 존재하지않아 컴포넌트를 추가할 수 없습니다.",
+                                  "error"
                                 );
                                 return;
                               } else {
@@ -346,7 +359,6 @@ const CreateComponents = () => {
           <div
             className="create-page-wrap"
             onClick={(event) => {
-              event.preventDefault();
               const target = event.target as Element;
               if (target.classList.contains("plusBoxWrapper")) {
                 setClicked(!clicked);
@@ -421,7 +433,18 @@ const CreateComponents = () => {
           </div>
         </div>
       </footer>
-
+      <ModalConfirm
+        isModalOpen={isLayoutChangeModalOpen}
+        setIsModalOpen={setIsLayoutChangeModalOpen}
+        title="레이아웃을 변경하시겠습니까?"
+        description="작성된 내용이 사라집니다."
+        handleClickRightButton={() => navigate(CREATE_CONTENT_LAYOUT_URL)}
+        handleClickLeftButton={() => {
+          setIsLayoutChangeModalOpen(false);
+        }}
+      />
+      <>{contentReplaceByBtnModal}</>
+      <>{contentReplaceByContentModal}</>
       <ModalComponentChoice />
     </PageLayout>
   );

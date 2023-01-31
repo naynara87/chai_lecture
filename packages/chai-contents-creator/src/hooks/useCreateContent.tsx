@@ -5,11 +5,12 @@ import {
   contentLayoutState,
   contentLayoutStateType,
 } from "../states/contentLayoutState";
-import { ApproveContent, Content } from "chai-ui";
+import { ApproveContent, Content, useToast } from "chai-ui";
 import { pasteComponentState } from "../states/pasteComponentState";
 import { defaultContentComponentData } from "../data/defaultContentComponentData";
 import ChooseTextCreator from "../components/contents/ChooseTextCreator";
 import TextBoxesCreator from "../components/contents/TextBoxesCreator";
+import ImagesCreator from "../components/contents/ImageCreator";
 
 interface CopyContentObject {
   type: contentLayoutStateType | undefined;
@@ -41,6 +42,7 @@ const useCreateContent = ({
   const [componentList, setComponentList] = useState<
     (CreatorContent | undefined)[]
   >([]);
+  const { addToast } = useToast();
 
   useEffect(() => {
     console.log("componentList", componentList);
@@ -53,6 +55,7 @@ const useCreateContent = ({
         content: {
           type: contentType,
           data: defaultContentComponentData[contentType],
+          options: {},
         },
       } as CreatorContent;
     },
@@ -63,7 +66,7 @@ const useCreateContent = ({
     (contentType: Content["type"], id: string) => {
       const newComponent = getDefaultContentComponent(contentType, id);
       const addedComponentList = componentList.map((component) => {
-        if (component === undefined) return component;
+        if (component === undefined || component === null) return component;
         if (component.id === id) {
           return {
             ...component,
@@ -118,6 +121,18 @@ const useCreateContent = ({
             handleFocusHtml={handleFocusHtml}
           />
         ),
+        images: (
+          <ImagesCreator
+            key={key}
+            id={key}
+            onSave={() => console.log("save")}
+            addComponentToExistingComponentById={
+              addComponentToExistingComponentById
+            }
+            componentList={componentList}
+            setComponentList={setComponentList}
+          />
+        ),
       };
 
       return contentCreatorMapper[content.type];
@@ -156,6 +171,13 @@ const useCreateContent = ({
   );
 
   const copyContents = useCallback(() => {
+    const isNullComponent = componentList.every((component) => {
+      return component === undefined;
+    });
+    if (isNullComponent) {
+      addToast("복사할 컴포넌트가 없습니다.", "error");
+      return;
+    }
     const contentObject: CopyContentObject = {
       type: contentLayout,
       contents: [],
@@ -164,13 +186,15 @@ const useCreateContent = ({
       contentObject.contents.push(component);
     });
     localStorage.setItem("contentObject", JSON.stringify(contentObject));
-  }, [contentLayout, componentList]);
+    addToast("전체 컴포넌트가 복사되었습니다.", "success");
+  }, [contentLayout, componentList, addToast]);
 
   const copyOnceContent = useCallback(
     (contentIndex: number) => {
       setPasteComponent(componentList[contentIndex]?.content);
+      addToast("해당 컴포넌트가 복사되었습니다.", "success");
     },
-    [componentList, setPasteComponent]
+    [componentList, setPasteComponent, addToast]
   );
 
   const pasteContents = useCallback(() => {
@@ -188,9 +212,9 @@ const useCreateContent = ({
       });
       setComponentList(copyComponentList);
     } else {
-      alert("복사된 컴포넌트가 없습니다.");
+      addToast("복사된 컴포넌트가 없습니다.", "error");
     }
-  }, [componentList]);
+  }, [componentList, addToast]);
 
   const pasteOnceContent = useCallback(
     (contentIndex: number) => {
@@ -213,7 +237,6 @@ const useCreateContent = ({
     componentList.forEach((component) => {
       saveObject.contents.push(component?.content);
     });
-    console.log(saveObject);
   }, [contentLayout, componentList]);
 
   const getPreviewObject = useCallback(() => {
@@ -224,12 +247,16 @@ const useCreateContent = ({
       template: {
         type: contentLayout?.layoutName!,
         contents: [] as ApproveContent[],
+        options: {},
       },
     };
     componentList.forEach((component) => {
       previewObject.template.contents.push(
         component?.content! as ApproveContent
       );
+      if (component?.content?.options) {
+        previewObject.template.options = component?.content?.options;
+      }
     });
     return previewObject;
   }, [componentList, contentLayout]);

@@ -140,7 +140,7 @@ const globalStyle = css`
 
   div[role="presentation"] {
     z-index: 5;
-    top: ${headerHeightNormal};
+    /* top: ${headerHeightNormal}; */
   }
 
   /* =================== fonts =================== */

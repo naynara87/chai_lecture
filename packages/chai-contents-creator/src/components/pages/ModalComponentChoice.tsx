@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "@emotion/styled";
 import "./common.scss";
 import "./modal.scss";
@@ -13,12 +13,13 @@ const ModalLayout = styled.div`
 `;
 
 const ModalComponentChoice = () => {
-
   return (
     <ModalLayout>
       <div className="modal-bg"></div>
       <div className="modal-container modal-component-choice">
-        <h2 className="modal-ttl">Component<button className="btn">닫기</button></h2>
+        <h2 className="modal-ttl">
+          Component<button className="btn">닫기</button>
+        </h2>
         <div className="grid-container">
           <button className="btn btn-component-choice">Choose Text</button>
           <button className="btn btn-component-choice">Text Boxes</button>
@@ -30,8 +31,12 @@ const ModalComponentChoice = () => {
           <button className="btn btn-component-choice">Word Quiz</button>
           <button className="btn btn-component-choice">Sort Words</button>
           <button className="btn btn-component-choice">Bottom Tabs</button>
-          <button className="btn btn-component-choice">Choose Media Text</button>
-          <button className="btn btn-component-choice">Study Sentences With Vocabulary</button>
+          <button className="btn btn-component-choice">
+            Choose Media Text
+          </button>
+          <button className="btn btn-component-choice">
+            Study Sentences With Vocabulary
+          </button>
           <button className="btn btn-component-choice">Side Tabs</button>
         </div>
       </div>

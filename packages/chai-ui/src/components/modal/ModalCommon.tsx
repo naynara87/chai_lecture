@@ -14,10 +14,11 @@ const ModalBackground = styled.div<ModalBackgroundProps>`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: ${(props) =>
+  /* height: ${(props) =>
     props.isCornerPage
       ? `calc(100vh - ${headerHeightNormal} - ${footerHeightNormal})`
-      : `calc(100vh - ${headerHeightNormal})`};
+      : `calc(100vh - ${headerHeightNormal})`}; */
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.6);
 `;
 
@@ -31,7 +32,12 @@ interface ModalCommonProps {
 /**
  * @param children 모달창이 열리면 보여질 컴포넌트
  */
-const ModalCommon = ({ children, open, onClose, isCornerPage = false }: ModalCommonProps) => {
+const ModalCommon = ({
+  children,
+  open,
+  onClose,
+  isCornerPage = false,
+}: ModalCommonProps) => {
   const handleClose = (event: React.MouseEvent<HTMLDivElement>) => {
     if (event.target === event.currentTarget) {
       onClose();

@@ -18,9 +18,9 @@ const QuillToolbar = () => (
         <option value="large">Size 4</option>
       </select> */}
       <select className="ql-header" defaultValue="3">
-        <option value="1">Heading</option>
-        <option value="2">Subheading</option>
-        <option value="3">Normal</option>
+        <option value="1">헤더1</option>
+        <option value="2">헤더2</option>
+        <option value="3">헤더3</option>
       </select>
     </span>
     <span className="ql-formats">

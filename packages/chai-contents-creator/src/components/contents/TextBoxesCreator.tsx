@@ -1,14 +1,35 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import HtmlCreator from "./HtmlCreator";
-import { MeaningText, SubText, subTextCss, TextBoxesWrapper, TextCardGrp, TextCard, Content, TextBoxesContent } from "chai-ui";
+import styled from "@emotion/styled";
 import { CreatorContent } from "../../hooks/useCreateContent";
+import {
+  Content,
+  MeaningText,
+  SubText,
+  subTextCss,
+  TextBoxesContent,
+  TextBoxesWrapper,
+  TextCard,
+  TextCardGrp,
+} from "chai-ui";
+
+const Button = styled.button`
+  position: absolute;
+  right: 0;
+  top: 0;
+`;
 
 interface TextBoxesCreatorProps {
   onSave(): void;
   id: string;
   componentList: (CreatorContent | undefined)[];
-  setComponentList: React.Dispatch<React.SetStateAction<(CreatorContent | undefined)[]>>;
-  addComponentToExistingComponentById: (contentType: Content["type"], id: string) => void;
+  setComponentList: React.Dispatch<
+    React.SetStateAction<(CreatorContent | undefined)[]>
+  >;
+  addComponentToExistingComponentById: (
+    contentType: Content["type"],
+    id: string
+  ) => void;
   focusEditor?: string;
   handleFocusHtml?: (id?: string, type?: string, index?: number) => void;
 }
@@ -21,8 +42,12 @@ const TextBoxesCreator = ({
   handleFocusHtml,
   focusEditor,
 }: TextBoxesCreatorProps) => {
-  const [textBoxesData, setTextBoxesData] = useState<TextBoxesContent | undefined>(undefined);
-  const [contentIndex, setContentIndex] = useState<number | undefined>(undefined);
+  const [textBoxesData, setTextBoxesData] = useState<
+    TextBoxesContent | undefined
+  >(undefined);
+  const [contentIndex, setContentIndex] = useState<number | undefined>(
+    undefined
+  );
 
   const getData = useCallback(() => {
     const textBoxesContent = componentList.find((component) => {
@@ -52,7 +77,9 @@ const TextBoxesCreator = ({
       if (contentIndex === undefined) return;
       if (textBoxesData === undefined) return;
       if (index === undefined) return;
-      const copyTextBoxesDataArr = JSON.parse(JSON.stringify(textBoxesData.data));
+      const copyTextBoxesDataArr = JSON.parse(
+        JSON.stringify(textBoxesData.data)
+      );
       if (keyName === "main") {
         copyTextBoxesDataArr[index].main = text ?? "";
       } else if (keyName === "sub") {
@@ -64,7 +91,7 @@ const TextBoxesCreator = ({
       copyComponentList[contentIndex]!.content.data = copyTextBoxesDataArr;
       setComponentList(copyComponentList);
     },
-    [textBoxesData, componentList, setComponentList, contentIndex],
+    [textBoxesData, componentList, setComponentList, contentIndex]
   );
 
   const handleDeleteTextBox = useCallback(
@@ -86,12 +113,21 @@ const TextBoxesCreator = ({
       copyComponentList[contentIndex]!.content.data = copyTextBoxesDataArr;
       setComponentList(copyComponentList);
     },
-    [textBoxesData, componentList, contentIndex, setComponentList],
+    [textBoxesData, componentList, contentIndex, setComponentList]
   );
 
   const addTextBox = useCallback(() => {
     addComponentToExistingComponentById("textBoxes", id);
   }, [addComponentToExistingComponentById, id]);
+
+  const handleClickHorizontalMode = useCallback(() => {
+    if (contentIndex === undefined) return;
+    const copyComponentList = [...componentList];
+    const content = copyComponentList[contentIndex]
+      ?.content as TextBoxesContent;
+    content.options!.isHorizontal = !content.options?.isHorizontal;
+    setComponentList(copyComponentList);
+  }, [componentList, contentIndex, setComponentList]);
 
   const textBoxes = useMemo(() => {
     if (!handleFocusHtml) return;
@@ -150,15 +186,18 @@ const TextBoxesCreator = ({
   }, [
     handleDeleteTextBox,
     handleSubmitText,
-    textBoxesData?.data,
     focusEditor,
     handleFocusHtml,
+    textBoxesData,
     id,
   ]);
 
   return (
-    <TextBoxesWrapper>
+    <TextBoxesWrapper isHorizontal={textBoxesData?.options?.isHorizontal}>
       {textBoxes}
+      <Button onClick={handleClickHorizontalMode}>
+        {textBoxesData?.options?.isHorizontal ? "가로모드" : "세로모드"}
+      </Button>
       <button onClick={addTextBox}>+</button>
     </TextBoxesWrapper>
   );

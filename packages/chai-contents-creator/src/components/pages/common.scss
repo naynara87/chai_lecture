@@ -104,10 +104,11 @@
 }
 
 .page-conts-wrap {
-  margin-top: 10px;
+  // margin-top: 10px;
   text-align: center;
   height: 100%;
   background-color: beige;
+  overflow: hidden;
 }
 .page-conts-wrap:first-child {
   margin-top: 0;

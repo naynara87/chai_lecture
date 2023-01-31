@@ -1,21 +1,31 @@
 import { css } from "@emotion/react";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import styled from "@emotion/styled";
 import {
+  ChooseTextContent,
+  ChooseTextOptions,
+  colorPalette,
+  Content,
+  QuizAnswerContainer,
   QuizAnswerStyle,
   TipWrapper,
-  QuizAnswerContainer,
-  Content,
-  ChooseTextContent,
-  colorPalette,
 } from "chai-ui";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { CreatorContent } from "../../hooks/useCreateContent";
+
 import ExplanationCreator from "./ExplanationCreator";
 import HtmlCreator from "./HtmlCreator";
-import { CreatorContent } from "../../hooks/useCreateContent";
 
 const chooseTextContainerCss = css`
   display: flex;
   justify-content: center;
 `;
+
+const ButtonWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+`;
+
 interface ChooseTextProps {
   onSave(): void;
   id: string;
@@ -156,6 +166,22 @@ const ChooseTextCreator = ({
     [chooseTextData, componentList, contentIndex, setComponentList]
   );
 
+  const handleClickMode = useCallback(
+    (optionName: keyof ChooseTextOptions) => {
+      if (contentIndex === undefined) return;
+      const copyComponentList = [...componentList];
+      const content = copyComponentList[contentIndex]
+        ?.content as ChooseTextContent;
+      if (optionName === "isHorizontal") {
+        content.options!.isHorizontal = !content.options?.isHorizontal;
+      } else if (optionName === "sortAnswer") {
+        content.options!.sortAnswer = !content.options?.sortAnswer;
+      }
+      setComponentList(copyComponentList);
+    },
+    [componentList, contentIndex, setComponentList]
+  );
+
   const chooseText = useMemo(() => {
     return chooseTextData?.data.map((choiceData, choiceIndex) => {
       const choices = [
@@ -164,53 +190,58 @@ const ChooseTextCreator = ({
       ];
       return (
         <div key={choiceIndex}>
-          {choices.map((choice, index) => {
-            return (
-              <QuizAnswerStyle
-                className="quiz-answer-list"
-                color={
-                  chooseTextData.data[0].answerIndex === index
-                    ? "#000"
-                    : colorPalette.borderGray
-                }
-                key={index}
-                onClick={() => {
-                  handleClickCorrect(index);
-                }}
-              >
-                <input
-                  type="radio"
-                  id={"id"}
-                  name="quiz-answer"
-                  className="inp-quiz-answer none"
-                />
-                <label htmlFor={"label"} className="label-quiz-answer">
-                  <div className="word-wrap">
-                    <div className="img-wrap">
-                      <img
-                        src={`${process.env.REACT_APP_BASE_URL}/images/icon/icon_check.svg`}
-                        alt=""
-                        className="icon"
+          <QuizAnswerContainer
+            customCss={chooseTextContainerCss}
+            isVertical={chooseTextData.options?.isHorizontal}
+          >
+            {choices.map((choice, index) => {
+              return (
+                <QuizAnswerStyle
+                  className="quiz-answer-list"
+                  color={
+                    chooseTextData.data[0].answerIndex === index
+                      ? "#000"
+                      : colorPalette.borderGray
+                  }
+                  key={index}
+                  onClick={() => {
+                    handleClickCorrect(index);
+                  }}
+                >
+                  <input
+                    type="radio"
+                    id={"id"}
+                    name="quiz-answer"
+                    className="inp-quiz-answer none"
+                  />
+                  <label htmlFor={"label"} className="label-quiz-answer">
+                    <div className="word-wrap">
+                      <div className="img-wrap">
+                        <img
+                          src={`${process.env.REACT_APP_BASE_URL}/images/icon/icon_check.svg`}
+                          alt=""
+                          className="icon"
+                        />
+                      </div>
+                      <HtmlCreator
+                        html={choice}
+                        onSubmitHtml={handleSubmitText}
+                        id={id + "text" + index}
+                        index={index}
+                        focusEditor={focusEditor}
+                        keyName="text"
+                        onClickHtml={() => {
+                          if (!handleFocusHtml) return;
+                          handleFocusHtml(id, "text", index);
+                        }}
+                        textMaxLength={20}
                       />
                     </div>
-                    <HtmlCreator
-                      html={choice}
-                      onSubmitHtml={handleSubmitText}
-                      id={id + "text" + index}
-                      index={index}
-                      focusEditor={focusEditor}
-                      keyName="text"
-                      onClickHtml={() => {
-                        if (!handleFocusHtml) return;
-                        handleFocusHtml(id, "text", index);
-                      }}
-                      textMaxLength={20}
-                    />
-                  </div>
-                </label>
-              </QuizAnswerStyle>
-            );
-          })}
+                  </label>
+                </QuizAnswerStyle>
+              );
+            })}
+          </QuizAnswerContainer>
           <TipWrapper>
             <HtmlCreator
               onSubmitHtml={handleSubmitTipText}
@@ -250,9 +281,17 @@ const ChooseTextCreator = ({
 
   return (
     <div>
-      <QuizAnswerContainer customCss={chooseTextContainerCss}>
-        <>{chooseText}</>
-      </QuizAnswerContainer>
+      {chooseText}
+      <ButtonWrapper>
+        <button onClick={() => handleClickMode("isHorizontal")}>
+          {chooseTextData?.options?.isHorizontal ? "가로모드" : "세로모드"}
+        </button>
+        <button onClick={() => handleClickMode("sortAnswer")}>
+          {chooseTextData?.options?.sortAnswer
+            ? "랜덤답안 비활성화"
+            : "랜덤답안 활성화"}
+        </button>
+      </ButtonWrapper>
     </div>
   );
 };
