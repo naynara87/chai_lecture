@@ -24,7 +24,7 @@ pipelines:
             - npm install
             - npm run build
             - npm run dev 
-      master:
+    master:
       - step:
           name: build pubilsh
           deployment: production
@@ -35,4 +35,18 @@ pipelines:
             - npm install
             - npm run build
             - npm run dev
+  pull-requests:
+    '**': #모든 브렌치에서 실행되는 예제
+      - step:
+          script:
+            - echo "start all pr merge & deploy"
+            - npm install
+            - npm run dev 
+    release/*: #release 브렌치에서 실행되는 예제
+      - step:
+          script:
+            - echo "start all pr merge & deploy"
+            - npm install
+            - npm run dev 
+
   
