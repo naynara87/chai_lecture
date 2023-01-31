@@ -7,11 +7,12 @@ import { TemplateProps } from "../../types/templates";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TitleContent from "../molecules/TitleContent";
 
-const TP07Layout = styled.div`
+export const TP07LayoutWrapper = styled.div`
   height: ${templateContentsAreaHeight};
   display: grid;
-  grid-template-rows: 20% 54% 20%;
-  grid-template-columns: 48% 48%;
+  grid-template-rows: 28% 40% 28%;
+  grid-template-columns: 49% 49%;
+  gap: 2%;
   justify-content: center;
 `;
 
@@ -35,7 +36,11 @@ const ContentContainer = styled.div`
 
 interface TP07ComponentProps extends TemplateProps {}
 
-const TP07Component = ({ setPageCompleted, page, showHeader = true }: TP07ComponentProps) => {
+const TP07Component = ({
+  setPageCompleted,
+  page,
+  showHeader = true,
+}: TP07ComponentProps) => {
   const thisPage = page as TP07;
 
   useEffect(() => {
@@ -47,11 +52,14 @@ const TP07Component = ({ setPageCompleted, page, showHeader = true }: TP07Compon
   return (
     <TemplateCommonLayout>
       {showHeader ? (
-        <TitleContent title={thisPage.title} description={thisPage.description} />
+        <TitleContent
+          title={thisPage.title}
+          description={thisPage.description}
+        />
       ) : (
         <></>
       )}
-      <TP07Layout>
+      <TP07LayoutWrapper>
         {thisPage.template.contents.map((content, index) => {
           if (content) {
             if (index === 0 || index === 3) {
@@ -70,7 +78,7 @@ const TP07Component = ({ setPageCompleted, page, showHeader = true }: TP07Compon
             return <></>;
           }
         })}
-      </TP07Layout>
+      </TP07LayoutWrapper>
     </TemplateCommonLayout>
   );
 };

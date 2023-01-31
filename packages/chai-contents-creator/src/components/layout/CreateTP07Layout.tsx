@@ -1,21 +1,21 @@
 import React, { useMemo } from "react";
 import { Droppable } from "react-beautiful-dnd";
 import { useCreateLayoutMapperProps } from "../../hooks/useCreateLayoutMapper";
-import { TP05LayoutWrapper } from "chai-ui";
+import { TP07LayoutWrapper } from "chai-ui";
 import DropBox from "../molecules/DropBox";
 
-interface TP05LayoutProps extends useCreateLayoutMapperProps {}
+interface TP07LayoutProps extends useCreateLayoutMapperProps {}
 
-const CreateTP05Layout = ({
+const CreateTP07Layout = ({
   components,
   componentList,
   setComponentIndex,
   id,
   handleFocusHtml,
   contentsContextMenuRef,
-}: TP05LayoutProps) => {
+}: TP07LayoutProps) => {
   const contents = useMemo(() => {
-    return Array(2)
+    return Array(4)
       .fill("")
       .map((value, index) => {
         return (
@@ -30,6 +30,7 @@ const CreateTP05Layout = ({
                 componentList={componentList}
                 setComponentIndex={setComponentIndex}
                 components={components}
+                isLong={index === 0 || index === 3}
               />
             )}
           </Droppable>
@@ -43,11 +44,11 @@ const CreateTP05Layout = ({
     handleFocusHtml,
   ]);
   return (
-    <TP05LayoutWrapper>
+    <TP07LayoutWrapper>
       {/* 컴포넌트가 추가되는 영역 */}
       {contents}
-    </TP05LayoutWrapper>
+    </TP07LayoutWrapper>
   );
 };
 
-export default CreateTP05Layout;
+export default CreateTP07Layout;
