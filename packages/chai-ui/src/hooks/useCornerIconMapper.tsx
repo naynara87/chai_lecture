@@ -1,20 +1,34 @@
+import reviseIcon from "../assets/cornerIcon/reviseIcon.png";
+import eduIconOne from "../assets/cornerIcon/eduIconOne.png";
+import eduIconTwo from "../assets/cornerIcon/eduIconTwo.png";
+import eduIconThree from "../assets/cornerIcon/eduIconThree.png";
+import conversationIcon from "../assets/cornerIcon/conversationIcon.png";
+import cultureIcon from "../assets/cornerIcon/cultureIcon.png";
+import practiceIcon from "../assets/cornerIcon/practiceIcon.png";
+import grammarIcon from "../assets/cornerIcon/grammarIcon.png";
+import wordIcon from "../assets/cornerIcon/wordIcon.png";
+import patternIcon from "../assets/cornerIcon/patternIcon.png";
+import metaIcon from "../assets/cornerIcon/metaIcon.png";
+import review_test_icon from "../assets/cornerIcon/review_test_icon.png";
+import word_test_icon from "../assets/cornerIcon/word_test_icon.png";
+
 const useCornerIconMapper = () => {
   const cornerIconMapper: Record<string, string> = {
-    복습: `${process.env.REACT_APP_BASE_URL}/images/cornerIcon/reviseIcon.png`,
-    학습: `${process.env.REACT_APP_BASE_URL}/images/cornerIcon/eduIconOne.png`,
-    학습1: `${process.env.REACT_APP_BASE_URL}/images/cornerIcon/eduIconOne.png`,
-    학습2: `${process.env.REACT_APP_BASE_URL}/images/cornerIcon/eduIconTwo.png`,
-    학습3: `${process.env.REACT_APP_BASE_URL}/images/cornerIcon/eduIconThree.png`,
-    회화: `${process.env.REACT_APP_BASE_URL}/images/cornerIcon/conversationIcon.png`,
-    문화: `${process.env.REACT_APP_BASE_URL}/images/cornerIcon/cultureIcon.png`,
-    연습문제: `${process.env.REACT_APP_BASE_URL}/images/cornerIcon/practiceIcon.png`,
-    문법: `${process.env.REACT_APP_BASE_URL}/images/cornerIcon/grammarIcon.png`,
-    단어: `${process.env.REACT_APP_BASE_URL}/images/cornerIcon/wordIcon.png`,
-    패턴중국어: `${process.env.REACT_APP_BASE_URL}/images/cornerIcon/patternIcon.png`,
-    "주제별 표현(메타인지테스트)": `${process.env.REACT_APP_BASE_URL}/images/cornerIcon/metaIcon.png`,
-    "종합 테스트": `${process.env.REACT_APP_BASE_URL}/images/cornerIcon/practiceIcon.png`,
-    오답테스트: `${process.env.REACT_APP_BASE_URL}/images/cornerIcon/review_test_icon.png`,
-    단어테스트: `${process.env.REACT_APP_BASE_URL}/images/cornerIcon/word_test_icon.png`,
+    복습: reviseIcon,
+    학습: eduIconOne,
+    학습1: eduIconOne,
+    학습2: eduIconTwo,
+    학습3: eduIconThree,
+    회화: conversationIcon,
+    문화: cultureIcon,
+    연습문제: practiceIcon,
+    문법: grammarIcon,
+    단어: wordIcon,
+    패턴중국어: patternIcon,
+    "주제별 표현(메타인지테스트)": metaIcon,
+    "종합 테스트": practiceIcon,
+    오답테스트: review_test_icon,
+    단어테스트: word_test_icon,
   };
 
   const getCornerIcon = (cornerName: string) => {

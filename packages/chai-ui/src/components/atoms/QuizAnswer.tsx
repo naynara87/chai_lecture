@@ -4,6 +4,7 @@ import React, { useMemo } from "react";
 import { colorPalette } from "../../styles/colorPalette";
 import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import HtmlContentComponent from "../molecules/HtmlContentComponent";
+import iconCheck from "../../assets/icon/icon_check.svg";
 
 interface QuizAnswerStyleProps {
   color: string;
@@ -22,7 +23,10 @@ export const QuizAnswerStyle = styled.li<QuizAnswerStyleProps>`
   .label-quiz-answer .word-wrap {
     position: relative;
     display: inline-block;
-    padding: ${changePXtoVH(20)} ${changePXtoVW(32)} ${changePXtoVH(20)} ${changePXtoVW(88)};
+    padding-top: ${changePXtoVH(20)};
+    padding-right: ${changePXtoVW(32)};
+    padding-bottom: ${changePXtoVH(20)};
+    padding-left: ${changePXtoVW(88)};
     border: 0.2083333333vw solid #9b9b9b;
     border-radius: ${changePXtoVW(52)};
     font-weight: 600;
@@ -102,13 +106,26 @@ const QuizAnswer = ({
   }, [checked, isCorrect]);
 
   return (
-    <QuizAnswerStyle className="quiz-answer-list" color={changeColor} customCss={customCss}>
-      <input type="radio" id={answerText} name="quiz-answer" className="inp-quiz-answer none" />
-      <label htmlFor={answerText} className="label-quiz-answer" onClick={handleClickAnswer}>
+    <QuizAnswerStyle
+      className="quiz-answer-list"
+      color={changeColor}
+      customCss={customCss}
+    >
+      <input
+        type="radio"
+        id={answerText}
+        name="quiz-answer"
+        className="inp-quiz-answer none"
+      />
+      <label
+        htmlFor={answerText}
+        className="label-quiz-answer"
+        onClick={handleClickAnswer}
+      >
         <div className="word-wrap">
           <div className="img-wrap">
             <img
-              src={`${process.env.REACT_APP_BASE_URL}/images/icon/icon_check.svg`}
+              src={iconCheck}
               alt=""
               className="icon"
             />

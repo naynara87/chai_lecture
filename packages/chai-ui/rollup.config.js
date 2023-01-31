@@ -1,4 +1,5 @@
 import Ts from "rollup-plugin-typescript2";
+import image from "@rollup/plugin-image";
 
 export default {
   input: ["src/index.ts"],
@@ -8,7 +9,7 @@ export default {
     sourcemap: true,
     preserveModules: true, // preserve source folder
   },
-  plugins: [Ts()],
+  plugins: [Ts(), image()],
   external: [
     "@emotion/styled",
     "@mui/material",

@@ -138,13 +138,6 @@ const Explanation = ({
 }: ExplanationProps) => {
   const { audio, correctMessage, wrongMessage, text } = explanation;
 
-  // const iconUrl = useMemo(() => {
-  //   if (isCorrect) {
-  //     return `${process.env.REACT_APP_BASE_URL}/images/img/bg_right_character.png`;
-  //   }
-  //   return `${process.env.REACT_APP_BASE_URL}/images/img/bg_wrong_character.png`;
-  // }, [isCorrect]);
-
   const infoText = useMemo(() => {
     if (isCorrect) {
       return correctMessage ?? "정답입니다!";

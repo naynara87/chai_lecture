@@ -4,6 +4,7 @@ import React from "react";
 import { colorPalette } from "../../styles/colorPalette";
 import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import HtmlContentComponent from "./HtmlContentComponent";
+import iconTipbuble from "../../assets/icon/icon_tipbuble.svg";
 
 interface TipWrapperProps {
   customCss?: SerializedStyles;
@@ -16,7 +17,7 @@ export const TipWrapper = styled.div<TipWrapperProps>`
   background-position: left top;
   background-size: ${changePXtoVW(56)};
   background-repeat: no-repeat;
-  background-image: url("${process.env.REACT_APP_BASE_URL}/images/icon/icon_tipbuble.svg");
+  background-image: url("${iconTipbuble}");
   font-size: ${changePXtoVW(30)};
   color: ${colorPalette.descriptionText};
   text-align: left;

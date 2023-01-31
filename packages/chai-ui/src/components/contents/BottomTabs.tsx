@@ -5,6 +5,7 @@ import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import { colorPalette } from "../../styles/colorPalette";
 import useContentMapper from "../../hooks/useContentMapper";
 import { footerHeightNormal } from "../../constants/layout";
+import iconClose from "../../assets/icon/icon_close.svg";
 
 interface BottomTabsWrapperProps {
   open: boolean;
@@ -16,7 +17,8 @@ const BottomTabsWrapper = styled.div<BottomTabsWrapperProps>`
   bottom: ${(props) => (props.open ? `${footerHeightNormal}` : 0)};
   left: 50%;
   width: ${changePXtoVW(1680)};
-  height: ${(props) => (props.open ? `${changePXtoVH(451)}` : `${changePXtoVH(160)}`)};
+  height: ${(props) =>
+    props.open ? `${changePXtoVH(451)}` : `${changePXtoVH(160)}`};
   transform: translateX(-50%);
   transition: all 0.3s ease-in-out;
 `;
@@ -41,10 +43,13 @@ const TabHeader = styled.div<TabHeaderProps>`
   height: ${changePXtoVW(64)};
   border-radius: 16px 16px 0 0;
   background-color: ${(props) =>
-    props.isFocus ? colorPalette.bottomTabBorder : colorPalette.disableBottomTabHeader};
+    props.isFocus
+      ? colorPalette.bottomTabBorder
+      : colorPalette.disableBottomTabHeader};
   font-weight: bold;
   font-size: ${changePXtoVW(24)};
-  color: ${(props) => (props.isFocus ? colorPalette.white : colorPalette.black)};
+  color: ${(props) =>
+    props.isFocus ? colorPalette.white : colorPalette.black};
   cursor: pointer;
 `;
 
@@ -111,7 +116,7 @@ const CloseButton = styled.button<CloseButtonProps>`
   height: ${changePXtoVW(56)};
   border-radius: 100%;
   background-color: ${colorPalette.deepBlue};
-  background-image: url("${process.env.REACT_APP_BASE_URL}/images/icon/icon_close.svg");
+  background-image: url("${iconClose}");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 40%;
@@ -168,7 +173,9 @@ const BottomTabs = ({ datas }: BottomTabsProps) => {
   return (
     <BottomTabsWrapper open={openTabs}>
       <TabHeaderContainer>{tabHeaders}</TabHeaderContainer>
-      <BottomTabMainContainer open={openTabs}>{mainContents}</BottomTabMainContainer>
+      <BottomTabMainContainer open={openTabs}>
+        {mainContents}
+      </BottomTabMainContainer>
       <CloseButton open={openTabs} onClick={handleClickClose} />
     </BottomTabsWrapper>
   );
