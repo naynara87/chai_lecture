@@ -12,10 +12,20 @@ npm install
 npm run dev
 ```
 
+- chai-content-view는 http://localhost:3000 에서 실행되고
+- chai-content-creator는 http://localhost:3001 에서 실행됩니다
+
 ## 빌드
 
-- npm install
-- npm run build
+```
+npm install
+npm run build
+```
+
+- 빌드 후 빌드된 파일은 아래 경로에 생성됩니다
+  - chai-content-view: /packages/chai-content-view/build/
+  - chai-content-creator: /packages/chai-content-creator/build/
+  - chai-ui: /packages/chai-ui/dist/
 
 ## 폴더 구조
 
