@@ -23,7 +23,7 @@ export const QuizAnswerContainer = styled.ul<QuizAnswerContainerProps>`
 export const customQuizCss = css`
   margin-bottom: ${changePXtoVH(30)};
 `;
-interface ChooseTextProps {
+export interface ChooseTextProps {
   contentData: ChooseTextContent;
   isVertical?: boolean;
 }
@@ -66,7 +66,9 @@ const ChooseText = ({ contentData, isVertical }: ChooseTextProps) => {
 
   return (
     <div>
-      <QuizAnswerContainer isVertical={contentData.options?.isHorizontal}>
+      <QuizAnswerContainer
+        isVertical={contentData.options?.isHorizontal || isVertical}
+      >
         {sortList.map((choice, index) => (
           <QuizAnswer
             key={index}

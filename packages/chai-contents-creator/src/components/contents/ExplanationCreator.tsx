@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { ExplanationContainer, ExplanationHtmlCss, ExplanationText, ExplanationTextBox, ExplanationTitle, InfoWrapper, OIcon, OXWrapper, TextBox, XIcon } from "chai-ui";
+import { ExplanationContainer, ExplanationHtmlCss, ExplanationText, ExplanationTextBox, ExplanationTitle, InfoWrapper, OIcon, OXWrapper, XIcon } from "chai-ui";
 import React, { useState } from "react";
 
 import HtmlCreator from "./HtmlCreator";
@@ -35,7 +35,7 @@ const ExplanationCreator = ({
   handleFocusHtml,
 }: ExplanationProps) => {
   const [isCorrectMode, setIsCorrectMode] = useState(true);
-  const { audio, correctMessage, wrongMessage, text } = explanation;
+  const { correctMessage, wrongMessage, text } = explanation;
 
   return (
     <ExplanationWrapper>

@@ -86,6 +86,7 @@ const HtmlCreator = ({
 
   const contents = useMemo(() => {
     if (id === focusEditor) {
+      console.log(text);
       return (
         <Page
           onBlur={() => {
@@ -100,8 +101,9 @@ const HtmlCreator = ({
             }}
             onKeyDown={(event) => {
               if (
-                textMaxLength &&
-                event.target.textContent.length > textMaxLength
+                textMaxLength !== undefined &&
+                event.target.textContent.length > textMaxLength - 1 &&
+                event.key !== "Backspace"
               ) {
                 event.preventDefault();
               }
@@ -112,7 +114,7 @@ const HtmlCreator = ({
         </Page>
       );
     } else {
-      if (text && text.length > 0) {
+      if (text && text.replace(/<[^>]*>?/g, "").length > 0) {
         return (
           <HtmlWrapper
             dangerouslySetInnerHTML={{ __html: html }}
