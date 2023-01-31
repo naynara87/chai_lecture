@@ -397,7 +397,11 @@ export type TP05D = {
   };
 };
 
-type TP05DContent = TextBoxesContent | HtmlContent | AudioRecordContent | SentenceWordContent;
+type TP05DContent =
+  | TextBoxesContent
+  | HtmlContent
+  | AudioRecordContent
+  | SentenceWordContent;
 
 export type TP05E = {
   id: ID;
@@ -435,6 +439,16 @@ export type TP05G = {
 
 type TP05GContent = NumberTableContent | HtmlContent;
 
+export type TP06 = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP06";
+    contents: ApproveContent[];
+  };
+};
+
 export type TP06A = {
   id: ID;
   title: string;
@@ -469,7 +483,21 @@ export type TP07A = {
   };
 };
 
-type TP07AContent = IconTextContent | ImagesContent | HtmlContent | AudioRecordContent;
+type TP07AContent =
+  | IconTextContent
+  | ImagesContent
+  | HtmlContent
+  | AudioRecordContent;
+
+export type TP08 = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP08";
+    contents: ApproveContent[];
+  };
+};
 
 export type TP08A = {
   id: ID;
@@ -495,6 +523,16 @@ export type TP08B = {
 
 type TP08BContent = ImagesContent | HtmlContent | AudioRecordContent;
 
+export type TP09 = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP09";
+    contents: ApproveContent[];
+  };
+};
+
 export type TP09A = {
   id: ID;
   title: string;
@@ -518,6 +556,16 @@ export type TP09B = {
 };
 
 type TP09BContent = IconTextContent | DialogContent;
+
+export type TP10 = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP10";
+    contents: ApproveContent[];
+  };
+};
 
 export type TP10A = {
   id: ID;
@@ -554,6 +602,16 @@ export type TP10C = {
 };
 
 type TP10CContent = WordQuizContent;
+
+export type TP11 = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP11";
+    contents: ApproveContent[];
+  };
+};
 
 export type TP11A = {
   id: ID;
@@ -619,6 +677,16 @@ type TP11GTemplate = {
 
 type TP11GContent = WordQuizContent;
 
+export type TP12 = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP12";
+    contents: ApproveContent[];
+  };
+};
+
 export type TP12A = {
   id: ID;
   title: string;
@@ -677,6 +745,16 @@ export type TP13B = {
 
 type TP13BContent = HtmlContent | ImagesContent;
 
+export type TP14 = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP14";
+    contents: ApproveContent[];
+  };
+};
+
 export type TP14A = {
   id: ID;
   title: string;
@@ -733,6 +811,16 @@ export type TP16A = {
 
 type TP16AContent = HtmlContent | ImagesContent | AudioContent;
 
+export type TP17 = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP17";
+    contents: ApproveContent[];
+  };
+};
+
 export type TP17A = {
   id: ID;
   title: string;
@@ -743,7 +831,31 @@ export type TP17A = {
   };
 };
 
-type TP17AContent = HtmlContent | TextBoxesContent | VideoContent | AudioRecordContent;
+type TP17AContent =
+  | HtmlContent
+  | TextBoxesContent
+  | VideoContent
+  | AudioRecordContent;
+
+export type TP18 = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP18";
+    contents: ApproveContent[];
+  };
+};
+
+export type TP19 = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP19";
+    contents: ApproveContent[];
+  };
+};
 
 export type TP19A = {
   id: ID;
@@ -756,6 +868,26 @@ export type TP19A = {
 };
 
 type TP19AContent = StudySentencesWithVocabularyContent;
+
+export type TP20 = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP20";
+    contents: ApproveContent[];
+  };
+};
+
+export type TP21 = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP21";
+    contents: ApproveContent[];
+  };
+};
 
 export type TP21A = {
   id: ID;
@@ -781,6 +913,16 @@ export type TP21B = {
 
 type TP21BContent = HtmlContent | ChooseTextContent;
 
+export type TP22 = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP22";
+    contents: ApproveContent[];
+  };
+};
+
 export type TP23 = {
   id: ID;
   title: string;
@@ -792,6 +934,16 @@ export type TP23 = {
 };
 
 type TP23Content = ApproveContent;
+
+export type TP24 = {
+  id: ID;
+  title: string;
+  description: string;
+  template: {
+    type: "TP24";
+    contents: ApproveContent[];
+  };
+};
 
 export type TP24A = {
   id: ID;

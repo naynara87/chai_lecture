@@ -54,6 +54,20 @@ import {
   TP05D,
   TP09B,
   TP01,
+  TP06,
+  TP08,
+  TP09,
+  TP10,
+  TP11,
+  TP12,
+  TP14,
+  TP17,
+  TP18,
+  TP19,
+  TP20,
+  TP21,
+  TP22,
+  TP24,
 } from "./pageTemplate";
 import {
   AudioContent,
@@ -169,34 +183,72 @@ export type Page =
   | TP05E
   | TP05F
   | TP05G
+  | TP06
   | TP06A
   | TP07
   | TP07A
+  | TP08
   | TP08A
   | TP08B
+  | TP09
   | TP09A
   | TP09B
+  | TP10
   | TP10A
   | TP10B
   | TP10C
+  | TP11
   | TP11A
   | TP11D
   | TP11F
   | TP11E
   | TP11G
+  | TP12
   | TP13
+  | TP14
   | TP15
-  | TPTab
   | TP16
+  | TP17
+  | TP18
+  | TP19
   | TP19A
+  | TP20
+  | TP21
+  | TP22
   | TP23
+  | TP24
   | TP24A
   | TP24B
+  | TPTab
   | TPIframe;
 
 export type TemplateType = Page["template"]["type"];
 
-export type CreateTemplatePage = TP01 | TP02 | TP03 | TP04 | TP05 | TP16;
+export type CreateTemplatePage =
+  | TP01
+  | TP02
+  | TP03
+  | TP04
+  | TP05
+  | TP06
+  | TP07
+  | TP08
+  | TP09
+  | TP10
+  | TP11
+  | TP12
+  | TP13
+  | TP14
+  | TP15
+  | TP16
+  | TP17
+  | TP18
+  | TP19
+  | TP20
+  | TP21
+  | TP22
+  | TP23
+  | TP24;
 
 export type CreateTemplateType = CreateTemplatePage["template"]["type"];
 

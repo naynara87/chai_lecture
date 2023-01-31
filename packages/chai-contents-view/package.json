@@ -23,7 +23,6 @@
     "immer": "^9.0.16",
     "lodash": "*",
     "react": "*",
-    "react-beautiful-dnd": "^13.1.1",
     "react-cookie": "*",
     "react-dom": "*",
     "react-loader-spinner": "5.3.4",
@@ -32,7 +31,7 @@
     "react-scripts": "*",
     "react-toastify": "*",
     "react-uuid": "2.0.0",
-    "recoil": "0.7.6",
+    "recoil": "*",
     "sass": "*",
     "typescript": "*",
     "web-vitals": "*"

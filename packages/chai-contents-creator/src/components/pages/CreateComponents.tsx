@@ -260,7 +260,7 @@ const CreateComponents = () => {
           <div className="left-wrap">
             <h1 className="logo-wrap">
               <img
-                src={`${process.env.PUBLIC_URL}images/bubblecon/bubblecon_logo.png`}
+                src={`${process.env.PUBLIC_URL}/images/bubblecon/bubblecon_logo.png`}
                 alt="bubblecon_logo"
               />
             </h1>

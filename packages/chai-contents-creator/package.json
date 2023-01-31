@@ -18,6 +18,8 @@
     "react-router-dom": "*",
     "react-scripts": "*",
     "react-toastify": "*",
+    "react-beautiful-dnd": "*",
+    "recoil": "*",
     "typescript": "*",
     "web-vitals": "*"
   },

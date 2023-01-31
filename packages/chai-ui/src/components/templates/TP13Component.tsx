@@ -7,10 +7,11 @@ import { TemplateProps } from "../../types/templates";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TitleContent from "../molecules/TitleContent";
 
-const TP13Layout = styled.div`
+export const TP13LayoutWrapper = styled.div`
   height: ${templateContentsAreaHeight};
   display: grid;
-  grid-template-columns: 48% 48%;
+  grid-template-columns: 49% 49%;
+  gap: 2%;
   justify-content: center;
 `;
 
@@ -24,7 +25,11 @@ const ContentContainer = styled.div`
 
 interface TP13ComponentProps extends TemplateProps {}
 
-const TP13Component = ({ setPageCompleted, page, showHeader = true }: TP13ComponentProps) => {
+const TP13Component = ({
+  setPageCompleted,
+  page,
+  showHeader = true,
+}: TP13ComponentProps) => {
   const thisPage = page as TP13;
   useEffect(() => {
     setPageCompleted();
@@ -35,11 +40,14 @@ const TP13Component = ({ setPageCompleted, page, showHeader = true }: TP13Compon
   return (
     <TemplateCommonLayout>
       {showHeader ? (
-        <TitleContent title={thisPage.title} description={thisPage.description} />
+        <TitleContent
+          title={thisPage.title}
+          description={thisPage.description}
+        />
       ) : (
         <></>
       )}
-      <TP13Layout>
+      <TP13LayoutWrapper>
         {thisPage.template.contents.map((content, index) => {
           if (content) {
             return (
@@ -51,7 +59,7 @@ const TP13Component = ({ setPageCompleted, page, showHeader = true }: TP13Compon
             return <></>;
           }
         })}
-      </TP13Layout>
+      </TP13LayoutWrapper>
     </TemplateCommonLayout>
   );
 };

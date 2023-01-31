@@ -7,7 +7,7 @@ import { TemplateProps } from "../../types/templates";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TitleContent from "../molecules/TitleContent";
 
-const TP23Layout = styled.div`
+export const TP23LayoutWrapper = styled.div`
   height: ${templateContentsAreaHeight};
   display: grid;
   grid-template-columns: 48% 48%;
@@ -32,14 +32,19 @@ interface ContentContainerProps {
 const ContentContainer = styled.div<ContentContainerProps>`
   display: flex;
   justify-content: flex-start;
-  align-items: ${(props) => (props.isSecondContent ? "flex-end" : "flex-start")};
+  align-items: ${(props) =>
+    props.isSecondContent ? "flex-end" : "flex-start"};
   width: 100%;
   height: 100%;
 `;
 
 interface TP23ComponentProps extends TemplateProps {}
 
-const TP23Component = ({ setPageCompleted, page, showHeader = true }: TP23ComponentProps) => {
+const TP23Component = ({
+  setPageCompleted,
+  page,
+  showHeader = true,
+}: TP23ComponentProps) => {
   const thisPage = page as TP23;
 
   useEffect(() => {
@@ -51,11 +56,14 @@ const TP23Component = ({ setPageCompleted, page, showHeader = true }: TP23Compon
   return (
     <TemplateCommonLayout>
       {showHeader ? (
-        <TitleContent title={thisPage.title} description={thisPage.description} />
+        <TitleContent
+          title={thisPage.title}
+          description={thisPage.description}
+        />
       ) : (
         <></>
       )}
-      <TP23Layout>
+      <TP23LayoutWrapper>
         {thisPage.template.contents.map((content, index) => {
           if (content) {
             if (index === 0) {
@@ -74,7 +82,7 @@ const TP23Component = ({ setPageCompleted, page, showHeader = true }: TP23Compon
             return <></>;
           }
         })}
-      </TP23Layout>
+      </TP23LayoutWrapper>
     </TemplateCommonLayout>
   );
 };
