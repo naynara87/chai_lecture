@@ -18,6 +18,7 @@
     "@types/react": "*",
     "@types/react-dom": "*",
     "axios": "*",
+    "chai-ui": "*",
     "cross-env": "*",
     "immer": "^9.0.16",
     "lodash": "*",
@@ -27,7 +28,6 @@
     "react-dom": "*",
     "react-loader-spinner": "5.3.4",
     "react-media-recorder": "1.6.5",
-    "react-quill": "^2.0.0",
     "react-router-dom": "*",
     "react-scripts": "*",
     "react-toastify": "*",
@@ -35,8 +35,7 @@
     "recoil": "0.7.6",
     "sass": "*",
     "typescript": "*",
-    "web-vitals": "*",
-    "chai-ui": "*"
+    "web-vitals": "*"
   },
   "scripts": {
     "dev": "env-cmd -f .env craco start",

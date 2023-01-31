@@ -57,7 +57,7 @@ interface HtmlCreatorProps extends HtmlWrapperProps {
   id: string;
   focusEditor: string | undefined;
   onClickHtml: () => void;
-  textMaxLength?: number;
+  textMaxLength: number;
 }
 
 const HtmlCreator = ({
