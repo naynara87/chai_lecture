@@ -9,5 +9,13 @@
         "accessToken": "MDEyMzQ0NWMtN2NiOC00MDdkLWJmYWUtM2Q1ZmIxN2FmYjkxfHJlYWQtd3JpdGU="
       }
     }
+  },
+  "targetDefaults": {
+    "build": {
+      "dependsOn": ["^build"]
+    },
+    "dev": {
+      "dependsOn": ["^build"]
+    }
   }
 }
