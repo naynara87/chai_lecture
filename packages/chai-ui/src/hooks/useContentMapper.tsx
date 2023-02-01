@@ -1,5 +1,6 @@
 import { SerializedStyles } from "@emotion/react";
 import React from "react";
+import { ChooseTextByAudio } from "../components";
 import AudioContentAdapter from "../components/contents/AudioContentAdapter";
 import AudioRecorderAdapter from "../components/contents/AudioRecorderAdapter";
 import ChooseMediaTextAdapter from "../components/contents/ChooseMediaTextAdapter";
@@ -20,6 +21,7 @@ import {
   TextBoxesContent,
   IconTextContent,
   ChooseMediaTextContent,
+  ChooseTextByAudioContent,
 } from "../types/templateContents";
 
 const useContentMapper = () => {
@@ -27,18 +29,42 @@ const useContentMapper = () => {
     content: ApproveContent,
     id: ID,
     htmlCss?: SerializedStyles,
-    audioCss?: SerializedStyles,
+    audioCss?: SerializedStyles
   ) => {
-    const contentMapper: Record<ApproveContentType, JSX.Element | JSX.Element[]> = {
+    const contentMapper: Record<
+      ApproveContentType,
+      JSX.Element | JSX.Element[]
+    > = {
       chooseText: <ChooseText contentData={content as ChooseTextContent} />,
+      chooseTextByAudio: (
+        <ChooseTextByAudio
+          chooseTextByAudioContentData={content as ChooseTextByAudioContent}
+        />
+      ),
       iconText: <IconTextAdapter content={content as IconTextContent} />,
       textBoxes: <TextBoxesAdapter content={content as TextBoxesContent} />,
-      html: <HtmlContentAdapter content={content as HtmlContent} htmlCss={htmlCss} />,
+      html: (
+        <HtmlContentAdapter
+          content={content as HtmlContent}
+          htmlCss={htmlCss}
+        />
+      ),
       images: <ImageContentAdapter content={content as ImagesContent} />,
-      video: <VideoContentAdapter content={content as VideoContent} videoId={id} />,
-      audio: <AudioContentAdapter content={content as AudioContent} audioCss={audioCss} />,
-      audioRecord: <AudioRecorderAdapter content={content as AudioRecordContent} />,
-      chooseMediaText: <ChooseMediaTextAdapter content={content as ChooseMediaTextContent} />,
+      video: (
+        <VideoContentAdapter content={content as VideoContent} videoId={id} />
+      ),
+      audio: (
+        <AudioContentAdapter
+          content={content as AudioContent}
+          audioCss={audioCss}
+        />
+      ),
+      audioRecord: (
+        <AudioRecorderAdapter content={content as AudioRecordContent} />
+      ),
+      chooseMediaText: (
+        <ChooseMediaTextAdapter content={content as ChooseMediaTextContent} />
+      ),
     };
 
     return contentMapper[content.type];

@@ -3,6 +3,15 @@ import { Content } from "chai-ui";
 export const defaultContentComponentData: Partial<
   Record<Content["type"], Content["data"]>
 > = {
+  chooseTextByAudio: [
+    {
+      choices: [],
+      answerIndex: -1,
+      audio: {
+        src: "",
+      },
+    },
+  ],
   chooseText: [
     {
       choices: [],

@@ -86,7 +86,6 @@ const HtmlCreator = ({
 
   const contents = useMemo(() => {
     if (id === focusEditor) {
-      console.log(text);
       return (
         <Page
           onBlur={() => {

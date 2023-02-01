@@ -1,9 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import HtmlCreator from "./HtmlCreator";
-import styled from "@emotion/styled";
-import { CreatorContent } from "../../hooks/useCreateContent";
+import { ContentProps } from "../../hooks/useCreateContent";
 import {
-  Content,
   MeaningText,
   SubText,
   subTextCss,
@@ -12,27 +10,9 @@ import {
   TextCard,
   TextCardGrp,
 } from "chai-ui";
+import { OptionButtonWrapper } from "../atoms/OptionButtonWrapper";
 
-const Button = styled.button`
-  position: absolute;
-  right: 0;
-  top: 0;
-`;
-
-interface TextBoxesCreatorProps {
-  onSave(): void;
-  id: string;
-  componentList: (CreatorContent | undefined)[];
-  setComponentList: React.Dispatch<
-    React.SetStateAction<(CreatorContent | undefined)[]>
-  >;
-  addComponentToExistingComponentById: (
-    contentType: Content["type"],
-    id: string
-  ) => void;
-  focusEditor?: string;
-  handleFocusHtml?: (id?: string, type?: string, index?: number) => void;
-}
+interface TextBoxesCreatorProps extends ContentProps {}
 
 const TextBoxesCreator = ({
   id,
@@ -117,6 +97,7 @@ const TextBoxesCreator = ({
   );
 
   const addTextBox = useCallback(() => {
+    if (!addComponentToExistingComponentById) return;
     addComponentToExistingComponentById("textBoxes", id);
   }, [addComponentToExistingComponentById, id]);
 
@@ -195,9 +176,11 @@ const TextBoxesCreator = ({
   return (
     <TextBoxesWrapper isHorizontal={textBoxesData?.options?.isHorizontal}>
       {textBoxes}
-      <Button onClick={handleClickHorizontalMode}>
-        {textBoxesData?.options?.isHorizontal ? "가로모드" : "세로모드"}
-      </Button>
+      <OptionButtonWrapper>
+        <button onClick={handleClickHorizontalMode}>
+          {textBoxesData?.options?.isHorizontal ? "가로모드" : "세로모드"}
+        </button>
+      </OptionButtonWrapper>
       <button onClick={addTextBox}>+</button>
     </TextBoxesWrapper>
   );

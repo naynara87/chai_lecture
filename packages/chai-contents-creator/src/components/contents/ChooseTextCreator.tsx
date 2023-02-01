@@ -1,16 +1,15 @@
 import { css } from "@emotion/react";
-import styled from "@emotion/styled";
 import {
   ChooseTextContent,
   ChooseTextOptions,
   colorPalette,
-  Content,
   QuizAnswerContainer,
   QuizAnswerStyle,
   TipWrapper,
 } from "chai-ui";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { CreatorContent } from "../../hooks/useCreateContent";
+import { ContentProps } from "../../hooks/useCreateContent";
+import { OptionButtonWrapper } from "../atoms/OptionButtonWrapper";
 
 import ExplanationCreator from "./ExplanationCreator";
 import HtmlCreator from "./HtmlCreator";
@@ -20,26 +19,7 @@ const chooseTextContainerCss = css`
   justify-content: center;
 `;
 
-const ButtonWrapper = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
-`;
-
-interface ChooseTextProps {
-  onSave(): void;
-  id: string;
-  componentList: (CreatorContent | undefined)[];
-  setComponentList: React.Dispatch<
-    React.SetStateAction<(CreatorContent | undefined)[]>
-  >;
-  addComponentToExistingComponentById: (
-    contentType: Content["type"],
-    id: string
-  ) => void;
-  handleFocusHtml?: (id?: string, type?: string, index?: number) => void;
-  focusEditor?: string;
-}
+interface ChooseTextProps extends ContentProps {}
 
 const ChooseTextCreator = ({
   onSave,
@@ -282,7 +262,7 @@ const ChooseTextCreator = ({
   return (
     <div>
       {chooseText}
-      <ButtonWrapper>
+      <OptionButtonWrapper>
         <button onClick={() => handleClickMode("isHorizontal")}>
           {chooseTextData?.options?.isHorizontal ? "가로모드" : "세로모드"}
         </button>
@@ -291,7 +271,7 @@ const ChooseTextCreator = ({
             ? "랜덤답안 비활성화"
             : "랜덤답안 활성화"}
         </button>
-      </ButtonWrapper>
+      </OptionButtonWrapper>
     </div>
   );
 };

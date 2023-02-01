@@ -1,32 +1,10 @@
-import styled from "@emotion/styled";
-import {
-  Content,
-  ImageContentComponent,
-  ImagesContent,
-  ImagesWrapper,
-} from "chai-ui";
+import { ImageContentComponent, ImagesContent, ImagesWrapper } from "chai-ui";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { CreatorContent } from "../../hooks/useCreateContent";
-import FileUploader from "./FileUploader";
+import { ContentProps } from "../../hooks/useCreateContent";
+import { OptionButtonWrapper } from "../atoms/OptionButtonWrapper";
+import FileUploader from "../molecules/FileUploader";
 
-const Button = styled.button`
-  position: absolute;
-  right: 0;
-  top: 0;
-`;
-
-interface ImagesCreatorProps {
-  onSave(): void;
-  id: string;
-  componentList: (CreatorContent | undefined)[];
-  setComponentList: React.Dispatch<
-    React.SetStateAction<(CreatorContent | undefined)[]>
-  >;
-  addComponentToExistingComponentById: (
-    contentType: Content["type"],
-    id: string
-  ) => void;
-}
+interface ImagesCreatorProps extends ContentProps {}
 
 const ImagesCreator = ({
   id,
@@ -37,7 +15,7 @@ const ImagesCreator = ({
   const [ImagesData, setImagesData] = useState<ImagesContent | undefined>(
     undefined
   );
-  const [contentIndex, setContentIndex] = useState<number | undefined>(
+  const [componentIndex, setComponentIndex] = useState<number | undefined>(
     undefined
   );
 
@@ -56,7 +34,7 @@ const ImagesCreator = ({
         return undefined;
       }
     });
-    setContentIndex(imagesContentIndex);
+    setComponentIndex(imagesContentIndex);
     setImagesData(imagesContent);
   }, [componentList, id]);
 
@@ -66,35 +44,54 @@ const ImagesCreator = ({
 
   const handleDeleteImages = useCallback(
     (index: number) => {
-      if (contentIndex === undefined) return;
+      if (componentIndex === undefined) return;
       if (!ImagesData?.data) return;
       const copyComponentList = [...componentList];
 
       if (ImagesData?.data.length <= 1) {
-        copyComponentList.splice(contentIndex, 1, undefined);
+        copyComponentList.splice(componentIndex, 1, undefined);
         setComponentList(copyComponentList);
         return;
       }
 
       const copyTextBoxesDataArr = [...ImagesData.data];
       copyTextBoxesDataArr.splice(index, 1);
-      copyComponentList[contentIndex]!.content.data = copyTextBoxesDataArr;
+      copyComponentList[componentIndex]!.content.data = copyTextBoxesDataArr;
       setComponentList(copyComponentList);
     },
-    [ImagesData, componentList, contentIndex, setComponentList]
+    [ImagesData, componentList, componentIndex, setComponentList]
   );
 
   const addImages = useCallback(() => {
+    if (!addComponentToExistingComponentById) return;
     addComponentToExistingComponentById("images", id);
   }, [addComponentToExistingComponentById, id]);
 
   const handleClickHorizontalMode = useCallback(() => {
-    if (contentIndex === undefined) return;
+    if (componentIndex === undefined) return;
     const copyComponentList = [...componentList];
-    const content = copyComponentList[contentIndex]?.content as ImagesContent;
+    const content = copyComponentList[componentIndex]?.content as ImagesContent;
     content.options!.isHorizontal = !content.options?.isHorizontal;
     setComponentList(copyComponentList);
-  }, [componentList, contentIndex, setComponentList]);
+  }, [componentList, componentIndex, setComponentList]);
+
+  const encodeFileToBase64 = useCallback(
+    (fileBlob: Blob, contentIndex: number) => {
+      if (componentIndex === undefined) return;
+
+      const reader = new FileReader();
+      reader.readAsDataURL(fileBlob);
+      reader.onload = () => {
+        const src = reader.result as string;
+        const copyComponentList = JSON.parse(JSON.stringify(componentList));
+        const content = copyComponentList[componentIndex]
+          ?.content as ImagesContent;
+        content.data[contentIndex].src = src;
+        setComponentList(copyComponentList);
+      };
+    },
+    [componentList, componentIndex, setComponentList]
+  );
 
   const contents = useMemo(() => {
     return ImagesData?.data.map((image, index) => {
@@ -111,10 +108,8 @@ const ImagesCreator = ({
             </div>
           ) : (
             <FileUploader
-              componentIndex={contentIndex}
-              componentList={componentList}
-              setComponentList={setComponentList}
               contentIndex={index}
+              encodeFileToBase64={encodeFileToBase64}
             />
           )}
           <button
@@ -127,20 +122,16 @@ const ImagesCreator = ({
         </div>
       );
     });
-  }, [
-    ImagesData,
-    componentList,
-    contentIndex,
-    setComponentList,
-    handleDeleteImages,
-  ]);
+  }, [ImagesData, handleDeleteImages, encodeFileToBase64]);
 
   return (
     <ImagesWrapper isHorizontal={ImagesData?.options?.isHorizontal}>
       {contents}
-      <Button onClick={handleClickHorizontalMode}>
-        {ImagesData?.options?.isHorizontal ? "가로모드" : "세로모드"}
-      </Button>
+      <OptionButtonWrapper>
+        <button onClick={handleClickHorizontalMode}>
+          {ImagesData?.options?.isHorizontal ? "가로모드" : "세로모드"}
+        </button>
+      </OptionButtonWrapper>
       <button onClick={addImages}>+</button>
     </ImagesWrapper>
   );
