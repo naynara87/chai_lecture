@@ -1,6 +1,6 @@
 import { SerializedStyles } from "@emotion/react";
 import styled from "@emotion/styled";
-import { changePXtoVW } from "chai-ui";
+import { HtmlWrapper } from "chai-ui";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
@@ -10,9 +10,9 @@ interface HtmlWrapperProps {
   customCss?: SerializedStyles;
 }
 
-const Font = ReactQuill.Quill.import("formats/font");
-Font.whitelist = ["sans-serif", "yahei", "Noto-sans"];
-ReactQuill.Quill.register(Font, true);
+// const Font = ReactQuill.Quill.import("formats/font");
+// Font.whitelist = ["sans-serif", "yahei", "Noto-sans"];
+// ReactQuill.Quill.register(Font, true);
 
 const ReactQuillEditor = {
   toolbar: {
@@ -25,28 +25,6 @@ const Page = styled.div`
   /* border: 1px solid black; */
   width: 100%;
   height: 100%;
-`;
-
-const HtmlWrapper = styled.div<HtmlWrapperProps>`
-  > h1 {
-    font-size: ${changePXtoVW(64)};
-  }
-
-  > p {
-    font-weight: 400;
-    font-size: ${changePXtoVW(48)};
-  }
-
-  > h2 {
-    font-weight: 400;
-    font-size: ${changePXtoVW(48)};
-  }
-
-  > h4 {
-    font-weight: 400;
-    font-size: ${changePXtoVW(48)};
-  }
-  ${(props) => props.customCss}
 `;
 
 interface HtmlCreatorProps extends HtmlWrapperProps {

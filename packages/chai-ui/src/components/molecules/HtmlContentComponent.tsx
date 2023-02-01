@@ -7,7 +7,7 @@ interface HtmlWrapperProps {
   customCss?: SerializedStyles;
 }
 
-const HtmlWrapper = styled.div<HtmlWrapperProps>`
+export const HtmlWrapper = styled.div<HtmlWrapperProps>`
   > h1 {
     font-size: ${changePXtoVW(64)};
   }
@@ -32,9 +32,15 @@ const HtmlWrapper = styled.div<HtmlWrapperProps>`
 interface HtmlContentComponentProps extends HtmlWrapperProps {
   html: string;
 }
-const HtmlContentComponent = ({ html, customCss }: HtmlContentComponentProps) => {
+const HtmlContentComponent = ({
+  html,
+  customCss,
+}: HtmlContentComponentProps) => {
   return (
-    <HtmlWrapper dangerouslySetInnerHTML={{ __html: html }} customCss={customCss}></HtmlWrapper>
+    <HtmlWrapper
+      dangerouslySetInnerHTML={{ __html: html }}
+      customCss={customCss}
+    ></HtmlWrapper>
   );
 };
 
