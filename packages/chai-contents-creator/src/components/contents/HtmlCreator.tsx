@@ -105,6 +105,14 @@ const HtmlCreator = ({
     }
   }, [encodeFileToBase64, htmlData]);
 
+  const handleDeleteHtml = useCallback(() => {
+    if (componentIndex === undefined) return;
+    if (!htmlData?.data) return;
+    const copyComponentList = [...componentList];
+    copyComponentList.splice(componentIndex, 1, undefined);
+    setComponentList(copyComponentList);
+  }, [htmlData, componentList, setComponentList, componentIndex]);
+
   return (
     <div>
       <HtmlCreatorWrapper>
@@ -122,6 +130,7 @@ const HtmlCreator = ({
           textMaxLength={30}
         />
       </HtmlCreatorWrapper>
+      <button onClick={handleDeleteHtml}>삭제</button>
     </div>
   );
 };
