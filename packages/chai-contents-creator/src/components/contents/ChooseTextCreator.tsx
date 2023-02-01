@@ -10,9 +10,9 @@ import {
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { ContentProps } from "../../hooks/useCreateContent";
 import { OptionButtonWrapper } from "../atoms/OptionButtonWrapper";
+import TextCreator from "../molecules/TextCreator";
 
 import ExplanationCreator from "./ExplanationCreator";
-import HtmlCreator from "./HtmlCreator";
 
 const chooseTextContainerCss = css`
   display: flex;
@@ -203,7 +203,7 @@ const ChooseTextCreator = ({
                           className="icon"
                         />
                       </div>
-                      <HtmlCreator
+                      <TextCreator
                         html={choice}
                         onSubmitHtml={handleSubmitText}
                         id={id + "text" + index}
@@ -223,7 +223,7 @@ const ChooseTextCreator = ({
             })}
           </QuizAnswerContainer>
           <TipWrapper>
-            <HtmlCreator
+            <TextCreator
               onSubmitHtml={handleSubmitTipText}
               html={choiceData.tip ?? ""}
               focusEditor={focusEditor}

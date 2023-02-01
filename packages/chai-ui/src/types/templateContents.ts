@@ -50,6 +50,9 @@ export type HtmlContent = {
   data: {
     kind?: "tip" | "title" | "description";
     text: string;
+    icon?: {
+      src: string;
+    };
   }[];
   options?: {};
 };

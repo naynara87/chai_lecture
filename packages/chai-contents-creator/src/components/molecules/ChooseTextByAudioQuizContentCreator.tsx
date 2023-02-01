@@ -8,8 +8,8 @@ import {
   AudioButton,
 } from "chai-ui";
 import { useMemo } from "react";
-import HtmlCreator from "../contents/HtmlCreator";
 import FileUploader from "./FileUploader";
+import TextCreator from "./TextCreator";
 
 interface ChooseTextByAudioQuizContentCreatorProps {
   answerData: ChooseTextByAudioData;
@@ -61,7 +61,7 @@ const ChooseTextByAudioQuizContentCreator = ({
               }}
             />
             <QuizWord>
-              <HtmlCreator
+              <TextCreator
                 id={id + `AudioQuizAnswer${index}` + quizIndex}
                 html={answerData.choices[index]}
                 keyName={"AudioQuizAnswer" + index}

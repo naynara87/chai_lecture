@@ -43,4 +43,12 @@ export const defaultContentComponentData: Partial<
       },
     },
   ],
+  html: [
+    {
+      text: "",
+      icon: {
+        src: "",
+      },
+    },
+  ],
 };
