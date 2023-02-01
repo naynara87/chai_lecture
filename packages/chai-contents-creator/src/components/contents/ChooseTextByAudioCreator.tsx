@@ -74,14 +74,12 @@ const ChooseTextByAudioCreator = ({
       if (!chooseTextByAudioData?.data) return;
       const copyComponentList = [...componentList];
 
-      // NOTE kjw 텍스트박스가 하나일때 콘텐츠전체삭제
       if (chooseTextByAudioData?.data.length <= 1) {
         copyComponentList.splice(componentIndex, 1, undefined);
         setComponentList(copyComponentList);
         return;
       }
 
-      // NOTE kjw 텍스트박스가 여러개일때 해당 콘텐츠만 삭제
       const copyChooseTextByAudioDataArr = [...chooseTextByAudioData.data];
       copyChooseTextByAudioDataArr.splice(index, 1);
       copyComponentList[componentIndex]!.content.data =
