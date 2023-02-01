@@ -283,7 +283,6 @@ export type ApproveContent = Exclude<
   | StudyWordsContent
   | DialogContent
   | NumberTableContent
-  | WordQuizContent
   | SortWordsContent
 >;
 

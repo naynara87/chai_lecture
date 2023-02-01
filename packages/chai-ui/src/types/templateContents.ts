@@ -224,7 +224,7 @@ export type NumberTableContent = {
 export type WordQuizContent = {
   type: "wordQuiz";
   data: WordQuizData[];
-  options?: {};
+  options?: WordQuizOptions;
 };
 
 export type WordQuizData = {
@@ -236,6 +236,10 @@ export type WordQuizData = {
     src: string;
   };
   explanation?: Explanation;
+};
+
+export type WordQuizOptions = {
+  sortAnswer: boolean;
 };
 
 export type SortWordsContent = {

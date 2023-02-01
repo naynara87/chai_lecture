@@ -1,8 +1,8 @@
 import React, { useMemo } from "react";
-import { Droppable } from "react-beautiful-dnd";
 import { useCreateLayoutMapperProps } from "../../hooks/useCreateLayoutMapper";
 import { TP01LayoutWrapper } from "chai-ui";
 import DropBox from "../molecules/DropBox";
+import { StrictModeDroppable } from "../molecules/StrictModeDroppable";
 
 interface TP01LayoutProps extends useCreateLayoutMapperProps {}
 
@@ -19,7 +19,7 @@ const CreateTP01Layout = ({
       .fill("")
       .map((value, index) => {
         return (
-          <Droppable droppableId={`componentList${index}`}>
+          <StrictModeDroppable droppableId={`componentList${index}`}>
             {(provided, snapshot) => (
               <DropBox
                 index={index}
@@ -32,7 +32,7 @@ const CreateTP01Layout = ({
                 components={components}
               />
             )}
-          </Droppable>
+          </StrictModeDroppable>
         );
       });
   }, [

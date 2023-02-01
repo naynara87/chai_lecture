@@ -10,12 +10,7 @@ import { useNavigate } from "react-router-dom";
 import "./common.scss";
 import ModalLayoutChange from "./ModalLayoutChange";
 import ModalComponentChoice from "./ModalComponentChoice";
-import {
-  DragDropContext,
-  Draggable,
-  Droppable,
-  DropResult,
-} from "react-beautiful-dnd";
+import { DragDropContext, Draggable, DropResult } from "react-beautiful-dnd";
 
 import { useRecoilValue } from "recoil";
 import { pasteComponentState } from "../../states/pasteComponentState";
@@ -27,6 +22,7 @@ import { CREATE_CONTENT_LAYOUT_URL } from "../../constants/url";
 import ModalCreatePreview from "../modal/ModalCreatePreview";
 import CreateContextMenu from "../atoms/CreateContextMenu";
 import useCreateLayoutMapper from "../../hooks/useCreateLayoutMapper";
+import { StrictModeDroppable } from "../molecules/StrictModeDroppable";
 
 const PageLayout = styled.div`
   .btn-wrap {
@@ -308,7 +304,7 @@ const CreateComponents = () => {
               <ModalLayoutChange />
             </div>
 
-            <Droppable droppableId="btn-wrap" isDropDisabled={true}>
+            <StrictModeDroppable droppableId="btn-wrap" isDropDisabled={true}>
               {(provided) => (
                 <div
                   className="btn-wrap"
@@ -353,7 +349,7 @@ const CreateComponents = () => {
                   {provided.placeholder}
                 </div>
               )}
-            </Droppable>
+            </StrictModeDroppable>
           </div>
 
           <div

@@ -6,6 +6,7 @@ import {
   SubText,
   subTextCss,
   TextBoxesContent,
+  TextBoxesOptions,
   TextBoxesWrapper,
   TextCard,
   TextCardGrp,
@@ -101,14 +102,19 @@ const TextBoxesCreator = ({
     addComponentToExistingComponentById("textBoxes", id);
   }, [addComponentToExistingComponentById, id]);
 
-  const handleClickHorizontalMode = useCallback(() => {
-    if (contentIndex === undefined) return;
-    const copyComponentList = [...componentList];
-    const content = copyComponentList[contentIndex]
-      ?.content as TextBoxesContent;
-    content.options!.isHorizontal = !content.options?.isHorizontal;
-    setComponentList(copyComponentList);
-  }, [componentList, contentIndex, setComponentList]);
+  const handleClickMode = useCallback(
+    (optionName: keyof TextBoxesOptions) => {
+      if (contentIndex === undefined) return;
+      const copyComponentList = [...componentList];
+      const content = copyComponentList[contentIndex]
+        ?.content as TextBoxesContent;
+      if (optionName === "isHorizontal") {
+        content.options!.isHorizontal = !content.options?.isHorizontal;
+      }
+      setComponentList(copyComponentList);
+    },
+    [componentList, contentIndex, setComponentList]
+  );
 
   const textBoxes = useMemo(() => {
     if (!handleFocusHtml) return;
@@ -177,7 +183,7 @@ const TextBoxesCreator = ({
     <TextBoxesWrapper isHorizontal={textBoxesData?.options?.isHorizontal}>
       {textBoxes}
       <OptionButtonWrapper>
-        <button onClick={handleClickHorizontalMode}>
+        <button onClick={() => handleClickMode("isHorizontal")}>
           {textBoxesData?.options?.isHorizontal ? "가로모드" : "세로모드"}
         </button>
       </OptionButtonWrapper>

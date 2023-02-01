@@ -1,6 +1,6 @@
 import { SerializedStyles } from "@emotion/react";
 import React from "react";
-import { ChooseTextByAudio } from "../components";
+import { ChooseTextByAudio, WordQuiz } from "../components";
 import AudioContentAdapter from "../components/contents/AudioContentAdapter";
 import AudioRecorderAdapter from "../components/contents/AudioRecorderAdapter";
 import ChooseMediaTextAdapter from "../components/contents/ChooseMediaTextAdapter";
@@ -22,6 +22,7 @@ import {
   IconTextContent,
   ChooseMediaTextContent,
   ChooseTextByAudioContent,
+  WordQuizContent,
 } from "../types/templateContents";
 
 const useContentMapper = () => {
@@ -35,6 +36,7 @@ const useContentMapper = () => {
       ApproveContentType,
       JSX.Element | JSX.Element[]
     > = {
+      wordQuiz: <WordQuiz wordQuizData={content as WordQuizContent} />,
       chooseText: <ChooseText contentData={content as ChooseTextContent} />,
       chooseTextByAudio: (
         <ChooseTextByAudio

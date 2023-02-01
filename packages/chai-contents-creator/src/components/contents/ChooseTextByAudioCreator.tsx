@@ -1,4 +1,4 @@
-import { ChooseTextByAudioContent } from "chai-ui";
+import { ChooseTextByAudioContent, ChooseTextByAudioOptions } from "chai-ui";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { ContentProps } from "../../hooks/useCreateContent";
 import { OptionButtonWrapper } from "../atoms/OptionButtonWrapper";
@@ -124,14 +124,19 @@ const ChooseTextByAudioCreator = ({
     [componentList, componentIndex, setComponentList]
   );
 
-  const handleClickSortAnswerMode = useCallback(() => {
-    if (componentIndex === undefined) return;
-    const copyComponentList = [...componentList];
-    const content = copyComponentList[componentIndex]
-      ?.content as ChooseTextByAudioContent;
-    content.options!.sortAnswer = !content.options?.sortAnswer;
-    setComponentList(copyComponentList);
-  }, [componentList, componentIndex, setComponentList]);
+  const handleClickMode = useCallback(
+    (optionName: keyof ChooseTextByAudioOptions) => {
+      if (componentIndex === undefined) return;
+      const copyComponentList = [...componentList];
+      const content = copyComponentList[componentIndex]
+        ?.content as ChooseTextByAudioContent;
+      if (optionName === "sortAnswer") {
+        content.options!.sortAnswer = !content.options?.sortAnswer;
+      }
+      setComponentList(copyComponentList);
+    },
+    [componentList, componentIndex, setComponentList]
+  );
 
   const chooseTextByAudio = useMemo(() => {
     if (componentIndex === undefined) return;
@@ -166,7 +171,7 @@ const ChooseTextByAudioCreator = ({
     <div>
       {chooseTextByAudio}
       <OptionButtonWrapper>
-        <button onClick={handleClickSortAnswerMode}>
+        <button onClick={() => handleClickMode("sortAnswer")}>
           {chooseTextByAudioData?.options?.sortAnswer
             ? "랜덤답안 비활성화"
             : "랜덤답안 활성화"}

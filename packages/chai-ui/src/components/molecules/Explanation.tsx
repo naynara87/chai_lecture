@@ -152,7 +152,9 @@ const Explanation = ({
           <ExplanationText isText={!!text}>
             <InfoWrapper>
               <OXWrapper>{isCorrect ? <OIcon /> : <XIcon />}</OXWrapper>
-              <ExplanationTitle>{infoText}</ExplanationTitle>
+              <ExplanationTitle>
+                <HtmlContentComponent html={infoText} />
+              </ExplanationTitle>
               {audio && (
                 <AudioButton
                   isAudio={true}

@@ -32,4 +32,15 @@ export const defaultContentComponentData: Partial<
       src: "",
     },
   ],
+  wordQuiz: [
+    {
+      text: "",
+      choices: [""],
+      answerIndex: -1,
+      meaning: "",
+      audio: {
+        src: "",
+      },
+    },
+  ],
 };
