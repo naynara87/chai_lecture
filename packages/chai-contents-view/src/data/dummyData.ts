@@ -36,73 +36,44 @@ export const dummyData: AppData = {
           title: "회화 알아보기",
           description: "회화를 들어보세요.",
           template: {
-            type: "TP09B",
+            type: "TP01A",
             contents: [
               {
-                type: "iconText",
+                type: "chooseTextByAudio",
                 data: [
                   {
-                    icon: {
-                      src: "",
-                    },
-                    text: "문장에 맞게 글자와 발음을 순서대로 선택해 주세요.",
-                  },
-                ],
-              },
-              {
-                type: "dialog",
-                data: [
-                  {
-                    id: "a",
-                    icon: {
-                      src: `${process.env.PUBLIC_URL}/images/cornerIcon/conversationIcon.png`,
-                    },
-                    text: "<p>我不会，你教教吧。</p>",
-                    pronunciation: "<p>Wô bú huì, nî jiãojiao wô ba.</p>",
-                    meaning: "<p>나는 할 줄 몰라. 너가 좀 가르쳐 주라.</p>",
-                    hasQuestion: false,
+                    choices: ["he", "ge"],
+                    answerIndex: 0,
                     audio: {
-                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/eZTSEsc5jJxrt5eiV75hen8aoJuvNZRt/LcR3pI1dfJ2SJhyLvWsA2rPCKRwuPfY5/25d064dd6004a352e6ddcaaaae8a876008d16c6d11df1bda0a66e9e08c5aaaaf.mp3",
+                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/3sreCyS0694Tss2vVmY9vGvx5mHBKYyt/7sH4zE1pcn3eyITQXVD8sXcgHIdTfLaY/a5e6a13523f1af57d14d98e8aaeb57478f1fee9f4232c2d67cc16f4cfe4ac92d.mp3",
                     },
                   },
                   {
-                    id: "b",
-                    icon: {
-                      src: `${process.env.PUBLIC_URL}/images/cornerIcon/conversationIcon.png`,
+                    choices: ["he", "ge"],
+                    answerIndex: 1,
+                    audio: {
+                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/r9EWyVf5jmcdjbAhV8IPaiCZwoGTfDAI/l0OJxRs3akoQ5nehVa8lUv4C2PfTqDNO/290d5bd18fe14ef70159d52539d69186353a73dc33755a64047353a84dc5bd1a.mp3",
                     },
-                    text: "<p>*blank**blank**blank*</p>",
-                    meaning: "<p>문제 없지</p>",
-                    hasQuestion: true,
-                    question: {
-                      multiChoices: [
-                        {
-                          text: "没",
-                          pronunciation: "wo",
-                          answerIndex: 0,
-                        },
-                        {
-                          text: "问题",
-                          pronunciation: "ni",
-                          answerIndex: -1,
-                        },
-                        {
-                          text: "没",
-                          pronunciation: "mei",
-                          answerIndex: 1,
-                        },
-                        {
-                          text: "问题",
-                          pronunciation: "wenti",
-                          answerIndex: -1,
-                        },
-                        {
-                          text: "不",
-                          pronunciation: "bu",
-                          answerIndex: 2,
-                        },
-                      ],
-                      choices: ["点", "几"],
-                      answerIndex: 0,
+                  },
+                  {
+                    choices: ["qi", "xi"],
+                    answerIndex: 0,
+                    audio: {
+                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/3eQuw64X34xnuKh6Ogj8RGnjxn0pHtqf/0Ci9CIv0fXgqGVeO4ZDgaN2oErnPrqTv/2c4fd5548ef3862f2097c8b0ec4cc0e70c558737c065b42c986ad8fa80ca02a0.mp3",
+                    },
+                  },
+                  {
+                    choices: ["ji", "qi"],
+                    answerIndex: 0,
+                    audio: {
+                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/ylS3p7w66zdMqIm4JqU2i06ZJ2sv7Ekc/iUwCog4IvWjU2Sz49KlBapifSJo4Wj06/dff0b6960799f0e732dc6cfbb0eb48ac5d77c9ed83efb8341d6a754869c5c377.mp3",
+                    },
+                  },
+                  {
+                    choices: ["ying", "wang"],
+                    answerIndex: 1,
+                    audio: {
+                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/2fFmbd2KgnXtOLCN0CqhGn9t1ZrPxpoF/7wxd4Trj9mAbcY0jmXh3wM9zlVBp7yVm/ec488453376b3a206c64bcd2a021bddd9b04d85115174099c5d343c48454a39b.mp3",
                     },
                   },
                 ],

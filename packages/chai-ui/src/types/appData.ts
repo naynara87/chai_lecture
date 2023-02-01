@@ -277,7 +277,6 @@ export type ApproveContent = Exclude<
   Content,
   | DialogContent
   | NumberTableContent
-  | ChooseTextByAudioContent
   | ListenImagesContent
   | ListenWordsContent
   | DragAndDropContent

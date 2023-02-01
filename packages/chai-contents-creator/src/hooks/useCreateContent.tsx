@@ -11,6 +11,7 @@ import { defaultContentComponentData } from "../data/defaultContentComponentData
 import ChooseTextCreator from "../components/contents/ChooseTextCreator";
 import TextBoxesCreator from "../components/contents/TextBoxesCreator";
 import ImagesCreator from "../components/contents/ImageCreator";
+import ChooseTextByAudioCreator from "../components/contents/ChooseTextByAudioCreator";
 
 interface CopyContentObject {
   type: contentLayoutStateType | undefined;
@@ -20,6 +21,21 @@ interface CopyContentObject {
 interface SaveContentObject {
   type: contentLayoutStateType["layoutName"] | undefined;
   contents: (Content | undefined)[];
+}
+
+export interface ContentProps {
+  onSave: () => void;
+  id: string;
+  componentList: (CreatorContent | undefined)[];
+  setComponentList: React.Dispatch<
+    React.SetStateAction<(CreatorContent | undefined)[]>
+  >;
+  addComponentToExistingComponentById?: (
+    contentType: Content["type"],
+    id: string
+  ) => void;
+  handleFocusHtml?: (id?: string, type?: string, index?: number) => void;
+  focusEditor?: string;
 }
 
 export type CreatorContent = {
@@ -89,50 +105,25 @@ const useCreateContent = ({
 
   const getCreateContentComponent = useCallback(
     (content: Content, key: string) => {
+      const contentProps: ContentProps = {
+        onSave: () => console.log("save"),
+        id: key,
+        componentList,
+        setComponentList,
+        handleFocusHtml,
+        addComponentToExistingComponentById,
+        focusEditor,
+      };
       const contentCreatorMapper: Partial<
         Record<Content["type"], JSX.Element | JSX.Element[]>
       > = {
         // TODO: 저작도구용 컴포넌트 만들기(현재 보여지는 것은 뷰잉용)
-        chooseText: (
-          <ChooseTextCreator
-            key={key}
-            id={key}
-            onSave={() => console.log("save")}
-            addComponentToExistingComponentById={
-              addComponentToExistingComponentById
-            }
-            componentList={componentList}
-            setComponentList={setComponentList}
-            focusEditor={focusEditor}
-            handleFocusHtml={handleFocusHtml}
-          />
+        chooseTextByAudio: (
+          <ChooseTextByAudioCreator key={key} {...contentProps} />
         ),
-        textBoxes: (
-          <TextBoxesCreator
-            key={key}
-            id={key}
-            onSave={() => console.log("save")}
-            addComponentToExistingComponentById={
-              addComponentToExistingComponentById
-            }
-            componentList={componentList}
-            setComponentList={setComponentList}
-            focusEditor={focusEditor}
-            handleFocusHtml={handleFocusHtml}
-          />
-        ),
-        images: (
-          <ImagesCreator
-            key={key}
-            id={key}
-            onSave={() => console.log("save")}
-            addComponentToExistingComponentById={
-              addComponentToExistingComponentById
-            }
-            componentList={componentList}
-            setComponentList={setComponentList}
-          />
-        ),
+        chooseText: <ChooseTextCreator key={key} {...contentProps} />,
+        textBoxes: <TextBoxesCreator key={key} {...contentProps} />,
+        images: <ImagesCreator key={key} {...contentProps} />,
       };
 
       return contentCreatorMapper[content.type];

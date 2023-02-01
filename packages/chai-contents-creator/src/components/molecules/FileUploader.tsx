@@ -1,11 +1,9 @@
 import styled from "@emotion/styled";
-import { ImagesContent } from "chai-ui";
 import React, { useState, useRef, useCallback } from "react";
-import { CreatorContent } from "../../hooks/useCreateContent";
 
 const FormFileUpload = styled.form`
-  height: 200px;
-  width: 300px;
+  height: 70px;
+  width: 150px;
   max-width: 100%;
   text-align: center;
   position: relative;
@@ -56,46 +54,23 @@ const DragFileElement = styled.div`
 `;
 
 interface FileUploaderProps {
-  componentIndex?: number;
-  componentList: (CreatorContent | undefined)[];
   contentIndex: number;
-  setComponentList: React.Dispatch<
-    React.SetStateAction<(CreatorContent | undefined)[]>
-  >;
+  encodeFileToBase64: (fileBlob: Blob, contentIndex: number) => void;
 }
 
 const FileUploader = ({
-  componentIndex,
   contentIndex,
-  componentList,
-  setComponentList,
+  encodeFileToBase64,
 }: FileUploaderProps) => {
   const [dragActive, setDragActive] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const encodeFileToBase64 = useCallback(
-    (fileBlob: Blob) => {
-      if (componentIndex === undefined) return;
-
-      const reader = new FileReader();
-      reader.readAsDataURL(fileBlob);
-      reader.onload = () => {
-        const src = reader.result as string;
-        const copyComponentList = JSON.parse(JSON.stringify(componentList));
-        const content = copyComponentList[componentIndex]
-          ?.content as ImagesContent;
-        content.data[contentIndex].src = src;
-        setComponentList(copyComponentList);
-      };
-    },
-    [componentIndex, componentList, contentIndex, setComponentList]
-  );
-
   const handleFile = useCallback(
     (files: FileList) => {
-      encodeFileToBase64(files[0]);
+      // TODO kjw 파일타입에따라 허용할지 안할지 조건 추가 ex) imageCreator에서 audio파일 인식못하게
+      encodeFileToBase64(files[0], contentIndex);
     },
-    [encodeFileToBase64]
+    [encodeFileToBase64, contentIndex]
   );
 
   const handleDrag = useCallback(
@@ -161,7 +136,7 @@ const FileUploader = ({
         className={dragActive ? "drag-active" : ""}
       >
         <div>
-          <p>이미지를 드래그하거나</p>
+          <p>파일을 드래그하거나</p>
           <UploadButton onClick={onButtonClick}>업로드해주세요</UploadButton>
         </div>
       </LabelFileUpload>

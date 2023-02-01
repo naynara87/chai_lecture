@@ -5,6 +5,14 @@ export { default as BottomTabs } from "./BottomTabs";
 export { default as ChooseMediaTextAdapter } from "./ChooseMediaTextAdapter";
 export { default as ChooseText, QuizAnswerContainer } from "./ChooseText";
 export { default as ChooseTextByAudio } from "./ChooseTextByAudio";
+export {
+  default as ChooseTextByAudioAnswerContent,
+  QuestionList,
+  AudioQuizAnswer,
+  QuizAnswerWrap,
+  QuizIndex,
+  QuizWord,
+} from "./ChooseTextByAudioAnswerContent";
 export { default as Dialog } from "./Dialog";
 export { default as HtmlContentAdapter } from "./HtmlContentAdapter";
 export { default as IconTextAdapter } from "./IconTextAdapter";

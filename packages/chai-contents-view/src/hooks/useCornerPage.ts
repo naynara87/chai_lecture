@@ -3,6 +3,7 @@ import { Page, PageData, pageDataConverter, QUERY_KEY, useToast } from "chai-ui"
 import { useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getPageListData } from "../api/lcms";
+import { getPages } from "../data/tempApi";
 import useAuth from "./useAuth";
 import useCornerListPage from "./useCornerListPage";
 
@@ -33,11 +34,11 @@ const useCornerPage = () => {
     {
       enabled: isAuthorized && !!cornerIdMemo,
       onSuccess: async (data) => {
-        // if (process.env.NODE_ENV === "development") {
-        //   const getPageList = await getPages(cornerId ?? 0);
-        //   setPages(getPageList ?? []);
-        //   return;
-        // }
+        if (process.env.NODE_ENV === "development") {
+          const getPageList = await getPages(cornerId ?? 0);
+          setPages(getPageList ?? []);
+          return;
+        }
         const _pages = data?.body?.data?.map((pageData: PageData) => pageDataConverter(pageData));
         setPages(_pages ?? []);
       },

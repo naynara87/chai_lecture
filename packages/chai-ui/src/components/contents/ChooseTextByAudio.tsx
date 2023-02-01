@@ -1,171 +1,112 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
-import styled from "@emotion/styled";
-import XIcon from "../atoms/svg/XIcon";
-import OIcon from "../atoms/svg/OIcon";
-import AudioButton from "../atoms/AudioButton";
-import { css } from "@emotion/react";
-import { changePXtoVH, changePXtoVW } from "../../utils/styles";
-import { colorPalette } from "../../styles/colorPalette";
-import { sortChoices } from "../../utils/sortChoices";
-
-const QuestionList = styled.div`
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: ${changePXtoVW(32)};
-  margin-top: ${changePXtoVH(12)};
-
-  &.hide {
-    opacity: 0.4;
-  }
-`;
-
-const QuizIndex = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: ${changePXtoVW(76)};
-  height: 100%;
-  margin: 0 ${changePXtoVW(10)};
-  font-weight: 600;
-  font-size: ${changePXtoVW(32)};
-`;
-
-const QuizAnswerWrap = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: ${changePXtoVW(40)};
-`;
-
-const QuizAnswer = styled.div`
-  display: inline-block;
-  color: #9b9b9b;
-`;
-
-interface QuizWordProps {
-  color: string;
-}
-
-const QuizWord = styled.div<QuizWordProps>`
-  position: relative;
-  display: inline-block;
-  min-width: ${changePXtoVW(192)};
-  padding: ${changePXtoVH(20)} ${changePXtoVW(32)};
-  border: 0.2083333333vw solid #9b9b9b;
-  border-color: ${(props) => props.color};
-  border-radius: ${changePXtoVW(52)};
-  font-weight: 600;
-  font-size: ${changePXtoVW(30)};
-  color: ${(props) => props.color};
-  cursor: pointer;
-`;
-
-const OXIconCss = css`
-  position: absolute;
-`;
+import React, { useCallback, useRef, useState } from "react";
+import { useAudio } from "../../hooks";
+import { ChooseTextByAudioContent } from "../../types";
+import { CheckButton } from "../atoms";
+import ChooseTextByAudioAnswerContent from "./ChooseTextByAudioAnswerContent";
 
 interface ChooseTextByAudioProps {
-  contentIndex: number;
-  choices: string[];
-  isCheck: boolean;
-  audioUrl: string;
-  checkAnswer: (answer: string, contentIndex: number) => void;
-  isHide: boolean;
-  handleClickAudio: (src: string, index: number) => void;
-  currentAudioIndex: number;
-  audioState: boolean;
+  chooseTextByAudioContentData: ChooseTextByAudioContent | undefined;
 }
 
 const ChooseTextByAudio = ({
-  contentIndex,
-  choices,
-  isCheck,
-  checkAnswer,
-  audioUrl,
-  currentAudioIndex,
-  handleClickAudio,
-  isHide,
-  audioState,
+  chooseTextByAudioContentData,
 }: ChooseTextByAudioProps) => {
-  const [checkIndex, setCheckIndex] = useState<number>(100);
-  const [sortList, setSortList] = useState<string[]>([]);
+  const [userAnswers, setUserAnswers] = useState<string[]>([]);
+  const [checkAnswers, setCheckAnswers] = useState<boolean[]>([]);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
-  useEffect(() => {
-    sortChoices(choices, setSortList);
-  }, [choices]);
+  const { handleClickAudioButton, audioIndex, audioSrc, audioState } =
+    useAudio(audioRef);
 
-  const renderCheckIcon = useMemo(() => {
-    if (isCheck === undefined) {
-      return;
-    }
-    if (isCheck) {
-      return <OIcon css={OXIconCss} />;
-    } else {
-      return <XIcon css={OXIconCss} />;
-    }
-  }, [isCheck]);
-
-  const handleClickAnswer = useCallback(
-    (choice: string, index: number) => {
-      if (isCheck !== undefined) {
+  const handleCheckAnswer = useCallback(
+    (answer: string, index: number) => {
+      if (userAnswers.length >= chooseTextByAudioContentData!.data.length) {
         return;
       }
-      setCheckIndex(index);
-      checkAnswer(choice, contentIndex);
-    },
-    [checkAnswer, isCheck, contentIndex],
-  );
-
-  const getAnswerBorderColor = useCallback(
-    (index: number) => {
-      if (checkIndex === index) {
-        if (isCheck === false) {
-          return colorPalette.wrongAnswer;
-        } else {
-          return colorPalette.deepBlue;
-        }
+      if (userAnswers[index - 1] !== undefined) {
+        setUserAnswers((prev) => [
+          ...prev.slice(0, index - 1),
+          answer,
+          ...prev.slice(index, userAnswers.length),
+        ]);
       } else {
-        return colorPalette.blankBorderColor;
+        setUserAnswers((prev) => [...prev, answer]);
       }
     },
-    [checkIndex, isCheck],
+    [chooseTextByAudioContentData, userAnswers]
   );
 
-  const QuizAnswerContents = useMemo(() => {
-    return sortList.map((choice, index) => {
+  const handleClickCheckButton = useCallback(() => {
+    if (userAnswers.length !== chooseTextByAudioContentData!.data.length) {
+      return;
+    }
+    const correctAnswers: string[] =
+      chooseTextByAudioContentData?.data.map((item) => {
+        return item.choices[item.answerIndex];
+      }) ?? [];
+    userAnswers.forEach((answer, index) => {
+      if (answer === correctAnswers[index]) {
+        setCheckAnswers((prev) => [...prev, true]);
+      } else {
+        setCheckAnswers((prev) => [...prev, false]);
+      }
+    });
+  }, [chooseTextByAudioContentData, userAnswers]);
+
+  const ChooseTextByAudioContents = useCallback(() => {
+    if (!chooseTextByAudioContentData?.data) {
+      return [];
+    }
+
+    const { data, options } = chooseTextByAudioContentData;
+
+    return data?.map((item, index) => {
+      const { choices, audio } = item;
+      console.log(options);
       return (
-        <QuizAnswer
+        <ChooseTextByAudioAnswerContent
           key={index}
-          onClick={() => {
-            !isHide && handleClickAnswer(choice, index);
-          }}
-        >
-          <QuizWord color={getAnswerBorderColor(index)}>{choice}</QuizWord>
-        </QuizAnswer>
+          isHide={userAnswers.length < index}
+          contentIndex={index + 1}
+          choices={choices}
+          isCheck={checkAnswers[index]}
+          checkAnswer={handleCheckAnswer}
+          handleClickAudio={handleClickAudioButton}
+          audioUrl={audio.src}
+          currentAudioIndex={audioIndex ?? 0}
+          audioState={audioState}
+          options={options}
+        />
       );
     });
-  }, [sortList, handleClickAnswer, isHide, getAnswerBorderColor]);
+  }, [
+    chooseTextByAudioContentData,
+    userAnswers,
+    checkAnswers,
+    handleClickAudioButton,
+    audioIndex,
+    handleCheckAnswer,
+    audioState,
+  ]);
 
   return (
-    <QuestionList className={isHide === true ? "hide" : ""}>
-      <QuizIndex>
-        {`${contentIndex}.`}
-        {renderCheckIcon}
-      </QuizIndex>
-      <QuizAnswerWrap>{QuizAnswerContents}</QuizAnswerWrap>
-      <AudioButton
-        audioHide={isHide}
-        audioUrl={audioUrl}
-        audioIndex={contentIndex}
-        audioHandler={handleClickAudio}
-        isAudio={false}
-        currentAudioIndex={currentAudioIndex}
-        audioState={audioState}
-      />
-    </QuestionList>
+    <div>
+      <>{chooseTextByAudioContentData ? ChooseTextByAudioContents() : <></>}</>
+      {checkAnswers.length < 1 ? (
+        <CheckButton
+          text="채점하기"
+          handleClickCheckButton={handleClickCheckButton}
+          isHide={
+            userAnswers.length < chooseTextByAudioContentData!.data.length
+          }
+        />
+      ) : (
+        <></>
+      )}
+      <audio ref={audioRef}>
+        <source src={audioSrc} />
+      </audio>
+    </div>
   );
 };
 
