@@ -1,126 +1,130 @@
-import { SerializedStyles } from "@emotion/react";
-import styled from "@emotion/styled";
-import { HtmlWrapper } from "chai-ui";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
-import QuillToolbar from "../atoms/QuillToolbar";
+import { HtmlContent, ImageContentComponent, HtmlContainer } from "chai-ui";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { ContentProps } from "../../hooks/useCreateContent";
+import FileUploader from "../molecules/FileUploader";
+import TextCreator from "../molecules/TextCreator";
 
-interface HtmlWrapperProps {
-  customCss?: SerializedStyles;
-}
-
-// const Font = ReactQuill.Quill.import("formats/font");
-// Font.whitelist = ["sans-serif", "yahei", "Noto-sans"];
-// ReactQuill.Quill.register(Font, true);
-
-const ReactQuillEditor = {
-  toolbar: {
-    container: "#toolbar",
-  },
-};
-
-const Page = styled.div`
-  color: #000;
-  /* border: 1px solid black; */
-  width: 100%;
-  height: 100%;
-`;
-
-interface HtmlCreatorProps extends HtmlWrapperProps {
-  html: string;
-  onSubmitHtml: (text: string, keyName?: string, index?: number) => void;
-  keyName?: string;
-  index?: number;
-  id: string;
-  focusEditor: string | undefined;
-  onClickHtml: () => void;
-  textMaxLength: number;
-}
+interface HtmlCreatorProps extends ContentProps {}
 
 const HtmlCreator = ({
-  html,
-  customCss,
-  onSubmitHtml,
-  keyName,
-  index,
+  onSave,
   id,
+  componentList,
+  setComponentList,
+  handleFocusHtml,
   focusEditor,
-  onClickHtml,
-  textMaxLength,
 }: HtmlCreatorProps) => {
-  const [text, setText] = useState(html);
+  const [htmlData, setHtmlData] = useState<HtmlContent | undefined>(undefined);
+  const [componentIndex, setComponentIndex] = useState<number | undefined>(
+    undefined
+  );
+
+  const getData = useCallback(() => {
+    const htmlContent = componentList.find((component) => {
+      if (component) {
+        return component.id === id;
+      } else {
+        return undefined;
+      }
+    })?.content as HtmlContent;
+    const htmlContentIndex = componentList.findIndex((component) => {
+      if (component) {
+        return component.id === id;
+      } else {
+        return undefined;
+      }
+    });
+    setComponentIndex(htmlContentIndex);
+    setHtmlData(htmlContent);
+  }, [componentList, id]);
+
+  const handleSubmitText = useCallback(
+    (text: string, keyName?: string, index?: string | number) => {
+      if (componentIndex === undefined) return;
+      if (htmlData === undefined) return;
+      if (index === undefined) return;
+      const copyChooseTextDataArr = JSON.parse(JSON.stringify(htmlData.data));
+      copyChooseTextDataArr[0].text = text ?? "";
+      const copyComponentList = [...componentList];
+      copyComponentList[componentIndex]!.content.data = copyChooseTextDataArr;
+      setComponentList(copyComponentList);
+    },
+    [htmlData, componentList, componentIndex, setComponentList]
+  );
 
   useEffect(() => {
-    setText(html);
-  }, [html]);
+    getData();
+  }, [getData]);
 
-  const handleSubmitHtml = useCallback(() => {
-    if (text.length > 0) {
-      setText(text);
-      onSubmitHtml(text, keyName, index);
-    }
-  }, [index, text, keyName, onSubmitHtml]);
+  const encodeFileToBase64 = useCallback(
+    (fileBlob: Blob, contentIndex: number) => {
+      if (componentIndex === undefined) return;
 
-  const contents = useMemo(() => {
-    if (id === focusEditor) {
+      const reader = new FileReader();
+      reader.readAsDataURL(fileBlob);
+      reader.onload = () => {
+        const src = reader.result as string;
+        const copyComponentList = JSON.parse(JSON.stringify(componentList));
+        const content = copyComponentList[componentIndex]
+          ?.content as HtmlContent;
+        content.data[contentIndex].icon!.src = src;
+        setComponentList(copyComponentList);
+      };
+    },
+    [componentList, componentIndex, setComponentList]
+  );
+
+  const imageContent = useMemo(() => {
+    if (!htmlData) return;
+    if (!htmlData.data?.[0].icon) return;
+    const { src } = htmlData.data[0].icon;
+    if (htmlData.data[0].icon.src.length > 5) {
       return (
-        <Page
-          onBlur={() => {
-            handleSubmitHtml();
-          }}
-        >
-          <QuillToolbar />
-          <ReactQuill
-            value={text}
-            onChange={(event) => {
-              setText(event);
-            }}
-            onKeyDown={(event) => {
-              if (
-                textMaxLength !== undefined &&
-                event.target.textContent.length > textMaxLength - 1 &&
-                event.key !== "Backspace"
-              ) {
-                event.preventDefault();
-              }
-            }}
-            theme="snow"
-            modules={ReactQuillEditor}
+        <div>
+          <ImageContentComponent
+            imageAlt={src}
+            imageSrc={src}
+            filter="none"
+            isZoom={false}
           />
-        </Page>
+        </div>
       );
     } else {
-      if (text && text.replace(/<[^>]*>?/g, "").length > 0) {
-        return (
-          <HtmlWrapper
-            dangerouslySetInnerHTML={{ __html: html }}
-            customCss={customCss}
-            onClick={onClickHtml}
-          ></HtmlWrapper>
-        );
-      } else {
-        return <div onClick={onClickHtml}>텍스트를 입력해주세요.</div>;
-      }
+      return (
+        <FileUploader
+          contentIndex={0}
+          encodeFileToBase64={encodeFileToBase64}
+        />
+      );
     }
-  }, [
-    id,
-    focusEditor,
-    customCss,
-    html,
-    text,
-    onClickHtml,
-    handleSubmitHtml,
-    textMaxLength,
-  ]);
+  }, [encodeFileToBase64, htmlData]);
+
+  const handleDeleteHtml = useCallback(() => {
+    if (componentIndex === undefined) return;
+    if (!htmlData?.data) return;
+    const copyComponentList = [...componentList];
+    copyComponentList.splice(componentIndex, 1, undefined);
+    setComponentList(copyComponentList);
+  }, [htmlData, componentList, setComponentList, componentIndex]);
 
   return (
-    <div
-      onClick={(event) => {
-        event.stopPropagation();
-      }}
-    >
-      {contents}
+    <div>
+      <HtmlContainer>
+        {imageContent}
+        <TextCreator
+          html={htmlData?.data[0].text ?? ""}
+          onSubmitHtml={handleSubmitText}
+          id={id + "html" + 0}
+          index={0}
+          focusEditor={focusEditor}
+          onClickHtml={() => {
+            if (!handleFocusHtml) return;
+            handleFocusHtml(id, "html", 0);
+          }}
+          textMaxLength={30}
+        />
+      </HtmlContainer>
+      <button onClick={handleDeleteHtml}>삭제</button>
     </div>
   );
 };

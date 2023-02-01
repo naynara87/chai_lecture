@@ -2,32 +2,18 @@ import { SerializedStyles } from "@emotion/react";
 import styled from "@emotion/styled";
 import React from "react";
 import { HtmlContent } from "../../types/templateContents";
-import { changePXtoVW } from "../../utils/styles";
 import HtmlContentComponent from "../molecules/HtmlContentComponent";
 import TipComponent from "../molecules/TipComponent";
+import ImageContentComponent from "./ImageContentComponent";
 
-interface HtmlWrapperProps {
+interface HtmlContainerProps {
   htmlCss?: SerializedStyles;
 }
 
-const HtmlWrapper = styled.div<HtmlWrapperProps>`
+export const HtmlContainer = styled.div<HtmlContainerProps>`
   display: flex;
-  flex-direction: column;
-
-  > div > h2 {
-    font-weight: 400;
-    font-size: ${changePXtoVW(64)};
-  }
-
-  > div > h3 {
-    font-weight: 600;
-    font-size: ${changePXtoVW(48)};
-  }
-
-  > div > p {
-    font-weight: 400;
-    font-size: ${changePXtoVW(48)};
-  }
+  justify-content: center;
+  align-items: center;
 
   ${(props) => props.htmlCss}
 `;
@@ -39,14 +25,22 @@ const HtmlContentAdapter = ({ content, htmlCss }: HtmlContentAdapterProps) => {
   const { data } = content;
 
   return (
-    <HtmlWrapper htmlCss={htmlCss}>
+    <HtmlContainer htmlCss={htmlCss}>
+      {data[0].icon?.src && (
+        <ImageContentComponent
+          imageAlt={data[0].icon?.src}
+          imageSrc={data[0].icon?.src}
+          filter="none"
+          isZoom={false}
+        />
+      )}
       {data.map((htmlData, index) => {
         if (htmlData.kind === "tip") {
           return <TipComponent key={index} html={htmlData.text} />;
         }
         return <HtmlContentComponent key={index} html={htmlData.text} />;
       })}
-    </HtmlWrapper>
+    </HtmlContainer>
   );
 };
 

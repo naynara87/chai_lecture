@@ -14,7 +14,10 @@ export {
   QuizWord,
 } from "./ChooseTextByAudioAnswerContent";
 export { default as Dialog } from "./Dialog";
-export { default as HtmlContentAdapter } from "./HtmlContentAdapter";
+export {
+  default as HtmlContentAdapter,
+  HtmlContainer,
+} from "./HtmlContentAdapter";
 export { default as IconTextAdapter } from "./IconTextAdapter";
 export {
   default as ImageContentAdapter,

@@ -1,8 +1,17 @@
 import styled from "@emotion/styled";
-import { ExplanationContainer, ExplanationHtmlCss, ExplanationText, ExplanationTextBox, ExplanationTitle, InfoWrapper, OIcon, OXWrapper, XIcon } from "chai-ui";
+import {
+  ExplanationContainer,
+  ExplanationHtmlCss,
+  ExplanationText,
+  ExplanationTextBox,
+  ExplanationTitle,
+  InfoWrapper,
+  OIcon,
+  OXWrapper,
+  XIcon,
+} from "chai-ui";
 import React, { useState } from "react";
-
-import HtmlCreator from "./HtmlCreator";
+import TextCreator from "../molecules/TextCreator";
 
 const ExplanationWrapper = styled.div`
   display: flex;
@@ -46,7 +55,7 @@ const ExplanationCreator = ({
               <OXWrapper>{isCorrectMode ? <OIcon /> : <XIcon />}</OXWrapper>
               <ExplanationTitle>
                 {isCorrectMode ? (
-                  <HtmlCreator
+                  <TextCreator
                     id={id + "correctMessage" + 0}
                     focusEditor={focusEditor}
                     html={correctMessage ?? ""}
@@ -59,7 +68,7 @@ const ExplanationCreator = ({
                     textMaxLength={10}
                   />
                 ) : (
-                  <HtmlCreator
+                  <TextCreator
                     id={id + "wrongMessage" + 0}
                     focusEditor={focusEditor}
                     html={wrongMessage ?? ""}
@@ -75,7 +84,7 @@ const ExplanationCreator = ({
               </ExplanationTitle>
               {/* <AudioButton isAudio={true} audioUrl={audio.src} customCss={audioCss} /> */}
             </InfoWrapper>
-            <HtmlCreator
+            <TextCreator
               id={id + "explanationText" + 0}
               focusEditor={focusEditor}
               html={explanation.text ?? ""}

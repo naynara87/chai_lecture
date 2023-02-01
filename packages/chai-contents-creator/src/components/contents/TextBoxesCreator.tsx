@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import HtmlCreator from "./HtmlCreator";
 import { ContentProps } from "../../hooks/useCreateContent";
 import {
   MeaningText,
@@ -12,6 +11,7 @@ import {
   TextCardGrp,
 } from "chai-ui";
 import { OptionButtonWrapper } from "../atoms/OptionButtonWrapper";
+import TextCreator from "../molecules/TextCreator";
 
 interface TextBoxesCreatorProps extends ContentProps {}
 
@@ -122,7 +122,7 @@ const TextBoxesCreator = ({
       return (
         <TextCardGrp key={index}>
           <TextCard>
-            <HtmlCreator
+            <TextCreator
               html={textBox.main}
               onSubmitHtml={handleSubmitText}
               keyName="main"
@@ -134,7 +134,7 @@ const TextBoxesCreator = ({
             />
           </TextCard>
           <SubText>
-            <HtmlCreator
+            <TextCreator
               html={textBox.sub ?? ""}
               onSubmitHtml={handleSubmitText}
               customCss={subTextCss}
@@ -147,7 +147,7 @@ const TextBoxesCreator = ({
             />
           </SubText>
           <MeaningText>
-            <HtmlCreator
+            <TextCreator
               html={textBox.description ?? ""}
               onSubmitHtml={handleSubmitText}
               keyName="description"

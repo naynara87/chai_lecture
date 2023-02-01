@@ -5,7 +5,7 @@ import {
   WordQuizAnswerIconWrapper,
   WordQuizAnswerStyles,
 } from "chai-ui";
-import HtmlCreator from "../contents/HtmlCreator";
+import TextCreator from "./TextCreator";
 
 interface WordQuizAnswerProps {
   text: string;
@@ -41,7 +41,7 @@ const WordQuizAnswerCreator = ({
       <WordQuizAnswerIconWrapper color={color}>
         <IconCheck />
       </WordQuizAnswerIconWrapper>
-      <HtmlCreator
+      <TextCreator
         html={text}
         id={id + "wordQuiz" + contentIndex}
         textMaxLength={10}
