@@ -2,13 +2,15 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { colorPalette } from "../../styles/colorPalette";
-import { WordQuizData } from "../../types/templateContents";
-import { sortChoices } from "../../utils/sortChoices";
-import { changePXtoVH, changePXtoVW } from "../../utils/styles";
+import { WordQuizContent } from "../../types/templateContents";
+import { changePXtoVW } from "../../utils/styles";
 import QuestionBlank from "../atoms/QuestionBlank";
 import WordQuizAnswer from "../atoms/WordQuizAnswer";
 import Explanation from "../molecules/Explanation";
+import AudioButton from "../atoms/AudioButton";
+import TextBox from "../atoms/TextBox";
 import HtmlContentComponent from "../molecules/HtmlContentComponent";
+import { sortChoices } from "../../utils/sortChoices";
 
 const WordQuizWrapper = styled.div`
   display: grid;
@@ -19,26 +21,26 @@ const WordQuizWrapper = styled.div`
 const WordQuizAnswerWrapper = styled.div`
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: ${changePXtoVH(32)} ${changePXtoVW(40)};
-  margin: ${changePXtoVW(32)} auto ${changePXtoVW(64)};
+  gap: ${changePXtoVW(30)};
+  margin: ${changePXtoVW(32)} 0 ${changePXtoVW(64)};
 `;
 
-const QuestionWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
+const AudioWrapper = styled.div`
+  margin: ${changePXtoVW(48)} auto;
+`;
+
+const TextBoxWrapper = styled.div`
+  margin: 0 auto;
 `;
 
 const blankCss = css`
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   height: ${changePXtoVW(104)};
   margin: 12px auto 0;
   font-weight: 700;
   font-size: ${changePXtoVW(38)};
-  color: ${colorPalette.white};
 `;
 
 const meaningCss = css`
@@ -48,39 +50,28 @@ const meaningCss = css`
   color: ${colorPalette.black};
 `;
 
-const htmlCss = css`
-  margin-left: 10px;
-  font-size: ${changePXtoVW(64)};
-  font-weight: 400;
-  color: ${colorPalette.black};
+const customBoxCss = css`
+  width: ${changePXtoVW(208)};
+  height: ${changePXtoVW(108)};
 `;
-
 interface WordQuizProps {
-  datas: WordQuizData[];
+  wordQuizData?: WordQuizContent;
+  reverse?: boolean;
 }
 
-const WordQuizTP10C = ({ datas }: WordQuizProps) => {
-  const { text, choices, explanation, meaning, answerIndex } = datas?.[0];
-  const [selectedIndex, setSelectedIndex] = useState<number | undefined>(undefined);
+const WordQuizTP10A = ({ wordQuizData, reverse = false }: WordQuizProps) => {
+  const { choices, text, answerIndex, audio, explanation, meaning } =
+    wordQuizData!.data?.[0];
+
+  const [selectedIndex, setSelectedIndex] = useState<number | undefined>(
+    undefined
+  );
   const [showExplanation, setShowExplanation] = useState(false);
   const [sortList, setSortList] = useState<string[]>([]);
-  const [choiceMaxLength, setChoiceMaxLength] = useState(0);
-
-  const texts = text
-    .replace(/<[^>]*>?/g, "")
-    .split(/(\*.*?\*)/)
-    .filter((content) => {
-      return content.length > 0;
-    });
 
   useEffect(() => {
     sortChoices(choices, setSortList);
-    choices.forEach((choice) => {
-      if (choice.length > choiceMaxLength) {
-        setChoiceMaxLength(choice.length);
-      }
-    });
-  }, [answerIndex, choices, choiceMaxLength]);
+  }, [answerIndex, choices]);
 
   const handleClickCloseExplanation = () => {
     setShowExplanation(false);
@@ -94,7 +85,7 @@ const WordQuizTP10C = ({ datas }: WordQuizProps) => {
       setShowExplanation(true);
       setSelectedIndex(index);
     },
-    [selectedIndex],
+    [selectedIndex]
   );
 
   const renderColor = useMemo(() => {
@@ -108,9 +99,28 @@ const WordQuizTP10C = ({ datas }: WordQuizProps) => {
       return colorPalette.backgroundWhite;
     }
   }, [selectedIndex, choices, answerIndex, sortList]);
-  console.log(choiceMaxLength);
+
   return (
     <WordQuizWrapper>
+      {reverse && (
+        <TextBoxWrapper>
+          <TextBox text={text} customBoxCss={customBoxCss} />
+        </TextBoxWrapper>
+      )}
+      {reverse && audio && (
+        <AudioWrapper>
+          <AudioButton isAudio={true} audioUrl={audio.src} />
+        </AudioWrapper>
+      )}
+      <QuestionBlank
+        text={selectedIndex !== undefined ? sortList[selectedIndex] : ""}
+        width={reverse ? `${changePXtoVW(112)}` : `${changePXtoVW(240)}`}
+        customCss={blankCss}
+        backgroundColor={renderColor}
+        borderColor={
+          selectedIndex !== undefined ? colorPalette.white : undefined
+        }
+      />
       <WordQuizAnswerWrapper>
         {sortList.map((choice, index) => {
           return (
@@ -125,22 +135,11 @@ const WordQuizTP10C = ({ datas }: WordQuizProps) => {
         })}
       </WordQuizAnswerWrapper>
       <HtmlContentComponent html={meaning} customCss={meaningCss} />
-      <QuestionWrapper>
-        <QuestionBlank
-          text={selectedIndex !== undefined ? sortList[selectedIndex] : ""}
-          width={`${choiceMaxLength * 20}px`}
-          customCss={blankCss}
-          backgroundColor={renderColor}
-          borderColor={selectedIndex !== undefined ? colorPalette.white : undefined}
-        />
-        {texts.map((text) => {
-          return text.indexOf("*") !== 0 ? (
-            <HtmlContentComponent html={text} customCss={htmlCss} />
-          ) : (
-            <></>
-          );
-        })}
-      </QuestionWrapper>
+      {!reverse && audio && (
+        <AudioWrapper>
+          <AudioButton isAudio={true} audioUrl={audio.src} />
+        </AudioWrapper>
+      )}
       {showExplanation && (
         <Explanation
           explanation={explanation}
@@ -152,4 +151,4 @@ const WordQuizTP10C = ({ datas }: WordQuizProps) => {
   );
 };
 
-export default WordQuizTP10C;
+export default WordQuizTP10A;

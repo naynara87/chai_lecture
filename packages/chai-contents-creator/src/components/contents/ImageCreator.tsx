@@ -1,4 +1,9 @@
-import { ImageContentComponent, ImagesContent, ImagesWrapper } from "chai-ui";
+import {
+  ImageContentComponent,
+  ImagesContent,
+  ImagesOptions,
+  ImagesWrapper,
+} from "chai-ui";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { ContentProps } from "../../hooks/useCreateContent";
 import { OptionButtonWrapper } from "../atoms/OptionButtonWrapper";
@@ -67,13 +72,19 @@ const ImagesCreator = ({
     addComponentToExistingComponentById("images", id);
   }, [addComponentToExistingComponentById, id]);
 
-  const handleClickHorizontalMode = useCallback(() => {
-    if (componentIndex === undefined) return;
-    const copyComponentList = [...componentList];
-    const content = copyComponentList[componentIndex]?.content as ImagesContent;
-    content.options!.isHorizontal = !content.options?.isHorizontal;
-    setComponentList(copyComponentList);
-  }, [componentList, componentIndex, setComponentList]);
+  const handleClickMode = useCallback(
+    (optionName: keyof ImagesOptions) => {
+      if (componentIndex === undefined) return;
+      const copyComponentList = [...componentList];
+      const content = copyComponentList[componentIndex]
+        ?.content as ImagesContent;
+      if (optionName === "isHorizontal") {
+        content.options!.isHorizontal = !content.options?.isHorizontal;
+      }
+      setComponentList(copyComponentList);
+    },
+    [componentList, componentIndex, setComponentList]
+  );
 
   const encodeFileToBase64 = useCallback(
     (fileBlob: Blob, contentIndex: number) => {
@@ -128,7 +139,7 @@ const ImagesCreator = ({
     <ImagesWrapper isHorizontal={ImagesData?.options?.isHorizontal}>
       {contents}
       <OptionButtonWrapper>
-        <button onClick={handleClickHorizontalMode}>
+        <button onClick={() => handleClickMode("isHorizontal")}>
           {ImagesData?.options?.isHorizontal ? "가로모드" : "세로모드"}
         </button>
       </OptionButtonWrapper>

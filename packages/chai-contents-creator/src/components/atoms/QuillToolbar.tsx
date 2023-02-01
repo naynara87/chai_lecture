@@ -24,10 +24,10 @@ const QuillToolbar = () => (
       </select>
     </span>
     <span className="ql-formats">
-      <button className="ql-bold" />
-      <button className="ql-italic" />
-      <button className="ql-underline" />
-      <button className="ql-strike" />
+      <button className="ql-bold" title="볼드" />
+      <button className="ql-italic" title="기울이기" />
+      <button className="ql-underline" title="밑줄" />
+      <button className="ql-strike" title="강조" />
     </span>
     {/* <span className="ql-formats">
       <button className="ql-list" value="ordered" />

@@ -2,13 +2,14 @@ import styled from "@emotion/styled";
 import React from "react";
 import { colorPalette } from "../../styles/colorPalette";
 import { changePXtoVH, changePXtoVW } from "../../utils/styles";
+import { HtmlContentComponent } from "../molecules";
 import IconCheck from "./svg/IconCheck";
 
 interface WordQuizAnswerStylesProps {
   color?: string;
 }
 
-const WordQuizAnswerStyles = styled.div<WordQuizAnswerStylesProps>`
+export const WordQuizAnswerStyles = styled.div<WordQuizAnswerStylesProps>`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -25,7 +26,7 @@ interface IconWrapperProps {
   color?: string;
 }
 
-const IconWrapper = styled.div<IconWrapperProps>`
+export const WordQuizAnswerIconWrapper = styled.div<IconWrapperProps>`
   position: relative;
   display: flex;
   justify-content: center;
@@ -56,10 +57,10 @@ const WordQuizAnswer = ({
 
   return (
     <WordQuizAnswerStyles onClick={handleClickAnswer} color={color}>
-      <IconWrapper color={color}>
+      <WordQuizAnswerIconWrapper color={color}>
         <IconCheck />
-      </IconWrapper>
-      <div>{text}</div>
+      </WordQuizAnswerIconWrapper>
+      <HtmlContentComponent html={text} />
     </WordQuizAnswerStyles>
   );
 };

@@ -29,7 +29,15 @@ export { default as StudySentencesWithVocabulary } from "./StudySentencesWithVoc
 export { default as TextBoxesAdapter } from "./TextBoxesAdapter";
 export { default as VideoContentAdapter } from "./VideoContentAdapter";
 export { default as VideoContentComponent } from "./VideoContentComponent";
-export { default as WordQuiz } from "./WordQuiz";
-export { default as WordQuizTP10C } from "./WordQuizTP10C";
+export {
+  default as WordQuiz,
+  WordQuizQuestionWrapper,
+  WordQuizWrapper,
+  WordQuizAnswerWrapper,
+  WordQuizMeaningCss,
+  WordQuizHtmlCss,
+  WordQuizBlankCss,
+} from "./WordQuiz";
+export { default as WordQuizTP10A } from "./WordQuizTP10A";
 export { default as WordQuizTP11B } from "./WordQuizTP11B";
 export { default as WordsContentComponent } from "./WordsContentComponent";

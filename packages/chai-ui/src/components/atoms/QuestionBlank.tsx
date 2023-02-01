@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import React from "react";
 import { colorPalette } from "../../styles/colorPalette";
 import { changePXtoVW } from "../../utils/styles";
+import { HtmlContentComponent } from "../molecules";
 
 interface QuestionBlankStylesProps {
   customCss?: SerializedStyles;
@@ -30,7 +31,7 @@ const QuestionBlankStyles = styled.span<QuestionBlankStylesProps>`
   text-align: center;
   transform: translateY(-7%);
   user-select: none;
-  
+
   ${(props) => props.customCss};
 `;
 
@@ -70,7 +71,7 @@ const QuestionBlank = ({
       borderColor={borderColor}
       onClick={handleClickBlank}
     >
-      {text}
+      <HtmlContentComponent html={text} />
     </QuestionBlankStyles>
   );
 };

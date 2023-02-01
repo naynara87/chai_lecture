@@ -129,6 +129,7 @@ export {
   TextBoxesData,
   SortWordsData,
   WordQuizData,
+  WordQuizOptions,
   DialogData,
   SentenceWord,
   VideoTrack,

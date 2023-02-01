@@ -14,7 +14,10 @@ export {
 } from "./Explanation";
 export { default as FooterButton } from "./FooterButton";
 export { default as Header } from "./Header";
-export { default as HtmlContentComponent } from "./HtmlContentComponent";
+export {
+  default as HtmlContentComponent,
+  HtmlWrapper,
+} from "./HtmlContentComponent";
 export { default as IconText } from "./IconText";
 export { default as SentenceBubble } from "./SentenceBubble";
 export { default as SideTabs } from "./SideTabs";
