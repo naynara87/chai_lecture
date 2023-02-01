@@ -1,14 +1,8 @@
-import styled from "@emotion/styled";
-import { HtmlContent, ImageContentComponent } from "chai-ui";
+import { HtmlContent, ImageContentComponent, HtmlContainer } from "chai-ui";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { ContentProps } from "../../hooks/useCreateContent";
 import FileUploader from "../molecules/FileUploader";
 import TextCreator from "../molecules/TextCreator";
-
-const HtmlCreatorWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-`;
 
 interface HtmlCreatorProps extends ContentProps {}
 
@@ -115,7 +109,7 @@ const HtmlCreator = ({
 
   return (
     <div>
-      <HtmlCreatorWrapper>
+      <HtmlContainer>
         {imageContent}
         <TextCreator
           html={htmlData?.data[0].text ?? ""}
@@ -129,7 +123,7 @@ const HtmlCreator = ({
           }}
           textMaxLength={30}
         />
-      </HtmlCreatorWrapper>
+      </HtmlContainer>
       <button onClick={handleDeleteHtml}>삭제</button>
     </div>
   );

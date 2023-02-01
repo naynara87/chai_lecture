@@ -10,8 +10,10 @@ interface HtmlContainerProps {
   htmlCss?: SerializedStyles;
 }
 
-const HtmlContainer = styled.div<HtmlContainerProps>`
+export const HtmlContainer = styled.div<HtmlContainerProps>`
   display: flex;
+  justify-content: center;
+  align-items: center;
 
   ${(props) => props.htmlCss}
 `;
