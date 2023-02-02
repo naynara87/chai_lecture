@@ -275,7 +275,9 @@ const SortWordsCreator = ({
         </SortWordsQuestionWrapper>
         <SortWordsAnswerWrapper>
           {sortWordsData && sortWordsData.data[0].fakeChoices && fakeChoices}
-          <button onClick={() => addAnswer("fakeChoices")}>예시추가</button>
+          {sortWordsData && sortWordsData.data[0].fakeChoices && (
+            <button onClick={() => addAnswer("fakeChoices")}>예시추가</button>
+          )}
         </SortWordsAnswerWrapper>
         <ExplanationCreator
           id={id}
