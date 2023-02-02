@@ -27,7 +27,14 @@ export { default as ImageContentComponent } from "./ImageContentComponent";
 export { default as ImagesContentComponent } from "./ImagesContentComponent";
 export { default as ListenWordContent } from "./ListenWordContent";
 export { default as NumberTable } from "./NumberTable";
-export { default as SortWords } from "./SortWords";
+export {
+  default as SortWords,
+  sortWordsBlankCss,
+  customSortWordsBoxCss,
+  SortWordsWrapper,
+  SortWordsQuestionWrapper,
+  SortWordsAnswerWrapper,
+} from "./SortWords";
 export { default as StudySentencesWithVocabulary } from "./StudySentencesWithVocabulary";
 export { default as TextBoxesAdapter } from "./TextBoxesAdapter";
 export { default as VideoContentAdapter } from "./VideoContentAdapter";

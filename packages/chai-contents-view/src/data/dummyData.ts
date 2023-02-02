@@ -36,44 +36,15 @@ export const dummyData: AppData = {
           title: "회화 알아보기",
           description: "회화를 들어보세요.",
           template: {
-            type: "TP01A",
+            type: "TP02",
             contents: [
               {
-                type: "chooseTextByAudio",
+                type: "sortWords",
                 data: [
                   {
-                    choices: ["he", "ge"],
-                    answerIndex: 0,
+                    questions: ["<p>a</p>", "*<p>b</p>"],
                     audio: {
-                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/3sreCyS0694Tss2vVmY9vGvx5mHBKYyt/7sH4zE1pcn3eyITQXVD8sXcgHIdTfLaY/a5e6a13523f1af57d14d98e8aaeb57478f1fee9f4232c2d67cc16f4cfe4ac92d.mp3",
-                    },
-                  },
-                  {
-                    choices: ["he", "ge"],
-                    answerIndex: 1,
-                    audio: {
-                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/r9EWyVf5jmcdjbAhV8IPaiCZwoGTfDAI/l0OJxRs3akoQ5nehVa8lUv4C2PfTqDNO/290d5bd18fe14ef70159d52539d69186353a73dc33755a64047353a84dc5bd1a.mp3",
-                    },
-                  },
-                  {
-                    choices: ["qi", "xi"],
-                    answerIndex: 0,
-                    audio: {
-                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/3eQuw64X34xnuKh6Ogj8RGnjxn0pHtqf/0Ci9CIv0fXgqGVeO4ZDgaN2oErnPrqTv/2c4fd5548ef3862f2097c8b0ec4cc0e70c558737c065b42c986ad8fa80ca02a0.mp3",
-                    },
-                  },
-                  {
-                    choices: ["ji", "qi"],
-                    answerIndex: 0,
-                    audio: {
-                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/ylS3p7w66zdMqIm4JqU2i06ZJ2sv7Ekc/iUwCog4IvWjU2Sz49KlBapifSJo4Wj06/dff0b6960799f0e732dc6cfbb0eb48ac5d77c9ed83efb8341d6a754869c5c377.mp3",
-                    },
-                  },
-                  {
-                    choices: ["ying", "wang"],
-                    answerIndex: 1,
-                    audio: {
-                      src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/2fFmbd2KgnXtOLCN0CqhGn9t1ZrPxpoF/7wxd4Trj9mAbcY0jmXh3wM9zlVBp7yVm/ec488453376b3a206c64bcd2a021bddd9b04d85115174099c5d343c48454a39b.mp3",
+                      src: "",
                     },
                   },
                 ],
@@ -248,7 +219,7 @@ export const dummyData: AppData = {
                 type: "sortWords",
                 data: [
                   {
-                    text: "*我*会*游泳*가나다*라*",
+                    questions: ["我", "*会*", "游泳", "*가나다*", "라"],
                     fakeChoices: ["가", "나", "다"],
                     audio: {
                       src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/ygrYGfAu6peCO9rbA0zFUfdMf2avMJHP/DMbclRDLjDvnAyvpHW1l17IKxYklYprs/2351b48fe2bd40590dd2ce008f26cbfcd3057d61aa60696d8bb990a4a138b1c1.mp3",
@@ -1644,7 +1615,7 @@ export const dummyData: AppData = {
                 type: "sortWords",
                 data: [
                   {
-                    text: "*我*会*游泳*가나다*라*",
+                    questions: ["我", "*会*", "游泳", "*가나다*", "라"],
                     fakeChoices: ["가", "나", "다"],
                     audio: {
                       src: "https://d5hdqs1p7vdyb.cloudfront.net/assets/ygrYGfAu6peCO9rbA0zFUfdMf2avMJHP/DMbclRDLjDvnAyvpHW1l17IKxYklYprs/2351b48fe2bd40590dd2ce008f26cbfcd3057d61aa60696d8bb990a4a138b1c1.mp3",

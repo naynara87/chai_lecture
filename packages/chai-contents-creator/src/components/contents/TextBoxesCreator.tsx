@@ -7,11 +7,11 @@ import {
   TextBoxesContent,
   TextBoxesOptions,
   TextBoxesWrapper,
-  TextCard,
   TextCardGrp,
 } from "chai-ui";
 import { OptionButtonWrapper } from "../atoms/OptionButtonWrapper";
 import TextCreator from "../molecules/TextCreator";
+import TextCardCreator from "../molecules/TextCardCreator";
 
 interface TextBoxesCreatorProps extends ContentProps {}
 
@@ -121,18 +121,16 @@ const TextBoxesCreator = ({
     return textBoxesData?.data.map((textBox, index) => {
       return (
         <TextCardGrp key={index}>
-          <TextCard>
-            <TextCreator
-              html={textBox.main}
-              onSubmitHtml={handleSubmitText}
-              keyName="main"
-              index={index}
-              id={id + "main" + index}
-              focusEditor={focusEditor}
-              onClickHtml={() => handleFocusHtml(id, "main", index)}
-              textMaxLength={5}
-            />
-          </TextCard>
+          <TextCardCreator
+            text={textBox.main}
+            handleSubmitText={handleSubmitText}
+            keyName="main"
+            index={index}
+            id={id + "main" + index}
+            focusEditor={focusEditor}
+            onClickHtml={() => handleFocusHtml(id, "main", index)}
+            textMaxLength={5}
+          />
           <SubText>
             <TextCreator
               html={textBox.sub ?? ""}

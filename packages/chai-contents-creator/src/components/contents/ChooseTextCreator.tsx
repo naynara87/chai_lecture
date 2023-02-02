@@ -19,7 +19,7 @@ const chooseTextContainerCss = css`
   justify-content: center;
 `;
 
-interface ChooseTextProps extends ContentProps {}
+interface ChooseTextCreatorProps extends ContentProps {}
 
 const ChooseTextCreator = ({
   onSave,
@@ -28,7 +28,7 @@ const ChooseTextCreator = ({
   setComponentList,
   handleFocusHtml,
   focusEditor,
-}: ChooseTextProps) => {
+}: ChooseTextCreatorProps) => {
   const [chooseTextData, setChooseTextData] = useState<
     ChooseTextContent | undefined
   >(undefined);

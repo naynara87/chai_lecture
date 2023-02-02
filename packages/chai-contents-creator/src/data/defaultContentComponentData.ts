@@ -51,4 +51,12 @@ export const defaultContentComponentData: Partial<
       },
     },
   ],
+  sortWords: [
+    {
+      questions: [""],
+      audio: {
+        src: "",
+      },
+    },
+  ],
 };

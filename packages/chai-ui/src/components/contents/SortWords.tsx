@@ -1,24 +1,26 @@
-import { css } from '@emotion/react';
-import styled from '@emotion/styled';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { colorPalette } from '../../styles/colorPalette';
-import { SortWordsData } from '../../types/templateContents';
-import { changePXtoVH, changePXtoVW } from '../../utils/styles';
-import QuestionBlank from '../atoms/QuestionBlank';
-import TextBox from '../atoms/TextBox';
-import WordQuizAnswer from '../atoms/WordQuizAnswer';
-import Explanation from '../molecules/Explanation';
+import { css } from "@emotion/react";
+import styled from "@emotion/styled";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { colorPalette } from "../../styles/colorPalette";
+import { SortWordsContent } from "../../types/templateContents";
+import { changePXtoVH, changePXtoVW } from "../../utils/styles";
+import QuestionBlank from "../atoms/QuestionBlank";
+import TextBox from "../atoms/TextBox";
+import WordQuizAnswer from "../atoms/WordQuizAnswer";
+import Explanation from "../molecules/Explanation";
 
-const SortWordsWrapper = styled.div`
-  margin-left: ${changePXtoVW(40)};
+export const SortWordsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
-const QuestionWrapper = styled.div`
+export const SortWordsQuestionWrapper = styled.div`
   display: flex;
   align-items: center;
 `;
 
-const AnswerWrapper = styled.div`
+export const SortWordsAnswerWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
@@ -26,14 +28,14 @@ const AnswerWrapper = styled.div`
   margin-top: ${changePXtoVH(32)};
 `;
 
-const customBoxCss = css`
+export const customSortWordsBoxCss = css`
   width: auto;
   height: ${changePXtoVW(96)};
   padding: ${changePXtoVW(20)};
   font-size: ${changePXtoVW(40)};
 `;
 
-const blankCss = css`
+export const sortWordsBlankCss = css`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -42,57 +44,48 @@ const blankCss = css`
 `;
 
 interface SortWordsProps {
-  datas: SortWordsData[];
+  sortWordsData: SortWordsContent;
 }
 
-const SortWords = ({ datas }: SortWordsProps) => {
-  const { text, fakeChoices, explanation } = datas?.[0];
+const SortWords = ({ sortWordsData }: SortWordsProps) => {
+  const { questions, fakeChoices, explanation } = sortWordsData.data[0];
   const [choiceMaxLength, setChoiceMaxLength] = useState(0);
   const [userAnswerList, setUserAnswerList] = useState<string[]>([]);
   const [showExplanation, setShowExplanation] = useState(false);
   const [choiceList, setChoiceList] = useState<string[]>([]);
   const [answerList, setAnswerList] = useState<string[]>([]);
-  const questions = text
-    .replace(/<[^>]*>?/g, '')
-    .split(/(\*.*?\*)/)
-    .filter((content) => {
-      return content.length > 0;
-    });
 
   const isUserAnswerFull = useMemo(() => {
     return answerList.length > 0 && userAnswerList.length >= answerList.length;
   }, [answerList, userAnswerList]);
 
   const firstAnswerRender = useCallback(() => {
-    if (answerList.length > 0) {
-      return;
-    }
-    const list: string[] = [];
-    if (fakeChoices) {
-      setChoiceList(fakeChoices);
-    }
+    fakeChoices && setChoiceList(fakeChoices);
+
     questions.forEach((question) => {
-      if (!question.indexOf('*')) {
-        const rePlaceQuestion = question.replace(/\*[^>]*?/g, '');
+      if (question.indexOf("*") !== -1) {
+        const rePlaceQuestion = question.replace(/\*[^>]*?/g, "");
+        setAnswerList((prev) => [...prev, rePlaceQuestion]);
         setChoiceList((prev) => [...prev, rePlaceQuestion]);
-        list.push(rePlaceQuestion);
       }
     });
-    setAnswerList(list);
     setChoiceList((prev) => prev.sort(() => Math.random() - 0.5));
-  }, [fakeChoices, questions, answerList]);
+  }, [questions]);
 
   useEffect(() => {
     firstAnswerRender();
-  }, [firstAnswerRender]);
+  }, []);
 
   const popBlankText = useCallback(
     (blankIndex: number) => {
       if (userAnswerList.length >= answerList.length) {
         return;
       }
+      if (!userAnswerList[blankIndex]) {
+        return;
+      }
       const copyUserAnswerList = [...userAnswerList];
-      copyUserAnswerList[blankIndex] = '';
+      copyUserAnswerList[blankIndex] = "";
 
       setUserAnswerList(copyUserAnswerList);
     },
@@ -125,10 +118,14 @@ const SortWords = ({ datas }: SortWordsProps) => {
     let blankIndex = -1;
     return questions.map((question, index) => {
       // *한자1*, 한자2, *한자3*
-      if (question.indexOf('*') !== 0) {
+      if (question.indexOf("*") !== 0) {
         // '*'가 포함되지 않으면 -1이 나오므로 TextBox render
         return (
-          <TextBox key={index} text={question} customBoxCss={customBoxCss} />
+          <TextBox
+            key={index}
+            text={question}
+            customBoxCss={customSortWordsBoxCss}
+          />
         );
       } else {
         // '*'이 포함되면 0이 나오므로 false 값으로 questionBlank render
@@ -149,7 +146,7 @@ const SortWords = ({ datas }: SortWordsProps) => {
                 ? colorPalette.white
                 : undefined
             }
-            customCss={blankCss}
+            customCss={sortWordsBlankCss}
           />
         );
       }
@@ -171,7 +168,7 @@ const SortWords = ({ datas }: SortWordsProps) => {
         return;
       }
       const findNullBlankIndex = userAnswerList.findIndex((answer) => {
-        return answer === '';
+        return answer === "";
       });
       if (findNullBlankIndex > -1) {
         const copyUserAnswer = [...userAnswerList];
@@ -220,8 +217,8 @@ const SortWords = ({ datas }: SortWordsProps) => {
 
   return (
     <SortWordsWrapper>
-      <QuestionWrapper>{questionContents}</QuestionWrapper>
-      <AnswerWrapper>{answerContents}</AnswerWrapper>
+      <SortWordsQuestionWrapper>{questionContents}</SortWordsQuestionWrapper>
+      <SortWordsAnswerWrapper>{answerContents}</SortWordsAnswerWrapper>
       {showExplanation && (
         <Explanation
           explanation={explanation}

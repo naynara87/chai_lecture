@@ -9,7 +9,7 @@ export { default as CornerState } from "./CornerState";
 export { default as DialogAudio } from "./DialogAudio";
 export { default as IframeMainContainer } from "./IframeMainContainer";
 export { default as OptionButton } from "./OptionButton";
-export { default as QuestionBlank } from "./QuestionBlank";
+export { default as QuestionBlank, QuestionBlankStyles } from "./QuestionBlank";
 export { default as QuestionIcon } from "./QuestionIcon";
 export { default as QuizAnswer, QuizAnswerStyle } from "./QuizAnswer";
 export { default as QuizState } from "./QuizState";

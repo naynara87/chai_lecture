@@ -281,9 +281,6 @@ export type ApproveContent = Exclude<
   | ListenWordsContent
   | DragAndDropContent
   | StudyWordsContent
-  | DialogContent
-  | NumberTableContent
-  | SortWordsContent
 >;
 
 export type ApproveContentType = ApproveContent["type"];

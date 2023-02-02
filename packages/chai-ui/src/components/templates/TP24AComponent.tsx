@@ -18,28 +18,35 @@ const imageCss = css`
 
 interface TP24AComponentProps extends TemplateProps {}
 
-const TP24AComponent = ({ setPageCompleted, page, showHeader = true }: TP24AComponentProps) => {
+const TP24AComponent = ({
+  setPageCompleted,
+  page,
+  showHeader = true,
+}: TP24AComponentProps) => {
   const thisPage = page as TP24A;
 
   useEffect(() => {
     setPageCompleted();
   }, [setPageCompleted]);
   const imagesContent = useMemo(() => {
-    return thisPage.template.contents.find((content) => content.type === "images") as
-      | ImagesContent
-      | undefined;
+    return thisPage.template.contents.find(
+      (content) => content.type === "images"
+    ) as ImagesContent | undefined;
   }, [thisPage]);
 
   const sortWordsContent = useMemo(() => {
-    return thisPage.template.contents.find((content) => content.type === "sortWords") as
-      | SortWordsContent
-      | undefined;
+    return thisPage.template.contents.find(
+      (content) => content.type === "sortWords"
+    ) as SortWordsContent;
   }, [thisPage]);
 
   return (
     <TemplateCommonLayout>
       {showHeader ? (
-        <TitleContent title={thisPage.title} description={thisPage.description} />
+        <TitleContent
+          title={thisPage.title}
+          description={thisPage.description}
+        />
       ) : (
         <></>
       )}
@@ -50,7 +57,7 @@ const TP24AComponent = ({ setPageCompleted, page, showHeader = true }: TP24AComp
           filter="none"
           customCss={imageCss}
         />
-        <SortWords datas={sortWordsContent?.data ?? []} />
+        {sortWordsContent && <SortWords sortWordsData={sortWordsContent} />}
       </TP24Layout>
     </TemplateCommonLayout>
   );

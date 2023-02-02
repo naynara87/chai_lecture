@@ -1,6 +1,6 @@
 import { SerializedStyles } from "@emotion/react";
 import React from "react";
-import { ChooseTextByAudio, WordQuiz } from "../components";
+import { ChooseTextByAudio, SortWords, WordQuiz } from "../components";
 import AudioContentAdapter from "../components/contents/AudioContentAdapter";
 import AudioRecorderAdapter from "../components/contents/AudioRecorderAdapter";
 import ChooseMediaTextAdapter from "../components/contents/ChooseMediaTextAdapter";
@@ -23,6 +23,7 @@ import {
   ChooseMediaTextContent,
   ChooseTextByAudioContent,
   WordQuizContent,
+  SortWordsContent,
 } from "../types/templateContents";
 
 const useContentMapper = () => {
@@ -67,6 +68,7 @@ const useContentMapper = () => {
       chooseMediaText: (
         <ChooseMediaTextAdapter content={content as ChooseMediaTextContent} />
       ),
+      sortWords: <SortWords sortWordsData={content as SortWordsContent} />,
     };
 
     return contentMapper[content.type];
