@@ -81,6 +81,9 @@ const SortWords = ({ sortWordsData }: SortWordsProps) => {
       if (userAnswerList.length >= answerList.length) {
         return;
       }
+      if (!userAnswerList[blankIndex]) {
+        return;
+      }
       const copyUserAnswerList = [...userAnswerList];
       copyUserAnswerList[blankIndex] = "";
 
