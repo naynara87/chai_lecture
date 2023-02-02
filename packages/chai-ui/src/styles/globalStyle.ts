@@ -49,6 +49,13 @@ const globalStyle = css`
     overflow-wrap: break-word;
   }
 
+  button {
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
   html {
     font-size: 16px;
     /* scroll-behavior: smooth; */
@@ -194,7 +201,7 @@ const globalStyle = css`
     margin-top: ${changePXtoVW(64)};
     text-align: center;
 
-    > button:not(:first-child) {
+    > button:not(:first-of-type) {
       margin-left: ${changePXtoVW(24)};
     }
   }

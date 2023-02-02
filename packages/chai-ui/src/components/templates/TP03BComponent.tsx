@@ -23,7 +23,7 @@ const customBox03DContainerCss = css`
   > .horizontal {
     align-items: center;
     
-    > div:first-child {
+    > div:first-of-type {
       width: ${changePXtoVW(288)};
     }
   }
