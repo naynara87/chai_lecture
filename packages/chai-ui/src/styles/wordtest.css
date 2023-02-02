@@ -263,7 +263,7 @@
   display: none;
 }
 
-.metatest-question-list.disabled .choice-wrap:first-child .inp-title {
+.metatest-question-list.disabled .choice-wrap:first-of-type .inp-title {
   display: inline-block;
   color: transparent;
   user-select: none;
@@ -492,7 +492,7 @@
   position: relative;
 }
 
-.word-test-main .learning-word-list:not(:first-child) {
+.word-test-main .learning-word-list:not(:first-of-type) {
   margin-top: 32px;
   margin-top: 1.6666666667vw;
 }

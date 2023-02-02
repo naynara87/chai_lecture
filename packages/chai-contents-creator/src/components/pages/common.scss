@@ -10,7 +10,7 @@
   margin: 0;
 
   .btn {
-    &:not(:first-child) {
+    &:not(:first-of-type) {
       margin-left: vw(10);
     }
   }
@@ -110,7 +110,7 @@
   background-color: beige;
   overflow: hidden;
 }
-.page-conts-wrap:first-child {
+.page-conts-wrap:first-of-type {
   margin-top: 0;
 }
 

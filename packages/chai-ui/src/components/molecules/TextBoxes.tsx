@@ -41,7 +41,7 @@ export const TextCardGrp = styled.div<TextCardGrpProps>`
   color: #3c3c3c;
   text-align: center;
 
-  > div:first-child {
+  > div:first-of-type {
     min-width: ${changePXtoVW(288)};
     width: auto;
     min-height: ${changePXtoVH(160)};

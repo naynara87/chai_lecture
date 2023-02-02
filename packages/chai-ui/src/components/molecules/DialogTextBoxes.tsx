@@ -36,7 +36,7 @@ const TextCardGrp = styled.div<TextCardGrpProps>`
   text-align: center;
   cursor: pointer;
 
-  > div:first-child {
+  > div:first-of-type {
     width: auto;
     min-width: ${changePXtoVW(288)};
     height: ${changePXtoVH(160)};
