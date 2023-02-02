@@ -162,7 +162,7 @@ export type DragAndDropContent = {
   data: {
     choices: string[];
     answerIndex: number;
-    explanation: Explanation;
+    explanation?: Explanation;
   }[];
   options?: {};
 };
@@ -252,12 +252,12 @@ export type SortWordsContent = {
 };
 
 export type SortWordsData = {
-  text: string;
+  questions: string[];
   fakeChoices?: string[];
   audio?: {
     src: string;
   };
-  explanation: Explanation;
+  explanation?: Explanation;
 };
 
 export type ChooseMediaTextContent = {
@@ -269,7 +269,7 @@ export type ChooseMediaTextContent = {
 export type ChooseMediaTextData = {
   choices: ChooseMediaTextAudio[];
   answerIndex: number;
-  explanation: Explanation;
+  explanation?: Explanation;
 };
 
 export type ChooseMediaTextAudio = {

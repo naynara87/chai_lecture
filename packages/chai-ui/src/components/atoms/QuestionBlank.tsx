@@ -13,7 +13,7 @@ interface QuestionBlankStylesProps {
   height?: string;
 }
 
-const QuestionBlankStyles = styled.span<QuestionBlankStylesProps>`
+export const QuestionBlankStyles = styled.span<QuestionBlankStylesProps>`
   position: relative;
   display: inline-block;
   min-width: ${changePXtoVW(96)};

@@ -14,6 +14,7 @@ import ImagesCreator from "../components/contents/ImageCreator";
 import ChooseTextByAudioCreator from "../components/contents/ChooseTextByAudioCreator";
 import WordQuizCreator from "../components/contents/WordQuizCreator";
 import HtmlCreator from "../components/contents/HtmlCreator";
+import SortWordsCreator from "../components/contents/SortWordsCreator";
 
 interface CopyContentObject {
   type: contentLayoutStateType | undefined;
@@ -128,6 +129,7 @@ const useCreateContent = ({
         images: <ImagesCreator key={key} {...contentProps} />,
         wordQuiz: <WordQuizCreator key={key} {...contentProps} />,
         html: <HtmlCreator key={key} {...contentProps} />,
+        sortWords: <SortWordsCreator key={key} {...contentProps} />,
       };
 
       return contentCreatorMapper[content.type];
