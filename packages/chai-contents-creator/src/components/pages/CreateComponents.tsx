@@ -88,10 +88,8 @@ const CreateComponents = () => {
     setComponentList,
     copyContents,
     copyOnceContent,
-    saveContents,
     pasteContents,
     pasteOnceContent,
-    deleteOnceContent,
     getPreviewObject,
   } = useCreateContent({
     focusEditor,
@@ -212,11 +210,6 @@ const CreateComponents = () => {
             >
               붙여넣기
             </li>
-            <li
-              onClick={() => deleteOnceContent(contentsContextMenuRef.current!)}
-            >
-              삭제
-            </li>
           </CreateContextMenu>
         );
       }
@@ -239,7 +232,6 @@ const CreateComponents = () => {
     componentNames,
     copyOnceContent,
     pasteOnceContent,
-    deleteOnceContent,
     contentsContextMenuRef,
     points,
     rightClicked,
@@ -267,10 +259,6 @@ const CreateComponents = () => {
           </div>
           <div className="right-wrap">
             <div className="btn-wrap">
-              <span>자동저장</span>
-              <button className="btn btn-border-primary" onClick={saveContents}>
-                저장
-              </button>
               <button className="btn btn-border-primary" onClick={copyContents}>
                 복사
               </button>
@@ -414,7 +402,6 @@ const CreateComponents = () => {
           <div className="left-wrap">
             <div className="btn-wrap">
               <button className="btn btn-border-primary">이전</button>
-              <button className="btn btn-border-primary">삭제</button>
             </div>
           </div>
           <div className="center-wrap">
@@ -422,8 +409,6 @@ const CreateComponents = () => {
           </div>
           <div className="right-wrap">
             <div className="btn-wrap">
-              <button className="btn btn-border-primary">편집</button>
-              <button className="btn btn-border-primary">저장</button>
               <button className="btn btn-border-primary">다음</button>
             </div>
           </div>
