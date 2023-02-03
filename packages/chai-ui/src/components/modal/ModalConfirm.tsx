@@ -3,7 +3,11 @@ import React from "react";
 import { colorPalette } from "../../styles/colorPalette";
 import { changePXtoVW } from "../../utils/styles";
 import ModalCommon from "./ModalCommon";
-import { ModalHeader as Title, ModalInnerBox, ModalTitle as Description } from "./ModalStart";
+import {
+  ModalHeader as Title,
+  ModalInnerBox,
+  ModalTitle as Description,
+} from "./ModalStart";
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -67,8 +71,12 @@ const ModalConfirm = ({
         <Title>{title}</Title>
         <Description>{description}</Description>
         <ButtonContainer>
-          <ModalButton onClick={_handleClickLeftButton}>{leftButtonText || "아니오"}</ModalButton>
-          <ModalButton onClick={_handleClickRightButton}>{rightButtonText || "예"}</ModalButton>
+          <ModalButton onClick={_handleClickLeftButton}>
+            {leftButtonText || "아니오"}
+          </ModalButton>
+          <ModalButton onClick={_handleClickRightButton}>
+            {rightButtonText || "예"}
+          </ModalButton>
         </ButtonContainer>
       </ModalInnerBox>
     </ModalCommon>

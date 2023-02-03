@@ -6,6 +6,7 @@ import {
 } from "chai-ui";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { ContentProps } from "../../hooks/useCreateContent";
+import ButtonCreator from "../atoms/ButtonCreator";
 import { OptionButtonWrapper } from "../atoms/OptionButtonWrapper";
 import FileUploader from "../molecules/FileUploader";
 
@@ -123,13 +124,13 @@ const ImagesCreator = ({
               encodeFileToBase64={encodeFileToBase64}
             />
           )}
-          <button
+          <ButtonCreator
             onClick={() => {
               handleDeleteImages(index);
             }}
           >
             삭제
-          </button>
+          </ButtonCreator>
         </div>
       );
     });
@@ -139,11 +140,11 @@ const ImagesCreator = ({
     <ImagesWrapper isHorizontal={ImagesData?.options?.isHorizontal}>
       {contents}
       <OptionButtonWrapper>
-        <button onClick={() => handleClickMode("isHorizontal")}>
+        <ButtonCreator onClick={() => handleClickMode("isHorizontal")}>
           {ImagesData?.options?.isHorizontal ? "가로모드" : "세로모드"}
-        </button>
+        </ButtonCreator>
       </OptionButtonWrapper>
-      <button onClick={addImages}>+</button>
+      <ButtonCreator onClick={addImages}>+</ButtonCreator>
     </ImagesWrapper>
   );
 };

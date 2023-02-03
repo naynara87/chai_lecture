@@ -1,6 +1,7 @@
 import { ChooseTextByAudioContent, ChooseTextByAudioOptions } from "chai-ui";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { ContentProps } from "../../hooks/useCreateContent";
+import ButtonCreator from "../atoms/ButtonCreator";
 import { OptionButtonWrapper } from "../atoms/OptionButtonWrapper";
 import ChooseTextByAudioQuizContentCreator from "../molecules/ChooseTextByAudioQuizContentCreator";
 
@@ -171,13 +172,13 @@ const ChooseTextByAudioCreator = ({
     <div>
       {chooseTextByAudio}
       <OptionButtonWrapper>
-        <button onClick={() => handleClickMode("sortAnswer")}>
+        <ButtonCreator onClick={() => handleClickMode("sortAnswer")}>
           {chooseTextByAudioData?.options?.sortAnswer
             ? "랜덤답안 비활성화"
             : "랜덤답안 활성화"}
-        </button>
+        </ButtonCreator>
       </OptionButtonWrapper>
-      <button onClick={addAnswer}>+</button>
+      <ButtonCreator onClick={addAnswer}>+</ButtonCreator>
     </div>
   );
 };

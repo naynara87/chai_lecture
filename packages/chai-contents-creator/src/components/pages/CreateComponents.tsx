@@ -86,9 +86,7 @@ const CreateComponents = () => {
     components,
     addNewComponent,
     setComponentList,
-    copyContents,
     copyOnceContent,
-    pasteContents,
     pasteOnceContent,
     getPreviewObject,
   } = useCreateContent({
@@ -252,13 +250,9 @@ const CreateComponents = () => {
                 alt="bubblecon_logo"
               />
             </h1>
-            <div className="btn-wrap">
-              <button className="btn btn-border-primary">뒤로</button>
-              <button className="btn btn-border-primary">앞으로</button>
-            </div>
           </div>
           <div className="right-wrap">
-            <div className="btn-wrap">
+            {/* <div className="btn-wrap">
               <button className="btn btn-border-primary" onClick={copyContents}>
                 복사
               </button>
@@ -268,7 +262,7 @@ const CreateComponents = () => {
               >
                 붙여넣기
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </header>
@@ -397,23 +391,7 @@ const CreateComponents = () => {
           </div>
         </DragDropContext>
       </main>
-      <footer className="layout-ft">
-        <div className="flex-btw-wrap">
-          <div className="left-wrap">
-            <div className="btn-wrap">
-              <button className="btn btn-border-primary">이전</button>
-            </div>
-          </div>
-          <div className="center-wrap">
-            {"1"} / {"20"}
-          </div>
-          <div className="right-wrap">
-            <div className="btn-wrap">
-              <button className="btn btn-border-primary">다음</button>
-            </div>
-          </div>
-        </div>
-      </footer>
+      {/* <footer className="layout-ft"></footer> */}
       <ModalConfirm
         isModalOpen={isLayoutChangeModalOpen}
         setIsModalOpen={setIsLayoutChangeModalOpen}

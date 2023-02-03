@@ -12,6 +12,7 @@ import {
 import { OptionButtonWrapper } from "../atoms/OptionButtonWrapper";
 import TextCreator from "../molecules/TextCreator";
 import TextCardCreator from "../molecules/TextCardCreator";
+import ButtonCreator from "../atoms/ButtonCreator";
 
 interface TextBoxesCreatorProps extends ContentProps {}
 
@@ -158,13 +159,13 @@ const TextBoxesCreator = ({
               textMaxLength={5}
             />
           </MeaningText>
-          <button
+          <ButtonCreator
             onClick={() => {
               handleDeleteTextBox(index);
             }}
           >
             삭제
-          </button>
+          </ButtonCreator>
         </TextCardGrp>
       );
     });
@@ -181,11 +182,11 @@ const TextBoxesCreator = ({
     <TextBoxesWrapper isHorizontal={textBoxesData?.options?.isHorizontal}>
       {textBoxes}
       <OptionButtonWrapper>
-        <button onClick={() => handleClickMode("isHorizontal")}>
+        <ButtonCreator onClick={() => handleClickMode("isHorizontal")}>
           {textBoxesData?.options?.isHorizontal ? "가로모드" : "세로모드"}
-        </button>
+        </ButtonCreator>
       </OptionButtonWrapper>
-      <button onClick={addTextBox}>+</button>
+      <ButtonCreator onClick={addTextBox}>+</ButtonCreator>
     </TextBoxesWrapper>
   );
 };
