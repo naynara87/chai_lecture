@@ -6,6 +6,7 @@ import {
 import { WordQuizOptions } from "chai-ui/dist/types/templateContents";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { ContentProps } from "../../hooks/useCreateContent";
+import ButtonCreator from "../atoms/ButtonCreator";
 import { OptionButtonWrapper } from "../atoms/OptionButtonWrapper";
 import WordQuizAnswerCreator from "../molecules/WordQuizAnswerCreator";
 import ExplanationCreator from "./ExplanationCreator";
@@ -188,11 +189,13 @@ const WordQuizCreator = ({
                   focusEditor={focusEditor}
                   handleSubmitText={handleSubmitText}
                 />
-                <button onClick={() => handleDeleteAnswer(index)}>삭제</button>
+                <ButtonCreator onClick={() => handleDeleteAnswer(index)}>
+                  삭제
+                </ButtonCreator>
               </div>
             );
           })}
-          <button onClick={addAnswer}>+</button>
+          <ButtonCreator onClick={addAnswer}>+</ButtonCreator>
 
           <ExplanationCreator
             id={id}
@@ -220,11 +223,11 @@ const WordQuizCreator = ({
     <div>
       {wordQuiz}
       <OptionButtonWrapper>
-        <button onClick={() => handleClickMode("sortAnswer")}>
+        <ButtonCreator onClick={() => handleClickMode("sortAnswer")}>
           {wordQuizData?.options?.sortAnswer
             ? "랜덤답안 비활성화"
             : "랜덤답안 활성화"}
-        </button>
+        </ButtonCreator>
       </OptionButtonWrapper>
     </div>
   );

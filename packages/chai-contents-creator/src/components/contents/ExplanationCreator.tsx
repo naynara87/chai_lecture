@@ -11,6 +11,7 @@ import {
   XIcon,
 } from "chai-ui";
 import React, { useState } from "react";
+import ButtonCreator from "../atoms/ButtonCreator";
 import TextCreator from "../molecules/TextCreator";
 
 const ExplanationWrapper = styled.div`
@@ -99,9 +100,9 @@ const ExplanationCreator = ({
             />
           </ExplanationText>
         </ExplanationTextBox>
-        <button onClick={() => setIsCorrectMode(!isCorrectMode)}>
+        <ButtonCreator onClick={() => setIsCorrectMode(!isCorrectMode)}>
           {isCorrectMode ? "오답화면으로 변경" : "정답화면으로 변경"}
-        </button>
+        </ButtonCreator>
       </ExplanationContainer>
     </ExplanationWrapper>
   );

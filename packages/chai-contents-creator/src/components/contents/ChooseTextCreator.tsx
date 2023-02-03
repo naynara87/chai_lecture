@@ -9,6 +9,7 @@ import {
 } from "chai-ui";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { ContentProps } from "../../hooks/useCreateContent";
+import ButtonCreator from "../atoms/ButtonCreator";
 import { OptionButtonWrapper } from "../atoms/OptionButtonWrapper";
 import TextCreator from "../molecules/TextCreator";
 
@@ -243,7 +244,7 @@ const ChooseTextCreator = ({
             submitExplanationText={submitExplanationText}
             handleFocusHtml={handleFocusHtml}
           />
-          <button onClick={handleDeleteChooseText}>삭제</button>
+          <ButtonCreator onClick={handleDeleteChooseText}>삭제</ButtonCreator>
         </div>
       );
     });
@@ -263,14 +264,14 @@ const ChooseTextCreator = ({
     <div>
       {chooseText}
       <OptionButtonWrapper>
-        <button onClick={() => handleClickMode("isHorizontal")}>
+        <ButtonCreator onClick={() => handleClickMode("isHorizontal")}>
           {chooseTextData?.options?.isHorizontal ? "가로모드" : "세로모드"}
-        </button>
-        <button onClick={() => handleClickMode("sortAnswer")}>
+        </ButtonCreator>
+        <ButtonCreator onClick={() => handleClickMode("sortAnswer")}>
           {chooseTextData?.options?.sortAnswer
             ? "랜덤답안 비활성화"
             : "랜덤답안 활성화"}
-        </button>
+        </ButtonCreator>
       </OptionButtonWrapper>
     </div>
   );

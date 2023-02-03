@@ -8,6 +8,7 @@ import {
   AudioButton,
 } from "chai-ui";
 import { useMemo } from "react";
+import ButtonCreator from "../atoms/ButtonCreator";
 import FileUploader from "./FileUploader";
 import TextCreator from "./TextCreator";
 
@@ -106,13 +107,13 @@ const ChooseTextByAudioQuizContentCreator = ({
       <QuizIndex>{`${quizIndex + 1}.`}</QuizIndex>
       <QuizAnswerWrap>{QuizAnswerContents}</QuizAnswerWrap>
       <>{audioContent}</>
-      <button
+      <ButtonCreator
         onClick={() => {
           handleDeleteAudioAnswer(quizIndex);
         }}
       >
         삭제
-      </button>
+      </ButtonCreator>
     </QuestionList>
   );
 };

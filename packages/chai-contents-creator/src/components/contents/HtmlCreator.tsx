@@ -1,6 +1,7 @@
 import { HtmlContent, ImageContentComponent, HtmlContainer } from "chai-ui";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { ContentProps } from "../../hooks/useCreateContent";
+import ButtonCreator from "../atoms/ButtonCreator";
 import FileUploader from "../molecules/FileUploader";
 import TextCreator from "../molecules/TextCreator";
 
@@ -124,7 +125,7 @@ const HtmlCreator = ({
           textMaxLength={30}
         />
       </HtmlContainer>
-      <button onClick={handleDeleteHtml}>삭제</button>
+      <ButtonCreator onClick={handleDeleteHtml}>삭제</ButtonCreator>
     </div>
   );
 };

@@ -6,6 +6,7 @@ import {
 } from "chai-ui";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { ContentProps } from "../../hooks/useCreateContent";
+import ButtonCreator from "../atoms/ButtonCreator";
 import { OptionButtonWrapper } from "../atoms/OptionButtonWrapper";
 import BlankCreator from "../molecules/BlankCreator";
 import TextCardCreator from "../molecules/TextCardCreator";
@@ -195,8 +196,12 @@ const SortWordsCreator = ({
             />
           )}
           <div>
-            <button onClick={() => changeQuestionType(index)}>유형변경</button>
-            <button onClick={() => deleteAnswer(index)}>삭제</button>
+            <ButtonCreator onClick={() => changeQuestionType(index)}>
+              유형변경
+            </ButtonCreator>
+            <ButtonCreator onClick={() => deleteAnswer(index)}>
+              삭제
+            </ButtonCreator>
           </div>
         </div>
       );
@@ -271,12 +276,14 @@ const SortWordsCreator = ({
       <SortWordsWrapper>
         <SortWordsQuestionWrapper>
           {questionContents}
-          <button onClick={() => addAnswer("question")}>+</button>
+          <ButtonCreator onClick={() => addAnswer("question")}>+</ButtonCreator>
         </SortWordsQuestionWrapper>
         <SortWordsAnswerWrapper>
           {sortWordsData && sortWordsData.data[0].fakeChoices && fakeChoices}
           {sortWordsData && sortWordsData.data[0].fakeChoices && (
-            <button onClick={() => addAnswer("fakeChoices")}>예시추가</button>
+            <ButtonCreator onClick={() => addAnswer("fakeChoices")}>
+              예시추가
+            </ButtonCreator>
           )}
         </SortWordsAnswerWrapper>
         <ExplanationCreator
@@ -289,7 +296,7 @@ const SortWordsCreator = ({
       </SortWordsWrapper>
       <OptionButtonWrapper>
         {sortWordsData && !sortWordsData.data[0].fakeChoices && (
-          <button onClick={addFakeChoices}>fakechoice추가</button>
+          <ButtonCreator onClick={addFakeChoices}>fakechoice추가</ButtonCreator>
         )}
       </OptionButtonWrapper>
     </div>
