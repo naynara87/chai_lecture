@@ -1,0 +1,41 @@
+$red-300: #FF7B70;
+$red-500: #EC5757;
+$red-700: #DF2F24;
+$sky-200: #F0F5FA;
+$sky-500: #A6C4E3;
+$gray-22: #222222;
+$gray-56: #565656;
+$gray-ff: #ffffff;
+
+$color-set: (
+	text: $gray-22,
+	warning: $red-500,
+	red-300: $red-300,
+	red-500: $red-500,
+	red-700: $red-700,
+	sky-200: $sky-200,
+	sky-500: $sky-500,
+	gray-ff: $gray-ff,
+	gray-56: $gray-56,
+	gray-22: $gray-22,
+);
+
+$zIndex-set: (
+	modal: 50,
+	fixed: 20,
+	header: 10,
+	two: 2,
+	one: 1,
+	zero: 0,
+	minus: -1,
+);
+
+$path-set: (
+	logo: "../../../../public/images/logo/",
+	icon: "../../../../public/images/icon/",
+	img: "../../../../public/images/img/",
+);
+
+// convert vh
+$hd-height: 85px;
+$ft-height: 90px;
