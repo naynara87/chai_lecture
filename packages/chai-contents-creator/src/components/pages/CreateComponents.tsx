@@ -298,30 +298,40 @@ const CreateComponents = () => {
                         key={index}
                         index={index}
                       >
-                        {(provided) => (
-                          <span
-                            ref={provided.innerRef}
-                            {...provided.dragHandleProps}
-                            {...provided.draggableProps}
-                            key={componentName}
-                            className="btn btn-border-primary"
-                            onClick={() => {
-                              const nullIndex = componentList.findIndex(
-                                (component) => component === undefined
-                              );
-                              if (nullIndex === -1) {
-                                addToast(
-                                  "템플릿의 빈칸이 존재하지않아 컴포넌트를 추가할 수 없습니다.",
-                                  "error"
+                        {(provided, snapshot) => (
+                          <>
+                            <span
+                              ref={provided.innerRef}
+                              {...provided.dragHandleProps}
+                              {...provided.draggableProps}
+                              key={componentName}
+                              className="btn btn-border-primary"
+                              onClick={() => {
+                                const nullIndex = componentList.findIndex(
+                                  (component) => component === undefined
                                 );
-                                return;
-                              } else {
-                                addNewComponent(componentName, nullIndex);
-                              }
-                            }}
-                          >
-                            {componentName}
-                          </span>
+                                if (nullIndex === -1) {
+                                  addToast(
+                                    "템플릿의 빈칸이 존재하지않아 컴포넌트를 추가할 수 없습니다.",
+                                    "error"
+                                  );
+                                  return;
+                                } else {
+                                  addNewComponent(componentName, nullIndex);
+                                }
+                              }}
+                            >
+                              {componentName}
+                            </span>
+                            {snapshot.isDragging && (
+                              <span
+                                className="btn btn-border-primary"
+                                style={{ transform: "none !important" }}
+                              >
+                                {componentName}
+                              </span>
+                            )}
+                          </>
                         )}
                       </Draggable>
                     );
