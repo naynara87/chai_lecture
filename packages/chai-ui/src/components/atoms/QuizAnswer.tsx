@@ -4,7 +4,7 @@ import React, { useMemo } from "react";
 import { colorPalette } from "../../styles/colorPalette";
 import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 import HtmlContentComponent from "../molecules/HtmlContentComponent";
-import iconCheck from "../../assets/icon/icon_check.svg";
+import CheckIcon from "./CheckIcon";
 
 interface QuizAnswerStyleProps {
   color: string;
@@ -124,11 +124,7 @@ const QuizAnswer = ({
       >
         <div className="word-wrap">
           <div className="img-wrap">
-            <img
-              src={iconCheck}
-              alt=""
-              className="icon"
-            />
+            <CheckIcon />
           </div>
           <HtmlContentComponent html={answerText} />
         </div>
