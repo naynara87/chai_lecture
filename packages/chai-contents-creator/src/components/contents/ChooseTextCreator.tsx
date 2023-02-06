@@ -1,5 +1,6 @@
 import { css } from "@emotion/react";
 import {
+  CheckIcon,
   ChooseTextContent,
   ChooseTextOptions,
   colorPalette,
@@ -198,11 +199,7 @@ const ChooseTextCreator = ({
                   <label htmlFor={"label"} className="label-quiz-answer">
                     <div className="word-wrap">
                       <div className="img-wrap">
-                        <img
-                          src={`${process.env.REACT_APP_BASE_URL}/images/icon/icon_check.svg`}
-                          alt=""
-                          className="icon"
-                        />
+                        <CheckIcon />
                       </div>
                       <TextCreator
                         html={choice}

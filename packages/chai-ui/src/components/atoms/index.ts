@@ -15,6 +15,7 @@ export { default as QuizAnswer, QuizAnswerStyle } from "./QuizAnswer";
 export { default as QuizState } from "./QuizState";
 export { default as Spacing } from "./Spacing";
 export { default as TabButton } from "./TabButton";
+export { default as CheckIcon } from "./CheckIcon";
 export { default as TextBox, TextCard } from "./TextBox";
 export {
   default as WordQuizAnswer,
