@@ -133,18 +133,9 @@ const CreateComponents = () => {
       if (result.source.droppableId === "btn-wrap") {
         if (componentList[componentIndex] !== undefined) {
           const confirmResult = await showOpenContentReplaceByBtnModal();
-          if (confirmResult) {
-            addNewComponent(
-              result.draggableId as Content["type"],
-              componentIndex
-            );
-          }
-        } else {
-          addNewComponent(
-            result.draggableId as Content["type"],
-            componentIndex
-          );
+          if (!confirmResult) return;
         }
+        addNewComponent(result.draggableId as Content["type"], componentIndex);
         return;
       }
       const confirmResult = await showOpenContentReplaceByContentModal();
