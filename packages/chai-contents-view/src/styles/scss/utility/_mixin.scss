@@ -1,0 +1,145 @@
+// responsive custom
+@mixin media($px, $range: max) {
+	@media all and (#{$range}-width: $px) {
+		@content;
+	}
+}
+
+// size
+@mixin circle($s) {
+	width: $s;
+	height: $s;
+	border-radius: 50%;
+	@content;
+}
+
+@mixin square($s) {
+	width: $s;
+	height: $s;
+}
+
+@mixin full {
+	width: 100%;
+	height: 100%;
+}
+
+// flex items
+@mixin flex($d: flex) {
+	display: $d;
+	@content;
+}
+
+@mixin flex-col($d: flex) {
+	display: $d;
+	flex-direction: column;
+	@content;
+}
+
+@mixin flex-op($ai: null, $jc: null) {
+	align-items: $ai;
+	justify-content: $jc;
+}
+
+@mixin flex-center($d: flex) {
+	display: $d;
+	@include flex-op(center, center);
+
+	@content;
+}
+
+@mixin flex-btw($d: flex) {
+	display: $d;
+	@include flex-op(center, space-between);
+
+	@content;
+}
+
+// background image
+@mixin bg-url($path, $img){
+background-image: urlPath($path, $img);
+}
+
+@mixin bg-op($p: center, $s: auto, $r: no-repeat) {
+	background: {
+		position: $p;
+		size: $s;
+		repeat: $r;
+	}
+}
+
+// bafore, after
+@mixin make-before($c: "", $d: block) {
+	&:before {
+		content: $c;
+		display: $d;
+
+		@content;
+	}
+}
+
+@mixin make-after($c: "", $d: block) {
+	&:after {
+		content: $c;
+		display: $d;
+
+		@content;
+	}
+}
+
+@mixin make-virtual($c: "", $d: block) {
+	&:before {
+		content: $c;
+		display: $d;
+
+		@content;
+	}
+
+	&:after {
+		content: $c;
+		display: $d;
+
+		@content;
+	}
+}
+
+// input
+@mixin input-reset {
+	border-radius: 0;
+	background-color: transparent;
+	border: 0;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	padding: 0;
+	outline: none;
+	box-shadow: none;
+}
+
+@mixin hover {
+	&:hover,
+	&:focus {
+		@content;
+	}
+}
+
+//shortening word
+@mixin ellipse($line-cnt, $line-height) {
+	overflow: hidden;
+	display: block;
+	display: -webkit-box;
+	height: $line-height * $line-cnt;
+	line-height: $line-height; // $line-height : line-height값 (단위 필수)
+	-webkit-line-clamp: $line-cnt; // $line-cnt : 라인 수
+	-webkit-box-orient: vertical;
+	text-overflow: ellipsis;
+	word-wrap: break-word;
+}
+
+@mixin remove-ellipse {
+	overflow: visible;
+	text-overflow: unset;
+	height: auto;
+	line-height: 1.4;
+	-webkit-line-clamp: unset; // $line-cnt : 라인 수
+	-webkit-box-orient: unset;
+}
