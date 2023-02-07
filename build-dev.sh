@@ -8,7 +8,7 @@ if [ -d "$DIR" ]; then
 else
   mkdir $DIR
   cd $DIR
-  git clone git@bitbucket.org:bubblecon/test-player.git .
+  git clone git@bitbucket.org:bubblecon/chai-monorepo.git .
 fi
 
 echo 'npm install'

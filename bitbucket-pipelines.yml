@@ -19,14 +19,14 @@ pipelines:
     dev:
       - step:
           name: build development
-          deployment: development
+          deployment: dev
           script:
             - pipe: atlassian/ssh-run:0.4.1
               variables:
                 SSH_USER: $USER
                 SERVER: $SERVER
                 MODE: 'script'
-                COMMAND: $PROD_BUILD
+                COMMAND: $DEV_BUILD
     main:
       - step:
           name: build production
@@ -84,7 +84,7 @@ pipelines:
                 SSH_USER: $USER
                 SERVER: $SERVER
                 MODE: 'script'
-                COMMAND: $PROD_BUILD
+                COMMAND: $DEV_BUILD
     main: #release 브렌치에서 실행되는 예제
       - step:
           deployment: staging
