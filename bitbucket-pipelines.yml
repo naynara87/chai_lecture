@@ -9,44 +9,98 @@ pipelines:
 #  default:
 #      - step:
 #          deployment: test
+#          caches:
+#            - node
 #          script:
 #            - echo "start build test"
-#            - npm run dev 
+#            - npm install
+#            - npm run build
   branches:
-    test:
+    dev:
       - step:
-          name: build test
+          name: build development
           deployment: test
-          caches:
-              - node
-          script: 
-            - echo "start build test"
-            - npm install
-            - npm run build
-            - npm run dev 
-    master:
+          script:
+            - pipe: atlassian/ssh-run:0.4.1
+              variables:
+                SSH_USER: $USER
+                SERVER: $SERVER
+                MODE: 'script'
+                COMMAND: $DEV_BUILD
+    main:
       - step:
-          name: build pubilsh
+          name: build production
           deployment: production
           caches:
               - node
-          script: 
-            - echo "start build publish"
-            - npm install
-            - npm run build
-            - npm run dev
+          script:
+            - pipe: atlassian/ssh-run:0.4.1
+              variables:
+                SSH_USER: $USER
+                SERVER: $SERVER
+                MODE: 'script'
+                COMMAND: $PROD_BUILD
   pull-requests:
 #    '**': #모든 브렌치에서 실행되는 예제
 #      - step:
+#          deployment: test
 #          script:
-#            - echo "start all pr merge & deploy"
-#            - npm install
-#            - npm run dev 
+#            - pipe: atlassian/ssh-run:0.4.1
+#              variables:
+#                SSH_USER: $USER
+#                SERVER: $SERVER
+#                MODE: 'script'
+#                COMMAND: $DEV_BUILD
     release/*: #release 브렌치에서 실행되는 예제
       - step:
+          deployment: staging
+          caches:
+            - node
           script:
-            - echo "start all pr merge & deploy"
+            - echo "start build test"
             - npm install
-            - npm run dev 
+            - npm run build
+      - step:
+          script:
+            - pipe: atlassian/ssh-run:0.4.1
+              variables:
+                SSH_USER: $USER
+                SERVER: $SERVER
+                MODE: 'script'
+                COMMAND: $PROD_BUILD
+    dev: #release 브렌치에서 실행되는 예제
+      - step:
+          deployment: staging
+          caches:
+            - node
+          script:
+            - echo "start build test"
+            - npm install
+            - npm run build
+      - step:
+          script:
+            - pipe: atlassian/ssh-run:0.4.1
+              variables:
+                SSH_USER: $USER
+                SERVER: $SERVER
+                MODE: 'script'
+                COMMAND: $DEV_BUILD
+    main: #release 브렌치에서 실행되는 예제
+      - step:
+          deployment: staging
+          caches:
+            - node
+          script:
+            - echo "start build test"
+            - npm install
+            - npm run build
+      - step:
+          script:
+            - pipe: atlassian/ssh-run:0.4.1
+              variables:
+                SSH_USER: $USER
+                SERVER: $SERVER
+                MODE: 'script'
+                COMMAND: $PROD_BUILD
 
   
