@@ -7,6 +7,7 @@ import MetaTestWordTest from "../components/pages/MetaTestWordTest";
 import MetaTestWordTestGrade from "../components/pages/MetaTestWordTestGrade";
 import MetaTestWordTestReport from "../components/pages/MetaTestWordTestReport";
 import { CORNER_LIST_URL } from "../constants/url";
+import Template03 from "../components/pages/Template03";
 
 const AppRouter = () => {
   return (
@@ -22,6 +23,7 @@ const AppRouter = () => {
         <Route path={"test-word-grade"} element={<MetaTestWordTestGrade />} />
         <Route path={"test-word-report"} element={<MetaTestWordTestReport />} />
         <Route path="*" element={<Navigate to={CORNER_LIST_URL} replace />} />
+        <Route path={"temp"} element={<Template03 />} />
       </Routes>
     </HashRouter>
   );

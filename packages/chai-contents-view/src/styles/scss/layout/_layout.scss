@@ -1,0 +1,42 @@
+/* =================== layout =================== */
+.cai-main {
+	height: 100vh;
+	padding-top: $hd-height;
+	padding-bottom: $ft-height;
+	background-color: color(gray-f0);
+}
+
+.layout-card-wrap {
+	width: vw(1610);
+	height: calc(100% - vh(70) - vh(110));
+	margin: vh(70) auto 0;
+}
+
+.layout-card {
+	width: 100%;
+	height: 100%;
+	border-radius: 15px;
+	background-color: color(gray-ff);
+	box-shadow: $shadow02;
+}
+
+.grid55 {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr;
+	gap: vw(50);
+}
+
+.grid37 {
+	display: grid;
+	grid-template-columns: 3fr 7fr;
+	grid-template-rows: 1fr;
+	gap: vw(50);
+}
+
+.grid28 {
+	display: grid;
+	grid-template-columns: 2fr 8fr;
+	grid-template-rows: 1fr;
+	gap: vw(50);
+}

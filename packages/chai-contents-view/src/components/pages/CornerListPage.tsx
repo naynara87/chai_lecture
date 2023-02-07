@@ -168,7 +168,7 @@ const CornerListPage = () => {
 
   return (
     <CornerListLayout>
-      {/* <Header currentCorner={currentCorner} appMetaData={appMetaData} /> */}
+      <Header currentCorner={currentCorner} appMetaData={appMetaData} />
       <CommonMainContainer>
         {currentCorner ? (
           // NOTE: 앱 대제목과 소제목이 하드코딩되어 있는데 필요시 appMetaData로 같이 받아야 한다.

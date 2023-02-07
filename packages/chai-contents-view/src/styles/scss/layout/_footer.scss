@@ -1,1 +1,27 @@
 /* =================== footer =================== */
+.cai-ft {
+	position: fixed;
+	top: auto;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: $ft-height;
+	background-color: color(gray-56);
+}
+
+.lnb-wrap {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	color: color(gray-ff);
+}
+
+.ft-conts-wrap {
+	@include flex-center;
+	@include full;
+
+	.txt {
+		color: color(gray-ff);
+	}
+}

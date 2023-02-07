@@ -3,6 +3,7 @@
 @import "utility/function";
 @import "utility/variable";
 @import "utility/mixin";
+@import "utility/extend";
 
 // 2. base
 @import "base/base";
@@ -17,6 +18,7 @@
 @import "component/modal";
 
 // 5. layout
+@import "layout/layout";
 @import "layout/common";
 @import "layout/card";
 @import "layout/header";
