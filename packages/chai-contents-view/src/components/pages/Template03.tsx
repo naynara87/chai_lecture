@@ -2,18 +2,23 @@ import React from "react";
 import LayoutHeader from "../molecules/LayoutHeader";
 import LayoutFooter from "../molecules/LayoutFooter";
 
-const Template02 = () => {
+interface Template03 {
+  sideCard: JSX.Element,
+  wideCard: JSX.Element,
+}
+
+const Template03 = ({sideCard, wideCard}: Template03) => {
 
   return (
     <div>
       <LayoutHeader />
       <main className="cai-main">
         <div className="layout-card-wrap grid37">
-          <div className="layout-card">
-            여기에 콘텐츠 위치할 예정
+          <div className="layout-card side-card">
+            {sideCard}
           </div>
-          <div className="layout-card">
-            여기에 콘텐츠 위치할 예정
+          <div className="layout-card wide-card">
+            {wideCard}
           </div>
         </div>
       </main>
@@ -22,4 +27,4 @@ const Template02 = () => {
   );
 };
 
-export default Template02;
+export default Template03;
