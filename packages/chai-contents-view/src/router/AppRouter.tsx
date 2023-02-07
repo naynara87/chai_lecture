@@ -7,6 +7,9 @@ import MetaTestWordTest from "../components/pages/MetaTestWordTest";
 import MetaTestWordTestGrade from "../components/pages/MetaTestWordTestGrade";
 import MetaTestWordTestReport from "../components/pages/MetaTestWordTestReport";
 import { CORNER_LIST_URL } from "../constants/url";
+import Template01 from "../components/pages/Template01";
+import Template02 from "../components/pages/Template02";
+import Template03 from "../components/pages/Template03";
 
 const AppRouter = () => {
   return (
@@ -22,9 +25,12 @@ const AppRouter = () => {
         <Route path={"test-word-grade"} element={<MetaTestWordTestGrade />} />
         <Route path={"test-word-report"} element={<MetaTestWordTestReport />} />
         <Route path="*" element={<Navigate to={CORNER_LIST_URL} replace />} />
+        <Route path={"temp01"} element={<Template01 children={<div>여기에 콘텐츠 위치할 예정</div>} />} />
+        <Route path={"temp02"} element={<Template02 sideCard={<div>여기에 콘텐츠 위치할 예정</div>} wideCard={<div>여기에 콘텐츠 위치할 예정</div>} />} />
+        <Route path={"temp03"} element={<Template03 sideCard={<div>여기에 콘텐츠 위치할 예정</div>} wideCard={<div>여기에 콘텐츠 위치할 예정</div>} />} />
       </Routes>
     </HashRouter>
-  );
+  );  
 };
 
 export default AppRouter;
