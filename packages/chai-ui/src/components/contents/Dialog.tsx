@@ -1,16 +1,16 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import styled from '@emotion/styled';
-import { css } from '@emotion/react';
-import AudioButton from '../atoms/AudioButton';
-import { DialogData, MultiChoice } from '../../types/templateContents';
-import { changePXtoVH, changePXtoVW } from '../../utils/styles';
-import { colorPalette } from '../../styles/colorPalette';
-import OIcon from '../atoms/svg/OIcon';
-import XIcon from '../atoms/svg/XIcon';
-import QuestionBlank from '../atoms/QuestionBlank';
-import HtmlContentComponent from '../molecules/HtmlContentComponent';
-import DialogTextBoxes from '../molecules/DialogTextBoxes';
-import { sortChoices } from '../../utils/sortChoices';
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import AudioButton from "../atoms/AudioButton";
+import { DialogData, MultiChoice } from "../../types/templateContents";
+import { changePXtoVH, changePXtoVW } from "../../utils/styles";
+import { colorPalette } from "../../styles/colorPalette";
+import OIcon from "../atoms/svg/OIcon";
+import XIcon from "../atoms/svg/XIcon";
+import QuestionBlank from "../atoms/QuestionBlank";
+import HtmlContentComponent from "../molecules/HtmlContentComponent";
+import DialogTextBoxes from "../molecules/DialogTextBoxes";
+import { sortChoices } from "../../utils/sortChoices";
 
 interface ProfileProps {
   icon: string;
@@ -69,7 +69,7 @@ const TalkBubble = styled.div<TalkBubbleProps>`
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
 
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     left: -42px;
     top: 40%;
@@ -82,7 +82,7 @@ const TalkBubble = styled.div<TalkBubbleProps>`
   }
 
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     top: 30%;
     left: -22px;
@@ -245,7 +245,7 @@ const Dialog = ({
 
   const { src: audioUrl } = audio ?? {};
   const [userAnswer, setUserAnswer] = useState<number>(
-    dialogQuestions?.choices?.length ?? 0
+    dialogQuestions?.choices?.length ?? 0,
   );
   const [userSelectedMultiChoices, setUserSelectedMultiChoices] = useState<
     MultiChoice[]
@@ -257,7 +257,7 @@ const Dialog = ({
   const [choiceMaxLength, setChoiceMaxLength] = useState(0);
   const [sortChoiceList, setSortChoiceList] = useState<string[]>([]);
   const [sortMultiChoiceList, setSortMultiChoiceList] = useState<MultiChoice[]>(
-    []
+    [],
   );
 
   useEffect(() => {
@@ -272,7 +272,7 @@ const Dialog = ({
   }, [dialogQuestions?.choices, dialogQuestions?.multiChoices]);
 
   const questions = text
-    .replace(/<[^>]*>?/g, '')
+    .replace(/<[^>]*>?/g, "")
     .split(/(\*.*?\*)/)
     .filter((content) => {
       return content.length > 0;
@@ -293,7 +293,7 @@ const Dialog = ({
       if (dialogQuestions.answerIndex !== undefined) {
         setCorrect(
           sortChoiceList[userChoiceIndex] ===
-            dialogQuestions?.choices[dialogQuestions.answerIndex]
+            dialogQuestions?.choices[dialogQuestions.answerIndex],
         );
       }
     },
@@ -305,22 +305,22 @@ const Dialog = ({
       sortChoiceList,
       isShowCorrect,
       isBlockedCheck,
-    ]
+    ],
   );
 
   const answerClassName = useCallback(
     (choice: string): string => {
       if (sortChoiceList[userAnswer] === choice) {
         if (correct) {
-          return 'correct';
+          return "correct";
         } else {
-          return 'incorrect';
+          return "incorrect";
         }
       } else {
-        return '';
+        return "";
       }
     },
-    [userAnswer, correct, sortChoiceList]
+    [userAnswer, correct, sortChoiceList],
   );
 
   const isSameClickBox = useCallback(
@@ -331,26 +331,26 @@ const Dialog = ({
         return false;
       }
     },
-    [userSelectedIndexes]
+    [userSelectedIndexes],
   );
 
   const changeSelectedAnswer = useCallback(
     (
-      addAndDeleted: 'add' | 'del',
+      addAndDeleted: "add" | "del",
       changeIndex: number,
-      clickIndex?: number
+      clickIndex?: number,
     ) => {
       const copyUserSelectedIndexesList = [...userSelectedIndexes];
       const copyUserSelectedAnswerList = [...userSelectedMultiChoices];
-      if (addAndDeleted === 'add' && clickIndex !== undefined) {
+      if (addAndDeleted === "add" && clickIndex !== undefined) {
         copyUserSelectedIndexesList[changeIndex] = clickIndex;
         copyUserSelectedAnswerList[changeIndex] =
           sortMultiChoiceList[clickIndex];
       } else {
         copyUserSelectedIndexesList[changeIndex] = undefined;
         copyUserSelectedAnswerList[changeIndex] = {
-          text: '',
-          pronunciation: '',
+          text: "",
+          pronunciation: "",
           answerIndex: -1,
         };
       }
@@ -358,7 +358,7 @@ const Dialog = ({
       setUserSelectedIndexes(copyUserSelectedIndexesList);
       setUserSelectedMultiChoices(copyUserSelectedAnswerList);
     },
-    [sortMultiChoiceList, userSelectedIndexes, userSelectedMultiChoices]
+    [sortMultiChoiceList, userSelectedIndexes, userSelectedMultiChoices],
   );
 
   const handleClickTextBox = useCallback(
@@ -367,7 +367,7 @@ const Dialog = ({
         const sameIndex = userSelectedMultiChoices.findIndex((userSelected) => {
           return JSON.stringify(userSelected) === JSON.stringify(choice);
         });
-        changeSelectedAnswer('del', sameIndex);
+        changeSelectedAnswer("del", sameIndex);
         return;
       }
 
@@ -377,7 +377,7 @@ const Dialog = ({
 
       // userSelectdIndexes에 undefindex 값이 있으면 -1
       if (emptyIndex !== -1) {
-        changeSelectedAnswer('add', emptyIndex, index);
+        changeSelectedAnswer("add", emptyIndex, index);
       } else {
         setUserSelectedMultiChoices((prev) => [...prev, choice]);
         setUserSelectedIndexes((prev) => [...prev, index]);
@@ -388,7 +388,7 @@ const Dialog = ({
       userSelectedMultiChoices,
       isSameClickBox,
       changeSelectedAnswer,
-    ]
+    ],
   );
 
   const renderChoicesQuiz = useMemo(() => {
@@ -455,7 +455,7 @@ const Dialog = ({
     if (correct) {
       return <OIcon css={iconCss} />;
     } else if (correct === undefined) {
-      return '';
+      return "";
     } else {
       return <XIcon css={iconCss} />;
     }
@@ -464,7 +464,7 @@ const Dialog = ({
   const blankText = useCallback(
     (blankIndex: number) => {
       if (dialogQuestions?.multiChoices) {
-        return userSelectedMultiChoices[blankIndex]?.text ?? '';
+        return userSelectedMultiChoices[blankIndex]?.text ?? "";
       } else {
         return sortChoiceList[userAnswer];
       }
@@ -474,7 +474,7 @@ const Dialog = ({
       sortChoiceList,
       userSelectedMultiChoices,
       userAnswer,
-    ]
+    ],
   );
 
   const setMaxBlankLength = useCallback(
@@ -483,7 +483,7 @@ const Dialog = ({
         setChoiceMaxLength(text.length);
       }
     },
-    [setChoiceMaxLength, choiceMaxLength]
+    [setChoiceMaxLength, choiceMaxLength],
   );
 
   const isMultiChoicesUserAnswerFull = useMemo(() => {
@@ -508,7 +508,7 @@ const Dialog = ({
         return undefined;
       }
     },
-    [isMultiChoicesUserAnswerFull, userSelectedMultiChoices]
+    [isMultiChoicesUserAnswerFull, userSelectedMultiChoices],
   );
 
   const popBlankText = useCallback(
@@ -516,9 +516,9 @@ const Dialog = ({
       if (userSelectedIndexes.length >= questions.length) {
         return;
       }
-      changeSelectedAnswer('del', blankIndex);
+      changeSelectedAnswer("del", blankIndex);
     },
-    [userSelectedIndexes, questions.length, changeSelectedAnswer]
+    [userSelectedIndexes, questions.length, changeSelectedAnswer],
   );
 
   const questionContents = useMemo(() => {
@@ -535,7 +535,7 @@ const Dialog = ({
       });
     }
     return questions.map((question, questionIndex) => {
-      if (question === '*blank*') {
+      if (question === "*blank*") {
         const blankWidth = `${choiceMaxLength * 25}px`;
         if (!dialogQuestions) {
           return <></>;
@@ -585,9 +585,10 @@ const Dialog = ({
     if (dialogQuestions?.multiChoices) {
       return (
         <MultiChoicePronunciationWrapper>
-          {userSelectedMultiChoices.map((userSelected) => {
+          {userSelectedMultiChoices.map((userSelected, index) => {
             return (
               <HtmlContentComponent
+                key={index}
                 html={userSelected.pronunciation}
                 customCss={pronunciationCss}
               />
@@ -611,10 +612,10 @@ const Dialog = ({
   ]);
 
   return (
-    <DialogWrapper className={isHide ? 'hide' : 'dialog'}>
+    <DialogWrapper className={isHide ? "hide" : "dialog"}>
       <TalkBubbleGrp>
         {renderProfile ? (
-          <Profile icon={icon.src ?? ''} profileColor={profileColor}>
+          <Profile icon={icon.src ?? ""} profileColor={profileColor}>
             {showCorrectIcon}
           </Profile>
         ) : (
