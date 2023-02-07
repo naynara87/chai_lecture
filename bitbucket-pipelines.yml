@@ -6,15 +6,15 @@
 image: node:16
 
 pipelines:
-  default:
-      - step:
-          deployment: test
-          caches:
-            - node
-          script:
-            - echo "start build test"
-            - npm install
-            - npm run build
+#  default:
+#      - step:
+#          deployment: test
+#          caches:
+#            - node
+#          script:
+#            - echo "start build test"
+#            - npm install
+#            - npm run build
   branches:
     dev:
       - step:
@@ -41,16 +41,16 @@ pipelines:
                 MODE: 'script'
                 COMMAND: $PROD_BUILD
   pull-requests:
-    '**': #모든 브렌치에서 실행되는 예제
-      - step:
-          deployment: test
-          script:
-            - pipe: atlassian/ssh-run:0.4.1
-              variables:
-                SSH_USER: $USER
-                SERVER: $SERVER
-                MODE: 'script'
-                COMMAND: $DEV_BUILD
+#    '**': #모든 브렌치에서 실행되는 예제
+#      - step:
+#          deployment: test
+#          script:
+#            - pipe: atlassian/ssh-run:0.4.1
+#              variables:
+#                SSH_USER: $USER
+#                SERVER: $SERVER
+#                MODE: 'script'
+#                COMMAND: $DEV_BUILD
     release/*: #release 브렌치에서 실행되는 예제
       - step:
           deployment: staging
