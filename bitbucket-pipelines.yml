@@ -19,7 +19,7 @@ pipelines:
     dev:
       - step:
           name: build development
-          deployment: testbed
+          deployment: development
           script:
             - pipe: atlassian/ssh-run:0.4.1
               variables:
