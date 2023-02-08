@@ -57,8 +57,8 @@ Default.args = {
   }as ChooseTextByAudioContent,
 };
 
-export const SortAnswerTrue = Template.bind({});
-SortAnswerTrue.args = {
+export const SortAnswer = Template.bind({});
+SortAnswer.args = {
   chooseTextByAudioContentData: {
     ...data,
     options: {
