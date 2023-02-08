@@ -29,8 +29,8 @@
   "scripts": {
     "dev": "env-cmd -f .env cross-env PORT=3001 react-scripts start",
     "start": "env-cmd -f .env react-scripts start",
-    "build": "env-cmd -f .env.development react-scripts build",
-    "build:prod": "env-cmd -f .env.production react-scripts build",
+    "build": "GENERATE_SOURCEMAP=false env-cmd -f .env.development react-scripts build",
+    "build:prod": "GENERATE_SOURCEMAP=false env-cmd -f .env.production react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
