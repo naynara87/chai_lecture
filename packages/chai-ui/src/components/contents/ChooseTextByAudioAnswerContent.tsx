@@ -80,6 +80,7 @@ interface ChooseTextByAudioAnswerContentProps {
   currentAudioIndex: number;
   audioState: boolean;
   options?: ChooseTextByAudioOptions | undefined;
+  isSortAnswer?: boolean;
 }
 
 const ChooseTextByAudioAnswerContent = ({
@@ -93,12 +94,13 @@ const ChooseTextByAudioAnswerContent = ({
   isHide,
   audioState,
   options,
+  isSortAnswer
 }: ChooseTextByAudioAnswerContentProps) => {
   const [checkIndex, setCheckIndex] = useState<number>(-1);
   const [sortList, setSortList] = useState<string[]>([]);
 
   useEffect(() => {
-    if (options && options.sortAnswer) {
+    if (options && options.sortAnswer || isSortAnswer) {
       sortChoices(choices, setSortList);
     } else {
       setSortList(choices);
