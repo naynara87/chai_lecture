@@ -4,7 +4,7 @@ import { ChooseTextByAudioContent } from "../../../types";
 
 import ChooseTextByAudio from "../../../components/contents/ChooseTextByAudio";
 
-const data = {
+const data: ChooseTextByAudioContent = {
   type: "chooseTextByAudio",
   data: [
     {
@@ -30,7 +30,7 @@ const data = {
     },    
   ],
   options: {
-    SortAnswer: false,
+    sortAnswer: false,
   },
 };
 
