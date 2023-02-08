@@ -5,7 +5,7 @@ import ChooseText from "../../../components/contents/ChooseText";
 import { ChooseTextContent } from "../../../types";
 // import { ChooseTextContent } from "../../../types/templateContents";
 
-const data = {
+const data: ChooseTextContent = {
   type: "chooseText",
   data: [
     {
