@@ -6,12 +6,10 @@ import ChooseTextByAudioAnswerContent from "./ChooseTextByAudioAnswerContent";
 
 export interface ChooseTextByAudioProps {
   chooseTextByAudioContentData: ChooseTextByAudioContent | undefined;
-  isSortAnswer?: boolean;
 }
 
 const ChooseTextByAudio = ({
   chooseTextByAudioContentData,
-  isSortAnswer
 }: ChooseTextByAudioProps) => {
   const [userAnswers, setUserAnswers] = useState<string[]>([]);
   const [checkAnswers, setCheckAnswers] = useState<boolean[]>([]);
@@ -78,7 +76,6 @@ const ChooseTextByAudio = ({
           currentAudioIndex={audioIndex ?? 0}
           audioState={audioState}
           options={options}
-          isSortAnswer={isSortAnswer}
         />
       );
     });
