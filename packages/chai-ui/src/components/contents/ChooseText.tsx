@@ -25,15 +25,14 @@ export const customQuizCss = css`
 `;
 export interface ChooseTextProps {
   contentData: ChooseTextContent;
-  isVertical?: boolean;
 }
-const ChooseText = ({ contentData, isVertical }: ChooseTextProps) => {
+const ChooseText = ({ contentData }: ChooseTextProps) => {
   const {
     data: [{ choices, answerIndex, explanation }],
   } = contentData;
   const [showExplanation, setShowExplanation] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState<number | undefined>(
-    undefined
+    undefined,
   );
   const [isCorrect, setIsCorrect] = useState(false);
 
@@ -66,9 +65,7 @@ const ChooseText = ({ contentData, isVertical }: ChooseTextProps) => {
 
   return (
     <div>
-      <QuizAnswerContainer
-        isVertical={contentData.options?.isHorizontal || isVertical}
-      >
+      <QuizAnswerContainer isVertical={contentData.options?.isHorizontal}>
         {sortList.map((choice, index) => (
           <QuizAnswer
             key={index}

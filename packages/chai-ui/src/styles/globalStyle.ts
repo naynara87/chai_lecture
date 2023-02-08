@@ -191,6 +191,9 @@ const globalStyle = css`
   .Toastify__toast-body {
     padding: 0 !important;
     margin: 0;
+    & > div {
+      width: 100%;
+    }
   }
 
   :root {
