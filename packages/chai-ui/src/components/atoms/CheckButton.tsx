@@ -4,7 +4,7 @@ import { colorPalette } from "../../styles/colorPalette";
 import { changePXtoVH, changePXtoVW } from "../../utils/styles";
 
 const CheckButtonContainer = styled.button`
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   width: ${changePXtoVW(239)};

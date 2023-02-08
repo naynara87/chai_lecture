@@ -93,6 +93,7 @@ const ChooseTextByAudioAnswerContent = ({
   isHide,
   audioState,
   options,
+
 }: ChooseTextByAudioAnswerContentProps) => {
   const [checkIndex, setCheckIndex] = useState<number>(-1);
   const [sortList, setSortList] = useState<string[]>([]);
