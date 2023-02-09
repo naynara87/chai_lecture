@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo } from "react";
 import { TP11D } from "../../types/pageTemplate";
-import { WordQuizContent } from "../../types/templateContents";
 import { TemplateProps } from "../../types/templates";
 import WordQuizTP11B from "../contents/WordQuizTP11B";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
@@ -9,7 +8,11 @@ import TitleContent from "../molecules/TitleContent";
 
 interface TP11DComponentProps extends TemplateProps {}
 
-const TP11DComponent = ({ setPageCompleted, page, showHeader = true }: TP11DComponentProps) => {
+const TP11DComponent = ({
+  setPageCompleted,
+  page,
+  showHeader = true,
+}: TP11DComponentProps) => {
   const thisPage = page as TP11D;
 
   useEffect(() => {
@@ -17,15 +20,18 @@ const TP11DComponent = ({ setPageCompleted, page, showHeader = true }: TP11DComp
   }, [setPageCompleted]);
 
   const wordQuizContentData = useMemo(() => {
-    return thisPage.template.contents.find((content) => content.type === "wordQuiz") as
-      | WordQuizContent
-      | undefined;
+    return thisPage.template.contents.find(
+      (content) => content.type === "wordQuiz",
+    );
   }, [thisPage.template.contents]);
 
   return (
     <TemplateCommonLayout>
       {showHeader ? (
-        <TitleContent title={thisPage.title} description={thisPage.description} />
+        <TitleContent
+          title={thisPage.title}
+          description={thisPage.description}
+        />
       ) : (
         <></>
       )}

@@ -2,7 +2,6 @@ import { css } from "@emotion/react";
 import React, { useEffect, useMemo } from "react";
 import { colorPalette } from "../../styles/colorPalette";
 import { TP02B } from "../../types/pageTemplate";
-import { TextBoxesContent } from "../../types/templateContents";
 import { TemplateProps } from "../../types/templates";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TP02Layout from "../Layouts/TP02Layout";
@@ -15,7 +14,11 @@ const descriptionCss = css`
 
 interface TP02BComponentProps extends TemplateProps {}
 
-const TP02BComponent = ({ setPageCompleted, page, showHeader = true }: TP02BComponentProps) => {
+const TP02BComponent = ({
+  setPageCompleted,
+  page,
+  showHeader = true,
+}: TP02BComponentProps) => {
   const thisPage = page as TP02B;
 
   useEffect(() => {
@@ -23,20 +26,26 @@ const TP02BComponent = ({ setPageCompleted, page, showHeader = true }: TP02BComp
   }, [setPageCompleted]);
 
   const TextBoxesContentData = useMemo(() => {
-    return thisPage.template.contents.find((content) => content.type === "textBoxes") as
-      | TextBoxesContent
-      | undefined;
+    return thisPage.template.contents.find(
+      (content) => content.type === "textBoxes",
+    );
   }, [thisPage.template.contents]);
 
   return (
     <TemplateCommonLayout>
       {showHeader ? (
-        <TitleContent title={thisPage.title} description={thisPage.description} />
+        <TitleContent
+          title={thisPage.title}
+          description={thisPage.description}
+        />
       ) : (
         <></>
       )}
       <TP02Layout>
-        <TextBoxes datas={TextBoxesContentData?.data ?? []} customDescriptionCss={descriptionCss} />
+        <TextBoxes
+          datas={TextBoxesContentData?.data ?? []}
+          customDescriptionCss={descriptionCss}
+        />
       </TP02Layout>
     </TemplateCommonLayout>
   );

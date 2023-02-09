@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import React, { useEffect, useMemo } from "react";
 import { TP02A } from "../../types/pageTemplate";
-import { AudioContent } from "../../types/templateContents";
 import { TemplateProps } from "../../types/templates";
 import AudioButton from "../atoms/AudioButton";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
@@ -15,7 +14,11 @@ const AudioWrapper = styled.div`
 
 interface TP02AComponentProps extends TemplateProps {}
 
-const TP02AComponent = ({ setPageCompleted, page, showHeader = true }: TP02AComponentProps) => {
+const TP02AComponent = ({
+  setPageCompleted,
+  page,
+  showHeader = true,
+}: TP02AComponentProps) => {
   const thisPage = page as TP02A;
 
   useEffect(() => {
@@ -23,21 +26,27 @@ const TP02AComponent = ({ setPageCompleted, page, showHeader = true }: TP02AComp
   }, [setPageCompleted]);
 
   const AudioContentData = useMemo(() => {
-    return thisPage.template.contents.find((content) => content.type === "audio") as
-      | AudioContent
-      | undefined;
+    return thisPage.template.contents.find(
+      (content) => content.type === "audio",
+    );
   }, [thisPage.template.contents]);
 
   return (
     <TemplateCommonLayout>
       {showHeader ? (
-        <TitleContent title={thisPage.title} description={thisPage.description} />
+        <TitleContent
+          title={thisPage.title}
+          description={thisPage.description}
+        />
       ) : (
         <></>
       )}
       <TP02Layout>
         <AudioWrapper>
-          <AudioButton isAudio={true} audioUrl={AudioContentData?.data?.[0].src} />
+          <AudioButton
+            isAudio={true}
+            audioUrl={AudioContentData?.data?.[0].src}
+          />
         </AudioWrapper>
       </TP02Layout>
     </TemplateCommonLayout>

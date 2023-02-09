@@ -1,14 +1,14 @@
-import { css, SerializedStyles } from '@emotion/react';
-import styled from '@emotion/styled';
-import React, { useCallback, useMemo, useRef, useState } from 'react';
-import { useReactMediaRecorder } from 'react-media-recorder';
-import { colorPalette } from '../../styles/colorPalette';
-import { changePXtoVW } from '../../utils/styles';
-import AudioButton from '../atoms/AudioButton';
-import IconHeadset from '../atoms/svg/IconHeadset';
-import IconMic from '../atoms/svg/IconMic';
-import IconPlaying from '../atoms/svg/IconPlaying';
-import IconRetry from '../atoms/svg/IconRetry';
+import { css, SerializedStyles } from "@emotion/react";
+import styled from "@emotion/styled";
+import React, { useCallback, useMemo, useRef, useState } from "react";
+import { useReactMediaRecorder } from "react-media-recorder";
+import { colorPalette } from "../../styles/colorPalette";
+import { changePXtoVW } from "../../utils/styles";
+import AudioButton from "../atoms/AudioButton";
+import IconHeadset from "../atoms/svg/IconHeadset";
+import IconMic from "../atoms/svg/IconMic";
+import IconPlaying from "../atoms/svg/IconPlaying";
+import IconRetry from "../atoms/svg/IconRetry";
 
 interface RecordedAudioButtonProps {
   customCss?: SerializedStyles;
@@ -55,7 +55,7 @@ const AudioRecorderStyle = styled.div`
   margin-top: ${changePXtoVW(16)};
 `;
 
-type recordingAudioState = 'record' | 'pause' | 'recordAudioPlaying';
+type recordingAudioState = "record" | "pause" | "recordAudioPlaying";
 
 interface AudioRecorderProps {
   audioUrl: string;
@@ -66,14 +66,14 @@ const AudioRecorder = ({ audioUrl }: AudioRecorderProps) => {
   const [pronounceAudio, setPronounceAudio] = useState(false);
   const [recordedAudioState, setRecordedAudioState] = useState(false);
   const [recordingAudioState, setRecordingAudioState] =
-    useState<recordingAudioState>('pause');
+    useState<recordingAudioState>("pause");
   const { status, startRecording, stopRecording, mediaBlobUrl } =
     useReactMediaRecorder({
       audio: true,
       video: false,
       askPermissionOnMount: true,
       blobPropertyBag: {
-        type: 'audio/wav',
+        type: "audio/wav",
       },
     });
 
@@ -118,35 +118,35 @@ const AudioRecorder = ({ audioUrl }: AudioRecorderProps) => {
       return;
     }
 
-    if (status === 'stopped') {
-      audioRef.current.play();
+    if (status === "stopped") {
+      void audioRef.current.play();
       setRecordedAudioState(true);
-      setRecordingAudioState('recordAudioPlaying');
+      setRecordingAudioState("recordAudioPlaying");
     }
 
-    if (status === 'stopped' && recordedAudioState) {
+    if (status === "stopped" && recordedAudioState) {
       audioRef.current.pause();
       setRecordedAudioState(false);
-      setRecordingAudioState('pause');
+      setRecordingAudioState("pause");
     }
   }, [recordedAudioState, status, pronounceAudio]);
 
-  audioRef.current?.addEventListener('ended', () => {
+  audioRef.current?.addEventListener("ended", () => {
     setRecordedAudioState(false);
-    setRecordingAudioState('pause');
+    setRecordingAudioState("pause");
   });
 
   const handleClickRecordingAudioButton = useCallback(() => {
     if (!audioRef.current || recordedAudioState || pronounceAudio) {
       return;
     }
-    if (status === 'idle' || status === 'stopped') {
+    if (status === "idle" || status === "stopped") {
       startRecording();
-      setRecordingAudioState('record');
+      setRecordingAudioState("record");
       setRecordedAudioState(false);
     } else {
       stopRecording();
-      setRecordingAudioState('pause');
+      setRecordingAudioState("pause");
     }
   }, [
     pronounceAudio,
@@ -157,7 +157,7 @@ const AudioRecorder = ({ audioUrl }: AudioRecorderProps) => {
   ]);
 
   const recodingAudioButtonColor = useMemo(() => {
-    if (recordingAudioState === 'recordAudioPlaying' || pronounceAudio) {
+    if (recordingAudioState === "recordAudioPlaying" || pronounceAudio) {
       return grayBackground;
     } else {
       return currentBackground;
@@ -170,21 +170,21 @@ const AudioRecorder = ({ audioUrl }: AudioRecorderProps) => {
       if (isPlayed) {
         setPronounceAudio(true);
         setRecordedAudioState(false);
-        setRecordingAudioState('pause');
+        setRecordingAudioState("pause");
       } else {
         setPronounceAudio(false);
       }
     },
-    []
+    [],
   );
 
   const renderRecordingAudioIcon = useMemo(() => {
-    if (status === 'recording') {
+    if (status === "recording") {
       return <IconPlaying />;
     } else {
-      if (status === 'idle') {
+      if (status === "idle") {
         return <IconMic />;
-      } else if (status === 'stopped') {
+      } else if (status === "stopped") {
         return <IconRetry />;
       }
     }
@@ -196,7 +196,7 @@ const AudioRecorder = ({ audioUrl }: AudioRecorderProps) => {
       <RecordedAudioButton
         onClick={handleClickRecordedAudioButton}
         customCss={
-          status === 'stopped' && !pronounceAudio
+          status === "stopped" && !pronounceAudio
             ? currentBackground
             : grayBackground
         }
@@ -209,16 +209,16 @@ const AudioRecorder = ({ audioUrl }: AudioRecorderProps) => {
       >
         {renderRecordingAudioIcon}
       </RecordingAudioButton>
-      <audio ref={audioRef} src={mediaBlobUrl ?? ''} />
+      <audio ref={audioRef} src={mediaBlobUrl ?? ""} />
       <AudioButton
         audioUrl={audioUrl}
         isAudio={true}
         audioHandler={handlePronounceAudio}
         audioHide={
-          recordedAudioState || recordingAudioState !== 'pause' ? true : false
+          recordedAudioState || recordingAudioState !== "pause" ? true : false
         }
         customCss={
-          recordedAudioState || recordingAudioState !== 'pause'
+          recordedAudioState || recordingAudioState !== "pause"
             ? grayBackground
             : currentBackground
         }

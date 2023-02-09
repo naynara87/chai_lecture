@@ -61,9 +61,9 @@ interface WordQuizProps {
 
 const WordQuizTP10C = ({ wordQuizData }: WordQuizProps) => {
   const { choices, text, answerIndex, explanation, meaning } =
-    wordQuizData!.data?.[0];
+    wordQuizData.data?.[0];
   const [selectedIndex, setSelectedIndex] = useState<number | undefined>(
-    undefined
+    undefined,
   );
   const [showExplanation, setShowExplanation] = useState(false);
   const [sortList, setSortList] = useState<string[]>([]);
@@ -87,7 +87,7 @@ const WordQuizTP10C = ({ wordQuizData }: WordQuizProps) => {
         setChoiceMaxLength(choice.length);
       }
     });
-  }, [answerIndex, choices, choiceMaxLength]);
+  }, [answerIndex, choices, choiceMaxLength, wordQuizData.options?.sortAnswer]);
 
   const handleClickCloseExplanation = () => {
     setShowExplanation(false);
@@ -101,7 +101,7 @@ const WordQuizTP10C = ({ wordQuizData }: WordQuizProps) => {
       setShowExplanation(true);
       setSelectedIndex(index);
     },
-    [selectedIndex]
+    [selectedIndex],
   );
 
   const renderColor = useMemo(() => {
