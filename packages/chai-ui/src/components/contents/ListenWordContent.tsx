@@ -26,7 +26,7 @@ const ListenWordContent = (datas: ListenWordContentProps) => {
       setAudioSrc(src);
       audioRef.current.pause();
       audioRef.current.load();
-      audioRef.current.play();
+      void audioRef.current.play();
       setAudioState("play");
     }
     if (audioRef.current && audioIndex === index) {
@@ -34,7 +34,7 @@ const ListenWordContent = (datas: ListenWordContentProps) => {
         audioRef.current.pause();
         setAudioState("pause");
       } else {
-        audioRef.current.play();
+        void audioRef.current.play();
         setAudioState("play");
       }
     }

@@ -115,12 +115,12 @@ const TPTabComponent = ({ setPageCompleted, page }: TPTabComponentProps) => {
       if (currentPageIdx() > index) {
         setTabIdxToId((prev) => [
           ...prev,
-          { index: index, id: +thisPage.id! - (currentPageIdx() - index) },
+          { index: index, id: +thisPage.id - (currentPageIdx() - index) },
         ]);
       } else {
         setTabIdxToId((prev) => [
           ...prev,
-          { index: index, id: +thisPage.id! + (index - currentPageIdx()) },
+          { index: index, id: +thisPage.id + (index - currentPageIdx()) },
         ]);
       }
     });
@@ -155,12 +155,12 @@ const TPTabComponent = ({ setPageCompleted, page }: TPTabComponentProps) => {
       },
       {
         threshold: 0.5,
-      }
+      },
     );
 
     for (let i = 0; i < LayoutRef.current?.children.length; i++) {
       const element = LayoutRef.current?.children[i];
-      element.classList.add("observe" + i);
+      element.classList.add("observe" + String(i));
       observer.observe(element);
     }
 
@@ -183,7 +183,7 @@ const TPTabComponent = ({ setPageCompleted, page }: TPTabComponentProps) => {
         navigate(getPageUrl(courseId, lessonId, cornerId, pageId));
       }
     },
-    [cornerId, lessonId, courseId, navigate]
+    [cornerId, lessonId, courseId, navigate],
   );
 
   const renderTemplate = useMemo(() => {

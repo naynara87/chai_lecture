@@ -2,7 +2,6 @@ import { css } from "@emotion/react";
 import React, { useEffect, useMemo } from "react";
 import { colorPalette } from "../../styles/colorPalette";
 import { TP02M } from "../../types/pageTemplate";
-import { HtmlContent } from "../../types/templateContents";
 import { TemplateProps } from "../../types/templates";
 import { changePXtoVW } from "../../utils/styles";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
@@ -33,8 +32,8 @@ const TP02MComponent = ({
 
   const htmlContentData = useMemo(() => {
     return thisPage.template.contents.find(
-      (content) => content.type === "html"
-    ) as HtmlContent | undefined;
+      (content) => content.type === "html",
+    );
   }, [thisPage.template.contents]);
 
   return (

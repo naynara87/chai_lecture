@@ -8,6 +8,13 @@ const useAudio = (audioRef: RefObject<HTMLAudioElement>) => {
   const [audioIndex, setAudioIndex] = useState<number | undefined>(undefined);
   const [audioState, setAudioState] = useState(false);
 
+  const playAudio = useCallback(async () => {
+    if (!audioRef.current) {
+      return;
+    }
+    await audioRef.current.play();
+  }, [audioRef]);
+
   const handleClickAudioButton = useCallback(
     (src: string, index: number) => {
       if (!audioRef.current) {
@@ -20,19 +27,19 @@ const useAudio = (audioRef: RefObject<HTMLAudioElement>) => {
         setAudioState(true);
         audioRef.current.pause();
         audioRef.current.load();
-        audioRef.current.play();
+        void playAudio();
       } else {
         if (audioState) {
           audioRef.current.pause();
           setAudioState(false);
         } else {
           audioRef.current.load();
-          audioRef.current.play();
+          void playAudio();
           setAudioState(true);
         }
       }
     },
-    [setAudioSrc, audioState, audioIndex, setAudioIndex, audioRef],
+    [setAudioSrc, audioState, audioIndex, setAudioIndex, audioRef, playAudio],
   );
 
   audioRef.current?.addEventListener("ended", () => {

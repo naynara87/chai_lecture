@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { TP01B } from "../../types/pageTemplate";
-import { DialogContent } from "../../types/templateContents";
 import { TemplateProps } from "../../types/templates";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TitleContent from "../molecules/TitleContent";
@@ -16,7 +15,11 @@ const dialogContainerStyles = css`
 
 interface TP01BComponentProps extends TemplateProps {}
 
-const TP01BComponent = ({ setPageCompleted, page, showHeader = true }: TP01BComponentProps) => {
+const TP01BComponent = ({
+  setPageCompleted,
+  page,
+  showHeader = true,
+}: TP01BComponentProps) => {
   const [currentHeight, setCurrentHeight] = useState(0);
   const [isShowCorrect, setIsShowCorrect] = useState(false);
   const layoutRef = useRef<HTMLDivElement>(null);
@@ -29,9 +32,9 @@ const TP01BComponent = ({ setPageCompleted, page, showHeader = true }: TP01BComp
   }, [setPageCompleted, currentContentIndex]);
 
   const DialogContentData = useMemo(() => {
-    return thisPage.template.contents.find((content) => content.type === "dialog") as
-      | DialogContent
-      | undefined;
+    return thisPage.template.contents.find(
+      (content) => content.type === "dialog",
+    );
   }, [thisPage.template.contents]);
 
   const mainContent = useMemo(() => {
@@ -48,12 +51,20 @@ const TP01BComponent = ({ setPageCompleted, page, showHeader = true }: TP01BComp
         setIsShowCorrect={setIsShowCorrect}
       />
     );
-  }, [DialogContentData?.data, currentHeight, isShowCorrect, currentContentIndex]);
+  }, [
+    DialogContentData?.data,
+    currentHeight,
+    isShowCorrect,
+    currentContentIndex,
+  ]);
 
   return (
     <TemplateCommonLayout>
       {showHeader ? (
-        <TitleContent title={thisPage.title} description={thisPage.description} />
+        <TitleContent
+          title={thisPage.title}
+          description={thisPage.description}
+        />
       ) : (
         <></>
       )}

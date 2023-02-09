@@ -14,13 +14,17 @@ export const cornerDataConverter = (cornerData: CornerData): Corner2 => {
   return {
     id: turnId,
     title: turnName,
-    cornerIcon: `${process.env.PUBLIC_URL}/images/icon/img_sort_page01.png`,
+    cornerIcon: `${
+      process.env.PUBLIC_URL ?? ""
+    }/images/icon/img_sort_page01.png`,
     introduction,
     pages,
   };
 };
 
-export const appMetaDataConverter = (appMetaData: CornerListDataMeta): AppMetaData => {
+export const appMetaDataConverter = (
+  appMetaData: CornerListDataMeta,
+): AppMetaData => {
   return {
     courseId: appMetaData?.subjectId ?? 1, // FIXME: 임시로 1을 넣어둠
     courseName: appMetaData?.subjectName ?? "dummyCourseName",

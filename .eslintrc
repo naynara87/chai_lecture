@@ -6,17 +6,28 @@
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "plugin:react/recommended",
-    "plugin:react-hooks/recommended"
+    "plugin:react-hooks/recommended",
+    "plugin:jsx-a11y/recommended"
   ],
   "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": ["./packages/**/tsconfig.json"]
+  },
   "plugins": ["react", "@typescript-eslint", "react-hooks"],
   "rules": {
     "@typescript-eslint/no-empty-interface": "off",
     "@typescript-eslint/ban-types": "warn",
     "react/no-unescaped-entities": ["off"],
     "no-extra-boolean-cast": "off",
-    "no-unsafe-optional-chaining": "off"
+    "no-unsafe-optional-chaining": "off",
+    "@typescript-eslint/no-unsafe-argument": "off",
+    "@typescript-eslint/await-thenable": "off",
+    "@typescript-eslint/restrict-template-expressions": "off",
+    "jsx-a11y/media-has-caption": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
+    "jsx-a11y/click-events-have-key-events": "off"
   },
   "settings": {
     "import/resolver": {

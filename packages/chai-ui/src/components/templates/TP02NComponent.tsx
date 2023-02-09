@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useRef } from "react";
 import styled from "@emotion/styled";
 import { TP02N } from "../../types/pageTemplate";
-import { StudyWordsContent } from "../../types/templateContents";
 import { TemplateProps } from "../../types/templates";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
 import TP02Layout from "../Layouts/TP02Layout";
@@ -31,7 +30,7 @@ const customPronunciationCss = css`
   font-weight: 500;
   font-size: ${changePXtoVW(30)};
   color: ${colorPalette.pronunciationText};
-  `;
+`;
 
 const customMeaningCss = css`
   margin-top: ${changePXtoVW(24)};
@@ -42,10 +41,15 @@ const customMeaningCss = css`
 
 interface TP02NComponentProps extends TemplateProps {}
 
-const TP02NComponent = ({ setPageCompleted, page, showHeader = true }: TP02NComponentProps) => {
+const TP02NComponent = ({
+  setPageCompleted,
+  page,
+  showHeader = true,
+}: TP02NComponentProps) => {
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  const { handleClickAudioButton, audioIndex, audioSrc, audioState } = useAudio(audioRef);
+  const { handleClickAudioButton, audioIndex, audioSrc, audioState } =
+    useAudio(audioRef);
 
   const thisPage = page as TP02N;
 
@@ -54,9 +58,9 @@ const TP02NComponent = ({ setPageCompleted, page, showHeader = true }: TP02NComp
   }, [setPageCompleted]);
 
   const StudyWordsContentData = useMemo(() => {
-    return thisPage.template.contents.find((content) => content.type === "studyWords") as
-      | StudyWordsContent
-      | undefined;
+    return thisPage.template.contents.find(
+      (content) => content.type === "studyWords",
+    );
   }, [thisPage.template.contents]);
 
   const mainContents = useMemo(() => {
@@ -71,7 +75,10 @@ const TP02NComponent = ({ setPageCompleted, page, showHeader = true }: TP02NComp
             html={content.pronunciation ?? ""}
             customCss={customPronunciationCss}
           />
-          <HtmlContentComponent html={content.meaning ?? ""} customCss={customMeaningCss} />
+          <HtmlContentComponent
+            html={content.meaning ?? ""}
+            customCss={customMeaningCss}
+          />
           <AudioButton
             audioUrl={content.audio.src}
             isAudio={false}
@@ -83,12 +90,20 @@ const TP02NComponent = ({ setPageCompleted, page, showHeader = true }: TP02NComp
         </ContentContainer>
       );
     });
-  }, [StudyWordsContentData?.data, audioIndex, handleClickAudioButton, audioState]);
+  }, [
+    StudyWordsContentData?.data,
+    audioIndex,
+    handleClickAudioButton,
+    audioState,
+  ]);
 
   return (
     <TemplateCommonLayout>
       {showHeader ? (
-        <TitleContent title={thisPage.title} description={thisPage.description} />
+        <TitleContent
+          title={thisPage.title}
+          description={thisPage.description}
+        />
       ) : (
         <></>
       )}

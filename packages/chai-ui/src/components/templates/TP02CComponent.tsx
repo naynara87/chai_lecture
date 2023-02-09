@@ -1,7 +1,6 @@
 import { css } from "@emotion/react";
 import React, { useEffect, useMemo } from "react";
 import { TP02C } from "../../types/pageTemplate";
-import { ImagesContent } from "../../types/templateContents";
 import { TemplateProps } from "../../types/templates";
 import ImageContentComponent from "../contents/ImageContentComponent";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
@@ -16,7 +15,11 @@ const imageCustomCss = css`
 
 interface TP02CComponentProps extends TemplateProps {}
 
-const TP02CComponent = ({ setPageCompleted, page, showHeader = true }: TP02CComponentProps) => {
+const TP02CComponent = ({
+  setPageCompleted,
+  page,
+  showHeader = true,
+}: TP02CComponentProps) => {
   const thisPage = page as TP02C;
 
   useEffect(() => {
@@ -24,9 +27,9 @@ const TP02CComponent = ({ setPageCompleted, page, showHeader = true }: TP02CComp
   }, [setPageCompleted]);
 
   const imagesContentData = useMemo(() => {
-    return thisPage.template.contents.find((content) => content.type === "images") as
-      | ImagesContent
-      | undefined;
+    return thisPage.template.contents.find(
+      (content) => content.type === "images",
+    );
   }, [thisPage.template.contents]);
 
   const imageSrc = useMemo(() => {
@@ -40,7 +43,10 @@ const TP02CComponent = ({ setPageCompleted, page, showHeader = true }: TP02CComp
   return (
     <TemplateCommonLayout>
       {showHeader ? (
-        <TitleContent title={thisPage.title} description={thisPage.description} />
+        <TitleContent
+          title={thisPage.title}
+          description={thisPage.description}
+        />
       ) : (
         <></>
       )}
