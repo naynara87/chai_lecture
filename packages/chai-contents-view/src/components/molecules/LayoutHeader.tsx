@@ -1,12 +1,12 @@
 import styled from "@emotion/styled";
 import React from "react";
-import iconLevelRed from "../../images/img/hd_red.svg";
-import iconLevelOrange from "../../images/img/hd_orange.svg";
-import iconLevelYellow from "../../images/img/hd_yellow.svg";
-import iconLevelGreen from "../../images/img/hd_green.svg";
-import iconLevelBlue from "../../images/img/hd_blue.svg";
-import iconLevelNavy from "../../images/img/hd_navy.svg";
-import iconLevelPurple from "../../images/img/hd_purple.svg";
+import iconLevel1 from "../../images/img/hd_red.svg";
+import iconLevel2 from "../../images/img/hd_orange.svg";
+import iconLevel3 from "../../images/img/hd_yellow.svg";
+import iconLevel4 from "../../images/img/hd_green.svg";
+import iconLevel5 from "../../images/img/hd_blue.svg";
+import iconLevel6 from "../../images/img/hd_navy.svg";
+import iconLevel7 from "../../images/img/hd_purple.svg";
 
 // TODO: 레벨별 컬러는 헤더에서만 사용
 const Level1Main = '#EE4141';
@@ -27,7 +27,7 @@ const Level7Sub = '#B991FA';
 const HdContWrap = styled.div`
 /* TODO: width: 100%일 때 after의 배경색을 div의 배경색으로 적용 */
   width: 42%;
-  background-image: url("${iconLevelRed}");
+  background-image: url("${iconLevel1}");
 
   &:after {
 		background-color: ${Level1Main};
