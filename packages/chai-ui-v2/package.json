@@ -1,16 +1,16 @@
 {
-  "name": "chai-ui",
+  "name": "chai-ui-v2",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
-    "v1-build": "rollup -c",
-    "v1-build:prod": "rollup -c",
-    "v1-dev": "rollup -c --watch",
+    "build": "rollup -c",
+    "build:prod": "rollup -c",
+    "dev": "rollup -c --watch",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "v1-check-ts": "tsc --noEmit"
+    "check-ts": "tsc --noEmit"
   },
   "keywords": [],
   "author": "",

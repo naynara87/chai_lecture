@@ -1,5 +1,5 @@
 {
-  "name": "chai-contents-creator",
+  "name": "chai-contents-creator-v2",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,16 +10,10 @@
     "@types/node": "*",
     "@types/react": "*",
     "@types/react-dom": "*",
-    "chai-ui": "*",
     "cross-env": "*",
     "react": "*",
     "react-dom": "*",
-    "react-quill": "^2.0.0",
-    "react-router-dom": "*",
     "react-scripts": "*",
-    "react-toastify": "*",
-    "react-beautiful-dnd": "*",
-    "recoil": "*",
     "typescript": "*",
     "web-vitals": "*"
   },
@@ -27,11 +21,11 @@
     "env-cmd": "*"
   },
   "scripts": {
-    "v1-dev": "env-cmd -f .env cross-env PORT=3001 react-scripts start",
-    "start": "env-cmd -f .env react-scripts start",
-    "v1-build": "GENERATE_SOURCEMAP=false env-cmd -f .env.development react-scripts build",
-    "v1-build:prod": "GENERATE_SOURCEMAP=false env-cmd -f .env.production react-scripts build",
-    "v1-check-ts": "tsc --noEmit"
+    "start": "react-scripts start",
+    "dev": "cross-env PORT=3001 react-scripts start",
+    "build": "react-scripts build",
+    "build:prod": "react-scripts build",
+    "check-ts": "tsc --noEmit"
   },
   "eslintConfig": {
     "extends": [
