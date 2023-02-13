@@ -20,6 +20,8 @@ $color-set: (
 	gray-f0: $gray-f0,
 	gray-56: $gray-56,
 	gray-22: $gray-22,
+	lv01-bg: #F89E9E,
+	lv01: #EE4141,
 );
 
 $zIndex-set: (
@@ -33,9 +35,8 @@ $zIndex-set: (
 );
 
 $path-set: (
-	logo: "../../../../public/images/logo/",
-	icon: "../../../../public/images/icon/",
-	img: "../../../../public/images/img/",
+	icon: "../../../images/icon/",
+	img: "../../../images/img/",
 );
 
 // common size
