@@ -5,7 +5,7 @@
     "build": "nx run-many --target=build",
     "build:prod": "nx run-many --target=build:prod",
     "dev": "nx run-many --target=dev",
-    "lint": "nx run-many --target=check-ts && eslint './packages/**/src/**/*.{js,ts,jsx,tsx}'",
+    "lint": "nx run-many --target=check-ts && eslint \"./packages/**/src/**/*.{js,ts,jsx,tsx}\"",
     "prepare": "husky install"
   },
   "private": true,
