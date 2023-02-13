@@ -12,8 +12,8 @@ const Template01 = ({children}: Template01) => {
     <div>
       <LayoutHeader />
       <main className="cai-main">
-        <div className="layout-card-wrap">
-          <div className="layout-card">
+        <div className="layout-panel-wrap">
+          <div className="layout-panel">
             {children}
           </div>
         </div>

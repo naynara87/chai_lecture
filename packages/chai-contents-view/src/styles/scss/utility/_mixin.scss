@@ -121,25 +121,3 @@ background-image: urlPath($path, $img);
 		@content;
 	}
 }
-
-//shortening word
-@mixin ellipse($line-cnt, $line-height) {
-	overflow: hidden;
-	display: block;
-	display: -webkit-box;
-	height: $line-height * $line-cnt;
-	line-height: $line-height; // $line-height : line-height값 (단위 필수)
-	-webkit-line-clamp: $line-cnt; // $line-cnt : 라인 수
-	-webkit-box-orient: vertical;
-	text-overflow: ellipsis;
-	word-wrap: break-word;
-}
-
-@mixin remove-ellipse {
-	overflow: visible;
-	text-overflow: unset;
-	height: auto;
-	line-height: 1.4;
-	-webkit-line-clamp: unset; // $line-cnt : 라인 수
-	-webkit-box-orient: unset;
-}

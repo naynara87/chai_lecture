@@ -1,7 +1,7 @@
 /* =================== helper =================== */
 // 노출되지 않을 영역
 .none {
-	display: none;
+	display: none !important;
 }
 
 // 보이진 않지만 리딩되는 영역
