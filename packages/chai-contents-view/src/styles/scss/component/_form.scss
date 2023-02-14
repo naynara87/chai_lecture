@@ -1,8 +1,82 @@
 /* =================== form =================== */
-.btn-text {
+.btn-icon {
 	@extend %btn;
 }
 
-.btn-icon {
+.btn-fill-black {
 	@extend %btn;
+
+	width: 100%;
+	height: vh(88);
+	border-radius: vw(10);
+	background-color: color(gray-56);
+	font-size: vw(26);
+	color: color(gray-ff);
+	box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+	transition: all 0.2s;
+
+	&:hover {
+		background-color: darken(color(gray-56), 30%);
+	}
+
+	&:disabled {
+		background-color: color(gray-c9);
+	}
+}
+
+// footer buttons
+.ft-icon-btn {
+	@extend %btn;
+
+	@include circle(vw(50));
+	@include flex-center;
+	
+	border: 1px solid color(gray-ff);
+
+	> img {
+		width: vw(16);
+	}
+
+	&:hover {
+		outline: 2px solid color(gray-ff);
+	}
+
+	&:disabled {
+		opacity: 0.3;
+		outline: none;
+	}
+}
+
+.btn-ft-text {
+	@include flex-center;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: vw(215);
+	height: 100%;
+	padding: 0 vw(40);
+	font-weight: 600;
+	font-size: vw(26);
+	color: color(gray-ff);
+
+	.icon {
+		display: inline;
+		width: vw(20);
+		margin-left: vw(20);
+	}
+
+	.icon-close {
+		display: none;
+	}
+
+	&.active {
+		.icon-open {
+			display: none;
+		}
+
+		.icon-close {
+			display: inline;
+		}
+	}
 }

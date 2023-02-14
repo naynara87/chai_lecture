@@ -1,10 +1,13 @@
 $red-300: #FF7B70;
 $red-500: #EC5757;
 $red-700: #DF2F24;
-$sky-200: #F0F5FA;
+$sky-200: #EFF1F5;
 $sky-500: #A6C4E3;
+$sky-600: #4C94DF;
 $gray-22: #222222;
 $gray-56: #565656;
+$gray-c9: #C9C9C9;
+$gray-db: #DBDBDB;
 $gray-f0: #F0F0F0;
 $gray-ff: #ffffff;
 
@@ -16,8 +19,11 @@ $color-set: (
 	red-700: $red-700,
 	sky-200: $sky-200,
 	sky-500: $sky-500,
+	sky-600: $sky-600,
 	gray-ff: $gray-ff,
 	gray-f0: $gray-f0,
+	gray-db: $gray-db,
+	gray-c9: $gray-c9,
 	gray-56: $gray-56,
 	gray-22: $gray-22,
 	lv01-bg: #F89E9E,
@@ -25,9 +31,10 @@ $color-set: (
 );
 
 $zIndex-set: (
-	modal: 50,
+	modal: 100,
 	fixed: 20,
 	header: 10,
+	nav: 5,
 	two: 2,
 	one: 1,
 	zero: 0,
@@ -42,5 +49,3 @@ $path-set: (
 // common size
 $hd-height: clamp(40px, vh(85), 85px);
 $ft-height: clamp(40px, vh(90), 90px);
-$shadow01: 0px 8px 15px rgba(170, 170, 170, 0.2);
-$shadow02: 2px 6px 12px rgba(0, 0, 0, 0.15);
