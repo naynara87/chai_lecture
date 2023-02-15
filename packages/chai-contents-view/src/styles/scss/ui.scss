@@ -12,15 +12,16 @@
 
 // 3. vendor
 
-// 4. component
-@import "component/animation";
-@import "component/form";
+// 4. layout
+@import "layout/animation";
+@import "layout/form";
+@import "layout/card";
+@import "layout/layout";
+@import "layout/header";
+@import "layout/footer";
+
+// 5. component
 @import "component/modal";
 @import "component/contsinfo";
 
-// 5. layout
-@import "layout/layout";
-@import "layout/common";
-@import "layout/card";
-@import "layout/header";
-@import "layout/footer";
+// 6. page
