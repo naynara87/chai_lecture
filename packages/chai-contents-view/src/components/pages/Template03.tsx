@@ -2,6 +2,7 @@ import React from "react";
 import LayoutHeader from "../molecules/LayoutHeader";
 import LayoutFooter from "../molecules/LayoutFooter";
 import LayoutModal from "../molecules/LayoutModal";
+import ComponentContsInfo from "../molecules/ComponentContsInfo";
 
 interface Template03 {
   sideCard: JSX.Element,
@@ -16,7 +17,7 @@ const Template03 = ({sideCard, wideCard}: Template03) => {
       <main className="cai-main">
         <div className="layout-panel-wrap grid37">
           <div className="layout-panel side-panel">
-            {sideCard}
+            <ComponentContsInfo />
           </div>
           <div className="layout-panel wide-panel">
             {wideCard}

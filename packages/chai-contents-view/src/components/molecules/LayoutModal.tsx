@@ -30,7 +30,7 @@ const GradeContents = styled.div`
 const LayoutModal = () => {
   return (
     // TODO: active가 되면 보임
-    <ModalBase className="modal active">
+    <ModalBase className="modal">
       <div className="modal-bg"></div>
       <div className="modal-container grade-modal">
         <div className="grade-wrapper">
