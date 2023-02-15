@@ -77,6 +77,12 @@
 		padding: 0 vw(45);
 		background-color: color(gray-ff);
 	}
+
+	.btn-fill-black {
+		font-weight: 400;
+		font-size: vw(26);
+		box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+	}
 }
 
 .cai-nav-list-wrap {
