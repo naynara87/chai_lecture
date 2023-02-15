@@ -11,20 +11,13 @@ interface Template02 {
 const Template02 = ({sideCard, wideCard}: Template02) => {
 
   return (
-    <div>
-      <LayoutHeader />
-      <main className="cai-main">
-        <div className="layout-panel-wrap grid55">
-          <div className="layout-panel side-panel">
-          {sideCard}
-          </div>
-          <div className="layout-panel wide-panel">
-          {wideCard}
-          </div>
-        </div>
-      </main>
-      <LayoutFooter />
-      <LayoutModal />
+    <div className="layout-panel-wrap grid55">
+      <div className="layout-panel side-panel">
+      {sideCard}
+      </div>
+      <div className="layout-panel wide-panel">
+      {wideCard}
+      </div>
     </div>
   );
 };

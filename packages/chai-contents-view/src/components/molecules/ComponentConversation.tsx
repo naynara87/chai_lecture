@@ -1,22 +1,17 @@
 import React from "react";
 
-interface Template03 {
-  sideCard: JSX.Element,
-  wideCard: JSX.Element,
-}
-
-const Template03 = ({ sideCard, wideCard }: Template03) => {
+const ComponentConversation = () => {
 
   return (
     <div className="layout-panel-wrap grid37">
       <div className="layout-panel side-panel">
-        {sideCard}
+        1234
       </div>
       <div className="layout-panel wide-panel">
-        {wideCard}
+        asdf
       </div>
     </div>
   );
 };
 
-export default Template03;
+export default ComponentConversation;
