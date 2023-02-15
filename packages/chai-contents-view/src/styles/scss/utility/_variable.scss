@@ -1,18 +1,31 @@
+$content-dark: #7E84A6;
+$content: #7984C3;
+$content-light: #8794DA;
 $red-300: #FF7B70;
 $red-500: #EC5757;
 $red-700: #DF2F24;
 $sky-200: #EFF1F5;
 $sky-500: #A6C4E3;
 $sky-600: #4C94DF;
+$green-500: #5BD37D;
+$blue-500: #4C94DF;
 $gray-22: #222222;
 $gray-56: #565656;
+$gray-80: #808080;
 $gray-c9: #C9C9C9;
 $gray-db: #DBDBDB;
 $gray-f0: #F0F0F0;
+$gray-f5: #F5F5F5;
 $gray-ff: #ffffff;
+$bg: #EFF1F5;
 
 $color-set: (
+	main: $content,
+	main-dark: $content-dark,
+	main-light: $content-light,
+	bg: $bg,
 	text: $gray-22,
+	right: $green-500,
 	warning: $red-500,
 	red-300: $red-300,
 	red-500: $red-500,
@@ -20,14 +33,16 @@ $color-set: (
 	sky-200: $sky-200,
 	sky-500: $sky-500,
 	sky-600: $sky-600,
-	gray-ff: $gray-ff,
-	gray-f0: $gray-f0,
-	gray-db: $gray-db,
-	gray-c9: $gray-c9,
-	gray-56: $gray-56,
+	green-500: $green-500,
+	blue-500: $blue-500,
 	gray-22: $gray-22,
-	lv01-bg: #F89E9E,
-	lv01: #EE4141,
+	gray-56: $gray-56,
+	gray-80: $gray-80,
+	gray-c9: $gray-c9,
+	gray-db: $gray-db,
+	gray-f0: $gray-f0,
+	gray-f5: $gray-f5,
+	gray-ff: $gray-ff,
 );
 
 $zIndex-set: (

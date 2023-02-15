@@ -1,4 +1,10 @@
 /* =================== form =================== */
+.btns-wrap {
+	@include flex-center {
+		gap: vw(30);
+	}
+}
+
 .btn-icon {
 	@extend %btn;
 }
@@ -6,21 +12,126 @@
 .btn-fill-black {
 	@extend %btn;
 
+	position: relative;
 	width: 100%;
 	height: vh(88);
+	border: 1px solid color(gray-56);
 	border-radius: vw(10);
 	background-color: color(gray-56);
-	font-size: vw(26);
+	font-weight: 600;
+	font-size: vw(22);
 	color: color(gray-ff);
-	box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
 	transition: all 0.2s;
 
+	@include make-before($c:attr(data-text)) {
+		@include flex-center;
+
+		opacity: 0;
+		position: absolute;
+		top: 10px;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		transform: rotateX(90deg);
+		transform-style: preserve-3d;
+		backface-visibility: visible;
+		transition: all 0.3s;
+	}
+
+	> span {
+		transition: all 0.3s;
+		backface-visibility: visible;
+		transform-style: preserve-3d;
+	}
+
 	&:hover {
-		background-color: darken(color(gray-56), 30%);
+		&:before {
+			opacity: 1;
+			top: 0;
+			transform: none;
+		}
+
+		> span {
+			opacity: 0;
+			transform: rotateX(90deg);
+		}
 	}
 
 	&:disabled {
 		background-color: color(gray-c9);
+
+		&:before {
+			opacity: 0;
+			transform: rotateX(90deg);
+		}
+
+		> span {
+			opacity: 1;
+			transform: none;
+		}
+	}
+}
+
+.btn-border-main {
+	@extend %btn;
+
+	position: relative;
+	width: 100%;
+	height: vh(88);
+	border: 1px solid color(main);
+	border-radius: vw(10);
+	font-weight: 600;
+	font-size: vw(24);
+	color: color(main);
+	transition: all 0.2s;
+
+	@include make-before($c:attr(data-text)) {
+		@include flex-center;
+
+		opacity: 0;
+		position: absolute;
+		top: 10px;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		letter-spacing: -0.04em;
+		transform: rotateX(90deg);
+		transform-style: preserve-3d;
+		backface-visibility: visible;
+		transition: all 0.3s;
+	}
+
+	> span {
+		transition: all 0.3s;
+		backface-visibility: visible;
+		transform-style: preserve-3d;
+	}
+
+	&:hover {
+		&:before {
+			opacity: 1;
+			top: 0;
+			transform: none;
+		}
+
+		> span {
+			opacity: 0;
+			transform: rotateX(90deg);
+		}
+	}
+
+	&:disabled {
+		background-color: color(gray-c9);
+
+		&:before {
+			opacity: 0;
+			transform: rotateX(90deg);
+		}
+
+		> span {
+			opacity: 1;
+			transform: none;
+		}
 	}
 }
 

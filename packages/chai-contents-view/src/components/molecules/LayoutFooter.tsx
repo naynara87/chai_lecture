@@ -11,7 +11,7 @@ const LayoutFooter = () => {
       <footer className="cai-ft">
         {/* position: absolute */}
         {/* TODO: 클릭시 스스로와 cai-nav-container에 active 추가 */}
-        <button className="btn-ft-text active">
+        <button className="btn-ft-text">
           학습순서
           <img src={iconOpen} alt="" className="icon icon-open" />
           <img src={iconClose} alt="" className="icon icon-close" />
@@ -23,7 +23,7 @@ const LayoutFooter = () => {
         </div>
       </footer>
 
-      <div className="cai-nav-container active">
+      <div className="cai-nav-container">
         <img src={imgHdCharacter} alt="위니" className="character" />
         <nav className="cai-nav-wrap">
           <ul className="cai-nav-list-wrap">
@@ -39,7 +39,8 @@ const LayoutFooter = () => {
             </li>
           </ul>
           <div className="btn-wrap">
-            <button className="btn-fill-black">학습 중단</button>
+            {/* data-text 인터렉션용. before의 컨텐츠로 버튼 text와 동일한 정보 들어가야함 */}
+            <button className="btn-fill-black" data-text="학습 중단"><span>학습 중단</span></button>
           </div>
         </nav>
       </div>

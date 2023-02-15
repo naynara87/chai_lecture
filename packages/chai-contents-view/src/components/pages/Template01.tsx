@@ -1,6 +1,7 @@
 import React from "react";
 import LayoutHeader from "../molecules/LayoutHeader";
 import LayoutFooter from "../molecules/LayoutFooter";
+import LayoutModal from "../molecules/LayoutModal";
 
 interface Template01 {
   children: JSX.Element,
@@ -19,6 +20,7 @@ const Template01 = ({children}: Template01) => {
         </div>
       </main>
       <LayoutFooter />
+      <LayoutModal />
     </div>
   );
 };
