@@ -44,7 +44,7 @@
 		transform-style: preserve-3d;
 	}
 
-	&:hover {
+	@include hover {
 		&:before {
 			opacity: 1;
 			top: 0;
@@ -107,7 +107,7 @@
 		transform-style: preserve-3d;
 	}
 
-	&:hover {
+	@include hover {
 		&:before {
 			opacity: 1;
 			top: 0;
@@ -148,7 +148,7 @@
 		width: vw(16);
 	}
 
-	&:hover {
+	@include hover {
 		outline: 2px solid color(gray-ff);
 	}
 
