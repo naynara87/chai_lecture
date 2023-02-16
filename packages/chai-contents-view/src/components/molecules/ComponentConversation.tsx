@@ -25,9 +25,9 @@ const ComponentConversation = () => {
         {/* end ComponentComtsinfo */}
       </div>
       <div className="layout-panel wide-panel">
-        {/* ContsTtl */}
+        {/* ComponentTitle */}
         <h2 className="conts-ttl">{ '대화 내용을 잘 들어보세요' }</h2>
-        {/* end ContsTtl */}
+        {/* end ComponentTitle */}
       </div>
     </div>
   );

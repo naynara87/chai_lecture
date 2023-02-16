@@ -49,7 +49,7 @@
 }
 
 // 정오답 모달
-.grade-modal {
+.base-modal {
 	overflow: auto;
 	max-height: 90vh;
 
@@ -58,7 +58,7 @@
 	}
 }
 
-.grade-ttl {
+.base-ttl {
 	@include flex {
 		@include flex-op(center, flex-start);
 
@@ -90,7 +90,7 @@
 	}
 }
 
-.grade-conts {
+.base-conts {
 	@include flex-center;
 
 	overflow: auto;
