@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo } from "react";
 import { TP02F } from "../../types/pageTemplate";
-import { VideoContent } from "../../types/templateContents";
 import { TemplateProps } from "../../types/templates";
 import VideoContentComponent from "../contents/VideoContentComponent";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
@@ -20,16 +19,20 @@ const layoutCss = css`
 
 interface TP02FComponentProps extends TemplateProps {}
 
-const TP02FComponent = ({ setPageCompleted, page, showHeader = true }: TP02FComponentProps) => {
+const TP02FComponent = ({
+  setPageCompleted,
+  page,
+  showHeader = true,
+}: TP02FComponentProps) => {
   const thisPage = page as TP02F;
 
   useEffect(() => {
     setPageCompleted();
   }, [setPageCompleted]);
   const videoContentData = useMemo(() => {
-    return thisPage.template.contents.find((content) => content.type === "video") as
-      | VideoContent
-      | undefined;
+    return thisPage.template.contents.find(
+      (content) => content.type === "video",
+    );
   }, [thisPage.template.contents]);
 
   const videoUrlString = useMemo(() => {
@@ -38,7 +41,9 @@ const TP02FComponent = ({ setPageCompleted, page, showHeader = true }: TP02FComp
   }, [videoContentData]);
 
   const videoTracks = useMemo(() => {
-    const videoTracksData = videoContentData?.data.find((content) => content.tracks);
+    const videoTracksData = videoContentData?.data.find(
+      (content) => content.tracks,
+    );
     return videoTracksData;
   }, [videoContentData]);
 
@@ -46,7 +51,10 @@ const TP02FComponent = ({ setPageCompleted, page, showHeader = true }: TP02FComp
     // isOverFlowHidden={true}
     <TemplateCommonLayout>
       {showHeader ? (
-        <TitleContent title={thisPage.title} description={thisPage.description} />
+        <TitleContent
+          title={thisPage.title}
+          description={thisPage.description}
+        />
       ) : (
         <></>
       )}

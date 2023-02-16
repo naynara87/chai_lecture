@@ -4,13 +4,13 @@ import React, {
   useMemo,
   useRef,
   useState,
-} from 'react';
-import styled from '@emotion/styled';
-import IconSpeaker from './svg/IconSpeaker';
-import IconPlaying from './svg/IconPlaying';
-import { colorPalette } from '../../styles/colorPalette';
-import { changePXtoVW } from '../../utils/styles';
-import { SerializedStyles } from '@emotion/react';
+} from "react";
+import styled from "@emotion/styled";
+import IconSpeaker from "./svg/IconSpeaker";
+import IconPlaying from "./svg/IconPlaying";
+import { colorPalette } from "../../styles/colorPalette";
+import { changePXtoVW } from "../../utils/styles";
+import { SerializedStyles } from "@emotion/react";
 
 interface AudioProps {
   audioHide?: boolean;
@@ -55,7 +55,7 @@ const Audio = ({
   const audioRef = useRef<HTMLAudioElement>(null);
 
   if (isAudio) {
-    audioRef.current?.addEventListener('ended', () => {
+    audioRef.current?.addEventListener("ended", () => {
       setIsPlayed(false);
     });
   }
@@ -72,7 +72,7 @@ const Audio = ({
     }
 
     if (audioHandler) {
-      audioHandler(audioUrl ?? '', audioIndex ?? 0, isPlayed);
+      audioHandler(audioUrl ?? "", audioIndex ?? 0, isPlayed);
     }
 
     if (isPlayed) {
@@ -80,7 +80,7 @@ const Audio = ({
       audioRef.current && audioRef.current.pause();
     } else {
       setIsPlayed(true);
-      audioRef.current && audioRef.current.play();
+      audioRef.current && void audioRef.current.play();
     }
   }, [audioHandler, audioHide, audioIndex, audioUrl, isPlayed]);
 
@@ -97,7 +97,7 @@ const Audio = ({
 
     if (isAudio) {
       if (audioHandler) {
-        audioHandler(audioUrl ?? '', audioIndex ?? 0, isPlayed);
+        audioHandler(audioUrl ?? "", audioIndex ?? 0, isPlayed);
       }
 
       if (isPlayed) {

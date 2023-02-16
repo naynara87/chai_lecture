@@ -1,6 +1,7 @@
 import React from "react";
 import LayoutHeader from "../molecules/LayoutHeader";
 import LayoutFooter from "../molecules/LayoutFooter";
+import LayoutModal from "../molecules/LayoutModal";
 
 interface Template02 {
   sideCard: JSX.Element,
@@ -13,16 +14,17 @@ const Template02 = ({sideCard, wideCard}: Template02) => {
     <div>
       <LayoutHeader />
       <main className="cai-main">
-        <div className="layout-card-wrap grid55">
-          <div className="layout-card side-card">
+        <div className="layout-panel-wrap grid55">
+          <div className="layout-panel side-panel">
           {sideCard}
           </div>
-          <div className="layout-card wide-card">
+          <div className="layout-panel wide-panel">
           {wideCard}
           </div>
         </div>
       </main>
       <LayoutFooter />
+      <LayoutModal />
     </div>
   );
 };

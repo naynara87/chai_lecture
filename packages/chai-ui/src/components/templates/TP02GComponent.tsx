@@ -1,9 +1,14 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import useAudio from "../../hooks/useAudio";
 import { TP02G } from "../../types/pageTemplate";
-import { DialogContent } from "../../types/templateContents";
 import { TemplateProps } from "../../types/templates";
 import DialogAudio from "../atoms/DialogAudio";
 import OptionButton from "../atoms/OptionButton";
@@ -34,7 +39,11 @@ const layoutCss = css`
 
 interface TP02GComponentProps extends TemplateProps {}
 
-const TP02GComponent = ({ setPageCompleted, page, showHeader = true }: TP02GComponentProps) => {
+const TP02GComponent = ({
+  setPageCompleted,
+  page,
+  showHeader = true,
+}: TP02GComponentProps) => {
   const [pinyinOption, setPinyinOption] = useState(true);
   const [audioSrc, setAudioSrc] = useState("");
   const [audioState, setAudioState] = useState(false);
@@ -63,9 +72,9 @@ const TP02GComponent = ({ setPageCompleted, page, showHeader = true }: TP02GComp
   }, [setPageCompleted]);
 
   const DialogContentData = useMemo(() => {
-    return thisPage.template.contents.find((content) => content.type === "dialog") as
-      | DialogContent
-      | undefined;
+    return thisPage.template.contents.find(
+      (content) => content.type === "dialog",
+    );
   }, [thisPage.template.contents]);
 
   useEffect(() => {
@@ -73,10 +82,12 @@ const TP02GComponent = ({ setPageCompleted, page, showHeader = true }: TP02GComp
       return;
     }
     if (audioRef.current && audioState) {
-      setAudioSrc(DialogContentData?.data[currentContentIndex].audio!.src ?? "");
+      setAudioSrc(
+        DialogContentData?.data[currentContentIndex].audio!.src ?? "",
+      );
       audioRef.current.pause();
       audioRef.current.load();
-      audioRef.current.play();
+      void audioRef.current.play();
     }
   }, [currentContentIndex, DialogContentData?.data, currentHeight, audioState]);
 
@@ -107,7 +118,7 @@ const TP02GComponent = ({ setPageCompleted, page, showHeader = true }: TP02GComp
       audioRef.current.pause();
     } else {
       setAudioState(true);
-      audioRef.current.play();
+      void audioRef.current.play();
       if (dialogAudioRef.current) {
         dialogAudioRef.current.pause();
         setDialogAudioState(false);
@@ -140,7 +151,12 @@ const TP02GComponent = ({ setPageCompleted, page, showHeader = true }: TP02GComp
         setAudioState(true);
       }
     });
-  }, [DialogContentData?.data, currentContentIndex, addThrottle, currentHeight]);
+  }, [
+    DialogContentData?.data,
+    currentContentIndex,
+    addThrottle,
+    currentHeight,
+  ]);
 
   const handleEndDialogAudio = useCallback(() => {
     dialogAudioRef.current?.addEventListener("ended", () => {
@@ -164,13 +180,19 @@ const TP02GComponent = ({ setPageCompleted, page, showHeader = true }: TP02GComp
   return (
     <TemplateCommonLayout layoutRef={layoutRef}>
       {showHeader ? (
-        <TitleContent title={thisPage.title} description={thisPage.description} />
+        <TitleContent
+          title={thisPage.title}
+          description={thisPage.description}
+        />
       ) : (
         <></>
       )}
       <TP02Layout customCss={layoutCss}>
         <DialogHeader>
-          <DialogAudio audioHandler={handleClickAudioButton} audioState={audioState} />
+          <DialogAudio
+            audioHandler={handleClickAudioButton}
+            audioState={audioState}
+          />
           <OptionButton
             text="병음"
             active={pinyinOption}

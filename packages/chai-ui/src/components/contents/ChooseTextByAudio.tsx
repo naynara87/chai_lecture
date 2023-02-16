@@ -4,7 +4,7 @@ import { ChooseTextByAudioContent } from "../../types";
 import { CheckButton } from "../atoms";
 import ChooseTextByAudioAnswerContent from "./ChooseTextByAudioAnswerContent";
 
-interface ChooseTextByAudioProps {
+export interface ChooseTextByAudioProps {
   chooseTextByAudioContentData: ChooseTextByAudioContent | undefined;
 }
 

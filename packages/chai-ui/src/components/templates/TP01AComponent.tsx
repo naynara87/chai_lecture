@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo } from "react";
 import { TP01A } from "../../types/pageTemplate";
-import { ChooseTextByAudioContent } from "../../types/templateContents";
 import { TemplateProps } from "../../types/templates";
 import { ChooseTextByAudio } from "../contents";
 import TemplateCommonLayout from "../Layouts/TemplateCommonLayout";
@@ -21,8 +20,8 @@ const TP01AComponent = ({
 
   const chooseTextByAudioContentData = useMemo(() => {
     return thisPage.template.contents.find(
-      (content) => content.type === "chooseTextByAudio"
-    ) as ChooseTextByAudioContent | undefined;
+      (content) => content.type === "chooseTextByAudio",
+    );
   }, [thisPage.template.contents]);
 
   return (

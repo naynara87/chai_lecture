@@ -1,8 +1,193 @@
 /* =================== form =================== */
-.btn-text {
-	@extend %btn;
+.btns-wrap {
+	@include flex-center {
+		gap: vw(30);
+	}
 }
 
 .btn-icon {
 	@extend %btn;
+}
+
+.btn-fill-black {
+	@extend %btn;
+
+	position: relative;
+	width: 100%;
+	height: vh(88);
+	border: 1px solid color(gray-56);
+	border-radius: vw(10);
+	background-color: color(gray-56);
+	font-weight: 600;
+	font-size: vw(22);
+	color: color(gray-ff);
+	transition: all 0.2s;
+
+	@include make-before($c:attr(data-text)) {
+		@include flex-center;
+
+		opacity: 0;
+		position: absolute;
+		top: 10px;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		transform: rotateX(90deg);
+		transform-style: preserve-3d;
+		backface-visibility: visible;
+		transition: all 0.3s;
+	}
+
+	> span {
+		transition: all 0.3s;
+		backface-visibility: visible;
+		transform-style: preserve-3d;
+	}
+
+	&:hover {
+		&:before {
+			opacity: 1;
+			top: 0;
+			transform: none;
+		}
+
+		> span {
+			opacity: 0;
+			transform: rotateX(90deg);
+		}
+	}
+
+	&:disabled {
+		background-color: color(gray-c9);
+
+		&:before {
+			opacity: 0;
+			transform: rotateX(90deg);
+		}
+
+		> span {
+			opacity: 1;
+			transform: none;
+		}
+	}
+}
+
+.btn-border-main {
+	@extend %btn;
+
+	position: relative;
+	width: 100%;
+	height: vh(88);
+	border: 1px solid color(main);
+	border-radius: vw(10);
+	font-weight: 600;
+	font-size: vw(24);
+	color: color(main);
+	transition: all 0.2s;
+
+	@include make-before($c:attr(data-text)) {
+		@include flex-center;
+
+		opacity: 0;
+		position: absolute;
+		top: 10px;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		letter-spacing: -0.04em;
+		transform: rotateX(90deg);
+		transform-style: preserve-3d;
+		backface-visibility: visible;
+		transition: all 0.3s;
+	}
+
+	> span {
+		transition: all 0.3s;
+		backface-visibility: visible;
+		transform-style: preserve-3d;
+	}
+
+	&:hover {
+		&:before {
+			opacity: 1;
+			top: 0;
+			transform: none;
+		}
+
+		> span {
+			opacity: 0;
+			transform: rotateX(90deg);
+		}
+	}
+
+	&:disabled {
+		background-color: color(gray-c9);
+
+		&:before {
+			opacity: 0;
+			transform: rotateX(90deg);
+		}
+
+		> span {
+			opacity: 1;
+			transform: none;
+		}
+	}
+}
+
+// footer buttons
+.ft-icon-btn {
+	@extend %btn;
+
+	@include circle(vw(50));
+	@include flex-center;
+	
+	border: 1px solid color(gray-ff);
+
+	> img {
+		width: vw(16);
+	}
+
+	&:hover {
+		outline: 2px solid color(gray-ff);
+	}
+
+	&:disabled {
+		opacity: 0.3;
+		outline: none;
+	}
+}
+
+.btn-ft-text {
+	@include flex-center;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: vw(215);
+	height: 100%;
+	padding: 0 vw(40);
+	font-weight: 600;
+	font-size: vw(26);
+	color: color(gray-ff);
+
+	.icon {
+		display: inline;
+		width: vw(20);
+		margin-left: vw(20);
+	}
+
+	.icon-close {
+		display: none;
+	}
+
+	&.active {
+		.icon-open {
+			display: none;
+		}
+
+		.icon-close {
+			display: inline;
+		}
+	}
 }

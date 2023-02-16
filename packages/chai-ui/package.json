@@ -9,7 +9,8 @@
     "build:prod": "rollup -c",
     "dev": "rollup -c --watch",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "check-ts": "tsc --noEmit"
   },
   "keywords": [],
   "author": "",
