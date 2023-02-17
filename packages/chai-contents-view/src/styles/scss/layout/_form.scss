@@ -228,8 +228,21 @@
 }
 
 // =================== toggle style
+.toggles-wrapper {
+	.inp-toggle-wrap:not(:first-child) {
+		margin-left: vw(50);
+	}
+}
+
 .inp-toggle-wrap {
 	display: inline-flex;
+}
+
+.toggle-name {
+	font-weight: 400;
+	font-size: vw(24);
+	// toggle height
+	line-height: vh(42);
 }
 
 .toggle-label {
@@ -262,7 +275,7 @@
 	background-color: color(green-500);
 
 	&:after {
-		// width + padding
+		// 100% - (width + padding)
 		left: calc(100% - vw(36));
 	}
 }

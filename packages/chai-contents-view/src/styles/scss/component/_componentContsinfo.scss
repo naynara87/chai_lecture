@@ -1,11 +1,11 @@
-/* =================== _componentContsinfo =================== */
+/* =================== componentContsinfo =================== */
 .cont-info-wrap {
 	@include flex-center {
 		flex-direction: column;
 	}
 
 	height: 100%;
-	padding: 0 vw(64);
+	// padding: 0 vw(64);
 
 	.btns-wrap {
 		margin-bottom: vh(57);
