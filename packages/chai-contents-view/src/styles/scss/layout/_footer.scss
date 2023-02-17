@@ -97,7 +97,7 @@
 	border-radius: 10px;
 
 	.cai-nav-ttl {
-		@include bg-url(icon, 'ic_arrow_down_gray.svg');
+		@include bg-url(icon, 'icon_arrow_down_gray.svg');
 		@include bg-op(right vw(20) center, vw(20));
 
 		width: vw(440);
@@ -146,7 +146,7 @@
 
 	&.active {
 		.cai-nav-ttl {
-			@include bg-url(icon, 'ic_arrow_up_gray.svg');
+			@include bg-url(icon, 'icon_arrow_up_gray.svg');
 		}
 
 		.cai-nav-sub-wrap {

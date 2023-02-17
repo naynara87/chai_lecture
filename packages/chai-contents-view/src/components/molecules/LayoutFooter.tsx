@@ -1,8 +1,8 @@
 import React from "react";
-import iconOpen from "../../images/icon/ic_arrow_up_gray.svg";
-import iconClose from "../../images/icon/ic_arrow_down_gray.svg";
-import iconLeft from "../../images/icon/ic_arrow_left_white.svg";
-import iconRight from "../../images/icon/ic_arrow_right_white.svg";
+import iconOpen from "../../images/icon/icon_arrow_up_gray.svg";
+import iconClose from "../../images/icon/icon_arrow_down_gray.svg";
+import iconLeft from "../../images/icon/icon_arrow_left_white.svg";
+import iconRight from "../../images/icon/icon_arrow_right_white.svg";
 import imgHdCharacter from "../../images/img/cha_wini_wink.png";
 
 const LayoutFooter = () => {

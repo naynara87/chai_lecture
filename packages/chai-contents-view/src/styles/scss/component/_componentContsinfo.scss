@@ -1,11 +1,15 @@
-/* =================== _contsinfo =================== */
+/* =================== componentContsinfo =================== */
 .cont-info-wrap {
 	@include flex-center {
 		flex-direction: column;
 	}
 
 	height: 100%;
-	padding: 0 vw(64);
+	// padding: 0 vw(64);
+
+	.btns-wrap {
+		margin-bottom: vh(57);
+	}
 
 	.text-wrap {
 		position: relative;
@@ -17,7 +21,7 @@
 		text-align: center;
 
 		@include make-after  {
-			@include bg-url(icon, 'ic_contsinfo_tail.svg');
+			@include bg-url(icon, 'icon_contsinfo_tail.svg');
 			@include bg-op($s: 100% 100%);
 			
 			position: absolute;
