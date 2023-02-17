@@ -3,9 +3,8 @@ import ImgCharacter from "../../images/img/cha_didi_glasses.png";
 import IconSpeaker from "../../images/icon/icon_speaker_white.svg";
 import ImgProfileDefault from "../../images/img/img_profile_default.png";
 import ImgTemp01 from "../../images/img/temp_profile01.png";
-import ComponentToggle from "./ComponentToggle";
 
-const ComponentConversation = () => {
+const TemplateConversation = () => {
 
   return (
     <div className="layout-panel-wrap grid37">
@@ -37,7 +36,7 @@ const ComponentConversation = () => {
         {/* end 2 ComponentTitle */}
         {/* 230216 회화에서 한어병음과 뜻의 보임 여부를 선택할 때 사용 */}
         {/* 3 ComponentToggle */}
-        <div className="toggles-wrapper">
+        <div className="toggles-wrapper none">
           <div className="inp-toggle-wrap">
             <span className="toggle-name">한어병음</span>
             <input type="checkbox" name="input1" id="input1" className="toggle-input none" />
@@ -62,10 +61,10 @@ const ComponentConversation = () => {
               </div>
             </div>
             <div className="txt-wrap">
-              <div className="name">{ '왕리리' }</div>
-              <div className="chinese">{ '今天刮风，下雪，很冷。' }</div>
-              <div className="pinyin">{ 'Jīntiān guā fēng, xià xuě, hěn lěng.' }</div>
-              <div className="mean">{ '오늘은 바람이 불고, 눈이 내려서 추워.' }</div>
+              <p className="name">{ '왕리리' }</p>
+              <p className="chinese">{ '今天刮风，下雪，很冷。' }</p>
+              <p className="pinyin">{ 'Jīntiān guā fēng, xià xuě, hěn lěng.' }</p>
+              <p className="mean">{ '오늘은 바람이 불고, 눈이 내려서 추워.' }</p>
             </div>
           </li>
           {/* end speech bubble */}
@@ -77,10 +76,10 @@ const ComponentConversation = () => {
               </div>
             </div>
             <div className="txt-wrap">
-              <div className="name">{ '김민호' }</div>
-              <div className="chinese">{ '我觉得这里的冬天没有中国那么冷。' }</div>
-              <div className="pinyin">{ 'Wǒ juédé zhèlǐ de dōngtiān méiyǒu zhòng guó nàme lěng.' }</div>
-              <div className="mean">{ '나는 여기 겨울이 중국만큼 춥지 않은 것 같아.' }</div>
+              <p className="name">{ '김민호' }</p>
+              <p className="chinese">{ '我觉得这里的冬天没有中国那么冷。' }</p>
+              <p className="pinyin">{ 'Wǒ juédé zhèlǐ de dōngtiān méiyǒu zhòng guó nàme lěng.' }</p>
+              <p className="mean">{ '나는 여기 겨울이 중국만큼 춥지 않은 것 같아.' }</p>
             </div>
           </li>
         </ul>
@@ -89,4 +88,4 @@ const ComponentConversation = () => {
   );
 };
 
-export default ComponentConversation;
+export default TemplateConversation;

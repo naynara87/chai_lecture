@@ -2,7 +2,7 @@ import React from "react";
 import LayoutHeader from "../molecules/LayoutHeader";
 import LayoutFooter from "../molecules/LayoutFooter";
 import LayoutModal from "../molecules/LayoutModal";
-import ComponentConversation from "../molecules/ComponentConversation";
+import Template03 from "./Template03";
 
 const Layout = () => {
 
@@ -10,7 +10,7 @@ const Layout = () => {
     <div>
       <LayoutHeader />
       <main className="cai-main">
-        <ComponentConversation />
+        <Template03 />
       </main>
       <LayoutFooter />
       <LayoutModal />

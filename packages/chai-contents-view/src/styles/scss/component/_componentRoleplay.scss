@@ -1,0 +1,23 @@
+/* =================== componentRoleplay =================== */
+.roleplay-container {
+	.bubble-wrap {
+		width: vw(600);
+		margin-top: vh(12);
+		padding: vh(25) vw(40);
+		border-radius: 0 vw(30) vw(30) vw(30);
+		background-color: color(orange-300);
+	}
+	
+	.right-conts {
+		flex-direction: row-reverse;
+		
+		.bubble-wrap {
+			border-radius: vw(30) 0 vw(30) vw(30);
+			background-color: color(bg);
+		}
+
+		.name {
+			text-align: right;
+		}
+	}
+}

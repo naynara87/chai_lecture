@@ -24,12 +24,6 @@
 	grid-template-columns: 3fr 7fr;
 }
 
-.grid28 {
-	@extend %layout-grid;
-
-	grid-template-columns: 2fr 8fr;
-}
-
 .layout-panel {
 	overflow: auto;
 	width: 100%;
