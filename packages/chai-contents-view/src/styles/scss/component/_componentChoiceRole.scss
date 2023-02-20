@@ -8,15 +8,12 @@
 }
 
 .choice-role-list {
-	// @extend %speak-interaction;
-
 	width: vw(274);
 	padding: vh(40) vw(40);
 	border: 1px solid color(gray-db);
 	border-radius: vw(20);
 	text-align: center;
 	transition: all 0.2s;
-	outline: 3px solid transparent;
 
 	.img-wrap {
 		@include circle(vw(140));
@@ -46,9 +43,5 @@
 		height: vh(64);
 		margin-top: vh(50);
 		font-size: vw(24);
-	}
-
-	&.active {
-		outline: 3px solid color(main);
 	}
 }

@@ -134,12 +134,12 @@
 		}
 
 		&.active {
-			background-color: color(sky-200);
+			background-color: color(blue-200);
 			font-weight: 600;
-			color: color(sky-600);
+			color: color(blue-500);
 
 			&:before {
-				background-color: color(sky-600);
+				background-color: color(blue-500);
 			}
 		}
 	}

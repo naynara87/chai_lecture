@@ -20,13 +20,11 @@ const ComponentChoiceRole = () => {
     <ChoiceRoleWrapper className="choice-role-wrapper">
       <ul className="choice-role-list-wrap">
         {/* 반복영역 */}
-        {/* TODO: 선택된 캐릭터에 active 추가 */}
         <li className="choice-role-list active">
           <div className="img-wrap">
             <img src={ImgTemp01} alt="레이" className="img" />
           </div>
           <p className="name">{'레이'}</p>
-          {/* TODO: 클릭시 choice-role-list중 클릭된 버튼의 부모만 active 추가 */}
           <ComponentButtonFillBlack text={"선택"} />
         </li>
         {/* end 반복영역 */}

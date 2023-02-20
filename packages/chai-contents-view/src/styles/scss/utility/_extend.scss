@@ -79,7 +79,7 @@
 			top: 0;
 			left: 0;
 			border-radius: 50%;
-			background-color: color(orange-500);
+			background-color: color(orange-300);
 			transform-origin: center center;
 		}
 	}
@@ -90,13 +90,13 @@
 			&:before,
 			&:after {
 				animation-name: op_zoomin;
-				animation-duration: 2s;
+				animation-duration: 1.8s;
 				animation-iteration-count: infinite;
 				animation-timing-function: linear;
 			}
 
 			&:after {
-				animation-delay: 1s;
+				animation-delay: 900ms;
 			}
 		}
 	}
