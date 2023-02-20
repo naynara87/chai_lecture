@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@tanstack/react-query": "4.14.5",
+    "@tanstack/react-query-devtools": "4.14.5",
     "@testing-library/jest-dom": "*",
     "@testing-library/react": "*",
     "@testing-library/user-event": "*",
@@ -12,10 +14,14 @@
     "@types/react-dom": "*",
     "chai-ui-v2": "*",
     "cross-env": "*",
+    "axios": "*",
     "react": "*",
     "react-dom": "*",
     "react-router-dom": "*",
     "react-scripts": "*",
+    "react-toastify": "*",
+    "recoil": "*",
+    "sass": "*",
     "typescript": "*",
     "web-vitals": "*"
   },
