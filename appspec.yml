@@ -1,0 +1,7 @@
+version: 0.0
+os: linux
+files:
+  - source: packages/chai-contents-view
+    destination: /home/ubuntu/workspace/chai-monorepo/chai-contents-view
+  - source: packages/chai-contents-creator
+    destination: /home/ubuntu/workspace/chai-monorepo/chai-contents-creator
