@@ -4,6 +4,7 @@ import { RecoilRoot } from "recoil";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AuthProvider from "./components/AuthProvider";
 
 const queryClient = new QueryClient();
 
@@ -17,7 +18,9 @@ function App() {
           hideProgressBar={true}
           closeButton={false}
         />
-        <AppRouter />
+        <AuthProvider>
+          <AppRouter />
+        </AuthProvider>
       </RecoilRoot>
     </QueryClientProvider>
   );
