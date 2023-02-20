@@ -28,7 +28,7 @@ const MetaTestWordTest = () => {
               </h2>
               <ul>
                 {/* question default */}
-                {/* TODO: 최대 20문항 */}
+                {/* 최대 20문항 */}
                 <li className="metatest-question-list">
                   <div className="text-wrap">
                     <span className="number">{"1"}</span>
@@ -37,7 +37,7 @@ const MetaTestWordTest = () => {
 
                   {/* choice word */}
                   <div className="choice-container">
-                    {/* TODO: input이 check 되는 순간 .checked가 추가되고, 인풋은 disabled */}
+                    {/* input이 check 되는 순간 .checked가 추가되고, 인풋은 disabled */}
                     <div className="choice-wrap checked">
                       <h3 className="inp-title">한어병음</h3>
                       <div className="inp-grp">
@@ -71,16 +71,16 @@ const MetaTestWordTest = () => {
                     </div>
                   </div>
 
-                  {/* TODO: 타이머는 병음 + 뜻 합쳐서 10초 카운트다운 */}
-                  {/* FIXME: 플러그인 적용되면 스타일 변경 예정 */}
+                  {/* 타이머는 병음 + 뜻 합쳐서 10초 카운트다운 */}
+                  {/* 플러그인 적용되면 스타일 변경 예정 */}
                   {/* <div className="test-timer">{ '10' }</div> */}
                   <div className="test-timer half">{"5"}</div>
                   {/* <div className="test-timer zero">{ '0' }</div> */}
                 </li>
 
                 {/* question disabled */}
-                {/* TODO: 문제 풀이시간이 0초가 되는 순간에 잠시 보일 레이아웃 */}
-                {/* TODO: 0초가 되었을 때 보인 후, .disabled 로 바로 변경된다 */}
+                {/* 문제 풀이시간이 0초가 되는 순간에 잠시 보일 레이아웃 */}
+                {/* 0초가 되었을 때 보인 후, .disabled 로 바로 변경된다 */}
                 <li className="metatest-question-list timeout">
                   <div className="text-wrap">
                     <span className="number">{"1"}</span>
@@ -122,12 +122,12 @@ const MetaTestWordTest = () => {
                     </div>
                   </div>
 
-                  {/* TODO: 타이머는 병음 + 뜻 합쳐서 10초 카운트 */}
+                  {/* 타이머는 병음 + 뜻 합쳐서 10초 카운트 */}
                   <div className="test-timer">{"10"}</div>
                 </li>
 
                 {/* question disabled */}
-                {/* TODO: 풀거나 시간이 지난 문제는 .disabled 가 추가되면서 비활성화되고, input들 disabled */}
+                {/* 풀거나 시간이 지난 문제는 .disabled 가 추가되면서 비활성화되고, input들 disabled */}
                 <li className="metatest-question-list disabled">
                   <div className="text-wrap">
                     <span className="number">{"1"}</span>
@@ -169,12 +169,12 @@ const MetaTestWordTest = () => {
                     </div>
                   </div>
 
-                  {/* TODO: 타이머는 병음 + 뜻 합쳐서 10초 카운트 */}
+                  {/* 타이머는 병음 + 뜻 합쳐서 10초 카운트 */}
                   <div className="test-timer">{"10"}</div>
                 </li>
 
                 {/* question disabled */}
-                {/* TODO: timeout으로 인해 disabled가 되면 선택 못한 요소는 미선택 text가 들어감 */}
+                {/* timeout으로 인해 disabled가 되면 선택 못한 요소는 미선택 text가 들어감 */}
                 <li className="metatest-question-list disabled">
                   <div className="text-wrap">
                     <span className="number">{"1"}</span>
@@ -197,7 +197,7 @@ const MetaTestWordTest = () => {
                           {"dǎ"}
                         </label>
                       </div>
-                      {/* TODO: timeout disabled 에만 있는 태그 */}
+                      {/* timeout disabled 에만 있는 태그 */}
                       <p className="inp-radio-layout">미선택</p>
                     </div>
 
@@ -215,12 +215,12 @@ const MetaTestWordTest = () => {
                           {"떨다"}
                         </label>
                       </div>
-                      {/* TODO: timeout disabled 에만 있는 태그 */}
+                      {/* timeout disabled 에만 있는 태그 */}
                       <p className="inp-radio-layout">미선택</p>
                     </div>
                   </div>
 
-                  {/* TODO: 타이머는 병음 + 뜻 합쳐서 10초 카운트 */}
+                  {/* 타이머는 병음 + 뜻 합쳐서 10초 카운트 */}
                   <div className="test-timer">{"10"}</div>
                 </li>
               </ul>

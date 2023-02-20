@@ -105,7 +105,7 @@ const MetaTestSentenceReport = () => {
               ‘주제별 표현’으로 이동하여 잘 모르는 {"2"}개의 문장을 학습합니다.{" "}
             </ReportTitle>
             <div>
-              {/* FIXME: 마지막셀 삭제여부 기획에서 협의중, 문장없을때 레이아웃 없음 */}
+              {/* 마지막셀 삭제여부 기획에서 협의중, 문장없을때 레이아웃 없음 */}
               <FlexWrap className="custom-thead">
                 <p>메타인지</p>
                 <div>

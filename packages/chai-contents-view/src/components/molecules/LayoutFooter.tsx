@@ -4,13 +4,14 @@ import iconClose from "../../images/icon/icon_arrow_down_gray.svg";
 import iconLeft from "../../images/icon/icon_arrow_left_white.svg";
 import iconRight from "../../images/icon/icon_arrow_right_white.svg";
 import imgHdCharacter from "../../images/img/cha_wini_wink.png";
+import ComponentButtonFillBlack from "./ComponentButtonFillBlack";
 
 const LayoutFooter = () => {
   return (
     <div>
       <footer className="cai-ft">
         {/* position: absolute */}
-        {/* TODO: 클릭시 스스로와 cai-nav-container에 active 추가 */}
+        {/* NOTE: 설명 - 클릭시 스스로와 cai-nav-container에 active 추가 */}
         <button className="btn-ft-text">
           학습순서
           <img src={iconOpen} alt="" className="icon icon-open" />
@@ -27,11 +28,11 @@ const LayoutFooter = () => {
         <img src={imgHdCharacter} alt="위니" className="character" />
         <nav className="cai-nav-wrap">
           <ul className="cai-nav-list-wrap">
-            {/* TODO: 반복영역. 열려있을 때 active 추가됨 */}
+            {/* NOTE: 설명 - 반복영역. 열려있을 때 active 추가됨 */}
             <li className="cai-nav-list active">
               <div className="cai-nav-ttl">{'복습'}</div>
               <div className="cai-nav-sub-wrap">
-                {/* TODO: 현재 페이지에 active */}
+                {/* NOTE: 설명 - 현재 페이지에 active */}
                 <a href="" className="cai-nav-sub-link active">{'회화'}</a>
                 <a href="" className="cai-nav-sub-link">{'문법퀴즈'}</a>
                 <a href="" className="cai-nav-sub-link">{'지난레슨단어'}</a>
@@ -39,8 +40,7 @@ const LayoutFooter = () => {
             </li>
           </ul>
           <div className="btn-wrap">
-            {/* data-text 인터렉션용. before의 컨텐츠로 버튼 text와 동일한 정보 들어가야함 */}
-            <button className="btn-fill-black" data-text="학습 중단"><span>학습 중단</span></button>
+            <ComponentButtonFillBlack text={"학습 중단"} />
           </div>
         </nav>
       </div>

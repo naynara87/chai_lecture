@@ -1,23 +1,47 @@
 /* =================== componentRoleplay =================== */
 .roleplay-container {
+	.conversation-wrap {
+		.img-wrap {
+			margin-right: vw(40);
+		}
+	}
+
 	.bubble-wrap {
+		position: relative;
 		width: vw(600);
 		margin-top: vh(12);
 		padding: vh(25) vw(40);
 		border-radius: 0 vw(30) vw(30) vw(30);
-		background-color: color(orange-300);
+	}
+
+	.record-btn-wrap {
+		position: absolute;
+		top: 50%;
+		left: auto;
+		right: vw(-24);
+		transform: translate(100%, -50%);
 	}
 	
 	.right-conts {
 		flex-direction: row-reverse;
+
+		.img-wrap {
+			margin-right: 0;
+			margin-left: vw(40);
+		}
 		
 		.bubble-wrap {
 			border-radius: vw(30) 0 vw(30) vw(30);
-			background-color: color(bg);
 		}
 
 		.name {
 			text-align: right;
+		}
+
+		.record-btn-wrap {
+			left: vw(-24);
+			right: auto;
+			transform: translate(-100%, -50%);
 		}
 	}
 }
