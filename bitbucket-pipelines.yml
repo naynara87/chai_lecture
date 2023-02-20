@@ -99,7 +99,7 @@ pipelines:
             - npm install
             - npm run build
             #            - zip -r build-chai-monorepo.zip dist
-            - zip -r build-caihong-monorepo.zip appspec.yml packages/chai-contents-creator/build packages/chai-contents-view/build
+            - zip -r build-chai-monorepo-dev.zip appspec.yml packages/chai-contents-creator/build packages/chai-contents-view/build
             - pipe: atlassian/aws-code-deploy:1.1.1
               variables:
                 AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
