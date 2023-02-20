@@ -9,7 +9,7 @@ import IconLevel5 from "../../images/img/hd_blue.svg";
 import IconLevel6 from "../../images/img/hd_navy.svg";
 import IconLevel7 from "../../images/img/hd_purple.svg";
 
-// TODO: 설명 - 레벨별 컬러는 헤더에서만 사용
+// NOTE: 설명 - 레벨별 컬러는 헤더에서만 사용
 const MainLevel1 = '#EE4141';
 const SubLevel1 = '#F89E9E';
 const MainLevel2 = '#FF6700';
@@ -26,7 +26,7 @@ const MainLevel7 = '#9A45EF';
 const SubLevel7 = '#B991FA';
 
 const HdContWrap = styled.div`
-/* TODO: 설명 - width: 100%일 때 after의 배경색을 div의 배경색으로 적용 */
+/* NOTE: 설명 - width: 100%일 때 after의 배경색을 div의 배경색으로 적용 */
   width: 42%;
   background-image: url("${IconLevel1}");
 
@@ -48,9 +48,9 @@ const HdChaWrap = styled.div`
 const LayoutHeader = () => {
   return (
     <CaiHeader className="cai-hd">
-      {/* TODO: 설명 - 코너가 바뀌면 width가 변경 */}
+      {/* NOTE: 설명 - 코너가 바뀌면 width가 변경 */}
       <HdContWrap className="hd-conts-wrap">
-        {/* TODO: 설명 - width 50%이상에서 second-half 보이고, width 50%미만에서 first-half 보임 */}
+        {/* NOTE: 설명 - width 50%이상에서 second-half 보이고, width 50%미만에서 first-half 보임 */}
         {/* 우선 클래스 none 로 가림 */}
         <HdChaWrap className="hd-cha-wrap second-half none">
           <p className="txt">{'학습목표 자가체크'}</p>

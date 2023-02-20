@@ -79,10 +79,10 @@ const TemplateConversation = () => {
         {/* 230217 회화영역 */}
         <ul className="conversation-wrapper">
           {/* speech bubble */}
-          {/* TODO: 설명 - 음성이 재생될 때 active 가 추가됨(화자표시 애니메이션) */}
+          {/* NOTE: 설명 - 음성이 재생될 때 active 가 추가됨(화자표시 애니메이션) */}
           <li className="conversation-wrap active">
             <div className="img-wrap">
-              {/* TODO: 설명 - 누르면 단일 음성이 재생됨 */}
+              {/* NOTE: 설명 - 누르면 단일 음성이 재생됨 */}
               <div className="img-round">
                 <button className="btn-profile"><img src={ImgProfileDefault} alt="" className="profile" /></button>
               </div>
@@ -97,7 +97,7 @@ const TemplateConversation = () => {
           {/* end speech bubble */}
           <li className="conversation-wrap">
             <div className="img-wrap">
-              {/* TODO: 설명 - 누르면 단일 음성이 재생됨 */}
+              {/* NOTE: 설명 - 누르면 단일 음성이 재생됨 */}
               <div className="img-round">
                 <button className="btn-profile"><img src={ImgTemp01} alt="" className="profile" /></button>
               </div>

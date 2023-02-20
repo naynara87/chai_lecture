@@ -20,11 +20,11 @@ const ComponentRoleplay = () => {
     <div className="roleplay-container">
       <DialogueWrapper className="conversation-wrapper">
         {/* speech bubble */}
-        {/* TODO: 설명 - 음성이 재생될 때 active 가 추가됨(화자표시 애니메이션) */}
-        {/* TODO: 설명 - 오른쪽에서 보일 때 클래스 right-conts 가 추가됨 */}
+        {/* NOTE: 설명 - 음성이 재생될 때 active 가 추가됨(화자표시 애니메이션) */}
+        {/* NOTE: 설명 - 오른쪽에서 보일 때 클래스 right-conts 가 추가됨 */}
         <li className="conversation-wrap">
           <div className="img-wrap">
-            {/* TODO: 설명 - 누르면 단일 음성이 재생됨 */}
+            {/* NOTE: 설명 - 누르면 단일 음성이 재생됨 */}
             <div className="img-round">
               <button className="btn-profile"><img src={ImgProfileDefault} alt="" className="profile" /></button>
             </div>
@@ -42,7 +42,7 @@ const ComponentRoleplay = () => {
         {/* end speech bubble */}
         <li className="conversation-wrap right-conts">
           <div className="img-wrap">
-            {/* TODO: 설명 - 누르면 단일 음성이 재생됨 */}
+            {/* NOTE: 설명 - 누르면 단일 음성이 재생됨 */}
             <div className="img-round">
               <button className="btn-profile"><img src={ImgTemp01} alt="" className="profile" /></button>
             </div>
