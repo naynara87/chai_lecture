@@ -52,19 +52,19 @@
 
 	.icon-wrap {
 		@include circle(vw(80));
-		@include flex-center(inline-flex);
+		@include flex-center(flex);
 
+		margin: 0 auto;
 		background-color: color(main);
 		box-shadow: 0 3px 6px rgba(172, 179, 185, 0.5);
-
+		
 		.icon {
 			width: 50%;
 		}
 	}
-
+	
 	.txt {
-		display: inline-block;
-		margin-top: vh(23);
+		margin: vh(23) auto 0;
 		font-weight: 400;
 		font-size: vw(26);
 	}

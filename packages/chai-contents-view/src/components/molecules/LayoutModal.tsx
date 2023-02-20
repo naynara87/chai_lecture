@@ -14,25 +14,25 @@ const ModalBase = styled.div`
 
 const GradeTitle = styled.div`
   .profile-img-wrap {
-    /* TODO: 오답일땐 오답 컬러, 정답일 땐 정답 컬러 */
+    /* TODO: 설명 - 오답일땐 오답 컬러, 정답일 땐 정답 컬러 */
     background-color: ${TextColor};
   }
   
   .ttl {
-    /* TODO: 오답일땐 오답 컬러, 정답일 땐 정답 컬러 */
+    /* TODO: 설명 - 오답일땐 오답 컬러, 정답일 땐 정답 컬러 */
     color: ${TextColor};
   }
 `;
 
 const GradeContents = styled.div`
-  /* TODO: dec 의 height 가 36.3333333333vh(436px을 vh로 변경)이상일 때 추가됨 */
+  /* TODO: 설명 - dec 의 height 가 36.3333333333vh(436px을 vh로 변경)이상일 때 추가됨 */
   align-items: flex-start;
 `;
 
 
 const LayoutModal = () => {
   return (
-    // TODO: active가 되면 보임
+    // TODO: 설명 - active가 되면 보임
     <ModalBase className="modal">
       <div className="modal-bg"></div>
       <div className="modal-container base-modal">
@@ -46,10 +46,10 @@ const LayoutModal = () => {
               {/* 간지 */}
               <h2 className="ttl">타이틀 영역</h2>
               <p className="txt">서브 타이틀</p>
-              {/* TODO: 정답일 때 보일 문구 */}
+              {/* TODO: 설명 - 정답일 때 보일 문구 */}
               {/* <h2 className="ttl">做得好!</h2>
               <p className="txt">정답이에요!</p> */}
-              {/* TODO: 틀렸을 때 보일 문구 */}
+              {/* TODO: 설명 - 틀렸을 때 보일 문구 */}
               {/* <h2 className="ttl">真难过!</h2>
               <p className="txt">아쉬워요!</p> */}
             </div>
@@ -59,7 +59,7 @@ const LayoutModal = () => {
             <div className="dec">{'제3성이 연이어 나오면, 앞에 있는 제3성은 제2성으로 발음합니다. 이 때, 성조의 표기는 바뀌지 않습니다.'}</div>
           </GradeContents>
 
-          {/* TODO: 버튼이 하나만 들어갈 수도 있음 */}
+          {/* TODO: 설명 - 버튼이 하나만 들어갈 수도 있음 */}
           <div className="btns-wrap">
             <ComponentButtonBorderMain text="자세한 설명 들으러 가기" />
             <ComponentButtonFillBlack text="확인" />

@@ -1,0 +1,19 @@
+/* =================== componentVocaNote =================== */
+.voca-bote-container {
+	@include full;
+	padding: vh(24) vw(20);
+	overflow: auto;
+	border: 1px solid #DBE1FF;
+	border-radius: vw(20);
+	background-color: #F4F3FA;
+}
+
+.voca-title {
+	z-index: z(zero);
+	position: relative;
+}
+
+.voca-list-wrap {
+	z-index: z(one);
+	position: relative;
+}
