@@ -1,9 +1,9 @@
 import React from "react";
 import { useCallback, useEffect } from "react";
 import { useRecoilState } from "recoil";
-import { getAccessToken } from "../api/auth";
-import { clearHttpLcmsToken, setHttpLcmsToken } from "../lib/axios/httpLcms";
-import { authState } from "../states/authState";
+import { clearHttpLcmsToken, setHttpLcmsToken } from "./lib/axios/httpLcms";
+import { authState } from "./states/authState";
+import { getAccessToken } from "./api";
 
 interface AuthProviderProps {
   children: React.ReactNode;
@@ -24,7 +24,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   }, [setIsAuthorized]);
 
   useEffect(() => {
-    fetchToken();
+    void fetchToken();
   }, [fetchToken]);
 
   return <>{children}</>;

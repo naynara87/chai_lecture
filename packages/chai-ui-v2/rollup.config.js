@@ -22,5 +22,6 @@ export default {
     "react-toastify",
     "react-loader-spinner",
     "react-cookie",
+    "recoil",
   ],
 };

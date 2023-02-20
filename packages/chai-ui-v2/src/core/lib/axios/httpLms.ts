@@ -33,11 +33,11 @@ httpLms.interceptors.response.use(
   },
 );
 
-export const setHttpLcmsToken = (token: string) => {
+export const setHttpLmsToken = (token: string) => {
   httpLms.defaults.headers.common.Authorization = `${token}`;
 };
 
-export const clearHttpLcmsToken = () => {
+export const clearHttpLmsToken = () => {
   httpLms.defaults.headers.common.Authorization = undefined;
 };
 
