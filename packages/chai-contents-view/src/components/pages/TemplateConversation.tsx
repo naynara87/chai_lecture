@@ -8,10 +8,6 @@ import ImgTemp01 from "../../images/img/temp_profile01.png";
 import ComponentVocaNote from "../molecules/ComponentVocaNote";
 
 const DialogueContainer = styled.div`
-  .voca-bote-container {
-    /* 100vh - margin-top - btns-wrap */
-    height: calc(100vh - 4.75vh - 11.8333333333vh);
-  }
 `;
 
 const TemplateConversation = () => {
@@ -36,7 +32,25 @@ const TemplateConversation = () => {
           </div>
           {/* end 말풍선 캐릭터 */}
           {/* ComponentVocaNote */}
-          <ComponentVocaNote />
+          <div className="voca-bote-container">
+            <h3 className="voca-title">새로운 단어<img src={ImgKkyngi} alt="" className="img" /></h3>
+            <ul className="voca-list-wrap">
+              {/* 반복영역 */}
+              <li className="voca-list">
+                <div className="voca-wrap">
+                  <p className="chinese">{'游泳'}</p>
+                  <p className="pinyin">{'yóuyǒng'}</p>
+                  <p className="mean">{'수영하다'}</p>
+                </div>
+                <button className="btn-icon">
+                  <div className="icon-wrap">
+                    <img src={IconSpeaker} alt="스피커모양" className="icon" />
+                  </div>
+                </button>
+              </li>
+              {/* end 반복영역 */}
+            </ul>
+          </div>
           {/* end ComponentVocaNote */}
         </div>
       </div>

@@ -15,11 +15,10 @@ const ComponentVocaNote = () => {
             <p className="pinyin">{'yóuyǒng'}</p>
             <p className="mean">{'수영하다'}</p>
           </div>
-          <button className="btn-icon-with-text">
+          <button className="btn-icon">
             <div className="icon-wrap">
               <img src={IconSpeaker} alt="스피커모양" className="icon" />
             </div>
-            <p className="txt">전체 음성 듣기</p>
           </button>
         </li>
         {/* end 반복영역 */}
