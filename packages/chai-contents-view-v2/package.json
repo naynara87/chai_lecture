@@ -13,6 +13,7 @@
     "chai-ui-v2": "*",
     "react": "*",
     "react-dom": "*",
+    "react-router-dom": "*",
     "react-scripts": "*",
     "typescript": "*",
     "web-vitals": "*"
