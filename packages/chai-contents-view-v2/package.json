@@ -10,6 +10,7 @@
     "@types/node": "*",
     "@types/react": "*",
     "@types/react-dom": "*",
+    "chai-ui-v2": "*",
     "react": "*",
     "react-dom": "*",
     "react-scripts": "*",
