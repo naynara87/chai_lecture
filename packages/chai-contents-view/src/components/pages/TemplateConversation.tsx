@@ -9,7 +9,7 @@ const TemplateConversation = () => {
   return (
     <div className="layout-panel-wrap grid37">
       <div className="layout-panel side-panel">
-        {/* 1 ComponentComtsinfo */}
+        {/* 1 ComponentContsinfo */}
         {/* FIXME: 컴포넌트 수정예정 : 음원재생버튼 모양 변경(원이 아닌 모양으로), 이미지 변경 */}
         <div className="cont-info-wrap">
           <div className="btns-wrap">
@@ -25,7 +25,7 @@ const TemplateConversation = () => {
             <img src={ImgCharacter} alt="" className="img" />
           </div>
         </div>
-        {/* end 1 ComponentComtsinfo */}
+        {/* end 1 ComponentContsinfo */}
       </div>
       {/* 230217 회화는 단일 컴포넌트여서 스타일을 위해 conversation-panel-wrap 클래스 추가함 */}
       <div className="layout-panel wide-panel conversation-panel-wrap">
