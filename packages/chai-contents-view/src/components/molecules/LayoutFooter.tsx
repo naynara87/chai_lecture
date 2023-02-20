@@ -4,6 +4,7 @@ import iconClose from "../../images/icon/icon_arrow_down_gray.svg";
 import iconLeft from "../../images/icon/icon_arrow_left_white.svg";
 import iconRight from "../../images/icon/icon_arrow_right_white.svg";
 import imgHdCharacter from "../../images/img/cha_wini_wink.png";
+import ComponentButtonFillBlack from "./ComponentButtonFillBlack";
 
 const LayoutFooter = () => {
   return (
@@ -39,8 +40,7 @@ const LayoutFooter = () => {
             </li>
           </ul>
           <div className="btn-wrap">
-            {/* data-text 인터렉션용. before의 컨텐츠로 버튼 text와 동일한 정보 들어가야함 */}
-            <button className="btn-fill-black" data-text="학습 중단"><span>학습 중단</span></button>
+            <ComponentButtonFillBlack text={"학습 중단"} />
           </div>
         </nav>
       </div>

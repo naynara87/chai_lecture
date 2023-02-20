@@ -14,7 +14,7 @@
 	position: relative;
 	transition: all 0.2s;
 
-	@include make-before($c:attr(data-text)) {
+	@include make-before($c: attr(data-text)) {
 		@include flex-center;
 
 		opacity: 0;
@@ -29,7 +29,7 @@
 		transition: all 0.3s;
 	}
 
-	> span {
+	>span {
 		@include flex-center;
 
 		width: 100%;
@@ -46,7 +46,7 @@
 			transform: none;
 		}
 
-		> span {
+		>span {
 			opacity: 0;
 			transform: rotateX(90deg);
 		}
@@ -60,9 +60,44 @@
 			transform: rotateX(90deg);
 		}
 
-		> span {
+		>span {
 			opacity: 1;
 			transform: none;
+		}
+	}
+}
+
+%speak-interaction {
+	.img-wrap {
+		position: relative;
+
+		@include make-virtual {
+			@include full;
+
+			z-index: z(zero);
+			position: absolute;
+			top: 0;
+			left: 0;
+			border-radius: 50%;
+			background-color: color(orange-500);
+			transform-origin: center center;
+		}
+	}
+
+	&.active {
+		.img-wrap {
+
+			&:before,
+			&:after {
+				animation-name: op_zoomin;
+				animation-duration: 2s;
+				animation-iteration-count: infinite;
+				animation-timing-function: linear;
+			}
+
+			&:after {
+				animation-delay: 1s;
+			}
 		}
 	}
 }

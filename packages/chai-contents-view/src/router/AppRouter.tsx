@@ -2,10 +2,10 @@ import React from "react";
 import { Routes, Route, Navigate, HashRouter } from "react-router-dom";
 import CornerListPage from "../components/pages/CornerListPage";
 import CornerPage from "../components/pages/CornerPage";
-import MetaTestWordChoice from "../components/pages/MetaTestWordChoice";
-import MetaTestWordTest from "../components/pages/MetaTestWordTest";
-import MetaTestWordTestGrade from "../components/pages/MetaTestWordTestGrade";
-import MetaTestWordTestReport from "../components/pages/MetaTestWordTestReport";
+// import MetaTestWordChoice from "../components/pages/MetaTestWordChoice";
+// import MetaTestWordTest from "../components/pages/MetaTestWordTest";
+// import MetaTestWordTestGrade from "../components/pages/MetaTestWordTestGrade";
+// import MetaTestWordTestReport from "../components/pages/MetaTestWordTestReport";
 import { CORNER_LIST_URL } from "../constants/url";
 import Layout from "../components/pages/Layout";
 

@@ -10,9 +10,9 @@
 }
 
 .conversation-wrap {
+	@extend %speak-interaction;
 	@include flex {
 		align-items: flex-start;
-		// gap: vw(52);
 	}
 
 	&:not(:first-child) {
@@ -20,20 +20,7 @@
 	}
 
 	.img-wrap {
-		position: relative;
 		margin-right: vw(52);
-
-		@include make-virtual {
-			@include full;
-
-			z-index: z(zero);
-			position: absolute;
-			top: 0;
-			left: 0;
-			border-radius: 50%;
-			background-color: color(orange-500);
-			transform-origin: center center;
-		}
 	}
 
 	.img-round {
@@ -72,21 +59,5 @@
 
 	.mean {
 		font-size: vw(28);
-	}
-
-	&.active {
-		.img-wrap {
-			&:before,
-			&:after {
-				animation-name: op_zoomin;
-				animation-duration: 2s;
-				animation-iteration-count: infinite;
-				animation-timing-function: linear;
-			}
-
-			&:after {
-				animation-delay: 1s;
-			}
-		}
 	}
 }
