@@ -3,8 +3,14 @@ import React from "react";
 import LayoutModal from "../molecules/LayoutModal";
 import LayoutModalVoca from "../molecules/LayoutModalVoca";
 import ComponentButtonFillBlack from "../molecules/ComponentButtonFillBlack";
+import ComponentContsInfo from "../molecules/ComponentContsInfo";
+import ComponentRecordButton from "../molecules/ComponentRecordButton";
 
 const QuizContainer = styled.form`
+.btn {
+  /* 368px */
+  width: 18.4vw;
+}
 `;
 
 const TemplateQuizRecord = () => {
@@ -12,19 +18,20 @@ const TemplateQuizRecord = () => {
   return (
     <div className="layout-panel-wrap grid-h-3-7">
       <div className="layout-panel side-panel">
-        1234
+        <ComponentContsInfo text="다음 문장을 중국어로 말해 보세요." />
       </div>
       <div className="layout-panel wide-panel">
       <QuizContainer method="post" className="quiz-container">
           <div className="quiz-question-wrap">
-            <p className="text">{ `兴` }<span className="blank"></span>{ `兴` }</p>
-            <p className="text-sm">{"기쁘다"}</p>
+            <p className="text-sm">{ `나는 피아노를 칠 줄 몰라, 
+            네가 나를 좀 가르쳐 줘.` }</p>
           </div>
           <div className="quiz-answer-wrap">
-            <input type="text" className="inp-txt" placeholder="빈칸에 들어갈 중국어를 입력하세요." />
+            <ComponentRecordButton />
           </div>
           <div className="btns-wrap">
-            <ComponentButtonFillBlack text="확인" />
+            {/* TODO: 녹음 파일이 없을 때에는 disabled 상태 */}
+            <ComponentButtonFillBlack text="녹음 파일 제출" />
           </div>
         </QuizContainer>
       </div>
