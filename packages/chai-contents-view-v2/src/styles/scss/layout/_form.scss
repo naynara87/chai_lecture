@@ -238,6 +238,7 @@
 	
 	.text {
 		position: relative;
+		display: inline-block;
 		padding-left: vw(80);
 		font-size: vw(32);
 
@@ -247,10 +248,11 @@
 			@include bg-url(icon, 'icon_check_white.svg');
 
 			position: absolute;
-			top: 0;
+			top: 50%;
 			left: 0;
 			background-color: color(gray-c9);
 			box-shadow: 0 1px 4px rgba(172, 179, 185, 0.5);
+			transform: translateY(-50%);
 		}
 	}
 }
