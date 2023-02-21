@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
+import LayoutModalSolution from "../modal/LayoutModalSolution";
+import LayoutModalVoca from "../modal/LayoutModalVoca";
 import ComponentContsInfo from "../molecules/ComponentContsInfo";
 import ComponentRoleplay from "../molecules/ComponentRoleplay";
-import LayoutModal from "../molecules/LayoutModal";
-import LayoutModalVoca from "../molecules/LayoutModalVoca";
 
 const Template03 = () => {
+  const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(false);
+  const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
 
   return (
     <div className="layout-panel-wrap grid37">
@@ -14,8 +16,14 @@ const Template03 = () => {
       <div className="layout-panel wide-panel">
         <ComponentRoleplay />
       </div>
-      <LayoutModal />
-      <LayoutModalVoca />
+      <LayoutModalSolution
+        isModalOpen={isModalSolutionOpen}
+        setIsModalOpen={setIsModalSolutionOpen}
+      />
+      <LayoutModalVoca
+        isModalOpen={isModalVocaOpen}
+        setIsModalOpen={setIsModalVocaOpen}
+      />
     </div>
   );
 };

@@ -1,26 +1,28 @@
-import React from "react";
-import LayoutHeader from "../molecules/LayoutHeader";
-import LayoutFooter from "../molecules/LayoutFooter";
-import LayoutModal from "../molecules/LayoutModal";
-import LayoutModalVoca from "../molecules/LayoutModalVoca";
+import React, { useState } from "react";
+import LayoutModalVoca from "../modal/LayoutModalVoca";
+import LayoutModalSolution from "../modal/LayoutModalSolution";
 
-interface Template02 {
-  sideCard: JSX.Element,
-  wideCard: JSX.Element,
+interface Template02Props {
+  sideCard: JSX.Element;
+  wideCard: JSX.Element;
 }
 
-const Template02 = ({sideCard, wideCard}: Template02) => {
+const Template02 = ({ sideCard, wideCard }: Template02Props) => {
+  const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(false);
+  const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
 
   return (
     <div className="layout-panel-wrap grid55">
-      <div className="layout-panel side-panel">
-      {sideCard}
-      </div>
-      <div className="layout-panel wide-panel">
-      {wideCard}
-      </div>
-      <LayoutModal />
-      <LayoutModalVoca />
+      <div className="layout-panel side-panel">{sideCard}</div>
+      <div className="layout-panel wide-panel">{wideCard}</div>
+      <LayoutModalSolution
+        isModalOpen={isModalSolutionOpen}
+        setIsModalOpen={setIsModalSolutionOpen}
+      />
+      <LayoutModalVoca
+        isModalOpen={isModalVocaOpen}
+        setIsModalOpen={setIsModalVocaOpen}
+      />
     </div>
   );
 };
