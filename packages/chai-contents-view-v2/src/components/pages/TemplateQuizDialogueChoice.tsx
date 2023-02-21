@@ -15,7 +15,7 @@ const DialogueContainer = styled.div`
 const TemplateQuizDialogueChoice = () => {
 
   return (
-    <DialogueContainer className="layout-panel-wrap grid-37">
+    <DialogueContainer className="layout-panel-wrap grid-h-3-7">
       <div className="layout-panel side-panel">
         {/* FIXME: key디자인수정예정 - 음원재생버튼 모양 변경(원이 아닌 모양으로), 이미지 변경 */}
         <div className="cont-info-wrap">

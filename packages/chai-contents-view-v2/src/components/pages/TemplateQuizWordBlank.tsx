@@ -5,7 +5,7 @@ import LayoutModalVoca from "../molecules/LayoutModalVoca";
 const TemplateQuizWordBlank = () => {
 
   return (
-    <div className="layout-panel-wrap grid-37">
+    <div className="layout-panel-wrap grid-h-3-7">
       <div className="layout-panel side-panel">
         1234
       </div>
