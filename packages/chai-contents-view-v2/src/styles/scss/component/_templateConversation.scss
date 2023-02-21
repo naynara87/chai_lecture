@@ -20,6 +20,7 @@
 	}
 
 	.img-wrap {
+		width: vw(100);
 		margin-right: vw(52);
 	}
 
@@ -41,7 +42,10 @@
 	}
 
 	.txt-wrap {
+		// 100% - img-wrap - margin
+		width: calc(100% - vw(100) - vw(52));
 		line-height: 1.6;
+		word-break: break-all;
 	}
 
 	.name {

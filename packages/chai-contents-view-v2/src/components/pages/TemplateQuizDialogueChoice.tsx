@@ -12,53 +12,14 @@ import LayoutModalVoca from "../molecules/LayoutModalVoca";
 const DialogueContainer = styled.div`
 `;
 
+const QuizContainer = styled.form`
+`;
+
 const TemplateQuizDialogueChoice = () => {
 
   return (
-    <DialogueContainer className="layout-panel-wrap grid-h-3-7">
-      <div className="layout-panel side-panel">
-        <div className="cont-info-wrap">
-          <div className="btns-wrap">
-        {/* FIXME: key디자인수정예정 - 음원재생버튼 모양 변경(원이 아닌 모양으로), 이미지 변경 */}
-            <button className="btn-icon-with-text">
-              <div className="icon-wrap">
-                <img src={IconSpeaker} alt="스피커모양" className="icon" />
-              </div>
-              <p className="txt">전체 음성 듣기</p>
-            </button>
-          </div>
-          {/* 말풍선 캐릭터 */}
-          <div className="character-wrapper">
-            <div className="text-wrap">{'지난 시간엔 계절에 대한 회화를 학습했어요. 다음 대화를 잘 보고 빈 칸에 들어갈 알맞은 단어를 고르세요.'}</div>
-            <div className="character-wrap">
-              <img src={ImgCharacter} alt="" className="img" />
-            </div>
-          </div>
-          {/* end 말풍선 캐릭터 */}
-        </div>
-      </div>
-      {/* 230217 회화는 단일 컴포넌트여서 스타일을 위해 conversation-panel-wrap 클래스 추가함 */}
-      <div className="layout-panel wide-panel conversation-panel-wrap">
-        {/* 230216 회화의 제목이 있을 때에만 사용 */}
-        {/* ComponentTitle */}
-        {/* FIXME: key디자인수정예정 - 앞 아이콘 -> 기호 */}
-        <h2 className="conts-ttl">{'대화 내용을 잘 들어보세요'}</h2>
-        {/* end ComponentTitle */}
-        {/* 230216 회화에서 한어병음과 뜻의 보임 여부를 선택할 때 사용 */}
-        {/* ComponentToggle */}
-        <div className="toggles-wrapper none">
-          <div className="inp-toggle-wrap">
-            <span className="toggle-name">한어병음</span>
-            <input type="checkbox" name="input1" id="input1" className="toggle-input none" />
-            <label htmlFor="input1" className="toggle-label">보이기</label>
-          </div>
-          <div className="inp-toggle-wrap">
-            <span className="toggle-name">뜻</span>
-            <input type="checkbox" name="input2" id="input2" className="toggle-input none" />
-            <label htmlFor="input2" className="toggle-label">보이기</label>
-          </div>
-        </div>
-        {/* end ComponentToggle */}
+    <DialogueContainer className="layout-panel-wrap grid-h-5-5">
+      <div className="layout-panel side-panel conversation-panel-wrap">
         {/* 230217 회화영역 */}
         <ul className="conversation-wrapper">
           {/* speech bubble */}
@@ -93,6 +54,23 @@ const TemplateQuizDialogueChoice = () => {
             </div>
           </li>
         </ul>
+      </div>
+      <div className="layout-panel wide-panel">
+        <QuizContainer method="post" className="quiz-container">
+          <div className="quiz-question-wrap">
+            <p className="text-md">{`麻婆豆腐是哪个省的传统名菜？`}</p>
+          </div>
+          <div className="quiz-answer-wrap hori-answer-wrap">
+            <div className="inp-grp">
+              <input type="radio" name="answer" id="answer1" className="inp-chck-gray none" />
+              <label htmlFor="answer1" className="label-chck-gray"><span className="text">{ "四川" }</span></label>
+            </div>
+            <div className="inp-grp">
+              <input type="radio" name="answer" id="answer2" className="inp-chck-gray none" />
+              <label htmlFor="answer2" className="label-chck-gray"><span className="text">{ "上海" }</span></label>
+            </div>
+          </div>
+        </QuizContainer>
       </div>
       <LayoutModal />
       <LayoutModalVoca />
