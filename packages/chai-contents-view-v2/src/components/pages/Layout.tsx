@@ -14,7 +14,7 @@ const Layout = () => {
       <LayoutHeader />
       <main className="cai-main">
         {/* <Template01 /> */}
-        <TemplateDialogue />
+        {/* <TemplateDialogue /> */}
         <TemplateQuizDialogue />
       </main>
       <LayoutFooter />
