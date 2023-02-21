@@ -1,13 +1,14 @@
 import React from "react";
 
-interface ComponentButtonFillBlack {
-  text: String,
+interface ComponentButtonFillBlackProps {
+  text: String;
 }
 
-const ComponentButtonFillBlack = ({text}: ComponentButtonFillBlack) => {
-
+const ComponentButtonFillBlack = ({ text }: ComponentButtonFillBlackProps) => {
   return (
-      <button className="btn btn-fill-black" data-text={text}><span>{text}</span></button>
+    <button className="btn btn-fill-black" data-text={text}>
+      <span>{text}</span>
+    </button>
   );
 };
 
