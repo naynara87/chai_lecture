@@ -5,7 +5,18 @@
 	}
 
 	height: 100%;
-	// padding: 0 vw(64);
+
+	.character-wrapper {
+		text-align: center;
+	}
+
+	.character-wrap {
+		margin-top: vh(62);
+
+		.img  {
+			height: vh(167);
+		}
+	}
 
 	.btns-wrap {
 		margin-bottom: vh(57);
@@ -30,14 +41,6 @@
 			width: vw(38);
 			height: vh(37);
 			transform: translateX(-50%);
-		}
-	}
-
-	.character-wrap {
-		margin-top: vh(62);
-
-		.img  {
-			height: vh(167);
 		}
 	}
 }
