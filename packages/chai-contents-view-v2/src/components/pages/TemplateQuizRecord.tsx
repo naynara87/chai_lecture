@@ -30,7 +30,7 @@ const TemplateQuizRecord = () => {
             <ComponentRecordButton />
           </div>
           <div className="btns-wrap">
-            {/* TODO: 녹음 파일이 없을 때에는 disabled 상태 */}
+            {/* TODO: key설명 - 녹음 파일이 없을 때에는 disabled 상태 */}
             <ComponentButtonFillBlack text="녹음 파일 제출" />
           </div>
         </QuizContainer>
