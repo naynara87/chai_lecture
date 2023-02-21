@@ -12,7 +12,7 @@ const TextColor = '#222222';
 const ModalBase = styled.div`
 `;
 
-const GradeTitle = styled.div`
+const ModalBaseTitle = styled.div`
   .profile-img-wrap {
     /* NOTE: 설명 - 오답일땐 오답 컬러, 정답일 땐 정답 컬러 */
     background-color: ${TextColor};
@@ -24,7 +24,7 @@ const GradeTitle = styled.div`
   }
 `;
 
-const GradeContents = styled.div`
+const ModalBaseContents = styled.div`
   /* NOTE: 설명 - dec 의 height 가 36.3333333333vh(436px을 vh로 변경)이상일 때 추가됨 */
   align-items: flex-start;
 `;
@@ -38,14 +38,14 @@ const LayoutModal = () => {
       <div className="modal-container base-modal">
         <div className="base-wrapper">
           {/* 제목영역 */}
-          <GradeTitle className="base-ttl">
+          <ModalBaseTitle className="base-ttl">
             <div className="profile-img-wrap">
               <img src={ImgCharacter} alt="" className="img" />
             </div>
             <div className="txt-wrap">
               {/* 간지 */}
-              <h2 className="ttl">타이틀 영역</h2>
-              <p className="txt">서브 타이틀</p>
+              <h2 className="ttl">{ "타이틀 영역" }</h2>
+              <p className="txt">{ "서브 타이틀" }</p>
               {/* NOTE: 설명 - 정답일 때 보일 문구 */}
               {/* <h2 className="ttl">做得好!</h2>
               <p className="txt">정답이에요!</p> */}
@@ -53,11 +53,11 @@ const LayoutModal = () => {
               {/* <h2 className="ttl">真难过!</h2>
               <p className="txt">아쉬워요!</p> */}
             </div>
-          </GradeTitle>
+          </ModalBaseTitle>
           {/* 내용영역 */}
-          <GradeContents className="base-conts">
+          <ModalBaseContents className="base-conts">
             <div className="dec">{'제3성이 연이어 나오면, 앞에 있는 제3성은 제2성으로 발음합니다. 이 때, 성조의 표기는 바뀌지 않습니다.'}</div>
-          </GradeContents>
+          </ModalBaseContents>
 
           {/* NOTE: 설명 - 버튼이 하나만 들어갈 수도 있음 */}
           <div className="btns-wrap">
