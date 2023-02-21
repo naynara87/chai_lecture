@@ -1,6 +1,7 @@
 import React from "react";
 import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
 import Home from "../components/pages/Home";
+import Layout from "../components/pages/Layout";
 import NotFound from "../components/pages/NotFound";
 import { HOME_URL, NOT_FOUND_URL } from "../constants/url";
 
@@ -15,6 +16,7 @@ const AppRouter = () => {
         />
         <Route path={NOT_FOUND_URL} element={<NotFound />} />
         <Route path="*" element={<Navigate to={NOT_FOUND_URL} replace />} />
+        <Route path={"temp"} element={<Layout />} />
       </Routes>
     </BrowserRouter>
   );
