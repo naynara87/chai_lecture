@@ -19,7 +19,7 @@ const TemplateQuizChoice = () => {
       <div className="layout-panel wide-panel">
         <QuizContainer method="post" className="quiz-container">
           <div className="quiz-question-wrap">
-            <p className="text-sm">{`제3성이 연이어 나올 때,
+            <p className="text-md">{`제3성이 연이어 나올 때,
 올바르게 발음한 것을 고르세요.`}</p>
           </div>
           <div className="quiz-answer-wrap hori-answer-wrap">

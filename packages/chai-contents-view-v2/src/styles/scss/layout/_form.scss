@@ -226,7 +226,8 @@
 	}
 }
 
-// =================== input chck gray style
+// =================== input checked style
+// inp-chck-gray
 .label-chck-gray {
 	display: block;
 	width: 100%;
@@ -261,7 +262,7 @@
 	
 	.text {
 		font-weight: 600;
-		
+
 		&:before {
 			background-color: color(main);
 		}

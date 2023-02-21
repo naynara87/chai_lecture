@@ -23,7 +23,7 @@ const TemplateQuizRecord = () => {
       <div className="layout-panel wide-panel">
       <QuizContainer method="post" className="quiz-container">
           <div className="quiz-question-wrap">
-            <p className="text-sm">{ `나는 피아노를 칠 줄 몰라, 
+            <p className="text-md">{ `나는 피아노를 칠 줄 몰라, 
             네가 나를 좀 가르쳐 줘.` }</p>
           </div>
           <div className="quiz-answer-wrap">

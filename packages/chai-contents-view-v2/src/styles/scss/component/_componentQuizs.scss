@@ -17,12 +17,32 @@
 		border-bottom: 2px solid color(gray-80);
 	}
 
-	.text {
+	.blank-gray {
+		display: inline-block;
+		min-width: vw(80);
+		padding: vh(3) vw(10);
+		border: 3px solid color(gray-c9);
+		border-radius: vw(7);
+		background-color: color(gray-f5);
+		font-weight: 600;
+		font-size: vw(28);
+		color: color(main);
+	}
+
+	.text-lg {
+		margin-bottom: vw(40);
 		font-size: vw(70);
 	}
 
-	.text-sm {
+	.text-md {
 		font-size: vw(32);
+	}
+
+	.text-sm {
+		margin-top: vh(30);
+		font-weight: 400;
+		font-size: vw(28);
+		color: color(gray-80);
 	}
 }
 

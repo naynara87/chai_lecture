@@ -18,8 +18,8 @@ const TemplateQuizTextEnter = () => {
         <ComponentTitle text="빈칸을 채워 단어를 완성해 보세요." />
         <QuizContainer method="post" className="quiz-container">
           <div className="quiz-question-wrap">
-            <p className="text">{ `兴` }<span className="blank-line"></span>{ `兴` }</p>
-            <p className="text-sm">{"기쁘다"}</p>
+            <p className="text-lg">{ `兴` }<span className="blank-line">&nbsp;</span>{ `兴` }</p>
+            <p className="text-md">{"기쁘다"}</p>
           </div>
           <div className="quiz-answer-wrap">
             <input type="text" className="inp-txt" placeholder="빈칸에 들어갈 중국어를 입력하세요." />
