@@ -1,0 +1,159 @@
+/* =================== modal =================== */
+.modal {
+	overflow: hidden;
+	z-index: z(modal);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 0;
+	height: 0;
+	transform: translate(-50%, -50%);
+	transition-delay: 0.2s;
+
+	&.active {
+		width: 100%;
+		height: 100%;
+	}
+}
+
+.modal-bg {
+	z-index: z(zero);
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-container {
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	z-index: z(two);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	max-width: vw(720);
+	width: 90%;
+	padding: vh(60) vw(60);
+	border-radius: vw(30);
+	background-color: color(gray-ff);
+	transform: translate(-50%, -50%) scale(0.2);
+	transition: all 0.3s;
+	transition-timing-function: ease-in-out;
+	
+	@at-root .active & {
+		transform: translate(-50%, -50%);
+	}
+}
+
+// 정오답 모달
+.base-modal {
+	overflow: auto;
+	max-height: 90vh;
+
+	.btns-wrap {
+		margin-top: vh(40);
+	}
+}
+
+.base-ttl {
+	@include flex {
+		@include flex-op(center, flex-start);
+
+		gap: vw(40);
+	}
+
+	.profile-img-wrap {
+		@include circle(vw(180));
+
+		overflow: hidden;
+
+		.img {
+			width: 100%;
+			transform: scale(1.3);
+			transform-origin: center top;
+		}
+	}
+
+	.ttl {
+		font-weight: 600;
+		font-size: vw(60);
+	}
+
+	.txt {
+		margin-top: vh(15);
+		font-weight: 600;
+		font-size: vw(32);
+		color: color(gray-80);
+	}
+}
+
+.base-conts {
+	@include flex-center;
+
+	overflow: auto;
+	height: vh(436);
+	margin-top: vh(40);
+	border-radius: vw(20);
+	background-color: color(gray-f0);
+	text-align: center;
+	white-space: pre-wrap;
+
+	.dec {
+		padding: vw(20);
+		line-height: 1.6;
+		font-size: vw(28);
+	}
+}
+
+// 단어장
+.voca-modal {
+	.base-ttl {
+		.profile-img-wrap {
+			overflow: visible;
+			width: vw(175);
+			height: vh(180);
+		}
+
+		.img {
+			transform: none;
+		}
+	}
+
+	.base-conts {
+		display: block;
+		height: auto;
+		padding: vh(40) vw(60);
+		
+	}
+	
+	.chinese {
+		font-weight: 600;
+		font-size: vw(60);
+		text-align: left;
+	}
+	
+	.pinyin {
+		font-size: vw(36);
+		color: color(gray-80);
+		text-align: left;
+	}
+	
+	.mean {
+		font-size: vw(36);
+		color: color(gray-80);
+		text-align: left;
+	}
+
+	.btn-icon {
+		width: vw(80);
+		height: vw(80);
+		margin-top: vh(25);
+
+		.icon {
+			width: vw(40);
+		}
+	}
+}

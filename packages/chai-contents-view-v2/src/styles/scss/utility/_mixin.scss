@@ -1,0 +1,121 @@
+// responsive custom
+@mixin media($px, $range: max) {
+	@media all and (#{$range}-width: $px) {
+		@content;
+	}
+}
+
+// size
+@mixin circle($s) {
+	width: $s;
+	height: $s;
+	border-radius: 50%;
+	@content;
+}
+
+@mixin square($s) {
+	width: $s;
+	height: $s;
+}
+
+@mixin full {
+	width: 100%;
+	height: 100%;
+}
+
+// flex items
+@mixin flex($d: flex) {
+	display: $d;
+	@content;
+}
+
+@mixin flex-col($d: flex) {
+	display: $d;
+	flex-direction: column;
+	@content;
+}
+
+@mixin flex-op($ai: null, $jc: null) {
+	align-items: $ai;
+	justify-content: $jc;
+}
+
+@mixin flex-center($d: flex) {
+	display: $d;
+	@include flex-op(center, center);
+
+	@content;
+}
+
+@mixin flex-btw($d: flex) {
+	display: $d;
+	@include flex-op(center, space-between);
+
+	@content;
+}
+
+// background image
+@mixin bg-url($path, $img){
+background-image: urlPath($path, $img);
+}
+
+@mixin bg-op($p: center, $s: auto, $r: no-repeat) {
+	background: {
+		position: $p;
+		size: $s;
+		repeat: $r;
+	}
+}
+
+// bafore, after
+@mixin make-before($c: "", $d: block) {
+	&:before {
+		content: $c;
+		display: $d;
+
+		@content;
+	}
+}
+
+@mixin make-after($c: "", $d: block) {
+	&:after {
+		content: $c;
+		display: $d;
+
+		@content;
+	}
+}
+
+@mixin make-virtual($c: "", $d: block) {
+	&:before {
+		content: $c;
+		display: $d;
+
+		@content;
+	}
+
+	&:after {
+		content: $c;
+		display: $d;
+
+		@content;
+	}
+}
+
+// input
+@mixin input-reset {
+	padding: 0;
+	border: 0;
+	border-radius: 0;
+	background-color: transparent;
+	appearance: none;
+	outline: none;
+	box-shadow: none;
+}
+
+@mixin hover {
+	&:hover,
+	&:focus {
+		@content;
+	}
+}

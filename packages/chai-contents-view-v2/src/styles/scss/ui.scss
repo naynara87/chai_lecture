@@ -1,0 +1,33 @@
+@charset 'utf-8';
+// 1. utility
+@import "utility/function";
+@import "utility/variable";
+@import "utility/mixin";
+@import "utility/extend";
+
+// 2. base
+@import "base/base";
+@import "base/font";
+@import "base/helper";
+
+// 3. vendor
+
+// 4. layout
+@import "layout/animation";
+@import "layout/form";
+@import "layout/layout";
+@import "layout/header";
+@import "layout/footer";
+
+// 5. component
+@import "component/modal";
+@import "component/componentContsinfo";
+@import "component/componentTitle";
+@import "component/componentRecordButton";
+@import "component/componentVideo";
+@import "component/componentVocaNote";
+@import "component/templateConversation";
+@import "component/componentRoleplay";
+@import "component/componentChoiceRole";
+
+// 6. page

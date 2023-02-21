@@ -1,0 +1,157 @@
+/* =================== footer =================== */
+.cai-ft {
+	z-index: z(header);
+	position: fixed;
+	top: auto;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: $ft-height;
+	background-color: color(gray-56);
+}
+
+.ft-conts-wrap {
+	@include flex-center;
+	@include full;
+
+	z-index: z(double);
+	position: relative;
+
+	.txt {
+		margin: 0 vw(107);
+		font-weight: 400;
+		font-size: vw(26);
+		color: color(gray-ff);
+
+		b {
+			font-weight: 600;
+		}
+
+		small {
+			opacity: 0.7;
+			font-size: 1em;
+		}
+	}
+}
+
+// nav
+.cai-nav-container {
+	z-index: z(nav);
+	position: fixed;
+	top: auto;
+	bottom: $ft-height;
+	left: 0;
+	transform: translateY(100%);
+	transition: all 0.3s;
+
+	&.active {
+		transform: none;
+	}
+	
+	.character {
+		z-index: z(zero);
+		position: absolute;
+		top: 0;
+		left: vw(40);
+		width: vw(211);
+		max-width: 211px;
+		transform: translateY(vw(-130));
+	}
+}
+
+.cai-nav-wrap {
+	position: relative;
+	height: 75vh;
+	padding-bottom: vh(195);
+	border-radius: vw(20) vw(20) 0 0;
+	background-color: color(gray-ff);
+	box-shadow: 0 0 34px rgba(0, 0, 0, 0.1);
+
+	.btn-wrap {
+		position: absolute;
+		top: auto;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: vh(150);
+		padding: 0 vw(45);
+		background-color: color(gray-ff);
+	}
+
+	.btn-fill-black {
+		font-weight: 400;
+		font-size: vw(26);
+		box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+	}
+}
+
+.cai-nav-list-wrap {
+	overflow: auto;
+	height: 100%;
+	padding: vh(45) vw(45) 0;
+}
+
+.cai-nav-list {
+	margin-top: vh(20);
+	border: 1px solid color(gray-db);
+	border-radius: 10px;
+
+	.cai-nav-ttl {
+		@include bg-url(icon, 'icon_arrow_down_gray.svg');
+		@include bg-op(right vw(20) center, vw(20));
+
+		width: vw(440);
+		height: vh(85);
+		padding: vh(30) vw(26);
+		font-weight: 600;
+		font-size: vw(26);
+		transform: translateY(-1px);
+		transition: all 0.2s;
+	}
+	
+	.cai-nav-sub-wrap {
+		overflow: hidden;
+		max-height: 0;
+		transition: all 0.2s;
+	}
+
+	.cai-nav-sub-link {
+		@include flex {
+			@include flex-op(center, flex-start);
+		}
+
+		padding: vh(27) vw(26);
+		font-weight: 400;
+		font-size: vw(26);
+		transition: all 0.2s;
+		
+		@include make-before($d: inline-block) {
+			width: vw(12);
+			height: vh(2);
+			margin-right: vw(12);
+			background-color: color(gray-22);
+			transition: all 0.2s;
+		}
+
+		&.active {
+			background-color: color(blue-200);
+			font-weight: 600;
+			color: color(blue-500);
+
+			&:before {
+				background-color: color(blue-500);
+			}
+		}
+	}
+
+	&.active {
+		.cai-nav-ttl {
+			@include bg-url(icon, 'icon_arrow_up_gray.svg');
+		}
+
+		.cai-nav-sub-wrap {
+			max-height: 100vh;
+			transition: all 0.2s;
+		}
+	}
+}
