@@ -203,10 +203,10 @@
 	color: transparent;
 	transition: all 0.3s;
 	box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.2);
-
+	
 	@include make-after {
 		@include circle(vw(30));
-
+		
 		position: absolute;
 		top: 50%;
 		left: vw(6);
@@ -219,9 +219,51 @@
 
 .toggle-input:checked~.toggle-label {
 	background-color: color(green-500);
-
+	
 	&:after {
 		// 100% - (width + padding)
 		left: calc(100% - vw(36));
+	}
+}
+
+// =================== input chck gray style
+.label-chck-gray {
+	display: block;
+	width: 100%;
+	padding: vh(40) vw(40);
+	border: 2px solid color(gray-f5);
+	border-radius: vw(20);
+	background-color: color(gray-f5);
+	
+	.text {
+		position: relative;
+		padding-left: vw(80);
+		font-size: vw(32);
+
+		@include make-before {
+			@include circle(vw(48));
+			@include bg-op($s: vw(22));
+			@include bg-url(icon, 'icon_check_white.svg');
+
+			position: absolute;
+			top: 0;
+			left: 0;
+			background-color: color(gray-c9);
+			box-shadow: 0 1px 4px rgba(172, 179, 185, 0.5);
+		}
+	}
+}
+
+.inp-chck-gray:checked ~ .label-chck-gray {
+	border-color: color(main);
+	background-color: color(purple-200);
+	color: color(main);
+	
+	.text {
+		font-weight: 600;
+		
+		&:before {
+			background-color: color(main);
+		}
 	}
 }

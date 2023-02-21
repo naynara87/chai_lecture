@@ -4,7 +4,7 @@ import LayoutFooter from "../molecules/LayoutFooter";
 import Template01 from "./Template01";
 import Template02 from "./Template02";
 import Template03 from "./Template03";
-import TemplateQuizRecord from "./TemplateQuizRecord";
+import TemplateQuizChoice from "./TemplateQuizChoice";
 
 const Layout = () => {
 
@@ -12,7 +12,7 @@ const Layout = () => {
     <div>
       <LayoutHeader />
       <main className="cai-main">
-        <TemplateQuizRecord />
+        <TemplateQuizChoice />
       </main>
       <LayoutFooter />
     </div>

@@ -18,7 +18,7 @@ const TemplateQuizTextEnter = () => {
         <ComponentTitle text="빈칸을 채워 단어를 완성해 보세요." />
         <QuizContainer method="post" className="quiz-container">
           <div className="quiz-question-wrap">
-            <p className="text">{ `兴` }<span className="blank"></span>{ `兴` }</p>
+            <p className="text">{ `兴` }<span className="blank-line"></span>{ `兴` }</p>
             <p className="text-sm">{"기쁘다"}</p>
           </div>
           <div className="quiz-answer-wrap">
