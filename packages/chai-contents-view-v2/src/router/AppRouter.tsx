@@ -4,6 +4,7 @@ import Home from "../components/pages/Home";
 import Layout from "../components/pages/Layout";
 import NotFound from "../components/pages/NotFound";
 import { HOME_URL, NOT_FOUND_URL } from "../constants/url";
+import "../styles/scss/ui.scss"
 
 const AppRouter = () => {
   return (
