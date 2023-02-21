@@ -37,14 +37,12 @@
     "web-vitals": "*"
   },
   "scripts": {
-    "dev": "env-cmd -f .env craco start",
+    "v1-dev": "env-cmd -f .env craco start",
     "start": "env-cmd -f .env craco start",
-    "build": "GENERATE_SOURCEMAP=false env-cmd -f .env.development craco build",
-    "build:prod": "GENERATE_SOURCEMAP=false env-cmd -f .env.production craco build",
-    "build:ui": "rollup -c",
-    "check-ts": "tsc --noEmit",
-    "test": "craco test",
-    "eject": "craco eject"
+    "v1-build": "GENERATE_SOURCEMAP=false env-cmd -f .env.development craco build",
+    "v1-build:prod": "GENERATE_SOURCEMAP=false env-cmd -f .env.production craco build",
+    "v1-build:ui": "rollup -c",
+    "v1-check-ts": "tsc --noEmit"
   },
   "eslintConfig": {
     "extends": [
