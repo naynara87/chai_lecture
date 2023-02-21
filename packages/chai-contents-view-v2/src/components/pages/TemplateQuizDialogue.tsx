@@ -10,7 +10,7 @@ import ComponentVocaNote from "../molecules/ComponentVocaNote";
 const DialogueContainer = styled.div`
 `;
 
-const TemplateConversation = () => {
+const TemplateQuizDialogue = () => {
 
   return (
     <DialogueContainer className="layout-panel-wrap grid37">
@@ -115,4 +115,4 @@ const TemplateConversation = () => {
   );
 };
 
-export default TemplateConversation;
+export default TemplateQuizDialogue;

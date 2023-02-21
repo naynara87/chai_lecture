@@ -12,13 +12,13 @@
 	margin: vh(70) auto 0;
 }
 
-.grid55 {
+.grid-55 {
 	@extend %layout-grid;
 
 	grid-template-columns: 1fr 1fr;
 }
 
-.grid37 {
+.grid-37 {
 	@extend %layout-grid;
 
 	grid-template-columns: 3fr 7fr;

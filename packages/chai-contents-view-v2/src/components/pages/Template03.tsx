@@ -7,7 +7,7 @@ import LayoutModalVoca from "../molecules/LayoutModalVoca";
 const Template03 = () => {
 
   return (
-    <div className="layout-panel-wrap grid37">
+    <div className="layout-panel-wrap grid-37">
       <div className="layout-panel side-panel">
         <ComponentContsInfo />
       </div>

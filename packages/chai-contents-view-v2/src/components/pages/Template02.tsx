@@ -12,7 +12,7 @@ interface Template02 {
 const Template02 = ({sideCard, wideCard}: Template02) => {
 
   return (
-    <div className="layout-panel-wrap grid55">
+    <div className="layout-panel-wrap grid-55">
       <div className="layout-panel side-panel">
       {sideCard}
       </div>
