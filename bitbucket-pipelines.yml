@@ -18,7 +18,7 @@ pipelines:
             - apt-get install -y zip
             - npm install
             - npm run build
-            - zip -r build-chai-monorepo.zip appspec.yml packages/chai-contents-creator/build packages/chai-contents-view/build
+            - zip -r build-chai-monorepo.zip appspec.yml packages/chai-contents-creator-v2/build packages/chai-contents-view-v2/build
             - pipe: atlassian/aws-code-deploy:1.1.1
               variables:
                 AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
@@ -57,35 +57,35 @@ pipelines:
             - apt-get install -y zip
             - npm install
             - npm run build
-            - zip -r build-chai-monorepo-dev.zip appspec.yml packages/chai-contents-creator/build packages/chai-contents-view/build
-            - pipe: atlassian/aws-code-deploy:1.1.1
-              variables:
-                AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
-                AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
-                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
-                APPLICATION_NAME: $APPLICATION_NAME
-                S3_BUCKET: $S3_BUCKET
-                ZIP_FILE: 'build-chai-monorepo-dev.zip'
-                COMMAND: 'upload'
-                VERSION_LABEL: 'build-chai-monorepo-dev-1.0.0'
-          artifacts:
-            - build-chai-monorepo-dev.zip
-      - step:
-          name: deploy chai-monorepo app
-          script:
-            - pipe: atlassian/aws-code-deploy:1.1.1
-              variables:
-                AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
-                AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
-                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
-                APPLICATION_NAME: $APPLICATION_NAME
-                DEPLOYMENT_GROUP: $DEPLOYMENT_GROUP
-                S3_BUCKET: $S3_BUCKET
-                COMMAND: 'deploy'
-                IGNORE_APPLICATION_STOP_FAILURES: 'true'
-                FILE_EXISTS_BEHAVIOR: 'OVERWRITE'
-                WAIT: 'true'
-                VERSION_LABEL: 'build-chai-monorepo-dev-1.0.0'
+#            - zip -r build-chai-monorepo-dev.zip appspec.yml packages/chai-contents-creator/build packages/chai-contents-view/build
+#            - pipe: atlassian/aws-code-deploy:1.1.1
+#              variables:
+#                AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+#                AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+#                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+#                APPLICATION_NAME: $APPLICATION_NAME
+#                S3_BUCKET: $S3_BUCKET
+#                ZIP_FILE: 'build-chai-monorepo-dev.zip'
+#                COMMAND: 'upload'
+#                VERSION_LABEL: 'build-chai-monorepo-dev-1.0.0'
+#          artifacts:
+#            - build-chai-monorepo-dev.zip
+#      - step:
+#          name: deploy chai-monorepo app
+#          script:
+#            - pipe: atlassian/aws-code-deploy:1.1.1
+#              variables:
+#                AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+#                AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+#                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+#                APPLICATION_NAME: $APPLICATION_NAME
+#                DEPLOYMENT_GROUP: $DEPLOYMENT_GROUP
+#                S3_BUCKET: $S3_BUCKET
+#                COMMAND: 'deploy'
+#                IGNORE_APPLICATION_STOP_FAILURES: 'true'
+#                FILE_EXISTS_BEHAVIOR: 'OVERWRITE'
+#                WAIT: 'true'
+#                VERSION_LABEL: 'build-chai-monorepo-dev-1.0.0'
   pull-requests:
     master:
       - step:
@@ -97,7 +97,7 @@ pipelines:
             - apt-get install -y zip
             - npm install
             - npm run build
-            - zip -r build-chai-monorepo.zip appspec.yml packages/chai-contents-creator/build packages/chai-contents-view/build
+            - zip -r build-chai-monorepo.zip appspec.yml packages/chai-contents-creator-v2/build packages/chai-contents-view-v2/build
             - pipe: atlassian/aws-code-deploy:1.1.1
               variables:
                 AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
