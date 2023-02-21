@@ -1,0 +1,21 @@
+import React from "react";
+import LayoutModal from "../molecules/LayoutModal";
+import LayoutModalVoca from "../molecules/LayoutModalVoca";
+
+const TemplateQuizWordBlank = () => {
+
+  return (
+    <div className="layout-panel-wrap grid-37">
+      <div className="layout-panel side-panel">
+        1234
+      </div>
+      <div className="layout-panel wide-panel">
+        asdf
+      </div>
+      <LayoutModal />
+      <LayoutModalVoca />
+    </div>
+  );
+};
+
+export default TemplateQuizWordBlank;

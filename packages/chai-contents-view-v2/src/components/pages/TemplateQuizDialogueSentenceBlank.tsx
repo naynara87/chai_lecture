@@ -5,13 +5,14 @@ import ImgKkyngi from "../../images/img/cha_kkungi_positive.png";
 import IconSpeaker from "../../images/icon/icon_speaker_white.svg";
 import ImgProfileDefault from "../../images/img/img_profile_default.png";
 import ImgTemp01 from "../../images/img/temp_profile01.png";
+import ComponentVocaNote from "../molecules/ComponentVocaNote";
 import LayoutModal from "../molecules/LayoutModal";
 import LayoutModalVoca from "../molecules/LayoutModalVoca";
 
 const DialogueContainer = styled.div`
 `;
 
-const TemplateDialogue = () => {
+const TemplateQuizDialogueSentenceBlank = () => {
 
   return (
     <DialogueContainer className="layout-panel-wrap grid-37">
@@ -27,37 +28,16 @@ const TemplateDialogue = () => {
             </button>
           </div>
           {/* 말풍선 캐릭터 */}
-          <div className="character-wrapper none">
+          <div className="character-wrapper">
             <div className="text-wrap">{'지난 시간엔 계절에 대한 회화를 학습했어요. 다음 대화를 잘 보고 빈 칸에 들어갈 알맞은 단어를 고르세요.'}</div>
             <div className="character-wrap">
               <img src={ImgCharacter} alt="" className="img" />
             </div>
           </div>
           {/* end 말풍선 캐릭터 */}
-          {/* ComponentVocaNote */}
-          <div className="voca-bote-container">
-            <h3 className="voca-title">새로운 단어<img src={ImgKkyngi} alt="" className="img" /></h3>
-            <ul className="voca-list-wrap">
-              {/* 반복영역 */}
-              <li className="voca-list">
-                <div className="voca-wrap">
-                  <p className="chinese">{'游泳'}</p>
-                  <p className="pinyin">{'yóuyǒng'}</p>
-                  <p className="mean">{'수영하다'}</p>
-                </div>
-                <button className="btn-icon">
-                  <div className="icon-wrap">
-                    <img src={IconSpeaker} alt="스피커모양" className="icon" />
-                  </div>
-                </button>
-              </li>
-              {/* end 반복영역 */}
-            </ul>
-          </div>
-          {/* end ComponentVocaNote */}
         </div>
       </div>
-      {/* NOTE: key230217 회화는 단일 템플릿이어서 스타일을 위해 conversation-panel-wrap 클래스 추가함 */}
+      {/* 230217 회화는 단일 컴포넌트여서 스타일을 위해 conversation-panel-wrap 클래스 추가함 */}
       <div className="layout-panel wide-panel conversation-panel-wrap">
         {/* 230216 회화의 제목이 있을 때에만 사용 */}
         {/* ComponentTitle */}
@@ -120,4 +100,4 @@ const TemplateDialogue = () => {
   );
 };
 
-export default TemplateDialogue;
+export default TemplateQuizDialogueSentenceBlank;

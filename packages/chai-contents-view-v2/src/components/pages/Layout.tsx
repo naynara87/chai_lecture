@@ -5,7 +5,8 @@ import Template01 from "./Template01";
 import Template02 from "./Template02";
 import Template03 from "./Template03";
 import TemplateDialogue from "./TemplateDialogue";
-import TemplateQuizDialogue from "./TemplateQuizDialogue";
+import TemplateQuizDialogueWordBlank from "./TemplateQuizDialogueWordBlank";
+import "../../styles/scss/ui.scss";
 
 const Layout = () => {
 
@@ -15,7 +16,7 @@ const Layout = () => {
       <main className="cai-main">
         {/* <Template01 /> */}
         {/* <TemplateDialogue /> */}
-        <TemplateQuizDialogue />
+        <TemplateQuizDialogueWordBlank />
       </main>
       <LayoutFooter />
     </div>
