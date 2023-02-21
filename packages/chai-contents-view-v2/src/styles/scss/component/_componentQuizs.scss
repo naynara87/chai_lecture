@@ -1,0 +1,26 @@
+/* =================== componentQuizs =================== */
+.quiz-container {
+	margin: 0 auto;
+}
+
+.quiz-question-wrap {
+	padding: vh(86) vw(40);
+	border: 1px solid color(gray-db);
+	border-radius: vw(30);
+	font-weight: 600;
+	text-align: center;
+
+	.blank {
+		display: inline-block;
+		width: vw(72);
+		border-bottom: 2px solid color(gray-80);
+	}
+
+	.text {
+		font-size: vw(70);
+	}
+
+	.text-sm {
+		font-size: vw(32);
+	}
+}
