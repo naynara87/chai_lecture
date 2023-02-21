@@ -4,12 +4,12 @@ import LayoutFooter from "../molecules/LayoutFooter";
 import LayoutModal from "../molecules/LayoutModal";
 import LayoutModalVoca from "../molecules/LayoutModalVoca";
 
-interface Template02 {
+interface Template02Props {
   sideCard: JSX.Element,
   wideCard: JSX.Element,
 }
 
-const Template02 = ({sideCard, wideCard}: Template02) => {
+const Template02 = ({sideCard, wideCard}: Template02Props) => {
 
   return (
     <div className="layout-panel-wrap grid-55">

@@ -6,7 +6,6 @@ import Template02 from "./Template02";
 import Template03 from "./Template03";
 import TemplateDialogue from "./TemplateDialogue";
 import TemplateQuizDialogueWordBlank from "./TemplateQuizDialogueWordBlank";
-import "../../styles/scss/ui.scss";
 
 const Layout = () => {
 
