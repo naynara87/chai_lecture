@@ -16,7 +16,7 @@ const ModalBase = styled.div`
 
 const LayoutModalVoca = () => {
   return (
-    // NOTE: 설명 - active가 되면 보임
+    // TODO: key설명 - active가 되면 보임
     <ModalBase className="modal voca-modal">
       <div className="modal-bg"></div>
       <div className="modal-container base-modal">

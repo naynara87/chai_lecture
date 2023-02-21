@@ -15,7 +15,7 @@ const TemplateConversation = () => {
   return (
     <DialogueContainer className="layout-panel-wrap grid37">
       <div className="layout-panel side-panel">
-        {/* FIXME: 디자인수정예정 - 음원재생버튼 모양 변경(원이 아닌 모양으로), 이미지 변경 */}
+        {/* FIXME: key디자인수정예정 - 음원재생버튼 모양 변경(원이 아닌 모양으로), 이미지 변경 */}
         <div className="cont-info-wrap">
           <div className="btns-wrap">
             <button className="btn-icon-with-text">
@@ -58,7 +58,7 @@ const TemplateConversation = () => {
       <div className="layout-panel wide-panel conversation-panel-wrap">
         {/* 230216 회화의 제목이 있을 때에만 사용 */}
         {/* ComponentTitle */}
-        {/* FIXME: 디자인수정예정 - 앞 아이콘 -> 기호 */}
+        {/* FIXME: key디자인수정예정 - 앞 아이콘 -> 기호 */}
         <h2 className="conts-ttl">{'대화 내용을 잘 들어보세요'}</h2>
         {/* end ComponentTitle */}
         {/* 230216 회화에서 한어병음과 뜻의 보임 여부를 선택할 때 사용 */}
@@ -79,10 +79,10 @@ const TemplateConversation = () => {
         {/* 230217 회화영역 */}
         <ul className="conversation-wrapper">
           {/* speech bubble */}
-          {/* NOTE: 설명 - 음성이 재생될 때 active 가 추가됨(화자표시 애니메이션) */}
+          {/* TODO: key설명 - 음성이 재생될 때 active 가 추가됨(화자표시 애니메이션) */}
           <li className="conversation-wrap active">
             <div className="img-wrap">
-              {/* NOTE: 설명 - 누르면 단일 음성이 재생됨 */}
+              {/* TODO: key설명 - 누르면 단일 음성이 재생됨 */}
               <div className="img-round">
                 <button className="btn-profile"><img src={ImgProfileDefault} alt="" className="profile" /></button>
               </div>
@@ -97,7 +97,7 @@ const TemplateConversation = () => {
           {/* end speech bubble */}
           <li className="conversation-wrap">
             <div className="img-wrap">
-              {/* NOTE: 설명 - 누르면 단일 음성이 재생됨 */}
+              {/* TODO: key설명 - 누르면 단일 음성이 재생됨 */}
               <div className="img-round">
                 <button className="btn-profile"><img src={ImgTemp01} alt="" className="profile" /></button>
               </div>

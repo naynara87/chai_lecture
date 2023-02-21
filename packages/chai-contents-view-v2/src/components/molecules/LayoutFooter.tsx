@@ -11,7 +11,7 @@ const LayoutFooter = () => {
     <div>
       <footer className="cai-ft">
         {/* position: absolute */}
-        {/* NOTE: 설명 - 클릭시 스스로와 cai-nav-container에 active 추가 */}
+        {/* TODO: key설명 - 클릭시 스스로와 cai-nav-container에 active 추가 */}
         <button className="btn-ft-text">
           학습순서
           <img src={iconOpen} alt="" className="icon icon-open" />
@@ -28,11 +28,11 @@ const LayoutFooter = () => {
         <img src={imgHdCharacter} alt="위니" className="character" />
         <nav className="cai-nav-wrap">
           <ul className="cai-nav-list-wrap">
-            {/* NOTE: 설명 - 반복영역. 열려있을 때 active 추가됨 */}
+            {/* TODO: key설명 - 반복영역. 열려있을 때 active 추가됨 */}
             <li className="cai-nav-list active">
               <div className="cai-nav-ttl">{'복습'}</div>
               <div className="cai-nav-sub-wrap">
-                {/* NOTE: 설명 - 현재 페이지에 active */}
+                {/* TODO: key설명 - 현재 페이지에 active */}
                 <a href="" className="cai-nav-sub-link active">{'회화'}</a>
                 <a href="" className="cai-nav-sub-link">{'문법퀴즈'}</a>
                 <a href="" className="cai-nav-sub-link">{'지난레슨단어'}</a>
