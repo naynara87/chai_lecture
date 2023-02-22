@@ -86,7 +86,7 @@
 	@extend %btn-interaction;
 
 	width: 100%;
-	height: vh(88);
+	height: vh(75);
 	border: 1px solid color(gray-56);
 	border-radius: vw(10);
 	background-color: color(gray-56);
@@ -173,8 +173,10 @@
 }
 
 .btn-ft-text {
+	@extend %btn;
 	@include flex-center;
 
+	z-index: z(two);
 	position: absolute;
 	top: 0;
 	left: 0;
