@@ -9,9 +9,11 @@ $red-700: #DF2F24;
 $blue-200: #EFF1F5;
 $blue-400: #A6C4E3;
 $blue-500: #4C94DF;
-$green-500: #5BD37D;
+$purple-200: #F4F3FA;
+$green-500: #5FC996;
 $orange-100: #FFF3EA;
 $orange-300: #F5B057;
+$orange-400: #ED8914;
 $orange-500: #FF6700;
 $gray-22: #222222;
 $gray-56: #565656;
@@ -29,7 +31,7 @@ $color-set: (
 	bg: $bg,
 	text: $gray-22,
 	right: $green-500,
-	warning: $red-500,
+	warning: $orange-400,
 	red-300: $red-300,
 	red-500: $red-500,
 	red-600: $red-600,
@@ -37,9 +39,11 @@ $color-set: (
 	blue-200: $blue-200,
 	blue-400: $blue-400,
 	blue-500: $blue-500,
+	purple-200: $purple-200,
 	green-500: $green-500,
 	orange-100: $orange-100,
 	orange-300: $orange-300,
+	orange-400: $orange-400,
 	orange-500: $orange-500,
 	gray-22: $gray-22,
 	gray-56: $gray-56,
@@ -63,10 +67,11 @@ $zIndex-set: (
 );
 
 $path-set: (
-	icon: "../../../images/icon/",
-	img: "../../../images/img/",
+	icon: "./images/icon/",
+	img: "./images/img/",
 );
 
 // common size
 $hd-height: clamp(40px, vh(85), 85px);
 $ft-height: clamp(40px, vh(90), 90px);
+$btn-shadow: 0 4px 0 rgba(88, 88, 88, 0.2);

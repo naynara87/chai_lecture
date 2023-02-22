@@ -48,7 +48,8 @@
 @font-face {
   font-family: "vjs-player-icon";
   /* src: url(${vjsPlayerIconEot}); */
-  src: url("./fonts/vjs-player-icon.eot") format("embedded-opentype"),
+  src: url("./fonts/vjs-player-icon.eot")
+      format("embedded-opentype"),
     url("./fonts/vjs-player-icon.woff2") format("font-woff2"),
     url("./fonts/vjs-player-icon.woff") format("woff"),
     url("./fonts/vjs-player-icon.ttf") format("truetype"),

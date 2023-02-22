@@ -1,72 +1,77 @@
-$content-dark: #7e84a6;
-$content: #7984c3;
-$content-light: #8794da;
-$bg: #eff1f5;
-$red-300: #ff7b70;
-$red-500: #ec5757;
-$red-600: #e45757;
-$red-700: #df2f24;
-$blue-200: #eff1f5;
-$blue-400: #a6c4e3;
-$blue-500: #4c94df;
-$green-500: #5bd37d;
-$orange-100: #fff3ea;
-$orange-300: #f5b057;
-$orange-500: #ff6700;
+$content-dark: #7E84A6;
+$content: #7984C3;
+$content-light: #8794DA;
+$bg: #EFF1F5;
+$red-300: #FF7B70;
+$red-500: #EC5757;
+$red-600: #E45757;
+$red-700: #DF2F24;
+$blue-200: #EFF1F5;
+$blue-400: #A6C4E3;
+$blue-500: #4C94DF;
+$purple-200: #F4F3FA;
+$green-500: #5FC996;
+$orange-100: #FFF3EA;
+$orange-300: #F5B057;
+$orange-400: #ED8914;
+$orange-500: #FF6700;
 $gray-22: #222222;
 $gray-56: #565656;
 $gray-80: #808080;
-$gray-c9: #c9c9c9;
-$gray-db: #dbdbdb;
-$gray-f0: #f0f0f0;
-$gray-f5: #f5f5f5;
+$gray-c9: #C9C9C9;
+$gray-db: #DBDBDB;
+$gray-f0: #F0F0F0;
+$gray-f5: #F5F5F5;
 $gray-ff: #ffffff;
 
 $color-set: (
-  main: $content,
-  main-dark: $content-dark,
-  main-light: $content-light,
-  bg: $bg,
-  text: $gray-22,
-  right: $green-500,
-  warning: $red-500,
-  red-300: $red-300,
-  red-500: $red-500,
-  red-600: $red-600,
-  red-700: $red-700,
-  blue-200: $blue-200,
-  blue-400: $blue-400,
-  blue-500: $blue-500,
-  green-500: $green-500,
-  orange-100: $orange-100,
-  orange-300: $orange-300,
-  orange-500: $orange-500,
-  gray-22: $gray-22,
-  gray-56: $gray-56,
-  gray-80: $gray-80,
-  gray-c9: $gray-c9,
-  gray-db: $gray-db,
-  gray-f0: $gray-f0,
-  gray-f5: $gray-f5,
-  gray-ff: $gray-ff,
+	main: $content,
+	main-dark: $content-dark,
+	main-light: $content-light,
+	bg: $bg,
+	text: $gray-22,
+	right: $green-500,
+	warning: $orange-400,
+	red-300: $red-300,
+	red-500: $red-500,
+	red-600: $red-600,
+	red-700: $red-700,
+	blue-200: $blue-200,
+	blue-400: $blue-400,
+	blue-500: $blue-500,
+	purple-200: $purple-200,
+	green-500: $green-500,
+	orange-100: $orange-100,
+	orange-300: $orange-300,
+	orange-400: $orange-400,
+	orange-500: $orange-500,
+	gray-22: $gray-22,
+	gray-56: $gray-56,
+	gray-80: $gray-80,
+	gray-c9: $gray-c9,
+	gray-db: $gray-db,
+	gray-f0: $gray-f0,
+	gray-f5: $gray-f5,
+	gray-ff: $gray-ff,
 );
 
 $zIndex-set: (
-  modal: 100,
-  fixed: 20,
-  header: 10,
-  nav: 5,
-  two: 2,
-  one: 1,
-  zero: 0,
-  minus: -1,
+	modal: 100,
+	fixed: 20,
+	header: 10,
+	nav: 5,
+	two: 2,
+	one: 1,
+	zero: 0,
+	minus: -1,
 );
 
 $path-set: (
-  icon: "./images/icon/",
-  img: "./images/img/",
+	icon: "./images/icon/",
+	img: "./images/img/",
 );
 
 // common size
 $hd-height: clamp(40px, vh(85), 85px);
 $ft-height: clamp(40px, vh(90), 90px);
+$btn-shadow: 0 4px 0 rgba(88, 88, 88, 0.2);
