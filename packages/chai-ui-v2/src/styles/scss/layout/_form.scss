@@ -332,7 +332,8 @@
 .inp-chck-line:disabled ~ .label-chck-line {
 	border-color: color(gray-db);
 	
-	.text {
+	.text,
+	.text-sm {
 		color: color(gray-db);
 	}
 }
@@ -340,14 +341,16 @@
 .inp-chck-line:checked ~ .label-chck-line {
 	border-color: color(main);
 	
-	.text {
+	.text,
+	.text-sm {
 		color: color(main);
 	}
 
 	@at-root .answer-right & {
 		border-color: color(right);
 		
-		.text {
+		.text,
+		.text-sm {
 			color: color(right);
 		}
 	}
@@ -355,7 +358,8 @@
 	@at-root .answer-wrong & {
 		border-color: color(warning);
 		
-		.text {
+		.text,
+		.text-sm {
 			color: color(warning);
 		}
 	}

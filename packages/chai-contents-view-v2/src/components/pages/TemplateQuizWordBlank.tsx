@@ -78,9 +78,11 @@ const TemplateQuizWordBlank = () => {
               <small className="sm">&nbsp;</small>
             </div>
           </div>
-          <div className="quiz-answer-wrap hori-answer-wrap">
+        {/* TODO: key설명 정답확인후 정답일 때 answer-right 추가 */}
+        {/* TODO: key설명 정답확인후 오답일 때 answer-wrong 추가 */}
+          <div className="quiz-answer-wrap hori-answer-wrap answer-wrong">
             <div className="inp-grp">
-              <input type="checkbox" name="answer1" id="answer1" className="inp-chck-line none" />
+              <input type="checkbox" name="answer1" id="answer1" className="inp-chck-line none" checked disabled />
               <label htmlFor="answer1" className="label-chck-line">
                 <span className="text">{"冷"}</span>
                 <span className="text-sm">{"lěng"}</span>
