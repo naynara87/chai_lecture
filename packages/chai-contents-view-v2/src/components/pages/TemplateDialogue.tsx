@@ -75,14 +75,16 @@ const TemplateDialogue = () => {
           {/* speech bubble */}
           {/* TODO: key설명 - 음성이 재생될 때 active 가 추가됨(화자표시 애니메이션) */}
           <li className="conversation-wrap active">
-            <div className="img-wrap">
+            <div className="img-grp">
               {/* TODO: key설명 - 누르면 단일 음성이 재생됨 */}
-              <div className="img-round">
-                <button className="btn-profile"><img src={ImgProfileDefault} alt="" className="profile" /></button>
+              <div className="img-wrap">
+                <div className="img-round">
+                  <button className="btn-profile"><img src={ImgProfileDefault} alt="" className="profile" /></button>
+                </div>
               </div>
+              <p className="name">{'왕리리'}</p>
             </div>
             <div className="txt-wrap">
-              <p className="name">{'왕리리'}</p>
               <p className="chinese">{'今天刮风，下雪，很冷。'}</p>
               <p className="pinyin">{'Jīntiān guā fēng, xià xuě, hěn lěng.'}</p>
               <p className="mean">{'오늘은 바람이 불고, 눈이 내려서 추워.'}</p>
@@ -90,14 +92,16 @@ const TemplateDialogue = () => {
           </li>
           {/* end speech bubble */}
           <li className="conversation-wrap">
-            <div className="img-wrap">
+            <div className="img-grp">
               {/* TODO: key설명 - 누르면 단일 음성이 재생됨 */}
-              <div className="img-round">
-                <button className="btn-profile"><img src={ImgTemp01} alt="" className="profile" /></button>
+              <div className="img-wrap">
+                <div className="img-round">
+                  <button className="btn-profile"><img src={ImgTemp01} alt="" className="profile" /></button>
+                </div>
               </div>
+              <p className="name">{'김민호'}</p>
             </div>
             <div className="txt-wrap">
-              <p className="name">{'김민호'}</p>
               <p className="chinese">{'我觉得这里的冬天没有中国那么冷。'}</p>
               <p className="pinyin">{'Wǒ juédé zhèlǐ de dōngtiān méiyǒu zhòng guó nàme lěng.'}</p>
               <p className="mean">{'나는 여기 겨울이 중국만큼 춥지 않은 것 같아.'}</p>
