@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
 import React from "react";
-import ImgVoca from "../../images/img/img_voca.png";
-import IconSpeaker from "../../images/icon/icon_speaker_white.svg";
 import { ModalCommon } from "chai-ui-v2";
-import ComponentButtonFillBlack from "../molecules/ComponentButtonFillBlack";
+import ImgVocaComponent from "../atoms/ImgVocaComponent";
+import IconSpeakerComponent from "../atoms/IconSpeakerComponent";
+import { ComponentButtonFillBlack } from "../atoms";
 
 const BtnWrapper = styled.div`
   .btn {
@@ -31,7 +31,7 @@ const LayoutModalVoca = ({
       {/* 제목영역 */}
       <div className="base-ttl">
         <div className="profile-img-wrap">
-          <img src={ImgVoca} alt="" className="img" />
+          <ImgVocaComponent />
         </div>
         <div className="txt-wrap">
           <h2 className="ttl">새로운 단어</h2>
@@ -46,7 +46,7 @@ const LayoutModalVoca = ({
         </div>
         <button className="btn-icon">
           <div className="icon-wrap">
-            <img src={IconSpeaker} alt="스피커모양" className="icon" />
+            <IconSpeakerComponent />
           </div>
         </button>
       </div>

@@ -1,13 +1,15 @@
 import styled from "@emotion/styled";
 import { ModalCommon } from "chai-ui-v2";
 import React from "react";
-import ImgCharacter from "../../images/img/cha_kkungi_smile.png";
-import ComponentButtonBorderMain from "../molecules/ComponentButtonBorderMain";
-import ComponentButtonFillBlack from "../molecules/ComponentButtonFillBlack";
+import {
+  ComponentButtonBorderMain,
+  ComponentButtonFillBlack,
+  ImgCharacterComponent,
+} from "../atoms";
 
 // 임의 컬러. 대교측에서 색 변경 요청하여 230217 회의 이후 정해질 예정
-const RightColor = "#5BD37D";
-const WrongColor = "#EC5757";
+// const RightColor = "#5BD37D";
+// const WrongColor = "#EC5757";
 const TextColor = "#222222";
 
 const ModalBaseTitle = styled.div`
@@ -46,7 +48,7 @@ const LayoutModalSolution = ({
       {/* 제목영역 */}
       <ModalBaseTitle className="base-ttl">
         <div className="profile-img-wrap">
-          <img src={ImgCharacter} alt="" className="img" />
+          <ImgCharacterComponent />
         </div>
         <div className="txt-wrap">
           {/* 간지 */}
