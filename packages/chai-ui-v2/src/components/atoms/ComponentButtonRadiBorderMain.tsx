@@ -1,7 +1,7 @@
 import React from "react";
 
 interface ComponentButtonRadiBorderMainProps {
-  text: String;
+  text: string;
 }
 
 const ComponentButtonRadiBorderMain = ({
