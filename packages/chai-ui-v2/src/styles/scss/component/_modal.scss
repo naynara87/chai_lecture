@@ -34,8 +34,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  max-width: vw(720);
-  width: 90%;
+  width: vw(800);
   padding: vh(60) vw(60);
   border-radius: vw(30);
   background-color: color(gray-ff);
@@ -48,7 +47,7 @@
   }
 }
 
-// 정오답 모달
+// 모달 기본형
 .base-modal {
   overflow: auto;
   max-height: 90vh;
@@ -110,11 +109,17 @@
 
 // 단어장
 .voca-modal {
+  .base-wrapper {
+    width: 100%;
+  }
+
   .base-ttl {
+    justify-content: center;
+
     .profile-img-wrap {
       overflow: visible;
-      width: vw(175);
-      height: vh(180);
+      width: vw(180);
+      height: vw(180);
     }
 
     .img {
@@ -125,7 +130,7 @@
   .base-conts {
     display: block;
     height: auto;
-    padding: vh(40) vw(60);
+    padding: vh(40) vw(60) vh(60);
   }
 
   .chinese {
@@ -136,23 +141,17 @@
 
   .pinyin {
     font-size: vw(36);
-    color: color(gray-80);
+    color: color(gray-66);
     text-align: left;
   }
 
   .mean {
     font-size: vw(36);
-    color: color(gray-80);
+    color: color(gray-66);
     text-align: left;
   }
 
   .btn-icon {
-    width: vw(80);
-    height: vw(80);
-    margin-top: vh(25);
-
-    .icon {
-      width: vw(40);
-    }
+    margin-top: vh(98);
   }
 }

@@ -7,6 +7,7 @@ import ComponentContsInfo from "../molecules/ComponentContsInfo";
 import ImgTemp01 from "../../images/img/temp_profile01.png";
 import ComponentButtonRadiFillMain from "../molecules/ComponentButtonRadiFillMain";
 import ComponentButtonRadiBorderMain from "../molecules/ComponentButtonRadiBorderMain";
+import LayoutModalContinue from "../molecules/LayoutModalContinue";
 
 const QuizContainer = styled.form`
   .quiz-question-wrap {
@@ -118,6 +119,7 @@ const TemplateQuizWordBlank = () => {
         </QuizContainer>
       </div>
       <LayoutModal />
+      <LayoutModalContinue />
       <LayoutModalVoca />
     </div>
   );

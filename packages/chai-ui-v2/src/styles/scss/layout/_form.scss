@@ -13,13 +13,26 @@
 	@include flex-center(inline-flex);
 
 	border: 3px solid color(gray-ff);
-	background-color: color(main);
 	box-shadow: $btn-shadow;
+
+	.icon {
+		@include full;
+	}
 	
 	&:disabled {
 		border-color: color(gray-c9);
 		background-color: color(gray-c9);
 	}
+}
+
+.btn-close-modal {
+	@extend %btn;
+	@include square(vw(48));
+
+	position: absolute;
+	top: vh(27);
+	left: auto;
+	right: vw(12);
 }
 
 .btn-mike {
@@ -108,7 +121,7 @@
 	border: 1px solid color(main);
 	border-radius: vw(100);
 	font-weight: 600;
-	font-size: vw(24);
+	font-size: vw(26);
 	color: color(main);
 	box-shadow: $btn-shadow;
 
@@ -127,7 +140,7 @@
 	border-radius: vw(100);
 	background-color: color(main);
 	font-weight: 600;
-	font-size: vw(24);
+	font-size: vw(26);
 	color: color(gray-ff);
 	box-shadow: $btn-shadow;
 
