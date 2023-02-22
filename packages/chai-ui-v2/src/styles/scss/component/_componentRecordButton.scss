@@ -1,0 +1,6 @@
+/* =================== componentRecordButton =================== */
+.record-btn-wrap {
+	@include flex-center {
+		gap: vw(20);
+	}
+}
