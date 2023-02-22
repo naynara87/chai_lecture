@@ -21,15 +21,18 @@ const TemplateQuizChoice = () => {
           <div className="quiz-question-wrap">
             <p className="text-md">{`제3성이 연이어 나올 때,
 올바르게 발음한 것을 고르세요.`}</p>
+            <p className="text-lg">{`在`}</p>
           </div>
-          <div className="quiz-answer-wrap hori-answer-wrap">
+          {/* TODO: key설명 - 클릭하면 input들 disabled 되고, 
+          정답이면 answer-right 오답이면 answer-wrong 클래스 추가 */}
+          <div className="quiz-answer-wrap hori-answer-wrap answer-wrong">
             <div className="inp-grp">
               <input type="radio" name="answer" id="answer1" className="inp-chck-gray none" />
-              <label htmlFor="answer1" className="label-chck-gray"><span className="text">{ "제2성+제3성" }</span></label>
+              <label htmlFor="answer1" className="label-chck-gray"><span className="text">{"제2성+제3성"}</span></label>
             </div>
             <div className="inp-grp">
               <input type="radio" name="answer" id="answer2" className="inp-chck-gray none" />
-              <label htmlFor="answer2" className="label-chck-gray"><span className="text">{ "제3성+제3성" }</span></label>
+              <label htmlFor="answer2" className="label-chck-gray"><span className="text">{"제3성+제3성"}</span></label>
             </div>
           </div>
         </QuizContainer>

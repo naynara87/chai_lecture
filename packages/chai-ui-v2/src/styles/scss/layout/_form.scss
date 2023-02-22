@@ -281,28 +281,17 @@
 	display: block;
 	width: 100%;
 	padding: vh(40) vw(40);
-	border: 2px solid color(gray-f5);
+	border: 3px solid color(gray-ee);
 	border-radius: vw(20);
 	background-color: color(gray-f5);
+	text-align: center;
+	box-shadow: $btn-shadow;
 	
 	.text {
 		position: relative;
 		display: inline-block;
-		padding-left: vw(80);
-		font-size: vw(32);
-
-		@include make-before {
-			@include circle(vw(48));
-			@include bg-op($s: vw(22));
-			@include bg-url(icon, 'icon_check_white.svg');
-
-			position: absolute;
-			top: 50%;
-			left: 0;
-			background-color: color(gray-c9);
-			box-shadow: 0 1px 4px rgba(172, 179, 185, 0.5);
-			transform: translateY(-50%);
-		}
+		font-weight: 600;
+		font-size: vw(28);
 	}
 }
 
@@ -311,11 +300,24 @@
 	background-color: color(purple-200);
 	
 	.text {
-		font-weight: 600;
 		color: color(main);
+	}
 
-		&:before {
-			background-color: color(main);
+	@at-root .answer-right & {
+		border-color: color(right);
+		background-color: color(gray-ff);
+		
+		.text {
+			color: color(right);
+		}
+	}
+
+	@at-root .answer-wrong & {
+		border-color: color(warning);
+		background-color: color(gray-ff);
+		
+		.text {
+			color: color(warning);
 		}
 	}
 }
