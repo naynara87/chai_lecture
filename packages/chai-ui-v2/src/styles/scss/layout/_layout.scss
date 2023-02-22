@@ -12,16 +12,20 @@
 	margin: vh(70) auto 0;
 }
 
-.grid55 {
+.grid-h-5-5 {
 	@extend %layout-grid;
 
 	grid-template-columns: 1fr 1fr;
 }
 
-.grid37 {
+.grid-h-3-7 {
 	@extend %layout-grid;
 
 	grid-template-columns: 3fr 7fr;
+
+	.side-panel {
+		padding: vh(40) vw(40);
+	}
 }
 
 .layout-panel {
