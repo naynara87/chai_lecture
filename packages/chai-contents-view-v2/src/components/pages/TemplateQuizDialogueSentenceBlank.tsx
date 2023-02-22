@@ -19,6 +19,7 @@ const DialogueContainer = styled.div`
 
   .blank-gray {
     width: 100%;
+    text-align: left;
   }
 `;
 

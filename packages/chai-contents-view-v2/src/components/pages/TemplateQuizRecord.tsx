@@ -13,6 +13,8 @@ const QuizContainer = styled.form`
 }
 `;
 
+// FIXME: key 퀴즈가 아님. 각 요소들 component 화 하기
+
 const TemplateQuizRecord = () => {
 
   return (

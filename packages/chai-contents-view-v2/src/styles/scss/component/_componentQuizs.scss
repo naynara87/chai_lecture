@@ -37,6 +37,7 @@
 .blank-gray {
 	display: inline-block;
 	min-width: vw(80);
+	margin-top: vh(5);
 	padding: vh(3) vw(10);
 	border: 3px solid color(gray-c9);
 	border-radius: vw(7);
@@ -44,6 +45,7 @@
 	font-weight: 600;
 	font-size: vw(28);
 	color: color(main);
+	text-align: center;
 }
 
 .quiz-answer-wrap {

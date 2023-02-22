@@ -10,9 +10,10 @@ $blue-200: #EFF1F5;
 $blue-400: #A6C4E3;
 $blue-500: #4C94DF;
 $purple-200: #F4F3FA;
-$green-500: #5BD37D;
+$green-500: #5FC996;
 $orange-100: #FFF3EA;
 $orange-300: #F5B057;
+$orange-400: #ED8914;
 $orange-500: #FF6700;
 $gray-22: #222222;
 $gray-56: #565656;
@@ -30,7 +31,7 @@ $color-set: (
 	bg: $bg,
 	text: $gray-22,
 	right: $green-500,
-	warning: $red-500,
+	warning: $orange-400,
 	red-300: $red-300,
 	red-500: $red-500,
 	red-600: $red-600,
@@ -42,6 +43,7 @@ $color-set: (
 	green-500: $green-500,
 	orange-100: $orange-100,
 	orange-300: $orange-300,
+	orange-400: $orange-400,
 	orange-500: $orange-500,
 	gray-22: $gray-22,
 	gray-56: $gray-56,

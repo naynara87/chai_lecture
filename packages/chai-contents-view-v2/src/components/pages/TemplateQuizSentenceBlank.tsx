@@ -10,7 +10,15 @@ import ImgTemp01 from "../../images/img/temp_profile01.png";
 
 const DialogueContainer = styled.div`
   .blank-gray {
-    width: 100%;
+    margin-right: 2%;
+    min-width: 40%;
+    max-width: 100%;
+    text-align: left;
+  }
+
+  .conversation-wrap .chinese {
+    display: inline;
+    word-break: break-all;
   }
 `;
 
@@ -38,10 +46,10 @@ const TemplateQuizSentenceBlank = () => {
               </div>
             </div>
             <div className="txt-wrap">
-              <p className="chinese">{'今天刮风，下雪，很冷。'}</p>
+              <p className="chinese">{'四川的传统名菜  麻婆豆腐'}</p>
               <p className="blank-gray">&nbsp;</p>
+              <p className="chinese">{ '很久以前，四川省成都有一家小饭馆。那里的豆腐菜材料很简单，只需要豆腐、肉、辣椒什么的，但吃起来特别香。' }</p>
               <p className="blank-gray">&nbsp;</p>
-              <p className="chinese">{'我觉得这里的冬天没有中国那么冷。'}</p>
               <p className="blank-gray">&nbsp;</p>
             </div>
           </li>

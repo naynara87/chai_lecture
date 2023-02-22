@@ -218,7 +218,7 @@
 }
 
 .toggle-input:checked~.toggle-label {
-	background-color: color(green-500);
+	background-color: color(right);
 	
 	&:after {
 		// 100% - (width + padding)
@@ -260,13 +260,79 @@
 .inp-chck-gray:checked ~ .label-chck-gray {
 	border-color: color(main);
 	background-color: color(purple-200);
-	color: color(main);
 	
 	.text {
 		font-weight: 600;
+		color: color(main);
 
 		&:before {
 			background-color: color(main);
+		}
+	}
+}
+
+// inp-chck-line
+.label-chck-line {
+	display: block;
+	padding: vh(20) vw(30);
+	border: 3px solid color(gray-f5);
+	border-radius: vw(20);
+	
+	.text {
+		position: relative;
+		display: inline-block;
+		padding-left: vw(80);
+		font-size: vw(32);
+		color: color(gray-c9);
+
+		@include make-before {
+			@include circle(vw(48));
+			@include bg-op($s: vw(22));
+			@include bg-url(icon, 'icon_check_white.svg');
+
+			position: absolute;
+			top: 50%;
+			left: 0;
+			background-color: color(gray-c9);
+			box-shadow: 0 1px 4px rgba(172, 179, 185, 0.5);
+			transform: translateY(-50%);
+		}
+	}
+}
+
+.inp-chck-line:checked ~ .label-chck-line {
+	border-color: color(main);
+	
+	.text {
+		font-weight: 600;
+		color: color(main);
+
+		&:before {
+			background-color: color(main);
+		}
+	}
+
+	@at-root .answer-right & {
+		border-color: color(right);
+		
+		.text {
+			color: color(right);
+			
+			&:before {
+				background-color: color(right);
+			}
+		}
+	}
+
+	@at-root .answer-wrong & {
+		border-color: color(warning);
+		
+		.text {
+			color: color(warning);
+			
+			&:before {
+				background-color: color(warning);
+			}
 		}
 	}
 }
