@@ -4,7 +4,7 @@ import LayoutModal from "../molecules/LayoutModal";
 import LayoutModalVoca from "../molecules/LayoutModalVoca";
 import ComponentButtonFillBlack from "../molecules/ComponentButtonFillBlack";
 import ComponentContsInfo from "../molecules/ComponentContsInfo";
-import ComponentButtonSpeaker from "../molecules/ComponentButtonSpeaker";
+import ComponentButtonPlay from "../molecules/ComponentButtonPlay";
 
 const QuizContainer = styled.form`
 `;
@@ -22,7 +22,7 @@ const TemplateQuizWordChoice = () => {
         <QuizContainer method="post" className="quiz-container">
           <div className="quiz-question-wrap">
             <div className="btns-wrap">
-              <ComponentButtonSpeaker />
+              <ComponentButtonPlay />
             </div>
             <p className="text-md">{`这道菜酸、甜、苦、辣，什么`}<span className="blank-gray">&nbsp;</span>
               {`都有，非常香。`}</p>

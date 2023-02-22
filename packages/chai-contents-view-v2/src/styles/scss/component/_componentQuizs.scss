@@ -4,7 +4,7 @@
 }
 
 .quiz-question-wrap {
-	padding: vh(86) vw(40);
+	padding: vh(40) vw(40);
 	border: 1px solid color(gray-db);
 	border-radius: vw(30);
 	font-weight: 600;
@@ -60,5 +60,39 @@
 
 	.inp-grp {
 		flex-basis: calc(50% - vw(15));
+	}
+}
+
+.quiz-sentence-wrap {
+	@include flex-center {
+		gap: vw(20);
+	}
+	
+	margin: vh(30) auto;
+
+	.text {
+		display: inline-block;
+		font-weight: 600;
+		font-size: vw(22);
+		text-align: center;
+
+		.sm {
+			display: block;
+			font-weight: 400;
+		}
+	}
+
+	.blank {
+		width: vw(160);
+		padding: vh(15) vw(15);
+		border: 2px solid color(gray-c9);
+		border-radius: vw(15);
+		background-color: color(gray-f5);
+		color: color(main);
+
+		&.active {
+			border-color: color(main);
+			background-color: color(purple-200);
+		}
 	}
 }

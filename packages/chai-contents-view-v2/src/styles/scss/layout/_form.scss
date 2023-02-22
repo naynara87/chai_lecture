@@ -9,16 +9,13 @@
 // icon button
 .btn-icon {
 	@extend %btn;
-	@include circle(vw(55));
+	@include rounded(vw(80));
 	@include flex-center(inline-flex);
 
+	border: 3px solid color(gray-ff);
 	background-color: color(main);
-	box-shadow: 0 2px 5px rgba(193, 193, 193, 0.5);
+	box-shadow: $btn-shadow;
 	
-	.icon {
-		width: 50%;
-	}
-
 	&:disabled {
 		border-color: color(gray-c9);
 		background-color: color(gray-c9);
@@ -96,6 +93,43 @@
 	font-weight: 600;
 	font-size: vw(24);
 	color: color(main);
+
+	&:before {
+		letter-spacing: -0.04em;
+	}
+}
+
+.btn-radi-border-main {
+	@extend %btn;
+	@extend %btn-interaction;
+
+	width: 100%;
+	height: vh(82);
+	border: 1px solid color(main);
+	border-radius: vw(100);
+	font-weight: 600;
+	font-size: vw(24);
+	color: color(main);
+	box-shadow: $btn-shadow;
+
+	&:before {
+		letter-spacing: -0.04em;
+	}
+}
+
+.btn-radi-fill-main {
+	@extend %btn;
+	@extend %btn-interaction;
+
+	width: 100%;
+	height: vh(82);
+	border: 1px solid color(main);
+	border-radius: vw(100);
+	background-color: color(main);
+	font-weight: 600;
+	font-size: vw(24);
+	color: color(gray-ff);
+	box-shadow: $btn-shadow;
 
 	&:before {
 		letter-spacing: -0.04em;
@@ -274,29 +308,32 @@
 // inp-chck-line
 .label-chck-line {
 	display: block;
-	padding: vh(20) vw(30);
-	border: 3px solid color(gray-f5);
-	border-radius: vw(20);
+	padding: vh(15) vw(32);
+	border: 2px solid color(gray-db);
+	border-radius: vw(15);
+	box-shadow: $btn-shadow;
+	text-align: center;
 	
 	.text {
 		position: relative;
-		display: inline-block;
-		padding-left: vw(80);
-		font-size: vw(32);
-		color: color(gray-c9);
+		display: block;
+		font-weight: 600;
+		font-size: vw(28);
+		color: color(gray-80);
+	}
 
-		@include make-before {
-			@include circle(vw(48));
-			@include bg-op($s: vw(22));
-			@include bg-url(icon, 'icon_check_white.svg');
+	.text-sm {
+		display: block;
+		font-size: vw(22);
+		color: color(gray-80);
+	}
+}
 
-			position: absolute;
-			top: 50%;
-			left: 0;
-			background-color: color(gray-c9);
-			box-shadow: 0 1px 4px rgba(172, 179, 185, 0.5);
-			transform: translateY(-50%);
-		}
+.inp-chck-line:disabled ~ .label-chck-line {
+	border-color: color(gray-db);
+	
+	.text {
+		color: color(gray-db);
 	}
 }
 
@@ -304,12 +341,7 @@
 	border-color: color(main);
 	
 	.text {
-		font-weight: 600;
 		color: color(main);
-
-		&:before {
-			background-color: color(main);
-		}
 	}
 
 	@at-root .answer-right & {
@@ -317,10 +349,6 @@
 		
 		.text {
 			color: color(right);
-			
-			&:before {
-				background-color: color(right);
-			}
 		}
 	}
 
@@ -329,10 +357,6 @@
 		
 		.text {
 			color: color(warning);
-			
-			&:before {
-				background-color: color(warning);
-			}
 		}
 	}
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import ImgKkyngi from "../../images/img/cha_kkungi_positive.png";
-import ComponentButtonSpeaker from "./ComponentButtonSpeaker";
+import ComponentButtonPlay from "./ComponentButtonPlay";
 
 const ComponentVocaNote = () => {
 
@@ -15,7 +15,7 @@ const ComponentVocaNote = () => {
             <p className="pinyin">{'yóuyǒng'}</p>
             <p className="mean">{'수영하다'}</p>
           </div>
-          <ComponentButtonSpeaker />
+          <ComponentButtonPlay />
         </li>
         {/* end 반복영역 */}
       </ul>
