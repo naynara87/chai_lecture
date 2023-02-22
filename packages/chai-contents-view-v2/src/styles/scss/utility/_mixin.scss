@@ -13,6 +13,13 @@
 	@content;
 }
 
+@mixin rounded($s) {
+	width: $s;
+	height: $s;
+	border-radius: vw(20);
+	@content;
+}
+
 @mixin square($s) {
 	width: $s;
 	height: $s;

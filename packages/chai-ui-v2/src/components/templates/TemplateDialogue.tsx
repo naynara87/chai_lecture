@@ -28,9 +28,9 @@ const TemplateDialogue = ({
   return (
     <DialogueContainer className="layout-panel-wrap grid-h-3-7">
       <div className="layout-panel side-panel">
-        {/* FIXME: key디자인수정예정 - 음원재생버튼 모양 변경(원이 아닌 모양으로), 이미지 변경 */}
         <div className="cont-info-wrap">
           <div className="btns-wrap">
+            {/* FIXME: key디자인수정예정 - 음원재생버튼 모양 변경(원이 아닌 모양으로), 이미지 변경 */}
             <button className="btn-icon-with-text">
               <div className="icon-wrap">
                 <IconSpeakerComponent />
@@ -64,6 +64,7 @@ const TemplateDialogue = ({
                   <p className="pinyin">{"yóuyǒng"}</p>
                   <p className="mean">{"수영하다"}</p>
                 </div>
+                {/* FIXME: key디자인수정예정 - 음원재생버튼 모양 변경(원이 아닌 모양으로), 이미지 변경 */}
                 <button className="btn-icon">
                   <div className="icon-wrap">
                     <IconSpeakerComponent />

@@ -1,11 +1,9 @@
 import styled from "@emotion/styled";
 import { ModalCommon } from "chai-ui-v2";
 import React from "react";
-import {
-  ComponentButtonBorderMain,
-  ComponentButtonFillBlack,
-  ImgCharacterComponent,
-} from "../atoms";
+import { ImgCharacterComponent } from "../atoms";
+import ComponentButtonRadiBorderMain from "../atoms/ComponentButtonRadiBorderMain";
+import ComponentButtonRadiFillMain from "../atoms/ComponentButtonRadiFillMain";
 
 // 임의 컬러. 대교측에서 색 변경 요청하여 230217 회의 이후 정해질 예정
 // const RightColor = "#5BD37D";
@@ -73,8 +71,8 @@ const LayoutModalSolution = ({
 
       {/* NOTE: 설명 - 버튼이 하나만 들어갈 수도 있음 */}
       <div className="btns-wrap">
-        <ComponentButtonBorderMain text="자세한 설명 들으러 가기" />
-        <ComponentButtonFillBlack text="확인" />
+        <ComponentButtonRadiBorderMain text="자세한 설명 들으러 가기" />
+        <ComponentButtonRadiFillMain text="확인" />
       </div>
     </ModalCommon>
   );
