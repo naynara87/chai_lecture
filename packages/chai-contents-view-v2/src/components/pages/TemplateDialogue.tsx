@@ -3,11 +3,11 @@ import React from "react";
 import ImgCharacter from "../../images/img/cha_didi_glasses.png";
 import ImgKkyngi from "../../images/img/cha_kkungi_positive.png";
 import IconSpeaker from "../../images/icon/icon_speaker_white.svg";
-import IconPlay from "../../images/icon/icon_play.svg";
 import ImgProfileDefault from "../../images/img/img_profile_default.png";
 import ImgTemp01 from "../../images/img/temp_profile01.png";
 import LayoutModal from "../molecules/LayoutModal";
 import LayoutModalVoca from "../molecules/LayoutModalVoca";
+import ComponentButtonPlay from "../molecules/ComponentButtonPlay";
 
 const DialogueContainer = styled.div`
 `;
@@ -19,10 +19,8 @@ const TemplateDialogue = () => {
       <div className="layout-panel side-panel">
         <div className="cont-info-wrap">
           <div className="btns-wrap">
-              <button className="btn-icon">
-                <img src={IconPlay} alt="재생" className="icon" />
-              </button>
-              <p className="txt">전체 음성 듣기</p>
+            <ComponentButtonPlay />
+            <p className="txt">전체 음성 듣기</p>
           </div>
           {/* 말풍선 캐릭터 */}
           <div className="character-wrapper none">
@@ -43,12 +41,7 @@ const TemplateDialogue = () => {
                   <p className="pinyin">{'yóuyǒng'}</p>
                   <p className="mean">{'수영하다'}</p>
                 </div>
-                {/* FIXME: key디자인수정예정 - 음원재생버튼 모양 변경(원이 아닌 모양으로), 이미지 변경 */}
-                <button className="btn-icon">
-                  <div className="icon-wrap">
-                    <img src={IconSpeaker} alt="스피커모양" className="icon" />
-                  </div>
-                </button>
+                <ComponentButtonPlay />
               </li>
               {/* end 반복영역 */}
             </ul>
@@ -60,7 +53,6 @@ const TemplateDialogue = () => {
       <div className="layout-panel wide-panel conversation-panel-wrap">
         {/* 230216 회화의 제목이 있을 때에만 사용 */}
         {/* ComponentTitle */}
-        {/* FIXME: key디자인수정예정 - 앞 아이콘 -> 기호 */}
         <h2 className="conts-ttl">{'대화 내용을 잘 들어보세요'}</h2>
         {/* end ComponentTitle */}
         {/* 230216 회화에서 한어병음과 뜻의 보임 여부를 선택할 때 사용 */}
