@@ -19,7 +19,12 @@
 	}
 
 	.btns-wrap {
+		display: block;
 		margin-bottom: vh(57);
+
+		.txt {
+			font-size: vw(26);
+		}
 	}
 
 	.text-wrap {

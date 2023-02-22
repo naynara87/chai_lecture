@@ -3,6 +3,7 @@ import React from "react";
 import ImgCharacter from "../../images/img/cha_didi_glasses.png";
 import ImgKkyngi from "../../images/img/cha_kkungi_positive.png";
 import IconSpeaker from "../../images/icon/icon_speaker_white.svg";
+import IconPlay from "../../images/icon/icon_play.svg";
 import ImgProfileDefault from "../../images/img/img_profile_default.png";
 import ImgTemp01 from "../../images/img/temp_profile01.png";
 import LayoutModal from "../molecules/LayoutModal";
@@ -18,13 +19,10 @@ const TemplateDialogue = () => {
       <div className="layout-panel side-panel">
         <div className="cont-info-wrap">
           <div className="btns-wrap">
-            {/* FIXME: key디자인수정예정 - 음원재생버튼 모양 변경(원이 아닌 모양으로), 이미지 변경 */}
-            <button className="btn-icon-with-text">
-              <div className="icon-wrap">
-                <img src={IconSpeaker} alt="스피커모양" className="icon" />
-              </div>
+              <button className="btn-icon">
+                <img src={IconPlay} alt="재생" className="icon" />
+              </button>
               <p className="txt">전체 음성 듣기</p>
-            </button>
           </div>
           {/* 말풍선 캐릭터 */}
           <div className="character-wrapper none">
