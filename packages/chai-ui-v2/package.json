@@ -37,6 +37,7 @@
   },
   "devDependencies": {
     "@babel/core": "*",
+    "@rollup/plugin-url": "^8.0.1",
     "@storybook/addon-actions": "*",
     "@storybook/addon-essentials": "*",
     "@storybook/addon-interactions": "*",
@@ -45,6 +46,8 @@
     "@storybook/manager-webpack4": "*",
     "@storybook/react": "*",
     "@storybook/testing-library": "*",
-    "babel-loader": "*"
+    "babel-loader": "*",
+    "rollup-plugin-copy": "^3.4.0",
+    "rollup-plugin-scss": "^4.0.0"
   }
 }

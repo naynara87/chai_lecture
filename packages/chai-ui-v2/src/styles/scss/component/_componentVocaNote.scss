@@ -1,0 +1,56 @@
+/* =================== componentVocaNote =================== */
+.voca-bote-container {
+	@include full;
+	padding: vh(24) vw(20);
+	overflow: auto;
+	border: 1px solid #DBE1FF;
+	border-radius: vw(20);
+	background-color: #F4F3FA;
+}
+
+.voca-title {
+	z-index: z(zero);
+	position: relative;
+	padding-bottom: vh(14);
+	font-size: vw(22);
+	text-align: center;
+
+	.img {
+		position: absolute;
+		top: vh(-8);
+		left: 0;
+		width: vw(90);
+	}
+}
+
+.voca-list-wrap {
+	z-index: z(one);
+	position: relative;
+}
+
+.voca-list {
+	@include flex-btw;
+	
+	padding: vh(15) vw(20);
+	border-radius: vw(10);
+	background-color: color(gray-ff);
+
+	&:not(:first-child) {
+		margin-top: vh(20);
+	}
+
+	.chinese {
+		font-weight: 600;
+		font-size: vw(28);
+	}
+
+	.pinyin {
+		font-size: vw(22);
+		color: color(gray-80);
+	}
+
+	.mean {
+		font-size: vw(22);
+		color: color(gray-80);
+	}
+}

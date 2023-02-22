@@ -41,7 +41,7 @@ const CreateLayout = () => {
 
   const handleLayoutClick = (
     layoutName: CreateTemplateType,
-    layoutAreaIndex: number
+    layoutAreaIndex: number,
   ) => {
     setContentLayout({ layoutName, layoutAreaIndex });
     console.log("selected layout: ", layoutName);
