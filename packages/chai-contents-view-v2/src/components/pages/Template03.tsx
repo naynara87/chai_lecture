@@ -9,7 +9,7 @@ const Template03 = () => {
   const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
 
   return (
-    <div className="layout-panel-wrap grid37">
+    <div className="layout-panel-wrap grid-h-3-7">
       <div className="layout-panel side-panel">
         <ComponentContsInfo />
       </div>
