@@ -6,7 +6,7 @@ import ComponentContsInfo from "../molecules/ComponentContsInfo";
 
 const QuizContainer = styled.form``;
 
-interface TemplateQuizChoiceProps extends TemplateProps {}
+interface TemplateQuizChoiceProps extends TemplateProps { }
 
 const TemplateQuizChoice = ({
   page,
@@ -34,7 +34,10 @@ const TemplateQuizChoice = ({
           <div className="quiz-question-wrap">
             <p className="text-md">{`제3성이 연이어 나올 때,
 올바르게 발음한 것을 고르세요.`}</p>
+            <p className="text-lg">{`在`}</p>
           </div>
+          {/* TODO: key설명 - 클릭하면 input들 disabled 되고, 
+          정답이면 answer-right 오답이면 answer-wrong 클래스 추가 */}
           <div className="quiz-answer-wrap hori-answer-wrap">
             <div className="inp-grp">
               <input

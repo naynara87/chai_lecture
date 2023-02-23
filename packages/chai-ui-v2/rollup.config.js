@@ -16,6 +16,7 @@ export default {
       output: "./dist/globalStyle.css",
       fileName: "globalStyle.css",
       failOnError: true,
+      watch: "src/styles/scss",
     }),
     Ts(),
     image(),

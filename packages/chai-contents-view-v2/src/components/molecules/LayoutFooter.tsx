@@ -13,7 +13,7 @@ const LayoutFooter = () => {
         {/* position: absolute */}
         {/* TODO: key설명 - 클릭시 스스로와 cai-nav-container에 active 추가 */}
         <button className="btn-ft-text">
-          학습순서
+          코너
           <img src={iconOpen} alt="" className="icon icon-open" />
           <img src={iconClose} alt="" className="icon icon-close" />
         </button>
@@ -53,7 +53,7 @@ const LayoutFooter = () => {
             </li>
           </ul>
           <div className="btn-wrap">
-            <ComponentButtonFillBlack text={"학습 중단"} />
+            <ComponentButtonFillBlack text={"나가기"} />
           </div>
         </nav>
       </div>

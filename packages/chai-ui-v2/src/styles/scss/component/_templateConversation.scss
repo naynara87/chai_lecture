@@ -30,6 +30,8 @@
 		overflow: hidden;
 		z-index: z(two);
 		position: relative;
+		border: 6px solid color(gray-ff);
+		box-shadow: $btn-shadow;
 	}
 
 	.profile {
@@ -49,7 +51,11 @@
 	}
 
 	.name {
+		width: vw(100);
+		margin-top: vh(10);
 		font-size: vw(22);
+		color: color(gray-66);
+		text-align: center;
 	}
 
 	.chinese {
