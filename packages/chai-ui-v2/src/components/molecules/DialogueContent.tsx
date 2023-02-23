@@ -1,6 +1,6 @@
 import React from "react";
 import { ImgProfileDefaultComponent } from "../atoms";
-import ComponentQuizDialogueWordBlankSelectBoxes from "./ComponentQuizDialogueWordBlankSelectBoxes";
+import QuizDialogueWordBlankSelectBoxes from "./QuizDialogueWordBlankSelectBoxes";
 
 const DialogueContent = () => {
   {
@@ -32,7 +32,7 @@ const DialogueContent = () => {
         </p>
         <p className="pinyin">{"Jīntiān guā fēng, xià xuě, hěn lěng."}</p>
         <p className="mean">{"오늘은 바람이 불고, 눈이 내려서 추워."}</p>
-        <ComponentQuizDialogueWordBlankSelectBoxes />
+        <QuizDialogueWordBlankSelectBoxes />
       </div>
     </li>
   );

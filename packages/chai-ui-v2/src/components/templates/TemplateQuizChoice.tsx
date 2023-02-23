@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import React, { useState } from "react";
 import { LayoutModalSolution, LayoutModalVoca } from "../modal";
 import ComponentContsInfo from "../molecules/ComponentContsInfo";
-import ComponentQuizSelectBoxes from "../molecules/ComponentQuizSelectBoxes";
+import QuizChoiceSelectBoxes from "../molecules/QuizChoiceSelectBoxes";
 
 const QuizContainer = styled.form``;
 
@@ -24,7 +24,7 @@ const TemplateQuizChoice = () => {
           </div>
           {/* TODO: key설명 - 클릭하면 input들 disabled 되고, 
           정답이면 answer-right 오답이면 answer-wrong 클래스 추가 */}
-          <ComponentQuizSelectBoxes />
+          <QuizChoiceSelectBoxes />
         </QuizContainer>
       </div>
       <LayoutModalSolution
