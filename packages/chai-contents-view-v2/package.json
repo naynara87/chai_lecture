@@ -27,10 +27,10 @@
     "web-vitals": "*"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "dev": "react-scripts start",
-    "build": "react-scripts build",
-    "build:prod": "react-scripts build",
+    "start": "craco start",
+    "dev": "craco start",
+    "build": "craco build",
+    "build:prod": "craco build",
     "check-ts": "tsc --noEmit"
   },
   "eslintConfig": {
@@ -50,5 +50,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@craco/craco": "^7.0.0",
+    "@emotion/babel-plugin": "^11.10.6"
   }
 }

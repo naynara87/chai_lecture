@@ -12,9 +12,9 @@
     "@types/node": "*",
     "@types/react": "*",
     "@types/react-dom": "*",
+    "axios": "*",
     "chai-ui-v2": "*",
     "cross-env": "*",
-    "axios": "*",
     "react": "*",
     "react-dom": "*",
     "react-router-dom": "*",
@@ -26,13 +26,15 @@
     "web-vitals": "*"
   },
   "devDependencies": {
+    "@craco/craco": "^7.0.0",
+    "@emotion/babel-plugin": "^11.10.6",
     "env-cmd": "*"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "dev": "cross-env PORT=3001 react-scripts start",
-    "build": "react-scripts build",
-    "build:prod": "react-scripts build",
+    "start": "craco start",
+    "dev": "cross-env PORT=3001 craco start",
+    "build": "craco build",
+    "build:prod": "craco build",
     "check-ts": "tsc --noEmit"
   },
   "eslintConfig": {
