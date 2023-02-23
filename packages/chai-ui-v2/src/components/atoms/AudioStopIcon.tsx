@@ -1,9 +1,12 @@
 import React from "react";
+import { colorPalette } from "../../styles";
 
 interface AudioStopIconProps {
   color?: string;
 }
-const AudioStopIcon = ({ color = "#E45757" }: AudioStopIconProps) => {
+const AudioStopIcon = ({
+  color = `${colorPalette.red600}`,
+}: AudioStopIconProps) => {
   return (
     <svg
       width="90"

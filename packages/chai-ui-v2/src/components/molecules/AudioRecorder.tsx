@@ -7,6 +7,7 @@ import React, {
   useState,
 } from "react";
 import { useReactMediaRecorder } from "react-media-recorder";
+import { colorPalette } from "../../styles";
 import HeadsetButton from "../atoms/Button/HeadsetButton";
 import MikeButton from "../atoms/Button/MikeButton";
 import ResetButton from "../atoms/Button/ResetButton";
@@ -127,7 +128,7 @@ const AudioRecorder = () => {
     if (recordedAudioState === "not-recorded") {
       return <HeadsetButton active={false} />;
     } else if (recordedAudioState === "playing") {
-      return <StopButton color="#F5B057" />;
+      return <StopButton color={colorPalette.orange300} />;
     } else {
       // recordedAudioState === "recorded"
       return <HeadsetButton active />;

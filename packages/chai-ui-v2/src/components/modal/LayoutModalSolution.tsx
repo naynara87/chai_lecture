@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
+import { colorPalette } from "../../styles";
 import { ImgCharacterComponent } from "../atoms";
 import ComponentButtonRadiBorderMain from "../atoms/ComponentButtonRadiBorderMain";
 import ComponentButtonRadiFillMain from "../atoms/ComponentButtonRadiFillMain";
@@ -8,17 +9,17 @@ import ModalCommon from "./ModalCommon";
 // 임의 컬러. 대교측에서 색 변경 요청하여 230217 회의 이후 정해질 예정
 // const RightColor = "#5BD37D";
 // const WrongColor = "#EC5757";
-const TextColor = "#222222";
+// const TextColor = "#222222";
 
 const ModalBaseTitle = styled.div`
   .profile-img-wrap {
     /* NOTE: 설명 - 오답일땐 오답 컬러, 정답일 땐 정답 컬러 */
-    background-color: ${TextColor};
+    background-color: ${colorPalette.black};
   }
 
   .ttl {
     /* NOTE: 설명 - 오답일땐 오답 컬러, 정답일 땐 정답 컬러 */
-    color: ${TextColor};
+    color: ${colorPalette.black};
   }
 `;
 
