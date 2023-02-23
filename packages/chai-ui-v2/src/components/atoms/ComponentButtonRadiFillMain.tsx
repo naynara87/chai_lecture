@@ -1,7 +1,7 @@
 import React from "react";
 
 interface ComponentButtonRadiFillMainProps {
-  text: String;
+  text: string;
 }
 
 const ComponentButtonRadiFillMain = ({

@@ -1,16 +1,14 @@
 import styled from "@emotion/styled";
-import React from "react";
-import ImgCharacter from "../../images/img/cha_didi_glasses.png";
-import ImgKkyngi from "../../images/img/cha_kkungi_positive.png";
-import IconSpeaker from "../../images/icon/icon_speaker_white.svg";
-import ImgProfileDefault from "../../images/img/img_profile_default.png";
-import ImgTemp01 from "../../images/img/temp_profile01.png";
-import ComponentVocaNote from "../molecules/ComponentVocaNote";
-import LayoutModal from "../molecules/LayoutModal";
-import LayoutModalVoca from "../molecules/LayoutModalVoca";
-import ComponentButtonBorderMain from "../molecules/ComponentButtonBorderMain";
-import ComponentButtonFillBlack from "../molecules/ComponentButtonFillBlack";
+import React, { useEffect, useState } from "react";
 import ComponentTitle from "../molecules/ComponentTitle";
+import { LayoutModalSolution, LayoutModalVoca } from "../modal";
+import {
+  ComponentButtonBorderMain,
+  ComponentButtonFillBlack,
+  ImgProfileDefaultComponent,
+  ImgTemp01Component,
+} from "../atoms";
+import { TemplateProps } from "../../core";
 
 const DialogueContainer = styled.div`
   .conversation-wrap {
@@ -29,7 +27,19 @@ const QuizContainer = styled.form`
   }
 `;
 
-const TemplateQuizDialogueSentenceBlank = () => {
+interface TemplateQuizDialogueSentenceBlankProps extends TemplateProps {}
+
+const TemplateQuizDialogueSentenceBlank = ({
+  page,
+  setPageCompleted,
+}: TemplateQuizDialogueSentenceBlankProps) => {
+  const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(false);
+  const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
+
+  useEffect(() => {
+    setPageCompleted();
+    console.log(page);
+  }, [setPageCompleted, page]);
 
   return (
     <DialogueContainer className="layout-panel-wrap grid-h-5-5">
@@ -43,11 +53,13 @@ const TemplateQuizDialogueSentenceBlank = () => {
             <div className="img-wrap">
               {/* TODO: key설명 - 누르면 단일 음성이 재생됨 */}
               <div className="img-round">
-                <button className="btn-profile"><img src={ImgProfileDefault} alt="" className="profile" /></button>
+                <button className="btn-profile">
+                  <ImgProfileDefaultComponent />
+                </button>
               </div>
             </div>
             <div className="txt-wrap">
-              <p className="chinese">{'今天刮风，下雪，很冷。'}</p>
+              <p className="chinese">{"今天刮风，下雪，很冷。"}</p>
             </div>
           </li>
           {/* end speech bubble */}
@@ -55,7 +67,9 @@ const TemplateQuizDialogueSentenceBlank = () => {
             <div className="img-wrap">
               {/* TODO: key설명 - 누르면 단일 음성이 재생됨 */}
               <div className="img-round">
-                <button className="btn-profile"><img src={ImgTemp01} alt="" className="profile" /></button>
+                <button className="btn-profile">
+                  <ImgTemp01Component />
+                </button>
               </div>
             </div>
             <div className="txt-wrap">
@@ -66,7 +80,9 @@ const TemplateQuizDialogueSentenceBlank = () => {
             <div className="img-wrap">
               {/* TODO: key설명 - 누르면 단일 음성이 재생됨 */}
               <div className="img-round">
-                <button className="btn-profile"><img src={ImgProfileDefault} alt="" className="profile" /></button>
+                <button className="btn-profile">
+                  <ImgProfileDefaultComponent />
+                </button>
               </div>
             </div>
             <div className="txt-wrap">
@@ -77,18 +93,22 @@ const TemplateQuizDialogueSentenceBlank = () => {
             <div className="img-wrap">
               {/* TODO: key설명 - 누르면 단일 음성이 재생됨 */}
               <div className="img-round">
-                <button className="btn-profile"><img src={ImgTemp01} alt="" className="profile" /></button>
+                <button className="btn-profile">
+                  <ImgTemp01Component />
+                </button>
               </div>
             </div>
             <div className="txt-wrap">
-              <p className="chinese">{'我觉得这里的冬天没有中国那么冷。'}</p>
+              <p className="chinese">{"我觉得这里的冬天没有中国那么冷。"}</p>
             </div>
           </li>
           <li className="conversation-wrap">
             <div className="img-wrap">
               {/* TODO: key설명 - 누르면 단일 음성이 재생됨 */}
               <div className="img-round">
-                <button className="btn-profile"><img src={ImgProfileDefault} alt="" className="profile" /></button>
+                <button className="btn-profile">
+                  <ImgProfileDefaultComponent />
+                </button>
               </div>
             </div>
             <div className="txt-wrap">
@@ -99,11 +119,13 @@ const TemplateQuizDialogueSentenceBlank = () => {
             <div className="img-wrap">
               {/* TODO: key설명 - 누르면 단일 음성이 재생됨 */}
               <div className="img-round">
-                <button className="btn-profile"><img src={ImgTemp01} alt="" className="profile" /></button>
+                <button className="btn-profile">
+                  <ImgTemp01Component />
+                </button>
               </div>
             </div>
             <div className="txt-wrap">
-              <p className="chinese">{'我觉得这里的冬天没有中国那么冷。'}</p>
+              <p className="chinese">{"我觉得这里的冬天没有中国那么冷。"}</p>
             </div>
           </li>
         </ul>
@@ -112,16 +134,39 @@ const TemplateQuizDialogueSentenceBlank = () => {
         <QuizContainer method="post" className="quiz-container">
           <div className="quiz-answer-wrap hori-answer-wrap">
             <div className="inp-grp">
-              <input type="checkbox" name="answer1" id="answer1" className="inp-chck-gray none" />
-              <label htmlFor="answer1" className="label-chck-gray"><span className="text">{ "你最后一次在哪儿用过？" }</span></label>
+              <input
+                type="checkbox"
+                name="answer1"
+                id="answer1"
+                className="inp-chck-gray none"
+              />
+              <label htmlFor="answer1" className="label-chck-gray">
+                <span className="text">{"你最后一次在哪儿用过？"}</span>
+              </label>
             </div>
             <div className="inp-grp">
-              <input type="checkbox" name="answer2" id="answer2" className="inp-chck-gray none" />
-              <label htmlFor="answer2" className="label-chck-gray"><span className="text">{ "真的？你找找包里。" }</span></label>
+              <input
+                type="checkbox"
+                name="answer2"
+                id="answer2"
+                className="inp-chck-gray none"
+              />
+              <label htmlFor="answer2" className="label-chck-gray">
+                <span className="text">{"真的？你找找包里。"}</span>
+              </label>
             </div>
             <div className="inp-grp">
-              <input type="checkbox" name="answer3" id="answer3" className="inp-chck-gray none" />
-              <label htmlFor="answer3" className="label-chck-gray"><span className="text">{ "从那儿出来以后，我就再也没用过。" }</span></label>
+              <input
+                type="checkbox"
+                name="answer3"
+                id="answer3"
+                className="inp-chck-gray none"
+              />
+              <label htmlFor="answer3" className="label-chck-gray">
+                <span className="text">
+                  {"从那儿出来以后，我就再也没用过。"}
+                </span>
+              </label>
             </div>
           </div>
         </QuizContainer>
@@ -130,8 +175,14 @@ const TemplateQuizDialogueSentenceBlank = () => {
           <ComponentButtonFillBlack text="제출하기" />
         </div>
       </div>
-      <LayoutModal />
-      <LayoutModalVoca />
+      <LayoutModalSolution
+        isModalOpen={isModalSolutionOpen}
+        setIsModalOpen={setIsModalSolutionOpen}
+      />
+      <LayoutModalVoca
+        isModalOpen={isModalVocaOpen}
+        setIsModalOpen={setIsModalVocaOpen}
+      />
     </DialogueContainer>
   );
 };

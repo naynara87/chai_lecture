@@ -2,10 +2,9 @@ import styled from "@emotion/styled";
 import React from "react";
 import ImgTemp01 from "../../images/img/temp_profile01.png";
 import ImgTemp02 from "../../images/img/temp_profile02.png";
-import ComponentButtonBorderMain from "./ComponentButtonBorderMain";
-import ComponentButtonFillBlack from "./ComponentButtonFillBlack";
+import { ComponentButtonBorderMain, ComponentButtonFillBlack } from "../atoms";
 
-const ChoiceRoleWrapper = styled.div `
+const ChoiceRoleWrapper = styled.div`
   .btn-wrap {
     .btn {
       // 471px
@@ -15,7 +14,6 @@ const ChoiceRoleWrapper = styled.div `
 `;
 
 const ComponentChoiceRole = () => {
-
   return (
     <ChoiceRoleWrapper className="choice-role-wrapper">
       <ul className="choice-role-list-wrap">
@@ -24,7 +22,7 @@ const ComponentChoiceRole = () => {
           <div className="img-wrap">
             <img src={ImgTemp01} alt="레이" className="img" />
           </div>
-          <p className="name">{'레이'}</p>
+          <p className="name">{"레이"}</p>
           <ComponentButtonFillBlack text={"선택"} />
         </li>
         {/* end 반복영역 */}
@@ -32,7 +30,7 @@ const ComponentChoiceRole = () => {
           <div className="img-wrap">
             <img src={ImgTemp02} alt="왕리리" className="img" />
           </div>
-          <p className="name">{'왕리리'}</p>
+          <p className="name">{"왕리리"}</p>
           <ComponentButtonFillBlack text={"선택"} />
         </li>
       </ul>

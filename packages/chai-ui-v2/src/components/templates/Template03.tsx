@@ -1,12 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { TemplateProps } from "../../core";
 import LayoutModalSolution from "../modal/LayoutModalSolution";
 import LayoutModalVoca from "../modal/LayoutModalVoca";
 import ComponentContsInfo from "../molecules/ComponentContsInfo";
 import ComponentRoleplay from "../molecules/ComponentRoleplay";
 
-const Template03 = () => {
+interface Template03Props extends TemplateProps {}
+
+const Template03 = ({ page, setPageCompleted }: Template03Props) => {
   const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(false);
   const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
+
+  useEffect(() => {
+    setPageCompleted();
+    console.log(page);
+  }, [setPageCompleted, page]);
 
   return (
     <div className="layout-panel-wrap grid-h-3-7">

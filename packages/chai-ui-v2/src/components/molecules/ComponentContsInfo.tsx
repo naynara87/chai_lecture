@@ -1,21 +1,20 @@
-import styled from "@emotion/styled";
 import React from "react";
-import ImgCharacter from "../../images/img/cha_didi_glasses.png";
+import { ImgCharacterComponent } from "../atoms";
 
 interface ComponentContsInfoProps {
-  text: String,
+  text: string;
 }
 
 // const ModalBase = styled.div`
 // `;
 
-const ComponentContsInfo = ({text}: ComponentContsInfoProps) => {
+const ComponentContsInfo = ({ text }: ComponentContsInfoProps) => {
   return (
     <div className="cont-info-wrap">
       <div className="character-wrapper">
-        <div className="text-wrap">{ text }</div>
+        <div className="text-wrap">{text}</div>
         <div className="character-wrap">
-          <img src={ImgCharacter} alt="" className="img" />
+          <ImgCharacterComponent />
         </div>
       </div>
     </div>

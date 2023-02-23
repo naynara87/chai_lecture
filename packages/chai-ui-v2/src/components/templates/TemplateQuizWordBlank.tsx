@@ -1,17 +1,16 @@
 import styled from "@emotion/styled";
-import React from "react";
-import LayoutModal from "../molecules/LayoutModal";
-import LayoutModalVoca from "../molecules/LayoutModalVoca";
-import ComponentButtonPlay from "../molecules/ComponentButtonPlay";
-import ComponentContsInfo from "../molecules/ComponentContsInfo";
-import ImgTemp01 from "../../images/img/temp_profile01.png";
-import ComponentButtonRadiFillMain from "../molecules/ComponentButtonRadiFillMain";
-import ComponentButtonRadiBorderMain from "../molecules/ComponentButtonRadiBorderMain";
-import LayoutModalContinue from "../molecules/LayoutModalContinue";
+import React, { useEffect, useState } from "react";
+import { TemplateProps } from "../../core";
+import { ImgTemp01Component } from "../atoms";
+import ComponentButtonPlay from "../atoms/ComponentButtonPlay";
+import ComponentButtonRadiBorderMain from "../atoms/ComponentButtonRadiBorderMain";
+import ComponentButtonRadiFillMain from "../atoms/ComponentButtonRadiFillMain";
+import { LayoutModalSolution, LayoutModalVoca } from "../modal";
+import { ComponentContsInfo } from "../molecules";
 
 const QuizContainer = styled.form`
   .quiz-question-wrap {
-    .btn-icon  {
+    .btn-icon {
       // 40px
       margin-top: 3.33vh;
     }
@@ -39,19 +38,33 @@ const QuizContainer = styled.form`
   }
 `;
 
-const TemplateQuizWordBlank = () => {
+interface TemplateQuizWordBlankProps extends TemplateProps {}
+
+const TemplateQuizWordBlank = ({
+  page,
+  setPageCompleted,
+}: TemplateQuizWordBlankProps) => {
+  const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(false);
+  const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
+
+  useEffect(() => {
+    setPageCompleted();
+    console.log(page);
+  }, [setPageCompleted, page]);
 
   return (
     <div className="layout-panel-wrap grid-h-3-7">
       <div className="layout-panel side-panel">
-        <ComponentContsInfo text="단어를 올바른 순서에 맞게
+        <ComponentContsInfo
+          text="단어를 올바른 순서에 맞게
 선택해 문장을
-완성해 보세요." />
+완성해 보세요."
+        />
       </div>
       <div className="layout-panel wide-panel">
         <QuizContainer method="post" className="quiz-container">
           <div className="quiz-question-wrap">
-            <img src={ImgTemp01} alt="예시" />
+            <ImgTemp01Component />
             <div className="btns-wrap">
               <ComponentButtonPlay />
             </div>
@@ -67,8 +80,8 @@ const TemplateQuizWordBlank = () => {
               <small className="sm">{"beijing"}</small>
             </div>
             <div className="text">
-              <span className="">{'冬天'}</span>
-              <small className="sm">{'Dōngtiān'}</small>
+              <span className="">{"冬天"}</span>
+              <small className="sm">{"Dōngtiān"}</small>
             </div>
             <div className="blank text">
               <span className="">&nbsp;</span>
@@ -90,14 +103,24 @@ const TemplateQuizWordBlank = () => {
               </label>
             </div>
             <div className="inp-grp">
-              <input type="checkbox" name="answer2" id="answer2" className="inp-chck-line none" />
+              <input
+                type="checkbox"
+                name="answer2"
+                id="answer2"
+                className="inp-chck-line none"
+              />
               <label htmlFor="answer2" className="label-chck-line">
                 <span className="text">{"首尔的"}</span>
                 <span className="text-sm">{"Shǒu'ěr de"}</span>
               </label>
             </div>
             <div className="inp-grp">
-              <input type="checkbox" name="answer3" id="answer3" className="inp-chck-line none" />
+              <input
+                type="checkbox"
+                name="answer3"
+                id="answer3"
+                className="inp-chck-line none"
+              />
               <label htmlFor="answer3" className="label-chck-line">
                 <span className="text">{"没有"}</span>
                 <span className="text-sm">{"Méiyǒu"}</span>
@@ -105,7 +128,13 @@ const TemplateQuizWordBlank = () => {
             </div>
             {/* TODO: key설명 선택한 단어는 disabled */}
             <div className="inp-grp">
-              <input type="checkbox" name="answer4" id="answer4" className="inp-chck-line none" disabled />
+              <input
+                type="checkbox"
+                name="answer4"
+                id="answer4"
+                className="inp-chck-line none"
+                disabled
+              />
               <label htmlFor="answer4" className="label-chck-line">
                 <span className="text">{"北京"}</span>
                 <span className="text-sm">{"beijing"}</span>
@@ -118,9 +147,14 @@ const TemplateQuizWordBlank = () => {
           </div>
         </QuizContainer>
       </div>
-      <LayoutModal />
-      <LayoutModalContinue />
-      <LayoutModalVoca />
+      <LayoutModalSolution
+        isModalOpen={isModalSolutionOpen}
+        setIsModalOpen={setIsModalSolutionOpen}
+      />
+      <LayoutModalVoca
+        isModalOpen={isModalVocaOpen}
+        setIsModalOpen={setIsModalVocaOpen}
+      />
     </div>
   );
 };
