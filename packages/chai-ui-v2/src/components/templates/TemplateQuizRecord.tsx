@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
-import React, { useEffect, useState } from "react";
-import { TemplateProps } from "../../core";
+import React, { useState } from "react";
 import { ComponentButtonFillBlack } from "../atoms";
 import { LayoutModalSolution, LayoutModalVoca } from "../modal";
 import ComponentContsInfo from "../molecules/ComponentContsInfo";
@@ -15,19 +14,9 @@ const QuizContainer = styled.form`
 
 // FIXME: key 퀴즈가 아님. 각 요소들 component 화 하기
 
-interface TemplateQuizRecordProps extends TemplateProps {}
-
-const TemplateQuizRecord = ({
-  page,
-  setPageCompleted,
-}: TemplateQuizRecordProps) => {
+const TemplateQuizRecord = () => {
   const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(false);
   const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
-
-  useEffect(() => {
-    setPageCompleted();
-    console.log(page);
-  }, [setPageCompleted, page]);
 
   return (
     <div className="layout-panel-wrap grid-h-3-7">

@@ -27,7 +27,7 @@ const ModalBaseContents = styled.div`
   align-items: flex-start;
 `;
 
-interface LayoutModalProps {
+interface LayoutModalSolutionProps {
   isModalOpen: boolean;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -35,7 +35,7 @@ interface LayoutModalProps {
 const LayoutModalSolution = ({
   isModalOpen,
   setIsModalOpen,
-}: LayoutModalProps) => {
+}: LayoutModalSolutionProps) => {
   const handleClose = () => {
     setIsModalOpen(false);
   };
@@ -46,7 +46,10 @@ const LayoutModalSolution = ({
       {/* 제목영역 */}
       <ModalBaseTitle className="base-ttl">
         <div className="profile-img-wrap">
-          <ImgCharacterComponent />
+          <ImgCharacterComponent
+            characterType="kkungiSmile"
+            characterAlt="꿍이"
+          />
         </div>
         <div className="txt-wrap">
           {/* 간지 */}

@@ -29,7 +29,6 @@ const LayoutModalVoca = ({
       <div className="base-ttl">
         <div className="profile-img-wrap">
           <ImgVocaComponent />
-          {/* <img src="images/img/img_voca.png" alt="" /> */}
         </div>
         <div className="txt-wrap">
           <h2 className="ttl">새로운 단어</h2>

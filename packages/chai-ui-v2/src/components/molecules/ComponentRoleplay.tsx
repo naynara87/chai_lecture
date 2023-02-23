@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
-import ImgProfileDefault from "../../images/img/img_profile_default.png";
-import ImgTemp01 from "../../images/img/temp_profile01.png";
 import AudioRecorder from "./AudioRecorder";
+import ComponentRecordButton from "./ComponentRecordButton";
+import { ImgProfileDefaultComponent, ImgTemp01Component } from "../atoms";
 
 const DialogueWrapper = styled.ul`
   .right-conts .bubble-wrap {
@@ -26,7 +26,7 @@ const ComponentRoleplay = () => {
             {/* TODO: key설명 - 누르면 단일 음성이 재생됨 */}
             <div className="img-round">
               <button className="btn-profile">
-                <img src={ImgProfileDefault} alt="" className="profile" />
+                <ImgProfileDefaultComponent />
               </button>
             </div>
           </div>
@@ -37,6 +37,7 @@ const ComponentRoleplay = () => {
               <p className="pinyin">{"Jīntiān guā fēng, xià xuě, hěn lěng."}</p>
               <p className="mean">{"오늘은 바람이 불고, 눈이 내려서 추워."}</p>
               <AudioRecorder />
+              <ComponentRecordButton />
             </BubbleWrap>
           </div>
         </li>
@@ -46,7 +47,7 @@ const ComponentRoleplay = () => {
             {/* TODO: key설명 - 누르면 단일 음성이 재생됨 */}
             <div className="img-round">
               <button className="btn-profile">
-                <img src={ImgTemp01} alt="" className="profile" />
+                <ImgTemp01Component />
               </button>
             </div>
           </div>
@@ -63,6 +64,7 @@ const ComponentRoleplay = () => {
                 {"나는 여기 겨울이 중국만큼 춥지 않은 것 같아."}
               </div>
               {/* <AudioRecorder /> */}
+              <ComponentRecordButton />
             </BubbleWrap>
           </div>
         </li>

@@ -5,3 +5,4 @@ export { default as ComponentRoleplay } from "./ComponentRoleplay";
 export { default as ComponentTitle } from "./ComponentTitle";
 export { default as ComponentToggle } from "./ComponentToggle";
 export { default as ComponentVocaNote } from "./ComponentVocaNote";
+export { default as ComponentQuizSelectBoxes } from "./ComponentQuizSelectBoxes";

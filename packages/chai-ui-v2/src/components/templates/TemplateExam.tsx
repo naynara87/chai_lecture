@@ -1,20 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { TemplateProps } from "../../core";
+import React, { useState } from "react";
 import { ComponentVideo } from "../atoms";
 import LayoutModalSolution from "../modal/LayoutModalSolution";
 import LayoutModalVoca from "../modal/LayoutModalVoca";
 import ComponentTitle from "../molecules/ComponentTitle";
 
-interface Template01Props extends TemplateProps {}
-
-const TemplateExam = ({ page, setPageCompleted }: Template01Props) => {
+const TemplateExam = () => {
   const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(false);
   const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
-
-  useEffect(() => {
-    setPageCompleted();
-    console.log(page);
-  }, [setPageCompleted, page]);
 
   return (
     <div className="layout-panel-wrap">

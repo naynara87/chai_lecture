@@ -1,27 +1,16 @@
 import styled from "@emotion/styled";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { LayoutModalSolution, LayoutModalVoca } from "../modal";
 import ImgProfileDefaultComponent from "../atoms/ImgProfileDefaultComponent";
 import ImgTemp01Component from "../atoms/ImgTemp01Component";
-import { TemplateProps } from "../../core";
 
 const DialogueContainer = styled.div``;
 
 const QuizContainer = styled.form``;
 
-interface TemplateQuizDialogueChoiceProps extends TemplateProps {}
-
-const TemplateQuizDialogueChoice = ({
-  page,
-  setPageCompleted,
-}: TemplateQuizDialogueChoiceProps) => {
+const TemplateQuizDialogueChoice = () => {
   const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(false);
   const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
-
-  useEffect(() => {
-    setPageCompleted();
-    console.log(page);
-  }, [setPageCompleted, page]);
 
   return (
     <DialogueContainer className="layout-panel-wrap grid-h-5-5">

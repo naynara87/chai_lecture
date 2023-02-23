@@ -1,21 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ComponentTitle from "../molecules/ComponentTitle";
 import { LayoutModalSolution, LayoutModalVoca } from "../modal";
-import { TemplateProps } from "../../core";
 
-interface TemplateQuizTextEnterProps extends TemplateProps {}
-
-const TemplateQuizTextEnter = ({
-  page,
-  setPageCompleted,
-}: TemplateQuizTextEnterProps) => {
+const TemplateQuizTextEnter = () => {
   const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(false);
   const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
-
-  useEffect(() => {
-    setPageCompleted();
-    console.log(page);
-  }, [setPageCompleted, page]);
 
   return (
     <div className="layout-panel-wrap">

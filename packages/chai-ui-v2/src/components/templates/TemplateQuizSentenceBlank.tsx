@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ComponentTitle from "../molecules/ComponentTitle";
 import { LayoutModalSolution, LayoutModalVoca } from "../modal";
 import {
@@ -7,7 +7,6 @@ import {
   ComponentButtonFillBlack,
   ImgProfileDefaultComponent,
 } from "../atoms";
-import { TemplateProps } from "../../core";
 
 const DialogueContainer = styled.div`
   .blank-gray {
@@ -29,19 +28,9 @@ const QuizContainer = styled.form`
   }
 `;
 
-interface TemplateQuizSentenceBlankProps extends TemplateProps {}
-
-const TemplateQuizSentenceBlank = ({
-  page,
-  setPageCompleted,
-}: TemplateQuizSentenceBlankProps) => {
+const TemplateQuizSentenceBlank = () => {
   const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(false);
   const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
-
-  useEffect(() => {
-    setPageCompleted();
-    console.log(page);
-  }, [setPageCompleted, page]);
 
   return (
     <DialogueContainer className="layout-panel-wrap grid-h-5-5">

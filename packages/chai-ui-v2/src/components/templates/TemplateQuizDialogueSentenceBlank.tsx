@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ComponentTitle from "../molecules/ComponentTitle";
 import { LayoutModalSolution, LayoutModalVoca } from "../modal";
 import {
@@ -8,7 +8,6 @@ import {
   ImgProfileDefaultComponent,
   ImgTemp01Component,
 } from "../atoms";
-import { TemplateProps } from "../../core";
 
 const DialogueContainer = styled.div`
   .conversation-wrap {
@@ -27,19 +26,9 @@ const QuizContainer = styled.form`
   }
 `;
 
-interface TemplateQuizDialogueSentenceBlankProps extends TemplateProps {}
-
-const TemplateQuizDialogueSentenceBlank = ({
-  page,
-  setPageCompleted,
-}: TemplateQuizDialogueSentenceBlankProps) => {
+const TemplateQuizDialogueSentenceBlank = () => {
   const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(false);
   const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
-
-  useEffect(() => {
-    setPageCompleted();
-    console.log(page);
-  }, [setPageCompleted, page]);
 
   return (
     <DialogueContainer className="layout-panel-wrap grid-h-5-5">

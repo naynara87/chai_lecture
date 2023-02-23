@@ -2,6 +2,7 @@ export { default as Template01 } from "./Template01";
 export { default as Template02 } from "./Template02";
 export { default as Template03 } from "./Template03";
 export { default as TemplateDialogue } from "./TemplateDialogue";
+export { default as TemplateExam } from "./TemplateExam";
 export { default as TemplateQuizChoice } from "./TemplateQuizChoice";
 export { default as TemplateQuizDialogueChoice } from "./TemplateQuizDialogueChoice";
 export { default as TemplateQuizDialogueSentenceBlank } from "./TemplateQuizDialogueSentenceBlank";
