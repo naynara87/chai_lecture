@@ -18,6 +18,7 @@
   "dependencies": {
     "@emotion/react": "*",
     "@emotion/styled": "*",
+    "@emotion/react": "*",
     "@mui/icons-material": "*",
     "@mui/material": "*",
     "@rollup/plugin-image": "^3.0.2",

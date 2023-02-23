@@ -1,29 +1,17 @@
 import styled from "@emotion/styled";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import { LayoutModalSolution, LayoutModalVoca } from "../modal";
 import { ImgCharacterComponent } from "../atoms";
-import ImgKkyngiComponent from "../atoms/ImgKkyngiComponent";
 import ImgProfileDefaultComponent from "../atoms/ImgProfileDefaultComponent";
 import ImgTemp01Component from "../atoms/ImgTemp01Component";
-import { TemplateProps } from "../../core";
 import ComponentButtonPlay from "../atoms/ComponentButtonPlay";
 
 const DialogueContainer = styled.div``;
 
-interface TemplateDialogueProps extends TemplateProps {}
-
-const TemplateDialogue = ({
-  page,
-  setPageCompleted,
-}: TemplateDialogueProps) => {
+const TemplateDialogue = () => {
   const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(false);
   const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
-
-  useEffect(() => {
-    setPageCompleted();
-    console.log(page);
-  }, [setPageCompleted, page]);
 
   return (
     <DialogueContainer className="layout-panel-wrap grid-h-3-7">
@@ -41,7 +29,10 @@ const TemplateDialogue = ({
               }
             </div>
             <div className="character-wrap">
-              <ImgCharacterComponent />
+              <ImgCharacterComponent
+                characterType="kkungiWink"
+                characterAlt="꿍이윙크"
+              />
             </div>
           </div>
           {/* end 말풍선 캐릭터 */}
@@ -49,7 +40,10 @@ const TemplateDialogue = ({
           <div className="voca-bote-container">
             <h3 className="voca-title">
               새로운 단어
-              <ImgKkyngiComponent />
+              <ImgCharacterComponent
+                characterType="kkungiSmile"
+                characterAlt="꿍이스마일"
+              />
             </h3>
             <ul className="voca-list-wrap">
               {/* 반복영역 */}

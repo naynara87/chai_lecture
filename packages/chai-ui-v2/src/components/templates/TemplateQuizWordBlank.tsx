@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
-import React, { useEffect, useState } from "react";
-import { TemplateProps } from "../../core";
+import React, { useState } from "react";
 import { ImgTemp01Component } from "../atoms";
 import ComponentButtonPlay from "../atoms/ComponentButtonPlay";
 import ComponentButtonRadiBorderMain from "../atoms/ComponentButtonRadiBorderMain";
@@ -38,28 +37,14 @@ const QuizContainer = styled.form`
   }
 `;
 
-interface TemplateQuizWordBlankProps extends TemplateProps {}
-
-const TemplateQuizWordBlank = ({
-  page,
-  setPageCompleted,
-}: TemplateQuizWordBlankProps) => {
+const TemplateQuizWordBlank = () => {
   const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(false);
   const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
-
-  useEffect(() => {
-    setPageCompleted();
-    console.log(page);
-  }, [setPageCompleted, page]);
 
   return (
     <div className="layout-panel-wrap grid-h-3-7">
       <div className="layout-panel side-panel">
-        <ComponentContsInfo
-          text="단어를 올바른 순서에 맞게
-선택해 문장을
-완성해 보세요."
-        />
+        <ComponentContsInfo text="단어를 올바른 순서에 맞게 선택해 문장을 완성해 보세요." />
       </div>
       <div className="layout-panel wide-panel">
         <QuizContainer method="post" className="quiz-container">
@@ -92,11 +77,18 @@ const TemplateQuizWordBlank = ({
               <small className="sm">&nbsp;</small>
             </div>
           </div>
-        {/* TODO: key설명 정답확인후 정답일 때 answer-right 추가 */}
-        {/* TODO: key설명 정답확인후 오답일 때 answer-wrong 추가 */}
+          {/* TODO: key설명 정답확인후 정답일 때 answer-right 추가 */}
+          {/* TODO: key설명 정답확인후 오답일 때 answer-wrong 추가 */}
           <div className="quiz-answer-wrap hori-answer-wrap answer-wrong">
             <div className="inp-grp">
-              <input type="checkbox" name="answer1" id="answer1" className="inp-chck-line none" checked disabled />
+              <input
+                type="checkbox"
+                name="answer1"
+                id="answer1"
+                className="inp-chck-line none"
+                checked
+                disabled
+              />
               <label htmlFor="answer1" className="label-chck-line">
                 <span className="text">{"冷"}</span>
                 <span className="text-sm">{"lěng"}</span>
