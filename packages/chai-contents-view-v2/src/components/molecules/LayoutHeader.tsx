@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { ImgCharacterComponent } from "chai-ui-v2";
+import { colorPalette, ImgCharacterComponent } from "chai-ui-v2";
 import React from "react";
 import IconLevel1 from "../../images/img/hd_red.svg";
 // import IconLevel2 from "../../images/img/hd_orange.svg";
@@ -10,8 +10,6 @@ import IconLevel1 from "../../images/img/hd_red.svg";
 // import IconLevel7 from "../../images/img/hd_purple.svg";
 
 // TODO: key설명 - 레벨별 컬러는 헤더에서만 사용
-const MainLevel1 = "#EE4141";
-const SubLevel1 = "#F89E9E";
 // const MainLevel2 = '#FF6700';
 // const SubLevel2 = '#FFA861';
 // const MainLevel3 = '#FFB900';
@@ -31,17 +29,17 @@ const HdContWrap = styled.div`
   background-image: url("${IconLevel1}");
 
   &:after {
-    background-color: ${MainLevel1};
+    background-color: ${colorPalette.red700};
   }
 `;
 
 const CaiHeader = styled.header`
-  background-color: ${SubLevel1};
+  background-color: ${colorPalette.red200};
 `;
 
 const HdChaWrap = styled.div`
   .txt {
-    color: ${MainLevel1};
+    color: ${colorPalette.red700};
   }
 `;
 

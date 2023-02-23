@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { colorPalette } from "../../../styles";
 
 /**
  * scss의 .btn-icon 와 동일
@@ -10,9 +11,9 @@ const IconButton = styled.button`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 3px solid #ffffff;
+  border: 3px solid ${colorPalette.white};
   box-shadow: 0 4px 0 rgb(88 88 88 / 20%);
-  background-color: #ffffff;
+  background-color: ${colorPalette.white};
   cursor: pointer;
 `;
 

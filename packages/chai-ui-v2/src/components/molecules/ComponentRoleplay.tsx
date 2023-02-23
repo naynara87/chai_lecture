@@ -3,15 +3,16 @@ import styled from "@emotion/styled";
 import AudioRecorder from "./AudioRecorder";
 import ComponentRecordButton from "./ComponentRecordButton";
 import { ImgProfileDefaultComponent, ImgTemp01Component } from "../atoms";
+import { colorPalette } from "../../styles";
 
 const DialogueWrapper = styled.ul`
   .right-conts .bubble-wrap {
-    background-color: #eff1f5;
+    background-color: ${colorPalette.gray300};
   }
 `;
 
 const BubbleWrap = styled.div`
-  background-color: #fff3ea;
+  background-color: ${colorPalette.orange200};
 `;
 
 const ComponentRoleplay = () => {
