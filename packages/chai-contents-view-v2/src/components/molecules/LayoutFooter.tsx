@@ -18,9 +18,16 @@ const LayoutFooter = () => {
           <img src={iconClose} alt="" className="icon icon-close" />
         </button>
         <div className="ft-conts-wrap">
-          <button className="ft-icon-btn" disabled><img src={iconLeft} alt="이전" /></button>
-          <span className="txt"><b>{'1'}</b><small> / {'10'}</small></span>
-          <button className="ft-icon-btn"><img src={iconRight} alt="다음" /></button>
+          <button className="ft-icon-btn" disabled>
+            <img src={iconLeft} alt="이전" />
+          </button>
+          <span className="txt">
+            <b>{"1"}</b>
+            <small> / {"10"}</small>
+          </span>
+          <button className="ft-icon-btn">
+            <img src={iconRight} alt="다음" />
+          </button>
         </div>
       </footer>
 
@@ -30,12 +37,18 @@ const LayoutFooter = () => {
           <ul className="cai-nav-list-wrap">
             {/* TODO: key설명 - 반복영역. 열려있을 때 active 추가됨 */}
             <li className="cai-nav-list active">
-              <div className="cai-nav-ttl">{'복습'}</div>
+              <div className="cai-nav-ttl">{"복습"}</div>
               <div className="cai-nav-sub-wrap">
                 {/* TODO: key설명 - 현재 페이지에 active */}
-                <a href="" className="cai-nav-sub-link active">{'회화'}</a>
-                <a href="" className="cai-nav-sub-link">{'문법퀴즈'}</a>
-                <a href="" className="cai-nav-sub-link">{'지난레슨단어'}</a>
+                <a href="#/" className="cai-nav-sub-link active">
+                  {"회화"}
+                </a>
+                <a href="#/" className="cai-nav-sub-link">
+                  {"문법퀴즈"}
+                </a>
+                <a href="#/" className="cai-nav-sub-link">
+                  {"지난레슨단어"}
+                </a>
               </div>
             </li>
           </ul>
