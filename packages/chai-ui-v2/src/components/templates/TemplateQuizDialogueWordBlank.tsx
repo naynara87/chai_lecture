@@ -5,12 +5,12 @@ import IconX from "../../images/icon/icon_x.svg";
 import { LayoutModalSolution, LayoutModalVoca } from "../modal";
 import { TemplateProps } from "../../core";
 import {
-  ComponentButtonFillBlack,
   IconSpeakerComponent,
   ImgCharacterComponent,
   ImgProfileDefaultComponent,
   ImgTemp01Component,
 } from "../atoms";
+import ComponentButtonRadiFillMain from "../atoms/ComponentButtonRadiFillMain";
 
 const DialogueContainer = styled.div`
   .hori-answer-wrap {
@@ -72,7 +72,7 @@ const DialogueContainer = styled.div`
   }
 `;
 
-interface TemplateQuizDialogueWordBlankProps extends TemplateProps {}
+interface TemplateQuizDialogueWordBlankProps extends TemplateProps { }
 
 const TemplateQuizDialogueWordBlank = ({
   page,
@@ -97,6 +97,7 @@ const TemplateQuizDialogueWordBlank = ({
                 <IconSpeakerComponent />
               </div>
               <p className="txt">전체 음성 듣기</p>
+            </button>
           </div>
           {/* 말풍선 캐릭터 */}
           <div className="character-wrapper">

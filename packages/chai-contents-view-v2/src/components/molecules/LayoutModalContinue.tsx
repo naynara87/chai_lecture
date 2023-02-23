@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 import React from "react";
 import ImgContinue from "../../images/img/img_continue.png";
-import ComponentButtonRadiBorderMain from "./ComponentButtonRadiBorderMain";
-import ComponentButtonRadiFillMain from "./ComponentButtonRadiFillMain";
+// import ComponentButtonRadiBorderMain from "./ComponentButtonRadiBorderMain";
+// import ComponentButtonRadiFillMain from "./ComponentButtonRadiFillMain";
 
 const ModalBase = styled.div`
 `;
@@ -44,8 +44,8 @@ const LayoutModalContinue = () => {
 
           {/* TODO: key설명 - 버튼이 하나만 들어갈 수도 있음 */}
           <div className="btns-wrap">
-            <ComponentButtonRadiBorderMain text="처음부터 하기" />
-            <ComponentButtonRadiFillMain text="이어서 하기" />
+            {/* <ComponentButtonRadiBorderMain text="처음부터 하기" />
+            <ComponentButtonRadiFillMain text="이어서 하기" /> */}
           </div>
         </div>
       </div>

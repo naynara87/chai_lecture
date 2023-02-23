@@ -27,33 +27,32 @@ const LayoutModalVoca = ({
 
   return (
     <ModalCommon open={isModalOpen} onClose={handleClose}>
+      {/* 
+        TODO: key설명 - 모달 닫기버튼
+        <button className="btn-close-modal">
+          <img src="images/icon/icon_close_black.svg" alt="닫기" />
+        </button>
+         */}
       {/* 제목영역 */}
       <div className="base-ttl">
         <div className="profile-img-wrap">
           <ImgVocaComponent />
+          {/* <img src="images/img/img_voca.png" alt="" /> */}
         </div>
         <div className="txt-wrap">
           <h2 className="ttl">새로운 단어</h2>
         </div>
       </div>
       {/* 내용영역 */}
+          {/* TODO: key설명 - slide의 페이지 */}
       <div className="base-conts">
         <div className="voca-wrap">
           <p className="chinese">{"游泳"}</p>
           <p className="pinyin">{"yóuyǒng"}</p>
           <p className="mean">{"수영하다"}</p>
         </div>
-        {/* FIXME: key디자인수정예정 - 음원재생버튼 모양 변경(원이 아닌 모양으로), 이미지 변경 */}
-        <button className="btn-icon">
-          <div className="icon-wrap">
           <ComponentButtonPlay />
-          </div>
-        </button>
       </div>
-
-      <BtnWrapper className="btns-wrap">
-        <ComponentButtonFillBlack text="확인" />
-      </BtnWrapper>
     </ModalCommon>
   );
 };
