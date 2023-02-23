@@ -1,16 +1,9 @@
-import styled from "@emotion/styled";
+// import styled from "@emotion/styled";
 import React from "react";
-import { ModalCommon } from "chai-ui-v2";
+// import { ModalCommon } from "chai-ui-v2";
 import ImgVocaComponent from "../atoms/ImgVocaComponent";
-import { ComponentButtonFillBlack } from "../atoms";
 import ComponentButtonPlay from "../atoms/ComponentButtonPlay";
-
-const BtnWrapper = styled.div`
-  .btn {
-    /* 28px */
-    font-size: 1.4vw;
-  }
-`;
+import ModalCommon from "./ModalCommon";
 
 interface LayoutModalVocaProps {
   isModalOpen: boolean;

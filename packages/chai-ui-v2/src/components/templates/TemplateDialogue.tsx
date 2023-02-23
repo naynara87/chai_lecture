@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
 
 import { LayoutModalSolution, LayoutModalVoca } from "../modal";
-import IconSpeakerComponent from "../atoms/IconSpeakerComponent";
 import { ImgCharacterComponent } from "../atoms";
 import ImgKkyngiComponent from "../atoms/ImgKkyngiComponent";
 import ImgProfileDefaultComponent from "../atoms/ImgProfileDefaultComponent";
