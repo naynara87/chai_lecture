@@ -3,8 +3,9 @@ import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
 import Home from "../components/pages/Home";
 import Layout from "../components/pages/Layout";
 import NotFound from "../components/pages/NotFound";
+import TempRolePlay from "../components/pages/TempRolePlay";
 import { HOME_URL, NOT_FOUND_URL } from "../constants/url";
-import "../styles/scss/ui.scss"
+import "../styles/scss/ui.scss";
 
 const AppRouter = () => {
   return (
@@ -16,8 +17,9 @@ const AppRouter = () => {
           element={<div>each page</div>}
         />
         <Route path={NOT_FOUND_URL} element={<NotFound />} />
-        <Route path="*" element={<Navigate to={NOT_FOUND_URL} replace />} />
         <Route path={"temp"} element={<Layout />} />
+        <Route path={"temp-roleplay"} element={<TempRolePlay />} />
+        <Route path="*" element={<Navigate to={NOT_FOUND_URL} replace />} />
       </Routes>
     </BrowserRouter>
   );
