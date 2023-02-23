@@ -5,7 +5,6 @@ import IconButton from "./IconButton";
 
 // TODO: color palette 정의 후 적용하기 => BBC-982
 const CustomIconButton = styled(IconButton)`
-  border-radius: 50%;
   border: 1px solid #e45757;
   overflow: hidden;
 `;
