@@ -4,7 +4,7 @@ import iconClose from "../../images/icon/icon_arrow_down_gray.svg";
 import iconLeft from "../../images/icon/icon_arrow_left_white.svg";
 import iconRight from "../../images/icon/icon_arrow_right_white.svg";
 import imgHdCharacter from "../../images/img/cha_wini_wink.png";
-import ComponentButtonFillBlack from "./ComponentButtonFillBlack";
+import { ComponentButtonFillBlack } from "chai-ui-v2";
 
 const LayoutFooter = () => {
   return (

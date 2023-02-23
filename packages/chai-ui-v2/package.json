@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@emotion/react": "*",
     "@emotion/styled": "*",
     "@mui/icons-material": "*",
     "@mui/material": "*",
@@ -31,6 +32,7 @@
     "react-toastify": "*",
     "recoil": "*",
     "rollup": "^3.10.1",
+    "rollup-plugin-scss": "^4.0.0",
     "rollup-plugin-typescript2": "^0.34.1",
     "sass": "*",
     "typescript": "*"
@@ -45,6 +47,7 @@
     "@storybook/manager-webpack4": "*",
     "@storybook/react": "*",
     "@storybook/testing-library": "*",
-    "babel-loader": "*"
+    "babel-loader": "*",
+    "rollup-plugin-copy": "^3.4.0"
   }
 }

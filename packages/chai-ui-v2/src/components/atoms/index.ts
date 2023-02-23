@@ -1,1 +1,10 @@
 export { default as ExampleButton } from "./ExampleButton";
+export { default as ComponentVideo } from "./ComponentVideo";
+export { default as ImgCharacterComponent } from "./ImgCharacterComponent";
+export { default as IconSpeakerComponent } from "./IconSpeakerComponent";
+export { default as ImgKkyngiComponent } from "./ImgKkyngiComponent";
+export { default as ImgProfileDefaultComponent } from "./ImgProfileDefaultComponent";
+export { default as ImgTemp01Component } from "./ImgTemp01Component";
+export { default as ImgVocaComponent } from "./ImgVocaComponent";
+export { default as ComponentButtonBorderMain } from "./ComponentButtonBorderMain";
+export { default as ComponentButtonFillBlack } from "./ComponentButtonFillBlack";

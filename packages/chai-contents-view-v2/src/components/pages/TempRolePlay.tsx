@@ -1,7 +1,7 @@
 import React from "react";
 import LayoutHeader from "../molecules/LayoutHeader";
 import LayoutFooter from "../molecules/LayoutFooter";
-import Template03 from "./Template03";
+import { Template03 } from "chai-ui-v2";
 
 const TempRolePlay = () => {
   return (
