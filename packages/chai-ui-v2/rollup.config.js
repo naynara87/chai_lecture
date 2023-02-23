@@ -28,6 +28,7 @@ export default {
     }),
   ],
   external: [
+    "@emotion/react",
     "@emotion/styled",
     "@mui/material",
     "@emotion/react",

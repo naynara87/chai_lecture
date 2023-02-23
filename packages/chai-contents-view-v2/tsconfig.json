@@ -16,5 +16,5 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src", "../chai-ui-v2/src/components/molecules"]
+  "include": ["src"]
 }

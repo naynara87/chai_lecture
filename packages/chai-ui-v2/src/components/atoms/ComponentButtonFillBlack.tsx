@@ -1,7 +1,7 @@
 import React from "react";
 
 interface ComponentButtonFillBlackProps {
-  text: String;
+  text: string;
 }
 
 const ComponentButtonFillBlack = ({ text }: ComponentButtonFillBlackProps) => {

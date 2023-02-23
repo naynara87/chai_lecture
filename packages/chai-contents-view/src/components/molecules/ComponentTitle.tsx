@@ -1,13 +1,12 @@
 import React from "react";
-interface ComponentTitle {
-  text: String,
+interface ComponentTitleProps {
+  text: string;
 }
 
-const ComponentTitle = ({text}: ComponentTitle) => {
-
+const ComponentTitle = ({ text }: ComponentTitleProps) => {
   return (
     // 디자인수정예정 - 앞 아이콘 -> 기호
-        <h2 className="conts-ttl">{ text }</h2>
+    <h2 className="conts-ttl">{text}</h2>
   );
 };
 

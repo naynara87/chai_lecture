@@ -1,13 +1,14 @@
 import React from "react";
 
-interface ComponentButtonBorderMain {
-  text: String,
+interface ComponentButtonBorderMainProps {
+  text: string;
 }
 
-const ComponentButtonBorderMain = ({text}: ComponentButtonBorderMain) => {
-
+const ComponentButtonBorderMain = ({ text }: ComponentButtonBorderMainProps) => {
   return (
-      <button className="btn btn-border-main" data-text={text}><span>{text}</span></button>
+    <button className="btn btn-border-main" data-text={text}>
+      <span>{text}</span>
+    </button>
   );
 };
 

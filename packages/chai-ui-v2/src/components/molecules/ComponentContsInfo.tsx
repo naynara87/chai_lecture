@@ -5,9 +5,6 @@ interface ComponentContsInfoProps {
   text: string;
 }
 
-// const ModalBase = styled.div`
-// `;
-
 const ComponentContsInfo = ({ text }: ComponentContsInfoProps) => {
   return (
     <div className="cont-info-wrap">
