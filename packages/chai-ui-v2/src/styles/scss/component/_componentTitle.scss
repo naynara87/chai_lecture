@@ -1,18 +1,18 @@
 /* =================== componentTitle =================== */
 .conts-ttl {
 	position: relative;
-	padding-left: vw(82);
-	font-weight: 400;
-	font-size: vw(24);
+	padding-left: vw(58);
+	font-weight: 600;
+	font-size: vw(25);
 
 	@include make-before {
-		@include bg-url(icon, 'icon_book.svg');
+		@include bg-url(icon, 'icon_tip.svg');
 		@include bg-op($s: 100% 100%);
 
 		position: absolute;
 		top: vh(-4);
 		left: 0;
-		width: vw(70);
-		height: vh(45);
+		width: vw(44);
+		height: vh(44);
 	}
 }

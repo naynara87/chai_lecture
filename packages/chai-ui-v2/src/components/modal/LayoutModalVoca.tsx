@@ -1,16 +1,8 @@
-import styled from "@emotion/styled";
+// import styled from "@emotion/styled";
 import React from "react";
-import { ModalCommon } from "chai-ui-v2";
 import ImgVocaComponent from "../atoms/ImgVocaComponent";
-import IconSpeakerComponent from "../atoms/IconSpeakerComponent";
-import { ComponentButtonFillBlack } from "../atoms";
-
-const BtnWrapper = styled.div`
-  .btn {
-    /* 28px */
-    font-size: 1.4vw;
-  }
-`;
+import ComponentButtonPlay from "../atoms/ComponentButtonPlay";
+import ModalCommon from "./ModalCommon";
 
 interface LayoutModalVocaProps {
   isModalOpen: boolean;
@@ -27,33 +19,32 @@ const LayoutModalVoca = ({
 
   return (
     <ModalCommon open={isModalOpen} onClose={handleClose}>
+      {/* 
+        TODO: key설명 - 모달 닫기버튼
+        <button className="btn-close-modal">
+          <img src="images/icon/icon_close_black.svg" alt="닫기" />
+        </button>
+         */}
       {/* 제목영역 */}
       <div className="base-ttl">
         <div className="profile-img-wrap">
           <ImgVocaComponent />
+          {/* <img src="images/img/img_voca.png" alt="" /> */}
         </div>
         <div className="txt-wrap">
           <h2 className="ttl">새로운 단어</h2>
         </div>
       </div>
       {/* 내용영역 */}
+          {/* TODO: key설명 - slide의 페이지 */}
       <div className="base-conts">
         <div className="voca-wrap">
           <p className="chinese">{"游泳"}</p>
           <p className="pinyin">{"yóuyǒng"}</p>
           <p className="mean">{"수영하다"}</p>
         </div>
-        {/* FIXME: key디자인수정예정 - 음원재생버튼 모양 변경(원이 아닌 모양으로), 이미지 변경 */}
-        <button className="btn-icon">
-          <div className="icon-wrap">
-            <IconSpeakerComponent />
-          </div>
-        </button>
+          <ComponentButtonPlay />
       </div>
-
-      <BtnWrapper className="btns-wrap">
-        <ComponentButtonFillBlack text="확인" />
-      </BtnWrapper>
     </ModalCommon>
   );
 };

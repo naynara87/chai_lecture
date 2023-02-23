@@ -13,13 +13,26 @@
 	@include flex-center(inline-flex);
 
 	border: 3px solid color(gray-ff);
-	background-color: color(main);
 	box-shadow: $btn-shadow;
+
+	.icon {
+		@include full;
+	}
 	
 	&:disabled {
 		border-color: color(gray-c9);
 		background-color: color(gray-c9);
 	}
+}
+
+.btn-close-modal {
+	@extend %btn;
+	@include square(vw(48));
+
+	position: absolute;
+	top: vh(27);
+	left: auto;
+	right: vw(12);
 }
 
 .btn-mike {
@@ -73,7 +86,7 @@
 	@extend %btn-interaction;
 
 	width: 100%;
-	height: vh(88);
+	height: vh(75);
 	border: 1px solid color(gray-56);
 	border-radius: vw(10);
 	background-color: color(gray-56);
@@ -108,7 +121,7 @@
 	border: 1px solid color(main);
 	border-radius: vw(100);
 	font-weight: 600;
-	font-size: vw(24);
+	font-size: vw(26);
 	color: color(main);
 	box-shadow: $btn-shadow;
 
@@ -127,7 +140,7 @@
 	border-radius: vw(100);
 	background-color: color(main);
 	font-weight: 600;
-	font-size: vw(24);
+	font-size: vw(26);
 	color: color(gray-ff);
 	box-shadow: $btn-shadow;
 
@@ -160,8 +173,10 @@
 }
 
 .btn-ft-text {
+	@extend %btn;
 	@include flex-center;
 
+	z-index: z(two);
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -266,28 +281,17 @@
 	display: block;
 	width: 100%;
 	padding: vh(40) vw(40);
-	border: 2px solid color(gray-f5);
+	border: 3px solid color(gray-ee);
 	border-radius: vw(20);
 	background-color: color(gray-f5);
+	text-align: center;
+	box-shadow: $btn-shadow;
 	
 	.text {
 		position: relative;
 		display: inline-block;
-		padding-left: vw(80);
-		font-size: vw(32);
-
-		@include make-before {
-			@include circle(vw(48));
-			@include bg-op($s: vw(22));
-			@include bg-url(icon, 'icon_check_white.svg');
-
-			position: absolute;
-			top: 50%;
-			left: 0;
-			background-color: color(gray-c9);
-			box-shadow: 0 1px 4px rgba(172, 179, 185, 0.5);
-			transform: translateY(-50%);
-		}
+		font-weight: 600;
+		font-size: vw(28);
 	}
 }
 
@@ -296,11 +300,24 @@
 	background-color: color(purple-200);
 	
 	.text {
-		font-weight: 600;
 		color: color(main);
+	}
 
-		&:before {
-			background-color: color(main);
+	@at-root .answer-right & {
+		border-color: color(right);
+		background-color: color(gray-ff);
+		
+		.text {
+			color: color(right);
+		}
+	}
+
+	@at-root .answer-wrong & {
+		border-color: color(warning);
+		background-color: color(gray-ff);
+		
+		.text {
+			color: color(warning);
 		}
 	}
 }
@@ -332,7 +349,8 @@
 .inp-chck-line:disabled ~ .label-chck-line {
 	border-color: color(gray-db);
 	
-	.text {
+	.text,
+	.text-sm {
 		color: color(gray-db);
 	}
 }
@@ -340,14 +358,16 @@
 .inp-chck-line:checked ~ .label-chck-line {
 	border-color: color(main);
 	
-	.text {
+	.text,
+	.text-sm {
 		color: color(main);
 	}
 
 	@at-root .answer-right & {
 		border-color: color(right);
 		
-		.text {
+		.text,
+		.text-sm {
 			color: color(right);
 		}
 	}
@@ -355,7 +375,8 @@
 	@at-root .answer-wrong & {
 		border-color: color(warning);
 		
-		.text {
+		.text,
+		.text-sm {
 			color: color(warning);
 		}
 	}
