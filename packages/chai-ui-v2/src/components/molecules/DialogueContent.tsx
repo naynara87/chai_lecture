@@ -14,16 +14,19 @@ const DialogueContent = () => {
   }
   return (
     <li className="conversation-wrap active">
-      <div className="img-wrap">
-        {/* TODO: key설명 - 누르면 단일 음성이 재생됨 */}
-        <div className="img-round">
-          <button className="btn-profile">
-            <ImgProfileDefaultComponent />
-          </button>
+      <div className="img-grp">
+        <div className="img-wrap">
+          {/* TODO: key설명 - 누르면 단일 음성이 재생됨 */}
+          <div className="img-round">
+            <button className="btn-profile">
+              <ImgProfileDefaultComponent />
+            </button>
+          </div>
         </div>
+        {/* TODO: key설명 - 등록된 캐릭터의 이름을 가져옴. 디폴트 이미지일때는 이름이 없음 (피그마 참고: 2-복습-9) */}
+        <p className="name">{"왕리리"}</p>
       </div>
       <div className="txt-wrap">
-        <p className="name">{"왕리리"}</p>
         {/* <p className="chinese">{'今天刮风，下雪，很冷。'}</p> */}
         <p className="chinese">
           {"今天刮风，"}
