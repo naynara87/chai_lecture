@@ -1,6 +1,5 @@
 // import styled from "@emotion/styled";
 import React from "react";
-// import { ModalCommon } from "chai-ui-v2";
 import ImgVocaComponent from "../atoms/ImgVocaComponent";
 import ComponentButtonPlay from "../atoms/ComponentButtonPlay";
 import ModalCommon from "./ModalCommon";
