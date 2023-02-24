@@ -15,6 +15,7 @@
 	height: 100%;
 	padding-right: vw(70);
 	text-align: right;
+	transition: all 1200ms;
 
 	@include make-after {
 		z-index: z(minus);

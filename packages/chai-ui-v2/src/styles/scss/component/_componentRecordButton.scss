@@ -1,6 +1,31 @@
 /* =================== componentRecordButton =================== */
 .record-btn-wrap {
-	@include flex-center {
-		gap: vw(20);
+	position: relative;
+	margin-top: vh(20);
+	width: vw(440);
+
+	.record-btn-flex-wrap {
+		@include flex {
+			@include flex-op(center, flex-start);
+
+			gap: vw(20);
+		}
+
+		height: vh(100);
+		padding: 0 vw(40);
+		border: 2px solid color(blue-300);
+		border-radius: vw(20);
+		background-color: color(gray-ff);
+
+		.txt {
+			font-size: vw(24);
+		}
+	} 
+
+	.btn-return {
+		position: absolute;
+		top: 50%;
+		left: 100%;
+		transform: translate(vw(20), -50%);
 	}
 }

@@ -25,7 +25,7 @@ import IconLevel1 from "../../images/img/hd_red.svg";
 
 const HdContWrap = styled.div`
   /* TODO: key설명 - width: 100%일 때 after의 배경색을 div의 배경색으로 적용 */
-  width: 42%;
+  width: 52%;
   background-image: url("${IconLevel1}");
 
   &:after {
@@ -50,17 +50,17 @@ const LayoutHeader = () => {
       <HdContWrap className="hd-conts-wrap">
         {/* TODO: key설명 - width 50%이상에서 second-half 보이고, width 50%미만에서 first-half 보임 */}
         {/* 우선 클래스 none 로 가림 */}
-        <HdChaWrap className="hd-cha-wrap second-half none">
+        <HdChaWrap className="hd-cha-wrap second-half">
           <p className="txt">{"학습목표 자가체크"}</p>
           <ImgCharacterComponent
-            characterType="kkungiPositive"
+            characterType="kkungiHeader"
             characterAlt="꿍이"
           />
         </HdChaWrap>
         <span className="corner-name">{"학습 시작"}</span>
-        <HdChaWrap className="hd-cha-wrap first-half">
+        <HdChaWrap className="hd-cha-wrap first-half none">
           <ImgCharacterComponent
-            characterType="kkungiPositive"
+            characterType="kkungiHeader"
             characterAlt="꿍이"
           />
           <p className="txt">{"학습목표 자가체크"}</p>

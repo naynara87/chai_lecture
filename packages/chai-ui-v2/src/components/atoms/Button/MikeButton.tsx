@@ -1,11 +1,13 @@
 import React from "react";
-import IconMic from "../../../images/icon/icon_mic.svg";
 
 const MikeButton = () => {
   return (
-    <button className="btn-icon">
-      <img src={IconMic} alt="" className="icon" />
-    </button>
+    <div className="record-btn-flex-wrap">
+      <button className="btn-icon-mini btn-mic">
+        녹음하기
+      </button>
+      <p className="txt">녹음을 시작해보세요</p>
+    </div>
   );
 };
 

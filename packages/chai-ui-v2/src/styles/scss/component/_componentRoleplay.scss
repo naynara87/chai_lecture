@@ -13,14 +13,6 @@
 		padding: vh(25) vw(40);
 		border-radius: 0 vw(30) vw(30) vw(30);
 	}
-
-	.record-btn-wrap {
-		position: absolute;
-		top: 50%;
-		left: auto;
-		right: vw(-24);
-		transform: translate(100%, -50%);
-	}
 	
 	.right-conts {
 		flex-direction: row-reverse;
@@ -38,10 +30,6 @@
 			text-align: right;
 		}
 
-		.record-btn-wrap {
-			left: vw(-24);
-			right: auto;
-			transform: translate(-100%, -50%);
-		}
+		// .record-btn-wrap {}
 	}
 }

@@ -115,9 +115,11 @@ export type characterType =
   | "kkungiPositive"
   | "kkungiSmile"
   | "kkungiWink"
+  | "kkungiHeader"
   | "winiProud"
   | "winiSad"
   | "winiShock"
   | "winiSmile"
   | "winiSurprise"
-  | "winiWink";
+  | "winiWink"
+  | "allFinish";

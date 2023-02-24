@@ -1,11 +1,15 @@
 import React from "react";
-import IconStop from "../../../images/icon/icon_stop.svg";
+import ComponentProgress from "../ComponentProgress";
 
 const StopButton = () => {
   return (
-    <button className="btn-icon">
-      <img src={IconStop} alt="" className="icon" />
-    </button>
+    <div className="record-btn-flex-wrap">
+      <button className="btn-icon-mini btn-stop">
+        정지
+      </button>
+      <ComponentProgress />
+      <p className="txt">{ '0:44' }</p>
+    </div>
   );
 };
 
