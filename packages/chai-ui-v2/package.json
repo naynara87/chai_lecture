@@ -31,12 +31,14 @@
     "react-media-recorder": "1.6.5",
     "react-router-dom": "*",
     "react-toastify": "*",
+    "react-confetti": "*",
     "recoil": "*",
     "rollup": "^3.10.1",
     "rollup-plugin-scss": "^4.0.0",
     "rollup-plugin-typescript2": "^0.34.1",
     "sass": "*",
-    "typescript": "*"
+    "typescript": "*",
+    "swiper": "*"
   },
   "devDependencies": {
     "@babel/core": "*",

@@ -6,7 +6,7 @@ import ComponentTitle from "../molecules/ComponentTitle";
 
 const Template01 = () => {
   const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(false);
-  const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
+  const [isModalVocaOpen, setIsModalVocaOpen] = useState(true);
 
   return (
     <div className="layout-panel-wrap">
