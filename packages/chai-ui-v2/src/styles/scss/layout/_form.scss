@@ -147,6 +147,26 @@
 	}
 }
 
+.btn-radi-fill-orange {
+	@extend %btn;
+	@extend %btn-interaction;
+
+	width: vw(95);
+	height: vh(46);
+	border: 1px solid color(orange-500);
+	border-radius: vw(100);
+	background-color: color(orange-500);
+	line-height: 1;
+	font-weight: 600;
+	font-size: vw(22);
+	color: color(gray-ff);
+	box-shadow: $btn-shadow;
+
+	&:before {
+		letter-spacing: -0.04em;
+	}
+}
+
 // footer buttons
 .ft-icon-btn {
 	@extend %btn;

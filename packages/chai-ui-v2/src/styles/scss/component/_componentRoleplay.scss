@@ -4,6 +4,10 @@
 		.img-wrap {
 			margin-right: vw(40);
 		}
+
+		.mean {
+			display: none;
+		}
 	}
 
 	.bubble-wrap {
@@ -12,8 +16,12 @@
 		margin-top: vh(12);
 		padding: vh(25) vw(40);
 		border-radius: 0 vw(30) vw(30) vw(30);
+
+		.btn {
+			margin-bottom: vh(10);
+		}
 	}
-	
+
 	.right-conts {
 		flex-direction: row-reverse;
 
@@ -21,15 +29,30 @@
 			margin-right: 0;
 			margin-left: vw(40);
 		}
-		
+
 		.bubble-wrap {
 			border-radius: vw(30) 0 vw(30) vw(30);
 		}
 
 		.name {
+			margin-left: auto;
+			margin-right: auto;
 			text-align: right;
 		}
 
-		// .record-btn-wrap {}
+	}
+
+	.choice {
+		.chinese {
+			display: none;
+		}
+
+		.pinyin {
+			color: color(orange-700);
+		}
+
+		.mean {
+			display: block;
+		}
 	}
 }
