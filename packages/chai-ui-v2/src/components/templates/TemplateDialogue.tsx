@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import React, { useState } from "react";
-
 import { LayoutModalSolution, LayoutModalVoca } from "../modal";
 import { ImgCharacterComponent } from "../atoms";
 import ImgProfileDefaultComponent from "../atoms/ImgProfileDefaultComponent";
