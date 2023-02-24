@@ -1,4 +1,3 @@
-export { default as ComponentButtonBorderMain } from "./ComponentButtonBorderMain";
 export { default as ComponentButtonFillBlack } from "./ComponentButtonFillBlack";
 export { default as ComponentButtonPlay } from "./ComponentButtonPlay";
 export { default as ComponentButtonRadiBorderMain } from "./ComponentButtonRadiBorderMain";
