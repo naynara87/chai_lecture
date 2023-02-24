@@ -63,54 +63,6 @@ const ModalSwiper = () => {
               </div>
             </SlideCard>
           </SwiperSlide>
-          <SwiperSlide>
-            <SlideCard>
-              <div className="base-conts">
-                <div className="voca-wrap">
-                  <p className="chinese">{"游泳"}</p>
-                  <p className="pinyin">{"yóuyǒng"}</p>
-                  <p className="mean">{"수영하다"}</p>
-                </div>
-                <ComponentButtonPlay />
-              </div>
-            </SlideCard>
-          </SwiperSlide>
-          <SwiperSlide>
-            <SlideCard>
-              <div className="base-conts">
-                <div className="voca-wrap">
-                  <p className="chinese">{"游泳"}</p>
-                  <p className="pinyin">{"yóuyǒng"}</p>
-                  <p className="mean">{"수영하다"}</p>
-                </div>
-                <ComponentButtonPlay />
-              </div>
-            </SlideCard>
-          </SwiperSlide>
-          <SwiperSlide>
-            <SlideCard>
-              <div className="base-conts">
-                <div className="voca-wrap">
-                  <p className="chinese">{"游泳"}</p>
-                  <p className="pinyin">{"yóuyǒng"}</p>
-                  <p className="mean">{"수영하다"}</p>
-                </div>
-                <ComponentButtonPlay />
-              </div>
-            </SlideCard>
-          </SwiperSlide>
-          <SwiperSlide>
-            <SlideCard>
-              <div className="base-conts">
-                <div className="voca-wrap">
-                  <p className="chinese">{"游泳"}</p>
-                  <p className="pinyin">{"yóuyǒng"}</p>
-                  <p className="mean">{"수영하다"}</p>
-                </div>
-                <ComponentButtonPlay />
-              </div>
-            </SlideCard>
-          </SwiperSlide>
         </Swiper>
       </SwiperWrapper>
     </Page>
