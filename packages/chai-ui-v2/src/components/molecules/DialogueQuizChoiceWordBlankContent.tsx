@@ -1,8 +1,8 @@
 import React from "react";
 import { ImgProfileDefaultComponent } from "../atoms";
-import QuizDialogueWordBlankSelectBoxes from "./QuizDialogueWordBlankSelectBoxes";
+import LineRadioBoxes from "./LineRadioBoxes";
 
-const DialogueContent = () => {
+const DialogueQuizChoiceWordBlankContent = () => {
   {
     /* TODO: key설명 - 음성이 재생될 때 active 가 추가됨(화자표시 애니메이션) */
   }
@@ -35,10 +35,10 @@ const DialogueContent = () => {
         </p>
         <p className="pinyin">{"Jīntiān guā fēng, xià xuě, hěn lěng."}</p>
         <p className="mean">{"오늘은 바람이 불고, 눈이 내려서 추워."}</p>
-        <QuizDialogueWordBlankSelectBoxes />
+        <LineRadioBoxes />
       </div>
     </li>
   );
 };
 
-export default DialogueContent;
+export default DialogueQuizChoiceWordBlankContent;
