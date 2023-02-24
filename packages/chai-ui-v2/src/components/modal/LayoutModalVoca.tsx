@@ -1,8 +1,8 @@
 // import styled from "@emotion/styled";
 import React from "react";
 import ImgVocaComponent from "../atoms/ImgVocaComponent";
-import ComponentButtonPlay from "../atoms/ComponentButtonPlay";
 import ModalCommon from "./ModalCommon";
+import ModalSwiper from "./ModalSwiper";
 
 interface LayoutModalVocaProps {
   isModalOpen: boolean;
@@ -30,20 +30,11 @@ const LayoutModalVoca = ({
         <div className="profile-img-wrap">
           <ImgVocaComponent />
         </div>
-        <div className="txt-wrap">
+        {/* <div className="txt-wrap">
           <h2 className="ttl">새로운 단어</h2>
-        </div>
+        </div> */}
       </div>
-      {/* 내용영역 */}
-      {/* TODO: key설명 - slide의 페이지 */}
-      <div className="base-conts">
-        <div className="voca-wrap">
-          <p className="chinese">{"游泳"}</p>
-          <p className="pinyin">{"yóuyǒng"}</p>
-          <p className="mean">{"수영하다"}</p>
-        </div>
-        <ComponentButtonPlay />
-      </div>
+      <ModalSwiper />
     </ModalCommon>
   );
 };
