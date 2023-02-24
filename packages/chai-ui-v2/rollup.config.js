@@ -41,5 +41,7 @@ export default {
     "react-loader-spinner",
     "react-cookie",
     "recoil",
+    "react-confetti",
+    "swiper",
   ],
 };

@@ -30,9 +30,6 @@ const LayoutModalVoca = ({
         <div className="profile-img-wrap">
           <ImgVocaComponent />
         </div>
-        {/* <div className="txt-wrap">
-          <h2 className="ttl">새로운 단어</h2>
-        </div> */}
       </div>
       <ModalSwiper />
     </ModalCommon>
