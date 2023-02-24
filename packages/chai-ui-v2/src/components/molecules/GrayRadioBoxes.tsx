@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 
-const QuizChoiceSelectBoxes = () => {
+const GrayRadioBoxes = () => {
   // TODO kjw quizChoice관련 데이터 타입 설계되면 로직구성
   const textBoxes = useMemo(() => {
     return (
@@ -34,4 +34,4 @@ const QuizChoiceSelectBoxes = () => {
   return <div className="quiz-answer-wrap hori-answer-wrap">{textBoxes}</div>;
 };
 
-export default QuizChoiceSelectBoxes;
+export default GrayRadioBoxes;
