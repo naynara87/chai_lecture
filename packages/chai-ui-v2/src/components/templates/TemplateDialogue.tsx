@@ -5,6 +5,7 @@ import { ImgCharacterComponent } from "../atoms";
 import ImgProfileDefaultComponent from "../atoms/ImgProfileDefaultComponent";
 import ImgTemp01Component from "../atoms/ImgTemp01Component";
 import ComponentButtonPlay from "../atoms/ComponentButtonPlay";
+import ComponentButtonRoundArrow from "../atoms/ComponentButtonRoundArrow";
 
 const DialogueContainer = styled.div``;
 
@@ -36,13 +37,14 @@ const TemplateDialogue = () => {
           </div>
           {/* end 말풍선 캐릭터 */}
           {/* ComponentVocaNote */}
-          <div className="voca-bote-container">
+          <div className="voca-note-container">
             <h3 className="voca-title">
-              새로운 단어
+              회화 단어 목록
               <ImgCharacterComponent
                 characterType="kkungiSmile"
                 characterAlt="꿍이스마일"
               />
+              <ComponentButtonRoundArrow />
             </h3>
             <ul className="voca-list-wrap">
               {/* 반복영역 */}
@@ -64,11 +66,11 @@ const TemplateDialogue = () => {
       <div className="layout-panel wide-panel conversation-panel-wrap">
         {/* 230216 회화의 제목이 있을 때에만 사용 */}
         {/* ComponentTitle */}
-        <h2 className="conts-ttl">{"대화 내용을 잘 들어보세요"}</h2>
+        <h2 className="conts-ttl none">{"대화 내용을 잘 들어보세요"}</h2>
         {/* end ComponentTitle */}
         {/* 230216 회화에서 한어병음과 뜻의 보임 여부를 선택할 때 사용 */}
         {/* ComponentToggle */}
-        <div className="toggles-wrapper none">
+        <div className="toggles-wrapper">
           <div className="inp-toggle-wrap">
             <span className="toggle-name">한어병음</span>
             <input

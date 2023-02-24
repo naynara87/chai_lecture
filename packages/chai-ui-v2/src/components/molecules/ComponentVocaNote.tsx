@@ -1,16 +1,18 @@
 import React from "react";
 import { ImgCharacterComponent } from "../atoms";
 import ComponentButtonPlay from "../atoms/ComponentButtonPlay";
+import ComponentButtonRoundArrow from "../atoms/ComponentButtonRoundArrow";
 
 const ComponentVocaNote = () => {
   return (
-    <div className="voca-bote-container">
+    <div className="voca-note-container">
       <h3 className="voca-title">
-        새로운 단어
+        회화 단어 목록
         <ImgCharacterComponent
           characterType="kkungiSmile"
           characterAlt="꿍이스마일"
         />
+        <ComponentButtonRoundArrow />
       </h3>
       <ul className="voca-list-wrap">
         {/* 반복영역 */}

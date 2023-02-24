@@ -13,10 +13,10 @@
 	@content;
 }
 
-@mixin rounded($s) {
+@mixin rounded($s, $r: vw(20)) {
 	width: $s;
 	height: $s;
-	border-radius: vw(20);
+	border-radius: $r;
 	@content;
 }
 

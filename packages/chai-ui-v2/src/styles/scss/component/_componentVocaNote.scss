@@ -1,17 +1,24 @@
 /* =================== componentVocaNote =================== */
-.voca-bote-container {
-	@include full;
+.voca-note-container {
+	overflow: hidden;
+	width: 100%;
+	height: vh(80);
 	padding: vh(24) vw(20);
-	overflow: auto;
 	border: 1px solid #DBE1FF;
 	border-radius: vw(20);
 	background-color: #F4F3FA;
+	transition: all 0.3s;
+
+	&.active {
+		overflow: auto;
+		height: 100%;
+	}
 }
 
 .voca-title {
 	z-index: z(zero);
 	position: relative;
-	padding-bottom: vh(14);
+	padding-bottom: vh(22);
 	font-size: vw(22);
 	text-align: center;
 
@@ -20,6 +27,13 @@
 		top: vh(-8);
 		left: 0;
 		width: vw(90);
+	}
+
+	.btn {
+		position: absolute;
+		top: vh(-4);
+		left: auto;
+		right: 0;
 	}
 }
 
