@@ -28,7 +28,7 @@ const ModalSwiper = () => {
       <SwiperWrapper>
         <Swiper
           modules={[Pagination]}
-          loop={false}
+          loop
           pagination={{
             dynamicBullets: false,
             clickable: true,
@@ -39,6 +39,54 @@ const ModalSwiper = () => {
           onSlideChange={() => console.log("slide change")}
           onSwiper={(swiper) => console.log(swiper)}
         >
+          <SwiperSlide>
+            <SlideCard>
+              <div className="base-conts">
+                <div className="voca-wrap">
+                  <p className="chinese">{"游泳"}</p>
+                  <p className="pinyin">{"yóuyǒng"}</p>
+                  <p className="mean">{"수영하다"}</p>
+                </div>
+                <ComponentButtonPlay />
+              </div>
+            </SlideCard>
+          </SwiperSlide>
+          <SwiperSlide>
+            <SlideCard>
+              <div className="base-conts">
+                <div className="voca-wrap">
+                  <p className="chinese">{"游泳"}</p>
+                  <p className="pinyin">{"yóuyǒng"}</p>
+                  <p className="mean">{"수영하다"}</p>
+                </div>
+                <ComponentButtonPlay />
+              </div>
+            </SlideCard>
+          </SwiperSlide>
+          <SwiperSlide>
+            <SlideCard>
+              <div className="base-conts">
+                <div className="voca-wrap">
+                  <p className="chinese">{"游泳"}</p>
+                  <p className="pinyin">{"yóuyǒng"}</p>
+                  <p className="mean">{"수영하다"}</p>
+                </div>
+                <ComponentButtonPlay />
+              </div>
+            </SlideCard>
+          </SwiperSlide>
+          <SwiperSlide>
+            <SlideCard>
+              <div className="base-conts">
+                <div className="voca-wrap">
+                  <p className="chinese">{"游泳"}</p>
+                  <p className="pinyin">{"yóuyǒng"}</p>
+                  <p className="mean">{"수영하다"}</p>
+                </div>
+                <ComponentButtonPlay />
+              </div>
+            </SlideCard>
+          </SwiperSlide>
           <SwiperSlide>
             <SlideCard>
               <div className="base-conts">
