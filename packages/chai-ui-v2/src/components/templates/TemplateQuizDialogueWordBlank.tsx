@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import IconO from "../../images/icon/icon_o.svg";
 import IconX from "../../images/icon/icon_x.svg";
 import { LayoutModalSolution, LayoutModalVoca } from "../modal";
-import { IconSpeakerComponent } from "../atoms";
+import { ComponentButtonPlay } from "../atoms";
 import ComponentButtonRadiFillMain from "../atoms/ComponentButtonRadiFillMain";
 import { ComponentContsInfo } from "../molecules";
 import DialogueContent from "../molecules/DialogueContent";
@@ -77,13 +77,8 @@ const TemplateQuizDialogueWordBlank = () => {
       <div className="layout-panel side-panel">
         <div className="cont-info-wrap">
           <div className="btns-wrap">
-            {/* FIXME: key디자인수정예정 - 음원재생버튼 모양 변경(원이 아닌 모양으로), 이미지 변경 */}
-            <button className="btn-icon-with-text">
-              <div className="icon-wrap">
-                <IconSpeakerComponent />
-              </div>
-              <p className="txt">전체 음성 듣기</p>
-            </button>
+            <ComponentButtonPlay />
+            <p className="txt">전체 음성 듣기</p>
           </div>
           {/* 말풍선 캐릭터 */}
           <ComponentContsInfo text="지난 시간엔 계절에 대한 회화를 학습했어요. 다음 대화를 잘 보고 빈 칸에 들어갈 알맞은 단어를 고르세요." />
