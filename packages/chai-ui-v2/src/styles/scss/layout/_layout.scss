@@ -37,6 +37,10 @@
 	background-color: color(gray-ff);
 	box-shadow: 2px 6px 12px rgba(0, 0, 0, 0.15);
 	;
+
+	> div:not(:first-child) {
+		margin-top: vh(40);
+	}
 }
 
 // prograss bar
@@ -51,5 +55,6 @@
 .cai-progress-bar {
 	height: 100%;
 	width: 50%;
+	border-radius: vw(50);
 	background-image: linear-gradient(to right, #66DAFF 0%, #677EFF 100%);
 }

@@ -110,23 +110,6 @@
 	color: color(gray-ff);
 }
 
-.btn-border-main {
-	@extend %btn;
-	@extend %btn-interaction;
-
-	width: 100%;
-	height: vh(88);
-	border: 1px solid color(main);
-	border-radius: vw(10);
-	font-weight: 600;
-	font-size: vw(24);
-	color: color(main);
-
-	&:before {
-		letter-spacing: -0.04em;
-	}
-}
-
 .btn-radi-border-main {
 	@extend %btn;
 	@extend %btn-interaction;
