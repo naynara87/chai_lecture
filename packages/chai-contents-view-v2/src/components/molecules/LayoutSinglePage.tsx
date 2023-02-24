@@ -13,7 +13,7 @@ const LayoutSinglePage = ({
     page,
   });
 
-  return <>{getTemplateComponent(singlePageData.data.type)}</>; // TODO: BBC-996
+  return <>{getTemplateComponent(singlePageData.data.type)}</>;
 };
 
 export default LayoutSinglePage;
