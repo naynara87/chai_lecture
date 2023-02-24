@@ -5,8 +5,9 @@ import { LayoutModalSolution, LayoutModalVoca } from "../modal";
 import {
   ComponentButtonRadiBorderMain,
   ComponentButtonRadiFillMain,
-  ImgProfileDefaultComponent,
 } from "../atoms";
+import LineCheckBoxes from "../molecules/LineCheckBoxes";
+import DialogueSentenceBlank from "../molecules/DialogueSentenceBlank";
 
 const DialogueContainer = styled.div`
   .blank-gray {
@@ -39,69 +40,14 @@ const TemplateQuizSentenceBlank = () => {
         {/* 230217 회화영역 */}
         <ul className="conversation-wrapper">
           {/* speech bubble */}
-          {/* TODO: key설명 - 음성이 재생될 때 active 가 추가됨(화자표시 애니메이션) */}
-          <li className="conversation-wrap">
-            <div className="img-wrap">
-              {/* TODO: key설명 - 누르면 단일 음성이 재생됨 */}
-              <div className="img-round">
-                <button className="btn-profile">
-                  <ImgProfileDefaultComponent />
-                </button>
-              </div>
-            </div>
-            <div className="txt-wrap">
-              <p className="chinese">{"四川的传统名菜  麻婆豆腐"}</p>
-              <p className="blank-gray">&nbsp;</p>
-              <p className="chinese">
-                {
-                  "很久以前，四川省成都有一家小饭馆。那里的豆腐菜材料很简单，只需要豆腐、肉、辣椒什么的，但吃起来特别香。"
-                }
-              </p>
-              <p className="blank-gray">&nbsp;</p>
-              <p className="blank-gray">&nbsp;</p>
-            </div>
-          </li>
+          <DialogueSentenceBlank />
           {/* end speech bubble */}
         </ul>
       </div>
       <div className="layout-panel wide-panel">
         <QuizContainer method="post" className="quiz-container">
           <div className="quiz-answer-wrap hori-answer-wrap">
-            <div className="inp-grp">
-              <input
-                type="checkbox"
-                name="answer1"
-                id="answer1"
-                className="inp-chck-line none"
-              />
-              <label htmlFor="answer1" className="label-chck-line">
-                <span className="text">{"你最后一次在哪儿用过？"}</span>
-              </label>
-            </div>
-            <div className="inp-grp">
-              <input
-                type="checkbox"
-                name="answer2"
-                id="answer2"
-                className="inp-chck-line none"
-              />
-              <label htmlFor="answer2" className="label-chck-line">
-                <span className="text">{"真的？你找找包里。"}</span>
-              </label>
-            </div>
-            <div className="inp-grp">
-              <input
-                type="checkbox"
-                name="answer3"
-                id="answer3"
-                className="inp-chck-line none"
-              />
-              <label htmlFor="answer3" className="label-chck-line">
-                <span className="text">
-                  {"从那儿出来以后，我就再也没用过。"}
-                </span>
-              </label>
-            </div>
+            <LineCheckBoxes />
           </div>
         </QuizContainer>
         <div className="btns-wrap">

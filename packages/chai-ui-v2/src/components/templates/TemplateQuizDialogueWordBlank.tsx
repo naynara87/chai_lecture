@@ -6,7 +6,7 @@ import { LayoutModalSolution, LayoutModalVoca } from "../modal";
 import { ComponentButtonPlay } from "../atoms";
 import ComponentButtonRadiFillMain from "../atoms/ComponentButtonRadiFillMain";
 import { ComponentContsInfo } from "../molecules";
-import DialogueContent from "../molecules/DialogueContent";
+import DialogueQuizChoiceWordBlankContent from "../molecules/DialogueQuizChoiceWordBlankContent";
 
 const DialogueContainer = styled.div`
   .hori-answer-wrap {
@@ -90,10 +90,10 @@ const TemplateQuizDialogueWordBlank = () => {
         {/* 230217 회화영역 */}
         <ul className="conversation-wrapper">
           {/* speech bubble */}
-          <DialogueContent />
+          <DialogueQuizChoiceWordBlankContent />
           {/* end speech bubble */}
           {/* TODO: key설명 - input이 checked가 되는 순간 blank에 선택한 글자가 들어감 */}
-          <DialogueContent />
+          <DialogueQuizChoiceWordBlankContent />
         </ul>
         <div className="btns-wrap">
           <ComponentButtonRadiFillMain text="정답확인" />

@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 
-const QuizDialogueWordBlankSelectBoxes = () => {
+const LineRadioBoxes = () => {
   const selectBoxes = useMemo(() => {
     // TODO kjw quizDialogueWordBlank관련 데이터 타입 설계되면 로직구성
     return (
@@ -34,4 +34,4 @@ const QuizDialogueWordBlankSelectBoxes = () => {
   return <div className="quiz-answer-wrap hori-answer-wrap">{selectBoxes}</div>;
 };
 
-export default QuizDialogueWordBlankSelectBoxes;
+export default LineRadioBoxes;

@@ -28,6 +28,7 @@ export default {
     }),
   ],
   external: [
+    "axios",
     "@emotion/react",
     "@emotion/styled",
     "@mui/material",

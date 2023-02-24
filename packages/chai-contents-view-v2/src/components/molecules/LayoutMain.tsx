@@ -1,13 +1,13 @@
-import { TemplateProps, useTemplateMapper } from "chai-ui-v2";
+import { PageProps, useTemplateMapper } from "chai-ui-v2";
 import React from "react";
 
-interface LayoutMainProps extends TemplateProps {}
+interface LayoutMainProps extends PageProps {}
 const LayoutMain = ({ page, setPageCompleted }: LayoutMainProps) => {
   const { getTemplateComponent } = useTemplateMapper({
     setPageCompleted,
     page,
   });
-  return <>{getTemplateComponent(page.template.type)}</>;
+  // return <>{getTemplateComponent(page.type)}</>; // TODO: BBC-996
 };
 
 export default LayoutMain;
