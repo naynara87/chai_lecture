@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
+import { colorPalette, ImgCharacterComponent } from "chai-ui-v2";
 import React from "react";
-import ImgCharacter from "../../images/img/cha_kkungi_positive.png";
 import IconLevel1 from "../../images/img/hd_red.svg";
 // import IconLevel2 from "../../images/img/hd_orange.svg";
 // import IconLevel3 from "../../images/img/hd_yellow.svg";
@@ -10,8 +10,6 @@ import IconLevel1 from "../../images/img/hd_red.svg";
 // import IconLevel7 from "../../images/img/hd_purple.svg";
 
 // TODO: key설명 - 레벨별 컬러는 헤더에서만 사용
-const MainLevel1 = "#EE4141";
-const SubLevel1 = "#F89E9E";
 // const MainLevel2 = '#FF6700';
 // const SubLevel2 = '#FFA861';
 // const MainLevel3 = '#FFB900';
@@ -31,17 +29,17 @@ const HdContWrap = styled.div`
   background-image: url("${IconLevel1}");
 
   &:after {
-    background-color: ${MainLevel1};
+    background-color: ${colorPalette.red700};
   }
 `;
 
 const CaiHeader = styled.header`
-  background-color: ${SubLevel1};
+  background-color: ${colorPalette.red200};
 `;
 
 const HdChaWrap = styled.div`
   .txt {
-    color: ${MainLevel1};
+    color: ${colorPalette.red700};
   }
 `;
 
@@ -54,11 +52,17 @@ const LayoutHeader = () => {
         {/* 우선 클래스 none 로 가림 */}
         <HdChaWrap className="hd-cha-wrap second-half none">
           <p className="txt">{"학습목표 자가체크"}</p>
-          <img src={ImgCharacter} alt="꿍이" className="img" />
+          <ImgCharacterComponent
+            characterType="kkungiPositive"
+            characterAlt="꿍이"
+          />
         </HdChaWrap>
         <span className="corner-name">{"학습 시작"}</span>
         <HdChaWrap className="hd-cha-wrap first-half">
-          <img src={ImgCharacter} alt="꿍이" className="img" />
+          <ImgCharacterComponent
+            characterType="kkungiPositive"
+            characterAlt="꿍이"
+          />
           <p className="txt">{"학습목표 자가체크"}</p>
         </HdChaWrap>
       </HdContWrap>

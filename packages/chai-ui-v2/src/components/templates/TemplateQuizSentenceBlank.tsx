@@ -1,13 +1,12 @@
 import styled from "@emotion/styled";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ComponentTitle from "../molecules/ComponentTitle";
 import { LayoutModalSolution, LayoutModalVoca } from "../modal";
 import {
-  ComponentButtonBorderMain,
-  ComponentButtonFillBlack,
+  ComponentButtonRadiBorderMain,
+  ComponentButtonRadiFillMain,
   ImgProfileDefaultComponent,
 } from "../atoms";
-import { PageProps } from "../../core";
 
 const DialogueContainer = styled.div`
   .blank-gray {
@@ -29,19 +28,9 @@ const QuizContainer = styled.form`
   }
 `;
 
-interface TemplateQuizSentenceBlankProps extends PageProps {}
-
-const TemplateQuizSentenceBlank = ({
-  page,
-  setPageCompleted,
-}: TemplateQuizSentenceBlankProps) => {
+const TemplateQuizSentenceBlank = () => {
   const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(false);
   const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
-
-  useEffect(() => {
-    setPageCompleted();
-    console.log(page);
-  }, [setPageCompleted, page]);
 
   return (
     <DialogueContainer className="layout-panel-wrap grid-h-5-5">
@@ -83,9 +72,9 @@ const TemplateQuizSentenceBlank = ({
                 type="checkbox"
                 name="answer1"
                 id="answer1"
-                className="inp-chck-gray none"
+                className="inp-chck-line none"
               />
-              <label htmlFor="answer1" className="label-chck-gray">
+              <label htmlFor="answer1" className="label-chck-line">
                 <span className="text">{"你最后一次在哪儿用过？"}</span>
               </label>
             </div>
@@ -94,9 +83,9 @@ const TemplateQuizSentenceBlank = ({
                 type="checkbox"
                 name="answer2"
                 id="answer2"
-                className="inp-chck-gray none"
+                className="inp-chck-line none"
               />
-              <label htmlFor="answer2" className="label-chck-gray">
+              <label htmlFor="answer2" className="label-chck-line">
                 <span className="text">{"真的？你找找包里。"}</span>
               </label>
             </div>
@@ -105,9 +94,9 @@ const TemplateQuizSentenceBlank = ({
                 type="checkbox"
                 name="answer3"
                 id="answer3"
-                className="inp-chck-gray none"
+                className="inp-chck-line none"
               />
-              <label htmlFor="answer3" className="label-chck-gray">
+              <label htmlFor="answer3" className="label-chck-line">
                 <span className="text">
                   {"从那儿出来以后，我就再也没用过。"}
                 </span>
@@ -116,8 +105,8 @@ const TemplateQuizSentenceBlank = ({
           </div>
         </QuizContainer>
         <div className="btns-wrap">
-          <ComponentButtonBorderMain text="다시하기" />
-          <ComponentButtonFillBlack text="제출하기" />
+          <ComponentButtonRadiBorderMain text="다시하기" />
+          <ComponentButtonRadiFillMain text="제출하기" />
         </div>
       </div>
       <LayoutModalSolution

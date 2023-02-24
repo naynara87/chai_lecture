@@ -1,5 +1,5 @@
 import React from "react";
-import ImgKkyngi from "../../images/img/cha_kkungi_positive.png";
+import { ImgCharacterComponent } from "../atoms";
 import ComponentButtonPlay from "../atoms/ComponentButtonPlay";
 
 const ComponentVocaNote = () => {
@@ -7,7 +7,10 @@ const ComponentVocaNote = () => {
     <div className="voca-bote-container">
       <h3 className="voca-title">
         새로운 단어
-        <img src={ImgKkyngi} alt="" className="img" />
+        <ImgCharacterComponent
+          characterType="kkungiSmile"
+          characterAlt="꿍이스마일"
+        />
       </h3>
       <ul className="voca-list-wrap">
         {/* 반복영역 */}

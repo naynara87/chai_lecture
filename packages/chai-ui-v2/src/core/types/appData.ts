@@ -1,8 +1,6 @@
-import { Template01Data } from "./templates";
+import { TemplateData } from "./templates";
 
 export type ID = string | number;
-
-export type TemplateData = Template01Data;
 
 export type TemplateType = TemplateData["type"];
 
@@ -102,3 +100,24 @@ export interface PageProps {
   setPageCompleted: () => void;
   page: Page;
 }
+
+export type characterType =
+  | "didiAngry"
+  | "didiGlasses"
+  | "didiHeart"
+  | "didiSad"
+  | "didiSmile"
+  | "didiSurprise"
+  | "didiWink"
+  | "didiWinking"
+  | "kkungiHeart"
+  | "kkungiLaugh"
+  | "kkungiPositive"
+  | "kkungiSmile"
+  | "kkungiWink"
+  | "winiProud"
+  | "winiSad"
+  | "winiShock"
+  | "winiSmile"
+  | "winiSurprise"
+  | "winiWink";

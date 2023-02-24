@@ -11,7 +11,10 @@ const ComponentContsInfo = ({ text }: ComponentContsInfoProps) => {
       <div className="character-wrapper">
         <div className="text-wrap">{text}</div>
         <div className="character-wrap">
-          <ImgCharacterComponent />
+          <ImgCharacterComponent
+            characterType="didiGlasses"
+            characterAlt="디디"
+          />
         </div>
       </div>
     </div>

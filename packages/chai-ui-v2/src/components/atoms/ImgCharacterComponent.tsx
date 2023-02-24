@@ -1,8 +1,25 @@
 import React from "react";
-import ImgCharacter from "../../images/img/cha_kkungi_smile.png";
+import { characterType } from "../../core";
+import useCharacterMapper from "../../core/hooks/useCharacterMapper";
 
-const ImgCharacterComponent = () => {
-  return <img src={ImgCharacter} alt="" className="img" />;
+interface ImgCharacterComponentProps {
+  characterType: characterType;
+  characterAlt: string;
+}
+
+const ImgCharacterComponent = ({
+  characterType,
+  characterAlt,
+}: ImgCharacterComponentProps) => {
+  const { getCharacterSrc } = useCharacterMapper();
+
+  return (
+    <img
+      src={getCharacterSrc(characterType)}
+      alt={characterAlt}
+      className="img"
+    ></img>
+  );
 };
 
 export default ImgCharacterComponent;

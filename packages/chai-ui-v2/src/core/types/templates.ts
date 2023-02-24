@@ -1,6 +1,11 @@
 import { ID } from "./appData";
 import { Content } from "./contents";
 
+export type TemplateData =
+  | Template01Data
+  | Template_H_3_7Data
+  | Template_H_5_5Data;
+
 /**
  * 하나의 카드가 있는 템플릿
  */
