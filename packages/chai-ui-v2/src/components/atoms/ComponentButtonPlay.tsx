@@ -1,11 +1,10 @@
 import React from "react";
-import IconPlay from "../../images/icon/icon_play.svg";
 
 const ComponentButtonPlay = () => {
 
   return (
-    <button className="btn-icon">
-        <img src={IconPlay} alt="재생" className="icon" />
+    <button className="btn-icon-mini btn-play">
+      재생
     </button>
   );
 };
