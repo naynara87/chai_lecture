@@ -9,7 +9,6 @@ export { default as IconCloseComponent } from "./IconCloseComponent";
 export { default as IconLeftArrowComponent } from "./IconLeftArrowComponent";
 export { default as IconOpenComponent } from "./IconOpenComponent";
 export { default as IconRightArrowComponent } from "./IconRightArrowComponent";
-export { default as IconSpeakerComponent } from "./IconSpeakerComponent";
 export { default as ImgCharacterComponent } from "./ImgCharacterComponent";
 export { default as ImgContinueComponent } from "./ImgContinueComponent";
 export { default as ImgProfileDefaultComponent } from "./ImgProfileDefaultComponent";
