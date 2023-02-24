@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
-import { TemplateProps } from "../../core";
+import { PageProps } from "../../core";
 import { ComponentButtonFillBlack } from "../atoms";
 import { LayoutModalSolution, LayoutModalVoca } from "../modal";
 import ComponentContsInfo from "../molecules/ComponentContsInfo";
@@ -15,7 +15,7 @@ const QuizContainer = styled.form`
 
 // FIXME: key 퀴즈가 아님. 각 요소들 component 화 하기
 
-interface TemplateQuizRecordProps extends TemplateProps {}
+interface TemplateQuizRecordProps extends PageProps {}
 
 const TemplateQuizRecord = ({
   page,

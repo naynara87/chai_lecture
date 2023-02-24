@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { TemplateProps } from "../../core";
+import { PageProps } from "../../core";
 import { ComponentVideo } from "../atoms";
 import LayoutModalSolution from "../modal/LayoutModalSolution";
 import LayoutModalVoca from "../modal/LayoutModalVoca";
 import ComponentTitle from "../molecules/ComponentTitle";
 
-interface Template01Props extends TemplateProps {}
+interface Template01Props extends PageProps {}
 
 const TemplateExam = ({ page, setPageCompleted }: Template01Props) => {
   const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(false);

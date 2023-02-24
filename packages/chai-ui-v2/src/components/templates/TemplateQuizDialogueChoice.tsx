@@ -3,13 +3,13 @@ import React, { useEffect, useState } from "react";
 import { LayoutModalSolution, LayoutModalVoca } from "../modal";
 import ImgProfileDefaultComponent from "../atoms/ImgProfileDefaultComponent";
 import ImgTemp01Component from "../atoms/ImgTemp01Component";
-import { TemplateProps } from "../../core";
+import { PageProps } from "../../core";
 
 const DialogueContainer = styled.div``;
 
 const QuizContainer = styled.form``;
 
-interface TemplateQuizDialogueChoiceProps extends TemplateProps {}
+interface TemplateQuizDialogueChoiceProps extends PageProps {}
 
 const TemplateQuizDialogueChoice = ({
   page,

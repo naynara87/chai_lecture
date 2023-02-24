@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import IconO from "../../images/icon/icon_o.svg";
 import IconX from "../../images/icon/icon_x.svg";
 import { LayoutModalSolution, LayoutModalVoca } from "../modal";
-import { TemplateProps } from "../../core";
+import { PageProps } from "../../core";
 import {
   IconSpeakerComponent,
   ImgCharacterComponent,
@@ -72,7 +72,7 @@ const DialogueContainer = styled.div`
   }
 `;
 
-interface TemplateQuizDialogueWordBlankProps extends TemplateProps { }
+interface TemplateQuizDialogueWordBlankProps extends PageProps {}
 
 const TemplateQuizDialogueWordBlank = ({
   page,

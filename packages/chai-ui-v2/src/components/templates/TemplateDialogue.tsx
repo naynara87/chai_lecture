@@ -6,12 +6,12 @@ import { ImgCharacterComponent } from "../atoms";
 import ImgKkyngiComponent from "../atoms/ImgKkyngiComponent";
 import ImgProfileDefaultComponent from "../atoms/ImgProfileDefaultComponent";
 import ImgTemp01Component from "../atoms/ImgTemp01Component";
-import { TemplateProps } from "../../core";
+import { PageProps } from "../../core";
 import ComponentButtonPlay from "../atoms/ComponentButtonPlay";
 
 const DialogueContainer = styled.div``;
 
-interface TemplateDialogueProps extends TemplateProps {}
+interface TemplateDialogueProps extends PageProps {}
 
 const TemplateDialogue = ({
   page,

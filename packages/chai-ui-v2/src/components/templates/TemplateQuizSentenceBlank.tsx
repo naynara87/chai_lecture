@@ -7,7 +7,7 @@ import {
   ComponentButtonFillBlack,
   ImgProfileDefaultComponent,
 } from "../atoms";
-import { TemplateProps } from "../../core";
+import { PageProps } from "../../core";
 
 const DialogueContainer = styled.div`
   .blank-gray {
@@ -29,7 +29,7 @@ const QuizContainer = styled.form`
   }
 `;
 
-interface TemplateQuizSentenceBlankProps extends TemplateProps {}
+interface TemplateQuizSentenceBlankProps extends PageProps {}
 
 const TemplateQuizSentenceBlank = ({
   page,

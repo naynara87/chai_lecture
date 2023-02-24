@@ -1,12 +1,12 @@
 import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
-import { TemplateProps } from "../../core";
+import { PageProps } from "../../core";
 import { LayoutModalSolution, LayoutModalVoca } from "../modal";
 import ComponentContsInfo from "../molecules/ComponentContsInfo";
 
 const QuizContainer = styled.form``;
 
-interface TemplateQuizChoiceProps extends TemplateProps { }
+interface TemplateQuizChoiceProps extends PageProps {}
 
 const TemplateQuizChoice = ({
   page,

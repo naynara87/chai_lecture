@@ -8,7 +8,7 @@ import {
   ImgProfileDefaultComponent,
   ImgTemp01Component,
 } from "../atoms";
-import { TemplateProps } from "../../core";
+import { PageProps } from "../../core";
 
 const DialogueContainer = styled.div`
   .conversation-wrap {
@@ -27,7 +27,7 @@ const QuizContainer = styled.form`
   }
 `;
 
-interface TemplateQuizDialogueSentenceBlankProps extends TemplateProps {}
+interface TemplateQuizDialogueSentenceBlankProps extends PageProps {}
 
 const TemplateQuizDialogueSentenceBlank = ({
   page,

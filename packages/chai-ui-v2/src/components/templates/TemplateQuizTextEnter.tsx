@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import ComponentTitle from "../molecules/ComponentTitle";
 import { LayoutModalSolution, LayoutModalVoca } from "../modal";
-import { TemplateProps } from "../../core";
+import { PageProps } from "../../core";
 
-interface TemplateQuizTextEnterProps extends TemplateProps {}
+interface TemplateQuizTextEnterProps extends PageProps {}
 
 const TemplateQuizTextEnter = ({
   page,

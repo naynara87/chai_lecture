@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
-import { TemplateProps } from "../../core";
+import { PageProps } from "../../core";
 import { ImgTemp01Component } from "../atoms";
 import ComponentButtonPlay from "../atoms/ComponentButtonPlay";
 import ComponentButtonRadiBorderMain from "../atoms/ComponentButtonRadiBorderMain";
@@ -38,7 +38,7 @@ const QuizContainer = styled.form`
   }
 `;
 
-interface TemplateQuizWordBlankProps extends TemplateProps {}
+interface TemplateQuizWordBlankProps extends PageProps {}
 
 const TemplateQuizWordBlank = ({
   page,
@@ -92,11 +92,18 @@ const TemplateQuizWordBlank = ({
               <small className="sm">&nbsp;</small>
             </div>
           </div>
-        {/* TODO: key설명 정답확인후 정답일 때 answer-right 추가 */}
-        {/* TODO: key설명 정답확인후 오답일 때 answer-wrong 추가 */}
+          {/* TODO: key설명 정답확인후 정답일 때 answer-right 추가 */}
+          {/* TODO: key설명 정답확인후 오답일 때 answer-wrong 추가 */}
           <div className="quiz-answer-wrap hori-answer-wrap answer-wrong">
             <div className="inp-grp">
-              <input type="checkbox" name="answer1" id="answer1" className="inp-chck-line none" checked disabled />
+              <input
+                type="checkbox"
+                name="answer1"
+                id="answer1"
+                className="inp-chck-line none"
+                checked
+                disabled
+              />
               <label htmlFor="answer1" className="label-chck-line">
                 <span className="text">{"冷"}</span>
                 <span className="text-sm">{"lěng"}</span>
