@@ -8,9 +8,9 @@ import React, {
 } from "react";
 import { useReactMediaRecorder } from "react-media-recorder";
 import { colorPalette } from "../../styles";
-import HeadsetButton from "../atoms/Button/HeadsetButton";
+import PlayButton from "../atoms/Button/PlayButton";
 import MikeButton from "../atoms/Button/MikeButton";
-import ResetButton from "../atoms/Button/ResetButton";
+import ReturnButton from "../atoms/Button/ReturnButton";
 import StopButton from "../atoms/Button/StopButton";
 
 const ButtonWrapper = styled.div`
@@ -119,19 +119,19 @@ const AudioRecorder = () => {
         return <MikeButton />;
       } else if (status === "stopped") {
         // 다시 녹음하기 버튼
-        return <ResetButton />;
+        return <ReturnButton />;
       }
     }
   }, [status]);
 
   const renderRecordedAudioIcon = useMemo(() => {
     if (recordedAudioState === "not-recorded") {
-      return <HeadsetButton active={false} />;
+      return <PlayButton active={false} />;
     } else if (recordedAudioState === "playing") {
       return <StopButton color={colorPalette.orange300} />;
     } else {
       // recordedAudioState === "recorded"
-      return <HeadsetButton active />;
+      return <PlayButton active />;
     }
   }, [recordedAudioState]);
 
