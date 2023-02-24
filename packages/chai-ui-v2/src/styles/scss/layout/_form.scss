@@ -9,19 +9,78 @@
 // icon button
 .btn-icon {
 	@extend %btn;
-	@include rounded(vw(80));
-	@include flex-center(inline-flex);
+	@include rounded(vw(55));
+	@include bg-op($s: 100% 100%);
 
-	border: 3px solid color(gray-ff);
+	overflow: hidden;
+	display: inline-block;
+	text-indent: -10rem;
+	color: transparent;
+	text-align: left;
 	box-shadow: $btn-shadow;
+	transition: all 0.3s;
 
 	.icon {
 		@include full;
 	}
+
+	&:hover,
+	&:focus {
+		animation-name: opacity;
+		animation-duration: 1s;
+		animation-timing-function: linear;
+		animation-iteration-count: infinite;
+	}
+}
+
+.btn-icon-mini {
+	@extend .btn-icon;
+
+	border-radius: vw(14);
+}
+
+.btn-play {
+	@include bg-url(icon, 'icon_play.svg');
 	
 	&:disabled {
-		border-color: color(gray-c9);
-		background-color: color(gray-c9);
+		@include bg-url(icon, 'icon_play_disabled.svg');
+
+		&:hover,
+		&:focus {
+			animation: none;
+		}
+	}
+}
+
+.btn-pause {
+	@include bg-url(icon, 'icon_pause.svg');
+	
+	&:disabled {
+		@include bg-url(icon, 'icon_pause_disabled.svg');
+	}
+}
+
+.btn-stop {
+	@include bg-url(icon, 'icon_stop.svg');
+	
+	&:disabled {
+		@include bg-url(icon, 'icon_stop_disabled.svg');
+	}
+}
+
+.btn-mic {
+	@include bg-url(icon, 'icon_mic.svg');
+	
+	&:disabled {
+		@include bg-url(icon, 'icon_mic_disabled.svg');
+	}
+}
+
+.btn-return {
+	@include bg-url(icon, 'icon_return.svg');
+	
+	&:disabled {
+		@include bg-url(icon, 'icon_return_disabled.svg');
 	}
 }
 
@@ -35,50 +94,6 @@
 	right: vw(12);
 }
 
-.btn-mike {
-	border: 1px solid color(red-600);
-	background-color: color(red-600);
-	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-	
-	.icon {
-		width: vw(20);
-	}
-}
-
-.btn-headset {
-	border: 1px solid color(orange-300);
-	background-color: color(orange-300);
-}
-
-.btn-reset {
-	border: 1px solid color(gray-db);
-	background-color: color(gray-ff);
-}
-
-.btn-icon-with-text {
-	@extend %btn;
-
-	text-align: center;
-
-	.icon-wrap {
-		@include circle(vw(80));
-		@include flex-center(flex);
-
-		margin: 0 auto;
-		background-color: color(main);
-		box-shadow: 0 3px 6px rgba(172, 179, 185, 0.5);
-		
-		.icon {
-			width: 50%;
-		}
-	}
-	
-	.txt {
-		margin: vh(23) auto 0;
-		font-weight: 400;
-		font-size: vw(26);
-	}
-}
 
 // text button
 .btn-fill-black {

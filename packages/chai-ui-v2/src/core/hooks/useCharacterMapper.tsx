@@ -17,6 +17,8 @@ import winiShock from "../../images/img/cha_wini_shock.png";
 import winiSmile from "../../images/img/cha_wini_smile.png";
 import winiSurprise from "../../images/img/cha_wini_surprise.png";
 import winiWink from "../../images/img/cha_wini_wink.png";
+import kkungiHeader from "../../images/img/cha_kkungi_header.gif";
+import allFinish from "../../images/img/cha_all_finish.gif";
 import { characterType } from "../types";
 
 const useCharacterMapper = () => {
@@ -34,12 +36,14 @@ const useCharacterMapper = () => {
     kkungiPositive,
     kkungiSmile,
     kkungiWink,
+    kkungiHeader,
     winiProud,
     winiSad,
     winiShock,
     winiSmile,
     winiSurprise,
     winiWink,
+    allFinish,
   };
 
   const getCharacterSrc = (characterName: characterType) => {
