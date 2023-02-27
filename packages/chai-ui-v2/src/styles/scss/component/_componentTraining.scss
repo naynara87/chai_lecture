@@ -9,7 +9,7 @@
 
 .training-list {
 	width: vw(348);
-	height: vh(361);
+	height: vw(361);
 	border: 1px solid color(gray-db);
 	border-radius: vw(20);
 
@@ -17,27 +17,34 @@
 		@include gradiant;
 
 		position: relative;
-		height: vh(165);
+		height: 45%;
 		padding-bottom: vh(29);
 		border-radius: vw(20) vw(20) 0 0;
 		text-align: center;
+	}
+
+	.gradi-conts-wrap {
+		position: relative;
+		top: vh(-60);
 
 		.img-wrap {
 			@include circle(vw(140));
 
-			position: relative;
+			max-width: 140px;
+			max-height: 140px;
 			margin: 0 auto;
-			border: 10px solid color(gray-ff);
+			border: vw(10) solid color(gray-ff);
 			box-shadow: 0 6px 0 rgba(88, 88, 88, 0.2);
-			top: vh(-60);
+
+			img {
+				@include full;
+
+				object-fit: cover;
+			}
 		}
 
 		.title {
-			position: absolute;
-			top: auto;
-			bottom: vh(30);
-			left: 0;
-			width: 100%;
+			margin-top: vh(18);
 			font-weight: 600;
 			font-size: vw(32);
 			line-height: 1.5;
@@ -45,22 +52,25 @@
 	}
 
 	.white-wrap {
+		overflow: auto;
+		height: 55%;
 		padding: vh(30) vw(45);
 
 		.dot-text {
 			position: relative;
 			padding-left: vw(18);
 			font-size: vw(24);
+			line-height: 1;
 
 			&:not(:first-child) {
-				margin-top: vh(20);
+				margin-top: vw(20);
 			}
 
 			@include make-before {
 				@include circle(vw(6));
 
 				position: absolute;
-				top: vh(14);
+				top: vw(10);
 				left: 0;
 				background-color: color(main);
 			}

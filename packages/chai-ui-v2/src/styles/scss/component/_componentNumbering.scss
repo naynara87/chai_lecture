@@ -1,0 +1,54 @@
+/* =================== componentNumbering =================== */
+.numbering-list {
+	@include flex {
+		@include flex-op(flex-start, space-between);
+	}
+
+	position: relative;
+	padding: vh(25) vw(40);
+	border-radius: vw(20);
+	background-color: color(gray-f5);
+
+	&:not(:first-child) {
+		margin-top: vh(20);
+	}
+
+	.number {
+		@include circle(vw(36));
+
+		position: absolute;
+		top: vh(28);
+		left: vw(40);
+		background-color: color(main);
+		line-height: vw(34);
+		font-weight: 600;
+		font-size: vw(22);
+		color: color(gray-ff);
+		text-align: center;
+	}
+
+	.text1 {
+		padding-left: vw(60);
+		font-size: vw(28);
+		white-space: pre-line;
+	}
+	
+	.text2 {
+		font-size: vw(24);
+		white-space: pre-line;
+	}
+
+	.chinese {
+		font-weight: 600;
+		font-size: vw(40);
+	}
+
+	.pinyin {
+		font-size: vw(32);
+		color: color(gray-66);
+	}
+
+	.c-red {
+		color: color(warning);
+	}
+}

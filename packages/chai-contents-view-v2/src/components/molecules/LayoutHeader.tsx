@@ -1,13 +1,6 @@
 import styled from "@emotion/styled";
 import { colorPalette, ImgCharacterComponent } from "chai-ui-v2";
 import React from "react";
-import IconLevel1 from "../../images/img/hd_red.svg";
-// import IconLevel2 from "../../images/img/hd_orange.svg";
-// import IconLevel3 from "../../images/img/hd_yellow.svg";
-// import IconLevel4 from "../../images/img/hd_green.svg";
-// import IconLevel5 from "../../images/img/hd_blue.svg";
-// import IconLevel6 from "../../images/img/hd_navy.svg";
-// import IconLevel7 from "../../images/img/hd_purple.svg";
 
 // TODO: key설명 - 레벨별 컬러는 헤더에서만 사용
 // const MainLevel2 = '#FF6700';
@@ -26,9 +19,12 @@ import IconLevel1 from "../../images/img/hd_red.svg";
 const HdContWrap = styled.div`
   /* TODO: key설명 - width: 100%일 때 after의 배경색을 div의 배경색으로 적용 */
   width: 52%;
-  background-image: url("${IconLevel1}");
 
   &:after {
+    background-color: ${colorPalette.red700};
+  }
+  
+  .bg-flag {
     background-color: ${colorPalette.red700};
   }
 `;
@@ -65,6 +61,9 @@ const LayoutHeader = () => {
           />
           <p className="txt">{"학습목표 자가체크"}</p>
         </HdChaWrap>
+        <div className="bg-wrap">
+          <div className="bg-flag"></div>
+        </div>
       </HdContWrap>
     </CaiHeader>
   );

@@ -11,10 +11,12 @@ const ComponentTraining = () => {
         {/* 반복영역 */}
         <li className="training-list">
           <div className="gradi-wrap">
-            <div className="img-wrap">
-              <img src={ChaProfile01} alt="" className="img" />
+            <div className="gradi-conts-wrap">
+              <div className="img-wrap">
+                <img src={ChaProfile01} alt="" className="img" />
+              </div>
+              <p className="title">{'패턴 중국어'}</p>
             </div>
-            <p className="title">{'패턴 중국어'}</p>
           </div>
           <div className="white-wrap">
             <p className="dot-text">{'好 hǎo 인사하기'}</p>
@@ -23,10 +25,12 @@ const ComponentTraining = () => {
         {/* end 반복영역 */}
         <li className="training-list">
           <div className="gradi-wrap">
-            <div className="img-wrap">
-              <img src={ChaProfile02} alt="" className="img" />
+            <div className="gradi-conts-wrap">
+              <div className="img-wrap">
+                <img src={ChaProfile02} alt="" className="img" />
+              </div>
+              <p className="title">{'회화'}</p>
             </div>
-            <p className="title">{'회화'}</p>
           </div>
           <div className="white-wrap">
             <p className="dot-text">{'만남의 인사하기'}</p>
@@ -35,10 +39,12 @@ const ComponentTraining = () => {
         </li>
         <li className="training-list">
           <div className="gradi-wrap">
-            <div className="img-wrap">
-              <img src={ChaProfile03} alt="" className="img" />
+            <div className="gradi-conts-wrap">
+              <div className="img-wrap">
+                <img src={ChaProfile03} alt="" className="img" />
+              </div>
+              <p className="title">{'문법'}</p>
             </div>
-            <p className="title">{'문법'}</p>
           </div>
           <div className="white-wrap">
             <p className="dot-text">{'제3성의 성조 변화'}</p>
@@ -48,10 +54,12 @@ const ComponentTraining = () => {
         </li>
         <li className="training-list">
           <div className="gradi-wrap">
-            <div className="img-wrap">
-              <img src={ChaProfile04} alt="" className="img" />
+            <div className="gradi-conts-wrap">
+              <div className="img-wrap">
+                <img src={ChaProfile04} alt="" className="img" />
+              </div>
+              <p className="title">{'문화'}</p>
             </div>
-            <p className="title">{'문화'}</p>
           </div>
           <div className="white-wrap">
             <p className="dot-text">{'중국인의 성씨와 호칭'}</p>
