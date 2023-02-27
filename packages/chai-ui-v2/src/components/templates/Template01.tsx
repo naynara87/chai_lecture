@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import LayoutModalSolution from "../modal/LayoutModalSolution";
-import ComponentGrayLine from "../molecules/ComponentGrayLine";
+import ComponentNumbering from "../molecules/ComponentNumbering";
 import ComponentTitle from "../molecules/ComponentTitle";
-import ComponentTraining from "../molecules/ComponentTraining";
 
 const Template01 = () => {
   const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(false);
@@ -10,9 +9,8 @@ const Template01 = () => {
   return (
     <div className="layout-panel-wrap">
       <div className="layout-panel">
-        <ComponentTitle text="이번 레슨에서는 이런 걸 배울 거예요." />
-        <ComponentGrayLine />
-        <ComponentTraining />
+        <ComponentTitle text="‘坐 zuò’를 사용한 표현을 미리 알아봅시다." />
+        <ComponentNumbering />
       </div>
       <LayoutModalSolution
         isModalOpen={isModalSolutionOpen}
