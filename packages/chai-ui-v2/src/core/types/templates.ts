@@ -13,7 +13,7 @@ export type TemplateData =
 export type Template01Data = {
   id: ID;
   type: "Template01";
-  contents: Content[];
+  contents: Content;
 };
 
 /**
@@ -24,8 +24,8 @@ export type Template01Data = {
 export type Template_H_3_7Data = {
   id: ID;
   type: "Template_H_3_7";
-  leftContents: Content[];
-  rightContents: Content[];
+  leftContents: Content;
+  rightContents: Content;
 };
 
 /**
@@ -36,8 +36,8 @@ export type Template_H_3_7Data = {
 export type Template_H_5_5Data = {
   id: ID;
   type: "Template_H_5_5";
-  leftContents: Content[];
-  rightContents: Content[];
+  leftContents: Content;
+  rightContents: Content;
 };
 
 /**
@@ -47,8 +47,8 @@ export type Template_H_5_5Data = {
 export type TemplateConversationData = {
   id: ID;
   type: "TemplateConversation";
-  leftContents: Content[];
-  rightContents: Content[];
+  leftContents: Content;
+  rightContents: Content;
 };
 
 /**
@@ -57,8 +57,8 @@ export type TemplateConversationData = {
 export type TemplateRolePlayingData = {
   id: ID;
   type: "TemplateRolePlaying";
-  leftContents: Content[];
-  rightContents: Content[];
+  leftContents: Content;
+  rightContents: Content;
 };
 
 /**
@@ -68,8 +68,8 @@ export type TemplateRolePlayingData = {
 export type TemplateConversationQuizData = {
   id: ID;
   type: "TemplateConversationQuiz";
-  leftContents: Content[];
-  rightContents: Content[];
+  leftContents: Content;
+  rightContents: Content;
 };
 
 /**
@@ -79,8 +79,8 @@ export type TemplateConversationQuizData = {
 export type TemplateMultiChoiceData = {
   id: ID;
   type: "TemplateMultiChoice";
-  leftContents: Content[];
-  rightContents: Content[];
+  leftContents: Content;
+  rightContents: Content;
 };
 
 /**
@@ -90,8 +90,8 @@ export type TemplateMultiChoiceData = {
 export type TemplateTextBlankOrderData = {
   id: ID;
   type: "TemplateTextBlankOrder";
-  leftContents: Content[];
-  rightContents: Content[];
+  leftContents: Content;
+  rightContents: Content;
 };
 
 /**
@@ -101,8 +101,8 @@ export type TemplateTextBlankOrderData = {
 export type TemplateConversationBlankOrderData = {
   id: ID;
   type: "TemplateConversationBlankOrder";
-  leftContents: Content[];
-  rightContents: Content[];
+  leftContents: Content;
+  rightContents: Content;
 };
 
 /**
@@ -112,6 +112,6 @@ export type TemplateConversationBlankOrderData = {
 export type TemplateSpeakingData = {
   id: ID;
   type: "TemplateSpeaking";
-  leftContents: Content[];
-  rightContents: Content[];
+  leftContents: Content;
+  rightContents: Content;
 };

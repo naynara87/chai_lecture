@@ -1,19 +1,20 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 import React, { useEffect } from "react";
+import { VideoContentData } from "../../core/index.js";
 import "../../core/lib/video/lx-player.js";
 
 interface ComponentVideoProps {
-  videoUrl: string;
+  content: VideoContentData;
 }
 
-const ComponentVideo = ({ videoUrl }: ComponentVideoProps) => {
+const ComponentVideo = ({ content }: ComponentVideoProps) => {
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
     lxPlayer.playerInit({
-      url: videoUrl,
+      url: content.data.src,
     });
-  }, [videoUrl]);
+  }, [content.data.src]);
 
   return (
     <div className="container player-wrap">
