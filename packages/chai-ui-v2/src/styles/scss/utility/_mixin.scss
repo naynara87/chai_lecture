@@ -126,3 +126,7 @@ background-image: urlPath($path, $img);
 		@content;
 	}
 }
+
+@mixin gradiant ($d: to top, $start: #E3E8FF 0%, $end: #E9FAFF 100%) {
+	background-image: linear-gradient($d, $start, $end);
+}

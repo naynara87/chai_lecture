@@ -1,0 +1,13 @@
+/* =================== componentGrayLine =================== */
+.gray-line {
+	padding: vh(40) vw(40);
+	border: 1px solid color(gray-db);
+	border-radius: vw(20);
+
+	&-text {
+		font-size: vw(32);
+		line-height: 1.6;
+		text-align: center;
+		white-space: pre-line;
+	}
+}
