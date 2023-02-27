@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import {
   ComponentButtonFillBlack,
   IconCloseComponent,
@@ -6,9 +6,40 @@ import {
   IconLeftArrowComponent,
   IconRightArrowComponent,
   ImgCharacterComponent,
+  Page,
 } from "chai-ui-v2";
+import { useNavigate, useParams } from "react-router-dom";
+import { getPageUrl } from "../../util/url";
 
-const LayoutFooter = () => {
+interface LayoutFooterProps {
+  pages: Page[];
+  currentPageIndex: number;
+}
+
+const LayoutFooter = ({ pages, currentPageIndex }: LayoutFooterProps) => {
+  const navigate = useNavigate();
+  const { courseId, cornerId, lessonId, pageId } = useParams();
+
+  const isLastPage = useMemo(() => {
+    return currentPageIndex === pages.length - 1;
+  }, [currentPageIndex, pages]);
+
+  const handleClickPrev = () => {
+    if (cornerId && courseId && lessonId && pageId) {
+      navigate(getPageUrl(courseId, lessonId, cornerId, parseInt(pageId) - 1));
+    }
+  };
+
+  const handleClickNext = () => {
+    if (isLastPage) {
+      navigate("/");
+      return;
+    }
+    if (cornerId && courseId && lessonId && pageId) {
+      navigate(getPageUrl(courseId, lessonId, cornerId, parseInt(pageId) + 1));
+    }
+  };
+
   return (
     <div>
       <footer className="cai-ft">
@@ -20,14 +51,18 @@ const LayoutFooter = () => {
           <IconCloseComponent />
         </button>
         <div className="ft-conts-wrap">
-          <button className="ft-icon-btn" disabled>
+          <button
+            className="ft-icon-btn"
+            onClick={handleClickPrev}
+            disabled={currentPageIndex === 0}
+          >
             <IconLeftArrowComponent />
           </button>
           <span className="txt">
-            <b>{"1"}</b>
-            <small> / {"10"}</small>
+            <b>{currentPageIndex + 1}</b>
+            <small> / {pages.length}</small>
           </span>
-          <button className="ft-icon-btn">
+          <button className="ft-icon-btn" onClick={handleClickNext}>
             <IconRightArrowComponent />
           </button>
         </div>

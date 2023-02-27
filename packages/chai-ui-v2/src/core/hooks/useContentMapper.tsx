@@ -1,11 +1,18 @@
 import React from "react";
 import { ComponentVideo } from "../../components";
-import { Content, ContentType } from "../types";
+import AudioRecorder from "../../components/molecules/AudioRecorder";
+import { Content, ContentType, VideoContentData } from "../types";
 
 const useContentMapper = () => {
   const getContentComponent = (content: Content, contentIndex: number) => {
     const contentMapper: Record<ContentType, JSX.Element> = {
-      video: <ComponentVideo content={content} key={contentIndex} />,
+      video: (
+        <ComponentVideo
+          content={content as VideoContentData}
+          key={contentIndex}
+        />
+      ),
+      recorder: <AudioRecorder />,
     };
 
     return contentMapper[content.type];

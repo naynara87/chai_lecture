@@ -14,7 +14,7 @@ const AppRouter = () => {
         <Route path={HOME_URL} element={<Home />} />
         <Route
           path="course/:courseId/lesson/:lessonId/corner/:cornerId/page/:pageId"
-          element={<div>each page</div>}
+          element={<Layout />}
         />
         <Route path={NOT_FOUND_URL} element={<NotFound />} />
         <Route path={"temp"} element={<Layout />} />

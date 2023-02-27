@@ -1,4 +1,4 @@
-import { CornerData, LessonData } from "chai-ui-v2/src/core/types";
+import { CornerData, LessonData } from "chai-ui-v2";
 
 export const v2LessonData: LessonData = {
   // 레슨 메타 정보
@@ -88,10 +88,8 @@ export const v2CornerData: CornerData = {
         type: "Template01",
         contents: [
           {
-            type: "video",
-            data: {
-              src: "https://cdn.bubblecon.co.kr/videos/45.mp4",
-            },
+            type: "recorder",
+            data: {},
           },
         ],
       },

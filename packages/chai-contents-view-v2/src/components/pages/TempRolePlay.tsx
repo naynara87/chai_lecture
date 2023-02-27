@@ -11,7 +11,7 @@ const TempRolePlay = () => {
         <Template03 />
         {/* <TemplateConversation /> */}
       </main>
-      <LayoutFooter />
+      <LayoutFooter pages={[]} currentPageIndex={1} />
     </div>
   );
 };
