@@ -1,4 +1,4 @@
-import { LessonData } from "../types";
+import { CornerData, LessonData } from "chai-ui-v2/src/core/types";
 
 export const v2LessonData: LessonData = {
   // 레슨 메타 정보
@@ -9,21 +9,94 @@ export const v2LessonData: LessonData = {
     courseName: "차이홍(샘플데이터)-빨강",
   },
   // 코너 리스트
-  data: [],
+  data: [
+    {
+      id: 11,
+      name: "복습",
+    },
+    {
+      id: 12,
+      name: "학습 들어가기",
+    },
+    {
+      id: 13,
+      name: "패턴 중국어",
+    },
+    {
+      id: 14,
+      name: "회화",
+    },
+    {
+      id: 15,
+      name: "문법",
+    },
+    {
+      id: 16,
+      name: "문화",
+    },
+    {
+      id: 17,
+      name: "학습 정리",
+    },
+  ],
 };
 
-export const v2CornerData = {
+export const v2CornerData: CornerData = {
   // 코너 메타 정보
   meta: {
     id: 11,
-    name: "학습1",
+    name: "복습",
     lessonId: 1,
     lessonName: "Lesson 1",
+    lessonTpCd: "30",
     courseId: 1,
     courseName: "차이홍(샘플데이터)-빨강",
   },
-  // chapter 리스트
-  data: [],
+  // page 리스트
+  data: [
+    {
+      id: 1,
+      name: "한어",
+      type: "SinglePage",
+      introduction: {
+        title: "",
+        subTitle: "",
+        character: {
+          url: "",
+        },
+        contents: [""],
+      },
+      data: {
+        id: 1,
+        type: "Template01",
+        contents: [
+          {
+            type: "video",
+            data: {
+              src: "https://cdn.bubblecon.co.kr/videos/45.mp4",
+            },
+          },
+        ],
+      },
+    },
+    {
+      id: 2,
+      name: "단어",
+      type: "SinglePage",
+      data: {
+        id: 1,
+        type: "Template01",
+        contents: [
+          {
+            type: "video",
+            data: {
+              src: "https://cdn.bubblecon.co.kr/videos/45.mp4",
+            },
+          },
+        ],
+      },
+    },
+  ],
 };
 
 export const v1LessonDataServer = {
