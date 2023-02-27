@@ -2,6 +2,7 @@ import React from "react";
 import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
 import Home from "../components/pages/Home";
 import Layout from "../components/pages/Layout";
+import LayoutTemp from "../components/pages/LayoutTemp";
 import NotFound from "../components/pages/NotFound";
 import TempRolePlay from "../components/pages/TempRolePlay";
 import { HOME_URL, NOT_FOUND_URL } from "../constants/url";
@@ -17,7 +18,7 @@ const AppRouter = () => {
           element={<Layout />}
         />
         <Route path={NOT_FOUND_URL} element={<NotFound />} />
-        <Route path={"temp"} element={<Layout />} />
+        <Route path={"temp"} element={<LayoutTemp />} />
         <Route path={"temp-roleplay"} element={<TempRolePlay />} />
         <Route path="*" element={<Navigate to={NOT_FOUND_URL} replace />} />
       </Routes>
