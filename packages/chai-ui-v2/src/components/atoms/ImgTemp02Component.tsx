@@ -6,7 +6,7 @@ interface ImgTemp02ComponentProps {
 }
 
 const ImgTemp02Component = ({ imageAlt }: ImgTemp02ComponentProps) => {
-  return <img src={ImgTemp01} alt={imageAlt} className="img" />;
+  return <img src={ImgTemp01} alt={imageAlt} className="profile" />;
 };
 
 export default ImgTemp02Component;

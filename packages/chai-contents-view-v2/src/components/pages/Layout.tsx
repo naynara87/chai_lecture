@@ -3,6 +3,7 @@ import LayoutFooter from "../molecules/LayoutFooter";
 import LayoutHeader from "../molecules/LayoutHeader";
 import useInitialData from "../../hooks/useInitialData";
 import LayoutSinglePage from "../molecules/LayoutSinglePage";
+import { Template01 } from "chai-ui-v2";
 
 const Layout = () => {
   // TODO kjw page data 받아서 main page 띄우기 BBC-998

@@ -1,0 +1,69 @@
+/* =================== componentTraining =================== */
+.training-list-wrap {
+	@include flex-center {
+		gap: vw(36);
+	}
+
+	margin-top: vh(90);
+}
+
+.training-list {
+	width: vw(348);
+	height: vh(361);
+	border: 1px solid color(gray-db);
+	border-radius: vw(20);
+
+	.gradi-wrap {
+		@include gradiant;
+
+		position: relative;
+		height: vh(165);
+		padding-bottom: vh(29);
+		border-radius: vw(20) vw(20) 0 0;
+		text-align: center;
+
+		.img-wrap {
+			@include circle(vw(140));
+
+			position: relative;
+			margin: 0 auto;
+			border: 10px solid color(gray-ff);
+			box-shadow: 0 6px 0 rgba(88, 88, 88, 0.2);
+			top: vh(-60);
+		}
+
+		.title {
+			position: absolute;
+			top: auto;
+			bottom: vh(30);
+			left: 0;
+			width: 100%;
+			font-weight: 600;
+			font-size: vw(32);
+			line-height: 1.5;
+		}
+	}
+
+	.white-wrap {
+		padding: vh(30) vw(45);
+
+		.dot-text {
+			position: relative;
+			padding-left: vw(18);
+			font-size: vw(24);
+
+			&:not(:first-child) {
+				margin-top: vh(20);
+			}
+
+			@include make-before {
+				@include circle(vw(6));
+
+				position: absolute;
+				top: vh(14);
+				left: 0;
+				background-color: color(main);
+			}
+		}
+	}
+}
