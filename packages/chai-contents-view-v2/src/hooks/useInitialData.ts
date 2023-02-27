@@ -17,7 +17,7 @@ const useInitialData = () => {
     setInitialData();
   }, [setInitialData]);
 
-  return { initialPage };
+  return { initialPage, corners, lessonMetaData, cornerMetaData, pages };
 };
 
 export default useInitialData;

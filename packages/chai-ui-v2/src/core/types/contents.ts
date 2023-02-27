@@ -1,6 +1,6 @@
 import { ID } from "./appData";
 
-export type Content = VideoContentData;
+export type Content = VideoContentData | RecorderContentData;
 export type ContentType = Content["type"];
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -114,6 +114,7 @@ export type SpeakingContentData = {
  */
 export type RecorderContentData = {
   type: "recorder";
+  data: {};
   meta?: Meta;
 };
 
