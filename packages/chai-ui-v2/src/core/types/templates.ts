@@ -1,4 +1,3 @@
-import { ID } from "./appData";
 import { Content } from "./contents";
 
 export type TemplateData =
@@ -11,7 +10,6 @@ export type TemplateData =
  * TP01
  */
 export type Template01Data = {
-  id: ID;
   type: "Template01";
   contents: Content[];
 };
@@ -22,7 +20,6 @@ export type Template01Data = {
  * TP02
  */
 export type Template_H_3_7Data = {
-  id: ID;
   type: "Template_H_3_7";
   leftContents: Content[];
   rightContents: Content[];
@@ -34,7 +31,6 @@ export type Template_H_3_7Data = {
  * TP03
  */
 export type Template_H_5_5Data = {
-  id: ID;
   type: "Template_H_5_5";
   leftContents: Content[];
   rightContents: Content[];
@@ -45,7 +41,6 @@ export type Template_H_5_5Data = {
  * TP04, TP05, TP06
  */
 export type TemplateConversationData = {
-  id: ID;
   type: "TemplateConversation";
   leftContents: Content[];
   rightContents: Content[];
@@ -55,7 +50,6 @@ export type TemplateConversationData = {
  * 롤플레잉 레이아웃
  */
 export type TemplateRolePlayingData = {
-  id: ID;
   type: "TemplateRolePlaying";
   leftContents: Content[];
   rightContents: Content[];
@@ -66,7 +60,6 @@ export type TemplateRolePlayingData = {
  * TP07
  */
 export type TemplateConversationQuizData = {
-  id: ID;
   type: "TemplateConversationQuiz";
   leftContents: Content[];
   rightContents: Content[];
@@ -77,7 +70,6 @@ export type TemplateConversationQuizData = {
  * TP08
  */
 export type TemplateMultiChoiceData = {
-  id: ID;
   type: "TemplateMultiChoice";
   leftContents: Content[];
   rightContents: Content[];
@@ -88,7 +80,6 @@ export type TemplateMultiChoiceData = {
  * TP09
  */
 export type TemplateTextBlankOrderData = {
-  id: ID;
   type: "TemplateTextBlankOrder";
   leftContents: Content[];
   rightContents: Content[];
@@ -99,7 +90,6 @@ export type TemplateTextBlankOrderData = {
  * TP10
  */
 export type TemplateConversationBlankOrderData = {
-  id: ID;
   type: "TemplateConversationBlankOrder";
   leftContents: Content[];
   rightContents: Content[];
@@ -110,7 +100,6 @@ export type TemplateConversationBlankOrderData = {
  * TP11
  */
 export type TemplateSpeakingData = {
-  id: ID;
   type: "TemplateSpeaking";
   leftContents: Content[];
   rightContents: Content[];

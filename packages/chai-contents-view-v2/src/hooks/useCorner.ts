@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { ID, useAuth, Page, CornerMeta } from "chai-ui-v2";
 import { useState } from "react";
 import QUERY_KEY from "../constants/queryKey";
-import { v2CornerData } from "../data/dummyData";
+import { v2CornerDataList } from "../data/dummyData";
 
 const useCorner = (cornerId: ID | undefined) => {
   const { isAuthorized } = useAuth();
@@ -15,7 +15,7 @@ const useCorner = (cornerId: ID | undefined) => {
       if (!cornerId) {
         return;
       }
-      return v2CornerData;
+      return v2CornerDataList.find((corner) => corner.meta.id === cornerId);
     },
     {
       enabled: isAuthorized && !!cornerId,

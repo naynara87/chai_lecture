@@ -60,6 +60,7 @@ export type CornerMeta = {
   lessonTpCd: "10" | "20" | "30"; // 문제 페이지인지 판단?
   courseId: number;
   courseName: string;
+  isCompleted: boolean;
 };
 
 export type PageIntroduction = {
