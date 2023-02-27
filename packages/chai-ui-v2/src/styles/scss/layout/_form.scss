@@ -24,10 +24,9 @@
 		@include full;
 	}
 
-	&:hover,
-	&:focus {
-		animation-name: opacity;
-		animation-duration: 1s;
+	@include hover {
+		animation-name: opacity-70;
+		animation-duration: 800ms;
 		animation-timing-function: linear;
 		animation-iteration-count: infinite;
 	}
@@ -45,8 +44,7 @@
 	&:disabled {
 		@include bg-url(icon, 'icon_play_disabled.svg');
 
-		&:hover,
-		&:focus {
+		@include hover {
 			animation: none;
 		}
 	}

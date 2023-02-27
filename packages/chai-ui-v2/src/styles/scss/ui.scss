@@ -20,16 +20,18 @@
 @import "layout/footer";
 
 // 5. component
+@import "component/lxPlayer";
 @import "component/modal";
 @import "component/componentContsinfo";
 @import "component/componentTitle";
+@import "component/componentGrayLine";
 @import "component/componentRecordButton";
 @import "component/componentVideo";
 @import "component/componentVocaNote";
 @import "component/templateConversation";
 @import "component/componentRoleplay";
 @import "component/componentChoiceRole";
-@import "component/_componentQuizs";
-@import "component/lxPlayer";
+@import "component/componentQuizs";
+@import "component/componentTraining";
 
 // 6. page

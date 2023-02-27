@@ -1,7 +1,7 @@
 import React from "react";
 import LayoutFooter from "../molecules/LayoutFooter";
 import LayoutHeader from "../molecules/LayoutHeader";
-import { TemplateDialogue } from "chai-ui-v2";
+import { Template01 } from "chai-ui-v2";
 
 const Layout = () => {
   // TODO kjw page data 받아서 main page 띄우기 BBC-998
@@ -18,7 +18,7 @@ const Layout = () => {
       <LayoutHeader />
       <main className="cai-main">
         {/* {layoutMain} */}
-        <TemplateDialogue />
+        <Template01 />
       </main>
       <LayoutFooter />
     </div>
