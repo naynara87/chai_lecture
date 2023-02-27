@@ -69,12 +69,14 @@ export const v2CornerData: CornerData = {
       data: {
         id: 1,
         type: "Template01",
-        contents: {
-          type: "video",
-          data: {
-            src: "https://cdn.bubblecon.co.kr/videos/45.mp4",
+        contents: [
+          {
+            type: "video",
+            data: {
+              src: "https://cdn.bubblecon.co.kr/videos/45.mp4",
+            },
           },
-        },
+        ],
       },
     },
     {
@@ -84,12 +86,14 @@ export const v2CornerData: CornerData = {
       data: {
         id: 1,
         type: "Template01",
-        contents: {
-          type: "video",
-          data: {
-            src: "https://cdn.bubblecon.co.kr/videos/45.mp4",
+        contents: [
+          {
+            type: "video",
+            data: {
+              src: "https://cdn.bubblecon.co.kr/videos/45.mp4",
+            },
           },
-        },
+        ],
       },
     },
   ],

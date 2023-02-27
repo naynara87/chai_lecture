@@ -3,9 +3,9 @@ import { ComponentVideo } from "../../components";
 import { Content, ContentType } from "../types";
 
 const useContentMapper = () => {
-  const getContentComponent = (content: Content) => {
+  const getContentComponent = (content: Content, contentIndex: number) => {
     const contentMapper: Record<ContentType, JSX.Element> = {
-      video: <ComponentVideo content={content} />,
+      video: <ComponentVideo content={content} key={contentIndex} />,
     };
 
     return contentMapper[content.type];

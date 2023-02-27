@@ -18,7 +18,9 @@ const Template01 = ({ page, setPageCompleted }: Template01Props) => {
   const { getContentComponent } = useContentMapper();
 
   const contents = useMemo(() => {
-    return getContentComponent(thisPage.contents);
+    return thisPage.contents.map((content, contentIndex) => {
+      return getContentComponent(content, contentIndex);
+    });
   }, [getContentComponent, thisPage]);
 
   return (
