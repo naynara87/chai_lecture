@@ -3,24 +3,29 @@ import { ExampleButton } from "chai-ui-v2";
 import { getPageUrl } from "../../util/url";
 import { useNavigate } from "react-router-dom";
 import useInitialData from "../../hooks/useInitialData";
+import { useRecoilState } from "recoil";
+import { cornersState } from "../../state/corners";
 
 const Home = () => {
   const navigate = useNavigate();
   const { lessonMetaData, cornerMetaData } = useInitialData();
+  const [completedCorners] = useRecoilState(cornersState);
 
   useEffect(() => {
     if (!lessonMetaData) return;
     if (!cornerMetaData) return;
-
-    // TODO: 진도체크 API 호출 결과 반영하여 이어하기 기능 추가하기 -> useEffect로 코너 간지 거치지 않고 바로 시작
+    const currentCorner = completedCorners.find((corner) => {
+      return corner.isCompleted === false;
+    });
+    if (!currentCorner) return;
     const url = getPageUrl(
       lessonMetaData?.courseId,
       cornerMetaData?.lessonId,
-      cornerMetaData.id,
+      currentCorner.id,
       1,
     );
     navigate(url);
-  }, [cornerMetaData, lessonMetaData, navigate]);
+  }, [cornerMetaData, lessonMetaData, navigate, completedCorners]);
 
   return (
     <div>

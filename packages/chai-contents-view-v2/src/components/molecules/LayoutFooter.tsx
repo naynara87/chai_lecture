@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import {
   ComponentButtonFillBlack,
   IconCloseComponent,
@@ -8,46 +8,20 @@ import {
   ImgCharacterComponent,
   Page,
 } from "chai-ui-v2";
-import { useNavigate, useParams } from "react-router-dom";
-import { getPageUrl } from "../../util/url";
 
 interface LayoutFooterProps {
   pages: Page[];
   currentPageIndex: number;
+  handleClickNext: () => void;
+  handleClickPrev: () => void;
 }
 
-const LayoutFooter = ({ pages, currentPageIndex }: LayoutFooterProps) => {
-  const navigate = useNavigate();
-  const { courseId, cornerId, lessonId, pageId } = useParams();
-
-  const isLastPage = useMemo(() => {
-    return currentPageIndex === pages.length - 1;
-  }, [currentPageIndex, pages]);
-
-  const pageIds = useMemo(() => {
-    return pages?.map((page) => page.id);
-  }, [pages]);
-
-  const handleClickPrev = () => {
-    if (cornerId && courseId && lessonId && pageId) {
-      navigate(
-        getPageUrl(courseId, lessonId, cornerId, pageIds[currentPageIndex - 1]),
-      );
-    }
-  };
-
-  const handleClickNext = () => {
-    if (isLastPage) {
-      navigate("/");
-      return;
-    }
-    if (cornerId && courseId && lessonId && pageId) {
-      navigate(
-        getPageUrl(courseId, lessonId, cornerId, pageIds[currentPageIndex + 1]),
-      );
-    }
-  };
-
+const LayoutFooter = ({
+  pages,
+  currentPageIndex,
+  handleClickNext,
+  handleClickPrev,
+}: LayoutFooterProps) => {
   return (
     <div>
       <footer className="cai-ft">
