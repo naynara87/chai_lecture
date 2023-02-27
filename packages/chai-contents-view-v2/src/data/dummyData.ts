@@ -80,7 +80,7 @@ export const v2CornerData: CornerData = {
       },
     },
     {
-      id: 2,
+      id: 4,
       name: "단어",
       type: "SinglePage",
       data: {

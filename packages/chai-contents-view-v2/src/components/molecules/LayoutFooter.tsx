@@ -24,9 +24,15 @@ const LayoutFooter = ({ pages, currentPageIndex }: LayoutFooterProps) => {
     return currentPageIndex === pages.length - 1;
   }, [currentPageIndex, pages]);
 
+  const pageIds = useMemo(() => {
+    return pages?.map((page) => page.id);
+  }, [pages]);
+
   const handleClickPrev = () => {
     if (cornerId && courseId && lessonId && pageId) {
-      navigate(getPageUrl(courseId, lessonId, cornerId, parseInt(pageId) - 1));
+      navigate(
+        getPageUrl(courseId, lessonId, cornerId, pageIds[currentPageIndex - 1]),
+      );
     }
   };
 
@@ -36,7 +42,9 @@ const LayoutFooter = ({ pages, currentPageIndex }: LayoutFooterProps) => {
       return;
     }
     if (cornerId && courseId && lessonId && pageId) {
-      navigate(getPageUrl(courseId, lessonId, cornerId, parseInt(pageId) + 1));
+      navigate(
+        getPageUrl(courseId, lessonId, cornerId, pageIds[currentPageIndex + 1]),
+      );
     }
   };
 
