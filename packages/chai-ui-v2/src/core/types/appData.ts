@@ -28,7 +28,7 @@ export type LessonMeta = {
 export type CornerListData = {
   id: ID;
   name: string;
-  introduction: LessonIntroduction;
+  introduction?: LessonIntroduction;
 };
 
 /**
@@ -46,7 +46,7 @@ export type LessonIntroduction = {
  */
 export type CornerData = {
   meta: CornerMeta;
-  data: Chapter[];
+  data: Page[];
 };
 
 /**
@@ -58,19 +58,11 @@ export type CornerMeta = {
   lessonId: number;
   lessonName: string;
   lessonTpCd: "10" | "20" | "30"; // 문제 페이지인지 판단?
+  courseId: number;
+  courseName: string;
 };
 
-/**
- * 챕터 데이터
- */
-export type Chapter = {
-  id: ID;
-  name: string;
-  introduction: ChapterIntroduction;
-  pages: Page[];
-};
-
-export type ChapterIntroduction = {
+export type PageIntroduction = {
   title: string;
   subTitle: string;
   character: {
@@ -83,14 +75,18 @@ export type Page = SinglePage | MultiPage;
 
 export type SinglePage = {
   id: ID;
+  name: string;
   type: "SinglePage";
   data: TemplateData;
+  introduction?: PageIntroduction;
 };
 
 export type MultiPage = {
   id: ID;
+  name: string;
   type: "MultiPage";
   data: TemplateData[];
+  introduction?: PageIntroduction;
 };
 
 /**
