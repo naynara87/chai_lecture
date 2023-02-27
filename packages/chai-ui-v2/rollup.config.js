@@ -13,7 +13,7 @@ export default {
   },
   plugins: [
     scss({
-      output: "./dist/globalStyle.css",
+      output: "dist/globalStyle.css",
       fileName: "globalStyle.css",
       failOnError: true,
       watch: "src/styles/scss",
