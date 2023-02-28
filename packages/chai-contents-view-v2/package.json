@@ -24,7 +24,8 @@
     "recoil": "*",
     "sass": "*",
     "typescript": "*",
-    "web-vitals": "*"
+    "web-vitals": "*",
+    "swiper": "*"
   },
   "scripts": {
     "start": "craco start",

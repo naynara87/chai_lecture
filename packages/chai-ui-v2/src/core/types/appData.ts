@@ -98,6 +98,14 @@ export interface PageProps {
   page: Page;
 }
 
+/**
+ * 템플릿 공통 컴포넌트의 props
+ */
+export interface TemplateProps {
+  setPageCompleted: () => void;
+  template: TemplateData;
+}
+
 export type characterType =
   | "didiAngry"
   | "didiGlasses"

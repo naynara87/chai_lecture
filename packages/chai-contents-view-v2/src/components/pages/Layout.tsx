@@ -8,6 +8,7 @@ import { getPageUrl } from "../../util/url";
 import { useRecoilState } from "recoil";
 import { cornersState } from "../../state/corners";
 import { LayoutModalIntroduction } from "chai-ui-v2";
+import LayoutMultiPage from "../molecules/LayoutMultiPage";
 
 const Layout = () => {
   const { initialPage, pages, initialCorner } = useInitialData();
@@ -77,23 +78,22 @@ const Layout = () => {
 
   const layoutMain = useMemo(() => {
     if (!currentPage) return;
-    if (initialPage?.type === "SinglePage") {
+    if (currentPage?.type === "SinglePage") {
       return (
         <LayoutSinglePage
           page={currentPage}
           setPageCompleted={setPageCompleted}
         />
       );
+    } else {
+      return (
+        <LayoutMultiPage
+          page={currentPage}
+          setPageCompleted={setPageCompleted}
+        />
+      );
     }
-    // else {
-    //   return (
-    //     <LayoutMultiPage
-    //       page={initialPage}
-    //       setPageCompleted={setPageCompleted}
-    //     />
-    //   );
-    // }
-  }, [initialPage, currentPage]);
+  }, [currentPage]);
 
   useEffect(() => {
     if (currentPage?.introduction) {

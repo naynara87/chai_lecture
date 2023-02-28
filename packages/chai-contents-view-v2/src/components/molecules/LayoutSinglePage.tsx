@@ -10,10 +10,11 @@ const LayoutSinglePage = ({
 
   const { getTemplateComponent } = useTemplateMapper({
     setPageCompleted,
-    page,
   });
 
-  return <>{getTemplateComponent(singlePageData.data.type)}</>;
+  return (
+    <>{getTemplateComponent(singlePageData.data.type, singlePageData.data)}</>
+  );
 };
 
 export default LayoutSinglePage;
