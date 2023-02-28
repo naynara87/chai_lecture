@@ -12,7 +12,7 @@ const useContentMapper = () => {
           key={contentIndex}
         />
       ),
-      recorder: <AudioRecorder />,
+      recorder: <AudioRecorder key={contentIndex} />,
     };
 
     return contentMapper[content.type];
