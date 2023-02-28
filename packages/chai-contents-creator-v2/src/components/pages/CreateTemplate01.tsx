@@ -1,6 +1,18 @@
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
-const CreateEditWrap = styled.div`
+const buttonCSS = css`
+  background: white;
+  box-shadow: none;
+  border: 1px solid #d6d6d6;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #565656;
+`;
+
+const CreateTemplateWrap = styled.div`
   display: flex;
   padding: 40px 24px;
   flex-direction: column;
@@ -15,38 +27,105 @@ const CreateEditTop = styled.div`
   display: flex;
   width: 100%;
   margin-bottom: 16px !important;
+`;
 
-  button {
-    background: white;
-    box-shadow: none;
-    border: 1px solid #d6d6d6;
-    padding: 8px 12px;
-    border-radius: 4px;
+const BtnChangeLayout = styled.button`
+  ${buttonCSS}
+  margin-right: 8px;
+`;
+const BtnPreview = styled.button`
+  ${buttonCSS}
+`;
+const BtnAddGanjiChange = styled.button`
+  ${buttonCSS}
+  margin-left: auto;
+`;
+
+const CreateEditMainWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const CreateTemplateNavWrap = styled.div`
+  text-align: left;
+  position: absolute;
+  height: 300px;
+  width: 280px;
+  overflow-y: scroll;
+  box-shadow: 2px 6px 12px #00000026;
+  padding: 16px;
+  right: 0;
+  transform: translateY(-100%);
+  background-color: #ffffff;
+  display: none;
+  transition: all 0.2s;
+
+  .nav-tit {
+    font-size: 12px;
+    font-weight: 500;
+    color: #565656;
+    margin-bottom: 10px;
   }
-  button:first-child {
-    margin-right: 8px;
-  }
-  button:last-of-type {
-    margin-left: auto;
+
+  &.active {
+    transform: translateY(0%);
+    display: block;
   }
 `;
 
+const NavList = styled.ul`
+  .nav-li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .thumb-comp {
+    width: 50px;
+    height: 50px;
+    font-size: 12px;
+    font-weight: 700;
+    background-color: #d9d9d9;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 4px;
+    margin-right: 8px;
+  }
+  .txt-comp {
+    font-size: 14px;
+    font-weight: 400;
+  }
+`;
+
+const CreateTemplateChoiceBtnWrap = styled.div`
+  margin-left: auto;
+  text-align: right;
+  position: relative;
+
+  .btn-comp-select {
+    margin-bottom: 8px;
+  }
+`;
+
+const DashBoxArea = styled.div`
+  width: 100%;
+  border: 2px dashed #888888;
+  padding: 16px;
+`;
+
+const CreateTemplateNav = styled.div`
+  margin-bottom: 14px;
+`;
 const CreateEditMain = styled.div`
   display: flex;
-  width: 100%;
   padding: 24px;
   box-sizing: border-box;
   background-color: white;
-  width: 100%;
   height: 502px;
   border-radius: 20px;
   box-shadow: 0px 4px 19px rgba(145, 145, 145, 0.2);
+  width: 100%;
 
-  & > div {
-    width: 100%;
-    border: 2px dashed #888888;
-    padding: 16px;
-  }
   & .btn-comp-select {
     color: #7686d4;
     background: #ffffff;
@@ -57,67 +136,6 @@ const CreateEditMain = styled.div`
     line-height: 30px;
     font-size: 10px;
     font-weight: 500;
-  }
-
-  & .choice-btn-wrap {
-    margin-left: auto;
-    text-align: right;
-    position: relative;
-
-    & button {
-      margin-bottom: 8px;
-      z-index: 3;
-    }
-
-    & .edit-nav-cont {
-      text-align: left;
-      position: absolute;
-      height: 300px;
-      width: 280px;
-      overflow-y: scroll;
-      box-shadow: 2px 6px 12px #00000026;
-      padding: 16px;
-      right: 0;
-      transform: translateY(-100%);
-      background-color: #ffffff;
-      display: none;
-      transition: all 0.2s;
-      & > p {
-        font-size: 12px;
-        font-weight: 500;
-        color: #565656;
-        margin-bottom: 10px;
-      }
-      & ul {
-        li {
-          display: flex;
-          align-items: center;
-          margin-bottom: 8px;
-
-          div {
-            width: 50px;
-            height: 50px;
-            font-size: 12px;
-            font-weight: 700;
-            background-color: #d9d9d9;
-            line-height: 50px;
-            text-align: center;
-            border-radius: 4px;
-            margin-right: 8px;
-          }
-
-          p {
-            font-size: 14px;
-            font-weight: 400;
-          }
-        }
-      }
-    }
-
-    &.active .edit-nav-cont {
-      transform: translateY(0%);
-      display: block;
-    }
   }
 `;
 
@@ -136,53 +154,61 @@ const CreateAddBtn = styled.button`
 
 const CreateTemplate01 = () => {
   return (
-    <CreateEditWrap>
+    <CreateTemplateWrap>
       <CreateEditTop>
-        <button>레이아웃 변경</button>
-        <button>미리보기</button>
-        <button>학습 변경 간지 추가</button>
+        {/* TODO: lsh 버튼 클릭시 CreateLayout으로 이동 */}
+        <BtnChangeLayout>레이아웃 변경</BtnChangeLayout>
+        {/* TODO: lsh 버튼 클릭시 미리보기 화면 출력 */}
+        <BtnPreview>미리보기</BtnPreview>
+        {/* TODO: lsh 버튼 클릭시 학습변경 간지 간지 추가 */}
+        <BtnAddGanjiChange>학습 변경 간지 추가</BtnAddGanjiChange>
       </CreateEditTop>
-      <div>
+      <CreateEditMainWrap>
         <CreateEditMain>
-          <div>
-            <div className="choice-btn-wrap">
+          <DashBoxArea>
+            <CreateTemplateChoiceBtnWrap>
               {/*
-            btn-comp-select 버튼 클릭시 부모 div choice-btn-wrap에 active 클래스 추가 (toggle)
+            TODO: btn-comp-select 버튼 클릭시 CreateTemplateNavWrap 에 active 클래스 추가 (toggle)
             */}
               <button className="btn-comp-select">컴포넌트 선택</button>
-              <div className="edit-nav-cont">
-                <p>기본형</p>
-                <ul>
-                  <li>
-                    <div>50*50</div>
-                    <p>텍스트</p>
-                  </li>
-                  <li>
-                    <div>50*50</div>
-                    <p>텍스트</p>
-                  </li>
-                </ul>
-                <p>대화형</p>
-                <ul>
-                  <li>
-                    <div>50*50</div>
-                    <p>텍스트</p>
-                  </li>
-                  <li>
-                    <div>50*50</div>
-                    <p>텍스트</p>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
+              <CreateTemplateNavWrap className="active">
+                <CreateTemplateNav>
+                  <p className="nav-tit">기본형</p>
+                  {/* TODO: lsh 버튼 클릭시 선택한 컴포넌트 추가 */}
+                  <NavList>
+                    <li className="nav-li">
+                      <div className="thumb-comp">50*50</div>
+                      <p className="txt-comp">텍스트</p>
+                    </li>
+                    <li className="nav-li">
+                      <div className="thumb-comp">50*50</div>
+                      <p className="txt-comp">텍스트</p>
+                    </li>
+                  </NavList>
+                </CreateTemplateNav>
+                <CreateTemplateNav>
+                  <p className="nav-tit">기본형</p>
+                  <NavList>
+                    <li className="nav-li">
+                      <div className="thumb-comp">50*50</div>
+                      <p className="txt-comp">텍스트</p>
+                    </li>
+                    <li className="nav-li">
+                      <div className="thumb-comp">50*50</div>
+                      <p className="txt-comp">텍스트</p>
+                    </li>
+                  </NavList>
+                </CreateTemplateNav>
+              </CreateTemplateNavWrap>
+            </CreateTemplateChoiceBtnWrap>
+          </DashBoxArea>
         </CreateEditMain>
-      </div>
+      </CreateEditMainWrap>
       {/*
       TODO: lsh 슬라이드 추가 버튼 클릭 시 레이아웃 선택화면으로 이동
       */}
       <CreateAddBtn>+&nbsp;&nbsp; 슬라이드 추가</CreateAddBtn>
-    </CreateEditWrap>
+    </CreateTemplateWrap>
   );
 };
 
