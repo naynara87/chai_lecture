@@ -43,9 +43,6 @@ const LayoutMultiPage = ({ page, setPageCompleted }: LayoutMultiPageProps) => {
         spaceBetween={20}
         slidesPerView={1.2}
         centeredSlides
-        onSlideChange={() => console.log("slide change")}
-        onSwiper={(swiper) => console.log(swiper)}
-        style={{ height: "100%" }}
       >
         {pages}
       </Swiper>

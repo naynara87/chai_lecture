@@ -13,11 +13,11 @@ const LayoutTemp = () => {
       <LayoutFooter
         pages={[]}
         currentPageIndex={1}
-        handleClickNext={function (): void {
-          throw new Error("Function not implemented.");
+        handleClickNext={() => {
+          console.log("다음페이지");
         }}
-        handleClickPrev={function (): void {
-          throw new Error("Function not implemented.");
+        handleClickPrev={() => {
+          console.log("이전페이지");
         }}
       />
     </div>
