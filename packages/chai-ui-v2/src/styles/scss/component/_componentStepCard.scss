@@ -1,0 +1,33 @@
+/* =================== componentStepCard =================== */
+.step-card {
+	@include flex-center {
+		flex-direction: column;
+	}
+	@include gradiant;
+
+	width: vw(550);
+	height: vw(456);
+	margin: 0 auto;
+	border-radius: vw(30);
+	transition: width 0.2s, height 0.2s;
+
+	.chinese {
+		font-weight: 600;
+		font-size: vw(70);
+		line-height: 1;
+	}
+
+	.pinyin {
+		font-size: vw(45);
+		line-height: 1;
+	}
+	
+	&.step2 {
+		width: vw(630);
+		height: vw(541);
+	}
+	&.step3 {
+		width: vw(710);
+		height: vw(541);
+	}
+}

@@ -6,9 +6,22 @@ import {
   IconLeftArrowComponent,
   IconRightArrowComponent,
   ImgCharacterComponent,
+  Page,
 } from "chai-ui-v2";
 
-const LayoutFooter = () => {
+interface LayoutFooterProps {
+  pages: Page[];
+  currentPageIndex: number;
+  handleClickNext: () => void;
+  handleClickPrev: () => void;
+}
+
+const LayoutFooter = ({
+  pages,
+  currentPageIndex,
+  handleClickNext,
+  handleClickPrev,
+}: LayoutFooterProps) => {
   return (
     <div>
       <footer className="cai-ft">
@@ -20,14 +33,18 @@ const LayoutFooter = () => {
           <IconCloseComponent />
         </button>
         <div className="ft-conts-wrap">
-          <button className="ft-icon-btn" disabled>
+          <button
+            className="ft-icon-btn"
+            onClick={handleClickPrev}
+            disabled={currentPageIndex === 0}
+          >
             <IconLeftArrowComponent />
           </button>
           <span className="txt">
-            <b>{"1"}</b>
-            <small> / {"10"}</small>
+            <b>{currentPageIndex + 1}</b>
+            <small> / {pages.length}</small>
           </span>
-          <button className="ft-icon-btn">
+          <button className="ft-icon-btn" onClick={handleClickNext}>
             <IconRightArrowComponent />
           </button>
         </div>

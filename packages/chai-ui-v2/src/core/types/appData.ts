@@ -60,6 +60,7 @@ export type CornerMeta = {
   lessonTpCd: "10" | "20" | "30"; // 문제 페이지인지 판단?
   courseId: number;
   courseName: string;
+  isCompleted: boolean;
 };
 
 export type PageIntroduction = {
@@ -68,7 +69,7 @@ export type PageIntroduction = {
   character: {
     url: string;
   };
-  contents: string[];
+  contents: string;
 };
 
 export type Page = SinglePage | MultiPage;
@@ -95,6 +96,14 @@ export type MultiPage = {
 export interface PageProps {
   setPageCompleted: () => void;
   page: Page;
+}
+
+/**
+ * 템플릿 공통 컴포넌트의 props
+ */
+export interface TemplateProps {
+  setPageCompleted: () => void;
+  template: TemplateData;
 }
 
 export type characterType =

@@ -9,7 +9,7 @@
 // icon button
 .btn-icon {
 	@extend %btn;
-	@include rounded(vw(55));
+	@include rounded(vw(80));
 	@include bg-op($s: 100% 100%);
 
 	overflow: hidden;
@@ -35,7 +35,22 @@
 .btn-icon-mini {
 	@extend .btn-icon;
 
+	@include rounded(vw(55));
 	border-radius: vw(14);
+}
+
+.btn-play-fill {
+	@include bg-url(icon, 'icon_play_fill.svg');
+
+	border-radius: vw(20);
+	
+	&:disabled {
+		@include bg-url(icon, 'icon_play_fill_disabled.svg');
+
+		@include hover {
+			animation: none;
+		}
+	}
 }
 
 .btn-play {
@@ -180,6 +195,44 @@
 	}
 }
 
+.btn-radi-fill-black-mini {
+	@extend %btn;
+
+	width: vw(111);
+	height: vh(48);
+	border: 1px solid color(gray-56);
+	border-radius: vw(50);
+	background-color: color(gray-56);
+	line-height: 1;
+	font-weight: 600;
+	font-size: vw(22);
+	color: color(gray-ff);
+	box-shadow: $btn-shadow;
+
+	&:before {
+		letter-spacing: -0.04em;
+	}
+}
+
+.btn-step {
+	@extend %btn;
+	@include flex-center;
+
+	width: vw(282);
+	max-width: 282px;
+	height: vh(86);
+	border: 2px solid color(gray-db);
+	border-radius: vw(100);
+	background-color: color(gray-ff);
+	font-weight: 600;
+	font-size: vw(24);
+	box-shadow: $btn-shadow;
+
+	.icon {
+		margin-left: vw(12);
+	}
+}
+
 // footer buttons
 .ft-icon-btn {
 	@extend %btn;
@@ -312,7 +365,7 @@
 	display: block;
 	width: 100%;
 	padding: vh(40) vw(40);
-	border: 3px solid color(gray-ee);
+	border: 3px solid color(gray-db);
 	border-radius: vw(20);
 	background-color: color(gray-f5);
 	text-align: center;

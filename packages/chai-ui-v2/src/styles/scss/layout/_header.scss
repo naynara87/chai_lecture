@@ -9,21 +9,40 @@
 }
 
 .hd-conts-wrap {
-	@include bg-op($p: right center, $s: vw(85));
-
 	position: relative;
 	height: 100%;
-	padding-right: vw(70);
+	padding-right: 62px;
 	text-align: right;
-	transition: all 1200ms;
+	transition: width 1200ms;
 
 	@include make-after {
 		z-index: z(minus);
 		position: absolute;
 		top: 0;
 		left: 0;
-		width: calc(100% - vw(85));
+		width: calc(100% - 42px);
 		height: 100%;
+	}
+
+	.bg-wrap {
+		overflow: hidden;
+		position: absolute;
+		top: 0;
+		left: auto;
+		right: 0;
+		width: 42px;
+		height: $hd-height;
+	}
+
+	.bg-flag {
+		@include square(100px);
+
+		position: absolute;
+		top: 50%;
+		left: auto;
+		right: -30px;
+		border-radius: 10px;
+		transform: translate(-50%, -50%) rotate(45deg);
 	}
 }
 

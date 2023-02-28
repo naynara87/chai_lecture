@@ -11,7 +11,16 @@ const TempRolePlay = () => {
         <Template03 />
         {/* <TemplateConversation /> */}
       </main>
-      <LayoutFooter />
+      <LayoutFooter
+        pages={[]}
+        currentPageIndex={1}
+        handleClickNext={function (): void {
+          throw new Error("Function not implemented.");
+        }}
+        handleClickPrev={function (): void {
+          throw new Error("Function not implemented.");
+        }}
+      />
     </div>
   );
 };
