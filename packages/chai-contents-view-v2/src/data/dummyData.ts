@@ -89,10 +89,17 @@ export const v2CornerDataList: CornerData[] = [
             type: "Template01",
             contents: [
               {
-                type: "video",
-                data: {
-                  src: "https://cdn.bubblecon.co.kr/videos/45.mp4",
-                },
+                type: "numberingTextList",
+                data: [
+                  {
+                    firstText: "테스트 텍스트1-1",
+                    secondText: "테스트 텍스트1-2",
+                  },
+                  {
+                    firstText: "테스트 텍스트2-1",
+                    secondText: "테스트 텍스트2-2",
+                  },
+                ],
               },
             ],
           },
