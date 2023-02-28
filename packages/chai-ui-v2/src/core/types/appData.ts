@@ -69,7 +69,7 @@ export type PageIntroduction = {
   character: {
     url: string;
   };
-  contents: string[];
+  contents: string;
 };
 
 export type Page = SinglePage | MultiPage;
