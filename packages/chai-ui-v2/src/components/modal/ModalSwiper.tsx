@@ -1,11 +1,10 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { ComponentButtonPlay } from "../atoms";
-
+import { Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Pagination } from "swiper";
 
 const Page = styled.div`
   background-color: white;

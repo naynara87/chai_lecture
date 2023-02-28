@@ -5,6 +5,27 @@ export type TemplateData =
   | Template_H_3_7Data
   | Template_H_5_5Data;
 
+export type ConversationTemplateData =
+  | TemplateConversationData
+  | TemplateConversationToggleData
+  | TemplateConversationRepeatData;
+
+export type QuizTemplateData =
+  | TemplateQuizConversationData
+  | TemplateQuizMultiChoiceData
+  | TemplateQuizWordsInOrderData
+  | TemplateQuizSentencesInOrderData
+  | TemplateQuizSpeakingData;
+
+/**
+ * 롤플레잉 레이아웃
+ */
+export type TemplateRolePlayingData = {
+  type: "TemplateRolePlaying";
+  leftContents: Content[];
+  rightContents: Content[];
+};
+
 /**
  * 하나의 카드가 있는 템플릿
  * TP01
@@ -38,7 +59,7 @@ export type Template_H_5_5Data = {
 
 /**
  * 회화 레이아웃
- * TP04, TP05, TP06
+ * TP04
  */
 export type TemplateConversationData = {
   type: "TemplateConversation";
@@ -47,10 +68,21 @@ export type TemplateConversationData = {
 };
 
 /**
- * 롤플레잉 레이아웃
+ * 회화 토글 학습 레이아웃
+ * TP05
  */
-export type TemplateRolePlayingData = {
-  type: "TemplateRolePlaying";
+export type TemplateConversationToggleData = {
+  type: "TemplateConversationToggle";
+  leftContents: Content[];
+  rightContents: Content[];
+};
+
+/**
+ * 회화 토글 학습 레이아웃
+ * TP06
+ */
+export type TemplateConversationRepeatData = {
+  type: "TemplateConversationRepeat";
   leftContents: Content[];
   rightContents: Content[];
 };
@@ -59,8 +91,8 @@ export type TemplateRolePlayingData = {
  * 대화형 퀴즈 레이아웃
  * TP07
  */
-export type TemplateConversationQuizData = {
-  type: "TemplateConversationQuiz";
+export type TemplateQuizConversationData = {
+  type: "TemplateQuizConversation";
   leftContents: Content[];
   rightContents: Content[];
 };
@@ -69,8 +101,8 @@ export type TemplateConversationQuizData = {
  * 2지 선다 퀴즈 레이아웃
  * TP08
  */
-export type TemplateMultiChoiceData = {
-  type: "TemplateMultiChoice";
+export type TemplateQuizMultiChoiceData = {
+  type: "TemplateQuizMultiChoice";
   leftContents: Content[];
   rightContents: Content[];
 };
@@ -79,8 +111,8 @@ export type TemplateMultiChoiceData = {
  * 단어 배열형 레이아웃
  * TP09
  */
-export type TemplateTextBlankOrderData = {
-  type: "TemplateTextBlankOrder";
+export type TemplateQuizWordsInOrderData = {
+  type: "TemplateQuizWordsInOrder";
   leftContents: Content[];
   rightContents: Content[];
 };
@@ -89,8 +121,8 @@ export type TemplateTextBlankOrderData = {
  * 문장 배열형 레이아웃
  * TP10
  */
-export type TemplateConversationBlankOrderData = {
-  type: "TemplateConversationBlankOrder";
+export type TemplateQuizSentencesInOrderData = {
+  type: "TemplateQuizSentencesInOrder";
   leftContents: Content[];
   rightContents: Content[];
 };
@@ -99,8 +131,8 @@ export type TemplateConversationBlankOrderData = {
  * 종합 말하기 레이아웃
  * TP11
  */
-export type TemplateSpeakingData = {
-  type: "TemplateSpeaking";
+export type TemplateQuizSpeakingData = {
+  type: "TemplateQuizSpeaking";
   leftContents: Content[];
   rightContents: Content[];
 };
