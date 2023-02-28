@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { PAGE_CREATE_URL } from "../../constants/url";
 import {
   commonLayouts,
@@ -8,6 +8,8 @@ import {
   quizLayouts,
   rolePlayingLayouts,
 } from "../../data/appData";
+import { useRecoilState } from "recoil";
+import { layoutState } from "../../states/layoutState";
 
 const Header = styled.header`
   display: flex;
@@ -71,12 +73,16 @@ const LayoutItemName = styled.div`
 `;
 
 const ChooseLayoutPage = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
+  const [, setLayout] = useRecoilState(layoutState);
 
-  const handleLayoutClick = (layoutType: string) => {
-    console.log("selected layout: ", layoutType);
+  const handleLayoutClick = (templateType: string) => {
+    console.log("selected layout: ", templateType);
     console.log(`go to ${PAGE_CREATE_URL}`);
-    // navigate(PAGE_CREATE_URL);
+    navigate(PAGE_CREATE_URL);
+    setLayout({
+      templateType,
+    });
   };
 
   return (
