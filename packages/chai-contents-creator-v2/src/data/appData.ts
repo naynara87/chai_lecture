@@ -2,6 +2,7 @@ import {
   ConversationTemplateData,
   QuizTemplateData,
   TemplateData,
+  TemplateRolePlayingData,
 } from "chai-ui-v2";
 
 type PageLayout = {
@@ -18,6 +19,12 @@ type ConversationPageLayout = {
 
 type QuizPageLayout = {
   type: QuizTemplateData["type"];
+  name: string;
+  image: string;
+};
+
+type RolePlayingPageLayout = {
+  type: TemplateRolePlayingData["type"];
   name: string;
   image: string;
 };
@@ -102,6 +109,17 @@ export const quizLayouts: QuizPageLayout[] = [
   {
     type: "TemplateQuizSpeaking",
     name: "종합 말하기",
+    image: "https://via.placeholder.com/150",
+  },
+];
+
+/**
+ * 롤 플레잉 레이아웃
+ */
+export const rolePlayingLayouts: RolePlayingPageLayout[] = [
+  {
+    type: "TemplateRolePlaying",
+    name: "롤 플레잉",
     image: "https://via.placeholder.com/150",
   },
 ];

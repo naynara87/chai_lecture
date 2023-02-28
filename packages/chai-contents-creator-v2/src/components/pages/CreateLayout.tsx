@@ -6,6 +6,7 @@ import {
   commonLayouts,
   conversationLayouts,
   quizLayouts,
+  rolePlayingLayouts,
 } from "../../data/appData";
 
 const Header = styled.header`
@@ -119,6 +120,20 @@ const ChooseLayoutPage = () => {
           <MainSectionTitle>퀴즈 레이아웃</MainSectionTitle>
           <LayoutContainer>
             {quizLayouts.map((layout) => (
+              <LayoutItem
+                key={layout.name}
+                onClick={() => handleLayoutClick(layout.type)}
+              >
+                <img src={layout.image} alt={layout.name} draggable={false} />
+                <LayoutItemName>{layout.name}</LayoutItemName>
+              </LayoutItem>
+            ))}
+          </LayoutContainer>
+        </MainSection>
+        <MainSection>
+          <MainSectionTitle>롤플레잉 레이아웃</MainSectionTitle>
+          <LayoutContainer>
+            {rolePlayingLayouts.map((layout) => (
               <LayoutItem
                 key={layout.name}
                 onClick={() => handleLayoutClick(layout.type)}
