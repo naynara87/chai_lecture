@@ -61,12 +61,12 @@ export const v2CornerDataList: CornerData[] = [
         name: "한어",
         type: "SinglePage",
         introduction: {
-          title: "",
-          subTitle: "",
+          title: "a",
+          subTitle: "a",
           character: {
-            url: "",
+            url: "a",
           },
-          contents: [""],
+          contents: "a",
         },
         data: {
           type: "Template01",
@@ -120,7 +120,7 @@ export const v2CornerDataList: CornerData[] = [
           character: {
             url: "",
           },
-          contents: [""],
+          contents: "",
         },
         data: {
           type: "Template01",

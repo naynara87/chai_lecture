@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import LayoutFooter from "../molecules/LayoutFooter";
 import LayoutHeader from "../molecules/LayoutHeader";
 import useInitialData from "../../hooks/useInitialData";
@@ -7,12 +7,15 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getPageUrl } from "../../util/url";
 import { useRecoilState } from "recoil";
 import { cornersState } from "../../state/corners";
+import { LayoutModalIntroduction } from "chai-ui-v2";
 
 const Layout = () => {
   const { initialPage, pages, initialCorner } = useInitialData();
   const [isPageCompleted, setIsPageCompleted] = useState(false);
   const { courseId, cornerId, lessonId, pageId } = useParams();
   const navigate = useNavigate();
+
+  const [isIntroductionModalOpen, setIsIntroductionModalOpen] = useState(false);
 
   const [, setCompletedCorners] = useRecoilState(cornersState);
 
@@ -92,6 +95,24 @@ const Layout = () => {
     // }
   }, [initialPage, currentPage]);
 
+  useEffect(() => {
+    if (currentPage?.introduction) {
+      setIsIntroductionModalOpen(true);
+    }
+  }, [currentPage?.introduction]);
+
+  const introduction = useMemo(() => {
+    if (currentPage?.introduction) {
+      return (
+        <LayoutModalIntroduction
+          isModalOpen={isIntroductionModalOpen}
+          setIsModalOpen={setIsIntroductionModalOpen}
+          introduction={currentPage.introduction}
+        />
+      );
+    }
+  }, [currentPage, isIntroductionModalOpen]);
+
   return (
     <div>
       <LayoutHeader />
@@ -105,6 +126,7 @@ const Layout = () => {
         handleClickNext={handleClickNext}
         handleClickPrev={handleClickPrev}
       />
+      {introduction}
     </div>
   );
 };
