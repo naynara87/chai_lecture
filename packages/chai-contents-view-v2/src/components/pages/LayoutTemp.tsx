@@ -1,4 +1,4 @@
-import { TemplatePub } from "chai-ui-v2";
+import { TemplateDialogue, TemplatePub } from "chai-ui-v2";
 import React from "react";
 import LayoutFooter from "../molecules/LayoutFooter";
 import LayoutHeader from "../molecules/LayoutHeader";
