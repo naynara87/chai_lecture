@@ -1,46 +1,19 @@
 import styled from "@emotion/styled";
 import React, { useMemo } from "react";
 import { NumberingTextListContentData } from "../../core";
-import { vh, vw } from "../../styles";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
 
-const NumberingTextListWrapper = styled.ol`
-  width: 100%;
-`;
-
-interface NumberTextListProps {
-  index: number;
-}
-
-const NumberTextList = styled.li<NumberTextListProps>`
-  width: 100%;
-  height: auto;
-  display: flex;
-  background-color: #f5f5f5;
-  border-radius: 20px;
-  padding: ${vh(24)} ${vw(60)};
-  margin-top: ${vh(24)};
-
-  &:first-child {
-    margin-top: 0;
+const NumberingWrapper = styled.div`
+  .text1 {
+    /* TODO: key설명 - text2 에 글이 없으면 width: 100% */
+    width: 50%;
   }
 
-  &::before {
-    content: "${(props) => props.index}";
-    width: ${vw(36)};
-    height: ${vw(36)};
-    font-size: ${vw(24)};
-    background-color: #7984c3;
-    color: #f5f5f5;
-    display: flex;
-    justify-content: center;
-    border-radius: 50%;
-    margin-right: ${vw(24)};
-    margin-top: ${vh(4)};
+  .text2 {
+    /* TODO: key설명 - 글이 없으면 생성되지 않음 */
+    width: 50%;
   }
 `;
-
-const NumberingTextWrapper = styled.div``;
 
 interface NumberingTextListComponentProps {
   contents: NumberingTextListContentData;
@@ -52,20 +25,28 @@ const NumberingTextListComponent = ({
   const numberingTextList = useMemo(() => {
     return contents.data.map((numberingText, numberingTextIndex) => {
       return (
-        <NumberTextList key={numberingTextIndex} index={numberingTextIndex + 1}>
-          <NumberingTextWrapper>
-            <HtmlContentComponent html={numberingText.firstText} />
+        <li className="numbering-list" key={numberingTextIndex}>
+          <span className="number">{numberingTextIndex + 1}</span>
+          {/* TODO: key설명 - 저작도구에서 text2의 입력이 없어 text2가 생성되지 않고, text1 width: 100% */}
+          <div className="text1" style={{ width: "100%" }}>
+            <p className="chinese">
+              <HtmlContentComponent html={numberingText.firstText} />
+            </p>
             {numberingText.secondText && (
-              <HtmlContentComponent html={numberingText.secondText} />
+              <p className="pinyin">
+                <HtmlContentComponent html={numberingText.secondText} />
+              </p>
             )}
-          </NumberingTextWrapper>
-        </NumberTextList>
+          </div>
+        </li>
       );
     });
   }, [contents.data]);
 
   return (
-    <NumberingTextListWrapper>{numberingTextList}</NumberingTextListWrapper>
+    <NumberingWrapper className="numbering-wrapper">
+      <ul className="numbering-list-wrap">{numberingTextList}</ul>
+    </NumberingWrapper>
   );
 };
 

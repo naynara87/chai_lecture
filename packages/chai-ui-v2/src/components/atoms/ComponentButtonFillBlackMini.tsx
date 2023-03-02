@@ -2,11 +2,26 @@ import React from "react";
 
 interface ComponentButtonFillBlackProps {
   text: string;
+  onClick?: () => void;
 }
 
-const ComponentButtonFillBlackMini = ({ text }: ComponentButtonFillBlackProps) => {
-  return (    
-    <button className="btn btn-radi-fill-black-mini">{text}</button>
+const ComponentButtonFillBlackMini = ({
+  text,
+  onClick,
+}: ComponentButtonFillBlackProps) => {
+  const handleClickButton = () => {
+    if (onClick) {
+      onClick();
+    }
+  };
+
+  return (
+    <button
+      className="btn btn-radi-fill-black-mini"
+      onClick={handleClickButton}
+    >
+      {text}
+    </button>
   );
 };
 

@@ -1,5 +1,6 @@
 import React from "react";
 import { ComponentVideo } from "../../components";
+import ExplainingCharacterComponent from "../../components/contents/ExplainingCharacterComponent";
 import IconTextComponent from "../../components/contents/IconTextComponent";
 import NumberingTextListComponent from "../../components/contents/NumberingTextListComponent";
 import TextContentComponent from "../../components/contents/TextContentComponent";
@@ -11,6 +12,7 @@ import {
   TextContentData,
   VideoContentData,
   IconTextContentData,
+  ExplainingCharacterContentData,
 } from "../types";
 
 const useContentMapper = () => {
@@ -38,6 +40,12 @@ const useContentMapper = () => {
       iconText: (
         <IconTextComponent
           contents={content as IconTextContentData}
+          key={contentIndex}
+        />
+      ),
+      explainingCharacter: (
+        <ExplainingCharacterComponent
+          contents={content as ExplainingCharacterContentData}
           key={contentIndex}
         />
       ),

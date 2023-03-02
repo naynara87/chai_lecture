@@ -5,7 +5,8 @@ export type Content =
   | VideoContentData
   | RecorderContentData
   | NumberingTextListContentData
-  | IconTextContentData;
+  | IconTextContentData
+  | ExplainingCharacterContentData;
 export type ContentType = Content["type"];
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
