@@ -13,8 +13,8 @@ const PauseButton = ({ active }: HeadsetButtonProps) => {
         <button className="btn-icon-mini btn-pause" disabled={!active}>
           일시정지
         </button>
-        <ComponentProgress />
-        <p className="txt">{ '0:44' }</p>
+        <ComponentProgress progressDuration={3} />
+        <p className="txt">{"0:44"}</p>
       </div>
       <ReturnButton />
     </>

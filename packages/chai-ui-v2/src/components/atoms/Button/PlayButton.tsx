@@ -12,8 +12,8 @@ const PlayButton = ({ active }: HeadsetButtonProps) => {
         <button className="btn-icon-mini btn-play" disabled={!active}>
           재생
         </button>
-        <ComponentProgress />
-        <p className="txt">{ '0:44' }</p>
+        <ComponentProgress progressDuration={3} />
+        <p className="txt">{"0:44"}</p>
       </div>
       <ReturnButton />
     </>

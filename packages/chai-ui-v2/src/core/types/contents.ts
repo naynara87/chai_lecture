@@ -8,6 +8,7 @@ export type Content =
   | IconTextContentData
   | ExplainingCharacterContentData
   | CharacterCardListContentData
+  | SpeakingContentData
   | BorderTextBoxContentData;
 export type ContentType = Content["type"];
 
