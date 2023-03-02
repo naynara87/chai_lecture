@@ -10,6 +10,7 @@ import {
 } from "../../data/appData";
 import { useRecoilState } from "recoil";
 import { layoutState } from "../../states/layoutState";
+import { TemplateType } from "chai-ui-v2";
 
 const Header = styled.header`
   display: flex;
@@ -76,7 +77,7 @@ const ChooseLayoutPage = () => {
   const navigate = useNavigate();
   const [, setLayout] = useRecoilState(layoutState);
 
-  const handleLayoutClick = (templateType: string) => {
+  const handleLayoutClick = (templateType: TemplateType) => {
     console.log("selected layout: ", templateType);
     console.log(`go to ${PAGE_CREATE_URL}`);
     navigate(PAGE_CREATE_URL);

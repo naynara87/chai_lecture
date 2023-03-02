@@ -23,7 +23,7 @@ const CreateEditMainWrap37 = styled(CreateEditMainWrap)`
     width: 70%;
   }
 `;
-const CreateTemplate02 = () => {
+const CreateTemplateH37 = () => {
   return (
     <CreateTemplateWrap>
       <CreateEditTop>
@@ -121,4 +121,4 @@ const CreateTemplate02 = () => {
   );
 };
 
-export default CreateTemplate02;
+export default CreateTemplateH37;
