@@ -6,8 +6,9 @@
 	@include gradiant;
 
 	width: vw(550);
-	height: vw(456);
+	min-height: vw(456);
 	margin: 0 auto;
+	padding: vh(70) vw(70);
 	border-radius: vw(30);
 	transition: width 0.2s, height 0.2s;
 
@@ -24,10 +25,41 @@
 	
 	&.step2 {
 		width: vw(630);
-		height: vw(541);
+		min-height: vw(541);
 	}
 	&.step3 {
 		width: vw(710);
-		height: vw(541);
+		min-height: vw(541);
+	}
+}
+
+// step sentence card
+.step-card.sentence-card {
+	width: vw(524);
+	min-height: vw(468);
+	padding: vh(50) vw(50);
+	text-align: center;
+	
+	&.step2 {
+		width: vw(1328);
+		min-height: vw(468);
+	}
+	
+	&.step3 {
+		width: vw(1328);
+		min-height: vw(520);
+	}
+
+	.text {
+		font-size: vw(28);
+	}
+
+	.chinese {
+		font-size: vw(50);
+	}
+
+	.pinyin {
+		margin-top: vw(20);
+		font-size: vw(32);
 	}
 }

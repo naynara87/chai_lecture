@@ -2,6 +2,7 @@ import React from "react";
 import ComponentProgress from "../atoms/ComponentProgress";
 import iconCheck from "../../images/icon/icon_check_green.svg";
 import styled from "@emotion/styled";
+import ComponentButtonFillBlackMini from "../atoms/ComponentButtonFillBlackMini";
 
 const RepeatSpeak = styled.div`
 `;
@@ -22,7 +23,7 @@ const ComponentRepeatSpeak = () => {
         <span className="text">{'직접 따라 말해볼까요?'}</span>
         <img src={iconCheck} alt="" className="icon" />
       </div>
-      <button className="btn btn-radi-fill-black-mini">시작</button>
+      <ComponentButtonFillBlackMini text="시작" />
       <ComponentProgress />
     </RepeatSpeak>
   );

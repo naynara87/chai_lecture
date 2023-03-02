@@ -97,6 +97,14 @@
 	}
 }
 
+.btn-dectionary {
+	@include bg-url(icon, 'icon_dictionary.svg');
+	
+	&:disabled {
+		@include bg-url(icon, 'icon_dictionary_disabled.svg');
+	}
+}
+
 .btn-round-icon-arrow {
 	@extend %btn;
 	@include flex-center;
