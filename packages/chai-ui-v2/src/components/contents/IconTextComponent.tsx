@@ -9,8 +9,8 @@ const IconTextWrapper = styled.div`
   display: flex;
   align-items: center;
   & > img {
-    width: ${vw(40)};
-    height: ${vw(40)};
+    width: ${vw(44)};
+    height: ${vw(44)};
     margin-right: ${vw(14)};
   }
 `;
