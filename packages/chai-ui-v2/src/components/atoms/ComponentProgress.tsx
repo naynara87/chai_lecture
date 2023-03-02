@@ -3,6 +3,7 @@ import React from "react";
 
 interface ProgressBarProps {
   duration: number;
+  isAudioEnd: boolean;
 }
 
 const ProgressBar = styled.div<ProgressBarProps>`
@@ -15,28 +16,23 @@ const ProgressBar = styled.div<ProgressBarProps>`
   position: absolute;
   right: 0;
   top: 0;
-  animation-name: progress;
-  animation-duration: ${(props) => props.duration}s;
-  /* animation-duration: 5s; */
-  animation-timing-function: ease-in;
-  @keyframes progress {
-    from {
-      transform: translateX(-100%);
-    }
-    to {
-      transform: translateX(0%);
-    }
-  }
+  transform: translateX(-100%);
+  transition: all ${(props) => props.duration}s ease-in;
+  transform: ${(props) => props.isAudioEnd && "translateX(0%)"};
 `;
 
 interface ComponentProgressProps {
   progressDuration: number;
+  isAudioEnd: boolean;
 }
 
-const ComponentProgress = ({ progressDuration }: ComponentProgressProps) => {
+const ComponentProgress = ({
+  progressDuration,
+  isAudioEnd,
+}: ComponentProgressProps) => {
   return (
     <div className="cai-progress-track">
-      <ProgressBar duration={progressDuration} />
+      <ProgressBar duration={progressDuration} isAudioEnd={isAudioEnd} />
     </div>
   );
 };

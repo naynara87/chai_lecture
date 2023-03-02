@@ -74,7 +74,7 @@ export const v2CornerDataList: CornerData[] = [
             {
               type: "speaking",
               data: {
-                src: "string",
+                src: "https://cdn.pixabay.com/audio/2022/01/08/audio_2acd117ecd.mp3",
                 speakingTime: 3,
               },
             },

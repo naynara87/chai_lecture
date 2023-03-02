@@ -1,5 +1,4 @@
 import React from "react";
-import ComponentProgress from "../ComponentProgress";
 import ReturnButton from "./ReturnButton";
 
 interface HeadsetButtonProps {
@@ -13,7 +12,7 @@ const PauseButton = ({ active }: HeadsetButtonProps) => {
         <button className="btn-icon-mini btn-pause" disabled={!active}>
           일시정지
         </button>
-        <ComponentProgress progressDuration={3} />
+        {/* <ComponentProgress progressDuration={3} /> */}
         <p className="txt">{"0:44"}</p>
       </div>
       <ReturnButton />
