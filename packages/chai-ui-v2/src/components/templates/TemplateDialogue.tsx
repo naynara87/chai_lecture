@@ -6,8 +6,14 @@ import ImgProfileDefaultComponent from "../atoms/ImgProfileDefaultComponent";
 import ImgTemp01Component from "../atoms/ImgTemp01Component";
 import ComponentButtonPlay from "../atoms/ComponentButtonPlay";
 import ComponentButtonRoundArrow from "../atoms/ComponentButtonRoundArrow";
+// import ComponentRepeatSpeak from "../molecules/ComponentRepeatSpeak";
+import { vh } from "../../styles";
 
-const DialogueContainer = styled.div``;
+const DialogueContainer = styled.div`
+  .repeat-speak-wrapper {
+    margin-top: ${vh(20)};
+  }
+`;
 
 const TemplateDialogue = () => {
   const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(false);
@@ -118,6 +124,7 @@ const TemplateDialogue = () => {
               <p className="chinese">{"今天刮风，下雪，很冷。"}</p>
               <p className="pinyin">{"Jīntiān guā fēng, xià xuě, hěn lěng."}</p>
               <p className="mean">{"오늘은 바람이 불고, 눈이 내려서 추워."}</p>
+              {/* <ComponentRepeatSpeak /> */}
             </div>
           </li>
           {/* end speech bubble */}
@@ -141,6 +148,7 @@ const TemplateDialogue = () => {
               <p className="mean">
                 {"나는 여기 겨울이 중국만큼 춥지 않은 것 같아."}
               </p>
+              {/* <ComponentRepeatSpeak /> */}
             </div>
           </li>
         </ul>

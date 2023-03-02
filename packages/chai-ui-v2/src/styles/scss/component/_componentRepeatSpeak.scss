@@ -7,6 +7,7 @@
   width: vw(390);
   height: vw(140);
   padding: vw(10) vw(40);
+  border: 1px solid color(blue-300);
   border-radius: vw(20);
   background-color: rgba(255, 255, 255, 0.5);
 
@@ -33,4 +34,32 @@
     // display: none;
     margin-top: vw(26);
   }
+
+  // .text-wrap .icon {
+  //   display: none;
+  // }
+
+  // &.step2 {
+  //   .btn {
+  //     display: none;
+  //   }
+
+  //   .cai-progress-track {
+  //     display: block;
+  //   }
+  // }
+
+  // &.step3 {
+  //   .btn {
+  //     display: none;
+  //   }
+
+  //   .cai-progress-track {
+  //     display: none;
+  //   }
+
+  //   .text-wrap .icon {
+  //     display: block;
+  //   }
+  // }
 }

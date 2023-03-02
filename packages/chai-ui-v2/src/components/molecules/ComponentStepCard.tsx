@@ -1,7 +1,9 @@
 import styled from "@emotion/styled";
 import React from "react";
 import ComponentButtonStep from "../atoms/Button/ComponentButtonStep";
+import ComponentTitle from "./ComponentTitle";
 // import PlayButtonOnly from "../atoms/Button/PlayButtonOnly";
+// import ComponentRepeatSpeak from "./ComponentRepeatSpeak";
 
 const StepCard = styled.div`
   > *:not(:first-child) {
@@ -18,8 +20,9 @@ const ComponentStepCard = () => {
         {/* <PlayButtonOnly /> */}
         <p className="text pinyin">{"zài"}</p>
         {/* TODO: key설명 - 버튼은 2단계 이상일 때 생성. 누를때마다 다음단계 보임. 3단계에선 안보임 */}
+        {/* <ComponentRepeatSpeak /> */}
+        <ComponentTitle text="내가 생각한 내용이 맞는지 확인하러 갈까요?" />
         <ComponentButtonStep />
-        {/* <SpeakingComponent /> */}
       </StepCard>
     </div>
   );

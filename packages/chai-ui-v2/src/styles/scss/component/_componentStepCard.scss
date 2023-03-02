@@ -22,14 +22,24 @@
 		font-size: vw(45);
 		line-height: 1;
 	}
+
+	.conts-ttl:before {
+		top: 50%;
+		transform: translateY(-50%);
+	}
 	
 	&.step2 {
 		width: vw(630);
 		min-height: vw(541);
 	}
+	
 	&.step3 {
 		width: vw(710);
 		min-height: vw(541);
+	}
+
+	@at-root .step-card-wrap:first-child & {
+		margin-top: vh(150-60);
 	}
 }
 
@@ -39,16 +49,6 @@
 	min-height: vw(468);
 	padding: vh(50) vw(50);
 	text-align: center;
-	
-	&.step2 {
-		width: vw(1328);
-		min-height: vw(468);
-	}
-	
-	&.step3 {
-		width: vw(1328);
-		min-height: vw(520);
-	}
 
 	.text {
 		font-size: vw(28);
@@ -62,4 +62,15 @@
 		margin-top: vw(20);
 		font-size: vw(32);
 	}
+	
+	&.step2 {
+		width: vw(1328);
+		min-height: vw(468);
+	}
+	
+	&.step3 {
+		width: vw(1328);
+		min-height: vw(520);
+	}
 }
+// END step sentence card
