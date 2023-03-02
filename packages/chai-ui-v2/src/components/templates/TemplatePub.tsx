@@ -1,22 +1,17 @@
 import React from "react";
-import DictionaryButton from "../atoms/Button/DictionaryButton";
-import PlayButtonOnly from "../atoms/Button/PlayButtonOnly";
-import ComponentImage from "../molecules/ComponentImage";
-import ComponentText from "../molecules/ComponentText";
-// import ComponentTitle from "../molecules/ComponentTitle";
+import { ComponentContsInfo } from "../molecules";
+import ComponentStepCard from "../molecules/ComponentStepCard";
 
 
 const TemplatePub = () => {
   return (
-    <div className="layout-panel-wrap">
-      <div className="layout-panel">
-        {/* <ComponentTitle text="회화 속 주인공이 되어 말하기 연습을 해보세요." /> */}
-        <ComponentImage />
-        <ComponentText />
-        <div className="btns-wrap">
-          <PlayButtonOnly />
-          <DictionaryButton />
-        </div>
+    <div className="layout-panel-wrap grid-h-5-5">
+      <div className="layout-panel side-panel">
+        <ComponentContsInfo text="이벤엔 중국 문화에 대해 알아볼 차례예요!
+빈 칸에 들어갈 말이 무엇일지 생각해볼까요?" />
+      </div>
+      <div className="layout-panel wide-panel">
+        <ComponentStepCard />
       </div>
     </div>
   );
