@@ -72,10 +72,37 @@ export const v2CornerDataList: CornerData[] = [
           type: "Template01",
           contents: [
             {
-              type: "iconText",
-              data: {
-                text: "아에이오우",
-              },
+              type: "characterCardList",
+              data: [
+                {
+                  title: "패턴 중국어",
+                  description: "好 hǎo 인사하기",
+                  character: {
+                    src: "string",
+                  },
+                },
+                {
+                  title: "회화",
+                  description: "만남의 인사하기",
+                  character: {
+                    src: "string",
+                  },
+                },
+                {
+                  title: "문법",
+                  description: "제3성의 성조 변화",
+                  character: {
+                    src: "string",
+                  },
+                },
+                {
+                  title: "문화",
+                  description: "중국인의 성씨와 호칭",
+                  character: {
+                    src: "string",
+                  },
+                },
+              ],
             },
           ],
         },
@@ -121,6 +148,22 @@ export const v2CornerDataList: CornerData[] = [
                 type: "video",
                 data: {
                   src: "https://cdn.bubblecon.co.kr/videos/46.mp4",
+                },
+              },
+            ],
+          },
+          {
+            type: "Template01",
+            contents: [
+              {
+                type: "explainingCharacter",
+                data: {
+                  text: "이번 패턴은 어떻게 사용하는지 알아볼까요?",
+                  explain:
+                    "’坐 zuò’는 ‘앉다’라는 뜻으로, 교통수단과 함께 쓰면 ‘타다’라는 뜻을 나타냅니다. ‘坐 zuò’는 좌석에 앉아 가는 교통수단에 사용합니다.",
+                  character: {
+                    src: "string",
+                  },
                 },
               },
             ],

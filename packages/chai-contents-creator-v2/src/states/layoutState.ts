@@ -1,7 +1,8 @@
+import { TemplateType } from "chai-ui-v2";
 import { atom } from "recoil";
 
 export interface layoutStateType {
-  templateType: string;
+  templateType: TemplateType;
 }
 
 export const layoutState = atom<layoutStateType | undefined>({

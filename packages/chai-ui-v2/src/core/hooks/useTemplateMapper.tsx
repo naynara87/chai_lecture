@@ -10,7 +10,7 @@ interface UseTemplateMapperProps {
 const useTemplateMapper = ({ setPageCompleted }: UseTemplateMapperProps) => {
   const templateMapper = useCallback(
     (templateType: TemplateType, template: TemplateData) => {
-      const templateList: Record<TemplateType, JSX.Element> = {
+      const templateList: Partial<Record<TemplateType, JSX.Element>> = {
         Template01: (
           <Template01 template={template} setPageCompleted={setPageCompleted} />
         ),

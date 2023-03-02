@@ -1,5 +1,7 @@
 import React from "react";
 import { ComponentVideo } from "../../components";
+import ExplainingCharacterComponent from "../../components/contents/ExplainingCharacterComponent";
+import BorderTextBoxComponent from "../../components/contents/BorderTextBoxComponent";
 import IconTextComponent from "../../components/contents/IconTextComponent";
 import NumberingTextListComponent from "../../components/contents/NumberingTextListComponent";
 import TextContentComponent from "../../components/contents/TextContentComponent";
@@ -11,7 +13,11 @@ import {
   TextContentData,
   VideoContentData,
   IconTextContentData,
+  ExplainingCharacterContentData,
+  BorderTextBoxContentData,
+  CharacterCardListContentData,
 } from "../types";
+import CharacterCardListComponent from "../../components/contents/CharacterCardListComponent";
 
 const useContentMapper = () => {
   const getContentComponent = (content: Content, contentIndex: number) => {
@@ -38,6 +44,23 @@ const useContentMapper = () => {
       iconText: (
         <IconTextComponent
           contents={content as IconTextContentData}
+          key={contentIndex}
+        />
+      ),
+      explainingCharacter: (
+        <ExplainingCharacterComponent
+          contents={content as ExplainingCharacterContentData}
+        />
+      ),
+      borderTextBox: (
+        <BorderTextBoxComponent
+          contents={content as BorderTextBoxContentData}
+          key={contentIndex}
+        />
+      ),
+      characterCardList: (
+        <CharacterCardListComponent
+          contents={content as CharacterCardListContentData}
           key={contentIndex}
         />
       ),
