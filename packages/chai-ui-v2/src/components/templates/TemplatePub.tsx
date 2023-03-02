@@ -1,7 +1,8 @@
 import React from "react";
+import DictionaryButton from "../atoms/Button/DictionaryButton";
 import PlayButtonOnly from "../atoms/Button/PlayButtonOnly";
-import ComponentDescriptionBubble from "../molecules/ComponentDescriptionBubble";
-import ComponentWordCard from "../molecules/ComponentWordCard";
+import ComponentImage from "../molecules/ComponentImage";
+import ComponentText from "../molecules/ComponentText";
 // import ComponentTitle from "../molecules/ComponentTitle";
 
 
@@ -10,9 +11,12 @@ const TemplatePub = () => {
     <div className="layout-panel-wrap">
       <div className="layout-panel">
         {/* <ComponentTitle text="회화 속 주인공이 되어 말하기 연습을 해보세요." /> */}
-        <ComponentWordCard />
-        <div className="btns-wrap"><PlayButtonOnly /></div>
-        <ComponentDescriptionBubble />
+        <ComponentImage />
+        <ComponentText />
+        <div className="btns-wrap">
+          <PlayButtonOnly />
+          <DictionaryButton />
+        </div>
       </div>
     </div>
   );

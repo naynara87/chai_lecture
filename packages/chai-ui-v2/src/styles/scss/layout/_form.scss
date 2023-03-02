@@ -25,10 +25,8 @@
 	}
 
 	@include hover {
-		animation-name: opacity-70;
-		animation-duration: 800ms;
-		animation-timing-function: linear;
-		animation-iteration-count: infinite;
+		opacity: 1;
+		box-shadow: 0 -2px 0 rgba(88, 88, 88, 0.2);
 	}
 }
 
