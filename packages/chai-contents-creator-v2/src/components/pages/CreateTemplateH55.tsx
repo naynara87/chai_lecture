@@ -21,7 +21,7 @@ const CreateEditMainWrap55 = styled(CreateEditMainWrap)`
   }
 `;
 
-const CreateTemplate03 = () => {
+const CreateTemplateH55 = () => {
   return (
     <CreateTemplateWrap>
       <CreateEditTop>
@@ -119,4 +119,4 @@ const CreateTemplate03 = () => {
   );
 };
 
-export default CreateTemplate03;
+export default CreateTemplateH55;

@@ -1,8 +1,17 @@
-import { TemplateData } from "./templates";
+import {
+  ConversationTemplateData,
+  QuizTemplateData,
+  TemplateData,
+  TemplateRolePlayingData,
+} from "./templates";
 
 export type ID = string | number;
 
-export type TemplateType = TemplateData["type"];
+export type TemplateType =
+  | TemplateData["type"]
+  | ConversationTemplateData["type"]
+  | QuizTemplateData["type"]
+  | TemplateRolePlayingData["type"];
 
 /**
  * 레슨 데이터(코너 리스트)
