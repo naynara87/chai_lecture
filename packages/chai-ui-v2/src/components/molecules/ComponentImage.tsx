@@ -8,7 +8,6 @@ const ImageComponent = styled.div`
   max-height: ${vh(337)};
   margin: 0 auto;
   border-radius: ${vw(10)};
-  border: 1px solid;
 
   img {
 	max-width: 100%;
