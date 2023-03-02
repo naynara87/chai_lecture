@@ -4,7 +4,7 @@ import TempImage from "../../images/img/didi_all.png";
 import { vh, vw } from "../../styles";
 
 const ImageComponent = styled.div`
-  max-width: ${vw(450)};
+  max-width: ${vw(600)};
   max-height: ${vh(337)};
   margin: 0 auto;
   border-radius: ${vw(10)};
