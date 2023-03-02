@@ -16,10 +16,10 @@ import {
 } from "../../styles/template";
 
 const CreateEditMainWrap37 = styled(CreateEditMainWrap)`
-  & > div:nth-child(1) {
+  ${CreateEditMain}:nth-child(1) {
     width: 30%;
   }
-  & > div:nth-child(2) {
+  ${CreateEditMain}:nth-child(2) {
     width: 70%;
   }
 `;

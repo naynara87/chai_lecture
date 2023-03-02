@@ -16,7 +16,7 @@ import {
 } from "../../styles/template";
 
 const CreateEditMainWrap55 = styled(CreateEditMainWrap)`
-  & > div {
+  ${CreateEditMain} {
     width: 50%;
   }
 `;
