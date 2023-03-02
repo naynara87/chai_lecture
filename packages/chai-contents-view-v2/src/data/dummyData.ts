@@ -72,7 +72,7 @@ export const v2CornerDataList: CornerData[] = [
           type: "Template01",
           contents: [
             {
-              type: "text",
+              type: "iconText",
               data: {
                 text: "아에이오우",
               },
