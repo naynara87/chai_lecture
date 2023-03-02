@@ -119,7 +119,7 @@ export type SpeakingContentData = {
  */
 export type RecorderContentData = {
   type: "recorder";
-  data: {};
+  data: Record<string, never>;
   meta?: Meta;
 };
 
