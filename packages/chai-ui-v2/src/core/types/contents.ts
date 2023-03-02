@@ -6,7 +6,8 @@ export type Content =
   | RecorderContentData
   | NumberingTextListContentData
   | IconTextContentData
-  | ExplainingCharacterContentData;
+  | ExplainingCharacterContentData
+  | BorderTextBoxContentData;
 export type ContentType = Content["type"];
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -49,11 +50,11 @@ export type NumberingTextListContentData = {
 /**
  * 학습 목표 컴포넌트
  */
-export type DotTextListContentData = {
-  type: "dotTextList";
+export type BorderTextBoxContentData = {
+  type: "borderTextBox";
   data: {
     text: string;
-  }[];
+  };
   meta?: Meta;
 };
 
