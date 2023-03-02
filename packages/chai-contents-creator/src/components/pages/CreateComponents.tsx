@@ -76,7 +76,7 @@ const CreateComponents = () => {
         setFocusEditor(undefined);
       }
     },
-    []
+    [],
   );
 
   const {
@@ -124,7 +124,7 @@ const CreateComponents = () => {
       if (result.destination.droppableId === result.source.droppableId) return;
       // 컨텐츠를 옮길 위치
       const componentIndex = parseInt(
-        result.destination?.droppableId.slice(-1)!
+        result.destination?.droppableId.slice(-1)!,
       );
       // 컨텐츠를 옮겨온 위치
       const currentIndex = parseInt(result.source.droppableId.slice(-1)!);
@@ -143,7 +143,7 @@ const CreateComponents = () => {
         copyComponentList.splice(
           componentIndex,
           1,
-          componentList[currentIndex]
+          componentList[currentIndex],
         );
         if (componentList[componentIndex] === undefined) {
           copyComponentList.splice(currentIndex, 1, undefined);
@@ -151,7 +151,7 @@ const CreateComponents = () => {
           copyComponentList.splice(
             currentIndex,
             1,
-            componentList[componentIndex]
+            componentList[componentIndex],
           );
         }
         setComponentList(copyComponentList);
@@ -163,7 +163,7 @@ const CreateComponents = () => {
       setComponentList,
       showOpenContentReplaceByBtnModal,
       showOpenContentReplaceByContentModal,
-    ]
+    ],
   );
 
   const contextMenu = useMemo(() => {
@@ -308,12 +308,12 @@ const CreateComponents = () => {
                               className="btn btn-border-primary"
                               onClick={() => {
                                 const nullIndex = componentList.findIndex(
-                                  (component) => component === undefined
+                                  (component) => component === undefined,
                                 );
                                 if (nullIndex === -1) {
                                   addToast(
                                     "템플릿의 빈칸이 존재하지않아 컴포넌트를 추가할 수 없습니다.",
-                                    "error"
+                                    "error",
                                   );
                                   return;
                                 } else {
