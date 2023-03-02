@@ -1,6 +1,7 @@
 import { ID } from "./appData";
 
 export type Content =
+  | TextContentData
   | VideoContentData
   | RecorderContentData
   | NumberingTextListContentData;
