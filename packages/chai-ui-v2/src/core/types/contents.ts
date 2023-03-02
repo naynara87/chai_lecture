@@ -7,6 +7,7 @@ export type Content =
   | NumberingTextListContentData
   | IconTextContentData
   | ExplainingCharacterContentData
+  | CharacterCardListContentData
   | BorderTextBoxContentData;
 export type ContentType = Content["type"];
 
