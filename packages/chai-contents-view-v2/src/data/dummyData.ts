@@ -72,37 +72,11 @@ export const v2CornerDataList: CornerData[] = [
           type: "Template01",
           contents: [
             {
-              type: "characterCardList",
-              data: [
-                {
-                  title: "패턴 중국어",
-                  description: "好 hǎo 인사하기",
-                  character: {
-                    src: "string",
-                  },
-                },
-                {
-                  title: "회화",
-                  description: "만남의 인사하기",
-                  character: {
-                    src: "string",
-                  },
-                },
-                {
-                  title: "문법",
-                  description: "제3성의 성조 변화",
-                  character: {
-                    src: "string",
-                  },
-                },
-                {
-                  title: "문화",
-                  description: "중국인의 성씨와 호칭",
-                  character: {
-                    src: "string",
-                  },
-                },
-              ],
+              type: "speaking",
+              data: {
+                src: "string",
+                speakingTime: 3,
+              },
             },
           ],
         },
