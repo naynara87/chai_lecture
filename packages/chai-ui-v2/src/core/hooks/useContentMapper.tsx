@@ -15,7 +15,9 @@ import {
   IconTextContentData,
   ExplainingCharacterContentData,
   BorderTextBoxContentData,
+  CharacterCardListContentData,
 } from "../types";
+import CharacterCardListComponent from "../../components/contents/CharacterCardListComponent";
 
 const useContentMapper = () => {
   const getContentComponent = (content: Content, contentIndex: number) => {
@@ -53,6 +55,12 @@ const useContentMapper = () => {
       borderTextBox: (
         <BorderTextBoxComponent
           contents={content as BorderTextBoxContentData}
+          key={contentIndex}
+        />
+      ),
+      characterCardList: (
+        <CharacterCardListComponent
+          contents={content as CharacterCardListContentData}
           key={contentIndex}
         />
       ),
