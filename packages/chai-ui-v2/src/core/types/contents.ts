@@ -1,9 +1,11 @@
 import { ID } from "./appData";
 
 export type Content =
+  | TextContentData
   | VideoContentData
   | RecorderContentData
-  | NumberingTextListContentData;
+  | NumberingTextListContentData
+  | IconTextContentData;
 export type ContentType = Content["type"];
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

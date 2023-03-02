@@ -1,0 +1,39 @@
+/* =================== componentWordCard =================== */
+.word-card-list {
+	@include flex-center {
+		gap: vw(30);
+	}
+}
+
+.word-card {
+	padding: vw(60) vw(70);
+	border: 3px solid color(bubble-blue);
+	border-radius: vw(30);
+	text-align: center;
+
+	&.active {
+		@include gradiant;
+	}
+
+	.text {
+		font-weight: 600;
+		font-size: vw(50);
+		line-height: 1;
+	}
+	
+	.text-sm {
+		display: block;
+		margin-top: vh(24);
+		font-size: vw(28);
+		color:color(gray-66);
+		line-height: 1;
+	}
+}
+
+.word-card-text{
+	margin-top: vw(60);
+	font-weight: 600;
+	font-size: vw(36);
+	line-height: 1;
+	text-align: center;
+}

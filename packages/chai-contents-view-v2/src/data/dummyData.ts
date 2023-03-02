@@ -72,9 +72,9 @@ export const v2CornerDataList: CornerData[] = [
           type: "Template01",
           contents: [
             {
-              type: "video",
+              type: "iconText",
               data: {
-                src: "https://cdn.bubblecon.co.kr/videos/45.mp4",
+                text: "아에이오우",
               },
             },
           ],
@@ -159,9 +159,9 @@ export const v2CornerDataList: CornerData[] = [
           type: "Template01",
           contents: [
             {
-              type: "video",
+              type: "text",
               data: {
-                src: "https://cdn.bubblecon.co.kr/videos/45.mp4",
+                text: "asdfasdf4",
               },
             },
           ],
