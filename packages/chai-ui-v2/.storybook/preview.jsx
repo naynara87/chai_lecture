@@ -1,4 +1,4 @@
-// import "../src/styles/scss/ui.scss";
+import "../src/assets/ui.scss";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -10,9 +10,6 @@ export const parameters = {
   },
 };
 
-/**
- * NOTE : emotion globalStyle 설정
- */
 export const decorators = [
   (Story) => (
     <>
