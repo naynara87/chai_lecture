@@ -17,9 +17,11 @@ import {
   BorderTextBoxContentData,
   CharacterCardListContentData,
   SpeakingContentData,
+  MultilevelActionCardListContentData,
 } from "../types";
 import CharacterCardListComponent from "../../components/contents/CharacterCardListComponent";
 import SpeakingComponent from "../../components/contents/SpeakingComponent";
+import MultilevelActionCardListComponent from "../../components/contents/MultilevelActionCardListComponent";
 
 const useContentMapper = () => {
   const getContentComponent = (content: Content, contentIndex: number) => {
@@ -69,6 +71,12 @@ const useContentMapper = () => {
       speaking: (
         <SpeakingComponent
           contents={content as SpeakingContentData}
+          key={contentIndex}
+        />
+      ),
+      multiLevelActionList: (
+        <MultilevelActionCardListComponent
+          contents={content as MultilevelActionCardListContentData}
           key={contentIndex}
         />
       ),

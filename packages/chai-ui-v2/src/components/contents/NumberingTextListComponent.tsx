@@ -29,13 +29,13 @@ const NumberingTextListComponent = ({
           <span className="number">{numberingTextIndex + 1}</span>
           {/* TODO: key설명 - 저작도구에서 text2의 입력이 없어 text2가 생성되지 않고, text1 width: 100% */}
           <div className="text1" style={{ width: "100%" }}>
-            <p className="chinese">
+            <div className="chinese">
               <HtmlContentComponent html={numberingText.firstText} />
-            </p>
+            </div>
             {numberingText.secondText && (
-              <p className="pinyin">
+              <div className="pinyin">
                 <HtmlContentComponent html={numberingText.secondText} />
-              </p>
+              </div>
             )}
           </div>
         </li>
