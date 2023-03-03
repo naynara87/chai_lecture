@@ -64,70 +64,44 @@ export const v2CornerDataList: CornerData[] = [
           type: "Template01",
           contents: [
             {
-              type: "cardTab",
-              data: [
-                {
-                  tabName: "예문",
-                  cards: [
-                    {
-                      contents: [
-                        {
-                          type: "numberingTextList",
-                          data: [
-                            {
-                              firstText: "테스트 텍스트1-1",
-                              secondText: "테스트 텍스트1-2",
-                            },
-                            {
-                              firstText: "테스트 텍스트2-1",
-                              secondText: "테스트 텍스트2-2",
-                            },
-                          ],
-                        },
-                      ],
+              type: "conversationWordList",
+              data: {
+                words: [
+                  {
+                    text: "游泳",
+                    pronunciation: "yóuyǒng",
+                    meaning: "수영하다",
+                    audio: {
+                      src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
                     },
-                    {
-                      contents: [
-                        {
-                          type: "numberingTextList",
-                          data: [
-                            {
-                              firstText: "테스트 텍스트3-1",
-                              secondText: "테스트 텍스트3-2",
-                            },
-                            {
-                              firstText: "테스트 텍스트4-1",
-                              secondText: "테스트 텍스트4-2",
-                            },
-                          ],
-                        },
-                      ],
+                  },
+                  {
+                    text: "游泳2",
+                    pronunciation: "yóuyǒng2",
+                    meaning: "수영하다2",
+                    audio: {
+                      src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
                     },
-                  ],
-                },
-                {
-                  tabName: "문법 사용 TIP!",
-                  cards: [
-                    {
-                      contents: [
-                        {
-                          type: "numberingTextList",
-                          data: [
-                            {
-                              firstText: "테스트 텍스트1-1",
-                              secondText: "테스트 텍스트1-2",
-                            },
-                            {
-                              firstText: "테스트 텍스트2-1",
-                              secondText: "테스트 텍스트2-2",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      },
+      {
+        id: 2,
+        name: "한어",
+        type: "SinglePage",
+        data: {
+          type: "Template01",
+          contents: [
+            {
+              type: "speaking",
+              data: {
+                speakingTime: 3,
+                src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+              },
             },
           ],
         },

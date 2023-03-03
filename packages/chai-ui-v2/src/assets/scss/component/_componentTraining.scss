@@ -17,7 +17,7 @@
 		@include gradiant;
 
 		position: relative;
-		height: 45%;
+		height: vw(165);
 		padding-bottom: vh(29);
 		border-radius: vw(20) vw(20) 0 0;
 		text-align: center;
@@ -26,38 +26,37 @@
 	.gradi-conts-wrap {
 		position: relative;
 		top: vh(-60);
+	}
 
-		.img-wrap {
-			@include circle(vw(140));
+	.img-wrap {
+		@include circle(vw(140));
 
-			max-width: 140px;
-			max-height: 140px;
-			margin: 0 auto;
-			border: vw(10) solid color(gray-ff);
-			box-shadow: 0 6px 0 rgba(88, 88, 88, 0.2);
+		max-width: 140px;
+		max-height: 140px;
+		margin: 0 auto;
+		border: vw(10) solid color(gray-ff);
+		box-shadow: 0 6px 0 rgba(88, 88, 88, 0.2);
 
-			img {
-				@include full;
+		img {
+			@include full;
 
-				object-fit: cover;
-			}
+			object-fit: cover;
 		}
+	}
 
-		.title {
-			margin-top: vh(18);
-			font-weight: 600;
-			font-size: vw(32);
-			line-height: 1.5;
-		}
+	.title {
+		margin-top: vh(18);
+		font-weight: 600;
+		font-size: vw(32);
+		line-height: 1.5;
 	}
 
 	.white-wrap {
 		overflow: auto;
-		height: 55%;
+		height: calc(100% - vw(165));
 		padding: vh(30) vw(45);
 
-		.dot-text {
-			position: relative;
+		.text {
 			padding-left: vw(18);
 			font-size: vw(24);
 			line-height: 1;
@@ -65,15 +64,33 @@
 			&:not(:first-child) {
 				margin-top: vw(20);
 			}
+		}
+	}
+}
 
-			@include make-before {
-				@include circle(vw(6));
+// 학습 정리
+.training-end {
+	.training-list {
+		height: vw(553);
+	}
 
-				position: absolute;
-				top: vw(10);
-				left: 0;
-				background-color: color(main);
-			}
+	.white-wrap {
+		position: relative;
+		padding-bottom: vh(100);
+
+		.btn {
+			position: absolute;
+			top: auto;
+			bottom: vh(38);
+			left: vw(40);
+			width: calc(100% - vw(80));
+			height: vh(60);
+		}
+	}
+
+	.off {
+		.img-wrap {
+			filter: grayscale(1);
 		}
 	}
 }

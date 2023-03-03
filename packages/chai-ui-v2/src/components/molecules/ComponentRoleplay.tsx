@@ -12,7 +12,7 @@ const DialogueWrapper = styled.ul`
 `;
 
 const BubbleWrap = styled.div`
-  background-color: ${colorPalette.orange200};
+  background-color: ${colorPalette.bubbleyellow};
 `;
 
 const ComponentRoleplay = () => {

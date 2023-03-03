@@ -11,7 +11,9 @@ export type Content =
   | SpeakingContentData
   | MultilevelActionCardListContentData
   | CardTabContentData
-  | BorderTextBoxContentData;
+  | ConversationWordListContentData
+  | BorderTextBoxContentData
+  | ImageWithDescriptionListContentData;
 export type ContentType = Content["type"];
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -92,7 +94,7 @@ export type ImageWithDescriptionListContentData = {
   type: "imageWithDescriptionList";
   data: {
     src: string;
-    description?: string;
+    description: string;
   }[];
   meta?: Meta;
 };

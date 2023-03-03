@@ -9,17 +9,8 @@ const ComponentButtonFillBlackMini = ({
   text,
   onClick,
 }: ComponentButtonFillBlackProps) => {
-  const handleClickButton = () => {
-    if (onClick) {
-      onClick();
-    }
-  };
-
   return (
-    <button
-      className="btn btn-radi-fill-black-mini"
-      onClick={handleClickButton}
-    >
+    <button className="btn btn-radi-fill-black-mini" onClick={onClick}>
       {text}
     </button>
   );

@@ -3,8 +3,6 @@ import React from "react";
 import { colorPalette, vw } from "../../assets";
 
 const TextComponent = styled.div`
-  text-align: center;
-
   .text {
     font-size: ${vw(28)};
     white-space: pre-line;
@@ -16,6 +14,15 @@ const TextComponent = styled.div`
     &.lg {
       font-weight: 600;
       font-size: ${vw(50)};
+    }
+
+    &.bold {
+      font-weight: 600;
+    }
+
+    &.bold-ttl {
+      font-weight: 600;
+      font-size: ${vw(32)};
     }
   }
 `;
@@ -31,10 +38,12 @@ const ComponentText = () => {
       <p className="text">
         {`Shǒu'ěr de`}
         <b>{`dōngtiān`}</b>
-        {`méiyǒu Běijīng lěng
-      
-      서울의 겨울은 베이징보다 춥지 않아요.`}
+        {`méiyǒu Běijīng lěng`}
       </p>
+      <p className="text">{`서울의 겨울은 베이징보다 춥지 않아요.`}</p>
+      <p className="text bold-ttl">{`베이징 오리구이`}</p>
+      <p className="text bold">{`정도부사의 종류`}</p>
+      <p className="text">{`베이징 오리구이(北京烤鸭)란?`}</p>
     </TextComponent>
   );
 };

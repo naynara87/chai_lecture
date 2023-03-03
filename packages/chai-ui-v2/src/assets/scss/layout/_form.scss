@@ -28,6 +28,12 @@
 		opacity: 1;
 		box-shadow: 0 -2px 0 rgba(88, 88, 88, 0.2);
 	}
+
+	&:disabled {
+		@include hover {
+			box-shadow: $btn-shadow;
+		}
+	}
 }
 
 .btn-icon-mini {
@@ -44,10 +50,6 @@
 	
 	&:disabled {
 		@include bg-url(icon, 'icon_play_fill_disabled.svg');
-
-		@include hover {
-			animation: none;
-		}
 	}
 }
 
@@ -56,10 +58,6 @@
 	
 	&:disabled {
 		@include bg-url(icon, 'icon_play_disabled.svg');
-
-		@include hover {
-			animation: none;
-		}
 	}
 }
 

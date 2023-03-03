@@ -3,6 +3,7 @@ import { ComponentVideo } from "../../components";
 import ExplainingCharacterComponent from "../../components/contents/ExplainingCharacterComponent";
 import BorderTextBoxComponent from "../../components/contents/BorderTextBoxComponent";
 import IconTextComponent from "../../components/contents/IconTextComponent";
+import ImageWithDescriptionListComponent from "../../components/contents/ImageWithDescriptionListComponent";
 import NumberingTextListComponent from "../../components/contents/NumberingTextListComponent";
 import TextContentComponent from "../../components/contents/TextContentComponent";
 import AudioRecorder from "../../components/molecules/AudioRecorder";
@@ -19,11 +20,14 @@ import {
   SpeakingContentData,
   MultilevelActionCardListContentData,
   CardTabContentData,
+  ConversationWordListContentData,
+  ImageWithDescriptionListContentData,
 } from "../types";
 import CharacterCardListComponent from "../../components/contents/CharacterCardListComponent";
 import SpeakingComponent from "../../components/contents/SpeakingComponent";
 import MultilevelActionCardListComponent from "../../components/contents/MultilevelActionCardListComponent";
 import CardTabComponent from "../../components/contents/CardTabComponent";
+import ConversationWordListComponent from "../../components/contents/ConversationWordListComponent";
 
 const useContentMapper = () => {
   const getContentComponent = (content: Content, contentIndex: number) => {
@@ -85,6 +89,17 @@ const useContentMapper = () => {
       cardTab: (
         <CardTabComponent
           contents={content as CardTabContentData}
+          key={contentIndex}
+        />
+      ),
+      conversationWordList: (
+        <ConversationWordListComponent
+          contents={content as ConversationWordListContentData}
+        />
+      ),
+      imageWithDescriptionList: (
+        <ImageWithDescriptionListComponent
+          contents={content as ImageWithDescriptionListContentData}
           key={contentIndex}
         />
       ),
