@@ -1,8 +1,12 @@
 import React from "react";
 
-const IconPlayButton = () => {
+interface PlayButtonProps {
+  active: boolean;
+}
+
+const IconPlayButton = ({ active }: PlayButtonProps) => {
   return (
-        <button className="btn-icon btn-play-fill">
+        <button className="btn-icon btn-play-fill" disabled={!active}>
           재생
         </button>
   );

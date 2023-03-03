@@ -8,7 +8,7 @@ const ComponentRecordButton = () => {
     // TODO: key설명 - 첫 녹음을 하면 btn-headset의 disabled 삭제, btn-reset의 none도 삭제, btn-mike에 none 추가
     <>
       <div className="record-btn-wrap">
-        <RecordPlayButton active={false} />
+        <RecordPlayButton />
         <IconReturnButton />
       </div>
     </>

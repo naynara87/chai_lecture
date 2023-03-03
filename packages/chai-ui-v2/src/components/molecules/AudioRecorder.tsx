@@ -125,12 +125,12 @@ const AudioRecorder = () => {
 
   const renderRecordedAudioIcon = useMemo(() => {
     if (recordedAudioState === "not-recorded") {
-      return <RecordPlayButton active={false} />;
+      return <RecordPlayButton />;
     } else if (recordedAudioState === "playing") {
       return <RecordStopButton />;
     } else {
       // recordedAudioState === "recorded"
-      return <RecordPlayButton active />;
+      return <RecordPlayButton />;
     }
   }, [recordedAudioState]);
 

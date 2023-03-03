@@ -1,16 +1,12 @@
 import React from "react";
+import IconPlayButton from "./IconPlayButton";
 import IconReturnButton from "./IconReturnButton";
 
-interface HeadsetButtonProps {
-  active: boolean;
-}
-const RecordPlayButton = ({ active }: HeadsetButtonProps) => {
+const RecordPlayButton = () => {
   return (
     <>
       <div className="record-btn-flex-wrap">
-        <button className="btn-icon-mini btn-play" disabled={!active}>
-          재생
-        </button>
+        <IconPlayButton active={false} />
         {/* <ComponentProgress progressDuration={3} /> */}
         <p className="txt">{"0:44"}</p>
       </div>
