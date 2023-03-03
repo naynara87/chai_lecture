@@ -2,8 +2,6 @@ import React from "react";
 import ComponentTitle from "../molecules/ComponentTitle";
 import ComponentImage from "../molecules/ComponentImage";
 import ComponentText from "../molecules/ComponentText";
-import ComponentTabContents from "../molecules/ComponentTabContents";
-
 
 const TemplatePub = () => {
   return (
@@ -14,7 +12,7 @@ const TemplatePub = () => {
         <ComponentText />
       </div>
       <div className="layout-panel wide-panel">
-        <ComponentTabContents />
+        {/* <ComponentTabContents /> */}
       </div>
     </div>
   );

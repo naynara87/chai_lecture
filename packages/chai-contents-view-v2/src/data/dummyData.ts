@@ -60,52 +60,74 @@ export const v2CornerDataList: CornerData[] = [
         id: 1,
         name: "한어",
         type: "SinglePage",
-        introduction: {
-          title: "a",
-          subTitle: "a",
-          character: {
-            url: "a",
-          },
-          contents: "a",
-        },
         data: {
           type: "Template01",
           contents: [
             {
-              type: "multiLevelActionList",
-              data: {
-                multilevelContents: [
-                  [
+              type: "cardTab",
+              data: [
+                {
+                  tabName: "예문",
+                  cards: [
                     {
-                      type: "text",
-                      data: {
-                        text: "asdfsdfdsa",
-                      },
-                    },
-                  ],
-                  [
-                    {
-                      type: "text",
-                      data: {
-                        text: "132412421",
-                      },
-                    },
-                  ],
-                  [
-                    {
-                      type: "explainingCharacter",
-                      data: {
-                        text: "이번 패턴은 어떻게 사용하는지 알아볼까요?",
-                        explain:
-                          "’坐 zuò’는 ‘앉다’라는 뜻으로, 교통수단과 함께 쓰면 ‘타다’라는 뜻을 나타냅니다. ‘坐 zuò’는 좌석에 앉아 가는 교통수단에 사용합니다.",
-                        character: {
-                          src: "string",
+                      contents: [
+                        {
+                          type: "numberingTextList",
+                          data: [
+                            {
+                              firstText: "테스트 텍스트1-1",
+                              secondText: "테스트 텍스트1-2",
+                            },
+                            {
+                              firstText: "테스트 텍스트2-1",
+                              secondText: "테스트 텍스트2-2",
+                            },
+                          ],
                         },
-                      },
+                      ],
+                    },
+                    {
+                      contents: [
+                        {
+                          type: "numberingTextList",
+                          data: [
+                            {
+                              firstText: "테스트 텍스트3-1",
+                              secondText: "테스트 텍스트3-2",
+                            },
+                            {
+                              firstText: "테스트 텍스트4-1",
+                              secondText: "테스트 텍스트4-2",
+                            },
+                          ],
+                        },
+                      ],
                     },
                   ],
-                ],
-              },
+                },
+                {
+                  tabName: "문법 사용 TIP!",
+                  cards: [
+                    {
+                      contents: [
+                        {
+                          type: "numberingTextList",
+                          data: [
+                            {
+                              firstText: "테스트 텍스트1-1",
+                              secondText: "테스트 텍스트1-2",
+                            },
+                            {
+                              firstText: "테스트 텍스트2-1",
+                              secondText: "테스트 텍스트2-2",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
@@ -114,6 +136,14 @@ export const v2CornerDataList: CornerData[] = [
         id: 4,
         name: "단어",
         type: "MultiPage",
+        introduction: {
+          title: "a",
+          subTitle: "a",
+          character: {
+            url: "a",
+          },
+          contents: "a",
+        },
         data: [
           {
             type: "Template01",
