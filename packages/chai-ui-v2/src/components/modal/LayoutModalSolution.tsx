@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
 import React from "react";
 import { colorPalette } from "../../styles";
-import { ImgCharacterComponent } from "../atoms";
 import ComponentButtonRadiBorderMain from "../atoms/ComponentButtonRadiBorderMain";
 import ComponentButtonRadiFillMain from "../atoms/ComponentButtonRadiFillMain";
 import ModalCommon from "./ModalCommon";
+import CharacterProfile from "../../images/img/cha_profile01.png";
 
 // 임의 컬러. 대교측에서 색 변경 요청하여 230217 회의 이후 정해질 예정
 // const RightColor = "#5BD37D";
@@ -12,11 +12,6 @@ import ModalCommon from "./ModalCommon";
 // const TextColor = "#222222";
 
 const ModalBaseTitle = styled.div`
-  .profile-img-wrap {
-    /* NOTE: 설명 - 오답일땐 오답 컬러, 정답일 땐 정답 컬러 */
-    background-color: ${colorPalette.black};
-  }
-
   .ttl {
     /* NOTE: 설명 - 오답일땐 오답 컬러, 정답일 땐 정답 컬러 */
     color: ${colorPalette.black};
@@ -47,10 +42,7 @@ const LayoutModalSolution = ({
       {/* 제목영역 */}
       <ModalBaseTitle className="base-ttl">
         <div className="profile-img-wrap">
-          <ImgCharacterComponent
-            characterType="kkungiSmile"
-            characterAlt="꿍이"
-          />
+          <img src={CharacterProfile} alt="프로필" />
         </div>
         <div className="txt-wrap">
           {/* 간지 */}

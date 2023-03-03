@@ -1,4 +1,7 @@
 export const colorPalette = {
+  text: "#222222",
+  warning: "#EE8407",
+  right: "#30C17B",
   maindark: "#505A99",
   main: "#6E79BD",
   mainlight: "#959FDC",
@@ -50,7 +53,4 @@ export const colorPalette = {
   gray100: "#F5F5F5",
   white: "#ffffff",
   black: "#222222",
-  text: "#222222",
-  warning: "#EE8407",
-  right: "#30C17B",
 };
