@@ -79,6 +79,13 @@
       border-radius: vw(30);
     }
   }
+  &.image-modal {
+    padding: unset;
+    border-radius: unset;
+    .base-wrapper {
+      display: flex;
+    }
+  }
 }
 
 .base-ttl {

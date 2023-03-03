@@ -2,6 +2,7 @@ import React from "react";
 import { ComponentVideo } from "../../components";
 import BorderTextBoxComponent from "../../components/contents/BorderTextBoxComponent";
 import IconTextComponent from "../../components/contents/IconTextComponent";
+import ImageWithDescriptionListComponent from "../../components/contents/ImageWithDescriptionListComponent";
 import NumberingTextListComponent from "../../components/contents/NumberingTextListComponent";
 import TextContentComponent from "../../components/contents/TextContentComponent";
 import AudioRecorder from "../../components/molecules/AudioRecorder";
@@ -13,6 +14,7 @@ import {
   VideoContentData,
   IconTextContentData,
   BorderTextBoxContentData,
+  ImageWithDescriptionListContentData,
 } from "../types";
 
 const useContentMapper = () => {
@@ -46,6 +48,12 @@ const useContentMapper = () => {
       borderTextBox: (
         <BorderTextBoxComponent
           contents={content as BorderTextBoxContentData}
+          key={contentIndex}
+        />
+      ),
+      imageWithDescriptionList: (
+        <ImageWithDescriptionListComponent
+          contents={content as ImageWithDescriptionListContentData}
           key={contentIndex}
         />
       ),

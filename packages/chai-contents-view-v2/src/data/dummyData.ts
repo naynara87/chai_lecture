@@ -72,10 +72,17 @@ export const v2CornerDataList: CornerData[] = [
           type: "Template01",
           contents: [
             {
-              type: "borderTextBox",
-              data: {
-                text: "아에이오우",
-              },
+              type: "imageWithDescriptionList",
+              data: [
+                {
+                  src: "https://s.pstatic.net/static/www/mobile/edit/20230228/mobile_170043920226.png",
+                  description: "1번 이미지 description",
+                },
+                {
+                  src: "https://ssl.pstatic.net/melona/libs/1435/1435886/c69271ec5560b25c2235_20230214150733836.jpg",
+                  description: "2번 이미지 description",
+                },
+              ],
             },
           ],
         },
