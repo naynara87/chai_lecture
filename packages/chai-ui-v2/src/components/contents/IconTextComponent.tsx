@@ -2,8 +2,8 @@ import styled from "@emotion/styled";
 import React from "react";
 import { IconTextContentData } from "../../core";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
-import icon_tip from "../../images/icon/icon_tip.svg";
-import { vw } from "../../styles";
+import icon_tip from "../../assets/images/icon/icon_tip.svg";
+import { vw } from "../../assets";
 
 const IconTextWrapper = styled.div`
   display: flex;

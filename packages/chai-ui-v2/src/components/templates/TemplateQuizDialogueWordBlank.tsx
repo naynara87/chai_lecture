@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import React, { useState } from "react";
-import IconO from "../../images/icon/icon_o.svg";
-import IconX from "../../images/icon/icon_x.svg";
+import IconO from "../../assets/images/icon/icon_o.svg";
+import IconX from "../../assets/images/icon/icon_x.svg";
 import { LayoutModalSolution, LayoutModalVoca } from "../modal";
 import { ComponentButtonPlay } from "../atoms";
 import ComponentButtonRadiFillMain from "../atoms/ComponentButtonRadiFillMain";

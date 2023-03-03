@@ -1,0 +1,94 @@
+$content-dark: #505a99; // fix
+$content: #6e79bd; // fix
+$content-light: #959fdc; // fix
+$sub-purple: #d9d0ff; // fix
+$sub-lightpurple: #f6f4ff; // fix
+$sub-blue: #d6e9ff; // fix
+$bubble-red: #fff3ea; // fix
+$bubble-yellow: #fffcdf; // fix
+$bubble-green: #eef6e7; // fix
+$bubble-blue: #edf8ff; // fix
+$bubble-gray: #eff1f5; // fix
+$red-300: #ff7b70;
+$red-500: #ec5757;
+$red-600: #e45757;
+$red-700: #df2f24;
+$blue-200: #eff1f5;
+$blue-300: #dce6ff;
+$blue-400: #a6c4e3;
+$blue-500: #4c94df;
+$purple-200: #f4f3fa;
+$green-500: #30c17b; // fix: right
+$orange-300: #f5b057;
+$orange-400: #ee8407; // fix: warning
+$orange-500: #fea451;
+$orange-700: #e28733;
+$gray-22: #222222; // fix
+$gray-56: #565656; // fix
+$gray-66: #666666; // fix
+$gray-80: #808080; // fix
+$gray-c9: #c9c9c9; // fix
+$gray-db: #dbdbdb; // fix
+$gray-f0: #f0f0f0; // fix
+$gray-f5: #f5f5f5; // fix
+$gray-ff: #ffffff; // fix
+
+$color-set: (
+  main: $content,
+  main-dark: $content-dark,
+  main-light: $content-light,
+  sub: $sub-purple,
+  sub-light: $sub-lightpurple,
+  sub-blue: $sub-blue,
+  bubble-red: $bubble-red,
+  bubble-yellow: $bubble-yellow,
+  bubble-green: $bubble-green,
+  bubble-blue: $bubble-blue,
+  bubble-gray: $bubble-gray,
+  text: $gray-22,
+  right: $green-500,
+  warning: $orange-400,
+  red-300: $red-300,
+  red-500: $red-500,
+  red-600: $red-600,
+  red-700: $red-700,
+  blue-200: $blue-200,
+  blue-300: $blue-300,
+  blue-400: $blue-400,
+  blue-500: $blue-500,
+  purple-200: $purple-200,
+  orange-300: $orange-300,
+  orange-400: $orange-400,
+  orange-500: $orange-500,
+  orange-700: $orange-700,
+  gray-22: $gray-22,
+  gray-56: $gray-56,
+  gray-66: $gray-66,
+  gray-80: $gray-80,
+  gray-c9: $gray-c9,
+  gray-db: $gray-db,
+  gray-f0: $gray-f0,
+  gray-f5: $gray-f5,
+  gray-ff: $gray-ff,
+);
+
+$zIndex-set: (
+  modal: 100,
+  fixed: 20,
+  header: 10,
+  nav: 5,
+  two: 2,
+  one: 1,
+  zero: 0,
+  minus: -1,
+);
+
+$path-set: (
+  icon: "./images/icon/",
+  img: "./images/img/",
+);
+
+// common size
+$hd-height: clamp(40px, vh(85), 85px);
+$ft-height: clamp(40px, vh(90), 90px);
+$btn-shadow: 0 4px 0 rgba(88, 88, 88, 0.2);

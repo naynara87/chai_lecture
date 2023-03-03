@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { colorPalette } from "../../styles";
+import { colorPalette } from "../../assets";
 import ComponentButtonRadiBorderMain from "../atoms/ComponentButtonRadiBorderMain";
 import ComponentButtonRadiFillMain from "../atoms/ComponentButtonRadiFillMain";
 import ModalCommon from "./ModalCommon";
-import CharacterProfile from "../../images/img/cha_profile01.png";
+import CharacterProfile from "../../assets/images/img/cha_profile01.png";
 
 // 임의 컬러. 대교측에서 색 변경 요청하여 230217 회의 이후 정해질 예정
 // const RightColor = "#5BD37D";

@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
 import React from "react";
 import { PageIntroduction } from "../../core";
-import { colorPalette } from "../../styles";
+import { colorPalette } from "../../assets";
 import ComponentButtonRadiFillMain from "../atoms/ComponentButtonRadiFillMain";
 import ModalCommon from "./ModalCommon";
-import CharacterProfile from "../../images/img/cha_profile01.png";
+import CharacterProfile from "../../assets/images/img/cha_profile01.png";
 
 // const RightColor = "#30C17B";
 // const WrongColor = "#EE8407";

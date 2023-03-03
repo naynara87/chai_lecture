@@ -1,5 +1,5 @@
 import React from "react";
-import ImgTemp01 from "../../images/img/temp_profile01.png";
+import ImgTemp01 from "../../assets/images/img/temp_profile01.png";
 
 interface ImgTemp02ComponentProps {
   imageAlt?: string;

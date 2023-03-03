@@ -1,9 +1,8 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { colorPalette, vw } from "../../styles";
+import { colorPalette, vw } from "../../assets";
 
 const TextComponent = styled.div`
-
   .text {
     font-size: ${vw(28)};
     white-space: pre-line;
@@ -31,8 +30,16 @@ const TextComponent = styled.div`
 const ComponentText = () => {
   return (
     <TextComponent>
-      <p className="text lg">{`首尔的`}<b>{`冬天`}</b>{`没有北京冷。`}</p>
-      <p className="text">{`Shǒu'ěr de`}<b>{`dōngtiān`}</b>{`méiyǒu Běijīng lěng`}</p>
+      <p className="text lg">
+        {`首尔的`}
+        <b>{`冬天`}</b>
+        {`没有北京冷。`}
+      </p>
+      <p className="text">
+        {`Shǒu'ěr de`}
+        <b>{`dōngtiān`}</b>
+        {`méiyǒu Běijīng lěng`}
+      </p>
       <p className="text">{`서울의 겨울은 베이징보다 춥지 않아요.`}</p>
       <p className="text bold-ttl">{`베이징 오리구이`}</p>
       <p className="text bold">{`정도부사의 종류`}</p>

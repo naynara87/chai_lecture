@@ -1,0 +1,44 @@
+@charset 'utf-8';
+// 1. utility
+@import "scss/utility/function";
+@import "scss/utility/variable";
+@import "scss/utility/mixin";
+@import "scss/utility/extend";
+
+// 2. base
+@import "scss/base/base";
+@import "scss/base/font";
+@import "scss/base/helper";
+
+// 3. vendor
+
+// 4. layout
+@import "scss/layout/animation";
+@import "scss/layout/form";
+@import "scss/layout/layout";
+@import "scss/layout/header";
+@import "scss/layout/footer";
+
+// 5. component
+@import "scss/component/lxPlayer";
+@import "scss/component/swiper";
+@import "scss/component/modal";
+@import "scss/component/componentContsinfo";
+@import "scss/component/componentTitle";
+@import "scss/component/componentGrayLine";
+@import "scss/component/componentRecordButton";
+@import "scss/component/componentVideo";
+@import "scss/component/componentRepeatSpeak";
+@import "scss/component/componentVocaNote";
+@import "scss/component/templateConversation";
+@import "scss/component/componentRoleplay";
+@import "scss/component/componentChoiceRole";
+@import "scss/component/componentQuizs";
+@import "scss/component/componentTraining";
+@import "scss/component/componentNumbering";
+@import "scss/component/componentStepCard";
+@import "scss/component/componentWordCard";
+@import "scss/component/componentDescriptionBubble";
+@import "scss/component/componentTabContents";
+
+// 6. page

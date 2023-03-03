@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import React, { useState } from "react";
-import { vh, vw } from "../../styles";
+import { vh, vw } from "../../assets";
 import { ImgTemp01Component } from "../atoms";
 import ComponentButtonPlay from "../atoms/ComponentButtonPlay";
 import ComponentButtonRadiBorderMain from "../atoms/ComponentButtonRadiBorderMain";

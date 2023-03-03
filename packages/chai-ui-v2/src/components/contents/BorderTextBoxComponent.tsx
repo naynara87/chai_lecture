@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import React from "react";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
-import { vw, vh, colorPalette } from "../../styles";
+import { vw, vh, colorPalette } from "../../assets";
 import { BorderTextBoxContentData } from "../../core";
 
 const BorderTextBoxWrapper = styled.div`
@@ -12,7 +12,7 @@ const BorderTextBoxWrapper = styled.div`
   text-align: left;
 `;
 
-interface BorderTextBoxComponentProps {
+export interface BorderTextBoxComponentProps {
   contents: BorderTextBoxContentData;
 }
 

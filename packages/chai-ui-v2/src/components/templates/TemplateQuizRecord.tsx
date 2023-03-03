@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import React, { useState } from "react";
-import { vw } from "../../styles";
+import { vw } from "../../assets";
 import { ComponentButtonFillBlack } from "../atoms";
 import { LayoutModalSolution, LayoutModalVoca } from "../modal";
 import ComponentContsInfo from "../molecules/ComponentContsInfo";

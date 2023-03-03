@@ -1,5 +1,5 @@
-import "./styles/scss/ui.scss";
+import "./assets/ui.scss";
 
 export * from "./components";
 export * from "./core";
-export * from "./styles";
+export * from "./assets";

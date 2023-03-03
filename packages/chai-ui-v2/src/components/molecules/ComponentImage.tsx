@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import React from "react";
-import TempImage from "../../images/img/didi_all.png";
-import { vh, vw } from "../../styles";
+import TempImage from "../../assets/images/img/didi_all.png";
+import { vh, vw } from "../../assets";
 
 const ImageComponent = styled.div`
   max-width: ${vw(600)};
@@ -10,17 +10,17 @@ const ImageComponent = styled.div`
   border-radius: ${vw(10)};
 
   img {
-	max-width: 100%;
-	max-height: 100%;
+    max-width: 100%;
+    max-height: 100%;
   }
 `;
 
 const ComponentImage = () => {
-	return (
-		<ImageComponent>
-			<img src={TempImage} alt="예시이미지" />
-		</ImageComponent>
-	);
+  return (
+    <ImageComponent>
+      <img src={TempImage} alt="예시이미지" />
+    </ImageComponent>
+  );
 };
 
 export default ComponentImage;

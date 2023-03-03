@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import React, { useMemo, useState } from "react";
 import { ImageWithDescriptionListContentData } from "../../core";
-import { vw, vh } from "../../styles";
+import { vw, vh } from "../../assets";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
 import { ModalImage } from "../modal";
 

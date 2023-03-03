@@ -18,7 +18,6 @@
   "dependencies": {
     "@emotion/react": "*",
     "@emotion/styled": "*",
-    "@emotion/react": "*",
     "@mui/icons-material": "*",
     "@mui/material": "*",
     "@rollup/plugin-image": "^3.0.2",
@@ -26,19 +25,19 @@
     "immer": "*",
     "lodash": "*",
     "react": "*",
+    "react-confetti": "*",
     "react-cookie": "*",
     "react-loader-spinner": "5.3.4",
     "react-media-recorder": "1.6.5",
     "react-router-dom": "*",
     "react-toastify": "*",
-    "react-confetti": "*",
     "recoil": "*",
     "rollup": "^3.10.1",
     "rollup-plugin-scss": "^4.0.0",
     "rollup-plugin-typescript2": "^0.34.1",
     "sass": "*",
-    "typescript": "*",
-    "swiper": "*"
+    "swiper": "*",
+    "typescript": "*"
   },
   "devDependencies": {
     "@babel/core": "*",
@@ -50,7 +49,12 @@
     "@storybook/manager-webpack4": "*",
     "@storybook/react": "*",
     "@storybook/testing-library": "*",
+    "@types/sass-loader": "^8.0.3",
     "babel-loader": "*",
-    "rollup-plugin-copy": "^3.4.0"
+    "css-loader": "5.2.6",
+    "rollup-plugin-copy": "^3.4.0",
+    "sass-loader": "10.1.1",
+    "storybook-addon-sass-postcss": "^0.1.3",
+    "style-loader": "2.0.0"
   }
 }

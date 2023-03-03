@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import React from "react";
 import TempImage1 from "../../images/img/didi_all.png";
-import { vh, vw } from "../../styles";
+import { vh, vw } from "../../assets";
 
 const CultureListWrapper = styled.div`
   .culture-list {
