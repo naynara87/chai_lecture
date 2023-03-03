@@ -8,14 +8,14 @@ interface ModalCommonProps {
   children: ReactElement | ReactElement[];
   open: boolean;
   onClose: () => void;
-  ImageModal?: boolean;
+  unsetPaddingAndRadius?: boolean;
 }
 
 const ModalCommon = ({
   children,
   onClose,
   open,
-  ImageModal,
+  unsetPaddingAndRadius,
 }: ModalCommonProps) => {
   const handleClose = (event: React.MouseEvent<HTMLDivElement>) => {
     if (event.target === event.currentTarget) {
@@ -28,7 +28,7 @@ const ModalCommon = ({
       <ModalBackground className="modal-bg" onClick={handleClose} />
       <div
         className={`modal-container base-modal ${
-          ImageModal ? "unset-padding-radius" : ""
+          unsetPaddingAndRadius ? "unset-padding-radius" : ""
         }`}
       >
         <div className="base-wrapper">{children}</div>

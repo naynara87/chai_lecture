@@ -31,7 +31,7 @@ const ModalImage = ({
     <ModalCommon
       open={isModalOpen}
       onClose={handleClose}
-      ImageModal={isImageModal}
+      unsetPaddingAndRadius={isImageModal}
     >
       <ModalInnerBox src={imageSrc} />
     </ModalCommon>
