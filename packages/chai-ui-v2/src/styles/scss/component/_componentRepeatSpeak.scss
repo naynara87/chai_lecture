@@ -1,65 +1,65 @@
 /* =================== componentRepeatSpeak =================== */
 .repeat-speak-wrapper {
-	@include flex-col {
-		@include flex-op(flex-start, center);
-	}
+  @include flex-col {
+    @include flex-op(flex-start, center);
+  }
 
-	width: vw(390);
-	height: vw(140);
-	padding: vw(10) vw(40);
-	border: 1px solid color(blue-300);
-	border-radius: vw(20);
-	background-color: rgba( 255, 255, 255, 0.5);
+  width: vw(390);
+  height: vw(140);
+  padding: vw(10) vw(40);
+  border: 1px solid color(blue-300);
+  border-radius: vw(20);
+  background-color: rgba(255, 255, 255, 0.5);
 
-	.text-wrap {
-		@include flex {
-			align-items: center;
-		}
-	}
+  .text-wrap {
+    @include flex {
+      align-items: center;
+    }
+  }
 
-	.text {
-		font-size: vw(24);
-		line-height: 1;
-	}
+  .text {
+    font-size: vw(24);
+    line-height: 1;
+  }
 
-	.icon {
-		margin-left: vw(14);
-	}
+  .icon {
+    margin-left: vw(14);
+  }
 
-	.btn {
-		margin-top: vw(16);
-	}
+  .btn {
+    margin-top: vw(16);
+  }
 
-	.cai-progress-track {
-		display: none;
-		margin-top: vw(26);
-	}
+  .cai-progress-track {
+    // display: none;
+    margin-top: vw(26);
+  }
 
-	.text-wrap .icon {
-		display: none;
-	}
+  // .text-wrap .icon {
+  //   display: none;
+  // }
 
-	&.step2 {
-		.btn {
-			display: none;
-		}
+  // &.step2 {
+  //   .btn {
+  //     display: none;
+  //   }
 
-		.cai-progress-track{
-			display: block;
-		}
-	}
+  //   .cai-progress-track {
+  //     display: block;
+  //   }
+  // }
 
-	&.step3 {
-		.btn {
-			display: none;
-		}
+  // &.step3 {
+  //   .btn {
+  //     display: none;
+  //   }
 
-		.cai-progress-track{
-			display: none;
-		}
+  //   .cai-progress-track {
+  //     display: none;
+  //   }
 
-		.text-wrap .icon {
-			display: block;
-		}
-	}
+  //   .text-wrap .icon {
+  //     display: block;
+  //   }
+  // }
 }

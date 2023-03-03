@@ -18,7 +18,7 @@ const ComponentStepCard = () => {
       <StepCard className="step-card step2">
         {/* <p className="text chinese">{'草食性家畜'}</p> */}
         {/* <PlayButtonOnly /> */}
-        <p className="text pinyin">{'zài'}</p>
+        <p className="text pinyin">{"zài"}</p>
         {/* TODO: key설명 - 버튼은 2단계 이상일 때 생성. 누를때마다 다음단계 보임. 3단계에선 안보임 */}
         {/* <ComponentRepeatSpeak /> */}
         <ComponentTitle text="내가 생각한 내용이 맞는지 확인하러 갈까요?" />
