@@ -1,13 +1,15 @@
 import React from "react";
-import { ComponentRecordButton } from "../molecules";
-import ComponentStepSentenceCard from "../molecules/ComponentStepSentenceCard";
+import { ComponentVocaNote } from "../molecules";
+import ComponentCultureToggleText from "../molecules/ComponentCultureToggleText";
 
 const TemplatePub = () => {
   return (
-    <div className="layout-panel-wrap">
-      <div className="layout-panel">
-        <ComponentStepSentenceCard />
-        <ComponentRecordButton />
+    <div className="layout-panel-wrap grid-h-3-7">
+      <div className="layout-panel side-panel">
+        <ComponentVocaNote />
+      </div>
+      <div className="layout-panel wide-panel">
+        <ComponentCultureToggleText />
       </div>
     </div>
   );
