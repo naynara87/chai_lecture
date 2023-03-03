@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import React, { useState } from "react";
+import { vw } from "../../styles";
 import { ComponentButtonFillBlack } from "../atoms";
 import { LayoutModalSolution, LayoutModalVoca } from "../modal";
 import ComponentContsInfo from "../molecules/ComponentContsInfo";
@@ -7,8 +8,7 @@ import ComponentRecordButton from "../molecules/ComponentRecordButton";
 
 const QuizContainer = styled.form`
   .btn {
-    /* 368px */
-    width: 18.4vw;
+    width: ${vw(368)};
   }
 `;
 

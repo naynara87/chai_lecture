@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import React, { useState } from "react";
+import { vh, vw } from "../../styles";
 import { ImgTemp01Component } from "../atoms";
 import ComponentButtonPlay from "../atoms/ComponentButtonPlay";
 import ComponentButtonRadiBorderMain from "../atoms/ComponentButtonRadiBorderMain";
@@ -12,8 +13,7 @@ import QuizWordBlankChoices from "../molecules/QuizWordBlankChoices";
 const QuizContainer = styled.form`
   .quiz-question-wrap {
     .btn-icon {
-      // 40px
-      margin-top: 3.33vh;
+      margin-top: ${vh(40)};
     }
   }
 
@@ -22,8 +22,7 @@ const QuizContainer = styled.form`
   }
 
   .label-chck-line .text {
-    // 22px
-    font-size: 1.1vw;
+    font-size: ${vw(22)};
   }
 
   > .btns-wrap {
@@ -31,10 +30,8 @@ const QuizContainer = styled.form`
     margin: 0 auto;
 
     .btn {
-      // 62px;
-      height: 5.1vh;
-      // 22px
-      font-size: 1.1vw;
+      height: ${vh(62)};
+      font-size: ${vw(22)};
     }
   }
 `;
