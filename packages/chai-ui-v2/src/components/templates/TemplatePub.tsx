@@ -1,18 +1,14 @@
 import React from "react";
-import ComponentTitle from "../molecules/ComponentTitle";
-import ComponentImage from "../molecules/ComponentImage";
+import ComponentImageMultiCaption from "../molecules/ComponentImageMultiCaption";
 import ComponentText from "../molecules/ComponentText";
 
 const TemplatePub = () => {
   return (
-    <div className="layout-panel-wrap grid-h-5-5">
-      <div className="layout-panel side-panel">
-        <ComponentImage />
-        <ComponentTitle text="정도부사에 대해 알아봅시다." />
+    <div className="layout-panel-wrap">
+      <div className="layout-panel">
         <ComponentText />
-      </div>
-      <div className="layout-panel wide-panel">
-        {/* <ComponentTabContents /> */}
+        <ComponentImageMultiCaption />
+        <ComponentText />
       </div>
     </div>
   );
