@@ -1,23 +1,22 @@
 import React from "react";
-import ReturnButton from "./ReturnButton";
+import IconReturnButton from "./IconReturnButton";
 
 interface HeadsetButtonProps {
   active: boolean;
 }
-
-const PauseButton = ({ active }: HeadsetButtonProps) => {
+const RecordPlayButton = ({ active }: HeadsetButtonProps) => {
   return (
     <>
       <div className="record-btn-flex-wrap">
-        <button className="btn-icon-mini btn-pause" disabled={!active}>
-          일시정지
+        <button className="btn-icon-mini btn-play" disabled={!active}>
+          재생
         </button>
         {/* <ComponentProgress progressDuration={3} /> */}
         <p className="txt">{"0:44"}</p>
       </div>
-      <ReturnButton />
+      <IconReturnButton />
     </>
   );
 };
 
-export default PauseButton;
+export default RecordPlayButton;

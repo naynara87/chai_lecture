@@ -1,6 +1,6 @@
 import React from "react";
 
-const MikeButton = () => {
+const RecordMikeButton = () => {
   return (
     <div className="record-btn-flex-wrap">
       <button className="btn-icon-mini btn-mic">
@@ -11,4 +11,4 @@ const MikeButton = () => {
   );
 };
 
-export default MikeButton;
+export default RecordMikeButton;

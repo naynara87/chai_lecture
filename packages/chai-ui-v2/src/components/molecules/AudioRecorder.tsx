@@ -7,10 +7,10 @@ import React, {
   useState,
 } from "react";
 import { useReactMediaRecorder } from "react-media-recorder";
-import PlayButton from "../atoms/Button/PlayButton";
-import MikeButton from "../atoms/Button/MikeButton";
-import ReturnButton from "../atoms/Button/ReturnButton";
-import StopButton from "../atoms/Button/StopButton";
+import RecordPlayButton from "../atoms/Button/RecordPlayButton";
+import RecordMikeButton from "../atoms/Button/RecordMikeButton";
+import IconReturnButton from "../atoms/Button/IconReturnButton";
+import RecordStopButton from "../atoms/Button/RecordStopButton";
 
 const ButtonWrapper = styled.div`
   line-height: 0;
@@ -111,26 +111,26 @@ const AudioRecorder = () => {
 
   const renderRecordingAudioIcon = useMemo(() => {
     if (status === "recording") {
-      return <StopButton />;
+      return <RecordStopButton />;
     } else {
       if (status === "idle") {
         // 녹음하기 버튼
-        return <MikeButton />;
+        return <RecordMikeButton />;
       } else if (status === "stopped") {
         // 다시 녹음하기 버튼
-        return <ReturnButton />;
+        return <IconReturnButton />;
       }
     }
   }, [status]);
 
   const renderRecordedAudioIcon = useMemo(() => {
     if (recordedAudioState === "not-recorded") {
-      return <PlayButton active={false} />;
+      return <RecordPlayButton active={false} />;
     } else if (recordedAudioState === "playing") {
-      return <StopButton />;
+      return <RecordStopButton />;
     } else {
       // recordedAudioState === "recorded"
-      return <PlayButton active />;
+      return <RecordPlayButton active />;
     }
   }, [recordedAudioState]);
 

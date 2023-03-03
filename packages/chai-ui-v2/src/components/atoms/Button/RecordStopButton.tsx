@@ -1,6 +1,6 @@
 import React from "react";
 
-const StopButton = () => {
+const RecordStopButton = () => {
   return (
     <div className="record-btn-flex-wrap">
       <button className="btn-icon-mini btn-stop">정지</button>
@@ -10,4 +10,4 @@ const StopButton = () => {
   );
 };
 
-export default StopButton;
+export default RecordStopButton;
