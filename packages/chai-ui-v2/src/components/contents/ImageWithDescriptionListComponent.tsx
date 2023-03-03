@@ -25,11 +25,11 @@ const ListImage = styled.img`
   border-radius: ${vw(10)};
   -webkit-user-drag: none;
   cursor: pointer;
+  height: fit-content;
 `;
 
 const ImageWithDescriptionWrapper = styled.div`
   display: flex;
-  align-items: center;
 
   & > div {
     font-size: 28px;
