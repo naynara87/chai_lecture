@@ -1,6 +1,6 @@
 import React from "react";
 
-const ReturnButton = () => {
+const IconReturnButton = () => {
   return (
       <button className="btn-icon-mini btn-return">
         다시녹음하기
@@ -8,4 +8,4 @@ const ReturnButton = () => {
   );
 };
 
-export default ReturnButton;
+export default IconReturnButton;

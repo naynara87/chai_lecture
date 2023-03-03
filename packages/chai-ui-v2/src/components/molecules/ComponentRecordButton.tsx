@@ -1,8 +1,6 @@
 import React from "react";
-import PlayButton from "../atoms/Button/PlayButton";
-import MikeButton from "../atoms/Button/MikeButton";
-import ReturnButton from "../atoms/Button/ReturnButton";
-// import StopButton from "../atoms/Button/StopButton";
+import RecordPlayButton from "../atoms/Button/RecordPlayButton";
+import IconReturnButton from "../atoms/Button/IconReturnButton";
 
 const ComponentRecordButton = () => {
   return (
@@ -10,9 +8,8 @@ const ComponentRecordButton = () => {
     // TODO: key설명 - 첫 녹음을 하면 btn-headset의 disabled 삭제, btn-reset의 none도 삭제, btn-mike에 none 추가
     <>
       <div className="record-btn-wrap">
-        <PlayButton active={false} />
-        <MikeButton />
-        <ReturnButton />
+        <RecordPlayButton />
+        <IconReturnButton />
       </div>
     </>
   );

@@ -1,12 +1,13 @@
 import styled from "@emotion/styled";
+import { vw } from "../../../styles";
 
 /**
  * scss의 .btn-icon 와 동일
  */
 const IconButton = styled.button`
-width: 4vw;
-height: 4vw;
-border-radius: 1vw;
+width: ${vw(80)};
+height: ${vw(80)};
+border-radius: ${vw(20)};
 background-position: center;
 background-size: 100% 100%;
 background-repeat: no-repeat;

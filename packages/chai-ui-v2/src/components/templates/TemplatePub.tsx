@@ -1,14 +1,13 @@
 import React from "react";
-import ComponentImageMultiCaption from "../molecules/ComponentImageMultiCaption";
-import ComponentText from "../molecules/ComponentText";
+import { ComponentRecordButton } from "../molecules";
+import ComponentStepSentenceCard from "../molecules/ComponentStepSentenceCard";
 
 const TemplatePub = () => {
   return (
     <div className="layout-panel-wrap">
       <div className="layout-panel">
-        <ComponentText />
-        <ComponentImageMultiCaption />
-        <ComponentText />
+        <ComponentStepSentenceCard />
+        <ComponentRecordButton />
       </div>
     </div>
   );
