@@ -4,7 +4,7 @@ import { RecoilRoot } from "recoil";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "chai-ui-v2/dist/globalStyle.css";
+import "chai-ui-v2/dist/assets/globalStyle.css";
 
 const queryClient = new QueryClient();
 
