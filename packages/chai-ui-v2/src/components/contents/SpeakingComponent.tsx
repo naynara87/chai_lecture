@@ -9,7 +9,7 @@ import React, {
 import { SpeakingContentData } from "../../core";
 import ComponentButtonFillBlackMini from "../atoms/ComponentButtonFillBlackMini";
 import ComponentProgress from "../atoms/ComponentProgress";
-import iconCheck from "../../images/icon/icon_check_green.svg";
+import iconCheck from "../../assets/images/icon/icon_check_green.svg";
 
 const RepeatSpeak = styled.div``;
 

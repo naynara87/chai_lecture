@@ -7,7 +7,7 @@ import ImgTemp01Component from "../atoms/ImgTemp01Component";
 import ComponentButtonPlay from "../atoms/ComponentButtonPlay";
 import ComponentButtonRoundArrow from "../atoms/ComponentButtonRoundArrow";
 // import ComponentRepeatSpeak from "../molecules/ComponentRepeatSpeak";
-import { vh } from "../../styles";
+import { vh } from "../../assets";
 
 const DialogueContainer = styled.div`
   .repeat-speak-wrapper {

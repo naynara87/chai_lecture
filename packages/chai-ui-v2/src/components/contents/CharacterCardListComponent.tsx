@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { CharacterCardListContentData } from "../../core";
-import ChaProfile01 from "../../images/img/cha_profile01.png";
+import ChaProfile01 from "../../assets/images/img/cha_profile01.png";
 
 interface CharacterCardListComponentProps {
   contents: CharacterCardListContentData;

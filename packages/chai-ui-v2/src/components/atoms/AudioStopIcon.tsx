@@ -1,5 +1,5 @@
 import React from "react";
-import { colorPalette } from "../../styles";
+import { colorPalette } from "../../assets";
 
 interface AudioStopIconProps {
   color?: string;

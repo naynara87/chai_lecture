@@ -1,5 +1,5 @@
 import React from "react";
-import iconLeft from "../../images/icon/icon_arrow_left_white.svg";
+import iconLeft from "../../assets/images/icon/icon_arrow_left_white.svg";
 
 const IconLeftArrowComponent = () => {
   return <img src={iconLeft} alt="이전" />;

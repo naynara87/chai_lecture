@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { colorPalette, vw } from "../../styles";
+import { colorPalette, vw } from "../../assets";
 
 const TextComponent = styled.div`
   text-align: center;
@@ -23,10 +23,18 @@ const TextComponent = styled.div`
 const ComponentText = () => {
   return (
     <TextComponent>
-      <p className="text lg">{`首尔的`}<b>{`冬天`}</b>{`没有北京冷。`}</p>
-      <p className="text">{`Shǒu'ěr de`}<b>{`dōngtiān`}</b>{`méiyǒu Běijīng lěng
+      <p className="text lg">
+        {`首尔的`}
+        <b>{`冬天`}</b>
+        {`没有北京冷。`}
+      </p>
+      <p className="text">
+        {`Shǒu'ěr de`}
+        <b>{`dōngtiān`}</b>
+        {`méiyǒu Běijīng lěng
       
-      서울의 겨울은 베이징보다 춥지 않아요.`}</p>
+      서울의 겨울은 베이징보다 춥지 않아요.`}
+      </p>
     </TextComponent>
   );
 };

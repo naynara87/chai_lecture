@@ -1,5 +1,5 @@
 import React from "react";
-import iconClick from "../../../images/icon/icon_click.svg";
+import iconClick from "../../../assets/images/icon/icon_click.svg";
 
 interface ComponentButtonStepProps {
   onClick: () => void;

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import AudioRecorder from "./AudioRecorder";
 import { ImgProfileDefaultComponent, ImgTemp01Component } from "../atoms";
-import { colorPalette } from "../../styles";
+import { colorPalette } from "../../assets";
 import ComponentButtonRadiFillOrange from "../atoms/ComponentButtonRadiFillOrange";
 
 const DialogueWrapper = styled.ul`
@@ -41,8 +41,12 @@ const ComponentRoleplay = () => {
                 <p className="chinese">{"今天刮风，下雪，很冷。"}</p>
                 {/* TODO: key설명 - 누르면 pinyin에서 none이 사라지고, 버튼이 안보임 */}
                 <ComponentButtonRadiFillOrange text="HINT" />
-                <p className="pinyin none">{"Jīntiān guā fēng, xià xuě, hěn lěng."}</p>
-                <p className="mean">{"오늘은 바람이 불고, 눈이 내려서 추워."}</p>
+                <p className="pinyin none">
+                  {"Jīntiān guā fēng, xià xuě, hěn lěng."}
+                </p>
+                <p className="mean">
+                  {"오늘은 바람이 불고, 눈이 내려서 추워."}
+                </p>
               </BubbleWrap>
             </div>
             <AudioRecorder />
@@ -79,7 +83,7 @@ const ComponentRoleplay = () => {
           </div>
         </li>
       </DialogueWrapper>
-    </div >
+    </div>
   );
 };
 

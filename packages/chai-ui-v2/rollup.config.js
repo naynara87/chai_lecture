@@ -16,14 +16,14 @@ export default {
       output: "dist/globalStyle.css",
       fileName: "globalStyle.css",
       failOnError: true,
-      watch: "src/styles/scss",
+      watch: "src/assets",
     }),
     Ts(),
     image(),
     copy({
       targets: [
-        { src: "src/fonts/", dest: "dist" },
-        { src: "src/images/", dest: "dist" },
+        { src: "src/assets/fonts/", dest: "dist/assets/" },
+        { src: "src/assets/images/", dest: "dist/assets/" },
       ],
     }),
   ],

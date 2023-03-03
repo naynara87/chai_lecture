@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { vh, vw } from "../../styles";
+import { vh, vw } from "../../assets";
 import { ImgProfileDefaultComponent } from "../atoms";
 import ComponentButtonRadiBorderMain from "../atoms/ComponentButtonRadiBorderMain";
 import ComponentButtonRadiFillMain from "../atoms/ComponentButtonRadiFillMain";
@@ -25,11 +25,11 @@ const QuizContainer = styled.form`
   .label-chck-line .text {
     font-size: ${vw(22)};
   }
-  
+
   > .btns-wrap {
     max-width: 382px;
     margin: 0 auto;
-    
+
     .btn {
       height: ${vh(62)};
       font-size: ${vw(22)};
