@@ -4,7 +4,7 @@ import { ID } from "../types";
 interface globalAudioStateData {
   id: ID;
   audioSrc: string;
-  audioState: "play" | "pause";
+  audioState: "playing" | "pause";
   audioRef?: React.RefObject<HTMLAudioElement>;
 }
 

@@ -16,7 +16,7 @@ const useGlobalAudio = () => {
   }, [globalAudio]);
 
   useEffect(() => {
-    if (globalAudio.audioState === "play") {
+    if (globalAudio.audioState === "playing") {
       playAudio();
     }
   }, [globalAudio.audioState, playAudio]);
@@ -28,7 +28,7 @@ const useGlobalAudio = () => {
       setGlobalAudio({
         ...globalAudio,
         id: audioId,
-        audioState: "play",
+        audioState: "playing",
         audioSrc: src,
       });
     },

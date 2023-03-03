@@ -35,7 +35,7 @@ const ConversationWordListComponent = ({
             <p className="mean">{word.meaning}</p>
           </div>
           {globalAudioId === `vocaNote${wordIndex}` &&
-          globalAudioState === "play" ? (
+          globalAudioState === "playing" ? (
             <IconPauseButton onClick={handleClickAudioStopButton} />
           ) : (
             <ComponentButtonPlay
