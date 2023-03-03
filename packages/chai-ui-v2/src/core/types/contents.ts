@@ -11,6 +11,7 @@ export type Content =
   | SpeakingContentData
   | MultilevelActionCardListContentData
   | CardTabContentData
+  | ConversationWordListContentData
   | BorderTextBoxContentData;
 export type ContentType = Content["type"];
 

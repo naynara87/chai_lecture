@@ -1,9 +1,12 @@
 import React from "react";
 
-const ComponentButtonPlay = () => {
+interface ComponentButtonPlayProps {
+  onClick?: () => void;
+}
 
+const ComponentButtonPlay = ({ onClick }: ComponentButtonPlayProps) => {
   return (
-    <button className="btn-icon-mini btn-play">
+    <button className="btn-icon-mini btn-play" onClick={onClick}>
       재생
     </button>
   );

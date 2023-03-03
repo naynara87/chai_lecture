@@ -21,7 +21,9 @@ const CardTabComponent = ({ contents }: CardTabComponentProps) => {
     return contents.data.map((content, contentIndex) => {
       return (
         <TabTitle
-          className={`tab-title ${tabActiveIndex === contentIndex && "active"}`}
+          className={`tab-title ${
+            tabActiveIndex === contentIndex ? "active" : ""
+          }`}
           key={contentIndex}
           onClick={() => {
             handleClickTab(contentIndex);

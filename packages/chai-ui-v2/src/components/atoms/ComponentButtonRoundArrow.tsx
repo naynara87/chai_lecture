@@ -1,9 +1,15 @@
 import React from "react";
 import IconArrowComponent from "./IconArrowComponent";
 
-const ComponentButtonRoundArrow = () => {
+interface ComponentButtonRoundArrowProps {
+  onClick?: () => void;
+}
+
+const ComponentButtonRoundArrow = ({
+  onClick,
+}: ComponentButtonRoundArrowProps) => {
   return (
-    <button className="btn btn-round-icon-arrow">
+    <button className="btn btn-round-icon-arrow" onClick={onClick}>
       <IconArrowComponent />
     </button>
   );

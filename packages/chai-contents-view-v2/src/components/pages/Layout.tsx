@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import LayoutFooter from "../molecules/LayoutFooter";
 import LayoutHeader from "../molecules/LayoutHeader";
 import useInitialData from "../../hooks/useInitialData";
@@ -7,14 +7,37 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getPageUrl } from "../../util/url";
 import { useRecoilState } from "recoil";
 import { cornersState } from "../../state/corners";
-import { LayoutModalIntroduction } from "chai-ui-v2";
+import { globalAudioState, LayoutModalIntroduction } from "chai-ui-v2";
 import LayoutMultiPage from "../molecules/LayoutMultiPage";
 
 const Layout = () => {
   const { initialPage, pages, initialCorner } = useInitialData();
   const [isPageCompleted, setIsPageCompleted] = useState(false);
   const { courseId, cornerId, lessonId, pageId } = useParams();
+  const [globalAudio, setGlobalAudio] = useRecoilState(globalAudioState);
+  const globalAudioRef = useRef<HTMLAudioElement>(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setGlobalAudio({
+      id: -1,
+      audioSrc: "",
+      audioState: "pause",
+      audioRef: globalAudioRef,
+    });
+  }, [setGlobalAudio]);
+
+  useEffect(() => {
+    if (!globalAudioRef.current) return;
+    globalAudioRef.current.addEventListener("ended", () => {
+      setGlobalAudio({
+        id: -1,
+        audioSrc: "",
+        audioState: "pause",
+        audioRef: globalAudioRef,
+      });
+    });
+  }, [setGlobalAudio]);
 
   const [isIntroductionModalOpen, setIsIntroductionModalOpen] = useState(false);
 
@@ -127,6 +150,7 @@ const Layout = () => {
         handleClickPrev={handleClickPrev}
       />
       {introduction}
+      <audio ref={globalAudioRef} src={globalAudio.audioSrc} />
     </div>
   );
 };
