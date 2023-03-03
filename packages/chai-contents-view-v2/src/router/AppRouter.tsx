@@ -6,7 +6,7 @@ import LayoutTemp from "../components/pages/LayoutTemp";
 import NotFound from "../components/pages/NotFound";
 import TempRolePlay from "../components/pages/TempRolePlay";
 import { HOME_URL, NOT_FOUND_URL } from "../constants/url";
-import "chai-ui-v2/dist/globalStyle.css";
+import "chai-ui-v2/dist/assets/globalStyle.css";
 
 const AppRouter = () => {
   return (

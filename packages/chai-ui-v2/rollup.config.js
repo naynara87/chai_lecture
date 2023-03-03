@@ -13,8 +13,8 @@ export default {
   },
   plugins: [
     scss({
-      output: "dist/globalStyle.css",
-      fileName: "globalStyle.css",
+      output: "dist/assets/",
+      fileName: "assets/globalStyle.css",
       failOnError: true,
       watch: "src/assets",
     }),
