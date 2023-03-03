@@ -64,68 +64,15 @@ export const v2CornerDataList: CornerData[] = [
           type: "Template01",
           contents: [
             {
-              type: "cardTab",
+              type: "imageWithDescriptionList",
               data: [
                 {
-                  tabName: "예문",
-                  cards: [
-                    {
-                      contents: [
-                        {
-                          type: "numberingTextList",
-                          data: [
-                            {
-                              firstText: "테스트 텍스트1-1",
-                              secondText: "테스트 텍스트1-2",
-                            },
-                            {
-                              firstText: "테스트 텍스트2-1",
-                              secondText: "테스트 텍스트2-2",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                    {
-                      contents: [
-                        {
-                          type: "numberingTextList",
-                          data: [
-                            {
-                              firstText: "테스트 텍스트3-1",
-                              secondText: "테스트 텍스트3-2",
-                            },
-                            {
-                              firstText: "테스트 텍스트4-1",
-                              secondText: "테스트 텍스트4-2",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
+                  src: "https://mblogthumb-phinf.pstatic.net/MjAxOTEwMTFfNjEg/MDAxNTcwNzg1ODM3Nzc0.zxDXm20VlPdQv8GQi9LWOdPwkqoBdiEmf8aBTWTsPF8g.FqMQTiF6ufydkQxrLBgET3kNYAyyKGJTWTyi1qd1-_Ag.PNG.kkson50/sample_images_01.png?type=w800",
+                  description: "1번이미지 description",
                 },
                 {
-                  tabName: "문법 사용 TIP!",
-                  cards: [
-                    {
-                      contents: [
-                        {
-                          type: "numberingTextList",
-                          data: [
-                            {
-                              firstText: "테스트 텍스트1-1",
-                              secondText: "테스트 텍스트1-2",
-                            },
-                            {
-                              firstText: "테스트 텍스트2-1",
-                              secondText: "테스트 텍스트2-2",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
+                  src: "https://mblogthumb-phinf.pstatic.net/MjAxOTEwMTFfODMg/MDAxNTcwNzg1ODM3NTUz.2m5sz7K4ATO7WZzXYGE-MmUQ1DYUOflq0IaGgitVZEIg.jYZnxxm0E275Jplbrw25aFCFPVXKcmai1zhf8rlYl3Eg.PNG.kkson50/sample_images_02.png?type=w800",
+                  description: "2번이미지 description",
                 },
               ],
             },
