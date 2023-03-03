@@ -12,7 +12,7 @@ const BorderTextBoxWrapper = styled.div`
   text-align: left;
 `;
 
-interface BorderTextBoxComponentProps {
+export interface BorderTextBoxComponentProps {
   contents: BorderTextBoxContentData;
 }
 
