@@ -4,3 +4,4 @@ export { default as LayoutModalVoca } from "./LayoutModalVoca";
 export { default as LayoutModalContinue } from "./LayoutModalContinue";
 export { default as ModalSwiper } from "./ModalSwiper";
 export { default as LayoutModalIntroduction } from "./LayoutModalIntroduction";
+export { default as ModalImage } from "./ModalImage";

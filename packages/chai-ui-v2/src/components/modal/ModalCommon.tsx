@@ -8,9 +8,15 @@ interface ModalCommonProps {
   children: ReactElement | ReactElement[];
   open: boolean;
   onClose: () => void;
+  ImageModal?: boolean;
 }
 
-const ModalCommon = ({ children, onClose, open }: ModalCommonProps) => {
+const ModalCommon = ({
+  children,
+  onClose,
+  open,
+  ImageModal,
+}: ModalCommonProps) => {
   const handleClose = (event: React.MouseEvent<HTMLDivElement>) => {
     if (event.target === event.currentTarget) {
       onClose();
@@ -18,9 +24,13 @@ const ModalCommon = ({ children, onClose, open }: ModalCommonProps) => {
   };
 
   return (
-    <ModalBase className={`modal ${open && "active"}`}>
+    <ModalBase className={`modal ${open ? "active" : ""}`}>
       <ModalBackground className="modal-bg" onClick={handleClose} />
-      <div className="modal-container base-modal">
+      <div
+        className={`modal-container base-modal ${
+          ImageModal ? "image-modal" : ""
+        }`}
+      >
         <div className="base-wrapper">{children}</div>
       </div>
     </ModalBase>
