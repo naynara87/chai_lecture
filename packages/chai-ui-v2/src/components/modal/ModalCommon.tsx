@@ -28,7 +28,7 @@ const ModalCommon = ({
       <ModalBackground className="modal-bg" onClick={handleClose} />
       <div
         className={`modal-container base-modal ${
-          ImageModal ? "image-modal" : ""
+          ImageModal ? "unset-padding-radius" : ""
         }`}
       >
         <div className="base-wrapper">{children}</div>
