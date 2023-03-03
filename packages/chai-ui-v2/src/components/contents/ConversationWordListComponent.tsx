@@ -2,7 +2,7 @@ import React, { useCallback, useMemo, useState } from "react";
 import { ConversationWordListContentData } from "../../core";
 import useGlobalAudio from "../../core/hooks/useGlobalAudio";
 import { ComponentButtonPlay, ImgCharacterComponent } from "../atoms";
-import PauseButton from "../atoms/Button/PauseButton";
+import IconPauseButton from "../atoms/Button/IconPauseButton";
 import ComponentButtonRoundArrow from "../atoms/ComponentButtonRoundArrow";
 
 interface ConversationWordListComponentProps {
@@ -36,7 +36,7 @@ const ConversationWordListComponent = ({
           </div>
           {globalAudioId === `vocaNote${wordIndex}` &&
           globalAudioState === "play" ? (
-            <PauseButton active={true} onClick={handleClickAudioStopButton} />
+            <IconPauseButton onClick={handleClickAudioStopButton} />
           ) : (
             <ComponentButtonPlay
               onClick={() => {
