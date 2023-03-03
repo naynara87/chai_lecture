@@ -1,12 +1,6 @@
 import styled from "@emotion/styled";
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
-import { SpeakingContentData } from "../../core";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { SpeakingContentData, useGlobalAudio } from "../../core";
 import ComponentButtonFillBlackMini from "../atoms/ComponentButtonFillBlackMini";
 import ComponentProgress from "../atoms/ComponentProgress";
 import iconCheck from "../../images/icon/icon_check_green.svg";
@@ -18,25 +12,26 @@ interface SpeakingComponentProps {
 }
 
 const SpeakingComponent = ({ contents }: SpeakingComponentProps) => {
-  const audioRef = useRef<HTMLAudioElement>(null);
   const [isShowProgressBar, setIsShowProgressBar] = useState(false);
   const [isEndProgressBar, setIsEndProgressBar] = useState(false);
   const [isAudioEnd, setIsAudioEnd] = useState(false);
 
+  const { globalAudioRef, handleClickAudioButton } = useGlobalAudio();
+
   useEffect(() => {
-    audioRef.current?.addEventListener("ended", () => {
+    if (!globalAudioRef?.current) return;
+    globalAudioRef.current?.addEventListener("ended", () => {
       setIsAudioEnd(true);
       setTimeout(() => {
         setIsEndProgressBar(true);
       }, contents.data.speakingTime * 1000);
     });
-  }, [contents.data.speakingTime]);
+  }, [contents.data.speakingTime, globalAudioRef]);
 
   const handleClickStartButton = useCallback(() => {
-    if (!audioRef.current) return;
     setIsShowProgressBar(true);
-    void audioRef.current.play();
-  }, []);
+    handleClickAudioButton("speakingAudio", contents.data.src);
+  }, [contents.data.src, handleClickAudioButton]);
 
   const repeatSpeak = useMemo(() => {
     if (isShowProgressBar && isEndProgressBar) {
@@ -80,12 +75,7 @@ const SpeakingComponent = ({ contents }: SpeakingComponentProps) => {
   ]);
 
   return (
-    <RepeatSpeak className="repeat-speak-wrapper">
-      <audio ref={audioRef}>
-        <source src={contents.data.src} />
-      </audio>
-      {repeatSpeak}
-    </RepeatSpeak>
+    <RepeatSpeak className="repeat-speak-wrapper">{repeatSpeak}</RepeatSpeak>
   );
 };
 

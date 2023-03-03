@@ -1,8 +1,12 @@
 import React from "react";
 
-const IconPauseButton = () => {
+interface IconPauseButtonProps {
+  onClick?: () => void;
+}
+
+const IconPauseButton = ({ onClick }: IconPauseButtonProps) => {
   return (
-    <button className="btn-icon-mini btn-pause">
+    <button className="btn-icon-mini btn-pause" onClick={onClick}>
       일시정지
     </button>
   );

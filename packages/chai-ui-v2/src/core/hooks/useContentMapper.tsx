@@ -20,12 +20,14 @@ import {
   SpeakingContentData,
   MultilevelActionCardListContentData,
   CardTabContentData,
+  ConversationWordListContentData,
   ImageWithDescriptionListContentData,
 } from "../types";
 import CharacterCardListComponent from "../../components/contents/CharacterCardListComponent";
 import SpeakingComponent from "../../components/contents/SpeakingComponent";
 import MultilevelActionCardListComponent from "../../components/contents/MultilevelActionCardListComponent";
 import CardTabComponent from "../../components/contents/CardTabComponent";
+import ConversationWordListComponent from "../../components/contents/ConversationWordListComponent";
 
 const useContentMapper = () => {
   const getContentComponent = (content: Content, contentIndex: number) => {
@@ -88,6 +90,11 @@ const useContentMapper = () => {
         <CardTabComponent
           contents={content as CardTabContentData}
           key={contentIndex}
+        />
+      ),
+      conversationWordList: (
+        <ConversationWordListComponent
+          contents={content as ConversationWordListContentData}
         />
       ),
       imageWithDescriptionList: (

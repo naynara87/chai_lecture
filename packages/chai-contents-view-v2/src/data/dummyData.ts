@@ -64,17 +64,44 @@ export const v2CornerDataList: CornerData[] = [
           type: "Template01",
           contents: [
             {
-              type: "imageWithDescriptionList",
-              data: [
-                {
-                  src: "https://mblogthumb-phinf.pstatic.net/MjAxOTEwMTFfNjEg/MDAxNTcwNzg1ODM3Nzc0.zxDXm20VlPdQv8GQi9LWOdPwkqoBdiEmf8aBTWTsPF8g.FqMQTiF6ufydkQxrLBgET3kNYAyyKGJTWTyi1qd1-_Ag.PNG.kkson50/sample_images_01.png?type=w800",
-                  description: "1번이미지 description",
-                },
-                {
-                  src: "https://mblogthumb-phinf.pstatic.net/MjAxOTEwMTFfODMg/MDAxNTcwNzg1ODM3NTUz.2m5sz7K4ATO7WZzXYGE-MmUQ1DYUOflq0IaGgitVZEIg.jYZnxxm0E275Jplbrw25aFCFPVXKcmai1zhf8rlYl3Eg.PNG.kkson50/sample_images_02.png?type=w800",
-                  description: "2번이미지 description",
-                },
-              ],
+              type: "conversationWordList",
+              data: {
+                words: [
+                  {
+                    text: "游泳",
+                    pronunciation: "yóuyǒng",
+                    meaning: "수영하다",
+                    audio: {
+                      src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+                    },
+                  },
+                  {
+                    text: "游泳2",
+                    pronunciation: "yóuyǒng2",
+                    meaning: "수영하다2",
+                    audio: {
+                      src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
+                    },
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      },
+      {
+        id: 2,
+        name: "한어",
+        type: "SinglePage",
+        data: {
+          type: "Template01",
+          contents: [
+            {
+              type: "speaking",
+              data: {
+                speakingTime: 3,
+                src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+              },
             },
           ],
         },
