@@ -9,6 +9,7 @@ export type Content =
   | ExplainingCharacterContentData
   | CharacterCardListContentData
   | SpeakingContentData
+  | MultilevelActionCardListContentData
   | BorderTextBoxContentData;
 export type ContentType = Content["type"];
 
@@ -229,7 +230,7 @@ export type MultilevelActionCardListContentData = {
   type: "multiLevelActionList";
   data: {
     multilevelContents: Content[][];
-  }[];
+  };
   meta?: Meta;
 };
 
