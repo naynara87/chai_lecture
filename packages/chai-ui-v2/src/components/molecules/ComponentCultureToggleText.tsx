@@ -37,10 +37,10 @@ const ComponentCultureToggleText = () => {
           <p className="chinese">
             {`11月11日是光棍节，光棍有单身的意思，所以这天是庆祝自己单身生活的娱乐性节日。`}
           </p>
-          <p className="text">
+          <p className="pinyin text">
             {`Shíyī yuè shíyī rì shì Guānggùnjié, guānggùn yǒu dānshēn de yìsi, suǒyǐ zhè tiān shì qìngzhù zìjǐ dānshēn shēnghuó de yúlèxìng jiérì.`}
           </p>
-          <p className="text">
+          <p className="mean text">
             {`한글뜻이들어갈곳`}
           </p>
         </li>
@@ -49,10 +49,10 @@ const ComponentCultureToggleText = () => {
           <p className="chinese">
             {`但是，现在更多的人把这天叫“双十一”，是中国网络购物节。`}
           </p>
-          <p className="text">
+          <p className="pinyin text">
             {`Dànshì, xiànzài gèng duō de rén bǎ zhè tiān jiào "Shuāng shíyī",`}
           </p>
-          <p className="text">
+          <p className="mean text">
             {`한글뜻이들어갈곳`}
           </p>
         </li>
