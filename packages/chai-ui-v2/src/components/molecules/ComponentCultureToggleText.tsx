@@ -24,6 +24,10 @@ const ToggleTextWrapper = styled.div`
     line-height: 1.6;
     color: ${colorPalette.gray800};
   }
+
+  .mean {
+    color: ${colorPalette.orange700};
+  }
 `;
 
 const ComponentCultureToggleText = () => {
