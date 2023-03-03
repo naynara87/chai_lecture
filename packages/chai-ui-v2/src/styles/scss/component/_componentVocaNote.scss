@@ -1,75 +1,75 @@
 /* =================== componentVocaNote =================== */
 .voca-note-container {
-	overflow: hidden;
-	width: 100%;
-	height: vh(80);
-	padding: vh(24) vw(20);
-	border: 1px solid #DBE1FF;
-	border-radius: vw(20);
-	background-color: #F4F3FA;
-	transition: all 0.3s;
+  overflow: hidden;
+  width: 100%;
+  height: vh(80);
+  padding: vh(24) vw(20);
+  border: 1px solid #dbe1ff;
+  border-radius: vw(20);
+  background-color: #f4f3fa;
+  transition: all 0.3s;
 
-	&.active {
-		overflow: auto;
-		height: 100%;
-	}
+  &.active {
+    overflow: auto;
+    height: auto;
+  }
 }
 
 .voca-title {
-	z-index: z(zero);
-	position: relative;
-	padding-bottom: vh(22);
-	font-size: vw(22);
-	text-align: center;
+  z-index: z(zero);
+  position: relative;
+  padding-bottom: vh(22);
+  font-size: vw(22);
+  text-align: center;
 
-	.img {
-		position: absolute;
-		top: vh(-8);
-		left: 0;
-		width: vw(90);
-	}
+  .img {
+    position: absolute;
+    top: vh(-8);
+    left: 0;
+    width: vw(90);
+  }
 
-	.btn {
-		position: absolute;
-		top: vh(-4);
-		left: auto;
-		right: 0;
-	}
+  .btn {
+    position: absolute;
+    top: vh(-4);
+    left: auto;
+    right: 0;
+  }
 }
 
 .voca-list-wrap {
-	z-index: z(one);
-	position: relative;
+  z-index: z(one);
+  position: relative;
 }
 
 .voca-list {
-	@include flex-btw;
-	
-	padding: vh(15) vw(20);
-	border-radius: vw(10);
-	background-color: color(gray-ff);
+  @include flex-btw;
 
-	&:not(:first-child) {
-		margin-top: vh(20);
-	}
+  padding: vh(15) vw(20);
+  border-radius: vw(10);
+  background-color: color(gray-ff);
 
-	.chinese {
-		font-weight: 600;
-		font-size: vw(28);
-	}
+  &:not(:first-child) {
+    margin-top: vh(20);
+  }
 
-	.pinyin {
-		font-size: vw(22);
-		color: color(gray-80);
-	}
+  .chinese {
+    font-weight: 600;
+    font-size: vw(28);
+  }
 
-	.mean {
-		font-size: vw(22);
-		color: color(gray-80);
-	}
+  .pinyin {
+    font-size: vw(22);
+    color: color(gray-80);
+  }
 
-	.btn-icon {
-		width: vw(55);
-		height: vw(55);
-	}
+  .mean {
+    font-size: vw(22);
+    color: color(gray-80);
+  }
+
+  .btn-icon {
+    width: vw(55);
+    height: vw(55);
+  }
 }
