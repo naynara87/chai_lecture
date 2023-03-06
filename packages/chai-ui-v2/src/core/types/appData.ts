@@ -136,4 +136,10 @@ export type characterType =
   | "winiSmile"
   | "winiSurprise"
   | "winiWink"
-  | "allFinish";
+  | "allFinish1"
+  | "allFinish2"
+  | "allFinish3"
+  | "allFinish4"
+  | "allFinish5"
+  | "allFinish6"
+  | "allFinish7";

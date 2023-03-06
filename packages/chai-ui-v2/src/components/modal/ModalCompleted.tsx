@@ -12,7 +12,7 @@ const ModalCompleted = () => {
       <div className="modal-bg"></div>
       <div className="modal-container">
         <ImgCharacterComponent
-          characterType="allFinish"
+          characterType="allFinish1"
           characterAlt="완료"
         />
         <p className="text">{`오늘의 학습을 완료했어요!

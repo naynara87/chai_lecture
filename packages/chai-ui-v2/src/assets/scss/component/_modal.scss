@@ -243,6 +243,7 @@
 
     >img {
       width: vw(600);
+      margin-top: vh(-130);
     }
 
     .text {
@@ -257,5 +258,15 @@
   .btn {
     @extend %btn;
     @extend %btn-interaction;
+
+    z-index: z(two + 1);
+    position: relative;
+    width: vw(252);
+    margin-top: vh(90);
+    padding: vh(30) vw(20);
+    border-radius: vw(20);
+    background-color: color(gray-ff);
+    font-weight: 600;
+    font-size: vw(28);
   }
 }
