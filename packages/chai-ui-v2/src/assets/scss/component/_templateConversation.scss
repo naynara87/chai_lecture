@@ -1,6 +1,7 @@
 /* =================== templateConversation =================== */
 // 230220 component roleplay와 공통으로 사용됨
 .conversation-panel-wrap {
+
 	.toggles-wrapper,
 	.conts-ttl {
 		~.conversation-wrapper {
@@ -11,6 +12,7 @@
 
 .conversation-wrap {
 	@extend %speak-interaction;
+
 	@include flex {
 		align-items: flex-start;
 	}
@@ -69,5 +71,24 @@
 
 	.mean {
 		font-size: vw(28);
+	}
+
+	&.blank {
+		align-items: stretch;
+
+		.txt-wrap {
+			position: relative;
+			width: 100%;
+
+			@include make-before {
+				position: absolute;
+				top: 50%;
+				left: 0;
+				width: 50%;
+				height: 3px;
+				background-color: color(gray-66);
+				transform: translateY(-50%);
+			}
+		}
 	}
 }

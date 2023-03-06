@@ -13,7 +13,7 @@
 	.character-wrap {
 		margin-top: vh(62);
 
-		.img  {
+		.img {
 			height: vh(167);
 		}
 	}
@@ -28,26 +28,26 @@
 			font-size: vw(26);
 		}
 	}
+}
 
-	.text-wrap {
-		position: relative;
-		padding: vh(30) vw(30);
-		border-radius: vw(20);
-		background-color: color(bubble-gray);
-		font-weight: 400;
-		font-size: vw(22);
-		text-align: center;
+.text-bubble-wrap {
+	position: relative;
+	padding: vh(30) vw(30);
+	border-radius: vw(20);
+	background-color: color(bubble-gray);
+	font-weight: 400;
+	font-size: vw(22);
+	text-align: center;
 
-		@include make-after  {
-			@include bg-url(icon, 'icon_contsinfo_tail.svg');
-			@include bg-op($s: 100% 100%);
-			
-			position: absolute;
-			top: 100%;
-			left: 50%;
-			width: vw(38);
-			height: vh(37);
-			transform: translateX(-50%);
-		}
+	@include make-after {
+		@include bg-url(icon, 'icon_contsinfo_tail.svg');
+		@include bg-op($s: 100% 100%);
+
+		position: absolute;
+		top: 100%;
+		left: 50%;
+		width: vw(38);
+		height: vh(37);
+		transform: translateX(-50%);
 	}
 }

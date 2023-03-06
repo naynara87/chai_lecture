@@ -9,7 +9,7 @@ const ComponentContsInfo = ({ text }: ComponentContsInfoProps) => {
   return (
     <div className="cont-info-wrap">
       <div className="character-wrapper">
-        <div className="text-wrap">{text}</div>
+        <div className="text-bubble-wrap">{text}</div>
         <div className="character-wrap">
           <ImgCharacterComponent
             characterType="didiGlasses"

@@ -1,0 +1,32 @@
+/* =================== componentRecordSubmit =================== */
+.finish-record-wrapper {
+	.record-btn-wrap {
+		margin: vw(40) auto 0;
+	}
+}
+
+.answer-sheet-wrapper {
+	width: 100%;
+	margin-top: vh(40);
+	padding: vw(25);
+	border-radius: vw(20);
+	border: 1px solid color(sub);
+	background-color: color(sub-light);
+
+	.answer-sheet-title {
+		padding-bottom: vw(26);
+		font-weight: 600;
+		font-size: vw(28);
+		color: color(main);
+
+		>img {
+			margin-right: vw(12);
+		}
+	}
+
+	.answer-sheet-conts {
+		padding: vw(30);
+		border-radius: vw(10);
+		background-color: color(gray-ff);
+	}
+}

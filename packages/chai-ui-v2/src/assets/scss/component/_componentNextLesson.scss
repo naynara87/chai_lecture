@@ -1,0 +1,33 @@
+/* =================== componentNextLesson =================== */
+.next-lesson-wrapper {
+	@include flex {
+		justify-content: center;
+		gap: vw(50);
+	}
+
+	.lesson-list {
+		width: vw(420);
+	}
+
+	.text-bubble-wrap {
+		@include flex-center;
+
+		min-height: vh(280);
+		font-weight: 600;
+		font-size: vw(32);
+		white-space: pre-line;
+	}
+
+	.img-wrap {
+		@include circle(vw(200));
+
+		overflow: hidden;
+		margin: vh(60) auto 0;
+
+		>img {
+			@include full;
+
+			object-fit: cover;
+		}
+	}
+}

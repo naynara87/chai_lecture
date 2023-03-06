@@ -14,7 +14,8 @@ export type Content =
   | ConversationWordListContentData
   | BorderTextBoxContentData
   | ConversationContentData
-  | ImageWithDescriptionListContentData;
+  | ImageWithDescriptionListContentData
+  | ImageWithCaptionListContentData;
 export type ContentType = Content["type"];
 
 export type ConversationContent =

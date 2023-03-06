@@ -23,6 +23,7 @@ import {
   ConversationWordListContentData,
   ImageWithDescriptionListContentData,
   ConversationContentData,
+  ImageWithCaptionListContentData,
 } from "../types";
 import CharacterCardListComponent from "../../components/contents/CharacterCardListComponent";
 import SpeakingComponent from "../../components/contents/SpeakingComponent";
@@ -30,6 +31,7 @@ import MultilevelActionCardListComponent from "../../components/contents/Multile
 import CardTabComponent from "../../components/contents/CardTabComponent";
 import ConversationWordListComponent from "../../components/contents/ConversationWordListComponent";
 import ConversationComponent from "../../components/contents/ConversationComponent";
+import ImageWithCaptionListComponent from "../../components/contents/ImageWithCaptionListComponent";
 
 const useContentMapper = () => {
   const getContentComponent = (content: Content, contentIndex: number) => {
@@ -108,6 +110,12 @@ const useContentMapper = () => {
       conversation: (
         <ConversationComponent
           contents={content as ConversationContentData}
+          key={contentIndex}
+        />
+      ),
+      imageWithCaptionList: (
+        <ImageWithCaptionListComponent
+          contents={content as ImageWithCaptionListContentData}
           key={contentIndex}
         />
       ),

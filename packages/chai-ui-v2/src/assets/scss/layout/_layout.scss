@@ -16,6 +16,11 @@
   @extend %layout-grid;
 
   grid-template-columns: 1fr 1fr;
+
+  .image-with-caption-wrapper img {
+    width: calc((vh(220) * 4) / 3);
+    height: vh(220);
+  }
 }
 
 .grid-h-3-7 {
@@ -25,6 +30,11 @@
 
   .side-panel {
     padding: vh(40) vw(40);
+  }
+
+  .image-with-caption-wrapper img {
+    width: calc((vh(220) * 4) / 3);
+    height: vh(220);
   }
 }
 
@@ -36,16 +46,18 @@
   border-radius: 15px;
   background-color: color(gray-ff);
   box-shadow: 2px 6px 12px rgba(0, 0, 0, 0.15);
-  > *:not(:first-child) {
+
+  >*:not(:first-child) {
     margin-top: vh(40);
   }
 
-  .description-bubble-container {
+  .description-bubble-container,
+  .btns-wrap {
     margin-top: vh(60);
   }
 
-  .btns-wrap {
-    margin-top: vh(60);
+  .modal {
+    margin-top: 0;
   }
 }
 

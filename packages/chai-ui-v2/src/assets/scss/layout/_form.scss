@@ -9,6 +9,7 @@
 // icon button
 .btn-icon {
 	@extend %btn;
+	@extend %btn-interaction;
 	@include rounded(vw(80));
 	@include bg-op($s: 100% 100%);
 
@@ -23,17 +24,6 @@
 	.icon {
 		@include full;
 	}
-
-	@include hover {
-		opacity: 1;
-		box-shadow: 0 -2px 0 rgba(88, 88, 88, 0.2);
-	}
-
-	&:disabled {
-		@include hover {
-			box-shadow: $btn-shadow;
-		}
-	}
 }
 
 .btn-icon-mini {
@@ -47,7 +37,7 @@
 	@include bg-url(icon, 'icon_play_fill.svg');
 
 	border-radius: vw(20);
-	
+
 	&:disabled {
 		@include bg-url(icon, 'icon_play_fill_disabled.svg');
 	}
@@ -55,7 +45,7 @@
 
 .btn-play {
 	@include bg-url(icon, 'icon_play.svg');
-	
+
 	&:disabled {
 		@include bg-url(icon, 'icon_play_disabled.svg');
 	}
@@ -63,7 +53,7 @@
 
 .btn-pause {
 	@include bg-url(icon, 'icon_pause.svg');
-	
+
 	&:disabled {
 		@include bg-url(icon, 'icon_pause_disabled.svg');
 	}
@@ -71,7 +61,7 @@
 
 .btn-stop {
 	@include bg-url(icon, 'icon_stop.svg');
-	
+
 	&:disabled {
 		@include bg-url(icon, 'icon_stop_disabled.svg');
 	}
@@ -79,7 +69,7 @@
 
 .btn-mic {
 	@include bg-url(icon, 'icon_mic.svg');
-	
+
 	&:disabled {
 		@include bg-url(icon, 'icon_mic_disabled.svg');
 	}
@@ -87,7 +77,7 @@
 
 .btn-return {
 	@include bg-url(icon, 'icon_return.svg');
-	
+
 	&:disabled {
 		@include bg-url(icon, 'icon_return_disabled.svg');
 	}
@@ -95,7 +85,7 @@
 
 .btn-dectionary {
 	@include bg-url(icon, 'icon_dictionary.svg');
-	
+
 	&:disabled {
 		@include bg-url(icon, 'icon_dictionary_disabled.svg');
 	}
@@ -120,10 +110,11 @@
 	@extend %btn;
 	@include square(vw(48));
 
+	z-index: z(two);
 	position: absolute;
 	top: vh(27);
 	left: auto;
-	right: vw(12);
+	right: vw(27);
 }
 
 
@@ -164,7 +155,7 @@
 	@extend %btn;
 	@extend %btn-interaction;
 
-	width: 100%;
+	width: vw(325);
 	height: vh(82);
 	border: 1px solid color(main);
 	border-radius: vw(100);
@@ -176,6 +167,10 @@
 
 	&:before {
 		letter-spacing: -0.04em;
+	}
+
+	@at-root .modal & {
+		width: 100%;
 	}
 }
 
@@ -340,10 +335,10 @@
 	color: transparent;
 	transition: all 0.3s;
 	box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.2);
-	
+
 	@include make-after {
 		@include circle(vw(30));
-		
+
 		position: absolute;
 		top: 50%;
 		left: vw(6);
@@ -356,7 +351,7 @@
 
 .toggle-input:checked~.toggle-label {
 	background-color: color(main);
-	
+
 	&:after {
 		// 100% - (width + padding)
 		left: calc(100% - vw(36));
@@ -374,7 +369,7 @@
 	background-color: color(gray-f5);
 	text-align: center;
 	box-shadow: $btn-shadow;
-	
+
 	.text {
 		position: relative;
 		display: inline-block;
@@ -383,10 +378,10 @@
 	}
 }
 
-.inp-chck-gray:checked ~ .label-chck-gray {
+.inp-chck-gray:checked~.label-chck-gray {
 	border-color: color(main);
 	background-color: color(purple-200);
-	
+
 	.text {
 		color: color(main);
 	}
@@ -394,7 +389,7 @@
 	@at-root .answer-right & {
 		border-color: color(right);
 		background-color: color(gray-ff);
-		
+
 		.text {
 			color: color(right);
 		}
@@ -403,7 +398,7 @@
 	@at-root .answer-wrong & {
 		border-color: color(warning);
 		background-color: color(gray-ff);
-		
+
 		.text {
 			color: color(warning);
 		}
@@ -418,7 +413,7 @@
 	border-radius: vw(15);
 	box-shadow: $btn-shadow;
 	text-align: center;
-	
+
 	.text {
 		position: relative;
 		display: block;
@@ -434,18 +429,18 @@
 	}
 }
 
-.inp-chck-line:disabled ~ .label-chck-line {
+.inp-chck-line:disabled~.label-chck-line {
 	border-color: color(gray-db);
-	
+
 	.text,
 	.text-sm {
 		color: color(gray-db);
 	}
 }
 
-.inp-chck-line:checked ~ .label-chck-line {
+.inp-chck-line:checked~.label-chck-line {
 	border-color: color(main);
-	
+
 	.text,
 	.text-sm {
 		color: color(main);
@@ -453,7 +448,7 @@
 
 	@at-root .answer-right & {
 		border-color: color(right);
-		
+
 		.text,
 		.text-sm {
 			color: color(right);
@@ -462,7 +457,7 @@
 
 	@at-root .answer-wrong & {
 		border-color: color(warning);
-		
+
 		.text,
 		.text-sm {
 			color: color(warning);

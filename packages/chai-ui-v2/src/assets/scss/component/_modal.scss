@@ -49,15 +49,20 @@
 
 // 모달 기본형
 .base-modal {
-  overflow: auto;
-  max-height: 90vh;
+  max-height: vh(900);
 
   .btns-wrap {
     margin-top: vh(40);
   }
 
   .base-wrapper {
+    overflow: auto;
     width: 100%;
+    max-height: 100%;
+
+    &::-webkit-scrollbar {
+      width: 0;
+    }
 
     .swiper-pagination {
       position: relative;
@@ -73,18 +78,18 @@
       opacity: 1;
       line-height: 1;
     }
+
     .swiper-pagination-bullet-active {
       background-color: color(gray-80);
       width: vw(40);
       border-radius: vw(30);
     }
   }
-  &.unset-padding-radius {
-    padding: unset;
-    border-radius: unset;
-    .base-wrapper {
-      display: flex;
-    }
+
+  &.wide-modal {
+    display: block;
+    width: vw(1200);
+    height: vh(900);
   }
 }
 
@@ -100,7 +105,7 @@
 
     flex-shrink: 0;
 
-    > img {
+    >img {
       width: 100%;
       height: 100%;
     }
@@ -148,6 +153,7 @@
       font-weight: 700;
       margin-bottom: vh(10);
     }
+
     .pinyin,
     .mean {
       font-size: vw(36);
@@ -161,6 +167,7 @@
     line-height: 1.6;
     font-size: vw(28);
   }
+
   .btn-icon {
     width: vw(80);
     height: vw(80);
@@ -171,6 +178,10 @@
 .voca-modal {
   .base-wrapper {
     width: 100%;
+  }
+
+  .btn-close-modal {
+    right: vw(12);
   }
 
   .base-ttl {
