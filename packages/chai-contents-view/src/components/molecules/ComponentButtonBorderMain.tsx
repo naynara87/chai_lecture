@@ -6,7 +6,7 @@ interface ComponentButtonBorderMainProps {
 
 const ComponentButtonBorderMain = ({ text }: ComponentButtonBorderMainProps) => {
   return (
-    <button className="btn btn-border-main" data-text={text}>
+    <button className="btn btn-border-main">
       <span>{text}</span>
     </button>
   );

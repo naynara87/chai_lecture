@@ -121,6 +121,7 @@ background-image: urlPath($path, $img);
 }
 
 @mixin hover {
+
 	&:hover,
 	&:focus {
 		@content;

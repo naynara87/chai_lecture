@@ -8,7 +8,7 @@ const ComponentButtonRadiFillOrange = ({
   text,
 }: ComponentButtonRadiFillMainProps) => {
   return (
-    <button className="btn btn-radi-fill-orange" data-text={text}>
+    <button className="btn btn-radi-fill-orange">
       <span>{text}</span>
     </button>
   );

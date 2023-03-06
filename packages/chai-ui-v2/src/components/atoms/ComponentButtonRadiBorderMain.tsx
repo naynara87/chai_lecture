@@ -8,7 +8,7 @@ const ComponentButtonRadiBorderMain = ({
   text,
 }: ComponentButtonRadiBorderMainProps) => {
   return (
-    <button className="btn btn-radi-border-main" data-text={text}>
+    <button className="btn btn-radi-border-main">
       <span>{text}</span>
     </button>
   );

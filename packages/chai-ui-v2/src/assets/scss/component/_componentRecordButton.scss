@@ -17,10 +17,15 @@
 		border-radius: vw(20);
 		background-color: color(gray-ff);
 
+		.btn-icon {
+			@include rounded(vw(55));
+			border-radius: vw(14);
+		}
+
 		.txt {
 			font-size: vw(24);
 		}
-	} 
+	}
 
 	.btn-return {
 		position: absolute;

@@ -7,7 +7,6 @@ export { default as TemplateQuizChoice } from "./TemplateQuizChoice";
 export { default as TemplateQuizDialogueChoice } from "./TemplateQuizDialogueChoice";
 export { default as TemplateQuizDialogueSentenceBlank } from "./TemplateQuizDialogueSentenceBlank";
 export { default as TemplateQuizDialogueWordBlank } from "./TemplateQuizDialogueWordBlank";
-export { default as TemplateQuizRecord } from "./TemplateQuizRecord";
 export { default as TemplateQuizSentenceBlank } from "./TemplateQuizSentenceBlank";
 export { default as TemplateQuizTextEnter } from "./TemplateQuizTextEnter";
 export { default as TemplateQuizWordBlank } from "./TemplateQuizWordBlank";

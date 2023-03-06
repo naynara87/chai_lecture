@@ -16,7 +16,6 @@ const ComponentButtonRadiFillMain = ({
   return (
     <button
       className="btn btn-radi-fill-main"
-      data-text={text}
       onClick={handleClickBtn}
     >
       <span>{text}</span>
