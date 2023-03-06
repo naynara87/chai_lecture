@@ -389,3 +389,16 @@ export type ToggleSentenceListContentData = {
   }[];
   meta?: Meta;
 };
+
+/**
+ * 단어박스형 컴포넌트
+ */
+export type TextBoxesContentData = {
+  type: "textBoxes";
+  data: {
+    text: string;
+    audio?: {
+      src: string;
+    };
+  }[];
+};
