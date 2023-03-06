@@ -83,8 +83,8 @@ export type TemplateConversationToggleData = {
  */
 export type TemplateConversationRepeatData = {
   type: "TemplateConversationRepeat";
-  leftContents: Content[];
-  rightContents: Content[];
+  leftContents: ConversationContent[];
+  rightContents: ConversationContent[];
 };
 
 /**
