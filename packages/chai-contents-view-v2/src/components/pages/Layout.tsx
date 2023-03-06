@@ -27,18 +27,6 @@ const Layout = () => {
     });
   }, [setGlobalAudio]);
 
-  useEffect(() => {
-    if (!globalAudioRef.current) return;
-    globalAudioRef.current.addEventListener("ended", () => {
-      setGlobalAudio({
-        id: -1,
-        audioSrc: "",
-        audioState: "pause",
-        audioRef: globalAudioRef,
-      });
-    });
-  }, [setGlobalAudio]);
-
   const [isIntroductionModalOpen, setIsIntroductionModalOpen] = useState(false);
 
   const [, setCompletedCorners] = useRecoilState(cornersState);

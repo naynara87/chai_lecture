@@ -13,9 +13,15 @@ export type Content =
   | CardTabContentData
   | ConversationWordListContentData
   | BorderTextBoxContentData
+  | ConversationContentData
   | ImageWithDescriptionListContentData
   | ImageWithCaptionListContentData;
 export type ContentType = Content["type"];
+
+export type ConversationContent =
+  | ConversationWordListContentData
+  | ConversationContentData
+  | IconTextContentData;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Meta = Record<string, any>;
@@ -296,6 +302,27 @@ export type ConversationWordListContentData = {
 export type ConversationContentData = {
   type: "conversation";
   data: {
+    text: string;
+    pronunciation: string;
+    meaning: string;
+    character: {
+      name: string;
+      src: string;
+    };
+    audio?: {
+      src: string;
+    };
+    speakingTime?: number;
+  }[];
+  meta?: Meta;
+};
+
+/**
+ * 대화 토글 컴포넌트
+ */
+export type ConversationToggleContentData = {
+  type: "conversationToggle";
+  data: {
     words: {
       text: string;
       pronunciation: string;
@@ -309,7 +336,6 @@ export type ConversationContentData = {
       };
       speakingTime?: number;
     }[];
-    hasToggle: boolean;
   };
   meta?: Meta;
 };

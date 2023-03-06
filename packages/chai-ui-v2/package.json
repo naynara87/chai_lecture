@@ -36,11 +36,13 @@
     "rollup-plugin-scss": "^4.0.0",
     "rollup-plugin-typescript2": "^0.34.1",
     "sass": "*",
+    "typescript": "*",
     "swiper": "*",
-    "typescript": "*"
+    "uuid": "*"
   },
   "devDependencies": {
     "@babel/core": "*",
+    "@types/uuid": "*",
     "@storybook/addon-actions": "*",
     "@storybook/addon-essentials": "*",
     "@storybook/addon-interactions": "*",
