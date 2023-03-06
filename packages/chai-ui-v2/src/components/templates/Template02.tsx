@@ -1,20 +1,28 @@
 import React, { useState } from "react";
 import LayoutModalVoca from "../modal/LayoutModalVoca";
 import LayoutModalSolution from "../modal/LayoutModalSolution";
+import ImageWithCaptionListComponent from "../contents/ImageWithCaptionListComponent";
 
-interface Template02Props {
-  sideCard: JSX.Element;
-  wideCard: JSX.Element;
-}
-
-const Template02 = ({ sideCard, wideCard }: Template02Props) => {
+const Template02 = () => {
   const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(false);
   const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
 
   return (
     <div className="layout-panel-wrap grid-h-5-5">
-      <div className="layout-panel side-panel">{sideCard}</div>
-      <div className="layout-panel wide-panel">{wideCard}</div>
+      <div className="layout-panel side-panel"></div>
+      <div className="layout-panel wide-panel">
+        <ImageWithCaptionListComponent
+          contents={{
+            type: "imageWithCaptionList",
+            data: [
+              {
+                src: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png",
+                caption: "1번 이미지 Caption",
+              },
+            ],
+          }}
+        />
+      </div>
       <LayoutModalSolution
         isModalOpen={isModalSolutionOpen}
         setIsModalOpen={setIsModalSolutionOpen}
