@@ -24,7 +24,10 @@ const useGlobalAudio = () => {
   const handleClickAudioButton = useCallback(
     (audioId: ID, src: string) => {
       if (!globalAudio.audioRef?.current) return;
-
+      if (audioId !== globalAudio.id) {
+        globalAudio.audioRef.current.pause();
+        globalAudio.audioRef.current.load();
+      }
       setGlobalAudio({
         ...globalAudio,
         id: audioId,
@@ -44,12 +47,22 @@ const useGlobalAudio = () => {
     globalAudio.audioRef?.current?.pause();
   }, [setGlobalAudio, globalAudio]);
 
+  const handleAudioReset = useCallback(() => {
+    setGlobalAudio({
+      id: -1,
+      audioSrc: "",
+      audioState: "pause",
+      audioRef: globalAudio.audioRef,
+    });
+  }, [setGlobalAudio, globalAudio.audioRef]);
+
   return {
     globalAudioRef: globalAudio.audioRef,
     globalAudioId: globalAudio.id,
     globalAudioState: globalAudio.audioState,
     handleClickAudioButton,
     handleClickAudioStopButton,
+    handleAudioReset,
   };
 };
 

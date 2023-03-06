@@ -3,7 +3,6 @@ import { ComponentTitle } from "../molecules";
 import ComponentNextLesson from "../molecules/ComponentNextLesson";
 
 const TemplatePub = () => {
-
   return (
     <div className="layout-panel-wrap">
       <div className="layout-panel">

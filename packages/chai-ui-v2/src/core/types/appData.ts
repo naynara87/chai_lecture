@@ -87,7 +87,7 @@ export type SinglePage = {
   id: ID;
   name: string;
   type: "SinglePage";
-  data: TemplateData;
+  data: TemplateData | ConversationTemplateData | QuizTemplateData;
   introduction?: PageIntroduction;
 };
 
@@ -95,7 +95,7 @@ export type MultiPage = {
   id: ID;
   name: string;
   type: "MultiPage";
-  data: TemplateData[];
+  data: TemplateData[] | ConversationTemplateData[] | QuizTemplateData[];
   introduction?: PageIntroduction;
 };
 
@@ -112,7 +112,7 @@ export interface PageProps {
  */
 export interface TemplateProps {
   setPageCompleted: () => void;
-  template: TemplateData;
+  template: TemplateData | ConversationTemplateData | QuizTemplateData;
 }
 
 export type characterType =

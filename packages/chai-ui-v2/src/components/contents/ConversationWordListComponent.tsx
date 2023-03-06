@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { ConversationWordListContentData } from "../../core";
 import useGlobalAudio from "../../core/hooks/useGlobalAudio";
 import { ComponentButtonPlay, ImgCharacterComponent } from "../atoms";
@@ -16,10 +16,28 @@ const ConversationWordListComponent = ({
 
   const {
     globalAudioId,
+    globalAudioRef,
     handleClickAudioButton,
     handleClickAudioStopButton,
     globalAudioState,
+    handleAudioReset,
   } = useGlobalAudio();
+
+  useEffect(() => {
+    let globalAudioRefValue: HTMLAudioElement | null = null;
+    if (globalAudioRef?.current) globalAudioRefValue = globalAudioRef.current;
+    function resetAudio() {
+      if (globalAudioId.toString().includes("vocaNote")) {
+        handleAudioReset();
+      }
+    }
+    globalAudioRef?.current?.addEventListener("ended", resetAudio);
+    return () => {
+      if (globalAudioRefValue) {
+        globalAudioRefValue.removeEventListener("ended", resetAudio);
+      }
+    };
+  }, [globalAudioRef, handleAudioReset, globalAudioId]);
 
   const handleClickVocaNoteButton = useCallback(() => {
     setIsVocaNoteOpen(!isVocaNoteOpen);

@@ -61,18 +61,62 @@ export const v2CornerDataList: CornerData[] = [
         name: "한어",
         type: "SinglePage",
         data: {
-          type: "Template01",
-          contents: [
+          type: "TemplateConversation",
+          leftContents: [
             {
-              type: "imageWithCaptionList",
+              type: "conversationWordList",
+              data: {
+                words: [
+                  {
+                    text: "游泳",
+                    pronunciation: "yóuyǒng",
+                    meaning: "수영하다",
+                    audio: {
+                      src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+                    },
+                  },
+                  {
+                    text: "游泳2",
+                    pronunciation: "yóuyǒng2",
+                    meaning: "수영하다2",
+                    audio: {
+                      src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
+                    },
+                  },
+                ],
+              },
+            },
+          ],
+          rightContents: [
+            {
+              type: "conversation",
               data: [
                 {
-                  src: "https://mblogthumb-phinf.pstatic.net/MjAxOTEwMTFfNjEg/MDAxNTcwNzg1ODM3Nzc0.zxDXm20VlPdQv8GQi9LWOdPwkqoBdiEmf8aBTWTsPF8g.FqMQTiF6ufydkQxrLBgET3kNYAyyKGJTWTyi1qd1-_Ag.PNG.kkson50/sample_images_01.png?type=w800",
-                  caption: "1번 이미지 Caption",
+                  text: "我喜欢秋天，因为秋天不冷不热，很凉快。",
+                  pronunciation:
+                    "Wǒ xǐhuān qiūtiān, yīnwèi qiūtiān bù lěngbù rè, hěn liángkuai.",
+                  meaning: "안녕",
+                  character: {
+                    name: "왕리리",
+                    src: "이미지 주소",
+                  },
+                  audio: {
+                    src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+                  },
+                  speakingTime: 3,
                 },
                 {
-                  src: "https://mblogthumb-phinf.pstatic.net/MjAxOTEwMTFfNjEg/MDAxNTcwNzg1ODM3Nzc0.zxDXm20VlPdQv8GQi9LWOdPwkqoBdiEmf8aBTWTsPF8g.FqMQTiF6ufydkQxrLBgET3kNYAyyKGJTWTyi1qd1-_Ag.PNG.kkson50/sample_images_01.png?type=w800",
-                  caption: "2번 이미지 Caption",
+                  text: "是吗？ 你喜欢什么季节？",
+                  pronunciation: "Shì ma? Nǐ xǐhuān shénme jìjié?",
+                  meaning: "안녕",
+                  character: {
+                    name: "김민호",
+                    src: "이미지 주소",
+                  },
+                  audio: {
+                    src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
+                  },
+                  speakingTime: 3,
                 },
               ],
             },
