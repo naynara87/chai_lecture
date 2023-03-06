@@ -50,7 +50,7 @@
 // 모달 기본형
 .base-modal {
   overflow: auto;
-  height: vh(900);
+  max-height: vh(900);
 
   .btns-wrap {
     margin-top: vh(40);
