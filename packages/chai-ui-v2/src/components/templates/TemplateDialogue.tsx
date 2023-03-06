@@ -29,7 +29,7 @@ const TemplateDialogue = () => {
           </div>
           {/* 말풍선 캐릭터 */}
           <div className="character-wrapper none">
-            <div className="text-wrap">
+            <div className="text-bubble-wrap">
               {
                 "지난 시간엔 계절에 대한 회화를 학습했어요. 다음 대화를 잘 보고 빈 칸에 들어갈 알맞은 단어를 고르세요."
               }

@@ -6,7 +6,7 @@ interface ComponentButtonFillBlackProps {
 
 const ComponentButtonFillBlack = ({ text }: ComponentButtonFillBlackProps) => {
   return (
-    <button className="btn btn-fill-black" data-text={text}>
+    <button className="btn btn-fill-black">
       <span>{text}</span>
     </button>
   );

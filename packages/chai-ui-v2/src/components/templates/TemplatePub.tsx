@@ -1,21 +1,14 @@
-import React, { useState } from "react";
-import ModalLessonFinish from "../modal/ModalLessonFinish";
+import React from "react";
 import { ComponentTitle } from "../molecules";
-import ComponentTraining from "../molecules/ComponentTraining";
+import ComponentNextLesson from "../molecules/ComponentNextLesson";
 
 const TemplatePub = () => {
-  const [isModalOpen, setIsModalOpen] = useState(true)
 
   return (
     <div className="layout-panel-wrap">
       <div className="layout-panel">
-        <ComponentTitle text="이번 레슨에서 배운 내용을 확인해볼까요?" />
-        <ComponentTraining />
-        <ModalLessonFinish
-          isModalOpen={isModalOpen}
-          setIsModalOpen={setIsModalOpen}
-          wideModal={true}
-        />
+        <ComponentTitle text="다음 레슨에서는 이런 내용을 학습할 거예요!" />
+        <ComponentNextLesson />
       </div>
     </div>
   );

@@ -9,6 +9,7 @@
 // icon button
 .btn-icon {
 	@extend %btn;
+	@extend %btn-interaction;
 	@include rounded(vw(80));
 	@include bg-op($s: 100% 100%);
 
@@ -22,17 +23,6 @@
 
 	.icon {
 		@include full;
-	}
-
-	@include hover {
-		opacity: 1;
-		box-shadow: 0 -2px 0 rgba(88, 88, 88, 0.2);
-	}
-
-	&:disabled {
-		@include hover {
-			box-shadow: $btn-shadow;
-		}
 	}
 }
 
@@ -165,7 +155,7 @@
 	@extend %btn;
 	@extend %btn-interaction;
 
-	width: 100%;
+	width: vw(325);
 	height: vh(82);
 	border: 1px solid color(main);
 	border-radius: vw(100);
@@ -177,6 +167,10 @@
 
 	&:before {
 		letter-spacing: -0.04em;
+	}
+
+	@at-root .modal & {
+		width: 100%;
 	}
 }
 
