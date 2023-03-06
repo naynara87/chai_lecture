@@ -40,6 +40,12 @@ const useTemplateMapper = ({ setPageCompleted }: UseTemplateMapperProps) => {
             setPageCompleted={setPageCompleted}
           />
         ),
+        TemplateConversationRepeat: (
+          <TemplateDialogue
+            template={template as TemplateConversationData}
+            setPageCompleted={setPageCompleted}
+          />
+        ),
       };
 
       return templateList[templateType];

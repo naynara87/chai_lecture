@@ -13,6 +13,7 @@ interface ConversationComponentProps {
   globalAudioState?: "playing" | "pause";
   isShowPronunciation?: boolean;
   isShowMeaning?: boolean;
+  isShowRepeat?: boolean;
 }
 
 const ConversationComponent = ({
@@ -22,6 +23,7 @@ const ConversationComponent = ({
   globalAudioState,
   isShowPronunciation,
   isShowMeaning,
+  isShowRepeat,
 }: ConversationComponentProps) => {
   const mainContents = useMemo(() => {
     return contents.data.map((content, contentIndex) => {
@@ -62,7 +64,7 @@ const ConversationComponent = ({
               <p className="pinyin">{content.pronunciation}</p>
             )}
             {isShowMeaning && <p className="mean">{content.meaning}</p>}
-            {content.speakingTime && (
+            {isShowRepeat && content.speakingTime !== undefined && (
               <SpeakingComponent
                 contents={{
                   type: "speaking",
@@ -84,6 +86,7 @@ const ConversationComponent = ({
     globalAudioState,
     isShowPronunciation,
     isShowMeaning,
+    isShowRepeat,
   ]);
 
   return <ul className="conversation-wrapper">{mainContents}</ul>;

@@ -11,6 +11,7 @@ import ComponentButtonPlay from "../atoms/ComponentButtonPlay";
 import {
   ConversationContentData,
   TemplateConversationData,
+  TemplateConversationRepeatData,
   TemplateConversationToggleData,
   TemplateProps,
   useContentMapper,
@@ -36,7 +37,8 @@ const TemplateDialogue = ({
 }: TemplateDialogueProps) => {
   const thisPage = template as
     | TemplateConversationData
-    | TemplateConversationToggleData;
+    | TemplateConversationToggleData
+    | TemplateConversationRepeatData;
 
   const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(false);
   const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
@@ -175,6 +177,7 @@ const TemplateDialogue = ({
             speakingDialogueIndex={speakingDialogueIndex}
             globalAudioState={globalAudioState}
             key={contentIndex}
+            isShowRepeat={thisPage.type === "TemplateConversationRepeat"}
             isShowPronunciation={
               thisPage.type === "TemplateConversationToggle"
                 ? isShowPronunciation
