@@ -1,0 +1,30 @@
+/* =================== componentRecordSubmit =================== */
+.finish-record-wrapper {
+	.record-btn-wrap {
+		margin: vw(40) auto 0;
+	}
+}
+
+.answer-sheet-wrapper {
+	width: 100%;
+	margin-top: vh(40);
+	padding: vw(40);
+	border-radius: vw(20);
+	background-color: color(purple-200);
+
+	.answer-sheet-title {
+		padding-bottom: vw(12);
+		border-bottom: 1px solid color(gray-db);
+		font-weight: 600;
+		font-size: vw(28);
+		color: color(main);
+
+		>img {
+			margin-right: vw(15);
+		}
+	}
+
+	.answer-sheet-conts {
+		padding-top: vw(10);
+	}
+}

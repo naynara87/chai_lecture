@@ -1,14 +1,12 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { vw } from "../../assets";
 import { ComponentButtonRadiFillMain } from "../atoms";
 import { ComponentRecordButton } from "../molecules";
 import ImgProfileDefaultComponent from "../atoms/ImgProfileDefaultComponent";
+import IconLight from "../../assets/images/icon/icon_light_navy.svg";
+import ComponentText from "./ComponentText";
 
 const FinishRecordWrapper = styled.div`
-  .record-btn-wrap {
-    margin: ${vw(40)} auto 0;
-  }
 `;
 
 const ComponentRecordSubmit = () => {
@@ -58,6 +56,13 @@ const ComponentRecordSubmit = () => {
       <ComponentRecordButton />
       <div className="btns-wrap">
         <ComponentButtonRadiFillMain text="녹음 파일 제출" />
+      </div>
+      {/* TODO: key설명 - 녹음파일 제출후 보이게 되는 컨텐츠(모범답안) */}
+      <div className="answer-sheet-wrapper">
+        <div className="answer-sheet-title"><img src={IconLight} alt="" />모범 답안</div>
+        <div className="answer-sheet-conts">
+          <ComponentText />
+        </div>
       </div>
     </FinishRecordWrapper>
   );
