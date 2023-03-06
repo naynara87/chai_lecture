@@ -11,6 +11,7 @@ import ComponentButtonPlay from "../atoms/ComponentButtonPlay";
 import {
   ConversationContentData,
   TemplateConversationData,
+  TemplateConversationToggleData,
   TemplateProps,
   useContentMapper,
   useGlobalAudio,
@@ -19,6 +20,7 @@ import { vh } from "../../assets";
 import ConversationComponent from "../contents/ConversationComponent";
 import IconTextComponent from "../contents/IconTextComponent";
 import IconPauseButton from "../atoms/Button/IconPauseButton";
+import DialogueToggle from "../molecules/DialogueToggle";
 
 const DialogueContainer = styled.div`
   .repeat-speak-wrapper {
@@ -32,11 +34,17 @@ const TemplateDialogue = ({
   template,
   setPageCompleted,
 }: TemplateDialogueProps) => {
-  const thisPage = template as TemplateConversationData;
+  const thisPage = template as
+    | TemplateConversationData
+    | TemplateConversationToggleData;
 
   const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(false);
   const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
   const [speakingDialogueIndex, setSpeakingDialogueIndex] = useState(-1);
+
+  // Dialogue Toggle 상태
+  const [isShowPronunciation, setIsShowPronunciation] = useState(false);
+  const [isShowMeaning, setIsShowMeaning] = useState(false);
 
   const fullAudioIndexRef = useRef(0);
 
@@ -167,6 +175,16 @@ const TemplateDialogue = ({
             speakingDialogueIndex={speakingDialogueIndex}
             globalAudioState={globalAudioState}
             key={contentIndex}
+            isShowPronunciation={
+              thisPage.type === "TemplateConversationToggle"
+                ? isShowPronunciation
+                : true
+            }
+            isShowMeaning={
+              thisPage.type === "TemplateConversationToggle"
+                ? isShowMeaning
+                : true
+            }
           />
         );
       }
@@ -176,7 +194,21 @@ const TemplateDialogue = ({
     handleClickDialogueCharacter,
     speakingDialogueIndex,
     globalAudioState,
+    isShowPronunciation,
+    isShowMeaning,
+    thisPage.type,
   ]);
+
+  const handleClickOptions = useCallback(
+    (optionType: "pronunciation" | "meaning") => {
+      if (optionType === "pronunciation") {
+        setIsShowPronunciation(!isShowPronunciation);
+      } else {
+        setIsShowMeaning(!isShowMeaning);
+      }
+    },
+    [isShowPronunciation, isShowMeaning],
+  );
 
   return (
     <DialogueContainer className="layout-panel-wrap grid-h-3-7">
@@ -199,6 +231,9 @@ const TemplateDialogue = ({
         {/* ComponentTitle */}
         {rightContentTitle}
         {/* end ComponentTitle */}
+        {thisPage.type === "TemplateConversationToggle" && (
+          <DialogueToggle handleClickOptions={handleClickOptions} />
+        )}
         {/* 230217 회화영역 */}
         {conversasionContents}
       </div>

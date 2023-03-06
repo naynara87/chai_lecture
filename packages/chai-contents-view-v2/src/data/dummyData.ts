@@ -61,7 +61,7 @@ export const v2CornerDataList: CornerData[] = [
         name: "한어",
         type: "SinglePage",
         data: {
-          type: "TemplateConversation",
+          type: "TemplateConversationToggle",
           leftContents: [
             {
               type: "conversationWordList",

@@ -73,8 +73,8 @@ export type TemplateConversationData = {
  */
 export type TemplateConversationToggleData = {
   type: "TemplateConversationToggle";
-  leftContents: Content[];
-  rightContents: Content[];
+  leftContents: ConversationContent[];
+  rightContents: ConversationContent[];
 };
 
 /**

@@ -34,6 +34,12 @@ const useTemplateMapper = ({ setPageCompleted }: UseTemplateMapperProps) => {
             setPageCompleted={setPageCompleted}
           />
         ),
+        TemplateConversationToggle: (
+          <TemplateDialogue
+            template={template as TemplateConversationData}
+            setPageCompleted={setPageCompleted}
+          />
+        ),
       };
 
       return templateList[templateType];
