@@ -226,3 +226,47 @@
     margin-top: vh(98);
   }
 }
+
+// 학습완료
+.modal-completed {
+  width: 100%;
+  height: 100%;
+
+  .modal-container {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    background: transparent;
+    transform: none;
+
+    >img {
+      width: vw(600);
+      margin-top: vh(-130);
+    }
+
+    .text {
+      font-weight: 600;
+      font-size: vw(50);
+      color: color(gray-ff);
+      text-align: center;
+      white-space: pre-line;
+    }
+  }
+
+  .btn {
+    @extend %btn;
+    @extend %btn-interaction;
+
+    z-index: z(two + 1);
+    position: relative;
+    width: vw(252);
+    margin-top: vh(90);
+    padding: vh(30) vw(20);
+    border-radius: vw(20);
+    background-color: color(gray-ff);
+    font-weight: 600;
+    font-size: vw(28);
+  }
+}

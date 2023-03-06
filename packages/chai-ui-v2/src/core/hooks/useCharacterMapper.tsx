@@ -18,7 +18,13 @@ import winiSmile from "../../assets/images/img/cha_wini_smile.png";
 import winiSurprise from "../../assets/images/img/cha_wini_surprise.png";
 import winiWink from "../../assets/images/img/cha_wini_wink.png";
 import kkungiHeader from "../../assets/images/img/cha_kkungi_header.gif";
-import allFinish from "../../assets/images/img/cha_all_finish.gif";
+import allFinish1 from "../../assets/images/img/cha_all_finish01.gif";
+import allFinish2 from "../../assets/images/img/cha_all_finish02.gif";
+import allFinish3 from "../../assets/images/img/cha_all_finish03.gif";
+import allFinish4 from "../../assets/images/img/cha_all_finish04.gif";
+import allFinish5 from "../../assets/images/img/cha_all_finish05.gif";
+import allFinish6 from "../../assets/images/img/cha_all_finish06.gif";
+import allFinish7 from "../../assets/images/img/cha_all_finish07.gif";
 import { characterType } from "../types";
 
 const useCharacterMapper = () => {
@@ -43,7 +49,13 @@ const useCharacterMapper = () => {
     winiSmile,
     winiSurprise,
     winiWink,
-    allFinish,
+    allFinish1,
+    allFinish2,
+    allFinish3,
+    allFinish4,
+    allFinish5,
+    allFinish6,
+    allFinish7,
   };
 
   const getCharacterSrc = (characterName: characterType) => {

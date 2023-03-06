@@ -1,4 +1,5 @@
 import React from "react";
+import ModalCompleted from "../modal/ModalCompleted";
 import { ComponentTitle } from "../molecules";
 import ComponentNextLesson from "../molecules/ComponentNextLesson";
 
@@ -9,6 +10,7 @@ const TemplatePub = () => {
         <ComponentTitle text="다음 레슨에서는 이런 내용을 학습할 거예요!" />
         <ComponentNextLesson />
       </div>
+      <ModalCompleted />
     </div>
   );
 };
