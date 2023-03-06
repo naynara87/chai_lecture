@@ -5,7 +5,7 @@ import IconClose from "../../assets/images/icon/icon_close_black.svg";
 import { colorPalette, vw } from "../../assets";
 import ComponentNumbering from "../molecules/ComponentNumbering";
 
-interface ModalLessonFinishProps {
+interface ModalLearningPointProps {
   isModalOpen: boolean;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   wideModal: boolean;
@@ -30,11 +30,11 @@ const ModalFinishTitle = styled.div`
   }
 `;
 
-const ModalLessonFinish = ({
+const ModalLearningPoint = ({
   isModalOpen,
   setIsModalOpen,
   wideModal,
-}: ModalLessonFinishProps) => {
+}: ModalLearningPointProps) => {
   const handleClose = () => {
     setIsModalOpen(false);
   };
@@ -74,4 +74,4 @@ const ModalLessonFinish = ({
   );
 };
 
-export default ModalLessonFinish;
+export default ModalLearningPoint;
