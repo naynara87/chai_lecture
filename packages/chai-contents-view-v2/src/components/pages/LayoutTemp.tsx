@@ -1,4 +1,4 @@
-import { TemplatePub } from "chai-ui-v2";
+import { Template02, Template03, TemplatePub } from "chai-ui-v2";
 import React from "react";
 import LayoutFooter from "../molecules/LayoutFooter";
 import LayoutHeader from "../molecules/LayoutHeader";
@@ -8,7 +8,7 @@ const LayoutTemp = () => {
     <div>
       <LayoutHeader />
       <main className="cai-main">
-        <TemplatePub />
+        <Template02 />
       </main>
       <LayoutFooter
         pages={[]}

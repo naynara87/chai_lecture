@@ -21,11 +21,13 @@ import {
   MultilevelActionCardListContentData,
   CardTabContentData,
   ImageWithDescriptionListContentData,
+  ImageWithCaptionListContentData,
 } from "../types";
 import CharacterCardListComponent from "../../components/contents/CharacterCardListComponent";
 import SpeakingComponent from "../../components/contents/SpeakingComponent";
 import MultilevelActionCardListComponent from "../../components/contents/MultilevelActionCardListComponent";
 import CardTabComponent from "../../components/contents/CardTabComponent";
+import ImageWithCaptionListComponent from "../../components/contents/ImageWithCaptionListComponent";
 
 const useContentMapper = () => {
   const getContentComponent = (content: Content, contentIndex: number) => {
@@ -93,6 +95,12 @@ const useContentMapper = () => {
       imageWithDescriptionList: (
         <ImageWithDescriptionListComponent
           contents={content as ImageWithDescriptionListContentData}
+          key={contentIndex}
+        />
+      ),
+      imageWithCaptionList: (
+        <ImageWithCaptionListComponent
+          contents={content as ImageWithCaptionListContentData}
           key={contentIndex}
         />
       ),
