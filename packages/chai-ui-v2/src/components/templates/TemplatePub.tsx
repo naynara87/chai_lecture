@@ -1,16 +1,14 @@
 import React from "react";
-import { ComponentContsInfo } from "../molecules";
-import ComponentRecordSubmit from "../molecules/ComponentRecordSubmit";
+import { ComponentTitle } from "../molecules";
+import ComponentNextLesson from "../molecules/ComponentNextLesson";
 
 const TemplatePub = () => {
 
   return (
-    <div className="layout-panel-wrap grid-h-3-7">
+    <div className="layout-panel-wrap">
       <div className="layout-panel">
-        <ComponentContsInfo text="다음 문장을 중국어로 말해 보세요." />
-      </div>
-      <div className="layout-panel">
-        <ComponentRecordSubmit />
+        <ComponentTitle text="다음 레슨에서는 이런 내용을 학습할 거예요!" />
+        <ComponentNextLesson />
       </div>
     </div>
   );
