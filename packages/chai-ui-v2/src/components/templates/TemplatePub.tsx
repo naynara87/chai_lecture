@@ -1,13 +1,14 @@
 import React from "react";
-import { ComponentTitle } from "../molecules";
-import ComponentTraining from "../molecules/ComponentTraining";
+import ComponentCultureToggleText from "../molecules/ComponentCultureToggleText";
 
 const TemplatePub = () => {
   return (
-    <div className="layout-panel-wrap">
-      <div className="layout-panel">
-        <ComponentTitle text="이번 레슨에서 배운 내용을 확인해볼까요?" />
-        <ComponentTraining />
+    <div className="layout-panel-wrap grid-h-3-7">
+      <div className="layout-panel side-panel">
+        {/* <ComponentVocaNote /> */}
+      </div>
+      <div className="layout-panel wide-panel">
+        <ComponentCultureToggleText />
       </div>
     </div>
   );

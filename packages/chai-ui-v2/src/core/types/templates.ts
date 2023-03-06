@@ -1,4 +1,4 @@
-import { Content } from "./contents";
+import { Content, ConversationContent } from "./contents";
 
 export type TemplateData =
   | Template01Data
@@ -63,8 +63,8 @@ export type Template_H_5_5Data = {
  */
 export type TemplateConversationData = {
   type: "TemplateConversation";
-  leftContents: Content[];
-  rightContents: Content[];
+  leftContents: ConversationContent[];
+  rightContents: ConversationContent[];
 };
 
 /**
