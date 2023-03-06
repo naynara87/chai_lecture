@@ -11,6 +11,8 @@ interface ConversationComponentProps {
   ) => void;
   speakingDialogueIndex?: number;
   globalAudioState?: "playing" | "pause";
+  isShowPronunciation?: boolean;
+  isShowMeaning?: boolean;
 }
 
 const ConversationComponent = ({
@@ -18,6 +20,8 @@ const ConversationComponent = ({
   handleClickProfileCallback,
   speakingDialogueIndex,
   globalAudioState,
+  isShowPronunciation,
+  isShowMeaning,
 }: ConversationComponentProps) => {
   const mainContents = useMemo(() => {
     return contents.data.map((content, contentIndex) => {
@@ -54,8 +58,10 @@ const ConversationComponent = ({
           </div>
           <div className="txt-wrap">
             <p className="chinese">{content.text}</p>
-            <p className="pinyin">{content.pronunciation}</p>
-            <p className="mean">{content.meaning}</p>
+            {isShowPronunciation && (
+              <p className="pinyin">{content.pronunciation}</p>
+            )}
+            {isShowMeaning && <p className="mean">{content.meaning}</p>}
             {content.speakingTime && (
               <SpeakingComponent
                 contents={{
@@ -76,6 +82,8 @@ const ConversationComponent = ({
     handleClickProfileCallback,
     speakingDialogueIndex,
     globalAudioState,
+    isShowPronunciation,
+    isShowMeaning,
   ]);
 
   return <ul className="conversation-wrapper">{mainContents}</ul>;
