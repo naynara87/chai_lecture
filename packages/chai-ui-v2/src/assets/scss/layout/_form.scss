@@ -120,6 +120,7 @@
 	@extend %btn;
 	@include square(vw(48));
 
+	z-index: z(two);
 	position: absolute;
 	top: vh(27);
 	left: auto;
