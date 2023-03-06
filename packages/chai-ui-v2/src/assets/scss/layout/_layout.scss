@@ -36,16 +36,18 @@
   border-radius: 15px;
   background-color: color(gray-ff);
   box-shadow: 2px 6px 12px rgba(0, 0, 0, 0.15);
-  > *:not(:first-child) {
+
+  >*:not(:first-child) {
     margin-top: vh(40);
   }
 
-  .description-bubble-container {
+  .description-bubble-container,
+  .btns-wrap {
     margin-top: vh(60);
   }
 
-  .btns-wrap {
-    margin-top: vh(60);
+  .modal {
+    margin-top: 0;
   }
 }
 
