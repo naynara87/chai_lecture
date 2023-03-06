@@ -10,10 +10,13 @@ interface ModalImageProps {
   isImageModal: boolean;
 }
 
+const ModalImageWrapper = styled.div`
+  text-align: center;
+`;
+
 const ModalInnerBox = styled.img`
-  overflow: hidden;
   z-index: 2;
-  width: 100%;
+  width: 90%;
   max-height: 100%;
   object-fit: contain;
 `;
@@ -37,7 +40,9 @@ const ModalImage = ({
       <button className="btn-close-modal" onClick={handleClose}>
         <img src={IconClose} alt="닫기" />
       </button>
-      <ModalInnerBox src={imageSrc} />
+      <ModalImageWrapper>
+        <ModalInnerBox src={imageSrc} />
+      </ModalImageWrapper>
     </ModalCommon>
   );
 };
