@@ -13,7 +13,8 @@ export type Content =
   | CardTabContentData
   | ConversationWordListContentData
   | BorderTextBoxContentData
-  | ImageWithDescriptionListContentData;
+  | ImageWithDescriptionListContentData
+  | ImageWithCaptionListContentData;
 export type ContentType = Content["type"];
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
