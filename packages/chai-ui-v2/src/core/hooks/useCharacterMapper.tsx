@@ -11,13 +11,14 @@ import kkungiLaugh from "../../assets/images/img/cha_kkungi_laugh.png";
 import kkungiPositive from "../../assets/images/img/cha_kkungi_positive.png";
 import kkungiSmile from "../../assets/images/img/cha_kkungi_smile.png";
 import kkungiWink from "../../assets/images/img/cha_kkungi_wink.png";
+import kkungiHeader from "../../assets/images/img/cha_kkungi_header.gif";
 import winiProud from "../../assets/images/img/cha_wini_proud.png";
 import winiSad from "../../assets/images/img/cha_wini_sad.png";
 import winiShock from "../../assets/images/img/cha_wini_shock.png";
 import winiSmile from "../../assets/images/img/cha_wini_smile.png";
 import winiSurprise from "../../assets/images/img/cha_wini_surprise.png";
 import winiWink from "../../assets/images/img/cha_wini_wink.png";
-import kkungiHeader from "../../assets/images/img/cha_kkungi_header.gif";
+import allCharacter from "../../assets/images/img/cha_all.png";
 import allFinish1 from "../../assets/images/img/cha_all_finish01.gif";
 import allFinish2 from "../../assets/images/img/cha_all_finish02.gif";
 import allFinish3 from "../../assets/images/img/cha_all_finish03.gif";
@@ -49,6 +50,7 @@ const useCharacterMapper = () => {
     winiSmile,
     winiSurprise,
     winiWink,
+    allCharacter,
     allFinish1,
     allFinish2,
     allFinish3,

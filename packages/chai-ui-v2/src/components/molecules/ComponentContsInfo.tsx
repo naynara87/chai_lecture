@@ -12,7 +12,7 @@ const ComponentContsInfo = ({ text }: ComponentContsInfoProps) => {
         <div className="text-bubble-wrap">{text}</div>
         <div className="character-wrap">
           <ImgCharacterComponent
-            characterType="didiGlasses"
+            characterType="allCharacter"
             characterAlt="디디"
           />
         </div>
