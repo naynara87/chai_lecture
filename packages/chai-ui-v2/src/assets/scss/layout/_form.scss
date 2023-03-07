@@ -51,19 +51,19 @@
   }
 }
 
-.btn-pause {
-  @include bg-url(icon, "icon_pause.svg");
+.btn-pause-fill {
+  @include bg-url(icon, "icon_pause_fill.svg");
 
   &:disabled {
-    @include bg-url(icon, "icon_pause_disabled.svg");
+    @include bg-url(icon, "icon_pause_fill_disabled.svg");
   }
 }
 
-.btn-stop {
-  @include bg-url(icon, "icon_stop.svg");
+.btn-stop-fill {
+  @include bg-url(icon, "icon_stop_fill.svg");
 
   &:disabled {
-    @include bg-url(icon, "icon_stop_disabled.svg");
+    @include bg-url(icon, "icon_stop_fill_disabled.svg");
   }
 }
 
@@ -83,11 +83,11 @@
   }
 }
 
-.btn-dectionary {
-  @include bg-url(icon, "icon_dictionary.svg");
+.btn-dectionary-fill {
+  @include bg-url(icon, "icon_dictionary_fill.svg");
 
   &:disabled {
-    @include bg-url(icon, "icon_dictionary_disabled.svg");
+    @include bg-url(icon, "icon_dictionary_fill_disabled.svg");
   }
 }
 
@@ -130,6 +130,7 @@
   font-weight: 600;
   font-size: vw(22);
   color: color(gray-ff);
+  box-shadow: $btn-shadow;
 }
 
 .btn-radi-border-main {

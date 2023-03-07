@@ -21,6 +21,10 @@ const ModalBaseTitle = styled.div`
 const ModalBaseContents = styled.div`
   /* NOTE: 설명 - dec 의 height 가 36.3333333333vh(436px을 vh로 변경)이상일 때 추가됨 */
   align-items: flex-start;
+
+  ~ .btns-wrap {
+    width: 100%;
+  }
 `;
 
 interface LayoutModalSolutionProps {
@@ -67,7 +71,7 @@ const LayoutModalSolution = ({
 
       {/* NOTE: 설명 - 버튼이 하나만 들어갈 수도 있음 */}
       <div className="btns-wrap">
-        <ComponentButtonRadiBorderMain text="자세한 설명 들으러 가기" />
+        <ComponentButtonRadiBorderMain text="동영상 설명 보기" />
         <ComponentButtonRadiFillMain text="확인" />
       </div>
     </ModalCommon>

@@ -1,16 +1,21 @@
-import React from "react";
-import ModalCompleted from "../modal/ModalCompleted";
-import { ComponentTitle } from "../molecules";
-import ComponentNextLesson from "../molecules/ComponentNextLesson";
+import React, { useState } from "react";
+import IconDictionaryFillButton from "../atoms/Button/IconDictionaryFillButton";
+import { LayoutModalSolution } from "../modal";
+import ComponentContsStart from "../molecules/ComponentContsStart";
 
 const TemplatePub = () => {
+  const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(true);
+
   return (
     <div className="layout-panel-wrap">
       <div className="layout-panel">
-        <ComponentTitle text="다음 레슨에서는 이런 내용을 학습할 거예요!" />
-        <ComponentNextLesson />
+        <ComponentContsStart />
+        <IconDictionaryFillButton />
+        <LayoutModalSolution
+          isModalOpen={isModalSolutionOpen}
+          setIsModalOpen={setIsModalSolutionOpen}
+        />
       </div>
-      <ModalCompleted />
     </div>
   );
 };

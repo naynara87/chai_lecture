@@ -17,7 +17,7 @@ import {
   useContentMapper,
   useGlobalAudio,
 } from "../../core";
-import IconPauseButton from "../atoms/Button/IconPauseButton";
+import IconPauseFillButton from "../atoms/Button/IconPauseFillButton";
 import ConversationQuizComponent from "../contents/ConversationQuizComponent";
 
 const DialogueContainer = styled.div`
@@ -80,7 +80,7 @@ const DialogueContainer = styled.div`
   }
 `;
 
-interface TemplateQuizDialogueWordBlank extends TemplateProps {}
+interface TemplateQuizDialogueWordBlank extends TemplateProps { }
 
 const TemplateQuizDialogueWordBlank = ({
   template,
@@ -204,7 +204,7 @@ const TemplateQuizDialogueWordBlank = ({
           {dialogueQuizContent && (
             <div className="btns-wrap">
               {globalAudioId.toString().includes("fullAudio") ? (
-                <IconPauseButton onClick={handleStopFullAudio} />
+                <IconPauseFillButton onClick={handleStopFullAudio} />
               ) : (
                 <ComponentButtonPlay onClick={listenFullAudio} />
               )}

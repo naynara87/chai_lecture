@@ -2,7 +2,7 @@ import React from "react";
 
 interface ComponentButtonRadiBorderMainProps {
   text: string;
-  onClickBtn: () => void;
+  onClickBtn?: () => void;
 }
 
 const ComponentButtonRadiBorderMain = ({
