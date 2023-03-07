@@ -125,6 +125,7 @@ export type characterType =
   | "didiWink"
   | "didiWinking"
   | "kkungiHeart"
+  | "kkungiHandsup"
   | "kkungiLaugh"
   | "kkungiPositive"
   | "kkungiSmile"

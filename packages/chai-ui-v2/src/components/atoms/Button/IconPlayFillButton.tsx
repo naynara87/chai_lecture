@@ -4,7 +4,7 @@ interface PlayButtonProps {
   active: boolean;
 }
 
-const IconPlayButton = ({ active }: PlayButtonProps) => {
+const IconPlayFillButton = ({ active }: PlayButtonProps) => {
   return (
     <button className="btn-icon btn-play-fill" disabled={!active}>
       재생
@@ -12,4 +12,4 @@ const IconPlayButton = ({ active }: PlayButtonProps) => {
   );
 };
 
-export default IconPlayButton;
+export default IconPlayFillButton;
