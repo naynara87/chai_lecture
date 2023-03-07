@@ -19,7 +19,7 @@ const LayoutModalVoca = ({
   };
 
   return (
-    <ModalCommon open={isModalOpen} onClose={handleClose}>
+    <ModalCommon open={isModalOpen} vocaModal={true} onClose={handleClose}>
       {/* 
         TODO: key설명 - 모달 닫기버튼*/}
       <button className="btn-close-modal" onClick={handleClose}>
