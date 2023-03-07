@@ -20,7 +20,7 @@ import {
 import { vh } from "../../assets";
 import ConversationComponent from "../contents/ConversationComponent";
 import IconTextComponent from "../contents/IconTextComponent";
-import IconPauseButton from "../atoms/Button/IconPauseButton";
+import IconPauseFillButton from "../atoms/Button/IconPauseFillButton";
 import DialogueToggle from "../molecules/DialogueToggle";
 
 const DialogueContainer = styled.div`
@@ -29,7 +29,7 @@ const DialogueContainer = styled.div`
   }
 `;
 
-interface TemplateDialogueProps extends TemplateProps {}
+interface TemplateDialogueProps extends TemplateProps { }
 
 const TemplateDialogue = ({
   template,
@@ -220,7 +220,7 @@ const TemplateDialogue = ({
           {dialogueContent && (
             <div className="btns-wrap">
               {globalAudioId.toString().includes("fullAudio") ? (
-                <IconPauseButton onClick={handleStopFullAudio} />
+                <IconPauseFillButton onClick={handleStopFullAudio} />
               ) : (
                 <ComponentButtonPlay onClick={listenFullAudio} />
               )}

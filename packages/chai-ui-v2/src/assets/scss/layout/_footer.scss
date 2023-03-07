@@ -96,7 +96,7 @@
 	border: 2px solid color(gray-db);
 	border-radius: 10px;
 
-	.cai-nav-ttl {
+	.cai-nav-link {
 		@include flex-center;
 
 		width: vw(420);
@@ -110,7 +110,7 @@
 		border-color: color(sub);
 		background-color: color(sub-light);
 
-		.cai-nav-ttl {
+		.cai-nav-link {
 			color: color(main);
 		}
 	}

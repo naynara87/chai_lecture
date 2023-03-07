@@ -59,22 +59,22 @@ const LayoutFooter = ({
           <ul className="cai-nav-list-wrap">
             {/* TODO: key설명 - 반복영역 클릭시 해당 코너의 시작 페이지로 이동 */}
             <li className="cai-nav-list active">
-              <a href="" className="cai-nav-ttl">{"복습"}</a>
+              <a href="" className="cai-nav-link">{"복습"}</a>
             </li>
             <li className="cai-nav-list">
-              <a href="" className="cai-nav-ttl">{"학습 들어가기"}</a>
+              <a href="" className="cai-nav-link">{"학습 들어가기"}</a>
             </li>
             <li className="cai-nav-list">
-              <a href="" className="cai-nav-ttl">{"패턴 중국어"}</a>
+              <a href="" className="cai-nav-link">{"패턴 중국어"}</a>
             </li>
             <li className="cai-nav-list">
-              <a href="" className="cai-nav-ttl">{"회화"}</a>
+              <a href="" className="cai-nav-link">{"회화"}</a>
             </li>
             <li className="cai-nav-list">
-              <a href="" className="cai-nav-ttl">{"문법"}</a>
+              <a href="" className="cai-nav-link">{"문법"}</a>
             </li>
             <li className="cai-nav-list">
-              <a href="" className="cai-nav-ttl">{"문화"}</a>
+              <a href="" className="cai-nav-link">{"문화"}</a>
             </li>
           </ul>
           <div className="btn-wrap">
