@@ -44,5 +44,6 @@ export default {
     "recoil",
     "react-confetti",
     "swiper",
+    "uuid",
   ],
 };
