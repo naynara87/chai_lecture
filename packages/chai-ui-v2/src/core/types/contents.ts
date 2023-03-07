@@ -18,6 +18,7 @@ export type Content =
   | GuideCharacterContentData
   | ConversationQuizContentData
   | QuizWordsInOrderContentData
+  | MultiChoiceContentData
   | ImageWithCaptionListContentData;
 export type ContentType = Content["type"];
 
@@ -29,6 +30,7 @@ export type ConversationContent =
 export type QuizContent =
   | ConversationQuizContentData
   | GuideCharacterContentData
+  | MultiChoiceContentData
   | QuizWordsInOrderContentData;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Meta = Record<string, any>;
@@ -363,6 +365,18 @@ export type QuizWordsInOrderContentData = {
       name: string;
       src: string;
     };
+  };
+  meta?: Meta;
+};
+
+/**
+ * 2지 선다 퀴즈 컴포넌트
+ */
+export type MultiChoiceContentData = {
+  type: "multiChoice";
+  data: {
+    choice: string[];
+    answerIndex: number;
   };
   meta?: Meta;
 };

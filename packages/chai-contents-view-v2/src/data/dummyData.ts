@@ -369,6 +369,42 @@ export const v2CornerDataList: CornerData[] = [
           },
         },
       },
+      {
+        id: 6,
+        name: "단어",
+        type: "SinglePage",
+        data: {
+          type: "TemplateQuizMultiChoice",
+          leftContents: [
+            {
+              type: "guideCharacter",
+              data: {
+                text: "지난 시간엔 계절에 대한 회화를 학습했어요. 다음 대화를 잘 보고 빈 칸에 들어갈 알맞은 단어를 고르세요.",
+                character: {
+                  src: "asdfasdf",
+                },
+              },
+            },
+          ],
+          rightContents: {
+            borderContents: [
+              {
+                type: "text",
+                data: {
+                  text: "<p>제3성이 연이어 나올 때,<br/>올바르게 발음한 것을 고르세요.</p>",
+                },
+              },
+            ],
+            multiChoice: {
+              type: "multiChoice",
+              data: {
+                choice: ["오답", "정답"],
+                answerIndex: 1,
+              },
+            },
+          },
+        },
+      },
     ],
   },
   {

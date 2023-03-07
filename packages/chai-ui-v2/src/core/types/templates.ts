@@ -1,6 +1,7 @@
 import {
   Content,
   ConversationContent,
+  MultiChoiceContentData,
   QuizContent,
   QuizWordsInOrderContentData,
 } from "./contents";
@@ -109,7 +110,10 @@ export type TemplateQuizConversationData = {
 export type TemplateQuizMultiChoiceData = {
   type: "TemplateQuizMultiChoice";
   leftContents: Content[];
-  rightContents: Content[];
+  rightContents: {
+    borderContents: Content[];
+    multiChoice: MultiChoiceContentData;
+  };
 };
 
 /**
