@@ -8,18 +8,20 @@
   border-radius: vw(20);
   background-color: #f4f3fa;
   max-height: vh(80);
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
   transition: all 0.3s;
 
   &::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera*/
+    display: none;
+    /* Chrome, Safari, Opera*/
   }
 
   &.active {
     overflow: auto;
-    // height: auto;
-    max-height: 100vh;
+    height: 100%;
   }
 }
 
