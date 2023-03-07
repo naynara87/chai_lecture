@@ -26,6 +26,7 @@ import {
   ImageWithCaptionListContentData,
   GuideCharacterContentData,
   ConversationQuizContentData,
+  QuizWordsInOrderContentData,
 } from "../types";
 import CharacterCardListComponent from "../../components/contents/CharacterCardListComponent";
 import SpeakingComponent from "../../components/contents/SpeakingComponent";
@@ -35,6 +36,7 @@ import ConversationWordListComponent from "../../components/contents/Conversatio
 import ConversationComponent from "../../components/contents/ConversationComponent";
 import ImageWithCaptionListComponent from "../../components/contents/ImageWithCaptionListComponent";
 import ConversationQuizComponent from "../../components/contents/ConversationQuizComponent";
+import WordsInOrderComponent from "../../components/contents/WordsInOrderComponent";
 
 const useContentMapper = () => {
   const getContentComponent = (content: Content, contentIndex: number) => {
@@ -131,6 +133,12 @@ const useContentMapper = () => {
       conversationQuiz: (
         <ConversationQuizComponent
           contents={content as ConversationQuizContentData}
+          key={contentIndex}
+        />
+      ),
+      quizWordsInOrder: (
+        <WordsInOrderComponent
+          contents={content as QuizWordsInOrderContentData}
           key={contentIndex}
         />
       ),

@@ -17,6 +17,7 @@ export type Content =
   | ImageWithDescriptionListContentData
   | GuideCharacterContentData
   | ConversationQuizContentData
+  | QuizWordsInOrderContentData
   | ImageWithCaptionListContentData;
 export type ContentType = Content["type"];
 
@@ -27,7 +28,8 @@ export type ConversationContent =
 
 export type QuizContent =
   | ConversationQuizContentData
-  | GuideCharacterContentData;
+  | GuideCharacterContentData
+  | QuizWordsInOrderContentData;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Meta = Record<string, any>;
 
@@ -343,6 +345,25 @@ export type ConversationQuizContentData = {
       src: string;
     };
   }[];
+  meta?: Meta;
+};
+
+/**
+ * 단어 배열형 퀴즈 컴포넌트
+ */
+export type QuizWordsInOrderContentData = {
+  type: "quizWordsInOrder";
+  data: {
+    choice: {
+      text: string;
+      isChoice: boolean;
+      answerIndex: number;
+    }[];
+    character?: {
+      name: string;
+      src: string;
+    };
+  };
   meta?: Meta;
 };
 
