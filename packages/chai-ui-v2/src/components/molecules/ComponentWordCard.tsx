@@ -1,8 +1,12 @@
+import styled from "@emotion/styled";
 import React from "react";
+
+const WordCardWrapper = styled.div`
+`;
 
 const ComponentWordCard = () => {
   return (
-    <div className="word-card-wrapper">
+    <WordCardWrapper className="word-card-wrapper">
       <ul className="word-card-list">
         <li className="word-card">
           <p className="text">{`在`}</p>
@@ -25,8 +29,7 @@ const ComponentWordCard = () => {
           <small className="text-sm">{`cǎigòu`}</small>
         </li>
       </ul>
-      <p className="word-card-text">{`나는 지하철을 타고 갑니다.`}</p>
-    </div>
+    </WordCardWrapper>
   );
 };
 
