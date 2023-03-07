@@ -1,4 +1,9 @@
-import { Content, ConversationContent, QuizContent } from "./contents";
+import {
+  Content,
+  ConversationContent,
+  QuizContent,
+  QuizWordsInOrderContentData,
+} from "./contents";
 
 export type TemplateData =
   | Template01Data
@@ -114,7 +119,10 @@ export type TemplateQuizMultiChoiceData = {
 export type TemplateQuizWordsInOrderData = {
   type: "TemplateQuizWordsInOrder";
   leftContents: Content[];
-  rightContents: Content[];
+  rightContents: {
+    borderContents: Content[];
+    wordInOrderQuiz: QuizWordsInOrderContentData;
+  };
 };
 
 /**

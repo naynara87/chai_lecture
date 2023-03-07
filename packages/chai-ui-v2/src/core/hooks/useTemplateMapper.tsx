@@ -5,6 +5,7 @@ import {
   TemplateQuizDialogueWordBlank,
 } from "../../components";
 import TemplateExam from "../../components/templates/TemplateExam";
+import TemplateQuizDialogueWordArray from "../../components/templates/TemplateQuizDialogueWordArray";
 import {
   ConversationTemplateData,
   QuizTemplateData,
@@ -12,6 +13,7 @@ import {
   TemplateConversationData,
   TemplateData,
   TemplateQuizConversationData,
+  TemplateQuizWordsInOrderData,
 } from "../types";
 import { TemplateType } from "../types/appData";
 
@@ -54,6 +56,12 @@ const useTemplateMapper = ({ setPageCompleted }: UseTemplateMapperProps) => {
         TemplateQuizConversation: (
           <TemplateQuizDialogueWordBlank
             template={template as TemplateQuizConversationData}
+            setPageCompleted={setPageCompleted}
+          />
+        ),
+        TemplateQuizWordsInOrder: (
+          <TemplateQuizDialogueWordArray
+            template={template as TemplateQuizWordsInOrderData}
             setPageCompleted={setPageCompleted}
           />
         ),

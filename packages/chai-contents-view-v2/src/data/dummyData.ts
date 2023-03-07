@@ -309,6 +309,66 @@ export const v2CornerDataList: CornerData[] = [
           },
         ],
       },
+      {
+        id: 5,
+        name: "단어",
+        type: "SinglePage",
+        data: {
+          type: "TemplateQuizWordsInOrder",
+          leftContents: [
+            {
+              type: "guideCharacter",
+              data: {
+                text: "지난 시간엔 계절에 대한 회화를 학습했어요. 다음 대화를 잘 보고 빈 칸에 들어갈 알맞은 단어를 고르세요.",
+                character: {
+                  src: "asdfasdf",
+                },
+              },
+            },
+          ],
+          rightContents: {
+            borderContents: [
+              {
+                type: "text",
+                data: {
+                  text: "너는 어디 가니?",
+                },
+              },
+            ],
+            wordInOrderQuiz: {
+              type: "quizWordsInOrder",
+              data: {
+                choice: [
+                  {
+                    text: "<p>冷<br>lěng</p>",
+                    isChoice: true,
+                    answerIndex: 0,
+                  },
+                  {
+                    text: "<p>首尔的<br>Shǒu'ěr de</p>",
+                    isChoice: true,
+                    answerIndex: 1,
+                  },
+                  {
+                    text: "<p>没有<br>Méiyǒu</p>",
+                    isChoice: true,
+                    answerIndex: 2,
+                  },
+                  {
+                    text: "<p>?</p>",
+                    isChoice: false,
+                    answerIndex: -1,
+                  },
+                ],
+                character: {
+                  name: "김민호",
+                  src: "asdfasdf",
+                },
+              },
+            },
+          },
+        },
+      },
     ],
   },
   {
