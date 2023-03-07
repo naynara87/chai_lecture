@@ -83,11 +83,11 @@
 	}
 }
 
-.btn-dectionary {
-	@include bg-url(icon, 'icon_dictionary.svg');
+.btn-dectionary-fill {
+	@include bg-url(icon, 'icon_dictionary_fill.svg');
 
 	&:disabled {
-		@include bg-url(icon, 'icon_dictionary_disabled.svg');
+		@include bg-url(icon, 'icon_dictionary_fill_disabled.svg');
 	}
 }
 
