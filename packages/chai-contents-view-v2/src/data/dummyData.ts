@@ -59,6 +59,89 @@ export const v2CornerDataList: CornerData[] = [
       {
         id: 1,
         name: "한어",
+        type: "MultiPage",
+        data: [
+          {
+            type: "TemplateQuizConversation",
+            leftContents: [
+              {
+                type: "guideCharacter",
+                data: {
+                  text: "지난 시간엔 계절에 대한 회화를 학습했어요. 다음 대화를 잘 보고 빈 칸에 들어갈 알맞은 단어를 고르세요.",
+                  character: {
+                    src: "asdfasdf",
+                  },
+                },
+              },
+            ],
+            rightContents: [
+              {
+                type: "conversationQuiz",
+                data: [
+                  {
+                    text: "今天刮风，*blank*，很冷。",
+                    pronunciation: "Jīntiān guā fēng, xià xuě, hěn lěng.",
+                    meaning: "오늘은 바람이 불고, 눈이 내려서 추워.",
+                    choice: [
+                      { text: "정답", isAnswer: true },
+                      {
+                        text: "오답",
+                        isAnswer: false,
+                      },
+                    ],
+                    character: {
+                      name: "왕리리",
+                      src: "adsfasdf",
+                    },
+                    audio: {
+                      src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+                    },
+                  },
+                  {
+                    text: "今天刮风，*blank*，很冷。",
+                    pronunciation: "Jīntiān guā fēng, xià xuě, hěn lěng.",
+                    meaning: "오늘은 바람이 불고, 눈이 내려서 추워.",
+                    choice: [
+                      { text: "정답", isAnswer: true },
+                      {
+                        text: "오답",
+                        isAnswer: false,
+                      },
+                    ],
+                    character: {
+                      name: "김민호",
+                      src: "adsfasdf",
+                    },
+                    audio: {
+                      src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
+                    },
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: 2,
+        name: "한어",
+        type: "SinglePage",
+        data: {
+          type: "Template01",
+          contents: [
+            {
+              type: "speaking",
+              data: {
+                speakingTime: 3,
+                src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+              },
+            },
+          ],
+        },
+      },
+      {
+        id: 3,
+        name: "한어",
         type: "SinglePage",
         data: {
           type: "TemplateConversationRepeat",
@@ -73,6 +156,38 @@ export const v2CornerDataList: CornerData[] = [
                     meaning: "수영하다",
                     audio: {
                       src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+                    },
+                  },
+                  {
+                    text: "游泳2",
+                    pronunciation: "yóuyǒng2",
+                    meaning: "수영하다2",
+                    audio: {
+                      src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
+                    },
+                  },
+                  {
+                    text: "游泳2",
+                    pronunciation: "yóuyǒng2",
+                    meaning: "수영하다2",
+                    audio: {
+                      src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
+                    },
+                  },
+                  {
+                    text: "游泳2",
+                    pronunciation: "yóuyǒng2",
+                    meaning: "수영하다2",
+                    audio: {
+                      src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
+                    },
+                  },
+                  {
+                    text: "游泳2",
+                    pronunciation: "yóuyǒng2",
+                    meaning: "수영하다2",
+                    audio: {
+                      src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
                     },
                   },
                   {
@@ -119,23 +234,6 @@ export const v2CornerDataList: CornerData[] = [
                   speakingTime: 3,
                 },
               ],
-            },
-          ],
-        },
-      },
-      {
-        id: 2,
-        name: "한어",
-        type: "SinglePage",
-        data: {
-          type: "Template01",
-          contents: [
-            {
-              type: "speaking",
-              data: {
-                speakingTime: 3,
-                src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
-              },
             },
           ],
         },

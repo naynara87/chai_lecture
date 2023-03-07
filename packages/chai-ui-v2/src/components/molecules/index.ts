@@ -4,7 +4,6 @@ export { default as ComponentRecordButton } from "./ComponentRecordButton";
 export { default as ComponentRoleplay } from "./ComponentRoleplay";
 export { default as ComponentTitle } from "./ComponentTitle";
 export { default as ComponentToggle } from "./ComponentToggle";
-export { default as DialogueQuizChoiceWordBlankContent } from "./DialogueQuizChoiceWordBlankContent";
 export { default as GrayRadioBoxes } from "./GrayRadioBoxes";
 export { default as LineCheckBoxes } from "./LineCheckBoxes";
 export { default as QuizWordBlankAnswers } from "./QuizWordBlankAnswers";

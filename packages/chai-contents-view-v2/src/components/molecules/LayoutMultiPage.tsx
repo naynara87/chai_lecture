@@ -1,5 +1,10 @@
 import styled from "@emotion/styled";
-import { MultiPage, PageProps, useTemplateMapper } from "chai-ui-v2";
+import {
+  MultiPage,
+  PageProps,
+  useGlobalAudio,
+  useTemplateMapper,
+} from "chai-ui-v2";
 import React, { useMemo } from "react";
 import { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -19,6 +24,8 @@ const LayoutMultiPage = ({ page, setPageCompleted }: LayoutMultiPageProps) => {
   const { getTemplateComponent } = useTemplateMapper({
     setPageCompleted,
   });
+
+  const { handleAudioReset } = useGlobalAudio();
 
   const pages = useMemo(() => {
     if (!multiPageData) return;
@@ -43,6 +50,7 @@ const LayoutMultiPage = ({ page, setPageCompleted }: LayoutMultiPageProps) => {
         spaceBetween={20}
         slidesPerView={1.2}
         centeredSlides
+        onSlideChange={handleAudioReset}
       >
         {pages}
       </Swiper>
