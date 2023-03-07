@@ -241,6 +241,7 @@
 	@include flex-center;
 
 	border: 1px solid color(gray-ff);
+	box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
 
 	>img {
 		width: vw(16);
@@ -364,12 +365,14 @@
 .label-chck-gray {
 	display: block;
 	width: 100%;
-	padding: vh(40) vw(40);
-	border: 3px solid color(gray-db);
+	height: vh(124);
+	padding: 0 vw(40);
+	border: 3px solid color(gray-f0);
 	border-radius: vw(20);
 	background-color: color(gray-f5);
+	line-height: vh(124);
 	text-align: center;
-	box-shadow: $btn-shadow;
+	box-shadow: $label-shadow;
 
 	.text {
 		position: relative;
@@ -381,7 +384,7 @@
 
 .inp-chck-gray:checked~.label-chck-gray {
 	border-color: color(main);
-	background-color: color(purple-200);
+	background-color: color(gray-ff);
 
 	.text {
 		color: color(main);

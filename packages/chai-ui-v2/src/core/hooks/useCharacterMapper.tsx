@@ -7,6 +7,7 @@ import didiSurprise from "../../assets/images/img/cha_didi_surprise.png";
 import didiWink from "../../assets/images/img/cha_didi_wink.png";
 import didiWinking from "../../assets/images/img/cha_didi_winking.png";
 import kkungiHeart from "../../assets/images/img/cha_kkungi_heart.png";
+import kkungiHandsup from "../../assets/images/img/cha_kkungi_handsup.png";
 import kkungiLaugh from "../../assets/images/img/cha_kkungi_laugh.png";
 import kkungiPositive from "../../assets/images/img/cha_kkungi_positive.png";
 import kkungiSmile from "../../assets/images/img/cha_kkungi_smile.png";
@@ -39,6 +40,7 @@ const useCharacterMapper = () => {
     didiWink,
     didiWinking,
     kkungiHeart,
+    kkungiHandsup,
     kkungiLaugh,
     kkungiPositive,
     kkungiSmile,
