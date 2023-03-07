@@ -167,7 +167,7 @@ const TemplateDialogue = ({
     });
   }, [thisPage]);
 
-  const conversasionContents = useMemo(() => {
+  const conversationContents = useMemo(() => {
     return thisPage.rightContents.map((rightContent, contentIndex) => {
       if (rightContent.type === "conversation") {
         return (
@@ -217,14 +217,16 @@ const TemplateDialogue = ({
     <DialogueContainer className="layout-panel-wrap grid-h-3-7">
       <div className="layout-panel side-panel">
         <div className="cont-info-wrap">
-          <div className="btns-wrap">
-            {globalAudioId.toString().includes("fullAudio") ? (
-              <IconPauseButton onClick={handleStopFullAudio} />
-            ) : (
-              <ComponentButtonPlay onClick={listenFullAudio} />
-            )}
-            <p className="txt">전체 음성 듣기</p>
-          </div>
+          {dialogueContent && (
+            <div className="btns-wrap">
+              {globalAudioId.toString().includes("fullAudio") ? (
+                <IconPauseButton onClick={handleStopFullAudio} />
+              ) : (
+                <ComponentButtonPlay onClick={listenFullAudio} />
+              )}
+              <p className="txt">전체 음성 듣기</p>
+            </div>
+          )}
           {leftContents}
         </div>
       </div>
@@ -238,7 +240,7 @@ const TemplateDialogue = ({
           <DialogueToggle handleClickOptions={handleClickOptions} />
         )}
         {/* 230217 회화영역 */}
-        {conversasionContents}
+        {conversationContents}
       </div>
       <LayoutModalSolution
         isModalOpen={isModalSolutionOpen}

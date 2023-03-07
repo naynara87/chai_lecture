@@ -2,12 +2,22 @@
 .voca-note-container {
   overflow: hidden;
   width: 100%;
-  height: vh(80);
+  // height: vh(80);
   padding: vh(24) vw(20);
   border: 1px solid #dbe1ff;
   border-radius: vw(20);
   background-color: #f4f3fa;
+  max-height: vh(80);
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
   transition: all 0.3s;
+
+  &::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Opera*/
+  }
 
   &.active {
     overflow: auto;
