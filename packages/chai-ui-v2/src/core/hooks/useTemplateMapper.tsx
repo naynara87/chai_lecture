@@ -1,5 +1,9 @@
 import React, { useCallback } from "react";
-import { Template01, TemplateDialogue } from "../../components";
+import {
+  Template01,
+  TemplateDialogue,
+  TemplateQuizDialogueWordBlank,
+} from "../../components";
 import TemplateExam from "../../components/templates/TemplateExam";
 import {
   ConversationTemplateData,
@@ -7,6 +11,7 @@ import {
   Template01Data,
   TemplateConversationData,
   TemplateData,
+  TemplateQuizConversationData,
 } from "../types";
 import { TemplateType } from "../types/appData";
 
@@ -43,6 +48,12 @@ const useTemplateMapper = ({ setPageCompleted }: UseTemplateMapperProps) => {
         TemplateConversationRepeat: (
           <TemplateDialogue
             template={template as TemplateConversationData}
+            setPageCompleted={setPageCompleted}
+          />
+        ),
+        TemplateQuizConversation: (
+          <TemplateQuizDialogueWordBlank
+            template={template as TemplateQuizConversationData}
             setPageCompleted={setPageCompleted}
           />
         ),

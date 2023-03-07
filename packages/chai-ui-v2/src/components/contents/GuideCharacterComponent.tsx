@@ -10,13 +10,15 @@ const GuideCharacterComponent = ({
   contents,
 }: GuideCharacterComponentProps) => {
   return (
-    <div className="character-wrapper none">
-      <div className="text-wrap">{contents.data.text}</div>
-      <div className="character-wrap">
-        <ImgCharacterComponent
-          characterType="kkungiWink"
-          characterAlt="꿍이윙크"
-        />
+    <div className="cont-info-wrap">
+      <div className="character-wrapper">
+        <div className="text-bubble-wrap">{contents.data.text}</div>
+        <div className="character-wrap">
+          <ImgCharacterComponent
+            characterType="didiGlasses"
+            characterAlt="디디"
+          />
+        </div>
       </div>
     </div>
   );

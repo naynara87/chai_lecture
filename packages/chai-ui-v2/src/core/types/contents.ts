@@ -15,6 +15,8 @@ export type Content =
   | BorderTextBoxContentData
   | ConversationContentData
   | ImageWithDescriptionListContentData
+  | GuideCharacterContentData
+  | ConversationQuizContentData
   | ImageWithCaptionListContentData;
 export type ContentType = Content["type"];
 
@@ -23,6 +25,9 @@ export type ConversationContent =
   | ConversationContentData
   | IconTextContentData;
 
+export type QuizContent =
+  | ConversationQuizContentData
+  | GuideCharacterContentData;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Meta = Record<string, any>;
 
@@ -318,25 +323,26 @@ export type ConversationContentData = {
 };
 
 /**
- * 대화 토글 컴포넌트
+ * 대화 퀴즈 컴포넌트
  */
-export type ConversationToggleContentData = {
-  type: "conversationToggle";
+export type ConversationQuizContentData = {
+  type: "conversationQuiz";
   data: {
-    words: {
+    text: string;
+    pronunciation: string;
+    meaning: string;
+    choice: {
       text: string;
-      pronunciation: string;
-      meaning: string;
-      character: {
-        name: string;
-        src: string;
-      };
-      audio?: {
-        src: string;
-      };
-      speakingTime?: number;
+      isAnswer: boolean;
     }[];
-  };
+    character: {
+      name: string;
+      src: string;
+    };
+    audio?: {
+      src: string;
+    };
+  }[];
   meta?: Meta;
 };
 

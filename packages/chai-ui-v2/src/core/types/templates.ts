@@ -1,4 +1,4 @@
-import { Content, ConversationContent } from "./contents";
+import { Content, ConversationContent, QuizContent } from "./contents";
 
 export type TemplateData =
   | Template01Data
@@ -93,8 +93,8 @@ export type TemplateConversationRepeatData = {
  */
 export type TemplateQuizConversationData = {
   type: "TemplateQuizConversation";
-  leftContents: Content[];
-  rightContents: Content[];
+  leftContents: QuizContent[];
+  rightContents: QuizContent[];
 };
 
 /**
