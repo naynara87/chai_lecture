@@ -6,3 +6,4 @@ export { default as ModalSwiper } from "./ModalSwiper";
 export { default as LayoutModalIntroduction } from "./LayoutModalIntroduction";
 export { default as ModalImage } from "./ModalImage";
 export { default as ModalLearningPoint } from "./ModalLearningPoint";
+export { default as ModalConfirm } from "./ModalConfirm";
