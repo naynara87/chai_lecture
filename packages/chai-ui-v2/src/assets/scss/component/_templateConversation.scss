@@ -22,6 +22,7 @@
 	}
 
 	.img-wrap {
+		flex-shrink: 0;
 		width: vw(100);
 		margin-right: vw(52);
 	}
@@ -46,8 +47,7 @@
 	}
 
 	.txt-wrap {
-		// 100% - img-wrap - margin
-		// width: calc(100% - vw(100) - vw(52));
+		width: 100%;
 		line-height: 1.6;
 		word-break: break-all;
 	}
