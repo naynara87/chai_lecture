@@ -6,8 +6,6 @@ import {
   ComponentButtonRadiBorderMain,
   ComponentButtonRadiFillMain,
 } from "../atoms";
-import { LineCheckBoxes } from "../molecules";
-import DialogueSentenceBlank from "../molecules/DialogueSentenceBlank";
 
 const DialogueContainer = styled.div`
   .conversation-wrap {
@@ -36,13 +34,13 @@ const TemplateQuizDialogueSentenceBlank = () => {
         {/* 230217 회화영역 */}
         <ul className="conversation-wrapper">
           {/* speech bubble */}
-          <DialogueSentenceBlank />
+          {/* <DialogueSentenceBlank /> */}
         </ul>
       </div>
       <div className="layout-panel wide-panel">
         <QuizContainer method="post" className="quiz-container">
           <div className="quiz-answer-wrap hori-answer-wrap">
-            <LineCheckBoxes />
+            {/* <LineCheckBoxes /> */}
           </div>
         </QuizContainer>
         <div className="btns-wrap">

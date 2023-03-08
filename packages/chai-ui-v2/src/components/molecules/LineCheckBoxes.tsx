@@ -1,43 +1,88 @@
-import React from "react";
+import React, { useMemo } from "react";
+import { QuizSentenceContentData } from "../../core";
+import { SentenceInOrderChoice } from "../templates/TemplateQuizSentenceBlank";
 
-const LineCheckBoxes = () => {
-  return (
-    <>
-      <div className="inp-grp">
-        <input
-          type="checkbox"
-          name="answer1"
-          id="answer1"
-          className="inp-chck-line none"
-        />
-        <label htmlFor="answer1" className="label-chck-line">
-          <span className="text">{"你最后一次在哪儿用过？"}</span>
-        </label>
-      </div>
-      <div className="inp-grp">
-        <input
-          type="checkbox"
-          name="answer2"
-          id="answer2"
-          className="inp-chck-line none"
-        />
-        <label htmlFor="answer2" className="label-chck-line">
-          <span className="text">{"真的？你找找包里。"}</span>
-        </label>
-      </div>
-      <div className="inp-grp">
-        <input
-          type="checkbox"
-          name="answer3"
-          id="answer3"
-          className="inp-chck-line none"
-        />
-        <label htmlFor="answer3" className="label-chck-line">
-          <span className="text">{"从那儿出来以后，我就再也没用过。"}</span>
-        </label>
-      </div>
-    </>
-  );
+interface LineCheckBoxesProps {
+  contents: QuizSentenceContentData["data"]["characters"];
+  userChoices: SentenceInOrderChoice[];
+  selectedChoiceBox?: number;
+  selectedBlankBox?: number;
+  setSelectedChoiceBox: React.Dispatch<
+    React.SetStateAction<number | undefined>
+  >;
+  setUserChoices: React.Dispatch<React.SetStateAction<SentenceInOrderChoice[]>>;
+  isShowAnswer: boolean;
+}
+
+const LineCheckBoxes = ({
+  contents,
+  userChoices,
+  selectedChoiceBox,
+  selectedBlankBox,
+  setSelectedChoiceBox,
+  setUserChoices,
+  isShowAnswer,
+}: LineCheckBoxesProps) => {
+  const mainContents = useMemo(() => {
+    let sentenceCount = -1;
+    return contents.map((content) => {
+      return content.sentences.map((sentence) => {
+        if (sentence.isChoice) {
+          sentenceCount++;
+          const sentenceIndex = sentenceCount;
+          const isChecked = userChoices.find((userChoice) => {
+            return userChoice.text === sentence.sentence;
+          });
+          return (
+            <div className="inp-grp" key={sentenceIndex}>
+              <input
+                type="checkbox"
+                name={`answer${sentenceIndex}`}
+                id={`answer${sentenceIndex}`}
+                className="inp-chck-line none"
+                checked={selectedChoiceBox === sentenceIndex}
+                disabled={isChecked !== undefined}
+              />
+              <label
+                htmlFor={`answer${sentenceIndex}`}
+                className="label-chck-line"
+                onClick={() => {
+                  if (
+                    isShowAnswer ||
+                    selectedBlankBox === undefined ||
+                    userChoices[selectedBlankBox].text.length > 0 ||
+                    isChecked !== undefined
+                  )
+                    return;
+                  const copyUserChoices = [...userChoices];
+                  copyUserChoices[selectedBlankBox] = {
+                    text: sentence.sentence,
+                    answerIndex: sentence.answerIndex,
+                  };
+                  setSelectedChoiceBox(sentenceIndex);
+                  setUserChoices(copyUserChoices);
+                }}
+              >
+                <span className="text">{sentence.sentence}</span>
+              </label>
+            </div>
+          );
+        } else {
+          return <></>;
+        }
+      });
+    });
+  }, [
+    contents,
+    selectedChoiceBox,
+    userChoices,
+    selectedBlankBox,
+    setSelectedChoiceBox,
+    setUserChoices,
+    isShowAnswer,
+  ]);
+
+  return <>{mainContents}</>;
 };
 
 export default LineCheckBoxes;

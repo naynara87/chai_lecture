@@ -476,6 +476,111 @@ export const v2CornerDataList: CornerData[] = [
           },
         },
       },
+      {
+        id: 7,
+        name: "단어",
+        type: "SinglePage",
+        data: {
+          type: "TemplateQuizSentencesInOrder",
+          titleContents: {
+            type: "iconText",
+            data: {
+              text: "자연스러운 단문이 되도록 문장을 배열해 보세요.",
+            },
+          },
+          mainContents: {
+            type: "quizSentence",
+            data: {
+              characters: [
+                {
+                  name: "왕리리",
+                  src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
+                  sentences: [
+                    {
+                      sentence: "糟糕！我的钱包不见了。",
+                      isChoice: false,
+                      answerIndex: -1,
+                    },
+                  ],
+                },
+                {
+                  name: "김민호",
+                  src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+                  sentences: [
+                    {
+                      sentence: "你最后一次在哪儿用过？",
+                      isChoice: true,
+                      answerIndex: 0,
+                    },
+                  ],
+                },
+                {
+                  name: "왕리리",
+                  src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
+                  sentences: [
+                    {
+                      sentence: "我刚刚还用过呢，现在怎么找也找不着。",
+                      isChoice: false,
+                      answerIndex: -1,
+                    },
+                  ],
+                },
+                {
+                  name: "김민호",
+                  src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+                  sentences: [
+                    {
+                      sentence: "真的？你找找包里。",
+                      isChoice: true,
+                      answerIndex: 1,
+                    },
+                    {
+                      sentence: "说不定在那里，你好好儿地再想想。",
+                      isChoice: false,
+                      answerIndex: -1,
+                    },
+                  ],
+                },
+              ],
+              quizPopup: {
+                type: "quizPopupModal",
+                data: {
+                  correct: {
+                    title: "做得好!",
+                    sub: "정답이에요!",
+                    description:
+                      "제3성이 연이어 나오면, 앞에 있는 제3성은 제2성으로 발음합니다. 이 때, 성조의 표기는 바뀌지 않습니다.",
+                    character: {
+                      src: "",
+                    },
+                    soundEffect: {
+                      src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
+                    },
+                    video: {
+                      src: "https://cdn.bubblecon.co.kr/videos/45.mp4",
+                    },
+                  },
+                  incorrect: {
+                    title: "真难过!",
+                    sub: "아쉬워요!",
+                    description:
+                      "제3성이 연이어 나오면, 앞에 있는 제3성은 제2성으로 발음합니다. 이 때, 성조의 표기는 바뀌지 않습니다.",
+                    character: {
+                      src: "",
+                    },
+                    soundEffect: {
+                      src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+                    },
+                    video: {
+                      src: "https://cdn.bubblecon.co.kr/videos/46.mp4",
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
     ],
   },
   {

@@ -18,7 +18,9 @@ import ModalVideo from "../modal/ModalVideo";
 import ComponentGrayLine from "../molecules/ComponentGrayLine";
 import { v4 as uuidv4 } from "uuid";
 
-const BlankBox = styled.div``;
+const BlankBox = styled.div`
+  cursor: pointer;
+`;
 
 type WordInOrderChoice = {
   text: string;
@@ -130,7 +132,11 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
           >
             {/* TODO: key설명 클릭하면 클래스 active 추가됨 */}
             <div className="text">
-              <HtmlContentComponent html={userChoices[blankIndex].text ?? ""} />
+              {userChoices[blankIndex].text ? (
+                <HtmlContentComponent html={userChoices[blankIndex].text} />
+              ) : (
+                "\u00A0"
+              )}
             </div>
           </BlankBox>
         );

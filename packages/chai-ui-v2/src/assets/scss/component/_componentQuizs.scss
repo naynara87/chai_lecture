@@ -1,124 +1,147 @@
 /* =================== componentQuizs =================== */
 .quiz-container {
-	margin: 0 auto;
+  margin: 0 auto;
 }
 
 .quiz-question-wrap {
-	padding: vh(40) vw(40);
-	border: 1px solid color(gray-db);
-	border-radius: vw(30);
-	font-weight: 600;
-	text-align: center;
-	white-space: pre-line;
+  padding: vh(40) vw(40);
+  border: 1px solid color(gray-db);
+  border-radius: vw(30);
+  font-weight: 600;
+  text-align: center;
+  white-space: pre-line;
 
-	.text-lg {
-		margin-bottom: vw(40);
-		font-size: vw(70);
-	}
+  .text-lg {
+    margin-bottom: vw(40);
+    font-size: vw(70);
+  }
 
-	.text-md {
-		font-size: vw(32);
-	}
+  .text-md {
+    font-size: vw(32);
+  }
 
-	.text-sm {
-		margin-top: vh(30);
-		font-weight: 400;
-		font-size: vw(28);
-		color: color(gray-80);
-	}
+  .text-sm {
+    margin-top: vh(30);
+    font-weight: 400;
+    font-size: vw(28);
+    color: color(gray-80);
+  }
 
-	>* {
-		margin-top: vh(30);
+  > * {
+    margin-top: vh(30);
 
-		&:first-child {
-			margin-top: 0;
-		}
-	}
+    &:first-child {
+      margin-top: 0;
+    }
+  }
 }
 
 .blank-line {
-	display: inline-block;
-	width: vw(72);
-	border-bottom: 2px solid color(gray-80);
+  display: inline-block;
+  width: vw(72);
+  border-bottom: 2px solid color(gray-80);
 }
 
 .blank-gray {
-	display: inline-block;
-	min-width: vw(80);
-	margin-top: vh(5);
-	padding: vh(3) vw(10);
-	border: 3px solid color(gray-c9);
-	border-radius: vw(7);
-	background-color: color(gray-f5);
-	font-weight: 600;
-	font-size: vw(28);
-	color: color(main);
-	text-align: center;
+  display: inline-block;
+  min-width: vw(80);
+  margin-top: vh(5);
+  padding: vh(3) vw(10);
+  border: 3px solid color(gray-c9);
+  border-radius: vw(7);
+  background-color: color(gray-f5);
+  font-weight: 600;
+  font-size: vw(28);
+  color: color(main);
+  text-align: center;
+
+  &.active {
+    border-color: color(main);
+    background-color: color(purple-200);
+  }
+
+  &.answer-right {
+    border-color: color(right);
+    background-color: color(gray-ff);
+
+    .text {
+      color: color(right);
+    }
+  }
+
+  &.answer-wrong {
+    border-color: color(warning);
+    background-color: color(gray-ff);
+
+    .text {
+      color: color(warning);
+    }
+  }
 }
 
 .quiz-answer-wrap {
-	margin: vh(60) auto;
+  margin: vh(60) auto;
 }
 
 .hori-answer-wrap {
-	@include flex-center {
-		gap: vw(30);
-		flex-wrap: wrap;
-	}
+  @include flex-center {
+    gap: vw(30);
+    flex-wrap: wrap;
+  }
 
-	.inp-grp {
-		flex-basis: calc(50% - vw(15));
-	}
+  .inp-grp {
+    flex-basis: calc(50% - vw(15));
+  }
 }
 
 .quiz-sentence-wrap {
-	@include flex-center {
-		gap: vw(20);
-	}
+  @include flex-center {
+    gap: vw(20);
+  }
 
-	margin: vh(30) auto;
+  margin: vh(30) auto;
 
-	.text {
-		display: inline-block;
-		font-weight: 600;
-		font-size: vw(22);
-		text-align: center;
+  .text {
+    display: inline-block;
+    font-weight: 600;
+    font-size: vw(22);
+    text-align: center;
 
-		.sm {
-			display: block;
-			font-weight: 400;
-		}
-	}
+    .sm {
+      display: block;
+      font-weight: 400;
+    }
+  }
 
-	.blank {
-		width: vw(160);
-		padding: vh(15) vw(15);
-		border: 2px solid color(gray-c9);
-		border-radius: vw(15);
-		background-color: color(gray-f5);
-		color: color(main);
+  .blank {
+    width: vw(160);
+    padding: vh(15) vw(15);
+    border: 2px solid color(gray-c9);
+    border-radius: vw(15);
+    background-color: color(gray-f5);
+    color: color(main);
 
-		&.active {
-			border-color: color(main);
-			background-color: color(purple-200);
-		}
+    &.active {
+      border-color: color(main);
+      background-color: color(purple-200);
+    }
 
-		&.answer-right {
-			border-color: color(right);
-			background-color: color(gray-ff);
+    &.answer-right {
+      border-color: color(right);
+      background-color: color(gray-ff);
 
-			.text {
-				color: color(right);
-			}
-		}
+      .text {
+        color: color(right);
+      }
+    }
 
-		&.answer-wrong {
-			border-color: color(warning);
-			background-color: color(gray-ff);
+    &.answer-wrong {
+      border-color: color(warning);
+      background-color: color(gray-ff);
 
-			.text {
-				color: color(warning);
-			}
-		}
-	}
+      .text {
+        color: color(warning);
+      }
+    }
+  }
 }
