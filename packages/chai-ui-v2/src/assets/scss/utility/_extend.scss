@@ -16,8 +16,8 @@
 
 	@include hover {
 		opacity: 1;
-		box-shadow: 0 2px 0 rgba(88, 88, 88, 0.2),
-			inset 0 5px 5px rgba(0, 0, 0, 0.1);
+		box-shadow: 0 4px 0 rgba(88, 88, 88, 0.2),
+			inset 0 6px 0 rgba(0, 0, 0, 0.1);
 	}
 
 	&:disabled {

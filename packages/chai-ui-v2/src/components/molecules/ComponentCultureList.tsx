@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
-import TempImage1 from "../../assets/images/img/didi_all.png";
+import TempImage1 from "../../assets/images/img/temp_profile05.png";
 import { vh, vw } from "../../assets";
 
 const CultureListWrapper = styled.div`

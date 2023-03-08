@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import React from "react";
-import TempImage1 from "../../assets/images/img/didi_all.png";
-import TempImage2 from "../../assets/images/img/wini_all.png";
+import TempImage1 from "../../assets/images/img/temp_profile05.png";
+import TempImage2 from "../../assets/images/img/temp_profile04.png";
 import { colorPalette, vw } from "../../assets";
 
 const ImageContainer = styled.div`

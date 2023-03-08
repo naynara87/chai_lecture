@@ -1,20 +1,20 @@
-import React, { useState } from "react";
-import IconDictionaryFillButton from "../atoms/Button/IconDictionaryFillButton";
-import { LayoutModalSolution } from "../modal";
-import ComponentContsStart from "../molecules/ComponentContsStart";
+import React from "react";
+import IconDictionaryButton from "../atoms/Button/IconDictionaryButton";
+import IconPlayButton from "../atoms/Button/IconPlayButton";
+import ComponentImage from "../molecules/ComponentImage";
+import ComponentText from "../molecules/ComponentText";
 
 const TemplatePub = () => {
-  const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(true);
 
   return (
     <div className="layout-panel-wrap">
       <div className="layout-panel">
-        <ComponentContsStart />
-        <IconDictionaryFillButton />
-        <LayoutModalSolution
-          isModalOpen={isModalSolutionOpen}
-          setIsModalOpen={setIsModalSolutionOpen}
-        />
+        <ComponentImage />
+        <ComponentText />
+        <div className="btns-wrap">
+          <IconPlayButton active={true} />
+          <IconDictionaryButton />
+        </div>
       </div>
     </div>
   );
