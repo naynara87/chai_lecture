@@ -40,7 +40,7 @@ const ComponentChoiceRole = () => {
           <ComponentButtonRadiFillMain text={"선택"} />
         </li>
       </ul>
-      <div className="btn-wrap">
+      <div className="btns-wrap">
         <ComponentButtonRadiBorderMain text={"다음 학습으로 넘어가기"} />
       </div>
     </ChoiceRoleWrapper>

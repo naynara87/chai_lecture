@@ -40,6 +40,8 @@
 	}
 
 	.btn {
+		min-width: 1px;
+		width: 100%;
 		height: vh(53);
 		margin-top: vh(50);
 		font-size: vw(24);
