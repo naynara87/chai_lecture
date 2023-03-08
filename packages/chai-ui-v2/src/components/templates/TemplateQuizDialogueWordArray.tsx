@@ -7,7 +7,6 @@ import {
   useContentMapper,
 } from "../../core";
 import WordsInOrderComponent from "../contents/WordsInOrderComponent";
-import ComponentGrayLine from "../molecules/ComponentGrayLine";
 
 const QuizContainer = styled.div`
   .quiz-question-wrap {
@@ -64,10 +63,7 @@ const TemplateQuizDialogueWordArray = ({
       <div className="layout-panel side-panel">{leftContents}</div>
       <div className="layout-panel wide-panel">
         <QuizContainer className="quiz-container">
-          <ComponentGrayLine contents={thisPage.rightContents.borderContents} />
-          <WordsInOrderComponent
-            contents={thisPage.rightContents.wordInOrderQuiz}
-          />
+          <WordsInOrderComponent contents={thisPage.rightContents} />
         </QuizContainer>
       </div>
     </div>
