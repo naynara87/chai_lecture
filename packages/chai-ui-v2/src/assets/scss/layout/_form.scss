@@ -145,7 +145,7 @@
 	@extend %btn;
 	@extend %btn-interaction;
 
-	width: 100%;
+	min-width: vw(325);
 	height: vh(82);
 	border: 1px solid color(main);
 	border-radius: vw(100);
@@ -168,7 +168,7 @@
 	@extend %btn;
 	@extend %btn-interaction;
 
-	width: vw(325);
+	min-width: vw(325);
 	height: vh(82);
 	border: 1px solid color(main);
 	border-radius: vw(100);
@@ -177,10 +177,6 @@
 	font-size: vw(26);
 	color: color(gray-ff);
 	box-shadow: $btn-shadow;
-
-	&:before {
-		letter-spacing: -0.04em;
-	}
 
 	@at-root .modal & {
 		width: 100%;
@@ -390,7 +386,8 @@
 	background-color: color(gray-f5);
 	line-height: vh(124);
 	text-align: center;
-	box-shadow: $label-shadow;
+	box-shadow: $btn-shadow;
+	transition: all 0.2s;
 
 	.text {
 		position: relative;
@@ -453,6 +450,7 @@
 
 .inp-chck-line:disabled~.label-chck-line {
 	border-color: color(gray-db);
+	transition: all 0.2s;
 
 	.text,
 	.text-sm {
