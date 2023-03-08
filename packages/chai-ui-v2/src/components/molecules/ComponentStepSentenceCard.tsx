@@ -3,11 +3,12 @@ import React from "react";
 import IconPlayButton from "../atoms/Button/IconPlayButton";
 // import ComponentButtonStep from "../atoms/Button/ComponentButtonStep";
 import IconDictionaryButton from "../atoms/Button/IconDictionaryButton";
+import { vw } from "../../assets";
 // import ComponentRepeatSpeak from "./ComponentRepeatSpeak";
 
 const StepCard = styled.div`
   > *:not(:first-child) {
-    margin-top: 2vw;
+    margin-top: ${vw(40)};
   }
 `;
 

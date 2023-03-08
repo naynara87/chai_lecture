@@ -14,13 +14,13 @@ import { QuizPopupModalContentData } from "../../core";
 
 const ModalBaseTitle = styled.div`
   .ttl {
-    /* NOTE: 설명 - 오답일땐 오답 컬러, 정답일 땐 정답 컬러 */
+    /* NOTE: 오답일땐 오답 컬러, 정답일 땐 정답 컬러 */
     color: ${colorPalette.black};
   }
 `;
 
 const ModalBaseContents = styled.div`
-  /* NOTE: 설명 - dec 의 height 가 36.3333333333vh(436px을 vh로 변경)이상일 때 추가됨 */
+  /* NOTE: dec 의 height 가 36.3333333333vh(436px을 vh로 변경)이상일 때 추가됨 */
   align-items: flex-start;
 
   ~ .btns-wrap {

@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
+import { vh, vw } from "../../assets";
 import {
   ComponentButtonRadiBorderMain,
   ComponentButtonRadiFillMain,
@@ -11,10 +12,8 @@ const ChoiceRoleWrapper = styled.div`
   .btn-wrap {
     text-align: center;
     .btn {
-      // 471px
-      width: 23.55vw;
-      // 60px
-      margin-top: 5vh;
+      width: ${vw(471)};
+      margin-top: ${vh(60)};
     }
   }
 `;
