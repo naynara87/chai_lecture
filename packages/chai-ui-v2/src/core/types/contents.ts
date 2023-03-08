@@ -15,12 +15,13 @@ export type Content =
   | BorderTextBoxContentData
   | ConversationContentData
   | ImageWithDescriptionListContentData
-  | GuideCharacterContentData
+  | ActivityGuideCharactorContentData
   | ConversationQuizContentData
   | QuizWordsInOrderContentData
   | MultiChoiceContentData
   | ImageWithCaptionListContentData
-  | AudioContentData;
+  | AudioContentData
+  | CornerGuideCharacterContentData;
 export type ContentType = Content["type"];
 
 export type ConversationContent =
@@ -30,7 +31,7 @@ export type ConversationContent =
 
 export type QuizContent =
   | ConversationQuizContentData
-  | GuideCharacterContentData
+  | ActivityGuideCharactorContentData
   | MultiChoiceContentData
   | QuizWordsInOrderContentData;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -151,8 +152,8 @@ export type RecorderContentData = {
 /**
  * 캐릭터 컴포넌트
  */
-export type SpeakingCharacterContentData = {
-  type: "speakingCharacter";
+export type CornerGuideCharacterContentData = {
+  type: "cornerGuideCharacter";
   data: {
     text: string;
     character: {
@@ -165,8 +166,8 @@ export type SpeakingCharacterContentData = {
 /**
  * 활동 안내 캐릭터 컴포넌트
  */
-export type GuideCharacterContentData = {
-  type: "guideCharacter";
+export type ActivityGuideCharactorContentData = {
+  type: "ActivityGuideCharactor";
   data: {
     text: string;
     character: {

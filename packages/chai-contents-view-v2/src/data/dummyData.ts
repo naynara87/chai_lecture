@@ -65,7 +65,7 @@ export const v2CornerDataList: CornerData[] = [
             type: "TemplateQuizConversation",
             leftContents: [
               {
-                type: "guideCharacter",
+                type: "ActivityGuideCharactor",
                 data: {
                   text: "지난 시간엔 계절에 대한 회화를 학습했어요. 다음 대화를 잘 보고 빈 칸에 들어갈 알맞은 단어를 고르세요.",
                   character: {
@@ -317,7 +317,7 @@ export const v2CornerDataList: CornerData[] = [
           type: "TemplateQuizWordsInOrder",
           leftContents: [
             {
-              type: "guideCharacter",
+              type: "ActivityGuideCharactor",
               data: {
                 text: "지난 시간엔 계절에 대한 회화를 학습했어요. 다음 대화를 잘 보고 빈 칸에 들어갈 알맞은 단어를 고르세요.",
                 character: {
@@ -415,7 +415,7 @@ export const v2CornerDataList: CornerData[] = [
           type: "TemplateQuizMultiChoice",
           leftContents: [
             {
-              type: "guideCharacter",
+              type: "ActivityGuideCharactor",
               data: {
                 text: "지난 시간엔 계절에 대한 회화를 학습했어요. 다음 대화를 잘 보고 빈 칸에 들어갈 알맞은 단어를 고르세요.",
                 character: {
@@ -582,7 +582,7 @@ export const v2CornerDataList: CornerData[] = [
         },
       },
       {
-        id: 7,
+        id: 8,
         name: "단어",
         type: "SinglePage",
         data: {
@@ -592,6 +592,25 @@ export const v2CornerDataList: CornerData[] = [
               type: "audio",
               data: {
                 src: "https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3",
+              },
+            },
+          ],
+        },
+      },
+      {
+        id: 9,
+        name: "단어",
+        type: "SinglePage",
+        data: {
+          type: "Template01",
+          contents: [
+            {
+              type: "cornerGuideCharacter",
+              data: {
+                text: "안녕하세요 이건 큰사이즈네용",
+                character: {
+                  src: "didiGlasses",
+                },
               },
             },
           ],
