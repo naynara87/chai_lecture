@@ -1,15 +1,12 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo } from "react";
 import { Template01Data, TemplateProps } from "../../core";
 import useContentMapper from "../../core/hooks/useContentMapper";
-import LayoutModalSolution from "../modal/LayoutModalSolution";
 import ComponentTitle from "../molecules/ComponentTitle";
 
 interface Template01Props extends TemplateProps {}
 
 const Template01 = ({ template, setPageCompleted }: Template01Props) => {
   const thisPage = template as Template01Data;
-
-  const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(false);
 
   useEffect(() => {
     setPageCompleted();
@@ -30,10 +27,6 @@ const Template01 = ({ template, setPageCompleted }: Template01Props) => {
         {/* <ComponentChoiceRole /> */}
         {contents}
       </div>
-      <LayoutModalSolution
-        isModalOpen={isModalSolutionOpen}
-        setIsModalOpen={setIsModalSolutionOpen}
-      />
     </div>
   );
 };

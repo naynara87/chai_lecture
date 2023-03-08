@@ -5,7 +5,7 @@ import { ImgTemp01Component } from "../atoms";
 import ComponentButtonPlay from "../atoms/ComponentButtonPlay";
 import ComponentButtonRadiBorderMain from "../atoms/ComponentButtonRadiBorderMain";
 import ComponentButtonRadiFillMain from "../atoms/ComponentButtonRadiFillMain";
-import { LayoutModalSolution, LayoutModalVoca } from "../modal";
+import { LayoutModalVoca } from "../modal";
 import { ComponentContsInfo } from "../molecules";
 import QuizWordBlankAnswers from "../molecules/QuizWordBlankAnswers";
 import QuizWordBlankChoices from "../molecules/QuizWordBlankChoices";
@@ -37,7 +37,6 @@ const QuizContainer = styled.form`
 `;
 
 const TemplateQuizWordBlank = () => {
-  const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(false);
   const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
 
   return (
@@ -63,10 +62,6 @@ const TemplateQuizWordBlank = () => {
           </div>
         </QuizContainer>
       </div>
-      <LayoutModalSolution
-        isModalOpen={isModalSolutionOpen}
-        setIsModalOpen={setIsModalSolutionOpen}
-      />
       <LayoutModalVoca
         isModalOpen={isModalVocaOpen}
         setIsModalOpen={setIsModalVocaOpen}

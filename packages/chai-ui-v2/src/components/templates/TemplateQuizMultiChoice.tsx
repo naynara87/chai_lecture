@@ -6,7 +6,7 @@ import {
   useContentMapper,
 } from "../../core";
 import MultiChoiceComponent from "../contents/MultiChoiceComponent";
-import { LayoutModalSolution, LayoutModalVoca } from "../modal";
+import { LayoutModalVoca } from "../modal";
 
 const QuizContainer = styled.div``;
 
@@ -18,7 +18,6 @@ const TemplateQuizMultiChoice = ({
 }: TemplateQuizMultiChoiceProps) => {
   const thisPage = template as TemplateQuizMultiChoiceData;
 
-  const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(false);
   const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
 
   useEffect(() => {
@@ -50,10 +49,6 @@ const TemplateQuizMultiChoice = ({
           {/* <GrayRadioBoxes /> */}
         </QuizContainer>
       </div>
-      <LayoutModalSolution
-        isModalOpen={isModalSolutionOpen}
-        setIsModalOpen={setIsModalSolutionOpen}
-      />
       <LayoutModalVoca
         isModalOpen={isModalVocaOpen}
         setIsModalOpen={setIsModalVocaOpen}

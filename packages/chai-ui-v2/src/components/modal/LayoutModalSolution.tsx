@@ -5,6 +5,7 @@ import ComponentButtonRadiBorderMain from "../atoms/ComponentButtonRadiBorderMai
 import ComponentButtonRadiFillMain from "../atoms/ComponentButtonRadiFillMain";
 import ModalCommon from "./ModalCommon";
 import CharacterProfile from "../../assets/images/img/cha_profile01.png";
+import { QuizPopupModalContentData } from "../../core";
 
 // 임의 컬러. 대교측에서 색 변경 요청하여 230217 회의 이후 정해질 예정
 // const RightColor = "#5BD37D";
@@ -28,16 +29,29 @@ const ModalBaseContents = styled.div`
 `;
 
 interface LayoutModalSolutionProps {
+  contents: QuizPopupModalContentData;
+  isCorrect: boolean;
   isModalOpen: boolean;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  handleClickModalCloseBtnCallback: () => void;
+  handleClickModalVideoBtnCallback: () => void;
 }
 
 const LayoutModalSolution = ({
   isModalOpen,
   setIsModalOpen,
+  contents,
+  isCorrect,
+  handleClickModalCloseBtnCallback,
+  handleClickModalVideoBtnCallback,
 }: LayoutModalSolutionProps) => {
   const handleClose = () => {
     setIsModalOpen(false);
+    handleClickModalCloseBtnCallback();
+  };
+
+  const handleVideoBtnClick = () => {
+    handleClickModalVideoBtnCallback();
   };
 
   return (
@@ -50,29 +64,34 @@ const LayoutModalSolution = ({
         </div>
         <div className="txt-wrap">
           {/* 간지 */}
-          <h2 className="ttl">{"타이틀 영역"}</h2>
-          <p className="txt">{"서브 타이틀"}</p>
-          {/* NOTE: 설명 - 정답일 때 보일 문구 */}
-          {/* <h2 className="ttl">做得好!</h2>
-              <p className="txt">정답이에요!</p> */}
-          {/* NOTE: 설명 - 틀렸을 때 보일 문구 */}
-          {/* <h2 className="ttl">真难过!</h2>
-              <p className="txt">아쉬워요!</p> */}
+          <h2 className="ttl">
+            {isCorrect
+              ? contents.data.correct.title
+              : contents.data.incorrect.title}
+          </h2>
+          <p className="txt">
+            {isCorrect
+              ? contents.data.correct.sub
+              : contents.data.incorrect.sub}
+          </p>
         </div>
       </ModalBaseTitle>
       {/* 내용영역 */}
       <ModalBaseContents className="base-conts">
         <div className="dec">
-          {
-            "제3성이 연이어 나오면, 앞에 있는 제3성은 제2성으로 발음합니다. 이 때, 성조의 표기는 바뀌지 않습니다."
-          }
+          {isCorrect
+            ? contents.data.correct.description
+            : contents.data.incorrect.description}
         </div>
       </ModalBaseContents>
 
       {/* NOTE: 설명 - 버튼이 하나만 들어갈 수도 있음 */}
       <div className="btns-wrap">
-        <ComponentButtonRadiBorderMain text="동영상 설명 보기" />
-        <ComponentButtonRadiFillMain text="확인" />
+        <ComponentButtonRadiBorderMain
+          text="동영상 설명 보기"
+          onClickBtn={handleVideoBtnClick}
+        />
+        <ComponentButtonRadiFillMain text="확인" onClickBtn={handleClose} />
       </div>
     </ModalCommon>
   );

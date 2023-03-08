@@ -6,7 +6,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { LayoutModalSolution, LayoutModalVoca } from "../modal";
+import { LayoutModalVoca } from "../modal";
 import ComponentButtonPlay from "../atoms/ComponentButtonPlay";
 import {
   ConversationContentData,
@@ -29,7 +29,7 @@ const DialogueContainer = styled.div`
   }
 `;
 
-interface TemplateDialogueProps extends TemplateProps { }
+interface TemplateDialogueProps extends TemplateProps {}
 
 const TemplateDialogue = ({
   template,
@@ -40,7 +40,6 @@ const TemplateDialogue = ({
     | TemplateConversationToggleData
     | TemplateConversationRepeatData;
 
-  const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(false);
   const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
   const [speakingDialogueIndex, setSpeakingDialogueIndex] = useState(-1);
 
@@ -242,10 +241,6 @@ const TemplateDialogue = ({
         {/* 230217 회화영역 */}
         {conversationContents}
       </div>
-      <LayoutModalSolution
-        isModalOpen={isModalSolutionOpen}
-        setIsModalOpen={setIsModalSolutionOpen}
-      />
       <LayoutModalVoca
         isModalOpen={isModalVocaOpen}
         setIsModalOpen={setIsModalVocaOpen}
