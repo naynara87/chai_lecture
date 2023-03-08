@@ -425,6 +425,25 @@ export type MultiChoiceContentData = {
 };
 
 /**
+ * 문장 배열형 컴포넌트
+ */
+export type QuizSentenceContentData = {
+  type: "quizSentence";
+  data: {
+    characters: {
+      name: string;
+      src: string;
+      sentences: {
+        sentence: string;
+        isChoice: boolean;
+        answerIndex: number;
+      }[];
+    }[];
+    quizPopup: QuizPopupModalContentData;
+  };
+};
+
+/**
  * 롤플레이 대화 컴포넌트
  * hint(병음), 녹음기능은 학습자가 고른 캐릭터에만 노출되게 작업
  */

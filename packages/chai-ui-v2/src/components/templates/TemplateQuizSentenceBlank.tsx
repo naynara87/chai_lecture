@@ -1,13 +1,26 @@
 import styled from "@emotion/styled";
-import React, { useState } from "react";
-import ComponentTitle from "../molecules/ComponentTitle";
-import { LayoutModalVoca } from "../modal";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import { LayoutModalSolution } from "../modal";
 import {
   ComponentButtonRadiBorderMain,
   ComponentButtonRadiFillMain,
 } from "../atoms";
 import LineCheckBoxes from "../molecules/LineCheckBoxes";
 import DialogueSentenceBlank from "../molecules/DialogueSentenceBlank";
+import {
+  TemplateProps,
+  TemplateQuizSentencesInOrderData,
+  useGlobalAudio,
+} from "../../core";
+import { IconTextComponent } from "../contents";
+import ModalVideo from "../modal/ModalVideo";
+import { v4 as uuidv4 } from "uuid";
 
 const DialogueContainer = styled.div`
   .blank-gray {
@@ -29,34 +42,203 @@ const QuizContainer = styled.form`
   }
 `;
 
-const TemplateQuizSentenceBlank = () => {
-  const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
+export type SentenceInOrderChoice = {
+  text: string;
+  answerIndex: number;
+};
+
+interface TemplateQuizSentenceBlankProps extends TemplateProps {}
+
+const TemplateQuizSentenceBlank = ({
+  template,
+}: TemplateQuizSentenceBlankProps) => {
+  const thisPage = template as TemplateQuizSentencesInOrderData;
+
+  const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(false);
+  const [isModalVideoOpen, setIsModalVideoOpen] = useState(false);
+  const [userChoices, setUserChoices] = useState<SentenceInOrderChoice[]>([]);
+  const [selectedBlankBox, setSelectedBlankBox] = useState<
+    undefined | number
+  >();
+  const [selectedChoiceBox, setSelectedChoiceBox] = useState<
+    undefined | number
+  >();
+  const [isShowAnswer, setIsShowAnswer] = useState(false);
+  const [speakingDialogueIndex, setSpeakingDialogueIndex] = useState(-1);
+
+  const modalIdRef = useRef(`solutionModal${uuidv4()}`);
+
+  const {
+    globalAudioRef,
+    globalAudioId,
+    globalAudioState,
+    handleAudioReset,
+    handleClickAudioButton,
+    handleClickAudioStopButton,
+  } = useGlobalAudio();
+
+  const audioEnded = useCallback(() => {
+    if (globalAudioId.toString().includes("solutionModal")) {
+      handleAudioReset();
+    }
+  }, [handleAudioReset, globalAudioId]);
+
+  useEffect(() => {
+    let globalAudioRefValue: HTMLAudioElement | null = null;
+    if (globalAudioRef?.current) globalAudioRefValue = globalAudioRef.current;
+    globalAudioRef?.current?.addEventListener("ended", audioEnded);
+    return () => {
+      if (globalAudioRefValue) {
+        globalAudioRefValue.removeEventListener("ended", audioEnded);
+      }
+    };
+  }, [globalAudioRef, audioEnded]);
+
+  useEffect(() => {
+    return () => {
+      handleAudioReset();
+    };
+  }, [handleAudioReset]);
+
+  const handleClickResetAnswer = useCallback(() => {
+    const copyUserChoices: SentenceInOrderChoice[] = [];
+    thisPage.mainContents.data.characters.forEach((content) => {
+      content.sentences.forEach((sentence) => {
+        if (sentence.isChoice) {
+          copyUserChoices.push({ text: "", answerIndex: -1 });
+        }
+      });
+    });
+    setUserChoices(copyUserChoices);
+    setIsShowAnswer(false);
+    setSelectedBlankBox(undefined);
+    setSelectedChoiceBox(undefined);
+  }, [thisPage.mainContents.data.characters]);
+
+  useEffect(() => {
+    handleClickResetAnswer();
+  }, [handleClickResetAnswer]);
+
+  const isCorrect = useMemo(() => {
+    return userChoices.find((userChoice, userChoiceIndex) => {
+      return userChoice.answerIndex !== userChoiceIndex;
+    });
+  }, [userChoices]);
+
+  const handleClickShowAnswer = useCallback(() => {
+    setSelectedBlankBox(undefined);
+    setSelectedChoiceBox(undefined);
+    setIsShowAnswer(true);
+    setIsModalSolutionOpen(true);
+    setSpeakingDialogueIndex(-1);
+    handleClickAudioButton(
+      modalIdRef.current,
+      isCorrect === undefined
+        ? thisPage.mainContents.data.quizPopup.data.correct.soundEffect?.src ??
+            ""
+        : thisPage.mainContents.data.quizPopup.data.incorrect.soundEffect
+            ?.src ?? "",
+    );
+  }, [
+    handleClickAudioButton,
+    isCorrect,
+    thisPage.mainContents.data.quizPopup.data,
+  ]);
+
+  const handleClickDialogueCharacter = useCallback(
+    (dialogueIndex: number, audioSrc?: string) => {
+      if (speakingDialogueIndex === dialogueIndex) {
+        if (globalAudioState === "playing") {
+          handleClickAudioStopButton();
+        } else {
+          handleClickAudioButton(`dialogue${dialogueIndex}`, audioSrc ?? "");
+        }
+        return;
+      }
+      handleClickAudioButton(`dialogue${dialogueIndex}`, audioSrc ?? "");
+      setSpeakingDialogueIndex(dialogueIndex);
+    },
+    [
+      handleClickAudioButton,
+      speakingDialogueIndex,
+      handleClickAudioStopButton,
+      globalAudioState,
+    ],
+  );
+
+  const handleClickModalClose = () => {
+    handleAudioReset();
+  };
+
+  const handleClickModalVideoBtn = () => {
+    handleAudioReset();
+    setIsModalSolutionOpen(false);
+    setIsModalVideoOpen(true);
+  };
 
   return (
     <DialogueContainer className="layout-panel-wrap grid-h-5-5">
       <div className="layout-panel side-panel conversation-panel-wrap">
-        <ComponentTitle text="자연스러운 단문이 되도록 문장을 배열해 보세요." />
+        <IconTextComponent contents={thisPage.titleContents} />
         {/* 230217 회화영역 */}
         <ul className="conversation-wrapper">
           {/* speech bubble */}
-          <DialogueSentenceBlank />
+          <DialogueSentenceBlank
+            contents={thisPage.mainContents.data.characters}
+            selectedBlankBox={selectedBlankBox}
+            userChoices={userChoices}
+            setSelectedBlankBox={setSelectedBlankBox}
+            setSelectedChoiceBox={setSelectedChoiceBox}
+            isShowAnswer={isShowAnswer}
+            handleClickProfileCallback={handleClickDialogueCharacter}
+            speakingDialogueIndex={speakingDialogueIndex}
+            globalAudioState={globalAudioState}
+          />
           {/* end speech bubble */}
         </ul>
       </div>
       <div className="layout-panel wide-panel">
         <QuizContainer method="post" className="quiz-container">
           <div className="quiz-answer-wrap hori-answer-wrap">
-            <LineCheckBoxes />
+            <LineCheckBoxes
+              contents={thisPage.mainContents.data.characters}
+              userChoices={userChoices}
+              selectedChoiceBox={selectedChoiceBox}
+              selectedBlankBox={selectedBlankBox}
+              setSelectedChoiceBox={setSelectedChoiceBox}
+              setUserChoices={setUserChoices}
+              isShowAnswer={isShowAnswer}
+            />
           </div>
         </QuizContainer>
         <div className="btns-wrap">
-          <ComponentButtonRadiBorderMain text="다시하기" />
-          <ComponentButtonRadiFillMain text="제출하기" />
+          <ComponentButtonRadiBorderMain
+            text="다시하기"
+            onClickBtn={handleClickResetAnswer}
+          />
+          <ComponentButtonRadiFillMain
+            text="정답확인"
+            onClickBtn={handleClickShowAnswer}
+          />
         </div>
       </div>
-      <LayoutModalVoca
-        isModalOpen={isModalVocaOpen}
-        setIsModalOpen={setIsModalVocaOpen}
+      <LayoutModalSolution
+        isModalOpen={isModalSolutionOpen}
+        setIsModalOpen={setIsModalSolutionOpen}
+        isCorrect={isCorrect === undefined ? true : false}
+        contents={thisPage.mainContents.data.quizPopup}
+        handleClickModalCloseBtnCallback={handleClickModalClose}
+        handleClickModalVideoBtnCallback={handleClickModalVideoBtn}
+      />
+      <ModalVideo
+        isModalOpen={isModalVideoOpen}
+        setIsModalOpen={setIsModalVideoOpen}
+        videoSrc={
+          isCorrect === undefined
+            ? thisPage.mainContents.data.quizPopup.data.correct.video?.src ?? ""
+            : thisPage.mainContents.data.quizPopup.data.incorrect.video?.src ??
+              ""
+        }
       />
     </DialogueContainer>
   );

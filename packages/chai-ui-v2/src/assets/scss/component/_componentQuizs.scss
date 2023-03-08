@@ -46,6 +46,29 @@
   font-size: vw(28);
   color: color(main);
   text-align: center;
+
+  &.active {
+    border-color: color(main);
+    background-color: color(purple-200);
+  }
+
+  &.answer-right {
+    border-color: color(right);
+    background-color: color(gray-ff);
+
+    .text {
+      color: color(right);
+    }
+  }
+
+  &.answer-wrong {
+    border-color: color(warning);
+    background-color: color(gray-ff);
+
+    .text {
+      color: color(warning);
+    }
+  }
 }
 
 .quiz-answer-wrap {
