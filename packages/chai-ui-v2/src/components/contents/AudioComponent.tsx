@@ -49,7 +49,6 @@ const AudioComponent = ({ contents }: AudioComponentProps) => {
       return (
         <ComponentButtonPlay
           onClick={() => {
-            console.log(contents.data, globalAudioState);
             handleClickAudioButton(audioIdRef.current, contents.data.src ?? "");
           }}
         />
