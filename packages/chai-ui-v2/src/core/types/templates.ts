@@ -1,4 +1,10 @@
-import { Content, ConversationContent } from "./contents";
+import {
+  Content,
+  ConversationContent,
+  MultiChoiceContentData,
+  QuizContent,
+  QuizWordsInOrderContentData,
+} from "./contents";
 
 export type AllTemplateData =
   | TemplateData
@@ -99,8 +105,8 @@ export type TemplateConversationRepeatData = {
  */
 export type TemplateQuizConversationData = {
   type: "TemplateQuizConversation";
-  leftContents: Content[];
-  rightContents: Content[];
+  leftContents: QuizContent[];
+  rightContents: QuizContent[];
 };
 
 /**
@@ -110,7 +116,7 @@ export type TemplateQuizConversationData = {
 export type TemplateQuizMultiChoiceData = {
   type: "TemplateQuizMultiChoice";
   leftContents: Content[];
-  rightContents: Content[];
+  rightContents: MultiChoiceContentData;
 };
 
 /**
@@ -120,7 +126,7 @@ export type TemplateQuizMultiChoiceData = {
 export type TemplateQuizWordsInOrderData = {
   type: "TemplateQuizWordsInOrder";
   leftContents: Content[];
-  rightContents: Content[];
+  rightContents: QuizWordsInOrderContentData;
 };
 
 /**

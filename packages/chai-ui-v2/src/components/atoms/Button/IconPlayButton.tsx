@@ -6,9 +6,9 @@ interface PlayButtonProps {
 
 const IconPlayButton = ({ active }: PlayButtonProps) => {
   return (
-        <button className="btn-icon btn-play-fill" disabled={!active}>
-          재생
-        </button>
+    <button className="btn-icon btn-play" disabled={!active}>
+      재생
+    </button>
   );
 };
 

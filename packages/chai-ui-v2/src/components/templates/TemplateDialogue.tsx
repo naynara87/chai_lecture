@@ -6,7 +6,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { LayoutModalSolution, LayoutModalVoca } from "../modal";
+import { LayoutModalVoca } from "../modal";
 import ComponentButtonPlay from "../atoms/ComponentButtonPlay";
 import {
   ConversationContentData,
@@ -20,7 +20,7 @@ import {
 import { vh } from "../../assets";
 import ConversationComponent from "../contents/ConversationComponent";
 import IconTextComponent from "../contents/IconTextComponent";
-import IconPauseButton from "../atoms/Button/IconPauseButton";
+import IconPauseFillButton from "../atoms/Button/IconPauseFillButton";
 import DialogueToggle from "../molecules/DialogueToggle";
 
 const DialogueContainer = styled.div`
@@ -40,7 +40,6 @@ const TemplateDialogue = ({
     | TemplateConversationToggleData
     | TemplateConversationRepeatData;
 
-  const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(false);
   const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
   const [speakingDialogueIndex, setSpeakingDialogueIndex] = useState(-1);
 
@@ -167,7 +166,7 @@ const TemplateDialogue = ({
     });
   }, [thisPage]);
 
-  const conversasionContents = useMemo(() => {
+  const conversationContents = useMemo(() => {
     return thisPage.rightContents.map((rightContent, contentIndex) => {
       if (rightContent.type === "conversation") {
         return (
@@ -217,14 +216,16 @@ const TemplateDialogue = ({
     <DialogueContainer className="layout-panel-wrap grid-h-3-7">
       <div className="layout-panel side-panel">
         <div className="cont-info-wrap">
-          <div className="btns-wrap">
-            {globalAudioId.toString().includes("fullAudio") ? (
-              <IconPauseButton onClick={handleStopFullAudio} />
-            ) : (
-              <ComponentButtonPlay onClick={listenFullAudio} />
-            )}
-            <p className="txt">전체 음성 듣기</p>
-          </div>
+          {dialogueContent && (
+            <div className="btns-wrap">
+              {globalAudioId.toString().includes("fullAudio") ? (
+                <IconPauseFillButton onClick={handleStopFullAudio} />
+              ) : (
+                <ComponentButtonPlay onClick={listenFullAudio} />
+              )}
+              <p className="txt">전체 음성 듣기</p>
+            </div>
+          )}
           {leftContents}
         </div>
       </div>
@@ -238,12 +239,8 @@ const TemplateDialogue = ({
           <DialogueToggle handleClickOptions={handleClickOptions} />
         )}
         {/* 230217 회화영역 */}
-        {conversasionContents}
+        {conversationContents}
       </div>
-      <LayoutModalSolution
-        isModalOpen={isModalSolutionOpen}
-        setIsModalOpen={setIsModalSolutionOpen}
-      />
       <LayoutModalVoca
         isModalOpen={isModalVocaOpen}
         setIsModalOpen={setIsModalVocaOpen}

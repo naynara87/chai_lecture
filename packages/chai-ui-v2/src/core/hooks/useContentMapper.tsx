@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentVideo } from "../../components";
+import { ComponentVideo, GuideCharacterComponent } from "../../components";
 import ExplainingCharacterComponent from "../../components/contents/ExplainingCharacterComponent";
 import BorderTextBoxComponent from "../../components/contents/BorderTextBoxComponent";
 import IconTextComponent from "../../components/contents/IconTextComponent";
@@ -24,6 +24,10 @@ import {
   ImageWithDescriptionListContentData,
   ConversationContentData,
   ImageWithCaptionListContentData,
+  GuideCharacterContentData,
+  ConversationQuizContentData,
+  QuizWordsInOrderContentData,
+  MultiChoiceContentData,
 } from "../types";
 import CharacterCardListComponent from "../../components/contents/CharacterCardListComponent";
 import SpeakingComponent from "../../components/contents/SpeakingComponent";
@@ -32,6 +36,9 @@ import CardTabComponent from "../../components/contents/CardTabComponent";
 import ConversationWordListComponent from "../../components/contents/ConversationWordListComponent";
 import ConversationComponent from "../../components/contents/ConversationComponent";
 import ImageWithCaptionListComponent from "../../components/contents/ImageWithCaptionListComponent";
+import ConversationQuizComponent from "../../components/contents/ConversationQuizComponent";
+import WordsInOrderComponent from "../../components/contents/WordsInOrderComponent";
+import MultiChoiceComponent from "../../components/contents/MultiChoiceComponent";
 
 const useContentMapper = () => {
   const getContentComponent = (content: Content, contentIndex: number) => {
@@ -116,6 +123,30 @@ const useContentMapper = () => {
       imageWithCaptionList: (
         <ImageWithCaptionListComponent
           contents={content as ImageWithCaptionListContentData}
+          key={contentIndex}
+        />
+      ),
+      guideCharacter: (
+        <GuideCharacterComponent
+          contents={content as GuideCharacterContentData}
+          key={contentIndex}
+        />
+      ),
+      conversationQuiz: (
+        <ConversationQuizComponent
+          contents={content as ConversationQuizContentData}
+          key={contentIndex}
+        />
+      ),
+      quizWordsInOrder: (
+        <WordsInOrderComponent
+          contents={content as QuizWordsInOrderContentData}
+          key={contentIndex}
+        />
+      ),
+      multiChoice: (
+        <MultiChoiceComponent
+          contents={content as MultiChoiceContentData}
           key={contentIndex}
         />
       ),

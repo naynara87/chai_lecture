@@ -9,6 +9,7 @@ interface ModalCommonProps {
   open: boolean;
   onClose: () => void;
   wideModal?: boolean;
+  vocaModal?: boolean;
 }
 
 const ModalCommon = ({
@@ -16,6 +17,7 @@ const ModalCommon = ({
   onClose,
   open,
   wideModal,
+  vocaModal,
 }: ModalCommonProps) => {
   const handleClose = (event: React.MouseEvent<HTMLDivElement>) => {
     if (event.target === event.currentTarget) {
@@ -28,6 +30,7 @@ const ModalCommon = ({
       <ModalBackground className="modal-bg" onClick={handleClose} />
       <div
         className={`modal-container base-modal ${wideModal ? "wide-modal" : ""
+          } ${vocaModal ? "voca-modal" : ""
           }`}
       >
         <div className="base-wrapper">

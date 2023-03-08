@@ -34,60 +34,68 @@
 }
 
 .btn-play-fill {
-	@include bg-url(icon, 'icon_play_fill.svg');
+	@include bg-url(icon, "icon_play_fill.svg");
 
 	border-radius: vw(20);
 
 	&:disabled {
-		@include bg-url(icon, 'icon_play_fill_disabled.svg');
+		@include bg-url(icon, "icon_play_fill_disabled.svg");
 	}
 }
 
 .btn-play {
-	@include bg-url(icon, 'icon_play.svg');
+	@include bg-url(icon, "icon_play.svg");
 
 	&:disabled {
-		@include bg-url(icon, 'icon_play_disabled.svg');
+		@include bg-url(icon, "icon_play_disabled.svg");
 	}
 }
 
-.btn-pause {
-	@include bg-url(icon, 'icon_pause.svg');
+.btn-pause-fill {
+	@include bg-url(icon, "icon_pause_fill.svg");
 
 	&:disabled {
-		@include bg-url(icon, 'icon_pause_disabled.svg');
+		@include bg-url(icon, "icon_pause_fill_disabled.svg");
 	}
 }
 
-.btn-stop {
-	@include bg-url(icon, 'icon_stop.svg');
+.btn-stop-fill {
+	@include bg-url(icon, "icon_stop_fill.svg");
 
 	&:disabled {
-		@include bg-url(icon, 'icon_stop_disabled.svg');
+		@include bg-url(icon, "icon_stop_fill_disabled.svg");
 	}
 }
 
 .btn-mic {
-	@include bg-url(icon, 'icon_mic.svg');
+	@include bg-url(icon, "icon_mic.svg");
 
 	&:disabled {
-		@include bg-url(icon, 'icon_mic_disabled.svg');
+		@include bg-url(icon, "icon_mic_disabled.svg");
 	}
 }
 
 .btn-return {
-	@include bg-url(icon, 'icon_return.svg');
+	@include bg-url(icon, "icon_return.svg");
 
 	&:disabled {
-		@include bg-url(icon, 'icon_return_disabled.svg');
+		@include bg-url(icon, "icon_return_disabled.svg");
 	}
 }
 
 .btn-dectionary {
-	@include bg-url(icon, 'icon_dictionary.svg');
+	@include bg-url(icon, "icon_dictionary.svg");
 
 	&:disabled {
-		@include bg-url(icon, 'icon_dictionary_disabled.svg');
+		@include bg-url(icon, "icon_dictionary_disabled.svg");
+	}
+}
+
+.btn-dectionary-fill {
+	@include bg-url(icon, "icon_dictionary_fill.svg");
+
+	&:disabled {
+		@include bg-url(icon, "icon_dictionary_fill_disabled.svg");
 	}
 }
 
@@ -117,7 +125,6 @@
 	right: vw(27);
 }
 
-
 // text button
 .btn-fill-black {
 	@extend %btn;
@@ -131,13 +138,14 @@
 	font-weight: 600;
 	font-size: vw(22);
 	color: color(gray-ff);
+	box-shadow: $btn-shadow;
 }
 
 .btn-radi-border-main {
 	@extend %btn;
 	@extend %btn-interaction;
 
-	width: 100%;
+	min-width: vw(325);
 	height: vh(82);
 	border: 1px solid color(main);
 	border-radius: vw(100);
@@ -149,13 +157,18 @@
 	&:before {
 		letter-spacing: -0.04em;
 	}
+
+	&:disabled {
+		background-color: color(gray-c9);
+		border-color: color(gray-f5);
+	}
 }
 
 .btn-radi-fill-main {
 	@extend %btn;
 	@extend %btn-interaction;
 
-	width: vw(325);
+	min-width: vw(325);
 	height: vh(82);
 	border: 1px solid color(main);
 	border-radius: vw(100);
@@ -165,12 +178,14 @@
 	color: color(gray-ff);
 	box-shadow: $btn-shadow;
 
-	&:before {
-		letter-spacing: -0.04em;
-	}
-
 	@at-root .modal & {
 		width: 100%;
+	}
+
+	&:disabled {
+		background-color: color(gray-c9);
+		border-color: color(gray-c9);
+		color: color(gray-ff);
 	}
 }
 
@@ -240,6 +255,7 @@
 	@include flex-center;
 
 	border: 1px solid color(gray-ff);
+	box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
 
 	>img {
 		width: vw(16);
@@ -363,12 +379,15 @@
 .label-chck-gray {
 	display: block;
 	width: 100%;
-	padding: vh(40) vw(40);
-	border: 3px solid color(gray-db);
+	height: vh(120);
+	padding: 0 vw(40);
+	border: 3px solid color(gray-f0);
 	border-radius: vw(20);
 	background-color: color(gray-f5);
+	line-height: vh(124);
 	text-align: center;
 	box-shadow: $btn-shadow;
+	transition: all 0.2s;
 
 	.text {
 		position: relative;
@@ -380,7 +399,7 @@
 
 .inp-chck-gray:checked~.label-chck-gray {
 	border-color: color(main);
-	background-color: color(purple-200);
+	background-color: color(gray-ff);
 
 	.text {
 		color: color(main);
@@ -431,6 +450,7 @@
 
 .inp-chck-line:disabled~.label-chck-line {
 	border-color: color(gray-db);
+	transition: all 0.2s;
 
 	.text,
 	.text-sm {

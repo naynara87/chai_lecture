@@ -33,7 +33,7 @@ const ImageWithCaptionWrapper = styled.div`
 
   & > div {
     margin-top: ${vh(13)};
-    font-size: 24px;
+    font-size: ${vw(24)};
     font-weight: 400;
     line-height: 1.5;
     text-align: center;

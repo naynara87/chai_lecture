@@ -2,9 +2,9 @@ import React from "react";
 
 const IconDictionaryButton = () => {
   return (
-      <button className="btn-icon btn-dectionary">
-        단어장켜기
-      </button>
+    <button className="btn-icon btn-dectionary">
+      단어장켜기
+    </button>
   );
 };
 

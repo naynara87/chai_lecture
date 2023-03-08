@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import LayoutModalSolution from "../modal/LayoutModalSolution";
 import LayoutModalVoca from "../modal/LayoutModalVoca";
 import ComponentTitle from "../molecules/ComponentTitle";
 
 const TemplateExam = () => {
-  const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(false);
   const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
 
   return (
@@ -13,10 +11,10 @@ const TemplateExam = () => {
         <ComponentTitle text="무슨 이야기를 하고 있을까요?" />
         {/* <ComponentVideo videoUrl="https://cdn.bubblecon.co.kr/videos/45.mp4" /> */}
       </div>
-      <LayoutModalSolution
+      {/* <LayoutModalSolution
         isModalOpen={isModalSolutionOpen}
         setIsModalOpen={setIsModalSolutionOpen}
-      />
+      /> */}
       <LayoutModalVoca
         isModalOpen={isModalVocaOpen}
         setIsModalOpen={setIsModalVocaOpen}

@@ -47,8 +47,8 @@
 	&.active {
 		transform: none;
 	}
-	
-	.character {
+
+	.img {
 		z-index: z(zero);
 		position: absolute;
 		top: 0;
@@ -61,8 +61,8 @@
 
 .cai-nav-wrap {
 	position: relative;
-	height: 75vh;
-	padding-bottom: vh(195);
+	height: vh(740);
+	padding-bottom: vh(125);
 	border-radius: vw(20) vw(20) 0 0;
 	background-color: color(gray-ff);
 	box-shadow: 0 0 34px rgba(0, 0, 0, 0.1);
@@ -73,85 +73,45 @@
 		bottom: 0;
 		left: 0;
 		width: 100%;
-		height: vh(150);
+		height: vh(125);
 		padding: 0 vw(45);
 		background-color: color(gray-ff);
 	}
 
-	.btn-fill-black {
+	.btn {
+		height: vh(75);
 		font-weight: 400;
 		font-size: vw(26);
-		box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
 	}
 }
 
 .cai-nav-list-wrap {
 	overflow: auto;
 	height: 100%;
-	padding: vh(45) vw(45) 0;
+	padding: vh(40) vw(40) 0;
 }
 
 .cai-nav-list {
-	margin-top: vh(20);
-	border: 1px solid color(gray-db);
+	margin-bottom: vh(20);
+	border: 2px solid color(gray-db);
 	border-radius: 10px;
 
-	.cai-nav-ttl {
-		@include bg-url(icon, 'icon_arrow_down_gray.svg');
-		@include bg-op(right vw(20) center, vw(20));
+	.cai-nav-link {
+		@include flex-center;
 
-		width: vw(440);
+		width: vw(420);
 		height: vh(85);
-		padding: vh(30) vw(26);
 		font-weight: 600;
 		font-size: vw(26);
-		transform: translateY(-1px);
 		transition: all 0.2s;
-	}
-	
-	.cai-nav-sub-wrap {
-		overflow: hidden;
-		max-height: 0;
-		transition: all 0.2s;
-	}
-
-	.cai-nav-sub-link {
-		@include flex {
-			@include flex-op(center, flex-start);
-		}
-
-		padding: vh(27) vw(26);
-		font-weight: 400;
-		font-size: vw(26);
-		transition: all 0.2s;
-		
-		@include make-before($d: inline-block) {
-			width: vw(12);
-			height: vh(2);
-			margin-right: vw(12);
-			background-color: color(gray-22);
-			transition: all 0.2s;
-		}
-
-		&.active {
-			background-color: color(bubble-blue);
-			font-weight: 600;
-			color: color(blue-500);
-
-			&:before {
-				background-color: color(blue-500);
-			}
-		}
 	}
 
 	&.active {
-		.cai-nav-ttl {
-			@include bg-url(icon, 'icon_arrow_up_gray.svg');
-		}
+		border-color: color(sub);
+		background-color: color(sub-light);
 
-		.cai-nav-sub-wrap {
-			max-height: 100vh;
-			transition: all 0.2s;
+		.cai-nav-link {
+			color: color(main);
 		}
 	}
 }

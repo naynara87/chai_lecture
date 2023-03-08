@@ -1,10 +1,19 @@
 import React, { useCallback } from "react";
-import { Template01, TemplateDialogue } from "../../components";
+import {
+  Template01,
+  TemplateDialogue,
+  TemplateQuizMultiChoice,
+  TemplateQuizDialogueWordBlank,
+} from "../../components";
 import TemplateExam from "../../components/templates/TemplateExam";
+import TemplateQuizDialogueWordArray from "../../components/templates/TemplateQuizDialogueWordArray";
 import {
   AllTemplateData,
   Template01Data,
   TemplateConversationData,
+  TemplateQuizConversationData,
+  TemplateQuizMultiChoiceData,
+  TemplateQuizWordsInOrderData,
 } from "../types";
 import { TemplateType } from "../types/appData";
 
@@ -38,6 +47,24 @@ const useTemplateMapper = ({ setPageCompleted }: UseTemplateMapperProps) => {
         TemplateConversationRepeat: (
           <TemplateDialogue
             template={template as TemplateConversationData}
+            setPageCompleted={setPageCompleted}
+          />
+        ),
+        TemplateQuizConversation: (
+          <TemplateQuizDialogueWordBlank
+            template={template as TemplateQuizConversationData}
+            setPageCompleted={setPageCompleted}
+          />
+        ),
+        TemplateQuizWordsInOrder: (
+          <TemplateQuizDialogueWordArray
+            template={template as TemplateQuizWordsInOrderData}
+            setPageCompleted={setPageCompleted}
+          />
+        ),
+        TemplateQuizMultiChoice: (
+          <TemplateQuizMultiChoice
+            template={template as TemplateQuizMultiChoiceData}
             setPageCompleted={setPageCompleted}
           />
         ),

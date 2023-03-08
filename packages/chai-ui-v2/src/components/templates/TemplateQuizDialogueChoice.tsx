@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import React, { useState } from "react";
-import { LayoutModalSolution, LayoutModalVoca } from "../modal";
+import { LayoutModalVoca } from "../modal";
 import ImgProfileDefaultComponent from "../atoms/ImgProfileDefaultComponent";
 import ImgTemp01Component from "../atoms/ImgTemp01Component";
 
@@ -9,11 +9,9 @@ const DialogueContainer = styled.div``;
 const QuizContainer = styled.form``;
 
 const TemplateQuizDialogueChoice = () => {
-  const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(false);
   const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
 
   return (
-    // FIXME: key 피그마 시안에 사라진 게 맞는지 확인하기
     <DialogueContainer className="layout-panel-wrap grid-h-5-5">
       <div className="layout-panel side-panel conversation-panel-wrap">
         {/* 230217 회화영역 */}
@@ -94,10 +92,6 @@ const TemplateQuizDialogueChoice = () => {
           </div>
         </QuizContainer>
       </div>
-      <LayoutModalSolution
-        isModalOpen={isModalSolutionOpen}
-        setIsModalOpen={setIsModalSolutionOpen}
-      />
       <LayoutModalVoca
         isModalOpen={isModalVocaOpen}
         setIsModalOpen={setIsModalVocaOpen}

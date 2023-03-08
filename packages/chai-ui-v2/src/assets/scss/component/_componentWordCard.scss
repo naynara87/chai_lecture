@@ -2,6 +2,7 @@
 .word-card-list {
 	@include flex-center {
 		gap: vw(30);
+		flex-wrap: wrap;
 	}
 }
 
@@ -20,20 +21,12 @@
 		font-size: vw(50);
 		line-height: 1;
 	}
-	
+
 	.text-sm {
 		display: block;
 		margin-top: vh(24);
 		font-size: vw(28);
-		color:color(gray-66);
+		color: color(gray-66);
 		line-height: 1;
 	}
-}
-
-.word-card-text{
-	margin-top: vw(60);
-	font-weight: 600;
-	font-size: vw(36);
-	line-height: 1;
-	text-align: center;
 }

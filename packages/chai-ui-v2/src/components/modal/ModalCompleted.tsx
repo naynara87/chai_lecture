@@ -19,7 +19,7 @@ const ModalCompleted = () => {
           이제 연습문제를 풀러 가볼까요?`}</p>
         <button className="btn">확인</button>
         <Confetti
-          numberOfPieces={100}
+          numberOfPieces={300}
         />
       </div>
     </ModalCompletedWrapper>

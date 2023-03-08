@@ -26,6 +26,14 @@
 		font-size: vw(28);
 		color: color(gray-80);
 	}
+
+	>* {
+		margin-top: vh(30);
+
+		&:first-child {
+			margin-top: 0;
+		}
+	}
 }
 
 .blank-line {
@@ -49,7 +57,7 @@
 }
 
 .quiz-answer-wrap {
-	margin: vh(30) auto;
+	margin: vh(60) auto;
 }
 
 .hori-answer-wrap {
@@ -67,7 +75,7 @@
 	@include flex-center {
 		gap: vw(20);
 	}
-	
+
 	margin: vh(30) auto;
 
 	.text {
@@ -93,6 +101,24 @@
 		&.active {
 			border-color: color(main);
 			background-color: color(purple-200);
+		}
+
+		&.answer-right {
+			border-color: color(right);
+			background-color: color(gray-ff);
+
+			.text {
+				color: color(right);
+			}
+		}
+
+		&.answer-wrong {
+			border-color: color(warning);
+			background-color: color(gray-ff);
+
+			.text {
+				color: color(warning);
+			}
 		}
 	}
 }

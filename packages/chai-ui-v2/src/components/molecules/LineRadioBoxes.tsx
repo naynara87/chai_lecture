@@ -1,35 +1,45 @@
 import React, { useMemo } from "react";
+import { QuizChoice } from "../contents/ConversationQuizComponent";
 
-const LineRadioBoxes = () => {
+interface LineRadioBoxesProps {
+  choices: QuizChoice[];
+  contentIndex: number;
+  onClickChoice: (contentIndex: number, choice: QuizChoice) => void;
+  isShowAnswer: boolean;
+}
+
+const LineRadioBoxes = ({
+  choices,
+  contentIndex,
+  onClickChoice,
+  isShowAnswer,
+}: LineRadioBoxesProps) => {
   const selectBoxes = useMemo(() => {
     // TODO kjw quizDialogueWordBlank관련 데이터 타입 설계되면 로직구성
-    return (
-      <>
-        <div className="inp-grp">
+    return choices.map((choice, choiceIndex) => {
+      return (
+        <div className="inp-grp" key={choiceIndex}>
           <input
             type="radio"
-            name="answer1"
-            id="answer1-1"
+            name={`answer${contentIndex}`}
+            id={`answer${contentIndex}-${choiceIndex}`}
             className="inp-chck-line none"
+            disabled={isShowAnswer}
           />
-          <label htmlFor="answer1-1" className="label-chck-line">
-            <span className="text">{"胃口"}</span>
+          <label
+            htmlFor={`answer${contentIndex}-${choiceIndex}`}
+            className="label-chck-line"
+            onClick={() => {
+              if (isShowAnswer) return;
+              onClickChoice(contentIndex, choice);
+            }}
+          >
+            <span className="text">{choice.text}</span>
           </label>
         </div>
-        <div className="inp-grp">
-          <input
-            type="radio"
-            name="answer1"
-            id="answer1-2"
-            className="inp-chck-line none"
-          />
-          <label htmlFor="answer1-2" className="label-chck-line">
-            <span className="text">{"味道"}</span>
-          </label>
-        </div>
-      </>
-    );
-  }, []);
+      );
+    });
+  }, [choices, onClickChoice, contentIndex, isShowAnswer]);
 
   return <div className="quiz-answer-wrap hori-answer-wrap">{selectBoxes}</div>;
 };
