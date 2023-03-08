@@ -1,17 +1,17 @@
 import React from "react";
 import { ComponentButtonRadiBorderMain, ComponentButtonRadiFillMain } from "../atoms";
-import IconDictionaryButton from "../atoms/Button/IconDictionaryButton";
-import IconPlayButton from "../atoms/Button/IconPlayButton";
+import { ComponentTitle } from "../molecules";
+import ComponentText from "../molecules/ComponentText";
 
 const TemplatePub = () => {
 
   return (
-    <div className="layout-panel-wrap">
+    <div className="layout-panel-wrap grid-h-5-5">
       <div className="layout-panel">
-        <div className="btns-wrap">
-          <IconPlayButton active={true} />
-          <IconDictionaryButton />
-        </div>
+        <ComponentTitle text="title" />
+        <ComponentText />
+      </div>
+      <div className="layout-panel">
         <div className="btns-wrap">
           <ComponentButtonRadiBorderMain text="다시하기" />
           <ComponentButtonRadiFillMain text="정답확인" />
