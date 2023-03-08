@@ -365,6 +365,7 @@ export type QuizWordsInOrderContentData = {
       name: string;
       src: string;
     };
+    exampleContents?: Content[];
   };
   meta?: Meta;
 };
@@ -377,6 +378,7 @@ export type MultiChoiceContentData = {
   data: {
     choice: string[];
     answerIndex: number;
+    exampleContents?: Content[];
   };
   meta?: Meta;
 };

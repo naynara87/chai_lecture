@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { MultiChoiceContentData } from "../../core";
+import ComponentGrayLine from "../molecules/ComponentGrayLine";
 
 interface MultiChoiceComponentProps {
   contents: MultiChoiceContentData;
@@ -46,8 +47,13 @@ const MultiChoiceComponent = ({ contents }: MultiChoiceComponentProps) => {
   }, [contents.data.answerIndex, userChoice]);
 
   return (
-    <div className={`quiz-answer-wrap hori-answer-wrap ${answerCheckColor}`}>
-      {choiceBoxes}
+    <div>
+      {contents.data.exampleContents && (
+        <ComponentGrayLine contents={contents.data.exampleContents} />
+      )}
+      <div className={`quiz-answer-wrap hori-answer-wrap ${answerCheckColor}`}>
+        {choiceBoxes}
+      </div>
     </div>
   );
 };

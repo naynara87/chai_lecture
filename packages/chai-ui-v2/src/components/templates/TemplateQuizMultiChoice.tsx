@@ -7,7 +7,6 @@ import {
 } from "../../core";
 import MultiChoiceComponent from "../contents/MultiChoiceComponent";
 import { LayoutModalSolution, LayoutModalVoca } from "../modal";
-import ComponentGrayLine from "../molecules/ComponentGrayLine";
 
 const QuizContainer = styled.div``;
 
@@ -45,10 +44,9 @@ const TemplateQuizMultiChoice = ({
             <p className="text-lg">{`在`}</p>
           </div> */}
 
-          <ComponentGrayLine contents={thisPage.rightContents.borderContents} />
           {/* TODO: key설명 - 클릭하면 input들 disabled 되고, 
           정답이면 answer-right 오답이면 answer-wrong 클래스 추가 */}
-          <MultiChoiceComponent contents={thisPage.rightContents.multiChoice} />
+          <MultiChoiceComponent contents={thisPage.rightContents} />
           {/* <GrayRadioBoxes /> */}
         </QuizContainer>
       </div>

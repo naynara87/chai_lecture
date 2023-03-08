@@ -327,44 +327,47 @@ export const v2CornerDataList: CornerData[] = [
             },
           ],
           rightContents: {
-            borderContents: [
-              {
-                type: "text",
-                data: {
-                  text: "너는 어디 가니?",
+            type: "quizWordsInOrder",
+            data: {
+              choice: [
+                {
+                  text: "<p>冷<br>lěng</p>",
+                  isChoice: true,
+                  answerIndex: 0,
                 },
-              },
-            ],
-            wordInOrderQuiz: {
-              type: "quizWordsInOrder",
-              data: {
-                choice: [
-                  {
-                    text: "<p>冷<br>lěng</p>",
-                    isChoice: true,
-                    answerIndex: 0,
-                  },
-                  {
-                    text: "<p>首尔的<br>Shǒu'ěr de</p>",
-                    isChoice: true,
-                    answerIndex: 1,
-                  },
-                  {
-                    text: "<p>没有<br>Méiyǒu</p>",
-                    isChoice: true,
-                    answerIndex: 2,
-                  },
-                  {
-                    text: "<p>?</p>",
-                    isChoice: false,
-                    answerIndex: -1,
-                  },
-                ],
-                character: {
-                  name: "김민호",
-                  src: "asdfasdf",
+                {
+                  text: "<p>!</p>",
+                  isChoice: false,
+                  answerIndex: -1,
                 },
+                {
+                  text: "<p>首尔的<br>Shǒu'ěr de</p>",
+                  isChoice: true,
+                  answerIndex: 1,
+                },
+                {
+                  text: "<p>没有<br>Méiyǒu</p>",
+                  isChoice: true,
+                  answerIndex: 2,
+                },
+                {
+                  text: "<p>?</p>",
+                  isChoice: false,
+                  answerIndex: -1,
+                },
+              ],
+              character: {
+                name: "김민호",
+                src: "asdfasdf",
               },
+              exampleContents: [
+                {
+                  type: "text",
+                  data: {
+                    text: "너는 어디 가니?",
+                  },
+                },
+              ],
             },
           },
         },
@@ -387,20 +390,18 @@ export const v2CornerDataList: CornerData[] = [
             },
           ],
           rightContents: {
-            borderContents: [
-              {
-                type: "text",
-                data: {
-                  text: "<p>제3성이 연이어 나올 때,<br/>올바르게 발음한 것을 고르세요.</p>",
+            type: "multiChoice",
+            data: {
+              choice: ["오답", "정답"],
+              answerIndex: 1,
+              exampleContents: [
+                {
+                  type: "text",
+                  data: {
+                    text: "<p>제3성이 연이어 나올 때,<br/>올바르게 발음한 것을 고르세요.</p>",
+                  },
                 },
-              },
-            ],
-            multiChoice: {
-              type: "multiChoice",
-              data: {
-                choice: ["오답", "정답"],
-                answerIndex: 1,
-              },
+              ],
             },
           },
         },
