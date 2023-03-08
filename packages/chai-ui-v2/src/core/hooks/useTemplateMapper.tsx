@@ -9,11 +9,9 @@ import {
 import TemplateExam from "../../components/templates/TemplateExam";
 import TemplateQuizDialogueWordArray from "../../components/templates/TemplateQuizDialogueWordArray";
 import {
-  ConversationTemplateData,
-  QuizTemplateData,
+  AllTemplateData,
   Template01Data,
   TemplateConversationData,
-  TemplateData,
   TemplateQuizConversationData,
   TemplateQuizMultiChoiceData,
   TemplateQuizSentencesInOrderData,
@@ -26,10 +24,7 @@ interface UseTemplateMapperProps {
 }
 const useTemplateMapper = ({ setPageCompleted }: UseTemplateMapperProps) => {
   const templateMapper = useCallback(
-    (
-      templateType: TemplateType,
-      template: TemplateData | ConversationTemplateData | QuizTemplateData,
-    ) => {
+    (templateType: TemplateType, template: AllTemplateData) => {
       const templateList: Partial<Record<TemplateType, JSX.Element>> = {
         Template01: (
           <Template01
@@ -89,10 +84,7 @@ const useTemplateMapper = ({ setPageCompleted }: UseTemplateMapperProps) => {
   );
 
   const getTemplateComponent = useCallback(
-    (
-      templateType: TemplateType,
-      template: TemplateData | ConversationTemplateData | QuizTemplateData,
-    ) => {
+    (templateType: TemplateType, template: AllTemplateData) => {
       return templateMapper(templateType, template);
     },
     [templateMapper],

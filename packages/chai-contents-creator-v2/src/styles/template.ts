@@ -1,23 +1,27 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+import { colorPalette } from "chai-ui-v2";
 
-const buttonCSS = css`
+export const buttonCSS = css`
   background: white;
   box-shadow: none;
-  border: 1px solid #d6d6d6;
+  border: 1px solid ${colorPalette.gray550};
   padding: 8px 12px;
   border-radius: 4px;
   font-size: 12px;
   font-weight: 500;
-  color: #565656;
+  color: ${colorPalette.gray900};
+  :not(:last-child) {
+    margin-right: 8px;
+  }
 `;
 
 export const CreateTemplateWrap = styled.div`
   display: flex;
-  padding: 40px 24px;
+  margin: 40px 24px;
   flex-direction: column;
-  background-color: #f5f5f5;
-  height: 100vh;
+  background-color: ${colorPalette.gray100};
+  position: relative;
 `;
 
 export const CreateEditTop = styled.div`
@@ -26,23 +30,13 @@ export const CreateEditTop = styled.div`
   margin-bottom: 16px;
 `;
 
-export const BtnChangeLayout = styled.button`
-  ${buttonCSS}
-  margin-right: 8px;
-`;
-
-export const BtnPreview = styled.button`
-  ${buttonCSS}
-`;
-export const BtnAddGanjiChange = styled.button`
-  ${buttonCSS}
+export const PageHeaderLeft = styled.div`
   margin-left: auto;
 `;
 
 export const CreateEditMainWrap = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 24px;
 `;
 
 export const CreateTemplateNavWrap = styled.div`
@@ -52,17 +46,18 @@ export const CreateTemplateNavWrap = styled.div`
   width: 280px;
   overflow-y: scroll;
   box-shadow: 2px 6px 12px #00000026;
-  padding: 16px;
+  border: 16px solid ${colorPalette.white};
+  border-radius: 16px;
   right: 0;
   transform: translateY(-100%);
-  background-color: #ffffff;
+  background-color: ${colorPalette.white};
   display: none;
   transition: all 0.2s;
 
   .nav-tit {
     font-size: 12px;
     font-weight: 500;
-    color: #565656;
+    color: ${colorPalette.gray900};
     margin-bottom: 10px;
   }
 
@@ -84,7 +79,7 @@ export const NavList = styled.ul`
     height: 50px;
     font-size: 12px;
     font-weight: 700;
-    background-color: #d9d9d9;
+    background-color: ${colorPalette.gray600};
     line-height: 50px;
     text-align: center;
     border-radius: 4px;
@@ -108,13 +103,16 @@ export const CreateTemplateChoiceBtnWrap = styled.div`
 
 export const DashBoxArea = styled.div`
   width: 100%;
-  border: 2px dashed #888888;
+  border: 2px dashed ${colorPalette.gray700};
   padding: 16px;
 `;
 
 export const CreateTemplateNav = styled.div`
-  margin-bottom: 14px;
+  :not(:last-child) {
+    margin-bottom: 14px;
+  }
 `;
+
 export const CreateEditMain = styled.div`
   display: flex;
   padding: 24px;
@@ -124,19 +122,12 @@ export const CreateEditMain = styled.div`
   border-radius: 20px;
   box-shadow: 0px 4px 19px rgba(145, 145, 145, 0.2);
   width: 100%;
-
   margin-bottom: 24px;
-
-  &:nth-of-type(1) {
-    margin-right: 12px;
-  }
-  &:nth-of-type(2) {
-    margin-left: 12px;
-  }
+  gap: 24px;
 
   & .btn-comp-select {
-    color: #7686d4;
-    background: #ffffff;
+    color: ${colorPalette.purple700};
+    background: ${colorPalette.white};
     border-radius: 50px;
     border: 1px solid #dbe1ff;
     width: 90px;
@@ -148,15 +139,14 @@ export const CreateEditMain = styled.div`
 `;
 
 export const CreateAddBtn = styled.button`
-  background-color: #ffffff;
+  background-color: ${colorPalette.white};
   height: 102px;
   box-shadow: 0px 4px 19px rgba(145, 145, 145, 0.2);
   border-radius: 20px;
-  color: #888888;
+  color: ${colorPalette.gray700};
   font-size: 16px;
   font-weight: 500;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 24px;
 `;
