@@ -3,6 +3,7 @@
 	@include flex-center {
 		flex-direction: column;
 	}
+
 	@include gradiant;
 
 	width: vw(550);
@@ -10,7 +11,8 @@
 	margin: 0 auto;
 	padding: vh(70) vw(70);
 	border-radius: vw(30);
-	transition: width 0.2s, height 0.2s;
+	transition: width 0.2s,
+	height 0.2s;
 
 	.chinese {
 		font-weight: 600;
@@ -27,12 +29,12 @@
 		top: 50%;
 		transform: translateY(-50%);
 	}
-	
+
 	&.step2 {
 		width: vw(630);
 		min-height: vw(541);
 	}
-	
+
 	&.step3 {
 		width: vw(710);
 		min-height: vw(541);
@@ -40,6 +42,10 @@
 
 	@at-root .step-card-wrap:first-child & {
 		margin-top: vh(150-60);
+	}
+
+	@at-root .grid-h-5-5 .step3 {
+		width: 100%;
 	}
 }
 
@@ -62,15 +68,16 @@
 		margin-top: vw(20);
 		font-size: vw(32);
 	}
-	
+
 	&.step2 {
 		width: vw(1328);
 		min-height: vw(468);
 	}
-	
+
 	&.step3 {
 		width: vw(1328);
 		min-height: vw(520);
 	}
 }
+
 // END step sentence card
