@@ -19,6 +19,7 @@ import {
 } from "../../core";
 import IconPauseFillButton from "../atoms/Button/IconPauseFillButton";
 import ConversationQuizComponent from "../contents/ConversationQuizComponent";
+import { vw } from "../../assets";
 
 const DialogueContainer = styled.div`
   .hori-answer-wrap {
@@ -39,9 +40,9 @@ const DialogueContainer = styled.div`
         position: absolute;
         top: 50%;
         left: auto;
-        right: -2vw;
-        width: 2.6vw;
-        height: 2.6vw;
+        right: ${vw(-40)};
+        width: ${vw(52)};
+        height: ${vw(52)};
         background-repeat: no-repeat;
         background-position: center;
         background-size: 100% 100%;
@@ -57,13 +58,13 @@ const DialogueContainer = styled.div`
       display: inline-flex;
 
       &:after {
-        content: "";
+        content: ""; 
         position: absolute;
         top: 50%;
         left: auto;
-        right: -2vw;
-        width: 2.6vw;
-        height: 2.6vw;
+        right: ${vw(-40)};
+        width: ${vw(52)};
+        height: ${vw(52)};
         background-repeat: no-repeat;
         background-position: center;
         background-size: 100% 100%;
@@ -72,6 +73,7 @@ const DialogueContainer = styled.div`
       }
     }
   }
+  
   .wide-panel {
     .btns-wrap {
       max-width: 310px;
@@ -80,7 +82,7 @@ const DialogueContainer = styled.div`
   }
 `;
 
-interface TemplateQuizDialogueWordBlank extends TemplateProps {}
+interface TemplateQuizDialogueWordBlank extends TemplateProps { }
 
 const TemplateQuizDialogueWordBlank = ({
   template,

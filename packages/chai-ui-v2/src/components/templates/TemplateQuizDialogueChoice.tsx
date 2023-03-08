@@ -12,7 +12,6 @@ const TemplateQuizDialogueChoice = () => {
   const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
 
   return (
-    // FIXME: key 피그마 시안에 사라진 게 맞는지 확인하기
     <DialogueContainer className="layout-panel-wrap grid-h-5-5">
       <div className="layout-panel side-panel conversation-panel-wrap">
         {/* 230217 회화영역 */}

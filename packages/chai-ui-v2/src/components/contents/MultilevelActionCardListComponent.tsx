@@ -1,12 +1,13 @@
 import styled from "@emotion/styled";
 import React, { useCallback, useMemo, useState } from "react";
+import { vw } from "../../assets";
 import { MultilevelActionCardListContentData } from "../../core";
 import useContentMapper from "../../core/hooks/useContentMapper";
 import ComponentButtonStep from "../atoms/Button/ComponentButtonStep";
 
 const StepCard = styled.div`
   > *:not(:first-child) {
-    margin-top: 2vw;
+    margin-top: ${vw(40)};
   }
 `;
 
