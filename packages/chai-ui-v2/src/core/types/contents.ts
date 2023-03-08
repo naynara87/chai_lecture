@@ -242,6 +242,45 @@ export type IntroductionModalContentData = {
 };
 
 /**
+ * 퀴즈 컴포넌트 팝업 레이어 컴포넌트
+ * 퀴즈 컴포넌트에 속한 팝업 레이어
+ */
+export type QuizPopupModalContentData = {
+  type: "quizPopupModal";
+  data: {
+    correct: {
+      title: string;
+      sub: string;
+      description: string;
+      character: {
+        src: string;
+      };
+      soundEffect?: {
+        src: string;
+      };
+      video?: {
+        src: string;
+      };
+    };
+    incorrect: {
+      title: string;
+      sub: string;
+      description: string;
+      character: {
+        src: string;
+      };
+      soundEffect?: {
+        src: string;
+      };
+      video?: {
+        src: string;
+      };
+    };
+  };
+  meta?: Meta;
+};
+
+/**
  * 학습 카드 컴포넌트
  * 멀티레벨콘텐츠 저작시 멀티레벨안에 멀티레벨 중복 막기
  */
@@ -366,6 +405,7 @@ export type QuizWordsInOrderContentData = {
       src: string;
     };
     exampleContents?: Content[];
+    quizPopup: QuizPopupModalContentData;
   };
   meta?: Meta;
 };
@@ -379,6 +419,7 @@ export type MultiChoiceContentData = {
     choice: string[];
     answerIndex: number;
     exampleContents?: Content[];
+    quizPopup: QuizPopupModalContentData;
   };
   meta?: Meta;
 };

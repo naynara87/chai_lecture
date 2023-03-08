@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import LayoutModalSolution from "../modal/LayoutModalSolution";
 import LayoutModalVoca from "../modal/LayoutModalVoca";
 import ComponentContsInfo from "../molecules/ComponentContsInfo";
 import ImageWithCaptionListComponent from "../contents/ImageWithCaptionListComponent";
 
 const Template03 = () => {
-  const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(false);
   const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
 
   return (
@@ -38,10 +36,6 @@ const Template03 = () => {
           }}
         />
       </div>
-      <LayoutModalSolution
-        isModalOpen={isModalSolutionOpen}
-        setIsModalOpen={setIsModalSolutionOpen}
-      />
       <LayoutModalVoca
         isModalOpen={isModalVocaOpen}
         setIsModalOpen={setIsModalVocaOpen}
