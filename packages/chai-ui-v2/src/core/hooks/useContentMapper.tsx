@@ -1,5 +1,8 @@
 import React from "react";
-import { ComponentVideo, GuideCharacterComponent } from "../../components";
+import {
+  ComponentVideo,
+  ActivityGuideCharactorComponent,
+} from "../../components";
 import ExplainingCharacterComponent from "../../components/contents/ExplainingCharacterComponent";
 import BorderTextBoxComponent from "../../components/contents/BorderTextBoxComponent";
 import IconTextComponent from "../../components/contents/IconTextComponent";
@@ -24,11 +27,12 @@ import {
   ImageWithDescriptionListContentData,
   ConversationContentData,
   ImageWithCaptionListContentData,
-  GuideCharacterContentData,
+  ActivityGuideCharactorContentData,
   ConversationQuizContentData,
   QuizWordsInOrderContentData,
   MultiChoiceContentData,
   AudioContentData,
+  CornerGuideCharacterContentData,
 } from "../types";
 import CharacterCardListComponent from "../../components/contents/CharacterCardListComponent";
 import SpeakingComponent from "../../components/contents/SpeakingComponent";
@@ -41,6 +45,7 @@ import ConversationQuizComponent from "../../components/contents/ConversationQui
 import WordsInOrderComponent from "../../components/contents/WordsInOrderComponent";
 import MultiChoiceComponent from "../../components/contents/MultiChoiceComponent";
 import AudioComponent from "../../components/contents/AudioComponent";
+import CornerGuideCharacterComponent from "../../components/contents/CornerGuideCharacterComponent";
 
 const useContentMapper = () => {
   const getContentComponent = (content: Content, contentIndex: number) => {
@@ -128,9 +133,9 @@ const useContentMapper = () => {
           key={contentIndex}
         />
       ),
-      guideCharacter: (
-        <GuideCharacterComponent
-          contents={content as GuideCharacterContentData}
+      ActivityGuideCharactor: (
+        <ActivityGuideCharactorComponent
+          contents={content as ActivityGuideCharactorContentData}
           key={contentIndex}
         />
       ),
@@ -155,6 +160,12 @@ const useContentMapper = () => {
       audio: (
         <AudioComponent
           contents={content as AudioContentData}
+          key={contentIndex}
+        />
+      ),
+      cornerGuideCharacter: (
+        <CornerGuideCharacterComponent
+          contents={content as CornerGuideCharacterContentData}
           key={contentIndex}
         />
       ),

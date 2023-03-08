@@ -4,7 +4,7 @@ export { default as CharacterCardListComponent } from "./CharacterCardListCompon
 export { default as ConversationComponent } from "./ConversationComponent";
 export { default as ConversationWordListComponent } from "./ConversationWordListComponent";
 export { default as ExplainingCharacterComponent } from "./ExplainingCharacterComponent";
-export { default as GuideCharacterComponent } from "./GuideCharacterComponent";
+export { default as ActivityGuideCharactorComponent } from "./ActivityGuideCharactorComponent";
 export { default as IconTextComponent } from "./IconTextComponent";
 export { default as ImageWithCaptionListComponent } from "./ImageWithCaptionListComponent";
 export { default as ImageWithDescriptionListComponent } from "./ImageWithDescriptionListComponent";
