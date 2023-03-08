@@ -48,4 +48,4 @@ export const colorPalette = {
   gray100: "#F5F5F5",
   white: "#ffffff",
   black: "#222222",
-};
+} as const;

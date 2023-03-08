@@ -1,22 +1,17 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { useNavigate } from "react-router-dom";
-import { PAGE_CREATE_URL } from "../../constants/url";
 import {
   commonLayouts,
   conversationLayouts,
   quizLayouts,
   rolePlayingLayouts,
 } from "../../data/appData";
-import { useRecoilState } from "recoil";
-import { layoutState } from "../../states/layoutState";
-import { TemplateType } from "chai-ui-v2";
+import { colorPalette, TemplateType } from "chai-ui-v2";
 
 const Header = styled.header`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 40px;
 `;
 
 const HeaderTitle = styled.h1`
@@ -33,7 +28,7 @@ const HeaderSubTitle = styled.h4`
 `;
 
 const Main = styled.main`
-  padding: 40px;
+  padding: 40px 0px;
 `;
 
 const MainSection = styled.section`
@@ -53,17 +48,14 @@ const MainSectionTitle = styled.h2`
 const LayoutContainer = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  gap: 24px;
 `;
 
 const LayoutItem = styled.li`
-  display: flex;
-  flex-direction: column;
   align-items: center;
+  width: calc(25% - 24px);
   cursor: pointer;
-  :not(:last-child) {
-    margin-right: 40px;
-  }
+  text-align: center;
 `;
 
 const LayoutItemName = styled.div`
@@ -71,23 +63,25 @@ const LayoutItemName = styled.div`
   font-weight: 500;
   line-height: 30px;
   margin-top: 8px;
+  word-break: keep-all;
 `;
 
-const ChooseLayoutPage = () => {
-  const navigate = useNavigate();
-  const [, setLayout] = useRecoilState(layoutState);
+const ChooseLayoutWrapper = styled.div`
+  background-color: ${colorPalette.white};
+  height: 70vh;
+  overflow: auto;
+`;
 
+interface ChooseLayoutProps {
+  onClickLayout: (templateType: TemplateType) => void;
+}
+const ChooseLayout = ({ onClickLayout }: ChooseLayoutProps) => {
   const handleLayoutClick = (templateType: TemplateType) => {
-    console.log("selected layout: ", templateType);
-    console.log(`go to ${PAGE_CREATE_URL}`);
-    navigate(PAGE_CREATE_URL);
-    setLayout({
-      templateType,
-    });
+    onClickLayout(templateType);
   };
 
   return (
-    <div>
+    <ChooseLayoutWrapper>
       <Header>
         <HeaderTitle className="CreateLayout__header__title">
           레이아웃 설정
@@ -152,8 +146,8 @@ const ChooseLayoutPage = () => {
           </LayoutContainer>
         </MainSection>
       </Main>
-    </div>
+    </ChooseLayoutWrapper>
   );
 };
 
-export default ChooseLayoutPage;
+export default ChooseLayout;

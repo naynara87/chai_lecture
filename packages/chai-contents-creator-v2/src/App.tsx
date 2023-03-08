@@ -5,6 +5,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "chai-ui-v2/dist/assets/globalStyle.css";
+import { Global } from "@emotion/react";
+import creatorGlobal from "./styles/creatorGlobal";
 
 const queryClient = new QueryClient();
 
@@ -18,6 +20,7 @@ function App() {
           hideProgressBar={true}
           closeButton={false}
         />
+        <Global styles={creatorGlobal} />
         <AppRouter />
       </RecoilRoot>
     </QueryClientProvider>

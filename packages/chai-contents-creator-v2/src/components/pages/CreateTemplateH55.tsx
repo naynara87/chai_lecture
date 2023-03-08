@@ -1,10 +1,5 @@
 import styled from "@emotion/styled";
 import {
-  CreateTemplateWrap,
-  CreateEditTop,
-  BtnChangeLayout,
-  BtnPreview,
-  BtnAddGanjiChange,
   CreateEditMainWrap,
   CreateEditMain,
   DashBoxArea,
@@ -12,33 +7,32 @@ import {
   CreateTemplateNavWrap,
   CreateTemplateNav,
   NavList,
-  CreateAddBtn,
 } from "../../styles/template";
+import { PageTemplateCommon } from "../../types/page";
+import PageHeader from "../molecules/PageHeader";
 
 const CreateEditMainWrap55 = styled(CreateEditMainWrap)`
   ${CreateEditMain} {
     width: 50%;
   }
+  gap: 24px;
 `;
 
-const CreateTemplateH55 = () => {
+const CreateTemplateH55 = ({
+  slideIndex,
+  handleChangeLayout,
+}: PageTemplateCommon) => {
   return (
-    <CreateTemplateWrap>
-      <CreateEditTop>
-        {/* TODO: lsh 버튼 클릭시 CreateLayout으로 이동 */}
-        <BtnChangeLayout>레이아웃 변경</BtnChangeLayout>
-        {/* TODO: lsh 버튼 클릭시 미리보기 화면 출력 */}
-        <BtnPreview>미리보기</BtnPreview>
-        {/* TODO: lsh 버튼 클릭시 학습변경 간지 간지 추가 */}
-        <BtnAddGanjiChange>학습 변경 간지 추가</BtnAddGanjiChange>
-      </CreateEditTop>
+    <>
+      <PageHeader
+        slideIndex={slideIndex}
+        handleChangeLayout={handleChangeLayout}
+      />
       <CreateEditMainWrap55>
         <CreateEditMain>
           <DashBoxArea>
             <CreateTemplateChoiceBtnWrap>
-              {/*
-            TODO: btn-comp-select 버튼 클릭시 CreateTemplateNavWrap 에 active 클래스 추가 (toggle)
-            */}
+              {/* TODO: btn-comp-select 버튼 클릭시 CreateTemplateNavWrap 에 active 클래스 추가 (toggle) */}
               <button className="btn-comp-select">컴포넌트 선택</button>
               <CreateTemplateNavWrap className="active">
                 <CreateTemplateNav>
@@ -75,9 +69,7 @@ const CreateTemplateH55 = () => {
         <CreateEditMain>
           <DashBoxArea>
             <CreateTemplateChoiceBtnWrap>
-              {/*
-            TODO: btn-comp-select 버튼 클릭시 CreateTemplateNavWrap 에 active 클래스 추가 (toggle)
-            */}
+              {/* TODO: btn-comp-select 버튼 클릭시 CreateTemplateNavWrap 에 active 클래스 추가 (toggle) */}
               <button className="btn-comp-select">컴포넌트 선택</button>
               <CreateTemplateNavWrap className="active">
                 <CreateTemplateNav>
@@ -111,11 +103,7 @@ const CreateTemplateH55 = () => {
           </DashBoxArea>
         </CreateEditMain>
       </CreateEditMainWrap55>
-      {/*
-      TODO: lsh 슬라이드 추가 버튼 클릭 시 레이아웃 선택화면으로 이동
-      */}
-      <CreateAddBtn>+&nbsp;&nbsp; 슬라이드 추가</CreateAddBtn>
-    </CreateTemplateWrap>
+    </>
   );
 };
 

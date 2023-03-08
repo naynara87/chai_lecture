@@ -60,6 +60,7 @@ const Title = styled.h2`
   /* margin-bottom: ${vw(24)}; */
   margin-bottom: 24px;
   text-align: center;
+  white-space: pre-line;
 `;
 
 const Description = styled.p`
@@ -69,6 +70,7 @@ const Description = styled.p`
   font-size: 16px;
   line-height: 23px;
   text-align: center;
+  white-space: pre-line;
 `;
 
 const ButtonContainer = styled.div`

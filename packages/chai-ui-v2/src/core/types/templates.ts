@@ -1,5 +1,11 @@
 import { Content, ConversationContent } from "./contents";
 
+export type AllTemplateData =
+  | TemplateData
+  | ConversationTemplateData
+  | QuizTemplateData
+  | TemplateRolePlayingData;
+
 export type TemplateData =
   | Template01Data
   | Template_H_3_7Data

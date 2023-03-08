@@ -2,11 +2,9 @@ import React, { useCallback } from "react";
 import { Template01, TemplateDialogue } from "../../components";
 import TemplateExam from "../../components/templates/TemplateExam";
 import {
-  ConversationTemplateData,
-  QuizTemplateData,
+  AllTemplateData,
   Template01Data,
   TemplateConversationData,
-  TemplateData,
 } from "../types";
 import { TemplateType } from "../types/appData";
 
@@ -15,10 +13,7 @@ interface UseTemplateMapperProps {
 }
 const useTemplateMapper = ({ setPageCompleted }: UseTemplateMapperProps) => {
   const templateMapper = useCallback(
-    (
-      templateType: TemplateType,
-      template: TemplateData | ConversationTemplateData | QuizTemplateData,
-    ) => {
+    (templateType: TemplateType, template: AllTemplateData) => {
       const templateList: Partial<Record<TemplateType, JSX.Element>> = {
         Template01: (
           <Template01
@@ -54,10 +49,7 @@ const useTemplateMapper = ({ setPageCompleted }: UseTemplateMapperProps) => {
   );
 
   const getTemplateComponent = useCallback(
-    (
-      templateType: TemplateType,
-      template: TemplateData | ConversationTemplateData | QuizTemplateData,
-    ) => {
+    (templateType: TemplateType, template: AllTemplateData) => {
       return templateMapper(templateType, template);
     },
     [templateMapper],

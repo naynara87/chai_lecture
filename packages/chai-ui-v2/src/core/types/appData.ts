@@ -1,17 +1,13 @@
 import {
+  AllTemplateData,
   ConversationTemplateData,
   QuizTemplateData,
   TemplateData,
-  TemplateRolePlayingData,
 } from "./templates";
 
 export type ID = string | number;
 
-export type TemplateType =
-  | TemplateData["type"]
-  | ConversationTemplateData["type"]
-  | QuizTemplateData["type"]
-  | TemplateRolePlayingData["type"];
+export type TemplateType = AllTemplateData["type"];
 
 /**
  * 레슨 데이터(코너 리스트)
@@ -87,7 +83,7 @@ export type SinglePage = {
   id: ID;
   name: string;
   type: "SinglePage";
-  data: TemplateData | ConversationTemplateData | QuizTemplateData;
+  data: AllTemplateData;
   introduction?: PageIntroduction;
 };
 
@@ -95,7 +91,7 @@ export type MultiPage = {
   id: ID;
   name: string;
   type: "MultiPage";
-  data: TemplateData[] | ConversationTemplateData[] | QuizTemplateData[];
+  data: AllTemplateData[];
   introduction?: PageIntroduction;
 };
 
