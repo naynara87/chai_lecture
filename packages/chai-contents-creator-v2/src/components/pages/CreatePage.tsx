@@ -32,6 +32,15 @@ const CreatePage = () => {
     },
   ]);
 
+  const addSlide = useCallback(() => {
+    const newSlides = [...slides];
+    newSlides.push({
+      slideIndex: newSlides.length,
+      templateType: "Template01",
+    });
+    setSlides(newSlides);
+  }, [slides]);
+
   const handleChangeLayout = useCallback(
     (slideIndex: number, templateType: TemplateType) => {
       const newSlides = slides.map((slide) => {
@@ -85,7 +94,6 @@ const CreatePage = () => {
       {isLoading ? (
         <TemplateMainLoading />
       ) : (
-        // TODO : slides 맵 돌리기
         slides.map((slide) => {
           return getTemplate({
             templateType: slide.templateType,
@@ -94,8 +102,9 @@ const CreatePage = () => {
           });
         })
       )}
-      {/* TODO: lsh 슬라이드 추가 버튼 클릭 시 레이아웃 선택화면으로 이동 */}
-      <CreateAddBtn>+&nbsp;&nbsp; 슬라이드 추가</CreateAddBtn>
+      <CreateAddBtn onClick={addSlide}>
+        +&nbsp;&nbsp; 슬라이드 추가
+      </CreateAddBtn>
     </CreateTemplateWrap>
   );
 };
