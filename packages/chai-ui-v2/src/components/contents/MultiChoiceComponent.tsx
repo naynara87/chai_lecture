@@ -66,7 +66,7 @@ const MultiChoiceComponent = ({ contents }: MultiChoiceComponentProps) => {
             htmlFor={`answer${choiceIndex}`}
             className="label-chck-gray"
             onClick={() => {
-              // if (userChoice !== undefined) return;
+              if (userChoice !== undefined) return;
               setUserChoice(choiceIndex);
               setIsModalSolutionOpen(true);
               handleClickAudioButton(
