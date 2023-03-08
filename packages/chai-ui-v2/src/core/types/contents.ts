@@ -19,7 +19,8 @@ export type Content =
   | ConversationQuizContentData
   | QuizWordsInOrderContentData
   | MultiChoiceContentData
-  | ImageWithCaptionListContentData;
+  | ImageWithCaptionListContentData
+  | AudioContentData;
 export type ContentType = Content["type"];
 
 export type ConversationContent =

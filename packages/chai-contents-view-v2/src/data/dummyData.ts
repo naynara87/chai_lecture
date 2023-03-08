@@ -581,6 +581,22 @@ export const v2CornerDataList: CornerData[] = [
           },
         },
       },
+      {
+        id: 7,
+        name: "단어",
+        type: "SinglePage",
+        data: {
+          type: "Template01",
+          contents: [
+            {
+              type: "audio",
+              data: {
+                src: "https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3",
+              },
+            },
+          ],
+        },
+      },
     ],
   },
   {
