@@ -11,15 +11,12 @@ import { PageTemplateCommon } from "../../types/page";
 import PageHeader from "../molecules/PageHeader";
 
 const CreateTemplate01 = ({
-  slideIndex,
-  handleChangeLayout,
+  templateType,
+  ...pageHeaderProps
 }: PageTemplateCommon) => {
   return (
     <>
-      <PageHeader
-        slideIndex={slideIndex}
-        handleChangeLayout={handleChangeLayout}
-      />
+      <PageHeader {...pageHeaderProps} />
       <CreateEditMainWrap>
         <CreateEditMain>
           <DashBoxArea>

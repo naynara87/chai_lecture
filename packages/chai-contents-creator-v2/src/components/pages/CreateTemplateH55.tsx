@@ -19,15 +19,12 @@ const CreateEditMainWrap55 = styled(CreateEditMainWrap)`
 `;
 
 const CreateTemplateH55 = ({
-  slideIndex,
-  handleChangeLayout,
+  templateType,
+  ...pageHeaderProps
 }: PageTemplateCommon) => {
   return (
     <>
-      <PageHeader
-        slideIndex={slideIndex}
-        handleChangeLayout={handleChangeLayout}
-      />
+      <PageHeader {...pageHeaderProps} />
       <CreateEditMainWrap55>
         <CreateEditMain>
           <DashBoxArea>
