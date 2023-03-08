@@ -1,13 +1,12 @@
 import styled from "@emotion/styled";
 import React, { useState } from "react";
 import ComponentButtonPlay from "../atoms/ComponentButtonPlay";
-import { LayoutModalSolution, LayoutModalVoca } from "../modal";
+import { LayoutModalVoca } from "../modal";
 import { ComponentContsInfo } from "../molecules";
 
 const QuizContainer = styled.form``;
 
 const TemplateQuizWordChoice = () => {
-  const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(false);
   const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
 
   return (
@@ -59,10 +58,6 @@ const TemplateQuizWordChoice = () => {
           </div>
         </QuizContainer>
       </div>
-      <LayoutModalSolution
-        isModalOpen={isModalSolutionOpen}
-        setIsModalOpen={setIsModalSolutionOpen}
-      />
       <LayoutModalVoca
         isModalOpen={isModalVocaOpen}
         setIsModalOpen={setIsModalVocaOpen}

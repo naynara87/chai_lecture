@@ -1,13 +1,22 @@
 import styled from "@emotion/styled";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { QuizWordsInOrderContentData } from "../../core";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import { QuizWordsInOrderContentData, useGlobalAudio } from "../../core";
 import {
   ComponentButtonRadiBorderMain,
   ComponentButtonRadiFillMain,
   ImgProfileDefaultComponent,
 } from "../atoms";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
+import { LayoutModalSolution } from "../modal";
+import ModalVideo from "../modal/ModalVideo";
 import ComponentGrayLine from "../molecules/ComponentGrayLine";
+import { v4 as uuidv4 } from "uuid";
 
 const BlankBox = styled.div``;
 
@@ -30,6 +39,41 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
   const [userChoices, setUserChoices] = useState<WordInOrderChoice[]>([]);
   const [isShowAnswer, setIsShowAnswer] = useState(false);
 
+  const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(false);
+  const [isModalVideoOpen, setIsModalVideoOpen] = useState(false);
+
+  const modalIdRef = useRef(`solutionModal${uuidv4()}`);
+
+  const {
+    globalAudioRef,
+    globalAudioId,
+    handleAudioReset,
+    handleClickAudioButton,
+  } = useGlobalAudio();
+
+  const audioEnded = useCallback(() => {
+    if (globalAudioId.toString().includes("solutionModal")) {
+      handleAudioReset();
+    }
+  }, [handleAudioReset, globalAudioId]);
+
+  useEffect(() => {
+    let globalAudioRefValue: HTMLAudioElement | null = null;
+    if (globalAudioRef?.current) globalAudioRefValue = globalAudioRef.current;
+    globalAudioRef?.current?.addEventListener("ended", audioEnded);
+    return () => {
+      if (globalAudioRefValue) {
+        globalAudioRefValue.removeEventListener("ended", audioEnded);
+      }
+    };
+  }, [globalAudioRef, audioEnded]);
+
+  useEffect(() => {
+    return () => {
+      handleAudioReset();
+    };
+  }, [handleAudioReset]);
+
   const handleClickResetAnswer = useCallback(() => {
     const copyUserChoices: WordInOrderChoice[] = [];
     contents.data.choice.forEach((content) => {
@@ -37,7 +81,6 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
         copyUserChoices.push({ text: "", answerIndex: -1 });
       }
     });
-    console.log("푸시안대냐", copyUserChoices);
 
     setUserChoices(copyUserChoices);
     setIsShowAnswer(false);
@@ -159,18 +202,41 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
     selectedChoiceBox,
   ]);
 
-  const handleClickShowAnswer = useCallback(() => {
-    setSelectedBlankBox(undefined);
-    setSelectedChoiceBox(undefined);
-    setIsShowAnswer(true);
-  }, []);
-
   const isShowAnswerButton = useMemo(() => {
     if (userChoices.find((userChoice) => userChoice.text.length === 0)) {
       return true;
     }
     return false;
   }, [userChoices]);
+
+  const handleClickModalClose = () => {
+    handleAudioReset();
+  };
+
+  const handleClickModalVideoBtn = () => {
+    handleAudioReset();
+    setIsModalSolutionOpen(false);
+    setIsModalVideoOpen(true);
+  };
+
+  const isCorrect = useMemo(() => {
+    return userChoices.find((userChoice, userChoiceIndex) => {
+      return userChoice.answerIndex !== userChoiceIndex;
+    });
+  }, [userChoices]);
+
+  const handleClickShowAnswer = useCallback(() => {
+    setSelectedBlankBox(undefined);
+    setSelectedChoiceBox(undefined);
+    setIsShowAnswer(true);
+    setIsModalSolutionOpen(true);
+    handleClickAudioButton(
+      modalIdRef.current,
+      isCorrect === undefined
+        ? contents.data.quizPopup.data.correct.soundEffect?.src ?? ""
+        : contents.data.quizPopup.data.incorrect.soundEffect?.src ?? "",
+    );
+  }, [contents.data.quizPopup.data, isCorrect, handleClickAudioButton]);
 
   return (
     <>
@@ -211,6 +277,23 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
           isDisabled={isShowAnswerButton}
         />
       </div>
+      <LayoutModalSolution
+        isModalOpen={isModalSolutionOpen}
+        setIsModalOpen={setIsModalSolutionOpen}
+        isCorrect={isCorrect === undefined ? true : false}
+        contents={contents.data.quizPopup}
+        handleClickModalCloseBtnCallback={handleClickModalClose}
+        handleClickModalVideoBtnCallback={handleClickModalVideoBtn}
+      />
+      <ModalVideo
+        isModalOpen={isModalVideoOpen}
+        setIsModalOpen={setIsModalVideoOpen}
+        videoSrc={
+          isCorrect === undefined
+            ? contents.data.quizPopup.data.correct.video?.src ?? ""
+            : contents.data.quizPopup.data.incorrect.video?.src ?? ""
+        }
+      />
     </>
   );
 };

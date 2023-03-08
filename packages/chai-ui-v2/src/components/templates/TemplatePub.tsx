@@ -4,7 +4,6 @@ import { ComponentTitle } from "../molecules";
 import ComponentText from "../molecules/ComponentText";
 
 const TemplatePub = () => {
-
   return (
     <div className="layout-panel-wrap grid-h-5-5">
       <div className="layout-panel">
