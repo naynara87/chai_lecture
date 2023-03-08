@@ -2,6 +2,7 @@ import React, { useCallback } from "react";
 import {
   Template01,
   TemplateDialogue,
+  TemplateQuizMultiChoice,
   TemplateQuizDialogueWordBlank,
 } from "../../components";
 import TemplateExam from "../../components/templates/TemplateExam";
@@ -13,6 +14,7 @@ import {
   TemplateConversationData,
   TemplateData,
   TemplateQuizConversationData,
+  TemplateQuizMultiChoiceData,
   TemplateQuizWordsInOrderData,
 } from "../types";
 import { TemplateType } from "../types/appData";
@@ -62,6 +64,12 @@ const useTemplateMapper = ({ setPageCompleted }: UseTemplateMapperProps) => {
         TemplateQuizWordsInOrder: (
           <TemplateQuizDialogueWordArray
             template={template as TemplateQuizWordsInOrderData}
+            setPageCompleted={setPageCompleted}
+          />
+        ),
+        TemplateQuizMultiChoice: (
+          <TemplateQuizMultiChoice
+            template={template as TemplateQuizMultiChoiceData}
             setPageCompleted={setPageCompleted}
           />
         ),

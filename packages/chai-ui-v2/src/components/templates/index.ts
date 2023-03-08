@@ -3,7 +3,7 @@ export { default as Template02 } from "./Template02";
 export { default as Template03 } from "./Template03";
 export { default as TemplateDialogue } from "./TemplateDialogue";
 export { default as TemplateExam } from "./TemplateExam";
-export { default as TemplateQuizChoice } from "./TemplateQuizChoice";
+export { default as TemplateQuizMultiChoice } from "./TemplateQuizMultiChoice";
 export { default as TemplateQuizDialogueChoice } from "./TemplateQuizDialogueChoice";
 export { default as TemplateQuizDialogueSentenceBlank } from "./TemplateQuizDialogueSentenceBlank";
 export { default as TemplateQuizDialogueWordBlank } from "./TemplateQuizDialogueWordBlank";

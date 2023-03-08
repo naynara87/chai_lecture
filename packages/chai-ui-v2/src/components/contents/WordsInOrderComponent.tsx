@@ -7,6 +7,7 @@ import {
   ImgProfileDefaultComponent,
 } from "../atoms";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
+import ComponentGrayLine from "../molecules/ComponentGrayLine";
 
 const BlankBox = styled.div``;
 
@@ -32,9 +33,12 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
   const handleClickResetAnswer = useCallback(() => {
     const copyUserChoices: WordInOrderChoice[] = [];
     contents.data.choice.forEach((content) => {
-      if (!content.isChoice) return;
-      copyUserChoices.push({ text: "", answerIndex: -1 });
+      if (content.isChoice) {
+        copyUserChoices.push({ text: "", answerIndex: -1 });
+      }
     });
+    console.log("푸시안대냐", copyUserChoices);
+
     setUserChoices(copyUserChoices);
     setIsShowAnswer(false);
     setSelectedBlankBox(undefined);
@@ -46,10 +50,10 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
   }, [handleClickResetAnswer]);
 
   const answerCheckColor = useCallback(
-    (contentIndex: number) => {
+    (contentIndex: number, blankIndex: number) => {
       if (isShowAnswer) {
         if (
-          userChoices[contentIndex].answerIndex ===
+          userChoices[blankIndex].answerIndex ===
           contents.data.choice[contentIndex].answerIndex
         ) {
           return "answer-right";
@@ -64,25 +68,26 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
 
   const blankBoxes = useMemo(() => {
     if (userChoices.length < 1) return;
+    let blankCount = -1;
     return contents.data.choice.map((content, contentIndex) => {
       if (content.isChoice) {
+        blankCount++;
+        const blankIndex = blankCount;
         return (
           <BlankBox
             className={`blank text ${
-              !isShowAnswer && selectedBlankBox === contentIndex ? "active" : ""
-            } ${answerCheckColor(contentIndex)}`}
+              !isShowAnswer && selectedBlankBox === blankIndex ? "active" : ""
+            } ${answerCheckColor(contentIndex, blankIndex)}`}
             key={contentIndex}
             onClick={() => {
-              if (userChoices[contentIndex].text.length > 0) return;
-              setSelectedBlankBox(contentIndex);
+              if (!!userChoices[blankIndex].text) return;
+              setSelectedBlankBox(blankIndex);
               setSelectedChoiceBox(undefined);
             }}
           >
             {/* TODO: key설명 클릭하면 클래스 active 추가됨 */}
             <div className="text">
-              <HtmlContentComponent
-                html={userChoices[contentIndex].text ?? ""}
-              />
+              <HtmlContentComponent html={userChoices[blankIndex].text ?? ""} />
             </div>
           </BlankBox>
         );
@@ -93,7 +98,7 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
           </div>
         );
       }
-    }, []);
+    });
   }, [
     contents.data.choice,
     selectedBlankBox,
@@ -103,6 +108,7 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
   ]);
 
   const choiceBoxes = useMemo(() => {
+    if (userChoices.length < 1) return;
     return contents.data.choice.map((content, contentIndex) => {
       if (!content.isChoice) return;
       const isChecked = userChoices.find((userChoice) => {
@@ -168,6 +174,10 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
 
   return (
     <>
+      {contents.data.exampleContents && (
+        <ComponentGrayLine contents={contents.data.exampleContents} />
+      )}
+
       <div className="conversation-wrap">
         <div className="quiz-sentence-wrap">
           {contents.data.character && (
