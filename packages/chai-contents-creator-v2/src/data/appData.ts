@@ -1,4 +1,7 @@
 import {
+  AllTemplateData,
+  Content,
+  ContentType,
   ConversationTemplateData,
   QuizTemplateData,
   TemplateData,
@@ -123,3 +126,79 @@ export const rolePlayingLayouts: RolePlayingPageLayout[] = [
     image: "https://via.placeholder.com/150",
   },
 ];
+
+/**
+ * ======== 컨텐츠 컴포넌트 ========
+ */
+
+/**
+ * 컨텐츠 컴포넌트 종류
+ */
+export type ContentsGroup = "common";
+
+export type ContentComponents = Record<ContentsGroup, ContentType[]>;
+export const contentComponents: ContentComponents = {
+  common: ["text", "iconText", "video", "audio", "borderTextBox"],
+};
+
+export const contentComponentsGroupMap: Record<
+  keyof ContentComponents,
+  string
+> = {
+  common: "기본형",
+};
+
+export const contentComponentsNameMap: Partial<Record<ContentType, string>> = {
+  text: "텍스트",
+};
+
+/**
+ * 컴포넌트 초기값
+ */
+export const contentComponentsDefaultValue: Partial<
+  Record<ContentType, Content>
+> = {
+  text: {
+    type: "text",
+    data: {
+      text: "",
+    },
+  },
+  iconText: {
+    type: "iconText",
+    data: {
+      text: "",
+    },
+  },
+  numberingTextList: {
+    type: "numberingTextList",
+    data: [
+      {
+        firstText: "",
+        secondText: "",
+      },
+    ],
+  },
+};
+
+/**
+ * 템플릿 초기값
+ */
+export const templateDefaultValue: Partial<
+  Record<AllTemplateData["type"], AllTemplateData>
+> = {
+  Template01: {
+    type: "Template01",
+    contents: [],
+  },
+  Template_H_3_7: {
+    type: "Template_H_3_7",
+    leftContents: [],
+    rightContents: [],
+  },
+  Template_H_5_5: {
+    type: "Template_H_5_5",
+    leftContents: [],
+    rightContents: [],
+  },
+};

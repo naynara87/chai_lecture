@@ -11,17 +11,19 @@ import PageHeader from "../molecules/PageHeader";
 
 const CreateTemplate01 = ({
   templateType,
+  addComponentMap,
+  slideIndex,
   ...pageHeaderProps
 }: PageCommonProps) => {
   const {
-    ComponentsContextMenu,
+    ComponentsContextMenuCommon,
     isComponentsContextMenuOpen,
     toggleContextMenu,
   } = useComponentContext();
 
   return (
     <>
-      <PageHeader {...pageHeaderProps} />
+      <PageHeader slideIndex={slideIndex} {...pageHeaderProps} />
       <CreateEditMainWrap>
         <CreateEditMain>
           <DashBoxArea>
@@ -29,8 +31,11 @@ const CreateTemplate01 = ({
               <button className="btn-comp-select" onClick={toggleContextMenu}>
                 컴포넌트 선택
               </button>
-              <ComponentsContextMenu
+              <ComponentsContextMenuCommon
                 isComponentsContextMenuOpen={isComponentsContextMenuOpen}
+                addComponentMap={addComponentMap}
+                slideIndex={slideIndex}
+                position="contents"
               />
             </CreateTemplateChoiceBtnWrap>
           </DashBoxArea>

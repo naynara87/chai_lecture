@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ComponentsContextMenu from "../components/molecules/ComponentsContextMenu";
+import ComponentsContextMenuCommon from "../components/molecules/ComponentsContextMenuCommon";
 
 const useComponentContext = () => {
   const [isComponentsContextMenuOpen, setIsComponentsContextMenuOpen] =
@@ -10,7 +10,7 @@ const useComponentContext = () => {
   };
 
   return {
-    ComponentsContextMenu,
+    ComponentsContextMenuCommon,
     isComponentsContextMenuOpen,
     toggleContextMenu,
   };

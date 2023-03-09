@@ -17,7 +17,8 @@ const CommonButtonContainer = styled.div`
 const CreatePage = () => {
   const { getTemplate } = useTemplate();
 
-  const { slides, addSlide, deleteSlide, handleChangeLayout } = usePage();
+  const { slides, addSlide, deleteSlide, handleChangeLayout, addComponentMap } =
+    usePage();
 
   const handleClickPreview = useCallback(() => {
     // TODO : 미리보기 모달창 띄우기 - 미리보기 모달은 페이지 내 모든 슬라이드를 미리보기 할 수 있도록 한다
@@ -35,7 +36,14 @@ const CreatePage = () => {
   return (
     <CreateTemplateWrap>
       <CommonButtonContainer>
-        <Button type="button">테스트 저장 버튼</Button>
+        <Button
+          type="button"
+          onClick={() => {
+            console.log("저장");
+          }}
+        >
+          테스트 저장 버튼
+        </Button>
         <Button type="button" onClick={handleClickPreview}>
           미리보기
         </Button>
@@ -46,13 +54,15 @@ const CreatePage = () => {
       {isLoading ? (
         <TemplateMainLoading />
       ) : (
-        slides.map((slide) => {
+        slides.map((slide, index) => {
           return getTemplate({
-            templateType: slide.templateType,
+            key: index,
+            templateType: slide.type,
             slideIndex: slide.slideIndex,
             handleChangeLayout,
             deleteSlide,
             slides,
+            addComponentMap,
           });
         })
       )}
