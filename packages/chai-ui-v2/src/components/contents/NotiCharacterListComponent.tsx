@@ -77,7 +77,10 @@ const NotiCharacterListComponent = ({
           </TextBubbleWrap>
 
           <ImageWrap>
-            {/* <img src={notiCharacter.character.src} alt="" /> */}
+            {/*
+            NOTE: lsh dummyData에서 characterMapping 작업이 되어있지않아 우선 공통이미지로 넣었습니다.
+            <img src={notiCharacter.character.src} alt="" />
+            */}
             <img src={profileImg} alt="" />
           </ImageWrap>
         </NotiList>
