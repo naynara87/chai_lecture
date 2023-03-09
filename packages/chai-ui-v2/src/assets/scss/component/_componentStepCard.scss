@@ -1,83 +1,82 @@
 /* =================== componentStepCard =================== */
 .step-card {
-	@include flex-center {
-		flex-direction: column;
-	}
+  @include flex-center {
+    flex-direction: column;
+  }
 
-	@include gradiant;
+  @include gradiant;
 
-	width: vw(550);
-	min-height: vw(456);
-	margin: 0 auto;
-	padding: vh(70) vw(70);
-	border-radius: vw(30);
-	transition: width 0.2s,
-	height 0.2s;
+  width: vw(550);
+  min-height: vw(456);
+  margin: 0 auto;
+  padding: vh(70) vw(70);
+  border-radius: vw(30);
+  transition: width 0.2s, height 0.2s;
 
-	.chinese {
-		font-weight: 600;
-		font-size: vw(70);
-		line-height: 1;
-	}
+  .chinese {
+    font-weight: 600;
+    font-size: vw(70);
+    line-height: 1;
+  }
 
-	.pinyin {
-		font-size: vw(45);
-		line-height: 1;
-	}
+  .pinyin {
+    font-size: vw(45);
+    line-height: 1;
+  }
 
-	.conts-ttl:before {
-		top: 50%;
-		transform: translateY(-50%);
-	}
+  .conts-ttl:before {
+    top: 50%;
+    transform: translateY(-50%);
+  }
 
-	&.step2 {
-		width: vw(630);
-		min-height: vw(541);
-	}
+  &.step2 {
+    width: vw(630);
+    min-height: vw(541);
+  }
 
-	&.step3 {
-		width: vw(710);
-		min-height: vw(541);
-	}
+  &.step3 {
+    width: vw(710);
+    min-height: vw(541);
+  }
 
-	@at-root .step-card-wrap:first-child & {
-		margin-top: vh(150-60);
-	}
+  @at-root .step-card-wrap:first-child & {
+    margin-top: vh(150-60);
+  }
 
-	@at-root .grid-h-5-5 .step3 {
-		width: 100%;
-	}
+  @at-root .grid-h-5-5 .step3 {
+    width: 100%;
+  }
 }
 
 // step sentence card
 .step-card.sentence-card {
-	width: vw(524);
-	min-height: vw(468);
-	padding: vh(50) vw(50);
-	text-align: center;
+  width: vw(524);
+  min-height: vw(468);
+  padding: vh(50) vw(50);
+  text-align: center;
 
-	.text {
-		font-size: vw(28);
-	}
+  .text {
+    font-size: vw(28);
+  }
 
-	.chinese {
-		font-size: vw(50);
-	}
+  .chinese {
+    font-size: vw(50);
+  }
 
-	.pinyin {
-		margin-top: vw(20);
-		font-size: vw(32);
-	}
+  .pinyin {
+    margin-top: vw(20);
+    font-size: vw(32);
+  }
 
-	&.step2 {
-		width: vw(1328);
-		min-height: vw(468);
-	}
+  &.step2 {
+    width: vw(1328);
+    min-height: vw(468);
+  }
 
-	&.step3 {
-		width: vw(1328);
-		min-height: vw(520);
-	}
+  &.step3 {
+    width: vw(1328);
+    min-height: vw(520);
+  }
 }
 
 // END step sentence card

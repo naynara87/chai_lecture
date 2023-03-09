@@ -9,13 +9,13 @@ export type Content =
   | ExplainingCharacterContentData
   | CharacterCardListContentData
   | SpeakingContentData
-  | MultilevelActionCardListContentData
+  | MultilevelActionCardContentData
   | CardTabContentData
   | ConversationWordListContentData
   | BorderTextBoxContentData
   | ConversationContentData
   | ImageWithDescriptionListContentData
-  | ActivityGuideCharactorContentData
+  | ActivityGuideCharacterContentData
   | ConversationQuizContentData
   | QuizWordsInOrderContentData
   | MultiChoiceContentData
@@ -33,7 +33,7 @@ export type ConversationContent =
 
 export type QuizContent =
   | ConversationQuizContentData
-  | ActivityGuideCharactorContentData
+  | ActivityGuideCharacterContentData
   | MultiChoiceContentData
   | QuizWordsInOrderContentData
   | FinalSpeakingContentData;
@@ -170,8 +170,8 @@ export type CornerGuideCharacterContentData = {
 /**
  * 활동 안내 캐릭터 컴포넌트
  */
-export type ActivityGuideCharactorContentData = {
-  type: "activityGuideCharactor";
+export type ActivityGuideCharacterContentData = {
+  type: "activityGuideCharacter";
   data: {
     text: string;
     character: {
@@ -290,11 +290,9 @@ export type QuizPopupModalContentData = {
  * 학습 카드 컴포넌트
  * 멀티레벨콘텐츠 저작시 멀티레벨안에 멀티레벨 중복 막기
  */
-export type MultilevelActionCardListContentData = {
-  type: "multiLevelActionList";
-  data: {
-    multilevelContents: Content[][];
-  };
+export type MultilevelActionCardContentData = {
+  type: "multiLevelActionCard";
+  data: Content[][];
   meta?: Meta;
 };
 
@@ -519,8 +517,8 @@ export type ToggleSentenceListContentData = {
 /**
  * 단어박스형 컴포넌트
  */
-export type TextBoxesContentData = {
-  type: "textBoxes";
+export type TextBoxListContentData = {
+  type: "textBoxList";
   data: {
     text: string;
     audio?: {
