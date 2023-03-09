@@ -7,6 +7,7 @@ import NotFound from "../components/pages/NotFound";
 import TempRolePlay from "../components/pages/TempRolePlay";
 import { HOME_URL, NOT_FOUND_URL } from "../constants/url";
 import "chai-ui-v2/dist/assets/globalStyle.css";
+import LayoutTest from "../components/pages/LayoutTest";
 
 const AppRouter = () => {
   return (
@@ -18,6 +19,7 @@ const AppRouter = () => {
           element={<Layout />}
         />
         <Route path={NOT_FOUND_URL} element={<NotFound />} />
+        <Route path={"test"} element={<LayoutTest />} />
         <Route path={"temp"} element={<LayoutTemp />} />
         <Route path={"temp-roleplay"} element={<TempRolePlay />} />
         <Route path="*" element={<Navigate to={NOT_FOUND_URL} replace />} />
