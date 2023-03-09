@@ -1,8 +1,8 @@
 import React from "react";
 import { ComponentButtonRadiFillMain } from "../atoms";
-import ComponentTestPagination from "../molecules/ComponentTestPagination";
+import ComponentProblemPagination from "../molecules/ComponentProblemPagination";
 
-const TemplateTest = () => {
+const TemplateProblem = () => {
   return (
     <>
       {/* test header */}
@@ -13,7 +13,7 @@ const TemplateTest = () => {
         </div>
       </header>
       {/* end test header */}
-      <ComponentTestPagination />
+      <ComponentProblemPagination />
       {/* test main layout */}
       <main className="cai-main test-main">
         <div className="layout-panel-wrap">
@@ -27,4 +27,4 @@ const TemplateTest = () => {
   );
 };
 
-export default TemplateTest;
+export default TemplateProblem;
