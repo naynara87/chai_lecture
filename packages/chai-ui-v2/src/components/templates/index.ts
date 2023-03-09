@@ -12,3 +12,4 @@ export { default as TemplateQuizTextEnter } from "./TemplateQuizTextEnter";
 export { default as TemplateQuizWordBlank } from "./TemplateQuizWordBlank";
 export { default as TemplateQuizWordChoice } from "./TemplateQuizWordChoice";
 export { default as TemplatePub } from "./TemplatePub";
+export { default as TemplateProblem } from "./TemplateProblem";

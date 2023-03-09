@@ -65,7 +65,7 @@ export const v2CornerDataList: CornerData[] = [
             type: "TemplateQuizConversation",
             leftContents: [
               {
-                type: "guideCharacter",
+                type: "activityGuideCharactor",
                 data: {
                   text: "지난 시간엔 계절에 대한 회화를 학습했어요. 다음 대화를 잘 보고 빈 칸에 들어갈 알맞은 단어를 고르세요.",
                   character: {
@@ -317,7 +317,7 @@ export const v2CornerDataList: CornerData[] = [
           type: "TemplateQuizWordsInOrder",
           leftContents: [
             {
-              type: "guideCharacter",
+              type: "activityGuideCharactor",
               data: {
                 text: "지난 시간엔 계절에 대한 회화를 학습했어요. 다음 대화를 잘 보고 빈 칸에 들어갈 알맞은 단어를 고르세요.",
                 character: {
@@ -415,7 +415,7 @@ export const v2CornerDataList: CornerData[] = [
           type: "TemplateQuizMultiChoice",
           leftContents: [
             {
-              type: "guideCharacter",
+              type: "activityGuideCharactor",
               data: {
                 text: "지난 시간엔 계절에 대한 회화를 학습했어요. 다음 대화를 잘 보고 빈 칸에 들어갈 알맞은 단어를 고르세요.",
                 character: {
@@ -589,7 +589,7 @@ export const v2CornerDataList: CornerData[] = [
           type: "TemplateQuizSpeaking",
           leftContents: [
             {
-              type: "guideCharacter",
+              type: "activityGuideCharactor",
               data: {
                 text: "지난 시간엔 계절에 대한 회화를 학습했어요. 다음 대화를 잘 보고 빈 칸에 들어갈 알맞은 단어를 고르세요.",
                 character: {
@@ -643,6 +643,45 @@ export const v2CornerDataList: CornerData[] = [
               },
             },
           },
+        },
+      },
+      {
+        id: 9,
+        name: "단어",
+        type: "SinglePage",
+        data: {
+          type: "Template01",
+          contents: [
+            {
+              type: "notiCharacterList",
+              data: [
+                {
+                  text: "첫번째 영역",
+                  character: {
+                    src: "왕리리",
+                  },
+                },
+                {
+                  text: "두번째 영역 긴 텍스트로 작성하면 줄바꿈이 생깁니다.",
+                  character: {
+                    src: "kkungiHandsup",
+                  },
+                },
+                {
+                  text: "세번째 영역",
+                  character: {
+                    src: "asdfasdf",
+                  },
+                },
+                {
+                  text: "네번째 영역 정해진 사이즈 내에서 최대 갯수",
+                  character: {
+                    src: "",
+                  },
+                },
+              ],
+            },
+          ],
         },
       },
     ],
