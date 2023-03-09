@@ -135,8 +135,9 @@
 .base-conts {
   @include flex-center;
 
-  flex-direction: column;
   overflow: auto;
+  flex-direction: column;
+  width: 100%;
   margin-top: vh(40);
   margin-bottom: vh(60);
   border-radius: vw(20);
