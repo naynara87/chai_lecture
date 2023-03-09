@@ -41,22 +41,17 @@ const TemplateDialogue = ({
     | TemplateConversationRepeatData;
 
   const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
-  const [speakingDialogueIndex, setSpeakingDialogueIndex] = useState(-1);
-
   // Dialogue Toggle 상태
   const [isShowPronunciation, setIsShowPronunciation] = useState(false);
   const [isShowMeaning, setIsShowMeaning] = useState(false);
-
   const fullAudioIndexRef = useRef(0);
 
   const { getContentComponent } = useContentMapper();
   const {
     globalAudioRef,
-    globalAudioState,
     globalAudioId,
     handleAudioReset,
     handleClickAudioButton,
-    handleClickAudioStopButton,
   } = useGlobalAudio();
 
   useEffect(() => {
@@ -76,17 +71,12 @@ const TemplateDialogue = ({
   }, [thisPage.rightContents]);
 
   const audioEnded = useCallback(() => {
-    if (globalAudioId.toString().includes("dialogue")) {
-      setSpeakingDialogueIndex(-1);
-      handleAudioReset();
-    }
     if (globalAudioId.toString().includes("fullAudio")) {
       fullAudioIndexRef.current += 1;
       if (!dialogueContent.data[fullAudioIndexRef.current]) {
         handleAudioReset();
         return;
       }
-      setSpeakingDialogueIndex(fullAudioIndexRef.current);
       handleClickAudioButton(
         `fullAudio${fullAudioIndexRef.current}`,
         dialogueContent.data[fullAudioIndexRef.current].audio?.src ?? "",
@@ -102,7 +92,6 @@ const TemplateDialogue = ({
   const listenFullAudio = useCallback(() => {
     if (!dialogueContent) return;
     fullAudioIndexRef.current = 0;
-    setSpeakingDialogueIndex(fullAudioIndexRef.current);
     handleClickAudioButton(
       `fullAudio${fullAudioIndexRef.current}`,
       dialogueContent.data[fullAudioIndexRef.current].audio?.src ?? "",
@@ -111,12 +100,6 @@ const TemplateDialogue = ({
 
   useEffect(() => {
     let globalAudioRefValue: HTMLAudioElement | null = null;
-    if (
-      !globalAudioId.toString().includes("dialogue") &&
-      !globalAudioId.toString().includes("fullAudio")
-    ) {
-      setSpeakingDialogueIndex(-1);
-    }
     if (globalAudioRef?.current) globalAudioRefValue = globalAudioRef.current;
     globalAudioRef?.current?.addEventListener("ended", audioEnded);
     return () => {
@@ -126,29 +109,7 @@ const TemplateDialogue = ({
     };
   }, [globalAudioRef, audioEnded, globalAudioId]);
 
-  const handleClickDialogueCharacter = useCallback(
-    (dialogueIndex: number, audioSrc?: string) => {
-      if (speakingDialogueIndex === dialogueIndex) {
-        if (globalAudioState === "playing") {
-          handleClickAudioStopButton();
-        } else {
-          handleClickAudioButton(`dialogue${dialogueIndex}`, audioSrc ?? "");
-        }
-        return;
-      }
-      handleClickAudioButton(`dialogue${dialogueIndex}`, audioSrc ?? "");
-      setSpeakingDialogueIndex(dialogueIndex);
-    },
-    [
-      handleClickAudioButton,
-      speakingDialogueIndex,
-      handleClickAudioStopButton,
-      globalAudioState,
-    ],
-  );
-
   const handleStopFullAudio = useCallback(() => {
-    setSpeakingDialogueIndex(-1);
     handleAudioReset();
   }, [handleAudioReset]);
 
@@ -172,9 +133,6 @@ const TemplateDialogue = ({
         return (
           <ConversationComponent
             contents={rightContent}
-            handleClickProfileCallback={handleClickDialogueCharacter}
-            speakingDialogueIndex={speakingDialogueIndex}
-            globalAudioState={globalAudioState}
             key={contentIndex}
             isShowRepeat={thisPage.type === "TemplateConversationRepeat"}
             isShowPronunciation={
@@ -193,9 +151,6 @@ const TemplateDialogue = ({
     });
   }, [
     thisPage.rightContents,
-    handleClickDialogueCharacter,
-    speakingDialogueIndex,
-    globalAudioState,
     isShowPronunciation,
     isShowMeaning,
     thisPage.type,

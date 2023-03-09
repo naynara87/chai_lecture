@@ -1,6 +1,7 @@
 import {
   Content,
   ConversationContent,
+  FinalSpeakingContentData,
   IconTextContentData,
   MultiChoiceContentData,
   QuizContent,
@@ -148,5 +149,5 @@ export type TemplateQuizSentencesInOrderData = {
 export type TemplateQuizSpeakingData = {
   type: "TemplateQuizSpeaking";
   leftContents: Content[];
-  rightContents: Content[];
+  rightContents: FinalSpeakingContentData;
 };

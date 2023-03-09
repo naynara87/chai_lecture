@@ -58,7 +58,7 @@ const DialogueContainer = styled.div`
       display: inline-flex;
 
       &:after {
-        content: ""; 
+        content: "";
         position: absolute;
         top: 50%;
         left: auto;
@@ -73,7 +73,7 @@ const DialogueContainer = styled.div`
       }
     }
   }
-  
+
   .wide-panel {
     .btns-wrap {
       max-width: 310px;
@@ -82,7 +82,7 @@ const DialogueContainer = styled.div`
   }
 `;
 
-interface TemplateQuizDialogueWordBlank extends TemplateProps { }
+interface TemplateQuizDialogueWordBlank extends TemplateProps {}
 
 const TemplateQuizDialogueWordBlank = ({
   template,
@@ -91,7 +91,6 @@ const TemplateQuizDialogueWordBlank = ({
   const thisPage = template as TemplateQuizConversationData;
 
   const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
-  const [speakingDialogueIndex, setSpeakingDialogueIndex] = useState(-1);
 
   useEffect(() => {
     setPageCompleted();
@@ -100,14 +99,18 @@ const TemplateQuizDialogueWordBlank = ({
   const { getContentComponent } = useContentMapper();
   const {
     globalAudioRef,
-    globalAudioState,
     globalAudioId,
     handleAudioReset,
     handleClickAudioButton,
-    handleClickAudioStopButton,
   } = useGlobalAudio();
 
   const fullAudioIndexRef = useRef(0);
+
+  useEffect(() => {
+    return () => {
+      handleAudioReset();
+    };
+  }, [handleAudioReset]);
 
   const dialogueQuizContent = useMemo(() => {
     return thisPage.rightContents.find(
@@ -116,17 +119,12 @@ const TemplateQuizDialogueWordBlank = ({
   }, [thisPage.rightContents]);
 
   const audioEnded = useCallback(() => {
-    if (globalAudioId.toString().includes("dialogue")) {
-      setSpeakingDialogueIndex(-1);
-      handleAudioReset();
-    }
     if (globalAudioId.toString().includes("fullAudio")) {
       fullAudioIndexRef.current += 1;
       if (!dialogueQuizContent.data[fullAudioIndexRef.current]) {
         handleAudioReset();
         return;
       }
-      setSpeakingDialogueIndex(fullAudioIndexRef.current);
       handleClickAudioButton(
         `fullAudio${fullAudioIndexRef.current}`,
         dialogueQuizContent.data[fullAudioIndexRef.current].audio?.src ?? "",
@@ -141,12 +139,6 @@ const TemplateQuizDialogueWordBlank = ({
 
   useEffect(() => {
     let globalAudioRefValue: HTMLAudioElement | null = null;
-    if (
-      !globalAudioId.toString().includes("dialogue") &&
-      !globalAudioId.toString().includes("fullAudio")
-    ) {
-      setSpeakingDialogueIndex(-1);
-    }
     if (globalAudioRef?.current) globalAudioRefValue = globalAudioRef.current;
     globalAudioRef?.current?.addEventListener("ended", audioEnded);
     return () => {
@@ -165,7 +157,6 @@ const TemplateQuizDialogueWordBlank = ({
   const listenFullAudio = useCallback(() => {
     if (!dialogueQuizContent) return;
     fullAudioIndexRef.current = 0;
-    setSpeakingDialogueIndex(fullAudioIndexRef.current);
     handleClickAudioButton(
       `fullAudio${fullAudioIndexRef.current}`,
       dialogueQuizContent.data[fullAudioIndexRef.current].audio?.src ?? "",
@@ -173,30 +164,8 @@ const TemplateQuizDialogueWordBlank = ({
   }, [handleClickAudioButton, dialogueQuizContent]);
 
   const handleStopFullAudio = useCallback(() => {
-    setSpeakingDialogueIndex(-1);
     handleAudioReset();
   }, [handleAudioReset]);
-
-  const handleClickDialogueCharacter = useCallback(
-    (dialogueIndex: number, audioSrc?: string) => {
-      if (speakingDialogueIndex === dialogueIndex) {
-        if (globalAudioState === "playing") {
-          handleClickAudioStopButton();
-        } else {
-          handleClickAudioButton(`dialogue${dialogueIndex}`, audioSrc ?? "");
-        }
-        return;
-      }
-      handleClickAudioButton(`dialogue${dialogueIndex}`, audioSrc ?? "");
-      setSpeakingDialogueIndex(dialogueIndex);
-    },
-    [
-      handleClickAudioButton,
-      speakingDialogueIndex,
-      handleClickAudioStopButton,
-      globalAudioState,
-    ],
-  );
 
   return (
     <DialogueContainer className="layout-panel-wrap grid-h-3-7">
@@ -223,12 +192,7 @@ const TemplateQuizDialogueWordBlank = ({
         {/* speech bubble */}
         {/* end speech bubble */}
         {dialogueQuizContent && (
-          <ConversationQuizComponent
-            contents={dialogueQuizContent}
-            speakingDialogueIndex={speakingDialogueIndex}
-            globalAudioState={globalAudioState}
-            handleClickProfileCallback={handleClickDialogueCharacter}
-          />
+          <ConversationQuizComponent contents={dialogueQuizContent} />
         )}
         {/* TODO: key설명 - input이 checked가 되는 순간 blank에 선택한 글자가 들어감 */}
       </div>

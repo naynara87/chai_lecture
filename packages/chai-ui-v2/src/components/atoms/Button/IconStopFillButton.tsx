@@ -1,8 +1,14 @@
 import React from "react";
 
-const IconStopFillButton = () => {
+interface IconStopFillButtonProps {
+  onClickBtn?: () => void;
+}
+
+const IconStopFillButton = ({ onClickBtn }: IconStopFillButtonProps) => {
   return (
-    <button className="btn-icon-mini btn-stop-fill">정지</button>
+    <button className="btn-icon-mini btn-stop-fill" onClick={onClickBtn}>
+      정지
+    </button>
   );
 };
 
