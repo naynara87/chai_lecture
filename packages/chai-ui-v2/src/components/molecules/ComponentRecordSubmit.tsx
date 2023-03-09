@@ -6,14 +6,12 @@ import ImgProfileDefaultComponent from "../atoms/ImgProfileDefaultComponent";
 import IconLight from "../../assets/images/icon/icon_light_navy.svg";
 import ComponentText from "./ComponentText";
 
-const FinishRecordWrapper = styled.div`
-`;
+const FinishRecordWrapper = styled.div``;
 
 const ComponentRecordSubmit = () => {
   return (
     <FinishRecordWrapper className="finish-record-wrapper">
       <div className="gray-line">
-
         <ul className="conversation-wrapper">
           {/* speech bubble */}
           <li className="conversation-wrap active">
@@ -59,7 +57,10 @@ const ComponentRecordSubmit = () => {
       </div>
       {/* TODO: key설명 - 녹음파일 제출후 보이게 되는 컨텐츠(모범답안) */}
       <div className="answer-sheet-wrapper">
-        <div className="answer-sheet-title"><img src={IconLight} alt="" />모범 답안</div>
+        <div className="answer-sheet-title">
+          <img src={IconLight} alt="" />
+          모범 답안
+        </div>
         <div className="answer-sheet-conts">
           <ComponentText />
         </div>

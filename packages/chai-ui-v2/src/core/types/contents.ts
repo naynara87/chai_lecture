@@ -20,6 +20,7 @@ export type Content =
   | QuizWordsInOrderContentData
   | MultiChoiceContentData
   | ImageWithCaptionListContentData
+  | FinalSpeakingContentData
   | AudioContentData
   | CornerGuideCharacterContentData
   | NotiCharacterListContentData;
@@ -34,7 +35,9 @@ export type QuizContent =
   | ConversationQuizContentData
   | ActivityGuideCharacterContentData
   | MultiChoiceContentData
-  | QuizWordsInOrderContentData;
+  | QuizWordsInOrderContentData
+  | FinalSpeakingContentData;
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Meta = Record<string, any>;
 
@@ -361,6 +364,7 @@ export type ConversationContentData = {
     audio?: {
       src: string;
     };
+    isBlank?: boolean;
     speakingTime?: number;
   }[];
   meta?: Meta;
@@ -442,6 +446,22 @@ export type QuizSentenceContentData = {
     }[];
     quizPopup: QuizPopupModalContentData;
   };
+};
+
+/**
+ * 종합말하기 컴포넌트
+ */
+export type FinalSpeakingContentData = {
+  type: "finalSpeaking";
+  data: {
+    answerModel: {
+      text: string;
+      pronunciation: string;
+      meaning: string;
+    };
+    exampleContents: Content[];
+  };
+  meta?: Meta;
 };
 
 /**

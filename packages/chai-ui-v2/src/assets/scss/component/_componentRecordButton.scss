@@ -1,36 +1,36 @@
 /* =================== componentRecordButton =================== */
 .record-btn-wrap {
-	position: relative;
-	margin-top: vh(20);
-	width: vw(440);
+  position: relative;
+  margin: vh(20) auto;
+  width: vw(440);
 
-	.record-btn-flex-wrap {
-		@include flex {
-			@include flex-op(center, flex-start);
+  .record-btn-flex-wrap {
+    @include flex {
+      @include flex-op(center, flex-start);
 
-			gap: vw(20);
-		}
+      gap: vw(20);
+    }
 
-		height: vh(100);
-		padding: 0 vw(40);
-		border: 2px solid color(blue-300);
-		border-radius: vw(20);
-		background-color: color(gray-ff);
+    height: vh(100);
+    padding: 0 vw(40);
+    border: 2px solid color(blue-300);
+    border-radius: vw(20);
+    background-color: color(gray-ff);
 
-		.btn-icon {
-			@include rounded(vw(55));
-			border-radius: vw(14);
-		}
+    .btn-icon {
+      @include rounded(vw(55));
+      border-radius: vw(14);
+    }
 
-		.txt {
-			font-size: vw(24);
-		}
-	}
+    .txt {
+      font-size: vw(24);
+    }
+  }
 
-	.btn-return {
-		position: absolute;
-		top: 50%;
-		left: 100%;
-		transform: translate(vw(20), -50%);
-	}
+  .btn-return {
+    position: absolute;
+    top: 20%;
+    left: 100%;
+    transform: translate(vw(20), -50%);
+  }
 }

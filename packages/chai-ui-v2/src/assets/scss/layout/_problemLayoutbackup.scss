@@ -1,0 +1,114 @@
+/* =================== problemLayout =================== */
+// 페이지네이션을 상단에 고정한 스타일
+$cont-padding: vw(40);
+
+// header style
+.problem-hd {
+  background-color: color(red-500);
+
+  .hd-conts-wrap {
+    @include flex-btw;
+
+    padding: 0 $cont-padding;
+  }
+}
+
+.problem-hd-ttl {
+  font-weight: 600;
+  font-size: vw(30);
+  color: color(gray-ff);
+}
+
+.problem-hd-timer {
+  font-size: vw(20);
+  color: color(gray-ff);
+}
+
+// pagination style
+.problem-top-button-wrapper {
+  @include flex-btw {
+    gap: vw(15);
+  }
+
+  overflow-x: auto;
+  z-index: z(header);
+  position: fixed;
+  top: $hd-height;
+  left: 0;
+  width: 100%;
+  height: $ft-height;
+  padding: 0 $cont-padding;
+  border-bottom: 1px solid color(gray-db);
+  background-color: color(bubble-blue);
+}
+
+.pagination-wrapper {
+  @include flex-op(center, flex-start);
+
+  overflow-x: auto;
+}
+
+.problem-pagination {
+  @extend %btn;
+
+  flex-shrink: 0;
+  min-width: vw(50);
+  height: vw(50);
+  padding: vw(5) vw(10);
+  border: 2px solid color(gray-db);
+  border-radius: vw(10);
+  background-color: color(gray-f5);
+  font-size: vw(18);
+
+  &.active {
+    border-color: color(main);
+    background-color: color(gray-ff);
+    font-weight: 600;
+    color: color(main);
+  }
+
+  &.end {
+    background-color: color(main);
+    font-weight: 600;
+    color: color(gray-ff);
+  }
+}
+
+
+// main layout style
+.problem-main {
+  padding-top: calc($hd-height + $ft-height);
+  padding-bottom: 0;
+
+  .btn-radi-border-main {
+    background-color: color(gray-ff);
+  }
+
+  .btn {
+    min-width: 1px;
+    height: auto;
+    padding: vh(10) 1em;
+    font-size: vw(16);
+  }
+
+  .btn-radi-border-main {
+    background-color: color(gray-ff);
+  }
+
+  >.btn {
+    position: fixed;
+    top: auto;
+    bottom: 10px;
+    lefT: auto;
+    right: 10px;
+    font-size: vw(22);
+  }
+}
+
+.problem-title-wrap {
+  font-size: vw(20);
+
+  >b {
+    color: color(main);
+  }
+}

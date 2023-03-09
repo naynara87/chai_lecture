@@ -30,6 +30,7 @@ import {
   ConversationQuizContentData,
   QuizWordsInOrderContentData,
   MultiChoiceContentData,
+  FinalSpeakingContentData,
   AudioContentData,
   CornerGuideCharacterContentData,
   NotiCharacterListContentData,
@@ -45,6 +46,7 @@ import ImageWithCaptionListComponent from "../../components/contents/ImageWithCa
 import ConversationQuizComponent from "../../components/contents/ConversationQuizComponent";
 import WordsInOrderComponent from "../../components/contents/WordsInOrderComponent";
 import MultiChoiceComponent from "../../components/contents/MultiChoiceComponent";
+import FinalSpeakingComponent from "../../components/contents/FinalSpeakingComponent";
 import AudioComponent from "../../components/contents/AudioComponent";
 import CornerGuideCharacterComponent from "../../components/contents/CornerGuideCharacterComponent";
 import NotiCharacterListComponent from "../../components/contents/NotiCharacterListComponent";
@@ -156,6 +158,12 @@ const useContentMapper = () => {
       multiChoice: (
         <MultiChoiceComponent
           contents={content as MultiChoiceContentData}
+          key={contentIndex}
+        />
+      ),
+      finalSpeaking: (
+        <FinalSpeakingComponent
+          contents={content as FinalSpeakingContentData}
           key={contentIndex}
         />
       ),
