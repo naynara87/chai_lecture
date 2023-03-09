@@ -1,0 +1,89 @@
+/* =================== problemLayout =================== */
+$cont-padding: vw(40);
+
+// header style
+.problem-hd {
+  background-color: color(red-500);
+
+  .hd-conts-wrap {
+    @include flex-btw;
+
+    padding: 0 $cont-padding;
+  }
+}
+
+.problem-hd-ttl {
+  font-weight: 600;
+  font-size: vw(30);
+  color: color(gray-ff);
+}
+
+.problem-hd-timer {
+  font-size: vw(20);
+  color: color(gray-ff);
+}
+
+// pagination style
+.problem-pagination-wrapper {
+  @include flex {
+    @include flex-op(center, flex-start);
+
+    gap: vw(15);
+  }
+
+  overflow-x: auto;
+  z-index: z(header);
+  position: fixed;
+  top: $hd-height;
+  left: 0;
+  width: 100%;
+  height: $ft-height;
+  padding: 0 $cont-padding;
+  border-bottom: 1px solid color(gray-db);
+  background-color: color(bubble-blue);
+}
+
+.problem-pagination {
+  @extend %btn;
+
+  flex-shrink: 0;
+  min-width: vw(50);
+  height: vw(50);
+  padding: vw(5) vw(10);
+  border: 2px solid color(gray-db);
+  border-radius: vw(10);
+  background-color: color(gray-f5);
+  font-size: vw(18);
+
+  &.active {
+    border-color: color(main);
+    background-color: color(gray-ff);
+    font-weight: 600;
+    color: color(main);
+  }
+
+  &.end {
+    background-color: color(main);
+    font-weight: 600;
+    color: color(gray-ff);
+  }
+}
+
+
+// main layout style
+.problem-main {
+  padding-top: calc($hd-height + $ft-height);
+  padding-bottom: 0;
+
+  >.btn {
+    position: fixed;
+    top: auto;
+    bottom: 10px;
+    lefT: auto;
+    right: 10px;
+    min-width: 1px;
+    width: 6em;
+    height: vh(60);
+    font-size: vw(24);
+  }
+}
