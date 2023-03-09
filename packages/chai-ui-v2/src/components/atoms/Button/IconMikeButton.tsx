@@ -1,10 +1,14 @@
 import React from "react";
 
-const IconMikeButton = () => {
+interface IconMikeButtonProps {
+  onClickBtn?: () => void;
+}
+
+const IconMikeButton = ({ onClickBtn }: IconMikeButtonProps) => {
   return (
-      <button className="btn-icon-mini btn-mic">
-        녹음하기
-      </button>
+    <button className="btn-icon-mini btn-mic" onClick={onClickBtn}>
+      녹음하기
+    </button>
   );
 };
 

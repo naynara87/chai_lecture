@@ -65,7 +65,7 @@ export const v2CornerDataList: CornerData[] = [
             type: "TemplateQuizConversation",
             leftContents: [
               {
-                type: "ActivityGuideCharactor",
+                type: "activityGuideCharactor",
                 data: {
                   text: "지난 시간엔 계절에 대한 회화를 학습했어요. 다음 대화를 잘 보고 빈 칸에 들어갈 알맞은 단어를 고르세요.",
                   character: {
@@ -317,7 +317,7 @@ export const v2CornerDataList: CornerData[] = [
           type: "TemplateQuizWordsInOrder",
           leftContents: [
             {
-              type: "ActivityGuideCharactor",
+              type: "activityGuideCharactor",
               data: {
                 text: "지난 시간엔 계절에 대한 회화를 학습했어요. 다음 대화를 잘 보고 빈 칸에 들어갈 알맞은 단어를 고르세요.",
                 character: {
@@ -415,7 +415,7 @@ export const v2CornerDataList: CornerData[] = [
           type: "TemplateQuizMultiChoice",
           leftContents: [
             {
-              type: "ActivityGuideCharactor",
+              type: "activityGuideCharactor",
               data: {
                 text: "지난 시간엔 계절에 대한 회화를 학습했어요. 다음 대화를 잘 보고 빈 칸에 들어갈 알맞은 단어를 고르세요.",
                 character: {
@@ -586,15 +586,63 @@ export const v2CornerDataList: CornerData[] = [
         name: "단어",
         type: "SinglePage",
         data: {
-          type: "Template01",
-          contents: [
+          type: "TemplateQuizSpeaking",
+          leftContents: [
             {
-              type: "audio",
+              type: "activityGuideCharactor",
               data: {
-                src: "https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3",
+                text: "지난 시간엔 계절에 대한 회화를 학습했어요. 다음 대화를 잘 보고 빈 칸에 들어갈 알맞은 단어를 고르세요.",
+                character: {
+                  src: "asdfasdf",
+                },
               },
             },
           ],
+          rightContents: {
+            type: "finalSpeaking",
+            data: {
+              exampleContents: [
+                {
+                  type: "conversation",
+                  data: [
+                    {
+                      text: "我喜欢秋天，因为秋天不冷不热，很凉快。",
+                      pronunciation:
+                        "Wǒ xǐhuān qiūtiān, yīnwèi qiūtiān bù lěngbù rè, hěn liángkuai.",
+                      meaning: "안녕",
+                      character: {
+                        name: "왕리리",
+                        src: "이미지 주소",
+                      },
+                      audio: {
+                        src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+                      },
+                    },
+                    {
+                      text: "我觉得这里的冬天没有中国那么冷。",
+                      pronunciation:
+                        "Wǒ juédé zhèlǐ de dōngtiān méiyǒu zhòng guó nàme lěng.",
+                      meaning: "이곳의 겨울은 중국만큼 춥지 않은 것 같아요.",
+                      character: {
+                        name: "김민호",
+                        src: "이미지 주소",
+                      },
+                      audio: {
+                        src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
+                      },
+                      isBlank: true,
+                    },
+                  ],
+                },
+              ],
+              answerModel: {
+                text: "我觉得这里的冬天没有中国那么冷。",
+                pronunciation:
+                  "Wǒ juédé zhèlǐ de dōngtiān méiyǒu zhòng guó nàme lěng.",
+                meaning: "이곳의 겨울은 중국만큼 춥지 않은 것 같아요.",
+              },
+            },
+          },
         },
       },
       {
