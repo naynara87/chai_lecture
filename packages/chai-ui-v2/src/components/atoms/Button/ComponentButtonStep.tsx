@@ -8,7 +8,6 @@ interface ComponentButtonStepProps {
 const ComponentButtonStep = ({ onClick }: ComponentButtonStepProps) => {
   return (
     <button className="btn-step" onClick={onClick}>
-      확인해 보세요
       <img src={iconClick} alt="클릭" className="icon" />
     </button>
   );

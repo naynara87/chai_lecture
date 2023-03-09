@@ -65,7 +65,7 @@ export const v2CornerDataList: CornerData[] = [
             type: "TemplateQuizConversation",
             leftContents: [
               {
-                type: "ActivityGuideCharactor",
+                type: "activityGuideCharacter",
                 data: {
                   text: "지난 시간엔 계절에 대한 회화를 학습했어요. 다음 대화를 잘 보고 빈 칸에 들어갈 알맞은 단어를 고르세요.",
                   character: {
@@ -317,7 +317,7 @@ export const v2CornerDataList: CornerData[] = [
           type: "TemplateQuizWordsInOrder",
           leftContents: [
             {
-              type: "ActivityGuideCharactor",
+              type: "activityGuideCharacter",
               data: {
                 text: "지난 시간엔 계절에 대한 회화를 학습했어요. 다음 대화를 잘 보고 빈 칸에 들어갈 알맞은 단어를 고르세요.",
                 character: {
@@ -415,7 +415,7 @@ export const v2CornerDataList: CornerData[] = [
           type: "TemplateQuizMultiChoice",
           leftContents: [
             {
-              type: "ActivityGuideCharactor",
+              type: "activityGuideCharacter",
               data: {
                 text: "지난 시간엔 계절에 대한 회화를 학습했어요. 다음 대화를 잘 보고 빈 칸에 들어갈 알맞은 단어를 고르세요.",
                 character: {
@@ -631,6 +631,37 @@ export const v2CornerDataList: CornerData[] = [
                     src: "",
                   },
                 },
+              ],
+            },
+          ],
+        },
+      },
+      {
+        id: 10,
+        name: "단어",
+        type: "SinglePage",
+        data: {
+          type: "Template01",
+          contents: [
+            {
+              type: "multiLevelActionCard",
+              data: [
+                [
+                  {
+                    type: "text",
+                    data: {
+                      text: "1번 배열 text",
+                    },
+                  },
+                ],
+                [
+                  {
+                    type: "text",
+                    data: {
+                      text: "2번 배열 text",
+                    },
+                  },
+                ],
               ],
             },
           ],
