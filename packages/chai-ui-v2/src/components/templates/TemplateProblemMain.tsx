@@ -16,12 +16,8 @@ const TemplateProblem = () => {
       {/* problem main layout */}
       <main className="cai-main problem-main">
         <ComponentProblemTopButtonArea />
-        <div className="layout-panel-wrap grid-h-3-7">
+        <div className="layout-panel-wrap">
           <div className="layout-panel">
-            점수
-          </div>
-          <div className="layout-panel">
-            해석해설
           </div>
         </div>
         <ComponentButtonRadiFillMain text="채점하기" />
