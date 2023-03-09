@@ -8,7 +8,7 @@ import {
   CreateTemplateNav,
   NavList,
 } from "../../styles/template";
-import { PageTemplateCommon } from "../../types/page";
+import { PageCommonProps } from "../../types/page";
 import PageHeader from "../molecules/PageHeader";
 
 const CreateEditMainWrap55 = styled(CreateEditMainWrap)`
@@ -21,7 +21,7 @@ const CreateEditMainWrap55 = styled(CreateEditMainWrap)`
 const CreateTemplateH55 = ({
   templateType,
   ...pageHeaderProps
-}: PageTemplateCommon) => {
+}: PageCommonProps) => {
   return (
     <>
       <PageHeader {...pageHeaderProps} />

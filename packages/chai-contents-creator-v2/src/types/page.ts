@@ -8,6 +8,10 @@ export interface PageHeaderProps {
   deleteSlide: (slideIndex: number) => void;
 }
 
-export interface PageTemplateCommon extends PageHeaderProps {
+/**
+ * CreatePage에서 사용하는 props
+ * 페이지 공통 props
+ */
+export interface PageCommonProps extends PageHeaderProps {
   templateType: TemplateType;
 }
