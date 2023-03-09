@@ -1,4 +1,5 @@
 /* =================== problemLayout =================== */
+// 페이지네이션을 상단에 고정한 스타일
 $cont-padding: vw(40);
 
 // header style
@@ -29,16 +30,22 @@ $cont-padding: vw(40);
     gap: vw(15);
   }
 
+  overflow-x: auto;
+  z-index: z(header);
+  position: fixed;
+  top: $hd-height;
+  left: 0;
   width: 100%;
-  height: vh(80);
+  height: $ft-height;
+  padding: 0 $cont-padding;
+  border-bottom: 1px solid color(gray-db);
+  background-color: color(bubble-blue);
 }
 
 .pagination-wrapper {
   @include flex-op(center, flex-start);
 
   overflow-x: auto;
-  padding: 0 $cont-padding;
-  background-color: color(gray-f5);
 }
 
 .problem-pagination {
@@ -70,16 +77,11 @@ $cont-padding: vw(40);
 
 // main layout style
 .problem-main {
-  padding-top: $hd-height;
+  padding-top: calc($hd-height + $ft-height);
   padding-bottom: 0;
 
-  .problem-top-button-wrapper {
-    width: vw(1610);
-    margin: vh(20) auto 0;
-  }
-
-  .layout-panel-wrap {
-    margin-top: vh(20);
+  .btn-radi-border-main {
+    background-color: color(gray-ff);
   }
 
   .btn {
