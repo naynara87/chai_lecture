@@ -21,7 +21,8 @@ export type Content =
   | MultiChoiceContentData
   | ImageWithCaptionListContentData
   | AudioContentData
-  | CornerGuideCharacterContentData;
+  | CornerGuideCharacterContentData
+  | NotiCharacterListContentData;
 export type ContentType = Content["type"];
 
 export type ConversationContent =
