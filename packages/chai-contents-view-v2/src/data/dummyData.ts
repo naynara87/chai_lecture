@@ -605,13 +605,33 @@ export const v2CornerDataList: CornerData[] = [
           type: "Template01",
           contents: [
             {
-              type: "cornerGuideCharacter",
-              data: {
-                text: "안녕하세요 이건 큰사이즈네용",
-                character: {
-                  src: "didiGlasses",
+              type: "notiCharacterList",
+              data: [
+                {
+                  text: "첫번째 영역",
+                  character: {
+                    src: "왕리리",
+                  },
                 },
-              },
+                {
+                  text: "두번째 영역 긴 텍스트로 작성하면 줄바꿈이 생깁니다.",
+                  character: {
+                    src: "kkungiHandsup",
+                  },
+                },
+                {
+                  text: "세번째 영역",
+                  character: {
+                    src: "asdfasdf",
+                  },
+                },
+                {
+                  text: "네번째 영역 정해진 사이즈 내에서 최대 갯수",
+                  character: {
+                    src: "",
+                  },
+                },
+              ],
             },
           ],
         },
