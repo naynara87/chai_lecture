@@ -33,6 +33,7 @@ import {
   MultiChoiceContentData,
   AudioContentData,
   CornerGuideCharacterContentData,
+  NotiCharacterListContentData,
 } from "../types";
 import CharacterCardListComponent from "../../components/contents/CharacterCardListComponent";
 import SpeakingComponent from "../../components/contents/SpeakingComponent";
@@ -46,6 +47,7 @@ import WordsInOrderComponent from "../../components/contents/WordsInOrderCompone
 import MultiChoiceComponent from "../../components/contents/MultiChoiceComponent";
 import AudioComponent from "../../components/contents/AudioComponent";
 import CornerGuideCharacterComponent from "../../components/contents/CornerGuideCharacterComponent";
+import NotiCharacterListComponent from "../../components/contents/NotiCharacterListComponent";
 
 const useContentMapper = () => {
   const getContentComponent = (content: Content, contentIndex: number) => {
@@ -166,6 +168,12 @@ const useContentMapper = () => {
       cornerGuideCharacter: (
         <CornerGuideCharacterComponent
           contents={content as CornerGuideCharacterContentData}
+          key={contentIndex}
+        />
+      ),
+      notiCharacterList: (
+        <NotiCharacterListComponent
+          contents={content as NotiCharacterListContentData}
           key={contentIndex}
         />
       ),
