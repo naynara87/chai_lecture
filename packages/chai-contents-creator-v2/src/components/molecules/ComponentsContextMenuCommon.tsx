@@ -1,4 +1,4 @@
-import { ID } from "chai-ui-v2";
+import { ContentType, ID } from "chai-ui-v2";
 import React from "react";
 import {
   contentComponents,
@@ -18,6 +18,7 @@ export interface ComponentsContextMenuProps {
   slideId: ID;
   position: "contents" | "leftContents" | "rightContents";
   addComponentMap: AddComponentMap;
+  toggleContextMenu: () => void;
 }
 
 const ComponentsContextMenuCommon = ({
@@ -25,8 +26,13 @@ const ComponentsContextMenuCommon = ({
   addComponentMap,
   slideId,
   position,
+  toggleContextMenu,
 }: ComponentsContextMenuProps) => {
   const { addComponentToCommonTemplate } = addComponentMap;
+  const handleClickComponent = (contentType: ContentType) => {
+    addComponentToCommonTemplate(slideId, contentType, position);
+    toggleContextMenu();
+  };
   return (
     <CreateTemplateNavWrap
       className={`${isComponentsContextMenuOpen ? "active" : ""}`}
@@ -45,13 +51,7 @@ const ComponentsContextMenuCommon = ({
                     <li
                       className="nav-li"
                       key={contentType}
-                      onClick={() =>
-                        addComponentToCommonTemplate(
-                          slideId,
-                          contentType,
-                          position,
-                        )
-                      }
+                      onClick={() => handleClickComponent(contentType)}
                     >
                       <div className="thumb-comp">50*50</div>
                       <p className="txt-comp">

@@ -39,6 +39,7 @@ const CreateTemplate01 = ({
                 addComponentMap={addComponentMap}
                 slideId={slideId}
                 position="contents"
+                toggleContextMenu={toggleContextMenu}
               />
               {/* TODO: 컴포넌트 리스트 렌더링 */}
             </CreateTemplateChoiceBtnWrap>

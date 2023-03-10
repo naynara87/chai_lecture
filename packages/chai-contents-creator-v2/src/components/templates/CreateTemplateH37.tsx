@@ -51,6 +51,7 @@ const CreateTemplateH37 = ({
                 addComponentMap={addComponentMap}
                 slideId={slideId}
                 position="leftContents"
+                toggleContextMenu={toggleContextMenu}
               />
             </CreateTemplateChoiceBtnWrap>
           </DashBoxArea>
@@ -69,6 +70,7 @@ const CreateTemplateH37 = ({
                 addComponentMap={addComponentMap}
                 slideId={slideId}
                 position="rightContents"
+                toggleContextMenu={toggleContextMenuRight}
               />
             </CreateTemplateChoiceBtnWrap>
           </DashBoxArea>
