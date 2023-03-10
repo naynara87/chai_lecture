@@ -7,7 +7,6 @@ import {
   CreateTemplateChoiceBtnWrap,
 } from "../../styles/template";
 import { PageCommonProps } from "../../types/page";
-import AddNumberButton from "../atoms/AddNumberButton";
 import NumberingTextListCreator from "../contents/NumberingTextListCreator";
 import PageHeader from "../molecules/PageHeader";
 

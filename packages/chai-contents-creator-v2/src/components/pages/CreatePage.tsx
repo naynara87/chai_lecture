@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import React, { useCallback, useState } from "react";
 import useTemplate from "../../hooks/useTemplate";
 import { CreateAddBtn, CreateTemplateWrap } from "../../styles/template";
-import TemplateMainLoading from "./TemplateLoading";
+import TemplateMainLoading from "../templates/TemplateLoading";
 import Button from "../atoms/Button";
 import usePage from "../../hooks/usePage";
 

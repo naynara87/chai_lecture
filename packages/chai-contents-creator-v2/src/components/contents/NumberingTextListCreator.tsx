@@ -2,21 +2,28 @@ import styled from "@emotion/styled";
 import React from "react";
 import { vw } from "chai-ui-v2";
 import AddNumberButton from "../atoms/AddNumberButton";
+import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
+import ObjectDeleteButton from "../atoms/ObjectDeleteButton";
 
 const NumberingTextCreatorWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 const NumberingListWrapper = styled.ul`
   display: flex;
   flex-direction: column;
   padding: ${vw(24)};
+  padding-left: unset;
 `;
 
 const NumberingList = styled.li`
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
   display: flex;
+  &:not(:last-child) {
+    margin-bottom: ${vw(16)};
+  }
   .number {
     position: relative;
     top: unset;
@@ -29,7 +36,6 @@ const TextWrap = styled.div`
   display: flex;
   width: 100%;
   gap: ${vw(16)};
-  align-items: center;
   .text1 {
     /* TODO: key설명 - text2 에 글이 없으면 width: 100% */
     width: 50%;
@@ -43,22 +49,47 @@ const TextWrap = styled.div`
 
 const NumberingTextListCreator = () => {
   return (
-    <NumberingTextCreatorWrapper>
-      {/* TODO: 객체 추가 버튼 */}
-      <AddNumberButton />
-      <NumberingListWrapper className="numbering-list">
-        <NumberingList>
-          <span className="number">1</span>
-          {/* TODO: 각각 기본 텍스트 노출 이후 클릭시 HtmlCreator */}
-          <TextWrap>
-            <div className="text1">내용 1을 입력해주세요.</div>
-            <div className="text2">내용 2을 입력해주세요.(선택)</div>
-          </TextWrap>
-          {/* TODO: 객체 삭제 버튼 */}
-          <button></button>
-        </NumberingList>
-      </NumberingListWrapper>
-    </NumberingTextCreatorWrapper>
+    <ContentCreatorLayout>
+      <NumberingTextCreatorWrapper>
+        {/* TODO: 객체 추가 버튼 */}
+        <AddNumberButton />
+        <NumberingListWrapper>
+          {/* TODO: 객체 추가 버튼 누르면 NumberingList가 추가 */}
+          <NumberingList className="numbering-list">
+            <span className="number">1</span>
+            {/* TODO: 각각 기본 텍스트 노출 이후 클릭시 HtmlCreator */}
+            <TextWrap>
+              <div className="text1">내용 1을 입력해주세요.</div>
+              <div className="text2">
+                내용 2을 입력해주세요.(선택)
+                <br />
+                가운데
+                <br />
+                마지막줄
+              </div>
+            </TextWrap>
+            {/* TODO: 객체 삭제 버튼 */}
+            <ObjectDeleteButton />
+          </NumberingList>
+          <NumberingList className="numbering-list">
+            <span className="number">2</span>
+            {/* TODO: 각각 기본 텍스트 노출 이후 클릭시 HtmlCreator */}
+            <TextWrap>
+              <div className="text1">내용 2을 입력해주세요.</div>
+              <div className="text2">
+                내용 2을 입력해주세요.(선택)
+                <br />
+                가운데
+                <br />
+                마지막줄
+              </div>
+            </TextWrap>
+            {/* TODO: 객체 삭제 버튼 */}
+            <ObjectDeleteButton />
+          </NumberingList>
+        </NumberingListWrapper>
+      </NumberingTextCreatorWrapper>
+    </ContentCreatorLayout>
   );
 };
 
