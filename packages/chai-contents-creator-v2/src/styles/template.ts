@@ -106,6 +106,7 @@ export const DashBoxArea = styled.div`
   width: 100%;
   border: 2px dashed ${colorPalette.gray700};
   padding: 16px;
+  overflow-y: scroll;
 `;
 
 export const CreateTemplateNav = styled.div`

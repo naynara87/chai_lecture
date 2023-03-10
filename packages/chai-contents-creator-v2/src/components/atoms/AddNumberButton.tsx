@@ -12,8 +12,12 @@ const AddButton = styled.button`
   width: fit-content;
 `;
 
-const AddNumberButton = () => {
-  return <AddButton>번호 추가</AddButton>;
+interface ButtonProps {
+  children: React.ReactNode;
+}
+
+const AddNumberButton = ({ children }: ButtonProps) => {
+  return <AddButton>{children}</AddButton>;
 };
 
 export default AddNumberButton;
