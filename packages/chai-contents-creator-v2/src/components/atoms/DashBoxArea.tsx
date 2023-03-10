@@ -7,6 +7,7 @@ export const DashBoxAreaWrapper = styled.div`
   border: 2px dashed ${colorPalette.gray700};
   padding: 16px;
   position: relative;
+  overflow-y: scroll;
 `;
 
 interface DashBoxAreaProps {

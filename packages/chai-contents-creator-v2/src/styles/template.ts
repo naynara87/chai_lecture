@@ -100,6 +100,13 @@ export const CreateTemplateChoiceBtnWrap = styled.div`
   position: absolute;
   right: 16px;
   top: 16px;
+  margin-left: auto;
+  text-align: right;
+  position: relative;
+
+  .btn-comp-select {
+    margin-bottom: 8px;
+  }
 `;
 
 export const CreateTemplateNav = styled.div`

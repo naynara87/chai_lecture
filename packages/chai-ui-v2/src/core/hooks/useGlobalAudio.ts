@@ -1,7 +1,15 @@
 import { useCallback, useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { globalAudioState } from "../states";
-import { ID } from "../types";
+
+type AudioType =
+  | "fullAudio"
+  | "speaking"
+  | "audio"
+  | "dialogue"
+  | "recorder"
+  | "vocaNote"
+  | "solutionModal";
 
 const useGlobalAudio = () => {
   const [globalAudio, setGlobalAudio] = useRecoilState(globalAudioState);
@@ -22,8 +30,14 @@ const useGlobalAudio = () => {
   }, [globalAudio.audioState, playAudio]);
 
   const handleClickAudioButton = useCallback(
-    (audioId: ID, src: string) => {
+    (
+      audioType: AudioType,
+      audioUuid: string,
+      audioIndex: number,
+      src: string,
+    ) => {
       if (!globalAudio.audioRef?.current) return;
+      const audioId = `${audioType}_${audioUuid}_${audioIndex}`;
       if (audioId !== globalAudio.id) {
         globalAudio.audioRef.current.pause();
         globalAudio.audioRef.current.load();

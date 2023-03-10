@@ -18,6 +18,7 @@ const ConversationComponent = ({
   isShowRepeat,
 }: ConversationComponentProps) => {
   const [speakingDialogueIndex, setSpeakingDialogueIndex] = useState(-1);
+  const [dialogueAudioUuids, setDialogueAudioUuids] = useState<string[]>([]);
 
   const {
     globalAudioRef,
@@ -34,6 +35,12 @@ const ConversationComponent = ({
     };
   }, [handleAudioReset]);
 
+  useEffect(() => {
+    contents.data.forEach(() => {
+      setDialogueAudioUuids((prev) => [...prev, uuidv4()]);
+    });
+  }, [contents.data]);
+
   const audioEnded = useCallback(() => {
     if (globalAudioId.toString().includes("dialogue")) {
       setSpeakingDialogueIndex(-1);
@@ -43,9 +50,9 @@ const ConversationComponent = ({
 
   useEffect(() => {
     if (globalAudioId.toString().includes("fullAudio")) {
-      const regex = /[^0-9]/g;
-      const result = globalAudioId.toString().replace(regex, "");
-      setSpeakingDialogueIndex(parseInt(result, 10));
+      const results = globalAudioId.toString().split("_");
+      const [, , dialogueIndex] = results;
+      setSpeakingDialogueIndex(parseInt(dialogueIndex, 10));
     }
   }, [globalAudioId]);
 
@@ -75,11 +82,21 @@ const ConversationComponent = ({
         if (globalAudioState === "playing") {
           handleClickAudioStopButton();
         } else {
-          handleClickAudioButton(`dialogue${dialogueIndex}`, audioSrc ?? "");
+          handleClickAudioButton(
+            "dialogue",
+            dialogueAudioUuids[dialogueIndex],
+            dialogueIndex,
+            audioSrc ?? "",
+          );
         }
         return;
       }
-      handleClickAudioButton(`dialogue${dialogueIndex}`, audioSrc ?? "");
+      handleClickAudioButton(
+        "dialogue",
+        dialogueAudioUuids[dialogueIndex],
+        dialogueIndex,
+        audioSrc ?? "",
+      );
       setSpeakingDialogueIndex(dialogueIndex);
     },
     [
@@ -87,6 +104,7 @@ const ConversationComponent = ({
       speakingDialogueIndex,
       handleClickAudioStopButton,
       globalAudioState,
+      dialogueAudioUuids,
     ],
   );
 

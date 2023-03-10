@@ -3,16 +3,18 @@ import styled from "@emotion/styled";
 import React from "react";
 import IconDndHandle from "../atoms/icons/IconDndHandle";
 import IconHamburgerMenu from "../atoms/icons/IconHamburgerMenu";
+import { vw } from "chai-ui-v2";
 
 const ContentCreatorWrapper = styled.div`
   display: flex;
-  margin-bottom: 24px;
+  margin-bottom: ${vw(24)};
 `;
 
 const IconContainer = styled.div`
   display: flex;
   align-items: center;
   margin: 0px 8px;
+  height: fit-content;
 `;
 
 interface IconWrapperProps {

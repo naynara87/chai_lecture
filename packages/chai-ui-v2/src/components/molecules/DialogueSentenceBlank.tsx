@@ -1,8 +1,9 @@
 import styled from "@emotion/styled";
-import React, { useCallback, useMemo } from "react";
-import { QuizSentenceContentData } from "../../core";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { QuizSentenceContentData, useGlobalAudio } from "../../core";
 import { ImgProfileDefaultComponent } from "../atoms";
 import { SentenceInOrderChoice } from "../templates/TemplateQuizSentenceBlank";
+import { v4 as uuidv4 } from "uuid";
 
 const BlankSpan = styled.input`
   cursor: pointer;
@@ -17,12 +18,6 @@ interface DialogueSentenceBlankProps {
     React.SetStateAction<number | undefined>
   >;
   isShowAnswer: boolean;
-  handleClickProfileCallback: (
-    dialogueIndex: number,
-    audioSrc?: string,
-  ) => void;
-  speakingDialogueIndex?: number;
-  globalAudioState?: "playing" | "pause";
 }
 
 const DialogueSentenceBlank = ({
@@ -32,10 +27,98 @@ const DialogueSentenceBlank = ({
   setSelectedBlankBox,
   setSelectedChoiceBox,
   isShowAnswer,
-  handleClickProfileCallback,
-  speakingDialogueIndex,
-  globalAudioState,
 }: DialogueSentenceBlankProps) => {
+  const [speakingDialogueIndex, setSpeakingDialogueIndex] = useState(-1);
+  const [dialogueAudioUuids, setDialogueAudioUuids] = useState<string[]>([]);
+
+  useEffect(() => {
+    contents.forEach(() => {
+      setDialogueAudioUuids((prev) => [...prev, uuidv4()]);
+    });
+  }, [contents]);
+
+  const {
+    globalAudioRef,
+    globalAudioState,
+    globalAudioId,
+    handleAudioReset,
+    handleClickAudioButton,
+    handleClickAudioStopButton,
+  } = useGlobalAudio();
+
+  useEffect(() => {
+    return () => {
+      handleAudioReset();
+    };
+  }, [handleAudioReset]);
+
+  const audioEnded = useCallback(() => {
+    if (globalAudioId.toString().includes("dialogue")) {
+      setSpeakingDialogueIndex(-1);
+      handleAudioReset();
+    }
+  }, [handleAudioReset, globalAudioId]);
+
+  useEffect(() => {
+    if (globalAudioId.toString().includes("fullAudio")) {
+      const regex = /[^0-9]/g;
+      const result = globalAudioId.toString().replace(regex, "");
+      setSpeakingDialogueIndex(parseInt(result, 10));
+    }
+  }, [globalAudioId]);
+
+  useEffect(() => {
+    if (
+      !globalAudioId.toString().includes("fullAudio") &&
+      !globalAudioId.toString().includes("dialogue")
+    ) {
+      setSpeakingDialogueIndex(-1);
+    }
+  }, [globalAudioId]);
+
+  useEffect(() => {
+    let globalAudioRefValue: HTMLAudioElement | null = null;
+    if (globalAudioRef?.current) globalAudioRefValue = globalAudioRef.current;
+    globalAudioRef?.current?.addEventListener("ended", audioEnded);
+    return () => {
+      if (globalAudioRefValue) {
+        globalAudioRefValue.removeEventListener("ended", audioEnded);
+      }
+    };
+  }, [globalAudioRef, audioEnded, globalAudioId]);
+
+  const handleClickDialogueCharacter = useCallback(
+    (dialogueIndex: number, audioSrc?: string) => {
+      if (speakingDialogueIndex === dialogueIndex) {
+        if (globalAudioState === "playing") {
+          handleClickAudioStopButton();
+        } else {
+          handleClickAudioButton(
+            "dialogue",
+            dialogueAudioUuids[dialogueIndex],
+            dialogueIndex,
+            audioSrc ?? "",
+          );
+        }
+        return;
+      }
+      handleClickAudioButton(
+        "dialogue",
+        dialogueAudioUuids[dialogueIndex],
+        dialogueIndex,
+        audioSrc ?? "",
+      );
+      setSpeakingDialogueIndex(dialogueIndex);
+    },
+    [
+      handleClickAudioButton,
+      speakingDialogueIndex,
+      handleClickAudioStopButton,
+      globalAudioState,
+      dialogueAudioUuids,
+    ],
+  );
+
   const answerCheckColor = useCallback(
     (contentIndex: number, sentenceIndex: number, blankIndex: number) => {
       if (isShowAnswer) {
@@ -74,8 +157,7 @@ const DialogueSentenceBlank = ({
                 <button
                   className="btn-profile"
                   onClick={() => {
-                    handleClickProfileCallback &&
-                      handleClickProfileCallback(contentIndex, content.src);
+                    handleClickDialogueCharacter(contentIndex, content.src);
                   }}
                 >
                   <ImgProfileDefaultComponent />
@@ -135,7 +217,7 @@ const DialogueSentenceBlank = ({
     setSelectedChoiceBox,
     userChoices,
     answerCheckColor,
-    handleClickProfileCallback,
+    handleClickDialogueCharacter,
     globalAudioState,
     speakingDialogueIndex,
   ]);

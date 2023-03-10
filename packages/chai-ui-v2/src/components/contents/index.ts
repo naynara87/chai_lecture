@@ -12,3 +12,4 @@ export { default as MultilevelActionCardListComponent } from "./MultilevelAction
 export { default as NumberingTextListComponent } from "./NumberingTextListComponent";
 export { default as SpeakingComponent } from "./SpeakingComponent";
 export { default as TextContentComponent } from "./TextContentComponent";
+export { default as FinalSpeakingComponent } from "./FinalSpeakingComponent";
