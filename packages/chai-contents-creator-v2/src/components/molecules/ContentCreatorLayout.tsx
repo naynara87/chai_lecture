@@ -1,3 +1,4 @@
+import { css, SerializedStyles } from "@emotion/react";
 import styled from "@emotion/styled";
 import React from "react";
 import IconDndHandle from "../atoms/icons/IconDndHandle";
@@ -13,6 +14,27 @@ const IconContainer = styled.div`
   margin: 0px 8px;
 `;
 
+interface IconWrapperProps {
+  customCss?: SerializedStyles;
+}
+
+const dndHandleCss = css`
+  cursor: move;
+`;
+
+const hamburgerMenuCss = css`
+  cursor: pointer;
+`;
+
+const IconWrapper = styled.span<IconWrapperProps>`
+  display: flex;
+  align-items: center;
+  ${({ customCss }) => customCss}
+  :not(:last-child) {
+    margin-right: 2px;
+  }
+`;
+
 const ContentsContainer = styled.div``;
 
 interface ContentCreatorProps {
@@ -22,8 +44,12 @@ const ContentCreatorLayout = ({ children }: ContentCreatorProps) => {
   return (
     <ContentCreatorWrapper>
       <IconContainer>
-        <IconDndHandle />
-        <IconHamburgerMenu />
+        <IconWrapper customCss={dndHandleCss}>
+          <IconDndHandle />
+        </IconWrapper>
+        <IconWrapper customCss={hamburgerMenuCss}>
+          <IconHamburgerMenu />
+        </IconWrapper>
       </IconContainer>
       <ContentsContainer>{children}</ContentsContainer>
     </ContentCreatorWrapper>
