@@ -1,3 +1,4 @@
+import { ID } from "./appData";
 import {
   Content,
   ConversationContent,
@@ -36,6 +37,7 @@ export type QuizTemplateData =
  * 롤플레잉 레이아웃
  */
 export type TemplateRolePlayingData = {
+  id: ID;
   type: "TemplateRolePlaying";
   leftContents: Content[];
   rightContents: Content[];
@@ -46,6 +48,7 @@ export type TemplateRolePlayingData = {
  * TP01
  */
 export type Template01Data = {
+  id: ID;
   type: "Template01";
   contents: Content[];
 };
@@ -56,6 +59,7 @@ export type Template01Data = {
  * TP02
  */
 export type Template_H_3_7Data = {
+  id: ID;
   type: "Template_H_3_7";
   leftContents: Content[];
   rightContents: Content[];
@@ -67,6 +71,7 @@ export type Template_H_3_7Data = {
  * TP03
  */
 export type Template_H_5_5Data = {
+  id: ID;
   type: "Template_H_5_5";
   leftContents: Content[];
   rightContents: Content[];
@@ -77,6 +82,7 @@ export type Template_H_5_5Data = {
  * TP04
  */
 export type TemplateConversationData = {
+  id: ID;
   type: "TemplateConversation";
   leftContents: ConversationContent[];
   rightContents: ConversationContent[];
@@ -87,6 +93,7 @@ export type TemplateConversationData = {
  * TP05
  */
 export type TemplateConversationToggleData = {
+  id: ID;
   type: "TemplateConversationToggle";
   leftContents: ConversationContent[];
   rightContents: ConversationContent[];
@@ -97,6 +104,7 @@ export type TemplateConversationToggleData = {
  * TP06
  */
 export type TemplateConversationRepeatData = {
+  id: ID;
   type: "TemplateConversationRepeat";
   leftContents: ConversationContent[];
   rightContents: ConversationContent[];
@@ -107,6 +115,7 @@ export type TemplateConversationRepeatData = {
  * TP07
  */
 export type TemplateQuizConversationData = {
+  id: ID;
   type: "TemplateQuizConversation";
   leftContents: QuizContent[];
   rightContents: QuizContent[];
@@ -117,6 +126,7 @@ export type TemplateQuizConversationData = {
  * TP08
  */
 export type TemplateQuizMultiChoiceData = {
+  id: ID;
   type: "TemplateQuizMultiChoice";
   leftContents: Content[];
   rightContents: MultiChoiceContentData;
@@ -127,6 +137,7 @@ export type TemplateQuizMultiChoiceData = {
  * TP09
  */
 export type TemplateQuizWordsInOrderData = {
+  id: ID;
   type: "TemplateQuizWordsInOrder";
   leftContents: Content[];
   rightContents: QuizWordsInOrderContentData;
@@ -137,6 +148,7 @@ export type TemplateQuizWordsInOrderData = {
  * TP10
  */
 export type TemplateQuizSentencesInOrderData = {
+  id: ID;
   type: "TemplateQuizSentencesInOrder";
   titleContents: IconTextContentData;
   mainContents: QuizSentenceContentData;
@@ -147,6 +159,7 @@ export type TemplateQuizSentencesInOrderData = {
  * TP11
  */
 export type TemplateQuizSpeakingData = {
+  id: ID;
   type: "TemplateQuizSpeaking";
   leftContents: Content[];
   rightContents: FinalSpeakingContentData;

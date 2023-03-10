@@ -11,7 +11,7 @@ const deleteButtonStyle = css`
 `;
 
 const PageHeader = ({
-  slideIndex,
+  slideId,
   handleChangeLayout,
   deleteSlide,
   slides,
@@ -29,12 +29,12 @@ const PageHeader = ({
   const closeModalDelete = () => setIsModalDeleteOpen(false);
 
   const handleClickDeleteSlide = () => {
-    deleteSlide(slideIndex);
+    deleteSlide(slideId);
     closeModalDelete();
   };
 
   const handleClickLayout = (templateType: TemplateType) => {
-    handleChangeLayout(slideIndex, templateType);
+    handleChangeLayout(slideId, templateType);
     closeModalLayoutChange();
   };
 

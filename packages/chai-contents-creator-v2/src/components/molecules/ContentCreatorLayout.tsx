@@ -1,3 +1,4 @@
+import { css, SerializedStyles } from "@emotion/react";
 import styled from "@emotion/styled";
 import React from "react";
 import IconDndHandle from "../atoms/icons/IconDndHandle";
@@ -16,21 +17,51 @@ const IconContainer = styled.div`
   height: fit-content;
 `;
 
-const ContentsContainer = styled.div`
-  flex: auto;
+interface IconWrapperProps {
+  customCss?: SerializedStyles;
+}
+
+const dndHandleCss = css`
+  cursor: move;
 `;
 
-interface ContentCreatorProps {
+const hamburgerMenuCss = css`
+  cursor: pointer;
+`;
+
+const IconWrapper = styled.span<IconWrapperProps>`
+  display: flex;
+  align-items: center;
+  ${({ customCss }) => customCss}
+  :not(:last-child) {
+    margin-right: 2px;
+  }
+`;
+
+interface ContentsContainerProps {
+  align?: "center" | "start";
+}
+const ContentsContainer = styled.div<ContentsContainerProps>`
+  display: flex;
+  flex-grow: 1;
+  justify-content: ${({ align }) => align || "start"};
+`;
+
+interface ContentCreatorProps extends ContentsContainerProps {
   children: React.ReactNode;
 }
-const ContentCreatorLayout = ({ children }: ContentCreatorProps) => {
+const ContentCreatorLayout = ({ children, align }: ContentCreatorProps) => {
   return (
-    <ContentCreatorWrapper>
+    <ContentCreatorWrapper className="contentCreator">
       <IconContainer>
-        <IconDndHandle />
-        <IconHamburgerMenu />
+        <IconWrapper customCss={dndHandleCss}>
+          <IconDndHandle />
+        </IconWrapper>
+        <IconWrapper customCss={hamburgerMenuCss}>
+          <IconHamburgerMenu />
+        </IconWrapper>
       </IconContainer>
-      <ContentsContainer>{children}</ContentsContainer>
+      <ContentsContainer align={align}>{children}</ContentsContainer>
     </ContentCreatorWrapper>
   );
 };

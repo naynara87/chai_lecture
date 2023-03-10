@@ -18,9 +18,13 @@ export const buttonCSS = css`
 
 export const CreateTemplateWrap = styled.div`
   display: flex;
-  margin: 40px 24px;
+  padding: 40px 24px;
   flex-direction: column;
   background-color: ${colorPalette.gray100};
+  min-height: 100vh;
+`;
+
+export const CreateTemplateInner = styled.div`
   position: relative;
 `;
 
@@ -93,6 +97,9 @@ export const NavList = styled.ul`
 `;
 
 export const CreateTemplateChoiceBtnWrap = styled.div`
+  position: absolute;
+  right: 16px;
+  top: 16px;
   margin-left: auto;
   text-align: right;
   position: relative;
@@ -100,13 +107,6 @@ export const CreateTemplateChoiceBtnWrap = styled.div`
   .btn-comp-select {
     margin-bottom: 8px;
   }
-`;
-
-export const DashBoxArea = styled.div`
-  width: 100%;
-  border: 2px dashed ${colorPalette.gray700};
-  padding: 16px;
-  overflow-y: scroll;
 `;
 
 export const CreateTemplateNav = styled.div`
@@ -142,6 +142,7 @@ export const CreateEditMain = styled.div`
 
 export const CreateAddBtn = styled.button`
   background-color: ${colorPalette.white};
+  width: 100%;
   height: 102px;
   box-shadow: 0px 4px 19px rgba(145, 145, 145, 0.2);
   border-radius: 20px;

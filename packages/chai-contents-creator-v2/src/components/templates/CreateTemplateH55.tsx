@@ -3,10 +3,10 @@ import useComponentContext from "../../hooks/useComponentContext";
 import {
   CreateEditMainWrap,
   CreateEditMain,
-  DashBoxArea,
   CreateTemplateChoiceBtnWrap,
 } from "../../styles/template";
 import { PageCommonProps } from "../../types/page";
+import DashBoxArea from "../atoms/DashBoxArea";
 import PageHeader from "../molecules/PageHeader";
 
 const CreateEditMainWrap55 = styled(CreateEditMainWrap)`
@@ -19,7 +19,7 @@ const CreateEditMainWrap55 = styled(CreateEditMainWrap)`
 const CreateTemplateH55 = ({
   templateType,
   addComponentMap,
-  slideIndex,
+  slideId,
   ...pageHeaderProps
 }: PageCommonProps) => {
   const {
@@ -34,7 +34,7 @@ const CreateTemplateH55 = ({
   } = useComponentContext();
   return (
     <>
-      <PageHeader slideIndex={slideIndex} {...pageHeaderProps} />
+      <PageHeader slideId={slideId} {...pageHeaderProps} />
       <CreateEditMainWrap55>
         <CreateEditMain>
           <DashBoxArea>
@@ -45,8 +45,9 @@ const CreateTemplateH55 = ({
               <ComponentsContextMenuCommon
                 isComponentsContextMenuOpen={isComponentsContextMenuOpen}
                 addComponentMap={addComponentMap}
-                slideIndex={slideIndex}
+                slideId={slideId}
                 position="leftContents"
+                toggleContextMenu={toggleContextMenu}
               />
             </CreateTemplateChoiceBtnWrap>
           </DashBoxArea>
@@ -63,8 +64,9 @@ const CreateTemplateH55 = ({
               <ComponentsContextMenuRight
                 isComponentsContextMenuOpen={isComponentsContextMenuOpenRight}
                 addComponentMap={addComponentMap}
-                slideIndex={slideIndex}
+                slideId={slideId}
                 position="rightContents"
+                toggleContextMenu={toggleContextMenuRight}
               />
             </CreateTemplateChoiceBtnWrap>
           </DashBoxArea>

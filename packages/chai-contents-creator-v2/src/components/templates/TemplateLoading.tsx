@@ -1,11 +1,11 @@
 import {
   CreateEditMainWrap,
   CreateEditMain,
-  DashBoxArea,
   CreateTemplateChoiceBtnWrap,
   CreateEditTop,
 } from "../../styles/template";
 import Button from "../atoms/Button";
+import DashBoxArea from "../atoms/DashBoxArea";
 
 const TemplateMainLoading = () => {
   return (

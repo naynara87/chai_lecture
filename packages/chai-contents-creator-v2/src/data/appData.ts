@@ -1,3 +1,5 @@
+import { v4 as uuidV4 } from "uuid";
+
 import {
   AllTemplateData,
   Content,
@@ -156,23 +158,27 @@ export const contentComponentsNameMap: Partial<Record<ContentType, string>> = {
 
 /**
  * 컴포넌트 초기값
+ * NOTE: 함수로 사용하지 않으면 uuid가 같은 값으로 생성됨
  */
-export const contentComponentsDefaultValue: Partial<
+export const getContentComponentsDefaultValue = (): Partial<
   Record<ContentType, Content>
-> = {
+> => ({
   text: {
+    id: uuidV4(),
     type: "text",
     data: {
       text: "",
     },
   },
   iconText: {
+    id: uuidV4(),
     type: "iconText",
     data: {
       text: "",
     },
   },
   numberingTextList: {
+    id: uuidV4(),
     type: "numberingTextList",
     data: [
       {
@@ -181,26 +187,30 @@ export const contentComponentsDefaultValue: Partial<
       },
     ],
   },
-};
+});
 
 /**
  * 템플릿 초기값
+ * NOTE: 함수로 사용하지 않으면 uuid가 같은 값으로 생성됨
  */
-export const templateDefaultValue: Partial<
+export const getTemplateDefaultValue = (): Partial<
   Record<AllTemplateData["type"], AllTemplateData>
-> = {
+> => ({
   Template01: {
+    id: uuidV4(),
     type: "Template01",
     contents: [],
   },
   Template_H_3_7: {
+    id: uuidV4(),
     type: "Template_H_3_7",
     leftContents: [],
     rightContents: [],
   },
   Template_H_5_5: {
+    id: uuidV4(),
     type: "Template_H_5_5",
     leftContents: [],
     rightContents: [],
   },
-};
+});

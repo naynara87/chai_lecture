@@ -4,6 +4,7 @@ import BorderTextBoxComponent from "../../../components/contents/BorderTextBoxCo
 import { BorderTextBoxContentData } from "../../../core";
 
 const data: BorderTextBoxContentData = {
+  id: "1",
   type: "borderTextBox",
   data: {
     text: "<p>border로 감싸진 텍스트 박스 컴포넌트 입니다.</p>",
