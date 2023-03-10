@@ -138,7 +138,7 @@ export type ContentsGroup = "common";
 
 export type ContentComponents = Record<ContentsGroup, ContentType[]>;
 export const contentComponents: ContentComponents = {
-  common: ["text", "iconText", "video", "audio", "borderTextBox"],
+  common: ["text", "iconText", "numberingTextList"],
 };
 
 export const contentComponentsGroupMap: Record<
@@ -150,6 +150,8 @@ export const contentComponentsGroupMap: Record<
 
 export const contentComponentsNameMap: Partial<Record<ContentType, string>> = {
   text: "텍스트",
+  iconText: "지시문",
+  numberingTextList: "번호 매기기",
 };
 
 /**

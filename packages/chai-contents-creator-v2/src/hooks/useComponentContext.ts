@@ -3,7 +3,7 @@ import ComponentsContextMenuCommon from "../components/molecules/ComponentsConte
 
 const useComponentContext = () => {
   const [isComponentsContextMenuOpen, setIsComponentsContextMenuOpen] =
-    useState(true);
+    useState(false);
 
   const toggleContextMenu = () => {
     setIsComponentsContextMenuOpen(!isComponentsContextMenuOpen);
