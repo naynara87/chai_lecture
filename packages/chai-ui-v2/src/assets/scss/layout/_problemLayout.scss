@@ -26,17 +26,28 @@ $cont-padding: vw(40);
 // pagination style
 .problem-top-button-wrapper {
   @include flex-btw {
-    gap: vw(15);
+    gap: vw(50);
   }
 
   width: 100%;
   height: vh(80);
 }
 
+.top-button-left {
+  width: 30%;
+}
+
+.top-button-right {
+  @include flex-btw;
+
+  width: 70%;
+}
+
 .pagination-wrapper {
   @include flex-op(center, flex-start);
 
   overflow-x: auto;
+  gap: vw(15);
   padding: 0 $cont-padding;
   background-color: color(gray-f5);
 }
@@ -76,6 +87,10 @@ $cont-padding: vw(40);
   .problem-top-button-wrapper {
     width: vw(1610);
     margin: vh(20) auto 0;
+  }
+
+  .pagination-wrapper {
+    gap: vw(15);
   }
 
   .layout-panel-wrap {
