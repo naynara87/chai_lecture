@@ -34,6 +34,7 @@ const VideoTextWrapper = styled.div`
     box-sizing: border-box;
     margin-right: ${vw(4)};
     border-radius: ${vw(8)};
+    font-size: ${vw(12)};
   }
   & button {
     width: ${vw(60)};
