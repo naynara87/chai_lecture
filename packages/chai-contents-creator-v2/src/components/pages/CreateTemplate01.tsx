@@ -7,6 +7,8 @@ import {
   CreateTemplateChoiceBtnWrap,
 } from "../../styles/template";
 import { PageCommonProps } from "../../types/page";
+import AddNumberButton from "../atoms/AddNumberButton";
+import NumberingTextListCreator from "../contents/NumberingTextListCreator";
 import PageHeader from "../molecules/PageHeader";
 
 const CreateTemplate01 = ({
@@ -38,6 +40,7 @@ const CreateTemplate01 = ({
                 position="contents"
               />
             </CreateTemplateChoiceBtnWrap>
+            <NumberingTextListCreator />
           </DashBoxArea>
         </CreateEditMain>
       </CreateEditMainWrap>

@@ -176,8 +176,8 @@ export const contentComponentsDefaultValue: Partial<
     type: "numberingTextList",
     data: [
       {
-        firstText: "",
-        secondText: "",
+        firstText: "123",
+        secondText: "364356456",
       },
     ],
   },

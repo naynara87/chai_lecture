@@ -2,6 +2,7 @@ import React from "react";
 import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
 import CreatePage from "../components/pages/CreatePage";
 import { HOME_URL } from "../constants/url";
+import "chai-ui-v2/dist/assets/globalStyle.css";
 
 const AppRouter = () => {
   return (
