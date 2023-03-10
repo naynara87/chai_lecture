@@ -1,4 +1,3 @@
-import { BorderTextBoxComponent } from "chai-ui-v2";
 import React from "react";
 import useComponentContext from "../../hooks/useComponentContext";
 import {
@@ -9,7 +8,6 @@ import {
 } from "../../styles/template";
 import { PageCommonProps } from "../../types/page";
 import BorderTextBoxCreator from "../contents/BorderTextBoxCreator";
-import NumberingTextListCreator from "../contents/NumberingTextListCreator";
 import PageHeader from "../molecules/PageHeader";
 
 const CreateTemplate01 = ({

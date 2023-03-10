@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import React from "react";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
-import { vw, vh, colorPalette } from "../../assets";
+import { vw, colorPalette } from "../../assets";
 import { BorderTextBoxContentData } from "../../core";
 
 const BorderTextBoxWrapper = styled.div`
