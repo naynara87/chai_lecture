@@ -1,5 +1,5 @@
 import { Content, ID } from "chai-ui-v2";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import TextCreator from "../components/contents/TextCreator";
 import DummyComponent from "../components/molecules/temp/DummyComponent";
 import { ContentCommonProps } from "../types/page";
@@ -18,8 +18,11 @@ const useComponent = () => {
     setFocusedId(undefined);
   }, []);
 
-  useCallback(() => {
-    window.addEventListener("click", resetFocusedId);
+  useEffect(() => {
+    window.addEventListener("click", () => {
+      console.log("resetFocusedId");
+      resetFocusedId();
+    });
     return () => {
       window.removeEventListener("click", resetFocusedId);
     };
