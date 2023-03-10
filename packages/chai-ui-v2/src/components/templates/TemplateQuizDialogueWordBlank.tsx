@@ -20,6 +20,7 @@ import {
 import IconPauseFillButton from "../atoms/Button/IconPauseFillButton";
 import ConversationQuizComponent from "../contents/ConversationQuizComponent";
 import { vw } from "../../assets";
+import { v4 as uuidv4 } from "uuid";
 
 const DialogueContainer = styled.div`
   .hori-answer-wrap {
@@ -58,7 +59,7 @@ const DialogueContainer = styled.div`
       display: inline-flex;
 
       &:after {
-        content: ""; 
+        content: "";
         position: absolute;
         top: 50%;
         left: auto;
@@ -73,7 +74,7 @@ const DialogueContainer = styled.div`
       }
     }
   }
-  
+
   .wide-panel {
     .btns-wrap {
       max-width: 310px;
@@ -82,7 +83,7 @@ const DialogueContainer = styled.div`
   }
 `;
 
-interface TemplateQuizDialogueWordBlank extends TemplateProps { }
+interface TemplateQuizDialogueWordBlank extends TemplateProps {}
 
 const TemplateQuizDialogueWordBlank = ({
   template,
@@ -91,7 +92,8 @@ const TemplateQuizDialogueWordBlank = ({
   const thisPage = template as TemplateQuizConversationData;
 
   const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
-  const [speakingDialogueIndex, setSpeakingDialogueIndex] = useState(-1);
+  const fullAudioUuidRef = useRef(uuidv4());
+  const [fullAudioList, setFullAudioList] = useState<string[]>([]);
 
   useEffect(() => {
     setPageCompleted();
@@ -100,14 +102,18 @@ const TemplateQuizDialogueWordBlank = ({
   const { getContentComponent } = useContentMapper();
   const {
     globalAudioRef,
-    globalAudioState,
     globalAudioId,
     handleAudioReset,
     handleClickAudioButton,
-    handleClickAudioStopButton,
   } = useGlobalAudio();
 
   const fullAudioIndexRef = useRef(0);
+
+  useEffect(() => {
+    return () => {
+      handleAudioReset();
+    };
+  }, [handleAudioReset]);
 
   const dialogueQuizContent = useMemo(() => {
     return thisPage.rightContents.find(
@@ -115,38 +121,40 @@ const TemplateQuizDialogueWordBlank = ({
     ) as ConversationQuizContentData;
   }, [thisPage.rightContents]);
 
+  const setFullAudio = useCallback(() => {
+    return thisPage.rightContents.forEach((content) => {
+      if (content.type === "conversationQuiz") {
+        const audioList: string[] = [];
+        content.data.forEach((cont) => {
+          audioList.push(cont.audio?.src ?? "");
+        });
+        setFullAudioList(audioList);
+      }
+    });
+  }, [thisPage.rightContents, setFullAudioList]);
+
+  useEffect(() => {
+    setFullAudio();
+  }, [setFullAudio]);
+
   const audioEnded = useCallback(() => {
-    if (globalAudioId.toString().includes("dialogue")) {
-      setSpeakingDialogueIndex(-1);
-      handleAudioReset();
-    }
     if (globalAudioId.toString().includes("fullAudio")) {
       fullAudioIndexRef.current += 1;
-      if (!dialogueQuizContent.data[fullAudioIndexRef.current]) {
+      if (!fullAudioList[fullAudioIndexRef.current]) {
         handleAudioReset();
         return;
       }
-      setSpeakingDialogueIndex(fullAudioIndexRef.current);
       handleClickAudioButton(
-        `fullAudio${fullAudioIndexRef.current}`,
-        dialogueQuizContent.data[fullAudioIndexRef.current].audio?.src ?? "",
+        "fullAudio",
+        fullAudioUuidRef.current,
+        fullAudioIndexRef.current,
+        fullAudioList[fullAudioIndexRef.current] ?? "",
       );
     }
-  }, [
-    handleAudioReset,
-    globalAudioId,
-    dialogueQuizContent.data,
-    handleClickAudioButton,
-  ]);
+  }, [handleAudioReset, globalAudioId, fullAudioList, handleClickAudioButton]);
 
   useEffect(() => {
     let globalAudioRefValue: HTMLAudioElement | null = null;
-    if (
-      !globalAudioId.toString().includes("dialogue") &&
-      !globalAudioId.toString().includes("fullAudio")
-    ) {
-      setSpeakingDialogueIndex(-1);
-    }
     if (globalAudioRef?.current) globalAudioRefValue = globalAudioRef.current;
     globalAudioRef?.current?.addEventListener("ended", audioEnded);
     return () => {
@@ -163,55 +171,31 @@ const TemplateQuizDialogueWordBlank = ({
   }, [getContentComponent, thisPage]);
 
   const listenFullAudio = useCallback(() => {
-    if (!dialogueQuizContent) return;
     fullAudioIndexRef.current = 0;
-    setSpeakingDialogueIndex(fullAudioIndexRef.current);
     handleClickAudioButton(
-      `fullAudio${fullAudioIndexRef.current}`,
-      dialogueQuizContent.data[fullAudioIndexRef.current].audio?.src ?? "",
+      "fullAudio",
+      fullAudioUuidRef.current,
+      fullAudioIndexRef.current,
+      fullAudioList[fullAudioIndexRef.current] ?? "",
     );
-  }, [handleClickAudioButton, dialogueQuizContent]);
+  }, [handleClickAudioButton, fullAudioList]);
 
   const handleStopFullAudio = useCallback(() => {
-    setSpeakingDialogueIndex(-1);
     handleAudioReset();
   }, [handleAudioReset]);
-
-  const handleClickDialogueCharacter = useCallback(
-    (dialogueIndex: number, audioSrc?: string) => {
-      if (speakingDialogueIndex === dialogueIndex) {
-        if (globalAudioState === "playing") {
-          handleClickAudioStopButton();
-        } else {
-          handleClickAudioButton(`dialogue${dialogueIndex}`, audioSrc ?? "");
-        }
-        return;
-      }
-      handleClickAudioButton(`dialogue${dialogueIndex}`, audioSrc ?? "");
-      setSpeakingDialogueIndex(dialogueIndex);
-    },
-    [
-      handleClickAudioButton,
-      speakingDialogueIndex,
-      handleClickAudioStopButton,
-      globalAudioState,
-    ],
-  );
 
   return (
     <DialogueContainer className="layout-panel-wrap grid-h-3-7">
       <div className="layout-panel side-panel">
         <div className="cont-info-wrap">
-          {dialogueQuizContent && (
-            <div className="btns-wrap">
-              {globalAudioId.toString().includes("fullAudio") ? (
-                <IconPauseFillButton onClick={handleStopFullAudio} />
-              ) : (
-                <ComponentButtonPlay onClick={listenFullAudio} />
-              )}
-              <p className="txt">전체 음성 듣기</p>
-            </div>
-          )}
+          <div className="btns-wrap">
+            {globalAudioId.toString().includes("fullAudio") ? (
+              <IconPauseFillButton onClick={handleStopFullAudio} />
+            ) : (
+              <ComponentButtonPlay onClick={listenFullAudio} />
+            )}
+            <p className="txt">전체 음성 듣기</p>
+          </div>
           {/* 말풍선 캐릭터 */}
           {leftContents}
           {/* end 말풍선 캐릭터 */}
@@ -222,14 +206,7 @@ const TemplateQuizDialogueWordBlank = ({
         {/* 230217 회화영역 */}
         {/* speech bubble */}
         {/* end speech bubble */}
-        {dialogueQuizContent && (
-          <ConversationQuizComponent
-            contents={dialogueQuizContent}
-            speakingDialogueIndex={speakingDialogueIndex}
-            globalAudioState={globalAudioState}
-            handleClickProfileCallback={handleClickDialogueCharacter}
-          />
-        )}
+        <ConversationQuizComponent contents={dialogueQuizContent} />
         {/* TODO: key설명 - input이 checked가 되는 순간 blank에 선택한 글자가 들어감 */}
       </div>
       <LayoutModalVoca

@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import React, { useCallback, useMemo, useState } from "react";
 import { vw } from "../../assets";
-import { MultilevelActionCardListContentData } from "../../core";
+import { MultilevelActionCardContentData } from "../../core";
 import useContentMapper from "../../core/hooks/useContentMapper";
 import ComponentButtonStep from "../atoms/Button/ComponentButtonStep";
 
@@ -11,18 +11,18 @@ const StepCard = styled.div`
   }
 `;
 
-interface MultilevelActionCardListComponentProps {
-  contents: MultilevelActionCardListContentData;
+interface MultilevelActionCardComponentProps {
+  contents: MultilevelActionCardContentData;
 }
 
-const MultilevelActionCardListComponent = ({
+const MultilevelActionCardComponent = ({
   contents,
-}: MultilevelActionCardListComponentProps) => {
+}: MultilevelActionCardComponentProps) => {
   const [step, setStep] = useState(0);
   const { getContentComponent } = useContentMapper();
 
   const multiLevelContents = useMemo(() => {
-    return contents.data.multilevelContents.map((contents, contentsIndex) => {
+    return contents.data.map((contents, contentsIndex) => {
       if (contentsIndex <= step) {
         return contents.map((content, contentIndex) => {
           return getContentComponent(content, contentIndex);
@@ -31,7 +31,7 @@ const MultilevelActionCardListComponent = ({
         return <></>;
       }
     });
-  }, [contents.data.multilevelContents, getContentComponent, step]);
+  }, [contents.data, getContentComponent, step]);
 
   const handleClickStepButton = useCallback(() => {
     setStep((prev) => prev + 1);
@@ -41,7 +41,7 @@ const MultilevelActionCardListComponent = ({
     <div className="step-card-wrap">
       <StepCard className="step-card">
         <>{multiLevelContents}</>
-        {contents.data.multilevelContents[step + 1] && (
+        {contents.data[step + 1] && (
           <ComponentButtonStep onClick={handleClickStepButton} />
         )}
       </StepCard>
@@ -49,4 +49,4 @@ const MultilevelActionCardListComponent = ({
   );
 };
 
-export default MultilevelActionCardListComponent;
+export default MultilevelActionCardComponent;

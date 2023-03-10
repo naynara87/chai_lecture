@@ -44,7 +44,7 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
   const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(false);
   const [isModalVideoOpen, setIsModalVideoOpen] = useState(false);
 
-  const modalIdRef = useRef(`solutionModal${uuidv4()}`);
+  const modalUuidRef = useRef(uuidv4());
 
   const {
     globalAudioRef,
@@ -237,7 +237,9 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
     setIsShowAnswer(true);
     setIsModalSolutionOpen(true);
     handleClickAudioButton(
-      modalIdRef.current,
+      "solutionModal",
+      modalUuidRef.current,
+      0,
       isCorrect === undefined
         ? contents.data.quizPopup.data.correct.soundEffect?.src ?? ""
         : contents.data.quizPopup.data.incorrect.soundEffect?.src ?? "",

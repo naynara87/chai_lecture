@@ -1,12 +1,12 @@
 import { TemplateType } from "chai-ui-v2";
 import { useCallback } from "react";
-import CreateTemplate01 from "../components/pages/CreateTemplate01";
-import CreateTemplateH37 from "../components/pages/CreateTemplateH37";
-import CreateTemplateH55 from "../components/pages/CreateTemplateH55";
-import { PageTemplateCommon } from "../types/page";
+import CreateTemplate01 from "../components/templates/CreateTemplate01";
+import CreateTemplateH37 from "../components/templates/CreateTemplateH37";
+import CreateTemplateH55 from "../components/templates/CreateTemplateH55";
+import { PageCommonProps } from "../types/page";
 
 const useTemplate = () => {
-  const getTemplate = useCallback((props: PageTemplateCommon) => {
+  const getTemplate = useCallback((props: PageCommonProps) => {
     const { templateType } = props;
     const templateMap: Partial<Record<TemplateType, JSX.Element>> = {
       Template01: <CreateTemplate01 {...props} />,

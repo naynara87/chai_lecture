@@ -1,19 +1,14 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { ConversationQuizContentData } from "../../core";
+import { ConversationQuizContentData, useGlobalAudio } from "../../core";
 import {
   ComponentButtonRadiFillMain,
   ImgProfileDefaultComponent,
 } from "../atoms";
 import { LineRadioBoxes } from "../molecules";
+import { v4 as uuidv4 } from "uuid";
 
 interface ConversationQuizComponentProps {
   contents: ConversationQuizContentData;
-  handleClickProfileCallback?: (
-    profileIndex: number,
-    audioSrc?: string,
-  ) => void;
-  speakingDialogueIndex?: number;
-  globalAudioState?: "playing" | "pause";
 }
 
 export type QuizChoice = {
@@ -23,18 +18,62 @@ export type QuizChoice = {
 
 const ConversationQuizComponent = ({
   contents,
-  handleClickProfileCallback,
-  speakingDialogueIndex,
-  globalAudioState,
 }: ConversationQuizComponentProps) => {
   const [userChoices, setUserChoices] = useState<QuizChoice[]>([]);
   const [isShowAnswer, setIsShowAnswer] = useState(false);
-  console.log(userChoices);
+  const [speakingDialogueIndex, setSpeakingDialogueIndex] = useState(-1);
+  const [dialogueAudioUuids, setDialogueAudioUuids] = useState<string[]>([]);
+
   useEffect(() => {
     contents.data.forEach(() => {
       setUserChoices((prev) => [...prev, { text: "", isAnswer: false }]);
     });
   }, [contents.data]);
+
+  const {
+    globalAudioRef,
+    globalAudioState,
+    globalAudioId,
+    handleAudioReset,
+    handleClickAudioButton,
+    handleClickAudioStopButton,
+  } = useGlobalAudio();
+
+  useEffect(() => {
+    return () => {
+      handleAudioReset();
+    };
+  }, [handleAudioReset]);
+
+  useEffect(() => {
+    contents.data.forEach(() => {
+      setDialogueAudioUuids((prev) => [...prev, uuidv4()]);
+    });
+  }, [contents.data]);
+
+  const audioEnded = useCallback(() => {
+    if (globalAudioId.toString().includes("dialogue")) {
+      setSpeakingDialogueIndex(-1);
+      handleAudioReset();
+    }
+  }, [handleAudioReset, globalAudioId]);
+
+  useEffect(() => {
+    if (globalAudioId.toString().includes("fullAudio")) {
+      const results = globalAudioId.toString().split("_");
+      const [, , dialogueIndex] = results;
+      setSpeakingDialogueIndex(parseInt(dialogueIndex, 10));
+    }
+  }, [globalAudioId]);
+
+  useEffect(() => {
+    if (
+      !globalAudioId.toString().includes("fullAudio") &&
+      !globalAudioId.toString().includes("dialogue")
+    ) {
+      setSpeakingDialogueIndex(-1);
+    }
+  }, [globalAudioId]);
 
   const handleClickChoice = useCallback(
     (contentIndex: number, choice: QuizChoice) => {
@@ -63,6 +102,49 @@ const ConversationQuizComponent = ({
     [isShowAnswer, userChoices],
   );
 
+  useEffect(() => {
+    let globalAudioRefValue: HTMLAudioElement | null = null;
+    if (globalAudioRef?.current) globalAudioRefValue = globalAudioRef.current;
+    globalAudioRef?.current?.addEventListener("ended", audioEnded);
+    return () => {
+      if (globalAudioRefValue) {
+        globalAudioRefValue.removeEventListener("ended", audioEnded);
+      }
+    };
+  }, [globalAudioRef, audioEnded, globalAudioId]);
+
+  const handleClickDialogueCharacter = useCallback(
+    (dialogueIndex: number, audioSrc?: string) => {
+      if (speakingDialogueIndex === dialogueIndex) {
+        if (globalAudioState === "playing") {
+          handleClickAudioStopButton();
+        } else {
+          handleClickAudioButton(
+            "dialogue",
+            dialogueAudioUuids[dialogueIndex],
+            dialogueIndex,
+            audioSrc ?? "",
+          );
+        }
+        return;
+      }
+      handleClickAudioButton(
+        "dialogue",
+        dialogueAudioUuids[dialogueIndex],
+        dialogueIndex,
+        audioSrc ?? "",
+      );
+      setSpeakingDialogueIndex(dialogueIndex);
+    },
+    [
+      handleClickAudioButton,
+      speakingDialogueIndex,
+      handleClickAudioStopButton,
+      globalAudioState,
+      dialogueAudioUuids,
+    ],
+  );
+
   const mainContents = useMemo(() => {
     if (userChoices.length < 1) return;
     return contents.data.map((content, contentIndex) => {
@@ -89,11 +171,10 @@ const ConversationQuizComponent = ({
                 <button
                   className="btn-profile"
                   onClick={() => {
-                    handleClickProfileCallback &&
-                      handleClickProfileCallback(
-                        contentIndex,
-                        content.audio?.src,
-                      );
+                    handleClickDialogueCharacter(
+                      contentIndex,
+                      content.audio?.src,
+                    );
                   }}
                 >
                   <ImgProfileDefaultComponent />
@@ -132,13 +213,13 @@ const ConversationQuizComponent = ({
     });
   }, [
     contents.data,
-    handleClickProfileCallback,
     globalAudioState,
     speakingDialogueIndex,
     handleClickChoice,
     isShowAnswer,
     answerCheckColor,
     userChoices,
+    handleClickDialogueCharacter,
   ]);
 
   return (

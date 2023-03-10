@@ -1,10 +1,14 @@
 import React from "react";
 
-const IconReturnButton = () => {
+interface IconReturnButtonProps {
+  onClickBtn?: () => void;
+}
+
+const IconReturnButton = ({ onClickBtn }: IconReturnButtonProps) => {
   return (
-      <button className="btn-icon-mini btn-return">
-        다시녹음하기
-      </button>
+    <button className="btn-icon-mini btn-return" onClick={onClickBtn}>
+      다시녹음하기
+    </button>
   );
 };
 

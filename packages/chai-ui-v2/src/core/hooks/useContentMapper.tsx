@@ -1,7 +1,8 @@
 import React from "react";
 import {
   ComponentVideo,
-  ActivityGuideCharactorComponent,
+  ActivityGuideCharacterComponent,
+  FinalSpeakingComponent,
 } from "../../components";
 import ExplainingCharacterComponent from "../../components/contents/ExplainingCharacterComponent";
 import BorderTextBoxComponent from "../../components/contents/BorderTextBoxComponent";
@@ -21,23 +22,24 @@ import {
   BorderTextBoxContentData,
   CharacterCardListContentData,
   SpeakingContentData,
-  MultilevelActionCardListContentData,
+  MultilevelActionCardContentData,
   CardTabContentData,
   ConversationWordListContentData,
   ImageWithDescriptionListContentData,
   ConversationContentData,
   ImageWithCaptionListContentData,
-  ActivityGuideCharactorContentData,
   ConversationQuizContentData,
   QuizWordsInOrderContentData,
   MultiChoiceContentData,
+  FinalSpeakingContentData,
   AudioContentData,
   CornerGuideCharacterContentData,
   NotiCharacterListContentData,
+  ActivityGuideCharacterContentData,
 } from "../types";
 import CharacterCardListComponent from "../../components/contents/CharacterCardListComponent";
 import SpeakingComponent from "../../components/contents/SpeakingComponent";
-import MultilevelActionCardListComponent from "../../components/contents/MultilevelActionCardListComponent";
+import MultilevelActionCardComponent from "../../components/contents/MultilevelActionCardComponent";
 import CardTabComponent from "../../components/contents/CardTabComponent";
 import ConversationWordListComponent from "../../components/contents/ConversationWordListComponent";
 import ConversationComponent from "../../components/contents/ConversationComponent";
@@ -100,9 +102,9 @@ const useContentMapper = () => {
           key={contentIndex}
         />
       ),
-      multiLevelActionList: (
-        <MultilevelActionCardListComponent
-          contents={content as MultilevelActionCardListContentData}
+      multiLevelActionCard: (
+        <MultilevelActionCardComponent
+          contents={content as MultilevelActionCardContentData}
           key={contentIndex}
         />
       ),
@@ -135,9 +137,9 @@ const useContentMapper = () => {
           key={contentIndex}
         />
       ),
-      ActivityGuideCharactor: (
-        <ActivityGuideCharactorComponent
-          contents={content as ActivityGuideCharactorContentData}
+      activityGuideCharacter: (
+        <ActivityGuideCharacterComponent
+          contents={content as ActivityGuideCharacterContentData}
           key={contentIndex}
         />
       ),
@@ -156,6 +158,12 @@ const useContentMapper = () => {
       multiChoice: (
         <MultiChoiceComponent
           contents={content as MultiChoiceContentData}
+          key={contentIndex}
+        />
+      ),
+      finalSpeaking: (
+        <FinalSpeakingComponent
+          contents={content as FinalSpeakingContentData}
           key={contentIndex}
         />
       ),

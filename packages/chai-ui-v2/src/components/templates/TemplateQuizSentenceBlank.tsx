@@ -64,17 +64,13 @@ const TemplateQuizSentenceBlank = ({
     undefined | number
   >();
   const [isShowAnswer, setIsShowAnswer] = useState(false);
-  const [speakingDialogueIndex, setSpeakingDialogueIndex] = useState(-1);
-
-  const modalIdRef = useRef(`solutionModal${uuidv4()}`);
+  const modalUuidRef = useRef(uuidv4());
 
   const {
     globalAudioRef,
     globalAudioId,
-    globalAudioState,
     handleAudioReset,
     handleClickAudioButton,
-    handleClickAudioStopButton,
   } = useGlobalAudio();
 
   const audioEnded = useCallback(() => {
@@ -130,9 +126,10 @@ const TemplateQuizSentenceBlank = ({
     setSelectedChoiceBox(undefined);
     setIsShowAnswer(true);
     setIsModalSolutionOpen(true);
-    setSpeakingDialogueIndex(-1);
     handleClickAudioButton(
-      modalIdRef.current,
+      "solutionModal",
+      modalUuidRef.current,
+      0,
       isCorrect === undefined
         ? thisPage.mainContents.data.quizPopup.data.correct.soundEffect?.src ??
             ""
@@ -144,27 +141,6 @@ const TemplateQuizSentenceBlank = ({
     isCorrect,
     thisPage.mainContents.data.quizPopup.data,
   ]);
-
-  const handleClickDialogueCharacter = useCallback(
-    (dialogueIndex: number, audioSrc?: string) => {
-      if (speakingDialogueIndex === dialogueIndex) {
-        if (globalAudioState === "playing") {
-          handleClickAudioStopButton();
-        } else {
-          handleClickAudioButton(`dialogue${dialogueIndex}`, audioSrc ?? "");
-        }
-        return;
-      }
-      handleClickAudioButton(`dialogue${dialogueIndex}`, audioSrc ?? "");
-      setSpeakingDialogueIndex(dialogueIndex);
-    },
-    [
-      handleClickAudioButton,
-      speakingDialogueIndex,
-      handleClickAudioStopButton,
-      globalAudioState,
-    ],
-  );
 
   const handleClickModalClose = () => {
     handleAudioReset();
@@ -190,9 +166,6 @@ const TemplateQuizSentenceBlank = ({
             setSelectedBlankBox={setSelectedBlankBox}
             setSelectedChoiceBox={setSelectedChoiceBox}
             isShowAnswer={isShowAnswer}
-            handleClickProfileCallback={handleClickDialogueCharacter}
-            speakingDialogueIndex={speakingDialogueIndex}
-            globalAudioState={globalAudioState}
           />
           {/* end speech bubble */}
         </ul>

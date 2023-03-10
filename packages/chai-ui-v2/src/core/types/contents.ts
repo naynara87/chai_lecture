@@ -9,17 +9,18 @@ export type Content =
   | ExplainingCharacterContentData
   | CharacterCardListContentData
   | SpeakingContentData
-  | MultilevelActionCardListContentData
+  | MultilevelActionCardContentData
   | CardTabContentData
   | ConversationWordListContentData
   | BorderTextBoxContentData
   | ConversationContentData
   | ImageWithDescriptionListContentData
-  | ActivityGuideCharactorContentData
+  | ActivityGuideCharacterContentData
   | ConversationQuizContentData
   | QuizWordsInOrderContentData
   | MultiChoiceContentData
   | ImageWithCaptionListContentData
+  | FinalSpeakingContentData
   | AudioContentData
   | CornerGuideCharacterContentData
   | NotiCharacterListContentData;
@@ -32,9 +33,11 @@ export type ConversationContent =
 
 export type QuizContent =
   | ConversationQuizContentData
-  | ActivityGuideCharactorContentData
+  | ActivityGuideCharacterContentData
   | MultiChoiceContentData
-  | QuizWordsInOrderContentData;
+  | QuizWordsInOrderContentData
+  | FinalSpeakingContentData;
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Meta = Record<string, any>;
 
@@ -167,8 +170,8 @@ export type CornerGuideCharacterContentData = {
 /**
  * 활동 안내 캐릭터 컴포넌트
  */
-export type ActivityGuideCharactorContentData = {
-  type: "ActivityGuideCharactor";
+export type ActivityGuideCharacterContentData = {
+  type: "activityGuideCharacter";
   data: {
     text: string;
     character: {
@@ -287,11 +290,9 @@ export type QuizPopupModalContentData = {
  * 학습 카드 컴포넌트
  * 멀티레벨콘텐츠 저작시 멀티레벨안에 멀티레벨 중복 막기
  */
-export type MultilevelActionCardListContentData = {
-  type: "multiLevelActionList";
-  data: {
-    multilevelContents: Content[][];
-  };
+export type MultilevelActionCardContentData = {
+  type: "multiLevelActionCard";
+  data: Content[][];
   meta?: Meta;
 };
 
@@ -363,6 +364,7 @@ export type ConversationContentData = {
     audio?: {
       src: string;
     };
+    isBlank?: boolean;
     speakingTime?: number;
   }[];
   meta?: Meta;
@@ -447,6 +449,22 @@ export type QuizSentenceContentData = {
 };
 
 /**
+ * 종합말하기 컴포넌트
+ */
+export type FinalSpeakingContentData = {
+  type: "finalSpeaking";
+  data: {
+    answerModel: {
+      text: string;
+      pronunciation: string;
+      meaning: string;
+    };
+    exampleContents: Content[];
+  };
+  meta?: Meta;
+};
+
+/**
  * 롤플레이 대화 컴포넌트
  * hint(병음), 녹음기능은 학습자가 고른 캐릭터에만 노출되게 작업
  */
@@ -499,8 +517,8 @@ export type ToggleSentenceListContentData = {
 /**
  * 단어박스형 컴포넌트
  */
-export type TextBoxesContentData = {
-  type: "textBoxes";
+export type TextBoxListContentData = {
+  type: "textBoxList";
   data: {
     text: string;
     audio?: {

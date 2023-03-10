@@ -1,11 +1,11 @@
 import React from "react";
-import { ActivityGuideCharactorContentData } from "../../core";
+import { ActivityGuideCharacterContentData } from "../../core";
 import { ImgCharacterComponent } from "../atoms";
 import styled from "@emotion/styled";
 import { vw } from "../../assets";
 
-interface ActivityGuideCharactorComponentProps {
-  contents: ActivityGuideCharactorContentData;
+interface ActivityGuideCharacterComponentProps {
+  contents: ActivityGuideCharacterContentData;
 }
 
 const ContStartWrapper = styled.div`
@@ -25,9 +25,9 @@ const ContStartWrapper = styled.div`
   }
 `;
 
-const ActivityGuideCharactorComponent = ({
+const ActivityGuideCharacterComponent = ({
   contents,
-}: ActivityGuideCharactorComponentProps) => {
+}: ActivityGuideCharacterComponentProps) => {
   return (
     <ContStartWrapper className="cont-info-wrap">
       <div className="character-wrapper">
@@ -43,4 +43,4 @@ const ActivityGuideCharactorComponent = ({
   );
 };
 
-export default ActivityGuideCharactorComponent;
+export default ActivityGuideCharacterComponent;
