@@ -93,19 +93,9 @@ export const NavList = styled.ul`
 `;
 
 export const CreateTemplateChoiceBtnWrap = styled.div`
-  margin-left: auto;
-  text-align: right;
-  position: relative;
-
-  .btn-comp-select {
-    margin-bottom: 8px;
-  }
-`;
-
-export const DashBoxArea = styled.div`
-  width: 100%;
-  border: 2px dashed ${colorPalette.gray700};
-  padding: 16px;
+  position: absolute;
+  right: 16px;
+  top: 16px;
 `;
 
 export const CreateTemplateNav = styled.div`

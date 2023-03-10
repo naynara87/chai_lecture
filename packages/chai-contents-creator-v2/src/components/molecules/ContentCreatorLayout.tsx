@@ -6,6 +6,7 @@ import IconHamburgerMenu from "../atoms/icons/IconHamburgerMenu";
 
 const ContentCreatorWrapper = styled.div`
   display: flex;
+  margin-bottom: 24px;
 `;
 
 const IconContainer = styled.div`
@@ -35,14 +36,21 @@ const IconWrapper = styled.span<IconWrapperProps>`
   }
 `;
 
-const ContentsContainer = styled.div``;
+interface ContentsContainerProps {
+  align?: "center" | "start";
+}
+const ContentsContainer = styled.div<ContentsContainerProps>`
+  display: flex;
+  flex-grow: 1;
+  justify-content: ${({ align }) => align || "start"};
+`;
 
-interface ContentCreatorProps {
+interface ContentCreatorProps extends ContentsContainerProps {
   children: React.ReactNode;
 }
-const ContentCreatorLayout = ({ children }: ContentCreatorProps) => {
+const ContentCreatorLayout = ({ children, align }: ContentCreatorProps) => {
   return (
-    <ContentCreatorWrapper>
+    <ContentCreatorWrapper className="contentCreator">
       <IconContainer>
         <IconWrapper customCss={dndHandleCss}>
           <IconDndHandle />
@@ -51,7 +59,7 @@ const ContentCreatorLayout = ({ children }: ContentCreatorProps) => {
           <IconHamburgerMenu />
         </IconWrapper>
       </IconContainer>
-      <ContentsContainer>{children}</ContentsContainer>
+      <ContentsContainer align={align}>{children}</ContentsContainer>
     </ContentCreatorWrapper>
   );
 };

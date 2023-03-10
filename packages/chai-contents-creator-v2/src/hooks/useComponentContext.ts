@@ -9,10 +9,17 @@ const useComponentContext = () => {
     setIsComponentsContextMenuOpen(!isComponentsContextMenuOpen);
   };
 
+  const closeContextMenu = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      setIsComponentsContextMenuOpen(false);
+    }
+  };
+
   return {
     ComponentsContextMenuCommon,
     isComponentsContextMenuOpen,
     toggleContextMenu,
+    closeContextMenu,
   };
 };
 

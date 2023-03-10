@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
+import { HtmlContentComponent } from "chai-ui-v2";
 import React, { useState } from "react";
 import { ContentCommonProps } from "../../types/page";
+import TextEditor from "../atoms/TextEditor";
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 
 const TextCreatorWrapper = styled.div`
@@ -10,22 +12,29 @@ const TextCreatorWrapper = styled.div`
 const TextViewer = styled.div``;
 
 const TextCreator = ({
-  contentId,
+  content,
   setFocusedId,
   isFocused,
 }: ContentCommonProps) => {
-  const [text] = useState<string>("");
+  const [text, setText] = useState<string>("");
+
   const handleClickComponent = () => {
-    setFocusedId(contentId);
+    setFocusedId(content.id);
   };
 
   return (
     <ContentCreatorLayout>
       <TextCreatorWrapper onClick={handleClickComponent}>
         {!isFocused ? (
-          <TextViewer>{text || "텍스트를 입력해주세요"}</TextViewer>
+          <TextViewer>
+            {text ? (
+              <HtmlContentComponent html={text} />
+            ) : (
+              "텍스트를 입력해주세요"
+            )}
+          </TextViewer>
         ) : (
-          <div>에디터</div>
+          <TextEditor text={text} setText={setText} />
         )}
       </TextCreatorWrapper>
     </ContentCreatorLayout>

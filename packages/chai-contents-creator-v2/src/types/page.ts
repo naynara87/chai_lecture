@@ -1,4 +1,10 @@
-import { AllTemplateData, ContentType, ID, TemplateType } from "chai-ui-v2";
+import {
+  AllTemplateData,
+  Content,
+  ContentType,
+  ID,
+  TemplateType,
+} from "chai-ui-v2";
 
 export interface PageHeaderProps {
   slides: AllTemplateData[];
@@ -26,7 +32,7 @@ export type AddComponentMap = {
 };
 
 export type ContentCommonProps = {
-  contentId: ID;
+  content: Content;
   isFocused: boolean;
   setFocusedId: (isFocused: ID) => void;
 };

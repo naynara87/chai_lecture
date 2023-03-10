@@ -1,11 +1,11 @@
 import {
   CreateEditMainWrap,
   CreateEditMain,
-  DashBoxArea,
   CreateTemplateChoiceBtnWrap,
   CreateEditTop,
 } from "../../styles/template";
 import Button from "../atoms/Button";
+import DashBoxArea from "../atoms/DashBoxArea";
 
 const TemplateMainLoading = () => {
   return (
@@ -19,7 +19,7 @@ const TemplateMainLoading = () => {
       </CreateEditTop>
       <CreateEditMainWrap>
         <CreateEditMain>
-          <DashBoxArea>
+          <DashBoxArea resetFocus={() => console.log("reset")}>
             <CreateTemplateChoiceBtnWrap>
               <button className="btn-comp-select">컴포넌트 선택</button>
             </CreateTemplateChoiceBtnWrap>
