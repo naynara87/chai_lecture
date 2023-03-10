@@ -1,11 +1,14 @@
 import { Content, ID } from "chai-ui-v2";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect } from "react";
+import { useRecoilState } from "recoil";
 import TextCreator from "../components/contents/TextCreator";
 import DummyComponent from "../components/molecules/temp/DummyComponent";
+import { focusedIdState } from "../states/focusedIdState";
 import { ContentCommonProps } from "../types/page";
 
 const useComponent = () => {
-  const [focusedId, setFocusedId] = useState<ID>();
+  const [focusedId, setFocusedId] = useRecoilState(focusedIdState);
+
   const getComponent = useCallback((props: ContentCommonProps) => {
     const { content } = props;
     const componentMap: Partial<Record<Content["type"], JSX.Element>> = {
@@ -16,22 +19,23 @@ const useComponent = () => {
 
   const resetFocusedId = useCallback(() => {
     setFocusedId(undefined);
-  }, []);
+  }, [setFocusedId]);
 
   useEffect(() => {
-    window.addEventListener("click", () => {
-      console.log("resetFocusedId");
-      resetFocusedId();
-    });
+    // FIXME: 싱글톤 패턴으로 리팩토링
+    window.addEventListener("click", resetFocusedId);
     return () => {
       window.removeEventListener("click", resetFocusedId);
     };
   }, [resetFocusedId]);
 
-  const _setFocusedId = useCallback((e: React.MouseEvent, id: ID) => {
-    e.stopPropagation();
-    setFocusedId(id);
-  }, []);
+  const _setFocusedId = useCallback(
+    (e: React.MouseEvent, id: ID) => {
+      e.stopPropagation();
+      setFocusedId(id);
+    },
+    [setFocusedId],
+  );
 
   return {
     getComponent,

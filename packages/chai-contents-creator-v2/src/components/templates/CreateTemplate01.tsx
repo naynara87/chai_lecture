@@ -1,6 +1,8 @@
 import { Template01Data } from "chai-ui-v2";
 import React from "react";
+import useComponent from "../../hooks/useComponent";
 import useComponentContext from "../../hooks/useComponentContext";
+import usePage from "../../hooks/usePage";
 import {
   CreateEditMainWrap,
   CreateEditMain,
@@ -15,7 +17,6 @@ const CreateTemplate01 = ({
   addComponentMap,
   slideId,
   slides,
-  returnUseComponent,
   ...pageHeaderProps
 }: PageCommonProps) => {
   const {
@@ -28,7 +29,11 @@ const CreateTemplate01 = ({
     (slide) => slide.id === slideId,
   ) as Template01Data;
 
-  const { focusedId, setFocusedId, getComponent } = returnUseComponent;
+  const { focusedId, setFocusedId, getComponent } = useComponent();
+
+  const { updateContent } = usePage();
+
+  const currentSlide = slides.find((slide) => slide.id === slideId)!;
 
   return (
     <>
@@ -51,9 +56,12 @@ const CreateTemplate01 = ({
             {/* TODO: 컴포넌트 리스트 렌더링 */}
             {thisSlide.contents.map((content) => {
               return getComponent({
+                currentSlide,
                 content,
                 isFocused: focusedId === content.id,
                 setFocusedId,
+                updateContent,
+                position: "contents",
               });
             })}
           </DashBoxArea>

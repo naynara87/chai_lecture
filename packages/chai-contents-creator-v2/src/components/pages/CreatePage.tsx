@@ -9,7 +9,6 @@ import {
 import TemplateMainLoading from "../templates/TemplateLoading";
 import Button from "../atoms/Button";
 import usePage from "../../hooks/usePage";
-import useComponent from "../../hooks/useComponent";
 
 const CommonButtonContainer = styled.div`
   padding-bottom: 16px;
@@ -21,7 +20,6 @@ const CommonButtonContainer = styled.div`
 
 const CreatePage = () => {
   const { getTemplate } = useTemplate();
-  const returnUseComponent = useComponent();
 
   const { slides, addSlide, deleteSlide, handleChangeLayout, addComponentMap } =
     usePage();
@@ -70,7 +68,6 @@ const CreatePage = () => {
               deleteSlide,
               slides,
               addComponentMap,
-              returnUseComponent,
             });
           })
         )}

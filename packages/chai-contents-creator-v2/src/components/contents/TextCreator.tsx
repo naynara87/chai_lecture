@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { HtmlContentComponent } from "chai-ui-v2";
+import { HtmlContentComponent, TextContentData } from "chai-ui-v2";
 import React, { useState } from "react";
 import { ContentCommonProps } from "../../types/page";
 import TextEditor from "../atoms/TextEditor";
@@ -15,11 +15,29 @@ const TextCreator = ({
   content,
   setFocusedId,
   isFocused,
+  updateContent,
+  currentSlide,
+  position,
 }: ContentCommonProps) => {
   const [text, setText] = useState<string>("");
 
   const handleClickComponent = (e: React.MouseEvent) => {
     setFocusedId(e, content.id);
+  };
+
+  const thisContent = content as TextContentData;
+
+  const getNewContent = (): TextContentData => {
+    return {
+      ...thisContent,
+      data: {
+        text,
+      },
+    };
+  };
+
+  const handleEndEditText = () => {
+    updateContent(currentSlide.id, content.id, position, getNewContent());
   };
 
   return (
@@ -34,7 +52,11 @@ const TextCreator = ({
             )}
           </TextViewer>
         ) : (
-          <TextEditor text={text} setText={setText} />
+          <TextEditor
+            text={text}
+            setText={setText}
+            onBlur={handleEndEditText}
+          />
         )}
       </TextCreatorWrapper>
     </ContentCreatorLayout>

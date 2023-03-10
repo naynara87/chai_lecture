@@ -1,34 +1,59 @@
-import { AllTemplateData, TemplateType, ContentType, ID } from "chai-ui-v2";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import {
+  AllTemplateData,
+  TemplateType,
+  ContentType,
+  ID,
+  Content,
+} from "chai-ui-v2";
+import { useCallback, useEffect, useMemo } from "react";
+import { useRecoilState } from "recoil";
 import {
   getContentComponentsDefaultValue,
   getTemplateDefaultValue,
 } from "../data/appData";
-import { AddComponentMap } from "../types/page";
+import { slidesState } from "../states/slidesState";
+import {
+  AddComponentMap,
+  CommonTemplateComponentLocation,
+} from "../types/page";
+import cloneDeep from "lodash/cloneDeep";
 
 const usePage = () => {
   // TODO gth 나중에 서버로 전송할 땐 slides가 2개 이상이면 MultiPage 타입으로 만들어서 전송해야한다
-  const [slides, setSlides] = useState<AllTemplateData[]>([
-    {
-      id: 0,
-      type: "Template01",
-      contents: [
-        // {
-        //   type: "text",
-        //   data: {
-        //     text: "안녕하세요",
-        //   },
-        // },
-      ],
-    },
-  ]);
+  const [slides, setSlides] = useRecoilState(slidesState);
 
   useEffect(() => {
     console.log("slides", slides);
   }, [slides]);
 
+  const updateContent = useCallback(
+    (
+      slideId: ID,
+      contentId: ID,
+      position: CommonTemplateComponentLocation,
+      updatedContent: Content,
+    ) => {
+      const newSlides = slides.map((slide) => {
+        if (slide.id === slideId) {
+          const newSlide = cloneDeep(slide);
+          // @ts-ignore
+          newSlide[position] = newSlide[position].map((content: Content) => {
+            if (content.id === contentId) {
+              return updatedContent;
+            }
+            return content;
+          });
+          return newSlide;
+        }
+        return slide;
+      });
+      setSlides(newSlides);
+    },
+    [slides, setSlides],
+  );
+
   /**
-   * componentLocation에 컴포넌트를 push
+   * NOTE : componentLocation에 컴포넌트를 push
    * Template01
    * - contents
    * Template_H_3_7, Template_H_5_5
@@ -42,7 +67,14 @@ const usePage = () => {
     ) => {
       const newSlides = slides.map((slide) => {
         if (slide.id === slideId) {
-          const newSlide = { ...slide };
+          const newSlide = cloneDeep(slide);
+          console.log("newSlide", newSlide);
+          console.log("componentLocation", componentLocation);
+          console.log(
+            "newSlide[componentLocation]",
+            // @ts-ignore
+            newSlide[componentLocation],
+          );
           // @ts-ignore
           newSlide[componentLocation].push(
             getContentComponentsDefaultValue()[component],
@@ -53,7 +85,7 @@ const usePage = () => {
       });
       setSlides(newSlides);
     },
-    [slides],
+    [slides, setSlides],
   );
 
   const addComponentMap: AddComponentMap = useMemo(
@@ -64,21 +96,21 @@ const usePage = () => {
   );
 
   const addSlide = useCallback(() => {
-    const newSlides = [...slides];
+    const newSlides = cloneDeep(slides);
     newSlides.push({
       id: newSlides.length,
       type: "Template01",
       contents: [],
     });
     setSlides(newSlides);
-  }, [slides]);
+  }, [slides, setSlides]);
 
   const deleteSlide = useCallback(
     (slideId: ID) => {
       const newSlides = slides.filter((slide) => slide.id !== slideId);
       setSlides(newSlides);
     },
-    [slides],
+    [slides, setSlides],
   );
 
   const handleChangeLayout = useCallback(
@@ -93,7 +125,7 @@ const usePage = () => {
       });
       setSlides(newSlides);
     },
-    [slides],
+    [slides, setSlides],
   );
 
   return {
@@ -102,6 +134,7 @@ const usePage = () => {
     deleteSlide,
     handleChangeLayout,
     addComponentMap,
+    updateContent,
   };
 };
 

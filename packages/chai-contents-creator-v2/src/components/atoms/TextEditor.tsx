@@ -5,8 +5,9 @@ import "react-quill/dist/quill.snow.css";
 interface TextEditorProps {
   text: string;
   setText: (text: string) => void;
+  onBlur?: () => void;
 }
-const TextEditor = ({ text, setText }: TextEditorProps) => {
+const TextEditor = ({ text, setText, onBlur }: TextEditorProps) => {
   useEffect(() => {
     const quill = document.querySelector<HTMLDivElement>(".ql-editor");
     if (quill) {
@@ -20,7 +21,7 @@ const TextEditor = ({ text, setText }: TextEditorProps) => {
   };
   return (
     <div>
-      <ReactQuill onChange={handleChange} />
+      <ReactQuill onChange={handleChange} value={text} onBlur={onBlur} />
     </div>
   );
 };
