@@ -12,7 +12,8 @@ import PageHeader from "../molecules/PageHeader";
 const CreateTemplate01 = ({
   templateType,
   addComponentMap,
-  slideIndex,
+  slideId,
+  slides,
   ...pageHeaderProps
 }: PageCommonProps) => {
   const {
@@ -21,9 +22,11 @@ const CreateTemplate01 = ({
     toggleContextMenu,
   } = useComponentContext();
 
+  // const thisSlide = slides.find((slide) => slide.slideId === slideId);
+
   return (
     <>
-      <PageHeader slideIndex={slideIndex} {...pageHeaderProps} />
+      <PageHeader slideId={slideId} slides={slides} {...pageHeaderProps} />
       <CreateEditMainWrap>
         <CreateEditMain>
           <DashBoxArea>
@@ -34,9 +37,10 @@ const CreateTemplate01 = ({
               <ComponentsContextMenuCommon
                 isComponentsContextMenuOpen={isComponentsContextMenuOpen}
                 addComponentMap={addComponentMap}
-                slideIndex={slideIndex}
+                slideId={slideId}
                 position="contents"
               />
+              {/* TODO: 컴포넌트 리스트 렌더링 */}
             </CreateTemplateChoiceBtnWrap>
           </DashBoxArea>
         </CreateEditMain>

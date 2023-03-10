@@ -39,7 +39,7 @@ const ModalVideo = ({
       <ModalVideoWrapper>
         <ModalInnerBox>
           <ComponentVideo
-            content={{ type: "video", data: { src: videoSrc } }}
+            content={{ id: "1", type: "video", data: { src: videoSrc } }}
           />
         </ModalInnerBox>
       </ModalVideoWrapper>

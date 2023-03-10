@@ -5,7 +5,7 @@ import IconDndHandle from "../atoms/icons/IconDndHandle";
 import IconHamburgerMenu from "../atoms/icons/IconHamburgerMenu";
 
 const ContentCreatorWrapper = styled.div`
-  display: inline-flex;
+  display: flex;
 `;
 
 const IconContainer = styled.div`

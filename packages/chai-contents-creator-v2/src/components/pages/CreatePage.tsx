@@ -58,7 +58,7 @@ const CreatePage = () => {
           return getTemplate({
             key: index,
             templateType: slide.type,
-            slideIndex: slide.slideIndex,
+            slideId: slide.id,
             handleChangeLayout,
             deleteSlide,
             slides,

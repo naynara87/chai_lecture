@@ -45,6 +45,7 @@ type Meta = Record<string, any>;
  * 텍스트 컴포넌트
  */
 export type TextContentData = {
+  id: ID;
   type: "text";
   data: {
     text: string;
@@ -56,6 +57,7 @@ export type TextContentData = {
  * 지시문 컴포넌트
  */
 export type IconTextContentData = {
+  id: ID;
   type: "iconText";
   data: {
     text: string;
@@ -67,6 +69,7 @@ export type IconTextContentData = {
  * 번호 매기기 컴포넌트
  */
 export type NumberingTextListContentData = {
+  id: ID;
   type: "numberingTextList";
   data: {
     firstText: string;
@@ -79,6 +82,7 @@ export type NumberingTextListContentData = {
  * 학습 목표 컴포넌트
  */
 export type BorderTextBoxContentData = {
+  id: ID;
   type: "borderTextBox";
   data: {
     text: string;
@@ -90,6 +94,7 @@ export type BorderTextBoxContentData = {
  * 동영상 컴포넌트
  */
 export type VideoContentData = {
+  id: ID;
   type: "video";
   data: {
     src: string;
@@ -101,6 +106,7 @@ export type VideoContentData = {
  * 이미지 컴포넌트
  */
 export type ImageWithCaptionListContentData = {
+  id: ID;
   type: "imageWithCaptionList";
   data: {
     src: string;
@@ -113,6 +119,7 @@ export type ImageWithCaptionListContentData = {
  * 텍스트 이미지 컴포넌트
  */
 export type ImageWithDescriptionListContentData = {
+  id: ID;
   type: "imageWithDescriptionList";
   data: {
     src: string;
@@ -125,6 +132,7 @@ export type ImageWithDescriptionListContentData = {
  * 오디오 컴포넌트
  */
 export type AudioContentData = {
+  id: ID;
   type: "audio";
   data: {
     src: string;
@@ -136,6 +144,7 @@ export type AudioContentData = {
  * 따라 말하기 컴포넌트
  */
 export type SpeakingContentData = {
+  id: ID;
   type: "speaking";
   data: {
     src: string;
@@ -148,6 +157,7 @@ export type SpeakingContentData = {
  * 녹음하기 컴포넌트
  */
 export type RecorderContentData = {
+  id: ID;
   type: "recorder";
   data: Record<string, never>;
   meta?: Meta;
@@ -157,6 +167,7 @@ export type RecorderContentData = {
  * 캐릭터 컴포넌트
  */
 export type CornerGuideCharacterContentData = {
+  id: ID;
   type: "cornerGuideCharacter";
   data: {
     text: string;
@@ -171,6 +182,7 @@ export type CornerGuideCharacterContentData = {
  * 활동 안내 캐릭터 컴포넌트
  */
 export type ActivityGuideCharacterContentData = {
+  id: ID;
   type: "activityGuideCharacter";
   data: {
     text: string;
@@ -185,6 +197,7 @@ export type ActivityGuideCharacterContentData = {
  * 설명문 캐릭터 컴포넌트
  */
 export type ExplainingCharacterContentData = {
+  id: ID;
   type: "explainingCharacter";
   data: {
     text: string;
@@ -200,6 +213,7 @@ export type ExplainingCharacterContentData = {
  * 학습 내용 캐릭터 컴포넌트
  */
 export type CharacterCardListContentData = {
+  id: ID;
   type: "characterCardList";
   data: {
     title: string;
@@ -217,6 +231,7 @@ export type CharacterCardListContentData = {
  * 최대 4개까지 줄바꿈 x
  */
 export type NotiCharacterListContentData = {
+  id: ID;
   type: "notiCharacterList";
   data: {
     text: string;
@@ -232,6 +247,7 @@ export type NotiCharacterListContentData = {
  * 페이지에 속한 인트로덕션
  */
 export type IntroductionModalContentData = {
+  id: ID;
   type: "introductionModal";
   data: {
     title: string;
@@ -252,6 +268,7 @@ export type IntroductionModalContentData = {
  * 퀴즈 컴포넌트에 속한 팝업 레이어
  */
 export type QuizPopupModalContentData = {
+  id: ID;
   type: "quizPopupModal";
   data: {
     correct: {
@@ -291,6 +308,7 @@ export type QuizPopupModalContentData = {
  * 멀티레벨콘텐츠 저작시 멀티레벨안에 멀티레벨 중복 막기
  */
 export type MultilevelActionCardContentData = {
+  id: ID;
   type: "multiLevelActionCard";
   data: Content[][];
   meta?: Meta;
@@ -301,6 +319,7 @@ export type MultilevelActionCardContentData = {
  * 단어가 2개 이상일 경우에만 Navigation dots 노출
  */
 export type WordsCarouselContentData = {
+  id: ID;
   type: "wordsCarousel";
   data: {
     words: {
@@ -320,6 +339,7 @@ export type WordsCarouselContentData = {
  * 음원+단어장 컴포넌트
  */
 export type AudioAndWordsCarouselContentData = {
+  id: ID;
   type: "audioAndWordsCarousel";
   data: {
     wordCarouselContents: WordsCarouselContentData["data"];
@@ -334,6 +354,7 @@ export type AudioAndWordsCarouselContentData = {
  * 단어 목록 컴포넌트
  */
 export type ConversationWordListContentData = {
+  id: ID;
   type: "conversationWordList";
   data: {
     words: {
@@ -352,6 +373,7 @@ export type ConversationWordListContentData = {
  * 대화 컴포넌트
  */
 export type ConversationContentData = {
+  id: ID;
   type: "conversation";
   data: {
     text: string;
@@ -374,6 +396,7 @@ export type ConversationContentData = {
  * 대화 퀴즈 컴포넌트
  */
 export type ConversationQuizContentData = {
+  id: ID;
   type: "conversationQuiz";
   data: {
     text: string;
@@ -398,6 +421,7 @@ export type ConversationQuizContentData = {
  * 단어 배열형 퀴즈 컴포넌트
  */
 export type QuizWordsInOrderContentData = {
+  id: ID;
   type: "quizWordsInOrder";
   data: {
     choice: {
@@ -419,6 +443,7 @@ export type QuizWordsInOrderContentData = {
  * 2지 선다 퀴즈 컴포넌트
  */
 export type MultiChoiceContentData = {
+  id: ID;
   type: "multiChoice";
   data: {
     choice: string[];
@@ -433,6 +458,7 @@ export type MultiChoiceContentData = {
  * 문장 배열형 컴포넌트
  */
 export type QuizSentenceContentData = {
+  id: ID;
   type: "quizSentence";
   data: {
     characters: {
@@ -452,6 +478,7 @@ export type QuizSentenceContentData = {
  * 종합말하기 컴포넌트
  */
 export type FinalSpeakingContentData = {
+  id: ID;
   type: "finalSpeaking";
   data: {
     answerModel: {
@@ -469,6 +496,7 @@ export type FinalSpeakingContentData = {
  * hint(병음), 녹음기능은 학습자가 고른 캐릭터에만 노출되게 작업
  */
 export type RoleplayingContentData = {
+  id: ID;
   type: "roleplaying";
   data: {
     id: ID;
@@ -491,6 +519,7 @@ export type RoleplayingContentData = {
  * 카드 탭 컴포넌트
  */
 export type CardTabContentData = {
+  id: ID;
   type: "cardTab";
   data: {
     tabName?: string;
@@ -505,6 +534,7 @@ export type CardTabContentData = {
  * 문장 토글 컴포넌트
  */
 export type ToggleSentenceListContentData = {
+  id: ID;
   type: "toggleSentenceList";
   data: {
     text: string;
@@ -518,6 +548,7 @@ export type ToggleSentenceListContentData = {
  * 단어박스형 컴포넌트
  */
 export type TextBoxListContentData = {
+  id: ID;
   type: "textBoxList";
   data: {
     text: string;

@@ -1,3 +1,5 @@
+import { v4 as uuidV4 } from "uuid";
+
 import {
   AllTemplateData,
   Content,
@@ -161,18 +163,21 @@ export const contentComponentsDefaultValue: Partial<
   Record<ContentType, Content>
 > = {
   text: {
+    id: uuidV4(),
     type: "text",
     data: {
       text: "",
     },
   },
   iconText: {
+    id: uuidV4(),
     type: "iconText",
     data: {
       text: "",
     },
   },
   numberingTextList: {
+    id: uuidV4(),
     type: "numberingTextList",
     data: [
       {
@@ -190,15 +195,18 @@ export const templateDefaultValue: Partial<
   Record<AllTemplateData["type"], AllTemplateData>
 > = {
   Template01: {
+    id: uuidV4(),
     type: "Template01",
     contents: [],
   },
   Template_H_3_7: {
+    id: uuidV4(),
     type: "Template_H_3_7",
     leftContents: [],
     rightContents: [],
   },
   Template_H_5_5: {
+    id: uuidV4(),
     type: "Template_H_5_5",
     leftContents: [],
     rightContents: [],

@@ -1,11 +1,10 @@
-import { ContentType, TemplateType } from "chai-ui-v2";
-import { SlideType } from "../hooks/usePage";
+import { AllTemplateData, ContentType, ID, TemplateType } from "chai-ui-v2";
 
 export interface PageHeaderProps {
-  slides: SlideType[];
-  slideIndex: number;
-  handleChangeLayout: (slideIndex: number, templateType: TemplateType) => void;
-  deleteSlide: (slideIndex: number) => void;
+  slides: AllTemplateData[];
+  slideId: ID;
+  handleChangeLayout: (slideId: ID, templateType: TemplateType) => void;
+  deleteSlide: (slideId: ID) => void;
 }
 
 /**
@@ -20,8 +19,14 @@ export interface PageCommonProps extends PageHeaderProps {
 
 export type AddComponentMap = {
   addComponentToCommonTemplate: (
-    slideIndex: number,
+    slideId: ID,
     component: ContentType,
     componentLocation: "contents" | "rightContents" | "leftContents",
   ) => void;
+};
+
+export type ContentCommonProps = {
+  contentId: ID;
+  isFocused: boolean;
+  setFocusedId: (isFocused: ID) => void;
 };

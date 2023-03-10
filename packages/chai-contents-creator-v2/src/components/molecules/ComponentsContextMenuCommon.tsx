@@ -1,3 +1,4 @@
+import { ID } from "chai-ui-v2";
 import React from "react";
 import {
   contentComponents,
@@ -14,7 +15,7 @@ import { AddComponentMap } from "../../types/page";
 
 export interface ComponentsContextMenuProps {
   isComponentsContextMenuOpen: boolean;
-  slideIndex: number;
+  slideId: ID;
   position: "contents" | "leftContents" | "rightContents";
   addComponentMap: AddComponentMap;
 }
@@ -22,7 +23,7 @@ export interface ComponentsContextMenuProps {
 const ComponentsContextMenuCommon = ({
   isComponentsContextMenuOpen,
   addComponentMap,
-  slideIndex,
+  slideId,
   position,
 }: ComponentsContextMenuProps) => {
   const { addComponentToCommonTemplate } = addComponentMap;
@@ -46,7 +47,7 @@ const ComponentsContextMenuCommon = ({
                       key={contentType}
                       onClick={() =>
                         addComponentToCommonTemplate(
-                          slideIndex,
+                          slideId,
                           contentType,
                           position,
                         )

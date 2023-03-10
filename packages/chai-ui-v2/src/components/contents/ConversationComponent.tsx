@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { ConversationContentData, useGlobalAudio } from "../../core";
 import { ImgTemp01Component } from "../atoms";
 import SpeakingComponent from "./SpeakingComponent";
+import { v4 as uuidv4 } from "uuid";
 
 interface ConversationComponentProps {
   contents: ConversationContentData;
@@ -132,6 +133,7 @@ const ConversationComponent = ({
             {isShowRepeat && content.speakingTime !== undefined && (
               <SpeakingComponent
                 contents={{
+                  id: uuidv4(),
                   type: "speaking",
                   data: {
                     src: content.audio?.src ?? "",

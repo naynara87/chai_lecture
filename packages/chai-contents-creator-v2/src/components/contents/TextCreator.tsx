@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
-import React from "react";
+import React, { useState } from "react";
+import { ContentCommonProps } from "../../types/page";
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 
 const TextCreatorWrapper = styled.div`
@@ -8,13 +9,24 @@ const TextCreatorWrapper = styled.div`
 
 const TextViewer = styled.div``;
 
-const TextCreator = () => {
-  const [text] = React.useState<string>("");
+const TextCreator = ({
+  contentId,
+  setFocusedId,
+  isFocused,
+}: ContentCommonProps) => {
+  const [text] = useState<string>("");
+  const handleClickComponent = () => {
+    setFocusedId(contentId);
+  };
 
   return (
     <ContentCreatorLayout>
-      <TextCreatorWrapper>
-        <TextViewer>{text || "텍스트를 입력해주세요"}</TextViewer>
+      <TextCreatorWrapper onClick={handleClickComponent}>
+        {!isFocused ? (
+          <TextViewer>{text || "텍스트를 입력해주세요"}</TextViewer>
+        ) : (
+          <div>에디터</div>
+        )}
       </TextCreatorWrapper>
     </ContentCreatorLayout>
   );

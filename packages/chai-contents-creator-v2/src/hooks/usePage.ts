@@ -1,4 +1,4 @@
-import { AllTemplateData, TemplateType, ContentType } from "chai-ui-v2";
+import { AllTemplateData, TemplateType, ContentType, ID } from "chai-ui-v2";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   contentComponentsDefaultValue,
@@ -6,17 +6,20 @@ import {
 } from "../data/appData";
 import { AddComponentMap } from "../types/page";
 
-export type SlideType = AllTemplateData & {
-  slideIndex: number;
-};
-
 const usePage = () => {
   // TODO gth 나중에 서버로 전송할 땐 slides가 2개 이상이면 MultiPage 타입으로 만들어서 전송해야한다
-  const [slides, setSlides] = useState<SlideType[]>([
+  const [slides, setSlides] = useState<AllTemplateData[]>([
     {
-      slideIndex: 0,
+      id: 0,
       type: "Template01",
-      contents: [],
+      contents: [
+        // {
+        //   type: "text",
+        //   data: {
+        //     text: "안녕하세요",
+        //   },
+        // },
+      ],
     },
   ]);
 
@@ -33,12 +36,12 @@ const usePage = () => {
    */
   const addComponentToCommonTemplate = useCallback(
     (
-      slideIndex: number,
+      slideId: ID,
       component: ContentType,
       componentLocation: "contents" | "leftContents" | "rightContents",
     ) => {
       const newSlides = slides.map((slide) => {
-        if (slide.slideIndex === slideIndex) {
+        if (slide.id === slideId) {
           const newSlide = { ...slide };
           // @ts-ignore
           newSlide[componentLocation].push(
@@ -63,7 +66,7 @@ const usePage = () => {
   const addSlide = useCallback(() => {
     const newSlides = [...slides];
     newSlides.push({
-      slideIndex: newSlides.length,
+      id: newSlides.length,
       type: "Template01",
       contents: [],
     });
@@ -71,23 +74,20 @@ const usePage = () => {
   }, [slides]);
 
   const deleteSlide = useCallback(
-    (slideIndex: number) => {
-      const newSlides = slides.filter(
-        (slide) => slide.slideIndex !== slideIndex,
-      );
+    (slideId: ID) => {
+      const newSlides = slides.filter((slide) => slide.id !== slideId);
       setSlides(newSlides);
     },
     [slides],
   );
 
   const handleChangeLayout = useCallback(
-    (slideIndex: number, templateType: TemplateType) => {
+    (slideId: ID, templateType: TemplateType) => {
       const newSlides = slides.map((slide) => {
-        if (slide.slideIndex === slideIndex) {
+        if (slide.id === slideId) {
           return {
-            slideIndex: slide.slideIndex,
             ...templateDefaultValue[templateType],
-          } as SlideType;
+          } as AllTemplateData;
         }
         return slide;
       });

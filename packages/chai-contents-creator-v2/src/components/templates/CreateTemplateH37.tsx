@@ -21,7 +21,7 @@ const CreateEditMainWrap37 = styled(CreateEditMainWrap)`
 const CreateTemplateH37 = ({
   templateType,
   addComponentMap,
-  slideIndex,
+  slideId,
   ...pageHeaderProps
 }: PageCommonProps) => {
   const {
@@ -38,7 +38,7 @@ const CreateTemplateH37 = ({
 
   return (
     <>
-      <PageHeader slideIndex={slideIndex} {...pageHeaderProps} />
+      <PageHeader slideId={slideId} {...pageHeaderProps} />
       <CreateEditMainWrap37>
         <CreateEditMain>
           <DashBoxArea>
@@ -49,7 +49,7 @@ const CreateTemplateH37 = ({
               <ComponentsContextMenuCommon
                 isComponentsContextMenuOpen={isComponentsContextMenuOpen}
                 addComponentMap={addComponentMap}
-                slideIndex={slideIndex}
+                slideId={slideId}
                 position="leftContents"
               />
             </CreateTemplateChoiceBtnWrap>
@@ -67,7 +67,7 @@ const CreateTemplateH37 = ({
               <ComponentsContextMenuRight
                 isComponentsContextMenuOpen={isComponentsContextMenuOpenRight}
                 addComponentMap={addComponentMap}
-                slideIndex={slideIndex}
+                slideId={slideId}
                 position="rightContents"
               />
             </CreateTemplateChoiceBtnWrap>

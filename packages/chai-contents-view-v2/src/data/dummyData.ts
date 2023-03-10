@@ -1,4 +1,5 @@
 import { CornerData, LessonData } from "chai-ui-v2";
+import { v4 as uuidV4 } from "uuid";
 
 export const v2LessonData: LessonData = {
   // 레슨 메타 정보
@@ -62,9 +63,11 @@ export const v2CornerDataList: CornerData[] = [
         type: "MultiPage",
         data: [
           {
+            id: uuidV4(),
             type: "TemplateQuizConversation",
             leftContents: [
               {
+                id: uuidV4(),
                 type: "activityGuideCharacter",
                 data: {
                   text: "지난 시간엔 계절에 대한 회화를 학습했어요. 다음 대화를 잘 보고 빈 칸에 들어갈 알맞은 단어를 고르세요.",
@@ -76,6 +79,7 @@ export const v2CornerDataList: CornerData[] = [
             ],
             rightContents: [
               {
+                id: uuidV4(),
                 type: "conversationQuiz",
                 data: [
                   {
@@ -127,9 +131,11 @@ export const v2CornerDataList: CornerData[] = [
         name: "한어",
         type: "SinglePage",
         data: {
+          id: uuidV4(),
           type: "Template01",
           contents: [
             {
+              id: uuidV4(),
               type: "speaking",
               data: {
                 speakingTime: 3,
@@ -144,9 +150,11 @@ export const v2CornerDataList: CornerData[] = [
         name: "한어",
         type: "SinglePage",
         data: {
+          id: uuidV4(),
           type: "TemplateConversationRepeat",
           leftContents: [
             {
+              id: uuidV4(),
               type: "conversationWordList",
               data: {
                 words: [
@@ -204,6 +212,7 @@ export const v2CornerDataList: CornerData[] = [
           ],
           rightContents: [
             {
+              id: uuidV4(),
               type: "conversation",
               data: [
                 {
@@ -252,9 +261,11 @@ export const v2CornerDataList: CornerData[] = [
         },
         data: [
           {
+            id: uuidV4(),
             type: "Template01",
             contents: [
               {
+                id: uuidV4(),
                 type: "numberingTextList",
                 data: [
                   {
@@ -270,9 +281,11 @@ export const v2CornerDataList: CornerData[] = [
             ],
           },
           {
+            id: uuidV4(),
             type: "Template01",
             contents: [
               {
+                id: uuidV4(),
                 type: "video",
                 data: {
                   src: "https://cdn.bubblecon.co.kr/videos/45.mp4",
@@ -281,9 +294,11 @@ export const v2CornerDataList: CornerData[] = [
             ],
           },
           {
+            id: uuidV4(),
             type: "Template01",
             contents: [
               {
+                id: uuidV4(),
                 type: "video",
                 data: {
                   src: "https://cdn.bubblecon.co.kr/videos/46.mp4",
@@ -292,9 +307,11 @@ export const v2CornerDataList: CornerData[] = [
             ],
           },
           {
+            id: uuidV4(),
             type: "Template01",
             contents: [
               {
+                id: uuidV4(),
                 type: "explainingCharacter",
                 data: {
                   text: "이번 패턴은 어떻게 사용하는지 알아볼까요?",
@@ -314,9 +331,11 @@ export const v2CornerDataList: CornerData[] = [
         name: "단어",
         type: "SinglePage",
         data: {
+          id: uuidV4(),
           type: "TemplateQuizWordsInOrder",
           leftContents: [
             {
+              id: uuidV4(),
               type: "activityGuideCharacter",
               data: {
                 text: "지난 시간엔 계절에 대한 회화를 학습했어요. 다음 대화를 잘 보고 빈 칸에 들어갈 알맞은 단어를 고르세요.",
@@ -327,6 +346,7 @@ export const v2CornerDataList: CornerData[] = [
             },
           ],
           rightContents: {
+            id: uuidV4(),
             type: "quizWordsInOrder",
             data: {
               choice: [
@@ -362,6 +382,7 @@ export const v2CornerDataList: CornerData[] = [
               },
               exampleContents: [
                 {
+                  id: uuidV4(),
                   type: "text",
                   data: {
                     text: "너는 어디 가니?",
@@ -369,6 +390,7 @@ export const v2CornerDataList: CornerData[] = [
                 },
               ],
               quizPopup: {
+                id: uuidV4(),
                 type: "quizPopupModal",
                 data: {
                   correct: {
@@ -412,9 +434,11 @@ export const v2CornerDataList: CornerData[] = [
         name: "단어",
         type: "SinglePage",
         data: {
+          id: uuidV4(),
           type: "TemplateQuizMultiChoice",
           leftContents: [
             {
+              id: uuidV4(),
               type: "activityGuideCharacter",
               data: {
                 text: "지난 시간엔 계절에 대한 회화를 학습했어요. 다음 대화를 잘 보고 빈 칸에 들어갈 알맞은 단어를 고르세요.",
@@ -425,12 +449,14 @@ export const v2CornerDataList: CornerData[] = [
             },
           ],
           rightContents: {
+            id: uuidV4(),
             type: "multiChoice",
             data: {
               choice: ["오답", "정답"],
               answerIndex: 1,
               exampleContents: [
                 {
+                  id: uuidV4(),
                   type: "text",
                   data: {
                     text: "<p>제3성이 연이어 나올 때,<br/>올바르게 발음한 것을 고르세요.</p>",
@@ -438,6 +464,7 @@ export const v2CornerDataList: CornerData[] = [
                 },
               ],
               quizPopup: {
+                id: uuidV4(),
                 type: "quizPopupModal",
                 data: {
                   correct: {
@@ -481,14 +508,17 @@ export const v2CornerDataList: CornerData[] = [
         name: "단어",
         type: "SinglePage",
         data: {
+          id: uuidV4(),
           type: "TemplateQuizSentencesInOrder",
           titleContents: {
+            id: uuidV4(),
             type: "iconText",
             data: {
               text: "자연스러운 단문이 되도록 문장을 배열해 보세요.",
             },
           },
           mainContents: {
+            id: uuidV4(),
             type: "quizSentence",
             data: {
               characters: [
@@ -543,6 +573,7 @@ export const v2CornerDataList: CornerData[] = [
                 },
               ],
               quizPopup: {
+                id: uuidV4(),
                 type: "quizPopupModal",
                 data: {
                   correct: {
@@ -586,9 +617,11 @@ export const v2CornerDataList: CornerData[] = [
         name: "단어",
         type: "SinglePage",
         data: {
+          id: uuidV4(),
           type: "TemplateQuizSpeaking",
           leftContents: [
             {
+              id: uuidV4(),
               type: "activityGuideCharacter",
               data: {
                 text: "지난 시간엔 계절에 대한 회화를 학습했어요. 다음 대화를 잘 보고 빈 칸에 들어갈 알맞은 단어를 고르세요.",
@@ -599,10 +632,12 @@ export const v2CornerDataList: CornerData[] = [
             },
           ],
           rightContents: {
+            id: uuidV4(),
             type: "finalSpeaking",
             data: {
               exampleContents: [
                 {
+                  id: uuidV4(),
                   type: "conversation",
                   data: [
                     {
@@ -650,9 +685,11 @@ export const v2CornerDataList: CornerData[] = [
         name: "단어",
         type: "SinglePage",
         data: {
+          id: uuidV4(),
           type: "Template01",
           contents: [
             {
+              id: uuidV4(),
               type: "notiCharacterList",
               data: [
                 {
@@ -689,13 +726,16 @@ export const v2CornerDataList: CornerData[] = [
         name: "단어",
         type: "SinglePage",
         data: {
+          id: uuidV4(),
           type: "Template01",
           contents: [
             {
+              id: uuidV4(),
               type: "multiLevelActionCard",
               data: [
                 [
                   {
+                    id: uuidV4(),
                     type: "text",
                     data: {
                       text: "1번 배열 text",
@@ -704,6 +744,7 @@ export const v2CornerDataList: CornerData[] = [
                 ],
                 [
                   {
+                    id: uuidV4(),
                     type: "text",
                     data: {
                       text: "2번 배열 text",
@@ -744,9 +785,11 @@ export const v2CornerDataList: CornerData[] = [
           contents: "",
         },
         data: {
+          id: uuidV4(),
           type: "Template01",
           contents: [
             {
+              id: uuidV4(),
               type: "text",
               data: {
                 text: "asdfasdf4",
