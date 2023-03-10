@@ -10,18 +10,11 @@ export const DashBoxAreaWrapper = styled.div`
 `;
 
 interface DashBoxAreaProps {
-  /**
-   * FIXME: BBC-1090
-   * reset focus component
-   */
-  resetFocus: (e: React.MouseEvent) => void;
   children: React.ReactNode;
 }
 
-const DashBoxArea = ({ resetFocus, children }: DashBoxAreaProps) => {
-  return (
-    <DashBoxAreaWrapper onClick={resetFocus}>{children}</DashBoxAreaWrapper>
-  );
+const DashBoxArea = ({ children }: DashBoxAreaProps) => {
+  return <DashBoxAreaWrapper>{children}</DashBoxAreaWrapper>;
 };
 
 export default DashBoxArea;

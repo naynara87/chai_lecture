@@ -5,6 +5,7 @@ import {
   ID,
   TemplateType,
 } from "chai-ui-v2";
+import { ReturnUseComponent } from "../hooks/useComponent";
 
 export interface PageHeaderProps {
   slides: AllTemplateData[];
@@ -21,6 +22,7 @@ export interface PageCommonProps extends PageHeaderProps {
   key: number | string;
   templateType: TemplateType;
   addComponentMap: AddComponentMap;
+  returnUseComponent: ReturnUseComponent;
 }
 
 export type AddComponentMap = {
@@ -34,5 +36,5 @@ export type AddComponentMap = {
 export type ContentCommonProps = {
   content: Content;
   isFocused: boolean;
-  setFocusedId: (isFocused: ID) => void;
+  setFocusedId: (e: React.MouseEvent, isFocused: ID) => void;
 };

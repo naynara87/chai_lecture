@@ -1,8 +1,8 @@
 import { AllTemplateData, TemplateType, ContentType, ID } from "chai-ui-v2";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import {
-  contentComponentsDefaultValue,
-  templateDefaultValue,
+  getContentComponentsDefaultValue,
+  getTemplateDefaultValue,
 } from "../data/appData";
 import { AddComponentMap } from "../types/page";
 
@@ -45,7 +45,7 @@ const usePage = () => {
           const newSlide = { ...slide };
           // @ts-ignore
           newSlide[componentLocation].push(
-            contentComponentsDefaultValue[component],
+            getContentComponentsDefaultValue()[component],
           );
           return newSlide;
         }
@@ -86,7 +86,7 @@ const usePage = () => {
       const newSlides = slides.map((slide) => {
         if (slide.id === slideId) {
           return {
-            ...templateDefaultValue[templateType],
+            ...getTemplateDefaultValue()[templateType],
           } as AllTemplateData;
         }
         return slide;

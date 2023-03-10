@@ -18,7 +18,7 @@ export interface ComponentsContextMenuProps {
   slideId: ID;
   position: "contents" | "leftContents" | "rightContents";
   addComponentMap: AddComponentMap;
-  toggleContextMenu: () => void;
+  toggleContextMenu: (e: React.MouseEvent) => void;
 }
 
 const ComponentsContextMenuCommon = ({
@@ -29,9 +29,12 @@ const ComponentsContextMenuCommon = ({
   toggleContextMenu,
 }: ComponentsContextMenuProps) => {
   const { addComponentToCommonTemplate } = addComponentMap;
-  const handleClickComponent = (contentType: ContentType) => {
+  const handleClickComponent = (
+    e: React.MouseEvent,
+    contentType: ContentType,
+  ) => {
     addComponentToCommonTemplate(slideId, contentType, position);
-    toggleContextMenu();
+    toggleContextMenu(e);
   };
   return (
     <CreateTemplateNavWrap
@@ -51,7 +54,7 @@ const ComponentsContextMenuCommon = ({
                     <li
                       className="nav-li"
                       key={contentType}
-                      onClick={() => handleClickComponent(contentType)}
+                      onClick={(e) => handleClickComponent(e, contentType)}
                     >
                       <div className="thumb-comp">50*50</div>
                       <p className="txt-comp">

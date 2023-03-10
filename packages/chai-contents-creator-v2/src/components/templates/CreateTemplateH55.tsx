@@ -37,7 +37,7 @@ const CreateTemplateH55 = ({
       <PageHeader slideId={slideId} {...pageHeaderProps} />
       <CreateEditMainWrap55>
         <CreateEditMain>
-          <DashBoxArea resetFocus={() => {}}>
+          <DashBoxArea>
             <CreateTemplateChoiceBtnWrap>
               <button className="btn-comp-select" onClick={toggleContextMenu}>
                 컴포넌트 선택
@@ -53,7 +53,7 @@ const CreateTemplateH55 = ({
           </DashBoxArea>
         </CreateEditMain>
         <CreateEditMain>
-          <DashBoxArea resetFocus={() => {}}>
+          <DashBoxArea>
             <CreateTemplateChoiceBtnWrap>
               <button
                 className="btn-comp-select"

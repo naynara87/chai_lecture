@@ -19,7 +19,7 @@ const TemplateMainLoading = () => {
       </CreateEditTop>
       <CreateEditMainWrap>
         <CreateEditMain>
-          <DashBoxArea resetFocus={() => console.log("reset")}>
+          <DashBoxArea>
             <CreateTemplateChoiceBtnWrap>
               <button className="btn-comp-select">컴포넌트 선택</button>
             </CreateTemplateChoiceBtnWrap>

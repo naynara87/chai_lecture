@@ -18,8 +18,8 @@ const TextCreator = ({
 }: ContentCommonProps) => {
   const [text, setText] = useState<string>("");
 
-  const handleClickComponent = () => {
-    setFocusedId(content.id);
+  const handleClickComponent = (e: React.MouseEvent) => {
+    setFocusedId(e, content.id);
   };
 
   return (

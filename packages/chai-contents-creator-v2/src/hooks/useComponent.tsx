@@ -9,24 +9,34 @@ const useComponent = () => {
   const getComponent = useCallback((props: ContentCommonProps) => {
     const { content } = props;
     const componentMap: Partial<Record<Content["type"], JSX.Element>> = {
-      text: <TextCreator {...props} />,
+      text: <TextCreator key={content.id} {...props} />,
     };
     return componentMap[content.type] ?? <DummyComponent />;
   }, []);
 
-  const resetFocusedId = useCallback((e: React.MouseEvent) => {
-    if (e.target === e.currentTarget) {
-      setFocusedId(undefined);
-      console.log("resetFocusedId");
-    }
+  const resetFocusedId = useCallback(() => {
+    setFocusedId(undefined);
+  }, []);
+
+  useCallback(() => {
+    window.addEventListener("click", resetFocusedId);
+    return () => {
+      window.removeEventListener("click", resetFocusedId);
+    };
+  }, [resetFocusedId]);
+
+  const _setFocusedId = useCallback((e: React.MouseEvent, id: ID) => {
+    e.stopPropagation();
+    setFocusedId(id);
   }, []);
 
   return {
     getComponent,
     focusedId,
-    setFocusedId,
-    resetFocusedId,
+    setFocusedId: _setFocusedId,
   };
 };
 
 export default useComponent;
+
+export type ReturnUseComponent = ReturnType<typeof useComponent>;
