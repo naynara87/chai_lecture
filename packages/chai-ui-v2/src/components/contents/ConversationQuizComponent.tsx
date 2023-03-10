@@ -5,6 +5,7 @@ import {
   ImgProfileDefaultComponent,
 } from "../atoms";
 import { LineRadioBoxes } from "../molecules";
+import { v4 as uuidv4 } from "uuid";
 
 interface ConversationQuizComponentProps {
   contents: ConversationQuizContentData;
@@ -21,6 +22,7 @@ const ConversationQuizComponent = ({
   const [userChoices, setUserChoices] = useState<QuizChoice[]>([]);
   const [isShowAnswer, setIsShowAnswer] = useState(false);
   const [speakingDialogueIndex, setSpeakingDialogueIndex] = useState(-1);
+  const [dialogueAudioUuids, setDialogueAudioUuids] = useState<string[]>([]);
 
   useEffect(() => {
     contents.data.forEach(() => {
@@ -43,6 +45,12 @@ const ConversationQuizComponent = ({
     };
   }, [handleAudioReset]);
 
+  useEffect(() => {
+    contents.data.forEach(() => {
+      setDialogueAudioUuids((prev) => [...prev, uuidv4()]);
+    });
+  }, [contents.data]);
+
   const audioEnded = useCallback(() => {
     if (globalAudioId.toString().includes("dialogue")) {
       setSpeakingDialogueIndex(-1);
@@ -52,9 +60,8 @@ const ConversationQuizComponent = ({
 
   useEffect(() => {
     if (globalAudioId.toString().includes("fullAudio")) {
-      const regex = /[^0-9]/g;
-      const result = globalAudioId.toString().replace(regex, "");
-      setSpeakingDialogueIndex(parseInt(result, 10));
+      const results = globalAudioId.toString().split("_");
+      setSpeakingDialogueIndex(parseInt(results[2], 10));
     }
   }, [globalAudioId]);
 
@@ -111,11 +118,21 @@ const ConversationQuizComponent = ({
         if (globalAudioState === "playing") {
           handleClickAudioStopButton();
         } else {
-          handleClickAudioButton(`dialogue${dialogueIndex}`, audioSrc ?? "");
+          handleClickAudioButton(
+            "dialogue",
+            dialogueAudioUuids[dialogueIndex],
+            dialogueIndex,
+            audioSrc ?? "",
+          );
         }
         return;
       }
-      handleClickAudioButton(`dialogue${dialogueIndex}`, audioSrc ?? "");
+      handleClickAudioButton(
+        "dialogue",
+        dialogueAudioUuids[dialogueIndex],
+        dialogueIndex,
+        audioSrc ?? "",
+      );
       setSpeakingDialogueIndex(dialogueIndex);
     },
     [
@@ -123,6 +140,7 @@ const ConversationQuizComponent = ({
       speakingDialogueIndex,
       handleClickAudioStopButton,
       globalAudioState,
+      dialogueAudioUuids,
     ],
   );
 

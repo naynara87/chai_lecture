@@ -9,7 +9,7 @@ interface AudioComponentProps {
 }
 
 const AudioComponent = ({ contents }: AudioComponentProps) => {
-  const audioIdRef = useRef(`audio${uuidv4()}`);
+  const audioUuidRef = useRef(uuidv4());
 
   const {
     globalAudioRef,
@@ -43,13 +43,21 @@ const AudioComponent = ({ contents }: AudioComponentProps) => {
   }, [globalAudioRef, handleAudioReset, globalAudioId, resetAudio]);
 
   const mainContents = useMemo(() => {
-    if (globalAudioId === audioIdRef.current && globalAudioState) {
+    if (
+      globalAudioId === `audio_${audioUuidRef.current}_0` &&
+      globalAudioState
+    ) {
       return <IconPauseFillButton onClick={handleAudioReset} />;
     } else {
       return (
         <ComponentButtonPlay
           onClick={() => {
-            handleClickAudioButton(audioIdRef.current, contents.data.src ?? "");
+            handleClickAudioButton(
+              "audio",
+              audioUuidRef.current,
+              0,
+              contents.data.src ?? "",
+            );
           }}
         />
       );

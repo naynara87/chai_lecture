@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useMemo } from "react";
 import styled from "@emotion/styled";
 import ModalCommon from "./ModalCommon";
 import IconClose from "../../assets/images/icon/icon_close_black.svg";
-import { colorPalette, vw } from "../../assets";
-import ComponentNumbering from "../molecules/ComponentNumbering";
+import { vw } from "../../assets";
+import { Content, useContentMapper } from "../../core";
 
 interface ModalLearningPointProps {
   isModalOpen: boolean;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   wideModal: boolean;
+  modalContents?: Content[];
 }
 
 const ModalContentsWrapper = styled.div`
@@ -17,59 +18,43 @@ const ModalContentsWrapper = styled.div`
   }
 `;
 
-const ModalFinishTitle = styled.div`
-  margin-bottom: ${vw(40)};
-  font-size: ${vw(32)};
+// const ModalFinishTitle = styled.div`
+//   margin-bottom: ${vw(40)};
+//   font-size: ${vw(32)};
 
-  > b {
-    font-weight: 600;
-  }
+//   > b {
+//     font-weight: 600;
+//   }
 
-  .c-gray {
-    color: ${colorPalette.gray500};
-  }
-`;
+//   .c-gray {
+//     color: ${colorPalette.gray500};
+//   }
+// `;
 
 const ModalLearningPoint = ({
   isModalOpen,
   setIsModalOpen,
   wideModal,
+  modalContents,
 }: ModalLearningPointProps) => {
   const handleClose = () => {
     setIsModalOpen(false);
   };
 
+  const { getContentComponent } = useContentMapper();
+
+  const mainContents = useMemo(() => {
+    return modalContents?.map((content, contentIndex) => {
+      return getContentComponent(content, contentIndex);
+    });
+  }, [modalContents, getContentComponent]);
+
   return (
-    <ModalCommon
-      open={isModalOpen}
-      onClose={handleClose}
-      wideModal={wideModal}
-    >
+    <ModalCommon open={isModalOpen} onClose={handleClose} wideModal={wideModal}>
       <button className="btn-close-modal" onClick={handleClose}>
         <img src={IconClose} alt="닫기" />
       </button>
-      <ModalContentsWrapper>
-        {/* 반복될 경우 반복영역 (figma 8-학습정리-5) */}
-        <div className="conts-wrap">
-          <ModalFinishTitle>
-            <b>{'문법1'}</b><span className="c-gray">{' | '}</span>{'능력을 나타내는 会'}
-          </ModalFinishTitle>
-          {/* TODO: key설명 - 내용으로 여러 text들이 들어감 */}
-          <div className="modal-finish-conts">
-            <ComponentNumbering />
-          </div>
-        </div>
-        {/* end 반복될 경우 반복영역 (figma 8-학습정리-5) */}
-        <div className="conts-wrap">
-          <ModalFinishTitle>
-            <b>{'문법2'}</b><span className="c-gray">{' | '}</span>{'운동별 동사 표현'}
-          </ModalFinishTitle>
-          {/* TODO: key설명 - 내용으로 여러 text들이 들어감 */}
-          <div className="modal-finish-conts">
-            <ComponentNumbering />
-          </div>
-        </div>
-      </ModalContentsWrapper>
+      <ModalContentsWrapper>{mainContents}</ModalContentsWrapper>
     </ModalCommon>
   );
 };

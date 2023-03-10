@@ -29,7 +29,7 @@ interface FinalSpeakingComponentProps {
 }
 
 const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
-  const recordedAudioIdRef = useRef(`recorder${uuidv4()}`);
+  const recordedAudioUuidRef = useRef(uuidv4());
   const recordTimer = useRef<NodeJS.Timeout | number>();
   const recordTime = useRef(0);
   const [recordingTimeState, setRecordingTimeState] = useState(0);
@@ -120,7 +120,12 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
     }
 
     if (recordedAudioState === "recorded" && mediaBlobUrl) {
-      handleClickAudioButton(recordedAudioIdRef.current, mediaBlobUrl);
+      handleClickAudioButton(
+        "recorder",
+        recordedAudioUuidRef.current,
+        0,
+        mediaBlobUrl,
+      );
       setRecordedTimeState(recordingTimeState);
       setRecordedAudioState("playing");
       recordTimer.current = window.setTimeout(function go() {
