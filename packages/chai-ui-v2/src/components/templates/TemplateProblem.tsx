@@ -1,6 +1,8 @@
 import React from "react";
 import { ComponentButtonRadiFillMain } from "../atoms";
+import ComponentProblemGrade from "../molecules/ComponentProblemGrade";
 import ComponentProblemTopButtonArea from "../molecules/ComponentProblemTopButtonArea";
+import ComponentProblemUserInfo from "../molecules/ComponentProblemUserInfo";
 
 const TemplateProblem = () => {
   return (
@@ -18,7 +20,8 @@ const TemplateProblem = () => {
         <ComponentProblemTopButtonArea />
         <div className="layout-panel-wrap grid-h-3-7">
           <div className="layout-panel">
-            점수
+            <ComponentProblemUserInfo />
+            <ComponentProblemGrade />
           </div>
           <div className="layout-panel">
             해석해설
