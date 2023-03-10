@@ -72,6 +72,7 @@ export const NavList = styled.ul`
     display: flex;
     align-items: center;
     margin-bottom: 8px;
+    cursor: pointer;
   }
 
   .thumb-comp {
