@@ -18,19 +18,6 @@ const ModalContentsWrapper = styled.div`
   }
 `;
 
-// const ModalFinishTitle = styled.div`
-//   margin-bottom: ${vw(40)};
-//   font-size: ${vw(32)};
-
-//   > b {
-//     font-weight: 600;
-//   }
-
-//   .c-gray {
-//     color: ${colorPalette.gray500};
-//   }
-// `;
-
 const ModalLearningPoint = ({
   isModalOpen,
   setIsModalOpen,

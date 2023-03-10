@@ -21,8 +21,6 @@ import IconPauseFillButton from "../atoms/Button/IconPauseFillButton";
 import ConversationQuizComponent from "../contents/ConversationQuizComponent";
 import { vw } from "../../assets";
 import { v4 as uuidv4 } from "uuid";
-import { useRecoilState } from "recoil";
-import { fullAudioListState } from "../../core/states/fullAudioListState";
 
 const DialogueContainer = styled.div`
   .hori-answer-wrap {
@@ -95,7 +93,7 @@ const TemplateQuizDialogueWordBlank = ({
 
   const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
   const fullAudioUuidRef = useRef(uuidv4());
-  const [fullAudioList, setFullAudioList] = useRecoilState(fullAudioListState);
+  const [fullAudioList, setFullAudioList] = useState<string[]>([]);
 
   useEffect(() => {
     setPageCompleted();

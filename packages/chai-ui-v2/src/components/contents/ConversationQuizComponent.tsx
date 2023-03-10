@@ -61,7 +61,8 @@ const ConversationQuizComponent = ({
   useEffect(() => {
     if (globalAudioId.toString().includes("fullAudio")) {
       const results = globalAudioId.toString().split("_");
-      setSpeakingDialogueIndex(parseInt(results[2], 10));
+      const [, , dialogueIndex] = results;
+      setSpeakingDialogueIndex(parseInt(dialogueIndex, 10));
     }
   }, [globalAudioId]);
 

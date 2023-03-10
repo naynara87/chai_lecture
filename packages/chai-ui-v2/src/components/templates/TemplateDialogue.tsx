@@ -22,8 +22,6 @@ import IconTextComponent from "../contents/IconTextComponent";
 import IconPauseFillButton from "../atoms/Button/IconPauseFillButton";
 import DialogueToggle from "../molecules/DialogueToggle";
 import { v4 as uuidv4 } from "uuid";
-import { useRecoilState } from "recoil";
-import { fullAudioListState } from "../../core/states/fullAudioListState";
 
 const DialogueContainer = styled.div`
   .repeat-speak-wrapper {
@@ -48,7 +46,7 @@ const TemplateDialogue = ({
   const [isShowMeaning, setIsShowMeaning] = useState(false);
   const fullAudioIndexRef = useRef(0);
   const fullAudioUuidRef = useRef(uuidv4());
-  const [fullAudioList, setFullAudioList] = useRecoilState(fullAudioListState);
+  const [fullAudioList, setFullAudioList] = useState<string[]>([]);
 
   const { getContentComponent } = useContentMapper();
   const {
