@@ -72,3 +72,113 @@
 }
 
 // 해석, 해설 영역
+// 내용이 없을 경우
+.empty-conts {
+	padding: vh(150) vw(30);
+	text-align: center;
+
+	.img {
+		max-width: 50%;
+	}
+
+	.emp-ttl {
+		margin-top: vh(40);
+		font-weight: 600;
+		font-size: vw(50);
+		color: color(main-dark);
+	}
+
+	.emp-txt {
+		margin-top: vh(20);
+		font-size: vw(24);
+	}
+}
+
+// 내용이 있을 경우
+.problem-commentary-wrap {
+	.com-ttl {
+		line-height: 1;
+		font-size: vw(30);
+
+		>img {
+			width: auto;
+			height: vw(30);
+			margin-left: vw(10);
+			vertical-align: bottom;
+		}
+	}
+
+	.tab-iframe-wrap {
+		margin-top: vh(40);
+	}
+
+	.tab-title {
+		@extend %btn;
+		@include bg-op($p: right vw(15) center, $s: vw(20));
+		@include bg-url(icon, 'icon_arrow_down_gray.svg');
+
+		display: block;
+		width: 100%;
+		padding: vw(10) vw(15);
+		border-bottom: 2px solid color(main-dark);
+		font-size: vw(20);
+		text-align: left;
+
+		&.active {
+			@include bg-url(icon, 'icon_arrow_up_gray.svg');
+
+			border-color: color(main);
+		}
+	}
+
+	.tab-conts-wrapper {
+		width: 100%;
+		height: vh(600);
+		border: 1px solid color(main-light);
+
+		iframe {
+			width: 100%;
+			height: 100%;
+		}
+	}
+}
+
+.comment-list-wrap {
+	margin-top: vw(40);
+
+	.comment-list {
+		@include flex {
+			@include flex-op(flex-start, flex-start);
+		}
+
+		margin-top: vh(10);
+	}
+
+	.comment-ttl {
+		position: relative;
+		flex-shrink: 0;
+		width: 5em;
+		margin-right: vw(10);
+		padding: 4px;
+		background-color: color(main-dark);
+		font-weight: 600;
+		font-size: vw(18);
+		color: color(gray-ff);
+		text-align: center;
+
+		// @include make-after {
+		// 	position: absolute;
+		// 	top: 0;
+		// 	left: auto;
+		// 	right: 0;
+		// 	width: 2px;
+		// 	height: 1.6em;
+		// 	background-color: color(main-light);
+		// }
+	}
+
+	.comment-dec {
+		font-size: vw(18);
+		white-space: pre-line;
+	}
+}
