@@ -4,13 +4,14 @@ import TextCreator from "../contents/TextCreator";
 
 const PageEdge = styled.div`
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
   background-color: #ededed;
 `;
 
 const Page = styled.div`
   margin: 16px;
   background-color: white;
+  display: inline-block;
 `;
 
 const Taehwan = () => {

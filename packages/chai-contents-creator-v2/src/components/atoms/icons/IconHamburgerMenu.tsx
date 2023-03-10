@@ -12,20 +12,20 @@ const IconHamburgerMenu = () => {
       <path
         d="M3.5 8H12.5"
         stroke="#565656"
-        stroke-miterlimit="10"
-        stroke-linecap="round"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
       />
       <path
         d="M3.5 11.3418H12.5"
         stroke="#565656"
-        stroke-miterlimit="10"
-        stroke-linecap="round"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
       />
       <path
         d="M3.5 4.65625H12.5"
         stroke="#565656"
-        stroke-miterlimit="10"
-        stroke-linecap="round"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
       />
     </svg>
   );
