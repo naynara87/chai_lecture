@@ -4,7 +4,7 @@ import useGlobalAudio from "../../core/hooks/useGlobalAudio";
 import { ComponentButtonPlay, ImgCharacterComponent } from "../atoms";
 import IconPauseFillButton from "../atoms/Button/IconPauseFillButton";
 import ComponentButtonRoundArrow from "../atoms/ComponentButtonRoundArrow";
-
+import { v4 as uuidv4 } from "uuid";
 interface ConversationWordListComponentProps {
   contents: ConversationWordListContentData;
 }
@@ -13,6 +13,12 @@ const ConversationWordListComponent = ({
   contents,
 }: ConversationWordListComponentProps) => {
   const [isVocaNoteOpen, setIsVocaNoteOpen] = useState(false);
+  const [dialogueAudioUuids, setDialogueAudioUuids] = useState<string[]>([]);
+  useEffect(() => {
+    contents.data.words.forEach(() => {
+      setDialogueAudioUuids((prev) => [...prev, uuidv4()]);
+    });
+  }, [contents.data]);
 
   const {
     globalAudioId,
@@ -52,14 +58,20 @@ const ConversationWordListComponent = ({
             <p className="pinyin">{word.pronunciation}</p>
             <p className="mean">{word.meaning}</p>
           </div>
-          {globalAudioId === `vocaNote${wordIndex}` &&
-            globalAudioState === "playing" ? (
+          {globalAudioId ===
+            `vocaNote_${dialogueAudioUuids[wordIndex]}_${wordIndex}` &&
+          globalAudioState === "playing" ? (
             <IconPauseFillButton onClick={handleClickAudioStopButton} />
           ) : (
             <ComponentButtonPlay
               onClick={() => {
                 if (!word.audio) return;
-                handleClickAudioButton(`vocaNote${wordIndex}`, word.audio?.src);
+                handleClickAudioButton(
+                  "vocaNote",
+                  dialogueAudioUuids[wordIndex],
+                  wordIndex,
+                  word.audio?.src,
+                );
               }}
             />
           )}
@@ -72,6 +84,7 @@ const ConversationWordListComponent = ({
     handleClickAudioButton,
     handleClickAudioStopButton,
     globalAudioState,
+    dialogueAudioUuids,
   ]);
 
   return (

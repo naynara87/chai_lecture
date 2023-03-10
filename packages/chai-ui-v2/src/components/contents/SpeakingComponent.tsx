@@ -30,10 +30,10 @@ const SpeakingComponent = ({ contents }: SpeakingComponentProps) => {
     handleAudioReset,
   } = useGlobalAudio();
 
-  const speakingAudioId = useRef(`speakingAudio${uuidv4()}`);
+  const speakingAudioUuid = useRef(uuidv4());
 
   const audioEnded = useCallback(() => {
-    if (globalAudioId === speakingAudioId.current) {
+    if (globalAudioId === `speaking_${speakingAudioUuid.current}_0`) {
       setIsAudioEnd(true);
       setTimeout(() => {
         setIsEndProgressBar(true);
@@ -53,7 +53,12 @@ const SpeakingComponent = ({ contents }: SpeakingComponentProps) => {
 
   const handleClickStartButton = useCallback(() => {
     setIsShowProgressBar(true);
-    handleClickAudioButton(speakingAudioId.current, contents.data.src);
+    handleClickAudioButton(
+      "speaking",
+      speakingAudioUuid.current,
+      0,
+      contents.data.src,
+    );
   }, [contents.data.src, handleClickAudioButton]);
 
   const repeatSpeak = useMemo(() => {
@@ -65,7 +70,7 @@ const SpeakingComponent = ({ contents }: SpeakingComponentProps) => {
         </div>
       );
     } else if (
-      globalAudioId === speakingAudioId.current &&
+      globalAudioId === `speaking_${speakingAudioUuid.current}_0` &&
       isShowProgressBar &&
       !isEndProgressBar
     ) {
@@ -81,7 +86,7 @@ const SpeakingComponent = ({ contents }: SpeakingComponentProps) => {
         </>
       );
     } else if (
-      globalAudioId !== speakingAudioId.current &&
+      globalAudioId !== `speaking_${speakingAudioUuid.current}_0` &&
       !isAudioEnd &&
       !isEndProgressBar
     ) {

@@ -9,7 +9,6 @@ import React, {
 import { LayoutModalVoca } from "../modal";
 import ComponentButtonPlay from "../atoms/ComponentButtonPlay";
 import {
-  ConversationContentData,
   TemplateConversationData,
   TemplateConversationRepeatData,
   TemplateConversationToggleData,
@@ -22,6 +21,7 @@ import ConversationComponent from "../contents/ConversationComponent";
 import IconTextComponent from "../contents/IconTextComponent";
 import IconPauseFillButton from "../atoms/Button/IconPauseFillButton";
 import DialogueToggle from "../molecules/DialogueToggle";
+import { v4 as uuidv4 } from "uuid";
 
 const DialogueContainer = styled.div`
   .repeat-speak-wrapper {
@@ -45,6 +45,8 @@ const TemplateDialogue = ({
   const [isShowPronunciation, setIsShowPronunciation] = useState(false);
   const [isShowMeaning, setIsShowMeaning] = useState(false);
   const fullAudioIndexRef = useRef(0);
+  const fullAudioUuidRef = useRef(uuidv4());
+  const [fullAudioList, setFullAudioList] = useState<string[]>([]);
 
   const { getContentComponent } = useContentMapper();
   const {
@@ -64,39 +66,47 @@ const TemplateDialogue = ({
     };
   }, [handleAudioReset]);
 
-  const dialogueContent = useMemo(() => {
-    return thisPage.rightContents.find(
-      (content) => content.type === "conversation",
-    ) as ConversationContentData;
-  }, [thisPage.rightContents]);
+  const setFullAudio = useCallback(() => {
+    thisPage.rightContents.forEach((content) => {
+      if (content.type === "conversation") {
+        const audioList: string[] = [];
+        content.data.forEach((cont) => {
+          audioList.push(cont.audio?.src ?? "");
+        });
+        setFullAudioList(audioList);
+      }
+    });
+  }, [thisPage.rightContents, setFullAudioList]);
+
+  useEffect(() => {
+    setFullAudio();
+  }, [setFullAudio]);
 
   const audioEnded = useCallback(() => {
     if (globalAudioId.toString().includes("fullAudio")) {
       fullAudioIndexRef.current += 1;
-      if (!dialogueContent.data[fullAudioIndexRef.current]) {
+      if (!fullAudioList[fullAudioIndexRef.current]) {
         handleAudioReset();
         return;
       }
       handleClickAudioButton(
-        `fullAudio${fullAudioIndexRef.current}`,
-        dialogueContent.data[fullAudioIndexRef.current].audio?.src ?? "",
+        "fullAudio",
+        fullAudioUuidRef.current,
+        fullAudioIndexRef.current,
+        fullAudioList[fullAudioIndexRef.current] ?? "",
       );
     }
-  }, [
-    handleAudioReset,
-    globalAudioId,
-    dialogueContent.data,
-    handleClickAudioButton,
-  ]);
+  }, [handleAudioReset, globalAudioId, fullAudioList, handleClickAudioButton]);
 
   const listenFullAudio = useCallback(() => {
-    if (!dialogueContent) return;
     fullAudioIndexRef.current = 0;
     handleClickAudioButton(
-      `fullAudio${fullAudioIndexRef.current}`,
-      dialogueContent.data[fullAudioIndexRef.current].audio?.src ?? "",
+      "fullAudio",
+      fullAudioUuidRef.current,
+      fullAudioIndexRef.current,
+      fullAudioList[fullAudioIndexRef.current] ?? "",
     );
-  }, [handleClickAudioButton, dialogueContent]);
+  }, [handleClickAudioButton, fullAudioList]);
 
   useEffect(() => {
     let globalAudioRefValue: HTMLAudioElement | null = null;
@@ -171,16 +181,14 @@ const TemplateDialogue = ({
     <DialogueContainer className="layout-panel-wrap grid-h-3-7">
       <div className="layout-panel side-panel">
         <div className="cont-info-wrap">
-          {dialogueContent && (
-            <div className="btns-wrap">
-              {globalAudioId.toString().includes("fullAudio") ? (
-                <IconPauseFillButton onClick={handleStopFullAudio} />
-              ) : (
-                <ComponentButtonPlay onClick={listenFullAudio} />
-              )}
-              <p className="txt">전체 음성 듣기</p>
-            </div>
-          )}
+          <div className="btns-wrap">
+            {globalAudioId.toString().includes("fullAudio") ? (
+              <IconPauseFillButton onClick={handleStopFullAudio} />
+            ) : (
+              <ComponentButtonPlay onClick={listenFullAudio} />
+            )}
+            <p className="txt">전체 음성 듣기</p>
+          </div>
           {leftContents}
         </div>
       </div>

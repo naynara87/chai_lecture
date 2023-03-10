@@ -307,6 +307,86 @@ export const v2CornerDataList: CornerData[] = [
               },
             ],
           },
+          {
+            type: "TemplateQuizConversation",
+            leftContents: [
+              {
+                type: "activityGuideCharacter",
+                data: {
+                  text: "지난 시간엔 계절에 대한 회화를 학습했어요. 다음 대화를 잘 보고 빈 칸에 들어갈 알맞은 단어를 고르세요.",
+                  character: {
+                    src: "asdfasdf",
+                  },
+                },
+              },
+            ],
+            rightContents: [
+              {
+                type: "conversationQuiz",
+                data: [
+                  {
+                    text: "今天刮风，*blank*，很冷。",
+                    pronunciation: "Jīntiān guā fēng, xià xuě, hěn lěng.",
+                    meaning: "오늘은 바람이 불고, 눈이 내려서 추워.",
+                    choice: [
+                      { text: "정답", isAnswer: true },
+                      {
+                        text: "오답",
+                        isAnswer: false,
+                      },
+                    ],
+                    character: {
+                      name: "왕리리",
+                      src: "adsfasdf",
+                    },
+                    audio: {
+                      src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+                    },
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            type: "TemplateQuizConversation",
+            leftContents: [
+              {
+                type: "activityGuideCharacter",
+                data: {
+                  text: "지난 시간엔 계절에 대한 회화를 학습했어요. 다음 대화를 잘 보고 빈 칸에 들어갈 알맞은 단어를 고르세요.",
+                  character: {
+                    src: "asdfasdf",
+                  },
+                },
+              },
+            ],
+            rightContents: [
+              {
+                type: "conversationQuiz",
+                data: [
+                  {
+                    text: "今天刮风，*blank*，很冷。",
+                    pronunciation: "Jīntiān guā fēng, xià xuě, hěn lěng.",
+                    meaning: "오늘은 바람이 불고, 눈이 내려서 추워.",
+                    choice: [
+                      { text: "정답", isAnswer: true },
+                      {
+                        text: "오답",
+                        isAnswer: false,
+                      },
+                    ],
+                    character: {
+                      name: "김민호",
+                      src: "adsfasdf",
+                    },
+                    audio: {
+                      src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
+                    },
+                  },
+                ],
+              },
+            ],
+          },
         ],
       },
       {
@@ -710,6 +790,72 @@ export const v2CornerDataList: CornerData[] = [
                     },
                   },
                 ],
+              ],
+            },
+          ],
+        },
+      },
+      {
+        id: 11,
+        name: "단어",
+        type: "SinglePage",
+        data: {
+          type: "Template01",
+          contents: [
+            {
+              type: "characterCardList",
+              data: [
+                {
+                  title: "패턴 중국어",
+                  description: "好 hǎo 인사하기",
+                  character: {
+                    src: "",
+                  },
+                  modalContents: [
+                    {
+                      type: "text",
+                      data: {
+                        text: "테스트 텍스트1-1",
+                      },
+                    },
+                    {
+                      type: "iconText",
+                      data: {
+                        text: "테스트 텍스트1-2",
+                      },
+                    },
+                    {
+                      type: "numberingTextList",
+                      data: [
+                        {
+                          firstText: "넘버링 테스트 텍스트1",
+                          secondText: "넘버링 테스트 텍스트1-2",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  title: "회화",
+                  description: "만남의 인사하기",
+                  character: {
+                    src: "",
+                  },
+                  modalContents: [
+                    {
+                      type: "text",
+                      data: {
+                        text: "테스트 텍스트2-1",
+                      },
+                    },
+                    {
+                      type: "iconText",
+                      data: {
+                        text: "테스트 텍스트2-2",
+                      },
+                    },
+                  ],
+                },
               ],
             },
           ],
