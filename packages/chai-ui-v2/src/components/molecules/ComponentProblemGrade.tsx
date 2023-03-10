@@ -7,7 +7,7 @@ const ComponentProblemGrade = () => {
     <div className="problem-grade-wrapper">
       <ul className="problem-grade-wrap">
         <li className="problem-grade">
-          <button className="btn-grade">
+          <button className="btn-grade active">
             <span>{'1'}</span>
             <img src={IconRight} alt="정답" />
           </button>
@@ -20,50 +20,8 @@ const ComponentProblemGrade = () => {
         </li>
         <li className="problem-grade">
           <button className="btn-grade">
-            <span>{'993'}</span>
+            <span>{'3'}</span>
             <img src={IconRight} alt="정답" />
-          </button>
-        </li>
-        <li className="problem-grade">
-          <button className="btn-grade">
-            <span>{'4'}</span>
-            <img src={IconWrong} alt="오답" />
-          </button>
-        </li>
-        <li className="problem-grade">
-          <button className="btn-grade">
-            <span>{'5'}</span>
-            <img src={IconRight} alt="정답" />
-          </button>
-        </li>
-        <li className="problem-grade">
-          <button className="btn-grade">
-            <span>{'6'}</span>
-            <img src={IconWrong} alt="오답" />
-          </button>
-        </li>
-        <li className="problem-grade">
-          <button className="btn-grade">
-            <span>{'7'}</span>
-            <img src={IconRight} alt="정답" />
-          </button>
-        </li>
-        <li className="problem-grade">
-          <button className="btn-grade">
-            <span>{'8'}</span>
-            <img src={IconWrong} alt="오답" />
-          </button>
-        </li>
-        <li className="problem-grade">
-          <button className="btn-grade">
-            <span>{'9'}</span>
-            <img src={IconRight} alt="정답" />
-          </button>
-        </li>
-        <li className="problem-grade">
-          <button className="btn-grade">
-            <span>{'9999'}</span>
-            <img src={IconWrong} alt="오답" />
           </button>
         </li>
       </ul>

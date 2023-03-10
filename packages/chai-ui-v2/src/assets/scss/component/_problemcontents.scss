@@ -38,29 +38,37 @@
 
 .problem-grade {
 	flex-basis: 20%;
-	background-color: color(gray-f0);
 
-	&:nth-child(even) {
+	.btn-grade {
+		@extend %btn;
+		@include full;
+
+		padding: vw(5);
+		border: 3px solid transparent;
+		background-color: color(gray-f0);
+
+		&.active {
+			border-color: color(main);
+			background-color: color(gray-ff);
+		}
+
+		>span {
+			display: block;
+			margin-bottom: vh(8);
+			font-weight: 600;
+			font-size: vw(24);
+			line-height: 1;
+			text-align: center;
+		}
+
+		>img {
+			width: 80%;
+		}
+	}
+
+	&:nth-child(even) .btn-grade {
 		background-color: color(gray-db);
 	}
 }
 
-.btn-grade {
-	@extend %btn;
-	@include full;
-
-	padding: vw(5);
-
-	>span {
-		display: block;
-		margin-bottom: vh(8);
-		font-weight: 600;
-		font-size: vw(24);
-		line-height: 1;
-		text-align: center;
-	}
-
-	>img {
-		width: 80%;
-	}
-}
+// 해석, 해설 영역

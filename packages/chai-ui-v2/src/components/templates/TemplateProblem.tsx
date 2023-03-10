@@ -1,5 +1,6 @@
 import React from "react";
 import { ComponentButtonRadiFillMain } from "../atoms";
+import ComponentProblemCommentary from "../molecules/ComponentProblemCommentary";
 import ComponentProblemGrade from "../molecules/ComponentProblemGrade";
 import ComponentProblemTopButtonArea from "../molecules/ComponentProblemTopButtonArea";
 import ComponentProblemUserInfo from "../molecules/ComponentProblemUserInfo";
@@ -24,7 +25,7 @@ const TemplateProblem = () => {
             <ComponentProblemGrade />
           </div>
           <div className="layout-panel">
-            해석해설
+            <ComponentProblemCommentary />
           </div>
         </div>
         <ComponentButtonRadiFillMain text="채점하기" />
