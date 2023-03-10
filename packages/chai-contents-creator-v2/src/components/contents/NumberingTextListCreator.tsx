@@ -52,7 +52,7 @@ const NumberingTextListCreator = () => {
     <ContentCreatorLayout>
       <NumberingTextCreatorWrapper>
         {/* TODO: 객체 추가 버튼 */}
-        <AddNumberButton />
+        <AddNumberButton>번호 추가</AddNumberButton>
         <NumberingListWrapper>
           {/* TODO: 객체 추가 버튼 누르면 NumberingList가 추가 */}
           <NumberingList className="numbering-list">

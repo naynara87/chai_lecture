@@ -6,6 +6,7 @@ import { vw } from "chai-ui-v2";
 
 const ContentCreatorWrapper = styled.div`
   display: flex;
+  margin-bottom: ${vw(24)};
 `;
 
 const IconContainer = styled.div`
@@ -13,7 +14,6 @@ const IconContainer = styled.div`
   align-items: center;
   margin: 0px 8px;
   height: fit-content;
-  padding: ${vw(10)} 0;
 `;
 
 const ContentsContainer = styled.div`
