@@ -7,7 +7,7 @@ import {
   CreateTemplateChoiceBtnWrap,
 } from "../../styles/template";
 import { PageCommonProps } from "../../types/page";
-import VideoCreator from "../contents/VideoCreator";
+import ImageWithCaptionListCreator from "../contents/ImageWithCaptionListCreator";
 import PageHeader from "../molecules/PageHeader";
 
 const CreateTemplate01 = ({
@@ -39,7 +39,7 @@ const CreateTemplate01 = ({
                 position="contents"
               />
             </CreateTemplateChoiceBtnWrap>
-            <VideoCreator />
+            <ImageWithCaptionListCreator />
           </DashBoxArea>
         </CreateEditMain>
       </CreateEditMainWrap>
