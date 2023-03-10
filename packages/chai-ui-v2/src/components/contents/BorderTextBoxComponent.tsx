@@ -8,7 +8,7 @@ const BorderTextBoxWrapper = styled.div`
   border: 1px solid ${colorPalette.gray500};
   width: 100%;
   border-radius: ${vw(20)};
-  padding: ${vh(45)} ${vw(60)};
+  padding: ${vw(45)} ${vw(60)};
   text-align: left;
 `;
 
