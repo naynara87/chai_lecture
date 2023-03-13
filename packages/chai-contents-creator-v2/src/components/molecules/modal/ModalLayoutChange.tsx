@@ -4,18 +4,15 @@ import React from "react";
 import ChooseLayout from "../CreateLayout";
 
 const ModalInner = styled.div`
-  background-color: ${colorPalette.white};
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: 16px;
+  overflow: hidden;
   position: absolute;
   top: 50%;
   left: 50%;
+  max-width: 740px;
+  width: 90%;
+  border-radius: 20px;
+  background-color: ${colorPalette.white};
   transform: translate(-50%, -50%);
-  width: 740px;
-  padding: 40px;
 `;
 
 export interface ModalLayoutChangeProps {
