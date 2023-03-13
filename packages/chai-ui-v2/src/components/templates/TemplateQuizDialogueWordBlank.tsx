@@ -92,12 +92,10 @@ const TemplateQuizDialogueWordBlank = ({
   const thisPage = template as TemplateQuizConversationData;
 
   const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
-  const fullAudioUuidRef = useRef(uuidv4());
   const [fullAudioList, setFullAudioList] = useState<string[]>([]);
 
-  useEffect(() => {
-    setPageCompleted();
-  }, [setPageCompleted]);
+  const fullAudioUuidRef = useRef(uuidv4());
+  const fullAudioIndexRef = useRef(0);
 
   const { getContentComponent } = useContentMapper();
   const {
@@ -107,7 +105,9 @@ const TemplateQuizDialogueWordBlank = ({
     handleClickAudioButton,
   } = useGlobalAudio();
 
-  const fullAudioIndexRef = useRef(0);
+  useEffect(() => {
+    setPageCompleted();
+  }, [setPageCompleted]);
 
   useEffect(() => {
     return () => {
@@ -131,15 +131,18 @@ const TemplateQuizDialogueWordBlank = ({
         setFullAudioList(audioList);
       }
     });
-  }, [thisPage.rightContents, setFullAudioList]);
+  }, [thisPage.rightContents]);
 
   useEffect(() => {
     setFullAudio();
   }, [setFullAudio]);
 
   const audioEnded = useCallback(() => {
-    if (globalAudioId.toString().includes("fullAudio")) {
+    if (
+      globalAudioId.toString().includes(`fullAudio_${fullAudioUuidRef.current}`)
+    ) {
       fullAudioIndexRef.current += 1;
+
       if (!fullAudioList[fullAudioIndexRef.current]) {
         handleAudioReset();
         return;
@@ -162,7 +165,7 @@ const TemplateQuizDialogueWordBlank = ({
         globalAudioRefValue.removeEventListener("ended", audioEnded);
       }
     };
-  }, [globalAudioRef, audioEnded, globalAudioId]);
+  }, [globalAudioRef, audioEnded]);
 
   const leftContents = useMemo(() => {
     return thisPage.leftContents.map((leftContent, contentIndex) => {
@@ -189,7 +192,9 @@ const TemplateQuizDialogueWordBlank = ({
       <div className="layout-panel side-panel">
         <div className="cont-info-wrap">
           <div className="btns-wrap">
-            {globalAudioId.toString().includes("fullAudio") ? (
+            {globalAudioId
+              .toString()
+              .includes(`fullAudio_${fullAudioUuidRef.current}`) ? (
               <IconPauseFillButton onClick={handleStopFullAudio} />
             ) : (
               <ComponentButtonPlay onClick={listenFullAudio} />
@@ -206,7 +211,10 @@ const TemplateQuizDialogueWordBlank = ({
         {/* 230217 회화영역 */}
         {/* speech bubble */}
         {/* end speech bubble */}
-        <ConversationQuizComponent contents={dialogueQuizContent} />
+        <ConversationQuizComponent
+          contents={dialogueQuizContent}
+          fullAudioId={`fullAudio_${fullAudioUuidRef.current}`}
+        />
         {/* TODO: key설명 - input이 checked가 되는 순간 blank에 선택한 글자가 들어감 */}
       </div>
       <LayoutModalVoca

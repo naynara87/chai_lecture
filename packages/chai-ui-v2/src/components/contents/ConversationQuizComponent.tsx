@@ -9,6 +9,7 @@ import { v4 as uuidv4 } from "uuid";
 
 interface ConversationQuizComponentProps {
   contents: ConversationQuizContentData;
+  fullAudioId?: string;
 }
 
 export type QuizChoice = {
@@ -18,17 +19,12 @@ export type QuizChoice = {
 
 const ConversationQuizComponent = ({
   contents,
+  fullAudioId,
 }: ConversationQuizComponentProps) => {
   const [userChoices, setUserChoices] = useState<QuizChoice[]>([]);
   const [isShowAnswer, setIsShowAnswer] = useState(false);
   const [speakingDialogueIndex, setSpeakingDialogueIndex] = useState(-1);
   const [dialogueAudioUuids, setDialogueAudioUuids] = useState<string[]>([]);
-
-  useEffect(() => {
-    contents.data.forEach(() => {
-      setUserChoices((prev) => [...prev, { text: "", isAnswer: false }]);
-    });
-  }, [contents.data]);
 
   const {
     globalAudioRef,
@@ -45,11 +41,16 @@ const ConversationQuizComponent = ({
     };
   }, [handleAudioReset]);
 
-  useEffect(() => {
+  const setDialogues = useCallback(() => {
     contents.data.forEach(() => {
       setDialogueAudioUuids((prev) => [...prev, uuidv4()]);
+      setUserChoices((prev) => [...prev, { text: "", isAnswer: false }]);
     });
   }, [contents.data]);
+
+  useEffect(() => {
+    setDialogues();
+  }, [setDialogues]);
 
   const audioEnded = useCallback(() => {
     if (globalAudioId.toString().includes("dialogue")) {
@@ -59,21 +60,22 @@ const ConversationQuizComponent = ({
   }, [handleAudioReset, globalAudioId]);
 
   useEffect(() => {
-    if (globalAudioId.toString().includes("fullAudio")) {
+    if (fullAudioId && globalAudioId.toString().includes(fullAudioId)) {
       const results = globalAudioId.toString().split("_");
       const [, , dialogueIndex] = results;
       setSpeakingDialogueIndex(parseInt(dialogueIndex, 10));
     }
-  }, [globalAudioId]);
+  }, [globalAudioId, fullAudioId]);
 
   useEffect(() => {
     if (
+      fullAudioId &&
       !globalAudioId.toString().includes("fullAudio") &&
       !globalAudioId.toString().includes("dialogue")
     ) {
       setSpeakingDialogueIndex(-1);
     }
-  }, [globalAudioId]);
+  }, [globalAudioId, fullAudioId]);
 
   const handleClickChoice = useCallback(
     (contentIndex: number, choice: QuizChoice) => {
@@ -111,7 +113,7 @@ const ConversationQuizComponent = ({
         globalAudioRefValue.removeEventListener("ended", audioEnded);
       }
     };
-  }, [globalAudioRef, audioEnded, globalAudioId]);
+  }, [globalAudioRef, audioEnded]);
 
   const handleClickDialogueCharacter = useCallback(
     (dialogueIndex: number, audioSrc?: string) => {

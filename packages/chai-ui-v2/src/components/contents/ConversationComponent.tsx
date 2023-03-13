@@ -9,6 +9,7 @@ interface ConversationComponentProps {
   isShowPronunciation?: boolean;
   isShowMeaning?: boolean;
   isShowRepeat?: boolean;
+  fullAudioId?: string;
 }
 
 const ConversationComponent = ({
@@ -16,6 +17,7 @@ const ConversationComponent = ({
   isShowPronunciation = true,
   isShowMeaning = true,
   isShowRepeat,
+  fullAudioId,
 }: ConversationComponentProps) => {
   const [speakingDialogueIndex, setSpeakingDialogueIndex] = useState(-1);
   const [dialogueAudioUuids, setDialogueAudioUuids] = useState<string[]>([]);
@@ -49,21 +51,22 @@ const ConversationComponent = ({
   }, [handleAudioReset, globalAudioId]);
 
   useEffect(() => {
-    if (globalAudioId.toString().includes("fullAudio")) {
+    if (fullAudioId && globalAudioId.toString().includes(fullAudioId)) {
       const results = globalAudioId.toString().split("_");
       const [, , dialogueIndex] = results;
       setSpeakingDialogueIndex(parseInt(dialogueIndex, 10));
     }
-  }, [globalAudioId]);
+  }, [globalAudioId, fullAudioId]);
 
   useEffect(() => {
     if (
-      !globalAudioId.toString().includes("fullAudio") &&
+      fullAudioId &&
+      !globalAudioId.toString().includes(fullAudioId) &&
       !globalAudioId.toString().includes("dialogue")
     ) {
       setSpeakingDialogueIndex(-1);
     }
-  }, [globalAudioId]);
+  }, [globalAudioId, fullAudioId]);
 
   useEffect(() => {
     let globalAudioRefValue: HTMLAudioElement | null = null;

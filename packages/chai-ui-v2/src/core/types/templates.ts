@@ -13,7 +13,8 @@ export type AllTemplateData =
   | TemplateData
   | ConversationTemplateData
   | QuizTemplateData
-  | TemplateRolePlayingData;
+  | TemplateRolePlayingData
+  | TemplateWordCardData;
 
 export type TemplateData =
   | Template01Data
@@ -150,4 +151,14 @@ export type TemplateQuizSpeakingData = {
   type: "TemplateQuizSpeaking";
   leftContents: Content[];
   rightContents: FinalSpeakingContentData;
+};
+
+/**
+ * 단어 카드 레이아웃
+ * TP12
+ */
+export type TemplateWordCardData = {
+  type: "TemplateWordCard";
+  leftContents: Content[];
+  rightContents: Content[];
 };
