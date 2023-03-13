@@ -68,13 +68,6 @@ const usePage = () => {
       const newSlides = slides.map((slide) => {
         if (slide.id === slideId) {
           const newSlide = cloneDeep(slide);
-          console.log("newSlide", newSlide);
-          console.log("componentLocation", componentLocation);
-          console.log(
-            "newSlide[componentLocation]",
-            // @ts-ignore
-            newSlide[componentLocation],
-          );
           // @ts-ignore
           newSlide[componentLocation].push(
             getContentComponentsDefaultValue()[component],
@@ -139,3 +132,5 @@ const usePage = () => {
 };
 
 export default usePage;
+
+export type ReturnUsePage = ReturnType<typeof usePage>;

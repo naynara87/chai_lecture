@@ -5,6 +5,9 @@ import "react-quill/dist/quill.snow.css";
 interface TextEditorProps {
   text: string;
   setText: (text: string) => void;
+  /**
+   * NOTE: updateContent가 onBlur로 전달하는 콜백 안에서 실행되어야 한다
+   */
   onBlur?: () => void;
 }
 const TextEditor = ({ text, setText, onBlur }: TextEditorProps) => {
@@ -16,7 +19,6 @@ const TextEditor = ({ text, setText, onBlur }: TextEditorProps) => {
   }, []);
 
   const handleChange = (value: string) => {
-    // todo : 컴포넌트 데이터 변경하기 - debounce 적용 고려?
     setText(value);
   };
   return (
