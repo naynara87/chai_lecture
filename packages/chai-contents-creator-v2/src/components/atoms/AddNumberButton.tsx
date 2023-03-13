@@ -10,6 +10,7 @@ const AddButton = styled.button`
   font-size: ${vw(10)};
   font-weight: 500;
   width: fit-content;
+  margin-bottom: ${vw(8)};
 `;
 
 interface ButtonProps {

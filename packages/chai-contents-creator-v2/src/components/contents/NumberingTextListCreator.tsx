@@ -14,6 +14,7 @@ const NumberingListWrapper = styled.ul`
   display: flex;
   flex-direction: column;
   padding: ${vw(24)};
+  padding-top: unset;
   padding-left: unset;
 `;
 
