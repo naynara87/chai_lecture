@@ -119,7 +119,7 @@ export const CreateEditMain = styled.div`
   padding: 24px;
   box-sizing: border-box;
   background-color: white;
-  height: 502px;
+  min-height: 502px;
   border-radius: 20px;
   box-shadow: 0px 4px 19px rgba(145, 145, 145, 0.2);
   width: 100%;
