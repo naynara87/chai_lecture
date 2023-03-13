@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
-import React, { useState } from "react";
+import React from "react";
 import ComponentTitle from "../molecules/ComponentTitle";
-import { LayoutModalVoca } from "../modal";
 import {
   ComponentButtonRadiBorderMain,
   ComponentButtonRadiFillMain,
@@ -25,8 +24,6 @@ const QuizContainer = styled.form`
 `;
 
 const TemplateQuizDialogueSentenceBlank = () => {
-  const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
-
   return (
     <DialogueContainer className="layout-panel-wrap grid-h-5-5">
       <div className="layout-panel side-panel conversation-panel-wrap">
@@ -48,10 +45,6 @@ const TemplateQuizDialogueSentenceBlank = () => {
           <ComponentButtonRadiFillMain text="제출하기" />
         </div>
       </div>
-      <LayoutModalVoca
-        isModalOpen={isModalVocaOpen}
-        setIsModalOpen={setIsModalVocaOpen}
-      />
     </DialogueContainer>
   );
 };

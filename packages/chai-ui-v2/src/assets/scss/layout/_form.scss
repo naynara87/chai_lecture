@@ -83,7 +83,7 @@
   }
 }
 
-.btn-dectionary {
+.btn-dictionary {
   @include bg-url(icon, "icon_dictionary.svg");
 
   &:disabled {
@@ -91,7 +91,7 @@
   }
 }
 
-.btn-dectionary-fill {
+.btn-dictionary-fill {
   @include bg-url(icon, "icon_dictionary_fill.svg");
 
   &:disabled {

@@ -1,10 +1,7 @@
-import React, { useState } from "react";
-import LayoutModalVoca from "../modal/LayoutModalVoca";
+import React from "react";
 import ImageWithCaptionListComponent from "../contents/ImageWithCaptionListComponent";
 
 const Template02 = () => {
-  const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
-
   return (
     <div className="layout-panel-wrap grid-h-5-5">
       <div className="layout-panel side-panel"></div>
@@ -22,11 +19,6 @@ const Template02 = () => {
           }}
         />
       </div>
-
-      <LayoutModalVoca
-        isModalOpen={isModalVocaOpen}
-        setIsModalOpen={setIsModalVocaOpen}
-      />
     </div>
   );
 };

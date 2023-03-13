@@ -1032,6 +1032,37 @@ export const v2CornerDataList: CornerData[] = [
           ],
         },
       },
+      {
+        id: 13,
+        name: "단어",
+        type: "SinglePage",
+        data: {
+          id: uuidV4(),
+          type: "Template01",
+          contents: [
+            {
+              id: uuidV4(),
+              type: "wordsCarousel",
+              data: {
+                words: [
+                  {
+                    word: "테스트 텍스트",
+                    audio: {
+                      src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+                    },
+                  },
+                  {
+                    word: "테스트 텍스트",
+                    audio: {
+                      src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
+                    },
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      },
     ],
   },
   {

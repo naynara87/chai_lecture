@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
-import React, { useState } from "react";
-import { LayoutModalVoca } from "../modal";
+import React from "react";
 import ImgProfileDefaultComponent from "../atoms/ImgProfileDefaultComponent";
 import ImgTemp01Component from "../atoms/ImgTemp01Component";
 
@@ -9,8 +8,6 @@ const DialogueContainer = styled.div``;
 const QuizContainer = styled.form``;
 
 const TemplateQuizDialogueChoice = () => {
-  const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
-
   return (
     <DialogueContainer className="layout-panel-wrap grid-h-5-5">
       <div className="layout-panel side-panel conversation-panel-wrap">
@@ -92,10 +89,6 @@ const TemplateQuizDialogueChoice = () => {
           </div>
         </QuizContainer>
       </div>
-      <LayoutModalVoca
-        isModalOpen={isModalVocaOpen}
-        setIsModalOpen={setIsModalVocaOpen}
-      />
     </DialogueContainer>
   );
 };

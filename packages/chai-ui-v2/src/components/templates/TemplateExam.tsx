@@ -1,10 +1,7 @@
-import React, { useState } from "react";
-import LayoutModalVoca from "../modal/LayoutModalVoca";
+import React from "react";
 import ComponentTitle from "../molecules/ComponentTitle";
 
 const TemplateExam = () => {
-  const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
-
   return (
     <div className="layout-panel-wrap">
       <div className="layout-panel">
@@ -15,10 +12,6 @@ const TemplateExam = () => {
         isModalOpen={isModalSolutionOpen}
         setIsModalOpen={setIsModalSolutionOpen}
       /> */}
-      <LayoutModalVoca
-        isModalOpen={isModalVocaOpen}
-        setIsModalOpen={setIsModalVocaOpen}
-      />
     </div>
   );
 };

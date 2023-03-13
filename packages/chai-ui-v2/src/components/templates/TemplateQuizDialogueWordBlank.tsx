@@ -8,7 +8,6 @@ import React, {
 } from "react";
 import IconO from "../../assets/images/icon/icon_o.svg";
 import IconX from "../../assets/images/icon/icon_x.svg";
-import { LayoutModalVoca } from "../modal";
 import { ComponentButtonPlay } from "../atoms";
 import {
   ConversationQuizContentData,
@@ -91,7 +90,6 @@ const TemplateQuizDialogueWordBlank = ({
 }: TemplateQuizDialogueWordBlank) => {
   const thisPage = template as TemplateQuizConversationData;
 
-  const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
   const [fullAudioList, setFullAudioList] = useState<string[]>([]);
 
   const fullAudioUuidRef = useRef(uuidv4());
@@ -217,10 +215,6 @@ const TemplateQuizDialogueWordBlank = ({
         />
         {/* TODO: key설명 - input이 checked가 되는 순간 blank에 선택한 글자가 들어감 */}
       </div>
-      <LayoutModalVoca
-        isModalOpen={isModalVocaOpen}
-        setIsModalOpen={setIsModalVocaOpen}
-      />
     </DialogueContainer>
   );
 };

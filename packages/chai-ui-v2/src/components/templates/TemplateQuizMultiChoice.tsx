@@ -1,12 +1,11 @@
 import styled from "@emotion/styled";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo } from "react";
 import {
   TemplateProps,
   TemplateQuizMultiChoiceData,
   useContentMapper,
 } from "../../core";
 import MultiChoiceComponent from "../contents/MultiChoiceComponent";
-import { LayoutModalVoca } from "../modal";
 
 const QuizContainer = styled.div``;
 
@@ -17,8 +16,6 @@ const TemplateQuizMultiChoice = ({
   setPageCompleted,
 }: TemplateQuizMultiChoiceProps) => {
   const thisPage = template as TemplateQuizMultiChoiceData;
-
-  const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
 
   useEffect(() => {
     setPageCompleted();
@@ -49,10 +46,6 @@ const TemplateQuizMultiChoice = ({
           {/* <GrayRadioBoxes /> */}
         </QuizContainer>
       </div>
-      <LayoutModalVoca
-        isModalOpen={isModalVocaOpen}
-        setIsModalOpen={setIsModalVocaOpen}
-      />
     </div>
   );
 };
