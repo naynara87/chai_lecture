@@ -430,9 +430,11 @@ export const v2CornerDataList: CornerData[] = [
             ],
           },
           {
+            id: uuidV4(),
             type: "TemplateWordCard",
             leftContents: [
               {
+                id: uuidV4(),
                 type: "activityGuideCharacter",
                 data: {
                   text: "지난 시간엔 계절에 대한 회화를 학습했어요. 다음 대화를 잘 보고 빈 칸에 들어갈 알맞은 단어를 고르세요.",
@@ -444,12 +446,14 @@ export const v2CornerDataList: CornerData[] = [
             ],
             rightContents: [
               {
+                id: uuidV4(),
                 type: "iconText",
                 data: {
                   text: "연습해 보세요.",
                 },
               },
               {
+                id: uuidV4(),
                 type: "textBoxList",
                 data: [
                   {
@@ -991,9 +995,11 @@ export const v2CornerDataList: CornerData[] = [
         name: "단어",
         type: "SinglePage",
         data: {
+          id: uuidV4(),
           type: "Template01",
           contents: [
             {
+              id: uuidV4(),
               type: "textBoxList",
               data: [
                 {

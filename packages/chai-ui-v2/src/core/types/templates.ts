@@ -171,6 +171,7 @@ export type TemplateQuizSpeakingData = {
  * TP12
  */
 export type TemplateWordCardData = {
+  id: ID;
   type: "TemplateWordCard";
   leftContents: Content[];
   rightContents: Content[];
