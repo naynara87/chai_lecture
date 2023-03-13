@@ -61,9 +61,13 @@ const ConversationWordListComponent = ({
           {globalAudioId ===
             `vocaNote_${dialogueAudioUuids[wordIndex]}_${wordIndex}` &&
           globalAudioState === "playing" ? (
-            <IconPauseFillButton onClick={handleClickAudioStopButton} />
+            <IconPauseFillButton
+              onClick={handleClickAudioStopButton}
+              isMini={true}
+            />
           ) : (
             <ComponentButtonPlay
+              isMini={true}
               onClick={() => {
                 if (!word.audio) return;
                 handleClickAudioButton(
