@@ -10,7 +10,6 @@ import { PageCommonProps } from "../../types/page";
 import DashBoxArea from "../atoms/DashBoxArea";
 import SpeakingCreator from "../contents/SpeakingCreator";
 import PageHeader from "../molecules/PageHeader";
-import CharacterCardListCreater from "../pub/CharacterCardListCreater";
 
 const CreateTemplate01 = ({
   templateType,
