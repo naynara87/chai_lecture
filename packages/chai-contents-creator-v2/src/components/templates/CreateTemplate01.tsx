@@ -8,7 +8,7 @@ import {
 } from "../../styles/template";
 import { PageCommonProps } from "../../types/page";
 import DashBoxArea from "../atoms/DashBoxArea";
-import AudioCreator from "../contents/AudioCreator";
+import FullAudioCreator from "../contents/FullAudioCreator";
 import PageHeader from "../molecules/PageHeader";
 
 const CreateTemplate01 = ({
@@ -62,7 +62,7 @@ const CreateTemplate01 = ({
                 position: "contents",
               });
             })}
-            <AudioCreator />
+            <FullAudioCreator />
           </DashBoxArea>
         </CreateEditMain>
       </CreateEditMainWrap>
