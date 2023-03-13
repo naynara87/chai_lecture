@@ -72,7 +72,7 @@ const CreatePage = () => {
           })
         )}
         <CreateAddBtn onClick={addSlide}>
-          +&nbsp;&nbsp; 슬라이드 추가
+          + 슬라이드 추가
         </CreateAddBtn>
       </CreateTemplateInner>
     </CreateTemplateWrap>
