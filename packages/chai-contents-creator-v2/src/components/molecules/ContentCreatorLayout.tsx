@@ -15,6 +15,7 @@ const IconContainer = styled.div`
   align-items: center;
   margin: 0px 8px;
   height: fit-content;
+  place-self: center;
 `;
 
 interface IconWrapperProps {
