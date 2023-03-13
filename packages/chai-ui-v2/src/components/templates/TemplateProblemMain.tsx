@@ -2,7 +2,7 @@ import React from "react";
 import { ComponentButtonRadiFillMain } from "../atoms";
 import ComponentProblemTopButtonArea from "../molecules/ComponentProblemTopButtonArea";
 
-const TemplateProblem = () => {
+const TemplateProblemMain = () => {
   return (
     <>
       {/* problem header */}
@@ -18,6 +18,7 @@ const TemplateProblem = () => {
         <ComponentProblemTopButtonArea />
         <div className="layout-panel-wrap">
           <div className="layout-panel">
+            문제 iframe이 들어옵니다.
           </div>
         </div>
         <ComponentButtonRadiFillMain text="채점하기" />
@@ -27,4 +28,4 @@ const TemplateProblem = () => {
   );
 };
 
-export default TemplateProblem;
+export default TemplateProblemMain;

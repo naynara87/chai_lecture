@@ -14,6 +14,7 @@ const Template03 = () => {
       <div className="layout-panel wide-panel">
         <ImageWithCaptionListComponent
           contents={{
+            id: "imgWithCaptionList",
             type: "imageWithCaptionList",
             data: [
               {

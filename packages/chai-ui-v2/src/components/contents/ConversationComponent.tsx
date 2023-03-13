@@ -154,6 +154,7 @@ const ConversationComponent = ({
             {isShowRepeat && content.speakingTime !== undefined && (
               <SpeakingComponent
                 contents={{
+                  id: uuidv4(),
                   type: "speaking",
                   data: {
                     src: content.audio?.src ?? "",

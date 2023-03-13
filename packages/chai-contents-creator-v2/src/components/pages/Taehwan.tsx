@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import React from "react";
-import TextCreator from "../contents/TextCreator";
 
 const PageEdge = styled.div`
   width: 100%;
@@ -17,9 +16,7 @@ const Page = styled.div`
 const Taehwan = () => {
   return (
     <PageEdge>
-      <Page>
-        <TextCreator />
-      </Page>
+      <Page>콘텐트 컴포넌트 퍼블리싱 테스트용 페이지</Page>
     </PageEdge>
   );
 };

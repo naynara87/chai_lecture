@@ -1,31 +1,67 @@
+import { css, SerializedStyles } from "@emotion/react";
 import styled from "@emotion/styled";
 import React from "react";
 import IconDndHandle from "../atoms/icons/IconDndHandle";
 import IconHamburgerMenu from "../atoms/icons/IconHamburgerMenu";
+import { vw } from "chai-ui-v2";
 
 const ContentCreatorWrapper = styled.div`
-  display: inline-flex;
+  display: flex;
+  margin-bottom: ${vw(24)};
 `;
 
 const IconContainer = styled.div`
   display: flex;
   align-items: center;
   margin: 0px 8px;
+  height: fit-content;
 `;
 
-const ContentsContainer = styled.div``;
+interface IconWrapperProps {
+  customCss?: SerializedStyles;
+}
 
-interface ContentCreatorProps {
+const dndHandleCss = css`
+  cursor: move;
+`;
+
+const hamburgerMenuCss = css`
+  cursor: pointer;
+`;
+
+const IconWrapper = styled.span<IconWrapperProps>`
+  display: flex;
+  align-items: center;
+  ${({ customCss }) => customCss}
+  :not(:last-child) {
+    margin-right: 2px;
+  }
+`;
+
+interface ContentsContainerProps {
+  align?: "center" | "start";
+}
+const ContentsContainer = styled.div<ContentsContainerProps>`
+  display: flex;
+  flex-grow: 1;
+  justify-content: ${({ align }) => align || "start"};
+`;
+
+interface ContentCreatorProps extends ContentsContainerProps {
   children: React.ReactNode;
 }
-const ContentCreatorLayout = ({ children }: ContentCreatorProps) => {
+const ContentCreatorLayout = ({ children, align }: ContentCreatorProps) => {
   return (
-    <ContentCreatorWrapper>
+    <ContentCreatorWrapper className="contentCreator">
       <IconContainer>
-        <IconDndHandle />
-        <IconHamburgerMenu />
+        <IconWrapper customCss={dndHandleCss}>
+          <IconDndHandle />
+        </IconWrapper>
+        <IconWrapper customCss={hamburgerMenuCss}>
+          <IconHamburgerMenu />
+        </IconWrapper>
       </IconContainer>
-      <ContentsContainer>{children}</ContentsContainer>
+      <ContentsContainer align={align}>{children}</ContentsContainer>
     </ContentCreatorWrapper>
   );
 };

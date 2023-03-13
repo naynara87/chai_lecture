@@ -24,6 +24,7 @@
     "recoil": "*",
     "sass": "*",
     "typescript": "*",
+    "uuid": "*",
     "web-vitals": "*",
     "swiper": "*"
   },
