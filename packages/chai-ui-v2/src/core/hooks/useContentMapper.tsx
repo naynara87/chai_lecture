@@ -38,6 +38,8 @@ import {
   ActivityGuideCharacterContentData,
   TextBoxListContentData,
   WordsCarouselContentData,
+  AudioAndWordsCarouselContentData,
+  ToggleSentenceListContentData,
 } from "../types";
 import CharacterCardListComponent from "../../components/contents/CharacterCardListComponent";
 import SpeakingComponent from "../../components/contents/SpeakingComponent";
@@ -54,6 +56,8 @@ import CornerGuideCharacterComponent from "../../components/contents/CornerGuide
 import NotiCharacterListComponent from "../../components/contents/NotiCharacterListComponent";
 import TextBoxListComponent from "../../components/contents/TextBoxListComponent";
 import WordsCarouselComponent from "../../components/contents/WordsCarouselComponent";
+import AudioAndWordsCarouselComponent from "../../components/contents/AudioAndWordsCarouselComponent";
+import ToggleSentenceListComponent from "../../components/contents/ToggleSentenceListComponent";
 
 const useContentMapper = () => {
   const getContentComponent = (content: Content, contentIndex: number) => {
@@ -198,6 +202,18 @@ const useContentMapper = () => {
       wordsCarousel: (
         <WordsCarouselComponent
           contents={content as WordsCarouselContentData}
+          key={contentIndex}
+        />
+      ),
+      audioAndWordsCarousel: (
+        <AudioAndWordsCarouselComponent
+          contents={content as AudioAndWordsCarouselContentData}
+          key={contentIndex}
+        />
+      ),
+      toggleSentenceList: (
+        <ToggleSentenceListComponent
+          contents={content as ToggleSentenceListContentData}
           key={contentIndex}
         />
       ),

@@ -143,9 +143,11 @@ const TextBoxListComponent = ({
               onClick={() => {
                 handleAudioReset();
               }}
+              isMini={true}
             />
           ) : (
             <ComponentButtonPlay
+              isMini={true}
               onClick={() => {
                 if (content.audio) {
                   handleClickTextBoxAudio(contentIndex, content.audio.src);
