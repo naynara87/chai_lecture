@@ -9,6 +9,7 @@ type AudioType =
   | "dialogue"
   | "recorder"
   | "vocaNote"
+  | "textBox"
   | "solutionModal";
 
 const useGlobalAudio = () => {
@@ -62,6 +63,7 @@ const useGlobalAudio = () => {
   }, [setGlobalAudio, globalAudio]);
 
   const handleAudioReset = useCallback(() => {
+    console.log("handleAudioReset!");
     setGlobalAudio({
       id: -1,
       audioSrc: "",

@@ -6,7 +6,6 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { LayoutModalVoca } from "../modal";
 import ComponentButtonPlay from "../atoms/ComponentButtonPlay";
 import {
   TemplateConversationData,
@@ -40,13 +39,13 @@ const TemplateDialogue = ({
     | TemplateConversationToggleData
     | TemplateConversationRepeatData;
 
-  const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
   // Dialogue Toggle 상태
   const [isShowPronunciation, setIsShowPronunciation] = useState(false);
   const [isShowMeaning, setIsShowMeaning] = useState(false);
+  const [fullAudioList, setFullAudioList] = useState<string[]>([]);
+
   const fullAudioIndexRef = useRef(0);
   const fullAudioUuidRef = useRef(uuidv4());
-  const [fullAudioList, setFullAudioList] = useState<string[]>([]);
 
   const { getContentComponent } = useContentMapper();
   const {
@@ -83,7 +82,9 @@ const TemplateDialogue = ({
   }, [setFullAudio]);
 
   const audioEnded = useCallback(() => {
-    if (globalAudioId.toString().includes("fullAudio")) {
+    if (
+      globalAudioId.toString().includes(`fullAudio_${fullAudioUuidRef.current}`)
+    ) {
       fullAudioIndexRef.current += 1;
       if (!fullAudioList[fullAudioIndexRef.current]) {
         handleAudioReset();
@@ -117,7 +118,7 @@ const TemplateDialogue = ({
         globalAudioRefValue.removeEventListener("ended", audioEnded);
       }
     };
-  }, [globalAudioRef, audioEnded, globalAudioId]);
+  }, [globalAudioRef, audioEnded]);
 
   const handleStopFullAudio = useCallback(() => {
     handleAudioReset();
@@ -155,6 +156,7 @@ const TemplateDialogue = ({
                 ? isShowMeaning
                 : true
             }
+            fullAudioId={`fullAudio_${fullAudioUuidRef.current}`}
           />
         );
       }
@@ -204,10 +206,6 @@ const TemplateDialogue = ({
         {/* 230217 회화영역 */}
         {conversationContents}
       </div>
-      <LayoutModalVoca
-        isModalOpen={isModalVocaOpen}
-        setIsModalOpen={setIsModalVocaOpen}
-      />
     </DialogueContainer>
   );
 };

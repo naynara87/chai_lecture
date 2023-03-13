@@ -1,8 +1,6 @@
 import { Template01Data } from "chai-ui-v2";
 import React from "react";
-import useComponent from "../../hooks/useComponent";
 import useComponentContext from "../../hooks/useComponentContext";
-import usePage from "../../hooks/usePage";
 import {
   CreateEditMainWrap,
   CreateEditMain,
@@ -10,6 +8,7 @@ import {
 } from "../../styles/template";
 import { PageCommonProps } from "../../types/page";
 import DashBoxArea from "../atoms/DashBoxArea";
+import SpeakingCreator from "../contents/SpeakingCreator";
 import PageHeader from "../molecules/PageHeader";
 
 const CreateTemplate01 = ({
@@ -17,6 +16,8 @@ const CreateTemplate01 = ({
   addComponentMap,
   slideId,
   slides,
+  updateContent,
+  returnUseComponent,
   ...pageHeaderProps
 }: PageCommonProps) => {
   const {
@@ -29,9 +30,7 @@ const CreateTemplate01 = ({
     (slide) => slide.id === slideId,
   ) as Template01Data;
 
-  const { focusedId, setFocusedId, getComponent } = useComponent();
-
-  const { updateContent } = usePage();
+  const { focusedId, setFocusedId, getComponent } = returnUseComponent;
 
   const currentSlide = slides.find((slide) => slide.id === slideId)!;
 
@@ -53,7 +52,6 @@ const CreateTemplate01 = ({
                 toggleContextMenu={toggleContextMenu}
               />
             </CreateTemplateChoiceBtnWrap>
-            {/* TODO: 컴포넌트 리스트 렌더링 */}
             {thisSlide.contents.map((content) => {
               return getComponent({
                 currentSlide,
@@ -64,6 +62,7 @@ const CreateTemplate01 = ({
                 position: "contents",
               });
             })}
+            <SpeakingCreator />
           </DashBoxArea>
         </CreateEditMain>
       </CreateEditMainWrap>

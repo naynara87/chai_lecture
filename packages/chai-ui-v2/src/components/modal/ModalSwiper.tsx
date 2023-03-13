@@ -9,6 +9,7 @@ import IconPlayButton from "../atoms/Button/IconPlayButton";
 const Page = styled.div`
   background-color: white;
   color: black;
+  width: 100%;
 `;
 
 const SlideCard = styled.div`

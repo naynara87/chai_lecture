@@ -1,10 +1,9 @@
 import styled from "@emotion/styled";
-import { vw } from "chai-ui-v2";
 import IconX from "../../assets/images/icon/icon_x_white.svg";
 
 const Button = styled.span`
-  width: ${vw(16)};
-  height: ${vw(16)};
+  width: 16px;
+  height: 16px;
   background-color: rgba(0, 0, 0, 0.4);
   position: relative;
   border-radius: 50%;

@@ -2,15 +2,14 @@ import styled from "@emotion/styled";
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 import ImageIcon from "../../assets/images/icon/icon_image.svg";
 import UrlInputWrapper from "../molecules/UrlInputWrapper";
-import { vw, colorPalette } from "chai-ui-v2";
 
 const ImageListWrapper = styled.ul`
   display: flex;
-  gap: ${vw(60)};
+  gap: 60px;
   .caption-text {
-    margin-top: ${vw(20)};
-    color: ${colorPalette.gray800};
-    font-size: ${vw(10)};
+    margin-top: 20px;
+    color: #666666;
+    font-size: 10px;
     text-align: center;
   }
 `;
@@ -18,18 +17,18 @@ const ImageListWrapper = styled.ul`
 const ImageList = styled.li``;
 
 const ImageThumb = styled.div`
-  width: ${vw(200)};
-  height: ${vw(150)};
+  width: 200px;
+  height: 150px;
   background-color: #f0f0f0;
   position: relative;
-  margin-bottom: ${vw(10)};
-  border-radius: ${vw(10)};
+  margin-bottom: 10px;
+  border-radius: 10px;
   & > img {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: ${vw(60)};
+    width: 60px;
   }
 `;
 

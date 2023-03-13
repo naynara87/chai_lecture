@@ -1,11 +1,10 @@
 import styled from "@emotion/styled";
-import React, { useState } from "react";
+import React from "react";
 import { vh, vw } from "../../assets";
 import { ImgTemp01Component } from "../atoms";
 import ComponentButtonPlay from "../atoms/ComponentButtonPlay";
 import ComponentButtonRadiBorderMain from "../atoms/ComponentButtonRadiBorderMain";
 import ComponentButtonRadiFillMain from "../atoms/ComponentButtonRadiFillMain";
-import { LayoutModalVoca } from "../modal";
 import { ComponentContsInfo } from "../molecules";
 import QuizWordBlankAnswers from "../molecules/QuizWordBlankAnswers";
 import QuizWordBlankChoices from "../molecules/QuizWordBlankChoices";
@@ -37,8 +36,6 @@ const QuizContainer = styled.form`
 `;
 
 const TemplateQuizWordBlank = () => {
-  const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
-
   return (
     <div className="layout-panel-wrap grid-h-3-7">
       <div className="layout-panel side-panel">
@@ -62,10 +59,6 @@ const TemplateQuizWordBlank = () => {
           </div>
         </QuizContainer>
       </div>
-      <LayoutModalVoca
-        isModalOpen={isModalVocaOpen}
-        setIsModalOpen={setIsModalVocaOpen}
-      />
     </div>
   );
 };

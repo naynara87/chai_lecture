@@ -23,6 +23,8 @@ export type Content =
   | FinalSpeakingContentData
   | AudioContentData
   | CornerGuideCharacterContentData
+  | TextBoxListContentData
+  | WordsCarouselContentData
   | NotiCharacterListContentData;
 export type ContentType = Content["type"];
 

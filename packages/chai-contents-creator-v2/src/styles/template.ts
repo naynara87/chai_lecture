@@ -102,7 +102,6 @@ export const CreateTemplateChoiceBtnWrap = styled.div`
   top: 16px;
   margin-left: auto;
   text-align: right;
-  position: relative;
 
   .btn-comp-select {
     margin-bottom: 8px;
