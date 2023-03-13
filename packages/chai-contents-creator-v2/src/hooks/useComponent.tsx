@@ -1,6 +1,7 @@
 import { Content, ID } from "chai-ui-v2";
 import { useCallback, useEffect } from "react";
 import { useRecoilState } from "recoil";
+import IconTextCreator from "../components/contents/\bIconTextCreator";
 import TextCreator from "../components/contents/TextCreator";
 import DummyComponent from "../components/molecules/temp/DummyComponent";
 import { focusedIdState } from "../states/focusedIdState";
@@ -13,6 +14,7 @@ const useComponent = () => {
     const { content } = props;
     const componentMap: Partial<Record<Content["type"], JSX.Element>> = {
       text: <TextCreator key={content.id} {...props} />,
+      iconText: <IconTextCreator key={content.id} {...props} />,
     };
     return componentMap[content.type] ?? <DummyComponent />;
   }, []);
