@@ -1,7 +1,7 @@
 import { Content, ID } from "chai-ui-v2";
 import { useCallback, useEffect } from "react";
 import { useRecoilState } from "recoil";
-import IconTextCreator from "../components/contents/\bIconTextCreator";
+import IconTextCreator from "../components/contents/IconTextCreator";
 import TextCreator from "../components/contents/TextCreator";
 import DummyComponent from "../components/molecules/temp/DummyComponent";
 import { focusedIdState } from "../states/focusedIdState";
