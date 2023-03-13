@@ -17,6 +17,10 @@ const IconTextCreatorWrapper = styled.div`
   }
 `;
 
+/**
+ * 지시문 컴포넌트
+ * CH-01-02
+ */
 const IconTextCreator = ({
   content,
   setFocusedId,

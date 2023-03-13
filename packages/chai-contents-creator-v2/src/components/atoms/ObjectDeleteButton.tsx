@@ -7,6 +7,7 @@ const Button = styled.span`
   background-color: rgba(0, 0, 0, 0.4);
   position: relative;
   border-radius: 50%;
+  cursor: pointer;
 
   &:after {
     content: "";
@@ -22,8 +23,11 @@ const Button = styled.span`
   }
 `;
 
-const ObjectDeleteButton = () => {
-  return <Button className="btn-delete" />;
+interface ObjectDeleteButtonProps {
+  onClick?: () => void;
+}
+const ObjectDeleteButton = ({ onClick }: ObjectDeleteButtonProps) => {
+  return <Button onClick={onClick} className="btn-delete" />;
 };
 
 export default ObjectDeleteButton;
