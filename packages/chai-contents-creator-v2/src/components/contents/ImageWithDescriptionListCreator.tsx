@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 import ImageIcon from "../../assets/images/icon/icon_image.svg";
 import UrlInputWrapper from "../molecules/UrlInputWrapper";
-import { vw } from "chai-ui-v2";
 import AddNumberButton from "../atoms/AddNumberButton";
 import ObjectDeleteButton from "../atoms/ObjectDeleteButton";
 
@@ -14,13 +13,13 @@ const ImageListCreatorWrapper = styled.div`
 
 const ImageListWrapper = styled.ul`
   display: flex;
-  gap: ${vw(16)};
+  gap: 16px;
   flex-direction: column;
   .description-text {
-    font-size: ${vw(16)};
-    width: ${vw(280)};
-    margin-left: ${vw(60)};
-    margin-right: ${vw(16)};
+    font-size: 16px;
+    width: 280px;
+    margin-left: 60px;
+    margin-right: 16px;
   }
 `;
 
@@ -29,18 +28,18 @@ const ImageList = styled.li`
 `;
 
 const ImageThumb = styled.div`
-  width: ${vw(200)};
-  height: ${vw(150)};
+  width: 200px;
+  height: 150px;
   background-color: #f0f0f0;
   position: relative;
-  margin-bottom: ${vw(10)};
-  border-radius: ${vw(10)};
+  margin-bottom: 10px;
+  border-radius: 10px;
   & > img {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: ${vw(60)};
+    width: 60px;
   }
 `;
 

@@ -1,6 +1,4 @@
 import styled from "@emotion/styled";
-import React from "react";
-import { vw } from "chai-ui-v2";
 import AddNumberButton from "../atoms/AddNumberButton";
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 import ObjectDeleteButton from "../atoms/ObjectDeleteButton";
@@ -13,9 +11,7 @@ const NumberingTextCreatorWrapper = styled.div`
 const NumberingListWrapper = styled.ul`
   display: flex;
   flex-direction: column;
-  padding: ${vw(24)};
-  padding-top: unset;
-  padding-left: unset;
+  padding-bottom: 24px;
 `;
 
 const NumberingList = styled.li`
@@ -23,20 +19,20 @@ const NumberingList = styled.li`
   width: 100%;
   display: flex;
   &:not(:last-child) {
-    margin-bottom: ${vw(16)};
+    margin-bottom: 16px;
   }
   .number {
     position: relative;
     top: unset;
     left: unset;
-    margin-right: ${vw(16)};
+    margin-right: 16px;
   }
 `;
 
 const TextWrap = styled.div`
   display: flex;
   width: 100%;
-  gap: ${vw(16)};
+  gap: 16px;
   .text1 {
     /* TODO: key설명 - text2 에 글이 없으면 width: 100% */
     width: 50%;

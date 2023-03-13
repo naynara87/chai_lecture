@@ -1,12 +1,12 @@
 import styled from "@emotion/styled";
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
-import { vw, colorPalette } from "chai-ui-v2";
 
 const BorderTextBoxWrapper = styled.div`
-  border: 1px solid ${colorPalette.gray500};
+  border: 1px solid #666666;
   width: 100%;
-  border-radius: ${vw(20)};
-  padding: ${vw(45)} ${vw(60)};
+
+  border-radius: 20px;
+  padding: 45px 60px;
   text-align: left;
 `;
 
