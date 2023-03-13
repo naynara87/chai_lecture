@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { Template_H_3_7Data } from "chai-ui-v2";
 import useComponentContext from "../../hooks/useComponentContext";
 import {
   CreateEditMainWrap,
@@ -22,6 +23,9 @@ const CreateTemplateH37 = ({
   templateType,
   addComponentMap,
   slideId,
+  slides,
+  updateContent,
+  returnUseComponent,
   ...pageHeaderProps
 }: PageCommonProps) => {
   const {
@@ -36,9 +40,15 @@ const CreateTemplateH37 = ({
     toggleContextMenu: toggleContextMenuRight,
   } = useComponentContext();
 
+  const { focusedId, setFocusedId, getComponent } = returnUseComponent;
+
+  const thisSlide = slides.find(
+    (slide) => slide.id === slideId,
+  ) as Template_H_3_7Data;
+
   return (
     <>
-      <PageHeader slideId={slideId} {...pageHeaderProps} />
+      <PageHeader slideId={slideId} slides={slides} {...pageHeaderProps} />
       <CreateEditMainWrap37>
         <CreateEditMain>
           <DashBoxArea>
@@ -54,6 +64,16 @@ const CreateTemplateH37 = ({
                 toggleContextMenu={toggleContextMenu}
               />
             </CreateTemplateChoiceBtnWrap>
+            {thisSlide.leftContents.map((content) => {
+              return getComponent({
+                currentSlide: thisSlide,
+                content,
+                isFocused: focusedId === content.id,
+                setFocusedId,
+                updateContent,
+                position: "leftContents",
+              });
+            })}
           </DashBoxArea>
         </CreateEditMain>
         <CreateEditMain>
@@ -73,6 +93,16 @@ const CreateTemplateH37 = ({
                 toggleContextMenu={toggleContextMenuRight}
               />
             </CreateTemplateChoiceBtnWrap>
+            {thisSlide.rightContents.map((content) => {
+              return getComponent({
+                currentSlide: thisSlide,
+                content,
+                isFocused: focusedId === content.id,
+                setFocusedId,
+                updateContent,
+                position: "rightContents",
+              });
+            })}
           </DashBoxArea>
         </CreateEditMain>
       </CreateEditMainWrap37>

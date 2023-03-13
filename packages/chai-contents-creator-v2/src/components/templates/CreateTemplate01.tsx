@@ -32,8 +32,6 @@ const CreateTemplate01 = ({
 
   const { focusedId, setFocusedId, getComponent } = returnUseComponent;
 
-  const currentSlide = slides.find((slide) => slide.id === slideId)!;
-
   return (
     <>
       <PageHeader slideId={slideId} slides={slides} {...pageHeaderProps} />
@@ -54,7 +52,7 @@ const CreateTemplate01 = ({
             </CreateTemplateChoiceBtnWrap>
             {thisSlide.contents.map((content) => {
               return getComponent({
-                currentSlide,
+                currentSlide: thisSlide,
                 content,
                 isFocused: focusedId === content.id,
                 setFocusedId,
