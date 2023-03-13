@@ -64,7 +64,6 @@ const CreateTemplate01 = ({
               });
             })}
             <SpeakingCreator />
-            <CharacterCardListCreater />
           </DashBoxArea>
         </CreateEditMain>
       </CreateEditMainWrap>
