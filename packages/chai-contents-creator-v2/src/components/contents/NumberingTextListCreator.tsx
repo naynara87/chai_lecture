@@ -4,7 +4,7 @@ import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 import ObjectDeleteButton from "../atoms/ObjectDeleteButton";
 import { ContentCommonProps } from "../../types/page";
 import { NumberingTextListContentData } from "chai-ui-v2";
-import { useEffect } from "react";
+import React from "react";
 import { numberingTextDefaultData } from "../../data/appData";
 import TextEditorViewer from "../molecules/TextEditorViewer";
 
@@ -39,12 +39,10 @@ const TextWrap = styled.div`
   width: 100%;
   gap: 16px;
   .text1 {
-    /* TODO: key설명 - text2 에 글이 없으면 width: 100% */
     width: 50%;
   }
 
   .text2 {
-    /* TODO: key설명 - 글이 없으면 생성되지 않음 */
     width: 50%;
   }
 `;
@@ -66,12 +64,6 @@ const NumberingTextListCreator = ({
   position,
 }: ContentCommonProps) => {
   const thisContent = content as NumberingTextListContentData;
-  // TODO 에디터 연결
-  // 번호 삭제 기능 구현
-
-  useEffect(() => {
-    console.log("thisContent", thisContent);
-  }, [thisContent]);
 
   const updateNumberingTextData = (
     numberingTextData: NumberingTextListContentData["data"],
@@ -138,11 +130,11 @@ const NumberingTextListCreator = ({
 
   return (
     <ContentCreatorLayout>
-      <NumberingTextCreatorWrapper onClick={(e) => setFocusedId(e, content.id)}>
+      <NumberingTextCreatorWrapper>
         <AddNumberButton onClick={addNumberingTextItem}>
           번호 추가
         </AddNumberButton>
-        <NumberingListWrapper>
+        <NumberingListWrapper onClick={(e) => setFocusedId(e, content.id)}>
           {thisContent.data.map((item, index) => {
             return (
               <NumberingList key={index} className="numbering-list">

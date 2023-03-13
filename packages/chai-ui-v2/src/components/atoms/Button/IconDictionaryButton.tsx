@@ -1,8 +1,12 @@
 import React from "react";
 
-const IconDictionaryButton = () => {
+interface IconDictionaryButtonProps {
+  onClickBtn?: () => void;
+}
+
+const IconDictionaryButton = ({ onClickBtn }: IconDictionaryButtonProps) => {
   return (
-    <button className="btn-icon btn-dectionary">
+    <button className="btn-icon btn-dictionary" onClick={onClickBtn}>
       단어장켜기
     </button>
   );

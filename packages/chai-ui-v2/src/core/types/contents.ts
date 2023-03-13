@@ -24,6 +24,9 @@ export type Content =
   | AudioContentData
   | CornerGuideCharacterContentData
   | TextBoxListContentData
+  | WordsCarouselContentData
+  | AudioAndWordsCarouselContentData
+  | ToggleSentenceListContentData
   | NotiCharacterListContentData;
 export type ContentType = Content["type"];
 
@@ -329,9 +332,6 @@ export type WordsCarouselContentData = {
         src: string;
       };
     }[];
-    soundEffect?: {
-      src: string;
-    };
   };
   meta?: Meta;
 };

@@ -1,14 +1,11 @@
 import styled from "@emotion/styled";
-import React, { useState } from "react";
+import React from "react";
 import ComponentButtonPlay from "../atoms/ComponentButtonPlay";
-import { LayoutModalVoca } from "../modal";
 import { ComponentContsInfo } from "../molecules";
 
 const QuizContainer = styled.form``;
 
 const TemplateQuizWordChoice = () => {
-  const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
-
   return (
     <div className="layout-panel-wrap grid-h-3-7">
       <div className="layout-panel side-panel">
@@ -58,10 +55,6 @@ const TemplateQuizWordChoice = () => {
           </div>
         </QuizContainer>
       </div>
-      <LayoutModalVoca
-        isModalOpen={isModalVocaOpen}
-        setIsModalOpen={setIsModalVocaOpen}
-      />
     </div>
   );
 };

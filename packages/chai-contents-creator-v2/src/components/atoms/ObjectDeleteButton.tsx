@@ -1,10 +1,9 @@
 import styled from "@emotion/styled";
-import { vw } from "chai-ui-v2";
 import IconX from "../../assets/images/icon/icon_x_white.svg";
 
 const Button = styled.span`
-  width: ${vw(16)};
-  height: ${vw(16)};
+  width: 20px;
+  height: 20px;
   background-color: rgba(0, 0, 0, 0.4);
   position: relative;
   border-radius: 50%;
@@ -28,7 +27,7 @@ interface ObjectDeleteButtonProps {
   onClick?: () => void;
 }
 const ObjectDeleteButton = ({ onClick }: ObjectDeleteButtonProps) => {
-  return <Button onClick={onClick} />;
+  return <Button onClick={onClick} className="btn-delete" />;
 };
 
 export default ObjectDeleteButton;

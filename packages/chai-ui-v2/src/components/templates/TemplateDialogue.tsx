@@ -6,7 +6,6 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { LayoutModalVoca } from "../modal";
 import ComponentButtonPlay from "../atoms/ComponentButtonPlay";
 import {
   TemplateConversationData,
@@ -40,7 +39,6 @@ const TemplateDialogue = ({
     | TemplateConversationToggleData
     | TemplateConversationRepeatData;
 
-  const [isModalVocaOpen, setIsModalVocaOpen] = useState(false);
   // Dialogue Toggle 상태
   const [isShowPronunciation, setIsShowPronunciation] = useState(false);
   const [isShowMeaning, setIsShowMeaning] = useState(false);
@@ -208,10 +206,6 @@ const TemplateDialogue = ({
         {/* 230217 회화영역 */}
         {conversationContents}
       </div>
-      <LayoutModalVoca
-        isModalOpen={isModalVocaOpen}
-        setIsModalOpen={setIsModalVocaOpen}
-      />
     </DialogueContainer>
   );
 };

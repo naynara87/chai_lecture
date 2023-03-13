@@ -36,13 +36,15 @@ const CharacterCardComponent = ({
       <div className="white-wrap">
         <p className="text">{characterCard.description}</p>
         {characterCard.modalContents && (
-          <ComponentButtonRadiFillMain
-            text="학습 요약"
-            onClickBtn={() => {
-              handleClickSummaryBtn(characterCard.modalContents);
-              setIsOpen(true);
-            }}
-          />
+          <div className="btns-wrap">
+            <ComponentButtonRadiFillMain
+              text="학습 요약"
+              onClickBtn={() => {
+                handleClickSummaryBtn(characterCard.modalContents);
+                setIsOpen(true);
+              }}
+            />
+          </div>
         )}
       </div>
     </li>

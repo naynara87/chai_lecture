@@ -1,32 +1,36 @@
 import styled from "@emotion/styled";
 import AddNumberButton from "../atoms/AddNumberButton";
-import { vw } from "chai-ui-v2";
 
 interface ButtonProps {
   typeText: React.ReactNode;
 }
 
 const VideoTextWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
+  margin-top: 10px;
 
   & .video-text-tit {
-    font-size: ${vw(12)};
-    margin-bottom: ${vw(5)};
+    margin-bottom: 5px;
   }
+
   & input {
-    width: ${vw(140)};
-    height: ${vw(44)};
-    padding: ${vw(12)} ${vw(13)};
+    width: calc(100% - 100px);
+    height: 44px;
+    margin-right: 10px;
+    padding: 12px 13px;
     box-sizing: border-box;
-    margin-right: ${vw(4)};
-    border-radius: ${vw(8)};
-    font-size: ${vw(12)};
+    border-radius: 8px;
+    font-size: 14px;
+    border: 1px solid #b6b6b6;
+    &::placeholder {
+      color: #b6b6b6;
+    }
   }
+
   & button {
-    width: ${vw(60)};
-    height: ${vw(44)};
+    width: 80px;
+    height: 44px;
     padding: unset;
+    font-size: 15px;
   }
 `;
 

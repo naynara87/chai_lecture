@@ -1032,6 +1032,102 @@ export const v2CornerDataList: CornerData[] = [
           ],
         },
       },
+      {
+        id: 13,
+        name: "단어",
+        type: "SinglePage",
+        data: {
+          id: uuidV4(),
+          type: "Template01",
+          contents: [
+            {
+              id: uuidV4(),
+              type: "wordsCarousel",
+              data: {
+                words: [
+                  {
+                    word: "테스트 텍스트",
+                    audio: {
+                      src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+                    },
+                  },
+                  {
+                    word: "테스트 텍스트",
+                    audio: {
+                      src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
+                    },
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      },
+      {
+        id: 14,
+        name: "단어",
+        type: "SinglePage",
+        data: {
+          id: uuidV4(),
+          type: "Template01",
+          contents: [
+            {
+              id: uuidV4(),
+              type: "audioAndWordsCarousel",
+              data: {
+                audio: {
+                  src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+                },
+                wordCarouselContents: {
+                  words: [
+                    {
+                      word: "테스트 텍스트",
+                      audio: {
+                        src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+                      },
+                    },
+                    {
+                      word: "테스트 텍스트",
+                      audio: {
+                        src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
+                      },
+                    },
+                  ],
+                },
+              },
+            },
+          ],
+        },
+      },
+      {
+        id: 15,
+        name: "단어",
+        type: "SinglePage",
+        data: {
+          id: uuidV4(),
+          type: "Template01",
+          contents: [
+            {
+              id: uuidV4(),
+              type: "toggleSentenceList",
+              data: [
+                {
+                  text: "11月11日是光棍节，光棍有单身的意思，所以这天是庆祝自己单身生活的娱乐性节日。",
+                  pronunciation:
+                    "Shíyī yuè shíyī rì shì Guānggùnjié, guānggùn yǒu dānshēn de yìsi, suǒyǐ zhè tiān shì qìngzhù zìjǐ dānshēn shēnghuó de yúlèxìng jiérì.",
+                  meaning: "안녕",
+                },
+                {
+                  text: "但是，现在更多的人把这天叫“双十一”，是中国网络购物节。",
+                  pronunciation:
+                    "Dànshì, xiànzài gèng duō de rén bǎ zhè tiān jiào 'Shuāng shíyī',",
+                  meaning: "그래",
+                },
+              ],
+            },
+          ],
+        },
+      },
     ],
   },
   {
