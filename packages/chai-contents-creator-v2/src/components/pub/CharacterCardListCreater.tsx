@@ -3,7 +3,7 @@ import { colorPalette, ComponentButtonRadiFillMain, vh, vw } from "chai-ui-v2";
 import React from "react";
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 import ChaProfile01 from "../../assets/images/img/cha_profile01.png";
-import ChaEmpty from "../../assets/images/icon/icon_cha_empty_white.svg";
+import IconPlus from "../../assets/images/icon/icon_plus_white.svg";
 import ObjectDeleteButton from "../atoms/ObjectDeleteButton";
 
 const TraningWrapper = styled.div`
@@ -39,7 +39,7 @@ const TraningWrapper = styled.div`
 			background-size: 65%;
 			background-repeat: no-repeat;
 			background-position: center center;
-			background-image: url(${ChaEmpty});
+			background-image: url(${IconPlus});
 		}
 `;
 
