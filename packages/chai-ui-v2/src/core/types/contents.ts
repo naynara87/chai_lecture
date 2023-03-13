@@ -26,6 +26,7 @@ export type Content =
   | TextBoxListContentData
   | WordsCarouselContentData
   | AudioAndWordsCarouselContentData
+  | ToggleSentenceListContentData
   | NotiCharacterListContentData;
 export type ContentType = Content["type"];
 
