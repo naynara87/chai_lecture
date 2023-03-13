@@ -1,15 +1,13 @@
 import styled from "@emotion/styled";
-import { HtmlContentComponent, TextContentData } from "chai-ui-v2";
+import { TextContentData } from "chai-ui-v2";
 import React, { useState } from "react";
 import { ContentCommonProps } from "../../types/page";
-import TextEditor from "../atoms/TextEditor";
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
+import TextEditorViewer from "../molecules/TextEditorViewer";
 
 const TextCreatorWrapper = styled.div`
   min-width: 240px;
 `;
-
-const TextViewer = styled.div``;
 
 /**
  * 텍스트 컴포넌트
@@ -47,21 +45,12 @@ const TextCreator = ({
   return (
     <ContentCreatorLayout>
       <TextCreatorWrapper onClick={handleClickComponent}>
-        {!isFocused ? (
-          <TextViewer>
-            {text ? (
-              <HtmlContentComponent html={text} />
-            ) : (
-              "텍스트를 입력해주세요"
-            )}
-          </TextViewer>
-        ) : (
-          <TextEditor
-            text={text}
-            setText={setText}
-            onBlur={handleEndEditText}
-          />
-        )}
+        <TextEditorViewer
+          text={text}
+          setText={setText}
+          isFocused={isFocused}
+          handleSubmitTextOnBlur={handleEndEditText}
+        />
       </TextCreatorWrapper>
     </ContentCreatorLayout>
   );

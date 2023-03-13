@@ -6,6 +6,7 @@ import { ContentCommonProps } from "../../types/page";
 import { NumberingTextListContentData } from "chai-ui-v2";
 import { useEffect } from "react";
 import { numberingTextDefaultData } from "../../data/appData";
+import TextEditorViewer from "../molecules/TextEditorViewer";
 
 const NumberingTextCreatorWrapper = styled.div`
   display: flex;
@@ -100,6 +101,19 @@ const NumberingTextListCreator = ({
     updateNumberingTextData(addedNewData);
   };
 
+  /**
+   * 현재 선택 영역 텍스트 가져오기
+   */
+  const getText = (
+    rowIndex: number,
+    columnIndex: "firstText" | "secondText",
+  ) => {
+    return thisContent.data[rowIndex][columnIndex] ?? "";
+  };
+
+  /**
+   * 현재 선택 영역 텍스트 업데이트
+   */
   const setText = (
     rowIndex: number,
     columnIndex: "firstText" | "secondText",
@@ -117,15 +131,6 @@ const NumberingTextListCreator = ({
     updateNumberingTextData(updatedData);
   };
 
-  const handleSubmitTextOnBlur = () => {
-    updateContent(
-      currentSlide.id,
-      content.id,
-      position,
-      getCurrentContent(thisContent.data),
-    );
-  };
-
   const deleteCurrentNumberingTextItem = (index: number) => {
     const updatedData = thisContent.data.filter((_, i) => i !== index);
     updateNumberingTextData(updatedData);
@@ -133,7 +138,7 @@ const NumberingTextListCreator = ({
 
   return (
     <ContentCreatorLayout>
-      <NumberingTextCreatorWrapper>
+      <NumberingTextCreatorWrapper onClick={(e) => setFocusedId(e, content.id)}>
         <AddNumberButton onClick={addNumberingTextItem}>
           번호 추가
         </AddNumberButton>
@@ -144,23 +149,17 @@ const NumberingTextListCreator = ({
                 <span className="number">{index + 1}</span>
                 <TextWrap>
                   <div className="text1">
-                    <input
-                      type="text"
-                      value={item.firstText}
-                      onChange={(e) =>
-                        setText(index, "firstText", e.target.value)
-                      }
-                      onBlur={() => handleSubmitTextOnBlur()}
+                    <TextEditorViewer
+                      isFocused={isFocused}
+                      setText={(text) => setText(index, "firstText", text)}
+                      text={getText(index, "firstText")}
                     />
                   </div>
                   <div className="text2">
-                    <input
-                      type="text"
-                      value={item.secondText}
-                      onChange={(e) =>
-                        setText(index, "secondText", e.target.value)
-                      }
-                      onBlur={() => handleSubmitTextOnBlur()}
+                    <TextEditorViewer
+                      isFocused={isFocused}
+                      setText={(text) => setText(index, "secondText", text)}
+                      text={getText(index, "secondText")}
                     />
                   </div>
                 </TextWrap>
