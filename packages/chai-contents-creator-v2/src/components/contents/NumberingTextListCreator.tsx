@@ -44,6 +44,10 @@ const TextWrap = styled.div`
   }
 `;
 
+/**
+ * 번호 매기기
+ * CH-01-03
+ */
 const NumberingTextListCreator = () => {
   return (
     <ContentCreatorLayout>

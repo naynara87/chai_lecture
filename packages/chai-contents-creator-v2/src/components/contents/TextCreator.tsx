@@ -11,6 +11,10 @@ const TextCreatorWrapper = styled.div`
 
 const TextViewer = styled.div``;
 
+/**
+ * 텍스트 컴포넌트
+ * CH-01-01
+ */
 const TextCreator = ({
   content,
   setFocusedId,
