@@ -9,6 +9,7 @@ import {
 import TemplateExam from "../../components/templates/TemplateExam";
 import TemplateQuizDialogueWordArray from "../../components/templates/TemplateQuizDialogueWordArray";
 import TemplateQuizSpeaking from "../../components/templates/TemplateQuizSpeaking";
+import TemplateWordCard from "../../components/templates/TemplateWordCard";
 import {
   AllTemplateData,
   Template01Data,
@@ -18,6 +19,7 @@ import {
   TemplateQuizSentencesInOrderData,
   TemplateQuizSpeakingData,
   TemplateQuizWordsInOrderData,
+  TemplateWordCardData,
 } from "../types";
 import { TemplateType } from "../types/appData";
 
@@ -81,6 +83,12 @@ const useTemplateMapper = ({ setPageCompleted }: UseTemplateMapperProps) => {
         TemplateQuizSpeaking: (
           <TemplateQuizSpeaking
             template={template as TemplateQuizSpeakingData}
+            setPageCompleted={setPageCompleted}
+          />
+        ),
+        TemplateWordCard: (
+          <TemplateWordCard
+            template={template as TemplateWordCardData}
             setPageCompleted={setPageCompleted}
           />
         ),

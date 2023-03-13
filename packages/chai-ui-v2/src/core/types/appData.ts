@@ -1,9 +1,4 @@
-import {
-  AllTemplateData,
-  ConversationTemplateData,
-  QuizTemplateData,
-  TemplateData,
-} from "./templates";
+import { AllTemplateData } from "./templates";
 
 export type ID = string | number;
 
@@ -108,7 +103,7 @@ export interface PageProps {
  */
 export interface TemplateProps {
   setPageCompleted: () => void;
-  template: TemplateData | ConversationTemplateData | QuizTemplateData;
+  template: AllTemplateData;
 }
 
 export type characterType =

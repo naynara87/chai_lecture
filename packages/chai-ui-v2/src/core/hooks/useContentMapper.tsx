@@ -36,6 +36,7 @@ import {
   CornerGuideCharacterContentData,
   NotiCharacterListContentData,
   ActivityGuideCharacterContentData,
+  TextBoxListContentData,
 } from "../types";
 import CharacterCardListComponent from "../../components/contents/CharacterCardListComponent";
 import SpeakingComponent from "../../components/contents/SpeakingComponent";
@@ -50,6 +51,7 @@ import MultiChoiceComponent from "../../components/contents/MultiChoiceComponent
 import AudioComponent from "../../components/contents/AudioComponent";
 import CornerGuideCharacterComponent from "../../components/contents/CornerGuideCharacterComponent";
 import NotiCharacterListComponent from "../../components/contents/NotiCharacterListComponent";
+import TextBoxListComponent from "../../components/contents/TextBoxListComponent";
 
 const useContentMapper = () => {
   const getContentComponent = (content: Content, contentIndex: number) => {
@@ -182,6 +184,12 @@ const useContentMapper = () => {
       notiCharacterList: (
         <NotiCharacterListComponent
           contents={content as NotiCharacterListContentData}
+          key={contentIndex}
+        />
+      ),
+      textBoxList: (
+        <TextBoxListComponent
+          contents={content as TextBoxListContentData}
           key={contentIndex}
         />
       ),
