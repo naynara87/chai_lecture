@@ -10,8 +10,7 @@ import {
 } from "../../styles/template";
 import { PageCommonProps } from "../../types/page";
 import DashBoxArea from "../atoms/DashBoxArea";
-import ImageWithDescriptionListCreator from "../contents/ImageWithDescriptionListCreator";
-import NumberingTextListCreator from "../contents/NumberingTextListCreator";
+import AudioCreator from "../contents/AudioCreator";
 import PageHeader from "../molecules/PageHeader";
 
 const CreateTemplate01 = ({
@@ -66,8 +65,7 @@ const CreateTemplate01 = ({
                 position: "contents",
               });
             })}
-            <ImageWithDescriptionListCreator />
-            <NumberingTextListCreator />
+            <AudioCreator />
           </DashBoxArea>
         </CreateEditMain>
       </CreateEditMainWrap>
