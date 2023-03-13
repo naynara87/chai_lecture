@@ -12,7 +12,7 @@ const ComponentToggle = ({
     <div className="toggles-wrapper">
       {/* TODO: key설명 - 여러개가 들어가면 inp-toggle-wrap 이 반복되서 들어감 */}
       <div className="inp-toggle-wrap">
-        <span className="toggle-name">{"한어병음"}</span>
+        <span className="toggle-name">한어병음</span>
         <input
           type="checkbox"
           name="input1"
@@ -29,7 +29,7 @@ const ComponentToggle = ({
       </div>
 
       <div className="inp-toggle-wrap">
-        <span className="toggle-name">{"해석"}</span>
+        <span className="toggle-name">해석</span>
         <input
           type="checkbox"
           name="input2"
