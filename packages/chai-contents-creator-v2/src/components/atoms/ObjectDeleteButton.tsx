@@ -2,8 +2,8 @@ import styled from "@emotion/styled";
 import IconX from "../../assets/images/icon/icon_x_white.svg";
 
 const Button = styled.span`
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   background-color: rgba(0, 0, 0, 0.4);
   position: relative;
   border-radius: 50%;
@@ -23,7 +23,7 @@ const Button = styled.span`
 `;
 
 const ObjectDeleteButton = () => {
-  return <Button />;
+  return <Button className="btn-delete" />;
 };
 
 export default ObjectDeleteButton;
