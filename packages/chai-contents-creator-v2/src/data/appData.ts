@@ -156,6 +156,11 @@ export const contentComponentsNameMap: Partial<Record<ContentType, string>> = {
   numberingTextList: "번호 매기기",
 };
 
+export const numberingTextDefaultData = Object.freeze({
+  firstText: "",
+  secondText: "",
+});
+
 /**
  * 컴포넌트 초기값
  * NOTE: 함수로 사용하지 않으면 uuid가 같은 값으로 생성됨
@@ -180,12 +185,7 @@ export const getContentComponentsDefaultValue = (): Partial<
   numberingTextList: {
     id: uuidV4(),
     type: "numberingTextList",
-    data: [
-      {
-        firstText: "",
-        secondText: "",
-      },
-    ],
+    data: [numberingTextDefaultData],
   },
 });
 
