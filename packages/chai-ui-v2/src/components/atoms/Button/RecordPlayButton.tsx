@@ -3,16 +3,18 @@ import IconPlayButton from "./IconPlayButton";
 
 interface RecordPlayButtonProps {
   onClickBtn?: () => void;
+  recordTime?: number;
 }
 
-const RecordPlayButton = ({ onClickBtn }: RecordPlayButtonProps) => {
+const RecordPlayButton = ({
+  onClickBtn,
+  recordTime,
+}: RecordPlayButtonProps) => {
   return (
     <>
-      <div className="record-btn-flex-wrap">
-        <IconPlayButton active={true} onClickBtn={onClickBtn} />
-        {/* <ComponentProgress progressDuration={3} /> */}
-        <p className="txt">{"0:44"}</p>
-      </div>
+      <IconPlayButton active={true} onClickBtn={onClickBtn} />
+      {/* <ComponentProgress progressDuration={3} /> */}
+      <p className="txt">{`00:${recordTime?.toString().padStart(2, "0")}`}</p>
     </>
   );
 };

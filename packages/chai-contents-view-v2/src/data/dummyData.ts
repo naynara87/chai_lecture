@@ -1128,6 +1128,149 @@ export const v2CornerDataList: CornerData[] = [
           ],
         },
       },
+      {
+        id: 16,
+        name: "단어",
+        type: "SinglePage",
+        data: {
+          id: uuidV4(),
+          type: "TemplateRolePlaying",
+          iconText: {
+            id: uuidV4(),
+            type: "iconText",
+            data: {
+              text: "회화 속 주인공이 되어 말하기 연습을 해보세요.",
+            },
+          },
+          guideContent: {
+            id: uuidV4(),
+            type: "activityGuideCharacter",
+            data: {
+              character: {
+                src: "",
+              },
+              text: "지난 시간엔 계절에 대한 회화를 학습했어요. 다음 대화를 잘 보고 빈 칸에 들어갈 알맞은 단어를 고르세요.",
+            },
+          },
+          rolePlayingContents: {
+            id: uuidV4(),
+            type: "roleplaying",
+            data: [
+              {
+                id: 0,
+                character: {
+                  name: "김민호",
+                  src: "",
+                },
+                audio: {
+                  src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+                },
+                text: "你好，你是张明吗？",
+                pronunciation: "Nî hâo, nî shì Zhãng Míng ma?",
+                meaning: "안녕",
+                position: "left",
+              },
+              {
+                id: 0,
+                character: {
+                  name: "김민호",
+                  src: "",
+                },
+                audio: {
+                  src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
+                },
+                text: "没想到在路上遇见你。",
+                pronunciation: "Méi xiângdào zài lùshang yùjiàn nî.",
+                meaning: "반가워",
+                position: "left",
+              },
+              {
+                id: 1,
+                character: {
+                  name: "장밍",
+                  src: "",
+                },
+                audio: {
+                  src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+                },
+                text: "중국어중국어",
+                pronunciation: "Méi cuò, hâojiû bújiàn!",
+                meaning: "맞아, 오랜만이야!",
+                position: "right",
+              },
+              {
+                id: 1,
+                character: {
+                  name: "장밍",
+                  src: "",
+                },
+                audio: {
+                  src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
+                },
+                text: "중국어중국어",
+                pronunciation: "Méi cuò, hâojiû bújiàn!",
+                meaning: "너는 예전과 같이 멋있구나, 조금도 변하지 않았어.",
+                position: "right",
+              },
+              {
+                id: 2,
+                character: {
+                  name: "민호 엄마",
+                  src: "",
+                },
+                audio: {
+                  src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+                },
+                text: "你好！见到你很高兴！",
+                pronunciation: "Nî hâo! Jiàndào nî hên gãoxìng!",
+                meaning: "한국어한국어",
+                position: "left",
+              },
+            ],
+          },
+        },
+      },
+      {
+        id: 17,
+        name: "단어",
+        type: "SinglePage",
+        data: {
+          id: uuidV4(),
+          type: "TemplateQuizSpeaking",
+          leftContents: [
+            {
+              id: uuidV4(),
+              type: "activityGuideCharacter",
+              data: {
+                character: {
+                  src: "",
+                },
+                text: "지난 시간엔 계절에 대한 회화를 학습했어요. 다음 대화를 잘 보고 빈 칸에 들어갈 알맞은 단어를 고르세요.",
+              },
+            },
+          ],
+          rightContents: {
+            id: uuidV4(),
+            type: "finalSpeaking",
+            data: {
+              answerModel: {
+                text: "테",
+                pronunciation: "스",
+                meaning: "트",
+              },
+              exampleContents: [
+                {
+                  id: uuidV4(),
+                  type: "text",
+                  data: {
+                    text: "테스트",
+                  },
+                },
+              ],
+            },
+          },
+        },
+      },
     ],
   },
   {
