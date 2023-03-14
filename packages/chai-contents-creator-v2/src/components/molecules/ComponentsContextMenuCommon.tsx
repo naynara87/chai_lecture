@@ -50,7 +50,6 @@ const ComponentsContextMenuCommon = ({
               <NavList>
                 {contentTypes.map((contentType) => {
                   return (
-                    // TODO : onClick -> 현재 템플릿 데이터에 컴포넌트 추가
                     <li
                       className="nav-li"
                       key={contentType}
