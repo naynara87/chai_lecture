@@ -57,6 +57,7 @@ export const CreateTemplateNavWrap = styled.div`
   background-color: ${colorPalette.white};
   display: none;
   transition: all 0.2s;
+  z-index: 10;
 
   .nav-tit {
     font-size: 12px;
@@ -102,6 +103,7 @@ export const CreateTemplateChoiceBtnWrap = styled.div`
   top: 16px;
   margin-left: auto;
   text-align: right;
+  z-index: 10;
 
   .btn-comp-select {
     margin-bottom: 8px;
@@ -119,7 +121,7 @@ export const CreateEditMain = styled.div`
   padding: 24px;
   box-sizing: border-box;
   background-color: white;
-  height: 502px;
+  min-height: 502px;
   border-radius: 20px;
   box-shadow: 0px 4px 19px rgba(145, 145, 145, 0.2);
   width: 100%;

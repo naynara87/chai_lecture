@@ -14,10 +14,11 @@ const AddButton = styled.button`
 
 interface ButtonProps {
   children: React.ReactNode;
+  onClick?: () => void;
 }
 
-const AddNumberButton = ({ children }: ButtonProps) => {
-  return <AddButton>{children}</AddButton>;
+const AddNumberButton = ({ children, onClick }: ButtonProps) => {
+  return <AddButton onClick={onClick}>{children}</AddButton>;
 };
 
 export default AddNumberButton;

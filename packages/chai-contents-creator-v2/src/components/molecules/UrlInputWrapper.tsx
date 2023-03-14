@@ -6,30 +6,31 @@ interface ButtonProps {
 }
 
 const VideoTextWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
+  margin-top: 10px;
 
   & .video-text-tit {
-    font-size: 12px;
     margin-bottom: 5px;
   }
+
   & input {
-    width: 140px;
+    width: calc(100% - 100px);
     height: 44px;
+    margin-right: 10px;
     padding: 12px 13px;
     box-sizing: border-box;
-    margin-right: 4px;
     border-radius: 8px;
-    font-size: 12px;
+    font-size: 14px;
     border: 1px solid #b6b6b6;
     &::placeholder {
       color: #b6b6b6;
     }
   }
+
   & button {
-    width: 60px;
+    width: 80px;
     height: 44px;
     padding: unset;
+    font-size: 15px;
   }
 `;
 
