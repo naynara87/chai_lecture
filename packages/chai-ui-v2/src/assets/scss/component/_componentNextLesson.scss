@@ -19,7 +19,7 @@
 	}
 
 	.img-wrap {
-		@include circle(vw(200));
+		@include square(vw(200));
 
 		overflow: hidden;
 		margin: vh(60) auto 0;

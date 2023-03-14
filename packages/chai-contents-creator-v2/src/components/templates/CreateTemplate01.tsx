@@ -8,8 +8,8 @@ import {
 } from "../../styles/template";
 import { PageCommonProps } from "../../types/page";
 import DashBoxArea from "../atoms/DashBoxArea";
-import CornerGuideCharacterCreator from "../contents/CornerGuideCharacterCreator";
 import PageHeader from "../molecules/PageHeader";
+import NotiCharacterListCreate from "../pub/NotiCharacterListCreate";
 
 const CreateTemplate01 = ({
   templateType,
@@ -62,7 +62,7 @@ const CreateTemplate01 = ({
                 position: "contents",
               });
             })}
-            <CornerGuideCharacterCreator />
+            <NotiCharacterListCreate />
           </DashBoxArea>
         </CreateEditMain>
       </CreateEditMainWrap>
