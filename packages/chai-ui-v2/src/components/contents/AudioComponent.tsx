@@ -20,7 +20,7 @@ const AudioComponent = ({ contents }: AudioComponentProps) => {
   } = useGlobalAudio();
 
   const resetAudio = useCallback(() => {
-    if (globalAudioId.toString().includes("audio")) {
+    if (globalAudioId.toString().includes(`audio_${audioUuidRef.current}`)) {
       handleAudioReset();
     }
   }, [globalAudioId, handleAudioReset]);

@@ -5,15 +5,16 @@ interface ButtonProps {
   typeText: React.ReactNode;
 }
 
-const VideoTextWrapper = styled.div`
+const UrlTextWrapper = styled.div`
   margin-top: 10px;
 
-  & .video-text-tit {
+  & .text-tit {
     margin-bottom: 5px;
   }
 
   & input {
     width: calc(100% - 100px);
+    max-width: 400px;
     height: 44px;
     margin-right: 10px;
     padding: 12px 13px;
@@ -36,13 +37,13 @@ const VideoTextWrapper = styled.div`
 
 const UrlInputWrapper = ({ typeText }: ButtonProps) => {
   return (
-    <VideoTextWrapper>
-      <p className="video-text-tit">{typeText} URL</p>
+    <UrlTextWrapper className="url-wrapper">
+      <p className="text-tit">{typeText} URL</p>
       <form>
         <input placeholder={`${typeText} URL 입력`}></input>
         <AddNumberButton>등록</AddNumberButton>
       </form>
-    </VideoTextWrapper>
+    </UrlTextWrapper>
   );
 };
 
