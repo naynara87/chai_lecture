@@ -1,5 +1,5 @@
-import { PageProps, SinglePage, useTemplateMapper } from "chai-ui-v2";
 import React from "react";
+import { PageProps, SinglePage, useTemplateMapper } from "../../core";
 
 interface LayoutSinglePageProps extends PageProps {}
 const LayoutSinglePage = ({

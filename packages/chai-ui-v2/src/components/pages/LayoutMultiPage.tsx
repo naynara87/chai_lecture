@@ -1,16 +1,17 @@
 import styled from "@emotion/styled";
-import {
-  MultiPage,
-  PageProps,
-  useGlobalAudio,
-  useTemplateMapper,
-} from "chai-ui-v2";
+
 import React, { useMemo } from "react";
 import { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import {
+  MultiPage,
+  PageProps,
+  useGlobalAudio,
+  useTemplateMapper,
+} from "../../core";
 
 const SwiperWrapper = styled.div`
   position: relative;
