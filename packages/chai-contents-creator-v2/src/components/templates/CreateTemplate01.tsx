@@ -1,5 +1,5 @@
 import { Template01Data } from "chai-ui-v2";
-import React from "react";
+import React, { useState } from "react";
 import useComponentContext from "../../hooks/useComponentContext";
 import {
   CreateEditMainWrap,
@@ -9,7 +9,7 @@ import {
 import { PageCommonProps } from "../../types/page";
 import DashBoxArea from "../atoms/DashBoxArea";
 import ActivityGuideCharacterCreator from "../contents/ActivityGuideCharacterCreator";
-import CornerGuideCharacterCreator from "../contents/CornerGuideCharacterCreator";
+import ModalIntroduction from "../molecules/modal/ModalIntroduction";
 import PageHeader from "../molecules/PageHeader";
 
 const CreateTemplate01 = ({
@@ -34,6 +34,8 @@ const CreateTemplate01 = ({
   const { focusedId, setFocusedId, getComponent } = returnUseComponent;
 
   const currentSlide = slides.find((slide) => slide.id === slideId)!;
+
+  const [isModalLayoutChangeOpen, setIsModalLayoutChangeOpen] = useState(true);
 
   return (
     <>
@@ -64,6 +66,10 @@ const CreateTemplate01 = ({
               });
             })}
             <ActivityGuideCharacterCreator />
+            <ModalIntroduction
+              isModalOpen={isModalLayoutChangeOpen}
+              setIsModalOpen={setIsModalLayoutChangeOpen}
+            />
           </DashBoxArea>
         </CreateEditMain>
       </CreateEditMainWrap>

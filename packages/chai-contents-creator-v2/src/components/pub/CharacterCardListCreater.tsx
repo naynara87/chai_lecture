@@ -63,11 +63,11 @@ const CharacterCardListCreater = () => {
 								<div className="gradi-conts-wrap">
 									<div className="img-wrap">
 									</div>
-									<p className="title">텍스트에디터 들어옵니다</p>
+									<p className="title">텍스트를 입력해주세요</p>
 								</div>
 							</div>
 							<div className="white-wrap">
-								<p className="text">텍스트에디터 들어옵니다</p>
+								<p className="text">텍스트를 입력해주세요</p>
 								<div className="btns-wrap">
 									<ComponentButtonRadiFillMain text="학습 요약" />
 								</div>
@@ -84,11 +84,11 @@ const CharacterCardListCreater = () => {
 									<div className="img-wrap">
 										<img src={ChaProfile01} alt="" className="img" />
 									</div>
-									<p className="title">텍스트에디터 들어옵니다</p>
+									<p className="title">텍스트를 입력해주세요</p>
 								</div>
 							</div>
 							<div className="white-wrap">
-								<p className="text">텍스트에디터 들어옵니다</p>
+								<p className="text">텍스트를 입력해주세요</p>
 								<div className="btns-wrap">
 									<ComponentButtonRadiFillMain text="학습 요약" />
 								</div>
