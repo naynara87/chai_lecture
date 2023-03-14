@@ -1,12 +1,14 @@
 import React, { useEffect, useMemo, useState } from "react";
 import LayoutFooter from "../molecules/LayoutFooter";
 import LayoutHeader from "../molecules/LayoutHeader";
-import LayoutSinglePage from "../molecules/LayoutSinglePage";
 import { useNavigate, useParams } from "react-router-dom";
 import { getPageUrl } from "../../util/url";
 import { useRecoilState } from "recoil";
-import { LayoutModalIntroduction } from "chai-ui-v2";
-import LayoutMultiPage from "../molecules/LayoutMultiPage";
+import {
+  LayoutModalIntroduction,
+  LayoutSinglePage,
+  LayoutMultiPage,
+} from "chai-ui-v2";
 import useCorner from "../../hooks/useCorner";
 import useInitialData from "../../hooks/useInitialData";
 import { completeCornersState } from "../../state/completeCornersState";
