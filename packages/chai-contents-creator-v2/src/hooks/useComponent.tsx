@@ -2,6 +2,7 @@ import { Content, ID } from "chai-ui-v2";
 import { useCallback, useEffect } from "react";
 import { Draggable } from "react-beautiful-dnd";
 import { useRecoilState } from "recoil";
+import BorderTextBoxCreator from "../components/contents/BorderTextBoxCreator";
 import IconTextCreator from "../components/contents/IconTextCreator";
 import NumberingTextListCreator from "../components/contents/NumberingTextListCreator";
 import TextCreator from "../components/contents/TextCreator";
@@ -24,6 +25,7 @@ const useComponent = () => {
       text: <TextCreator {...props} />,
       iconText: <IconTextCreator {...props} />,
       numberingTextList: <NumberingTextListCreator {...props} />,
+      borderTextBox: <BorderTextBoxCreator {...props} />,
     };
 
     return componentMap[type];

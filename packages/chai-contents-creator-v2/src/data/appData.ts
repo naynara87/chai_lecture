@@ -135,12 +135,17 @@ export const rolePlayingLayouts: RolePlayingPageLayout[] = [
 
 /**
  * 컨텐츠 컴포넌트 종류
+ * - 컴포넌트 선택 메뉴에 컴포넌트를 추가 과정
+ *  1. contentComponents에 추가
+ *  2. contentComponentsNameMap 에 해당 컴포넌트 한글 이름 표시
+ *  3. getContentComponentsDefaultValue() 에 해당 컴포넌트 초기값 추가
+ *  4. useComponent hook에 해당 컴포넌트 추가
  */
 export type ContentsGroup = "common";
 
 export type ContentComponents = Record<ContentsGroup, ContentType[]>;
 export const contentComponents: ContentComponents = {
-  common: ["text", "iconText", "numberingTextList"],
+  common: ["text", "iconText", "numberingTextList", "borderTextBox"],
 };
 
 export const contentComponentsGroupMap: Record<
@@ -154,6 +159,7 @@ export const contentComponentsNameMap: Partial<Record<ContentType, string>> = {
   text: "텍스트",
   iconText: "지시문",
   numberingTextList: "번호 매기기",
+  borderTextBox: "학습 목표",
 };
 
 export const numberingTextDefaultData = Object.freeze({
@@ -186,6 +192,13 @@ export const getContentComponentsDefaultValue = (): Partial<
     id: uuidV4(),
     type: "numberingTextList",
     data: [numberingTextDefaultData],
+  },
+  borderTextBox: {
+    id: uuidV4(),
+    type: "borderTextBox",
+    data: {
+      text: "",
+    },
   },
 });
 

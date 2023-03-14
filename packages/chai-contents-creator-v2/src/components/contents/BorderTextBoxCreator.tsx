@@ -1,8 +1,11 @@
 import styled from "@emotion/styled";
+import { BorderTextBoxContentData, colorPalette } from "chai-ui-v2";
+import { DraggableContentCommonProps } from "../../types/page";
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
+import TextEditorViewer from "../molecules/TextEditorViewer";
 
 const BorderTextBoxWrapper = styled.div`
-  border: 1px solid #666666;
+  border: 1px solid ${colorPalette.gray800};
   width: 100%;
 
   border-radius: 20px;
@@ -10,11 +13,42 @@ const BorderTextBoxWrapper = styled.div`
   text-align: left;
 `;
 
-const BorderTextBoxCreator = () => {
+/**
+ * CH-01-04 학습 목표
+ */
+const BorderTextBoxCreator = ({
+  content,
+  setFocusedId,
+  isFocused,
+  updateContent,
+  currentSlide,
+  position,
+  draggableProvided,
+  isDraggable,
+}: DraggableContentCommonProps) => {
+  const thisContent = content as BorderTextBoxContentData;
+
+  const setText = (text: string) => {
+    const newContent = {
+      ...thisContent,
+      data: {
+        text,
+      },
+    };
+    updateContent(currentSlide.id, content.id, position, newContent);
+  };
+
   return (
-    <ContentCreatorLayout>
-      <BorderTextBoxWrapper>
-        <div>텍스트를 입력해주세요</div>
+    <ContentCreatorLayout
+      isDraggable={isDraggable}
+      draggableProvided={draggableProvided}
+    >
+      <BorderTextBoxWrapper onClick={(e) => setFocusedId(e, content.id)}>
+        <TextEditorViewer
+          isFocused={isFocused}
+          text={thisContent.data.text}
+          setText={setText}
+        />
       </BorderTextBoxWrapper>
     </ContentCreatorLayout>
   );
