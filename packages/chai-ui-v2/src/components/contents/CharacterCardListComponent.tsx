@@ -3,7 +3,7 @@ import { CharacterCardListContentData, Content } from "../../core";
 import { ModalLearningPoint } from "../modal";
 import CharacterCardComponent from "../molecules/ChracterCardComponent";
 
-interface CharacterCardListComponentProps {
+export interface CharacterCardListComponentProps {
   contents: CharacterCardListContentData;
 }
 

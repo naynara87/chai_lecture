@@ -10,7 +10,7 @@ import { LayoutModalSolution } from "../modal";
 import ComponentGrayLine from "../molecules/ComponentGrayLine";
 import { v4 as uuidv4 } from "uuid";
 import ModalVideo from "../modal/ModalVideo";
-interface MultiChoiceComponentProps {
+export interface MultiChoiceComponentProps {
   contents: MultiChoiceContentData;
 }
 

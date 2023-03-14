@@ -4,7 +4,7 @@ import { ImgCharacterComponent } from "../atoms";
 import styled from "@emotion/styled";
 import { vw } from "../../assets";
 
-interface ActivityGuideCharacterComponentProps {
+export interface ActivityGuideCharacterComponentProps {
   contents: ActivityGuideCharacterContentData;
 }
 

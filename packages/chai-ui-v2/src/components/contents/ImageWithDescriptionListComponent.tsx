@@ -5,7 +5,7 @@ import { vw, vh } from "../../assets";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
 import { ModalImage } from "../modal";
 
-interface ImageWithDescriptionListProps {
+export interface ImageWithDescriptionListProps {
   contents: ImageWithDescriptionListContentData;
 }
 

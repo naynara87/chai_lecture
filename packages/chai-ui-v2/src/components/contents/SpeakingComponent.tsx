@@ -14,7 +14,7 @@ import { v4 as uuidv4 } from "uuid";
 
 const RepeatSpeak = styled.div``;
 
-interface SpeakingComponentProps {
+export interface SpeakingComponentProps {
   contents: SpeakingContentData;
 }
 

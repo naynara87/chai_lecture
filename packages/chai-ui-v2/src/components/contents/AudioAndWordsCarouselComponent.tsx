@@ -12,7 +12,7 @@ const AudioAndWordsWrap = styled.div`
   gap: ${vw(30)};
 `;
 
-interface AudioAndWordsCarouselComponentProps {
+export interface AudioAndWordsCarouselComponentProps {
   contents: AudioAndWordsCarouselContentData;
 }
 const AudioAndWordsCarouselComponent = ({

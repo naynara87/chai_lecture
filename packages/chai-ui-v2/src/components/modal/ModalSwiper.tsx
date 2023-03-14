@@ -2,8 +2,8 @@ import React from "react";
 import styled from "@emotion/styled";
 import { Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
+import "swiper/swiper.min.css";
+import "swiper/modules/pagination/pagination.min.css";
 import IconPlayButton from "../atoms/Button/IconPlayButton";
 
 const Page = styled.div`
