@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { TextContentData } from "chai-ui-v2";
 import React, { useState } from "react";
-import { ContentCommonProps } from "../../types/page";
+import { DraggableContentCommonProps } from "../../types/page";
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 import TextEditorViewer from "../molecules/TextEditorViewer";
 
@@ -20,14 +20,14 @@ const TextCreator = ({
   updateContent,
   currentSlide,
   position,
-}: ContentCommonProps) => {
-  const [text, setText] = useState<string>("");
+  draggableProvided,
+}: DraggableContentCommonProps) => {
+  const thisContent = content as TextContentData;
+  const [text, setText] = useState<string>(thisContent.data.text);
 
   const handleClickComponent = (e: React.MouseEvent) => {
     setFocusedId(e, content.id);
   };
-
-  const thisContent = content as TextContentData;
 
   const getNewContent = (): TextContentData => {
     return {
@@ -43,7 +43,7 @@ const TextCreator = ({
   };
 
   return (
-    <ContentCreatorLayout>
+    <ContentCreatorLayout draggableProvided={draggableProvided}>
       <TextCreatorWrapper onClick={handleClickComponent}>
         <TextEditorViewer
           text={text}

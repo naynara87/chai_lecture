@@ -40,18 +40,23 @@ const CreateTemplateH37 = ({
     toggleContextMenu: toggleContextMenuRight,
   } = useComponentContext();
 
-  const { focusedId, setFocusedId, getComponent } = returnUseComponent;
+  const { focusedId, setFocusedId, getComponent, getDroppableId } =
+    returnUseComponent;
 
   const thisSlide = slides.find(
     (slide) => slide.id === slideId,
   ) as Template_H_3_7Data;
+
+  const leftDroppableId = getDroppableId(slideId, "leftContents");
+
+  const rightDroppableId = getDroppableId(slideId, "rightContents");
 
   return (
     <>
       <PageHeader slideId={slideId} slides={slides} {...pageHeaderProps} />
       <CreateEditMainWrap37>
         <CreateEditMain>
-          <DashBoxArea>
+          <DashBoxArea droppableId={leftDroppableId}>
             <CreateTemplateChoiceBtnWrap>
               <button className="btn-comp-select" onClick={toggleContextMenu}>
                 컴포넌트 선택
@@ -64,8 +69,9 @@ const CreateTemplateH37 = ({
                 toggleContextMenu={toggleContextMenu}
               />
             </CreateTemplateChoiceBtnWrap>
-            {thisSlide.leftContents.map((content) => {
+            {thisSlide.leftContents.map((content, index) => {
               return getComponent({
+                index,
                 currentSlide: thisSlide,
                 content,
                 isFocused: focusedId === content.id,
@@ -77,7 +83,7 @@ const CreateTemplateH37 = ({
           </DashBoxArea>
         </CreateEditMain>
         <CreateEditMain>
-          <DashBoxArea>
+          <DashBoxArea droppableId={rightDroppableId}>
             <CreateTemplateChoiceBtnWrap>
               <button
                 className="btn-comp-select"
@@ -93,11 +99,12 @@ const CreateTemplateH37 = ({
                 toggleContextMenu={toggleContextMenuRight}
               />
             </CreateTemplateChoiceBtnWrap>
-            {thisSlide.rightContents.map((content) => {
+            {thisSlide.rightContents.map((content, index) => {
               return getComponent({
+                index,
                 currentSlide: thisSlide,
                 content,
-                isFocused: focusedId === content.id,
+                isFocused: focusedId === content?.id,
                 setFocusedId,
                 updateContent,
                 position: "rightContents",

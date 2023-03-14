@@ -10,6 +10,7 @@ import TemplateMainLoading from "../templates/TemplateLoading";
 import Button from "../atoms/Button";
 import usePage from "../../hooks/usePage";
 import useComponent from "../../hooks/useComponent";
+import { DragDropContext } from "react-beautiful-dnd";
 
 const CommonButtonContainer = styled.div`
   padding-bottom: 16px;
@@ -29,6 +30,7 @@ const CreatePage = () => {
     handleChangeLayout,
     addComponentMap,
     updateContent,
+    handleOnDragEnd,
   } = usePage();
 
   const returnUseComponent = useComponent();
@@ -68,23 +70,23 @@ const CreatePage = () => {
         {isLoading ? (
           <TemplateMainLoading />
         ) : (
-          slides.map((slide, index) => {
-            return getTemplate({
-              key: index,
-              templateType: slide.type,
-              slideId: slide.id,
-              handleChangeLayout,
-              deleteSlide,
-              slides,
-              addComponentMap,
-              updateContent,
-              returnUseComponent,
-            });
-          })
+          <DragDropContext onDragEnd={handleOnDragEnd}>
+            {slides.map((slide, index) => {
+              return getTemplate({
+                key: index,
+                templateType: slide.type,
+                slideId: slide.id,
+                handleChangeLayout,
+                deleteSlide,
+                slides,
+                addComponentMap,
+                updateContent,
+                returnUseComponent,
+              });
+            })}
+          </DragDropContext>
         )}
-        <CreateAddBtn onClick={addSlide}>
-          + 슬라이드 추가
-        </CreateAddBtn>
+        <CreateAddBtn onClick={addSlide}>+ 슬라이드 추가</CreateAddBtn>
       </CreateTemplateInner>
     </CreateTemplateWrap>
   );

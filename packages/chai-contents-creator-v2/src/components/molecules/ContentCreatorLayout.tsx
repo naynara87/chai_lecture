@@ -4,6 +4,7 @@ import React from "react";
 import IconDndHandle from "../atoms/icons/IconDndHandle";
 import IconHamburgerMenu from "../atoms/icons/IconHamburgerMenu";
 import { vw } from "chai-ui-v2";
+import { DraggableProvided } from "react-beautiful-dnd";
 
 const ContentCreatorWrapper = styled.div`
   display: flex;
@@ -49,14 +50,24 @@ const ContentsContainer = styled.div<ContentsContainerProps>`
 
 interface ContentCreatorProps extends ContentsContainerProps {
   children: React.ReactNode;
+  draggableProvided?: DraggableProvided;
 }
-const ContentCreatorLayout = ({ children, align }: ContentCreatorProps) => {
+const ContentCreatorLayout = ({
+  children,
+  align,
+  draggableProvided,
+}: ContentCreatorProps) => {
   return (
     <ContentCreatorWrapper className="contentCreator">
       <IconContainer>
-        <IconWrapper customCss={dndHandleCss}>
-          <IconDndHandle />
-        </IconWrapper>
+        {draggableProvided && (
+          <IconWrapper
+            customCss={dndHandleCss}
+            {...draggableProvided.dragHandleProps}
+          >
+            <IconDndHandle />
+          </IconWrapper>
+        )}
         <IconWrapper customCss={hamburgerMenuCss}>
           <IconHamburgerMenu />
         </IconWrapper>

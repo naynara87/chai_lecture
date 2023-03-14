@@ -6,7 +6,7 @@ import {
   CreateTemplateChoiceBtnWrap,
 } from "../../styles/template";
 import { PageCommonProps } from "../../types/page";
-import DashBoxArea from "../atoms/DashBoxArea";
+import { DashBoxAreaWrapper } from "../atoms/DashBoxArea";
 import PageHeader from "../molecules/PageHeader";
 
 const CreateEditMainWrap55 = styled(CreateEditMainWrap)`
@@ -32,12 +32,13 @@ const CreateTemplateH55 = ({
     isComponentsContextMenuOpen: isComponentsContextMenuOpenRight,
     toggleContextMenu: toggleContextMenuRight,
   } = useComponentContext();
+
   return (
     <>
       <PageHeader slideId={slideId} {...pageHeaderProps} />
       <CreateEditMainWrap55>
         <CreateEditMain>
-          <DashBoxArea>
+          <DashBoxAreaWrapper>
             <CreateTemplateChoiceBtnWrap>
               <button className="btn-comp-select" onClick={toggleContextMenu}>
                 컴포넌트 선택
@@ -50,10 +51,10 @@ const CreateTemplateH55 = ({
                 toggleContextMenu={toggleContextMenu}
               />
             </CreateTemplateChoiceBtnWrap>
-          </DashBoxArea>
+          </DashBoxAreaWrapper>
         </CreateEditMain>
         <CreateEditMain>
-          <DashBoxArea>
+          <DashBoxAreaWrapper>
             <CreateTemplateChoiceBtnWrap>
               <button
                 className="btn-comp-select"
@@ -69,7 +70,7 @@ const CreateTemplateH55 = ({
                 toggleContextMenu={toggleContextMenuRight}
               />
             </CreateTemplateChoiceBtnWrap>
-          </DashBoxArea>
+          </DashBoxAreaWrapper>
         </CreateEditMain>
       </CreateEditMainWrap55>
     </>

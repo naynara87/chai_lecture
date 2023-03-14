@@ -8,7 +8,6 @@ import {
 } from "../../styles/template";
 import { PageCommonProps } from "../../types/page";
 import DashBoxArea from "../atoms/DashBoxArea";
-import CornerGuideCharacterCreator from "../contents/CornerGuideCharacterCreator";
 import PageHeader from "../molecules/PageHeader";
 
 const CreateTemplate01 = ({
@@ -30,14 +29,17 @@ const CreateTemplate01 = ({
     (slide) => slide.id === slideId,
   ) as Template01Data;
 
-  const { focusedId, setFocusedId, getComponent } = returnUseComponent;
+  const { focusedId, setFocusedId, getComponent, getDroppableId } =
+    returnUseComponent;
+
+  const droppableId = getDroppableId(slideId, "contents");
 
   return (
     <>
       <PageHeader slideId={slideId} slides={slides} {...pageHeaderProps} />
       <CreateEditMainWrap>
         <CreateEditMain>
-          <DashBoxArea>
+          <DashBoxArea droppableId={droppableId}>
             <CreateTemplateChoiceBtnWrap>
               <button className="btn-comp-select" onClick={toggleContextMenu}>
                 컴포넌트 선택
@@ -50,17 +52,17 @@ const CreateTemplate01 = ({
                 toggleContextMenu={toggleContextMenu}
               />
             </CreateTemplateChoiceBtnWrap>
-            {thisSlide.contents.map((content) => {
+            {thisSlide.contents.map((content, index) => {
               return getComponent({
+                index,
                 currentSlide: thisSlide,
                 content,
-                isFocused: focusedId === content.id,
+                isFocused: focusedId === content?.id,
                 setFocusedId,
                 updateContent,
                 position: "contents",
               });
             })}
-            <CornerGuideCharacterCreator />
           </DashBoxArea>
         </CreateEditMain>
       </CreateEditMainWrap>
