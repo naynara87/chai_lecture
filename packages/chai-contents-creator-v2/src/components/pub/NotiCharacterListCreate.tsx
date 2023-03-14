@@ -78,7 +78,7 @@ const NotiCharacterListCreate = () => {
           </TextBubbleWrap>
           <ImageThumb>
             {/* 이미지를 넣으면 src가 해당 이미지의 src로 변경됨 */}
-            <img src={TempProgile01} alt="캐릭터 프로필" />
+            <img src={ImageIcon} alt="캐릭터 프로필" />
           </ImageThumb>
           <UrlInputWrapper typeText="이미지"></UrlInputWrapper>
         </NotiCharacterWrap>
@@ -89,7 +89,7 @@ const NotiCharacterListCreate = () => {
           </TextBubbleWrap>
           <ImageThumb>
             {/* 이미지를 넣으면 src가 해당 이미지의 src로 변경됨 */}
-            <img src={TempProgile02} alt="캐릭터 프로필" />
+            <img src={TempProgile01} alt="캐릭터 프로필" />
           </ImageThumb>
           <UrlInputWrapper typeText="이미지"></UrlInputWrapper>
         </NotiCharacterWrap>
@@ -99,7 +99,7 @@ const NotiCharacterListCreate = () => {
           </TextBubbleWrap>
           <ImageThumb>
             {/* 이미지를 넣으면 src가 해당 이미지의 src로 변경됨 */}
-            <img src={ImageIcon} alt="캐릭터 프로필" />
+            <img src={TempProgile02} alt="캐릭터 프로필" />
           </ImageThumb>
           <UrlInputWrapper typeText="이미지"></UrlInputWrapper>
         </NotiCharacterWrap>
