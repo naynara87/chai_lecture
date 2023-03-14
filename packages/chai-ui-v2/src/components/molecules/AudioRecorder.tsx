@@ -9,8 +9,10 @@ import React, {
 import { useReactMediaRecorder } from "react-media-recorder";
 import RecordPlayButton from "../atoms/Button/RecordPlayButton";
 import RecordMikeButton from "../atoms/Button/RecordMikeButton";
-import IconReturnButton from "../atoms/Button/IconReturnButton";
 import RecordStopButton from "../atoms/Button/RecordStopButton";
+import { useGlobalAudio } from "../../core";
+import { v4 as uuidv4 } from "uuid";
+import IconReturnButton from "../atoms/Button/IconReturnButton";
 
 const ButtonWrapper = styled.div`
   line-height: 0;
@@ -19,10 +21,15 @@ const ButtonWrapper = styled.div`
 type RecordedAudioState = "not-recorded" | "recorded" | "playing" | "stopped";
 
 const AudioRecorder = () => {
-  const audioRef = useRef<HTMLAudioElement>(null);
+  const recordedAudioUuidRef = useRef(uuidv4());
+  const recordTimer = useRef<NodeJS.Timeout | number>();
+  const recordTime = useRef(0);
+  const [recordingTimeState, setRecordingTimeState] = useState(0);
+  const [recordedTimeState, setRecordedTimeState] = useState(0);
+
   const [recordedAudioState, setRecordedAudioState] =
     useState<RecordedAudioState>("not-recorded");
-  const { status, startRecording, stopRecording, mediaBlobUrl } =
+  const { status, startRecording, stopRecording, mediaBlobUrl, clearBlobUrl } =
     useReactMediaRecorder({
       audio: true,
       video: false,
@@ -30,38 +37,58 @@ const AudioRecorder = () => {
       blobPropertyBag: {
         // type: "audio/wav",
         // type: "audio/mp3",
-        type: "audio/ogg", // 재생 됨
-        // type: "audio/webm", // 재생 됨
+        // type: "audio/ogg", // 재생 됨
+        type: "audio/webm", // 재생 됨
         // type: "audio/mpeg",
       },
-      onStop: onStopRecording,
     });
+  const {
+    globalAudioRef,
+    globalAudioId,
+    handleAudioReset,
+    handleClickAudioButton,
+  } = useGlobalAudio();
 
-  function onStopRecording(blobUrl: string, blob: Blob) {
-    console.log("onStopRecording", blobUrl, blob);
-    setRecordedAudioState("recorded");
-    // TODO : 녹음 후 생성한 파일을 서버로 전송하기 => BBC-978
-    // convert blob to mp3 file
-    // const file = new File([blob], `audio${new Date().getTime()}`, {
-    //   type: blob.type,
-    //   lastModified: Date.now(),
-    // });
+  useEffect(() => {
+    return () => {
+      handleAudioReset();
+      window.clearTimeout(recordTimer.current);
+    };
+  }, [handleAudioReset]);
 
-    // send file to server : http://localhost:3000/api/upload
-    // const formData = new FormData();
-    // formData.append("file", file);
-    // fetch("http://localhost:3000/api/upload", {
-    //   method: "POST",
-    //   body: formData,
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => console.log("data", data))
-    //   .catch((err) => console.log("err", err));
-  }
+  useEffect(() => {
+    if (globalAudioId !== -1 && status === "recording") {
+      stopRecording();
+      setRecordedAudioState("recorded");
+      window.clearTimeout(recordTimer.current);
+    }
+  }, [globalAudioId, status, stopRecording]);
+
+  const handleClickRecordingAudioButton = useCallback(() => {
+    if (status === "idle" || status === "stopped") {
+      // 녹음된 오디오가 없거나 녹음된 오디오가 재생중이 아닐 때
+      handleAudioReset();
+      startRecording();
+      recordTimer.current = window.setTimeout(function go() {
+        recordTime.current += 1;
+        setRecordingTimeState((prev) => prev + 1);
+        if (recordTime.current > 60) {
+          stopRecording();
+          setRecordedAudioState("recorded");
+        } else {
+          recordTimer.current = setTimeout(go, 1000);
+        }
+      }, 1000);
+    } else {
+      // 녹음 중일 때
+      stopRecording();
+      setRecordedAudioState("recorded");
+      window.clearTimeout(recordTimer.current);
+    }
+  }, [startRecording, status, stopRecording, recordTime, handleAudioReset]);
 
   const handleClickRecordedAudioButton = useCallback(() => {
     if (
-      !audioRef.current ||
       status === "recording" ||
       status === "idle" ||
       recordedAudioState === "not-recorded"
@@ -69,80 +96,138 @@ const AudioRecorder = () => {
       return;
     }
 
-    if (recordedAudioState === "recorded") {
-      void audioRef.current.play();
+    if (recordedAudioState === "recorded" && mediaBlobUrl) {
+      handleClickAudioButton(
+        "recorder",
+        recordedAudioUuidRef.current,
+        0,
+        mediaBlobUrl,
+      );
+      setRecordedTimeState(recordingTimeState);
       setRecordedAudioState("playing");
+      recordTimer.current = window.setTimeout(function go() {
+        setRecordedTimeState((prev) => prev - 1);
+        if (recordTime.current < 0) {
+          setRecordedAudioState("recorded");
+        } else {
+          recordTimer.current = setTimeout(go, 1000);
+        }
+      }, 1000);
     }
 
     if (recordedAudioState === "playing") {
       // stop playing audio
-      audioRef.current.pause();
-      audioRef.current.currentTime = 0;
+      handleAudioReset();
       setRecordedAudioState("recorded");
+      window.clearTimeout(recordTimer.current);
     }
-  }, [recordedAudioState, status]);
+  }, [
+    recordedAudioState,
+    status,
+    handleClickAudioButton,
+    handleAudioReset,
+    mediaBlobUrl,
+    recordingTimeState,
+  ]);
 
-  const onAudioEnded = useCallback(() => {
-    console.log("onAudioEnded");
-    setRecordedAudioState("recorded");
-  }, []);
+  const audioEnded = useCallback(() => {
+    if (
+      globalAudioId
+        .toString()
+        .includes(`recorder_${recordedAudioUuidRef.current}`)
+    ) {
+      handleAudioReset();
+      setRecordedAudioState("recorded");
+      window.clearTimeout(recordTimer.current);
+    }
+  }, [globalAudioId, handleAudioReset]);
 
   useEffect(() => {
-    audioRef.current?.addEventListener("ended", onAudioEnded);
+    let globalAudioRefValue: HTMLAudioElement | null = null;
+    if (globalAudioRef?.current) globalAudioRefValue = globalAudioRef.current;
+    globalAudioRef?.current?.addEventListener("ended", audioEnded);
     return () => {
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      audioRef.current?.removeEventListener("ended", onAudioEnded);
+      if (globalAudioRefValue) {
+        globalAudioRefValue.removeEventListener("ended", audioEnded);
+      }
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [globalAudioRef, audioEnded, globalAudioId]);
 
-  const handleClickRecordingAudioButton = useCallback(() => {
-    if (!audioRef.current) {
-      return;
+  useEffect(() => {
+    if (
+      recordedAudioState !== "not-recorded" &&
+      !globalAudioId
+        .toString()
+        .includes(`recorder_${recordedAudioUuidRef.current}`)
+    ) {
+      setRecordedAudioState("recorded");
+      window.clearTimeout(recordTimer.current);
     }
-    if (status === "idle" || status === "stopped") {
-      // 녹음된 오디오가 없거나 녹음된 오디오가 재생중이 아닐 때
-      startRecording();
-    } else {
-      // 녹음 중일 때
-      stopRecording();
-    }
-  }, [startRecording, status, stopRecording]);
+  }, [globalAudioId, recordedAudioState]);
+
+  const handleClickResetBtn = useCallback(() => {
+    clearBlobUrl();
+    setRecordedAudioState("not-recorded");
+    handleAudioReset();
+    recordTime.current = 0;
+    setRecordingTimeState(0);
+  }, [handleAudioReset, clearBlobUrl]);
 
   const renderRecordingAudioIcon = useMemo(() => {
     if (status === "recording") {
-      return <RecordStopButton />;
+      return (
+        <RecordStopButton
+          onClickBtn={handleClickRecordingAudioButton}
+          recordTime={recordingTimeState}
+        />
+      );
     } else {
       if (status === "idle") {
         // 녹음하기 버튼
-        return <RecordMikeButton />;
-      } else if (status === "stopped") {
-        // 다시 녹음하기 버튼
-        return <IconReturnButton />;
+        return (
+          <RecordMikeButton onClickBtn={handleClickRecordingAudioButton} />
+        );
       }
     }
-  }, [status]);
+  }, [status, handleClickRecordingAudioButton, recordingTimeState]);
 
   const renderRecordedAudioIcon = useMemo(() => {
-    if (recordedAudioState === "not-recorded") {
-      return <RecordPlayButton />;
-    } else if (recordedAudioState === "playing") {
-      return <RecordStopButton />;
+    if (recordedAudioState === "playing") {
+      return (
+        <RecordStopButton
+          onClickBtn={handleClickRecordedAudioButton}
+          recordTime={recordedTimeState}
+        />
+      );
     } else {
       // recordedAudioState === "recorded"
-      return <RecordPlayButton />;
+      return (
+        <>
+          <RecordPlayButton
+            onClickBtn={handleClickRecordedAudioButton}
+            recordTime={recordingTimeState}
+          />
+          <IconReturnButton onClickBtn={handleClickResetBtn} />
+        </>
+      );
     }
-  }, [recordedAudioState]);
+  }, [
+    recordedAudioState,
+    handleClickRecordedAudioButton,
+    handleClickResetBtn,
+    recordedTimeState,
+    recordingTimeState,
+  ]);
 
   return (
-    <div className="record-btn-wrap">
-      <ButtonWrapper onClick={handleClickRecordedAudioButton}>
-        {renderRecordedAudioIcon}
-      </ButtonWrapper>
-      <ButtonWrapper onClick={handleClickRecordingAudioButton}>
-        {renderRecordingAudioIcon}
-      </ButtonWrapper>
-      <audio ref={audioRef} src={mediaBlobUrl ?? ""} />
+    <div>
+      <div className="record-btn-wrap">
+        <ButtonWrapper>
+          {recordedAudioState === "not-recorded"
+            ? renderRecordingAudioIcon
+            : renderRecordedAudioIcon}
+        </ButtonWrapper>
+      </div>
     </div>
   );
 };

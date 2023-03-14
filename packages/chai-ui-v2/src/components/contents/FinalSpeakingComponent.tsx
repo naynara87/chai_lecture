@@ -65,6 +65,14 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
     };
   }, [handleAudioReset]);
 
+  useEffect(() => {
+    if (globalAudioId !== -1 && status === "recording") {
+      stopRecording();
+      setRecordedAudioState("recorded");
+      window.clearTimeout(recordTimer.current);
+    }
+  }, [globalAudioId, status, stopRecording]);
+
   const handleSendRecording = () => {
     console.log("onStopRecording", mediaBlobUrl);
     setRecordedAudioState("recorded");
@@ -91,6 +99,7 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
   const handleClickRecordingAudioButton = useCallback(() => {
     if (status === "idle" || status === "stopped") {
       // 녹음된 오디오가 없거나 녹음된 오디오가 재생중이 아닐 때
+      handleAudioReset();
       startRecording();
       recordTimer.current = window.setTimeout(function go() {
         recordTime.current += 1;
@@ -108,7 +117,7 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
       setRecordedAudioState("recorded");
       window.clearTimeout(recordTimer.current);
     }
-  }, [startRecording, status, stopRecording, recordTime]);
+  }, [startRecording, status, stopRecording, recordTime, handleAudioReset]);
 
   const handleClickRecordedAudioButton = useCallback(() => {
     if (
@@ -154,7 +163,11 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
   ]);
 
   const audioEnded = useCallback(() => {
-    if (globalAudioId.toString().includes("recorder")) {
+    if (
+      globalAudioId
+        .toString()
+        .includes(`recorder_${recordedAudioUuidRef.current}`)
+    ) {
       handleAudioReset();
       setRecordedAudioState("recorded");
       window.clearTimeout(recordTimer.current);
@@ -175,7 +188,9 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
   useEffect(() => {
     if (
       recordedAudioState !== "not-recorded" &&
-      !globalAudioId.toString().includes("recorder")
+      !globalAudioId
+        .toString()
+        .includes(`recorder_${recordedAudioUuidRef.current}`)
     ) {
       setRecordedAudioState("recorded");
       window.clearTimeout(recordTimer.current);
@@ -212,7 +227,12 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
 
   const renderRecordedAudioIcon = useMemo(() => {
     if (recordedAudioState === "not-recorded") {
-      return <RecordPlayButton onClickBtn={handleClickRecordedAudioButton} />;
+      return (
+        <RecordPlayButton
+          onClickBtn={handleClickRecordedAudioButton}
+          recordTime={recordingTimeState}
+        />
+      );
     } else if (recordedAudioState === "playing") {
       return (
         <RecordStopButton
@@ -224,7 +244,10 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
       // recordedAudioState === "recorded"
       return (
         <>
-          <RecordPlayButton onClickBtn={handleClickRecordedAudioButton} />
+          <RecordPlayButton
+            onClickBtn={handleClickRecordedAudioButton}
+            recordTime={recordingTimeState}
+          />
           <IconReturnButton onClickBtn={handleClickResetBtn} />
         </>
       );
@@ -234,6 +257,7 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
     handleClickRecordedAudioButton,
     handleClickResetBtn,
     recordedTimeState,
+    recordingTimeState,
   ]);
 
   return (

@@ -1,5 +1,6 @@
 import { ID } from "./appData";
 import {
+  ActivityGuideCharacterContentData,
   Content,
   ConversationContent,
   FinalSpeakingContentData,
@@ -8,6 +9,7 @@ import {
   QuizContent,
   QuizSentenceContentData,
   QuizWordsInOrderContentData,
+  RoleplayingContentData,
 } from "./contents";
 
 export type AllTemplateData =
@@ -40,8 +42,9 @@ export type QuizTemplateData =
 export type TemplateRolePlayingData = {
   id: ID;
   type: "TemplateRolePlaying";
-  leftContents: Content[];
-  rightContents: Content[];
+  iconText: IconTextContentData;
+  guideContent: ActivityGuideCharacterContentData;
+  rolePlayingContents: RoleplayingContentData;
 };
 
 /**
