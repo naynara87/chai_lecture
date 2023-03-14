@@ -6,7 +6,7 @@ export type CornerCompleteState = {
   isCompleted: boolean;
 };
 
-export const cornersState = atom<CornerCompleteState[]>({
-  key: "cornersState",
+export const completeCornersState = atom<CornerCompleteState[]>({
+  key: "completeCornersState",
   default: [],
 });

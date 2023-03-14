@@ -98,8 +98,10 @@ const ConversationQuizComponent = ({
 
   useEffect(() => {
     let globalAudioRefValue: HTMLAudioElement | null = null;
-    if (globalAudioRef?.current) globalAudioRefValue = globalAudioRef.current;
-    globalAudioRef?.current?.addEventListener("ended", audioEnded);
+    if (globalAudioRef?.current) {
+      globalAudioRefValue = globalAudioRef.current;
+      globalAudioRefValue?.addEventListener("ended", audioEnded);
+    }
     return () => {
       if (globalAudioRefValue) {
         globalAudioRefValue.removeEventListener("ended", audioEnded);

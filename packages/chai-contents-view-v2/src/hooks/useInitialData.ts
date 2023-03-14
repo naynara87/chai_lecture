@@ -1,25 +1,24 @@
-import { CornerListData, Page } from "chai-ui-v2";
+import { CornerListData } from "chai-ui-v2";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRecoilState } from "recoil";
-import { cornersState } from "../state/corners";
+import { completeCornersState } from "../state/completeCornersState";
 import useCorner from "./useCorner";
 import useLesson from "./useLesson";
 
 const useInitialData = () => {
   const [initialCorner, setInitialCorner] = useState<CornerListData>();
-  const [initialPage, setInitialPage] = useState<Page>();
-  const [completedCorners, setCompletedCorners] = useRecoilState(cornersState);
+  const [completedCorners, setCompletedCorners] =
+    useRecoilState(completeCornersState);
 
   const { corners, lessonMetaData } = useLesson(1);
-  const { pages, cornerMetaData } = useCorner(initialCorner?.id);
+  const { cornerMetaData } = useCorner(initialCorner?.id);
 
   const setInitialData = useCallback(() => {
     const currentCornerIndex = completedCorners.findIndex((corner) => {
       return corner.isCompleted === false;
     }, []);
     setInitialCorner(corners[currentCornerIndex]);
-    setInitialPage(pages?.[0]);
-  }, [pages, corners, completedCorners]);
+  }, [corners, completedCorners]);
 
   const isBlockedChangeCurrentCorner = useMemo(() => {
     if (completedCorners.length !== 0) {
@@ -48,12 +47,9 @@ const useInitialData = () => {
   }, [setInitialData]);
 
   return {
-    initialPage,
     corners,
     lessonMetaData,
     cornerMetaData,
-    initialCorner,
-    pages,
   };
 };
 
