@@ -24,7 +24,7 @@ const ModalIntroductionContainer = styled.div`
     align-items: center;
   }
 
-  .url-text-wrapper {
+  .url-wrapper {
     width: 70%;
   }
 

@@ -36,7 +36,7 @@ const VideoTextWrapper = styled.div`
 
 const UrlInputWrapper = ({ typeText }: ButtonProps) => {
   return (
-    <VideoTextWrapper className="url-text-wrapper">
+    <VideoTextWrapper className="url-wrapper">
       <p className="video-text-tit">{typeText} URL</p>
       <form>
         <input placeholder={`${typeText} URL 입력`}></input>
