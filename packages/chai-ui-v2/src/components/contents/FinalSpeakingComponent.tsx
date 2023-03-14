@@ -24,7 +24,7 @@ const ButtonWrapper = styled.div`
 
 type RecordedAudioState = "not-recorded" | "recorded" | "playing" | "stopped";
 
-interface FinalSpeakingComponentProps {
+export interface FinalSpeakingComponentProps {
   contents: FinalSpeakingContentData;
 }
 

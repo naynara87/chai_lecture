@@ -27,7 +27,7 @@ type WordInOrderChoice = {
   answerIndex: number;
 };
 
-interface WordsInOrderComponentProps {
+export interface WordsInOrderComponentProps {
   contents: QuizWordsInOrderContentData;
 }
 

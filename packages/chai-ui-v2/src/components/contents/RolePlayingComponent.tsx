@@ -10,7 +10,7 @@ const DialogueWrapper = styled.ul`
   }
 `;
 
-interface RolePlayingComponentProps {
+export interface RolePlayingComponentProps {
   contents: RoleplayingContentData;
   selectCharacterId?: ID;
 }

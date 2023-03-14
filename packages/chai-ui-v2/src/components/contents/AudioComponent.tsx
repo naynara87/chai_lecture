@@ -4,7 +4,7 @@ import { ComponentButtonPlay } from "../atoms";
 import IconPauseFillButton from "../atoms/Button/IconPauseFillButton";
 import { v4 as uuidv4 } from "uuid";
 
-interface AudioComponentProps {
+export interface AudioComponentProps {
   contents: AudioContentData;
 }
 

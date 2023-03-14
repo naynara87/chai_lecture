@@ -15,7 +15,7 @@ const NumberingWrapper = styled.div`
   }
 `;
 
-interface NumberingTextListComponentProps {
+export interface NumberingTextListComponentProps {
   contents: NumberingTextListContentData;
 }
 

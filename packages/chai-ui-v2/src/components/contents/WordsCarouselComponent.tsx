@@ -8,7 +8,7 @@ const WordsCarouselWrap = styled.div`
   display: flex;
   justify-content: center;
 `;
-interface WordsCarouselComponentProps {
+export interface WordsCarouselComponentProps {
   contents: WordsCarouselContentData;
 }
 

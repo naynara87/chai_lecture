@@ -4,7 +4,7 @@ import { ImgCharacterComponent } from "../atoms";
 import styled from "@emotion/styled";
 import { vw } from "../../assets";
 
-interface CornerGuideCharacterComponentProps {
+export interface CornerGuideCharacterComponentProps {
   contents: CornerGuideCharacterContentData;
 }
 

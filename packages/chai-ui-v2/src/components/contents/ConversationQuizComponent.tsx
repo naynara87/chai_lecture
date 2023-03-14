@@ -7,7 +7,7 @@ import {
 import { LineRadioBoxes } from "../molecules";
 import { v4 as uuidv4 } from "uuid";
 
-interface ConversationQuizComponentProps {
+export interface ConversationQuizComponentProps {
   contents: ConversationQuizContentData;
   fullAudioId?: string;
 }

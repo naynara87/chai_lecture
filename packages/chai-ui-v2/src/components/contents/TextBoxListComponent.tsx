@@ -30,7 +30,7 @@ const TextBox = styled.div`
   }
 `;
 
-interface TextBoxListComponentProps {
+export interface TextBoxListComponentProps {
   contents: TextBoxListContentData;
   fullAudioId?: string;
 }

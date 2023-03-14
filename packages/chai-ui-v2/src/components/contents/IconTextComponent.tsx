@@ -15,7 +15,7 @@ const IconTextWrapper = styled.div`
   }
 `;
 
-interface IconTextComponentProps {
+export interface IconTextComponentProps {
   contents: IconTextContentData;
 }
 

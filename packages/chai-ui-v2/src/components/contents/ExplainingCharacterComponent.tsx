@@ -6,7 +6,7 @@ import ComponentButtonFillBlackMini from "../atoms/ComponentButtonFillBlackMini"
 
 const DescriptionBubble = styled.div``;
 
-interface ExplainingCharacterComponentProps {
+export interface ExplainingCharacterComponentProps {
   contents: ExplainingCharacterContentData;
 }
 
