@@ -14,6 +14,7 @@ const UrlTextWrapper = styled.div`
 
   & input {
     width: calc(100% - 100px);
+    max-width: 400px;
     height: 44px;
     margin-right: 10px;
     padding: 12px 13px;
