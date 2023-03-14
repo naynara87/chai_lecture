@@ -21,6 +21,7 @@ const TextCreator = ({
   currentSlide,
   position,
   draggableProvided,
+  isDraggable,
 }: DraggableContentCommonProps) => {
   const thisContent = content as TextContentData;
   const [text, setText] = useState<string>(thisContent.data.text);
@@ -43,7 +44,10 @@ const TextCreator = ({
   };
 
   return (
-    <ContentCreatorLayout draggableProvided={draggableProvided}>
+    <ContentCreatorLayout
+      draggableProvided={draggableProvided}
+      isDraggable={isDraggable}
+    >
       <TextCreatorWrapper onClick={handleClickComponent}>
         <TextEditorViewer
           text={text}

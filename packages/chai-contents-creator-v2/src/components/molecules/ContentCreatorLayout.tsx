@@ -18,10 +18,6 @@ const IconContainer = styled.div`
   height: 24px;
 `;
 
-interface IconWrapperProps {
-  customCss?: SerializedStyles;
-}
-
 const dndHandleCss = css`
   cursor: move;
 `;
@@ -30,8 +26,12 @@ const hamburgerMenuCss = css`
   cursor: pointer;
 `;
 
+interface IconWrapperProps {
+  customCss?: SerializedStyles;
+  showIcon: boolean;
+}
 const IconWrapper = styled.span<IconWrapperProps>`
-  display: flex;
+  display: ${({ showIcon }) => (showIcon ? "flex" : "none")};
   align-items: center;
   ${({ customCss }) => customCss}
   :not(:last-child) {
@@ -50,25 +50,26 @@ const ContentsContainer = styled.div<ContentsContainerProps>`
 
 interface ContentCreatorProps extends ContentsContainerProps {
   children: React.ReactNode;
+  isDraggable?: boolean;
   draggableProvided?: DraggableProvided;
 }
 const ContentCreatorLayout = ({
   children,
   align,
   draggableProvided,
+  isDraggable = true,
 }: ContentCreatorProps) => {
   return (
     <ContentCreatorWrapper className="contentCreator">
       <IconContainer>
-        {draggableProvided && (
-          <IconWrapper
-            customCss={dndHandleCss}
-            {...draggableProvided.dragHandleProps}
-          >
-            <IconDndHandle />
-          </IconWrapper>
-        )}
-        <IconWrapper customCss={hamburgerMenuCss}>
+        <IconWrapper
+          customCss={dndHandleCss}
+          showIcon={isDraggable}
+          {...draggableProvided?.dragHandleProps}
+        >
+          <IconDndHandle />
+        </IconWrapper>
+        <IconWrapper customCss={hamburgerMenuCss} showIcon>
           <IconHamburgerMenu />
         </IconWrapper>
       </IconContainer>

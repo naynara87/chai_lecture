@@ -49,6 +49,7 @@ export type ContentCommonProps = {
   setFocusedId: (e: React.MouseEvent, isFocused: ID) => void;
   position: CommonTemplateComponentLocation;
   updateContent: ReturnUsePage["updateContent"];
+  isDraggable?: boolean;
 };
 
 export type DraggableContentCommonProps = ContentCommonProps & {
