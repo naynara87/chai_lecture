@@ -223,9 +223,11 @@ const AudioRecorder = () => {
     <div>
       <div className="record-btn-wrap">
         <ButtonWrapper>
-          {recordedAudioState === "not-recorded"
-            ? renderRecordingAudioIcon
-            : renderRecordedAudioIcon}
+          <div className="record-btn-flex-wrap">
+            {recordedAudioState === "not-recorded"
+              ? renderRecordingAudioIcon
+              : renderRecordedAudioIcon}
+          </div>
         </ButtonWrapper>
       </div>
     </div>

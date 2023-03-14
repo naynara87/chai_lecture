@@ -266,11 +266,13 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
         <ComponentGrayLine contents={contents.data.exampleContents} />
       )}
       <div className="record-btn-wrap">
-        {recordedAudioState === "not-recorded" ? (
-          <ButtonWrapper>{renderRecordingAudioIcon}</ButtonWrapper>
-        ) : (
-          <ButtonWrapper>{renderRecordedAudioIcon}</ButtonWrapper>
-        )}
+        <ButtonWrapper>
+          <div className="record-btn-flex-wrap">
+            {recordedAudioState === "not-recorded"
+              ? renderRecordingAudioIcon
+              : renderRecordedAudioIcon}
+          </div>
+        </ButtonWrapper>
         {isSendBlobUrl || recordedAudioState === "recorded" ? (
           <div className="btns-wrap">
             <ComponentButtonRadiFillMain

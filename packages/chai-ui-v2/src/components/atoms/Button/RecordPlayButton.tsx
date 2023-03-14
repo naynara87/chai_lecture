@@ -12,11 +12,9 @@ const RecordPlayButton = ({
 }: RecordPlayButtonProps) => {
   return (
     <>
-      <div className="record-btn-flex-wrap">
-        <IconPlayButton active={true} onClickBtn={onClickBtn} />
-        {/* <ComponentProgress progressDuration={3} /> */}
-        <p className="txt">{`00:${recordTime?.toString().padStart(2, "0")}`}</p>
-      </div>
+      <IconPlayButton active={true} onClickBtn={onClickBtn} />
+      {/* <ComponentProgress progressDuration={3} /> */}
+      <p className="txt">{`00:${recordTime?.toString().padStart(2, "0")}`}</p>
     </>
   );
 };

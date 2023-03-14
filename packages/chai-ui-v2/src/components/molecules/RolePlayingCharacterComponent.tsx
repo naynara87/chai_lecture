@@ -76,17 +76,16 @@ const RolePlayingCharacterComponent = ({
   const pinyin = useMemo(() => {
     if (selectCharacterId !== id) {
       return <p className="pinyin">{pronunciation}</p>;
+    }
+    if (isShowHint) {
+      return <p className="pinyin">{pronunciation}</p>;
     } else {
-      if (isShowHint) {
-        return <p className="pinyin">{pronunciation}</p>;
-      } else {
-        return (
-          <ComponentButtonRadiFillOrange
-            text="HINT"
-            onClickBtn={() => setIsShowHint(true)}
-          />
-        );
-      }
+      return (
+        <ComponentButtonRadiFillOrange
+          text="HINT"
+          onClickBtn={() => setIsShowHint(true)}
+        />
+      );
     }
   }, [id, isShowHint, selectCharacterId, pronunciation]);
 
