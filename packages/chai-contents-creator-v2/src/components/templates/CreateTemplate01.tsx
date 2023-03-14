@@ -8,8 +8,7 @@ import {
 } from "../../styles/template";
 import { PageCommonProps } from "../../types/page";
 import DashBoxArea from "../atoms/DashBoxArea";
-import ActivityGuideCharacterCreator from "../contents/ActivityGuideCharacterCreator";
-import CornerGuideCharacterCreator from "../contents/CornerGuideCharacterCreator";
+import ExplainingCharacterCreator from "../contents/ExplainingCharacterCreator";
 import PageHeader from "../molecules/PageHeader";
 
 const CreateTemplate01 = ({
@@ -63,7 +62,7 @@ const CreateTemplate01 = ({
                 position: "contents",
               });
             })}
-            <ActivityGuideCharacterCreator />
+            <ExplainingCharacterCreator />
           </DashBoxArea>
         </CreateEditMain>
       </CreateEditMainWrap>
