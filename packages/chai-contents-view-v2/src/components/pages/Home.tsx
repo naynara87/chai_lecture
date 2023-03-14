@@ -4,28 +4,29 @@ import { getPageUrl } from "../../util/url";
 import { useNavigate } from "react-router-dom";
 import useInitialData from "../../hooks/useInitialData";
 import { useRecoilState } from "recoil";
-import { cornersState } from "../../state/corners";
+import { currentCornerIdState } from "../../state/currentCornerId";
 
 const Home = () => {
   const navigate = useNavigate();
-  const { lessonMetaData, cornerMetaData } = useInitialData();
-  const [completedCorners] = useRecoilState(cornersState);
+  const { lessonMetaData, cornerMetaData, corners } = useInitialData();
+  const [currentCornerId] = useRecoilState(currentCornerIdState);
 
   useEffect(() => {
     if (!lessonMetaData) return;
     if (!cornerMetaData) return;
-    const currentCorner = completedCorners.find((corner) => {
-      return corner.isCompleted === false;
-    });
-    if (!currentCorner) return;
+    const currentCornerIndex = corners.findIndex(
+      (corner) => corner.id.toString() === currentCornerId?.toString(),
+    );
+    const nextCorner = corners[currentCornerIndex + 1];
+    if (!nextCorner) return;
     const url = getPageUrl(
       lessonMetaData?.courseId,
       cornerMetaData?.lessonId,
-      currentCorner.id,
+      nextCorner.id,
       1,
     );
     navigate(url);
-  }, [cornerMetaData, lessonMetaData, navigate, completedCorners]);
+  }, [cornerMetaData, lessonMetaData, navigate, currentCornerId, corners]);
 
   return (
     <div>

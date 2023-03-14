@@ -31,13 +31,15 @@ const ConversationWordListComponent = ({
 
   useEffect(() => {
     let globalAudioRefValue: HTMLAudioElement | null = null;
-    if (globalAudioRef?.current) globalAudioRefValue = globalAudioRef.current;
     function resetAudio() {
       if (globalAudioId.toString().includes("vocaNote")) {
         handleAudioReset();
       }
     }
-    globalAudioRef?.current?.addEventListener("ended", resetAudio);
+    if (globalAudioRef?.current) {
+      globalAudioRefValue = globalAudioRef.current;
+      globalAudioRefValue?.addEventListener("ended", resetAudio);
+    }
     return () => {
       if (globalAudioRefValue) {
         globalAudioRefValue.removeEventListener("ended", resetAudio);

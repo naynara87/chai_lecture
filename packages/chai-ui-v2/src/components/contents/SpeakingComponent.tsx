@@ -44,8 +44,10 @@ const SpeakingComponent = ({ contents }: SpeakingComponentProps) => {
 
   useEffect(() => {
     let globalAudioRefValue: HTMLAudioElement | null = null;
-    if (globalAudioRef?.current) globalAudioRefValue = globalAudioRef.current;
-    globalAudioRefValue?.addEventListener("ended", audioEnded);
+    if (globalAudioRef?.current) {
+      globalAudioRefValue = globalAudioRef.current;
+      globalAudioRefValue?.addEventListener("ended", audioEnded);
+    }
     return () => {
       globalAudioRefValue?.removeEventListener("ended", audioEnded);
     };
