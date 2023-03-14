@@ -4,6 +4,7 @@ import React from "react";
 import IconDndHandle from "../atoms/icons/IconDndHandle";
 import IconHamburgerMenu from "../atoms/icons/IconHamburgerMenu";
 import { vw } from "chai-ui-v2";
+import { DraggableProvided } from "react-beautiful-dnd";
 
 const ContentCreatorWrapper = styled.div`
   display: flex;
@@ -17,10 +18,6 @@ const IconContainer = styled.div`
   height: 24px;
 `;
 
-interface IconWrapperProps {
-  customCss?: SerializedStyles;
-}
-
 const dndHandleCss = css`
   cursor: move;
 `;
@@ -29,8 +26,12 @@ const hamburgerMenuCss = css`
   cursor: pointer;
 `;
 
+interface IconWrapperProps {
+  customCss?: SerializedStyles;
+  showIcon: boolean;
+}
 const IconWrapper = styled.span<IconWrapperProps>`
-  display: flex;
+  display: ${({ showIcon }) => (showIcon ? "flex" : "none")};
   align-items: center;
   ${({ customCss }) => customCss}
   :not(:last-child) {
@@ -49,15 +50,26 @@ const ContentsContainer = styled.div<ContentsContainerProps>`
 
 interface ContentCreatorProps extends ContentsContainerProps {
   children: React.ReactNode;
+  isDraggable?: boolean;
+  draggableProvided?: DraggableProvided;
 }
-const ContentCreatorLayout = ({ children, align }: ContentCreatorProps) => {
+const ContentCreatorLayout = ({
+  children,
+  align,
+  draggableProvided,
+  isDraggable = true,
+}: ContentCreatorProps) => {
   return (
     <ContentCreatorWrapper className="contentCreator">
       <IconContainer>
-        <IconWrapper customCss={dndHandleCss}>
+        <IconWrapper
+          customCss={dndHandleCss}
+          showIcon={isDraggable}
+          {...draggableProvided?.dragHandleProps}
+        >
           <IconDndHandle />
         </IconWrapper>
-        <IconWrapper customCss={hamburgerMenuCss}>
+        <IconWrapper customCss={hamburgerMenuCss} showIcon>
           <IconHamburgerMenu />
         </IconWrapper>
       </IconContainer>
