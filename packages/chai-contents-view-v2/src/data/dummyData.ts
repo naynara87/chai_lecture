@@ -132,8 +132,20 @@ export const v2CornerDataList: CornerData[] = [
         type: "SinglePage",
         data: {
           id: uuidV4(),
-          type: "Template01",
-          contents: [
+          type: "Template_H_3_7",
+          leftContents: [
+            {
+              id: uuidV4(),
+              type: "activityGuideCharacter",
+              data: {
+                text: "지난 시간엔 계절에 대한 회화를 학습했어요. 다음 대화를 잘 보고 빈 칸에 들어갈 알맞은 단어를 고르세요.",
+                character: {
+                  src: "asdfasdf",
+                },
+              },
+            },
+          ],
+          rightContents: [
             {
               id: uuidV4(),
               type: "speaking",
@@ -262,8 +274,17 @@ export const v2CornerDataList: CornerData[] = [
         data: [
           {
             id: uuidV4(),
-            type: "Template01",
-            contents: [
+            type: "Template_H_5_5",
+            leftContents: [
+              {
+                id: uuidV4(),
+                type: "video",
+                data: {
+                  src: "https://cdn.bubblecon.co.kr/videos/45.mp4",
+                },
+              },
+            ],
+            rightContents: [
               {
                 id: uuidV4(),
                 type: "numberingTextList",
