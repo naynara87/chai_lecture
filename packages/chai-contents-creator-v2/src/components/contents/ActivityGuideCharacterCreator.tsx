@@ -1,24 +1,29 @@
 import styled from "@emotion/styled";
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
-import UrlInputWrapper from "../molecules/UrlInputWrapper";
 import iconTail from "chai-ui-v2/dist/assets/images/icon/icon_contsinfo_tail.svg";
+import UrlInputWrapper from "../molecules/UrlInputWrapper";
 import ImageThumb from "../atoms/ImageThumb";
 
 const CornerGuideWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  & > img {
+    width: 120px;
+    height: 120px;
+    background-size: 36px 36px;
+  }
 `;
 
 const TextBubbleWrap = styled.div`
   position: relative;
-  padding: 24px 40px;
-  border-radius: 50px;
+  padding: 24px;
+  border-radius: 8px;
   background-color: #eff1f5;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 12px;
   text-align: center;
-  margin-bottom: 53px;
+  margin-bottom: 46px;
 
   &::after {
     content: "";
@@ -33,7 +38,7 @@ const TextBubbleWrap = styled.div`
   }
 `;
 
-const CornerGuideCharacterCreator = () => {
+const ActivityGuideCharacterCreator = () => {
   return (
     <ContentCreatorLayout>
       <CornerGuideWrapper>
@@ -45,4 +50,4 @@ const CornerGuideCharacterCreator = () => {
   );
 };
 
-export default CornerGuideCharacterCreator;
+export default ActivityGuideCharacterCreator;
