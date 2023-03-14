@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { HtmlContentComponent, IconTextContentData, vw } from "chai-ui-v2";
 import React, { useState } from "react";
-import { ContentCommonProps } from "../../types/page";
+import { DraggableContentCommonProps } from "../../types/page";
 import TextEditor from "../atoms/TextEditor";
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 import iconTip from "chai-ui-v2/dist/assets/images/icon/icon_tip.svg";
@@ -28,14 +28,15 @@ const IconTextCreator = ({
   updateContent,
   currentSlide,
   position,
-}: ContentCommonProps) => {
-  const [text, setText] = useState<string>("");
+  draggableProvided,
+}: DraggableContentCommonProps) => {
+  const thisContent = content as IconTextContentData;
+
+  const [text, setText] = useState<string>(thisContent.data.text);
 
   const handleClickComponent = (e: React.MouseEvent) => {
     setFocusedId(e, content.id);
   };
-
-  const thisContent = content as IconTextContentData;
 
   const getNewContent = (): IconTextContentData => {
     return {
@@ -51,7 +52,7 @@ const IconTextCreator = ({
   };
 
   return (
-    <ContentCreatorLayout>
+    <ContentCreatorLayout draggableProvided={draggableProvided}>
       <IconTextCreatorWrapper onClick={handleClickComponent}>
         <img src={iconTip} alt="" />
         {!isFocused ? (

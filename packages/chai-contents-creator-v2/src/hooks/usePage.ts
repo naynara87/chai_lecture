@@ -17,6 +17,7 @@ import {
   CommonTemplateComponentLocation,
 } from "../types/page";
 import cloneDeep from "lodash/cloneDeep";
+import { DropResult } from "react-beautiful-dnd";
 
 const usePage = () => {
   // TODO gth 나중에 서버로 전송할 땐 slides가 2개 이상이면 MultiPage 타입으로 만들어서 전송해야한다
@@ -25,6 +26,40 @@ const usePage = () => {
   useEffect(() => {
     console.log("slides", slides);
   }, [slides]);
+
+  const handleOnDragEnd = useCallback(
+    (result: DropResult) => {
+      const { source, destination } = result;
+      if (!destination) {
+        return;
+      }
+      const [sourceSlideId, _startArea] = source.droppableId.split("_");
+      const sourceArea = _startArea as CommonTemplateComponentLocation;
+      const [endSlideId, _endArea] = destination.droppableId.split("_");
+      const endArea = _endArea as CommonTemplateComponentLocation;
+
+      if (sourceSlideId !== endSlideId) {
+        // 다른 슬라이드로 이동은 허용하지 않음
+        return;
+      }
+
+      const newSlides = slides.map((slide) => {
+        if (slide.id.toString() === sourceSlideId) {
+          const newSlide = cloneDeep(slide);
+          // @ts-ignore
+          const sourceContents = newSlide[sourceArea] as Content[];
+          const [removed] = sourceContents.splice(source.index, 1);
+          // @ts-ignore
+          const destinationContents = newSlide[endArea] as Content[];
+          destinationContents.splice(destination.index, 0, removed);
+          return newSlide;
+        }
+        return slide;
+      });
+      setSlides(newSlides);
+    },
+    [slides, setSlides],
+  );
 
   const updateContent = useCallback(
     (
@@ -128,6 +163,7 @@ const usePage = () => {
     handleChangeLayout,
     addComponentMap,
     updateContent,
+    handleOnDragEnd,
   };
 };
 

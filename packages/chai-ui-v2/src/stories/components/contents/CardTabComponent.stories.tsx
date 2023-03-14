@@ -23,6 +23,22 @@ const data: CardTabContentData = {
         },
       ],
     },
+    {
+      tabName: "Audio",
+      cards: [
+        {
+          contents: [
+            {
+              type: "audio",
+              id: "1344",
+              data: {
+                src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+              },
+            },
+          ],
+        },
+      ],
+    },
   ],
 };
 

@@ -1,35 +1,31 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import LayoutFooter from "../molecules/LayoutFooter";
 import LayoutHeader from "../molecules/LayoutHeader";
-import useInitialData from "../../hooks/useInitialData";
-import LayoutSinglePage from "../molecules/LayoutSinglePage";
 import { useNavigate, useParams } from "react-router-dom";
 import { getPageUrl } from "../../util/url";
 import { useRecoilState } from "recoil";
-import { cornersState } from "../../state/corners";
-import { globalAudioState, LayoutModalIntroduction } from "chai-ui-v2";
-import LayoutMultiPage from "../molecules/LayoutMultiPage";
+import {
+  LayoutModalIntroduction,
+  LayoutSinglePage,
+  LayoutMultiPage,
+} from "chai-ui-v2";
+import useCorner from "../../hooks/useCorner";
+import useInitialData from "../../hooks/useInitialData";
+import { completeCornersState } from "../../state/completeCornersState";
+import { currentCornerIdState } from "../../state/currentCornerId";
 
 const Layout = () => {
-  const { initialPage, pages, initialCorner } = useInitialData();
   const [isPageCompleted, setIsPageCompleted] = useState(false);
+  const { corners } = useInitialData();
   const { courseId, cornerId, lessonId, pageId } = useParams();
-  const [globalAudio, setGlobalAudio] = useRecoilState(globalAudioState);
-  const globalAudioRef = useRef<HTMLAudioElement>(null);
-  const navigate = useNavigate();
+  const { pages } = useCorner(cornerId);
 
-  useEffect(() => {
-    setGlobalAudio({
-      id: -1,
-      audioSrc: "",
-      audioState: "pause",
-      audioRef: globalAudioRef,
-    });
-  }, [setGlobalAudio]);
+  const navigate = useNavigate();
 
   const [isIntroductionModalOpen, setIsIntroductionModalOpen] = useState(false);
 
-  const [, setCompletedCorners] = useRecoilState(cornersState);
+  const [, setCompletedCorners] = useRecoilState(completeCornersState);
+  const [, setCurrentCornerId] = useRecoilState(currentCornerIdState);
 
   const setPageCompleted = () => {
     setIsPageCompleted(true);
@@ -50,6 +46,7 @@ const Layout = () => {
   }, [pages, pageId]);
 
   const isLastPage = useMemo(() => {
+    if (!pages) return;
     return currentPageIndex === pages.length - 1;
   }, [currentPageIndex, pages]);
 
@@ -59,6 +56,7 @@ const Layout = () => {
 
   const handleClickPrev = () => {
     if (currentPageIndex === undefined) return;
+    if (!pageIds) return;
     if (cornerId && courseId && lessonId && pageId) {
       navigate(
         getPageUrl(courseId, lessonId, cornerId, pageIds[currentPageIndex - 1]),
@@ -68,10 +66,11 @@ const Layout = () => {
 
   const handleClickNext = () => {
     if (currentPageIndex === undefined) return;
+    if (!pageIds) return;
     if (isLastPage) {
       setCompletedCorners((prev) => {
         return prev.map((corner) => {
-          if (corner.id.toString() === initialCorner?.id.toString()) {
+          if (corner.id.toString() === cornerId?.toString()) {
             return { id: corner.id, isCompleted: true };
           }
           return corner;
@@ -112,6 +111,10 @@ const Layout = () => {
     }
   }, [currentPage?.introduction]);
 
+  useEffect(() => {
+    setCurrentCornerId(cornerId);
+  }, [cornerId, setCurrentCornerId]);
+
   const introduction = useMemo(() => {
     if (currentPage?.introduction) {
       return (
@@ -132,13 +135,13 @@ const Layout = () => {
         {/* <TemplateDialogue /> */}
       </main>
       <LayoutFooter
+        corners={corners}
         pages={pages}
         currentPageIndex={currentPageIndex ?? 1}
         handleClickNext={handleClickNext}
         handleClickPrev={handleClickPrev}
       />
       {introduction}
-      <audio ref={globalAudioRef} src={globalAudio.audioSrc} />
     </div>
   );
 };

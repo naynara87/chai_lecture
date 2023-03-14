@@ -5,6 +5,7 @@ import {
   ID,
   TemplateType,
 } from "chai-ui-v2";
+import { DraggableProvided } from "react-beautiful-dnd";
 import { ReturnUseComponent } from "../hooks/useComponent";
 import { ReturnUsePage } from "../hooks/usePage";
 
@@ -41,10 +42,16 @@ export type CommonTemplateComponentLocation =
   | "rightContents";
 
 export type ContentCommonProps = {
+  index: number; // 컴포넌트의 index
   currentSlide: AllTemplateData;
   content: Content;
   isFocused: boolean;
   setFocusedId: (e: React.MouseEvent, isFocused: ID) => void;
   position: CommonTemplateComponentLocation;
   updateContent: ReturnUsePage["updateContent"];
+  isDraggable?: boolean;
+};
+
+export type DraggableContentCommonProps = ContentCommonProps & {
+  draggableProvided?: DraggableProvided;
 };

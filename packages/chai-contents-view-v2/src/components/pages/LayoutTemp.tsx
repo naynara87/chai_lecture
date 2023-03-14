@@ -1,6 +1,5 @@
 import { TemplatePub } from "chai-ui-v2";
 import React from "react";
-import LayoutFooter from "../molecules/LayoutFooter";
 import LayoutHeader from "../molecules/LayoutHeader";
 
 const LayoutTemp = () => {
@@ -10,7 +9,7 @@ const LayoutTemp = () => {
       <main className="cai-main">
         <TemplatePub />
       </main>
-      <LayoutFooter
+      {/* <LayoutFooter
         pages={[]}
         currentPageIndex={1}
         handleClickNext={() => {
@@ -19,7 +18,7 @@ const LayoutTemp = () => {
         handleClickPrev={() => {
           console.log("이전페이지");
         }}
-      />
+      /> */}
     </div>
   );
 };
