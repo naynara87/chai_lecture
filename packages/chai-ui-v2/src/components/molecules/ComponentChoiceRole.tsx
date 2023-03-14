@@ -1,12 +1,8 @@
 import styled from "@emotion/styled";
-import React from "react";
+import React, { useMemo } from "react";
 import { vh, vw } from "../../assets";
-import {
-  ComponentButtonRadiBorderMain,
-  ComponentButtonRadiFillMain,
-  ImgTemp01Component,
-} from "../atoms";
-import ImgTemp02Component from "../atoms/ImgTemp02Component";
+import { ID } from "../../core";
+import { ComponentButtonRadiFillMain, ImgTemp01Component } from "../atoms";
 
 const ChoiceRoleWrapper = styled.div`
   .btn-wrap {
@@ -18,30 +14,40 @@ const ChoiceRoleWrapper = styled.div`
   }
 `;
 
-const ComponentChoiceRole = () => {
+interface ComponentChoiceRoleProps {
+  characterList: { id: ID; name: string; imageSrc: string }[];
+  onClickSelectCharacter: (characterId: ID) => void;
+}
+
+const ComponentChoiceRole = ({
+  characterList,
+  onClickSelectCharacter,
+}: ComponentChoiceRoleProps) => {
+  const characters = useMemo(() => {
+    return characterList.map((character) => {
+      return (
+        <li className="choice-role-list active" key={character.id}>
+          <div className="img-wrap">
+            {/* TODO: CPM 이미지 주소받으면 변경 */}
+            <ImgTemp01Component imageAlt={character.name} />
+          </div>
+          <p className="name">{character.name}</p>
+          <ComponentButtonRadiFillMain
+            text={"선택"}
+            onClickBtn={() => onClickSelectCharacter(character.id)}
+          />
+        </li>
+      );
+    });
+  }, [characterList, onClickSelectCharacter]);
+
   return (
     <ChoiceRoleWrapper className="choice-role-wrapper">
       <ul className="choice-role-list-wrap">
         {/* 반복영역 */}
-        <li className="choice-role-list active">
-          <div className="img-wrap">
-            <ImgTemp01Component imageAlt="레이" />
-          </div>
-          <p className="name">{"레이"}</p>
-          <ComponentButtonRadiFillMain text={"선택"} />
-        </li>
+        {characters}
         {/* end 반복영역 */}
-        <li className="choice-role-list">
-          <div className="img-wrap">
-            <ImgTemp02Component imageAlt="왕리리" />
-          </div>
-          <p className="name">{"왕리리"}</p>
-          <ComponentButtonRadiFillMain text={"선택"} />
-        </li>
       </ul>
-      <div className="btns-wrap">
-        <ComponentButtonRadiBorderMain text={"다음 학습으로 넘어가기"} />
-      </div>
     </ChoiceRoleWrapper>
   );
 };

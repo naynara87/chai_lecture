@@ -5,10 +5,12 @@ import {
   TemplateQuizMultiChoice,
   TemplateQuizDialogueWordBlank,
   TemplateQuizSentenceBlank,
+  Template02,
+  Template03,
 } from "../../components";
-import TemplateExam from "../../components/templates/TemplateExam";
 import TemplateQuizDialogueWordArray from "../../components/templates/TemplateQuizDialogueWordArray";
 import TemplateQuizSpeaking from "../../components/templates/TemplateQuizSpeaking";
+import TemplateRolePlaying from "../../components/templates/TemplateRolePlaying";
 import TemplateWordCard from "../../components/templates/TemplateWordCard";
 import {
   AllTemplateData,
@@ -19,7 +21,10 @@ import {
   TemplateQuizSentencesInOrderData,
   TemplateQuizSpeakingData,
   TemplateQuizWordsInOrderData,
+  TemplateRolePlayingData,
   TemplateWordCardData,
+  Template_H_3_7Data,
+  Template_H_5_5Data,
 } from "../types";
 import { TemplateType } from "../types/appData";
 
@@ -36,8 +41,18 @@ const useTemplateMapper = ({ setPageCompleted }: UseTemplateMapperProps) => {
             setPageCompleted={setPageCompleted}
           />
         ),
-        Template_H_3_7: <TemplateExam />,
-        Template_H_5_5: <TemplateExam />,
+        Template_H_5_5: (
+          <Template02
+            template={template as Template_H_5_5Data}
+            setPageCompleted={setPageCompleted}
+          />
+        ),
+        Template_H_3_7: (
+          <Template03
+            template={template as Template_H_3_7Data}
+            setPageCompleted={setPageCompleted}
+          />
+        ),
         TemplateConversation: (
           <TemplateDialogue
             template={template as TemplateConversationData}
@@ -89,6 +104,12 @@ const useTemplateMapper = ({ setPageCompleted }: UseTemplateMapperProps) => {
         TemplateWordCard: (
           <TemplateWordCard
             template={template as TemplateWordCardData}
+            setPageCompleted={setPageCompleted}
+          />
+        ),
+        TemplateRolePlaying: (
+          <TemplateRolePlaying
+            template={template as TemplateRolePlayingData}
             setPageCompleted={setPageCompleted}
           />
         ),

@@ -55,15 +55,7 @@ const ConversationComponent = ({
       const results = globalAudioId.toString().split("_");
       const [, , dialogueIndex] = results;
       setSpeakingDialogueIndex(parseInt(dialogueIndex, 10));
-    }
-  }, [globalAudioId, fullAudioId]);
-
-  useEffect(() => {
-    if (
-      fullAudioId &&
-      !globalAudioId.toString().includes(fullAudioId) &&
-      !globalAudioId.toString().includes("dialogue")
-    ) {
+    } else if (!globalAudioId.toString().includes("dialogue")) {
       setSpeakingDialogueIndex(-1);
     }
   }, [globalAudioId, fullAudioId]);
