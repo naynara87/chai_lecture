@@ -89,14 +89,11 @@ const LayoutHeader = ({
       className="cai-hd"
       lessonColor={getLessonColors(lessonColorCode)}
     >
-      {/* TODO: key설명 - 코너가 바뀌면 width가 변경 */}
       <HdContWrap
         className="hd-conts-wrap"
         cornerPercent={cornerPercent}
         lessonColor={getLessonColors(lessonColorCode)}
       >
-        {/* TODO: key설명 - width 50%이상에서 second-half 보이고, width 50%미만에서 first-half 보임 */}
-        {/* 우선 클래스 none 로 가림 */}
         <HdChaWrap
           className={`hd-cha-wrap ${
             cornerPercent > 50 ? "second-half" : "first-half"
