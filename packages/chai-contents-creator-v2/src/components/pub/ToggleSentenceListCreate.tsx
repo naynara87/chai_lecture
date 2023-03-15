@@ -14,9 +14,9 @@ const SentenceWrap = styled.div`
 	width: 500px;
 	margin-top: 10px;
 	padding: 16px;
-	background-color: ${colorPalette.sublightpurple};
 	border: 1px solid ${colorPalette.subpurple};
 	border-radius :10px;
+	background-color: ${colorPalette.sublightpurple};
 
 	.btn-delete {
 		z-index: 1;
