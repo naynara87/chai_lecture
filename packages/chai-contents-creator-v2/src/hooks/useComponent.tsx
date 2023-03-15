@@ -6,6 +6,7 @@ import BorderTextBoxCreator from "../components/contents/BorderTextBoxCreator";
 import IconTextCreator from "../components/contents/IconTextCreator";
 import NumberingTextListCreator from "../components/contents/NumberingTextListCreator";
 import TextCreator from "../components/contents/TextCreator";
+import VideoCreator from "../components/contents/VideoCreator";
 import DummyComponent from "../components/molecules/temp/DummyComponent";
 import { focusedIdState } from "../states/focusedIdState";
 import {
@@ -26,6 +27,7 @@ const useComponent = () => {
       iconText: <IconTextCreator {...props} />,
       numberingTextList: <NumberingTextListCreator {...props} />,
       borderTextBox: <BorderTextBoxCreator {...props} />,
+      video: <VideoCreator {...props} />,
     };
 
     return componentMap[type];

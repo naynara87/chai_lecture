@@ -1,7 +1,10 @@
+import React from "react";
 import styled from "@emotion/styled";
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 import VideoIcon from "../../assets/images/icon/icon_video.svg";
 import UrlInputWrapper from "../molecules/UrlInputWrapper";
+import { DraggableContentCommonProps } from "../../types/page";
+import { ComponentVideo, VideoContentData } from "chai-ui-v2";
 
 const VideoWrapper = styled.div``;
 
@@ -21,14 +24,43 @@ const VideoThumb = styled.div`
   }
 `;
 
-const VideoCreator = () => {
+const VideoCreator = ({
+  content,
+  setFocusedId,
+  isFocused,
+  updateContent,
+  currentSlide,
+  position,
+  draggableProvided,
+  isDraggable,
+}: DraggableContentCommonProps) => {
+  const thisContent = content as VideoContentData;
+  const url = thisContent.data.src;
+
+  const handleSubmitUrl = (url: string) => {
+    const newContent = {
+      ...thisContent,
+      data: {
+        src: url,
+      },
+    };
+    updateContent(currentSlide.id, content.id, position, newContent);
+  };
+
   return (
-    <ContentCreatorLayout>
-      <VideoWrapper>
-        <VideoThumb>
-          <img src={VideoIcon} alt="" />
-        </VideoThumb>
-        <UrlInputWrapper typeText="비디오" />
+    <ContentCreatorLayout
+      isDraggable={isDraggable}
+      draggableProvided={draggableProvided}
+    >
+      <VideoWrapper onClick={(e) => setFocusedId(e, content.id)}>
+        {url ? (
+          <ComponentVideo content={thisContent} />
+        ) : (
+          <VideoThumb>
+            <img src={VideoIcon} alt="" />
+          </VideoThumb>
+        )}
+        <UrlInputWrapper typeText="비디오" onSubmit={handleSubmitUrl} />
       </VideoWrapper>
     </ContentCreatorLayout>
   );
