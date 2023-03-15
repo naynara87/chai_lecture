@@ -64,7 +64,6 @@ const MultilevelActionCardListCreator = () => {
             </TopArea>
             {/* TODO: 컴포넌트 선택 하면 이곳에 선택된 컴포넌트들이 순차적으로 추가 */}
             <AudioCreator />
-            <VideoCreator />
           </MultilevelActionCard>
         </MultilevelActionCardList>
       </MultilevelActionCardWrapper>
