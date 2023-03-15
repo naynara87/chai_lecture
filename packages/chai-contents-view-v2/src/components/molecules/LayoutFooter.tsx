@@ -8,7 +8,7 @@ import {
   ImgCharacterComponent,
   Page,
   CornerListData,
-  ModalConfirm,
+  LayoutModalExit,
 } from "chai-ui-v2";
 import { Link, useParams } from "react-router-dom";
 import { getPageUrl } from "../../util/url";
@@ -114,14 +114,9 @@ const LayoutFooter = ({
           </div>
         </nav>
       </div>
-      <ModalConfirm
+      <LayoutModalExit
         isModalOpen={isExitModalOpen}
         setIsModalOpen={setIsExitModalOpen}
-        title="학습 나가기"
-        description="아직 학습을 하지 않은 내용이 있어요 학습을 종료하시겠어요?"
-        leftButtonText="계속 학습하기"
-        rightButtonText="학습 종료하기"
-        handleClickRightButton={() => setIsExitModalOpen(false)}
       />
     </div>
   );
