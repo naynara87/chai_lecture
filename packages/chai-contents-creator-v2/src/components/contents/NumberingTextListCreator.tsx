@@ -2,9 +2,9 @@ import styled from "@emotion/styled";
 import AddButton from "../atoms/AddButton";
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 import ObjectDeleteButton from "../atoms/ObjectDeleteButton";
-import { ContentCommonProps } from "../../types/page";
+import { DraggableContentCommonProps } from "../../types/page";
 import { NumberingTextListContentData } from "chai-ui-v2";
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { numberingTextDefaultData } from "../../data/appData";
 import TextEditorViewer from "../molecules/TextEditorViewer";
 
@@ -47,6 +47,8 @@ const TextWrap = styled.div`
   }
 `;
 
+type ColumnIndex = "firstText" | "secondText";
+
 /**
  * 번호 매기기
  * CH-01-03
@@ -62,8 +64,50 @@ const NumberingTextListCreator = ({
   updateContent,
   currentSlide,
   position,
-}: ContentCommonProps) => {
+  draggableProvided,
+  isDraggable,
+}: DraggableContentCommonProps) => {
   const thisContent = content as NumberingTextListContentData;
+
+  const [focusedTextEditorIndex, setFocusedTextEditorIndex] =
+    useState<number>();
+
+  const [focusedColumnIndex, setFocusedColumnIndex] = useState<ColumnIndex>();
+
+  const fucusTextEditor = useCallback(
+    (numberListIndex: number, columnIndex: ColumnIndex) => () => {
+      setFocusedTextEditorIndex(numberListIndex);
+      setFocusedColumnIndex(columnIndex);
+    },
+    [],
+  );
+
+  const resetFocusedTextEditorIndex = useCallback(() => {
+    setFocusedTextEditorIndex(undefined);
+    setFocusedColumnIndex(undefined);
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("click", resetFocusedTextEditorIndex);
+    return () => {
+      window.removeEventListener("click", resetFocusedTextEditorIndex);
+    };
+  }, [resetFocusedTextEditorIndex]);
+
+  const isTextEditorFocused = useCallback(
+    (
+      isCurrentComponentFocused: boolean,
+      numberListIndex: number,
+      columnIndex: ColumnIndex,
+    ) => {
+      return (
+        isCurrentComponentFocused &&
+        focusedTextEditorIndex === numberListIndex &&
+        columnIndex === focusedColumnIndex
+      );
+    },
+    [focusedTextEditorIndex, focusedColumnIndex],
+  );
 
   const updateNumberingTextData = (
     numberingTextData: NumberingTextListContentData["data"],
@@ -129,27 +173,42 @@ const NumberingTextListCreator = ({
   };
 
   return (
-    <ContentCreatorLayout>
+    <ContentCreatorLayout
+      isDraggable={isDraggable}
+      draggableProvided={draggableProvided}
+    >
       <NumberingTextCreatorWrapper>
-        <AddButton onClick={addNumberingTextItem}>
-          번호 추가
-        </AddButton>
+        <AddButton onClick={addNumberingTextItem}>번호 추가</AddButton>
         <NumberingListWrapper onClick={(e) => setFocusedId(e, content.id)}>
           {thisContent.data.map((item, index) => {
             return (
               <NumberingList key={index} className="numbering-list">
                 <span className="number">{index + 1}</span>
                 <TextWrap>
-                  <div className="text1">
+                  <div
+                    className="text1"
+                    onClick={fucusTextEditor(index, "firstText")}
+                  >
                     <TextEditorViewer
-                      isFocused={isFocused}
+                      isFocused={isTextEditorFocused(
+                        isFocused,
+                        index,
+                        "firstText",
+                      )}
                       setText={(text) => setText(index, "firstText", text)}
                       text={getText(index, "firstText")}
                     />
                   </div>
-                  <div className="text2">
+                  <div
+                    className="text2"
+                    onClick={fucusTextEditor(index, "secondText")}
+                  >
                     <TextEditorViewer
-                      isFocused={isFocused}
+                      isFocused={isTextEditorFocused(
+                        isFocused,
+                        index,
+                        "secondText",
+                      )}
                       setText={(text) => setText(index, "secondText", text)}
                       text={getText(index, "secondText")}
                     />
