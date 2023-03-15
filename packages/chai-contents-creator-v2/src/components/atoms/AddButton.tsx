@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { colorPalette } from "chai-ui-v2";
 
 const ButtonBorder = styled.button`
+  width: fit-content;
   height: 50px;
   margin-bottom: 8px;
   padding: 14px 16px;

@@ -9,7 +9,6 @@ import {
 import { PageCommonProps } from "../../types/page";
 import DashBoxArea from "../atoms/DashBoxArea";
 import PageHeader from "../molecules/PageHeader";
-import CharacterCardListCreater from "../pub/CharacterCardListCreater";
 
 const CreateTemplate01 = ({
   templateType,
@@ -64,7 +63,6 @@ const CreateTemplate01 = ({
                 position: "contents",
               });
             })}
-            <CharacterCardListCreater />
           </DashBoxArea>
         </CreateEditMain>
       </CreateEditMainWrap>
