@@ -8,6 +8,7 @@ import {
   ImgCharacterComponent,
   Page,
   CornerListData,
+  LayoutModalExit,
 } from "chai-ui-v2";
 import { Link, useParams } from "react-router-dom";
 import { getPageUrl } from "../../util/url";
@@ -31,6 +32,7 @@ const LayoutFooter = ({
   handleClickPrev,
 }: LayoutFooterProps) => {
   const [isShowNav, setIsShowNav] = useState(false);
+  const [isExitModalOpen, setIsExitModalOpen] = useState(false);
   const { courseId, lessonId, cornerId } = useParams();
 
   const cornerList = useMemo(() => {
@@ -105,10 +107,17 @@ const LayoutFooter = ({
             {cornerList}
           </ul>
           <div className="btn-wrap">
-            <ComponentButtonFillBlack text={"나가기"} />
+            <ComponentButtonFillBlack
+              text={"나가기"}
+              onClickBtn={() => setIsExitModalOpen(true)}
+            />
           </div>
         </nav>
       </div>
+      <LayoutModalExit
+        isModalOpen={isExitModalOpen}
+        setIsModalOpen={setIsExitModalOpen}
+      />
     </div>
   );
 };

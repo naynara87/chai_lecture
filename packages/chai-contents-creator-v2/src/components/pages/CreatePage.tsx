@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import useTemplate from "../../hooks/useTemplate";
 import {
   CreateAddBtn,
@@ -11,6 +11,7 @@ import Button from "../atoms/Button";
 import usePage from "../../hooks/usePage";
 import useComponent from "../../hooks/useComponent";
 import { DragDropContext } from "react-beautiful-dnd";
+import { PREVIEW_URL } from "../../constants/url";
 
 const CommonButtonContainer = styled.div`
   padding-bottom: 16px;
@@ -31,14 +32,23 @@ const CreatePage = () => {
     addComponentMap,
     updateContent,
     handleOnDragEnd,
+    savePageDataToLocalStorage,
+    removePageDataFromLocalStorage,
   } = usePage();
+
+  useEffect(() => {
+    removePageDataFromLocalStorage();
+    return () => {
+      removePageDataFromLocalStorage();
+    };
+  }, [removePageDataFromLocalStorage]);
 
   const returnUseComponent = useComponent();
 
   const handleClickPreview = useCallback(() => {
-    // TODO : 미리보기 모달창 띄우기 - 미리보기 모달은 페이지 내 모든 슬라이드를 미리보기 할 수 있도록 한다
-    console.log("미리보기");
-  }, []);
+    savePageDataToLocalStorage();
+    window.open(PREVIEW_URL, "_blank");
+  }, [savePageDataToLocalStorage]);
 
   const handleClickAddIntroductionModal = useCallback(() => {
     // TODO : 학습 변경 간지 추가 모달창 띄우기

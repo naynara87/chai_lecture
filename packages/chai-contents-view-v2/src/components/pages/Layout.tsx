@@ -8,6 +8,7 @@ import {
   LayoutModalIntroduction,
   LayoutSinglePage,
   LayoutMultiPage,
+  ModalCompleted,
 } from "chai-ui-v2";
 import useCorner from "../../hooks/useCorner";
 import useInitialData from "../../hooks/useInitialData";
@@ -16,7 +17,8 @@ import { currentCornerIdState } from "../../state/currentCornerId";
 
 const Layout = () => {
   const [isPageCompleted, setIsPageCompleted] = useState(false);
-  const { corners } = useInitialData();
+  const [isCompleteModalOpen, setIsCompleteModalOpen] = useState(false);
+  const { corners, lessonMetaData, cornerMetaData } = useInitialData();
   const { courseId, cornerId, lessonId, pageId } = useParams();
   const { pages } = useCorner(cornerId);
 
@@ -24,8 +26,10 @@ const Layout = () => {
 
   const [isIntroductionModalOpen, setIsIntroductionModalOpen] = useState(false);
 
-  const [, setCompletedCorners] = useRecoilState(completeCornersState);
-  const [, setCurrentCornerId] = useRecoilState(currentCornerIdState);
+  const [completedCorners, setCompletedCorners] =
+    useRecoilState(completeCornersState);
+  const [currentCornerId, setCurrentCornerId] =
+    useRecoilState(currentCornerIdState);
 
   const setPageCompleted = () => {
     setIsPageCompleted(true);
@@ -76,7 +80,26 @@ const Layout = () => {
           return corner;
         });
       });
-      navigate("/");
+      if (!lessonMetaData) return;
+      if (!cornerMetaData) return;
+
+      const currentCornerIndex = corners.findIndex(
+        (corner) => corner.id.toString() === currentCornerId?.toString(),
+      );
+      const nextCorner = corners[currentCornerIndex + 1];
+      if (nextCorner) {
+        // 다음 코너가 있을때
+        const url = getPageUrl(
+          lessonMetaData?.courseId,
+          cornerMetaData?.lessonId,
+          nextCorner.id,
+          1,
+        );
+        navigate(url);
+        return;
+      }
+      // 마지막코너이고 모두 학습을 완료했을때
+      setIsCompleteModalOpen(true);
       return;
     }
     if (cornerId && courseId && lessonId && pageId) {
@@ -129,7 +152,12 @@ const Layout = () => {
 
   return (
     <div>
-      <LayoutHeader />
+      <LayoutHeader
+        corners={corners}
+        cornerId={cornerId}
+        currentPage={currentPage}
+        lessonColorCode={lessonMetaData?.colorTypeCd}
+      />
       <main className="cai-main">
         {layoutMain}
         {/* <TemplateDialogue /> */}
@@ -142,6 +170,7 @@ const Layout = () => {
         handleClickPrev={handleClickPrev}
       />
       {introduction}
+      {isCompleteModalOpen && <ModalCompleted />}
     </div>
   );
 };

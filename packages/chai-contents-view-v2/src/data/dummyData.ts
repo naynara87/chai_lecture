@@ -8,6 +8,7 @@ export const v2LessonData: LessonData = {
     name: "Lesson 1",
     courseId: 1,
     courseName: "차이홍(샘플데이터)-빨강",
+    colorTypeCd: "10",
   },
   // 코너 리스트
   data: [
@@ -17,6 +18,22 @@ export const v2LessonData: LessonData = {
     },
     {
       id: 12,
+      name: "학습 들어가기",
+    },
+    {
+      id: 13,
+      name: "학습 들어가기",
+    },
+    {
+      id: 14,
+      name: "학습 들어가기",
+    },
+    {
+      id: 15,
+      name: "학습 들어가기",
+    },
+    {
+      id: 16,
       name: "학습 들어가기",
     },
   ],
@@ -1278,6 +1295,174 @@ export const v2CornerDataList: CornerData[] = [
     // 학습1 코너 메타 정보
     meta: {
       id: 12,
+      name: "학습 들어가기",
+      lessonId: 1,
+      lessonName: "Lesson 1",
+      lessonTpCd: "30",
+      courseId: 1,
+      courseName: "차이홍(샘플데이터)-빨강",
+      isCompleted: false,
+    },
+    // 복습 page 리스트
+    data: [
+      {
+        id: 1,
+        name: "한어",
+        type: "SinglePage",
+        introduction: {
+          title: "",
+          subTitle: "",
+          character: {
+            url: "",
+          },
+          contents: "",
+        },
+        data: {
+          id: uuidV4(),
+          type: "Template01",
+          contents: [
+            {
+              id: uuidV4(),
+              type: "text",
+              data: {
+                text: "asdfasdf4",
+              },
+            },
+          ],
+        },
+      },
+    ],
+  },
+  {
+    // 학습1 코너 메타 정보
+    meta: {
+      id: 13,
+      name: "학습 들어가기",
+      lessonId: 1,
+      lessonName: "Lesson 1",
+      lessonTpCd: "30",
+      courseId: 1,
+      courseName: "차이홍(샘플데이터)-빨강",
+      isCompleted: false,
+    },
+    // 복습 page 리스트
+    data: [
+      {
+        id: 1,
+        name: "한어",
+        type: "SinglePage",
+        introduction: {
+          title: "",
+          subTitle: "",
+          character: {
+            url: "",
+          },
+          contents: "",
+        },
+        data: {
+          id: uuidV4(),
+          type: "Template01",
+          contents: [
+            {
+              id: uuidV4(),
+              type: "text",
+              data: {
+                text: "asdfasdf4",
+              },
+            },
+          ],
+        },
+      },
+    ],
+  },
+  {
+    // 학습1 코너 메타 정보
+    meta: {
+      id: 14,
+      name: "학습 들어가기",
+      lessonId: 1,
+      lessonName: "Lesson 1",
+      lessonTpCd: "30",
+      courseId: 1,
+      courseName: "차이홍(샘플데이터)-빨강",
+      isCompleted: false,
+    },
+    // 복습 page 리스트
+    data: [
+      {
+        id: 1,
+        name: "한어",
+        type: "SinglePage",
+        introduction: {
+          title: "",
+          subTitle: "",
+          character: {
+            url: "",
+          },
+          contents: "",
+        },
+        data: {
+          id: uuidV4(),
+          type: "Template01",
+          contents: [
+            {
+              id: uuidV4(),
+              type: "text",
+              data: {
+                text: "asdfasdf4",
+              },
+            },
+          ],
+        },
+      },
+    ],
+  },
+  {
+    // 학습1 코너 메타 정보
+    meta: {
+      id: 15,
+      name: "학습 들어가기",
+      lessonId: 1,
+      lessonName: "Lesson 1",
+      lessonTpCd: "30",
+      courseId: 1,
+      courseName: "차이홍(샘플데이터)-빨강",
+      isCompleted: false,
+    },
+    // 복습 page 리스트
+    data: [
+      {
+        id: 1,
+        name: "한어",
+        type: "SinglePage",
+        introduction: {
+          title: "",
+          subTitle: "",
+          character: {
+            url: "",
+          },
+          contents: "",
+        },
+        data: {
+          id: uuidV4(),
+          type: "Template01",
+          contents: [
+            {
+              id: uuidV4(),
+              type: "text",
+              data: {
+                text: "asdfasdf4",
+              },
+            },
+          ],
+        },
+      },
+    ],
+  },
+  {
+    // 학습1 코너 메타 정보
+    meta: {
+      id: 16,
       name: "학습 들어가기",
       lessonId: 1,
       lessonName: "Lesson 1",
