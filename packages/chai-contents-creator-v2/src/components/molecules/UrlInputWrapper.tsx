@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { colorPalette, validateURL } from "chai-ui-v2";
 import { useState } from "react";
-import AddNumberButton from "../atoms/AddNumberButton";
+import AddButton from "../atoms/AddButton";
 
 const UrlTextWrapper = styled.div`
   margin-top: 10px;
@@ -68,7 +68,7 @@ const UrlInputWrapper = ({ typeText, onSubmit }: ButtonProps) => {
       <p className="text-tit">{typeText} URL</p>
       <form onSubmit={handleSubmit}>
         <input placeholder={`${typeText} URL 입력`}></input>
-        <AddNumberButton>등록</AddNumberButton>
+        <AddButton>등록</AddButton>
       </form>
       {message && <WarningMessage>{message}</WarningMessage>}
     </UrlTextWrapper>

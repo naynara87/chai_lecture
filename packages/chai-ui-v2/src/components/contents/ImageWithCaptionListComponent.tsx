@@ -5,7 +5,7 @@ import { vw, vh, colorPalette } from "../../assets";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
 import { ModalImage } from "../modal";
 
-interface ImageWithCaptionListProps {
+export interface ImageWithCaptionListProps {
   contents: ImageWithCaptionListContentData;
 }
 

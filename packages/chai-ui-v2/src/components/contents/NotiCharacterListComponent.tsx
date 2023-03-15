@@ -6,7 +6,7 @@ import arrow from "../../assets/images/icon/icon_contsinfo_tail.svg";
 import profileImg from "../../assets/images/img/cha_profile01.png";
 import { vw, vh, colorPalette } from "../../assets";
 
-interface NotiCharacterListComponentProps {
+export interface NotiCharacterListComponentProps {
   contents: NotiCharacterListContentData;
 }
 

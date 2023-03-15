@@ -4,7 +4,7 @@ import { ImgTemp01Component } from "../atoms";
 import SpeakingComponent from "./SpeakingComponent";
 import { v4 as uuidv4 } from "uuid";
 
-interface ConversationComponentProps {
+export interface ConversationComponentProps {
   contents: ConversationContentData;
   isShowPronunciation?: boolean;
   isShowMeaning?: boolean;
@@ -62,8 +62,10 @@ const ConversationComponent = ({
 
   useEffect(() => {
     let globalAudioRefValue: HTMLAudioElement | null = null;
-    if (globalAudioRef?.current) globalAudioRefValue = globalAudioRef.current;
-    globalAudioRef?.current?.addEventListener("ended", audioEnded);
+    if (globalAudioRef?.current) {
+      globalAudioRefValue = globalAudioRef.current;
+      globalAudioRefValue.addEventListener("ended", audioEnded);
+    }
     return () => {
       if (globalAudioRefValue) {
         globalAudioRefValue.removeEventListener("ended", audioEnded);

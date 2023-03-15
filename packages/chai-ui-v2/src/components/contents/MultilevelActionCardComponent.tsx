@@ -11,7 +11,7 @@ const StepCard = styled.div`
   }
 `;
 
-interface MultilevelActionCardComponentProps {
+export interface MultilevelActionCardComponentProps {
   contents: MultilevelActionCardContentData;
 }
 

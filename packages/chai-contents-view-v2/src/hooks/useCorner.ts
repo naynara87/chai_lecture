@@ -15,13 +15,16 @@ const useCorner = (cornerId: ID | undefined) => {
       if (!cornerId) {
         return;
       }
-      return v2CornerDataList.find((corner) => corner.meta.id === cornerId);
+      return v2CornerDataList;
     },
     {
       enabled: isAuthorized && !!cornerId,
       onSuccess: (data) => {
-        setPages(data?.data!);
-        setCornerMetaData(data?.meta!);
+        const currentCorner = data?.find(
+          (corner) => corner.meta.id.toString() === cornerId?.toString(),
+        );
+        setPages(currentCorner?.data!);
+        setCornerMetaData(currentCorner?.meta);
       },
       onError: (error) => {
         console.log("코너 리스트 조회 실패");

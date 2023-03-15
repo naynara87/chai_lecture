@@ -30,7 +30,7 @@ const ToggleTextWrapper = styled.div`
   }
 `;
 
-interface ToggleSentenceListComponentProps {
+export interface ToggleSentenceListComponentProps {
   contents: ToggleSentenceListContentData;
 }
 

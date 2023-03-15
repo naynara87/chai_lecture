@@ -19,26 +19,6 @@ export const v2LessonData: LessonData = {
       id: 12,
       name: "학습 들어가기",
     },
-    {
-      id: 13,
-      name: "패턴 중국어",
-    },
-    {
-      id: 14,
-      name: "회화",
-    },
-    {
-      id: 15,
-      name: "문법",
-    },
-    {
-      id: 16,
-      name: "문화",
-    },
-    {
-      id: 17,
-      name: "학습 정리",
-    },
   ],
 };
 

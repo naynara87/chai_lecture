@@ -1,3 +1,4 @@
+import { RecoilRoot, RecoilState } from "recoil";
 import "../src/assets/ui.scss";
 
 export const parameters = {
@@ -13,7 +14,9 @@ export const parameters = {
 export const decorators = [
   (Story) => (
     <>
-      <Story />
+      <RecoilRoot>
+        <Story />
+      </RecoilRoot>
     </>
   ),
 ];

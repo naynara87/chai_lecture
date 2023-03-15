@@ -2,7 +2,7 @@ import React from "react";
 import { TextContentData } from "../../core";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
 
-interface TextContentComponentProps {
+export interface TextContentComponentProps {
   contents: TextContentData;
 }
 

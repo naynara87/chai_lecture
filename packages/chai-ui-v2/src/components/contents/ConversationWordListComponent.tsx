@@ -5,7 +5,7 @@ import { ComponentButtonPlay, ImgCharacterComponent } from "../atoms";
 import IconPauseFillButton from "../atoms/Button/IconPauseFillButton";
 import ComponentButtonRoundArrow from "../atoms/ComponentButtonRoundArrow";
 import { v4 as uuidv4 } from "uuid";
-interface ConversationWordListComponentProps {
+export interface ConversationWordListComponentProps {
   contents: ConversationWordListContentData;
 }
 
@@ -31,13 +31,15 @@ const ConversationWordListComponent = ({
 
   useEffect(() => {
     let globalAudioRefValue: HTMLAudioElement | null = null;
-    if (globalAudioRef?.current) globalAudioRefValue = globalAudioRef.current;
     function resetAudio() {
       if (globalAudioId.toString().includes("vocaNote")) {
         handleAudioReset();
       }
     }
-    globalAudioRef?.current?.addEventListener("ended", resetAudio);
+    if (globalAudioRef?.current) {
+      globalAudioRefValue = globalAudioRef.current;
+      globalAudioRefValue?.addEventListener("ended", resetAudio);
+    }
     return () => {
       if (globalAudioRefValue) {
         globalAudioRefValue.removeEventListener("ended", resetAudio);

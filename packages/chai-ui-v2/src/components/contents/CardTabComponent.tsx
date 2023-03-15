@@ -5,7 +5,7 @@ import useContentMapper from "../../core/hooks/useContentMapper";
 
 const TabTitle = styled.div``;
 
-interface CardTabComponentProps {
+export interface CardTabComponentProps {
   contents: CardTabContentData;
 }
 

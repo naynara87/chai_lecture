@@ -24,7 +24,7 @@ const ButtonWrapper = styled.div`
 
 type RecordedAudioState = "not-recorded" | "recorded" | "playing" | "stopped";
 
-interface FinalSpeakingComponentProps {
+export interface FinalSpeakingComponentProps {
   contents: FinalSpeakingContentData;
 }
 
@@ -176,8 +176,10 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
 
   useEffect(() => {
     let globalAudioRefValue: HTMLAudioElement | null = null;
-    if (globalAudioRef?.current) globalAudioRefValue = globalAudioRef.current;
-    globalAudioRef?.current?.addEventListener("ended", audioEnded);
+    if (globalAudioRef?.current) {
+      globalAudioRefValue = globalAudioRef.current;
+      globalAudioRefValue?.addEventListener("ended", audioEnded);
+    }
     return () => {
       if (globalAudioRefValue) {
         globalAudioRefValue.removeEventListener("ended", audioEnded);

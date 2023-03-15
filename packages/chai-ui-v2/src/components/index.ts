@@ -3,3 +3,4 @@ export * from "./modal";
 export * from "./contents";
 export * from "./molecules";
 export * from "./templates";
+export * from "./pages";

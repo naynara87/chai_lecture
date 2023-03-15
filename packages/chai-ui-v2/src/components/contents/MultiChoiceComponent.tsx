@@ -10,7 +10,7 @@ import { LayoutModalSolution } from "../modal";
 import ComponentGrayLine from "../molecules/ComponentGrayLine";
 import { v4 as uuidv4 } from "uuid";
 import ModalVideo from "../modal/ModalVideo";
-interface MultiChoiceComponentProps {
+export interface MultiChoiceComponentProps {
   contents: MultiChoiceContentData;
 }
 
@@ -36,8 +36,10 @@ const MultiChoiceComponent = ({ contents }: MultiChoiceComponentProps) => {
 
   useEffect(() => {
     let globalAudioRefValue: HTMLAudioElement | null = null;
-    if (globalAudioRef?.current) globalAudioRefValue = globalAudioRef.current;
-    globalAudioRef?.current?.addEventListener("ended", audioEnded);
+    if (globalAudioRef?.current) {
+      globalAudioRefValue = globalAudioRef.current;
+      globalAudioRefValue?.addEventListener("ended", audioEnded);
+    }
     return () => {
       if (globalAudioRefValue) {
         globalAudioRefValue.removeEventListener("ended", audioEnded);

@@ -4,7 +4,7 @@ import { ComponentButtonPlay } from "../atoms";
 import IconPauseFillButton from "../atoms/Button/IconPauseFillButton";
 import { v4 as uuidv4 } from "uuid";
 
-interface AudioComponentProps {
+export interface AudioComponentProps {
   contents: AudioContentData;
 }
 
@@ -33,8 +33,10 @@ const AudioComponent = ({ contents }: AudioComponentProps) => {
 
   useEffect(() => {
     let globalAudioRefValue: HTMLAudioElement | null = null;
-    if (globalAudioRef?.current) globalAudioRefValue = globalAudioRef.current;
-    globalAudioRef?.current?.addEventListener("ended", resetAudio);
+    if (globalAudioRef?.current) {
+      globalAudioRefValue = globalAudioRef.current;
+      globalAudioRefValue?.addEventListener("ended", resetAudio);
+    }
     return () => {
       if (globalAudioRefValue) {
         globalAudioRefValue.removeEventListener("ended", resetAudio);
