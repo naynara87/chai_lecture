@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React from "react";
+import React, { useCallback, useMemo } from "react";
 import { colorPalette } from "../../assets";
 import ComponentButtonRadiBorderMain from "../atoms/ComponentButtonRadiBorderMain";
 import ComponentButtonRadiFillMain from "../atoms/ComponentButtonRadiFillMain";
@@ -45,14 +45,34 @@ const LayoutModalSolution = ({
   handleClickModalCloseBtnCallback,
   handleClickModalVideoBtnCallback,
 }: LayoutModalSolutionProps) => {
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setIsModalOpen(false);
     handleClickModalCloseBtnCallback();
-  };
+  }, [setIsModalOpen, handleClickModalCloseBtnCallback]);
 
-  const handleVideoBtnClick = () => {
+  const handleVideoBtnClick = useCallback(() => {
     handleClickModalVideoBtnCallback();
-  };
+  }, [handleClickModalVideoBtnCallback]);
+
+  const buttons = useMemo(() => {
+    if (isCorrect) {
+      return (
+        <>
+          <ComponentButtonRadiBorderMain
+            text="동영상 설명 보기"
+            onClickBtn={handleVideoBtnClick}
+          />
+          <ComponentButtonRadiFillMain text="확인" onClickBtn={handleClose} />
+        </>
+      );
+    }
+    return (
+      <ComponentButtonRadiFillMain
+        text="동영상 설명 보기"
+        onClickBtn={handleVideoBtnClick}
+      />
+    );
+  }, [isCorrect, handleClose, handleVideoBtnClick]);
 
   return (
     // NOTE: 설명 - active가 되면 보임
@@ -86,13 +106,7 @@ const LayoutModalSolution = ({
       </ModalBaseContents>
 
       {/* NOTE: 설명 - 버튼이 하나만 들어갈 수도 있음 */}
-      <div className="btns-wrap">
-        <ComponentButtonRadiBorderMain
-          text="동영상 설명 보기"
-          onClickBtn={handleVideoBtnClick}
-        />
-        <ComponentButtonRadiFillMain text="확인" onClickBtn={handleClose} />
-      </div>
+      <div className="btns-wrap">{buttons}</div>
     </ModalCommon>
   );
 };

@@ -2,11 +2,15 @@ import React from "react";
 
 interface ComponentButtonFillBlackProps {
   text: string;
+  onClickBtn?: () => void;
 }
 
-const ComponentButtonFillBlack = ({ text }: ComponentButtonFillBlackProps) => {
+const ComponentButtonFillBlack = ({
+  text,
+  onClickBtn,
+}: ComponentButtonFillBlackProps) => {
   return (
-    <button className="btn btn-fill-black">
+    <button className="btn btn-fill-black" onClick={onClickBtn}>
       <span>{text}</span>
     </button>
   );

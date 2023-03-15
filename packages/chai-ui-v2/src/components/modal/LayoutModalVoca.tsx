@@ -7,8 +7,8 @@ import { useGlobalAudio, WordsCarouselContentData } from "../../core";
 import styled from "@emotion/styled";
 import { Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/swiper.min.css";
-import "swiper/modules/pagination/pagination.min.css";
+import "swiper/css";
+import "swiper/css/pagination";
 import { HtmlContentComponent } from "../atoms";
 import AudioComponent from "../contents/AudioComponent";
 
