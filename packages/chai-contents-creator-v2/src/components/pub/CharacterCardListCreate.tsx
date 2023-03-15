@@ -1,28 +1,14 @@
 import styled from "@emotion/styled";
-import { colorPalette, ComponentButtonRadiFillMain, vh, vw } from "chai-ui-v2";
+import { colorPalette, ComponentButtonRadiFillMain } from "chai-ui-v2";
 import React from "react";
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 import ChaProfile01 from "../../assets/images/img/cha_profile01.png";
 import IconPlus from "../../assets/images/icon/icon_image.svg";
 import ObjectDeleteButton from "../atoms/ObjectDeleteButton";
 import UrlInputWrapper from "../molecules/UrlInputWrapper";
+import AddButton from "../atoms/AddButton";
 
 const TraningWrapper = styled.div`
-	.btn-text {
-		padding: 0;
-		border: 0;
-		border-radius: 0;
-		background-color: transparent;
-		appearance: none;
-		outline: none;
-		box-shadow: none;
-		border: 1px solid ${colorPalette.mainlight};
-		border-radius: 10px;
-		font-size: 16px;
-		padding: 14px 36px;
-		color: ${colorPalette.main};
-	}
-
 	.training-create-wrap {
 		margin-bottom: 50px;
 	}
@@ -48,12 +34,12 @@ const TraningWrapper = styled.div`
 		}
 `;
 
-const CharacterCardListCreater = () => {
+const CharacterCardListCreate = () => {
 	return (
 		<ContentCreatorLayout>
 			<TraningWrapper className="training-wrapper">
 				{/* TODO: key설명 - training-end 클래스 추가되면 높이 변경, 버튼 추가 */}
-				<button className="btn btn-text">학습목표 추가</button>
+				<AddButton>학습목표 추가</AddButton>
 				<div className="training-list-wrap training-end">
 					{/* 반복영역 */}
 					<div className="training-create-wrap">
@@ -102,4 +88,4 @@ const CharacterCardListCreater = () => {
 	);
 };
 
-export default CharacterCardListCreater;
+export default CharacterCardListCreate;

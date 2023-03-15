@@ -1,9 +1,7 @@
 import styled from "@emotion/styled";
-import AddNumberButton from "../atoms/AddNumberButton";
-
-interface ButtonProps {
-  typeText: React.ReactNode;
-}
+import { colorPalette, validateURL } from "chai-ui-v2";
+import { useState } from "react";
+import AddButton from "../atoms/AddButton";
 
 const UrlTextWrapper = styled.div`
   margin-top: 10px;
@@ -35,14 +33,44 @@ const UrlTextWrapper = styled.div`
   }
 `;
 
-const UrlInputWrapper = ({ typeText }: ButtonProps) => {
+const WarningMessage = styled.p`
+  color: ${colorPalette.red700};
+`;
+
+interface ButtonProps {
+  typeText: string;
+  onSubmit?: (src: string) => void;
+}
+
+const UrlInputWrapper = ({ typeText, onSubmit }: ButtonProps) => {
+  const [message, setMessage] = useState<string>("");
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const input = e.currentTarget[0] as HTMLInputElement;
+    const src = input.value;
+
+    const isUrl = validateURL(src);
+
+    if (!isUrl) {
+      setMessage("유효하지 않은 주소입니다.");
+      onSubmit && onSubmit("");
+      return;
+    } else {
+      setMessage("");
+    }
+
+    onSubmit && onSubmit(src);
+  };
+
   return (
     <UrlTextWrapper className="url-wrapper">
       <p className="text-tit">{typeText} URL</p>
-      <form>
+      <form onSubmit={handleSubmit}>
         <input placeholder={`${typeText} URL 입력`}></input>
-        <AddNumberButton>등록</AddNumberButton>
+        <AddButton>등록</AddButton>
       </form>
+      {message && <WarningMessage>{message}</WarningMessage>}
     </UrlTextWrapper>
   );
 };

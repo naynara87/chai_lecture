@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 import ImageIcon from "../../assets/images/icon/icon_image.svg";
 import UrlInputWrapper from "../molecules/UrlInputWrapper";
-import AddNumberButton from "../atoms/AddNumberButton";
+import AddButton from "../atoms/AddButton";
 import ObjectDeleteButton from "../atoms/ObjectDeleteButton";
 
 const ImageListCreatorWrapper = styled.div`
@@ -47,9 +47,9 @@ const ImageWithDescriptionListCreator = () => {
   return (
     <ContentCreatorLayout>
       <ImageListCreatorWrapper>
-        <AddNumberButton>번호 추가</AddNumberButton>
+        <AddButton>번호 추가</AddButton>
         <ImageListWrapper>
-          {/* TODO: AddNumberButton 클릭 시 ImageList 추가 */}
+          {/* TODO: AddButton 클릭 시 ImageList 추가 */}
           <ImageList>
             {/* TODO: default 이미지 노출 이후 이미지 등록하면 변경 */}
             <div>

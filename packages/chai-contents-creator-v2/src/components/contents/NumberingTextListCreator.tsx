@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import AddNumberButton from "../atoms/AddNumberButton";
+import AddButton from "../atoms/AddButton";
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 import ObjectDeleteButton from "../atoms/ObjectDeleteButton";
 import { ContentCommonProps } from "../../types/page";
@@ -131,9 +131,9 @@ const NumberingTextListCreator = ({
   return (
     <ContentCreatorLayout>
       <NumberingTextCreatorWrapper>
-        <AddNumberButton onClick={addNumberingTextItem}>
+        <AddButton onClick={addNumberingTextItem}>
           번호 추가
-        </AddNumberButton>
+        </AddButton>
         <NumberingListWrapper onClick={(e) => setFocusedId(e, content.id)}>
           {thisContent.data.map((item, index) => {
             return (
