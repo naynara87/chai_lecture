@@ -20,6 +20,8 @@ export type LessonMeta = {
   name: string;
   courseId: number;
   courseName: string;
+  // 레슨 컬러코드 왼쪽부터 빨강, 주황, 노랑, 초록, 파랑, 남색, 보라 순
+  colorTypeCd: "10" | "20" | "30" | "40" | "50" | "60" | "70";
 };
 
 /**

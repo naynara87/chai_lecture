@@ -16,7 +16,7 @@ import { currentCornerIdState } from "../../state/currentCornerId";
 
 const Layout = () => {
   const [isPageCompleted, setIsPageCompleted] = useState(false);
-  const { corners } = useInitialData();
+  const { corners, lessonMetaData, cornerMetaData } = useInitialData();
   const { courseId, cornerId, lessonId, pageId } = useParams();
   const { pages } = useCorner(cornerId);
 
@@ -25,7 +25,8 @@ const Layout = () => {
   const [isIntroductionModalOpen, setIsIntroductionModalOpen] = useState(false);
 
   const [, setCompletedCorners] = useRecoilState(completeCornersState);
-  const [, setCurrentCornerId] = useRecoilState(currentCornerIdState);
+  const [currentCornerId, setCurrentCornerId] =
+    useRecoilState(currentCornerIdState);
 
   const setPageCompleted = () => {
     setIsPageCompleted(true);
@@ -76,7 +77,20 @@ const Layout = () => {
           return corner;
         });
       });
-      navigate("/");
+      if (!lessonMetaData) return;
+      if (!cornerMetaData) return;
+
+      const currentCornerIndex = corners.findIndex(
+        (corner) => corner.id.toString() === currentCornerId?.toString(),
+      );
+      const nextCorner = corners[currentCornerIndex + 1];
+      const url = getPageUrl(
+        lessonMetaData?.courseId,
+        cornerMetaData?.lessonId,
+        nextCorner.id,
+        1,
+      );
+      navigate(url);
       return;
     }
     if (cornerId && courseId && lessonId && pageId) {
@@ -129,7 +143,12 @@ const Layout = () => {
 
   return (
     <div>
-      <LayoutHeader />
+      <LayoutHeader
+        corners={corners}
+        cornerId={cornerId}
+        currentPage={currentPage}
+        lessonColorCode={lessonMetaData?.colorTypeCd}
+      />
       <main className="cai-main">
         {layoutMain}
         {/* <TemplateDialogue /> */}

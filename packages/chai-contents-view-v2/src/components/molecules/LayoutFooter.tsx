@@ -8,6 +8,7 @@ import {
   ImgCharacterComponent,
   Page,
   CornerListData,
+  ModalConfirm,
 } from "chai-ui-v2";
 import { Link, useParams } from "react-router-dom";
 import { getPageUrl } from "../../util/url";
@@ -31,6 +32,7 @@ const LayoutFooter = ({
   handleClickPrev,
 }: LayoutFooterProps) => {
   const [isShowNav, setIsShowNav] = useState(false);
+  const [isExitModalOpen, setIsExitModalOpen] = useState(false);
   const { courseId, lessonId, cornerId } = useParams();
 
   const cornerList = useMemo(() => {
@@ -105,10 +107,22 @@ const LayoutFooter = ({
             {cornerList}
           </ul>
           <div className="btn-wrap">
-            <ComponentButtonFillBlack text={"나가기"} />
+            <ComponentButtonFillBlack
+              text={"나가기"}
+              onClickBtn={() => setIsExitModalOpen(true)}
+            />
           </div>
         </nav>
       </div>
+      <ModalConfirm
+        isModalOpen={isExitModalOpen}
+        setIsModalOpen={setIsExitModalOpen}
+        title="학습 나가기"
+        description="아직 학습을 하지 않은 내용이 있어요 학습을 종료하시겠어요?"
+        leftButtonText="계속 학습하기"
+        rightButtonText="학습 종료하기"
+        handleClickRightButton={() => setIsExitModalOpen(false)}
+      />
     </div>
   );
 };

@@ -1,11 +1,10 @@
 import { TemplatePub } from "chai-ui-v2";
 import React from "react";
-import LayoutHeader from "../molecules/LayoutHeader";
 
 const LayoutTemp = () => {
   return (
     <div>
-      <LayoutHeader />
+      {/* <LayoutHeader /> */}
       <main className="cai-main">
         <TemplatePub />
       </main>
