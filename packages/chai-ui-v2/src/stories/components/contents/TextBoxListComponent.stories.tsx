@@ -9,6 +9,7 @@ const data: TextBoxListContentData = {
   data: [
     {
       text: "a",
+      isAccent: false,
       audio: {
         // src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
         src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
@@ -16,18 +17,21 @@ const data: TextBoxListContentData = {
     },
     {
       text: "a",
+      isAccent: false,
       audio: {
         src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
       },
     },
     {
       text: "a",
+      isAccent: true,
       audio: {
         src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
       },
     },
     {
       text: "a",
+      isAccent: false,
       audio: {
         src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
       },

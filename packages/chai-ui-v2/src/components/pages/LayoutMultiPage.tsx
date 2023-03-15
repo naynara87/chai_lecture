@@ -41,7 +41,7 @@ const LayoutMultiPage = ({ page, setPageCompleted }: LayoutMultiPageProps) => {
   }, [multiPageData, getTemplateComponent]);
 
   return (
-    <SwiperWrapper>
+    <SwiperWrapper key={multiPageData.id}>
       <Swiper
         modules={[Pagination, Navigation]}
         pagination={{
