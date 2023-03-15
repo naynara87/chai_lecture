@@ -7,3 +7,5 @@ export { default as ModalImage } from "./ModalImage";
 export { default as ModalLearningPoint } from "./ModalLearningPoint";
 export { default as ModalConfirm } from "./ModalConfirm";
 export { default as ModalBase } from "./ModalBase";
+export { default as ModalCompleted } from "./ModalCompleted";
+export { default as LayoutModalExit } from "./LayoutModalExit";
