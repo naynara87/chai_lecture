@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { colorPalette, ComponentButtonRadiFillMain, vh, vw } from "chai-ui-v2";
+import { colorPalette, ComponentButtonRadiFillMain } from "chai-ui-v2";
 import React from "react";
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 import ChaProfile01 from "../../assets/images/img/cha_profile01.png";
@@ -34,7 +34,7 @@ const TraningWrapper = styled.div`
 		}
 `;
 
-const CharacterCardListCreater = () => {
+const CharacterCardListCreate = () => {
 	return (
 		<ContentCreatorLayout>
 			<TraningWrapper className="training-wrapper">
@@ -88,4 +88,4 @@ const CharacterCardListCreater = () => {
 	);
 };
 
-export default CharacterCardListCreater;
+export default CharacterCardListCreate;
