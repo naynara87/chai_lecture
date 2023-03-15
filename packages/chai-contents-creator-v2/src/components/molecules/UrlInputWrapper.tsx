@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import AddNumberButton from "../atoms/AddNumberButton";
+import AddButton from "../atoms/AddButton";
 
 interface ButtonProps {
   typeText: React.ReactNode;
@@ -41,7 +41,7 @@ const UrlInputWrapper = ({ typeText }: ButtonProps) => {
       <p className="text-tit">{typeText} URL</p>
       <form>
         <input placeholder={`${typeText} URL 입력`}></input>
-        <AddNumberButton>등록</AddNumberButton>
+        <AddButton>등록</AddButton>
       </form>
     </UrlTextWrapper>
   );

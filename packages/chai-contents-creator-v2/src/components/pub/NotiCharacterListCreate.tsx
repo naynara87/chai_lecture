@@ -7,14 +7,24 @@ import TempProgile01 from "../../assets/images/img/cha_profile01.png";
 import TempProgile02 from "../../assets/images/img/temp_profile01.png";
 import ObjectDeleteButton from "../atoms/ObjectDeleteButton";
 import { colorPalette } from "chai-ui-v2";
+import AddButton from "../atoms/AddButton";
 
-const NotiCharacterWrapper = styled.div``;
+const NotiCharacterWrapper = styled.div`
+  position: relative;
+  padding-top: 60px;
+
+  > .btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+`;
 
 const NotiCharacterWrap = styled.div`
   position: relative;
   display: inline-block;
 
-  &:not(:first-child) {
+  &:not(:first-of-type) {
     margin-left: 50px;
   }
 
@@ -71,6 +81,7 @@ const NotiCharacterListCreate = () => {
   return (
     <ContentCreatorLayout>
       <NotiCharacterWrapper>
+        <AddButton>말풍선 추가</AddButton>
         {/* 반복영역 */}
         <NotiCharacterWrap>
           <ObjectDeleteButton />
