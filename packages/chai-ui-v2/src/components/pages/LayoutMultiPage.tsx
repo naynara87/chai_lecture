@@ -3,10 +3,9 @@ import styled from "@emotion/styled";
 import React, { useMemo } from "react";
 import { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-
-import "swiper/swiper.min.css";
-import "swiper/modules/pagination/pagination.min.css";
-import "swiper/modules/navigation/navigation.min.css";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 import {
   MultiPage,
   PageProps,
@@ -19,7 +18,7 @@ const SwiperWrapper = styled.div`
   height: 100%;
 `;
 
-interface LayoutMultiPageProps extends PageProps {}
+interface LayoutMultiPageProps extends PageProps { }
 const LayoutMultiPage = ({ page, setPageCompleted }: LayoutMultiPageProps) => {
   const multiPageData = page as MultiPage;
 
