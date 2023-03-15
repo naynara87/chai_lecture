@@ -4,6 +4,8 @@ import {
   ContentType,
   ID,
   Content,
+  LocalStorage,
+  Page,
 } from "chai-ui-v2";
 import { useCallback, useEffect, useMemo } from "react";
 import { useRecoilState } from "recoil";
@@ -18,9 +20,9 @@ import {
 } from "../types/page";
 import cloneDeep from "lodash/cloneDeep";
 import { DropResult } from "react-beautiful-dnd";
+import { PAGE_DATA_KEY } from "../constants/storage";
 
 const usePage = () => {
-  // TODO gth 나중에 서버로 전송할 땐 slides가 2개 이상이면 MultiPage 타입으로 만들어서 전송해야한다
   const [slides, setSlides] = useRecoilState(slidesState);
 
   useEffect(() => {
@@ -156,6 +158,29 @@ const usePage = () => {
     [slides, setSlides],
   );
 
+  const pageData = useMemo(() => {
+    const page: Page = {
+      id: "preview_page",
+      name: "미리보기",
+      type: slides.length > 1 ? "MultiPage" : "SinglePage",
+      data: slides.length > 1 ? slides : slides?.[0],
+    } as Page;
+    return page;
+  }, [slides]);
+
+  const savePageDataToLocalStorage = useCallback(() => {
+    LocalStorage.setItem(PAGE_DATA_KEY, pageData);
+  }, [pageData]);
+
+  const getPageDataFromLocalStorage = useCallback(() => {
+    const page = LocalStorage.getItem<Page>(PAGE_DATA_KEY);
+    return page;
+  }, []);
+
+  const removePageDataFromLocalStorage = useCallback(() => {
+    LocalStorage.removeItem(PAGE_DATA_KEY);
+  }, []);
+
   return {
     slides,
     addSlide,
@@ -164,6 +189,9 @@ const usePage = () => {
     addComponentMap,
     updateContent,
     handleOnDragEnd,
+    savePageDataToLocalStorage,
+    getPageDataFromLocalStorage,
+    removePageDataFromLocalStorage,
   };
 };
 

@@ -51,6 +51,7 @@ const VideoCreator = ({
     <ContentCreatorLayout
       isDraggable={isDraggable}
       draggableProvided={draggableProvided}
+      align="center"
     >
       <VideoWrapper onClick={(e) => setFocusedId(e, content.id)}>
         {url ? (
