@@ -3,7 +3,12 @@ import { AudioContentData, useGlobalAudio } from "../../core";
 import { ComponentButtonPlay } from "../atoms";
 import IconPauseFillButton from "../atoms/Button/IconPauseFillButton";
 import { v4 as uuidv4 } from "uuid";
+import styled from "@emotion/styled";
 
+const AudioWrap = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 export interface AudioComponentProps {
   contents: AudioContentData;
 }
@@ -72,7 +77,7 @@ const AudioComponent = ({ contents }: AudioComponentProps) => {
     globalAudioState,
   ]);
 
-  return <div>{mainContents}</div>;
+  return <AudioWrap>{mainContents}</AudioWrap>;
 };
 
 export default AudioComponent;

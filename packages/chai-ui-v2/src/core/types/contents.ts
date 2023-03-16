@@ -401,8 +401,8 @@ export type ConversationQuizContentData = {
   type: "conversationQuiz";
   data: {
     text: string;
-    pronunciation: string;
-    meaning: string;
+    pronunciation?: string;
+    meaning?: string;
     choice: {
       text: string;
       isAnswer: boolean;
@@ -553,6 +553,7 @@ export type TextBoxListContentData = {
   type: "textBoxList";
   data: {
     text: string;
+    isAccent: boolean;
     audio?: {
       src: string;
     };

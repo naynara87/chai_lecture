@@ -13,7 +13,9 @@ const LayoutSinglePage = ({
   });
 
   return (
-    <>{getTemplateComponent(singlePageData.data.type, singlePageData.data)}</>
+    <div key={singlePageData.id}>
+      {getTemplateComponent(singlePageData.data.type, singlePageData.data)}
+    </div>
   );
 };
 

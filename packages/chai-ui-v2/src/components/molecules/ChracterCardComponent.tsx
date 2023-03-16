@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import ChaProfile01 from "../../assets/images/img/cha_profile01.png";
 import { Content } from "../../core";
-import { ComponentButtonRadiFillMain } from "../atoms";
+import { ComponentButtonRadiFillMain, HtmlContentComponent } from "../atoms";
 
 interface CharacterCardComponentProps {
   characterCard: {
@@ -21,8 +21,14 @@ const CharacterCardComponent = ({
 }: CharacterCardComponentProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const characterCardOff = useMemo(() => {
+    if (!characterCard.modalContents) return;
+    if (isOpen) return;
+    return "off";
+  }, [characterCard.modalContents, isOpen]);
+
   return (
-    <li className={`training-list ${isOpen ? "" : "off"}`}>
+    <li className={`training-list ${characterCardOff}`}>
       <div className="gradi-wrap">
         <div className="gradi-conts-wrap">
           <div className="img-wrap">
@@ -34,7 +40,7 @@ const CharacterCardComponent = ({
         </div>
       </div>
       <div className="white-wrap">
-        <p className="text">{characterCard.description}</p>
+        <HtmlContentComponent html={characterCard.description} />
         {characterCard.modalContents && (
           <div className="btns-wrap">
             <ComponentButtonRadiFillMain

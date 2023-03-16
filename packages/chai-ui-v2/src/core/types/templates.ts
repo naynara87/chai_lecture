@@ -133,7 +133,7 @@ export type TemplateQuizMultiChoiceData = {
   id: ID;
   type: "TemplateQuizMultiChoice";
   leftContents: Content[];
-  rightContents: MultiChoiceContentData;
+  multiChoice: MultiChoiceContentData;
 };
 
 /**
