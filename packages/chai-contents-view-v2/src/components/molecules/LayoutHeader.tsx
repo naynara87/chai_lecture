@@ -82,8 +82,6 @@ const LayoutHeader = ({
     return ((cornerIndex + 1) / corners.length) * 100;
   }, [corners, cornerId]);
 
-  console.log("cornerPercent", cornerPercent);
-
   return (
     <CaiHeader
       className="cai-hd"

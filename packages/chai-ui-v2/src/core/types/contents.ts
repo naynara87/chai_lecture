@@ -559,3 +559,14 @@ export type TextBoxListContentData = {
     };
   }[];
 };
+
+/**
+ * 문제템플릿 컴포넌트
+ */
+export type QuestionContentData = {
+  id: ID;
+  type: "question";
+  data: {
+    iframeUrl: string;
+  };
+};

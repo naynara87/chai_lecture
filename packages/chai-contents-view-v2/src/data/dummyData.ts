@@ -40,6 +40,10 @@ export const v2LessonData: LessonData = {
       id: 17,
       name: "회화",
     },
+    {
+      id: 18,
+      name: "문제",
+    },
   ],
 };
 
@@ -51,7 +55,7 @@ export const v2CornerDataList: CornerData[] = [
       name: "복습",
       lessonId: 1,
       lessonName: "Lesson 1",
-      lessonTpCd: "30",
+      lessonTpCd: "10",
       courseId: 1,
       courseName: "차이홍(샘플데이터)-빨강",
       isCompleted: false,
@@ -418,7 +422,7 @@ export const v2CornerDataList: CornerData[] = [
       name: "학습 들어가기",
       lessonId: 1,
       lessonName: "Lesson 1",
-      lessonTpCd: "30",
+      lessonTpCd: "10",
       courseId: 1,
       courseName: "차이홍(샘플데이터)-빨강",
       isCompleted: false,
@@ -494,7 +498,7 @@ export const v2CornerDataList: CornerData[] = [
       name: "중국어 개요",
       lessonId: 1,
       lessonName: "Lesson 1",
-      lessonTpCd: "30",
+      lessonTpCd: "10",
       courseId: 1,
       courseName: "차이홍(샘플데이터)-빨강",
       isCompleted: false,
@@ -781,7 +785,7 @@ export const v2CornerDataList: CornerData[] = [
       name: "성조",
       lessonId: 1,
       lessonName: "Lesson 1",
-      lessonTpCd: "30",
+      lessonTpCd: "10",
       courseId: 1,
       courseName: "차이홍(샘플데이터)-빨강",
       isCompleted: false,
@@ -1127,7 +1131,7 @@ export const v2CornerDataList: CornerData[] = [
       name: "운모",
       lessonId: 1,
       lessonName: "Lesson 1",
-      lessonTpCd: "30",
+      lessonTpCd: "10",
       courseId: 1,
       courseName: "차이홍(샘플데이터)-빨강",
       isCompleted: false,
@@ -1361,7 +1365,7 @@ export const v2CornerDataList: CornerData[] = [
       name: "패턴 중국어",
       lessonId: 1,
       lessonName: "Lesson 1",
-      lessonTpCd: "30",
+      lessonTpCd: "10",
       courseId: 1,
       courseName: "차이홍(샘플데이터)-빨강",
       isCompleted: false,
@@ -1710,7 +1714,7 @@ export const v2CornerDataList: CornerData[] = [
       name: "회화",
       lessonId: 1,
       lessonName: "Lesson 1",
-      lessonTpCd: "30",
+      lessonTpCd: "10",
       courseId: 1,
       courseName: "차이홍(샘플데이터)-빨강",
       isCompleted: false,
@@ -2416,6 +2420,100 @@ export const v2CornerDataList: CornerData[] = [
             },
           },
         ],
+      },
+    ],
+  },
+  {
+    meta: {
+      id: 18,
+      name: "문제",
+      lessonId: 1,
+      lessonName: "Lesson 1",
+      lessonTpCd: "30",
+      courseId: 1,
+      courseName: "차이홍(샘플데이터)-빨강",
+      isCompleted: false,
+    },
+    data: [
+      {
+        id: 1,
+        name: "문제",
+        type: "SinglePage",
+        data: {
+          id: uuidV4(),
+          type: "TemplateQuestion",
+          contents: {
+            id: uuidV4(),
+            type: "question",
+            data: {
+              iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20050",
+            },
+          },
+        },
+      },
+      {
+        id: 2,
+        name: "문제",
+        type: "SinglePage",
+        data: {
+          id: uuidV4(),
+          type: "TemplateQuestion",
+          contents: {
+            id: uuidV4(),
+            type: "question",
+            data: {
+              iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20049",
+            },
+          },
+        },
+      },
+      {
+        id: 3,
+        name: "문제",
+        type: "SinglePage",
+        data: {
+          id: uuidV4(),
+          type: "TemplateQuestion",
+          contents: {
+            id: uuidV4(),
+            type: "question",
+            data: {
+              iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20048",
+            },
+          },
+        },
+      },
+      {
+        id: 4,
+        name: "문제",
+        type: "SinglePage",
+        data: {
+          id: uuidV4(),
+          type: "TemplateQuestion",
+          contents: {
+            id: uuidV4(),
+            type: "question",
+            data: {
+              iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20047",
+            },
+          },
+        },
+      },
+      {
+        id: 5,
+        name: "문제",
+        type: "SinglePage",
+        data: {
+          id: uuidV4(),
+          type: "TemplateQuestion",
+          contents: {
+            id: uuidV4(),
+            type: "question",
+            data: {
+              iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20046",
+            },
+          },
+        },
       },
     ],
   },
