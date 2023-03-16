@@ -1463,6 +1463,65 @@ export const v2CornerDataList: CornerData[] = [
       },
       {
         id: 3,
+        name: "핵심 단어",
+        type: "MultiPage",
+        data: [
+          {
+            id: uuidV4(),
+            type: "Template01",
+            contents: [
+              {
+                id: uuidV4(),
+                type: "multiLevelActionSentenceCard",
+                data: [
+                  [
+                    {
+                      id: uuidV4(),
+                      type: "audio",
+                      data: {
+                        src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+                      },
+                    },
+                  ],
+                  [
+                    {
+                      id: uuidV4(),
+                      type: "text",
+                      data: {
+                        text: "这道菜酸、甜、苦、辣，什么味道都有，非常香。<br />Zhè dào cài suān、tián、kǔ、là, shénme wèidào dōu yǒu, fēicháng xiāng.",
+                      },
+                    },
+                  ],
+                  [
+                    {
+                      id: uuidV4(),
+                      type: "wordsCarousel",
+                      data: {
+                        words: [
+                          {
+                            word: "테스트 텍스트",
+                            audio: {
+                              src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+                            },
+                          },
+                          {
+                            word: "테스트 텍스트",
+                            audio: {
+                              src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: 4,
         name: "패턴 설명",
         type: "SinglePage",
         data: {
@@ -1517,7 +1576,7 @@ export const v2CornerDataList: CornerData[] = [
         },
       },
       {
-        id: 4,
+        id: 5,
         name: "문장 학습",
         type: "MultiPage",
         data: [
@@ -1601,7 +1660,7 @@ export const v2CornerDataList: CornerData[] = [
         ],
       },
       {
-        id: 5,
+        id: 6,
         name: "확인하기",
         type: "MultiPage",
         data: [

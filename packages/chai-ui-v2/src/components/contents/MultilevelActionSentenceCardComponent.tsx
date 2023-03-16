@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import React, { useCallback, useMemo, useState } from "react";
 import { vw } from "../../assets";
-import { MultilevelActionCardContentData } from "../../core";
+import { MultilevelActionSentenceCardContentData } from "../../core";
 import useContentMapper from "../../core/hooks/useContentMapper";
 import ComponentButtonStep from "../atoms/Button/ComponentButtonStep";
 
@@ -11,13 +11,13 @@ const StepCard = styled.div`
   }
 `;
 
-export interface MultilevelActionCardComponentProps {
-  contents: MultilevelActionCardContentData;
+export interface MultilevelActionSentenceCardComponentProps {
+  contents: MultilevelActionSentenceCardContentData;
 }
 
-const MultilevelActionCardComponent = ({
+const MultilevelActionSentenceCardComponent = ({
   contents,
-}: MultilevelActionCardComponentProps) => {
+}: MultilevelActionSentenceCardComponentProps) => {
   const [step, setStep] = useState(0);
   const { getContentComponent } = useContentMapper();
 
@@ -39,7 +39,7 @@ const MultilevelActionCardComponent = ({
 
   return (
     <div className="step-card-wrap">
-      <StepCard className={`step-card step${step + 1}`}>
+      <StepCard className={`step-card sentence-card step${step + 1}`}>
         <>{multiLevelContents}</>
         {contents.data[step + 1] && (
           <ComponentButtonStep onClick={handleClickStepButton} />
@@ -49,4 +49,4 @@ const MultilevelActionCardComponent = ({
   );
 };
 
-export default MultilevelActionCardComponent;
+export default MultilevelActionSentenceCardComponent;

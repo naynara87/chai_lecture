@@ -27,6 +27,7 @@ export type Content =
   | WordsCarouselContentData
   | AudioAndWordsCarouselContentData
   | ToggleSentenceListContentData
+  | MultilevelActionSentenceCardContentData
   | NotiCharacterListContentData;
 export type ContentType = Content["type"];
 
@@ -314,6 +315,17 @@ export type QuizPopupModalContentData = {
 export type MultilevelActionCardContentData = {
   id: ID;
   type: "multiLevelActionCard";
+  data: Content[][];
+  meta?: Meta;
+};
+
+/**
+ * 학습 카드 컴포넌트
+ * 멀티레벨콘텐츠 저작시 멀티레벨안에 멀티레벨 중복 막기
+ */
+export type MultilevelActionSentenceCardContentData = {
+  id: ID;
+  type: "multiLevelActionSentenceCard";
   data: Content[][];
   meta?: Meta;
 };
