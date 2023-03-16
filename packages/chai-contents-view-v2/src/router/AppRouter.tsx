@@ -1,12 +1,12 @@
 import React from "react";
 import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
-import Home from "../components/pages/Home";
 import Layout from "../components/pages/Layout";
 import LayoutTemp from "../components/pages/LayoutTemp";
 import NotFound from "../components/pages/NotFound";
 import { HOME_URL, NOT_FOUND_URL } from "../constants/url";
 import "chai-ui-v2/dist/assets/globalStyle.css";
 import LayoutProblem from "../components/pages/LayoutProblem ";
+import Home from "../components/pages/Home";
 
 const AppRouter = () => {
   return (
