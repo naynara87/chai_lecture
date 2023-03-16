@@ -8,7 +8,6 @@ import React, {
 } from "react";
 import IconO from "../../assets/images/icon/icon_o.svg";
 import IconX from "../../assets/images/icon/icon_x.svg";
-import { ComponentButtonPlay } from "../atoms";
 import {
   ConversationQuizContentData,
   TemplateProps,
@@ -16,10 +15,10 @@ import {
   useContentMapper,
   useGlobalAudio,
 } from "../../core";
-import IconPauseFillButton from "../atoms/Button/IconPauseFillButton";
 import ConversationQuizComponent from "../contents/ConversationQuizComponent";
 import { vw } from "../../assets";
 import { v4 as uuidv4 } from "uuid";
+import FullAudioComponent from "../contents/FullAudioComponent";
 
 const DialogueContainer = styled.div`
   .hori-answer-wrap {
@@ -167,12 +166,6 @@ const TemplateQuizDialogueWordBlank = ({
     };
   }, [globalAudioRef, audioEnded]);
 
-  const leftContents = useMemo(() => {
-    return thisPage.leftContents.map((leftContent, contentIndex) => {
-      return getContentComponent(leftContent, contentIndex);
-    });
-  }, [getContentComponent, thisPage]);
-
   const listenFullAudio = useCallback(() => {
     fullAudioIndexRef.current = 0;
     handleClickAudioButton(
@@ -187,23 +180,39 @@ const TemplateQuizDialogueWordBlank = ({
     handleAudioReset();
   }, [handleAudioReset]);
 
+  const leftContents = useMemo(() => {
+    return thisPage.leftContents.map((leftContent, contentIndex) => {
+      if (leftContent.type !== "fullAudio") {
+        getContentComponent(leftContent, contentIndex);
+      }
+    });
+  }, [getContentComponent, thisPage]);
+
+  const fullAudioContents = useMemo(() => {
+    return thisPage.leftContents.map((leftContent, contentIndex) => {
+      if (leftContent.type === "fullAudio") {
+        return (
+          <FullAudioComponent
+            fullAudioUuid={`fullAudio_${fullAudioUuidRef.current}`}
+            onClickFullAudio={listenFullAudio}
+            onClickStopFullAudio={handleStopFullAudio}
+            key={contentIndex}
+          />
+        );
+      }
+    });
+  }, [thisPage, handleStopFullAudio, listenFullAudio]);
+
   return (
     <DialogueContainer className="layout-panel-wrap grid-h-3-7">
       <div className="layout-panel side-panel">
         <div className="cont-info-wrap">
-          <div className="btns-wrap">
-            {globalAudioId
-              .toString()
-              .includes(`fullAudio_${fullAudioUuidRef.current}`) ? (
-              <IconPauseFillButton onClick={handleStopFullAudio} />
-            ) : (
-              <ComponentButtonPlay onClick={listenFullAudio} />
-            )}
-            <p className="txt">전체 음성 듣기</p>
-          </div>
-          {/* 말풍선 캐릭터 */}
-          {leftContents}
-          {/* end 말풍선 캐릭터 */}
+          <>
+            {fullAudioContents}
+            {/* 말풍선 캐릭터 */}
+            {leftContents}
+            {/* end 말풍선 캐릭터 */}
+          </>
         </div>
       </div>
       {/* 230217 회화는 단일 컴포넌트여서 스타일을 위해 conversation-panel-wrap 클래스 추가함 */}

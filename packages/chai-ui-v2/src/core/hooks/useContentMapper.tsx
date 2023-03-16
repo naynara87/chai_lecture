@@ -60,6 +60,7 @@ import WordsCarouselComponent from "../../components/contents/WordsCarouselCompo
 import AudioAndWordsCarouselComponent from "../../components/contents/AudioAndWordsCarouselComponent";
 import ToggleSentenceListComponent from "../../components/contents/ToggleSentenceListComponent";
 import MultilevelActionSentenceCardComponent from "../../components/contents/MultilevelActionSentenceCardComponent";
+import FullAudioComponent from "../../components/contents/FullAudioComponent";
 
 const useContentMapper = () => {
   const getContentComponent = (content: Content, contentIndex: number) => {
@@ -225,6 +226,7 @@ const useContentMapper = () => {
           key={contentIndex}
         />
       ),
+      fullAudio: <FullAudioComponent key={contentIndex} />,
     };
 
     return contentMapper[content.type];
