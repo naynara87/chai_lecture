@@ -8,7 +8,6 @@ import {
 } from "../../styles/template";
 import { PageCommonProps } from "../../types/page";
 import DashBoxArea from "../atoms/DashBoxArea";
-import MultilevelActionCardListCreator from "../contents/MultilevelActionCardListCreator";
 import PageHeader from "../molecules/PageHeader";
 
 const CreateTemplate01 = ({
@@ -64,7 +63,6 @@ const CreateTemplate01 = ({
                 position: "contents",
               });
             })}
-            <MultilevelActionCardListCreator />
           </DashBoxArea>
         </CreateEditMain>
       </CreateEditMainWrap>

@@ -14,6 +14,17 @@ const WordsCarouselWrapper = styled.div`
     width: 40px;
     height: 40px;
   }
+  .btn-text {
+    width: 80px;
+    border-radius: 50px;
+    font-size: 10px;
+    font-weight: 500;
+    white-space: nowrap;
+    padding: 4px 16px;
+    height: unset;
+    color: #7686d4;
+    border: 1px solid #dbe1ff;
+  }
 `;
 
 const WordsCarousel = () => {
