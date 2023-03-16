@@ -4,17 +4,14 @@ import { useState } from "react";
 import AddButton from "../atoms/AddButton";
 
 const UrlAndTimeWrapper = styled.div`
-  margin-top: 10px;
-
   & .text-tit {
     margin-bottom: 5px;
   }
 
   & input {
-    width: calc(100% - 100px);
+    width: 100%;
     max-width: 400px;
     height: 44px;
-    margin-right: 10px;
     padding: 12px 13px;
     box-sizing: border-box;
     border-radius: 8px;
@@ -22,6 +19,16 @@ const UrlAndTimeWrapper = styled.div`
     border: 1px solid #b6b6b6;
     &::placeholder {
       color: #b6b6b6;
+    }
+  }
+  & form {
+    display: flex;
+    .inputs-wrapper {
+      display: flex;
+      width: calc(100% - 100px);
+      flex-direction: column;
+      margin-right: 10px;
+      gap: 8px;
     }
   }
 
@@ -81,8 +88,10 @@ const UrlAndTimeInputWrapper = ({ typeText, onSubmit }: ButtonProps) => {
     <UrlAndTimeWrapper className="url-wrapper">
       <p className="text-tit">{typeText} URL</p>
       <form onSubmit={handleSubmit}>
-        <input placeholder={`${typeText} URL 입력`}></input>
-        <input placeholder={"발화 시간(초) 입력"}></input>
+        <div className="inputs-wrapper">
+          <input placeholder={`${typeText} URL 입력`}></input>
+          <input placeholder={"발화 시간(초) 입력"}></input>
+        </div>
         <AddButton>등록</AddButton>
       </form>
       {message ? (
