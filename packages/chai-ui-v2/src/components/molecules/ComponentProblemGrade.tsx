@@ -1,6 +1,6 @@
 import React from "react";
-import IconRight from "../../assets/images/icon/icon_o.svg";
-import IconWrong from "../../assets/images/icon/icon_x.svg";
+import IconRight from "../../assets/images/icon/icon_problem_o.svg";
+import IconWrong from "../../assets/images/icon/icon_problem_x.svg";
 
 const ComponentProblemGrade = () => {
   return (
