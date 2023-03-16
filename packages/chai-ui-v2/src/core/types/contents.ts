@@ -28,12 +28,14 @@ export type Content =
   | AudioAndWordsCarouselContentData
   | ToggleSentenceListContentData
   | MultilevelActionSentenceCardContentData
+  | FullAudioContentData
   | NotiCharacterListContentData;
 export type ContentType = Content["type"];
 
 export type ConversationContent =
   | ConversationWordListContentData
   | ConversationContentData
+  | FullAudioContentData
   | IconTextContentData;
 
 export type QuizContent =
@@ -41,6 +43,7 @@ export type QuizContent =
   | ActivityGuideCharacterContentData
   | MultiChoiceContentData
   | QuizWordsInOrderContentData
+  | FullAudioContentData
   | FinalSpeakingContentData;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -570,6 +573,7 @@ export type TextBoxListContentData = {
       src: string;
     };
   }[];
+  meta?: Meta;
 };
 
 /**
@@ -581,4 +585,15 @@ export type QuestionContentData = {
   data: {
     iframeUrl: string;
   };
+  meta?: Meta;
+};
+
+/**
+ * 전체음성 듣기 컴포넌트
+ */
+export type FullAudioContentData = {
+  id: ID;
+  type: "fullAudio";
+  data: Record<string, never>;
+  meta?: Meta;
 };

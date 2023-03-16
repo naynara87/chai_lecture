@@ -6,7 +6,6 @@ import React, {
   useRef,
   useState,
 } from "react";
-import ComponentButtonPlay from "../atoms/ComponentButtonPlay";
 import {
   TemplateConversationData,
   TemplateConversationRepeatData,
@@ -18,9 +17,9 @@ import {
 import { vh } from "../../assets";
 import ConversationComponent from "../contents/ConversationComponent";
 import IconTextComponent from "../contents/IconTextComponent";
-import IconPauseFillButton from "../atoms/Button/IconPauseFillButton";
 import DialogueToggle from "../molecules/DialogueToggle";
 import { v4 as uuidv4 } from "uuid";
+import FullAudioComponent from "../contents/FullAudioComponent";
 
 const DialogueContainer = styled.div`
   .repeat-speak-wrapper {
@@ -128,9 +127,26 @@ const TemplateDialogue = ({
 
   const leftContents = useMemo(() => {
     return thisPage.leftContents.map((leftContent, contentIndex) => {
-      return getContentComponent(leftContent, contentIndex);
+      if (leftContent.type !== "fullAudio") {
+        getContentComponent(leftContent, contentIndex);
+      }
     });
   }, [getContentComponent, thisPage]);
+
+  const fullAudioContents = useMemo(() => {
+    return thisPage.leftContents.map((leftContent, contentIndex) => {
+      if (leftContent.type === "fullAudio") {
+        return (
+          <FullAudioComponent
+            fullAudioUuid={`fullAudio_${fullAudioUuidRef.current}`}
+            onClickFullAudio={listenFullAudio}
+            onClickStopFullAudio={handleStopFullAudio}
+            key={contentIndex}
+          />
+        );
+      }
+    });
+  }, [thisPage, handleStopFullAudio, listenFullAudio]);
 
   const rightContentTitle = useMemo(() => {
     return thisPage.rightContents.map((rightContent, contentIndex) => {
@@ -185,15 +201,10 @@ const TemplateDialogue = ({
     <DialogueContainer className="layout-panel-wrap grid-h-3-7">
       <div className="layout-panel side-panel">
         <div className="cont-info-wrap">
-          <div className="btns-wrap">
-            {globalAudioId.toString().includes("fullAudio") ? (
-              <IconPauseFillButton onClick={handleStopFullAudio} />
-            ) : (
-              <ComponentButtonPlay onClick={listenFullAudio} />
-            )}
-            <p className="txt">전체 음성 듣기</p>
-          </div>
-          {leftContents}
+          <>
+            {fullAudioContents}
+            {leftContents}
+          </>
         </div>
       </div>
       {/* NOTE: key230217 회화는 단일 템플릿이어서 스타일을 위해 conversation-panel-wrap 클래스 추가함 */}

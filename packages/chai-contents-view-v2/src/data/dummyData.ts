@@ -93,6 +93,11 @@ export const v2CornerDataList: CornerData[] = [
           leftContents: [
             {
               id: uuidV4(),
+              type: "fullAudio",
+              data: {},
+            },
+            {
+              id: uuidV4(),
               type: "activityGuideCharacter",
               data: {
                 text: "<p>지난 시간에 배운 성모를 복습해 볼까요?<br>녹음을 듣고, 알맞은 발음을 골라보세요!</p>",
@@ -280,6 +285,11 @@ export const v2CornerDataList: CornerData[] = [
             id: uuidV4(),
             type: "TemplateQuizConversation",
             leftContents: [
+              {
+                id: uuidV4(),
+                type: "fullAudio",
+                data: {},
+              },
               {
                 id: uuidV4(),
                 type: "activityGuideCharacter",
@@ -1816,6 +1826,11 @@ export const v2CornerDataList: CornerData[] = [
             leftContents: [
               {
                 id: uuidV4(),
+                type: "fullAudio",
+                data: {},
+              },
+              {
+                id: uuidV4(),
                 type: "conversationWordList",
                 data: {
                   words: [
@@ -1913,6 +1928,11 @@ export const v2CornerDataList: CornerData[] = [
             leftContents: [
               {
                 id: uuidV4(),
+                type: "fullAudio",
+                data: {},
+              },
+              {
+                id: uuidV4(),
                 type: "conversationWordList",
                 data: {
                   words: [
@@ -2008,6 +2028,11 @@ export const v2CornerDataList: CornerData[] = [
             id: uuidV4(),
             type: "TemplateConversation",
             leftContents: [
+              {
+                id: uuidV4(),
+                type: "fullAudio",
+                data: {},
+              },
               {
                 id: uuidV4(),
                 type: "conversationWordList",
