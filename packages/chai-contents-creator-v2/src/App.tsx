@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "chai-ui-v2/dist/assets/globalStyle.css";
 import { Global } from "@emotion/react";
 import creatorGlobal from "./styles/creatorGlobal";
+import { GlobalAudioProvider } from "chai-ui-v2";
 
 const queryClient = new QueryClient();
 
@@ -21,7 +22,9 @@ function App() {
           closeButton={false}
         />
         <Global styles={creatorGlobal} />
-        <AppRouter />
+        <GlobalAudioProvider>
+          <AppRouter />
+        </GlobalAudioProvider>
       </RecoilRoot>
     </QueryClientProvider>
   );
