@@ -162,7 +162,7 @@ const usePage = () => {
     const page: Page = {
       id: "preview_page",
       name: "미리보기",
-      type: slides.length > 1 ? "MultiPage" : "SinglePage",
+      type: slides.length > 1 ? "multiPage" : "singlePage",
       data: slides.length > 1 ? slides : slides?.[0],
     } as Page;
     return page;

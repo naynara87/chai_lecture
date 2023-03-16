@@ -79,7 +79,7 @@ export type Page = SinglePage | MultiPage;
 export type SinglePage = {
   id: ID;
   name: string;
-  type: "SinglePage";
+  type: "singlePage";
   data: AllTemplateData;
   introduction?: PageIntroduction;
 };
@@ -87,7 +87,7 @@ export type SinglePage = {
 export type MultiPage = {
   id: ID;
   name: string;
-  type: "MultiPage";
+  type: "multiPage";
   data: AllTemplateData[];
   introduction?: PageIntroduction;
 };

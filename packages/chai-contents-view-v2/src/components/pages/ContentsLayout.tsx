@@ -92,7 +92,7 @@ const ContentsLayout = ({
 
   const layoutMain = useMemo(() => {
     if (!currentPage) return;
-    if (currentPage?.type === "SinglePage") {
+    if (currentPage?.type === "singlePage") {
       return (
         <LayoutSinglePage
           page={currentPage}

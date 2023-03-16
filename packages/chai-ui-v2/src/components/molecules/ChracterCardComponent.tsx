@@ -22,7 +22,8 @@ const CharacterCardComponent = ({
   const [isOpen, setIsOpen] = useState(false);
 
   const characterCardOff = useMemo(() => {
-    if (!characterCard.modalContents) return;
+    if (!characterCard.modalContents || characterCard.modalContents.length < 1)
+      return;
     if (isOpen) return;
     return "off";
   }, [characterCard.modalContents, isOpen]);
@@ -41,17 +42,18 @@ const CharacterCardComponent = ({
       </div>
       <div className="white-wrap">
         <HtmlContentComponent html={characterCard.description} />
-        {characterCard.modalContents && (
-          <div className="btns-wrap">
-            <ComponentButtonRadiFillMain
-              text="학습 요약"
-              onClickBtn={() => {
-                handleClickSummaryBtn(characterCard.modalContents);
-                setIsOpen(true);
-              }}
-            />
-          </div>
-        )}
+        {characterCard.modalContents &&
+          characterCard.modalContents.length > 0 && (
+            <div className="btns-wrap">
+              <ComponentButtonRadiFillMain
+                text="학습 요약"
+                onClickBtn={() => {
+                  handleClickSummaryBtn(characterCard.modalContents);
+                  setIsOpen(true);
+                }}
+              />
+            </div>
+          )}
       </div>
     </li>
   );
