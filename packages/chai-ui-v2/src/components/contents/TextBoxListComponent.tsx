@@ -30,7 +30,7 @@ const TextBox = styled.div<TextBoxProps>`
   transition: width 0.2s, height 0.2s;
 
   ${(props) =>
-    props.isAccent &&
+    !props.isAccent &&
     `
     background-image: none;
     border: 3px solid #D6E9FF;

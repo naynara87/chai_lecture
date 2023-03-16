@@ -40,6 +40,7 @@ import {
   WordsCarouselContentData,
   AudioAndWordsCarouselContentData,
   ToggleSentenceListContentData,
+  MultilevelActionSentenceCardContentData,
 } from "../types";
 import CharacterCardListComponent from "../../components/contents/CharacterCardListComponent";
 import SpeakingComponent from "../../components/contents/SpeakingComponent";
@@ -58,6 +59,7 @@ import TextBoxListComponent from "../../components/contents/TextBoxListComponent
 import WordsCarouselComponent from "../../components/contents/WordsCarouselComponent";
 import AudioAndWordsCarouselComponent from "../../components/contents/AudioAndWordsCarouselComponent";
 import ToggleSentenceListComponent from "../../components/contents/ToggleSentenceListComponent";
+import MultilevelActionSentenceCardComponent from "../../components/contents/MultilevelActionSentenceCardComponent";
 
 const useContentMapper = () => {
   const getContentComponent = (content: Content, contentIndex: number) => {
@@ -214,6 +216,12 @@ const useContentMapper = () => {
       toggleSentenceList: (
         <ToggleSentenceListComponent
           contents={content as ToggleSentenceListContentData}
+          key={contentIndex}
+        />
+      ),
+      multiLevelActionSentenceCard: (
+        <MultilevelActionSentenceCardComponent
+          contents={content as MultilevelActionSentenceCardContentData}
           key={contentIndex}
         />
       ),
