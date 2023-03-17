@@ -3,8 +3,10 @@ import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
 import IconDndHandle from "../atoms/icons/IconDndHandle";
 import IconHamburgerMenu from "../atoms/icons/IconHamburgerMenu";
-import { colorPalette, ModalConfirm, vw } from "chai-ui-v2";
+import { colorPalette, Content, ID, ModalConfirm, vw } from "chai-ui-v2";
 import { DraggableProvided } from "react-beautiful-dnd";
+import { ReturnUsePage } from "../../hooks/usePage";
+import { CommonTemplateComponentLocation } from "../../types/page";
 
 interface ContentCreatorWrapperProps {
   align?: "center" | "start";
@@ -84,13 +86,19 @@ interface ContentCreatorLayoutProps extends ContentCreatorWrapperProps {
   children: React.ReactNode;
   isDraggable?: boolean;
   draggableProvided?: DraggableProvided;
-  onDeleteComponent: () => void; // usePage의 deleteContent 함수를 실행하는 래퍼 함수를 전달해야 한다
+  onDeleteComponent?: ReturnUsePage["deleteContent"]; // FIXME: 나중에 모든 컴포넌트 구현 후 옵셔널 제거
+  slideId?: ID; // FIXME: 나중에 모든 컴포넌트 구현 후 옵셔널 제거
+  content?: Content; // FIXME: 나중에 모든 컴포넌트 구현 후 옵셔널 제거
+  position?: CommonTemplateComponentLocation; // FIXME: 나중에 모든 컴포넌트 구현 후 옵셔널 제거
 }
 const ContentCreatorLayout = ({
   children,
   align,
   draggableProvided,
   onDeleteComponent,
+  slideId,
+  content,
+  position,
   isDraggable = true,
 }: ContentCreatorLayoutProps) => {
   const [isHamburgerMenuOpen, setIsHamburgerMenuOpen] = useState(false);
@@ -115,7 +123,9 @@ const ContentCreatorLayout = ({
   };
 
   const handleDeleteComponent = () => {
-    onDeleteComponent && onDeleteComponent();
+    console.log("handleDeleteComponent", slideId, content, position);
+    if (!slideId?.toString() || !content || !position) return;
+    onDeleteComponent && onDeleteComponent(slideId, content.id, position);
     closeModal();
   };
 

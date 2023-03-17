@@ -26,7 +26,7 @@ const RecorderWrapper = styled.div`
 
 const AudioRecorderCreator = () => {
   return (
-    <ContentCreatorLayout onDeleteComponent={() => {}}>
+    <ContentCreatorLayout>
       <RecorderWrapper>
         <img src={IconMic} alt="" />
         <p>녹음을 시작해보세요</p>

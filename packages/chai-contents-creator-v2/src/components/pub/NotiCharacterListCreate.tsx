@@ -79,7 +79,7 @@ const ImageThumb = styled.div`
 
 const NotiCharacterListCreate = () => {
   return (
-    <ContentCreatorLayout onDeleteComponent={() => {}}>
+    <ContentCreatorLayout>
       <NotiCharacterWrapper>
         <AddButton>말풍선 추가</AddButton>
         {/* 반복영역 */}

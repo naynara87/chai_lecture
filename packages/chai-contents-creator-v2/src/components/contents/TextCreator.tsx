@@ -44,15 +44,14 @@ const TextCreator = ({
     updateContent(currentSlide.id, content.id, position, getNewContent());
   };
 
-  const handleDeleteComponent = () => {
-    deleteContent(currentSlide.id, content.id, position);
-  };
-
   return (
     <ContentCreatorLayout
       draggableProvided={draggableProvided}
       isDraggable={isDraggable}
-      onDeleteComponent={handleDeleteComponent}
+      onDeleteComponent={deleteContent}
+      slideId={currentSlide.id}
+      content={content}
+      position={position}
     >
       <TextCreatorWrapper onClick={handleClickComponent}>
         <TextEditorViewer

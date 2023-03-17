@@ -42,7 +42,7 @@ const TopArea = styled.div`
 
 const MultilevelActionCardListCreator = () => {
   return (
-    <ContentCreatorLayout onDeleteComponent={() => {}}>
+    <ContentCreatorLayout>
       <MultilevelActionCardWrapper>
         <AddButton>카드 추가</AddButton>
         <MultilevelActionCardList>

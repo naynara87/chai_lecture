@@ -35,7 +35,7 @@ const TextBubbleWrap = styled.div`
 
 const CornerGuideCharacterCreator = () => {
   return (
-    <ContentCreatorLayout onDeleteComponent={() => {}}>
+    <ContentCreatorLayout>
       <CornerGuideWrapper>
         <TextBubbleWrap>텍스트를 입력해주세요.</TextBubbleWrap>
         <ImageThumb />

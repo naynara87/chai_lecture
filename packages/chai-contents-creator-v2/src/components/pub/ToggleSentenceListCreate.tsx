@@ -39,7 +39,7 @@ const SentenceWrap = styled.div`
 
 const ToggleSentenceListCreate = () => {
   return (
-    <ContentCreatorLayout onDeleteComponent={() => {}}>
+    <ContentCreatorLayout>
       <ToggleSentenceWrapper className="toggle-sentence-wrapper">
         <TogglesWrapper />
         {/* TODO: 누르면 sentencewrap이 추가됨 */}

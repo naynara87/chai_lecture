@@ -10,7 +10,7 @@ const AudioAndWordsCarouselWrapper = styled.div`
 
 const AudioAndWordsCarouselModalCreator = () => {
   return (
-    <ContentCreatorLayout onDeleteComponent={() => {}}>
+    <ContentCreatorLayout>
       <AudioAndWordsCarouselWrapper>
         <AudioWrapper />
         <WordsCarousel />

@@ -77,7 +77,7 @@ const TabCard = styled.div`
 
 const CardTabTabCreate = () => {
   return (
-    <ContentCreatorLayout onDeleteComponent={() => {}}>
+    <ContentCreatorLayout>
       <CardTabWrapper className="card-tab-wrapper">
         <div className="flex-wrap">
           {/* TODO: 클릭시 TabCard 추가 */}

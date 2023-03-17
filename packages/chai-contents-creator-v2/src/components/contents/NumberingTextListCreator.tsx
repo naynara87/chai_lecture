@@ -173,15 +173,14 @@ const NumberingTextListCreator = ({
     updateNumberingTextData(updatedData);
   };
 
-  const handleDeleteComponent = () => {
-    deleteContent(currentSlide.id, content.id, position);
-  };
-
   return (
     <ContentCreatorLayout
       isDraggable={isDraggable}
       draggableProvided={draggableProvided}
-      onDeleteComponent={handleDeleteComponent}
+      onDeleteComponent={deleteContent}
+      slideId={currentSlide.id}
+      content={content}
+      position={position}
     >
       <NumberingTextCreatorWrapper>
         <AddButton onClick={addNumberingTextItem}>번호 추가</AddButton>

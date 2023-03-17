@@ -36,7 +36,7 @@ const TrainingWrapper = styled.div`
 
 const CharacterCardListCreate = () => {
   return (
-    <ContentCreatorLayout onDeleteComponent={() => {}}>
+    <ContentCreatorLayout>
       <TrainingWrapper className="training-wrapper">
         {/* TODO: key설명 - training-end 클래스 추가되면 높이 변경, 버튼 추가 */}
         <AddButton>학습목표 추가</AddButton>

@@ -13,14 +13,14 @@ const WordsCarouselModalCreator = ({
   draggableProvided,
   isDraggable,
 }: DraggableContentCommonProps) => {
-  const handleDeleteComponent = () => {
-    deleteContent(currentSlide.id, content.id, position);
-  };
   return (
     <ContentCreatorLayout
       isDraggable={isDraggable}
       draggableProvided={draggableProvided}
-      onDeleteComponent={handleDeleteComponent}
+      onDeleteComponent={deleteContent}
+      slideId={currentSlide.id}
+      content={content}
+      position={position}
       align="center"
     >
       <WordsCarousel />

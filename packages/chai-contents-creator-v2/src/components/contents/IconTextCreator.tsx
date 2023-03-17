@@ -52,14 +52,13 @@ const IconTextCreator = ({
     updateContent(currentSlide.id, content.id, position, getNewContent());
   };
 
-  const handleDeleteComponent = () => {
-    deleteContent(currentSlide.id, content.id, position);
-  };
-
   return (
     <ContentCreatorLayout
       draggableProvided={draggableProvided}
-      onDeleteComponent={handleDeleteComponent}
+      onDeleteComponent={deleteContent}
+      slideId={currentSlide.id}
+      content={content}
+      position={position}
     >
       <IconTextCreatorWrapper onClick={handleClickComponent}>
         <img src={iconTip} alt="" />
