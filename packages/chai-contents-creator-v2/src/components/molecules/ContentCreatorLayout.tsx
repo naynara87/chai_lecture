@@ -6,9 +6,23 @@ import IconHamburgerMenu from "../atoms/icons/IconHamburgerMenu";
 import { vw } from "chai-ui-v2";
 import { DraggableProvided } from "react-beautiful-dnd";
 
-const ContentCreatorWrapper = styled.div`
+interface ContentCreatorWrapperProps {
+  align?: "center" | "start";
+}
+const ContentCreatorWrapper = styled.div<ContentCreatorWrapperProps>`
   display: flex;
+  justify-content: center;
+  justify-content: ${({ align }) => align || "start"};
+`;
+
+const ContentCreatorContainer = styled.div`
+  display: inline-flex;
   margin-bottom: ${vw(24)};
+`;
+
+const IconContainerWrapper = styled.div`
+  display: flex;
+  /* align-items: center; */
 `;
 
 const IconContainer = styled.div`
@@ -39,16 +53,11 @@ const IconWrapper = styled.span<IconWrapperProps>`
   }
 `;
 
-interface ContentsContainerProps {
-  align?: "center" | "start";
-}
-const ContentsContainer = styled.div<ContentsContainerProps>`
+const ContentsContainer = styled.div`
   display: flex;
-  flex-grow: 1;
-  justify-content: ${({ align }) => align || "start"};
 `;
 
-interface ContentCreatorProps extends ContentsContainerProps {
+interface ContentCreatorProps extends ContentCreatorWrapperProps {
   children: React.ReactNode;
   isDraggable?: boolean;
   draggableProvided?: DraggableProvided;
@@ -60,20 +69,24 @@ const ContentCreatorLayout = ({
   isDraggable = true,
 }: ContentCreatorProps) => {
   return (
-    <ContentCreatorWrapper className="contentCreator">
-      <IconContainer>
-        <IconWrapper
-          customCss={dndHandleCss}
-          showIcon={isDraggable}
-          {...draggableProvided?.dragHandleProps}
-        >
-          <IconDndHandle />
-        </IconWrapper>
-        <IconWrapper customCss={hamburgerMenuCss} showIcon>
-          <IconHamburgerMenu />
-        </IconWrapper>
-      </IconContainer>
-      <ContentsContainer align={align}>{children}</ContentsContainer>
+    <ContentCreatorWrapper align={align}>
+      <ContentCreatorContainer className="contentCreator">
+        <IconContainerWrapper>
+          <IconContainer>
+            <IconWrapper
+              customCss={dndHandleCss}
+              showIcon={isDraggable}
+              {...draggableProvided?.dragHandleProps}
+            >
+              <IconDndHandle />
+            </IconWrapper>
+            <IconWrapper customCss={hamburgerMenuCss} showIcon>
+              <IconHamburgerMenu />
+            </IconWrapper>
+          </IconContainer>
+        </IconContainerWrapper>
+        <ContentsContainer>{children}</ContentsContainer>
+      </ContentCreatorContainer>
     </ContentCreatorWrapper>
   );
 };
