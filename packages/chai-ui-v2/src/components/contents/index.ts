@@ -6,7 +6,10 @@ export { default as ConversationWordListComponent } from "./ConversationWordList
 export { default as ExplainingCharacterComponent } from "./ExplainingCharacterComponent";
 export { default as ActivityGuideCharacterComponent } from "./ActivityGuideCharacterComponent";
 export { default as IconTextComponent } from "./IconTextComponent";
-export { default as ImageWithCaptionListComponent } from "./ImageWithCaptionListComponent";
+export {
+  default as ImageWithCaptionListComponent,
+  CaptionListImage,
+} from "./ImageWithCaptionListComponent";
 export { default as ImageWithDescriptionListComponent } from "./ImageWithDescriptionListComponent";
 export { default as MultilevelActionCardListComponent } from "./MultilevelActionCardComponent";
 export { default as NumberingTextListComponent } from "./NumberingTextListComponent";

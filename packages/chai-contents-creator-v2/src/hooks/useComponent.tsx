@@ -5,6 +5,7 @@ import { useRecoilState } from "recoil";
 import AudioCreator from "../components/contents/AudioCreator";
 import BorderTextBoxCreator from "../components/contents/BorderTextBoxCreator";
 import IconTextCreator from "../components/contents/IconTextCreator";
+import ImageWithCaptionListCreator from "../components/contents/ImageWithCaptionListCreator";
 import NumberingTextListCreator from "../components/contents/NumberingTextListCreator";
 import SpeakingCreator from "../components/contents/SpeakingCreator";
 import TextCreator from "../components/contents/TextCreator";
@@ -30,6 +31,7 @@ const useComponent = () => {
       numberingTextList: <NumberingTextListCreator {...props} />,
       borderTextBox: <BorderTextBoxCreator {...props} />,
       video: <VideoCreator {...props} />,
+      imageWithCaptionList: <ImageWithCaptionListCreator {...props} />,
       speaking: <SpeakingCreator {...props} />,
       audio: <AudioCreator {...props} />,
     };
