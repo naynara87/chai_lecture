@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 import IconMic from "chai-ui-v2/dist/assets/images/icon/icon_mic.svg";
+import { DraggableContentCommonProps } from "../../types/page";
 
 const RecorderWrapper = styled.div`
   display: flex;
@@ -24,9 +25,15 @@ const RecorderWrapper = styled.div`
   }
 `;
 
-const AudioRecorderCreator = () => {
+const AudioRecorderCreator = ({
+  draggableProvided,
+  isDraggable,
+}: DraggableContentCommonProps) => {
   return (
-    <ContentCreatorLayout>
+    <ContentCreatorLayout
+          isDraggable={isDraggable}
+      draggableProvided={draggableProvided}
+    >
       <RecorderWrapper>
         <img src={IconMic} alt="" />
         <p>녹음을 시작해보세요</p>

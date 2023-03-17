@@ -1,5 +1,11 @@
+import styled from "@emotion/styled";
 import React from "react";
 import { PageProps, SinglePage, useTemplateMapper } from "../../core";
+
+const SinglePageWrap = styled.div`
+  width: 100%;
+  height: 100%;
+`
 
 interface LayoutSinglePageProps extends PageProps {}
 const LayoutSinglePage = ({
@@ -13,9 +19,9 @@ const LayoutSinglePage = ({
   });
 
   return (
-    <div key={singlePageData.id}>
+    <SinglePageWrap key={singlePageData.id}>
       {getTemplateComponent(singlePageData.data.type, singlePageData.data)}
-    </div>
+    </SinglePageWrap>
   );
 };
 

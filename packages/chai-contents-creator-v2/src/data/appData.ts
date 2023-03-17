@@ -151,9 +151,12 @@ export const contentComponents: ContentComponents = {
     "numberingTextList",
     "borderTextBox",
     "video",
+    "imageWithCaptionList",
     "speaking",
+    "imageWithDescriptionList",
     "audio",
     "cornerGuideCharacter",
+    "recorder",
   ],
 };
 
@@ -170,14 +173,22 @@ export const contentComponentsNameMap: Partial<Record<ContentType, string>> = {
   numberingTextList: "번호 매기기",
   borderTextBox: "학습 목표",
   video: "동영상",
+  imageWithCaptionList: "이미지(캡션)",
   speaking: "따라말하기",
+  imageWithDescriptionList: "이미지(설명)",
   audio: "음성듣기",
   cornerGuideCharacter: "코너 변경 안내",
+  recorder: "녹음하기",
 };
 
 export const numberingTextDefaultData = Object.freeze({
   firstText: "",
   secondText: "",
+});
+
+export const imageWithDescriptionDefaultData = Object.freeze({
+  src: "",
+  description: "",
 });
 
 /**
@@ -220,6 +231,16 @@ export const getContentComponentsDefaultValue = (): Partial<
       src: "",
     },
   },
+  imageWithCaptionList: {
+    id: uuidV4(),
+    type: "imageWithCaptionList",
+    data: [
+      {
+        src: "",
+        caption: "",
+      },
+    ],
+  },
   speaking: {
     id: uuidV4(),
     type: "speaking",
@@ -227,6 +248,16 @@ export const getContentComponentsDefaultValue = (): Partial<
       src: "",
       speakingTime: 0,
     },
+  },
+  imageWithDescriptionList: {
+    id: uuidV4(),
+    type: "imageWithDescriptionList",
+    data: [
+      {
+        src: "",
+        description: "",
+      },
+    ],
   },
   audio: {
     id: uuidV4(),
@@ -244,6 +275,11 @@ export const getContentComponentsDefaultValue = (): Partial<
         src: "",
       },
     },
+  },
+  recorder: {
+    id: uuidV4(),
+    type: "recorder",
+    data: {},
   },
 });
 

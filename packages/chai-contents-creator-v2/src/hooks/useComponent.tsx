@@ -6,6 +6,8 @@ import AudioCreator from "../components/contents/AudioCreator";
 import BorderTextBoxCreator from "../components/contents/BorderTextBoxCreator";
 import CornerGuideCharacterCreator from "../components/contents/CornerGuideCharacterCreator";
 import IconTextCreator from "../components/contents/IconTextCreator";
+import ImageWithDescriptionListCreator from "../components/contents/ImageWithDescriptionListCreator";
+import ImageWithCaptionListCreator from "../components/contents/ImageWithCaptionListCreator";
 import NumberingTextListCreator from "../components/contents/NumberingTextListCreator";
 import SpeakingCreator from "../components/contents/SpeakingCreator";
 import TextCreator from "../components/contents/TextCreator";
@@ -17,6 +19,7 @@ import {
   ContentCommonProps,
   DraggableContentCommonProps,
 } from "../types/page";
+import AudioRecorderCreator from "../components/contents/AudioRecorderCreator";
 
 const useComponent = () => {
   const [focusedId, setFocusedId] = useRecoilState(focusedIdState);
@@ -31,9 +34,12 @@ const useComponent = () => {
       numberingTextList: <NumberingTextListCreator {...props} />,
       borderTextBox: <BorderTextBoxCreator {...props} />,
       video: <VideoCreator {...props} />,
+      imageWithCaptionList: <ImageWithCaptionListCreator {...props} />,
       speaking: <SpeakingCreator {...props} />,
+      imageWithDescriptionList: <ImageWithDescriptionListCreator {...props} />,
       audio: <AudioCreator {...props} />,
       cornerGuideCharacter: <CornerGuideCharacterCreator {...props} />,
+      recorder: <AudioRecorderCreator {...props} />,
     };
 
     return componentMap[type];

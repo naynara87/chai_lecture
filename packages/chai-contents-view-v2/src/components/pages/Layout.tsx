@@ -35,7 +35,7 @@ const Layout = () => {
     }
   }, [cornerMetaData, lessonMetaData, corners, pages]);
 
-  return <div>{layout}</div>;
+  return <>{layout}</>;
 };
 
 export default Layout;

@@ -46,7 +46,7 @@ export type ContentCommonProps = {
   currentSlide: AllTemplateData;
   content: Content;
   isFocused: boolean;
-  setFocusedId: (e: React.MouseEvent, isFocused: ID) => void;
+  setFocusedId: (e: React.MouseEvent, contentId: ID) => void;
   position: CommonTemplateComponentLocation;
   updateContent: ReturnUsePage["updateContent"];
   isDraggable?: boolean;
