@@ -10,22 +10,20 @@ interface TextEditorViewerProps {
   setText: (text: string) => void;
   isFocused: boolean;
   handleSubmitTextOnBlur?: () => void;
+  defaultText?: React.ReactNode;
 }
 const TextEditorViewer = ({
   text,
   setText,
   isFocused,
   handleSubmitTextOnBlur,
+  defaultText = "텍스트를 입력해주세요",
 }: TextEditorViewerProps) => {
   return (
     <>
       {!isFocused ? (
         <TextViewer>
-          {text ? (
-            <HtmlContentComponent html={text} />
-          ) : (
-            "텍스트를 입력해주세요"
-          )}
+          {text.replace(/<[^>]*>?/g, '') ? <HtmlContentComponent html={text} /> : defaultText}
         </TextViewer>
       ) : (
         <TextEditor

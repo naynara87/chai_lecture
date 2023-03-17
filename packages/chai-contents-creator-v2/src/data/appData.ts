@@ -151,6 +151,7 @@ export const contentComponents: ContentComponents = {
     "numberingTextList",
     "borderTextBox",
     "video",
+    "imageWithCaptionList",
     "speaking",
     "imageWithDescriptionList",
     "audio",
@@ -170,8 +171,9 @@ export const contentComponentsNameMap: Partial<Record<ContentType, string>> = {
   numberingTextList: "번호 매기기",
   borderTextBox: "학습 목표",
   video: "동영상",
+  imageWithCaptionList: "이미지(캡션)",
   speaking: "따라말하기",
-  imageWithDescriptionList: "설명이 있는 이미지",
+  imageWithDescriptionList: "이미지(설명)",
   audio: "음성듣기",
 };
 
@@ -224,6 +226,16 @@ export const getContentComponentsDefaultValue = (): Partial<
     data: {
       src: "",
     },
+  },
+  imageWithCaptionList: {
+    id: uuidV4(),
+    type: "imageWithCaptionList",
+    data: [
+      {
+        src: "",
+        caption: "",
+      },
+    ],
   },
   speaking: {
     id: uuidV4(),

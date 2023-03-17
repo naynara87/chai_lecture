@@ -40,10 +40,9 @@ const WarningMessage = styled.p`
 interface ButtonProps {
   typeText: string;
   onSubmit?: (src: string, index?: number) => void;
-  index?: number;
 }
 
-const UrlInputWrapper = ({ typeText, onSubmit, index }: ButtonProps) => {
+const UrlInputWrapper = ({ typeText, onSubmit }: ButtonProps) => {
   const [message, setMessage] = useState<string>("");
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -61,7 +60,7 @@ const UrlInputWrapper = ({ typeText, onSubmit, index }: ButtonProps) => {
       setMessage("");
     }
 
-    onSubmit && onSubmit(src, index);
+    onSubmit && onSubmit(src);
   };
 
   return (

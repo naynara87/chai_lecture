@@ -7,7 +7,7 @@ import ObjectDeleteButton from "../atoms/ObjectDeleteButton";
 import { DraggableContentCommonProps } from "../../types/page";
 import { ComponentImage, ImageWithDescriptionListContentData } from "chai-ui-v2";
 import TextEditorViewer from "../molecules/TextEditorViewer";
-import { imageWithDescriptionDefaultData } from "../../data/appData";
+import { useCallback, useEffect, useState } from "react";
 
 const ImageListCreatorWrapper = styled.div`
   display: flex;
@@ -58,80 +58,107 @@ const ImageWithDescriptionListCreator = ({
   isDraggable,
 }: DraggableContentCommonProps) => {
   const thisContent = content as ImageWithDescriptionListContentData;
+  const [focusedTextEditorIndex, setFocusedTextEditorIndex] =
+  useState<number>();
 
-  const updateImageWithDescriptionData = (
-    imageWithDescriptionListData: ImageWithDescriptionListContentData["data"],
-  ) => {
-    updateContent(
-      currentSlide.id,
-      content.id,
-      position,
-      getCurrentContent(imageWithDescriptionListData),
-    ); // total content 업데이트
-  };
+  const focusTextEditor = useCallback(
+    (index: number) => (e: React.MouseEvent) => {
+      setFocusedId(e, content.id);
+      setFocusedTextEditorIndex(index);
+    },
+    [setFocusedId, content.id],
+  );
 
-  const getCurrentContent = (
-    imageWithDescriptionListData: ImageWithDescriptionListContentData["data"],
-  ): ImageWithDescriptionListContentData => {
-    return {
-      ...thisContent,
-      data: imageWithDescriptionListData,
-    };
-  };
+  const resetFocusedTextEditor = useCallback(() => {
+    setFocusedTextEditorIndex(undefined);
+  }, []);
+
+
+  const isTextEditorFocused = useCallback(
+    (index: number) => {
+      return isFocused && focusedTextEditorIndex === index;
+    },
+    [isFocused, focusedTextEditorIndex],
+  );
 
   /**
    * 현재 선택 영역 텍스트 업데이트
    */
-  const setText = (
-    rowIndex: number,
-    text: string,
-  ) => {
-    const updatedData = thisContent.data.map((item, index) => {
-      if (index === rowIndex) {
-        return {
-          ...item,
-          "description": text,
-        };
-      }
-      return item;
-    });
-    updateImageWithDescriptionData(updatedData);
-  };
-
-  /**
-   * 현재 선택 영역 텍스트 가져오기
-   */
-    const getText = (
-      rowIndex: number,
-    ) => {
-      return thisContent.data[rowIndex].description ?? "";
-    };
-  
-    const handleSubmitUrl = (url: string, index?:number) => {
-      const updatedData = thisContent.data.map((item, contentIndex) => {
-        if (index === contentIndex) {
+  const setText = (index: number) => (text: string) => {
+    const newContent = {
+      ...thisContent,
+      data: thisContent.data.map((data, dataIndex) => {
+        if (dataIndex === index) {
           return {
-            ...item,
-            "src": url,
+            ...data,
+            description: text,
           };
         }
-        return item;
-      });
-      updateImageWithDescriptionData(updatedData);
+        return data;
+      }),
     };
-  
+    updateContent(currentSlide.id, content.id, position, newContent);
+  };
+
   /**
    * 내용 추가
    */
-  const addImageWithDescriptionItem = () => {
-    const addedNewData = [...thisContent.data, { ...imageWithDescriptionDefaultData }];
-    updateImageWithDescriptionData(addedNewData);
+  const addImage = () => {
+    // 최대 2개 까지
+    const newContent = {
+      ...thisContent,
+      data: [
+        ...thisContent.data,
+        {
+          src: "",
+          description: "",
+        },
+      ],
+    };
+    updateContent(currentSlide.id, content.id, position, newContent);
   };
 
-  const deleteCurrentNumberingTextItem = (index: number) => {
-    const updatedData = thisContent.data.filter((_, i) => i !== index);
-    updateImageWithDescriptionData(updatedData);
+  const deleteImage = (index: number) => {
+    if (thisContent.data.length === 1) {
+      return;
+    }
+    const newContent = {
+      ...thisContent,
+      data: thisContent.data.filter((_, dataIndex) => dataIndex !== index),
+    };
+    updateContent(currentSlide.id, content.id, position, newContent);
   };
+
+  const getThisContentImageSrc = useCallback(
+    (index: number) => {
+      return thisContent.data?.[index]?.src ?? "";
+    },
+    [thisContent.data],
+  );
+
+  const setImageUrl = (index: number) => (src: string) => {
+    const newContent = {
+      ...thisContent,
+      data: thisContent.data.map((data, dataIndex) => {
+        if (dataIndex === index) {
+          return {
+            ...data,
+            src,
+          };
+        }
+        return data;
+      }),
+    };
+    updateContent(currentSlide.id, content.id, position, newContent);
+  };
+
+
+  useEffect(() => {
+    window.addEventListener("click", resetFocusedTextEditor);
+    return () => {
+      window.removeEventListener("click", resetFocusedTextEditor);
+    };
+  }, [resetFocusedTextEditor]);
 
   return (
     <ContentCreatorLayout
@@ -139,7 +166,7 @@ const ImageWithDescriptionListCreator = ({
       isDraggable={isDraggable}
     >
       <ImageListCreatorWrapper>
-        <AddButton onClick={addImageWithDescriptionItem}>내용 추가</AddButton>
+        <AddButton onClick={addImage}>이미지 추가</AddButton>
         <ImageListWrapper>
           {/* TODO: AddButton 클릭 시 ImageList 추가 */}
           {thisContent.data.map((item, index) => {
@@ -147,19 +174,21 @@ const ImageWithDescriptionListCreator = ({
               <ImageList>
                 {/* TODO: default 이미지 노출 이후 이미지 등록하면 변경 */}
                 <div>
-                  {item.src ? <ComponentImage imageUrl={item.src} /> :
+                  {item.src ? <ComponentImage imageUrl={getThisContentImageSrc(index)} /> :
                   <ImageThumb>
                     <img src={ImageIcon} alt="" />
                   </ImageThumb>
                   }
-                  <UrlInputWrapper typeText="이미지" onSubmit={handleSubmitUrl} index={index}/>
+                  <UrlInputWrapper typeText="이미지" onSubmit={setImageUrl(index)}/>
                 </div>
                 {/* TODO: 캡션 입력안하면 없이 노출, 캡션 클릭 후 HTML로 입력하면 입력되어서 노출 */}
-                <p className="description-text" onClick={(e) => setFocusedId(e, content.id)}>
-                  <TextEditorViewer isFocused={isFocused} setText={(text) => setText(index, text)} text={getText(index)}/>
+                <p className="description-text" onClick={focusTextEditor(index)}>
+                  <TextEditorViewer isFocused={isTextEditorFocused(index)} setText={setText(index)} text={thisContent.data?.[index].description ?? ""}  defaultText={
+                      <p className="caption-text">설명을 입력해주세요.</p>
+                    }/>
                 </p>
                 {/* TODO: ObjectDeleteButton 클릭 시 해당 ImageList 제거 */}
-                <ObjectDeleteButton onClick={() => deleteCurrentNumberingTextItem(index)} />
+                {thisContent.data.length > 1 && <ObjectDeleteButton onClick={() => deleteImage(index)} />}
               </ImageList>
             );
           })}

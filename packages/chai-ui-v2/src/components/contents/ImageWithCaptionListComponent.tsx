@@ -15,7 +15,7 @@ const ImageWithCaptionListWrapper = styled.div`
   justify-content: center;
 `;
 
-const ListImage = styled.img`
+export const CaptionListImage = styled.img`
   border-radius: ${vw(10)};
   -webkit-user-drag: none;
   cursor: pointer;
@@ -57,7 +57,7 @@ const ImageWithCaptionListComponent = ({
       return (
         <ImageWithCaptionList key={imageWithCaptionIndex}>
           <ImageWithCaptionWrapper className="image-with-caption-wrapper">
-            <ListImage
+            <CaptionListImage
               src={imageWithCaption.src}
               alt=""
               onClick={() => {
