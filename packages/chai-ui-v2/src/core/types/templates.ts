@@ -6,6 +6,7 @@ import {
   FinalSpeakingContentData,
   IconTextContentData,
   MultiChoiceContentData,
+  QuestionContentData,
   QuizContent,
   QuizSentenceContentData,
   QuizWordsInOrderContentData,
@@ -17,7 +18,8 @@ export type AllTemplateData =
   | ConversationTemplateData
   | QuizTemplateData
   | TemplateRolePlayingData
-  | TemplateWordCardData;
+  | TemplateWordCardData
+  | TemplateQuestionData;
 
 export type TemplateData =
   | Template01Data
@@ -133,7 +135,7 @@ export type TemplateQuizMultiChoiceData = {
   id: ID;
   type: "TemplateQuizMultiChoice";
   leftContents: Content[];
-  rightContents: MultiChoiceContentData;
+  multiChoice: MultiChoiceContentData;
 };
 
 /**
@@ -178,4 +180,14 @@ export type TemplateWordCardData = {
   type: "TemplateWordCard";
   leftContents: Content[];
   rightContents: Content[];
+};
+
+/**
+ * 문제 레이아웃
+ * TP13
+ */
+export type TemplateQuestionData = {
+  id: ID;
+  type: "TemplateQuestion";
+  contents: QuestionContentData;
 };

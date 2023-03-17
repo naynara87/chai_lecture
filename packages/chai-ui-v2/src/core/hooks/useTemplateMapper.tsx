@@ -8,6 +8,7 @@ import {
   Template02,
   Template03,
 } from "../../components";
+import TemplateQuestion from "../../components/templates/TemplateQuestion";
 import TemplateQuizDialogueWordArray from "../../components/templates/TemplateQuizDialogueWordArray";
 import TemplateQuizSpeaking from "../../components/templates/TemplateQuizSpeaking";
 import TemplateRolePlaying from "../../components/templates/TemplateRolePlaying";
@@ -16,6 +17,7 @@ import {
   AllTemplateData,
   Template01Data,
   TemplateConversationData,
+  TemplateQuestionData,
   TemplateQuizConversationData,
   TemplateQuizMultiChoiceData,
   TemplateQuizSentencesInOrderData,
@@ -110,6 +112,12 @@ const useTemplateMapper = ({ setPageCompleted }: UseTemplateMapperProps) => {
         TemplateRolePlaying: (
           <TemplateRolePlaying
             template={template as TemplateRolePlayingData}
+            setPageCompleted={setPageCompleted}
+          />
+        ),
+        TemplateQuestion: (
+          <TemplateQuestion
+            template={template as TemplateQuestionData}
             setPageCompleted={setPageCompleted}
           />
         ),

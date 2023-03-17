@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
+import { SpeakingContentData } from "chai-ui-v2";
+import { DraggableContentCommonProps } from "../../types/page";
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
-import UrlInputWrapper from "../molecules/UrlInputWrapper";
+import UrlAndTimeInputWrapper from "../molecules/UrlAndTimeInputWrapper";
 
 const SpeakingWrapper = styled.div`
   & .time-input-form {
@@ -19,15 +21,35 @@ const SpeakingWrapper = styled.div`
   }
 `;
 
-const SpeakingCreator = () => {
+const SpeakingCreator = ({
+  content,
+  setFocusedId,
+  isFocused,
+  updateContent,
+  currentSlide,
+  position,
+  draggableProvided,
+  isDraggable,
+}: DraggableContentCommonProps) => {
+  const thisContent = content as SpeakingContentData;
+
+  const handleSubmitUrl = (url: string, time: number) => {
+    const newContent = {
+      ...thisContent,
+      data: {
+        src: url,
+        speakingTime: time,
+      },
+    };
+    updateContent(currentSlide.id, content.id, position, newContent);
+  };
   return (
-    <ContentCreatorLayout>
-      <SpeakingWrapper>
-        <UrlInputWrapper typeText="오디오"></UrlInputWrapper>
-        <input
-          placeholder="발화 시간(초) 입력"
-          className="time-input-form"
-        ></input>
+    <ContentCreatorLayout
+      isDraggable={isDraggable}
+      draggableProvided={draggableProvided}
+    >
+      <SpeakingWrapper onClick={(e) => setFocusedId(e, content.id)}>
+        <UrlAndTimeInputWrapper typeText="오디오" onSubmit={handleSubmitUrl} />
       </SpeakingWrapper>
     </ContentCreatorLayout>
   );

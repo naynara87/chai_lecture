@@ -1,24 +1,37 @@
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
-import iconPlay from "chai-ui-v2/dist/assets/images/icon/icon_play.svg";
-import UrlInputWrapper from "../molecules/UrlInputWrapper";
-import styled from "@emotion/styled";
+import AudioWrapper from "../molecules/AudioWrapper";
+import { DraggableContentCommonProps } from "../../types/page";
+import { AudioContentData } from "chai-ui-v2";
 
-const AudioCreatorWrapper = styled.div`
-  & > img {
-    width: 40px;
-    height: 40px;
-    box-shadow: 0px 4px 0px rgba(88, 88, 88, 0.2);
-    border-radius: 8px;
-  }
-`;
+const AudioCreator = ({
+  content,
+  setFocusedId,
+  isFocused,
+  updateContent,
+  currentSlide,
+  position,
+  draggableProvided,
+  isDraggable,
+}: DraggableContentCommonProps) => {
+  const thisContent = content as AudioContentData;
 
-const AudioCreator = () => {
+  const handleSubmitUrl = (url: string) => {
+    const newContent = {
+      ...thisContent,
+      data: {
+        src: url,
+      },
+    };
+    updateContent(currentSlide.id, content.id, position, newContent);
+  };
+
+  console.log("thisContent", thisContent);
   return (
-    <ContentCreatorLayout>
-      <AudioCreatorWrapper>
-        <img src={iconPlay} alt="audio" />
-        <UrlInputWrapper typeText="오디오" />
-      </AudioCreatorWrapper>
+    <ContentCreatorLayout
+      isDraggable={isDraggable}
+      draggableProvided={draggableProvided}
+    >
+      <AudioWrapper onSubmit={handleSubmitUrl} />
     </ContentCreatorLayout>
   );
 };

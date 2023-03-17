@@ -152,6 +152,8 @@ export const contentComponents: ContentComponents = {
     "borderTextBox",
     "video",
     "imageWithCaptionList",
+    "speaking",
+    "audio",
   ],
 };
 
@@ -169,6 +171,8 @@ export const contentComponentsNameMap: Partial<Record<ContentType, string>> = {
   borderTextBox: "학습 목표",
   video: "동영상",
   imageWithCaptionList: "이미지(캡션)",
+  speaking: "따라말하기",
+  audio: "음성듣기",
 };
 
 export const numberingTextDefaultData = Object.freeze({
@@ -225,6 +229,21 @@ export const getContentComponentsDefaultValue = (): Partial<
         caption: "",
       },
     ],
+  },
+  speaking: {
+    id: uuidV4(),
+    type: "speaking",
+    data: {
+      src: "",
+      speakingTime: 0,
+    },
+  },
+  audio: {
+    id: uuidV4(),
+    type: "audio",
+    data: {
+      src: "",
+    },
   },
 });
 

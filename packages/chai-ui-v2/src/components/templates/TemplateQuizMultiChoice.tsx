@@ -42,7 +42,7 @@ const TemplateQuizMultiChoice = ({
 
           {/* TODO: key설명 - 클릭하면 input들 disabled 되고, 
           정답이면 answer-right 오답이면 answer-wrong 클래스 추가 */}
-          <MultiChoiceComponent contents={thisPage.rightContents} />
+          <MultiChoiceComponent contents={thisPage.multiChoice} />
           {/* <GrayRadioBoxes /> */}
         </QuizContainer>
       </div>

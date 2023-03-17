@@ -1,7 +1,7 @@
 import React from "react";
-import IconEmpty from "../../assets/images/icon/icon_commentary_empty.svg";
-import IconRight from "../../assets/images/icon/icon_o.svg";
-// import IconWrong from "../../assets/images/icon/icon_x.svg";
+import IconEmpty from "../../assets/images/icon/icon_empty.svg";
+import IconRight from "../../assets/images/icon/icon_problem_o.svg";
+// import IconWrong from "../../assets/images/icon/icon_problem_x.svg";
 
 const ComponentProblemCommentary = () => {
   return (

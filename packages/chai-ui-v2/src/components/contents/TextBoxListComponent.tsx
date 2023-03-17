@@ -12,7 +12,11 @@ const TextBoxWrap = styled.div`
   justify-content: center;
 `;
 
-const TextBox = styled.div`
+interface TextBoxProps {
+  isAccent: boolean;
+}
+
+const TextBox = styled.div<TextBoxProps>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,6 +28,13 @@ const TextBox = styled.div`
   padding: ${vh(60)} ${vw(75)};
   border-radius: 1.5vw;
   transition: width 0.2s, height 0.2s;
+
+  ${(props) =>
+    !props.isAccent &&
+    `
+    background-image: none;
+    border: 3px solid #D6E9FF;
+  `}
 
   &:last-of-type {
     margin: 0;
@@ -137,7 +148,7 @@ const TextBoxListComponent = ({
   const textBoxes = useMemo(() => {
     return contents.data.map((content, contentIndex) => {
       return (
-        <TextBox key={contentIndex}>
+        <TextBox key={contentIndex} isAccent={content.isAccent}>
           <HtmlContentComponent html={content.text} />
           {playBoxAudioIndex === contentIndex &&
           globalAudioState === "playing" ? (

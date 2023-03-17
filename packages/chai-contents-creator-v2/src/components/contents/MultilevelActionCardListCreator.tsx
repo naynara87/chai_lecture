@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 import AddButton from "../atoms/AddButton";
 import CheckBoxWrapper from "../molecules/CheckBoxWrapper";
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
-import AudioCreator from "./AudioCreator";
 
 const MultilevelActionCardWrapper = styled.div`
   display: flex;
@@ -62,7 +61,6 @@ const MultilevelActionCardListCreator = () => {
               <AddButton>컴포넌트 선택</AddButton>
             </TopArea>
             {/* TODO: 컴포넌트 선택 하면 이곳에 선택된 컴포넌트들이 순차적으로 추가 */}
-            <AudioCreator />
           </MultilevelActionCard>
         </MultilevelActionCardList>
       </MultilevelActionCardWrapper>

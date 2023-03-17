@@ -27,12 +27,15 @@ export type Content =
   | WordsCarouselContentData
   | AudioAndWordsCarouselContentData
   | ToggleSentenceListContentData
+  | MultilevelActionSentenceCardContentData
+  | FullAudioContentData
   | NotiCharacterListContentData;
 export type ContentType = Content["type"];
 
 export type ConversationContent =
   | ConversationWordListContentData
   | ConversationContentData
+  | FullAudioContentData
   | IconTextContentData;
 
 export type QuizContent =
@@ -40,6 +43,7 @@ export type QuizContent =
   | ActivityGuideCharacterContentData
   | MultiChoiceContentData
   | QuizWordsInOrderContentData
+  | FullAudioContentData
   | FinalSpeakingContentData;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -319,6 +323,17 @@ export type MultilevelActionCardContentData = {
 };
 
 /**
+ * 학습 카드 컴포넌트
+ * 멀티레벨콘텐츠 저작시 멀티레벨안에 멀티레벨 중복 막기
+ */
+export type MultilevelActionSentenceCardContentData = {
+  id: ID;
+  type: "multiLevelActionSentenceCard";
+  data: Content[][];
+  meta?: Meta;
+};
+
+/**
  * 단어장 컴포넌트
  * 단어가 2개 이상일 경우에만 Navigation dots 노출
  */
@@ -401,8 +416,8 @@ export type ConversationQuizContentData = {
   type: "conversationQuiz";
   data: {
     text: string;
-    pronunciation: string;
-    meaning: string;
+    pronunciation?: string;
+    meaning?: string;
     choice: {
       text: string;
       isAnswer: boolean;
@@ -553,8 +568,32 @@ export type TextBoxListContentData = {
   type: "textBoxList";
   data: {
     text: string;
+    isAccent: boolean;
     audio?: {
       src: string;
     };
   }[];
+  meta?: Meta;
+};
+
+/**
+ * 문제템플릿 컴포넌트
+ */
+export type QuestionContentData = {
+  id: ID;
+  type: "question";
+  data: {
+    iframeUrl: string;
+  };
+  meta?: Meta;
+};
+
+/**
+ * 전체음성 듣기 컴포넌트
+ */
+export type FullAudioContentData = {
+  id: ID;
+  type: "fullAudio";
+  data: Record<string, never>;
+  meta?: Meta;
 };

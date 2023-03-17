@@ -40,6 +40,7 @@ import {
   WordsCarouselContentData,
   AudioAndWordsCarouselContentData,
   ToggleSentenceListContentData,
+  MultilevelActionSentenceCardContentData,
 } from "../types";
 import CharacterCardListComponent from "../../components/contents/CharacterCardListComponent";
 import SpeakingComponent from "../../components/contents/SpeakingComponent";
@@ -58,6 +59,8 @@ import TextBoxListComponent from "../../components/contents/TextBoxListComponent
 import WordsCarouselComponent from "../../components/contents/WordsCarouselComponent";
 import AudioAndWordsCarouselComponent from "../../components/contents/AudioAndWordsCarouselComponent";
 import ToggleSentenceListComponent from "../../components/contents/ToggleSentenceListComponent";
+import MultilevelActionSentenceCardComponent from "../../components/contents/MultilevelActionSentenceCardComponent";
+import FullAudioComponent from "../../components/contents/FullAudioComponent";
 
 const useContentMapper = () => {
   const getContentComponent = (content: Content, contentIndex: number) => {
@@ -217,6 +220,13 @@ const useContentMapper = () => {
           key={contentIndex}
         />
       ),
+      multiLevelActionSentenceCard: (
+        <MultilevelActionSentenceCardComponent
+          contents={content as MultilevelActionSentenceCardContentData}
+          key={contentIndex}
+        />
+      ),
+      fullAudio: <FullAudioComponent key={contentIndex} />,
     };
 
     return contentMapper[content.type];
