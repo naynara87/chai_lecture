@@ -2,6 +2,7 @@ import { Content, ID } from "chai-ui-v2";
 import { useCallback, useEffect } from "react";
 import { Draggable } from "react-beautiful-dnd";
 import { useRecoilState } from "recoil";
+import AudioCreator from "../components/contents/AudioCreator";
 import BorderTextBoxCreator from "../components/contents/BorderTextBoxCreator";
 import IconTextCreator from "../components/contents/IconTextCreator";
 import ImageWithDescriptionListCreator from "../components/contents/ImageWithDescriptionListCreator";
@@ -32,6 +33,7 @@ const useComponent = () => {
       video: <VideoCreator {...props} />,
       speaking: <SpeakingCreator {...props} />,
       imageWithDescriptionList: <ImageWithDescriptionListCreator {...props} />,
+      audio: <AudioCreator {...props} />,
     };
 
     return componentMap[type];
