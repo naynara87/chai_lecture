@@ -21,7 +21,7 @@ const AudioCreatorWrapper = styled.div`
 
 const FullAudioCreator = () => {
   return (
-    <ContentCreatorLayout>
+    <ContentCreatorLayout onDeleteComponent={() => {}}>
       <AudioCreatorWrapper>
         <img src={iconPlay} alt="audio" />
         <p className="">전체 음성 듣기</p>

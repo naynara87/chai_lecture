@@ -79,14 +79,13 @@ const ImageThumb = styled.div`
 
 const NotiCharacterListCreate = () => {
   return (
-    <ContentCreatorLayout>
+    <ContentCreatorLayout onDeleteComponent={() => {}}>
       <NotiCharacterWrapper>
         <AddButton>말풍선 추가</AddButton>
         {/* 반복영역 */}
         <NotiCharacterWrap>
           <ObjectDeleteButton />
-          <TextBubbleWrap>{`텍스트를 입력해주세요.`}
-          </TextBubbleWrap>
+          <TextBubbleWrap>{`텍스트를 입력해주세요.`}</TextBubbleWrap>
           <ImageThumb>
             {/* 이미지를 넣으면 src가 해당 이미지의 src로 변경됨 */}
             <img src={ImageIcon} alt="캐릭터 프로필" />
@@ -96,8 +95,7 @@ const NotiCharacterListCreate = () => {
         {/* end 반복영역 */}
         <NotiCharacterWrap>
           <ObjectDeleteButton />
-          <TextBubbleWrap>{`텍스트를 입력해주세요.`}
-          </TextBubbleWrap>
+          <TextBubbleWrap>{`텍스트를 입력해주세요.`}</TextBubbleWrap>
           <ImageThumb>
             {/* 이미지를 넣으면 src가 해당 이미지의 src로 변경됨 */}
             <img src={TempProgile01} alt="캐릭터 프로필" />
@@ -106,8 +104,7 @@ const NotiCharacterListCreate = () => {
         </NotiCharacterWrap>
         <NotiCharacterWrap>
           <ObjectDeleteButton />
-          <TextBubbleWrap>{`텍스트를 입력해주세요.`}
-          </TextBubbleWrap>
+          <TextBubbleWrap>{`텍스트를 입력해주세요.`}</TextBubbleWrap>
           <ImageThumb>
             {/* 이미지를 넣으면 src가 해당 이미지의 src로 변경됨 */}
             <img src={TempProgile02} alt="캐릭터 프로필" />

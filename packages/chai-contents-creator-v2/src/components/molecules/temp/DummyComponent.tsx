@@ -3,7 +3,7 @@ import ContentCreatorLayout from "../ContentCreatorLayout";
 
 const DummyComponent = () => {
   return (
-    <ContentCreatorLayout align="start">
+    <ContentCreatorLayout align="start" onDeleteComponent={() => {}}>
       샘플 컴포넌트 입니다
     </ContentCreatorLayout>
   );

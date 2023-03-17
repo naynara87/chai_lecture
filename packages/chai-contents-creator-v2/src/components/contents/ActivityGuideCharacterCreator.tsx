@@ -40,7 +40,11 @@ const TextBubbleWrap = styled.div`
 
 const ActivityGuideCharacterCreator = () => {
   return (
-    <ContentCreatorLayout>
+    <ContentCreatorLayout
+      onDeleteComponent={() => {
+        // TODO: 컴포넌트 구현 시 전달
+      }}
+    >
       <CornerGuideWrapper>
         <TextBubbleWrap>텍스트를 입력해주세요.</TextBubbleWrap>
         <ImageThumb />

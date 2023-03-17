@@ -8,6 +8,7 @@ const AudioCreator = ({
   setFocusedId,
   isFocused,
   updateContent,
+  deleteContent,
   currentSlide,
   position,
   draggableProvided,
@@ -25,11 +26,15 @@ const AudioCreator = ({
     updateContent(currentSlide.id, content.id, position, newContent);
   };
 
-  console.log("thisContent", thisContent);
+  const handleDeleteComponent = () => {
+    deleteContent(currentSlide.id, content.id, position);
+  };
+
   return (
     <ContentCreatorLayout
       isDraggable={isDraggable}
       draggableProvided={draggableProvided}
+      onDeleteComponent={handleDeleteComponent}
     >
       <AudioWrapper onSubmit={handleSubmitUrl} />
     </ContentCreatorLayout>

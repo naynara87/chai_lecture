@@ -26,6 +26,7 @@ const SpeakingCreator = ({
   setFocusedId,
   isFocused,
   updateContent,
+  deleteContent,
   currentSlide,
   position,
   draggableProvided,
@@ -43,10 +44,14 @@ const SpeakingCreator = ({
     };
     updateContent(currentSlide.id, content.id, position, newContent);
   };
+  const handleDeleteComponent = () => {
+    deleteContent(currentSlide.id, content.id, position);
+  };
   return (
     <ContentCreatorLayout
       isDraggable={isDraggable}
       draggableProvided={draggableProvided}
+      onDeleteComponent={handleDeleteComponent}
     >
       <SpeakingWrapper onClick={(e) => setFocusedId(e, content.id)}>
         <UrlAndTimeInputWrapper typeText="오디오" onSubmit={handleSubmitUrl} />

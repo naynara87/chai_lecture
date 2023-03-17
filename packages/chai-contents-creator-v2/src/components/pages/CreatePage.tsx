@@ -34,6 +34,7 @@ const CreatePage = () => {
     handleOnDragEnd,
     savePageDataToLocalStorage,
     removePageDataFromLocalStorage,
+    deleteContent,
   } = usePage();
 
   useEffect(() => {
@@ -92,6 +93,7 @@ const CreatePage = () => {
                 addComponentMap,
                 updateContent,
                 returnUseComponent,
+                deleteContent,
               });
             })}
           </DragDropContext>

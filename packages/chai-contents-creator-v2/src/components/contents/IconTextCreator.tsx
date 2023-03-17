@@ -26,6 +26,7 @@ const IconTextCreator = ({
   setFocusedId,
   isFocused,
   updateContent,
+  deleteContent,
   currentSlide,
   position,
   draggableProvided,
@@ -51,8 +52,15 @@ const IconTextCreator = ({
     updateContent(currentSlide.id, content.id, position, getNewContent());
   };
 
+  const handleDeleteComponent = () => {
+    deleteContent(currentSlide.id, content.id, position);
+  };
+
   return (
-    <ContentCreatorLayout draggableProvided={draggableProvided}>
+    <ContentCreatorLayout
+      draggableProvided={draggableProvided}
+      onDeleteComponent={handleDeleteComponent}
+    >
       <IconTextCreatorWrapper onClick={handleClickComponent}>
         <img src={iconTip} alt="" />
         {!isFocused ? (

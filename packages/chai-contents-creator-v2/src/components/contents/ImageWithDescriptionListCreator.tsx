@@ -45,7 +45,7 @@ const ImageThumb = styled.div`
 
 const ImageWithDescriptionListCreator = () => {
   return (
-    <ContentCreatorLayout>
+    <ContentCreatorLayout onDeleteComponent={() => {}}>
       <ImageListCreatorWrapper>
         <AddButton>번호 추가</AddButton>
         <ImageListWrapper>

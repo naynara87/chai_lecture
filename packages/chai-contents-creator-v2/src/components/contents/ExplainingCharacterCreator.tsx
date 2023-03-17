@@ -53,7 +53,7 @@ const ExplainingText = styled.div`
 
 const ExplainingCharacterCreator = () => {
   return (
-    <ContentCreatorLayout>
+    <ContentCreatorLayout onDeleteComponent={() => {}}>
       <ExplainingWrapper>
         <UrlInputWrapper typeText="이미지"></UrlInputWrapper>
         <ExplainingTextWrapper>
