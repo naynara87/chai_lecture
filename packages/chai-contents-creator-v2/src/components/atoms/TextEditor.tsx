@@ -26,8 +26,9 @@ const TextEditor = ({ text, setText, onBlur }: TextEditorProps) => {
   }, []);
 
   const handleChange = (value: string) => {
-    setText(value);
+    setText(value.replace(/<[^>]*>?/g, '') ? value : "");
   };
+  
   return (
     <TextEditorWrapper>
       <ReactQuill onChange={handleChange} value={text} onBlur={onBlur} />

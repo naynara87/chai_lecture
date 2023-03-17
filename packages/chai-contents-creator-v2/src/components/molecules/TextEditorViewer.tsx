@@ -23,7 +23,7 @@ const TextEditorViewer = ({
     <>
       {!isFocused ? (
         <TextViewer>
-          {text.replace(/<[^>]*>?/g, '') ? <HtmlContentComponent html={text} /> : defaultText}
+          {text ? <HtmlContentComponent html={text} /> : defaultText}
         </TextViewer>
       ) : (
         <TextEditor
