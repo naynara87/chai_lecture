@@ -3,6 +3,9 @@ import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 import UrlInputWrapper from "../molecules/UrlInputWrapper";
 import iconTail from "chai-ui-v2/dist/assets/images/icon/icon_contsinfo_tail.svg";
 import ImageThumb from "../atoms/ImageThumb";
+import { DraggableContentCommonProps } from "../../types/page";
+import TextEditorViewer from "../molecules/TextEditorViewer";
+import { CornerGuideCharacterContentData } from "chai-ui-v2";
 
 const CornerGuideWrapper = styled.div`
   display: flex;
@@ -33,13 +36,63 @@ const TextBubbleWrap = styled.div`
   }
 `;
 
-const CornerGuideCharacterCreator = () => {
+const CornerGuideCharacterCreator = ({
+  content,
+  setFocusedId,
+  isFocused,
+  updateContent,
+  currentSlide,
+  position,
+  draggableProvided,
+  isDraggable,
+}: DraggableContentCommonProps) => {
+  const thisContent = content as CornerGuideCharacterContentData;
+  const url = thisContent.data.character.src;
+
+  const setText = (text: string) => {
+    const newContent = {
+      ...thisContent,
+      data: {
+        ...thisContent.data,
+        text,
+      },
+    };
+    updateContent(currentSlide.id, content.id, position, newContent);
+  };
+
+  const setUrl = (url: string) => {
+    const newContent = {
+      ...thisContent,
+      data: {
+        ...thisContent.data,
+        character: {
+          src: url,
+        },
+      },
+    };
+    updateContent(currentSlide.id, content.id, position, newContent);
+  };
+
+  
   return (
-    <ContentCreatorLayout>
+    <ContentCreatorLayout
+      isDraggable={isDraggable}
+      draggableProvided={draggableProvided}
+    >
       <CornerGuideWrapper>
-        <TextBubbleWrap>텍스트를 입력해주세요.</TextBubbleWrap>
-        <ImageThumb />
-        <UrlInputWrapper typeText="이미지"></UrlInputWrapper>
+        <TextBubbleWrap onClick={(e) => setFocusedId(e, content.id)}>
+          <TextEditorViewer
+            isFocused={isFocused}
+            text={thisContent.data.text}
+            setText={setText}
+          />
+        </TextBubbleWrap>
+        {url ? (
+          <img src={thisContent.data.character.src} alt="" />
+        ) : (
+          <ImageThumb />
+        )}
+        <UrlInputWrapper typeText="이미지" onSubmit={setUrl}></UrlInputWrapper>
       </CornerGuideWrapper>
     </ContentCreatorLayout>
   );
