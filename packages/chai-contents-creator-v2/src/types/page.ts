@@ -25,6 +25,7 @@ export interface PageCommonProps extends PageHeaderProps {
   templateType: TemplateType;
   addComponentMap: AddComponentMap;
   updateContent: ReturnUsePage["updateContent"];
+  deleteContent: ReturnUsePage["deleteContent"];
   returnUseComponent: ReturnUseComponent;
 }
 
@@ -49,6 +50,7 @@ export type ContentCommonProps = {
   setFocusedId: (e: React.MouseEvent, contentId: ID) => void;
   position: CommonTemplateComponentLocation;
   updateContent: ReturnUsePage["updateContent"];
+  deleteContent: ReturnUsePage["deleteContent"];
   isDraggable?: boolean;
 };
 

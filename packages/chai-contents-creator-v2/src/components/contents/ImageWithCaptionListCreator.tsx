@@ -62,6 +62,7 @@ const ImageWithCaptionListCreator = ({
   setFocusedId,
   isFocused,
   updateContent,
+  deleteContent,
   currentSlide,
   position,
   draggableProvided,
@@ -170,6 +171,10 @@ const ImageWithCaptionListCreator = ({
     <ContentCreatorLayout
       isDraggable={isDraggable}
       draggableProvided={draggableProvided}
+      onDeleteComponent={deleteContent}
+      slideId={currentSlide.id}
+      content={content}
+      position={position}
       align="center"
     >
       <ImageWithCaptionListCreatorWrapper>

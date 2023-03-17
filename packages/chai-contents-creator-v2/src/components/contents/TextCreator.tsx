@@ -18,6 +18,7 @@ const TextCreator = ({
   setFocusedId,
   isFocused,
   updateContent,
+  deleteContent,
   currentSlide,
   position,
   draggableProvided,
@@ -47,6 +48,10 @@ const TextCreator = ({
     <ContentCreatorLayout
       draggableProvided={draggableProvided}
       isDraggable={isDraggable}
+      onDeleteComponent={deleteContent}
+      slideId={currentSlide.id}
+      content={content}
+      position={position}
     >
       <TextCreatorWrapper onClick={handleClickComponent}>
         <TextEditorViewer
