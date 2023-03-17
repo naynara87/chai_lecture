@@ -4,6 +4,7 @@ import { Draggable } from "react-beautiful-dnd";
 import { useRecoilState } from "recoil";
 import AudioCreator from "../components/contents/AudioCreator";
 import BorderTextBoxCreator from "../components/contents/BorderTextBoxCreator";
+import CornerGuideCharacterCreator from "../components/contents/CornerGuideCharacterCreator";
 import IconTextCreator from "../components/contents/IconTextCreator";
 import NumberingTextListCreator from "../components/contents/NumberingTextListCreator";
 import SpeakingCreator from "../components/contents/SpeakingCreator";
@@ -32,6 +33,7 @@ const useComponent = () => {
       video: <VideoCreator {...props} />,
       speaking: <SpeakingCreator {...props} />,
       audio: <AudioCreator {...props} />,
+      cornerGuideCharacter: <CornerGuideCharacterCreator {...props} />,
     };
 
     return componentMap[type];

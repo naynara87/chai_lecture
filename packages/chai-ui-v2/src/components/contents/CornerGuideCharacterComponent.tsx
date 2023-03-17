@@ -1,6 +1,6 @@
 import React from "react";
 import { CornerGuideCharacterContentData } from "../../core";
-import { ImgCharacterComponent } from "../atoms";
+import { HtmlContentComponent, ImgCharacterComponent } from "../atoms";
 import styled from "@emotion/styled";
 import { vw } from "../../assets";
 
@@ -30,7 +30,9 @@ const CornerGuideCharacterComponent = ({
   return (
     <ContStartWrapper className="cont-info-wrap">
       <div className="character-wrapper">
-        <div className="text-bubble-wrap">{contents.data.text}</div>
+        <div className="text-bubble-wrap">
+          <HtmlContentComponent html={contents.data.text} />
+        </div>
         <div className="character-wrap">
           <ImgCharacterComponent
             characterType="allCharacter"

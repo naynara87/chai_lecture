@@ -153,6 +153,7 @@ export const contentComponents: ContentComponents = {
     "video",
     "speaking",
     "audio",
+    "cornerGuideCharacter",
   ],
 };
 
@@ -171,6 +172,7 @@ export const contentComponentsNameMap: Partial<Record<ContentType, string>> = {
   video: "동영상",
   speaking: "따라말하기",
   audio: "음성듣기",
+  cornerGuideCharacter: "코너 변경 안내",
 };
 
 export const numberingTextDefaultData = Object.freeze({
@@ -231,6 +233,16 @@ export const getContentComponentsDefaultValue = (): Partial<
     type: "audio",
     data: {
       src: "",
+    },
+  },
+  cornerGuideCharacter: {
+    id: uuidV4(),
+    type: "cornerGuideCharacter",
+    data: {
+      text: "",
+      character: {
+        src: "",
+      },
     },
   },
 });
