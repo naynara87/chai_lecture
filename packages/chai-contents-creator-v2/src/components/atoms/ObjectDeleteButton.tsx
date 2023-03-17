@@ -8,6 +8,7 @@ const Button = styled.span`
   position: relative;
   border-radius: 50%;
   cursor: pointer;
+  display: inline-block;
 
   &:after {
     content: "";

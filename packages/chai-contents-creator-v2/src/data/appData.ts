@@ -145,7 +145,14 @@ export type ContentsGroup = "common";
 
 export type ContentComponents = Record<ContentsGroup, ContentType[]>;
 export const contentComponents: ContentComponents = {
-  common: ["text", "iconText", "numberingTextList", "borderTextBox", "video"],
+  common: [
+    "text",
+    "iconText",
+    "numberingTextList",
+    "borderTextBox",
+    "video",
+    "imageWithCaptionList",
+  ],
 };
 
 export const contentComponentsGroupMap: Record<
@@ -161,6 +168,7 @@ export const contentComponentsNameMap: Partial<Record<ContentType, string>> = {
   numberingTextList: "번호 매기기",
   borderTextBox: "학습 목표",
   video: "동영상",
+  imageWithCaptionList: "이미지(캡션)",
 };
 
 export const numberingTextDefaultData = Object.freeze({
@@ -207,6 +215,16 @@ export const getContentComponentsDefaultValue = (): Partial<
     data: {
       src: "",
     },
+  },
+  imageWithCaptionList: {
+    id: uuidV4(),
+    type: "imageWithCaptionList",
+    data: [
+      {
+        src: "",
+        caption: "",
+      },
+    ],
   },
 });
 
