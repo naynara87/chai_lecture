@@ -18,6 +18,7 @@ import {
   ContentCommonProps,
   DraggableContentCommonProps,
 } from "../types/page";
+import AudioRecorderCreator from "../components/contents/AudioRecorderCreator";
 
 const useComponent = () => {
   const [focusedId, setFocusedId] = useRecoilState(focusedIdState);
@@ -36,6 +37,7 @@ const useComponent = () => {
       speaking: <SpeakingCreator {...props} />,
       imageWithDescriptionList: <ImageWithDescriptionListCreator {...props} />,
       audio: <AudioCreator {...props} />,
+      recorder: <AudioRecorderCreator {...props} />
     };
 
     return componentMap[type];

@@ -155,6 +155,7 @@ export const contentComponents: ContentComponents = {
     "speaking",
     "imageWithDescriptionList",
     "audio",
+    "recorder",
   ],
 };
 
@@ -175,6 +176,7 @@ export const contentComponentsNameMap: Partial<Record<ContentType, string>> = {
   speaking: "따라말하기",
   imageWithDescriptionList: "이미지(설명)",
   audio: "음성듣기",
+  recorder: "녹음하기",
 };
 
 export const numberingTextDefaultData = Object.freeze({
@@ -261,6 +263,11 @@ export const getContentComponentsDefaultValue = (): Partial<
     data: {
       src: "",
     },
+  },
+  recorder: {
+    id: uuidV4(),
+    type: "recorder",
+    data: {},
   },
 });
 
