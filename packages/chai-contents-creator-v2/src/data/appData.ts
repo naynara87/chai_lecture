@@ -153,6 +153,7 @@ export const contentComponents: ContentComponents = {
     "video",
     "imageWithCaptionList",
     "speaking",
+    "imageWithDescriptionList",
     "audio",
   ],
 };
@@ -172,12 +173,18 @@ export const contentComponentsNameMap: Partial<Record<ContentType, string>> = {
   video: "동영상",
   imageWithCaptionList: "이미지(캡션)",
   speaking: "따라말하기",
+  imageWithDescriptionList: "이미지(설명)",
   audio: "음성듣기",
 };
 
 export const numberingTextDefaultData = Object.freeze({
   firstText: "",
   secondText: "",
+});
+
+export const imageWithDescriptionDefaultData = Object.freeze({
+  src: "",
+  description: "",
 });
 
 /**
@@ -237,6 +244,16 @@ export const getContentComponentsDefaultValue = (): Partial<
       src: "",
       speakingTime: 0,
     },
+  },
+  imageWithDescriptionList: {
+    id: uuidV4(),
+    type: "imageWithDescriptionList",
+    data: [
+      {
+        src: "",
+        description: "",
+      },
+    ],
   },
   audio: {
     id: uuidV4(),

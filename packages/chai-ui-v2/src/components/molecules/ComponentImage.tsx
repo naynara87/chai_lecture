@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import React from "react";
-import TempImage from "../../assets/images/img/temp_profile05.png";
 import { vh, vw } from "../../assets";
 
 const ImageComponent = styled.div`
@@ -16,10 +15,14 @@ const ImageComponent = styled.div`
   }
 `;
 
-const ComponentImage = () => {
+interface ComponentImageProps {
+  imageUrl: string;
+}
+
+const ComponentImage = ({imageUrl}:ComponentImageProps) => {
   return (
     <ImageComponent>
-      <img src={TempImage} alt="예시이미지" />
+      <img src={imageUrl} alt="예시이미지" />
     </ImageComponent>
   );
 };

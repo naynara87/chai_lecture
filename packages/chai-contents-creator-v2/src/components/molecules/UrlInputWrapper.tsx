@@ -39,7 +39,7 @@ const WarningMessage = styled.p`
 
 interface ButtonProps {
   typeText: string;
-  onSubmit?: (src: string) => void;
+  onSubmit?: (src: string, index?: number) => void;
 }
 
 const UrlInputWrapper = ({ typeText, onSubmit }: ButtonProps) => {
