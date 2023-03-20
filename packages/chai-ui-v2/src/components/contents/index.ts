@@ -11,7 +11,7 @@ export {
   CaptionListImage,
 } from "./ImageWithCaptionListComponent";
 export { default as ImageWithDescriptionListComponent } from "./ImageWithDescriptionListComponent";
-export { default as MultilevelActionCardListComponent } from "./MultilevelActionCardComponent";
+export { default as MultilevelActionCardComponent } from "./MultilevelActionCardComponent";
 export { default as NumberingTextListComponent } from "./NumberingTextListComponent";
 export { default as SpeakingComponent } from "./SpeakingComponent";
 export { default as TextContentComponent } from "./TextContentComponent";

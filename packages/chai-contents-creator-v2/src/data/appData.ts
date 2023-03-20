@@ -182,6 +182,7 @@ export const contentComponentsNameMap: Partial<Record<ContentType, string>> = {
   audio: "음성듣기",
   cornerGuideCharacter: "코너 변경 안내",
   recorder: "녹음하기",
+  multiLevelActionCard: "액션카드(단어용)",
   activityGuideCharacter: "활동 안내",
   contentsCardList: "학습 카드",
 };
@@ -285,6 +286,11 @@ export const getContentComponentsDefaultValue = (): Partial<
     id: uuidV4(),
     type: "recorder",
     data: {},
+  },
+  multiLevelActionCard: {
+    id: uuidV4(),
+    type: "multiLevelActionCard",
+    data: [[]],
   },
   activityGuideCharacter: {
     id: uuidV4(),
