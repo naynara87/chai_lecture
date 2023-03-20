@@ -48,7 +48,7 @@ const TextCreator = ({
     <ContentCreatorLayout
       draggableProvided={draggableProvided}
       isDraggable={isDraggable}
-      onDeleteComponent={deleteContent}
+      deleteContent={deleteContent}
       slideId={currentSlide.id}
       content={content}
       position={position}

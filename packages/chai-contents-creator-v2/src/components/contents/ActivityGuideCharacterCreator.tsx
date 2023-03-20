@@ -50,6 +50,7 @@ const ActivityGuideCharacterCreator = ({
   position,
   draggableProvided,
   isDraggable,
+  deleteContent,
 }: DraggableContentCommonProps) => {
   const thisContent = content as ActivityGuideCharacterContentData;
   const url = thisContent.data.character.src;
@@ -83,6 +84,10 @@ const ActivityGuideCharacterCreator = ({
       isDraggable={isDraggable}
       draggableProvided={draggableProvided}
       align="center"
+      deleteContent={deleteContent}
+      slideId={currentSlide.id}
+      content={content}
+      position={position}
     >
       <CornerGuideWrapper>
         <TextBubbleWrap onClick={(e) => setFocusedId(e, content.id)}>

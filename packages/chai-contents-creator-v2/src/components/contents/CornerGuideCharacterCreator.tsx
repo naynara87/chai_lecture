@@ -45,6 +45,7 @@ const CornerGuideCharacterCreator = ({
   position,
   draggableProvided,
   isDraggable,
+  deleteContent,
 }: DraggableContentCommonProps) => {
   const thisContent = content as CornerGuideCharacterContentData;
   const url = thisContent.data.character.src;
@@ -78,6 +79,10 @@ const CornerGuideCharacterCreator = ({
       isDraggable={isDraggable}
       draggableProvided={draggableProvided}
       align="center"
+      deleteContent={deleteContent}
+      slideId={currentSlide.id}
+      content={content}
+      position={position}
     >
       <CornerGuideWrapper>
         <TextBubbleWrap onClick={(e) => setFocusedId(e, content.id)}>
