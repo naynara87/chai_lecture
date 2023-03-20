@@ -562,6 +562,7 @@ export type ToggleSentenceListContentData = {
 
 /**
  * 단어박스형 컴포넌트
+ * @deprecated ContentsCardListContentData 로 대체
  */
 export type TextBoxListContentData = {
   id: ID;
@@ -572,6 +573,20 @@ export type TextBoxListContentData = {
     audio?: {
       src: string;
     };
+  }[];
+  meta?: Meta;
+};
+
+/**
+ * 학습 카드 컴포넌트
+ * CH-03-01
+ */
+export type ContentsCardListContentData = {
+  id: ID;
+  type: "contentsCardList";
+  data: {
+    isAccent: boolean;
+    contents: Content[];
   }[];
   meta?: Meta;
 };

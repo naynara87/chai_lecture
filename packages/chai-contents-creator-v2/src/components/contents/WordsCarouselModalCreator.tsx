@@ -7,6 +7,7 @@ const WordsCarouselModalCreator = ({
   setFocusedId,
   isFocused,
   updateContent,
+  deleteContent,
   currentSlide,
   position,
   draggableProvided,
@@ -16,6 +17,10 @@ const WordsCarouselModalCreator = ({
     <ContentCreatorLayout
       isDraggable={isDraggable}
       draggableProvided={draggableProvided}
+      onDeleteComponent={deleteContent}
+      slideId={currentSlide.id}
+      content={content}
+      position={position}
       align="center"
     >
       <WordsCarousel />

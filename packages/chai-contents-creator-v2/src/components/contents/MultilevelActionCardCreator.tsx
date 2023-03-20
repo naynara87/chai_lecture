@@ -85,6 +85,7 @@ const MultilevelActionCardCreator = ({
   position,
   draggableProvided,
   isDraggable,
+  deleteContent,
 }: DraggableContentCommonProps) => {
   const thisContent = content as MultilevelActionCardContentData;
 
@@ -161,6 +162,16 @@ const MultilevelActionCardCreator = ({
     [thisContent, currentSlide.id, updateContent],
   );
 
+  const deleteComponent = useCallback(
+    (slideId: ID, contentId: ID, position: CommonTemplateComponentLocation) => {
+      const newContent = {
+        ...thisContent,
+      };
+      console.log(newContent);
+    },
+    [thisContent],
+  );
+
   const contents = useMemo(() => {
     return new Array(step + 1).fill("").map((item, itemIndex) => {
       return (
@@ -177,6 +188,7 @@ const MultilevelActionCardCreator = ({
                   setFocusedId,
                   updateContent: updateComponent,
                   position,
+                  deleteContent: deleteComponent,
                 });
               })}
               {provided.placeholder}
@@ -194,6 +206,7 @@ const MultilevelActionCardCreator = ({
     thisContent,
     position,
     updateComponent,
+    deleteComponent,
   ]);
 
   const addStep = () => {
@@ -212,6 +225,10 @@ const MultilevelActionCardCreator = ({
     <ContentCreatorLayout
       isDraggable={isDraggable}
       draggableProvided={draggableProvided}
+      onDeleteComponent={deleteContent}
+      slideId={currentSlide.id}
+      content={content}
+      position={position}
     >
       <MultilevelActionCardWrapper>
         <MultilevelActionCardList>

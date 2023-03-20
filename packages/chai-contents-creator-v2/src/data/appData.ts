@@ -155,8 +155,10 @@ export const contentComponents: ContentComponents = {
     "speaking",
     "imageWithDescriptionList",
     "audio",
+    "cornerGuideCharacter",
     "recorder",
     "multiLevelActionCard",
+    "activityGuideCharacter",
   ],
 };
 
@@ -177,8 +179,10 @@ export const contentComponentsNameMap: Partial<Record<ContentType, string>> = {
   speaking: "따라말하기",
   imageWithDescriptionList: "이미지(설명)",
   audio: "음성듣기",
+  cornerGuideCharacter: "코너 변경 안내",
   recorder: "녹음하기",
-  multiLevelActionCard: "액션카드(단어용)"
+  multiLevelActionCard: "액션카드(단어용)",
+  activityGuideCharacter: "활동 안내",
 };
 
 export const numberingTextDefaultData = Object.freeze({
@@ -266,6 +270,16 @@ export const getContentComponentsDefaultValue = (): Partial<
       src: "",
     },
   },
+  cornerGuideCharacter: {
+    id: uuidV4(),
+    type: "cornerGuideCharacter",
+    data: {
+      text: "",
+      character: {
+        src: "",
+      },
+    },
+  },
   recorder: {
     id: uuidV4(),
     type: "recorder",
@@ -274,8 +288,18 @@ export const getContentComponentsDefaultValue = (): Partial<
   multiLevelActionCard: {
     id: uuidV4(),
     type: "multiLevelActionCard",
-    data: [[]]
-  }
+    data: [[]],
+  },
+  activityGuideCharacter: {
+    id: uuidV4(),
+    type: "activityGuideCharacter",
+    data: {
+      text: "",
+      character: {
+        src: "",
+      },
+    },
+  },
 });
 
 /**

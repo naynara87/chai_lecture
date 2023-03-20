@@ -29,6 +29,7 @@ const VideoCreator = ({
   setFocusedId,
   isFocused,
   updateContent,
+  deleteContent,
   currentSlide,
   position,
   draggableProvided,
@@ -51,6 +52,10 @@ const VideoCreator = ({
     <ContentCreatorLayout
       isDraggable={isDraggable}
       draggableProvided={draggableProvided}
+      onDeleteComponent={deleteContent}
+      slideId={currentSlide.id}
+      content={content}
+      position={position}
       align="center"
     >
       <VideoWrapper onClick={(e) => setFocusedId(e, content.id)}>

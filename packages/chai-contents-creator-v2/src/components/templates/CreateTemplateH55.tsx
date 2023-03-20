@@ -23,6 +23,7 @@ const CreateTemplateH55 = ({
   slideId,
   slides,
   updateContent,
+  deleteContent,
   returnUseComponent,
   ...pageHeaderProps
 }: PageCommonProps) => {
@@ -74,6 +75,7 @@ const CreateTemplateH55 = ({
                 isFocused: focusedId === content.id,
                 setFocusedId,
                 updateContent,
+                deleteContent,
                 position: "leftContents",
               });
             })}
@@ -104,6 +106,7 @@ const CreateTemplateH55 = ({
                 isFocused: focusedId === content?.id,
                 setFocusedId,
                 updateContent,
+                deleteContent,
                 position: "rightContents",
               });
             })}

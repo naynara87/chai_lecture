@@ -21,6 +21,7 @@ const BorderTextBoxCreator = ({
   setFocusedId,
   isFocused,
   updateContent,
+  deleteContent,
   currentSlide,
   position,
   draggableProvided,
@@ -42,6 +43,10 @@ const BorderTextBoxCreator = ({
     <ContentCreatorLayout
       isDraggable={isDraggable}
       draggableProvided={draggableProvided}
+      onDeleteComponent={deleteContent}
+      slideId={currentSlide.id}
+      content={content}
+      position={position}
     >
       <BorderTextBoxWrapper onClick={(e) => setFocusedId(e, content.id)}>
         <TextEditorViewer

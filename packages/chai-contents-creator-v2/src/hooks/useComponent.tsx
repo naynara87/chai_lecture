@@ -4,6 +4,7 @@ import { Draggable } from "react-beautiful-dnd";
 import { useRecoilState } from "recoil";
 import AudioCreator from "../components/contents/AudioCreator";
 import BorderTextBoxCreator from "../components/contents/BorderTextBoxCreator";
+import CornerGuideCharacterCreator from "../components/contents/CornerGuideCharacterCreator";
 import IconTextCreator from "../components/contents/IconTextCreator";
 import ImageWithDescriptionListCreator from "../components/contents/ImageWithDescriptionListCreator";
 import ImageWithCaptionListCreator from "../components/contents/ImageWithCaptionListCreator";
@@ -20,6 +21,7 @@ import {
 } from "../types/page";
 import AudioRecorderCreator from "../components/contents/AudioRecorderCreator";
 import MultilevelActionCardCreator from "../components/contents/MultilevelActionCardCreator";
+import ActivityGuideCharacterCreator from "../components/contents/ActivityGuideCharacterCreator";
 
 const useComponent = () => {
   const [focusedId, setFocusedId] = useRecoilState(focusedIdState);
@@ -39,7 +41,9 @@ const useComponent = () => {
       imageWithDescriptionList: <ImageWithDescriptionListCreator {...props} />,
       audio: <AudioCreator {...props} />,
       recorder: <AudioRecorderCreator {...props} />,
-      multiLevelActionCard: <MultilevelActionCardCreator {...props} />
+      multiLevelActionCard: <MultilevelActionCardCreator {...props} />,
+      cornerGuideCharacter: <CornerGuideCharacterCreator {...props} />,
+      activityGuideCharacter: <ActivityGuideCharacterCreator {...props} />,
     };
 
     return componentMap[type];

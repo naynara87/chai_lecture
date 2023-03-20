@@ -89,6 +89,23 @@ const usePage = () => {
     [slides, setSlides],
   );
 
+  const deleteContent = useCallback(
+    (slideId: ID, contentId: ID, position: CommonTemplateComponentLocation) => {
+      const newSlides = slides.map((slide) => {
+        if (slide.id === slideId) {
+          const newSlide = cloneDeep(slide);
+          // @ts-ignore
+          newSlide[position] = newSlide[position] //
+            .filter((content: Content) => content.id !== contentId);
+          return newSlide;
+        }
+        return slide;
+      });
+      setSlides(newSlides);
+    },
+    [slides, setSlides],
+  );
+
   /**
    * NOTE : componentLocation에 컴포넌트를 push
    * Template01
@@ -192,6 +209,7 @@ const usePage = () => {
     savePageDataToLocalStorage,
     getPageDataFromLocalStorage,
     removePageDataFromLocalStorage,
+    deleteContent,
   };
 };
 

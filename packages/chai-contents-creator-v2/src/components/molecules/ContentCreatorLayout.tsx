@@ -1,14 +1,30 @@
 import { css, SerializedStyles } from "@emotion/react";
 import styled from "@emotion/styled";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import IconDndHandle from "../atoms/icons/IconDndHandle";
 import IconHamburgerMenu from "../atoms/icons/IconHamburgerMenu";
-import { vw } from "chai-ui-v2";
+import { colorPalette, Content, ID, ModalConfirm, vw } from "chai-ui-v2";
 import { DraggableProvided } from "react-beautiful-dnd";
+import { ReturnUsePage } from "../../hooks/usePage";
+import { CommonTemplateComponentLocation } from "../../types/page";
 
-const ContentCreatorWrapper = styled.div`
+interface ContentCreatorWrapperProps {
+  align?: "center" | "start";
+}
+const ContentCreatorWrapper = styled.div<ContentCreatorWrapperProps>`
   display: flex;
+  justify-content: center;
+  justify-content: ${({ align }) => align || "start"};
+`;
+
+const ContentCreatorContainer = styled.div`
+  display: inline-flex;
   margin-bottom: ${vw(24)};
+`;
+
+const IconContainerWrapper = styled.div`
+  display: flex;
+  /* align-items: center; */
 `;
 
 const IconContainer = styled.div`
@@ -33,47 +49,130 @@ interface IconWrapperProps {
 const IconWrapper = styled.span<IconWrapperProps>`
   display: ${({ showIcon }) => (showIcon ? "flex" : "none")};
   align-items: center;
+  position: relative;
   ${({ customCss }) => customCss}
   :not(:last-child) {
     margin-right: 2px;
   }
 `;
 
-interface ContentsContainerProps {
-  align?: "center" | "start";
-}
-const ContentsContainer = styled.div<ContentsContainerProps>`
-  display: flex;
-  flex-grow: 1;
-  justify-content: ${({ align }) => align || "start"};
+const HamburgMenu = styled.ul`
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(105%, 0);
+  cursor: auto;
+  background-color: ${colorPalette.white};
+  border-radius: 8px;
+  box-shadow: 2px 6px 12px rgba(0, 0, 0, 0.15);
+  padding: 8px;
+  z-index: 20;
 `;
 
-interface ContentCreatorProps extends ContentsContainerProps {
+const HamburgMenuItem = styled.li`
+  padding: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 17px;
+  color: ${colorPalette.gray900};
+  font-weight: 500;
+`;
+
+const ContentsContainer = styled.div`
+  display: flex;
+`;
+
+interface ContentCreatorLayoutProps extends ContentCreatorWrapperProps {
   children: React.ReactNode;
   isDraggable?: boolean;
   draggableProvided?: DraggableProvided;
+  onDeleteComponent?: ReturnUsePage["deleteContent"]; // FIXME: 나중에 모든 컴포넌트 구현 후 옵셔널 제거
+  slideId?: ID; // FIXME: 나중에 모든 컴포넌트 구현 후 옵셔널 제거
+  content?: Content; // FIXME: 나중에 모든 컴포넌트 구현 후 옵셔널 제거
+  position?: CommonTemplateComponentLocation; // FIXME: 나중에 모든 컴포넌트 구현 후 옵셔널 제거
 }
 const ContentCreatorLayout = ({
   children,
   align,
   draggableProvided,
+  onDeleteComponent,
+  slideId,
+  content,
+  position,
   isDraggable = true,
-}: ContentCreatorProps) => {
+}: ContentCreatorLayoutProps) => {
+  const [isHamburgerMenuOpen, setIsHamburgerMenuOpen] = useState(false);
+  const toggleHamburgerMenu = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsHamburgerMenuOpen(!isHamburgerMenuOpen);
+  };
+
+  useEffect(() => {
+    const closeHamburgerMenu = () => {
+      setIsHamburgerMenuOpen(false);
+    };
+    window.addEventListener("click", closeHamburgerMenu);
+    return () => {
+      window.removeEventListener("click", closeHamburgerMenu);
+    };
+  }, []);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleDeleteComponent = () => {
+    console.log("handleDeleteComponent", slideId, content, position);
+    if (!slideId?.toString() || !content || !position) return;
+    onDeleteComponent && onDeleteComponent(slideId, content.id, position);
+    closeModal();
+  };
+
   return (
-    <ContentCreatorWrapper className="contentCreator">
-      <IconContainer>
-        <IconWrapper
-          customCss={dndHandleCss}
-          showIcon={isDraggable}
-          {...draggableProvided?.dragHandleProps}
-        >
-          <IconDndHandle />
-        </IconWrapper>
-        <IconWrapper customCss={hamburgerMenuCss} showIcon>
-          <IconHamburgerMenu />
-        </IconWrapper>
-      </IconContainer>
-      <ContentsContainer align={align}>{children}</ContentsContainer>
+    <ContentCreatorWrapper align={align}>
+      <ContentCreatorContainer className="contentCreator">
+        <IconContainerWrapper>
+          <IconContainer>
+            <IconWrapper
+              customCss={dndHandleCss}
+              showIcon={isDraggable}
+              {...draggableProvided?.dragHandleProps}
+            >
+              <IconDndHandle />
+            </IconWrapper>
+            <IconWrapper
+              customCss={hamburgerMenuCss}
+              showIcon
+              onClick={toggleHamburgerMenu}
+            >
+              <IconHamburgerMenu />
+              {isHamburgerMenuOpen && (
+                <HamburgMenu>
+                  <HamburgMenuItem onClick={() => setIsModalOpen(true)}>
+                    삭제
+                  </HamburgMenuItem>
+                  <HamburgMenuItem>복사</HamburgMenuItem>
+                  <HamburgMenuItem>붙여넣기</HamburgMenuItem>
+                </HamburgMenu>
+              )}
+            </IconWrapper>
+          </IconContainer>
+        </IconContainerWrapper>
+        <ContentsContainer>{children}</ContentsContainer>
+      </ContentCreatorContainer>
+      <ModalConfirm
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+        title={"컴포넌트를\n삭제하시겠습니까?"}
+        description={
+          "삭제 클릭 시 작업 중인 콘텐츠는 삭제되며,\n복원이 불가능합니다."
+        }
+        leftButtonText={"취소"}
+        rightButtonText={"삭제"}
+        handleClickLeftButton={closeModal}
+        handleClickRightButton={handleDeleteComponent}
+      />
     </ContentCreatorWrapper>
   );
 };
