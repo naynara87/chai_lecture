@@ -23,6 +23,7 @@ import AudioRecorderCreator from "../components/contents/AudioRecorderCreator";
 import MultilevelActionCardCreator from "../components/contents/MultilevelActionCardCreator";
 import ActivityGuideCharacterCreator from "../components/contents/ActivityGuideCharacterCreator";
 import ExplainingCharacterCreator from "../components/contents/ExplainingCharacterCreator";
+import ToggleSentenceListCreate from "../components/contents/ToggleSentenceListCreate";
 
 const useComponent = () => {
   const [focusedId, setFocusedId] = useRecoilState(focusedIdState);
@@ -46,6 +47,7 @@ const useComponent = () => {
       cornerGuideCharacter: <CornerGuideCharacterCreator {...props} />,
       activityGuideCharacter: <ActivityGuideCharacterCreator {...props} />,
       explainingCharacter: <ExplainingCharacterCreator {...props} />,
+      toggleSentenceList: <ToggleSentenceListCreate {...props} />,
     };
 
     return componentMap[type];

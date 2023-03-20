@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import React, { useCallback, useMemo, useState } from "react";
 import { colorPalette, vh, vw } from "../../assets";
 import { ToggleSentenceListContentData } from "../../core";
+import { HtmlContentComponent } from "../atoms";
 import { ComponentToggle } from "../molecules";
 
 const ToggleTextWrapper = styled.div`
@@ -52,11 +53,19 @@ const ToggleSentenceListComponent = ({
     return contents.data.map((content, contentIndex) => {
       return (
         <li className="sentence" key={contentIndex}>
-          <p className="chinese">{content.text}</p>
+          <p className="chinese">
+            <HtmlContentComponent html={content.text} />
+          </p>
           {isShowPronunciation && (
-            <p className="pinyin text">{content.pronunciation}</p>
+            <p className="pinyin text">
+              <HtmlContentComponent html={content.pronunciation} />
+            </p>
           )}
-          {isShowMeaning && <p className="mean text">{content.meaning}</p>}
+          {isShowMeaning && (
+            <p className="mean text">
+              <HtmlContentComponent html={content.meaning} />
+            </p>
+          )}
         </li>
       );
     });

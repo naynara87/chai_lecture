@@ -160,6 +160,7 @@ export const contentComponents: ContentComponents = {
     "multiLevelActionCard",
     "activityGuideCharacter",
     "explainingCharacter",
+    "toggleSentenceList",
   ],
 };
 
@@ -185,6 +186,7 @@ export const contentComponentsNameMap: Partial<Record<ContentType, string>> = {
   multiLevelActionCard: "액션카드(단어용)",
   activityGuideCharacter: "활동 안내",
   explainingCharacter: "설명문",
+  toggleSentenceList: "문장 토글",
 };
 
 export const numberingTextDefaultData = Object.freeze({
@@ -317,6 +319,17 @@ export const getContentComponentsDefaultValue = (): Partial<
         src: "",
       },
     },
+  },
+  toggleSentenceList: {
+    id: uuidV4(),
+    type: "toggleSentenceList",
+    data: [
+      {
+        text: "",
+        pronunciation: "",
+        meaning: "",
+      },
+    ],
   },
 });
 
