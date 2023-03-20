@@ -82,6 +82,7 @@ const ActivityGuideCharacterCreator = ({
     <ContentCreatorLayout
       isDraggable={isDraggable}
       draggableProvided={draggableProvided}
+      align="center"
     >
       <CornerGuideWrapper>
         <TextBubbleWrap onClick={(e) => setFocusedId(e, content.id)}>
