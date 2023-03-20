@@ -156,6 +156,7 @@ export const contentComponents: ContentComponents = {
     "imageWithDescriptionList",
     "audio",
     "recorder",
+    "multiLevelActionCard",
   ],
 };
 
@@ -177,6 +178,7 @@ export const contentComponentsNameMap: Partial<Record<ContentType, string>> = {
   imageWithDescriptionList: "이미지(설명)",
   audio: "음성듣기",
   recorder: "녹음하기",
+  multiLevelActionCard: "액션카드(단어용)"
 };
 
 export const numberingTextDefaultData = Object.freeze({
@@ -269,6 +271,11 @@ export const getContentComponentsDefaultValue = (): Partial<
     type: "recorder",
     data: {},
   },
+  multiLevelActionCard: {
+    id: uuidV4(),
+    type: "multiLevelActionCard",
+    data: [[]]
+  }
 });
 
 /**
