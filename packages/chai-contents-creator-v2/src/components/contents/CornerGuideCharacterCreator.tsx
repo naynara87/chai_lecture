@@ -73,7 +73,6 @@ const CornerGuideCharacterCreator = ({
     updateContent(currentSlide.id, content.id, position, newContent);
   };
 
-  
   return (
     <ContentCreatorLayout
       isDraggable={isDraggable}

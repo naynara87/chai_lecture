@@ -158,6 +158,7 @@ export const contentComponents: ContentComponents = {
     "cornerGuideCharacter",
     "recorder",
     "activityGuideCharacter",
+    "explainingCharacter",
   ],
 };
 
@@ -181,9 +182,15 @@ export const contentComponentsNameMap: Partial<Record<ContentType, string>> = {
   cornerGuideCharacter: "코너 변경 안내",
   recorder: "녹음하기",
   activityGuideCharacter: "활동 안내",
+  explainingCharacter: "설명문",
 };
 
 export const numberingTextDefaultData = Object.freeze({
+  firstText: "",
+  secondText: "",
+});
+
+export const explainingCharacterDefaultData = Object.freeze({
   firstText: "",
   secondText: "",
 });
@@ -288,6 +295,17 @@ export const getContentComponentsDefaultValue = (): Partial<
     type: "activityGuideCharacter",
     data: {
       text: "",
+      character: {
+        src: "",
+      },
+    },
+  },
+  explainingCharacter: {
+    id: uuidV4(),
+    type: "explainingCharacter",
+    data: {
+      text: "",
+      explain: "",
       character: {
         src: "",
       },

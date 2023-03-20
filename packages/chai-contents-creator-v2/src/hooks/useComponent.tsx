@@ -21,6 +21,7 @@ import {
 } from "../types/page";
 import AudioRecorderCreator from "../components/contents/AudioRecorderCreator";
 import ActivityGuideCharacterCreator from "../components/contents/ActivityGuideCharacterCreator";
+import ExplainingCharacterCreator from "../components/contents/ExplainingCharacterCreator";
 
 const useComponent = () => {
   const [focusedId, setFocusedId] = useRecoilState(focusedIdState);
@@ -42,6 +43,7 @@ const useComponent = () => {
       cornerGuideCharacter: <CornerGuideCharacterCreator {...props} />,
       recorder: <AudioRecorderCreator {...props} />,
       activityGuideCharacter: <ActivityGuideCharacterCreator {...props} />,
+      explainingCharacter: <ExplainingCharacterCreator {...props} />,
     };
 
     return componentMap[type];
