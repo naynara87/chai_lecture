@@ -194,6 +194,9 @@ const TemplateQuizSentenceBlank = ({
           <ComponentButtonRadiFillMain
             text="정답확인"
             onClickBtn={handleClickShowAnswer}
+            isDisabled={
+              !!userChoices.find((userChoice) => userChoice.text.length < 1)
+            }
           />
         </div>
       </div>

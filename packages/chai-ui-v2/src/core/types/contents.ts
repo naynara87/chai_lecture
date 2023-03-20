@@ -23,12 +23,12 @@ export type Content =
   | FinalSpeakingContentData
   | AudioContentData
   | CornerGuideCharacterContentData
-  | TextBoxListContentData
   | WordsCarouselContentData
   | AudioAndWordsCarouselContentData
   | ToggleSentenceListContentData
   | MultilevelActionSentenceCardContentData
   | FullAudioContentData
+  | ContentsCardListContentData
   | NotiCharacterListContentData;
 export type ContentType = Content["type"];
 
