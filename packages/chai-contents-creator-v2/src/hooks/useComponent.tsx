@@ -21,6 +21,7 @@ import {
 } from "../types/page";
 import AudioRecorderCreator from "../components/contents/AudioRecorderCreator";
 import ActivityGuideCharacterCreator from "../components/contents/ActivityGuideCharacterCreator";
+import ContentsCardList from "../components/contents/ContentsCardList";
 
 const useComponent = () => {
   const [focusedId, setFocusedId] = useRecoilState(focusedIdState);
@@ -42,6 +43,7 @@ const useComponent = () => {
       cornerGuideCharacter: <CornerGuideCharacterCreator {...props} />,
       recorder: <AudioRecorderCreator {...props} />,
       activityGuideCharacter: <ActivityGuideCharacterCreator {...props} />,
+      contentsCardList: <ContentsCardList {...props} />,
     };
 
     return componentMap[type];
@@ -51,6 +53,7 @@ const useComponent = () => {
    * 공통 템플릿이 아닌 경우 isDraggable을 false로 전달하자
    */
   const getComponent = (props: ContentCommonProps) => {
+    console.log("getComponent props", props);
     const { content, index, isDraggable = true } = props;
     return getContent(props, content.type) ? (
       <Draggable
