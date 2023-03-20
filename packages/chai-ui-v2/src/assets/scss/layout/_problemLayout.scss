@@ -89,6 +89,11 @@ $main-color: #6673A3;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   transform: translateX(-50%);
   white-space: pre-line;
+
+  &.attched {
+    opacity: 0.8;
+    top: vh(10);
+  }
 }
 
 // pagination style

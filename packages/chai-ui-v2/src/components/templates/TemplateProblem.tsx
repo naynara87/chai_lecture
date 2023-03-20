@@ -52,8 +52,8 @@ const TemplateProblem = () => {
         </div>
         <div className="layout-panel-wrap">
           {/* 문항번호 */}
-          <div className="question-number">{`[50 ~ 87]
-        55번`}</div>
+          <div className="question-number attched">{`[50 ~ 87]`}</div>
+          <div className="question-number">{`55번`}</div>
           {/* end 문항번호 */}
           <div className="layout-panel">
             <IframeWrapper>문제 들어오는 영역</IframeWrapper>
