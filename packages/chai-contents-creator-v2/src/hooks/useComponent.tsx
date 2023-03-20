@@ -24,6 +24,7 @@ import MultilevelActionCardCreator from "../components/contents/MultilevelAction
 import ActivityGuideCharacterCreator from "../components/contents/ActivityGuideCharacterCreator";
 import ExplainingCharacterCreator from "../components/contents/ExplainingCharacterCreator";
 import ToggleSentenceListCreate from "../components/contents/ToggleSentenceListCreate";
+import NotiCharacterListCreator from "../components/contents/NotiCharacterListCreator";
 
 const useComponent = () => {
   const [focusedId, setFocusedId] = useRecoilState(focusedIdState);
@@ -48,6 +49,7 @@ const useComponent = () => {
       activityGuideCharacter: <ActivityGuideCharacterCreator {...props} />,
       explainingCharacter: <ExplainingCharacterCreator {...props} />,
       toggleSentenceList: <ToggleSentenceListCreate {...props} />,
+      notiCharacterList: <NotiCharacterListCreator {...props} />,
     };
 
     return componentMap[type];

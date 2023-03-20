@@ -161,6 +161,7 @@ export const contentComponents: ContentComponents = {
     "activityGuideCharacter",
     "explainingCharacter",
     "toggleSentenceList",
+    "notiCharacterList",
   ],
 };
 
@@ -187,6 +188,7 @@ export const contentComponentsNameMap: Partial<Record<ContentType, string>> = {
   activityGuideCharacter: "활동 안내",
   explainingCharacter: "설명문",
   toggleSentenceList: "문장 토글",
+  notiCharacterList: "학습 예고",
 };
 
 export const numberingTextDefaultData = Object.freeze({
@@ -328,6 +330,18 @@ export const getContentComponentsDefaultValue = (): Partial<
         text: "",
         pronunciation: "",
         meaning: "",
+      },
+    ],
+  },
+  notiCharacterList: {
+    id: uuidV4(),
+    type: "notiCharacterList",
+    data: [
+      {
+        text: "",
+        character: {
+          src: "",
+        },
       },
     ],
   },
