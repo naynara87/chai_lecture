@@ -20,6 +20,7 @@ import {
   DraggableContentCommonProps,
 } from "../types/page";
 import AudioRecorderCreator from "../components/contents/AudioRecorderCreator";
+import MultilevelActionCardCreator from "../components/contents/MultilevelActionCardCreator";
 import ActivityGuideCharacterCreator from "../components/contents/ActivityGuideCharacterCreator";
 
 const useComponent = () => {
@@ -39,8 +40,9 @@ const useComponent = () => {
       speaking: <SpeakingCreator {...props} />,
       imageWithDescriptionList: <ImageWithDescriptionListCreator {...props} />,
       audio: <AudioCreator {...props} />,
-      cornerGuideCharacter: <CornerGuideCharacterCreator {...props} />,
       recorder: <AudioRecorderCreator {...props} />,
+      multiLevelActionCard: <MultilevelActionCardCreator {...props} />,
+      cornerGuideCharacter: <CornerGuideCharacterCreator {...props} />,
       activityGuideCharacter: <ActivityGuideCharacterCreator {...props} />,
     };
 
