@@ -160,6 +160,7 @@ export const contentComponents: ContentComponents = {
     "multiLevelActionCard",
     "activityGuideCharacter",
     "explainingCharacter",
+    "characterCardList",
   ],
 };
 
@@ -185,14 +186,14 @@ export const contentComponentsNameMap: Partial<Record<ContentType, string>> = {
   multiLevelActionCard: "액션카드(단어용)",
   activityGuideCharacter: "활동 안내",
   explainingCharacter: "설명문",
+  characterCardList: "학습 내용",
 };
-
-export const numberingTextDefaultData = Object.freeze({
-  firstText: "",
-  secondText: "",
+export const characterCardDefaultData = Object.freeze({
+  title: "",
+  description: "",
 });
 
-export const explainingCharacterDefaultData = Object.freeze({
+export const numberingTextDefaultData = Object.freeze({
   firstText: "",
   secondText: "",
 });
@@ -317,6 +318,19 @@ export const getContentComponentsDefaultValue = (): Partial<
         src: "",
       },
     },
+  },
+  characterCardList: {
+    id: uuidV4(),
+    type: "characterCardList",
+    data: [
+      {
+        title: "",
+        description: "",
+        character: {
+          src: "",
+        },
+      },
+    ],
   },
 });
 

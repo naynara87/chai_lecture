@@ -37,7 +37,9 @@ const CharacterCardComponent = ({
             <img src={ChaProfile01} alt="" className="img" />
             {/* <img src={characterCard.character.src} alt="" className="img" /> */}
           </div>
-          <p className="title">{characterCard.title}</p>
+          <p className="title">
+            <HtmlContentComponent html={characterCard.title} />
+          </p>
         </div>
       </div>
       <div className="white-wrap">
