@@ -159,6 +159,7 @@ export const contentComponents: ContentComponents = {
     "recorder",
     "multiLevelActionCard",
     "activityGuideCharacter",
+    "explainingCharacter",
   ],
 };
 
@@ -183,9 +184,15 @@ export const contentComponentsNameMap: Partial<Record<ContentType, string>> = {
   recorder: "녹음하기",
   multiLevelActionCard: "액션카드(단어용)",
   activityGuideCharacter: "활동 안내",
+  explainingCharacter: "설명문",
 };
 
 export const numberingTextDefaultData = Object.freeze({
+  firstText: "",
+  secondText: "",
+});
+
+export const explainingCharacterDefaultData = Object.freeze({
   firstText: "",
   secondText: "",
 });
@@ -295,6 +302,17 @@ export const getContentComponentsDefaultValue = (): Partial<
     type: "activityGuideCharacter",
     data: {
       text: "",
+      character: {
+        src: "",
+      },
+    },
+  },
+  explainingCharacter: {
+    id: uuidV4(),
+    type: "explainingCharacter",
+    data: {
+      text: "",
+      explain: "",
       character: {
         src: "",
       },

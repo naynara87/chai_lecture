@@ -3,6 +3,10 @@ import ImageThumb from "../atoms/ImageThumb";
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 import UrlInputWrapper from "../molecules/UrlInputWrapper";
 import iconTail from "chai-ui-v2/dist/assets/images/icon/icon_bubble_tail.svg";
+import { DraggableContentCommonProps } from "../../types/page";
+import TextEditorViewer from "../molecules/TextEditorViewer";
+import { ExplainingCharacterContentData } from "chai-ui-v2";
+import { useCallback, useEffect, useState } from "react";
 
 const ExplainingWrapper = styled.div`
   display: flex;
@@ -51,20 +55,137 @@ const ExplainingText = styled.div`
   }
 `;
 
-const ExplainingCharacterCreator = () => {
+type ColumnIndex = "text" | "explain";
+
+const ExplainingCharacterCreator = ({
+  content,
+  setFocusedId,
+  isFocused,
+  updateContent,
+  deleteContent,
+  currentSlide,
+  position,
+  draggableProvided,
+  isDraggable,
+}: DraggableContentCommonProps) => {
+  const thisContent = content as ExplainingCharacterContentData;
+  const url = thisContent.data.character.src;
+
+  const [focusedColumnIndex, setFocusedColumnIndex] = useState<ColumnIndex>();
+
+  const fucusTextEditor = useCallback(
+    (columnIndex: ColumnIndex) => () => {
+      setFocusedColumnIndex(columnIndex);
+    },
+    [],
+  );
+
+  const resetFocusedTextEditorIndex = useCallback(() => {
+    setFocusedColumnIndex(undefined);
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("click", resetFocusedTextEditorIndex);
+    return () => {
+      window.removeEventListener("click", resetFocusedTextEditorIndex);
+    };
+  }, [resetFocusedTextEditorIndex]);
+
+  const isTextEditorFocused = useCallback(
+    (isCurrentComponentFocused: boolean, columnIndex: ColumnIndex) => {
+      return isCurrentComponentFocused && columnIndex === focusedColumnIndex;
+    },
+    [focusedColumnIndex],
+  );
+
+  const updateExplainingCharacterData = (
+    explainingCharacterData: ExplainingCharacterContentData["data"],
+  ) => {
+    updateContent(
+      currentSlide.id,
+      content.id,
+      position,
+      getCurrentContent(explainingCharacterData),
+    ); // total content 업데이트
+  };
+
+  const getCurrentContent = (
+    explainingCharacterData: ExplainingCharacterContentData["data"],
+  ): ExplainingCharacterContentData => {
+    return {
+      ...thisContent,
+      data: explainingCharacterData,
+    };
+  };
+
+  /**
+   * 현재 선택 영역 텍스트 가져오기
+   */
+  const getText = (columnIndex: "text" | "explain") => {
+    return thisContent.data[columnIndex] ?? "";
+  };
+
+  /**
+   * 현재 선택 영역 텍스트 업데이트
+   */
+  const setText = (columnIndex: "text" | "explain", text: string) => {
+    const updateData = {
+      ...thisContent.data,
+      [columnIndex]: text,
+    };
+    updateExplainingCharacterData(updateData);
+  };
+
+  const setUrl = (url: string) => {
+    const newContent = {
+      ...thisContent,
+      data: {
+        ...thisContent.data,
+        character: {
+          src: url,
+        },
+      },
+    };
+    updateContent(currentSlide.id, content.id, position, newContent);
+  };
+
   return (
-    <ContentCreatorLayout>
+    <ContentCreatorLayout
+      isDraggable={isDraggable}
+      draggableProvided={draggableProvided}
+      onDeleteComponent={deleteContent}
+      slideId={currentSlide.id}
+      content={content}
+      position={position}
+    >
       <ExplainingWrapper>
-        <UrlInputWrapper typeText="이미지"></UrlInputWrapper>
-        <ExplainingTextWrapper>
-          <ImageThumb />
+        <UrlInputWrapper typeText="이미지" onSubmit={setUrl}></UrlInputWrapper>
+        <ExplainingTextWrapper onClick={(e) => setFocusedId(e, content.id)}>
+          {url ? (
+            <img src={thisContent.data.character.src} alt="" />
+          ) : (
+            <ImageThumb />
+          )}
           <ExplainingTextListWrapper>
-            {/* TODO: first-content내용만 노출하다가 '확인'버튼 클릭하면 second-content 내용으로 변경 */}
-            <ExplainingText className="first-content">
-              처음 노출될 내용을 입력해주세요.
+            <ExplainingText
+              className="first-content"
+              onClick={fucusTextEditor("text")}
+            >
+              <TextEditorViewer
+                isFocused={isTextEditorFocused(isFocused, "text")}
+                setText={(text) => setText("text", text)}
+                text={getText("text")}
+              />
             </ExplainingText>
-            <ExplainingText className="second-content">
-              확인 클릭 후 노출될 내용을 입력해주세요.
+            <ExplainingText
+              className="second-content"
+              onClick={fucusTextEditor("explain")}
+            >
+              <TextEditorViewer
+                isFocused={isTextEditorFocused(isFocused, "explain")}
+                setText={(text) => setText("explain", text)}
+                text={getText("explain")}
+              />
             </ExplainingText>
           </ExplainingTextListWrapper>
         </ExplainingTextWrapper>
