@@ -158,7 +158,7 @@ export const contentComponents: ContentComponents = {
     "recorder",
   ],
   character: ["cornerGuideCharacter", "activityGuideCharacter"],
-  mixture: ["contentsCardList"],
+  mixture: ["contentsCardList", "multiLevelActionCard"],
 };
 
 export const contentComponentsGroupMap: Record<
