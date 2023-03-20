@@ -1,5 +1,6 @@
 /* =================== problemLayout =================== */
 $cont-padding: vw(40);
+$main-color: #6673A3;
 
 // header style
 .problem-hd {
@@ -21,6 +22,73 @@ $cont-padding: vw(40);
 .problem-hd-timer {
   font-size: vw(20);
   color: color(gray-ff);
+}
+
+// main layout style
+.problem-main {
+  padding-top: $hd-height;
+  padding-bottom: 0;
+
+  .problem-top-button-wrapper {
+    width: vw(1610);
+    margin: vh(20) auto 0;
+  }
+
+  .pagination-wrapper {
+    gap: vw(15);
+  }
+
+  .layout-panel-wrap {
+    position: relative;
+    margin-top: vh(20);
+  }
+
+  .btn-radi-border-main {
+    background-color: color(gray-ff);
+  }
+}
+
+// submit button style
+.btn-problem {
+  @extend %btn;
+  @extend %btn-interaction;
+
+  @include circle(vw(115));
+
+  position: absolute;
+  top: auto;
+  bottom: vh(40);
+  left: auto;
+  right: 0;
+  background-color: $main-color;
+  transform: translateX(50%);
+  box-shadow: 0 6px 20px rgba(120, 127, 153, 0.6);
+
+  >span {
+    display: block;
+    margin-bottom: vh(8);
+    font-weight: 600;
+    font-size: vw(20);
+    color: color(gray-ff);
+    text-align: center;
+  }
+}
+
+// question number style
+.question-number {
+  position: absolute;
+  top: vh(60);
+  left: 0;
+  min-width: vw(115);
+  padding: vw(10) vw(20);
+  border-radius: vw(5);
+  background-color: $main-color;
+  font-weight: 600;
+  font-size: vw(18);
+  color: color(gray-ff);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  transform: translateX(-50%);
+  white-space: pre-line;
 }
 
 // pagination style
@@ -75,46 +143,6 @@ $cont-padding: vw(40);
     background-color: color(main);
     font-weight: 600;
     color: color(gray-ff);
-  }
-}
-
-
-// main layout style
-.problem-main {
-  padding-top: $hd-height;
-  padding-bottom: 0;
-
-  .problem-top-button-wrapper {
-    width: vw(1610);
-    margin: vh(20) auto 0;
-  }
-
-  .pagination-wrapper {
-    gap: vw(15);
-  }
-
-  .layout-panel-wrap {
-    margin-top: vh(20);
-  }
-
-  .btn {
-    min-width: 1px;
-    height: auto;
-    padding: vh(10) 1em;
-    font-size: vw(16);
-  }
-
-  .btn-radi-border-main {
-    background-color: color(gray-ff);
-  }
-
-  >.btn {
-    position: fixed;
-    top: auto;
-    bottom: 10px;
-    lefT: auto;
-    right: 10px;
-    font-size: vw(22);
   }
 }
 
