@@ -62,6 +62,7 @@ const ExplainingCharacterCreator = ({
   setFocusedId,
   isFocused,
   updateContent,
+  deleteContent,
   currentSlide,
   position,
   draggableProvided,
@@ -152,6 +153,10 @@ const ExplainingCharacterCreator = ({
     <ContentCreatorLayout
       isDraggable={isDraggable}
       draggableProvided={draggableProvided}
+      onDeleteComponent={deleteContent}
+      slideId={currentSlide.id}
+      content={content}
+      position={position}
     >
       <ExplainingWrapper>
         <UrlInputWrapper typeText="이미지" onSubmit={setUrl}></UrlInputWrapper>
