@@ -5,7 +5,7 @@ import BtnIcon from "../../assets/images/icon/icon_stick_arrow_right_white.svg";
 const IframeWrapper = styled.div`
   width: 100%;
   height: 100%;
-  background: red;
+  background: beige;
 
   iframe {
     width: 100%;
