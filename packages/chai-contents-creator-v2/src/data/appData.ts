@@ -141,7 +141,7 @@ export const rolePlayingLayouts: RolePlayingPageLayout[] = [
  *  3. getContentComponentsDefaultValue() 에 해당 컴포넌트 초기값 추가
  *  4. useComponent hook에 해당 컴포넌트 추가
  */
-export type ContentsGroup = "common";
+export type ContentsGroup = "common" | "character" | "mixture";
 
 export type ContentComponents = Record<ContentsGroup, ContentType[]>;
 export const contentComponents: ContentComponents = {
@@ -155,10 +155,10 @@ export const contentComponents: ContentComponents = {
     "speaking",
     "imageWithDescriptionList",
     "audio",
-    "cornerGuideCharacter",
     "recorder",
-    "activityGuideCharacter",
   ],
+  character: ["cornerGuideCharacter", "activityGuideCharacter"],
+  mixture: [],
 };
 
 export const contentComponentsGroupMap: Record<
@@ -166,6 +166,8 @@ export const contentComponentsGroupMap: Record<
   string
 > = {
   common: "기본형",
+  character: "캐릭터형",
+  mixture: "혼합형",
 };
 
 export const contentComponentsNameMap: Partial<Record<ContentType, string>> = {

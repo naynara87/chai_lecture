@@ -64,7 +64,7 @@ import FullAudioComponent from "../../components/contents/FullAudioComponent";
 
 const useContentMapper = () => {
   const getContentComponent = (content: Content, contentIndex: number) => {
-    const contentMapper: Record<ContentType, JSX.Element> = {
+    const contentMapper: Partial<Record<ContentType, JSX.Element>> = {
       video: (
         <ComponentVideo
           content={content as VideoContentData}

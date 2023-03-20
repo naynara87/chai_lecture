@@ -29,7 +29,8 @@ export type Content =
   | ToggleSentenceListContentData
   | MultilevelActionSentenceCardContentData
   | FullAudioContentData
-  | NotiCharacterListContentData;
+  | NotiCharacterListContentData
+  | ContentsCardListContentData;
 export type ContentType = Content["type"];
 
 export type ConversationContent =
