@@ -64,6 +64,8 @@ export const v2CornerDataList: CornerData[] = [
     data: [
       {
         id: 1,
+        name: "",
+        type: "singlePage",
         data: {
           id: 1,
           type: "Template_H_3_7",
@@ -111,8 +113,6 @@ export const v2CornerDataList: CornerData[] = [
             },
           ],
         },
-        name: "",
-        type: "singlePage",
       },
       // {
       //   id: 1,
@@ -896,35 +896,83 @@ export const v2CornerDataList: CornerData[] = [
             },
             {
               id: uuidV4(),
-              type: "textBoxList",
+              type: "contentsCardList",
               data: [
                 {
-                  text: "a1",
                   isAccent: true,
-                  audio: {
-                    src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
-                  },
+                  contents: [
+                    {
+                      id: uuidV4(),
+                      type: "text",
+                      data: {
+                        text: "a1",
+                      },
+                    },
+                    {
+                      id: uuidV4(),
+                      type: "audio",
+                      data: {
+                        src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+                      },
+                    },
+                  ],
                 },
                 {
-                  text: "a2",
                   isAccent: true,
-                  audio: {
-                    src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
-                  },
+                  contents: [
+                    {
+                      id: uuidV4(),
+                      type: "text",
+                      data: {
+                        text: "a1",
+                      },
+                    },
+                    {
+                      id: uuidV4(),
+                      type: "audio",
+                      data: {
+                        src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
+                      },
+                    },
+                  ],
                 },
                 {
-                  text: "a3",
                   isAccent: true,
-                  audio: {
-                    src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
-                  },
+                  contents: [
+                    {
+                      id: uuidV4(),
+                      type: "text",
+                      data: {
+                        text: "a1",
+                      },
+                    },
+                    {
+                      id: uuidV4(),
+                      type: "audio",
+                      data: {
+                        src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+                      },
+                    },
+                  ],
                 },
                 {
-                  text: "a4",
                   isAccent: true,
-                  audio: {
-                    src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
-                  },
+                  contents: [
+                    {
+                      id: uuidV4(),
+                      type: "text",
+                      data: {
+                        text: "a1",
+                      },
+                    },
+                    {
+                      id: uuidV4(),
+                      type: "audio",
+                      data: {
+                        src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
+                      },
+                    },
+                  ],
                 },
               ],
             },
@@ -954,11 +1002,26 @@ export const v2CornerDataList: CornerData[] = [
             leftContents: [
               {
                 id: uuidV4(),
-                type: "textBoxList",
+                type: "contentsCardList",
                 data: [
                   {
-                    text: "a<br />제1성",
                     isAccent: true,
+                    contents: [
+                      {
+                        id: uuidV4(),
+                        type: "text",
+                        data: {
+                          text: "a<br />제1성",
+                        },
+                      },
+                      {
+                        id: uuidV4(),
+                        type: "audio",
+                        data: {
+                          src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+                        },
+                      },
+                    ],
                   },
                 ],
               },
@@ -1274,28 +1337,64 @@ export const v2CornerDataList: CornerData[] = [
               },
               {
                 id: uuidV4(),
-                type: "textBoxList",
+                type: "contentsCardList",
                 data: [
                   {
-                    text: "b",
                     isAccent: true,
-                    audio: {
-                      src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
-                    },
+                    contents: [
+                      {
+                        id: uuidV4(),
+                        type: "text",
+                        data: {
+                          text: "b",
+                        },
+                      },
+                      {
+                        id: uuidV4(),
+                        type: "audio",
+                        data: {
+                          src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+                        },
+                      },
+                    ],
                   },
                   {
-                    text: "p",
                     isAccent: true,
-                    audio: {
-                      src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
-                    },
+                    contents: [
+                      {
+                        id: uuidV4(),
+                        type: "text",
+                        data: {
+                          text: "p",
+                        },
+                      },
+                      {
+                        id: uuidV4(),
+                        type: "audio",
+                        data: {
+                          src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+                        },
+                      },
+                    ],
                   },
                   {
-                    text: "m",
                     isAccent: true,
-                    audio: {
-                      src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
-                    },
+                    contents: [
+                      {
+                        id: uuidV4(),
+                        type: "text",
+                        data: {
+                          text: "m",
+                        },
+                      },
+                      {
+                        id: uuidV4(),
+                        type: "audio",
+                        data: {
+                          src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+                        },
+                      },
+                    ],
                   },
                 ],
               },
@@ -1323,11 +1422,26 @@ export const v2CornerDataList: CornerData[] = [
             leftContents: [
               {
                 id: uuidV4(),
-                type: "textBoxList",
+                type: "contentsCardList",
                 data: [
                   {
-                    text: "b",
                     isAccent: true,
+                    contents: [
+                      {
+                        id: uuidV4(),
+                        type: "text",
+                        data: {
+                          text: "b",
+                        },
+                      },
+                      {
+                        id: uuidV4(),
+                        type: "audio",
+                        data: {
+                          src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+                        },
+                      },
+                    ],
                   },
                 ],
               },
@@ -1382,35 +1496,83 @@ export const v2CornerDataList: CornerData[] = [
               },
               {
                 id: uuidV4(),
-                type: "textBoxList",
+                type: "contentsCardList",
                 data: [
                   {
-                    text: "bo1",
                     isAccent: true,
-                    audio: {
-                      src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
-                    },
+                    contents: [
+                      {
+                        id: uuidV4(),
+                        type: "text",
+                        data: {
+                          text: "bo1",
+                        },
+                      },
+                      {
+                        id: uuidV4(),
+                        type: "audio",
+                        data: {
+                          src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+                        },
+                      },
+                    ],
                   },
                   {
-                    text: "bo2",
                     isAccent: true,
-                    audio: {
-                      src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
-                    },
+                    contents: [
+                      {
+                        id: uuidV4(),
+                        type: "text",
+                        data: {
+                          text: "bo2",
+                        },
+                      },
+                      {
+                        id: uuidV4(),
+                        type: "audio",
+                        data: {
+                          src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+                        },
+                      },
+                    ],
                   },
                   {
-                    text: "bo3",
                     isAccent: true,
-                    audio: {
-                      src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
-                    },
+                    contents: [
+                      {
+                        id: uuidV4(),
+                        type: "text",
+                        data: {
+                          text: "bo3",
+                        },
+                      },
+                      {
+                        id: uuidV4(),
+                        type: "audio",
+                        data: {
+                          src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+                        },
+                      },
+                    ],
                   },
                   {
-                    text: "bo4",
                     isAccent: true,
-                    audio: {
-                      src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
-                    },
+                    contents: [
+                      {
+                        id: uuidV4(),
+                        type: "text",
+                        data: {
+                          text: "bo4",
+                        },
+                      },
+                      {
+                        id: uuidV4(),
+                        type: "audio",
+                        data: {
+                          src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+                        },
+                      },
+                    ],
                   },
                 ],
               },
@@ -1592,19 +1754,43 @@ export const v2CornerDataList: CornerData[] = [
           contents: [
             {
               id: uuidV4(),
-              type: "textBoxList",
+              type: "contentsCardList",
               data: [
                 {
-                  text: "我<br />Wô",
                   isAccent: false,
+                  contents: [
+                    {
+                      id: uuidV4(),
+                      type: "text",
+                      data: {
+                        text: "我<br />Wô",
+                      },
+                    },
+                  ],
                 },
                 {
-                  text: "坐<br />zuò",
                   isAccent: true,
+                  contents: [
+                    {
+                      id: uuidV4(),
+                      type: "text",
+                      data: {
+                        text: "坐<br />zuò",
+                      },
+                    },
+                  ],
                 },
                 {
-                  text: "地铁去<br />dìtiê qù.",
-                  isAccent: true,
+                  isAccent: false,
+                  contents: [
+                    {
+                      id: uuidV4(),
+                      type: "text",
+                      data: {
+                        text: "地铁去<br />dìtiê qù.",
+                      },
+                    },
+                  ],
                 },
               ],
             },

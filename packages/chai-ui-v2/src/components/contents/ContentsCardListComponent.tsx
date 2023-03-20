@@ -1,13 +1,16 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { TextBoxListContentData, useGlobalAudio } from "../../core";
-import { v4 as uuidv4 } from "uuid";
+import {
+  ContentsCardListContentData,
+  useContentMapper,
+  useGlobalAudio,
+} from "../../core";
 import styled from "@emotion/styled";
-import HtmlContentComponent from "../atoms/HtmlContentComponent";
+import { vh, vw } from "../../assets";
+import { v4 as uuidv4 } from "uuid";
 import IconPauseFillButton from "../atoms/Button/IconPauseFillButton";
 import { ComponentButtonPlay } from "../atoms";
-import { vh, vw } from "../../assets";
 
-const TextBoxWrap = styled.div`
+const ContentsBoxWrap = styled.div`
   display: flex;
   justify-content: center;
 `;
@@ -16,7 +19,7 @@ interface TextBoxProps {
   isAccent: boolean;
 }
 
-const TextBox = styled.div<TextBoxProps>`
+const ContentBox = styled.div<TextBoxProps>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -41,16 +44,16 @@ const TextBox = styled.div<TextBoxProps>`
   }
 `;
 
-export interface TextBoxListComponentProps {
-  contents: TextBoxListContentData;
+export interface ContentsCardListProps {
+  contents: ContentsCardListContentData;
   fullAudioId?: string;
 }
 
-const TextBoxListComponent = ({
+const ContentsCardListComponent = ({
   contents,
   fullAudioId,
-}: TextBoxListComponentProps) => {
-  console.log(contents);
+}: ContentsCardListProps) => {
+  const { getContentComponent } = useContentMapper();
   const [playBoxAudioIndex, setPlayBoxAudioIndex] = useState(-1);
   const [textBoxAudioUuids, setTextBoxAudioUuids] = useState<string[]>([]);
 
@@ -148,38 +151,50 @@ const TextBoxListComponent = ({
   const textBoxes = useMemo(() => {
     return contents.data.map((content, contentIndex) => {
       return (
-        <TextBox key={contentIndex} isAccent={content.isAccent}>
-          <HtmlContentComponent html={content.text} />
-          {playBoxAudioIndex === contentIndex &&
-          globalAudioState === "playing" ? (
-            <IconPauseFillButton
-              onClick={() => {
-                handleAudioReset();
-              }}
-              isMini={true}
-            />
-          ) : (
-            <ComponentButtonPlay
-              isMini={true}
-              onClick={() => {
-                if (content.audio) {
-                  handleClickTextBoxAudio(contentIndex, content.audio.src);
-                }
-              }}
-            />
-          )}
-        </TextBox>
+        <ContentBox key={contentIndex} isAccent={content.isAccent}>
+          {content.contents.map((component, componentIndex) => {
+            if (component.type !== "audio") {
+              return getContentComponent(component, componentIndex);
+            }
+            {
+              if (
+                playBoxAudioIndex === contentIndex &&
+                globalAudioState === "playing"
+              ) {
+                return (
+                  <IconPauseFillButton
+                    onClick={() => {
+                      handleAudioReset();
+                    }}
+                    isMini={true}
+                  />
+                );
+              }
+              return (
+                <ComponentButtonPlay
+                  isMini={true}
+                  onClick={() => {
+                    if (component.data.src) {
+                      handleClickTextBoxAudio(contentIndex, component.data.src);
+                    }
+                  }}
+                />
+              );
+            }
+          })}
+        </ContentBox>
       );
     });
   }, [
     contents.data,
+    getContentComponent,
+    globalAudioState,
+    handleAudioReset,
     handleClickTextBoxAudio,
     playBoxAudioIndex,
-    handleAudioReset,
-    globalAudioState,
   ]);
 
-  return <TextBoxWrap>{textBoxes}</TextBoxWrap>;
+  return <ContentsBoxWrap>{textBoxes}</ContentsBoxWrap>;
 };
 
-export default TextBoxListComponent;
+export default ContentsCardListComponent;
