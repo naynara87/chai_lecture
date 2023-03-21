@@ -156,12 +156,23 @@ export const contentComponents: ContentComponents = {
     "imageWithDescriptionList",
     "audio",
     "recorder",
-    "explainingCharacter",
-    "toggleSentenceList",
     "notiCharacterList",
   ],
-  character: ["cornerGuideCharacter", "activityGuideCharacter"],
-  mixture: ["contentsCardList", "multiLevelActionCard"],
+  character: [
+    "cornerGuideCharacter",
+    "activityGuideCharacter",
+    "explainingCharacter",
+  ],
+  mixture: [
+    "contentsCardList",
+    "multiLevelActionCard",
+    "cardTab",
+    "conversationWordList",
+    "toggleSentenceList",
+    "cardTab",
+    "notiCharacterList",
+    "multiLevelActionSentenceCard",
+  ],
 };
 
 export const contentComponentsGroupMap: Record<
@@ -190,7 +201,10 @@ export const contentComponentsNameMap: Partial<Record<ContentType, string>> = {
   contentsCardList: "학습 카드",
   explainingCharacter: "설명문",
   toggleSentenceList: "문장 토글",
+  cardTab: "탭",
   notiCharacterList: "학습 예고",
+  multiLevelActionSentenceCard: "액션카드(문장용)",
+  conversationWordList: "단어 목록",
 };
 
 export const numberingTextDefaultData = Object.freeze({
@@ -345,6 +359,31 @@ export const getContentComponentsDefaultValue = (): Partial<
       },
     ],
   },
+  cardTab: {
+    id: uuidV4(),
+    type: "cardTab",
+    data: [
+      {
+        tabName: "",
+        cards: [
+          {
+            contents: [],
+          },
+        ],
+      },
+      {
+        tabName: "",
+        cards: [
+          {
+            contents: [],
+          },
+        ],
+      },
+    ],
+    meta: {
+      isUseTab: true,
+    },
+  },
   notiCharacterList: {
     id: uuidV4(),
     type: "notiCharacterList",
@@ -356,6 +395,25 @@ export const getContentComponentsDefaultValue = (): Partial<
         },
       },
     ],
+  },
+  multiLevelActionSentenceCard: {
+    id: uuidV4(),
+    type: "multiLevelActionSentenceCard",
+    data: [[]],
+  },
+  conversationWordList: {
+    id: uuidV4(),
+    type: "conversationWordList",
+    data: {
+      words: [
+        {
+          text: "",
+          audio: {
+            src: "",
+          },
+        },
+      ],
+    },
   },
 });
 

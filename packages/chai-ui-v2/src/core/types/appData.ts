@@ -72,7 +72,7 @@ export type PageIntroduction = {
     url: string;
   };
   soundEffect?: {
-    url: string;
+    src: string;
   };
   contents: string;
 };

@@ -10,48 +10,36 @@ const data: ConversationWordListContentData = {
     words: [
       {
         text: "游泳",
-        pronunciation: "yóuyǒng",
-        meaning: "수영하다",
         audio: {
           src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
         },
       },
       {
         text: "游泳2",
-        pronunciation: "yóuyǒng2",
-        meaning: "수영하다2",
         audio: {
           src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
         },
       },
       {
         text: "游泳2",
-        pronunciation: "yóuyǒng2",
-        meaning: "수영하다2",
         audio: {
           src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
         },
       },
       {
         text: "游泳2",
-        pronunciation: "yóuyǒng2",
-        meaning: "수영하다2",
         audio: {
           src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
         },
       },
       {
         text: "游泳2",
-        pronunciation: "yóuyǒng2",
-        meaning: "수영하다2",
         audio: {
           src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
         },
       },
       {
         text: "游泳2",
-        pronunciation: "yóuyǒng2",
-        meaning: "수영하다2",
         audio: {
           src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
         },

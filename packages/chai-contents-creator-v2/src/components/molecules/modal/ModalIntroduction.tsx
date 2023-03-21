@@ -169,11 +169,11 @@ const ModalIntroduction = ({
     });
   };
 
-  const handleSoundEffectUrlInput = (url: string) => {
+  const handleSoundEffectUrlInput = (src: string) => {
     setTempPageIntroductionData({
       ...tempPageIntroductionData,
       soundEffect: {
-        url,
+        src,
       },
     });
   };
@@ -183,8 +183,8 @@ const ModalIntroduction = ({
   }, [tempPageIntroductionData.character?.url]);
 
   const soundEffectUrl = useMemo(() => {
-    return tempPageIntroductionData.soundEffect?.url;
-  }, [tempPageIntroductionData.soundEffect?.url]);
+    return tempPageIntroductionData.soundEffect?.src;
+  }, [tempPageIntroductionData.soundEffect?.src]);
 
   const title = useMemo(() => {
     return tempPageIntroductionData.title;

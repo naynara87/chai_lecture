@@ -354,8 +354,6 @@ export type ConversationWordListContentData = {
   data: {
     words: {
       text: string;
-      pronunciation: string;
-      meaning: string;
       audio?: {
         src: string;
       };
@@ -522,7 +520,9 @@ export type CardTabContentData = {
       contents: Content[];
     }[];
   }[];
-  meta?: Meta;
+  meta?: {
+    isUseTab: boolean;
+  };
 };
 
 /**

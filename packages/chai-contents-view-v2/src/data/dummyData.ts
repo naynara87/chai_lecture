@@ -66,50 +66,44 @@ export const v2CornerDataList: CornerData[] = [
         id: 1,
         name: "",
         type: "singlePage",
+        introduction: {
+          title: "",
+          subTitle: "",
+          character: {
+            url: "",
+          },
+          contents: "",
+          soundEffect: {
+            src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+          },
+        },
         data: {
           id: 1,
-          type: "Template_H_3_7",
-          leftContents: [
+          type: "Template01",
+          contents: [
             {
-              id: "f8199faa-bad1-4f43-a901-d55f1800f432",
-              data: {
-                text: "1번",
+              id: uuidV4(),
+              type: "cardTab",
+              data: [
+                {
+                  cards: [
+                    {
+                      contents: [
+                        {
+                          id: uuidV4(),
+                          type: "text",
+                          data: {
+                            text: "adsfsdafaf",
+                          },
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+              meta: {
+                isUseTab: true,
               },
-              type: "text",
-            },
-            {
-              id: "4d91b73a-eb60-4f06-92b8-25ceee9fdc53",
-              data: [
-                {
-                  src: "",
-                  description: "8번",
-                },
-              ],
-              type: "imageWithDescriptionList",
-            },
-          ],
-          rightContents: [
-            {
-              id: "573d0c8b-96a3-4b3d-bba4-4a8c76e7288a",
-              data: [
-                {
-                  title: "타이틀1",
-                  character: {
-                    src: "",
-                  },
-                  description: "내용1",
-                  modalContents: [],
-                },
-                {
-                  title: "타이틀2",
-                  character: {
-                    src: "",
-                  },
-                  description: "내용2",
-                  modalContents: [],
-                },
-              ],
-              type: "characterCardList",
             },
           ],
         },
@@ -139,6 +133,17 @@ export const v2CornerDataList: CornerData[] = [
         id: 2,
         name: "중국어 개요",
         type: "singlePage",
+        introduction: {
+          title: "",
+          subTitle: "",
+          character: {
+            url: "",
+          },
+          contents: "",
+          soundEffect: {
+            src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+          },
+        },
         data: {
           id: uuidV4(),
           type: "TemplateQuizConversation",
@@ -258,6 +263,17 @@ export const v2CornerDataList: CornerData[] = [
         id: 3,
         name: "단어",
         type: "singlePage",
+        introduction: {
+          title: "",
+          subTitle: "",
+          character: {
+            url: "",
+          },
+          contents: "",
+          soundEffect: {
+            src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+          },
+        },
         data: {
           id: uuidV4(),
           type: "TemplateQuizMultiChoice",
@@ -332,7 +348,86 @@ export const v2CornerDataList: CornerData[] = [
         id: 4,
         name: "한어",
         type: "multiPage",
+        introduction: {
+          title: "",
+          subTitle: "",
+          character: {
+            url: "",
+          },
+          contents: "",
+          soundEffect: {
+            src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+          },
+        },
         data: [
+          {
+            id: uuidV4(),
+            type: "TemplateQuizConversation",
+            leftContents: [
+              {
+                id: uuidV4(),
+                type: "fullAudio",
+                data: {},
+              },
+              {
+                id: uuidV4(),
+                type: "activityGuideCharacter",
+                data: {
+                  text: "지난 시간엔 계절에 대한 회화를 학습했어요. 다음 대화를 잘 보고 빈 칸에 들어갈 알맞은 단어를 고르세요.",
+                  character: {
+                    src: "asdfasdf",
+                  },
+                },
+              },
+            ],
+            rightContents: [
+              {
+                id: uuidV4(),
+                type: "conversationQuiz",
+                data: [
+                  {
+                    text: "今天刮风，*blank*，很冷。",
+                    pronunciation: "Jīntiān guā fēng, xià xuě, hěn lěng.",
+                    meaning: "오늘은 바람이 불고, 눈이 내려서 추워.",
+                    choice: [
+                      { text: "下雪", isAnswer: true },
+                      {
+                        text: "下雪",
+                        isAnswer: false,
+                      },
+                    ],
+                    character: {
+                      name: "왕리리",
+                      src: "adsfasdf",
+                    },
+                    audio: {
+                      src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+                    },
+                  },
+                  {
+                    text: "我觉得这里的冬天没有 那么冷。",
+                    pronunciation:
+                      "Wǒ juédé zhèlǐ de dōngtiān méiyǒu zhòng guó nàme lěng.",
+                    meaning: "나는 여기 겨울이 중국만큼 춥지 않은 것 같아.",
+                    choice: [
+                      { text: "下雪", isAnswer: true },
+                      {
+                        text: "下雪",
+                        isAnswer: false,
+                      },
+                    ],
+                    character: {
+                      name: "김민호",
+                      src: "adsfasdf",
+                    },
+                    audio: {
+                      src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
+                    },
+                  },
+                ],
+              },
+            ],
+          },
           {
             id: uuidV4(),
             type: "TemplateQuizConversation",
@@ -2073,49 +2168,37 @@ export const v2CornerDataList: CornerData[] = [
                 data: {
                   words: [
                     {
-                      text: "游泳",
-                      pronunciation: "yóuyǒng",
-                      meaning: "수영하다",
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
                       audio: {
                         src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
                       },
                     },
                     {
-                      text: "游泳2",
-                      pronunciation: "yóuyǒng2",
-                      meaning: "수영하다2",
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
                       audio: {
                         src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
                       },
                     },
                     {
-                      text: "游泳2",
-                      pronunciation: "yóuyǒng2",
-                      meaning: "수영하다2",
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
                       audio: {
                         src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
                       },
                     },
                     {
-                      text: "游泳2",
-                      pronunciation: "yóuyǒng2",
-                      meaning: "수영하다2",
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
                       audio: {
                         src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
                       },
                     },
                     {
-                      text: "游泳2",
-                      pronunciation: "yóuyǒng2",
-                      meaning: "수영하다2",
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
                       audio: {
                         src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
                       },
                     },
                     {
-                      text: "游泳2",
-                      pronunciation: "yóuyǒng2",
-                      meaning: "수영하다2",
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
                       audio: {
                         src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
                       },
@@ -2175,49 +2258,37 @@ export const v2CornerDataList: CornerData[] = [
                 data: {
                   words: [
                     {
-                      text: "游泳",
-                      pronunciation: "yóuyǒng",
-                      meaning: "수영하다",
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
                       audio: {
                         src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
                       },
                     },
                     {
-                      text: "游泳2",
-                      pronunciation: "yóuyǒng2",
-                      meaning: "수영하다2",
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
                       audio: {
                         src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
                       },
                     },
                     {
-                      text: "游泳2",
-                      pronunciation: "yóuyǒng2",
-                      meaning: "수영하다2",
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
                       audio: {
                         src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
                       },
                     },
                     {
-                      text: "游泳2",
-                      pronunciation: "yóuyǒng2",
-                      meaning: "수영하다2",
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
                       audio: {
                         src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
                       },
                     },
                     {
-                      text: "游泳2",
-                      pronunciation: "yóuyǒng2",
-                      meaning: "수영하다2",
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
                       audio: {
                         src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
                       },
                     },
                     {
-                      text: "游泳2",
-                      pronunciation: "yóuyǒng2",
-                      meaning: "수영하다2",
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
                       audio: {
                         src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
                       },
@@ -2277,49 +2348,37 @@ export const v2CornerDataList: CornerData[] = [
                 data: {
                   words: [
                     {
-                      text: "游泳",
-                      pronunciation: "yóuyǒng",
-                      meaning: "수영하다",
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
                       audio: {
                         src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
                       },
                     },
                     {
-                      text: "游泳2",
-                      pronunciation: "yóuyǒng2",
-                      meaning: "수영하다2",
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
                       audio: {
                         src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
                       },
                     },
                     {
-                      text: "游泳2",
-                      pronunciation: "yóuyǒng2",
-                      meaning: "수영하다2",
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
                       audio: {
                         src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
                       },
                     },
                     {
-                      text: "游泳2",
-                      pronunciation: "yóuyǒng2",
-                      meaning: "수영하다2",
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
                       audio: {
                         src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
                       },
                     },
                     {
-                      text: "游泳2",
-                      pronunciation: "yóuyǒng2",
-                      meaning: "수영하다2",
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
                       audio: {
                         src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
                       },
                     },
                     {
-                      text: "游泳2",
-                      pronunciation: "yóuyǒng2",
-                      meaning: "수영하다2",
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
                       audio: {
                         src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
                       },
