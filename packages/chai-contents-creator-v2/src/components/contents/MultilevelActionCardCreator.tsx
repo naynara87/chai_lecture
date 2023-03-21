@@ -76,10 +76,11 @@ const DashedBar = styled.div`
   margin: ${vh(24)};
 `;
 
+/**
+ * CH-03-02-01 액션 학습 카드 - 단어용
+ */
 const MultilevelActionCardCreator = ({
   content,
-  setFocusedId,
-  isFocused,
   updateContent,
   currentSlide,
   position,

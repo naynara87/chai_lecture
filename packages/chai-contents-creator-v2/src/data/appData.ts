@@ -305,7 +305,12 @@ export const getContentComponentsDefaultValue = (): Partial<
   contentsCardList: {
     id: uuidV4(),
     type: "contentsCardList",
-    data: [],
+    data: [
+      {
+        isAccent: false,
+        contents: [],
+      },
+    ],
   },
 });
 

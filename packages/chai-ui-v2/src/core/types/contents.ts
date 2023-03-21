@@ -578,6 +578,11 @@ export type TextBoxListContentData = {
   meta?: Meta;
 };
 
+export type ContentsCardItem = {
+  isAccent: boolean;
+  contents: Content[];
+};
+
 /**
  * 학습 카드 컴포넌트
  * CH-03-01
@@ -585,10 +590,7 @@ export type TextBoxListContentData = {
 export type ContentsCardListContentData = {
   id: ID;
   type: "contentsCardList";
-  data: {
-    isAccent: boolean;
-    contents: Content[];
-  }[];
+  data: ContentsCardItem[];
   meta?: Meta;
 };
 

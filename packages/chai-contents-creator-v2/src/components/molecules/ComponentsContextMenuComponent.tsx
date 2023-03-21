@@ -1,3 +1,4 @@
+import { SerializedStyles } from "@emotion/react";
 import { ContentType } from "chai-ui-v2";
 import React from "react";
 import {
@@ -16,26 +17,27 @@ export interface ComponentsContextMenuProps {
   isComponentsContextMenuOpen: boolean;
   addComponent: (ContentType: ContentType) => void;
   toggleContextMenu: (e: React.MouseEvent) => void;
+  customCSS?: SerializedStyles;
 }
 
 const ComponentsContextMenuComponent = ({
   isComponentsContextMenuOpen,
   addComponent,
   toggleContextMenu,
+  customCSS,
 }: ComponentsContextMenuProps) => {
-
-
   const handleClickComponent = (
     e: React.MouseEvent,
     contentType: ContentType,
   ) => {
-    addComponent(contentType)
+    addComponent(contentType);
     toggleContextMenu(e);
   };
 
   return (
     <CreateTemplateNavWrap
       className={`${isComponentsContextMenuOpen ? "active" : ""}`}
+      customCSS={customCSS}
     >
       {Object.entries(contentComponents).map(
         ([contentsGroup, contentTypes]) => {

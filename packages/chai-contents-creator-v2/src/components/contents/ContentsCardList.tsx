@@ -1,9 +1,20 @@
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { useEffect } from "react";
+import {
+  ContentsCardItem,
+  ContentsCardListContentData,
+  ContentType,
+} from "chai-ui-v2";
+import { cloneDeep } from "lodash";
+import { useCallback, useEffect, useState } from "react";
+import { DragDropContext } from "react-beautiful-dnd";
+import { getContentComponentsDefaultValue } from "../../data/appData";
 import { DraggableContentCommonProps } from "../../types/page";
 import AddButton from "../atoms/AddButton";
 import CheckBoxWrapper from "../molecules/CheckBoxWrapper";
+import ComponentsContextMenuComponent from "../molecules/ComponentsContextMenuComponent";
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
+import DroppableContents from "../molecules/DroppableContents";
 
 const MultilevelActionCardWrapper = styled.div`
   display: flex;
@@ -30,6 +41,7 @@ const TopArea = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 24px;
+  position: relative;
   & .btn-text {
     width: 90px;
     height: 35px;
@@ -42,14 +54,16 @@ const TopArea = styled.div`
   }
 `;
 
+const contextMenuStyle = css`
+  transform: translateY(45px);
+`;
+
 /**
  * CH-03-01 학습 카드
  * ContentsCardList
  */
 const ContentsCardList = ({
   content,
-  setFocusedId,
-  isFocused,
   updateContent,
   deleteContent,
   currentSlide,
@@ -57,9 +71,45 @@ const ContentsCardList = ({
   draggableProvided,
   isDraggable,
 }: DraggableContentCommonProps) => {
+  const thisContent = content as ContentsCardListContentData;
+
+  const [contextMenuOpenStateList, setContextMenuOpenStateList] = useState<
+    boolean[]
+  >(Array.from({ length: thisContent.data.length }, () => false));
+
+  const toggleContextMenu = (index: number) => (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const newContextMenuOpenStateList = [...contextMenuOpenStateList];
+    newContextMenuOpenStateList[index] = !newContextMenuOpenStateList[index];
+    setContextMenuOpenStateList(newContextMenuOpenStateList);
+  };
+
+  const closeContextMenu = useCallback(() => {
+    setContextMenuOpenStateList(
+      Array.from({ length: thisContent.data.length }, () => false),
+    );
+  }, [thisContent.data.length]);
+
   useEffect(() => {
-    console.log("ContentsCardList", content);
-  }, [content]);
+    window.addEventListener("click", closeContextMenu);
+    return () => {
+      window.removeEventListener("click", closeContextMenu);
+    };
+  }, [closeContextMenu]);
+
+  const addComponent = (listIndex: number) => (contentType: ContentType) => {
+    const selectedDefaultContent =
+      getContentComponentsDefaultValue()[contentType];
+    const thisList = thisContent.data[listIndex];
+    const thisListCopy: ContentsCardItem = cloneDeep(thisList);
+    selectedDefaultContent &&
+      thisListCopy.contents.push(selectedDefaultContent);
+
+    const newContent: ContentsCardListContentData = cloneDeep(thisContent);
+    newContent.data[listIndex] = thisListCopy;
+
+    updateContent(currentSlide.id, thisContent.id, position, newContent);
+  };
 
   return (
     <ContentCreatorLayout
@@ -73,21 +123,51 @@ const ContentsCardList = ({
       <MultilevelActionCardWrapper>
         {/* 카드 추가 */}
         <AddButton>카드 추가</AddButton>
-        <MultilevelActionCardList onClick={(e) => setFocusedId(e, content.id)}>
-          <MultilevelActionCard className="important-card">
-            <TopArea>
-              {/* TODO: 중요카드 체크시 MultilevelActionCard에 important-card 클래스 생성 */}
-              <CheckBoxWrapper>중요 카드</CheckBoxWrapper>
-              <AddButton>컴포넌트 선택</AddButton>
-            </TopArea>
-            {/* TODO: 컴포넌트 선택 하면 이곳에 선택된 컴포넌트들이 순차적으로 추가 */}
-          </MultilevelActionCard>
-          {/* <MultilevelActionCard>
-            <TopArea>
-              <CheckBoxWrapper>중요 카드</CheckBoxWrapper>
-              <AddButton>컴포넌트 선택</AddButton>
-            </TopArea>
-          </MultilevelActionCard> */}
+        <MultilevelActionCardList>
+          <DragDropContext onDragEnd={(result) => console.log(result)}>
+            {thisContent.data.map((listItem, listIndex) => {
+              return (
+                <MultilevelActionCard
+                  key={listIndex}
+                  className={listItem.isAccent ? "important-card" : ""}
+                >
+                  <TopArea>
+                    <CheckBoxWrapper
+                      onClick={
+                        // TODO: 중요 카드 체크박스 클릭 시 해당 카드의 isAccent 값을 변경
+                        () => {}
+                      }
+                    >
+                      중요 카드
+                    </CheckBoxWrapper>
+                    <AddButton onClick={toggleContextMenu(listIndex)}>
+                      컴포넌트 선택
+                    </AddButton>
+                    <ComponentsContextMenuComponent
+                      isComponentsContextMenuOpen={
+                        contextMenuOpenStateList[listIndex]
+                      }
+                      addComponent={addComponent(listIndex)}
+                      toggleContextMenu={toggleContextMenu(listIndex)}
+                      customCSS={contextMenuStyle}
+                    />
+                  </TopArea>
+                  <DroppableContents
+                    droppableId={`multiLevel_${listIndex}`}
+                    currentSlide={currentSlide}
+                    contents={listItem.contents}
+                    position={position}
+                    updateContent={() => {
+                      // TODO
+                    }}
+                    deleteContent={() => {
+                      // TODO
+                    }}
+                  />
+                </MultilevelActionCard>
+              );
+            })}
+          </DragDropContext>
         </MultilevelActionCardList>
       </MultilevelActionCardWrapper>
     </ContentCreatorLayout>
