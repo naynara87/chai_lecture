@@ -16,13 +16,17 @@ const CheckBox = styled.div`
 interface CheckBoxProps {
   children: string;
   onClick?: () => void;
+  isActivated?: boolean;
 }
 
-const CheckBoxWrapper = ({ children, onClick }: CheckBoxProps) => {
+const CheckBoxWrapper = ({
+  children,
+  onClick,
+  isActivated = true,
+}: CheckBoxProps) => {
   return (
-    <CheckBox>
-      {/* TODO: 체크버튼 클릭 시 이미지 변경 (CheckedIcon/NotCheckedIcon) */}
-      <img src={CheckedIcon} alt="" onClick={onClick} />
+    <CheckBox onClick={onClick}>
+      <img src={isActivated ? CheckedIcon : NotCheckedIcon} alt="" />
       <p>{children}</p>
     </CheckBox>
   );

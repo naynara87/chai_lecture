@@ -1,16 +1,22 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import {
+  Content,
   ContentsCardItem,
   ContentsCardListContentData,
   ContentType,
+  ID,
 } from "chai-ui-v2";
 import { cloneDeep } from "lodash";
 import { useCallback, useEffect, useState } from "react";
-import { DragDropContext } from "react-beautiful-dnd";
+import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { getContentComponentsDefaultValue } from "../../data/appData";
-import { DraggableContentCommonProps } from "../../types/page";
+import {
+  CommonTemplateComponentLocation,
+  DraggableContentCommonProps,
+} from "../../types/page";
 import AddButton from "../atoms/AddButton";
+import ObjectDeleteButton from "../atoms/ObjectDeleteButton";
 import CheckBoxWrapper from "../molecules/CheckBoxWrapper";
 import ComponentsContextMenuComponent from "../molecules/ComponentsContextMenuComponent";
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
@@ -56,6 +62,13 @@ const TopArea = styled.div`
 
 const contextMenuStyle = css`
   transform: translateY(45px);
+`;
+
+const deleteButtonStyle = css`
+  position: absolute;
+  top: -12px;
+  right: -20px;
+  background-color: #999999;
 `;
 
 /**
@@ -111,6 +124,69 @@ const ContentsCardList = ({
     updateContent(currentSlide.id, thisContent.id, position, newContent);
   };
 
+  const addCard = () => {
+    const newContent: ContentsCardListContentData = cloneDeep(thisContent);
+    newContent.data.push({
+      isAccent: false,
+      contents: [],
+    });
+    updateContent(currentSlide.id, thisContent.id, position, newContent);
+  };
+
+  /**
+   * NOTE : 만약 삭제 전에 모달을 띄워서 삭제를 한다면
+   * 이 함수는 삭제 모달한테 전달해야 하는데
+   * listIndex는 삭제를 위한 state를 하나 만들어서 관리할 수 있을 것 같다
+   */
+  const deleteCard = (listIndex: number) => {
+    const newContent: ContentsCardListContentData = cloneDeep(thisContent);
+    newContent.data.splice(listIndex, 1);
+    updateContent(currentSlide.id, thisContent.id, position, newContent);
+  };
+
+  const toggleCardAccent = (listIndex: number) => {
+    const newContent: ContentsCardListContentData = cloneDeep(thisContent);
+    newContent.data[listIndex].isAccent = !newContent.data[listIndex].isAccent;
+    updateContent(currentSlide.id, thisContent.id, position, newContent);
+  };
+
+  const handleDragEnd = (result: DropResult) => {
+    console.log("result", result);
+  };
+
+  const updateComponent =
+    (listIndex: number) =>
+    (
+      slideId: ID,
+      contentId: ID,
+      position: CommonTemplateComponentLocation,
+      updatedContent: Content,
+    ) => {
+      const newContent: ContentsCardListContentData = cloneDeep(thisContent);
+      const thisList = newContent.data[listIndex];
+      const thisListCopy: ContentsCardItem = cloneDeep(thisList);
+      const thisComponentIndex = thisListCopy.contents.findIndex(
+        (component) => component.id === contentId,
+      );
+      thisListCopy.contents[thisComponentIndex] = updatedContent;
+      newContent.data[listIndex] = thisListCopy;
+      updateContent(currentSlide.id, thisContent.id, position, newContent);
+    };
+
+  const deleteComponent =
+    (listIndex: number) =>
+    (slideId: ID, contentId: ID, position: CommonTemplateComponentLocation) => {
+      const newContent: ContentsCardListContentData = cloneDeep(thisContent);
+      const thisList = newContent.data[listIndex];
+      const thisListCopy: ContentsCardItem = cloneDeep(thisList);
+      const thisComponentIndex = thisListCopy.contents.findIndex(
+        (component) => component.id === contentId,
+      );
+      thisListCopy.contents.splice(thisComponentIndex, 1);
+      newContent.data[listIndex] = thisListCopy;
+      updateContent(currentSlide.id, thisContent.id, position, newContent);
+    };
+
   return (
     <ContentCreatorLayout
       isDraggable={isDraggable}
@@ -119,12 +195,12 @@ const ContentsCardList = ({
       slideId={currentSlide.id}
       content={content}
       position={position}
+      align="center"
     >
       <MultilevelActionCardWrapper>
-        {/* 카드 추가 */}
-        <AddButton>카드 추가</AddButton>
+        <AddButton onClick={addCard}>카드 추가</AddButton>
         <MultilevelActionCardList>
-          <DragDropContext onDragEnd={(result) => console.log(result)}>
+          <DragDropContext onDragEnd={handleDragEnd}>
             {thisContent.data.map((listItem, listIndex) => {
               return (
                 <MultilevelActionCard
@@ -132,11 +208,13 @@ const ContentsCardList = ({
                   className={listItem.isAccent ? "important-card" : ""}
                 >
                   <TopArea>
+                    <ObjectDeleteButton
+                      onClick={() => deleteCard(listIndex)}
+                      customCSS={deleteButtonStyle}
+                    />
                     <CheckBoxWrapper
-                      onClick={
-                        // TODO: 중요 카드 체크박스 클릭 시 해당 카드의 isAccent 값을 변경
-                        () => {}
-                      }
+                      onClick={() => toggleCardAccent(listIndex)}
+                      isActivated={listItem.isAccent}
                     >
                       중요 카드
                     </CheckBoxWrapper>
@@ -153,16 +231,12 @@ const ContentsCardList = ({
                     />
                   </TopArea>
                   <DroppableContents
-                    droppableId={`multiLevel_${listIndex}`}
+                    droppableId={`contentsCard_${listIndex}`}
                     currentSlide={currentSlide}
                     contents={listItem.contents}
                     position={position}
-                    updateContent={() => {
-                      // TODO
-                    }}
-                    deleteContent={() => {
-                      // TODO
-                    }}
+                    updateContent={updateComponent(listIndex)}
+                    deleteContent={deleteComponent(listIndex)}
                   />
                 </MultilevelActionCard>
               );
