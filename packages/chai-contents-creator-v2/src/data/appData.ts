@@ -156,6 +156,9 @@ export const contentComponents: ContentComponents = {
     "imageWithDescriptionList",
     "audio",
     "recorder",
+    "explainingCharacter",
+    "toggleSentenceList",
+    "notiCharacterList",
   ],
   character: ["cornerGuideCharacter", "activityGuideCharacter"],
   mixture: ["contentsCardList", "multiLevelActionCard"],
@@ -185,9 +188,17 @@ export const contentComponentsNameMap: Partial<Record<ContentType, string>> = {
   multiLevelActionCard: "액션카드(단어용)",
   activityGuideCharacter: "활동 안내",
   contentsCardList: "학습 카드",
+  explainingCharacter: "설명문",
+  toggleSentenceList: "문장 토글",
+  notiCharacterList: "학습 예고",
 };
 
 export const numberingTextDefaultData = Object.freeze({
+  firstText: "",
+  secondText: "",
+});
+
+export const explainingCharacterDefaultData = Object.freeze({
   firstText: "",
   secondText: "",
 });
@@ -309,6 +320,40 @@ export const getContentComponentsDefaultValue = (): Partial<
       {
         isAccent: false,
         contents: [],
+      },
+    ],
+  },
+  explainingCharacter: {
+    id: uuidV4(),
+    type: "explainingCharacter",
+    data: {
+      text: "",
+      explain: "",
+      character: {
+        src: "",
+      },
+    },
+  },
+  toggleSentenceList: {
+    id: uuidV4(),
+    type: "toggleSentenceList",
+    data: [
+      {
+        text: "",
+        pronunciation: "",
+        meaning: "",
+      },
+    ],
+  },
+  notiCharacterList: {
+    id: uuidV4(),
+    type: "notiCharacterList",
+    data: [
+      {
+        text: "",
+        character: {
+          src: "",
+        },
       },
     ],
   },

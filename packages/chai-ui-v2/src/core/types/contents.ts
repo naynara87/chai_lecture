@@ -23,7 +23,6 @@ export type Content =
   | FinalSpeakingContentData
   | AudioContentData
   | CornerGuideCharacterContentData
-  | TextBoxListContentData
   | WordsCarouselContentData
   | AudioAndWordsCarouselContentData
   | ToggleSentenceListContentData

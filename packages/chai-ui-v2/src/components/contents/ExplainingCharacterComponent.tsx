@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import React, { useCallback, useMemo, useState } from "react";
 import { ExplainingCharacterContentData } from "../../core";
-import { ImgCharacterComponent } from "../atoms";
+import { HtmlContentComponent, ImgCharacterComponent } from "../atoms";
 import ComponentButtonFillBlackMini from "../atoms/ComponentButtonFillBlackMini";
 
 const DescriptionBubble = styled.div``;
@@ -22,7 +22,9 @@ const ExplainingCharacterComponent = ({
     if (!showExplain) {
       return (
         <>
-          <p className="text">{contents.data.text}</p>
+          <p className="text">
+            <HtmlContentComponent html={contents.data.text} />
+          </p>
           <ComponentButtonFillBlackMini
             text="확인"
             onClick={handleClickButton}
@@ -30,7 +32,11 @@ const ExplainingCharacterComponent = ({
         </>
       );
     } else {
-      return <p className="text">{contents.data.explain}</p>;
+      return (
+        <p className="text">
+          <HtmlContentComponent html={contents.data.explain} />
+        </p>
+      );
     }
   }, [showExplain, contents.data, handleClickButton]);
 

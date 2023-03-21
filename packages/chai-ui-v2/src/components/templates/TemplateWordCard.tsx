@@ -14,7 +14,7 @@ import {
 import { ComponentButtonPlay } from "../atoms";
 import IconPauseFillButton from "../atoms/Button/IconPauseFillButton";
 import { v4 as uuidv4 } from "uuid";
-import TextBoxListComponent from "../contents/TextBoxListComponent";
+import ContentsCardListComponent from "../contents/ContentsCardListComponent";
 
 interface TemplateWordCardProps extends TemplateProps {}
 
@@ -50,10 +50,14 @@ const TemplateWordCard = ({
 
   const setFullAudio = useCallback(() => {
     thisPage.rightContents.forEach((content) => {
-      if (content.type === "textBoxList") {
+      if (content.type === "contentsCardList") {
         const audioList: string[] = [];
-        content.data.forEach((cont) => {
-          audioList.push(cont.audio?.src ?? "");
+        content.data.forEach((components) => {
+          components.contents.forEach((component) => {
+            if (component.type === "audio") {
+              audioList.push(component.data.src ?? "");
+            }
+          });
         });
         setFullAudioList(audioList);
       }
@@ -72,11 +76,11 @@ const TemplateWordCard = ({
 
   const rightContents = useMemo(() => {
     return thisPage.rightContents.map((rightContent, contentIndex) => {
-      if (rightContent.type !== "textBoxList") {
+      if (rightContent.type !== "contentsCardList") {
         return getContentComponent(rightContent, contentIndex);
       } else {
         return (
-          <TextBoxListComponent
+          <ContentsCardListComponent
             contents={rightContent}
             key={contentIndex}
             fullAudioId={`fullAudio_${fullAudioUuidRef.current}`}
