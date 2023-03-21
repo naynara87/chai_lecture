@@ -27,6 +27,7 @@ import ExplainingCharacterCreator from "../components/contents/ExplainingCharact
 import ToggleSentenceListCreator from "../components/contents/ToggleSentenceListCreator";
 import CardTabCreator from "../components/contents/CardTabCreator";
 import NotiCharacterListCreator from "../components/contents/NotiCharacterListCreator";
+import MultilevelActionSentenceCardCreator from "../components/contents/MultilevelActionSentenceCardCreator";
 import ConversationWordListCreator from "../components/contents/ConversationWordListCreator";
 
 const useComponent = () => {
@@ -55,6 +56,9 @@ const useComponent = () => {
       toggleSentenceList: <ToggleSentenceListCreator {...props} />,
       cardTab: <CardTabCreator {...props} />,
       notiCharacterList: <NotiCharacterListCreator {...props} />,
+      multiLevelActionSentenceCard: (
+        <MultilevelActionSentenceCardCreator {...props} />
+      ),
       conversationWordList: <ConversationWordListCreator {...props} />,
     };
 

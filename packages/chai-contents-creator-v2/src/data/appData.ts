@@ -169,6 +169,9 @@ export const contentComponents: ContentComponents = {
     "cardTab",
     "conversationWordList",
     "toggleSentenceList",
+    "cardTab",
+    "notiCharacterList",
+    "multiLevelActionSentenceCard",
   ],
 };
 
@@ -200,6 +203,7 @@ export const contentComponentsNameMap: Partial<Record<ContentType, string>> = {
   toggleSentenceList: "문장 토글",
   cardTab: "탭",
   notiCharacterList: "학습 예고",
+  multiLevelActionSentenceCard: "액션카드(문장용)",
   conversationWordList: "단어 목록",
 };
 
@@ -391,6 +395,11 @@ export const getContentComponentsDefaultValue = (): Partial<
         },
       },
     ],
+  },
+  multiLevelActionSentenceCard: {
+    id: uuidV4(),
+    type: "multiLevelActionSentenceCard",
+    data: [[]],
   },
   conversationWordList: {
     id: uuidV4(),
