@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
-import React, { useEffect, useMemo, useState } from "react";
+import React from "react";
 import { PageProps, SinglePage, useTemplateMapper } from "../../core";
-import { LayoutModalIntroduction } from "../modal";
+import useIntroductionModal from "../../core/hooks/useIntroductionModal";
 
 const SinglePageWrap = styled.div`
   width: 100%;
@@ -15,29 +15,11 @@ const LayoutSinglePage = ({
 }: LayoutSinglePageProps) => {
   const singlePageData = page as SinglePage;
 
-  const [isIntroductionModalOpen, setIsIntroductionModalOpen] = useState(false);
+  const { introduction } = useIntroductionModal({ page: singlePageData });
 
   const { getTemplateComponent } = useTemplateMapper({
     setPageCompleted,
   });
-
-  useEffect(() => {
-    if (page?.introduction) {
-      setIsIntroductionModalOpen(true);
-    }
-  }, [page, setIsIntroductionModalOpen]);
-
-  const introduction = useMemo(() => {
-    if (page?.introduction) {
-      return (
-        <LayoutModalIntroduction
-          isModalOpen={isIntroductionModalOpen}
-          setIsModalOpen={setIsIntroductionModalOpen}
-          introduction={page.introduction}
-        />
-      );
-    }
-  }, [page, isIntroductionModalOpen]);
 
   return (
     <SinglePageWrap key={singlePageData.id}>
