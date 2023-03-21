@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -13,6 +13,7 @@ import {
   useGlobalAudio,
   useTemplateMapper,
 } from "../../core";
+import { LayoutModalIntroduction } from "../modal";
 
 const SwiperWrapper = styled.div`
   position: relative;
@@ -22,6 +23,8 @@ const SwiperWrapper = styled.div`
 interface LayoutMultiPageProps extends PageProps {}
 const LayoutMultiPage = ({ page, setPageCompleted }: LayoutMultiPageProps) => {
   const multiPageData = page as MultiPage;
+
+  const [isIntroductionModalOpen, setIsIntroductionModalOpen] = useState(false);
 
   const { getTemplateComponent } = useTemplateMapper({
     setPageCompleted,
@@ -40,6 +43,24 @@ const LayoutMultiPage = ({ page, setPageCompleted }: LayoutMultiPageProps) => {
     });
   }, [multiPageData, getTemplateComponent]);
 
+  useEffect(() => {
+    if (page?.introduction) {
+      setIsIntroductionModalOpen(true);
+    }
+  }, [page, setIsIntroductionModalOpen]);
+
+  const introduction = useMemo(() => {
+    if (page?.introduction) {
+      return (
+        <LayoutModalIntroduction
+          isModalOpen={isIntroductionModalOpen}
+          setIsModalOpen={setIsIntroductionModalOpen}
+          introduction={page.introduction}
+        />
+      );
+    }
+  }, [page, isIntroductionModalOpen]);
+
   return (
     <SwiperWrapper key={multiPageData.id}>
       <Swiper
@@ -56,6 +77,7 @@ const LayoutMultiPage = ({ page, setPageCompleted }: LayoutMultiPageProps) => {
       >
         {pages}
       </Swiper>
+      {introduction}
     </SwiperWrapper>
   );
 };

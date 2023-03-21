@@ -66,6 +66,17 @@ export const v2CornerDataList: CornerData[] = [
         id: 1,
         name: "",
         type: "singlePage",
+        introduction: {
+          title: "",
+          subTitle: "",
+          character: {
+            url: "",
+          },
+          contents: "",
+          soundEffect: {
+            src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+          },
+        },
         data: {
           id: 1,
           type: "Template01",
@@ -122,6 +133,17 @@ export const v2CornerDataList: CornerData[] = [
         id: 2,
         name: "중국어 개요",
         type: "singlePage",
+        introduction: {
+          title: "",
+          subTitle: "",
+          character: {
+            url: "",
+          },
+          contents: "",
+          soundEffect: {
+            src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+          },
+        },
         data: {
           id: uuidV4(),
           type: "TemplateQuizConversation",
@@ -241,6 +263,17 @@ export const v2CornerDataList: CornerData[] = [
         id: 3,
         name: "단어",
         type: "singlePage",
+        introduction: {
+          title: "",
+          subTitle: "",
+          character: {
+            url: "",
+          },
+          contents: "",
+          soundEffect: {
+            src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+          },
+        },
         data: {
           id: uuidV4(),
           type: "TemplateQuizMultiChoice",
@@ -315,6 +348,17 @@ export const v2CornerDataList: CornerData[] = [
         id: 4,
         name: "한어",
         type: "multiPage",
+        introduction: {
+          title: "",
+          subTitle: "",
+          character: {
+            url: "",
+          },
+          contents: "",
+          soundEffect: {
+            src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+          },
+        },
         data: [
           {
             id: uuidV4(),
