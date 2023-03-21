@@ -1,25 +1,15 @@
-import styled from "@emotion/styled";
 import { Template_H_3_7Data } from "chai-ui-v2";
 import useComponentContext from "../../hooks/useComponentContext";
 import {
-  CreateEditMainWrap,
   CreateEditMain,
   CreateTemplateChoiceBtnWrap,
 } from "../../styles/template";
 import { PageCommonProps } from "../../types/page";
 import DashBoxArea from "../atoms/DashBoxArea";
 import PageHeader from "../molecules/PageHeader";
+import { CreateEditMainWrap37 } from "./CreateTemplateH37";
 
-export const CreateEditMainWrap37 = styled(CreateEditMainWrap)`
-  ${CreateEditMain}:nth-child(1) {
-    width: 30%;
-  }
-  ${CreateEditMain}:nth-child(2) {
-    width: 70%;
-  }
-  gap: 24px;
-`;
-const CreateTemplateH37 = ({
+const CreateTemplateConversation = ({
   templateType,
   addComponentMap,
   slideId,
@@ -58,18 +48,6 @@ const CreateTemplateH37 = ({
       <CreateEditMainWrap37>
         <CreateEditMain>
           <DashBoxArea droppableId={leftDroppableId}>
-            <CreateTemplateChoiceBtnWrap>
-              <button className="btn-comp-select" onClick={toggleContextMenu}>
-                컴포넌트 선택
-              </button>
-              <ComponentsContextMenuCommon
-                isComponentsContextMenuOpen={isComponentsContextMenuOpen}
-                addComponentMap={addComponentMap}
-                slideId={slideId}
-                position="leftContents"
-                toggleContextMenu={toggleContextMenu}
-              />
-            </CreateTemplateChoiceBtnWrap>
             {thisSlide.leftContents.map((content, index) => {
               return getComponent({
                 index,
@@ -80,6 +58,7 @@ const CreateTemplateH37 = ({
                 updateContent,
                 deleteContent,
                 position: "leftContents",
+                isDraggable: false,
               });
             })}
           </DashBoxArea>
@@ -120,4 +99,4 @@ const CreateTemplateH37 = ({
   );
 };
 
-export default CreateTemplateH37;
+export default CreateTemplateConversation;
