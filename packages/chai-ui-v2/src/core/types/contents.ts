@@ -375,8 +375,6 @@ export type ConversationWordListContentData = {
   data: {
     words: {
       text: string;
-      pronunciation: string;
-      meaning: string;
       audio?: {
         src: string;
       };
