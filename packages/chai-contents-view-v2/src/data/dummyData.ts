@@ -66,6 +66,17 @@ export const v2CornerDataList: CornerData[] = [
         id: 1,
         name: "",
         type: "singlePage",
+        introduction: {
+          title: "",
+          subTitle: "",
+          character: {
+            url: "",
+          },
+          contents: "",
+          soundEffect: {
+            src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+          },
+        },
         data: {
           id: 1,
           type: "Template01",
@@ -122,6 +133,17 @@ export const v2CornerDataList: CornerData[] = [
         id: 2,
         name: "중국어 개요",
         type: "singlePage",
+        introduction: {
+          title: "",
+          subTitle: "",
+          character: {
+            url: "",
+          },
+          contents: "",
+          soundEffect: {
+            src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+          },
+        },
         data: {
           id: uuidV4(),
           type: "TemplateQuizConversation",
@@ -241,6 +263,17 @@ export const v2CornerDataList: CornerData[] = [
         id: 3,
         name: "단어",
         type: "singlePage",
+        introduction: {
+          title: "",
+          subTitle: "",
+          character: {
+            url: "",
+          },
+          contents: "",
+          soundEffect: {
+            src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+          },
+        },
         data: {
           id: uuidV4(),
           type: "TemplateQuizMultiChoice",
@@ -315,7 +348,86 @@ export const v2CornerDataList: CornerData[] = [
         id: 4,
         name: "한어",
         type: "multiPage",
+        introduction: {
+          title: "",
+          subTitle: "",
+          character: {
+            url: "",
+          },
+          contents: "",
+          soundEffect: {
+            src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+          },
+        },
         data: [
+          {
+            id: uuidV4(),
+            type: "TemplateQuizConversation",
+            leftContents: [
+              {
+                id: uuidV4(),
+                type: "fullAudio",
+                data: {},
+              },
+              {
+                id: uuidV4(),
+                type: "activityGuideCharacter",
+                data: {
+                  text: "지난 시간엔 계절에 대한 회화를 학습했어요. 다음 대화를 잘 보고 빈 칸에 들어갈 알맞은 단어를 고르세요.",
+                  character: {
+                    src: "asdfasdf",
+                  },
+                },
+              },
+            ],
+            rightContents: [
+              {
+                id: uuidV4(),
+                type: "conversationQuiz",
+                data: [
+                  {
+                    text: "今天刮风，*blank*，很冷。",
+                    pronunciation: "Jīntiān guā fēng, xià xuě, hěn lěng.",
+                    meaning: "오늘은 바람이 불고, 눈이 내려서 추워.",
+                    choice: [
+                      { text: "下雪", isAnswer: true },
+                      {
+                        text: "下雪",
+                        isAnswer: false,
+                      },
+                    ],
+                    character: {
+                      name: "왕리리",
+                      src: "adsfasdf",
+                    },
+                    audio: {
+                      src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+                    },
+                  },
+                  {
+                    text: "我觉得这里的冬天没有 那么冷。",
+                    pronunciation:
+                      "Wǒ juédé zhèlǐ de dōngtiān méiyǒu zhòng guó nàme lěng.",
+                    meaning: "나는 여기 겨울이 중국만큼 춥지 않은 것 같아.",
+                    choice: [
+                      { text: "下雪", isAnswer: true },
+                      {
+                        text: "下雪",
+                        isAnswer: false,
+                      },
+                    ],
+                    character: {
+                      name: "김민호",
+                      src: "adsfasdf",
+                    },
+                    audio: {
+                      src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
+                    },
+                  },
+                ],
+              },
+            ],
+          },
           {
             id: uuidV4(),
             type: "TemplateQuizConversation",

@@ -1,10 +1,11 @@
 import styled from "@emotion/styled";
-import React from "react";
-import { PageIntroduction } from "../../core";
+import React, { useCallback, useEffect, useRef } from "react";
+import { PageIntroduction, useGlobalAudio } from "../../core";
 import { colorPalette } from "../../assets";
 import ComponentButtonRadiFillMain from "../atoms/ComponentButtonRadiFillMain";
 import ModalCommon from "./ModalCommon";
 import CharacterProfile from "../../assets/images/img/cha_profile01.png";
+import { v4 as uuidV4 } from "uuid";
 
 // const RightColor = "#30C17B";
 // const WrongColor = "#EE8407";
@@ -33,8 +34,57 @@ const LayoutModalIntroduction = ({
   setIsModalOpen,
   introduction,
 }: LayoutModalIntroductionProps) => {
+  const modalUuidRef = useRef(uuidV4());
+
+  const {
+    globalAudioRef,
+    globalAudioId,
+    handleAudioReset,
+    handleClickAudioButton,
+  } = useGlobalAudio();
+  const audioEnded = useCallback(() => {
+    if (
+      globalAudioId
+        .toString()
+        .includes(`introductionModal_${modalUuidRef.current}`)
+    ) {
+      handleAudioReset();
+    }
+  }, [handleAudioReset, globalAudioId, modalUuidRef]);
+
+  useEffect(() => {
+    let globalAudioRefValue: HTMLAudioElement | null = null;
+    if (globalAudioRef?.current) {
+      globalAudioRefValue = globalAudioRef.current;
+      globalAudioRefValue?.addEventListener("ended", audioEnded);
+    }
+    return () => {
+      if (globalAudioRefValue) {
+        globalAudioRefValue.removeEventListener("ended", audioEnded);
+      }
+    };
+  }, [globalAudioRef, audioEnded]);
+
+  useEffect(() => {
+    return () => {
+      handleAudioReset();
+    };
+  }, [handleAudioReset]);
+
+  useEffect(() => {
+    handleClickAudioButton(
+      "introductionModal",
+      modalUuidRef.current,
+      0,
+      introduction?.soundEffect?.src ?? "",
+    );
+    // FIXME kjw handleClickAudioButton을 디펜던시에 넣으면 콜스택맥스 에러가 뜹니다... 이따가 수정할게요.. throttle을 써도 안됩니다..
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [introduction]);
+
   const handleClose = () => {
     setIsModalOpen(false);
+    handleAudioReset();
   };
 
   return (
