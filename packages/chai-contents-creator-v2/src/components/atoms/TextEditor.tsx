@@ -1,14 +1,28 @@
+import { SerializedStyles } from "@emotion/react";
 import styled from "@emotion/styled";
 import { colorPalette } from "chai-ui-v2";
 import React, { useEffect } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
-const TextEditorWrapper = styled.div`
+export interface TextEditorWrapperProps {
+  minHeight?: number;
+  editorCss?: SerializedStyles;
+}
+const TextEditorWrapper = styled.div<TextEditorWrapperProps>`
   background-color: ${colorPalette.white};
+  .ql-container {
+    ${({ minHeight }) => (minHeight ? `min-height: ${minHeight}px;` : "")}
+  }
+  .ql-editor {
+    ${({ minHeight }) => (minHeight ? `min-height: ${minHeight}px;` : "")}
+  }
+  .quill__custom {
+    ${({ editorCss }) => editorCss}
+  }
 `;
 
-interface TextEditorProps {
+export interface TextEditorProps extends TextEditorWrapperProps {
   text: string;
   setText: (text: string) => void;
   /**
@@ -17,7 +31,13 @@ interface TextEditorProps {
    */
   onBlur?: () => void;
 }
-const TextEditor = ({ text, setText, onBlur }: TextEditorProps) => {
+const TextEditor = ({
+  text,
+  setText,
+  onBlur,
+  minHeight,
+  editorCss,
+}: TextEditorProps) => {
   useEffect(() => {
     const quill = document.querySelector<HTMLDivElement>(".ql-editor");
     if (quill) {
@@ -26,12 +46,17 @@ const TextEditor = ({ text, setText, onBlur }: TextEditorProps) => {
   }, []);
 
   const handleChange = (value: string) => {
-    setText(value.replace(/<[^>]*>?/g, '') ? value : "");
+    setText(value.replace(/<[^>]*>?/g, "") ? value : "");
   };
-  
+
   return (
-    <TextEditorWrapper>
-      <ReactQuill onChange={handleChange} value={text} onBlur={onBlur} />
+    <TextEditorWrapper minHeight={minHeight} editorCss={editorCss}>
+      <ReactQuill
+        onChange={handleChange}
+        value={text}
+        onBlur={onBlur}
+        className="quill__custom"
+      />
     </TextEditorWrapper>
   );
 };

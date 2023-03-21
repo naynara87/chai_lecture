@@ -6,9 +6,11 @@ import {
   PageIntroduction,
   ModalBase,
 } from "chai-ui-v2";
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import ImageIcon from "../../../assets/images/icon/icon_image_with_bg.svg";
 import UrlInputWrapper from "../UrlInputWrapper";
+import TextEditorViewer from "../TextEditorViewer";
+import { css } from "@emotion/react";
 
 const ModalInner = styled.div`
   overflow: hidden;
@@ -96,6 +98,28 @@ const pageIntroductionDefaultData: PageIntroduction = {
   },
 };
 
+const TitleCss = css`
+  font-weight: 600;
+  font-size: 24px;
+`;
+
+const SubTitleCss = css`
+  margin-top: 6px;
+  font-weight: 600;
+  color: #808080;
+`;
+
+const TextEditorViewerWrapper = styled.div``;
+
+const CONTENT_EDITOR_HEIGHT = 150;
+
+const ContentEditorCss = css`
+  max-height: ${CONTENT_EDITOR_HEIGHT + 50}px;
+  overflow-y: auto;
+`;
+
+type EditorType = "title" | "subTitle" | "contents";
+
 export interface ModalIntroductionProps {
   isModalOpen: boolean;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -110,12 +134,14 @@ const ModalIntroduction = ({
   saveIntroductionModalData,
   closeOnBackgroundClick = true,
 }: ModalIntroductionProps) => {
+  const [focusedEditor, setFocusedEditor] = useState<EditorType>();
+
   const handleClose = () => {
     setIsModalOpen(false);
   };
 
   const [tempPageIntroductionData, setTempPageIntroductionData] =
-    React.useState<PageIntroduction>(
+    useState<PageIntroduction>(
       introductionModalData ?? pageIntroductionDefaultData,
     );
 
@@ -125,7 +151,7 @@ const ModalIntroduction = ({
   }, [introductionModalData, tempPageIntroductionData]);
 
   const handleSave = () => {
-    if (introductionModalData) {
+    if (tempPageIntroductionData) {
       saveIntroductionModalData(tempPageIntroductionData);
     } else {
       alert("데이터를 입력해주세요."); // FIXME: alert 대신 토스트 메시지로 변경
@@ -160,6 +186,54 @@ const ModalIntroduction = ({
     return tempPageIntroductionData.soundEffect?.url;
   }, [tempPageIntroductionData.soundEffect?.url]);
 
+  const title = useMemo(() => {
+    return tempPageIntroductionData.title;
+  }, [tempPageIntroductionData.title]);
+
+  const setTitle = (title: string) => {
+    setTempPageIntroductionData({
+      ...tempPageIntroductionData,
+      title,
+    });
+  };
+
+  const subTitle = useMemo(() => {
+    return tempPageIntroductionData.subTitle;
+  }, [tempPageIntroductionData.subTitle]);
+
+  const setSubTitle = (subTitle: string) => {
+    setTempPageIntroductionData({
+      ...tempPageIntroductionData,
+      subTitle,
+    });
+  };
+
+  const contents = useMemo(() => {
+    return tempPageIntroductionData.contents;
+  }, [tempPageIntroductionData.contents]);
+
+  const setContents = (contents: string) => {
+    setTempPageIntroductionData({
+      ...tempPageIntroductionData,
+      contents,
+    });
+  };
+
+  useEffect(() => {
+    const resetFocusedEditor = () => {
+      setFocusedEditor(undefined);
+    };
+    window.addEventListener("click", resetFocusedEditor);
+    return () => {
+      window.removeEventListener("click", resetFocusedEditor);
+    };
+  }, []);
+
+  const focusThisEditor = (editor: EditorType) => (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setFocusedEditor(editor);
+  };
+
   return (
     <ModalBase
       open={isModalOpen}
@@ -177,8 +251,22 @@ const ModalIntroduction = ({
               />
             </ImageThumb>
             <TitleWrap>
-              <h2 className="title">텍스트를 입력해주세요</h2>
-              <p className="sub-title">텍스트를 입력해주세요</p>
+              <TextEditorViewerWrapper onClick={focusThisEditor("title")}>
+                <TextEditorViewer
+                  text={title}
+                  setText={setTitle}
+                  isFocused={focusedEditor === "title"}
+                  textViewerCss={TitleCss}
+                />
+              </TextEditorViewerWrapper>
+              <TextEditorViewerWrapper onClick={focusThisEditor("subTitle")}>
+                <TextEditorViewer
+                  text={subTitle}
+                  setText={setSubTitle}
+                  isFocused={focusedEditor === "subTitle"}
+                  textViewerCss={SubTitleCss}
+                />
+              </TextEditorViewerWrapper>
             </TitleWrap>
           </div>
           <UrlInputWrapper
@@ -186,7 +274,15 @@ const ModalIntroduction = ({
             onSubmit={handleCharacterUrlInput}
             defaultText={profileUrl}
           />
-          <DescriptionWrapper>텍스트를 입력해주세요</DescriptionWrapper>
+          <DescriptionWrapper onClick={focusThisEditor("contents")}>
+            <TextEditorViewer
+              text={contents}
+              setText={setContents}
+              isFocused={focusedEditor === "contents"}
+              editorCss={ContentEditorCss}
+              editorMinHeight={CONTENT_EDITOR_HEIGHT}
+            />
+          </DescriptionWrapper>
           <UrlInputWrapper
             typeText="효과음"
             onSubmit={handleSoundEffectUrlInput}
