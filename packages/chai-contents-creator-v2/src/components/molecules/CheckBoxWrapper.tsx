@@ -6,6 +6,7 @@ const CheckBox = styled.div`
   display: flex;
   align-items: center;
   font-size: 12px;
+  cursor: pointer;
   & > img {
     width: 16px;
     height: 16px;

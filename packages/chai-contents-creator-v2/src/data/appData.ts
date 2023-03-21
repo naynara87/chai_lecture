@@ -158,6 +158,7 @@ export const contentComponents: ContentComponents = {
     "recorder",
     "explainingCharacter",
     "toggleSentenceList",
+    "cardTab",
     "notiCharacterList",
   ],
   character: ["cornerGuideCharacter", "activityGuideCharacter"],
@@ -190,6 +191,7 @@ export const contentComponentsNameMap: Partial<Record<ContentType, string>> = {
   contentsCardList: "학습 카드",
   explainingCharacter: "설명문",
   toggleSentenceList: "문장 토글",
+  cardTab: "탭",
   notiCharacterList: "학습 예고",
 };
 
@@ -344,6 +346,31 @@ export const getContentComponentsDefaultValue = (): Partial<
         meaning: "",
       },
     ],
+  },
+  cardTab: {
+    id: uuidV4(),
+    type: "cardTab",
+    data: [
+      {
+        tabName: "",
+        cards: [
+          {
+            contents: [],
+          },
+        ],
+      },
+      {
+        tabName: "",
+        cards: [
+          {
+            contents: [],
+          },
+        ],
+      },
+    ],
+    meta: {
+      isUseTab: true,
+    },
   },
   notiCharacterList: {
     id: uuidV4(),

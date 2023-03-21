@@ -68,48 +68,31 @@ export const v2CornerDataList: CornerData[] = [
         type: "singlePage",
         data: {
           id: 1,
-          type: "Template_H_3_7",
-          leftContents: [
+          type: "Template01",
+          contents: [
             {
-              id: "f8199faa-bad1-4f43-a901-d55f1800f432",
-              data: {
-                text: "1번",
+              id: uuidV4(),
+              type: "cardTab",
+              data: [
+                {
+                  cards: [
+                    {
+                      contents: [
+                        {
+                          id: uuidV4(),
+                          type: "text",
+                          data: {
+                            text: "adsfsdafaf",
+                          },
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+              meta: {
+                isUseTab: true,
               },
-              type: "text",
-            },
-            {
-              id: "4d91b73a-eb60-4f06-92b8-25ceee9fdc53",
-              data: [
-                {
-                  src: "",
-                  description: "8번",
-                },
-              ],
-              type: "imageWithDescriptionList",
-            },
-          ],
-          rightContents: [
-            {
-              id: "573d0c8b-96a3-4b3d-bba4-4a8c76e7288a",
-              data: [
-                {
-                  title: "타이틀1",
-                  character: {
-                    src: "",
-                  },
-                  description: "내용1",
-                  modalContents: [],
-                },
-                {
-                  title: "타이틀2",
-                  character: {
-                    src: "",
-                  },
-                  description: "내용2",
-                  modalContents: [],
-                },
-              ],
-              type: "characterCardList",
             },
           ],
         },

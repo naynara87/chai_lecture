@@ -543,7 +543,9 @@ export type CardTabContentData = {
       contents: Content[];
     }[];
   }[];
-  meta?: Meta;
+  meta?: {
+    isUseTab: boolean;
+  };
 };
 
 /**
