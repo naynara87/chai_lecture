@@ -161,6 +161,7 @@ export const contentComponents: ContentComponents = {
     "activityGuideCharacter",
     "explainingCharacter",
     "toggleSentenceList",
+    "cardTab",
   ],
 };
 
@@ -187,6 +188,7 @@ export const contentComponentsNameMap: Partial<Record<ContentType, string>> = {
   activityGuideCharacter: "활동 안내",
   explainingCharacter: "설명문",
   toggleSentenceList: "문장 토글",
+  cardTab: "탭",
 };
 
 export const numberingTextDefaultData = Object.freeze({
@@ -330,6 +332,31 @@ export const getContentComponentsDefaultValue = (): Partial<
         meaning: "",
       },
     ],
+  },
+  cardTab: {
+    id: uuidV4(),
+    type: "cardTab",
+    data: [
+      {
+        tabName: "",
+        cards: [
+          {
+            contents: [],
+          },
+        ],
+      },
+      {
+        tabName: "",
+        cards: [
+          {
+            contents: [],
+          },
+        ],
+      },
+    ],
+    meta: {
+      isUseTab: true,
+    },
   },
 });
 

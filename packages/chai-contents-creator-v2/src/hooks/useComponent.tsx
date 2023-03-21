@@ -23,7 +23,8 @@ import AudioRecorderCreator from "../components/contents/AudioRecorderCreator";
 import MultilevelActionCardCreator from "../components/contents/MultilevelActionCardCreator";
 import ActivityGuideCharacterCreator from "../components/contents/ActivityGuideCharacterCreator";
 import ExplainingCharacterCreator from "../components/contents/ExplainingCharacterCreator";
-import ToggleSentenceListCreate from "../components/contents/ToggleSentenceListCreate";
+import ToggleSentenceListCreator from "../components/contents/ToggleSentenceListCreator";
+import CardTabCreator from "../components/contents/CardTabCreator";
 
 const useComponent = () => {
   const [focusedId, setFocusedId] = useRecoilState(focusedIdState);
@@ -47,7 +48,8 @@ const useComponent = () => {
       cornerGuideCharacter: <CornerGuideCharacterCreator {...props} />,
       activityGuideCharacter: <ActivityGuideCharacterCreator {...props} />,
       explainingCharacter: <ExplainingCharacterCreator {...props} />,
-      toggleSentenceList: <ToggleSentenceListCreate {...props} />,
+      toggleSentenceList: <ToggleSentenceListCreator {...props} />,
+      cardTab: <CardTabCreator {...props} />,
     };
 
     return componentMap[type];

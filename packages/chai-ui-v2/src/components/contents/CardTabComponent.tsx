@@ -29,7 +29,7 @@ const CardTabComponent = ({ contents }: CardTabComponentProps) => {
             handleClickTab(contentIndex);
           }}
         >
-          {content.tabName}
+          {content.tabName ? content.tabName : `탭${contentIndex + 1}`}
         </TabTitle>
       );
     });
@@ -49,10 +49,12 @@ const CardTabComponent = ({ contents }: CardTabComponentProps) => {
 
   return (
     <div className="tab-contents-container">
-      <div className="tab-title-wrap">
-        {/* TODO: key설명 - 현재탭에 active */}
-        {tabTitle}
-      </div>
+      {contents.meta?.isUseTab && (
+        <div className="tab-title-wrap">
+          {/* TODO: key설명 - 현재탭에 active */}
+          {tabTitle}
+        </div>
+      )}
       <div className="tab-conts-container">
         <ul className="tab-conts-wrapper">{mainContents}</ul>
       </div>

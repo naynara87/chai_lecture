@@ -41,7 +41,7 @@ const SentenceWrap = styled.div`
 
 type TextType = "text" | "pronunciation" | "meaning";
 
-const ToggleSentenceListCreate = ({
+const ToggleSentenceListCreator = ({
   content,
   setFocusedId,
   isFocused,
@@ -252,4 +252,4 @@ const ToggleSentenceListCreate = ({
   );
 };
 
-export default ToggleSentenceListCreate;
+export default ToggleSentenceListCreator;
