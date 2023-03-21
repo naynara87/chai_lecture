@@ -114,13 +114,19 @@ const ModalIntroduction = ({
     setIsModalOpen(false);
   };
 
+  const [tempPageIntroductionData, setTempPageIntroductionData] =
+    React.useState<PageIntroduction>(
+      introductionModalData ?? pageIntroductionDefaultData,
+    );
+
   useEffect(() => {
     console.log("introductionModalData", introductionModalData);
-  }, [introductionModalData]);
+    console.log("tempPageIntroductionData", tempPageIntroductionData);
+  }, [introductionModalData, tempPageIntroductionData]);
 
   const handleSave = () => {
     if (introductionModalData) {
-      saveIntroductionModalData(introductionModalData);
+      saveIntroductionModalData(tempPageIntroductionData);
     } else {
       alert("데이터를 입력해주세요."); // FIXME: alert 대신 토스트 메시지로 변경
       return;
@@ -129,9 +135,8 @@ const ModalIntroduction = ({
   };
 
   const handleCharacterUrlInput = (url: string) => {
-    saveIntroductionModalData({
-      ...pageIntroductionDefaultData,
-      ...introductionModalData,
+    setTempPageIntroductionData({
+      ...tempPageIntroductionData,
       character: {
         url,
       },
@@ -139,9 +144,8 @@ const ModalIntroduction = ({
   };
 
   const handleSoundEffectUrlInput = (url: string) => {
-    saveIntroductionModalData({
-      ...pageIntroductionDefaultData,
-      ...introductionModalData,
+    setTempPageIntroductionData({
+      ...tempPageIntroductionData,
       soundEffect: {
         url,
       },
@@ -149,12 +153,12 @@ const ModalIntroduction = ({
   };
 
   const profileUrl = useMemo(() => {
-    return introductionModalData?.character?.url;
-  }, [introductionModalData?.character?.url]);
+    return tempPageIntroductionData.character?.url;
+  }, [tempPageIntroductionData.character?.url]);
 
   const soundEffectUrl = useMemo(() => {
-    return introductionModalData?.soundEffect?.url;
-  }, [introductionModalData?.soundEffect?.url]);
+    return tempPageIntroductionData.soundEffect?.url;
+  }, [tempPageIntroductionData.soundEffect?.url]);
 
   return (
     <ModalBase
