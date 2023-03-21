@@ -151,7 +151,26 @@ const ContentsCardList = ({
   };
 
   const handleDragEnd = (result: DropResult) => {
-    console.log("result", result);
+    const { source, destination } = result;
+    if (!destination) return;
+    const sourceListIndex = parseInt(source.droppableId.split("_")[1]);
+    const destinationListIndex = parseInt(
+      destination.droppableId.split("_")[1],
+    );
+
+    const newContent: ContentsCardListContentData = cloneDeep(thisContent);
+
+    const [removed] = newContent.data[sourceListIndex].contents.splice(
+      source.index,
+      1,
+    );
+    newContent.data[destinationListIndex].contents.splice(
+      destination.index,
+      0,
+      removed,
+    );
+
+    updateContent(currentSlide.id, thisContent.id, position, newContent);
   };
 
   const updateComponent =
