@@ -10,7 +10,7 @@ const ButtonBorder = styled.button`
   border-radius: 4px;
   background-color: ${colorPalette.white};
   color: ${colorPalette.mainlight};
-	font-size: 14px;
+  font-size: 14px;
   font-weight: 500;
   text-align: center;
   appearance: none;
@@ -20,11 +20,15 @@ const ButtonBorder = styled.button`
 
 interface ButtonProps {
   children: React.ReactNode;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent) => void;
 }
 
 const AddButton = ({ children, onClick }: ButtonProps) => {
-  return <ButtonBorder className="btn btn-text" onClick={onClick}>{children}</ButtonBorder>;
+  return (
+    <ButtonBorder className="btn btn-text" onClick={onClick}>
+      {children}
+    </ButtonBorder>
+  );
 };
 
 export default AddButton;

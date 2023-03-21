@@ -52,7 +52,7 @@ const VideoCreator = ({
     <ContentCreatorLayout
       isDraggable={isDraggable}
       draggableProvided={draggableProvided}
-      onDeleteComponent={deleteContent}
+      deleteContent={deleteContent}
       slideId={currentSlide.id}
       content={content}
       position={position}

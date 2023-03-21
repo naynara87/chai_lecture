@@ -13,11 +13,11 @@ import {
 } from "../../types/page";
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 import useComponentContext from "../../hooks/useComponentContext";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback } from "react";
 import { getContentComponentsDefaultValue } from "../../data/appData";
-import useComponent from "../../hooks/useComponent";
-import { Droppable, DragDropContext, DropResult } from "react-beautiful-dnd";
+import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { cloneDeep } from "lodash";
+import DroppableContents from "../molecules/DroppableContents";
 
 const MultilevelActionCardWrapper = styled.div`
   display: flex;
@@ -76,10 +76,11 @@ const DashedBar = styled.div`
   margin: ${vh(24)};
 `;
 
+/**
+ * CH-03-02-01 액션 학습 카드 - 단어용
+ */
 const MultilevelActionCardCreator = ({
   content,
-  setFocusedId,
-  isFocused,
   updateContent,
   currentSlide,
   position,
@@ -89,15 +90,13 @@ const MultilevelActionCardCreator = ({
 }: DraggableContentCommonProps) => {
   const thisContent = content as MultilevelActionCardContentData;
 
-  const [step, setStep] = useState(0);
+  const step = thisContent.data.length - 1;
 
   const {
     ComponentsContextMenuComponent,
     isComponentsContextMenuOpen,
     toggleContextMenu,
   } = useComponentContext();
-
-  const { getComponent, focusedId } = useComponent();
 
   const addComponent = (contentType: ContentType) => {
     const content = getContentComponentsDefaultValue()[contentType];
@@ -131,7 +130,11 @@ const MultilevelActionCardCreator = ({
       newContent.data[endArea].splice(destination.index, 0, removed);
 
       // 드래그한 공간에 컴포넌트가 하나도 없을때
-      if (newContent.data[sourceArea].length < 1) return;
+      if (newContent.data[sourceArea].length < 1) {
+        newContent.data = newContent.data.filter(
+          (data, index) => index !== sourceArea,
+        );
+      }
 
       updateContent(currentSlide.id, thisContent.id, position, newContent);
     },
@@ -167,53 +170,25 @@ const MultilevelActionCardCreator = ({
       const newContent = {
         ...thisContent,
       };
-      console.log(newContent);
+      newContent.data = newContent.data
+        .map((components) => {
+          const newComponents = components.filter(
+            (component) => component.id !== contentId,
+          );
+          return newComponents;
+        })
+        .filter((data) => data.length !== 0);
+
+      updateContent(currentSlide.id, thisContent.id, position, newContent);
     },
-    [thisContent],
+    [thisContent, currentSlide.id, updateContent],
   );
 
-  const contents = useMemo(() => {
-    return new Array(step + 1).fill("").map((item, itemIndex) => {
-      return (
-        <Droppable droppableId={`multiLevel_${itemIndex}`} key={itemIndex}>
-          {(provided) => (
-            <div ref={provided.innerRef} {...provided.droppableProps}>
-              {itemIndex !== 0 && <DashedBar />}
-              {thisContent.data[itemIndex].map((component, index) => {
-                return getComponent({
-                  index,
-                  currentSlide,
-                  content: component,
-                  isFocused: focusedId === component.id,
-                  setFocusedId,
-                  updateContent: updateComponent,
-                  position,
-                  deleteContent: deleteComponent,
-                });
-              })}
-              {provided.placeholder}
-            </div>
-          )}
-        </Droppable>
-      );
-    });
-  }, [
-    currentSlide,
-    focusedId,
-    getComponent,
-    setFocusedId,
-    step,
-    thisContent,
-    position,
-    updateComponent,
-    deleteComponent,
-  ]);
-
   const addStep = () => {
-    if (thisContent.data[step].length < 1) {
+    if (thisContent.data[thisContent.data.length - 1].length === 0) {
+      // 마지막 칸에 컴포넌트가 없을때
       return;
     }
-    setStep((prev) => prev + 1);
     const newContent = {
       ...thisContent,
       data: [...thisContent.data, []],
@@ -225,16 +200,16 @@ const MultilevelActionCardCreator = ({
     <ContentCreatorLayout
       isDraggable={isDraggable}
       draggableProvided={draggableProvided}
-      onDeleteComponent={deleteContent}
+      deleteContent={deleteContent}
       slideId={currentSlide.id}
       content={content}
       position={position}
+      align="center"
     >
       <MultilevelActionCardWrapper>
         <MultilevelActionCardList>
           <MultilevelActionCard className="important-card">
             <TopArea>
-              {/* TODO: 중요카드 체크시 MultilevelActionCard에 important-card 클래스 생성 */}
               <button className="btn-comp-select" onClick={toggleContextMenu}>
                 컴포넌트 선택
               </button>
@@ -245,10 +220,27 @@ const MultilevelActionCardCreator = ({
               />
             </TopArea>
             <DragDropContext onDragEnd={handleOnDragEnd}>
-              {contents}
+              {Array(thisContent.data.length)
+                .fill("")
+                .map((item, itemIndex) => {
+                  return (
+                    <div key={itemIndex}>
+                      {itemIndex !== 0 && <DashedBar />}
+                      <DroppableContents
+                        droppableId={`multiLevel_${itemIndex}`}
+                        currentSlide={currentSlide}
+                        contents={thisContent.data[itemIndex]}
+                        position={position}
+                        updateContent={updateComponent}
+                        deleteContent={deleteComponent}
+                      />
+                    </div>
+                  );
+                })}
             </DragDropContext>
-            {step < 2 && <AddStep onClick={addStep}>내용 추가</AddStep>}
-            {/* TODO: 컴포넌트 선택 하면 이곳에 선택된 컴포넌트들이 순차적으로 추가 */}
+            {thisContent.data.length < 3 && (
+              <AddStep onClick={addStep}>내용 추가</AddStep>
+            )}
           </MultilevelActionCard>
         </MultilevelActionCardList>
       </MultilevelActionCardWrapper>

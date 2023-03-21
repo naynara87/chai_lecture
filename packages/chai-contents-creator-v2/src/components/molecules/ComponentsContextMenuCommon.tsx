@@ -42,6 +42,7 @@ const ComponentsContextMenuCommon = ({
     >
       {Object.entries(contentComponents).map(
         ([contentsGroup, contentTypes]) => {
+          if (contentTypes.length === 0) return null;
           return (
             <CreateTemplateNav key={contentsGroup}>
               <p className="nav-tit">

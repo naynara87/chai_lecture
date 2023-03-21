@@ -86,7 +86,7 @@ interface ContentCreatorLayoutProps extends ContentCreatorWrapperProps {
   children: React.ReactNode;
   isDraggable?: boolean;
   draggableProvided?: DraggableProvided;
-  onDeleteComponent?: ReturnUsePage["deleteContent"]; // FIXME: 나중에 모든 컴포넌트 구현 후 옵셔널 제거
+  deleteContent?: ReturnUsePage["deleteContent"]; // FIXME: 나중에 모든 컴포넌트 구현 후 옵셔널 제거
   slideId?: ID; // FIXME: 나중에 모든 컴포넌트 구현 후 옵셔널 제거
   content?: Content; // FIXME: 나중에 모든 컴포넌트 구현 후 옵셔널 제거
   position?: CommonTemplateComponentLocation; // FIXME: 나중에 모든 컴포넌트 구현 후 옵셔널 제거
@@ -95,7 +95,7 @@ const ContentCreatorLayout = ({
   children,
   align,
   draggableProvided,
-  onDeleteComponent,
+  deleteContent,
   slideId,
   content,
   position,
@@ -123,9 +123,8 @@ const ContentCreatorLayout = ({
   };
 
   const handleDeleteComponent = () => {
-    console.log("handleDeleteComponent", slideId, content, position);
     if (!slideId?.toString() || !content || !position) return;
-    onDeleteComponent && onDeleteComponent(slideId, content.id, position);
+    deleteContent && deleteContent(slideId, content.id, position);
     closeModal();
   };
 
