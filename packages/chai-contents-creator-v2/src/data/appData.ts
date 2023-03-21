@@ -156,13 +156,20 @@ export const contentComponents: ContentComponents = {
     "imageWithDescriptionList",
     "audio",
     "recorder",
-    "explainingCharacter",
-    "toggleSentenceList",
-    "cardTab",
     "notiCharacterList",
   ],
-  character: ["cornerGuideCharacter", "activityGuideCharacter"],
-  mixture: ["contentsCardList", "multiLevelActionCard"],
+  character: [
+    "cornerGuideCharacter",
+    "activityGuideCharacter",
+    "explainingCharacter",
+  ],
+  mixture: [
+    "contentsCardList",
+    "multiLevelActionCard",
+    "cardTab",
+    "conversationWordList",
+    "toggleSentenceList",
+  ],
 };
 
 export const contentComponentsGroupMap: Record<
@@ -193,6 +200,7 @@ export const contentComponentsNameMap: Partial<Record<ContentType, string>> = {
   toggleSentenceList: "문장 토글",
   cardTab: "탭",
   notiCharacterList: "학습 예고",
+  conversationWordList: "단어 목록",
 };
 
 export const numberingTextDefaultData = Object.freeze({
@@ -383,6 +391,20 @@ export const getContentComponentsDefaultValue = (): Partial<
         },
       },
     ],
+  },
+  conversationWordList: {
+    id: uuidV4(),
+    type: "conversationWordList",
+    data: {
+      words: [
+        {
+          text: "",
+          audio: {
+            src: "",
+          },
+        },
+      ],
+    },
   },
 });
 

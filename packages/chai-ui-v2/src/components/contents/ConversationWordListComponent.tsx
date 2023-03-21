@@ -1,7 +1,11 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { ConversationWordListContentData } from "../../core";
 import useGlobalAudio from "../../core/hooks/useGlobalAudio";
-import { ComponentButtonPlay, ImgCharacterComponent } from "../atoms";
+import {
+  ComponentButtonPlay,
+  HtmlContentComponent,
+  ImgCharacterComponent,
+} from "../atoms";
 import IconPauseFillButton from "../atoms/Button/IconPauseFillButton";
 import ComponentButtonRoundArrow from "../atoms/ComponentButtonRoundArrow";
 import { v4 as uuidv4 } from "uuid";
@@ -56,9 +60,9 @@ const ConversationWordListComponent = ({
       return (
         <li className="voca-list" key={wordIndex}>
           <div className="voca-wrap">
-            <p className="chinese">{word.text}</p>
-            <p className="pinyin">{word.pronunciation}</p>
-            <p className="mean">{word.meaning}</p>
+            <p className="chinese">
+              <HtmlContentComponent html={word.text} />
+            </p>
           </div>
           {globalAudioId ===
             `vocaNote_${dialogueAudioUuids[wordIndex]}_${wordIndex}` &&

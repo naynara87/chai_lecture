@@ -27,6 +27,7 @@ import ExplainingCharacterCreator from "../components/contents/ExplainingCharact
 import ToggleSentenceListCreator from "../components/contents/ToggleSentenceListCreator";
 import CardTabCreator from "../components/contents/CardTabCreator";
 import NotiCharacterListCreator from "../components/contents/NotiCharacterListCreator";
+import ConversationWordListCreator from "../components/contents/ConversationWordListCreator";
 
 const useComponent = () => {
   const [focusedId, setFocusedId] = useRecoilState(focusedIdState);
@@ -54,6 +55,7 @@ const useComponent = () => {
       toggleSentenceList: <ToggleSentenceListCreator {...props} />,
       cardTab: <CardTabCreator {...props} />,
       notiCharacterList: <NotiCharacterListCreator {...props} />,
+      conversationWordList: <ConversationWordListCreator {...props} />,
     };
 
     return componentMap[type];
