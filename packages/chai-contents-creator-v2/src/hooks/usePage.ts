@@ -6,6 +6,7 @@ import {
   Content,
   LocalStorage,
   Page,
+  PageIntroduction,
 } from "chai-ui-v2";
 import { useCallback, useEffect, useMemo } from "react";
 import { useRecoilState } from "recoil";
@@ -21,9 +22,17 @@ import {
 import cloneDeep from "lodash/cloneDeep";
 import { DropResult } from "react-beautiful-dnd";
 import { PAGE_DATA_KEY } from "../constants/storage";
+import { pageState } from "../states/pageState";
 
 const usePage = () => {
   const [slides, setSlides] = useRecoilState(slidesState);
+  const [pageData, setPageData] = useRecoilState(pageState);
+
+  const saveIntroductionModalData = (data: PageIntroduction) => {
+    const newPageData = cloneDeep(pageData);
+    newPageData.introduction = data;
+    setPageData(newPageData);
+  };
 
   useEffect(() => {
     console.log("slides", slides);
@@ -175,19 +184,20 @@ const usePage = () => {
     [slides, setSlides],
   );
 
-  const pageData = useMemo(() => {
+  const pagePreviewData = useMemo(() => {
     const page: Page = {
       id: "preview_page",
       name: "미리보기",
       type: slides.length > 1 ? "multiPage" : "singlePage",
       data: slides.length > 1 ? slides : slides?.[0],
+      introduction: pageData.introduction,
     } as Page;
     return page;
-  }, [slides]);
+  }, [slides, pageData]);
 
   const savePageDataToLocalStorage = useCallback(() => {
-    LocalStorage.setItem(PAGE_DATA_KEY, pageData);
-  }, [pageData]);
+    LocalStorage.setItem(PAGE_DATA_KEY, pagePreviewData);
+  }, [pagePreviewData]);
 
   const getPageDataFromLocalStorage = useCallback(() => {
     const page = LocalStorage.getItem<Page>(PAGE_DATA_KEY);
@@ -210,6 +220,8 @@ const usePage = () => {
     getPageDataFromLocalStorage,
     removePageDataFromLocalStorage,
     deleteContent,
+    pageData,
+    saveIntroductionModalData,
   };
 };
 

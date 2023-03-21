@@ -1,6 +1,12 @@
 import styled from "@emotion/styled";
-import { colorPalette, ComponentButtonRadiBorderMain, ComponentButtonRadiFillMain, ModalBase } from "chai-ui-v2";
-import React from "react";
+import {
+  colorPalette,
+  ComponentButtonRadiBorderMain,
+  ComponentButtonRadiFillMain,
+  PageIntroduction,
+  ModalBase,
+} from "chai-ui-v2";
+import React, { useEffect, useMemo } from "react";
 import ImageIcon from "../../../assets/images/icon/icon_image_with_bg.svg";
 import UrlInputWrapper from "../UrlInputWrapper";
 
@@ -81,37 +87,113 @@ const DescriptionWrapper = styled.div`
   font-size: 12px;
 `;
 
+const pageIntroductionDefaultData: PageIntroduction = {
+  title: "",
+  subTitle: "",
+  contents: "",
+  character: {
+    url: "",
+  },
+};
+
 export interface ModalIntroductionProps {
   isModalOpen: boolean;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  introductionModalData?: PageIntroduction;
+  saveIntroductionModalData: (data: PageIntroduction) => void;
+  closeOnBackgroundClick?: boolean;
 }
 const ModalIntroduction = ({
   isModalOpen,
   setIsModalOpen,
+  introductionModalData,
+  saveIntroductionModalData,
+  closeOnBackgroundClick = true,
 }: ModalIntroductionProps) => {
   const handleClose = () => {
-    setIsModalOpen(true);
+    setIsModalOpen(false);
   };
+
+  useEffect(() => {
+    console.log("introductionModalData", introductionModalData);
+  }, [introductionModalData]);
+
+  const handleSave = () => {
+    if (introductionModalData) {
+      saveIntroductionModalData(introductionModalData);
+    } else {
+      alert("데이터를 입력해주세요."); // FIXME: alert 대신 토스트 메시지로 변경
+      return;
+    }
+    setIsModalOpen(false);
+  };
+
+  const handleCharacterUrlInput = (url: string) => {
+    saveIntroductionModalData({
+      ...pageIntroductionDefaultData,
+      ...introductionModalData,
+      character: {
+        url,
+      },
+    });
+  };
+
+  const handleSoundEffectUrlInput = (url: string) => {
+    saveIntroductionModalData({
+      ...pageIntroductionDefaultData,
+      ...introductionModalData,
+      soundEffect: {
+        url,
+      },
+    });
+  };
+
+  const profileUrl = useMemo(() => {
+    return introductionModalData?.character?.url;
+  }, [introductionModalData?.character?.url]);
+
+  const soundEffectUrl = useMemo(() => {
+    return introductionModalData?.soundEffect?.url;
+  }, [introductionModalData?.soundEffect?.url]);
+
   return (
-    <ModalBase open={isModalOpen} onClose={handleClose}>
+    <ModalBase
+      open={isModalOpen}
+      onClose={handleClose}
+      closeOnBackgroundClick={closeOnBackgroundClick}
+    >
       <ModalInner>
         <ModalIntroductionContainer>
           <div className="flex-start-wrap">
             <ImageThumb>
               {/* 이미지를 넣으면 src가 해당 이미지의 src로 변경됨 */}
-              <img src={ImageIcon} alt="캐릭터 프로필" />
+              <img
+                src={profileUrl ? profileUrl : ImageIcon}
+                alt="캐릭터 프로필"
+              />
             </ImageThumb>
             <TitleWrap>
               <h2 className="title">텍스트를 입력해주세요</h2>
               <p className="sub-title">텍스트를 입력해주세요</p>
             </TitleWrap>
           </div>
-          <UrlInputWrapper typeText="이미지" />
+          <UrlInputWrapper
+            typeText="이미지"
+            onSubmit={handleCharacterUrlInput}
+            defaultText={profileUrl}
+          />
           <DescriptionWrapper>텍스트를 입력해주세요</DescriptionWrapper>
-          <UrlInputWrapper typeText="효과음" />
+          <UrlInputWrapper
+            typeText="효과음"
+            onSubmit={handleSoundEffectUrlInput}
+            defaultText={soundEffectUrl}
+          />
           <div className="btns-wrap">
-            <ComponentButtonRadiBorderMain text="닫기" />
-            <ComponentButtonRadiFillMain text="저장" />
+            <ComponentButtonRadiBorderMain
+              text="닫기"
+              onClickBtn={handleClose}
+            />
+            <ComponentButtonRadiFillMain text="저장" onClickBtn={handleSave} />
           </div>
         </ModalIntroductionContainer>
       </ModalInner>

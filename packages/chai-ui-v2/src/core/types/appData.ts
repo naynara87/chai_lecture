@@ -71,6 +71,9 @@ export type PageIntroduction = {
   character: {
     url: string;
   };
+  soundEffect?: {
+    url: string;
+  };
   contents: string;
 };
 
