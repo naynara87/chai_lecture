@@ -11,6 +11,7 @@ const CheckBox = styled.div`
     height: 16px;
     margin-right: 8px;
   }
+  cursor: pointer;
 `;
 
 interface CheckBoxProps {
