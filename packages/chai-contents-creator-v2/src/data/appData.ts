@@ -141,7 +141,7 @@ export const rolePlayingLayouts: RolePlayingPageLayout[] = [
  *  3. getContentComponentsDefaultValue() 에 해당 컴포넌트 초기값 추가
  *  4. useComponent hook에 해당 컴포넌트 추가
  */
-export type ContentsGroup = "common";
+export type ContentsGroup = "common" | "character" | "mixture";
 
 export type ContentComponents = Record<ContentsGroup, ContentType[]>;
 export const contentComponents: ContentComponents = {
@@ -155,14 +155,14 @@ export const contentComponents: ContentComponents = {
     "speaking",
     "imageWithDescriptionList",
     "audio",
-    "cornerGuideCharacter",
     "recorder",
-    "multiLevelActionCard",
-    "activityGuideCharacter",
     "explainingCharacter",
     "toggleSentenceList",
     "cardTab",
+    "notiCharacterList",
   ],
+  character: ["cornerGuideCharacter", "activityGuideCharacter"],
+  mixture: ["contentsCardList", "multiLevelActionCard"],
 };
 
 export const contentComponentsGroupMap: Record<
@@ -170,6 +170,8 @@ export const contentComponentsGroupMap: Record<
   string
 > = {
   common: "기본형",
+  character: "캐릭터형",
+  mixture: "혼합형",
 };
 
 export const contentComponentsNameMap: Partial<Record<ContentType, string>> = {
@@ -186,9 +188,11 @@ export const contentComponentsNameMap: Partial<Record<ContentType, string>> = {
   recorder: "녹음하기",
   multiLevelActionCard: "액션카드(단어용)",
   activityGuideCharacter: "활동 안내",
+  contentsCardList: "학습 카드",
   explainingCharacter: "설명문",
   toggleSentenceList: "문장 토글",
   cardTab: "탭",
+  notiCharacterList: "학습 예고",
 };
 
 export const numberingTextDefaultData = Object.freeze({
@@ -311,6 +315,16 @@ export const getContentComponentsDefaultValue = (): Partial<
       },
     },
   },
+  contentsCardList: {
+    id: uuidV4(),
+    type: "contentsCardList",
+    data: [
+      {
+        isAccent: false,
+        contents: [],
+      },
+    ],
+  },
   explainingCharacter: {
     id: uuidV4(),
     type: "explainingCharacter",
@@ -357,6 +371,18 @@ export const getContentComponentsDefaultValue = (): Partial<
     meta: {
       isUseTab: true,
     },
+  },
+  notiCharacterList: {
+    id: uuidV4(),
+    type: "notiCharacterList",
+    data: [
+      {
+        text: "",
+        character: {
+          src: "",
+        },
+      },
+    ],
   },
 });
 

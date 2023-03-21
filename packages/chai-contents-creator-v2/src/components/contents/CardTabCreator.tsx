@@ -414,7 +414,7 @@ const CardTabCreator = ({
     <ContentCreatorLayout
       isDraggable={isDraggable}
       draggableProvided={draggableProvided}
-      onDeleteComponent={deleteContent}
+      deleteContent={deleteContent}
       slideId={currentSlide.id}
       content={content}
       position={position}
@@ -424,7 +424,7 @@ const CardTabCreator = ({
           {/* TODO: 클릭시 TabCard 추가 */}
           <AddButton onClick={addCard}>카드 추가</AddButton>
           <CheckBoxWrapper
-            isChecked={thisContent.meta?.isUseTab ?? false}
+            isActivated={thisContent.meta?.isUseTab ?? false}
             onClick={setIsUseTab}
           >
             탭 사용

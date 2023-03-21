@@ -1,4 +1,4 @@
-import { css } from "@emotion/react";
+import { css, SerializedStyles } from "@emotion/react";
 import styled from "@emotion/styled";
 import { colorPalette } from "chai-ui-v2";
 
@@ -43,7 +43,10 @@ export const CreateEditMainWrap = styled.div`
   justify-content: space-between;
 `;
 
-export const CreateTemplateNavWrap = styled.div`
+interface CreateTemplateNavWrapProps {
+  customCSS?: SerializedStyles;
+}
+export const CreateTemplateNavWrap = styled.div<CreateTemplateNavWrapProps>`
   text-align: left;
   position: absolute;
   height: 300px;
@@ -53,7 +56,6 @@ export const CreateTemplateNavWrap = styled.div`
   border: 16px solid ${colorPalette.white};
   border-radius: 16px;
   right: 0;
-  transform: translateY(-100%);
   background-color: ${colorPalette.white};
   display: none;
   transition: all 0.2s;
@@ -67,9 +69,9 @@ export const CreateTemplateNavWrap = styled.div`
   }
 
   &.active {
-    transform: translateY(0%);
     display: block;
   }
+  ${({ customCSS }) => customCSS}
 `;
 
 export const NavList = styled.ul`

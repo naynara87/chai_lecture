@@ -55,7 +55,7 @@ const IconTextCreator = ({
   return (
     <ContentCreatorLayout
       draggableProvided={draggableProvided}
-      onDeleteComponent={deleteContent}
+      deleteContent={deleteContent}
       slideId={currentSlide.id}
       content={content}
       position={position}
