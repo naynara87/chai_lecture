@@ -2056,49 +2056,37 @@ export const v2CornerDataList: CornerData[] = [
                 data: {
                   words: [
                     {
-                      text: "游泳",
-                      pronunciation: "yóuyǒng",
-                      meaning: "수영하다",
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
                       audio: {
                         src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
                       },
                     },
                     {
-                      text: "游泳2",
-                      pronunciation: "yóuyǒng2",
-                      meaning: "수영하다2",
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
                       audio: {
                         src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
                       },
                     },
                     {
-                      text: "游泳2",
-                      pronunciation: "yóuyǒng2",
-                      meaning: "수영하다2",
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
                       audio: {
                         src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
                       },
                     },
                     {
-                      text: "游泳2",
-                      pronunciation: "yóuyǒng2",
-                      meaning: "수영하다2",
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
                       audio: {
                         src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
                       },
                     },
                     {
-                      text: "游泳2",
-                      pronunciation: "yóuyǒng2",
-                      meaning: "수영하다2",
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
                       audio: {
                         src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
                       },
                     },
                     {
-                      text: "游泳2",
-                      pronunciation: "yóuyǒng2",
-                      meaning: "수영하다2",
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
                       audio: {
                         src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
                       },
@@ -2158,49 +2146,37 @@ export const v2CornerDataList: CornerData[] = [
                 data: {
                   words: [
                     {
-                      text: "游泳",
-                      pronunciation: "yóuyǒng",
-                      meaning: "수영하다",
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
                       audio: {
                         src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
                       },
                     },
                     {
-                      text: "游泳2",
-                      pronunciation: "yóuyǒng2",
-                      meaning: "수영하다2",
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
                       audio: {
                         src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
                       },
                     },
                     {
-                      text: "游泳2",
-                      pronunciation: "yóuyǒng2",
-                      meaning: "수영하다2",
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
                       audio: {
                         src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
                       },
                     },
                     {
-                      text: "游泳2",
-                      pronunciation: "yóuyǒng2",
-                      meaning: "수영하다2",
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
                       audio: {
                         src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
                       },
                     },
                     {
-                      text: "游泳2",
-                      pronunciation: "yóuyǒng2",
-                      meaning: "수영하다2",
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
                       audio: {
                         src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
                       },
                     },
                     {
-                      text: "游泳2",
-                      pronunciation: "yóuyǒng2",
-                      meaning: "수영하다2",
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
                       audio: {
                         src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
                       },
@@ -2260,49 +2236,37 @@ export const v2CornerDataList: CornerData[] = [
                 data: {
                   words: [
                     {
-                      text: "游泳",
-                      pronunciation: "yóuyǒng",
-                      meaning: "수영하다",
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
                       audio: {
                         src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
                       },
                     },
                     {
-                      text: "游泳2",
-                      pronunciation: "yóuyǒng2",
-                      meaning: "수영하다2",
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
                       audio: {
                         src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
                       },
                     },
                     {
-                      text: "游泳2",
-                      pronunciation: "yóuyǒng2",
-                      meaning: "수영하다2",
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
                       audio: {
                         src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
                       },
                     },
                     {
-                      text: "游泳2",
-                      pronunciation: "yóuyǒng2",
-                      meaning: "수영하다2",
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
                       audio: {
                         src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
                       },
                     },
                     {
-                      text: "游泳2",
-                      pronunciation: "yóuyǒng2",
-                      meaning: "수영하다2",
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
                       audio: {
                         src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
                       },
                     },
                     {
-                      text: "游泳2",
-                      pronunciation: "yóuyǒng2",
-                      meaning: "수영하다2",
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
                       audio: {
                         src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
                       },
