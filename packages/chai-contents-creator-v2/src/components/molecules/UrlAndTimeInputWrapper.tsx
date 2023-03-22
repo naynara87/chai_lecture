@@ -71,7 +71,7 @@ const UrlAndTimeInputWrapper = ({ typeText, onSubmit }: ButtonProps) => {
       setMessage("유효하지 않은 주소입니다.");
       onSubmit && onSubmit("", 0);
       return;
-    } else if (!time) {
+    } else if (!time || time < 1) {
       setInputCheck(false);
       setMessage("발화시간을 입력해주세요.");
       onSubmit && onSubmit("", 0);
@@ -90,7 +90,7 @@ const UrlAndTimeInputWrapper = ({ typeText, onSubmit }: ButtonProps) => {
       <form onSubmit={handleSubmit}>
         <div className="inputs-wrapper">
           <input placeholder={`${typeText} URL 입력`}></input>
-          <input placeholder={"발화 시간(초) 입력"}></input>
+          <input placeholder={"발화 시간(초) 입력"} type="number"></input>
         </div>
         <AddButton>등록</AddButton>
       </form>

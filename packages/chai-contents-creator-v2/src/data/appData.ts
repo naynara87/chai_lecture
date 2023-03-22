@@ -526,4 +526,30 @@ export const getTemplateDefaultValue = (): Partial<
     ],
     rightContents: [],
   },
+  TemplateConversationRepeat: {
+    id: uuidV4(),
+    type: "TemplateConversationRepeat",
+    leftContents: [
+      {
+        id: uuidV4(),
+        type: "fullAudio",
+        data: {},
+      },
+      {
+        id: uuidV4(),
+        type: "conversationWordList",
+        data: {
+          words: [
+            {
+              text: "",
+              audio: {
+                src: "",
+              },
+            },
+          ],
+        },
+      },
+    ],
+    rightContents: [],
+  },
 });
