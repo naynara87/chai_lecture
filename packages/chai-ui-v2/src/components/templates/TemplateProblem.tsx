@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import React from "react";
 import BtnIcon from "../../assets/images/icon/icon_stick_arrow_right_white.svg";
+import IconTimer from "../../assets/images/icon/icon_timer.svg";
 
 const IframeWrapper = styled.div`
   width: 100%;
@@ -39,7 +40,7 @@ const TemplateProblem = () => {
       <header className="cai-hd problem-hd">
         <div className="hd-conts-wrap">
           <h1 className="problem-hd-ttl">{'빨강 연습문제'}</h1>
-          <div className="problem-hd-timer">{'00:00:00'}</div>
+          <div className="problem-hd-timer"><img src={IconTimer} alt="시간" />{'00:00:00'}</div>
         </div>
       </header>
       <main className="cai-main problem-main">
@@ -52,7 +53,6 @@ const TemplateProblem = () => {
         </div>
         <div className="layout-panel-wrap">
           {/* 문항번호 */}
-          <div className="question-number attched">{`[50 ~ 87]`}</div>
           <div className="question-number">{`55번`}</div>
           {/* end 문항번호 */}
           <div className="layout-panel">

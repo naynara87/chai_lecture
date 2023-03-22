@@ -4,7 +4,7 @@ $main-color: #6673A3;
 
 // header style
 .problem-hd {
-  background-color: color(red-500);
+  background-color: $main-color;
 
   .hd-conts-wrap {
     @include flex-btw;
@@ -15,13 +15,19 @@ $main-color: #6673A3;
 
 .problem-hd-ttl {
   font-weight: 600;
-  font-size: vw(30);
+  font-size: vw(26);
   color: color(gray-ff);
 }
 
 .problem-hd-timer {
-  font-size: vw(20);
+  font-weight: 400;
+  font-size: vw(26);
   color: color(gray-ff);
+
+  >img {
+    margin-right: vw(10);
+    vertical-align: bottom;
+  }
 }
 
 // main layout style
@@ -89,11 +95,6 @@ $main-color: #6673A3;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   transform: translateX(-50%);
   white-space: pre-line;
-
-  &.attched {
-    opacity: 0.8;
-    top: vh(10);
-  }
 }
 
 // pagination style
