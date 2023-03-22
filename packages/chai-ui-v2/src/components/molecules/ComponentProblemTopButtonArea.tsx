@@ -10,11 +10,11 @@ const ComponentProblemTopButtonArea = () => {
       </div>
       <div className="top-button-right">
         <h2 className="problem-title-wrap">
-          {`총 `}
+          총
           <b>{`00`}</b>
-          {`문항 풀이에 `}
+          문항 풀이에
           <b>{`0시간 00분 00초 `}</b>
-          {`소요`}
+          소요
         </h2>
         <button type="button" className="btn-problem-gray">나가기 <img src={IconClose} alt="" /></button>
       </div>
