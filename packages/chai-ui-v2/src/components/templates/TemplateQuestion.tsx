@@ -18,6 +18,25 @@ const TemplateQuestion = ({
     setPageCompleted();
   }, [setPageCompleted]);
 
+  useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    function receiveMessage(event) {
+      // event.data에는 iframe에서 보낸 메시지가 포함됩니다.
+      console.log(123123)
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      console.log('Received message:', event.data);
+    }
+
+    // message 이벤트를 수신하고 receiveMessage 함수를 호출합니다.
+    window.addEventListener('message', receiveMessage);
+
+    return () => {
+      // 컴포넌트가 언마운트될 때 message 이벤트 리스너를 제거합니다.
+      window.removeEventListener('message', receiveMessage);
+    };
+  }, []);
+
   return (
     <div className="layout-panel-wrap">
       <QuestionPanel className="layout-panel">

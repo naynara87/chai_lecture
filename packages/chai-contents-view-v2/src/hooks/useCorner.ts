@@ -9,6 +9,7 @@ const useCorner = (cornerId: ID | undefined) => {
   const [pages, setPages] = useState<Page[]>([]);
   const [cornerMetaData, setCornerMetaData] = useState<CornerMeta>();
 
+
   useQuery(
     [QUERY_KEY.PAGES, String(cornerId)],
     () => {

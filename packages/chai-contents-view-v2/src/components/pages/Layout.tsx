@@ -21,7 +21,29 @@ const Layout = () => {
   const layout = useMemo(() => {
     if (!lessonMetaData) return;
     if (!cornerMetaData) return;
+    // NOTE ms 문제 템플릿일 경우 레이아웃 호출
     if (cornerMetaData.lessonTpCd === "30") {
+      // todo ms lcms에서 데이터 받아와서 데이터 구성 필요
+      const dummyData = [
+        {
+          id: 1,
+          state: ''
+        },
+        {
+          id: 2,
+          state: ''
+        }, {
+          id: 3,
+          state: ''
+        }, {
+          id: 4,
+          state: ''
+        }, {
+          id: 5,
+          state: 'end'
+        }
+      ];
+      localStorage.setItem('pageData', JSON.stringify(dummyData));
       return <QuestionLayout pages={pages} />;
     } else {
       return (
