@@ -107,7 +107,7 @@ $gray-color: #D6D7DA;
   }
 
   width: 100%;
-  height: vh(90);
+  height: vh(60);
 }
 
 .top-button-left {
@@ -125,6 +125,7 @@ $gray-color: #D6D7DA;
 
   overflow-x: auto;
   gap: vw(16);
+  height: vh(90);
   padding: 0 $cont-padding;
   background-color: color(gray-f5);
 }

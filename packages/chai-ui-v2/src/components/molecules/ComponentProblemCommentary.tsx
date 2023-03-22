@@ -7,14 +7,14 @@ const ComponentProblemCommentary = () => {
   return (
     <div className="problem-commentary-wrapper">
       {/* TODO: key설명 - 항목 선택을 하지 않았을 때 */}
-      <div className="empty-conts none">
+      <div className="empty-conts">
         <img src={IconEmpty} alt="없음" className="img" />
         <h3 className="emp-ttl">채점표에서 번호를 <br />선택해주세요</h3>
         <p className="emp-txt">여기에 정답과 해설이 표시됩니다.</p>
       </div>
 
       {/* TODO: key설명 - 항목선택을 했을 때 */}
-      <div className="problem-commentary-wrap">
+      <div className="problem-commentary-wrap none">
         <h3 className="com-ttl"><b>{`Q1`}</b> <img src={IconRight} alt="정답" /></h3>
         <div className="tab-iframe-wrap">
           {/* TODO: key설명 - 버튼을 누르면 본인에 클래스active 추가,
