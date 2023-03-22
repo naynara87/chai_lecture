@@ -1,11 +1,18 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { ConversationContentData, vh, vw } from "chai-ui-v2";
+import {
+  ConversationContentData,
+  TemplateConversationData,
+  TemplateConversationToggleData,
+  vh,
+  vw,
+} from "chai-ui-v2";
 import { cloneDeep } from "lodash";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { DraggableContentCommonProps } from "../../types/page";
 import AddButton from "../atoms/AddButton";
 import ObjectDeleteButton from "../atoms/ObjectDeleteButton";
+import TogglesWrapper from "../atoms/TogglesWrapper";
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 import TextEditorViewer from "../molecules/TextEditorViewer";
 import UrlInputWrapper from "../molecules/UrlInputWrapper";
@@ -43,8 +50,14 @@ const ConversationCreator = ({
   position,
   draggableProvided,
   isDraggable,
+  templateType,
 }: DraggableContentCommonProps) => {
+  const thisTemplateType = templateType as
+    | TemplateConversationData["type"]
+    | TemplateConversationToggleData["type"];
   const thisContent = content as ConversationContentData;
+
+  console.log(thisTemplateType);
 
   const [focusedTextEditorIndex, setFocusedTextEditorIndex] =
     useState<number>();
@@ -312,6 +325,9 @@ const ConversationCreator = ({
       position={position}
     >
       <div className="flex-wrap">
+        {thisTemplateType === "TemplateConversationToggle" && (
+          <TogglesWrapper />
+        )}
         <AddButton onClick={addConversation}>대화 추가</AddButton>
         <ConversationWrapper
           className="conversation-wrapper"

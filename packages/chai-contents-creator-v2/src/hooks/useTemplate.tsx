@@ -14,6 +14,7 @@ const useTemplate = () => {
       Template_H_3_7: <CreateTemplateH37 {...props} />,
       Template_H_5_5: <CreateTemplateH55 {...props} />,
       TemplateConversation: <CreateTemplateConversation {...props} />,
+      TemplateConversationToggle: <CreateTemplateConversation {...props} />,
     };
     return templateMap[templateType] ?? <div>템플릿이 없습니다.</div>;
   }, []);
