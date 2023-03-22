@@ -24,7 +24,6 @@ const VacaList = styled.li`
 const ConversationWordListWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  min-width: ${vw(640)};
   height: auto !important;
 `;
 
@@ -145,10 +144,12 @@ const ConversationWordListCreator = ({
     return thisContent.data.words.map((word, wordIndex) => {
       return (
         <VacaList className="voca-list" key={wordIndex}>
-          <ObjectDeleteButton
-            onClick={() => deleteWord(wordIndex)}
-            customCSS={deleteButtonStyle}
-          />
+          {thisContent.data.words.length > 1 && (
+            <ObjectDeleteButton
+              onClick={() => deleteWord(wordIndex)}
+              customCSS={deleteButtonStyle}
+            />
+          )}
           <div onClick={() => fucusTextEditor(wordIndex)}>
             <TextEditorViewer
               text={word.text}

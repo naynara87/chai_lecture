@@ -172,6 +172,7 @@ export const contentComponents: ContentComponents = {
     "cardTab",
     "notiCharacterList",
     "multiLevelActionSentenceCard",
+    "conversation",
   ],
 };
 
@@ -205,6 +206,7 @@ export const contentComponentsNameMap: Partial<Record<ContentType, string>> = {
   notiCharacterList: "학습 예고",
   multiLevelActionSentenceCard: "액션카드(문장용)",
   conversationWordList: "단어 목록",
+  conversation: "대화",
 };
 
 export const numberingTextDefaultData = Object.freeze({
@@ -415,6 +417,24 @@ export const getContentComponentsDefaultValue = (): Partial<
       ],
     },
   },
+  conversation: {
+    id: uuidV4(),
+    type: "conversation",
+    data: [
+      {
+        text: "",
+        pronunciation: "",
+        meaning: "",
+        character: {
+          name: "",
+          src: "",
+        },
+        audio: {
+          src: "",
+        },
+      },
+    ],
+  },
 });
 
 /**
@@ -439,6 +459,32 @@ export const getTemplateDefaultValue = (): Partial<
     id: uuidV4(),
     type: "Template_H_5_5",
     leftContents: [],
+    rightContents: [],
+  },
+  TemplateConversation: {
+    id: uuidV4(),
+    type: "TemplateConversation",
+    leftContents: [
+      {
+        id: uuidV4(),
+        type: "fullAudio",
+        data: {},
+      },
+      {
+        id: uuidV4(),
+        type: "conversationWordList",
+        data: {
+          words: [
+            {
+              text: "",
+              audio: {
+                src: "",
+              },
+            },
+          ],
+        },
+      },
+    ],
     rightContents: [],
   },
 });
