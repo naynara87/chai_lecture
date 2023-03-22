@@ -1,6 +1,7 @@
 /* =================== problemLayout =================== */
 $cont-padding: vw(40);
 $main-color: #6673A3;
+$gray-color: #D6D7DA;
 
 // header style
 .problem-hd {
@@ -37,7 +38,7 @@ $main-color: #6673A3;
 
   .problem-top-button-wrapper {
     width: vw(1610);
-    margin: vh(20) auto 0;
+    margin: vh(30) auto 0;
   }
 
   .pagination-wrapper {
@@ -46,7 +47,8 @@ $main-color: #6673A3;
 
   .layout-panel-wrap {
     position: relative;
-    margin-top: vh(20);
+    height: calc(100% - vh(70) - vh(140));
+    margin-top: vh(30);
   }
 
   .btn-radi-border-main {
@@ -104,7 +106,7 @@ $main-color: #6673A3;
   }
 
   width: 100%;
-  height: vh(80);
+  height: vh(90);
 }
 
 .top-button-left {
@@ -121,7 +123,7 @@ $main-color: #6673A3;
   @include flex-op(center, flex-start);
 
   overflow-x: auto;
-  gap: vw(15);
+  gap: vw(16);
   padding: 0 $cont-padding;
   background-color: color(gray-f5);
 }
@@ -130,25 +132,27 @@ $main-color: #6673A3;
   @extend %btn;
 
   flex-shrink: 0;
-  min-width: vw(50);
-  height: vw(50);
-  padding: vw(5) vw(10);
-  border: 2px solid color(gray-db);
+  min-width: vw(62);
+  height: vw(62);
+  padding: vw(12) vw(24);
+  border: 1px solid $gray-color;
   border-radius: vw(10);
-  background-color: color(gray-f5);
-  font-size: vw(18);
+  background-color: color(gray-f0);
+  font-weight: 500;
+  font-size: vw(24);
+  color: color(gray-80);
+  text-align: center;
 
   &.active {
-    border-color: color(main);
-    background-color: color(gray-ff);
+    background-color: $main-color;
     font-weight: 600;
-    color: color(main);
+    color: color(gray-ff);
   }
 
   &.end {
-    background-color: color(main);
+    background-color: color(gray-ff);
     font-weight: 600;
-    color: color(gray-ff);
+    color: $main-color;
   }
 }
 
@@ -156,6 +160,6 @@ $main-color: #6673A3;
   font-size: vw(20);
 
   >b {
-    color: color(main);
+    color: $main-color;
   }
 }
