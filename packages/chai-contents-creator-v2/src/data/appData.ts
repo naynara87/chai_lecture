@@ -201,7 +201,7 @@ export const contentComponentsNameMap: Partial<Record<ContentType, string>> = {
   activityGuideCharacter: "활동 안내",
   contentsCardList: "학습 카드",
   explainingCharacter: "설명문",
-  characterCardList: "학습 내용",
+  characterCardList: "학습 요약",
   toggleSentenceList: "문장 토글",
   cardTab: "탭",
   notiCharacterList: "학습 예고",

@@ -36,11 +36,19 @@ const TrainingWrapper = styled.div`
   }
 `;
 
+const ImageThumbWrap = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 10px;
+`;
+
 const ImageThumb = styled.div`
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 200px;
   height: 150px;
   background-color: #f0f0f0;
-  position: relative;
   margin-bottom: 10px;
   border-radius: 10px;
   overflow: hidden;
@@ -57,9 +65,36 @@ const ImageThumb = styled.div`
   }
 `;
 
+const TitleArea = styled.div`
+  padding-top: 4vw;
+  font-weight: 600;
+  font-size: 1.6vw;
+  line-height: 1.5;
+`;
+
+const DescriptionArea = styled.div`
+  height: 100%;
+  padding-bottom: 2vh;
+`;
+
+const GradiWrap = styled.div`
+  min-height: 8.25vw;
+  padding-bottom: 2.5vw;
+  border-radius: 1vw 1vw 0 0;
+  text-align: center;
+  background-image: linear-gradient(to top, #e3e8ff 0%, #e9faff 100%);
+`;
+
+const TrainingList = styled.div`
+  height: max-content !important;
+`;
+
 type ColumnIndex = "title" | "description";
 
-const CharacterCardListCreate = ({
+/**
+ * CH-02-05 학습 요약
+ */
+const CharacterCardListCreator = ({
   content,
   setFocusedId,
   isFocused,
@@ -78,11 +113,14 @@ const CharacterCardListCreate = ({
   const [focusedColumnIndex, setFocusedColumnIndex] = useState<ColumnIndex>();
 
   const fucusTextEditor = useCallback(
-    (characterCardListIndex: number, columnIndex: ColumnIndex) => () => {
-      setFocusedTextEditorIndex(characterCardListIndex);
-      setFocusedColumnIndex(columnIndex);
-    },
-    [],
+    (characterCardListIndex: number, columnIndex: ColumnIndex) =>
+      (e: React.MouseEvent) => {
+        e.stopPropagation();
+        setFocusedId(e, content.id);
+        setFocusedTextEditorIndex(characterCardListIndex);
+        setFocusedColumnIndex(columnIndex);
+      },
+    [content.id, setFocusedId],
   );
 
   const resetFocusedTextEditorIndex = useCallback(() => {
@@ -204,7 +242,7 @@ const CharacterCardListCreate = ({
 
   const getThisContentImageSrc = useCallback(
     (index: number) => {
-      console.log("응애", thisContent.data?.[index]?.character.src);
+      console.log(thisContent.data?.[index]?.character.src);
       return thisContent.data?.[index]?.character.src ?? "";
     },
     [thisContent.data],
@@ -218,24 +256,20 @@ const CharacterCardListCreate = ({
       slideId={currentSlide.id}
       content={content}
       position={position}
+      align="center"
     >
       <TrainingWrapper className="training-wrapper">
-        {/* TODO: key설명 - training-end 클래스 추가되면 높이 변경, 버튼 추가 */}
         <AddButton onClick={addNumberingTextItem}>학습목표 추가</AddButton>
-        <div
-          className="training-list-wrap training-end"
-          onClick={(e) => setFocusedId(e, content.id)}
-        >
-          {/* 반복영역 */}
+        <div className="training-list-wrap training-end">
           {thisContent.data.map((item, index) => {
             return (
               <div className="training-create-wrap" key={index}>
-                <div className="training-list">
+                <TrainingList className="training-list">
                   <ObjectDeleteButton
                     onClick={() => deleteCurrentNumberingTextItem(index)}
                   />
-                  <div className="gradi-wrap">
-                    <div className="gradi-conts-wrap">
+                  <GradiWrap>
+                    <ImageThumbWrap>
                       <ImageThumb className="img-wrap">
                         {item.character.src ? (
                           <img src={item.character.src} alt="" />
@@ -243,25 +277,21 @@ const CharacterCardListCreate = ({
                           <img src={ImageIcon} alt="" className="empty-image" />
                         )}
                       </ImageThumb>
-
-                      <div
-                        onClick={fucusTextEditor(index, "title")}
-                        className="title"
-                      >
-                        <TextEditorViewer
-                          isFocused={isTextEditorFocused(
-                            isFocused,
-                            index,
-                            "title",
-                          )}
-                          setText={(text) => setText(index, "title", text)}
-                          text={getText(index, "title")}
-                        />
-                      </div>
-                    </div>
-                  </div>
+                    </ImageThumbWrap>
+                    <TitleArea onClick={fucusTextEditor(index, "title")}>
+                      <TextEditorViewer
+                        isFocused={isTextEditorFocused(
+                          isFocused,
+                          index,
+                          "title",
+                        )}
+                        setText={(text) => setText(index, "title", text)}
+                        text={getText(index, "title")}
+                      />
+                    </TitleArea>
+                  </GradiWrap>
                   <div className="white-wrap">
-                    <div
+                    <DescriptionArea
                       onClick={fucusTextEditor(index, "description")}
                       className="text"
                     >
@@ -274,12 +304,12 @@ const CharacterCardListCreate = ({
                         setText={(text) => setText(index, "description", text)}
                         text={getText(index, "description")}
                       />
-                    </div>
+                    </DescriptionArea>
                     <div className="btns-wrap">
                       <ComponentButtonRadiFillMain text="학습 요약" />
                     </div>
                   </div>
-                </div>
+                </TrainingList>
                 <UrlInputWrapper
                   typeText="이미지"
                   onSubmit={setImageUrl(index)}
@@ -287,12 +317,10 @@ const CharacterCardListCreate = ({
               </div>
             );
           })}
-
-          {/* end 반복영역 */}
         </div>
       </TrainingWrapper>
     </ContentCreatorLayout>
   );
 };
 
-export default CharacterCardListCreate;
+export default CharacterCardListCreator;
