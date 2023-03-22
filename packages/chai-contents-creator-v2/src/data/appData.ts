@@ -166,7 +166,6 @@ export const contentComponents: ContentComponents = {
   mixture: [
     "contentsCardList",
     "multiLevelActionCard",
-    "cardTab",
     "conversationWordList",
     "toggleSentenceList",
     "cardTab",
