@@ -1,6 +1,7 @@
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 import styled from "@emotion/styled";
 import iconPlay from "chai-ui-v2/dist/assets/images/icon/icon_play.svg";
+import { DraggableContentCommonProps } from "../../types/page";
 
 const AudioCreatorWrapper = styled.div`
   display: flex;
@@ -19,9 +20,15 @@ const AudioCreatorWrapper = styled.div`
   }
 `;
 
-const FullAudioCreator = () => {
+const FullAudioCreator = ({
+  draggableProvided,
+  isDraggable,
+}: DraggableContentCommonProps) => {
   return (
-    <ContentCreatorLayout>
+    <ContentCreatorLayout
+      isDraggable={isDraggable}
+      draggableProvided={draggableProvided}
+    >
       <AudioCreatorWrapper>
         <img src={iconPlay} alt="audio" />
         <p className="">전체 음성 듣기</p>

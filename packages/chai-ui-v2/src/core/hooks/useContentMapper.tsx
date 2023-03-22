@@ -36,11 +36,11 @@ import {
   CornerGuideCharacterContentData,
   NotiCharacterListContentData,
   ActivityGuideCharacterContentData,
-  TextBoxListContentData,
   WordsCarouselContentData,
   AudioAndWordsCarouselContentData,
   ToggleSentenceListContentData,
   MultilevelActionSentenceCardContentData,
+  ContentsCardListContentData,
 } from "../types";
 import CharacterCardListComponent from "../../components/contents/CharacterCardListComponent";
 import SpeakingComponent from "../../components/contents/SpeakingComponent";
@@ -55,7 +55,7 @@ import MultiChoiceComponent from "../../components/contents/MultiChoiceComponent
 import AudioComponent from "../../components/contents/AudioComponent";
 import CornerGuideCharacterComponent from "../../components/contents/CornerGuideCharacterComponent";
 import NotiCharacterListComponent from "../../components/contents/NotiCharacterListComponent";
-import TextBoxListComponent from "../../components/contents/TextBoxListComponent";
+import ContentsCardListComponent from "../../components/contents/ContentsCardListComponent";
 import WordsCarouselComponent from "../../components/contents/WordsCarouselComponent";
 import AudioAndWordsCarouselComponent from "../../components/contents/AudioAndWordsCarouselComponent";
 import ToggleSentenceListComponent from "../../components/contents/ToggleSentenceListComponent";
@@ -64,7 +64,7 @@ import FullAudioComponent from "../../components/contents/FullAudioComponent";
 
 const useContentMapper = () => {
   const getContentComponent = (content: Content, contentIndex: number) => {
-    const contentMapper: Record<ContentType, JSX.Element> = {
+    const contentMapper: Partial<Record<ContentType, JSX.Element>> = {
       video: (
         <ComponentVideo
           content={content as VideoContentData}
@@ -196,9 +196,9 @@ const useContentMapper = () => {
           key={contentIndex}
         />
       ),
-      textBoxList: (
-        <TextBoxListComponent
-          contents={content as TextBoxListContentData}
+      contentsCardList: (
+        <ContentsCardListComponent
+          contents={content as ContentsCardListContentData}
           key={contentIndex}
         />
       ),

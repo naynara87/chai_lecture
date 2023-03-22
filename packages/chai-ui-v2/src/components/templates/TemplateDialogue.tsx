@@ -128,7 +128,7 @@ const TemplateDialogue = ({
   const leftContents = useMemo(() => {
     return thisPage.leftContents.map((leftContent, contentIndex) => {
       if (leftContent.type !== "fullAudio") {
-        getContentComponent(leftContent, contentIndex);
+        return getContentComponent(leftContent, contentIndex);
       }
     });
   }, [getContentComponent, thisPage]);

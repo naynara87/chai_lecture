@@ -22,8 +22,16 @@ import {
 import AudioRecorderCreator from "../components/contents/AudioRecorderCreator";
 import MultilevelActionCardCreator from "../components/contents/MultilevelActionCardCreator";
 import ActivityGuideCharacterCreator from "../components/contents/ActivityGuideCharacterCreator";
+import ContentsCardList from "../components/contents/ContentsCardList";
 import ExplainingCharacterCreator from "../components/contents/ExplainingCharacterCreator";
 import CharacterCardListCreator from "../components/contents/CharacterCardListCreator";
+import ToggleSentenceListCreator from "../components/contents/ToggleSentenceListCreator";
+import CardTabCreator from "../components/contents/CardTabCreator";
+import NotiCharacterListCreator from "../components/contents/NotiCharacterListCreator";
+import MultilevelActionSentenceCardCreator from "../components/contents/MultilevelActionSentenceCardCreator";
+import ConversationWordListCreator from "../components/contents/ConversationWordListCreator";
+import FullAudioCreator from "../components/contents/FullAudioCreator";
+import ConversationCreator from "../components/contents/ConversationCreator";
 
 const useComponent = () => {
   const [focusedId, setFocusedId] = useRecoilState(focusedIdState);
@@ -46,8 +54,18 @@ const useComponent = () => {
       multiLevelActionCard: <MultilevelActionCardCreator {...props} />,
       cornerGuideCharacter: <CornerGuideCharacterCreator {...props} />,
       activityGuideCharacter: <ActivityGuideCharacterCreator {...props} />,
+      contentsCardList: <ContentsCardList {...props} />,
       explainingCharacter: <ExplainingCharacterCreator {...props} />,
       characterCardList: <CharacterCardListCreator {...props} />,
+      toggleSentenceList: <ToggleSentenceListCreator {...props} />,
+      cardTab: <CardTabCreator {...props} />,
+      notiCharacterList: <NotiCharacterListCreator {...props} />,
+      multiLevelActionSentenceCard: (
+        <MultilevelActionSentenceCardCreator {...props} />
+      ),
+      conversationWordList: <ConversationWordListCreator {...props} />,
+      fullAudio: <FullAudioCreator {...props} />,
+      conversation: <ConversationCreator {...props} />,
     };
 
     return componentMap[type];

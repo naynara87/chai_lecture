@@ -141,7 +141,7 @@ export const rolePlayingLayouts: RolePlayingPageLayout[] = [
  *  3. getContentComponentsDefaultValue() 에 해당 컴포넌트 초기값 추가
  *  4. useComponent hook에 해당 컴포넌트 추가
  */
-export type ContentsGroup = "common";
+export type ContentsGroup = "common" | "character" | "mixture";
 
 export type ContentComponents = Record<ContentsGroup, ContentType[]>;
 export const contentComponents: ContentComponents = {
@@ -155,12 +155,24 @@ export const contentComponents: ContentComponents = {
     "speaking",
     "imageWithDescriptionList",
     "audio",
-    "cornerGuideCharacter",
     "recorder",
-    "multiLevelActionCard",
+    "notiCharacterList",
+  ],
+  character: [
+    "cornerGuideCharacter",
     "activityGuideCharacter",
     "explainingCharacter",
     "characterCardList",
+  ],
+  mixture: [
+    "contentsCardList",
+    "multiLevelActionCard",
+    "conversationWordList",
+    "toggleSentenceList",
+    "cardTab",
+    "notiCharacterList",
+    "multiLevelActionSentenceCard",
+    "conversation",
   ],
 };
 
@@ -169,6 +181,8 @@ export const contentComponentsGroupMap: Record<
   string
 > = {
   common: "기본형",
+  character: "캐릭터형",
+  mixture: "혼합형",
 };
 
 export const contentComponentsNameMap: Partial<Record<ContentType, string>> = {
@@ -185,8 +199,15 @@ export const contentComponentsNameMap: Partial<Record<ContentType, string>> = {
   recorder: "녹음하기",
   multiLevelActionCard: "액션카드(단어용)",
   activityGuideCharacter: "활동 안내",
+  contentsCardList: "학습 카드",
   explainingCharacter: "설명문",
   characterCardList: "학습 내용",
+  toggleSentenceList: "문장 토글",
+  cardTab: "탭",
+  notiCharacterList: "학습 예고",
+  multiLevelActionSentenceCard: "액션카드(문장용)",
+  conversationWordList: "단어 목록",
+  conversation: "대화",
 };
 export const characterCardDefaultData = Object.freeze({
   title: "",
@@ -308,6 +329,16 @@ export const getContentComponentsDefaultValue = (): Partial<
       },
     },
   },
+  contentsCardList: {
+    id: uuidV4(),
+    type: "contentsCardList",
+    data: [
+      {
+        isAccent: false,
+        contents: [],
+      },
+    ],
+  },
   explainingCharacter: {
     id: uuidV4(),
     type: "explainingCharacter",
@@ -327,6 +358,91 @@ export const getContentComponentsDefaultValue = (): Partial<
         title: "",
         description: "",
         character: {
+          src: "",
+        },
+      },
+    ],
+  },
+  toggleSentenceList: {
+    id: uuidV4(),
+    type: "toggleSentenceList",
+    data: [
+      {
+        text: "",
+        pronunciation: "",
+        meaning: "",
+      },
+    ],
+  },
+  cardTab: {
+    id: uuidV4(),
+    type: "cardTab",
+    data: [
+      {
+        tabName: "",
+        cards: [
+          {
+            contents: [],
+          },
+        ],
+      },
+      {
+        tabName: "",
+        cards: [
+          {
+            contents: [],
+          },
+        ],
+      },
+    ],
+    meta: {
+      isUseTab: true,
+    },
+  },
+  notiCharacterList: {
+    id: uuidV4(),
+    type: "notiCharacterList",
+    data: [
+      {
+        text: "",
+        character: {
+          src: "",
+        },
+      },
+    ],
+  },
+  multiLevelActionSentenceCard: {
+    id: uuidV4(),
+    type: "multiLevelActionSentenceCard",
+    data: [[]],
+  },
+  conversationWordList: {
+    id: uuidV4(),
+    type: "conversationWordList",
+    data: {
+      words: [
+        {
+          text: "",
+          audio: {
+            src: "",
+          },
+        },
+      ],
+    },
+  },
+  conversation: {
+    id: uuidV4(),
+    type: "conversation",
+    data: [
+      {
+        text: "",
+        pronunciation: "",
+        meaning: "",
+        character: {
+          name: "",
+          src: "",
+        },
+        audio: {
           src: "",
         },
       },
@@ -356,6 +472,58 @@ export const getTemplateDefaultValue = (): Partial<
     id: uuidV4(),
     type: "Template_H_5_5",
     leftContents: [],
+    rightContents: [],
+  },
+  TemplateConversation: {
+    id: uuidV4(),
+    type: "TemplateConversation",
+    leftContents: [
+      {
+        id: uuidV4(),
+        type: "fullAudio",
+        data: {},
+      },
+      {
+        id: uuidV4(),
+        type: "conversationWordList",
+        data: {
+          words: [
+            {
+              text: "",
+              audio: {
+                src: "",
+              },
+            },
+          ],
+        },
+      },
+    ],
+    rightContents: [],
+  },
+  TemplateConversationToggle: {
+    id: uuidV4(),
+    type: "TemplateConversationToggle",
+    leftContents: [
+      {
+        id: uuidV4(),
+        type: "fullAudio",
+        data: {},
+      },
+      {
+        id: uuidV4(),
+        type: "conversationWordList",
+        data: {
+          words: [
+            {
+              text: "",
+              audio: {
+                src: "",
+              },
+            },
+          ],
+        },
+      },
+    ],
     rightContents: [],
   },
 });

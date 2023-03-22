@@ -141,6 +141,7 @@ const ImageWithCaptionListCreator = ({
   const addImage = () => {
     // 최대 2개 까지
     if (thisContent.data.length === 2) {
+      alert("이미지는 최대 2개까지만 등록 가능합니다.");
       return;
     }
     const newContent = {
@@ -171,7 +172,7 @@ const ImageWithCaptionListCreator = ({
     <ContentCreatorLayout
       isDraggable={isDraggable}
       draggableProvided={draggableProvided}
-      onDeleteComponent={deleteContent}
+      deleteContent={deleteContent}
       slideId={currentSlide.id}
       content={content}
       position={position}

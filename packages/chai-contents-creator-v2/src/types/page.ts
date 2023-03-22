@@ -52,6 +52,7 @@ export type ContentCommonProps = {
   updateContent: ReturnUsePage["updateContent"];
   deleteContent: ReturnUsePage["deleteContent"];
   isDraggable?: boolean;
+  templateType?: TemplateType;
 };
 
 export type DraggableContentCommonProps = ContentCommonProps & {

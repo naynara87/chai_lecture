@@ -83,7 +83,8 @@ const ActivityGuideCharacterCreator = ({
     <ContentCreatorLayout
       isDraggable={isDraggable}
       draggableProvided={draggableProvided}
-      onDeleteComponent={deleteContent}
+      align="center"
+      deleteContent={deleteContent}
       slideId={currentSlide.id}
       content={content}
       position={position}

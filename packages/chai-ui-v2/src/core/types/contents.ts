@@ -23,13 +23,13 @@ export type Content =
   | FinalSpeakingContentData
   | AudioContentData
   | CornerGuideCharacterContentData
-  | TextBoxListContentData
   | WordsCarouselContentData
   | AudioAndWordsCarouselContentData
   | ToggleSentenceListContentData
   | MultilevelActionSentenceCardContentData
   | FullAudioContentData
-  | NotiCharacterListContentData;
+  | NotiCharacterListContentData
+  | ContentsCardListContentData;
 export type ContentType = Content["type"];
 
 export type ConversationContent =
@@ -251,27 +251,6 @@ export type NotiCharacterListContentData = {
 };
 
 /**
- * 팝업 레이어 캐릭터 컴포넌트
- * 페이지에 속한 인트로덕션
- */
-export type IntroductionModalContentData = {
-  id: ID;
-  type: "introductionModal";
-  data: {
-    title: string;
-    sub: string;
-    description: string;
-    character: {
-      src: string;
-    };
-    soundEffect?: {
-      src: string;
-    };
-  };
-  meta?: Meta;
-};
-
-/**
  * 퀴즈 컴포넌트 팝업 레이어 컴포넌트
  * 퀴즈 컴포넌트에 속한 팝업 레이어
  */
@@ -375,8 +354,6 @@ export type ConversationWordListContentData = {
   data: {
     words: {
       text: string;
-      pronunciation: string;
-      meaning: string;
       audio?: {
         src: string;
       };
@@ -543,7 +520,9 @@ export type CardTabContentData = {
       contents: Content[];
     }[];
   }[];
-  meta?: Meta;
+  meta?: {
+    isUseTab: boolean;
+  };
 };
 
 /**
@@ -577,6 +556,11 @@ export type TextBoxListContentData = {
   meta?: Meta;
 };
 
+export type ContentsCardItem = {
+  isAccent: boolean;
+  contents: Content[];
+};
+
 /**
  * 학습 카드 컴포넌트
  * CH-03-01
@@ -584,10 +568,7 @@ export type TextBoxListContentData = {
 export type ContentsCardListContentData = {
   id: ID;
   type: "contentsCardList";
-  data: {
-    isAccent: boolean;
-    contents: Content[];
-  }[];
+  data: ContentsCardItem[];
   meta?: Meta;
 };
 

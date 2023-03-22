@@ -29,7 +29,7 @@ const MultilevelActionCardList = styled.div`
 `;
 const MultilevelActionCard = styled.div`
   display: flex;
-  width: 300px;
+  width: 500px;
   min-height: 134px;
   flex-direction: column;
   padding: 8px;
@@ -58,6 +58,7 @@ const TopArea = styled.div`
 `;
 const AddStep = styled.button`
   height: 50px;
+  width: 268px;
   margin-bottom: 8px;
   padding: 14px 16px;
   border: 1px solid ${colorPalette.subblue};
@@ -69,6 +70,7 @@ const AddStep = styled.button`
   appearance: none;
   outline: none;
   box-shadow: none;
+  margin: 0 auto 8px;
 `;
 const DashedBar = styled.div`
   height: 0px;
@@ -79,7 +81,7 @@ const DashedBar = styled.div`
 /**
  * CH-03-02-01 액션 학습 카드 - 단어용
  */
-const MultilevelActionCardCreator = ({
+const MultilevelActionSentenceCardCreator = ({
   content,
   updateContent,
   currentSlide,
@@ -204,7 +206,6 @@ const MultilevelActionCardCreator = ({
       slideId={currentSlide.id}
       content={content}
       position={position}
-      align="center"
     >
       <MultilevelActionCardWrapper>
         <MultilevelActionCardList>
@@ -248,4 +249,4 @@ const MultilevelActionCardCreator = ({
   );
 };
 
-export default MultilevelActionCardCreator;
+export default MultilevelActionSentenceCardCreator;

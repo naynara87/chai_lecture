@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ComponentsContextMenuCommon from "../components/molecules/ComponentsContextMenuCommon";
-import ComponentsContextMenuComponent from "../components/molecules/ComponentsContextMenuComponent"
+import ComponentsContextMenuComponent from "../components/molecules/ComponentsContextMenuComponent";
 
 const useComponentContext = () => {
   const [isComponentsContextMenuOpen, setIsComponentsContextMenuOpen] =
@@ -24,7 +24,7 @@ const useComponentContext = () => {
 
   return {
     ComponentsContextMenuCommon,
-ComponentsContextMenuComponent,
+    ComponentsContextMenuComponent,
     isComponentsContextMenuOpen,
     toggleContextMenu,
     closeContextMenu,

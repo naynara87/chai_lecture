@@ -1,7 +1,11 @@
+import { SerializedStyles } from "@emotion/react";
 import styled from "@emotion/styled";
 import IconX from "../../assets/images/icon/icon_x_white.svg";
 
-const Button = styled.span`
+interface ButtonProps {
+  customCSS?: SerializedStyles;
+}
+const Button = styled.span<ButtonProps>`
   width: 20px;
   height: 20px;
   background-color: rgba(0, 0, 0, 0.4);
@@ -22,13 +26,21 @@ const Button = styled.span`
     width: 100%;
     height: 100%;
   }
+
+  ${({ customCSS }) => customCSS}
 `;
 
 interface ObjectDeleteButtonProps {
   onClick?: () => void;
+  customCSS?: SerializedStyles;
 }
-const ObjectDeleteButton = ({ onClick }: ObjectDeleteButtonProps) => {
-  return <Button onClick={onClick} className="btn-delete" />;
+const ObjectDeleteButton = ({
+  onClick,
+  customCSS,
+}: ObjectDeleteButtonProps) => {
+  return (
+    <Button onClick={onClick} className="btn-delete" customCSS={customCSS} />
+  );
 };
 
 export default ObjectDeleteButton;

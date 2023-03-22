@@ -13,6 +13,7 @@ import {
   useGlobalAudio,
   useTemplateMapper,
 } from "../../core";
+import useIntroductionModal from "../../core/hooks/useIntroductionModal";
 
 const SwiperWrapper = styled.div`
   position: relative;
@@ -26,6 +27,7 @@ const LayoutMultiPage = ({ page, setPageCompleted }: LayoutMultiPageProps) => {
   const { getTemplateComponent } = useTemplateMapper({
     setPageCompleted,
   });
+  const { introduction } = useIntroductionModal({ page: multiPageData });
 
   const { handleAudioReset } = useGlobalAudio();
 
@@ -56,6 +58,7 @@ const LayoutMultiPage = ({ page, setPageCompleted }: LayoutMultiPageProps) => {
       >
         {pages}
       </Swiper>
+      {introduction}
     </SwiperWrapper>
   );
 };

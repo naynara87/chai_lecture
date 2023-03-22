@@ -12,6 +12,7 @@ import usePage from "../../hooks/usePage";
 import useComponent from "../../hooks/useComponent";
 import { DragDropContext } from "react-beautiful-dnd";
 import { PREVIEW_URL } from "../../constants/url";
+import ModalIntroduction from "../molecules/modal/ModalIntroduction";
 
 const CommonButtonContainer = styled.div`
   padding-bottom: 16px;
@@ -22,6 +23,8 @@ const CommonButtonContainer = styled.div`
 `;
 
 const CreatePage = () => {
+  const [isModalIntroductionOpen, setIsModalIntroductionOpen] = useState(false);
+
   const { getTemplate } = useTemplate();
 
   const {
@@ -35,6 +38,8 @@ const CreatePage = () => {
     savePageDataToLocalStorage,
     removePageDataFromLocalStorage,
     deleteContent,
+    pageData,
+    saveIntroductionModalData,
   } = usePage();
 
   useEffect(() => {
@@ -52,9 +57,7 @@ const CreatePage = () => {
   }, [savePageDataToLocalStorage]);
 
   const handleClickAddIntroductionModal = useCallback(() => {
-    // TODO : 학습 변경 간지 추가 모달창 띄우기
-    // 간지 페이지당 한개
-    console.log("학습 변경 간지 추가 모달창 띄우기");
+    setIsModalIntroductionOpen(true);
   }, []);
 
   const [isLoading] = useState(false); // setIsLoading
@@ -100,6 +103,13 @@ const CreatePage = () => {
         )}
         <CreateAddBtn onClick={addSlide}>+ 슬라이드 추가</CreateAddBtn>
       </CreateTemplateInner>
+      <ModalIntroduction
+        isModalOpen={isModalIntroductionOpen}
+        setIsModalOpen={setIsModalIntroductionOpen}
+        closeOnBackgroundClick={false}
+        saveIntroductionModalData={saveIntroductionModalData}
+        introductionModalData={pageData.introduction}
+      />
     </CreateTemplateWrap>
   );
 };
