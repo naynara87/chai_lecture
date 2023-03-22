@@ -25,12 +25,6 @@ const CreateTemplateConversation = ({
     toggleContextMenu,
   } = useComponentContext();
 
-  const {
-    ComponentsContextMenuCommon: ComponentsContextMenuRight,
-    isComponentsContextMenuOpen: isComponentsContextMenuOpenRight,
-    toggleContextMenu: toggleContextMenuRight,
-  } = useComponentContext();
-
   const { focusedId, setFocusedId, getComponent, getDroppableId } =
     returnUseComponent;
 
@@ -66,18 +60,15 @@ const CreateTemplateConversation = ({
         <CreateEditMain>
           <DashBoxArea droppableId={rightDroppableId}>
             <CreateTemplateChoiceBtnWrap>
-              <button
-                className="btn-comp-select"
-                onClick={toggleContextMenuRight}
-              >
+              <button className="btn-comp-select" onClick={toggleContextMenu}>
                 컴포넌트 선택
               </button>
-              <ComponentsContextMenuRight
-                isComponentsContextMenuOpen={isComponentsContextMenuOpenRight}
+              <ComponentsContextMenuCommon
+                isComponentsContextMenuOpen={isComponentsContextMenuOpen}
                 addComponentMap={addComponentMap}
                 slideId={slideId}
                 position="rightContents"
-                toggleContextMenu={toggleContextMenuRight}
+                toggleContextMenu={toggleContextMenu}
               />
             </CreateTemplateChoiceBtnWrap>
             {thisSlide.rightContents.map((content, index) => {
