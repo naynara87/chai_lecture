@@ -1,3 +1,4 @@
+import styled from "@emotion/styled";
 import React from "react";
 import IconTimer from "../../assets/images/icon/icon_timer.svg";
 import ComponentProblemCommentary from "../molecules/ComponentProblemCommentary";
@@ -5,9 +6,11 @@ import ComponentProblemGrade from "../molecules/ComponentProblemGrade";
 import ComponentProblemTopButtonArea from "../molecules/ComponentProblemTopButtonArea";
 import ComponentProblemUserInfo from "../molecules/ComponentProblemUserInfo";
 
+const TemplateProblemWrapper = styled.div``;
+
 const TemplateProblem = () => {
   return (
-    <>
+    <TemplateProblemWrapper>
       {/* problem header */}
       <header className="cai-hd problem-hd">
         <div className="hd-conts-wrap">
@@ -20,7 +23,7 @@ const TemplateProblem = () => {
       <main className="cai-main problem-main">
         <ComponentProblemTopButtonArea />
         <div className="layout-panel-wrap grid-h-3-7">
-          <div className="layout-panel">
+          <div className="layout-panel pd-40">
             <ComponentProblemUserInfo />
             <ComponentProblemGrade />
           </div>
@@ -30,7 +33,7 @@ const TemplateProblem = () => {
         </div>
       </main>
       {/* end problem main layout */}
-    </>
+    </TemplateProblemWrapper>
   );
 };
 

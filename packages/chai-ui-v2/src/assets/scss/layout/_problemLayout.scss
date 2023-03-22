@@ -183,6 +183,22 @@ $gray-color: #D6D7DA;
   font-size: vw(22);
 }
 
+.btn-problem-white-round {
+  @extend %btn;
+
+  @include flex-center {
+    gap: vw(10);
+  }
+
+  width: 100%;
+  height: vw(55);
+  padding: vw(12) vw(30);
+  border: 1px solid color(gray-db);
+  border-radius: vw(100);
+  background-color: color(gray-ff);
+  font-size: vw(22);
+}
+
 .btn-problem-gray {
   @extend %btn;
 

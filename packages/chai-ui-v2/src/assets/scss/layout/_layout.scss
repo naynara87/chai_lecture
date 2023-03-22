@@ -47,6 +47,10 @@
   background-color: color(gray-ff);
   box-shadow: 2px 6px 12px rgba(0, 0, 0, 0.15);
 
+  &.pd-40 {
+    padding: vw(40);
+  }
+
   >*:not(:first-child) {
     margin-top: vh(40);
   }
