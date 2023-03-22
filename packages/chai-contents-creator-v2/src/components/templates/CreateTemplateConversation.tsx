@@ -1,4 +1,7 @@
-import { Template_H_3_7Data } from "chai-ui-v2";
+import {
+  TemplateConversationData,
+  TemplateConversationToggleData,
+} from "chai-ui-v2";
 import useComponentContext from "../../hooks/useComponentContext";
 import {
   CreateEditMain,
@@ -28,9 +31,9 @@ const CreateTemplateConversation = ({
   const { focusedId, setFocusedId, getComponent, getDroppableId } =
     returnUseComponent;
 
-  const thisSlide = slides.find(
-    (slide) => slide.id === slideId,
-  ) as Template_H_3_7Data;
+  const thisSlide = slides.find((slide) => slide.id === slideId) as
+    | TemplateConversationData
+    | TemplateConversationToggleData;
 
   const leftDroppableId = getDroppableId(slideId, "leftContents");
 
@@ -81,6 +84,7 @@ const CreateTemplateConversation = ({
                 updateContent,
                 deleteContent,
                 position: "rightContents",
+                templateType: thisSlide.type,
               });
             })}
           </DashBoxArea>

@@ -3,7 +3,6 @@ import {
   ComponentButtonRoundArrow,
   ConversationWordListContentData,
   ImgCharacterComponent,
-  vw,
 } from "chai-ui-v2";
 import React, { useCallback, useMemo, useState } from "react";
 import { DraggableContentCommonProps } from "../../types/page";

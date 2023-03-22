@@ -487,4 +487,30 @@ export const getTemplateDefaultValue = (): Partial<
     ],
     rightContents: [],
   },
+  TemplateConversationToggle: {
+    id: uuidV4(),
+    type: "TemplateConversationToggle",
+    leftContents: [
+      {
+        id: uuidV4(),
+        type: "fullAudio",
+        data: {},
+      },
+      {
+        id: uuidV4(),
+        type: "conversationWordList",
+        data: {
+          words: [
+            {
+              text: "",
+              audio: {
+                src: "",
+              },
+            },
+          ],
+        },
+      },
+    ],
+    rightContents: [],
+  },
 });
