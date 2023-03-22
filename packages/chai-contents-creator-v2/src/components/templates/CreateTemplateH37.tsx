@@ -11,10 +11,10 @@ import DashBoxArea from "../atoms/DashBoxArea";
 import PageHeader from "../molecules/PageHeader";
 
 export const CreateEditMainWrap37 = styled(CreateEditMainWrap)`
-  ${CreateEditMain}:nth-child(1) {
+  ${CreateEditMain}:nth-of-type(1) {
     width: 30%;
   }
-  ${CreateEditMain}:nth-child(2) {
+  ${CreateEditMain}:nth-of-type(2) {
     width: 70%;
   }
   gap: 24px;
