@@ -32,6 +32,7 @@ const TemplateQuestion = ({
     window.addEventListener('message', receiveMessage);
 
     return () => {
+      console.log(111)
       // 컴포넌트가 언마운트될 때 message 이벤트 리스너를 제거합니다.
       window.removeEventListener('message', receiveMessage);
     };
