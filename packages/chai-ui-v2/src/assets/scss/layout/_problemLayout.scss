@@ -1,6 +1,7 @@
 /* =================== problemLayout =================== */
 $cont-padding: vw(40);
 $main-color: #6673A3;
+$main-light-color: #E3E3E7;
 $gray-color: #D6D7DA;
 
 // header style
@@ -59,7 +60,6 @@ $gray-color: #D6D7DA;
 // submit button style
 .btn-problem {
   @extend %btn;
-  @extend %btn-interaction;
 
   @include circle(vw(115));
 
@@ -156,9 +156,44 @@ $gray-color: #D6D7DA;
 }
 
 .problem-title-wrap {
-  font-size: vw(20);
+  padding: vw(14) vw(25);
+  border-radius: vw(10);
+  background-color: $main-light-color;
+  font-size: vw(24);
 
   >b {
     color: $main-color;
   }
+}
+
+// button style
+.btn-problem-white {
+  @extend %btn;
+
+  @include flex-center {
+    gap: vw(10);
+  }
+
+  height: vw(55);
+  padding: vw(10) vw(20);
+  border: 1px solid color(gray-db);
+  border-radius: vw(10);
+  background-color: color(gray-ff);
+  font-size: vw(22);
+}
+
+.btn-problem-gray {
+  @extend %btn;
+
+  @include flex-center {
+    gap: vw(10);
+  }
+
+  height: vw(55);
+  padding: vw(10) vw(20);
+  border: 1px solid color(gray-80);
+  border-radius: vw(10);
+  background-color: color(gray-80);
+  font-size: vw(22);
+  color: color(gray-ff);
 }
