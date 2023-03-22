@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import {
   ConversationContentData,
   TemplateConversationData,
+  TemplateConversationRepeatData,
   TemplateConversationToggleData,
   vh,
   vw,
@@ -14,6 +15,7 @@ import AddButton from "../atoms/AddButton";
 import ObjectDeleteButton from "../atoms/ObjectDeleteButton";
 import TogglesWrapper from "../atoms/TogglesWrapper";
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
+import SpeakingTimeInputWrapper from "../molecules/SpeakingTimeInputWrapper";
 import TextEditorViewer from "../molecules/TextEditorViewer";
 import UrlInputWrapper from "../molecules/UrlInputWrapper";
 
@@ -54,7 +56,8 @@ const ConversationCreator = ({
 }: DraggableContentCommonProps) => {
   const thisTemplateType = templateType as
     | TemplateConversationData["type"]
-    | TemplateConversationToggleData["type"];
+    | TemplateConversationToggleData["type"]
+    | TemplateConversationRepeatData["type"];
   const thisContent = content as ConversationContentData;
 
   console.log(thisTemplateType);
@@ -217,6 +220,22 @@ const ConversationCreator = ({
     [thisContent, currentSlide.id, updateContent, position],
   );
 
+  const handleSubmitSpeakingTime = useCallback(
+    (rowIndex: number) => (time: number) => {
+      const updatedData = thisContent.data.map((item, index) => {
+        if (index === rowIndex) {
+          return {
+            ...item,
+            speakingTime: time,
+          };
+        }
+        return item;
+      });
+      updateConversationListData(updatedData);
+    },
+    [thisContent, updateConversationListData],
+  );
+
   const conversationLists = useMemo(() => {
     return thisContent.data.map((list, listIndex) => {
       return (
@@ -235,30 +254,31 @@ const ConversationCreator = ({
                 </button>
               </div>
             </div>
-            <p className="name">
-              <CharacterNameInput
-                type="text"
-                className="name"
-                placeholder="화자 이름"
-                onBlur={(e) => {
-                  const target = e.target as HTMLInputElement;
-                  setName(listIndex, target.value);
-                }}
-              />
-            </p>
+            <CharacterNameInput
+              type="text"
+              className="name"
+              placeholder="화자 이름"
+              onBlur={(e) => {
+                const target = e.target as HTMLInputElement;
+                setName(listIndex, target.value);
+              }}
+            />
           </div>
           <div className="txt-wrap">
             <UrlInputWrapper typeText="이미지" onSubmit={setImage(listIndex)} />
             <UrlInputWrapper typeText="오디오" onSubmit={setAudio(listIndex)} />
-            <p className="chinese" onClick={focusTextEditor(listIndex, "text")}>
+            <div
+              className="chinese"
+              onClick={focusTextEditor(listIndex, "text")}
+            >
               <TextEditorViewer
                 setText={(text) => setText(listIndex, "text", text)}
                 text={getText(listIndex, "text")}
                 isFocused={isTextEditorFocused(isFocused, listIndex, "text")}
                 defaultText="한문을 입력해주세요"
               />
-            </p>
-            <p
+            </div>
+            <div
               className="pinyin"
               onClick={focusTextEditor(listIndex, "pronunciation")}
             >
@@ -272,15 +292,23 @@ const ConversationCreator = ({
                 )}
                 defaultText="한어병음을 입력해주세요"
               />
-            </p>
-            <p className="mean" onClick={focusTextEditor(listIndex, "meaning")}>
+            </div>
+            <div
+              className="mean"
+              onClick={focusTextEditor(listIndex, "meaning")}
+            >
               <TextEditorViewer
                 setText={(text) => setText(listIndex, "meaning", text)}
                 text={getText(listIndex, "meaning")}
                 isFocused={isTextEditorFocused(isFocused, listIndex, "meaning")}
                 defaultText="뜻을 입력해주세요"
               />
-            </p>
+            </div>
+            {thisTemplateType === "TemplateConversationRepeat" && (
+              <SpeakingTimeInputWrapper
+                onSubmit={handleSubmitSpeakingTime(listIndex)}
+              />
+            )}
           </div>
         </ConversationList>
       );
@@ -296,6 +324,8 @@ const ConversationCreator = ({
     setAudio,
     setName,
     deleteConversation,
+    thisTemplateType,
+    handleSubmitSpeakingTime,
   ]);
 
   const addConversation = useCallback(() => {

@@ -24,6 +24,7 @@ import MultilevelActionCardCreator from "../components/contents/MultilevelAction
 import ActivityGuideCharacterCreator from "../components/contents/ActivityGuideCharacterCreator";
 import ContentsCardList from "../components/contents/ContentsCardList";
 import ExplainingCharacterCreator from "../components/contents/ExplainingCharacterCreator";
+import CharacterCardListCreator from "../components/contents/CharacterCardListCreator";
 import ToggleSentenceListCreator from "../components/contents/ToggleSentenceListCreator";
 import CardTabCreator from "../components/contents/CardTabCreator";
 import NotiCharacterListCreator from "../components/contents/NotiCharacterListCreator";
@@ -55,6 +56,7 @@ const useComponent = () => {
       activityGuideCharacter: <ActivityGuideCharacterCreator {...props} />,
       contentsCardList: <ContentsCardList {...props} />,
       explainingCharacter: <ExplainingCharacterCreator {...props} />,
+      characterCardList: <CharacterCardListCreator {...props} />,
       toggleSentenceList: <ToggleSentenceListCreator {...props} />,
       cardTab: <CardTabCreator {...props} />,
       notiCharacterList: <NotiCharacterListCreator {...props} />,

@@ -162,6 +162,7 @@ export const contentComponents: ContentComponents = {
     "cornerGuideCharacter",
     "activityGuideCharacter",
     "explainingCharacter",
+    "characterCardList",
   ],
   mixture: [
     "contentsCardList",
@@ -200,6 +201,7 @@ export const contentComponentsNameMap: Partial<Record<ContentType, string>> = {
   activityGuideCharacter: "활동 안내",
   contentsCardList: "학습 카드",
   explainingCharacter: "설명문",
+  characterCardList: "학습 내용",
   toggleSentenceList: "문장 토글",
   cardTab: "탭",
   notiCharacterList: "학습 예고",
@@ -207,13 +209,12 @@ export const contentComponentsNameMap: Partial<Record<ContentType, string>> = {
   conversationWordList: "단어 목록",
   conversation: "대화",
 };
-
-export const numberingTextDefaultData = Object.freeze({
-  firstText: "",
-  secondText: "",
+export const characterCardDefaultData = Object.freeze({
+  title: "",
+  description: "",
 });
 
-export const explainingCharacterDefaultData = Object.freeze({
+export const numberingTextDefaultData = Object.freeze({
   firstText: "",
   secondText: "",
 });
@@ -348,6 +349,19 @@ export const getContentComponentsDefaultValue = (): Partial<
         src: "",
       },
     },
+  },
+  characterCardList: {
+    id: uuidV4(),
+    type: "characterCardList",
+    data: [
+      {
+        title: "",
+        description: "",
+        character: {
+          src: "",
+        },
+      },
+    ],
   },
   toggleSentenceList: {
     id: uuidV4(),
@@ -489,6 +503,32 @@ export const getTemplateDefaultValue = (): Partial<
   TemplateConversationToggle: {
     id: uuidV4(),
     type: "TemplateConversationToggle",
+    leftContents: [
+      {
+        id: uuidV4(),
+        type: "fullAudio",
+        data: {},
+      },
+      {
+        id: uuidV4(),
+        type: "conversationWordList",
+        data: {
+          words: [
+            {
+              text: "",
+              audio: {
+                src: "",
+              },
+            },
+          ],
+        },
+      },
+    ],
+    rightContents: [],
+  },
+  TemplateConversationRepeat: {
+    id: uuidV4(),
+    type: "TemplateConversationRepeat",
     leftContents: [
       {
         id: uuidV4(),
