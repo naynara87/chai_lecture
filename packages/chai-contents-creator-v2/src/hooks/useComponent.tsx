@@ -29,6 +29,7 @@ import CardTabCreator from "../components/contents/CardTabCreator";
 import NotiCharacterListCreator from "../components/contents/NotiCharacterListCreator";
 import MultilevelActionSentenceCardCreator from "../components/contents/MultilevelActionSentenceCardCreator";
 import ConversationWordListCreator from "../components/contents/ConversationWordListCreator";
+import WordsCarouselModalCreator from "../components/contents/WordsCarouselModalCreator";
 
 const useComponent = () => {
   const [focusedId, setFocusedId] = useRecoilState(focusedIdState);
@@ -60,6 +61,7 @@ const useComponent = () => {
         <MultilevelActionSentenceCardCreator {...props} />
       ),
       conversationWordList: <ConversationWordListCreator {...props} />,
+      wordsCarousel: <WordsCarouselModalCreator {...props} />,
     };
 
     return componentMap[type];

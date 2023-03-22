@@ -9,6 +9,7 @@ import {
   TemplateData,
   TemplateRolePlayingData,
 } from "chai-ui-v2";
+import { words } from "lodash";
 
 type PageLayout = {
   type: TemplateData["type"];
@@ -156,12 +157,12 @@ export const contentComponents: ContentComponents = {
     "imageWithDescriptionList",
     "audio",
     "recorder",
-    "notiCharacterList",
   ],
   character: [
     "cornerGuideCharacter",
     "activityGuideCharacter",
     "explainingCharacter",
+    "notiCharacterList",
   ],
   mixture: [
     "contentsCardList",
@@ -170,8 +171,8 @@ export const contentComponents: ContentComponents = {
     "conversationWordList",
     "toggleSentenceList",
     "cardTab",
-    "notiCharacterList",
     "multiLevelActionSentenceCard",
+    "wordsCarousel",
   ],
 };
 
@@ -205,6 +206,7 @@ export const contentComponentsNameMap: Partial<Record<ContentType, string>> = {
   notiCharacterList: "학습 예고",
   multiLevelActionSentenceCard: "액션카드(문장용)",
   conversationWordList: "단어 목록",
+  wordsCarousel: "단어장",
 };
 
 export const numberingTextDefaultData = Object.freeze({
@@ -408,6 +410,20 @@ export const getContentComponentsDefaultValue = (): Partial<
       words: [
         {
           text: "",
+          audio: {
+            src: "",
+          },
+        },
+      ],
+    },
+  },
+  wordsCarousel: {
+    id: uuidV4(),
+    type: "wordsCarousel",
+    data: {
+      words: [
+        {
+          word: "",
           audio: {
             src: "",
           },
