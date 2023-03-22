@@ -6,7 +6,6 @@ import IconTimer from "../../assets/images/icon/icon_timer.svg";
 const IframeWrapper = styled.div`
   width: 100%;
   height: 100%;
-  background: beige;
 
   iframe {
     width: 100%;

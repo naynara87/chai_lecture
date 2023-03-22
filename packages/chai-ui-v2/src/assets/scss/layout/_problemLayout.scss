@@ -87,15 +87,16 @@ $gray-color: #D6D7DA;
   position: absolute;
   top: vh(60);
   left: 0;
-  min-width: vw(115);
-  padding: vw(10) vw(20);
+  min-width: vw(125);
+  padding: vw(7) vw(15);
   border-radius: vw(5);
   background-color: $main-color;
-  font-weight: 600;
-  font-size: vw(18);
+  font-weight: 500;
+  font-size: vw(24);
+  line-height: 1.6;
   color: color(gray-ff);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-  transform: translateX(-50%);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+  transform: translateX(vw(-62));
   white-space: pre-line;
 }
 
@@ -143,16 +144,14 @@ $gray-color: #D6D7DA;
   color: color(gray-80);
   text-align: center;
 
-  &.active {
-    background-color: $main-color;
-    font-weight: 600;
-    color: color(gray-ff);
-  }
-
   &.end {
     background-color: color(gray-ff);
-    font-weight: 600;
     color: $main-color;
+  }
+
+  &.active {
+    background-color: $main-color;
+    color: color(gray-ff);
   }
 }
 
