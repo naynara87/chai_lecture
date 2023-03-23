@@ -174,6 +174,7 @@ export const contentComponents: ContentComponents = {
     "multiLevelActionSentenceCard",
     "wordsCarousel",
     "conversation",
+    "audioAndWordsCarousel",
   ],
 };
 
@@ -210,6 +211,7 @@ export const contentComponentsNameMap: Partial<Record<ContentType, string>> = {
   conversationWordList: "단어 목록",
   wordsCarousel: "단어장",
   conversation: "대화",
+  audioAndWordsCarousel: "음성+단어장",
 };
 export const characterCardDefaultData = Object.freeze({
   title: "",
@@ -467,6 +469,28 @@ export const getContentComponentsDefaultValue = (): Partial<
         },
       },
     ],
+  },
+  audioAndWordsCarousel: {
+    id: uuidV4(),
+    type: "audioAndWordsCarousel",
+    data: {
+      wordCarouselContents: {
+        words: [
+          {
+            word: "",
+            audio: {
+              src: "",
+            },
+          },
+        ],
+        soundEffect: {
+          src: "",
+        },
+      },
+      audio: {
+        src: "",
+      },
+    },
   },
 });
 
