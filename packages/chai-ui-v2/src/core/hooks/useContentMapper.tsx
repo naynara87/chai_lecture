@@ -29,7 +29,6 @@ import {
   ConversationContentData,
   ImageWithCaptionListContentData,
   ConversationQuizContentData,
-  QuizWordsInOrderContentData,
   MultiChoiceContentData,
   FinalSpeakingContentData,
   AudioContentData,
@@ -41,6 +40,7 @@ import {
   ToggleSentenceListContentData,
   MultilevelActionSentenceCardContentData,
   ContentsCardListContentData,
+  WordsInOrderContentData,
 } from "../types";
 import CharacterCardListComponent from "../../components/contents/CharacterCardListComponent";
 import SpeakingComponent from "../../components/contents/SpeakingComponent";
@@ -160,9 +160,9 @@ const useContentMapper = () => {
           key={contentIndex}
         />
       ),
-      quizWordsInOrder: (
+      wordsInOrder: (
         <WordsInOrderComponent
-          contents={content as QuizWordsInOrderContentData}
+          contents={content as WordsInOrderContentData}
           key={contentIndex}
         />
       ),

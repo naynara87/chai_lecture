@@ -176,6 +176,7 @@ export const contentComponents: ContentComponents = {
     "multiLevelActionSentenceCard",
     "wordsCarousel",
     "conversation",
+    "audioAndWordsCarousel",
   ],
 };
 
@@ -212,6 +213,7 @@ export const contentComponentsNameMap: Partial<Record<ContentType, string>> = {
   conversationWordList: "단어 목록",
   wordsCarousel: "단어장",
   conversation: "대화",
+  audioAndWordsCarousel: "음성+단어장",
 };
 export const characterCardDefaultData = Object.freeze({
   title: "",
@@ -475,6 +477,28 @@ export const getContentComponentsDefaultValue = (): Partial<
       },
     ],
   },
+  audioAndWordsCarousel: {
+    id: uuidV4(),
+    type: "audioAndWordsCarousel",
+    data: {
+      wordCarouselContents: {
+        words: [
+          {
+            word: "",
+            audio: {
+              src: "",
+            },
+          },
+        ],
+        soundEffect: {
+          src: "",
+        },
+      },
+      audio: {
+        src: "",
+      },
+    },
+  },
   multiChoice: {
     id: uuidV4(),
     type: "multiChoice",
@@ -483,6 +507,28 @@ export const getContentComponentsDefaultValue = (): Partial<
       answerIndex: -1,
       exampleContents: [],
       quizPopup: quizPopupData,
+    },
+  },
+  wordsInOrder: {
+    id: uuidV4(),
+    type: "wordsInOrder",
+    data: {
+      choice: [
+        {
+          text: "",
+          isChoice: false,
+          answerIndex: -1,
+        },
+      ],
+      character: {
+        name: "",
+        src: "",
+      },
+      exampleContents: [],
+      quizPopup: quizPopupData,
+    },
+    meta: {
+      isUseCharacter: false,
     },
   },
 });
@@ -639,6 +685,44 @@ export const getTemplateDefaultValue = (): Partial<
       id: uuidV4(),
       type: "roleplaying",
       data: [],
+    },
+  },
+  TemplateQuizWordsInOrder: {
+    id: uuidV4(),
+    type: "TemplateQuizWordsInOrder",
+    leftContents: [
+      {
+        id: uuidV4(),
+        type: "activityGuideCharacter",
+        data: {
+          text: "",
+          character: {
+            src: "",
+          },
+        },
+      },
+    ],
+    wordsInOrder: {
+      id: uuidV4(),
+      type: "wordsInOrder",
+      data: {
+        choice: [
+          {
+            text: "",
+            isChoice: false,
+            answerIndex: -1,
+          },
+        ],
+        character: {
+          name: "",
+          src: "",
+        },
+        exampleContents: [],
+        quizPopup: quizPopupData,
+      },
+      meta: {
+        isUseCharacter: false,
+      },
     },
   },
 });
