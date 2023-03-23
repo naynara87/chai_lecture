@@ -13,13 +13,10 @@ interface ContentCreatorWrapperProps {
 }
 const ContentCreatorWrapper = styled.div<ContentCreatorWrapperProps>`
   display: flex;
-  justify-content: center;
-  width: 100%;
   justify-content: ${({ align }) => align || "start"};
 `;
 
 const ContentCreatorContainer = styled.div`
-  width: 100%;
   display: inline-flex;
   margin-bottom: ${vw(24)};
 `;

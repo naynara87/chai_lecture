@@ -52,6 +52,7 @@ const TextCreator = ({
       slideId={currentSlide.id}
       content={content}
       position={position}
+      align="center"
     >
       <TextCreatorWrapper onClick={handleClickComponent}>
         <TextEditorViewer

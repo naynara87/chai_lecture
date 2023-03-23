@@ -10,7 +10,6 @@ import {
   TemplateData,
   TemplateRolePlayingData,
 } from "chai-ui-v2";
-import { words } from "lodash";
 
 type PageLayout = {
   type: TemplateData["type"];
