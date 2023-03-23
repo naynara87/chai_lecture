@@ -1,7 +1,12 @@
+import styled from "@emotion/styled";
 import React, { useMemo, useState } from "react";
 import ChaProfile01 from "../../assets/images/img/cha_profile01.png";
 import { Content } from "../../core";
 import { ComponentButtonRadiFillMain, HtmlContentComponent } from "../atoms";
+
+const ImgWrap = styled.div`
+  overflow: hidden;
+`;
 
 interface CharacterCardComponentProps {
   characterCard: {
@@ -32,12 +37,20 @@ const CharacterCardComponent = ({
     <li className={`training-list ${characterCardOff}`}>
       <div className="gradi-wrap">
         <div className="gradi-conts-wrap">
-          <div className="img-wrap">
-            {/* TODO kjw cpm 이미지 데이터 받으면 아래 주석친 img태그로 변경 */}
-            <img src={ChaProfile01} alt="" className="img" />
-            {/* <img src={characterCard.character.src} alt="" className="img" /> */}
-          </div>
-          <p className="title">{characterCard.title}</p>
+          <ImgWrap className="img-wrap">
+            <img
+              src={
+                characterCard.character.src
+                  ? characterCard.character.src
+                  : ChaProfile01
+              }
+              alt=""
+              className="img"
+            />
+          </ImgWrap>
+          <p className="title">
+            <HtmlContentComponent html={characterCard.title} />
+          </p>
         </div>
       </div>
       <div className="white-wrap">

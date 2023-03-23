@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import { colorPalette, validateURL } from "chai-ui-v2";
-import { useEffect, useState } from "react";
+import { colorPalette } from "chai-ui-v2";
+import { useState } from "react";
 import AddButton from "../atoms/AddButton";
 
 const UrlTextWrapper = styled.div`
@@ -38,38 +38,36 @@ const WarningMessage = styled.p`
 `;
 
 interface ButtonProps {
-  typeText: string;
-  onSubmit?: (src: string, index?: number) => void;
+  onSubmit?: (time: number) => void;
   defaultText?: string;
 }
 
-const UrlInputWrapper = ({ typeText, onSubmit, defaultText }: ButtonProps) => {
+const SpeakingTimeInputWrapper = ({ onSubmit, defaultText }: ButtonProps) => {
   const [message, setMessage] = useState<string>("");
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const input = e.currentTarget[0] as HTMLInputElement;
-    const src = input.value;
+    const timeInput = e.currentTarget[0] as HTMLInputElement;
 
-    const isUrl = validateURL(src);
+    const time = Number(timeInput.value);
 
-    if (!isUrl) {
-      setMessage("유효하지 않은 주소입니다.");
+    if (!time || time < 1) {
+      setMessage("발화시간을 정확히 입력해주세요.");
       return;
     } else {
       setMessage("");
     }
 
-    onSubmit && onSubmit(src);
+    onSubmit && onSubmit(time);
   };
 
   return (
     <UrlTextWrapper className="url-wrapper">
-      <p className="text-tit">{typeText} URL</p>
       <form onSubmit={handleSubmit}>
         <input
-          placeholder={`${typeText} URL 입력`}
+          placeholder={"발화 시간(초) 입력"}
           defaultValue={defaultText}
+          type="number"
         ></input>
         <AddButton>등록</AddButton>
       </form>
@@ -78,4 +76,4 @@ const UrlInputWrapper = ({ typeText, onSubmit, defaultText }: ButtonProps) => {
   );
 };
 
-export default UrlInputWrapper;
+export default SpeakingTimeInputWrapper;

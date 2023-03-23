@@ -24,9 +24,16 @@ import MultilevelActionCardCreator from "../components/contents/MultilevelAction
 import ActivityGuideCharacterCreator from "../components/contents/ActivityGuideCharacterCreator";
 import ContentsCardList from "../components/contents/ContentsCardList";
 import ExplainingCharacterCreator from "../components/contents/ExplainingCharacterCreator";
+import CharacterCardListCreator from "../components/contents/CharacterCardListCreator";
 import ToggleSentenceListCreator from "../components/contents/ToggleSentenceListCreator";
 import CardTabCreator from "../components/contents/CardTabCreator";
 import NotiCharacterListCreator from "../components/contents/NotiCharacterListCreator";
+import MultilevelActionSentenceCardCreator from "../components/contents/MultilevelActionSentenceCardCreator";
+import ConversationWordListCreator from "../components/contents/ConversationWordListCreator";
+import WordsCarouselModalCreator from "../components/contents/WordsCarouselModalCreator";
+import FullAudioCreator from "../components/contents/FullAudioCreator";
+import ConversationCreator from "../components/contents/ConversationCreator";
+import MultiChoiceCreator from "../components/contents/MultiChoiceCreator";
 
 const useComponent = () => {
   const [focusedId, setFocusedId] = useRecoilState(focusedIdState);
@@ -51,9 +58,18 @@ const useComponent = () => {
       activityGuideCharacter: <ActivityGuideCharacterCreator {...props} />,
       contentsCardList: <ContentsCardList {...props} />,
       explainingCharacter: <ExplainingCharacterCreator {...props} />,
+      characterCardList: <CharacterCardListCreator {...props} />,
       toggleSentenceList: <ToggleSentenceListCreator {...props} />,
       cardTab: <CardTabCreator {...props} />,
       notiCharacterList: <NotiCharacterListCreator {...props} />,
+      multiLevelActionSentenceCard: (
+        <MultilevelActionSentenceCardCreator {...props} />
+      ),
+      conversationWordList: <ConversationWordListCreator {...props} />,
+      wordsCarousel: <WordsCarouselModalCreator {...props} />,
+      fullAudio: <FullAudioCreator {...props} />,
+      conversation: <ConversationCreator {...props} />,
+      multiChoice: <MultiChoiceCreator {...props} />,
     };
 
     return componentMap[type];
@@ -63,25 +79,51 @@ const useComponent = () => {
    * 공통 템플릿이 아닌 경우 isDraggable을 false로 전달하자
    */
   const getComponent = (props: ContentCommonProps) => {
-    const { content, index, isDraggable = true } = props;
+    const {
+      content,
+      index,
+      dndOffsetContainerQuery,
+      isDraggable = true,
+    } = props;
     return getContent(props, content.type) ? (
       <Draggable
         key={content.id.toString()}
         draggableId={content.id.toString()}
         index={index}
       >
-        {(provided, snapshot) => (
-          <div ref={provided.innerRef} {...provided.draggableProps}>
-            {getContent(
-              {
-                ...props,
-                draggableProvided: provided,
-                isDraggable,
-              },
-              content.type,
-            )}
-          </div>
-        )}
+        {(provided, snapshot) => {
+          if (snapshot.isDragging && dndOffsetContainerQuery) {
+            const offsetContainer = document.querySelector<HTMLDivElement>(
+              dndOffsetContainerQuery,
+            );
+            if (offsetContainer) {
+              // @ts-ignore
+              provided.draggableProps.style.left =
+                // @ts-ignore
+                provided.draggableProps.style.left -
+                (offsetContainer.offsetLeft - offsetContainer.offsetWidth / 2);
+
+              // @ts-ignore
+              provided.draggableProps.style.top =
+                // @ts-ignore
+                provided.draggableProps.style.top -
+                (offsetContainer.offsetTop - offsetContainer.offsetHeight / 2);
+            }
+          }
+
+          return (
+            <div ref={provided.innerRef} {...provided.draggableProps}>
+              {getContent(
+                {
+                  ...props,
+                  draggableProvided: provided,
+                  isDraggable,
+                },
+                content.type,
+              )}
+            </div>
+          );
+        }}
       </Draggable>
     ) : (
       <DummyComponent />

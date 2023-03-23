@@ -2,6 +2,7 @@ export { default as ComponentButtonFillBlack } from "./ComponentButtonFillBlack"
 export { default as ComponentButtonPlay } from "./ComponentButtonPlay";
 export { default as ComponentButtonRadiBorderMain } from "./ComponentButtonRadiBorderMain";
 export { default as ComponentButtonRadiFillMain } from "./ComponentButtonRadiFillMain";
+export { default as ComponentButtonRoundArrow } from "./ComponentButtonRoundArrow";
 export { default as ComponentVideo } from "./ComponentVideo";
 export { default as ExampleButton } from "./ExampleButton";
 export { default as IconCloseComponent } from "./IconCloseComponent";

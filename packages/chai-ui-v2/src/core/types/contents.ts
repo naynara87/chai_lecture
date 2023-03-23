@@ -217,20 +217,22 @@ export type ExplainingCharacterContentData = {
   meta?: Meta;
 };
 
+export type CharacterCardListItem = {
+  title: string;
+  description: string;
+  modalContents?: Content[];
+  character: {
+    src: string;
+  };
+};
+
 /**
  * 학습 내용 캐릭터 컴포넌트
  */
 export type CharacterCardListContentData = {
   id: ID;
   type: "characterCardList";
-  data: {
-    title: string;
-    description: string;
-    modalContents?: Content[];
-    character: {
-      src: string;
-    };
-  }[];
+  data: CharacterCardListItem[];
   meta?: Meta;
 };
 
@@ -247,27 +249,6 @@ export type NotiCharacterListContentData = {
       src: string;
     };
   }[];
-  meta?: Meta;
-};
-
-/**
- * 팝업 레이어 캐릭터 컴포넌트
- * 페이지에 속한 인트로덕션
- */
-export type IntroductionModalContentData = {
-  id: ID;
-  type: "introductionModal";
-  data: {
-    title: string;
-    sub: string;
-    description: string;
-    character: {
-      src: string;
-    };
-    soundEffect?: {
-      src: string;
-    };
-  };
   meta?: Meta;
 };
 
@@ -347,6 +328,9 @@ export type WordsCarouselContentData = {
         src: string;
       };
     }[];
+    soundEffect?: {
+      src: string;
+    };
   };
   meta?: Meta;
 };
@@ -375,8 +359,6 @@ export type ConversationWordListContentData = {
   data: {
     words: {
       text: string;
-      pronunciation: string;
-      meaning: string;
       audio?: {
         src: string;
       };

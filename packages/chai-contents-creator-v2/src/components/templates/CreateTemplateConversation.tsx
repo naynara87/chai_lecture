@@ -1,25 +1,18 @@
-import styled from "@emotion/styled";
-import { Template_H_3_7Data } from "chai-ui-v2";
+import {
+  TemplateConversationData,
+  TemplateConversationToggleData,
+} from "chai-ui-v2";
 import useComponentContext from "../../hooks/useComponentContext";
 import {
-  CreateEditMainWrap,
   CreateEditMain,
   CreateTemplateChoiceBtnWrap,
 } from "../../styles/template";
 import { PageCommonProps } from "../../types/page";
 import DashBoxArea from "../atoms/DashBoxArea";
 import PageHeader from "../molecules/PageHeader";
+import { CreateEditMainWrap37 } from "./CreateTemplateH37";
 
-export const CreateEditMainWrap37 = styled(CreateEditMainWrap)`
-  ${CreateEditMain}:nth-of-type(1) {
-    width: 30%;
-  }
-  ${CreateEditMain}:nth-of-type(2) {
-    width: 70%;
-  }
-  gap: 24px;
-`;
-const CreateTemplateH37 = ({
+const CreateTemplateConversation = ({
   templateType,
   addComponentMap,
   slideId,
@@ -35,18 +28,12 @@ const CreateTemplateH37 = ({
     toggleContextMenu,
   } = useComponentContext();
 
-  const {
-    ComponentsContextMenuCommon: ComponentsContextMenuRight,
-    isComponentsContextMenuOpen: isComponentsContextMenuOpenRight,
-    toggleContextMenu: toggleContextMenuRight,
-  } = useComponentContext();
-
   const { focusedId, setFocusedId, getComponent, getDroppableId } =
     returnUseComponent;
 
-  const thisSlide = slides.find(
-    (slide) => slide.id === slideId,
-  ) as Template_H_3_7Data;
+  const thisSlide = slides.find((slide) => slide.id === slideId) as
+    | TemplateConversationData
+    | TemplateConversationToggleData;
 
   const leftDroppableId = getDroppableId(slideId, "leftContents");
 
@@ -58,18 +45,6 @@ const CreateTemplateH37 = ({
       <CreateEditMainWrap37>
         <CreateEditMain>
           <DashBoxArea droppableId={leftDroppableId}>
-            <CreateTemplateChoiceBtnWrap>
-              <button className="btn-comp-select" onClick={toggleContextMenu}>
-                컴포넌트 선택
-              </button>
-              <ComponentsContextMenuCommon
-                isComponentsContextMenuOpen={isComponentsContextMenuOpen}
-                addComponentMap={addComponentMap}
-                slideId={slideId}
-                position="leftContents"
-                toggleContextMenu={toggleContextMenu}
-              />
-            </CreateTemplateChoiceBtnWrap>
             {thisSlide.leftContents.map((content, index) => {
               return getComponent({
                 index,
@@ -80,6 +55,7 @@ const CreateTemplateH37 = ({
                 updateContent,
                 deleteContent,
                 position: "leftContents",
+                isDraggable: false,
               });
             })}
           </DashBoxArea>
@@ -87,18 +63,15 @@ const CreateTemplateH37 = ({
         <CreateEditMain>
           <DashBoxArea droppableId={rightDroppableId}>
             <CreateTemplateChoiceBtnWrap>
-              <button
-                className="btn-comp-select"
-                onClick={toggleContextMenuRight}
-              >
+              <button className="btn-comp-select" onClick={toggleContextMenu}>
                 컴포넌트 선택
               </button>
-              <ComponentsContextMenuRight
-                isComponentsContextMenuOpen={isComponentsContextMenuOpenRight}
+              <ComponentsContextMenuCommon
+                isComponentsContextMenuOpen={isComponentsContextMenuOpen}
                 addComponentMap={addComponentMap}
                 slideId={slideId}
                 position="rightContents"
-                toggleContextMenu={toggleContextMenuRight}
+                toggleContextMenu={toggleContextMenu}
               />
             </CreateTemplateChoiceBtnWrap>
             {thisSlide.rightContents.map((content, index) => {
@@ -111,6 +84,7 @@ const CreateTemplateH37 = ({
                 updateContent,
                 deleteContent,
                 position: "rightContents",
+                templateType: thisSlide.type,
               });
             })}
           </DashBoxArea>
@@ -120,4 +94,4 @@ const CreateTemplateH37 = ({
   );
 };
 
-export default CreateTemplateH37;
+export default CreateTemplateConversation;

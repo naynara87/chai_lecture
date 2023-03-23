@@ -10,6 +10,7 @@ import { LayoutModalSolution } from "../modal";
 import ComponentGrayLine from "../molecules/ComponentGrayLine";
 import { v4 as uuidv4 } from "uuid";
 import ModalVideo from "../modal/ModalVideo";
+import { HtmlContentComponent } from "../atoms";
 export interface MultiChoiceComponentProps {
   contents: MultiChoiceContentData;
 }
@@ -82,7 +83,9 @@ const MultiChoiceComponent = ({ contents }: MultiChoiceComponentProps) => {
               );
             }}
           >
-            <span className="text">{choice}</span>
+            <span className="text">
+              <HtmlContentComponent html={choice} />
+            </span>
           </label>
         </div>
       );

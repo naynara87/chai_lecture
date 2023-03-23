@@ -14,10 +14,12 @@ interface ContentCreatorWrapperProps {
 const ContentCreatorWrapper = styled.div<ContentCreatorWrapperProps>`
   display: flex;
   justify-content: center;
+  width: 100%;
   justify-content: ${({ align }) => align || "start"};
 `;
 
 const ContentCreatorContainer = styled.div`
+  width: 100%;
   display: inline-flex;
   margin-bottom: ${vw(24)};
 `;
@@ -76,15 +78,20 @@ const HamburgMenuItem = styled.li`
   line-height: 17px;
   color: ${colorPalette.gray900};
   font-weight: 500;
+  :hover {
+    opacity: 0.8;
+  }
 `;
 
 const ContentsContainer = styled.div`
+  width: 100%;
   display: flex;
 `;
 
 interface ContentCreatorLayoutProps extends ContentCreatorWrapperProps {
   children: React.ReactNode;
   isDraggable?: boolean;
+  isEditBtn?: boolean;
   draggableProvided?: DraggableProvided;
   deleteContent?: ReturnUsePage["deleteContent"]; // FIXME: 나중에 모든 컴포넌트 구현 후 옵셔널 제거
   slideId?: ID; // FIXME: 나중에 모든 컴포넌트 구현 후 옵셔널 제거
@@ -100,6 +107,7 @@ const ContentCreatorLayout = ({
   content,
   position,
   isDraggable = true,
+  isEditBtn = true,
 }: ContentCreatorLayoutProps) => {
   const [isHamburgerMenuOpen, setIsHamburgerMenuOpen] = useState(false);
   const toggleHamburgerMenu = (e: React.MouseEvent) => {
@@ -142,7 +150,7 @@ const ContentCreatorLayout = ({
             </IconWrapper>
             <IconWrapper
               customCss={hamburgerMenuCss}
-              showIcon
+              showIcon={isEditBtn}
               onClick={toggleHamburgerMenu}
             >
               <IconHamburgerMenu />

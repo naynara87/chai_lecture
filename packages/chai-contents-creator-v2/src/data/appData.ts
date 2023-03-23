@@ -5,10 +5,12 @@ import {
   Content,
   ContentType,
   ConversationTemplateData,
+  QuizPopupModalContentData,
   QuizTemplateData,
   TemplateData,
   TemplateRolePlayingData,
 } from "chai-ui-v2";
+import { words } from "lodash";
 
 type PageLayout = {
   type: TemplateData["type"];
@@ -156,13 +158,24 @@ export const contentComponents: ContentComponents = {
     "imageWithDescriptionList",
     "audio",
     "recorder",
+  ],
+  character: [
+    "cornerGuideCharacter",
+    "activityGuideCharacter",
     "explainingCharacter",
+    "notiCharacterList",
+    "characterCardList",
+  ],
+  mixture: [
+    "contentsCardList",
+    "multiLevelActionCard",
+    "conversationWordList",
     "toggleSentenceList",
     "cardTab",
-    "notiCharacterList",
+    "multiLevelActionSentenceCard",
+    "wordsCarousel",
+    "conversation",
   ],
-  character: ["cornerGuideCharacter", "activityGuideCharacter"],
-  mixture: ["contentsCardList", "multiLevelActionCard"],
 };
 
 export const contentComponentsGroupMap: Record<
@@ -190,17 +203,21 @@ export const contentComponentsNameMap: Partial<Record<ContentType, string>> = {
   activityGuideCharacter: "활동 안내",
   contentsCardList: "학습 카드",
   explainingCharacter: "설명문",
+  characterCardList: "학습 요약",
   toggleSentenceList: "문장 토글",
   cardTab: "탭",
   notiCharacterList: "학습 예고",
+  multiLevelActionSentenceCard: "액션카드(문장용)",
+  conversationWordList: "단어 목록",
+  wordsCarousel: "단어장",
+  conversation: "대화",
 };
-
-export const numberingTextDefaultData = Object.freeze({
-  firstText: "",
-  secondText: "",
+export const characterCardDefaultData = Object.freeze({
+  title: "",
+  description: "",
 });
 
-export const explainingCharacterDefaultData = Object.freeze({
+export const numberingTextDefaultData = Object.freeze({
   firstText: "",
   secondText: "",
 });
@@ -336,6 +353,20 @@ export const getContentComponentsDefaultValue = (): Partial<
       },
     },
   },
+  characterCardList: {
+    id: uuidV4(),
+    type: "characterCardList",
+    data: [
+      {
+        title: "",
+        description: "",
+        character: {
+          src: "",
+        },
+        modalContents: [],
+      },
+    ],
+  },
   toggleSentenceList: {
     id: uuidV4(),
     type: "toggleSentenceList",
@@ -384,6 +415,75 @@ export const getContentComponentsDefaultValue = (): Partial<
       },
     ],
   },
+  fullAudio: {
+    id: uuidV4(),
+    type: "fullAudio",
+    data: {},
+  },
+  multiLevelActionSentenceCard: {
+    id: uuidV4(),
+    type: "multiLevelActionSentenceCard",
+    data: [[]],
+  },
+  conversationWordList: {
+    id: uuidV4(),
+    type: "conversationWordList",
+    data: {
+      words: [
+        {
+          text: "",
+          audio: {
+            src: "",
+          },
+        },
+      ],
+    },
+  },
+  wordsCarousel: {
+    id: uuidV4(),
+    type: "wordsCarousel",
+    data: {
+      words: [
+        {
+          word: "",
+          audio: {
+            src: "",
+          },
+        },
+      ],
+      soundEffect: {
+        src: "",
+      },
+    },
+  },
+  conversation: {
+    id: uuidV4(),
+    type: "conversation",
+    data: [
+      {
+        text: "",
+        pronunciation: "",
+        meaning: "",
+        character: {
+          name: "",
+          src: "",
+        },
+        audio: {
+          src: "",
+        },
+      },
+    ],
+  },
+  multiChoice: {
+    id: uuidV4(),
+    type: "multiChoice",
+    data: {
+      choice: ["", ""],
+      answerIndex: -1,
+      exampleContents: [],
+      quizPopup: quizPopupData,
+    },
+  },
 });
 
 /**
@@ -410,4 +510,143 @@ export const getTemplateDefaultValue = (): Partial<
     leftContents: [],
     rightContents: [],
   },
+  TemplateConversation: {
+    id: uuidV4(),
+    type: "TemplateConversation",
+    leftContents: [
+      {
+        id: uuidV4(),
+        type: "fullAudio",
+        data: {},
+      },
+      {
+        id: uuidV4(),
+        type: "conversationWordList",
+        data: {
+          words: [
+            {
+              text: "",
+              audio: {
+                src: "",
+              },
+            },
+          ],
+        },
+      },
+    ],
+    rightContents: [],
+  },
+  TemplateConversationToggle: {
+    id: uuidV4(),
+    type: "TemplateConversationToggle",
+    leftContents: [
+      {
+        id: uuidV4(),
+        type: "fullAudio",
+        data: {},
+      },
+      {
+        id: uuidV4(),
+        type: "conversationWordList",
+        data: {
+          words: [
+            {
+              text: "",
+              audio: {
+                src: "",
+              },
+            },
+          ],
+        },
+      },
+    ],
+    rightContents: [],
+  },
+  TemplateConversationRepeat: {
+    id: uuidV4(),
+    type: "TemplateConversationRepeat",
+    leftContents: [
+      {
+        id: uuidV4(),
+        type: "fullAudio",
+        data: {},
+      },
+      {
+        id: uuidV4(),
+        type: "conversationWordList",
+        data: {
+          words: [
+            {
+              text: "",
+              audio: {
+                src: "",
+              },
+            },
+          ],
+        },
+      },
+    ],
+    rightContents: [],
+  },
+  TemplateQuizMultiChoice: {
+    id: uuidV4(),
+    type: "TemplateQuizMultiChoice",
+    leftContents: [
+      {
+        id: uuidV4(),
+        type: "activityGuideCharacter",
+        data: {
+          text: "",
+          character: {
+            src: "",
+          },
+        },
+      },
+    ],
+    multiChoice: {
+      id: uuidV4(),
+      type: "multiChoice",
+      data: {
+        choice: ["", ""],
+        answerIndex: -1,
+        exampleContents: [],
+        quizPopup: quizPopupData,
+      },
+    },
+  },
 });
+
+export const quizPopupData: QuizPopupModalContentData = {
+  id: uuidV4(),
+  type: "quizPopupModal",
+  data: {
+    correct: {
+      title: "",
+      sub: "",
+      description: "",
+      character: {
+        src: "",
+      },
+      soundEffect: {
+        src: "",
+      },
+      video: {
+        src: "",
+      },
+    },
+    incorrect: {
+      title: "",
+      sub: "",
+      description: "",
+      character: {
+        src: "",
+      },
+      soundEffect: {
+        src: "",
+      },
+      video: {
+        src: "",
+      },
+    },
+  },
+};

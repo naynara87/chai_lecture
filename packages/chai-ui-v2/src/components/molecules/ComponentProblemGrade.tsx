@@ -9,19 +9,25 @@ const ComponentProblemGrade = () => {
         <li className="problem-grade">
           <button className="btn-grade active">
             <span>{'1'}</span>
-            <img src={IconRight} alt="정답" />
+            <div className="img-wrap">
+              <img src={IconRight} alt="정답" />
+            </div>
           </button>
         </li>
         <li className="problem-grade">
           <button className="btn-grade">
             <span>{'92'}</span>
-            <img src={IconWrong} alt="오답" />
+            <div className="img-wrap">
+              <img src={IconWrong} alt="오답" />
+            </div>
           </button>
         </li>
         <li className="problem-grade">
           <button className="btn-grade">
             <span>{'3'}</span>
-            <img src={IconRight} alt="정답" />
+            <div className="img-wrap">
+              <img src={IconRight} alt="정답" />
+            </div>
           </button>
         </li>
       </ul>
