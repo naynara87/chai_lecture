@@ -529,6 +529,34 @@ export const getContentComponentsDefaultValue = (): Partial<
       isUseCharacter: false,
     },
   },
+  conversationQuiz: {
+    id: uuidV4(),
+    type: "conversationQuiz",
+    data: [
+      {
+        text: "",
+        pronunciation: "",
+        meaning: "",
+        character: {
+          name: "",
+          src: "",
+        },
+        audio: {
+          src: "",
+        },
+        choice: [
+          {
+            text: "",
+            isAnswer: false,
+          },
+          {
+            text: "",
+            isAnswer: false,
+          },
+        ],
+      },
+    ],
+  },
 });
 
 /**
@@ -696,6 +724,57 @@ export const getTemplateDefaultValue = (): Partial<
         isUseCharacter: false,
       },
     },
+  },
+  TemplateQuizConversation: {
+    id: uuidV4(),
+    type: "TemplateQuizConversation",
+    leftContents: [
+      {
+        id: uuidV4(),
+        type: "fullAudio",
+        data: {},
+      },
+      {
+        id: uuidV4(),
+        type: "activityGuideCharacter",
+        data: {
+          character: {
+            src: "",
+          },
+          text: "",
+        },
+      },
+    ],
+    rightContents: [
+      {
+        id: uuidV4(),
+        type: "conversationQuiz",
+        data: [
+          {
+            text: "",
+            pronunciation: "",
+            meaning: "",
+            character: {
+              name: "",
+              src: "",
+            },
+            audio: {
+              src: "",
+            },
+            choice: [
+              {
+                text: "",
+                isAnswer: false,
+              },
+              {
+                text: "",
+                isAnswer: false,
+              },
+            ],
+          },
+        ],
+      },
+    ],
   },
 });
 

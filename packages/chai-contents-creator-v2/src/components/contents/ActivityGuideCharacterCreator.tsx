@@ -53,6 +53,7 @@ const ActivityGuideCharacterCreator = ({
   position,
   draggableProvided,
   isDraggable,
+  isEditBtn,
   deleteContent,
 }: DraggableContentCommonProps) => {
   const thisContent = content as ActivityGuideCharacterContentData;
@@ -91,6 +92,7 @@ const ActivityGuideCharacterCreator = ({
       slideId={currentSlide.id}
       content={content}
       position={position}
+      isEditBtn={isEditBtn}
     >
       <CornerGuideWrapper>
         <TextBubbleWrap onClick={(e) => setFocusedId(e, content.id)}>
