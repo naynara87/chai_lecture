@@ -7,6 +7,8 @@ import {
   LocalStorage,
   Page,
   PageIntroduction,
+  TemplateQuizMultiChoiceData,
+  MultiChoiceContentData,
 } from "chai-ui-v2";
 import { useCallback, useEffect, useMemo } from "react";
 import { useRecoilState } from "recoil";
@@ -89,6 +91,21 @@ const usePage = () => {
             }
             return content;
           });
+          return newSlide;
+        }
+        return slide;
+      });
+      setSlides(newSlides);
+    },
+    [slides, setSlides],
+  );
+
+  const updateContentToMultiChoiceTemplate = useCallback(
+    (slideId: ID, updatedContent: MultiChoiceContentData) => {
+      const newSlides = slides.map((slide) => {
+        if (slide.id === slideId) {
+          const newSlide = cloneDeep(slide) as TemplateQuizMultiChoiceData;
+          newSlide["multiChoice"] = updatedContent;
           return newSlide;
         }
         return slide;
@@ -210,6 +227,7 @@ const usePage = () => {
 
   return {
     slides,
+    setSlides,
     addSlide,
     deleteSlide,
     handleChangeLayout,
@@ -222,6 +240,7 @@ const usePage = () => {
     deleteContent,
     pageData,
     saveIntroductionModalData,
+    updateContentToMultiChoiceTemplate,
   };
 };
 

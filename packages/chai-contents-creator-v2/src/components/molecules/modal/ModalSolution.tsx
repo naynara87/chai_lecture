@@ -1,14 +1,12 @@
 import {
   ComponentButtonRadiBorderMain,
   ComponentButtonRadiFillMain,
-  PageIntroduction,
   ModalBase,
+  QuizPopupModalContentData,
 } from "chai-ui-v2";
 import React, { useEffect, useMemo, useState } from "react";
-import ImageIcon from "../../../assets/images/icon/icon_image_with_bg.svg";
-import UrlInputWrapper from "../UrlInputWrapper";
-import TextEditorViewer from "../TextEditorViewer";
 import { MODAL_CONTENT_EDITOR_HEIGHT } from "../../../constants/style";
+import { quizPopupData } from "../../../data/appData";
 import {
   ContentEditorCss,
   DescriptionWrapper,
@@ -20,46 +18,44 @@ import {
   TitleCss,
   TitleWrap,
 } from "../../../styles/modal";
+import TextEditorViewer from "../TextEditorViewer";
+import UrlInputWrapper from "../UrlInputWrapper";
+import ImageIcon from "../../../assets/images/icon/icon_image_with_bg.svg";
 
-const pageIntroductionDefaultData: PageIntroduction = {
-  title: "",
-  subTitle: "",
-  contents: "",
-  character: {
-    url: "",
-  },
-};
+export interface ModalSolutionProps {
+  isModalOpen: boolean;
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  quizPopupModalData?: QuizPopupModalContentData;
+  saveSolutionModalData: (data: QuizPopupModalContentData) => void;
+  closeOnBackgroundClick?: boolean;
+  solutionType?: "correct" | "incorrect";
+}
+
+const pageIntroductionDefaultData: QuizPopupModalContentData = quizPopupData;
 
 type EditorType = "title" | "subTitle" | "contents";
 
-export interface ModalIntroductionProps {
-  isModalOpen: boolean;
-  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  introductionModalData?: PageIntroduction;
-  saveIntroductionModalData: (data: PageIntroduction) => void;
-  closeOnBackgroundClick?: boolean;
-}
-const ModalIntroduction = ({
+const ModalSolution = ({
   isModalOpen,
   setIsModalOpen,
-  introductionModalData,
-  saveIntroductionModalData,
-  closeOnBackgroundClick = true,
-}: ModalIntroductionProps) => {
+  quizPopupModalData,
+  saveSolutionModalData,
+  closeOnBackgroundClick,
+  solutionType,
+}: ModalSolutionProps) => {
   const [focusedEditor, setFocusedEditor] = useState<EditorType>();
+  const [tempPageIntroductionData, setTempPageIntroductionData] =
+    useState<QuizPopupModalContentData>(
+      quizPopupModalData ?? pageIntroductionDefaultData,
+    );
 
   const handleClose = () => {
     setIsModalOpen(false);
   };
 
-  const [tempPageIntroductionData, setTempPageIntroductionData] =
-    useState<PageIntroduction>(
-      introductionModalData ?? pageIntroductionDefaultData,
-    );
-
   const handleSave = () => {
     if (tempPageIntroductionData) {
-      saveIntroductionModalData(tempPageIntroductionData);
+      saveSolutionModalData(tempPageIntroductionData);
     } else {
       alert("데이터를 입력해주세요."); // FIXME: alert 대신 토스트 메시지로 변경
       return;
@@ -68,61 +64,122 @@ const ModalIntroduction = ({
   };
 
   const handleCharacterUrlInput = (url: string) => {
+    if (!solutionType) return;
     setTempPageIntroductionData({
       ...tempPageIntroductionData,
-      character: {
-        url,
+      data: {
+        ...tempPageIntroductionData.data,
+        [solutionType]: {
+          ...tempPageIntroductionData.data[solutionType],
+          character: {
+            src: url,
+          },
+        },
       },
     });
   };
 
   const handleSoundEffectUrlInput = (src: string) => {
+    if (!solutionType) return;
     setTempPageIntroductionData({
       ...tempPageIntroductionData,
-      soundEffect: {
-        src,
+      data: {
+        ...tempPageIntroductionData.data,
+        [solutionType]: {
+          ...tempPageIntroductionData.data[solutionType],
+          soundEffect: {
+            src,
+          },
+        },
+      },
+    });
+  };
+
+  const handleVideoUrlInput = (src: string) => {
+    if (!solutionType) return;
+    setTempPageIntroductionData({
+      ...tempPageIntroductionData,
+      data: {
+        ...tempPageIntroductionData.data,
+        [solutionType]: {
+          ...tempPageIntroductionData.data[solutionType],
+          video: {
+            src,
+          },
+        },
       },
     });
   };
 
   const profileUrl = useMemo(() => {
-    return tempPageIntroductionData.character?.url;
-  }, [tempPageIntroductionData.character?.url]);
+    if (!solutionType) return;
+    return tempPageIntroductionData.data[solutionType].character?.src;
+  }, [tempPageIntroductionData.data, solutionType]);
 
   const soundEffectUrl = useMemo(() => {
-    return tempPageIntroductionData.soundEffect?.src;
-  }, [tempPageIntroductionData.soundEffect?.src]);
+    if (!solutionType) return;
+    return tempPageIntroductionData.data[solutionType].soundEffect?.src;
+  }, [tempPageIntroductionData.data, solutionType]);
+
+  const videoUrl = useMemo(() => {
+    if (!solutionType) return;
+    return tempPageIntroductionData.data[solutionType].video?.src;
+  }, [tempPageIntroductionData.data, solutionType]);
 
   const title = useMemo(() => {
-    return tempPageIntroductionData.title;
-  }, [tempPageIntroductionData.title]);
+    if (!solutionType) return;
+    return tempPageIntroductionData.data[solutionType].title;
+  }, [tempPageIntroductionData.data, solutionType]);
 
   const setTitle = (title: string) => {
+    if (!solutionType) return;
     setTempPageIntroductionData({
       ...tempPageIntroductionData,
-      title,
+      data: {
+        ...tempPageIntroductionData.data,
+        [solutionType]: {
+          ...tempPageIntroductionData.data[solutionType],
+          title,
+        },
+      },
     });
   };
 
   const subTitle = useMemo(() => {
-    return tempPageIntroductionData.subTitle;
-  }, [tempPageIntroductionData.subTitle]);
+    if (!solutionType) return;
+    return tempPageIntroductionData.data[solutionType].sub;
+  }, [tempPageIntroductionData.data, solutionType]);
 
   const setSubTitle = (subTitle: string) => {
+    if (!solutionType) return;
     setTempPageIntroductionData({
       ...tempPageIntroductionData,
-      subTitle,
+      data: {
+        ...tempPageIntroductionData.data,
+        [solutionType]: {
+          ...tempPageIntroductionData.data[solutionType],
+          sub: subTitle,
+        },
+      },
     });
   };
 
   const contents = useMemo(() => {
-    return tempPageIntroductionData.contents;
-  }, [tempPageIntroductionData.contents]);
+    if (!solutionType) return;
+    return tempPageIntroductionData.data[solutionType].description;
+  }, [tempPageIntroductionData.data, solutionType]);
 
   const setContents = (contents: string) => {
+    if (!solutionType) return;
     setTempPageIntroductionData({
       ...tempPageIntroductionData,
-      contents,
+      data: {
+        ...tempPageIntroductionData.data,
+        [solutionType]: {
+          ...tempPageIntroductionData.data[solutionType],
+          description: contents,
+        },
+      },
     });
   };
 
@@ -160,7 +217,7 @@ const ModalIntroduction = ({
             <TitleWrap>
               <TextEditorViewerWrapper onClick={focusThisEditor("title")}>
                 <TextEditorViewer
-                  text={title}
+                  text={title ?? ""}
                   setText={setTitle}
                   isFocused={focusedEditor === "title"}
                   textViewerCss={TitleCss}
@@ -168,7 +225,7 @@ const ModalIntroduction = ({
               </TextEditorViewerWrapper>
               <TextEditorViewerWrapper onClick={focusThisEditor("subTitle")}>
                 <TextEditorViewer
-                  text={subTitle}
+                  text={subTitle ?? ""}
                   setText={setSubTitle}
                   isFocused={focusedEditor === "subTitle"}
                   textViewerCss={SubTitleCss}
@@ -183,7 +240,7 @@ const ModalIntroduction = ({
           />
           <DescriptionWrapper onClick={focusThisEditor("contents")}>
             <TextEditorViewer
-              text={contents}
+              text={contents ?? ""}
               setText={setContents}
               isFocused={focusedEditor === "contents"}
               editorCss={ContentEditorCss}
@@ -194,6 +251,11 @@ const ModalIntroduction = ({
             typeText="효과음"
             onSubmit={handleSoundEffectUrlInput}
             defaultText={soundEffectUrl}
+          />
+          <UrlInputWrapper
+            typeText="동영상"
+            onSubmit={handleVideoUrlInput}
+            defaultText={videoUrl}
           />
           <div className="btns-wrap">
             <ComponentButtonRadiBorderMain
@@ -208,4 +270,4 @@ const ModalIntroduction = ({
   );
 };
 
-export default ModalIntroduction;
+export default ModalSolution;
