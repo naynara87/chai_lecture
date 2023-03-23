@@ -120,7 +120,7 @@ const ModalInner = styled.div`
   }
 `;
 
-const ModalIntroductionContainer = styled.div`
+const ModalVocaContainer = styled.div`
   display: flex;
   flex-direction: column;
   .icon-dictionary {
@@ -218,7 +218,7 @@ const WordsCarousel = ({
       <AddButton onClick={handleModalOpen}>단어장 수정</AddButton>
       <ModalBase open={isModalOpen} onClose={handleClose}>
         <ModalInner>
-          <ModalIntroductionContainer>
+          <ModalVocaContainer>
             <img src={IconDictionary} alt="" className="icon-dictionary" />
             <AddButton onClick={addCard}>단어카드 추가</AddButton>
             <SwiperWrapper>
@@ -252,7 +252,7 @@ const WordsCarousel = ({
                 onClickBtn={handleClose}
               />
             </div>
-          </ModalIntroductionContainer>
+          </ModalVocaContainer>
         </ModalInner>
       </ModalBase>
     </WordsCarouselWrapper>
