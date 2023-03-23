@@ -181,6 +181,10 @@ $gray-color: #D6D7DA;
   border-radius: vw(10);
   background-color: color(gray-ff);
   font-size: vw(22);
+
+  img {
+    width: vw(18);
+  }
 }
 
 .btn-problem-white-round {
@@ -192,7 +196,7 @@ $gray-color: #D6D7DA;
 
   width: 100%;
   height: vw(55);
-  padding: vw(12) vw(30);
+  padding: vw(12) vw(27);
   border: 1px solid color(gray-db);
   border-radius: vw(100);
   background-color: color(gray-ff);
@@ -213,4 +217,8 @@ $gray-color: #D6D7DA;
   background-color: color(gray-80);
   font-size: vw(22);
   color: color(gray-ff);
+
+  img {
+    width: vw(20);
+  }
 }
