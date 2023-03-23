@@ -6,17 +6,17 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { QuizWordsInOrderContentData, useGlobalAudio } from "../../core";
+import { useGlobalAudio, WordsInOrderContentData } from "../../core";
 import {
   ComponentButtonRadiBorderMain,
   ComponentButtonRadiFillMain,
-  ImgProfileDefaultComponent,
 } from "../atoms";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
 import { LayoutModalSolution } from "../modal";
 import ModalVideo from "../modal/ModalVideo";
 import ComponentGrayLine from "../molecules/ComponentGrayLine";
 import { v4 as uuidv4 } from "uuid";
+import ImgProfileDefault from "../../assets/images/img/img_profile_default.png";
 
 const BlankBox = styled.div`
   cursor: pointer;
@@ -28,7 +28,7 @@ type WordInOrderChoice = {
 };
 
 export interface WordsInOrderComponentProps {
-  contents: QuizWordsInOrderContentData;
+  contents: WordsInOrderContentData;
 }
 
 const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
@@ -256,13 +256,17 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
 
       <div className="conversation-wrap">
         <div className="quiz-sentence-wrap">
-          {contents.data.character && (
+          {contents.meta?.isUseCharacter && contents.data.character && (
             <div className="img-grp">
               <div className="img-wrap">
                 {/* TODO: key설명 - 음성이 있을 경우, 누르면 단일 음성이 재생되며, conversation-wrap 에 active 추가 */}
                 <div className="img-round">
                   <button className="btn-profile">
-                    <ImgProfileDefaultComponent />
+                    <img
+                      src={contents.data.character.src || ImgProfileDefault}
+                      alt=""
+                      className="profile"
+                    />
                   </button>
                 </div>
               </div>

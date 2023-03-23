@@ -1,11 +1,11 @@
-import { TemplateQuizMultiChoiceData } from "chai-ui-v2";
+import { TemplateQuizWordsInOrderData } from "chai-ui-v2";
 import { CreateEditMain } from "../../styles/template";
 import { PageCommonProps } from "../../types/page";
 import DashBoxArea from "../atoms/DashBoxArea";
 import PageHeader from "../molecules/PageHeader";
 import { CreateEditMainWrap37 } from "./CreateTemplateH37";
 
-const CreateTemplateQuizMultiChoice = ({
+const CreateTemplateQuizWordsInOrder = ({
   templateType,
   addComponentMap,
   slideId,
@@ -13,7 +13,7 @@ const CreateTemplateQuizMultiChoice = ({
   updateContent,
   deleteContent,
   returnUseComponent,
-  updateContentToMultiChoiceTemplate,
+  updateContentToWordsInOrderTemplate,
   ...pageHeaderProps
 }: PageCommonProps) => {
   const { focusedId, setFocusedId, getComponent, getDroppableId } =
@@ -21,11 +21,11 @@ const CreateTemplateQuizMultiChoice = ({
 
   const thisSlide = slides.find(
     (slide) => slide.id === slideId,
-  ) as TemplateQuizMultiChoiceData;
+  ) as TemplateQuizWordsInOrderData;
 
   const leftDroppableId = getDroppableId(slideId, "leftContents");
 
-  const rightDroppableId = getDroppableId(slideId, "multiChoice");
+  const rightDroppableId = getDroppableId(slideId, "wordsInOrder");
 
   return (
     <>
@@ -53,16 +53,16 @@ const CreateTemplateQuizMultiChoice = ({
             {getComponent({
               index: 0,
               currentSlide: thisSlide,
-              content: thisSlide.multiChoice,
-              isFocused: focusedId === thisSlide.multiChoice?.id,
+              content: thisSlide.wordsInOrder,
+              isFocused: focusedId === thisSlide.wordsInOrder?.id,
               setFocusedId,
               updateContent,
               deleteContent,
-              position: "multiChoice",
+              position: "wordsInOrder",
               templateType: thisSlide.type,
               isDraggable: false,
               isEditBtn: false,
-              updateContentToMultiChoiceTemplate,
+              updateContentToWordsInOrderTemplate,
             })}
           </DashBoxArea>
         </CreateEditMain>
@@ -71,4 +71,4 @@ const CreateTemplateQuizMultiChoice = ({
   );
 };
 
-export default CreateTemplateQuizMultiChoice;
+export default CreateTemplateQuizWordsInOrder;

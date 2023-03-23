@@ -34,6 +34,7 @@ import WordsCarouselModalCreator from "../components/contents/WordsCarouselModal
 import FullAudioCreator from "../components/contents/FullAudioCreator";
 import ConversationCreator from "../components/contents/ConversationCreator";
 import MultiChoiceCreator from "../components/contents/MultiChoiceCreator";
+import WordsInOrderCreator from "../components/contents/WordsInOrderCreator";
 
 const useComponent = () => {
   const [focusedId, setFocusedId] = useRecoilState(focusedIdState);
@@ -70,6 +71,7 @@ const useComponent = () => {
       fullAudio: <FullAudioCreator {...props} />,
       conversation: <ConversationCreator {...props} />,
       multiChoice: <MultiChoiceCreator {...props} />,
+      wordsInOrder: <WordsInOrderCreator {...props} />,
     };
 
     return componentMap[type];

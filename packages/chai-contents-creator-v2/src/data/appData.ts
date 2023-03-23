@@ -483,6 +483,28 @@ export const getContentComponentsDefaultValue = (): Partial<
       quizPopup: quizPopupData,
     },
   },
+  wordsInOrder: {
+    id: uuidV4(),
+    type: "wordsInOrder",
+    data: {
+      choice: [
+        {
+          text: "",
+          isChoice: false,
+          answerIndex: -1,
+        },
+      ],
+      character: {
+        name: "",
+        src: "",
+      },
+      exampleContents: [],
+      quizPopup: quizPopupData,
+    },
+    meta: {
+      isUseCharacter: false,
+    },
+  },
 });
 
 /**
@@ -610,6 +632,44 @@ export const getTemplateDefaultValue = (): Partial<
         answerIndex: -1,
         exampleContents: [],
         quizPopup: quizPopupData,
+      },
+    },
+  },
+  TemplateQuizWordsInOrder: {
+    id: uuidV4(),
+    type: "TemplateQuizWordsInOrder",
+    leftContents: [
+      {
+        id: uuidV4(),
+        type: "activityGuideCharacter",
+        data: {
+          text: "",
+          character: {
+            src: "",
+          },
+        },
+      },
+    ],
+    wordsInOrder: {
+      id: uuidV4(),
+      type: "wordsInOrder",
+      data: {
+        choice: [
+          {
+            text: "",
+            isChoice: false,
+            answerIndex: -1,
+          },
+        ],
+        character: {
+          name: "",
+          src: "",
+        },
+        exampleContents: [],
+        quizPopup: quizPopupData,
+      },
+      meta: {
+        isUseCharacter: false,
       },
     },
   },

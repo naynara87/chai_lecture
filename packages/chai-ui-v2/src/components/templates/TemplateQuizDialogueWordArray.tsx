@@ -63,7 +63,7 @@ const TemplateQuizDialogueWordArray = ({
       <div className="layout-panel side-panel">{leftContents}</div>
       <div className="layout-panel wide-panel">
         <QuizContainer className="quiz-container">
-          <WordsInOrderComponent contents={thisPage.rightContents} />
+          <WordsInOrderComponent contents={thisPage.wordsInOrder} />
         </QuizContainer>
       </div>
     </div>
