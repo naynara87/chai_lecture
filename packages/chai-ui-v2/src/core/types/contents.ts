@@ -326,6 +326,9 @@ export type WordsCarouselContentData = {
         src: string;
       };
     }[];
+    soundEffect?: {
+      src: string;
+    };
   };
   meta?: Meta;
 };

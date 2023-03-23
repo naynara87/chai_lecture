@@ -12,6 +12,7 @@ type AudioType =
   | "textBox"
   | "rolePlay"
   | "introductionModal"
+  | "vocaModal"
   | "solutionModal";
 
 const useGlobalAudio = () => {

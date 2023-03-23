@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { colorPalette, validateURL } from "chai-ui-v2";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddButton from "../atoms/AddButton";
 
 const UrlTextWrapper = styled.div`
