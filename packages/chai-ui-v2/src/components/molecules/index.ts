@@ -10,3 +10,4 @@ export { default as QuizWordBlankAnswers } from "./QuizWordBlankAnswers";
 export { default as QuizWordBlankChoices } from "./QuizWordBlankChoices";
 export { default as LineRadioBoxes } from "./LineRadioBoxes";
 export { default as ComponentImage } from "./ComponentImage";
+export { default as ComponentGrayLine } from "./ComponentGrayLine";
