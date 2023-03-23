@@ -41,6 +41,9 @@ const TextBubbleWrap = styled.div`
   }
 `;
 
+/**
+ * CH-02-02 활동 안내
+ */
 const ActivityGuideCharacterCreator = ({
   content,
   setFocusedId,

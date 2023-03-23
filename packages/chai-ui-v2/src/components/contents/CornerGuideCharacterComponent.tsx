@@ -24,6 +24,9 @@ const ContStartWrapper = styled.div`
   }
 `;
 
+/**
+ * CH-02-01 코너 변경 안내
+ */
 const CornerGuideCharacterComponent = ({
   contents,
 }: CornerGuideCharacterComponentProps) => {
@@ -37,6 +40,7 @@ const CornerGuideCharacterComponent = ({
           <ImgCharacterComponent
             characterType="allCharacter"
             characterAlt="웃고있는 디디, 위니, 꿍이"
+            imgSrc={contents.data.character.src}
           />
         </div>
       </div>

@@ -5,17 +5,19 @@ import useCharacterMapper from "../../core/hooks/useCharacterMapper";
 interface ImgCharacterComponentProps {
   characterType: characterType;
   characterAlt: string;
+  imgSrc?: string;
 }
 
 const ImgCharacterComponent = ({
   characterType,
   characterAlt,
+  imgSrc,
 }: ImgCharacterComponentProps) => {
   const { getCharacterSrc } = useCharacterMapper();
 
   return (
     <img
-      src={getCharacterSrc(characterType)}
+      src={imgSrc ? imgSrc : getCharacterSrc(characterType)}
       alt={characterAlt}
       className="img"
     ></img>

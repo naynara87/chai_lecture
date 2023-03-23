@@ -25,6 +25,9 @@ const ContStartWrapper = styled.div`
   }
 `;
 
+/**
+ * CH-02-02 활동 안내
+ */
 const ActivityGuideCharacterComponent = ({
   contents,
 }: ActivityGuideCharacterComponentProps) => {
@@ -38,6 +41,7 @@ const ActivityGuideCharacterComponent = ({
           <ImgCharacterComponent
             characterType="allCharacter"
             characterAlt="웃고있는 디디, 위니, 꿍이"
+            imgSrc={contents.data.character.src}
           />
         </div>
       </div>
