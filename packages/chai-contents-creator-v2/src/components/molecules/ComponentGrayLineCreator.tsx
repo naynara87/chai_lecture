@@ -57,8 +57,6 @@ const ComponentGrayLineCreator = ({
     toggleContextMenu,
   } = useComponentContext();
 
-  console.log("contents", contents);
-
   return (
     <div className="gray-line">
       <TopArea>
