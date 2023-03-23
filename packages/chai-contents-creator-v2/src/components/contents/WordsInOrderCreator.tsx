@@ -27,6 +27,10 @@ import ObjectDeleteButton from "../atoms/ObjectDeleteButton";
 import TextEditorViewer from "../molecules/TextEditorViewer";
 import ModalSolution from "../molecules/modal/ModalSolution";
 
+const ConversationWrap = styled.div`
+  margin-top: 0 !important;
+`;
+
 const AnswerWrap = styled.div`
   justify-content: flex-start;
   flex-wrap: wrap;
@@ -474,11 +478,11 @@ const WordsInOrderCreator = ({
               화자 있음
             </CheckBoxWrapper>
           </FlexWrap>
-          <div className="conversation-wrap">
+          <ConversationWrap className="conversation-wrap">
             <div className="quiz-sentence-wrap">
               {thisContent.meta?.isUseCharacter && character}
             </div>
-          </div>
+          </ConversationWrap>
           <AnswerWrap className="hori-answer-wrap">{answers}</AnswerWrap>
         </WordsInOrderWrapper>
       </ContentBox>
