@@ -217,20 +217,22 @@ export type ExplainingCharacterContentData = {
   meta?: Meta;
 };
 
+export type CharacterCardListItem = {
+  title: string;
+  description: string;
+  modalContents?: Content[];
+  character: {
+    src: string;
+  };
+};
+
 /**
  * 학습 내용 캐릭터 컴포넌트
  */
 export type CharacterCardListContentData = {
   id: ID;
   type: "characterCardList";
-  data: {
-    title: string;
-    description: string;
-    modalContents?: Content[];
-    character: {
-      src: string;
-    };
-  }[];
+  data: CharacterCardListItem[];
   meta?: Meta;
 };
 

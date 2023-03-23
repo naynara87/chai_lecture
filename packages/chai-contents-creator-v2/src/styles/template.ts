@@ -143,6 +143,18 @@ export const CreateEditMain = styled.div`
   }
 `;
 
+export const BtnSelectComponent = styled.button`
+  color: ${colorPalette.purple700};
+  background: ${colorPalette.white};
+  border-radius: 50px;
+  border: 1px solid #dbe1ff;
+  width: 90px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 10px;
+  font-weight: 500;
+`;
+
 export const CreateAddBtn = styled.button`
   background-color: ${colorPalette.white};
   width: 100%;

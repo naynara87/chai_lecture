@@ -77,25 +77,51 @@ const useComponent = () => {
    * 공통 템플릿이 아닌 경우 isDraggable을 false로 전달하자
    */
   const getComponent = (props: ContentCommonProps) => {
-    const { content, index, isDraggable = true } = props;
+    const {
+      content,
+      index,
+      dndOffsetContainerQuery,
+      isDraggable = true,
+    } = props;
     return getContent(props, content.type) ? (
       <Draggable
         key={content.id.toString()}
         draggableId={content.id.toString()}
         index={index}
       >
-        {(provided, snapshot) => (
-          <div ref={provided.innerRef} {...provided.draggableProps}>
-            {getContent(
-              {
-                ...props,
-                draggableProvided: provided,
-                isDraggable,
-              },
-              content.type,
-            )}
-          </div>
-        )}
+        {(provided, snapshot) => {
+          if (snapshot.isDragging && dndOffsetContainerQuery) {
+            const offsetContainer = document.querySelector<HTMLDivElement>(
+              dndOffsetContainerQuery,
+            );
+            if (offsetContainer) {
+              // @ts-ignore
+              provided.draggableProps.style.left =
+                // @ts-ignore
+                provided.draggableProps.style.left -
+                (offsetContainer.offsetLeft - offsetContainer.offsetWidth / 2);
+
+              // @ts-ignore
+              provided.draggableProps.style.top =
+                // @ts-ignore
+                provided.draggableProps.style.top -
+                (offsetContainer.offsetTop - offsetContainer.offsetHeight / 2);
+            }
+          }
+
+          return (
+            <div ref={provided.innerRef} {...provided.draggableProps}>
+              {getContent(
+                {
+                  ...props,
+                  draggableProvided: provided,
+                  isDraggable,
+                },
+                content.type,
+              )}
+            </div>
+          );
+        }}
       </Draggable>
     ) : (
       <DummyComponent />

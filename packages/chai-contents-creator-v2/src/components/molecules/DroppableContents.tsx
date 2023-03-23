@@ -9,13 +9,14 @@ const DroppableContainer = styled.div`
   min-height: 40px;
 `;
 
-interface DroppableContentsProps
+export interface DroppableContentsProps
   extends Omit<
     ContentCommonProps,
     "setFocusedId" | "isFocused" | "content" | "index"
   > {
   droppableId: string;
   contents: Content[];
+  dndOffsetContainerQuery?: string;
 }
 const DroppableContents = ({
   droppableId,
@@ -25,6 +26,7 @@ const DroppableContents = ({
   updateContent,
   deleteContent,
   isDraggable,
+  dndOffsetContainerQuery,
 }: DroppableContentsProps) => {
   const { getComponent, focusedId, setFocusedId } = useComponent();
   return (
@@ -49,6 +51,7 @@ const DroppableContents = ({
               updateContent,
               deleteContent,
               isDraggable,
+              dndOffsetContainerQuery,
             });
           })}
           {provided.placeholder}
