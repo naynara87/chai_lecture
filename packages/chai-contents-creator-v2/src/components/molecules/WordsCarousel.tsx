@@ -1,34 +1,65 @@
 import IconDictionary from "chai-ui-v2/dist/assets/images/icon/icon_dictionary.svg";
 import AddButton from "../atoms/AddButton";
 import styled from "@emotion/styled";
-
 import {
   colorPalette,
   ComponentButtonRadiBorderMain,
   ComponentButtonRadiFillMain,
-  Content,
   ModalBase,
   WordsCarouselContentData,
 } from "chai-ui-v2";
-import React from "react";
-
 import { Pagination } from "swiper";
-import { Swiper } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-
 import UrlInputWrapper from "./UrlInputWrapper";
+import { useMemo } from "react";
+import ObjectDeleteButton from "../atoms/ObjectDeleteButton";
+import TextEditorViewer from "./TextEditorViewer";
+import IconPlay from "chai-ui-v2/dist/assets/images/icon/icon_play.svg";
+import { ReturnUsePage } from "../../hooks/usePage";
 
+const WordsCardWrapper = styled.div`
+  border-radius: 8px;
+  padding: 40px 24px 24px;
+  background-color: #f0f0f0;
+  margin-bottom: 16px;
+  position: relative;
+  .btn-delete {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+  }
+
+  .words-card-text {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 16px;
+  }
+  .icon-play {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 0px rgba(88, 88, 88, 0.2);
+  }
+`;
+
+const SlideCard = styled.div`
+  background-color: #eeeeee;
+  border-radius: 10px;
+  color: black;
+`;
 export interface ModalWordsCarouselProps {
-  content: Content;
+  wordsCarouselData: WordsCarouselContentData["data"];
   isModalOpen: boolean;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  setText: (index: number, text: string) => void;
+  setText: (index: number) => (text: string) => void;
   focusTextEditor: (index: number) => (e: React.MouseEvent) => void;
   isTextEditorFocused: (index: number) => boolean;
-  slideContents: any;
-  addCard: any;
-  handleSubmitSoundEffect: (url: string) => void;
+  addCard: () => void;
+  setSoundEffect: (url: string) => void;
+  setAudioUrl: (index: number) => (url: string) => void;
+  deleteImage: (index: number) => void;
 }
 
 const WordsCarouselWrapper = styled.div`
@@ -115,42 +146,85 @@ const SwiperWrapper = styled.div`
 `;
 
 const WordsCarousel = ({
-  content,
   isModalOpen,
   setIsModalOpen,
-  setText,
+  addCard,
+  setSoundEffect,
+  wordsCarouselData,
+  setAudioUrl,
   focusTextEditor,
   isTextEditorFocused,
-  slideContents,
-  addCard,
-  handleSubmitSoundEffect,
+  setText,
+  deleteImage,
 }: ModalWordsCarouselProps) => {
   const handleModalOpen = () => {
     setIsModalOpen(!isModalOpen);
   };
   const handleClose = () => {
-    setIsModalOpen(true);
+    setIsModalOpen(false);
   };
 
-  const thisContent = content as WordsCarouselContentData;
+  const slideContents = useMemo(() => {
+    return wordsCarouselData.words.map((word, wordIndex) => {
+      return (
+        <SwiperSlide key={wordIndex}>
+          <SlideCard>
+            <WordsCardWrapper>
+              {wordsCarouselData.words.length > 1 && (
+                <ObjectDeleteButton
+                  onClick={() => {
+                    deleteImage(wordIndex);
+                  }}
+                />
+              )}
+              <div
+                onClick={focusTextEditor(wordIndex)}
+                className="words-card-text"
+              >
+                <TextEditorViewer
+                  isFocused={isTextEditorFocused(wordIndex)}
+                  text={word.word ?? ""}
+                  setText={setText(wordIndex)}
+                  defaultText={
+                    <p className="caption-text">텍스트를 입력해주세요</p>
+                  }
+                />
+              </div>
+              <div>
+                <img src={IconPlay} alt="" className="icon-play" />
+                <UrlInputWrapper
+                  typeText="오디오"
+                  onSubmit={setAudioUrl(wordIndex)}
+                  defaultText={word.audio?.src}
+                ></UrlInputWrapper>
+              </div>
+            </WordsCardWrapper>
+          </SlideCard>
+        </SwiperSlide>
+      );
+    });
+  }, [
+    isTextEditorFocused,
+    setText,
+    focusTextEditor,
+    setAudioUrl,
+    wordsCarouselData,
+    deleteImage,
+  ]);
 
   return (
     <WordsCarouselWrapper>
       <img src={IconDictionary} alt="" />
-      {/* TODO: 단어장 수정 클릭 시  ModalWordsCarousel 오픈*/}
       <AddButton onClick={handleModalOpen}>단어장 수정</AddButton>
-
       <ModalBase open={isModalOpen} onClose={handleClose}>
         <ModalInner>
           <ModalIntroductionContainer>
             <img src={IconDictionary} alt="" className="icon-dictionary" />
-            {/* TODO: lsh 단어카드 추가 버튼 클릭 시 WordsCardWrapper swiper캐러셀 추가 */}
-            {/* NOTE: lsh 기능구현 되면 이후에 swiper 삽입하겠습니다 */}
             <AddButton onClick={addCard}>단어카드 추가</AddButton>
             <SwiperWrapper>
               <Swiper
                 modules={[Pagination]}
-                loop
+                loop={false}
                 pagination={{
                   dynamicBullets: false,
                   clickable: true,
@@ -165,18 +239,17 @@ const WordsCarousel = ({
 
             <UrlInputWrapper
               typeText="효과음"
-              onSubmit={handleSubmitSoundEffect}
+              onSubmit={setSoundEffect}
+              defaultText={wordsCarouselData.soundEffect?.src}
             />
             <div className="btns-wrap">
-              {/* TODO: lsh 닫기버튼 클릭 시 모달창 닫기 */}
               <ComponentButtonRadiBorderMain
                 text="닫기"
-                onClickBtn={handleModalOpen}
+                onClickBtn={handleClose}
               />
-              {/* TODO: lsh 닫기버튼 클릭 시 입력한 데이터 저장 */}
               <ComponentButtonRadiFillMain
                 text="저장"
-                onClickBtn={handleModalOpen}
+                onClickBtn={handleClose}
               />
             </div>
           </ModalIntroductionContainer>

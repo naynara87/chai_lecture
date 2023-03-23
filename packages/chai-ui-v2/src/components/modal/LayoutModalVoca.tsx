@@ -42,6 +42,7 @@ const LayoutModalVoca = ({
 
   const handleClose = () => {
     setIsModalOpen(false);
+    handleAudioReset();
   };
 
   const slideContents = useMemo(() => {

@@ -444,6 +444,9 @@ export const getContentComponentsDefaultValue = (): Partial<
           },
         },
       ],
+      soundEffect: {
+        src: "",
+      },
     },
   },
   conversation: {
