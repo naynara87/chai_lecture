@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { ConversationContentData, useGlobalAudio } from "../../core";
-import { ImgTemp01Component } from "../atoms";
+import { HtmlContentComponent } from "../atoms";
 import SpeakingComponent from "./SpeakingComponent";
 import { v4 as uuidv4 } from "uuid";
+import ImgTemp01 from "../../assets/images/img/temp_profile01.png";
 
 export interface ConversationComponentProps {
   contents: ConversationContentData;
@@ -131,19 +132,33 @@ const ConversationComponent = ({
                     );
                   }}
                 >
-                  <ImgTemp01Component />
+                  <img
+                    src={
+                      content.character.src ? content.character.src : ImgTemp01
+                    }
+                    alt={content.character.name}
+                    className="profile"
+                  />
                 </button>
               </div>
             </div>
             <p className="name">{content.character.name}</p>
           </div>
           <div className="txt-wrap">
-            {!content.isBlank && <p className="chinese">{content.text}</p>}
+            {!content.isBlank && (
+              <p className="chinese">
+                <HtmlContentComponent html={content.text} />
+              </p>
+            )}
             {!content.isBlank && isShowPronunciation && (
-              <p className="pinyin">{content.pronunciation}</p>
+              <p className="pinyin">
+                <HtmlContentComponent html={content.pronunciation} />
+              </p>
             )}
             {!content.isBlank && isShowMeaning && (
-              <p className="mean">{content.meaning}</p>
+              <p className="mean">
+                <HtmlContentComponent html={content.meaning} />
+              </p>
             )}
             {isShowRepeat && content.speakingTime !== undefined && (
               <SpeakingComponent

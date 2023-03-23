@@ -1,11 +1,10 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import LayoutFooter from "../molecules/LayoutFooter";
 import LayoutHeader from "../molecules/LayoutHeader";
 import { useNavigate, useParams } from "react-router-dom";
 import { getPageUrl } from "../../util/url";
 import { useRecoilState } from "recoil";
 import {
-  LayoutModalIntroduction,
   LayoutSinglePage,
   LayoutMultiPage,
   ModalCompleted,
@@ -40,8 +39,6 @@ const ContentsLayout = ({
     pages,
     pageId,
   });
-
-  const [isIntroductionModalOpen, setIsIntroductionModalOpen] = useState(false);
 
   const setPageCompleted = () => {
     setIsPageCompleted(true);
@@ -109,24 +106,6 @@ const ContentsLayout = ({
     }
   }, [currentPage]);
 
-  useEffect(() => {
-    if (currentPage?.introduction) {
-      setIsIntroductionModalOpen(true);
-    }
-  }, [currentPage?.introduction]);
-
-  const introduction = useMemo(() => {
-    if (currentPage?.introduction) {
-      return (
-        <LayoutModalIntroduction
-          isModalOpen={isIntroductionModalOpen}
-          setIsModalOpen={setIsIntroductionModalOpen}
-          introduction={currentPage.introduction}
-        />
-      );
-    }
-  }, [currentPage, isIntroductionModalOpen]);
-
   return (
     <>
       <LayoutHeader
@@ -146,7 +125,6 @@ const ContentsLayout = ({
         handleClickNext={handleClickNext}
         handleClickPrev={handleClickPrev}
       />
-      {introduction}
       {isCompleteModalOpen && <ModalCompleted />}
     </>
   );

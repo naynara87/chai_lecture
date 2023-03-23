@@ -1,10 +1,12 @@
 /* =================== problemLayout =================== */
 $cont-padding: vw(40);
 $main-color: #6673A3;
+$main-light-color: #E3E3E7;
+$gray-color: #D6D7DA;
 
 // header style
 .problem-hd {
-  background-color: color(red-500);
+  background-color: $main-color;
 
   .hd-conts-wrap {
     @include flex-btw;
@@ -15,13 +17,19 @@ $main-color: #6673A3;
 
 .problem-hd-ttl {
   font-weight: 600;
-  font-size: vw(30);
+  font-size: vw(26);
   color: color(gray-ff);
 }
 
 .problem-hd-timer {
-  font-size: vw(20);
+  font-weight: 400;
+  font-size: vw(26);
   color: color(gray-ff);
+
+  >img {
+    margin-right: vw(10);
+    vertical-align: bottom;
+  }
 }
 
 // main layout style
@@ -31,7 +39,7 @@ $main-color: #6673A3;
 
   .problem-top-button-wrapper {
     width: vw(1610);
-    margin: vh(20) auto 0;
+    margin: vh(30) auto 0;
   }
 
   .pagination-wrapper {
@@ -40,7 +48,8 @@ $main-color: #6673A3;
 
   .layout-panel-wrap {
     position: relative;
-    margin-top: vh(20);
+    height: calc(100% - vh(70) - vh(140));
+    margin-top: vh(30);
   }
 
   .btn-radi-border-main {
@@ -51,7 +60,6 @@ $main-color: #6673A3;
 // submit button style
 .btn-problem {
   @extend %btn;
-  @extend %btn-interaction;
 
   @include circle(vw(115));
 
@@ -79,21 +87,17 @@ $main-color: #6673A3;
   position: absolute;
   top: vh(60);
   left: 0;
-  min-width: vw(115);
-  padding: vw(10) vw(20);
+  min-width: vw(125);
+  padding: vw(7) vw(15);
   border-radius: vw(5);
   background-color: $main-color;
-  font-weight: 600;
-  font-size: vw(18);
+  font-weight: 500;
+  font-size: vw(24);
+  line-height: 1.6;
   color: color(gray-ff);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-  transform: translateX(-50%);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+  transform: translateX(vw(-62));
   white-space: pre-line;
-
-  &.attched {
-    opacity: 0.8;
-    top: vh(10);
-  }
 }
 
 // pagination style
@@ -103,7 +107,7 @@ $main-color: #6673A3;
   }
 
   width: 100%;
-  height: vh(80);
+  height: vh(60);
 }
 
 .top-button-left {
@@ -120,7 +124,8 @@ $main-color: #6673A3;
   @include flex-op(center, flex-start);
 
   overflow-x: auto;
-  gap: vw(15);
+  gap: vw(16);
+  height: vh(90);
   padding: 0 $cont-padding;
   background-color: color(gray-f5);
 }
@@ -129,32 +134,91 @@ $main-color: #6673A3;
   @extend %btn;
 
   flex-shrink: 0;
-  min-width: vw(50);
-  height: vw(50);
-  padding: vw(5) vw(10);
-  border: 2px solid color(gray-db);
+  min-width: vw(62);
+  height: vw(62);
+  padding: vw(12) vw(24);
+  border: 1px solid $gray-color;
   border-radius: vw(10);
-  background-color: color(gray-f5);
-  font-size: vw(18);
-
-  &.active {
-    border-color: color(main);
-    background-color: color(gray-ff);
-    font-weight: 600;
-    color: color(main);
-  }
+  background-color: color(gray-f0);
+  font-weight: 500;
+  font-size: vw(24);
+  color: color(gray-80);
+  text-align: center;
 
   &.end {
-    background-color: color(main);
-    font-weight: 600;
+    background-color: color(gray-ff);
+    color: $main-color;
+  }
+
+  &.active {
+    background-color: $main-color;
     color: color(gray-ff);
   }
 }
 
 .problem-title-wrap {
-  font-size: vw(20);
+  padding: vw(14) vw(25);
+  border-radius: vw(10);
+  background-color: $main-light-color;
+  font-size: vw(24);
 
   >b {
-    color: color(main);
+    color: $main-color;
+  }
+}
+
+// button style
+.btn-problem-white {
+  @extend %btn;
+
+  @include flex-center {
+    gap: vw(10);
+  }
+
+  height: vw(55);
+  padding: vw(10) vw(20);
+  border: 1px solid color(gray-db);
+  border-radius: vw(10);
+  background-color: color(gray-ff);
+  font-size: vw(22);
+
+  img {
+    width: vw(18);
+  }
+}
+
+.btn-problem-white-round {
+  @extend %btn;
+
+  @include flex-center {
+    gap: vw(10);
+  }
+
+  width: 100%;
+  height: vw(55);
+  padding: vw(12) vw(27);
+  border: 1px solid color(gray-db);
+  border-radius: vw(100);
+  background-color: color(gray-ff);
+  font-size: vw(22);
+}
+
+.btn-problem-gray {
+  @extend %btn;
+
+  @include flex-center {
+    gap: vw(10);
+  }
+
+  height: vw(55);
+  padding: vw(10) vw(20);
+  border: 1px solid color(gray-80);
+  border-radius: vw(10);
+  background-color: color(gray-80);
+  font-size: vw(22);
+  color: color(gray-ff);
+
+  img {
+    width: vw(20);
   }
 }

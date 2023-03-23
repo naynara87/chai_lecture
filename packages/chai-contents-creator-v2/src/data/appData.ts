@@ -163,16 +163,17 @@ export const contentComponents: ContentComponents = {
     "activityGuideCharacter",
     "explainingCharacter",
     "notiCharacterList",
+    "characterCardList",
   ],
   mixture: [
     "contentsCardList",
     "multiLevelActionCard",
-    "cardTab",
     "conversationWordList",
     "toggleSentenceList",
     "cardTab",
     "multiLevelActionSentenceCard",
     "wordsCarousel",
+    "conversation",
   ],
 };
 
@@ -201,20 +202,21 @@ export const contentComponentsNameMap: Partial<Record<ContentType, string>> = {
   activityGuideCharacter: "활동 안내",
   contentsCardList: "학습 카드",
   explainingCharacter: "설명문",
+  characterCardList: "학습 내용",
   toggleSentenceList: "문장 토글",
   cardTab: "탭",
   notiCharacterList: "학습 예고",
   multiLevelActionSentenceCard: "액션카드(문장용)",
   conversationWordList: "단어 목록",
   wordsCarousel: "단어장",
+  conversation: "대화",
 };
-
-export const numberingTextDefaultData = Object.freeze({
-  firstText: "",
-  secondText: "",
+export const characterCardDefaultData = Object.freeze({
+  title: "",
+  description: "",
 });
 
-export const explainingCharacterDefaultData = Object.freeze({
+export const numberingTextDefaultData = Object.freeze({
   firstText: "",
   secondText: "",
 });
@@ -350,6 +352,19 @@ export const getContentComponentsDefaultValue = (): Partial<
       },
     },
   },
+  characterCardList: {
+    id: uuidV4(),
+    type: "characterCardList",
+    data: [
+      {
+        title: "",
+        description: "",
+        character: {
+          src: "",
+        },
+      },
+    ],
+  },
   toggleSentenceList: {
     id: uuidV4(),
     type: "toggleSentenceList",
@@ -431,6 +446,24 @@ export const getContentComponentsDefaultValue = (): Partial<
       ],
     },
   },
+  conversation: {
+    id: uuidV4(),
+    type: "conversation",
+    data: [
+      {
+        text: "",
+        pronunciation: "",
+        meaning: "",
+        character: {
+          name: "",
+          src: "",
+        },
+        audio: {
+          src: "",
+        },
+      },
+    ],
+  },
 });
 
 /**
@@ -455,6 +488,84 @@ export const getTemplateDefaultValue = (): Partial<
     id: uuidV4(),
     type: "Template_H_5_5",
     leftContents: [],
+    rightContents: [],
+  },
+  TemplateConversation: {
+    id: uuidV4(),
+    type: "TemplateConversation",
+    leftContents: [
+      {
+        id: uuidV4(),
+        type: "fullAudio",
+        data: {},
+      },
+      {
+        id: uuidV4(),
+        type: "conversationWordList",
+        data: {
+          words: [
+            {
+              text: "",
+              audio: {
+                src: "",
+              },
+            },
+          ],
+        },
+      },
+    ],
+    rightContents: [],
+  },
+  TemplateConversationToggle: {
+    id: uuidV4(),
+    type: "TemplateConversationToggle",
+    leftContents: [
+      {
+        id: uuidV4(),
+        type: "fullAudio",
+        data: {},
+      },
+      {
+        id: uuidV4(),
+        type: "conversationWordList",
+        data: {
+          words: [
+            {
+              text: "",
+              audio: {
+                src: "",
+              },
+            },
+          ],
+        },
+      },
+    ],
+    rightContents: [],
+  },
+  TemplateConversationRepeat: {
+    id: uuidV4(),
+    type: "TemplateConversationRepeat",
+    leftContents: [
+      {
+        id: uuidV4(),
+        type: "fullAudio",
+        data: {},
+      },
+      {
+        id: uuidV4(),
+        type: "conversationWordList",
+        data: {
+          words: [
+            {
+              text: "",
+              audio: {
+                src: "",
+              },
+            },
+          ],
+        },
+      },
+    ],
     rightContents: [],
   },
 });

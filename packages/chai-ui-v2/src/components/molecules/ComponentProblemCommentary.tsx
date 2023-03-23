@@ -1,7 +1,7 @@
 import React from "react";
 import IconEmpty from "../../assets/images/icon/icon_empty.svg";
-import IconRight from "../../assets/images/icon/icon_problem_o.svg";
-// import IconWrong from "../../assets/images/icon/icon_problem_x.svg";
+// import IconRight from "../../assets/images/icon/icon_problem_o.svg";
+import IconWrong from "../../assets/images/icon/icon_problem_x.svg";
 
 const ComponentProblemCommentary = () => {
   return (
@@ -15,7 +15,7 @@ const ComponentProblemCommentary = () => {
 
       {/* TODO: key설명 - 항목선택을 했을 때 */}
       <div className="problem-commentary-wrap">
-        <h3 className="com-ttl"><b>{`Q1`}</b> <img src={IconRight} alt="정답" /></h3>
+        <h3 className="com-ttl"><b>{`1번`}</b> <img src={IconWrong} alt="오답" /></h3>
         <div className="tab-iframe-wrap">
           {/* TODO: key설명 - 버튼을 누르면 본인에 클래스active 추가,
            tab-conts-wrapper에 클래스 none 삭제 */}

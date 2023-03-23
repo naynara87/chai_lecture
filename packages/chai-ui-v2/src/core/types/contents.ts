@@ -251,27 +251,6 @@ export type NotiCharacterListContentData = {
 };
 
 /**
- * 팝업 레이어 캐릭터 컴포넌트
- * 페이지에 속한 인트로덕션
- */
-export type IntroductionModalContentData = {
-  id: ID;
-  type: "introductionModal";
-  data: {
-    title: string;
-    sub: string;
-    description: string;
-    character: {
-      src: string;
-    };
-    soundEffect?: {
-      src: string;
-    };
-  };
-  meta?: Meta;
-};
-
-/**
  * 퀴즈 컴포넌트 팝업 레이어 컴포넌트
  * 퀴즈 컴포넌트에 속한 팝업 레이어
  */

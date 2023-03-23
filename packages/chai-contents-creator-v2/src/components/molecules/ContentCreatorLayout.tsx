@@ -76,6 +76,9 @@ const HamburgMenuItem = styled.li`
   line-height: 17px;
   color: ${colorPalette.gray900};
   font-weight: 500;
+  :hover {
+    opacity: 0.8;
+  }
 `;
 
 const ContentsContainer = styled.div`
