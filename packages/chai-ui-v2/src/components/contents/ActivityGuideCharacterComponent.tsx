@@ -1,8 +1,9 @@
 import React from "react";
 import { ActivityGuideCharacterContentData } from "../../core";
-import { HtmlContentComponent, ImgCharacterComponent } from "../atoms";
+import { HtmlContentComponent } from "../atoms";
 import styled from "@emotion/styled";
 import { vw } from "../../assets";
+import allCharacter from "../../assets/images/img/cha_all.png";
 
 export interface ActivityGuideCharacterComponentProps {
   contents: ActivityGuideCharacterContentData;
@@ -38,11 +39,15 @@ const ActivityGuideCharacterComponent = ({
           <HtmlContentComponent html={contents.data.text} />
         </div>
         <div className="character-wrap">
-          <ImgCharacterComponent
-            characterType="allCharacter"
-            characterAlt="웃고있는 디디, 위니, 꿍이"
-            imgSrc={contents.data.character.src}
-          />
+          <img
+            src={
+              contents.data.character.src
+                ? contents.data.character.src
+                : allCharacter
+            }
+            alt={contents.data.character.src}
+            className="img"
+          ></img>
         </div>
       </div>
     </ContStartWrapper>

@@ -6,6 +6,7 @@ import ComponentButtonRadiFillMain from "../atoms/ComponentButtonRadiFillMain";
 import ModalCommon from "./ModalCommon";
 import CharacterProfile from "../../assets/images/img/cha_profile01.png";
 import { QuizPopupModalContentData } from "../../core";
+import { HtmlContentComponent } from "../atoms";
 
 // 임의 컬러. 대교측에서 색 변경 요청하여 230217 회의 이후 정해질 예정
 // const RightColor = "#5BD37D";
@@ -74,34 +75,53 @@ const LayoutModalSolution = ({
     );
   }, [isCorrect, handleClose, handleVideoBtnClick]);
 
+  const modalCharacter = useMemo(() => {
+    if (isCorrect) {
+      return contents.data.correct.character.src ?? CharacterProfile;
+    }
+    return contents.data.incorrect.character.src ?? CharacterProfile;
+  }, [isCorrect, contents.data]);
+
   return (
     // NOTE: 설명 - active가 되면 보임
     <ModalCommon open={isModalOpen} onClose={handleClose}>
       {/* 제목영역 */}
       <ModalBaseTitle className="base-ttl">
         <div className="profile-img-wrap">
-          <img src={CharacterProfile} alt="프로필" />
+          <img src={modalCharacter} alt="프로필" />
         </div>
         <div className="txt-wrap">
           {/* 간지 */}
-          <h2 className="ttl">
-            {isCorrect
-              ? contents.data.correct.title
-              : contents.data.incorrect.title}
-          </h2>
-          <p className="txt">
-            {isCorrect
-              ? contents.data.correct.sub
-              : contents.data.incorrect.sub}
-          </p>
+          <div className="ttl">
+            <HtmlContentComponent
+              html={
+                isCorrect
+                  ? contents.data.correct.title
+                  : contents.data.incorrect.title
+              }
+            />
+          </div>
+          <div className="txt">
+            <HtmlContentComponent
+              html={
+                isCorrect
+                  ? contents.data.correct.sub
+                  : contents.data.incorrect.sub
+              }
+            />
+          </div>
         </div>
       </ModalBaseTitle>
       {/* 내용영역 */}
       <ModalBaseContents className="base-conts">
         <div className="dec">
-          {isCorrect
-            ? contents.data.correct.description
-            : contents.data.incorrect.description}
+          <HtmlContentComponent
+            html={
+              isCorrect
+                ? contents.data.correct.description
+                : contents.data.incorrect.description
+            }
+          />
         </div>
       </ModalBaseContents>
 

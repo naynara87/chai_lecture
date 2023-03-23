@@ -40,6 +40,7 @@ const CreatePage = () => {
     deleteContent,
     pageData,
     saveIntroductionModalData,
+    updateContentToMultiChoiceTemplate,
   } = usePage();
 
   useEffect(() => {
@@ -97,6 +98,7 @@ const CreatePage = () => {
                 updateContent,
                 returnUseComponent,
                 deleteContent,
+                updateContentToMultiChoiceTemplate,
               });
             })}
           </DragDropContext>
