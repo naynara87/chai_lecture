@@ -11,6 +11,11 @@ const CornerGuideWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  & > img {
+    width: 22.5vw;
+    height: 22.5vw;
+    background-size: 36px 36px;
+  }
 `;
 
 const TextBubbleWrap = styled.div`
@@ -36,6 +41,9 @@ const TextBubbleWrap = styled.div`
   }
 `;
 
+/**
+ * CH-02-01 코너 변경 안내
+ */
 const CornerGuideCharacterCreator = ({
   content,
   setFocusedId,

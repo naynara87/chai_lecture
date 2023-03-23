@@ -27,6 +27,7 @@ export interface PageCommonProps extends PageHeaderProps {
   updateContent: ReturnUsePage["updateContent"];
   deleteContent: ReturnUsePage["deleteContent"];
   returnUseComponent: ReturnUseComponent;
+  updateContentToMultiChoiceTemplate: ReturnUsePage["updateContentToMultiChoiceTemplate"];
 }
 
 export type AddComponentMap = {
@@ -40,7 +41,8 @@ export type AddComponentMap = {
 export type CommonTemplateComponentLocation =
   | "contents"
   | "leftContents"
-  | "rightContents";
+  | "rightContents"
+  | "multiChoice";
 
 export type ContentCommonProps = {
   index: number; // 컴포넌트의 index
@@ -52,8 +54,10 @@ export type ContentCommonProps = {
   updateContent: ReturnUsePage["updateContent"];
   deleteContent: ReturnUsePage["deleteContent"];
   isDraggable?: boolean;
+  isEditBtn?: boolean;
   templateType?: TemplateType;
   dndOffsetContainerQuery?: string; // 모달을 사용한 경우 draggable이 모달 밖으로 나가는 것을 방지하기 위해 사용 e.g. ".base-modal"
+  updateContentToMultiChoiceTemplate?: ReturnUsePage["updateContentToMultiChoiceTemplate"];
 };
 
 export type DraggableContentCommonProps = ContentCommonProps & {

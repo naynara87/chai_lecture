@@ -5,11 +5,11 @@ import {
   Content,
   ContentType,
   ConversationTemplateData,
+  QuizPopupModalContentData,
   QuizTemplateData,
   TemplateData,
   TemplateRolePlayingData,
 } from "chai-ui-v2";
-import { words } from "lodash";
 
 type PageLayout = {
   type: TemplateData["type"];
@@ -416,6 +416,11 @@ export const getContentComponentsDefaultValue = (): Partial<
       },
     ],
   },
+  fullAudio: {
+    id: uuidV4(),
+    type: "fullAudio",
+    data: {},
+  },
   multiLevelActionSentenceCard: {
     id: uuidV4(),
     type: "multiLevelActionSentenceCard",
@@ -490,6 +495,16 @@ export const getContentComponentsDefaultValue = (): Partial<
       audio: {
         src: "",
       },
+    },
+  },
+  multiChoice: {
+    id: uuidV4(),
+    type: "multiChoice",
+    data: {
+      choice: ["", ""],
+      answerIndex: -1,
+      exampleContents: [],
+      quizPopup: quizPopupData,
     },
   },
 });
@@ -596,4 +611,65 @@ export const getTemplateDefaultValue = (): Partial<
     ],
     rightContents: [],
   },
+  TemplateQuizMultiChoice: {
+    id: uuidV4(),
+    type: "TemplateQuizMultiChoice",
+    leftContents: [
+      {
+        id: uuidV4(),
+        type: "activityGuideCharacter",
+        data: {
+          text: "",
+          character: {
+            src: "",
+          },
+        },
+      },
+    ],
+    multiChoice: {
+      id: uuidV4(),
+      type: "multiChoice",
+      data: {
+        choice: ["", ""],
+        answerIndex: -1,
+        exampleContents: [],
+        quizPopup: quizPopupData,
+      },
+    },
+  },
 });
+
+export const quizPopupData: QuizPopupModalContentData = {
+  id: uuidV4(),
+  type: "quizPopupModal",
+  data: {
+    correct: {
+      title: "",
+      sub: "",
+      description: "",
+      character: {
+        src: "",
+      },
+      soundEffect: {
+        src: "",
+      },
+      video: {
+        src: "",
+      },
+    },
+    incorrect: {
+      title: "",
+      sub: "",
+      description: "",
+      character: {
+        src: "",
+      },
+      soundEffect: {
+        src: "",
+      },
+      video: {
+        src: "",
+      },
+    },
+  },
+};
