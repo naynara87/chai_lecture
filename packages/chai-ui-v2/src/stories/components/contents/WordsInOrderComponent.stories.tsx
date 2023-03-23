@@ -1,11 +1,11 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import WordsInOrderComponent from "../../../components/contents/WordsInOrderComponent";
-import { QuizWordsInOrderContentData } from "../../../core";
+import { WordsInOrderContentData } from "../../../core";
 
-const data: QuizWordsInOrderContentData = {
+const data: WordsInOrderContentData = {
   id: "1",
-  type: "quizWordsInOrder",
+  type: "wordsInOrder",
   data: {
     choice: [
       {
@@ -104,5 +104,5 @@ export const Default = Template.bind({});
 Default.args = {
   contents: {
     ...data,
-  } as QuizWordsInOrderContentData,
+  } as WordsInOrderContentData,
 };

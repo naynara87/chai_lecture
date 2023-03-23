@@ -5,6 +5,7 @@ import CreateTemplateConversation from "../components/templates/CreateTemplateCo
 import CreateTemplateH37 from "../components/templates/CreateTemplateH37";
 import CreateTemplateH55 from "../components/templates/CreateTemplateH55";
 import CreateTemplateQuizMultiChoice from "../components/templates/CreateTemplateQuizMultiChoice";
+import CreateTemplateQuizWordsInOrder from "../components/templates/CreateTemplateQuizWordsInOrder";
 import { PageCommonProps } from "../types/page";
 
 const useTemplate = () => {
@@ -18,6 +19,7 @@ const useTemplate = () => {
       TemplateConversationToggle: <CreateTemplateConversation {...props} />,
       TemplateConversationRepeat: <CreateTemplateConversation {...props} />,
       TemplateQuizMultiChoice: <CreateTemplateQuizMultiChoice {...props} />,
+      TemplateQuizWordsInOrder: <CreateTemplateQuizWordsInOrder {...props} />,
     };
     return templateMap[templateType] ?? <div>템플릿이 없습니다.</div>;
   }, []);

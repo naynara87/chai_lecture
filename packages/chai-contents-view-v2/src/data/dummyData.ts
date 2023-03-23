@@ -2022,9 +2022,9 @@ export const v2CornerDataList: CornerData[] = [
                 },
               },
             ],
-            rightContents: {
+            wordsInOrder: {
               id: uuidV4(),
-              type: "quizWordsInOrder",
+              type: "wordsInOrder",
               data: {
                 choice: [
                   {
@@ -2514,9 +2514,9 @@ export const v2CornerDataList: CornerData[] = [
                 },
               },
             ],
-            rightContents: {
+            wordsInOrder: {
               id: uuidV4(),
-              type: "quizWordsInOrder",
+              type: "wordsInOrder",
               data: {
                 choice: [
                   {
