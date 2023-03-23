@@ -145,11 +145,6 @@ const ModalIntroduction = ({
       introductionModalData ?? pageIntroductionDefaultData,
     );
 
-  useEffect(() => {
-    console.log("introductionModalData", introductionModalData);
-    console.log("tempPageIntroductionData", tempPageIntroductionData);
-  }, [introductionModalData, tempPageIntroductionData]);
-
   const handleSave = () => {
     if (tempPageIntroductionData) {
       saveIntroductionModalData(tempPageIntroductionData);

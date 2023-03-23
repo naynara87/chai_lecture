@@ -360,6 +360,7 @@ export const getContentComponentsDefaultValue = (): Partial<
         character: {
           src: "",
         },
+        modalContents: [],
       },
     ],
   },
