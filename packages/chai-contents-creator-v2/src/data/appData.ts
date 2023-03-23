@@ -5,8 +5,10 @@ import {
   Content,
   ContentType,
   ConversationTemplateData,
+  ID,
   QuizPopupModalContentData,
   QuizTemplateData,
+  RolePlayingContentItem,
   TemplateData,
   TemplateRolePlayingData,
 } from "chai-ui-v2";
@@ -613,6 +615,32 @@ export const getTemplateDefaultValue = (): Partial<
       },
     },
   },
+  TemplateRolePlaying: {
+    id: uuidV4(),
+    type: "TemplateRolePlaying",
+    iconText: {
+      id: uuidV4(),
+      type: "iconText",
+      data: {
+        text: "",
+      },
+    },
+    guideContent: {
+      id: uuidV4(),
+      type: "activityGuideCharacter",
+      data: {
+        text: "",
+        character: {
+          src: "",
+        },
+      },
+    },
+    rolePlayingContents: {
+      id: uuidV4(),
+      type: "roleplaying",
+      data: [],
+    },
+  },
 });
 
 export const quizPopupData: QuizPopupModalContentData = {
@@ -649,3 +677,17 @@ export const quizPopupData: QuizPopupModalContentData = {
     },
   },
 };
+
+export const getRolePlayingContentItemDefaultById = (
+  id: ID,
+): RolePlayingContentItem => ({
+  id,
+  character: {
+    name: "",
+    src: "",
+  },
+  position: "left",
+  text: "",
+  pronunciation: "",
+  meaning: "",
+});
