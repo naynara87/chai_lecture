@@ -23,11 +23,13 @@ const AudioCreatorWrapper = styled.div`
 const FullAudioCreator = ({
   draggableProvided,
   isDraggable,
+  isEditBtn,
 }: DraggableContentCommonProps) => {
   return (
     <ContentCreatorLayout
       isDraggable={isDraggable}
       draggableProvided={draggableProvided}
+      isEditBtn={isEditBtn}
     >
       <AudioCreatorWrapper>
         <img src={iconPlay} alt="audio" />
