@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import React from "react";
-import IconTimer from "../../assets/images/icon/icon_timer.svg";
 import ComponentProblemCommentary from "../molecules/ComponentProblemCommentary";
 import ComponentProblemGrade from "../molecules/ComponentProblemGrade";
 import ComponentProblemTopButtonArea from "../molecules/ComponentProblemTopButtonArea";
@@ -12,12 +11,6 @@ const TemplateProblem = () => {
   return (
     <TemplateProblemWrapper>
       {/* problem header */}
-      <header className="cai-hd problem-hd">
-        <div className="hd-conts-wrap">
-          <h1 className="problem-hd-ttl">{'빨강 연습문제'}</h1>
-          <div className="problem-hd-timer"><img src={IconTimer} alt="시간" />{'00:00:00'}</div>
-        </div>
-      </header>
       {/* end problem header */}
       {/* problem main layout */}
       <main className="cai-main problem-main">
