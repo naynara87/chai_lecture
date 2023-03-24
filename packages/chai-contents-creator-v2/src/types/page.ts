@@ -42,7 +42,9 @@ export type CommonTemplateComponentLocation =
   | "contents"
   | "leftContents"
   | "rightContents"
-  | "multiChoice";
+  | "multiChoice"
+  | "titleContents"
+  | "mainContents";
 
 export type ContentCommonProps = {
   index: number; // 컴포넌트의 index

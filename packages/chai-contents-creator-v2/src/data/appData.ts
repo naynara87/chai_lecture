@@ -637,6 +637,37 @@ export const getTemplateDefaultValue = (): Partial<
       },
     },
   },
+  TemplateQuizSentencesInOrder: {
+    id: uuidV4(),
+    type: "TemplateQuizSentencesInOrder",
+    titleContents: {
+      id: uuidV4(),
+      type: "iconText",
+      data: {
+        text: "",
+      },
+    },
+    mainContents: {
+      id: uuidV4(),
+      type: "quizSentence",
+      data: {
+        characters: [
+          {
+            name: "",
+            src: "",
+            sentences: [
+              {
+                sentence: "",
+                isChoice: false,
+                answerIndex: -1,
+              },
+            ],
+          },
+        ],
+        quizPopup: quizPopupData,
+      },
+    },
+  },
 });
 
 export const quizPopupData: QuizPopupModalContentData = {

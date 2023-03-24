@@ -29,6 +29,7 @@ export type Content =
   | MultilevelActionSentenceCardContentData
   | FullAudioContentData
   | NotiCharacterListContentData
+  | QuizSentenceContentData
   | ContentsCardListContentData;
 export type ContentType = Content["type"];
 
@@ -43,6 +44,7 @@ export type QuizContent =
   | ActivityGuideCharacterContentData
   | MultiChoiceContentData
   | QuizWordsInOrderContentData
+  | QuizSentenceContentData
   | FullAudioContentData
   | FinalSpeakingContentData;
 
