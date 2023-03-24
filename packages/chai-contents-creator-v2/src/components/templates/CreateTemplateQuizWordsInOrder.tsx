@@ -44,6 +44,7 @@ const CreateTemplateQuizWordsInOrder = ({
                 deleteContent,
                 position: "leftContents",
                 isDraggable: false,
+                isEditBtn: false,
               });
             })}
           </DashBoxArea>

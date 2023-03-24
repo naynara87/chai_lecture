@@ -64,6 +64,7 @@ export const commonLayouts: PageLayout[] = [
  * TP04 : TemplateConversation - 회화 학습
  * TP05 : TemplateConversationToggle - 회화 토글 학습
  * TP06 : TemplateConversationRepeat - 회화 따라 말하기 학습
+ * TP07 : TemplateWordCard - 단어 카드형
  */
 export const conversationLayouts: ConversationPageLayout[] = [
   {
@@ -79,6 +80,11 @@ export const conversationLayouts: ConversationPageLayout[] = [
   {
     type: "TemplateConversationRepeat",
     name: "회화 따라 말하기 학습",
+    image: "https://via.placeholder.com/150",
+  },
+  {
+    type: "TemplateWordCard",
+    name: "단어 카드형",
     image: "https://via.placeholder.com/150",
   },
 ];
@@ -856,6 +862,47 @@ export const getTemplateDefaultValue = (): Partial<
         exampleContents: [],
       },
     },
+  },
+
+  TemplateWordCard: {
+    id: uuidV4(),
+    type: "TemplateWordCard",
+    leftContents: [
+      {
+        id: uuidV4(),
+        type: "fullAudio",
+        data: {},
+      },
+      {
+        id: uuidV4(),
+        type: "activityGuideCharacter",
+        data: {
+          character: {
+            src: "",
+          },
+          text: "",
+        },
+      },
+    ],
+    rightContents: [
+      {
+        id: uuidV4(),
+        type: "iconText",
+        data: {
+          text: "",
+        },
+      },
+      {
+        id: uuidV4(),
+        type: "contentsCardList",
+        data: [
+          {
+            isAccent: false,
+            contents: [],
+          },
+        ],
+      },
+    ],
   },
 });
 
