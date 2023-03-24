@@ -44,6 +44,8 @@ export type CommonTemplateComponentLocation =
   | "leftContents"
   | "rightContents"
   | "multiChoice"
+  | "titleContents"
+  | "mainContents"
   | "wordsInOrder";
 
 export type ContentCommonProps = {

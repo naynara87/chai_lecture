@@ -10,7 +10,7 @@ import { PageCommonProps } from "../../types/page";
 import DashBoxArea from "../atoms/DashBoxArea";
 import PageHeader from "../molecules/PageHeader";
 
-const CreateEditMainWrap55 = styled(CreateEditMainWrap)`
+export const CreateEditMainWrap55 = styled(CreateEditMainWrap)`
   ${CreateEditMain} {
     width: 50%;
   }
