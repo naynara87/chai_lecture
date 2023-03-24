@@ -5,7 +5,6 @@ import {
   IconTextComponent,
 } from "../contents";
 import { ComponentChoiceRole } from "../molecules";
-import { uniqBy } from "lodash";
 import RolePlayingComponent from "../contents/RolePlayingComponent";
 
 interface TemplateRolePlayingProps extends TemplateProps {}
@@ -24,18 +23,6 @@ const TemplateRolePlaying = ({
     setPageCompleted();
   }, [setPageCompleted]);
 
-  const characterList = useMemo(() => {
-    const list: { id: ID; name: string; imageSrc: string }[] = [];
-    thisPage.rolePlayingContents.data.forEach((rolePlayingContent) => {
-      list.push({
-        id: rolePlayingContent.id,
-        name: rolePlayingContent.character.name,
-        imageSrc: rolePlayingContent.character.src,
-      });
-    });
-    return uniqBy(list, "id");
-  }, [thisPage.rolePlayingContents]);
-
   const handleClickSelectCharacter = useCallback((characterId: ID) => {
     setSelectedCharacterId(characterId);
   }, []);
@@ -46,13 +33,13 @@ const TemplateRolePlaying = ({
         <div className="layout-panel">
           <IconTextComponent contents={thisPage.iconText} />
           <ComponentChoiceRole
-            characterList={characterList}
+            characterList={thisPage.characters}
             onClickSelectCharacter={handleClickSelectCharacter}
           />
         </div>
       </div>
     );
-  }, [characterList, handleClickSelectCharacter, thisPage.iconText]);
+  }, [handleClickSelectCharacter, thisPage]);
 
   const rolePlayingLayout = useMemo(() => {
     return (
@@ -64,6 +51,7 @@ const TemplateRolePlaying = ({
           <RolePlayingComponent
             contents={thisPage.rolePlayingContents}
             selectCharacterId={selectedCharacterId}
+            characterList={thisPage.characters}
           />
         </div>
       </div>

@@ -502,10 +502,7 @@ export type RoleplayingContentData = {
   type: "roleplaying";
   data: {
     id: ID;
-    character: {
-      name: string;
-      src: string;
-    };
+    characterId: ID;
     position: "left" | "right";
     text: string;
     pronunciation: string;
