@@ -202,13 +202,14 @@ const ConversationQuizComponent = ({
               contentIndex={contentIndex}
               onClickChoice={handleClickChoice}
               isShowAnswer={isShowAnswer}
+              contentId={contents.id}
             />
           </div>
         </li>
       );
     });
   }, [
-    contents.data,
+    contents,
     globalAudioState,
     speakingDialogueIndex,
     handleClickChoice,
