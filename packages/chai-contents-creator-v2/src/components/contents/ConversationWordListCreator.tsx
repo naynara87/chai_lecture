@@ -42,6 +42,7 @@ const ConversationWordListCreator = ({
   position,
   draggableProvided,
   isDraggable,
+  isEditBtn,
   deleteContent,
 }: DraggableContentCommonProps) => {
   const thisContent = content as ConversationWordListContentData;
@@ -190,6 +191,7 @@ const ConversationWordListCreator = ({
       slideId={currentSlide.id}
       content={content}
       position={position}
+      isEditBtn={isEditBtn}
       align="center"
     >
       <div className="flex-wrap">

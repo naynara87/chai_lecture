@@ -44,6 +44,7 @@ const CreateTemplateQuizMultiChoice = ({
                 deleteContent,
                 position: "leftContents",
                 isDraggable: false,
+                isEditBtn: false,
               });
             })}
           </DashBoxArea>

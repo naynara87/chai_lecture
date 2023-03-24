@@ -16,6 +16,7 @@ export interface ComponentsContextMenuProps {
   toggleContextMenu: (e: React.MouseEvent) => void;
 }
 
+// FIXME ComponentsContextMenuCommon에 합치기
 const ComponentsConversationContextMenuCommon = ({
   isComponentsContextMenuOpen,
   addComponentMap,
