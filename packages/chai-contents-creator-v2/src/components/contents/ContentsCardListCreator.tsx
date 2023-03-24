@@ -75,7 +75,7 @@ const deleteButtonStyle = css`
  * CH-03-01 학습 카드
  * ContentsCardList
  */
-const ContentsCardList = ({
+const ContentsCardListCreator = ({
   content,
   updateContent,
   deleteContent,
@@ -267,4 +267,4 @@ const ContentsCardList = ({
   );
 };
 
-export default ContentsCardList;
+export default ContentsCardListCreator;

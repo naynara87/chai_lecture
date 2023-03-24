@@ -22,7 +22,7 @@ import {
 import AudioRecorderCreator from "../components/contents/AudioRecorderCreator";
 import MultilevelActionCardCreator from "../components/contents/MultilevelActionCardCreator";
 import ActivityGuideCharacterCreator from "../components/contents/ActivityGuideCharacterCreator";
-import ContentsCardList from "../components/contents/ContentsCardList";
+import ContentsCardListCreator from "../components/contents/ContentsCardListCreator";
 import ExplainingCharacterCreator from "../components/contents/ExplainingCharacterCreator";
 import CharacterCardListCreator from "../components/contents/CharacterCardListCreator";
 import ToggleSentenceListCreator from "../components/contents/ToggleSentenceListCreator";
@@ -59,7 +59,7 @@ const useComponent = () => {
       multiLevelActionCard: <MultilevelActionCardCreator {...props} />,
       cornerGuideCharacter: <CornerGuideCharacterCreator {...props} />,
       activityGuideCharacter: <ActivityGuideCharacterCreator {...props} />,
-      contentsCardList: <ContentsCardList {...props} />,
+      contentsCardList: <ContentsCardListCreator {...props} />,
       explainingCharacter: <ExplainingCharacterCreator {...props} />,
       characterCardList: <CharacterCardListCreator {...props} />,
       toggleSentenceList: <ToggleSentenceListCreator {...props} />,

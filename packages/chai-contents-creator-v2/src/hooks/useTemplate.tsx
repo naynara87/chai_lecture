@@ -9,6 +9,7 @@ import CreateTemplateQuizMultiChoice from "../components/templates/CreateTemplat
 import CreateTemplateQuizSentencesInOrder from "../components/templates/CreateTemplateQuizSentencesInOrder";
 import CreateTemplateQuizSpeaking from "../components/templates/CreateTemplateQuizSpeaking";
 import CreateTemplateQuizWordsInOrder from "../components/templates/CreateTemplateQuizWordsInOrder";
+import CreateTemplateWordCard from "../components/templates/CreateTemplateWordCard";
 import { PageCommonProps } from "../types/page";
 
 const useTemplate = () => {
@@ -28,6 +29,7 @@ const useTemplate = () => {
       ),
       TemplateQuizWordsInOrder: <CreateTemplateQuizWordsInOrder {...props} />,
       TemplateQuizSpeaking: <CreateTemplateQuizSpeaking {...props} />,
+      TemplateWordCard: <CreateTemplateWordCard {...props} />,
     };
     return templateMap[templateType] ?? <div>템플릿이 없습니다.</div>;
   }, []);

@@ -1,8 +1,5 @@
-import {
-  TemplateConversationData,
-  TemplateConversationToggleData,
-} from "chai-ui-v2";
-import useComponentConversationContext from "../../hooks/useComponentConversationContext";
+import { TemplateWordCardData } from "chai-ui-v2";
+import useComponentWordCardContext from "../../hooks/useComponentWordCardContext";
 import {
   CreateEditMain,
   CreateTemplateChoiceBtnWrap,
@@ -12,7 +9,7 @@ import DashBoxArea from "../atoms/DashBoxArea";
 import PageHeader from "../molecules/PageHeader";
 import { CreateEditMainWrap37 } from "./CreateTemplateH37";
 
-const CreateTemplateConversation = ({
+const CreateTemplateWordCard = ({
   templateType,
   addComponentMap,
   slideId,
@@ -23,17 +20,17 @@ const CreateTemplateConversation = ({
   ...pageHeaderProps
 }: PageCommonProps) => {
   const {
-    ComponentsConversationContextMenuCommon,
+    ComponentsWordCardContextMenuCommon,
     isComponentsContextMenuOpen,
     toggleContextMenu,
-  } = useComponentConversationContext();
+  } = useComponentWordCardContext();
 
   const { focusedId, setFocusedId, getComponent, getDroppableId } =
     returnUseComponent;
 
-  const thisSlide = slides.find((slide) => slide.id === slideId) as
-    | TemplateConversationData
-    | TemplateConversationToggleData;
+  const thisSlide = slides.find(
+    (slide) => slide.id === slideId,
+  ) as TemplateWordCardData;
 
   const leftDroppableId = getDroppableId(slideId, "leftContents");
 
@@ -56,6 +53,7 @@ const CreateTemplateConversation = ({
                 deleteContent,
                 position: "leftContents",
                 isDraggable: false,
+                isEditBtn: false,
               });
             })}
           </DashBoxArea>
@@ -66,7 +64,7 @@ const CreateTemplateConversation = ({
               <button className="btn-comp-select" onClick={toggleContextMenu}>
                 컴포넌트 선택
               </button>
-              <ComponentsConversationContextMenuCommon
+              <ComponentsWordCardContextMenuCommon
                 isComponentsContextMenuOpen={isComponentsContextMenuOpen}
                 addComponentMap={addComponentMap}
                 slideId={slideId}
@@ -85,6 +83,8 @@ const CreateTemplateConversation = ({
                 deleteContent,
                 position: "rightContents",
                 templateType: thisSlide.type,
+                isDraggable: false,
+                isEditBtn: false,
               });
             })}
           </DashBoxArea>
@@ -94,4 +94,4 @@ const CreateTemplateConversation = ({
   );
 };
 
-export default CreateTemplateConversation;
+export default CreateTemplateWordCard;

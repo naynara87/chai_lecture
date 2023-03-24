@@ -18,7 +18,6 @@ export type AllTemplateData =
   | ConversationTemplateData
   | QuizTemplateData
   | TemplateRolePlayingData
-  | TemplateWordCardData
   | TemplateQuestionData;
 
 export type TemplateData =
@@ -29,7 +28,8 @@ export type TemplateData =
 export type ConversationTemplateData =
   | TemplateConversationData
   | TemplateConversationToggleData
-  | TemplateConversationRepeatData;
+  | TemplateConversationRepeatData
+  | TemplateWordCardData;
 
 export type QuizTemplateData =
   | TemplateQuizConversationData
