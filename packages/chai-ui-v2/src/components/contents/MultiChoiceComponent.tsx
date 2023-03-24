@@ -60,13 +60,13 @@ const MultiChoiceComponent = ({ contents }: MultiChoiceComponentProps) => {
         <div className="inp-grp" key={choiceIndex}>
           <input
             type="radio"
-            name="answer"
-            id={`answer${choiceIndex}`}
+            name={`answer${contents.id}`}
+            id={`${contents.id}-answer-${choiceIndex}`}
             className="inp-chck-gray none"
             checked={userChoice === choiceIndex}
           />
           <label
-            htmlFor={`answer${choiceIndex}`}
+            htmlFor={`${contents.id}-answer-${choiceIndex}`}
             className="label-chck-gray"
             onClick={() => {
               if (userChoice !== undefined) return;
@@ -90,7 +90,7 @@ const MultiChoiceComponent = ({ contents }: MultiChoiceComponentProps) => {
         </div>
       );
     });
-  }, [contents.data, userChoice, handleClickAudioButton]);
+  }, [contents, userChoice, handleClickAudioButton]);
 
   const answerCheckColor = useMemo(() => {
     if (userChoice !== undefined) {
