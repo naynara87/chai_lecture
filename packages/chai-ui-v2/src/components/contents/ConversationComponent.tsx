@@ -133,9 +133,7 @@ const ConversationComponent = ({
                   }}
                 >
                   <img
-                    src={
-                      content.character.src ? content.character.src : ImgTemp01
-                    }
+                    src={content.character.src || ImgTemp01}
                     alt={content.character.name}
                     className="profile"
                   />

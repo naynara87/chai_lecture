@@ -17,6 +17,7 @@ import ModalVideo from "../modal/ModalVideo";
 import ComponentGrayLine from "../molecules/ComponentGrayLine";
 import { v4 as uuidv4 } from "uuid";
 import ImgProfileDefault from "../../assets/images/img/img_profile_default.png";
+import { sortChoices } from "../../core/util/sortChoices";
 
 const BlankBox = styled.div`
   cursor: pointer;
@@ -27,6 +28,11 @@ type WordInOrderChoice = {
   answerIndex: number;
 };
 
+type choice = {
+  text: string;
+  isChoice: boolean;
+  answerIndex: number;
+};
 export interface WordsInOrderComponentProps {
   contents: WordsInOrderContentData;
 }
@@ -40,9 +46,24 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
   >();
   const [userChoices, setUserChoices] = useState<WordInOrderChoice[]>([]);
   const [isShowAnswer, setIsShowAnswer] = useState(false);
+  const [sortAnswers, setSortAnswers] = useState<choice[]>([]);
 
   const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(false);
   const [isModalVideoOpen, setIsModalVideoOpen] = useState(false);
+
+  const sentences = useMemo(() => {
+    const newChoice: choice[] = [];
+    contents.data.choice.forEach((_choice) => {
+      if (_choice.isChoice) {
+        newChoice.push(_choice);
+      }
+    });
+    return newChoice;
+  }, [contents]);
+
+  useEffect(() => {
+    sortChoices(sentences, setSortAnswers);
+  }, [sentences]);
 
   const modalUuidRef = useRef(uuidv4());
 
@@ -160,8 +181,7 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
 
   const choiceBoxes = useMemo(() => {
     if (userChoices.length < 1) return;
-    return contents.data.choice.map((content, contentIndex) => {
-      if (!content.isChoice) return;
+    return sortAnswers.map((content, contentIndex) => {
       const isChecked = userChoices.find((userChoice) => {
         return userChoice.text === content.text;
       });
@@ -203,11 +223,11 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
       );
     });
   }, [
-    contents.data.choice,
     selectedBlankBox,
     userChoices,
     isShowAnswer,
     selectedChoiceBox,
+    sortAnswers,
   ]);
 
   const isShowAnswerButton = useMemo(() => {

@@ -22,33 +22,20 @@ import Button from "../atoms/Button";
 import CheckBoxWrapper from "../molecules/CheckBoxWrapper";
 import ComponentGrayLineCreator from "../molecules/ComponentGrayLineCreator";
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
-import UrlInputWrapper from "../molecules/UrlInputWrapper";
 import ObjectDeleteButton from "../atoms/ObjectDeleteButton";
 import TextEditorViewer from "../molecules/TextEditorViewer";
 import ModalSolution from "../molecules/modal/ModalSolution";
-
-const ConversationWrap = styled.div`
-  margin-top: 0 !important;
-`;
+import CharacterInputWrapper from "../molecules/ChracterInputWrapper";
 
 const AnswerWrap = styled.div`
   justify-content: flex-start;
   flex-wrap: wrap;
 `;
 
-const CharacterNameInput = styled.input`
-  background: none !important;
-  font-size: ${vw(25)} !important;
-`;
-
 const FlexWrap = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 16px;
-`;
-
-const CharacterWrap = styled.div`
-  display: flex;
 `;
 
 const AnswerBoxWrap = styled.div`
@@ -232,36 +219,6 @@ const WordsInOrderCreator = ({
     [thisContent, updateContentToWordsInOrderTemplate, currentSlide.id],
   );
 
-  const character = useMemo(() => {
-    return (
-      <CharacterWrap>
-        <div className="img-grp">
-          <div className="img-wrap">
-            {/* TODO: key설명 - 음성이 있을 경우, 누르면 단일 음성이 재생되며, conversation-wrap 에 active 추가 */}
-            <div className="img-round">
-              <button className="btn-profile">
-                <img
-                  src={thisContent.data.character?.src}
-                  alt={thisContent.data.character?.name}
-                />
-              </button>
-            </div>
-          </div>
-          <CharacterNameInput
-            type="text"
-            className="name"
-            placeholder="화자 이름"
-            onBlur={(e) => {
-              const target = e.target as HTMLInputElement;
-              setName(target.value);
-            }}
-          />
-        </div>
-        <UrlInputWrapper typeText="이미지" onSubmit={setImage} />
-      </CharacterWrap>
-    );
-  }, [setName, setImage, thisContent.data]);
-
   const setIsUseCharacter = () => {
     const newContent = {
       ...thisContent,
@@ -386,7 +343,7 @@ const WordsInOrderCreator = ({
               text={getText(choiceIndex)}
               isFocused={isTextEditorFocused(isFocused, choiceIndex)}
               handleSubmitTextOnBlur={resetFocusedTextEditorIndex}
-              defaultText="?"
+              defaultText="단어입력"
             />
           </AnswerBox>
           <CheckBoxWrapper
@@ -478,11 +435,14 @@ const WordsInOrderCreator = ({
               화자 있음
             </CheckBoxWrapper>
           </FlexWrap>
-          <ConversationWrap className="conversation-wrap">
-            <div className="quiz-sentence-wrap">
-              {thisContent.meta?.isUseCharacter && character}
-            </div>
-          </ConversationWrap>
+          {thisContent.meta?.isUseCharacter && (
+            <CharacterInputWrapper
+              characterImageSrc={thisContent.data.character?.src ?? ""}
+              characterName={thisContent.data.character?.name ?? ""}
+              characterSetImage={(src: string) => setImage(src)}
+              characterSetName={setName}
+            />
+          )}
           <AnswerWrap className="hori-answer-wrap">{answers}</AnswerWrap>
         </WordsInOrderWrapper>
       </ContentBox>

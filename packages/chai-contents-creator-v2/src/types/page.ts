@@ -29,6 +29,7 @@ export interface PageCommonProps extends PageHeaderProps {
   returnUseComponent: ReturnUseComponent;
   updateContentToMultiChoiceTemplate: ReturnUsePage["updateContentToMultiChoiceTemplate"];
   updateContentToWordsInOrderTemplate: ReturnUsePage["updateContentToWordsInOrderTemplate"];
+  updateContentToSentenceInOrderTemplate: ReturnUsePage["updateContentToSentenceInOrderTemplate"];
 }
 
 export type AddComponentMap = {
@@ -63,6 +64,7 @@ export type ContentCommonProps = {
   dndOffsetContainerQuery?: string; // 모달을 사용한 경우 draggable이 모달 밖으로 나가는 것을 방지하기 위해 사용 e.g. ".base-modal"
   updateContentToMultiChoiceTemplate?: ReturnUsePage["updateContentToMultiChoiceTemplate"];
   updateContentToWordsInOrderTemplate?: ReturnUsePage["updateContentToWordsInOrderTemplate"];
+  updateContentToSentenceInOrderTemplate?: ReturnUsePage["updateContentToSentenceInOrderTemplate"];
 };
 
 export type DraggableContentCommonProps = ContentCommonProps & {

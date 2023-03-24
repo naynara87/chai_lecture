@@ -42,6 +42,7 @@ const CreatePage = () => {
     saveIntroductionModalData,
     updateContentToMultiChoiceTemplate,
     updateContentToWordsInOrderTemplate,
+    updateContentToSentenceInOrderTemplate,
   } = usePage();
 
   useEffect(() => {
@@ -101,6 +102,7 @@ const CreatePage = () => {
                 deleteContent,
                 updateContentToMultiChoiceTemplate,
                 updateContentToWordsInOrderTemplate,
+                updateContentToSentenceInOrderTemplate
               });
             })}
           </DragDropContext>

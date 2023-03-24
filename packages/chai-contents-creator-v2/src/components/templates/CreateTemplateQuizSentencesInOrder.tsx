@@ -3,7 +3,6 @@ import { CreateEditMain } from "../../styles/template";
 import { PageCommonProps } from "../../types/page";
 import DashBoxArea from "../atoms/DashBoxArea";
 import CharacterSentenceListCheckedCreator from "../contents/CharacterSentenceAnswerListCreator";
-import QuizSentenceCreator from "../contents/CharacterSentenceListCreator";
 import PageHeader from "../molecules/PageHeader";
 import { CreateEditMainWrap55 } from "./CreateTemplateH55";
 
@@ -15,6 +14,7 @@ const CreateTemplateQuizSentencesInOrder = ({
   updateContent,
   deleteContent,
   returnUseComponent,
+  updateContentToSentenceInOrderTemplate,
   ...pageHeaderProps
 }: PageCommonProps) => {
   const { focusedId, setFocusedId, getComponent, getDroppableId } =
@@ -47,12 +47,27 @@ const CreateTemplateQuizSentencesInOrder = ({
               isDraggable: false,
               isEditBtn: false,
             })}
-            <QuizSentenceCreator />
+            {getComponent({
+              index: 1,
+              currentSlide: thisSlide,
+              content: thisSlide.mainContents,
+              isFocused: focusedId === thisSlide.mainContents.id,
+              setFocusedId,
+              updateContent,
+              deleteContent,
+              position: "mainContents",
+              templateType: thisSlide.type,
+              isDraggable: false,
+              isEditBtn: false,
+              updateContentToSentenceInOrderTemplate,
+            })}
           </DashBoxArea>
         </CreateEditMain>
         <CreateEditMain>
           <DashBoxArea droppableId={rightDroppableId}>
-            <CharacterSentenceListCheckedCreator />
+            <CharacterSentenceListCheckedCreator
+              content={thisSlide.mainContents}
+            />
           </DashBoxArea>
         </CreateEditMain>
       </CreateEditMainWrap55>
