@@ -1,9 +1,13 @@
+import { SerializedStyles } from "@emotion/react";
 import styled from "@emotion/styled";
 import { colorPalette, validateURL } from "chai-ui-v2";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import AddButton from "../atoms/AddButton";
 
-const UrlTextWrapper = styled.div`
+export interface UrlInputWrapperProps {
+  urlInputWrapperCss?: SerializedStyles;
+}
+const UrlTextWrapper = styled.div<UrlInputWrapperProps>`
   margin-top: 10px;
 
   & .text-tit {
@@ -31,19 +35,26 @@ const UrlTextWrapper = styled.div`
     padding: unset;
     font-size: 15px;
   }
+
+  ${({ urlInputWrapperCss }) => urlInputWrapperCss}
 `;
 
 const WarningMessage = styled.p`
   color: ${colorPalette.red700};
 `;
 
-interface ButtonProps {
+interface ButtonProps extends UrlInputWrapperProps {
   typeText: string;
   onSubmit?: (src: string, index?: number) => void;
   defaultText?: string;
 }
 
-const UrlInputWrapper = ({ typeText, onSubmit, defaultText }: ButtonProps) => {
+const UrlInputWrapper = ({
+  typeText,
+  onSubmit,
+  defaultText,
+  urlInputWrapperCss,
+}: ButtonProps) => {
   const [message, setMessage] = useState<string>("");
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -64,7 +75,10 @@ const UrlInputWrapper = ({ typeText, onSubmit, defaultText }: ButtonProps) => {
   };
 
   return (
-    <UrlTextWrapper className="url-wrapper">
+    <UrlTextWrapper
+      className="url-wrapper"
+      urlInputWrapperCss={urlInputWrapperCss}
+    >
       <p className="text-tit">{typeText} URL</p>
       <form onSubmit={handleSubmit}>
         <input

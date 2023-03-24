@@ -22,10 +22,10 @@ import Button from "../atoms/Button";
 import CheckBoxWrapper from "../molecules/CheckBoxWrapper";
 import ComponentGrayLineCreator from "../molecules/ComponentGrayLineCreator";
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
-import UrlInputWrapper from "../molecules/UrlInputWrapper";
 import ObjectDeleteButton from "../atoms/ObjectDeleteButton";
 import TextEditorViewer from "../molecules/TextEditorViewer";
 import ModalSolution from "../molecules/modal/ModalSolution";
+import CharacterCreator from "../molecules/CharacterCreator";
 
 const ConversationWrap = styled.div`
   margin-top: 0 !important;
@@ -36,19 +36,10 @@ const AnswerWrap = styled.div`
   flex-wrap: wrap;
 `;
 
-const CharacterNameInput = styled.input`
-  background: none !important;
-  font-size: ${vw(25)} !important;
-`;
-
 const FlexWrap = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 16px;
-`;
-
-const CharacterWrap = styled.div`
-  display: flex;
 `;
 
 const AnswerBoxWrap = styled.div`
@@ -234,31 +225,11 @@ const WordsInOrderCreator = ({
 
   const character = useMemo(() => {
     return (
-      <CharacterWrap>
-        <div className="img-grp">
-          <div className="img-wrap">
-            {/* TODO: key설명 - 음성이 있을 경우, 누르면 단일 음성이 재생되며, conversation-wrap 에 active 추가 */}
-            <div className="img-round">
-              <button className="btn-profile">
-                <img
-                  src={thisContent.data.character?.src}
-                  alt={thisContent.data.character?.name}
-                />
-              </button>
-            </div>
-          </div>
-          <CharacterNameInput
-            type="text"
-            className="name"
-            placeholder="화자 이름"
-            onBlur={(e) => {
-              const target = e.target as HTMLInputElement;
-              setName(target.value);
-            }}
-          />
-        </div>
-        <UrlInputWrapper typeText="이미지" onSubmit={setImage} />
-      </CharacterWrap>
+      <CharacterCreator
+        characterUrl={thisContent.data.character?.src ?? ""}
+        onImageUrlSubmit={setImage}
+        onSaveCharacterNameInput={setName}
+      />
     );
   }, [setName, setImage, thisContent.data]);
 
