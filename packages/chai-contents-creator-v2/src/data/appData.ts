@@ -507,6 +507,56 @@ export const getContentComponentsDefaultValue = (): Partial<
       quizPopup: quizPopupData,
     },
   },
+  wordsInOrder: {
+    id: uuidV4(),
+    type: "wordsInOrder",
+    data: {
+      choice: [
+        {
+          text: "",
+          isChoice: false,
+          answerIndex: -1,
+        },
+      ],
+      character: {
+        name: "",
+        src: "",
+      },
+      exampleContents: [],
+      quizPopup: quizPopupData,
+    },
+    meta: {
+      isUseCharacter: false,
+    },
+  },
+  conversationQuiz: {
+    id: uuidV4(),
+    type: "conversationQuiz",
+    data: [
+      {
+        text: "",
+        pronunciation: "",
+        meaning: "",
+        character: {
+          name: "",
+          src: "",
+        },
+        audio: {
+          src: "",
+        },
+        choice: [
+          {
+            text: "",
+            isAnswer: false,
+          },
+          {
+            text: "",
+            isAnswer: false,
+          },
+        ],
+      },
+    ],
+  },
 });
 
 /**
@@ -637,6 +687,44 @@ export const getTemplateDefaultValue = (): Partial<
       },
     },
   },
+  TemplateQuizWordsInOrder: {
+    id: uuidV4(),
+    type: "TemplateQuizWordsInOrder",
+    leftContents: [
+      {
+        id: uuidV4(),
+        type: "activityGuideCharacter",
+        data: {
+          text: "",
+          character: {
+            src: "",
+          },
+        },
+      },
+    ],
+    wordsInOrder: {
+      id: uuidV4(),
+      type: "wordsInOrder",
+      data: {
+        choice: [
+          {
+            text: "",
+            isChoice: false,
+            answerIndex: -1,
+          },
+        ],
+        character: {
+          name: "",
+          src: "",
+        },
+        exampleContents: [],
+        quizPopup: quizPopupData,
+      },
+      meta: {
+        isUseCharacter: false,
+      },
+    },
+  },
   TemplateQuizSentencesInOrder: {
     id: uuidV4(),
     type: "TemplateQuizSentencesInOrder",
@@ -667,6 +755,57 @@ export const getTemplateDefaultValue = (): Partial<
         quizPopup: quizPopupData,
       },
     },
+  },
+  TemplateQuizConversation: {
+    id: uuidV4(),
+    type: "TemplateQuizConversation",
+    leftContents: [
+      {
+        id: uuidV4(),
+        type: "fullAudio",
+        data: {},
+      },
+      {
+        id: uuidV4(),
+        type: "activityGuideCharacter",
+        data: {
+          character: {
+            src: "",
+          },
+          text: "",
+        },
+      },
+    ],
+    rightContents: [
+      {
+        id: uuidV4(),
+        type: "conversationQuiz",
+        data: [
+          {
+            text: "",
+            pronunciation: "",
+            meaning: "",
+            character: {
+              name: "",
+              src: "",
+            },
+            audio: {
+              src: "",
+            },
+            choice: [
+              {
+                text: "",
+                isAnswer: false,
+              },
+              {
+                text: "",
+                isAnswer: false,
+              },
+            ],
+          },
+        ],
+      },
+    ],
   },
 });
 

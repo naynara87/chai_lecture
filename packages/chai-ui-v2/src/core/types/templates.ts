@@ -9,8 +9,8 @@ import {
   QuestionContentData,
   QuizContent,
   QuizSentenceContentData,
-  QuizWordsInOrderContentData,
   RoleplayingContentData,
+  WordsInOrderContentData,
 } from "./contents";
 
 export type AllTemplateData =
@@ -146,7 +146,7 @@ export type TemplateQuizWordsInOrderData = {
   id: ID;
   type: "TemplateQuizWordsInOrder";
   leftContents: Content[];
-  rightContents: QuizWordsInOrderContentData;
+  wordsInOrder: WordsInOrderContentData;
 };
 
 /**

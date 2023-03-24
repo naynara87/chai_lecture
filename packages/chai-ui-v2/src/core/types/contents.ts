@@ -17,7 +17,7 @@ export type Content =
   | ImageWithDescriptionListContentData
   | ActivityGuideCharacterContentData
   | ConversationQuizContentData
-  | QuizWordsInOrderContentData
+  | WordsInOrderContentData
   | MultiChoiceContentData
   | ImageWithCaptionListContentData
   | FinalSpeakingContentData
@@ -43,8 +43,8 @@ export type QuizContent =
   | ConversationQuizContentData
   | ActivityGuideCharacterContentData
   | MultiChoiceContentData
-  | QuizWordsInOrderContentData
   | QuizSentenceContentData
+  | WordsInOrderContentData
   | FullAudioContentData
   | FinalSpeakingContentData;
 
@@ -420,9 +420,9 @@ export type ConversationQuizContentData = {
 /**
  * 단어 배열형 퀴즈 컴포넌트
  */
-export type QuizWordsInOrderContentData = {
+export type WordsInOrderContentData = {
   id: ID;
-  type: "quizWordsInOrder";
+  type: "wordsInOrder";
   data: {
     choice: {
       text: string;
@@ -436,7 +436,9 @@ export type QuizWordsInOrderContentData = {
     exampleContents?: Content[];
     quizPopup: QuizPopupModalContentData;
   };
-  meta?: Meta;
+  meta?: {
+    isUseCharacter: boolean;
+  };
 };
 
 /**

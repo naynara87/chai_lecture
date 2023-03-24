@@ -16,9 +16,14 @@ const ContentCreatorWrapper = styled.div<ContentCreatorWrapperProps>`
   justify-content: ${({ align }) => align || "start"};
 `;
 
-const ContentCreatorContainer = styled.div`
+interface ContentCreatorContainerProps {
+  isContainerFullWidth: boolean;
+}
+
+const ContentCreatorContainer = styled.div<ContentCreatorContainerProps>`
   display: inline-flex;
   margin-bottom: ${vw(24)};
+  width: ${(props) => props.isContainerFullWidth && "100%"};
 `;
 
 const IconContainerWrapper = styled.div`
@@ -94,6 +99,7 @@ interface ContentCreatorLayoutProps extends ContentCreatorWrapperProps {
   slideId?: ID; // FIXME: 나중에 모든 컴포넌트 구현 후 옵셔널 제거
   content?: Content; // FIXME: 나중에 모든 컴포넌트 구현 후 옵셔널 제거
   position?: CommonTemplateComponentLocation; // FIXME: 나중에 모든 컴포넌트 구현 후 옵셔널 제거
+  isContainerFullWidth?: boolean;
 }
 const ContentCreatorLayout = ({
   children,
@@ -105,6 +111,7 @@ const ContentCreatorLayout = ({
   position,
   isDraggable = true,
   isEditBtn = true,
+  isContainerFullWidth = false,
 }: ContentCreatorLayoutProps) => {
   const [isHamburgerMenuOpen, setIsHamburgerMenuOpen] = useState(false);
   const toggleHamburgerMenu = (e: React.MouseEvent) => {
@@ -135,7 +142,10 @@ const ContentCreatorLayout = ({
 
   return (
     <ContentCreatorWrapper align={align}>
-      <ContentCreatorContainer className="contentCreator">
+      <ContentCreatorContainer
+        className="contentCreator"
+        isContainerFullWidth={isContainerFullWidth}
+      >
         <IconContainerWrapper>
           <IconContainer>
             <IconWrapper

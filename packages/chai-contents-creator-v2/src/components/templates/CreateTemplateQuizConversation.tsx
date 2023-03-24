@@ -1,11 +1,11 @@
-import { TemplateQuizMultiChoiceData } from "chai-ui-v2";
+import { TemplateQuizConversationData } from "chai-ui-v2";
 import { CreateEditMain } from "../../styles/template";
 import { PageCommonProps } from "../../types/page";
 import DashBoxArea from "../atoms/DashBoxArea";
 import PageHeader from "../molecules/PageHeader";
 import { CreateEditMainWrap37 } from "./CreateTemplateH37";
 
-const CreateTemplateQuizMultiChoice = ({
+const CreateTemplateQuizConversation = ({
   templateType,
   addComponentMap,
   slideId,
@@ -13,7 +13,6 @@ const CreateTemplateQuizMultiChoice = ({
   updateContent,
   deleteContent,
   returnUseComponent,
-  updateContentToMultiChoiceTemplate,
   ...pageHeaderProps
 }: PageCommonProps) => {
   const { focusedId, setFocusedId, getComponent, getDroppableId } =
@@ -21,11 +20,11 @@ const CreateTemplateQuizMultiChoice = ({
 
   const thisSlide = slides.find(
     (slide) => slide.id === slideId,
-  ) as TemplateQuizMultiChoiceData;
+  ) as TemplateQuizConversationData;
 
   const leftDroppableId = getDroppableId(slideId, "leftContents");
 
-  const rightDroppableId = getDroppableId(slideId, "multiChoice");
+  const rightDroppableId = getDroppableId(slideId, "rightContents");
 
   return (
     <>
@@ -44,25 +43,27 @@ const CreateTemplateQuizMultiChoice = ({
                 deleteContent,
                 position: "leftContents",
                 isDraggable: false,
+                isEditBtn: false,
               });
             })}
           </DashBoxArea>
         </CreateEditMain>
         <CreateEditMain>
           <DashBoxArea droppableId={rightDroppableId}>
-            {getComponent({
-              index: 0,
-              currentSlide: thisSlide,
-              content: thisSlide.multiChoice,
-              isFocused: focusedId === thisSlide.multiChoice?.id,
-              setFocusedId,
-              updateContent,
-              deleteContent,
-              position: "multiChoice",
-              templateType: thisSlide.type,
-              isDraggable: false,
-              isEditBtn: false,
-              updateContentToMultiChoiceTemplate,
+            {thisSlide.rightContents.map((content, index) => {
+              return getComponent({
+                index,
+                currentSlide: thisSlide,
+                content,
+                isFocused: focusedId === content?.id,
+                setFocusedId,
+                updateContent,
+                deleteContent,
+                position: "rightContents",
+                templateType: thisSlide.type,
+                isDraggable: false,
+                isEditBtn: false,
+              });
             })}
           </DashBoxArea>
         </CreateEditMain>
@@ -71,4 +72,4 @@ const CreateTemplateQuizMultiChoice = ({
   );
 };
 
-export default CreateTemplateQuizMultiChoice;
+export default CreateTemplateQuizConversation;

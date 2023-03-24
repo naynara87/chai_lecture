@@ -35,6 +35,10 @@ const ChoiceWrap = styled.div`
   width: 100%;
 `;
 
+export const AnswerCheckText = styled.span`
+  font-size: 12px;
+`;
+
 interface ChoiceLabelProps {
   isFocus: boolean;
 }
@@ -45,7 +49,7 @@ const ChoiceLabel = styled.label<ChoiceLabelProps>`
     props.isFocus && `height:auto; display:flex; align-items: center;`}
 `;
 
-const AnswerInput = styled.input`
+export const AnswerInput = styled.input`
   vertical-align: middle;
   appearance: none;
   border: max(2px, 0.1em) solid #c9c9c9;
@@ -280,12 +284,13 @@ const MultiChoiceCreator = ({
             type="radio"
             name="answerCheck"
             id={`answerCheck${choiceIndex}`}
+            onClick={() => setAnswer(choiceIndex)}
           />
           <label
             htmlFor={`answerCheck${choiceIndex}`}
             onClick={() => setAnswer(choiceIndex)}
           >
-            <span className="text">정답</span>
+            <AnswerCheckText className="text">정답</AnswerCheckText>
           </label>
         </div>
       );
