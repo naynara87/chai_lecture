@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ComponentsWordCardContextMenuCommon from "../components/molecules/ComponentsWordCardContextMenuCommon";
 import ComponentsContextMenuComponent from "../components/molecules/ComponentsContextMenuComponent";
 
+// FIXME useComponentContext에 합치기
 const useComponentWordCardContext = () => {
   const [isComponentsContextMenuOpen, setIsComponentsContextMenuOpen] =
     useState(false);
