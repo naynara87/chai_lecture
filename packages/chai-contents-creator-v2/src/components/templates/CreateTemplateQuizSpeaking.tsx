@@ -2,7 +2,6 @@ import { TemplateQuizSpeakingData } from "chai-ui-v2";
 import { CreateEditMain } from "../../styles/template";
 import { PageCommonProps } from "../../types/page";
 import DashBoxArea from "../atoms/DashBoxArea";
-import FinalSpeakingContentCreator from "../contents/FinalSpeakingContentCreator";
 import PageHeader from "../molecules/PageHeader";
 import { CreateEditMainWrap37 } from "./CreateTemplateH37";
 
@@ -14,6 +13,7 @@ const CreateTemplateQuizSpeaking = ({
   updateContent,
   deleteContent,
   returnUseComponent,
+  updateContentToFinalSpeakingTemplate,
   ...pageHeaderProps
 }: PageCommonProps) => {
   const { focusedId, setFocusedId, getComponent, getDroppableId } =
@@ -49,7 +49,20 @@ const CreateTemplateQuizSpeaking = ({
         </CreateEditMain>
         <CreateEditMain>
           <DashBoxArea droppableId={rightDroppableId}>
-            <FinalSpeakingContentCreator />
+            {getComponent({
+              index: 1,
+              currentSlide: thisSlide,
+              content: thisSlide.rightContents,
+              isFocused: focusedId === thisSlide.rightContents.id,
+              setFocusedId,
+              updateContent,
+              deleteContent,
+              updateContentToFinalSpeakingTemplate,
+              position: "rightContents",
+              templateType: thisSlide.type,
+              isDraggable: false,
+              isEditBtn: false,
+            })}
           </DashBoxArea>
         </CreateEditMain>
       </CreateEditMainWrap37>

@@ -42,11 +42,8 @@ const data: FinalSpeakingContentData = {
         ],
       },
     ],
-    answerModel: {
-      text: "我觉得这里的冬天没有中国那么冷。",
-      pronunciation: "Wǒ juédé zhèlǐ de dōngtiān méiyǒu zhòng guó nàme lěng.",
-      meaning: "이곳의 겨울은 중국만큼 춥지 않은 것 같아요.",
-    },
+    answerModel:
+      "<p>我觉得这里的冬天没有中国那么冷。</p><p>Wǒ juédé zhèlǐ de dōngtiān méiyǒu zhòng guó nàme lěng.</p></p>이곳의 겨울은 중국만큼 춥지 않은 것 같아요.</p>",
   },
 };
 

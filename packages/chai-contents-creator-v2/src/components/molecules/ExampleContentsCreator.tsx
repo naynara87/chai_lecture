@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import IconLight from "chai-ui-v2/dist/assets/images/icon/icon_light_navy.svg";
+import TextEditorViewer from "../molecules/TextEditorViewer";
 
 const ExampleContentsWrapper = styled.div`
   padding: 16px;
@@ -37,7 +38,17 @@ const ExampleTextWrapper = styled.div`
   }
 `;
 
-const ExampleContentsCreator = () => {
+interface ExampleContentsCreatorProps {
+  setText: (text: string) => void;
+  getText: () => string;
+  isFocused: boolean
+}
+
+const ExampleContentsCreator = ({
+  setText,
+  getText,
+  isFocused
+}: ExampleContentsCreatorProps) => {
   return (
     <ExampleContentsWrapper>
       <ExampleTitleWrapper>
@@ -46,7 +57,11 @@ const ExampleContentsCreator = () => {
       </ExampleTitleWrapper>
       <ExampleTextWrapper>
         {/* TODO: 텍스트에디터 들어올 자리 */}
-        <p>텍스트를 입력해주세요</p>
+        <TextEditorViewer
+          setText={(text) => setText(text)}
+          text={getText()}
+          isFocused={isFocused}
+        />
       </ExampleTextWrapper>
     </ExampleContentsWrapper>
   );

@@ -30,6 +30,7 @@ export interface PageCommonProps extends PageHeaderProps {
   updateContentToMultiChoiceTemplate: ReturnUsePage["updateContentToMultiChoiceTemplate"];
   updateContentToWordsInOrderTemplate: ReturnUsePage["updateContentToWordsInOrderTemplate"];
   updateContentToSentenceInOrderTemplate: ReturnUsePage["updateContentToSentenceInOrderTemplate"];
+  updateContentToFinalSpeakingTemplate: ReturnUsePage["updateContentToFinalSpeakingTemplate"];
 }
 
 export type AddComponentMap = {
@@ -65,6 +66,7 @@ export type ContentCommonProps = {
   updateContentToMultiChoiceTemplate?: ReturnUsePage["updateContentToMultiChoiceTemplate"];
   updateContentToWordsInOrderTemplate?: ReturnUsePage["updateContentToWordsInOrderTemplate"];
   updateContentToSentenceInOrderTemplate?: ReturnUsePage["updateContentToSentenceInOrderTemplate"];
+  updateContentToFinalSpeakingTemplate?: ReturnUsePage["updateContentToFinalSpeakingTemplate"];
 };
 
 export type DraggableContentCommonProps = ContentCommonProps & {
