@@ -42,6 +42,10 @@ const QuizContainer = styled.form`
   }
 `;
 
+const AnswerContainer = styled.div`
+  flex-direction: column;
+`;
+
 export type SentenceInOrderChoice = {
   text: string;
   answerIndex: number;
@@ -174,7 +178,7 @@ const TemplateQuizSentenceBlank = ({
       </div>
       <div className="layout-panel wide-panel">
         <QuizContainer method="post" className="quiz-container">
-          <div className="quiz-answer-wrap hori-answer-wrap">
+          <AnswerContainer className="quiz-answer-wrap hori-answer-wrap">
             <LineCheckBoxes
               contents={thisPage.mainContents.data.characters}
               userChoices={userChoices}
@@ -184,7 +188,7 @@ const TemplateQuizSentenceBlank = ({
               setUserChoices={setUserChoices}
               isShowAnswer={isShowAnswer}
             />
-          </div>
+          </AnswerContainer>
         </QuizContainer>
         <div className="btns-wrap">
           <ComponentButtonRadiBorderMain

@@ -557,6 +557,26 @@ export const getContentComponentsDefaultValue = (): Partial<
       },
     ],
   },
+  quizSentence: {
+    id: uuidV4(),
+    type: "quizSentence",
+    data: {
+      characters: [
+        {
+          name: "",
+          src: "",
+          sentences: [
+            {
+              sentence: "",
+              isChoice: false,
+              answerIndex: -1,
+            },
+          ],
+        },
+      ],
+      quizPopup: quizPopupData,
+    },
+  },
 });
 
 /**

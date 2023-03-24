@@ -11,6 +11,8 @@ import {
   MultiChoiceContentData,
   WordsInOrderContentData,
   TemplateQuizWordsInOrderData,
+  QuizSentenceContentData,
+  TemplateQuizSentencesInOrderData,
 } from "chai-ui-v2";
 import { useCallback, useEffect, useMemo } from "react";
 import { useRecoilState } from "recoil";
@@ -123,6 +125,21 @@ const usePage = () => {
         if (slide.id === slideId) {
           const newSlide = cloneDeep(slide) as TemplateQuizWordsInOrderData;
           newSlide["wordsInOrder"] = updatedContent;
+          return newSlide;
+        }
+        return slide;
+      });
+      setSlides(newSlides);
+    },
+    [slides, setSlides],
+  );
+
+  const updateContentToSentenceInOrderTemplate = useCallback(
+    (slideId: ID, updatedContent: QuizSentenceContentData) => {
+      const newSlides = slides.map((slide) => {
+        if (slide.id === slideId) {
+          const newSlide = cloneDeep(slide) as TemplateQuizSentencesInOrderData;
+          newSlide["mainContents"] = updatedContent;
           return newSlide;
         }
         return slide;
@@ -258,7 +275,8 @@ const usePage = () => {
     pageData,
     saveIntroductionModalData,
     updateContentToMultiChoiceTemplate,
-    updateContentToWordsInOrderTemplate
+    updateContentToWordsInOrderTemplate,
+    updateContentToSentenceInOrderTemplate,
   };
 };
 

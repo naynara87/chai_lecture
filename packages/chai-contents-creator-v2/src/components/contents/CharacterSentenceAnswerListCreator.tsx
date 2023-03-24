@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { HtmlContentComponent, QuizSentenceContentData } from "chai-ui-v2";
 
 const CharacterSentenceAnswerListWrapper = styled.div`
   display: flex;
@@ -18,18 +19,27 @@ const CharacterSentenceAnswer = styled.p`
   text-align: center;
 `;
 
-const CharacterSentenceAnswerListCreator = () => {
+interface CharacterSentenceAnswerListCreatorProps {
+  content: QuizSentenceContentData;
+}
+
+const CharacterSentenceAnswerListCreator = ({
+  content,
+}: CharacterSentenceAnswerListCreatorProps) => {
   return (
     <CharacterSentenceAnswerListWrapper>
-      <CharacterSentenceAnswer>
-        중국어 중국어 중국어 중국어
-      </CharacterSentenceAnswer>
-      <CharacterSentenceAnswer>
-        중국어 중국어 중국어 중국어
-      </CharacterSentenceAnswer>
-      <CharacterSentenceAnswer>
-        중국어 중국어 중국어 중국어
-      </CharacterSentenceAnswer>
+      {content.data.characters.map((_character) => {
+        return _character.sentences.map((_sentence) => {
+          if (_sentence.isChoice) {
+            return (
+              <CharacterSentenceAnswer>
+                <HtmlContentComponent html={_sentence.sentence} />
+              </CharacterSentenceAnswer>
+            );
+          }
+          return <></>;
+        });
+      })}
     </CharacterSentenceAnswerListWrapper>
   );
 };
