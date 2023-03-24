@@ -12,7 +12,17 @@ import CharacterCreator from "../molecules/CharacterCreator";
 import { css } from "@emotion/react";
 import { v4 as uuidV4 } from "uuid";
 import { getRolePlayingContentItemDefaultById } from "../../data/appData";
-import { IconTextContentData } from "chai-ui-v2";
+import {
+  ActivityGuideCharacterContentData,
+  IconTextContentData,
+} from "chai-ui-v2";
+import {
+  CornerGuideWrapper,
+  TextBubbleWrap,
+} from "../contents/ActivityGuideCharacterCreator";
+import TextEditorViewer from "../molecules/TextEditorViewer";
+import ImageThumb from "../atoms/ImageThumb";
+import UrlInputWrapper from "../molecules/UrlInputWrapper";
 
 const ComponentWrapper = styled.div`
   :not(:last-child) {
@@ -40,12 +50,18 @@ const CreateTemplateRolePlaying = ({
   ...pageHeaderProps
 }: PageCommonProps) => {
   const { focusedId, setFocusedId } = returnUseComponent;
-  const { thisSlide, updateIconText, updateRolePlayingContents } =
-    useRolePlaying(slideId);
-  const [iconText, setIconText] = useState<string>("");
+  const {
+    thisSlide,
+    updateIconText,
+    updateRolePlayingContents,
+    updateGuideContent,
+  } = useRolePlaying(slideId);
 
   const iconTextData = thisSlide.iconText;
+  const guideContent = thisSlide.guideContent;
   const rolePlayingContents = thisSlide.rolePlayingContents;
+
+  const [iconText, setIconText] = useState<string>(iconTextData.data.text);
 
   const handleEndEditText = () => {
     const updatedIconText: IconTextContentData = {
@@ -106,6 +122,33 @@ const CreateTemplateRolePlaying = ({
     updateRolePlayingContents(newCharacterList);
   };
 
+  // guideContent
+  const [guideText, setGuideText] = useState<string>(guideContent.data.text);
+  const handleEndEditGuideText = () => {
+    const updatedGuideContent: ActivityGuideCharacterContentData = {
+      ...guideContent,
+      data: {
+        ...guideContent.data,
+        text: guideText,
+      },
+    };
+    updateGuideContent(updatedGuideContent);
+  };
+
+  const handleSubmitGuideCharacterUrl = (url: string) => {
+    const updatedGuideContent: ActivityGuideCharacterContentData = {
+      ...guideContent,
+      data: {
+        ...guideContent.data,
+        character: {
+          ...guideContent.data.character,
+          src: url,
+        },
+      },
+    };
+    updateGuideContent(updatedGuideContent);
+  };
+
   return (
     <>
       <PageHeader slideId={slideId} slides={slides} {...pageHeaderProps} />
@@ -143,7 +186,26 @@ const CreateTemplateRolePlaying = ({
       <CreateEditMainWrap37>
         <CreateEditMain>
           <DashBoxAreaWrapper>
-            <div>aa</div>
+            <CornerGuideWrapper>
+              <TextBubbleWrap onClick={(e) => setFocusedId(e, guideContent.id)}>
+                <TextEditorViewer
+                  isFocused={focusedId === guideContent.id}
+                  text={guideText}
+                  setText={setGuideText}
+                  handleSubmitTextOnBlur={handleEndEditGuideText}
+                />
+              </TextBubbleWrap>
+              {guideContent.data.character.src ? (
+                <img src={guideContent.data.character.src} alt="" />
+              ) : (
+                <ImageThumb />
+              )}
+              <UrlInputWrapper
+                typeText="이미지"
+                onSubmit={handleSubmitGuideCharacterUrl}
+                defaultText={guideContent.data.character.src}
+              />
+            </CornerGuideWrapper>
           </DashBoxAreaWrapper>
         </CreateEditMain>
         <CreateEditMain>
