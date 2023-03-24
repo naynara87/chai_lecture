@@ -125,7 +125,9 @@ const ContentsLayout = ({
         handleClickNext={handleClickNext}
         handleClickPrev={handleClickPrev}
       />
-      {isCompleteModalOpen && <ModalCompleted />}
+      {isCompleteModalOpen && (
+        <ModalCompleted lessonCode={lessonMetaData.colorTypeCd} />
+      )}
     </>
   );
 };
