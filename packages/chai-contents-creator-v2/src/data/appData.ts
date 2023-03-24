@@ -807,6 +807,35 @@ export const getTemplateDefaultValue = (): Partial<
       },
     ],
   },
+
+  TemplateQuizSpeaking: {
+    id: uuidV4(),
+    type: "TemplateQuizSpeaking",
+    leftContents: {
+      id: uuidV4(),
+      type: "activityGuideCharacter",
+      data: {
+        character: {
+          src: "",
+        },
+        text: "",
+      },
+    },
+
+    rightContents: {
+      id: uuidV4(),
+      type: "finalSpeaking",
+      data: {
+        answerModel: {
+          text: "",
+          pronunciation: "",
+          meaning: "",
+        },
+
+        exampleContents: [],
+      },
+    },
+  },
 });
 
 export const quizPopupData: QuizPopupModalContentData = {
