@@ -13,6 +13,8 @@ import {
   TemplateQuizWordsInOrderData,
   QuizSentenceContentData,
   TemplateQuizSentencesInOrderData,
+  FinalSpeakingContentData,
+  TemplateQuizSpeakingData,
 } from "chai-ui-v2";
 import { useCallback, useEffect, useMemo } from "react";
 import { useRecoilState } from "recoil";
@@ -29,6 +31,7 @@ import cloneDeep from "lodash/cloneDeep";
 import { DropResult } from "react-beautiful-dnd";
 import { PAGE_DATA_KEY } from "../constants/storage";
 import { pageState } from "../states/pageState";
+import { ExampleUseContent } from "./useGrayLineComponent";
 
 const usePage = () => {
   const [slides, setSlides] = useRecoilState(slidesState);
@@ -105,11 +108,11 @@ const usePage = () => {
   );
 
   const updateContentToMultiChoiceTemplate = useCallback(
-    (slideId: ID, updatedContent: MultiChoiceContentData) => {
+    (slideId: ID, updatedContent: ExampleUseContent) => {
       const newSlides = slides.map((slide) => {
         if (slide.id === slideId) {
           const newSlide = cloneDeep(slide) as TemplateQuizMultiChoiceData;
-          newSlide["multiChoice"] = updatedContent;
+          newSlide["multiChoice"] = updatedContent as MultiChoiceContentData;
           return newSlide;
         }
         return slide;
@@ -120,11 +123,11 @@ const usePage = () => {
   );
 
   const updateContentToWordsInOrderTemplate = useCallback(
-    (slideId: ID, updatedContent: WordsInOrderContentData) => {
+    (slideId: ID, updatedContent: ExampleUseContent) => {
       const newSlides = slides.map((slide) => {
         if (slide.id === slideId) {
           const newSlide = cloneDeep(slide) as TemplateQuizWordsInOrderData;
-          newSlide["wordsInOrder"] = updatedContent;
+          newSlide["wordsInOrder"] = updatedContent as WordsInOrderContentData;
           return newSlide;
         }
         return slide;
@@ -140,6 +143,22 @@ const usePage = () => {
         if (slide.id === slideId) {
           const newSlide = cloneDeep(slide) as TemplateQuizSentencesInOrderData;
           newSlide["mainContents"] = updatedContent;
+          return newSlide;
+        }
+        return slide;
+      });
+      setSlides(newSlides);
+    },
+    [slides, setSlides],
+  );
+
+  const updateContentToFinalSpeakingTemplate = useCallback(
+    (slideId: ID, updatedContent: ExampleUseContent) => {
+      const newSlides = slides.map((slide) => {
+        if (slide.id === slideId) {
+          const newSlide = cloneDeep(slide) as TemplateQuizSpeakingData;
+          newSlide["rightContents"] =
+            updatedContent as FinalSpeakingContentData;
           return newSlide;
         }
         return slide;
@@ -277,6 +296,7 @@ const usePage = () => {
     updateContentToMultiChoiceTemplate,
     updateContentToWordsInOrderTemplate,
     updateContentToSentenceInOrderTemplate,
+    updateContentToFinalSpeakingTemplate,
   };
 };
 

@@ -483,11 +483,7 @@ export type FinalSpeakingContentData = {
   id: ID;
   type: "finalSpeaking";
   data: {
-    answerModel: {
-      text: string;
-      pronunciation: string;
-      meaning: string;
-    };
+    answerModel: string;
     exampleContents: Content[];
   };
   meta?: Meta;

@@ -1,9 +1,6 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import {
-  Content,
-  ContentType,
-  ID,
   QuizPopupModalContentData,
   vh,
   vw,
@@ -11,12 +8,7 @@ import {
 } from "chai-ui-v2";
 import { cloneDeep } from "lodash";
 import React, { useCallback, useMemo, useState } from "react";
-import { DropResult } from "react-beautiful-dnd";
-import { getContentComponentsDefaultValue } from "../../data/appData";
-import {
-  CommonTemplateComponentLocation,
-  DraggableContentCommonProps,
-} from "../../types/page";
+import { DraggableContentCommonProps } from "../../types/page";
 import AddButton from "../atoms/AddButton";
 import Button from "../atoms/Button";
 import CheckBoxWrapper from "../molecules/CheckBoxWrapper";
@@ -26,6 +18,7 @@ import ObjectDeleteButton from "../atoms/ObjectDeleteButton";
 import TextEditorViewer from "../molecules/TextEditorViewer";
 import ModalSolution from "../molecules/modal/ModalSolution";
 import CharacterInputWrapper from "../molecules/ChracterInputWrapper";
+import useGrayLineComponent from "../../hooks/useGrayLineComponent";
 
 const AnswerWrap = styled.div`
   justify-content: flex-start;
@@ -92,6 +85,13 @@ const WordsInOrderCreator = ({
   const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(false);
   const [solutionType, setSolutionType] = useState<"correct" | "incorrect">();
 
+  const { addComponent, deleteComponent, updateComponent, handleOnDragEnd } =
+    useGrayLineComponent({
+      content: thisContent,
+      currentSlide: currentSlide,
+      updateContentToTemplate: updateContentToWordsInOrderTemplate,
+    });
+
   const focusTextEditor = useCallback(
     (choiceIndex: number) => () => {
       setFocusedTextEditorIndex(choiceIndex);
@@ -102,86 +102,6 @@ const WordsInOrderCreator = ({
   const resetFocusedTextEditorIndex = useCallback(() => {
     setFocusedTextEditorIndex(undefined);
   }, []);
-
-  const addComponent = (contentType: ContentType) => {
-    const content = getContentComponentsDefaultValue()[contentType];
-
-    if (!content) return;
-
-    const newContent = {
-      ...thisContent,
-      data: {
-        ...thisContent.data,
-        exampleContents: [...thisContent.data.exampleContents!, { ...content }],
-      },
-    };
-
-    updateContentToWordsInOrderTemplate &&
-      updateContentToWordsInOrderTemplate(currentSlide.id, newContent);
-  };
-
-  const updateComponent = useCallback(
-    (
-      slideId: ID,
-      contentId: ID,
-      position: CommonTemplateComponentLocation,
-      updatedContent: Content,
-    ) => {
-      const newContent = {
-        ...thisContent,
-        data: {
-          ...thisContent.data,
-          exampleContents: thisContent.data.exampleContents!.map(
-            (component) => {
-              if (component.id === contentId) {
-                return updatedContent;
-              }
-              return component;
-            },
-          ),
-        },
-      };
-      updateContentToWordsInOrderTemplate &&
-        updateContentToWordsInOrderTemplate(currentSlide.id, newContent);
-    },
-    [thisContent, currentSlide.id, updateContentToWordsInOrderTemplate],
-  );
-
-  const deleteComponent = useCallback(
-    (slideId: ID, contentId: ID, position: CommonTemplateComponentLocation) => {
-      const newContent = {
-        ...thisContent,
-        data: {
-          ...thisContent.data,
-          exampleContents: thisContent.data.exampleContents!.filter(
-            (component) => component.id !== contentId,
-          ),
-        },
-      };
-
-      updateContentToWordsInOrderTemplate &&
-        updateContentToWordsInOrderTemplate(currentSlide.id, newContent);
-    },
-    [thisContent, currentSlide.id, updateContentToWordsInOrderTemplate],
-  );
-
-  const handleOnDragEnd = useCallback(
-    (result: DropResult) => {
-      const { source, destination } = result;
-      if (!destination) {
-        return;
-      }
-
-      const newContent = cloneDeep(thisContent);
-      if (!newContent.data.exampleContents) return;
-      const [removed] = newContent.data.exampleContents.splice(source.index, 1);
-      newContent.data.exampleContents.splice(destination.index, 0, removed);
-
-      updateContentToWordsInOrderTemplate &&
-        updateContentToWordsInOrderTemplate(currentSlide.id, newContent);
-    },
-    [thisContent, currentSlide.id, updateContentToWordsInOrderTemplate],
-  );
 
   const setName = useCallback(
     (text: string) => {

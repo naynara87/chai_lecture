@@ -577,6 +577,14 @@ export const getContentComponentsDefaultValue = (): Partial<
       quizPopup: quizPopupData,
     },
   },
+  finalSpeaking: {
+    id: uuidV4(),
+    type: "finalSpeaking",
+    data: {
+      answerModel: "",
+      exampleContents: [],
+    },
+  },
 });
 
 /**
@@ -827,7 +835,6 @@ export const getTemplateDefaultValue = (): Partial<
       },
     ],
   },
-
   TemplateQuizSpeaking: {
     id: uuidV4(),
     type: "TemplateQuizSpeaking",
@@ -841,17 +848,11 @@ export const getTemplateDefaultValue = (): Partial<
         text: "",
       },
     },
-
     rightContents: {
       id: uuidV4(),
       type: "finalSpeaking",
       data: {
-        answerModel: {
-          text: "",
-          pronunciation: "",
-          meaning: "",
-        },
-
+        answerModel: "",
         exampleContents: [],
       },
     },

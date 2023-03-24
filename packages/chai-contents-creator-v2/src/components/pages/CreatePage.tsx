@@ -43,6 +43,7 @@ const CreatePage = () => {
     updateContentToMultiChoiceTemplate,
     updateContentToWordsInOrderTemplate,
     updateContentToSentenceInOrderTemplate,
+    updateContentToFinalSpeakingTemplate,
   } = usePage();
 
   useEffect(() => {
@@ -102,7 +103,8 @@ const CreatePage = () => {
                 deleteContent,
                 updateContentToMultiChoiceTemplate,
                 updateContentToWordsInOrderTemplate,
-                updateContentToSentenceInOrderTemplate
+                updateContentToSentenceInOrderTemplate,
+                updateContentToFinalSpeakingTemplate,
               });
             })}
           </DragDropContext>

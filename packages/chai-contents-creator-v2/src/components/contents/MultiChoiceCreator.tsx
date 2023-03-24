@@ -1,19 +1,8 @@
 import styled from "@emotion/styled";
-import {
-  Content,
-  ContentType,
-  ID,
-  MultiChoiceContentData,
-  QuizPopupModalContentData,
-} from "chai-ui-v2";
-import { cloneDeep } from "lodash";
+import { MultiChoiceContentData, QuizPopupModalContentData } from "chai-ui-v2";
 import React, { useCallback, useMemo, useState } from "react";
-import { DropResult } from "react-beautiful-dnd";
-import { getContentComponentsDefaultValue } from "../../data/appData";
-import {
-  CommonTemplateComponentLocation,
-  DraggableContentCommonProps,
-} from "../../types/page";
+import useGrayLineComponent from "../../hooks/useGrayLineComponent";
+import { DraggableContentCommonProps } from "../../types/page";
 import Button from "../atoms/Button";
 import ComponentGrayLineCreator from "../molecules/ComponentGrayLineCreator";
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
@@ -95,6 +84,13 @@ const MultiChoiceCreator = ({
   const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(false);
   const [solutionType, setSolutionType] = useState<"correct" | "incorrect">();
 
+  const { addComponent, deleteComponent, updateComponent, handleOnDragEnd } =
+    useGrayLineComponent({
+      content: thisContent,
+      currentSlide,
+      updateContentToTemplate: updateContentToMultiChoiceTemplate,
+    });
+
   const focusTextEditor = useCallback(
     (choiceIndex: number) => () => {
       setFocusedTextEditorIndex(choiceIndex);
@@ -105,86 +101,6 @@ const MultiChoiceCreator = ({
   const resetFocusedTextEditorIndex = useCallback(() => {
     setFocusedTextEditorIndex(undefined);
   }, []);
-
-  const addComponent = (contentType: ContentType) => {
-    const content = getContentComponentsDefaultValue()[contentType];
-
-    if (!content) return;
-
-    const newContent = {
-      ...thisContent,
-      data: {
-        ...thisContent.data,
-        exampleContents: [...thisContent.data.exampleContents!, { ...content }],
-      },
-    };
-
-    updateContentToMultiChoiceTemplate &&
-      updateContentToMultiChoiceTemplate(currentSlide.id, newContent);
-  };
-
-  const updateComponent = useCallback(
-    (
-      slideId: ID,
-      contentId: ID,
-      position: CommonTemplateComponentLocation,
-      updatedContent: Content,
-    ) => {
-      const newContent = {
-        ...thisContent,
-        data: {
-          ...thisContent.data,
-          exampleContents: thisContent.data.exampleContents!.map(
-            (component) => {
-              if (component.id === contentId) {
-                return updatedContent;
-              }
-              return component;
-            },
-          ),
-        },
-      };
-      updateContentToMultiChoiceTemplate &&
-        updateContentToMultiChoiceTemplate(currentSlide.id, newContent);
-    },
-    [thisContent, currentSlide.id, updateContentToMultiChoiceTemplate],
-  );
-
-  const deleteComponent = useCallback(
-    (slideId: ID, contentId: ID, position: CommonTemplateComponentLocation) => {
-      const newContent = {
-        ...thisContent,
-        data: {
-          ...thisContent.data,
-          exampleContents: thisContent.data.exampleContents!.filter(
-            (component) => component.id !== contentId,
-          ),
-        },
-      };
-
-      updateContentToMultiChoiceTemplate &&
-        updateContentToMultiChoiceTemplate(currentSlide.id, newContent);
-    },
-    [thisContent, currentSlide.id, updateContentToMultiChoiceTemplate],
-  );
-
-  const handleOnDragEnd = useCallback(
-    (result: DropResult) => {
-      const { source, destination } = result;
-      if (!destination) {
-        return;
-      }
-
-      const newContent = cloneDeep(thisContent);
-      if (!newContent.data.exampleContents) return;
-      const [removed] = newContent.data.exampleContents.splice(source.index, 1);
-      newContent.data.exampleContents.splice(destination.index, 0, removed);
-
-      updateContentToMultiChoiceTemplate &&
-        updateContentToMultiChoiceTemplate(currentSlide.id, newContent);
-    },
-    [thisContent, currentSlide.id, updateContentToMultiChoiceTemplate],
-  );
 
   /**
    * 현재 선택 영역 텍스트 업데이트
