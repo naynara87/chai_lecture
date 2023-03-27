@@ -4,6 +4,7 @@ import {
   TemplateRolePlayingData,
   RolePlayingContentItem,
   ActivityGuideCharacterContentData,
+  RolePlayingCharacter,
 } from "chai-ui-v2";
 import { cloneDeep } from "lodash";
 import usePage from "./usePage";
@@ -54,11 +55,24 @@ const useRolePlaying = (slideId: ID) => {
     setSlides(newSlides);
   };
 
+  const updateCharacters = (updatedCharacters: RolePlayingCharacter[]) => {
+    const newSlides = slides.map((slide) => {
+      if (slide.id === slideId) {
+        const newSlide = cloneDeep(slide) as TemplateRolePlayingData;
+        newSlide.characters = updatedCharacters;
+        return newSlide;
+      }
+      return slide;
+    });
+    setSlides(newSlides);
+  };
+
   return {
     thisSlide,
     updateIconText,
     updateRolePlayingContents,
     updateGuideContent,
+    updateCharacters,
   };
 };
 

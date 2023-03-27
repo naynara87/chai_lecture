@@ -9,6 +9,7 @@ const data: RoleplayingContentData = {
   data: [
     {
       id: 0,
+      characterId: "0",
       character: {
         name: "김민호",
         src: "",
@@ -23,6 +24,7 @@ const data: RoleplayingContentData = {
     },
     {
       id: 0,
+      characterId: "1",
       character: {
         name: "김민호",
         src: "",
@@ -37,6 +39,7 @@ const data: RoleplayingContentData = {
     },
     {
       id: 1,
+      characterId: "2",
       character: {
         name: "장밍",
         src: "",
@@ -51,6 +54,7 @@ const data: RoleplayingContentData = {
     },
     {
       id: 1,
+      characterId: "3",
       character: {
         name: "장밍",
         src: "",
@@ -65,6 +69,7 @@ const data: RoleplayingContentData = {
     },
     {
       id: 2,
+      characterId: "4",
       character: {
         name: "민호 엄마",
         src: "",

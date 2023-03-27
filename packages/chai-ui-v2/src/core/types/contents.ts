@@ -493,6 +493,8 @@ export type FinalSpeakingContentData = {
 
 export type RolePlayingContentItem = {
   id: ID;
+  characterId: ID;
+  // character는 제거하고 characterId로 대체해야함
   character: {
     name: string;
     src: string;

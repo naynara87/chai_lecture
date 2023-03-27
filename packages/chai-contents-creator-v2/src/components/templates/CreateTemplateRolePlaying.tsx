@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import useRolePlaying from "../../hooks/useRolePlaying";
 import { CreateEditMain, CreateEditMainWrap } from "../../styles/template";
 import { PageCommonProps } from "../../types/page";
@@ -11,10 +11,14 @@ import styled from "@emotion/styled";
 import CharacterCreator from "../molecules/CharacterCreator";
 import { css } from "@emotion/react";
 import { v4 as uuidV4 } from "uuid";
-import { getRolePlayingContentItemDefaultById } from "../../data/appData";
+import {
+  getRolePlayingCharacterDefaultById,
+  getRolePlayingContentItemDefaultById,
+} from "../../data/appData";
 import {
   ActivityGuideCharacterContentData,
   IconTextContentData,
+  RolePlayingCharacter,
 } from "chai-ui-v2";
 import {
   CornerGuideWrapper,
@@ -23,6 +27,7 @@ import {
 import TextEditorViewer from "../molecules/TextEditorViewer";
 import ImageThumb from "../atoms/ImageThumb";
 import UrlInputWrapper from "../molecules/UrlInputWrapper";
+import SelectBox from "../atoms/SelectBox";
 
 const ComponentWrapper = styled.div`
   :not(:last-child) {
@@ -41,6 +46,23 @@ const urlInputWrapperCss = css`
   margin-top: 0px;
 `;
 
+const ConversationButtonContainer = styled.div`
+  display: flex;
+  gap: 8px;
+`;
+
+type RolePlayingCharacterWithColor = RolePlayingCharacter & {
+  color: string;
+};
+
+/**
+ * 화자 1 - #FFF3EA
+ * 화자 2 - #EFF1F5
+ * 화자 3 - #FFFCDF
+ * 화자 4 - #EEF6E7
+ * 화자 5 - #EDF8FF
+ */
+
 const CreateTemplateRolePlaying = ({
   templateType,
   addComponentMap,
@@ -55,14 +77,56 @@ const CreateTemplateRolePlaying = ({
     updateIconText,
     updateRolePlayingContents,
     updateGuideContent,
+    updateCharacters,
   } = useRolePlaying(slideId);
 
   const iconTextData = thisSlide.iconText;
   const guideContent = thisSlide.guideContent;
   const rolePlayingContents = thisSlide.rolePlayingContents;
+  const characterList = thisSlide.characters;
+
+  const getCharacterColor = useCallback((index: number) => {
+    const colorList = ["#FFF3EA", "#EFF1F5", "#FFFCDF", "#EEF6E7", "#EDF8FF"];
+    return colorList[index];
+  }, []);
+
+  const initialCharacterWithColorList = useMemo(
+    () =>
+      characterList.map((item, index) => {
+        return {
+          ...item,
+          color: getCharacterColor(index),
+        };
+      }),
+    [characterList, getCharacterColor],
+  );
+
+  const [characterWithColorList, setCharacterWithColorList] = useState<
+    RolePlayingCharacterWithColor[]
+  >(initialCharacterWithColorList);
+
+  useEffect(() => {
+    console.log("characterWithColorList", characterWithColorList);
+  }, [characterWithColorList]);
+
+  const updateCharacterWithColorList = useCallback(
+    (newCharacterWithColorList: RolePlayingCharacterWithColor[]) => {
+      setCharacterWithColorList(newCharacterWithColorList);
+      const newCharacterList = newCharacterWithColorList.map((item) => {
+        return {
+          id: item.id,
+          name: item.name,
+          src: item.src,
+        };
+      });
+      updateCharacters(newCharacterList);
+    },
+    [updateCharacters],
+  );
 
   const [iconText, setIconText] = useState<string>(iconTextData.data.text);
 
+  // iconText
   const handleEndEditText = () => {
     const updatedIconText: IconTextContentData = {
       ...thisSlide.iconText,
@@ -74,52 +138,52 @@ const CreateTemplateRolePlaying = ({
     updateIconText(updatedIconText);
   };
 
+  // characterList
   const addCharacter = () => {
-    const newCharacter = getRolePlayingContentItemDefaultById(uuidV4());
-    updateRolePlayingContents([...rolePlayingContents.data, newCharacter]);
+    const newCharacter = getRolePlayingCharacterDefaultById(uuidV4());
+    const newCharacterWithColor = {
+      ...newCharacter,
+      color: getCharacterColor(characterWithColorList.length),
+    };
+    updateCharacterWithColorList([
+      ...characterWithColorList,
+      newCharacterWithColor,
+    ]);
   };
 
   const deleteCharacter = (index: number) => {
-    console.log("deleteCharacter index", index);
-    const newCharacterList = rolePlayingContents.data.filter(
+    const newCharacterWithColorList = characterWithColorList.filter(
       (item, itemIndex) => {
-        console.log("itemIndex", itemIndex);
         return itemIndex !== index;
       },
     );
-    updateRolePlayingContents(newCharacterList);
+    updateCharacterWithColorList(newCharacterWithColorList);
   };
 
   const changeCharacterName = (index: number) => (name: string) => {
-    const newCharacterList = rolePlayingContents.data.map((item, itemIndex) => {
+    const newCharacterList = characterList.map((item, itemIndex) => {
       if (itemIndex === index) {
         return {
           ...item,
-          character: {
-            ...item.character,
-            name,
-          },
+          name,
         };
       }
       return item;
     });
-    updateRolePlayingContents(newCharacterList);
+    updateCharacters(newCharacterList);
   };
 
   const changeCharacterImage = (index: number) => (url: string) => {
-    const newCharacterList = rolePlayingContents.data.map((item, itemIndex) => {
+    const newCharacterList = characterList.map((item, itemIndex) => {
       if (itemIndex === index) {
         return {
           ...item,
-          character: {
-            ...item.character,
-            src: url,
-          },
+          src: url,
         };
       }
       return item;
     });
-    updateRolePlayingContents(newCharacterList);
+    updateCharacters(newCharacterList);
   };
 
   // guideContent
@@ -149,6 +213,13 @@ const CreateTemplateRolePlaying = ({
     updateGuideContent(updatedGuideContent);
   };
 
+  const [conversationDirection, setConversationDirection] =
+    useState<string>("");
+
+  const directionList = ["좌측", "우측"];
+
+  const [selectedCharacter, setSelectedCharacter] = useState<string>("");
+
   return (
     <>
       <PageHeader slideId={slideId} slides={slides} {...pageHeaderProps} />
@@ -165,17 +236,17 @@ const CreateTemplateRolePlaying = ({
             </ComponentWrapper>
             <ComponentWrapper>
               <AddButton onClick={addCharacter}>화자 추가</AddButton>
-              {rolePlayingContents.data.map((characterItem, index) => {
+              {characterList.map((character, index) => {
                 return (
                   <CharacterCreator
-                    key={characterItem.id}
+                    key={character.id}
                     wrapperCss={characterWrapCss}
-                    characterUrl={characterItem.character.src}
+                    characterUrl={character.src}
                     onImageUrlSubmit={changeCharacterImage(index)}
                     onSaveCharacterNameInput={changeCharacterName(index)}
                     onDeleteCharacter={() => deleteCharacter(index)}
                     urlInputWrapperCss={urlInputWrapperCss}
-                    characterName={characterItem.character.name}
+                    characterName={character.name}
                   />
                 );
               })}
@@ -210,7 +281,23 @@ const CreateTemplateRolePlaying = ({
         </CreateEditMain>
         <CreateEditMain>
           <DashBoxAreaWrapper>
-            <div>bb</div>
+            <ConversationButtonContainer>
+              <AddButton onClick={() => {}}>대화 추가</AddButton>
+              <SelectBox
+                value={conversationDirection}
+                onChange={setConversationDirection}
+                optionList={directionList}
+                label="대화 위치"
+              />
+              <SelectBox
+                value={selectedCharacter}
+                onChange={setSelectedCharacter}
+                optionList={characterList.map((character) => {
+                  return character.name;
+                })}
+                label="화자 선택"
+              />
+            </ConversationButtonContainer>
           </DashBoxAreaWrapper>
         </CreateEditMain>
       </CreateEditMainWrap37>

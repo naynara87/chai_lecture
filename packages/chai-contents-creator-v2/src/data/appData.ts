@@ -8,6 +8,7 @@ import {
   ID,
   QuizPopupModalContentData,
   QuizTemplateData,
+  RolePlayingCharacter,
   RolePlayingContentItem,
   TemplateData,
   TemplateRolePlayingData,
@@ -664,6 +665,7 @@ export const getTemplateDefaultValue = (): Partial<
   TemplateRolePlaying: {
     id: uuidV4(),
     type: "TemplateRolePlaying",
+    characters: [],
     iconText: {
       id: uuidV4(),
       type: "iconText",
@@ -764,8 +766,10 @@ export const quizPopupData: QuizPopupModalContentData = {
 
 export const getRolePlayingContentItemDefaultById = (
   id: ID,
+  characterId: ID,
 ): RolePlayingContentItem => ({
   id,
+  characterId,
   character: {
     name: "",
     src: "",
@@ -774,4 +778,12 @@ export const getRolePlayingContentItemDefaultById = (
   text: "",
   pronunciation: "",
   meaning: "",
+});
+
+export const getRolePlayingCharacterDefaultById = (
+  id: ID,
+): RolePlayingCharacter => ({
+  id,
+  name: "",
+  src: "",
 });

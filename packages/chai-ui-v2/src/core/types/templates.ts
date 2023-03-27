@@ -38,6 +38,12 @@ export type QuizTemplateData =
   | TemplateQuizSentencesInOrderData
   | TemplateQuizSpeakingData;
 
+export type RolePlayingCharacter = {
+  id: ID;
+  name: string;
+  src: string;
+};
+
 /**
  * 롤플레잉 레이아웃
  */
@@ -46,6 +52,7 @@ export type TemplateRolePlayingData = {
   type: "TemplateRolePlaying";
   iconText: IconTextContentData;
   guideContent: ActivityGuideCharacterContentData;
+  characters: RolePlayingCharacter[];
   rolePlayingContents: RoleplayingContentData;
 };
 
