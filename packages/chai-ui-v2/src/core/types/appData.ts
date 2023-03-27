@@ -141,3 +141,9 @@ export type characterType =
   | "allFinish5"
   | "allFinish6"
   | "allFinish7";
+
+export type QuizData = {
+  id: ID;
+  state: "end" | "active" | "";
+  isCorrect?: boolean;
+};

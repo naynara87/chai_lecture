@@ -1,6 +1,6 @@
-import { Page } from "chai-ui-v2";
+import { LocalStorage, Page, QuizData } from "chai-ui-v2";
 import React, { useMemo } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 interface ComponentProblemPaginationProps {
   pages: Page[];
@@ -13,13 +13,9 @@ const ComponentProblemPagination = ({
 }: ComponentProblemPaginationProps) => {
   /* TODO: 설명 - 열면 클래스 active 추가, 문제풀면 end 추가 */
 
-  const location = useLocation();
-  const questionDatas = location
-    ? JSON.parse(location.state)
-    : localStorage.getItem("pageData");
   const { pageId } = useParams();
-
   const pagination = useMemo(() => {
+    const questionDatas = LocalStorage.getItem("pageData") as QuizData[];
     return pages.map((page, pageIndex) => {
       return (
         <button
@@ -33,7 +29,7 @@ const ComponentProblemPagination = ({
         </button>
       );
     });
-  }, [pages, onClickPagination, pageId, questionDatas]);
+  }, [pages, onClickPagination, pageId]);
 
   return (
     <div className="problem-top-button-wrapper pagination-wrapper">

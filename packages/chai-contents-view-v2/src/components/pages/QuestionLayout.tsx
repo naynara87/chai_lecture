@@ -1,72 +1,118 @@
-import {Page, TemplateQuestion, TemplateQuestionData} from "chai-ui-v2";
-import React, {useState} from "react";
-import {useNavigate, useParams} from "react-router-dom";
+import {
+  CornerMeta,
+  LessonMeta,
+  ModalQuestionTemplate,
+  Page,
+  TemplateQuestion,
+  TemplateQuestionData,
+  useLessonNameMapper,
+} from "chai-ui-v2";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import usePages from "../../hooks/usePages";
-import {getPageUrl} from "../../util/url";
+import { getPageUrl } from "../../util/url";
 import ComponentProblemPagination from "../molecules/ComponentProblemPagination";
 import LayoutQuestionHeader from "../molecules/LayoutQuestionHeader";
 
 interface QuestionLayoutProps {
-    pages: Page[];
+  pages: Page[];
+  lessonMetaData: LessonMeta;
+  cornerMetaData: CornerMeta;
 }
 
-const QuestionLayout = ({pages}: QuestionLayoutProps) => {
-    const [, setIsPageCompleted] = useState(false);
+const QuestionLayout = ({
+  pages,
+  lessonMetaData,
+  cornerMetaData,
+}: QuestionLayoutProps) => {
+  const [, setIsPageCompleted] = useState(false);
+  const [isQuestionStartModalOpen, setIsQuestionStartModalOpen] =
+    useState(false);
+  const [questionSolvingTime, setQuestionSolvingTime] = useState(0);
 
-    const {courseId, cornerId, lessonId, pageId} = useParams();
+  const questionSolvingTimer = useRef<NodeJS.Timeout | number>();
 
-    const navigate = useNavigate();
-    const {currentPage, pageIds, currentPageIndex} = usePages({
-        pages,
-        pageId,
-    });
-    const setPageCompleted = () => {
-        setIsPageCompleted(true);
+  const { courseId, cornerId, lessonId, pageId } = useParams();
+  const navigate = useNavigate();
+  const { currentPage, pageIds, currentPageIndex } = usePages({
+    pages,
+    pageId,
+  });
+  const { getLessonName } = useLessonNameMapper();
+
+  const setPageCompleted = () => {
+    setIsPageCompleted(true);
+  };
+
+  const handleClickPagination = (pageIndex: number) => {
+    if (currentPageIndex === undefined) return;
+    if (!pageIds) return;
+    if (cornerId && courseId && lessonId && pageId) {
+      navigate(getPageUrl(courseId, lessonId, cornerId, pageIds[pageIndex]));
+    }
+  };
+
+  const handleClickCheckScore = () => {
+    if (cornerId && courseId && lessonId && pageId) {
+      navigate(getPageUrl(courseId, lessonId, cornerId, "score"), {
+        state: {
+          lessonName: getLessonName(lessonMetaData.colorTypeCd),
+          lessonType:
+            cornerMetaData.lessonTpCd === "20" ? "연습문제" : "종합문제",
+          solvingTime: questionSolvingTime,
+          pages,
+        },
+      });
+    }
+  };
+
+  useEffect(() => {
+    setIsQuestionStartModalOpen(true);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      window.clearTimeout(questionSolvingTimer.current);
     };
+  }, []);
 
+  const startQuiz = useCallback(() => {
+    questionSolvingTimer.current = window.setTimeout(function go() {
+      setQuestionSolvingTime((prev) => prev + 1);
+      questionSolvingTimer.current = setTimeout(go, 1000);
+    }, 1000);
+  }, []);
 
-    let tmpPageDatas = localStorage.getItem('pageData')
-
-
-    const handleClickPagination = (pageIndex: number) => {
-        if (currentPageIndex === undefined) return;
-        if (!pageIds) return;
-
-        // NOTE ms page index 받아서 page index active 추가
-        // if (tmpPageDatas != null) {
-        //     let arrayData = JSON.parse(tmpPageDatas);
-        //     arrayData[pageIndex].state = 'end';
-        //     localStorage.setItem('pageData', JSON.stringify(arrayData));
-        // }
-        // NOTE ms page index 받아서 page index active 추가
-
-        // todo ms 문제 풀고 정답 체크하는 부분을 localstorage를 이용해서 해결해야함
-
-
-        if (cornerId && courseId && lessonId && pageId) {
-            navigate(getPageUrl(courseId, lessonId, cornerId, pageIds[pageIndex]), {
-                state: localStorage.getItem('pageData')
-            });
-        }
-    };
-
-    return (
-        <>
-            <LayoutQuestionHeader/>
-            <main className="cai-main problem-main">
-                <ComponentProblemPagination
-                    pages={pages}
-                    onClickPagination={handleClickPagination}
-                />
-                {currentPage?.data && (
-                    <TemplateQuestion
-                        template={currentPage.data as TemplateQuestionData}
-                        setPageCompleted={setPageCompleted}
-                    />
-                )}
-            </main>
-        </>
-    );
+  return (
+    <>
+      <LayoutQuestionHeader
+        headerText={`${getLessonName(lessonMetaData.colorTypeCd)} ${
+          cornerMetaData.lessonTpCd === "20" ? "연습문제" : "종합문제"
+        }`}
+        solvingTime={questionSolvingTime}
+      />
+      <main className="cai-main problem-main">
+        <ComponentProblemPagination
+          pages={pages}
+          onClickPagination={handleClickPagination}
+        />
+        {currentPage?.data && (
+          <TemplateQuestion
+            template={currentPage.data as TemplateQuestionData}
+            setPageCompleted={setPageCompleted}
+            handleClickCheckScore={handleClickCheckScore}
+          />
+        )}
+      </main>
+      <ModalQuestionTemplate
+        isModalOpen={isQuestionStartModalOpen}
+        setIsModalOpen={setIsQuestionStartModalOpen}
+        wideModal
+        lessonName={getLessonName(lessonMetaData.colorTypeCd)}
+        onClickStart={startQuiz}
+      />
+    </>
+  );
 };
 
 export default QuestionLayout;

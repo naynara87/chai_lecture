@@ -1,3 +1,4 @@
+import { LocalStorage, QuizData } from "chai-ui-v2";
 import { useEffect, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
@@ -22,29 +23,23 @@ const Layout = () => {
     if (!lessonMetaData) return;
     if (!cornerMetaData) return;
     // NOTE ms 문제 템플릿일 경우 레이아웃 호출
-    if (cornerMetaData.lessonTpCd === "30") {
+    if (cornerMetaData.lessonTpCd !== "10") {
       // todo ms lcms에서 데이터 받아와서 데이터 구성 필요
-      const dummyData = [
-        {
-          id: 1,
-          state: ''
-        },
-        {
-          id: 2,
-          state: ''
-        }, {
-          id: 3,
-          state: ''
-        }, {
-          id: 4,
-          state: ''
-        }, {
-          id: 5,
-          state: 'end'
-        }
-      ];
-      localStorage.setItem('pageData', JSON.stringify(dummyData));
-      return <QuestionLayout pages={pages} />;
+      const dummyData: QuizData[] = pages.map((page, pageIndex) => {
+        return {
+          id: pageIndex + 1,
+          state: "",
+          isCorrect: undefined,
+        };
+      });
+      LocalStorage.setItem("pageData", dummyData);
+      return (
+        <QuestionLayout
+          pages={pages}
+          lessonMetaData={lessonMetaData}
+          cornerMetaData={cornerMetaData}
+        />
+      );
     } else {
       return (
         <ContentsLayout
