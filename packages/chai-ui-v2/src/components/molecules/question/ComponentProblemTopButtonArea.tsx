@@ -7,12 +7,14 @@ interface ComponentProblemTopButtonAreaProps {
   quizPageData: QuizData[];
   solvingTime: number;
   onClickRestartButton: () => void;
+  onClickExitButton: () => void;
 }
 
 const ComponentProblemTopButtonArea = ({
   quizPageData,
   solvingTime,
   onClickRestartButton,
+  onClickExitButton,
 }: ComponentProblemTopButtonAreaProps) => {
   const convertedSolvingTime = useMemo(() => {
     const hour = Math.floor(solvingTime / 3600);
@@ -47,7 +49,11 @@ const ComponentProblemTopButtonArea = ({
           <b>{convertedSolvingTime}</b>
           소요
         </h2>
-        <button type="button" className="btn-problem-gray">
+        <button
+          type="button"
+          className="btn-problem-gray"
+          onClick={onClickExitButton}
+        >
           나가기 <img src={IconClose} alt="" />
         </button>
       </div>

@@ -108,7 +108,10 @@ const QuestionLayout = ({
         isModalOpen={isQuestionStartModalOpen}
         setIsModalOpen={setIsQuestionStartModalOpen}
         wideModal
-        lessonName={getLessonName(lessonMetaData.colorTypeCd)}
+        quizTypeText={`${getLessonName(lessonMetaData.colorTypeCd)} ${
+          cornerMetaData.lessonTpCd === "20" ? "연습문제" : "종합문제"
+        }`}
+        quizTotalLength={pages.length}
         onClickStart={startQuiz}
       />
     </>

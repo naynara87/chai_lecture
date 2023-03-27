@@ -585,6 +585,9 @@ export type QuestionContentData = {
   type: "question";
   data: {
     iframeUrl: string;
+    answer: string;
+    comment: string;
+    example: string;
   };
   meta?: Meta;
 };

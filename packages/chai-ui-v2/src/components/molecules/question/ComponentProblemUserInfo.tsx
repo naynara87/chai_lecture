@@ -20,6 +20,7 @@ const ComponentProblemUserInfo = ({
   return (
     <div className="problem-user-info-wrap">
       <h3 className="user-title">
+        {/* TODO 세션데이터받아와서 이름 변경해주기 */}
         {`홍길동`}님<br />
         <b>{quizTypeText}</b>
         <br />

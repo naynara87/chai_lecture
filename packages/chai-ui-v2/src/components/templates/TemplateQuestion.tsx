@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React, { useEffect, useMemo } from "react";
+import React, { useCallback, useEffect, useMemo } from "react";
 import { QuizData, TemplateProps, TemplateQuestionData } from "../../core";
 import { LocalStorage } from "../../core";
 import { useParams } from "react-router-dom";
@@ -25,35 +25,36 @@ const TemplateQuestion = ({
 
   const { pageId } = useParams();
 
-  const receiveMessage = (event: MessageEvent) => {
-    // event.data에는 iframe에서 보낸 메시지가 포함됩니다.
-    console.log(123123);
-    console.log("Received message:", event.data);
-  };
+  const receiveMessage = useCallback(
+    (event: MessageEvent) => {
+      // event.data에는 iframe에서 보낸 메시지가 포함됩니다.
+      if (!pageId) return;
+      const tmpPageDatas = LocalStorage.getItem("pageData") as QuizData[];
+      // NOTE ms page index 받아서 page index active 추가
+      if (tmpPageDatas != null) {
+        const { message } = event.data as {
+          message: {
+            correct: boolean;
+            id: string;
+            answer: string;
+          };
+        };
+        tmpPageDatas[parseInt(pageId) - 1].isCorrect = message.correct;
+        tmpPageDatas[parseInt(pageId) - 1].state = "end";
+        LocalStorage.setItem("pageData", tmpPageDatas);
+      }
+      console.log(123123);
+      console.log("Received message:", event.data);
+    },
+    [pageId],
+  );
 
   useEffect(() => {
     window.addEventListener("message", receiveMessage);
     return () => {
       window.removeEventListener("message", receiveMessage);
     };
-  }, []);
-
-  useEffect(() => {
-    if (!pageId) return;
-    const tmpPageDatas = LocalStorage.getItem("pageData") as QuizData[];
-    // NOTE ms page index 받아서 page index active 추가
-    if (tmpPageDatas != null) {
-      // const arrayData = JSON.parse(tmpPageDatas);
-      tmpPageDatas[parseInt(pageId) - 1].isCorrect = Math.round(Math.random())
-        ? true
-        : false;
-      tmpPageDatas[parseInt(pageId) - 1].state = "end";
-      LocalStorage.setItem("pageData", tmpPageDatas);
-    }
-    // NOTE ms page index 받아서 page index active 추가
-
-    // todo ms 문제 풀고 정답 체크하는 부분을 localstorage를 이용해서 해결해야함
-  }, [pageId]);
+  }, [receiveMessage]);
 
   const toViewScoreButton = useMemo(() => {
     const quizPageData = LocalStorage.getItem("pageData") as QuizData[];
