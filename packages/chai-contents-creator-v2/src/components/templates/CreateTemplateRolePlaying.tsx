@@ -121,7 +121,6 @@ const CreateTemplateRolePlaying = ({
 
   /* characterList */
   const addCharacter = (characterIndex: number) => {
-    // TODO: 이름 중복 검사하기
     const newCharacter = getRolePlayingCharacterDefaultById(
       uuidV4(),
       characterBackgroundColorList[characterIndex],
@@ -139,6 +138,13 @@ const CreateTemplateRolePlaying = ({
   };
 
   const changeCharacterName = (index: number) => (name: string) => {
+    const isDuplicated = characterList.some((item, itemIndex) => {
+      return itemIndex !== index && item.name === name;
+    });
+    if (isDuplicated) {
+      alert("이름이 중복됩니다.");
+      return;
+    }
     const newCharacterList = characterList.map((item, itemIndex) => {
       if (itemIndex === index) {
         return {
@@ -466,7 +472,6 @@ const CreateTemplateRolePlaying = ({
                           rolePlayingConversationItem.characterId,
                         ) as RolePlayingCharacter
                       }
-                      onSaveCharacterNameInput={() => {}}
                       onDeleteConversationItem={() =>
                         deleteRolePlayingContents(index)
                       }

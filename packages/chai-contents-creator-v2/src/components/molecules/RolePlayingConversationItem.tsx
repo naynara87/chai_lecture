@@ -67,7 +67,6 @@ const urlInputWrapperCss = css`
 
 interface RolePlayingConversationItemProps {
   character: RolePlayingCharacter;
-  onSaveCharacterNameInput: (name: string) => void;
   onDeleteConversationItem: () => void;
   characterContainerCss?: SerializedStyles;
   displayDirection?: ConversationDirection; // "left" | "right"
@@ -78,7 +77,6 @@ interface RolePlayingConversationItemProps {
 }
 const RolePlayingConversationItem = ({
   character,
-  onSaveCharacterNameInput,
   onDeleteConversationItem,
   displayDirection = ConversationDirection.LEFT,
   onSubmitAudioUrl,
@@ -104,7 +102,7 @@ const RolePlayingConversationItem = ({
         <CharacterProfile
           characterUrl={character.src || ImgProfileDefault}
           characterName={character.name}
-          onSaveCharacterNameInput={onSaveCharacterNameInput}
+          onSaveCharacterNameInput={() => {}}
           characterContainerCss={characterContainerCss}
           readOnly
         />
