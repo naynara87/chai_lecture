@@ -7,7 +7,7 @@ import { ActivityGuideCharacterContentData } from "chai-ui-v2";
 import { DraggableContentCommonProps } from "../../types/page";
 import TextEditorViewer from "../molecules/TextEditorViewer";
 
-const CornerGuideWrapper = styled.div`
+export const CornerGuideWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,7 +18,7 @@ const CornerGuideWrapper = styled.div`
   }
 `;
 
-const TextBubbleWrap = styled.div`
+export const TextBubbleWrap = styled.div`
   position: relative;
   padding: 24px;
   border-radius: 8px;

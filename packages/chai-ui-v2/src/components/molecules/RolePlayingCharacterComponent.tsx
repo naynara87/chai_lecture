@@ -7,21 +7,25 @@ import React, {
   useState,
 } from "react";
 import { colorPalette } from "../../assets";
-import { ID, useGlobalAudio } from "../../core";
+import { ID, RolePlayingCharacter, useGlobalAudio } from "../../core";
 import { ImgProfileDefaultComponent } from "../atoms";
 import ComponentButtonRadiFillOrange from "../atoms/ComponentButtonRadiFillOrange";
 import AudioRecorder from "./AudioRecorder";
 import { v4 as uuidv4 } from "uuid";
 
-const BubbleWrap = styled.div`
-  background-color: ${colorPalette.bubbleyellow};
+interface BubbleWrapProps {
+  backgroundColor: string;
+}
+const BubbleWrap = styled.div<BubbleWrapProps>`
+  background-color: ${({ backgroundColor }) =>
+    backgroundColor || colorPalette.bubbleyellow};
 `;
 
 interface RolePlayingCharacterComponentProps {
   id: ID;
   selectCharacterId?: ID;
   position: "left" | "right";
-  name: string;
+  character: RolePlayingCharacter | undefined;
   text: string;
   pronunciation: string;
   meaning: string;
@@ -32,7 +36,7 @@ const RolePlayingCharacterComponent = ({
   id,
   selectCharacterId,
   position,
-  name,
+  character,
   text,
   pronunciation,
   meaning,
@@ -112,7 +116,6 @@ const RolePlayingCharacterComponent = ({
     >
       <div className="img-grp">
         <div className="img-wrap">
-          {/* TODO: key설명 - 누르면 단일 음성이 재생됨 */}
           <div className="img-round">
             <button
               className="btn-profile"
@@ -129,16 +132,18 @@ const RolePlayingCharacterComponent = ({
                 );
               }}
             >
-              {/* TODO: CPM 리소스 받으면 이미지태그로 수정 */}
-              <ImgProfileDefaultComponent />
+              <ImgProfileDefaultComponent imageSrc={character?.src} />
             </button>
           </div>
         </div>
-        <p className="name">{name}</p>
+        <p className="name">{character?.name ?? ""}</p>
       </div>
       <div className="txt-wrapper">
         <div className="txt-wrap">
-          <BubbleWrap className="bubble-wrap">
+          <BubbleWrap
+            className="bubble-wrap"
+            backgroundColor={character?.backgroundColor ?? ""}
+          >
             <p className="chinese">{text}</p>
             {pinyin}
             {id === selectCharacterId && <p className="mean">{meaning}</p>}

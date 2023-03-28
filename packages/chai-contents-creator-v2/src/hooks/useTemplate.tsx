@@ -6,6 +6,7 @@ import CreateTemplateH37 from "../components/templates/CreateTemplateH37";
 import CreateTemplateH55 from "../components/templates/CreateTemplateH55";
 import CreateTemplateQuizConversation from "../components/templates/CreateTemplateQuizConversation";
 import CreateTemplateQuizMultiChoice from "../components/templates/CreateTemplateQuizMultiChoice";
+import CreateTemplateRolePlaying from "../components/templates/CreateTemplateRolePlaying";
 import CreateTemplateQuizSentencesInOrder from "../components/templates/CreateTemplateQuizSentencesInOrder";
 import CreateTemplateQuizSpeaking from "../components/templates/CreateTemplateQuizSpeaking";
 import CreateTemplateQuizWordsInOrder from "../components/templates/CreateTemplateQuizWordsInOrder";
@@ -24,6 +25,7 @@ const useTemplate = () => {
       TemplateConversationRepeat: <CreateTemplateConversation {...props} />,
       TemplateQuizConversation: <CreateTemplateQuizConversation {...props} />,
       TemplateQuizMultiChoice: <CreateTemplateQuizMultiChoice {...props} />,
+      TemplateRolePlaying: <CreateTemplateRolePlaying {...props} />,
       TemplateQuizSentencesInOrder: (
         <CreateTemplateQuizSentencesInOrder {...props} />
       ),

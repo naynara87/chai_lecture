@@ -28,8 +28,10 @@ const ComponentChoiceRole = ({
       return (
         <li className="choice-role-list active" key={character.id}>
           <div className="img-wrap">
-            {/* TODO: CPM 이미지 주소받으면 변경 */}
-            <ImgTemp01Component imageAlt={character.name} />
+            <ImgTemp01Component
+              imageSrc={character.src}
+              imageAlt={character.name}
+            />
           </div>
           <p className="name">{character.name}</p>
           <ComponentButtonRadiFillMain
@@ -43,11 +45,7 @@ const ComponentChoiceRole = ({
 
   return (
     <ChoiceRoleWrapper className="choice-role-wrapper">
-      <ul className="choice-role-list-wrap">
-        {/* 반복영역 */}
-        {characters}
-        {/* end 반복영역 */}
-      </ul>
+      <ul className="choice-role-list-wrap">{characters}</ul>
     </ChoiceRoleWrapper>
   );
 };

@@ -489,6 +489,23 @@ export type FinalSpeakingContentData = {
   meta?: Meta;
 };
 
+export type RolePlayingContentItem = {
+  id: ID;
+  characterId: ID;
+  // character는 제거하고 characterId로 대체해야함
+  character?: {
+    name: string;
+    src: string;
+  };
+  position: "left" | "right";
+  text: string;
+  pronunciation: string;
+  meaning: string;
+  audio?: {
+    src: string;
+  };
+};
+
 /**
  * 롤플레이 대화 컴포넌트
  * hint(병음), 녹음기능은 학습자가 고른 캐릭터에만 노출되게 작업
@@ -496,17 +513,7 @@ export type FinalSpeakingContentData = {
 export type RoleplayingContentData = {
   id: ID;
   type: "roleplaying";
-  data: {
-    id: ID;
-    characterId: ID;
-    position: "left" | "right";
-    text: string;
-    pronunciation: string;
-    meaning: string;
-    audio?: {
-      src: string;
-    };
-  }[];
+  data: RolePlayingContentItem[];
   meta?: Meta;
 };
 

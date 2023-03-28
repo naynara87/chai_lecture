@@ -5,11 +5,15 @@ import {
   Content,
   ContentType,
   ConversationTemplateData,
+  ID,
   QuizPopupModalContentData,
   QuizTemplateData,
+  RolePlayingCharacter,
+  RolePlayingContentItem,
   TemplateData,
   TemplateRolePlayingData,
 } from "chai-ui-v2";
+import { ConversationDirection } from "../components/templates/CreateTemplateRolePlaying";
 
 type PageLayout = {
   type: TemplateData["type"];
@@ -721,6 +725,33 @@ export const getTemplateDefaultValue = (): Partial<
       },
     },
   },
+  TemplateRolePlaying: {
+    id: uuidV4(),
+    type: "TemplateRolePlaying",
+    characters: [],
+    iconText: {
+      id: uuidV4(),
+      type: "iconText",
+      data: {
+        text: "",
+      },
+    },
+    guideContent: {
+      id: uuidV4(),
+      type: "activityGuideCharacter",
+      data: {
+        text: "",
+        character: {
+          src: "",
+        },
+      },
+    },
+    rolePlayingContents: {
+      id: uuidV4(),
+      type: "roleplaying",
+      data: [],
+    },
+  },
   TemplateQuizWordsInOrder: {
     id: uuidV4(),
     type: "TemplateQuizWordsInOrder",
@@ -940,3 +971,26 @@ export const quizPopupData: QuizPopupModalContentData = {
     },
   },
 };
+
+export const getRolePlayingContentItemDefaultById = (
+  id: ID,
+  characterId: ID,
+  position: ConversationDirection,
+): RolePlayingContentItem => ({
+  id,
+  characterId,
+  position,
+  text: "",
+  pronunciation: "",
+  meaning: "",
+});
+
+export const getRolePlayingCharacterDefaultById = (
+  id: ID,
+  backgroundColor: string,
+): RolePlayingCharacter => ({
+  id,
+  name: "",
+  src: "",
+  backgroundColor,
+});
