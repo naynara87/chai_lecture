@@ -2,6 +2,7 @@
   "name": "chai-contents-view-v2",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@emotion/react": "*",
     "@emotion/styled": "*",
