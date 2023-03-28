@@ -29,8 +29,8 @@ const TemplateRolePlaying = ({
     thisPage.rolePlayingContents.data.forEach((rolePlayingContent) => {
       list.push({
         id: rolePlayingContent.id,
-        name: rolePlayingContent.character.name,
-        imageSrc: rolePlayingContent.character.src,
+        name: rolePlayingContent.character?.name ?? "",
+        imageSrc: rolePlayingContent.character?.src ?? "",
       });
     });
     return uniqBy(list, "id");

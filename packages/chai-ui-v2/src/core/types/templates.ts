@@ -42,6 +42,7 @@ export type RolePlayingCharacter = {
   id: ID;
   name: string;
   src: string;
+  backgroundColor?: string;
 };
 
 /**

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import useRolePlaying from "../../hooks/useRolePlaying";
 import { CreateEditMain, CreateEditMainWrap } from "../../styles/template";
 import { PageCommonProps } from "../../types/page";
@@ -18,6 +18,7 @@ import {
 import {
   ActivityGuideCharacterContentData,
   IconTextContentData,
+  ID,
   RolePlayingCharacter,
 } from "chai-ui-v2";
 import {
@@ -28,6 +29,7 @@ import TextEditorViewer from "../molecules/TextEditorViewer";
 import ImageThumb from "../atoms/ImageThumb";
 import UrlInputWrapper from "../molecules/UrlInputWrapper";
 import SelectBox from "../atoms/SelectBox";
+import RolePlayingConversationItem from "../molecules/RolePlayingConversationItem";
 
 const ComponentWrapper = styled.div`
   :not(:last-child) {
@@ -51,17 +53,29 @@ const ConversationButtonContainer = styled.div`
   gap: 8px;
 `;
 
-type RolePlayingCharacterWithColor = RolePlayingCharacter & {
-  color: string;
-};
+const RolePlayingConversationList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;
 
-/**
- * 화자 1 - #FFF3EA
- * 화자 2 - #EFF1F5
- * 화자 3 - #FFFCDF
- * 화자 4 - #EEF6E7
- * 화자 5 - #EDF8FF
- */
+export const characterBackgroundColorList = [
+  "#FFF3EA", // 화자 1의 배경색 red
+  "#EFF1F5", // 화자 2의 배경색 gray
+  "#FFFCDF", // 화자 3의 배경색 yellow
+  "#EEF6E7", // 화자 4의 배경색 green
+  "#EDF8FF", // 화자 5의 배경색 blue
+];
+
+export enum ConversationDirection {
+  LEFT = "left",
+  RIGHT = "right",
+}
+
+const conversationDirectionEngToKor = Object.freeze({
+  [ConversationDirection.LEFT]: "좌측",
+  [ConversationDirection.RIGHT]: "우측",
+});
 
 const CreateTemplateRolePlaying = ({
   templateType,
@@ -82,51 +96,18 @@ const CreateTemplateRolePlaying = ({
 
   const iconTextData = thisSlide.iconText;
   const guideContent = thisSlide.guideContent;
-  const rolePlayingContents = thisSlide.rolePlayingContents;
+  const rolePlayingContentsData = thisSlide.rolePlayingContents.data;
   const characterList = thisSlide.characters;
 
-  const getCharacterColor = useCallback((index: number) => {
-    const colorList = ["#FFF3EA", "#EFF1F5", "#FFFCDF", "#EEF6E7", "#EDF8FF"];
-    return colorList[index];
-  }, []);
-
-  const initialCharacterWithColorList = useMemo(
-    () =>
-      characterList.map((item, index) => {
-        return {
-          ...item,
-          color: getCharacterColor(index),
-        };
-      }),
-    [characterList, getCharacterColor],
-  );
-
-  const [characterWithColorList, setCharacterWithColorList] = useState<
-    RolePlayingCharacterWithColor[]
-  >(initialCharacterWithColorList);
-
-  useEffect(() => {
-    console.log("characterWithColorList", characterWithColorList);
-  }, [characterWithColorList]);
-
-  const updateCharacterWithColorList = useCallback(
-    (newCharacterWithColorList: RolePlayingCharacterWithColor[]) => {
-      setCharacterWithColorList(newCharacterWithColorList);
-      const newCharacterList = newCharacterWithColorList.map((item) => {
-        return {
-          id: item.id,
-          name: item.name,
-          src: item.src,
-        };
-      });
-      updateCharacters(newCharacterList);
-    },
-    [updateCharacters],
-  );
+  const characterNameList = useMemo(() => {
+    return characterList.map((item) => {
+      return item.name;
+    });
+  }, [characterList]);
 
   const [iconText, setIconText] = useState<string>(iconTextData.data.text);
 
-  // iconText
+  /* iconText */
   const handleEndEditText = () => {
     const updatedIconText: IconTextContentData = {
       ...thisSlide.iconText,
@@ -138,26 +119,23 @@ const CreateTemplateRolePlaying = ({
     updateIconText(updatedIconText);
   };
 
-  // characterList
-  const addCharacter = () => {
-    const newCharacter = getRolePlayingCharacterDefaultById(uuidV4());
-    const newCharacterWithColor = {
-      ...newCharacter,
-      color: getCharacterColor(characterWithColorList.length),
-    };
-    updateCharacterWithColorList([
-      ...characterWithColorList,
-      newCharacterWithColor,
-    ]);
+  /* characterList */
+  const addCharacter = (characterIndex: number) => {
+    // TODO: 이름 중복 검사하기
+    const newCharacter = getRolePlayingCharacterDefaultById(
+      uuidV4(),
+      characterBackgroundColorList[characterIndex],
+    );
+    updateCharacters([...characterList, newCharacter]);
   };
 
   const deleteCharacter = (index: number) => {
-    const newCharacterWithColorList = characterWithColorList.filter(
+    const newCharacterWithColorList = characterList.filter(
       (item, itemIndex) => {
         return itemIndex !== index;
       },
     );
-    updateCharacterWithColorList(newCharacterWithColorList);
+    updateCharacters(newCharacterWithColorList);
   };
 
   const changeCharacterName = (index: number) => (name: string) => {
@@ -186,7 +164,7 @@ const CreateTemplateRolePlaying = ({
     updateCharacters(newCharacterList);
   };
 
-  // guideContent
+  /* guideContent */
   const [guideText, setGuideText] = useState<string>(guideContent.data.text);
   const handleEndEditGuideText = () => {
     const updatedGuideContent: ActivityGuideCharacterContentData = {
@@ -213,12 +191,178 @@ const CreateTemplateRolePlaying = ({
     updateGuideContent(updatedGuideContent);
   };
 
-  const [conversationDirection, setConversationDirection] =
-    useState<string>("");
+  const [conversationDirection, setConversationDirection] = useState<string>(
+    ConversationDirection.LEFT,
+  );
 
-  const directionList = ["좌측", "우측"];
+  const directionList = useMemo(
+    () => [
+      conversationDirectionEngToKor[ConversationDirection.LEFT],
+      conversationDirectionEngToKor[ConversationDirection.RIGHT],
+    ],
+    [],
+  );
 
-  const [selectedCharacter, setSelectedCharacter] = useState<string>("");
+  const setConversationDirectionKorToEng = (directionKor: string) => {
+    const directionEng = Object.keys(conversationDirectionEngToKor).find(
+      (key) => {
+        return (
+          conversationDirectionEngToKor[key as ConversationDirection] ===
+          directionKor
+        );
+      },
+    );
+    setConversationDirection(directionEng || ConversationDirection.LEFT);
+  };
+
+  const [selectedCharacter, setSelectedCharacter] =
+    useState<RolePlayingCharacter>();
+
+  const findCharacterByName = useCallback(
+    (characterName: string) => {
+      // 캐릭터 이름 중복을 허용하면 안되는 이유
+      return characterList.find((item) => {
+        return item.name === characterName;
+      });
+    },
+    [characterList],
+  );
+
+  const findCharacterById = useCallback(
+    (characterId: ID) => {
+      return characterList.find((item) => {
+        return item.id === characterId;
+      });
+    },
+    [characterList],
+  );
+
+  const setSelectedCharacterByCharacterName = useCallback(
+    (characterName: string) => {
+      const selectedCharacter = findCharacterByName(characterName);
+      setSelectedCharacter(selectedCharacter);
+    },
+    [findCharacterByName],
+  );
+
+  /* rolePlayingContents */
+  // add rolePlayingContents
+  const addRolePlayingContents = useCallback(
+    (
+      selectedCharacter: RolePlayingCharacter | undefined,
+      conversationDirection: ConversationDirection,
+    ) => {
+      if (!selectedCharacter) {
+        alert("화자를 선택해주세요.");
+        return;
+      }
+
+      const newRolePlayingContents = getRolePlayingContentItemDefaultById(
+        uuidV4(),
+        selectedCharacter.id,
+        conversationDirection,
+      );
+      const updatedRolePlayingContents = [
+        ...rolePlayingContentsData,
+        newRolePlayingContents,
+      ];
+
+      updateRolePlayingContents(updatedRolePlayingContents);
+    },
+    [rolePlayingContentsData, updateRolePlayingContents],
+  );
+
+  // delete rolePlayingContents
+  const deleteRolePlayingContents = useCallback(
+    (index: number) => {
+      const newRolePlayingContents = rolePlayingContentsData.filter(
+        (item, itemIndex) => {
+          return itemIndex !== index;
+        },
+      );
+      updateRolePlayingContents(newRolePlayingContents);
+    },
+    [rolePlayingContentsData, updateRolePlayingContents],
+  );
+
+  // update rolePlayingContents audio url by index
+  const updateRolePlayingContentsAudioUrl = useCallback(
+    (index: number) => (url: string) => {
+      const newRolePlayingContents = rolePlayingContentsData.map(
+        (item, itemIndex) => {
+          if (itemIndex === index) {
+            return {
+              ...item,
+              audio: {
+                ...item.audio,
+                src: url,
+              },
+            };
+          }
+          return item;
+        },
+      );
+      updateRolePlayingContents(newRolePlayingContents);
+    },
+    [rolePlayingContentsData, updateRolePlayingContents],
+  );
+
+  // update rolePlayingContents text by index
+  const updateRolePlayingContentsText = useCallback(
+    (index: number) => (text: string) => {
+      const newRolePlayingContents = rolePlayingContentsData.map(
+        (item, itemIndex) => {
+          if (itemIndex === index) {
+            return {
+              ...item,
+              text,
+            };
+          }
+          return item;
+        },
+      );
+      updateRolePlayingContents(newRolePlayingContents);
+    },
+    [rolePlayingContentsData, updateRolePlayingContents],
+  );
+
+  // update rolePlayingContents pronunciation by index
+  const updateRolePlayingContentsPronunciation = useCallback(
+    (index: number) => (pronunciation: string) => {
+      const newRolePlayingContents = rolePlayingContentsData.map(
+        (item, itemIndex) => {
+          if (itemIndex === index) {
+            return {
+              ...item,
+              pronunciation,
+            };
+          }
+          return item;
+        },
+      );
+      updateRolePlayingContents(newRolePlayingContents);
+    },
+    [rolePlayingContentsData, updateRolePlayingContents],
+  );
+
+  // update rolePlayingContents meaning by index
+  const updateRolePlayingContentsMeaning = useCallback(
+    (index: number) => (meaning: string) => {
+      const newRolePlayingContents = rolePlayingContentsData.map(
+        (item, itemIndex) => {
+          if (itemIndex === index) {
+            return {
+              ...item,
+              meaning,
+            };
+          }
+          return item;
+        },
+      );
+      updateRolePlayingContents(newRolePlayingContents);
+    },
+    [rolePlayingContentsData, updateRolePlayingContents],
+  );
 
   return (
     <>
@@ -235,7 +379,9 @@ const CreateTemplateRolePlaying = ({
               />
             </ComponentWrapper>
             <ComponentWrapper>
-              <AddButton onClick={addCharacter}>화자 추가</AddButton>
+              <AddButton onClick={() => addCharacter(characterList.length)}>
+                화자 추가
+              </AddButton>
               {characterList.map((character, index) => {
                 return (
                   <CharacterCreator
@@ -282,22 +428,64 @@ const CreateTemplateRolePlaying = ({
         <CreateEditMain>
           <DashBoxAreaWrapper>
             <ConversationButtonContainer>
-              <AddButton onClick={() => {}}>대화 추가</AddButton>
+              <AddButton
+                onClick={() => {
+                  addRolePlayingContents(
+                    selectedCharacter,
+                    conversationDirection as ConversationDirection,
+                  );
+                }}
+              >
+                대화 추가
+              </AddButton>
               <SelectBox
-                value={conversationDirection}
-                onChange={setConversationDirection}
+                value={
+                  conversationDirectionEngToKor[
+                    conversationDirection as ConversationDirection
+                  ]
+                }
+                onChange={setConversationDirectionKorToEng}
                 optionList={directionList}
                 label="대화 위치"
               />
               <SelectBox
-                value={selectedCharacter}
-                onChange={setSelectedCharacter}
-                optionList={characterList.map((character) => {
-                  return character.name;
-                })}
+                value={selectedCharacter?.name ?? ""}
+                onChange={setSelectedCharacterByCharacterName}
+                optionList={characterNameList}
                 label="화자 선택"
               />
             </ConversationButtonContainer>
+            <RolePlayingConversationList>
+              {rolePlayingContentsData.map(
+                (rolePlayingConversationItem, index) => {
+                  return (
+                    <RolePlayingConversationItem
+                      key={rolePlayingConversationItem.id}
+                      character={
+                        findCharacterById(
+                          rolePlayingConversationItem.characterId,
+                        ) as RolePlayingCharacter
+                      }
+                      onSaveCharacterNameInput={() => {}}
+                      onDeleteConversationItem={() =>
+                        deleteRolePlayingContents(index)
+                      }
+                      displayDirection={
+                        rolePlayingConversationItem.position as ConversationDirection
+                      }
+                      onSubmitAudioUrl={updateRolePlayingContentsAudioUrl(
+                        index,
+                      )}
+                      onSubmitText={updateRolePlayingContentsText(index)}
+                      onSubmitPronunciation={updateRolePlayingContentsPronunciation(
+                        index,
+                      )}
+                      onSubmitMeaning={updateRolePlayingContentsMeaning(index)}
+                    />
+                  );
+                },
+              )}
+            </RolePlayingConversationList>
           </DashBoxAreaWrapper>
         </CreateEditMain>
       </CreateEditMainWrap37>

@@ -13,6 +13,7 @@ import {
   TemplateData,
   TemplateRolePlayingData,
 } from "chai-ui-v2";
+import { ConversationDirection } from "../components/templates/CreateTemplateRolePlaying";
 
 type PageLayout = {
   type: TemplateData["type"];
@@ -767,14 +768,11 @@ export const quizPopupData: QuizPopupModalContentData = {
 export const getRolePlayingContentItemDefaultById = (
   id: ID,
   characterId: ID,
+  position: ConversationDirection,
 ): RolePlayingContentItem => ({
   id,
   characterId,
-  character: {
-    name: "",
-    src: "",
-  },
-  position: "left",
+  position,
   text: "",
   pronunciation: "",
   meaning: "",
@@ -782,8 +780,10 @@ export const getRolePlayingContentItemDefaultById = (
 
 export const getRolePlayingCharacterDefaultById = (
   id: ID,
+  backgroundColor: string,
 ): RolePlayingCharacter => ({
   id,
   name: "",
   src: "",
+  backgroundColor,
 });
