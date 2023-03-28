@@ -29,6 +29,7 @@ export type Content =
   | MultilevelActionSentenceCardContentData
   | FullAudioContentData
   | NotiCharacterListContentData
+  | QuizSentenceContentData
   | ContentsCardListContentData;
 export type ContentType = Content["type"];
 
@@ -42,6 +43,7 @@ export type QuizContent =
   | ConversationQuizContentData
   | ActivityGuideCharacterContentData
   | MultiChoiceContentData
+  | QuizSentenceContentData
   | WordsInOrderContentData
   | FullAudioContentData
   | FinalSpeakingContentData;
@@ -481,11 +483,7 @@ export type FinalSpeakingContentData = {
   id: ID;
   type: "finalSpeaking";
   data: {
-    answerModel: {
-      text: string;
-      pronunciation: string;
-      meaning: string;
-    };
+    answerModel: string;
     exampleContents: Content[];
   };
   meta?: Meta;
@@ -591,6 +589,9 @@ export type QuestionContentData = {
   type: "question";
   data: {
     iframeUrl: string;
+    answer: string;
+    comment: string;
+    example: string;
   };
   meta?: Meta;
 };

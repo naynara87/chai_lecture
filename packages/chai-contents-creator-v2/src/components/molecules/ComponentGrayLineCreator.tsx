@@ -6,6 +6,10 @@ import useComponentContext from "../../hooks/useComponentContext";
 import { CommonTemplateComponentLocation } from "../../types/page";
 import DroppableContents from "./DroppableContents";
 
+const GrayLineWrap = styled.div`
+  width: 100%;
+`;
+
 const TopArea = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -58,7 +62,7 @@ const ComponentGrayLineCreator = ({
   } = useComponentContext();
 
   return (
-    <div className="gray-line">
+    <GrayLineWrap className="gray-line">
       <TopArea>
         <button className="btn-comp-select" onClick={toggleContextMenu}>
           컴포넌트 선택
@@ -81,7 +85,7 @@ const ComponentGrayLineCreator = ({
           />
         </div>
       </DragDropContext>
-    </div>
+    </GrayLineWrap>
   );
 };
 

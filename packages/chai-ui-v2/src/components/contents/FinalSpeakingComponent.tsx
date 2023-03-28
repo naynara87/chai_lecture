@@ -294,11 +294,7 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
             모범 답안
           </div>
           <div className="answer-sheet-conts">
-            <HtmlContentComponent html={contents.data.answerModel.text} />
-            <HtmlContentComponent
-              html={contents.data.answerModel.pronunciation}
-            />
-            <HtmlContentComponent html={contents.data.answerModel.meaning} />
+            <HtmlContentComponent html={contents.data.answerModel} />
           </div>
         </div>
       )}

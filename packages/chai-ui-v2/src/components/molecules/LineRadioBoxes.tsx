@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import { ID } from "../../core";
 import { QuizChoice } from "../contents/ConversationQuizComponent";
 
 interface LineRadioBoxesProps {
@@ -6,6 +7,7 @@ interface LineRadioBoxesProps {
   contentIndex: number;
   onClickChoice: (contentIndex: number, choice: QuizChoice) => void;
   isShowAnswer: boolean;
+  contentId: ID;
 }
 
 const LineRadioBoxes = ({
@@ -13,6 +15,7 @@ const LineRadioBoxes = ({
   contentIndex,
   onClickChoice,
   isShowAnswer,
+  contentId,
 }: LineRadioBoxesProps) => {
   const selectBoxes = useMemo(() => {
     // TODO kjw quizDialogueWordBlank관련 데이터 타입 설계되면 로직구성
@@ -21,13 +24,13 @@ const LineRadioBoxes = ({
         <div className="inp-grp" key={choiceIndex}>
           <input
             type="radio"
-            name={`answer${contentIndex}`}
-            id={`answer${contentIndex}-${choiceIndex}`}
+            name={`${contentId}answer${contentIndex}`}
+            id={`${contentId}-answer${contentIndex}-${choiceIndex}`}
             className="inp-chck-line none"
             disabled={isShowAnswer}
           />
           <label
-            htmlFor={`answer${contentIndex}-${choiceIndex}`}
+            htmlFor={`${contentId}-answer${contentIndex}-${choiceIndex}`}
             className="label-chck-line"
             onClick={() => {
               if (isShowAnswer) return;
@@ -39,7 +42,7 @@ const LineRadioBoxes = ({
         </div>
       );
     });
-  }, [choices, onClickChoice, contentIndex, isShowAnswer]);
+  }, [choices, onClickChoice, contentIndex, isShowAnswer, contentId]);
 
   return <div className="quiz-answer-wrap hori-answer-wrap">{selectBoxes}</div>;
 };

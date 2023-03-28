@@ -9,3 +9,4 @@ export { default as ModalConfirm } from "./ModalConfirm";
 export { default as ModalBase } from "./ModalBase";
 export { default as ModalCompleted } from "./ModalCompleted";
 export { default as LayoutModalExit } from "./LayoutModalExit";
+export { default as ModalQuestionTemplate } from "./ModalQuestionTemplate";

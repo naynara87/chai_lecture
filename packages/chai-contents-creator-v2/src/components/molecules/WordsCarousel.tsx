@@ -10,8 +10,8 @@ import {
 } from "chai-ui-v2";
 import { Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/swiper-bundle.min.css";
-import "swiper/swiper.min.css";
+import "swiper/css";
+import "swiper/css/pagination";
 import UrlInputWrapper from "./UrlInputWrapper";
 import { useMemo } from "react";
 import ObjectDeleteButton from "../atoms/ObjectDeleteButton";

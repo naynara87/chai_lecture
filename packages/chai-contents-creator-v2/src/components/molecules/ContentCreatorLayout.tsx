@@ -26,8 +26,12 @@ const ContentCreatorContainer = styled.div<ContentCreatorContainerProps>`
   width: ${(props) => props.isContainerFullWidth && "100%"};
 `;
 
-const IconContainerWrapper = styled.div`
-  display: flex;
+interface IconContainerWrapperProps {
+  showWrapper: boolean;
+}
+
+const IconContainerWrapper = styled.div<IconContainerWrapperProps>`
+  display: ${(props) => (props.showWrapper ? "flex" : "none")};
   /* align-items: center; */
 `;
 
@@ -146,7 +150,7 @@ const ContentCreatorLayout = ({
         className="contentCreator"
         isContainerFullWidth={isContainerFullWidth}
       >
-        <IconContainerWrapper>
+        <IconContainerWrapper showWrapper={isDraggable && isEditBtn}>
           <IconContainer>
             <IconWrapper
               customCss={dndHandleCss}

@@ -1,9 +1,10 @@
 import styled from "@emotion/styled";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { QuizSentenceContentData, useGlobalAudio } from "../../core";
-import { ImgProfileDefaultComponent } from "../atoms";
+import { HtmlContentComponent } from "../atoms";
 import { SentenceInOrderChoice } from "../templates/TemplateQuizSentenceBlank";
 import { v4 as uuidv4 } from "uuid";
+import ImgProfileDefault from "../../assets/images/img/img_profile_default.png";
 
 const BlankSpan = styled.input`
   cursor: pointer;
@@ -162,7 +163,12 @@ const DialogueSentenceBlank = ({
                     handleClickDialogueCharacter(contentIndex, content.src);
                   }}
                 >
-                  <ImgProfileDefaultComponent />
+                  <img
+                    src={content.src || ImgProfileDefault}
+                    alt=""
+                    className="profile"
+                  />
+                  ;
                 </button>
               </div>
             </div>
@@ -189,7 +195,10 @@ const DialogueSentenceBlank = ({
                       setSelectedChoiceBox(undefined);
                     }}
                     readOnly
-                    value={userChoices[blankIndex].text}
+                    value={userChoices[blankIndex].text.replace(
+                      /<[^>]*>?/g,
+                      "",
+                    )}
                   >
                     {/* {userChoices[blankIndex].text ? (
                       <HtmlContentComponent
@@ -203,7 +212,7 @@ const DialogueSentenceBlank = ({
               } else {
                 return (
                   <span className="chinese" key={sentenceIndex}>
-                    {sentence.sentence}
+                    <HtmlContentComponent html={sentence.sentence} />
                   </span>
                 );
               }

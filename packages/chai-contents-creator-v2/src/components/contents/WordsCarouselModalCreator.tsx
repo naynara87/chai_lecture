@@ -3,8 +3,8 @@ import { DraggableContentCommonProps } from "../../types/page";
 import WordsCarousel from "../molecules/WordsCarousel";
 import { useCallback, useEffect, useState } from "react";
 import { WordsCarouselContentData } from "chai-ui-v2";
-import "swiper/swiper-bundle.min.css";
-import "swiper/swiper.min.css";
+import "swiper/css";
+import "swiper/css/pagination";
 import { cloneDeep } from "lodash";
 
 const WordsCarouselModalCreator = ({

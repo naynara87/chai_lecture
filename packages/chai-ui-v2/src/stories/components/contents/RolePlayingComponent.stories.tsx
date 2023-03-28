@@ -8,12 +8,8 @@ const data: RoleplayingContentData = {
   type: "roleplaying",
   data: [
     {
-      id: 0,
-      characterId: "0",
-      character: {
-        name: "김민호",
-        src: "",
-      },
+      id: "0",
+      characterId: 0,
       audio: {
         src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
       },
@@ -23,12 +19,8 @@ const data: RoleplayingContentData = {
       position: "left",
     },
     {
-      id: 0,
-      characterId: "1",
-      character: {
-        name: "김민호",
-        src: "",
-      },
+      id: "1",
+      characterId: 0,
       audio: {
         src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
       },
@@ -38,12 +30,8 @@ const data: RoleplayingContentData = {
       position: "left",
     },
     {
-      id: 1,
-      characterId: "2",
-      character: {
-        name: "장밍",
-        src: "",
-      },
+      id: "2",
+      characterId: 1,
       audio: {
         src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
       },
@@ -53,12 +41,8 @@ const data: RoleplayingContentData = {
       position: "right",
     },
     {
-      id: 1,
-      characterId: "3",
-      character: {
-        name: "장밍",
-        src: "",
-      },
+      id: "3",
+      characterId: 1,
       audio: {
         src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
       },
@@ -68,12 +52,8 @@ const data: RoleplayingContentData = {
       position: "right",
     },
     {
-      id: 2,
-      characterId: "4",
-      character: {
-        name: "민호 엄마",
-        src: "",
-      },
+      id: "4",
+      characterId: 2,
       audio: {
         src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
       },

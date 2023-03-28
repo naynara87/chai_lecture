@@ -19,15 +19,15 @@ import SpeakingTimeInputWrapper from "../molecules/SpeakingTimeInputWrapper";
 import TextEditorViewer from "../molecules/TextEditorViewer";
 import UrlInputWrapper from "../molecules/UrlInputWrapper";
 
-const ConversationWrapper = styled.ul``;
+export const ConversationWrapper = styled.ul``;
 
-const CharacterNameInput = styled.input`
+export const CharacterNameInput = styled.input`
   background: none !important;
   font-size: ${vw(25)} !important;
 `;
 
-const ConversationList = styled.li`
-  width: ${vw(803)};
+export const ConversationList = styled.li`
+  width: 100%;
   padding: ${vh(16)} ${vw(16)};
   border-radius: 8px;
   background-color: #f6f4ff;
@@ -35,7 +35,7 @@ const ConversationList = styled.li`
   position: relative;
 `;
 
-const deleteButtonStyle = css`
+export const deleteButtonStyle = css`
   position: absolute;
   right: 10px;
 `;
@@ -59,8 +59,6 @@ const ConversationCreator = ({
     | TemplateConversationToggleData["type"]
     | TemplateConversationRepeatData["type"];
   const thisContent = content as ConversationContentData;
-
-  console.log(thisTemplateType);
 
   const [focusedTextEditorIndex, setFocusedTextEditorIndex] =
     useState<number>();

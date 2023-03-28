@@ -7,8 +7,8 @@ import { useGlobalAudio, WordsCarouselContentData } from "../../core";
 import styled from "@emotion/styled";
 import { Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/swiper-bundle.min.css";
-import "swiper/swiper.min.css";
+import "swiper/css";
+import "swiper/css/pagination";
 import { HtmlContentComponent } from "../atoms";
 import AudioComponent from "../contents/AudioComponent";
 
@@ -75,8 +75,7 @@ const LayoutModalVoca = ({
 
   return (
     <ModalCommon open={isModalOpen} vocaModal={true} onClose={handleClose}>
-      {/* 
-        TODO: key설명 - 모달 닫기버튼*/}
+      {/* key설명 - 모달 닫기버튼*/}
       <button className="btn-close-modal" onClick={handleClose}>
         <img src={IconClose} alt="닫기" />
       </button>

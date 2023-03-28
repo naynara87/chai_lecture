@@ -17,6 +17,7 @@ import ModalVideo from "../modal/ModalVideo";
 import ComponentGrayLine from "../molecules/ComponentGrayLine";
 import { v4 as uuidv4 } from "uuid";
 import ImgProfileDefault from "../../assets/images/img/img_profile_default.png";
+import { sortChoices } from "../../core/util/sortChoices";
 
 const BlankBox = styled.div`
   cursor: pointer;
@@ -27,6 +28,11 @@ type WordInOrderChoice = {
   answerIndex: number;
 };
 
+type choice = {
+  text: string;
+  isChoice: boolean;
+  answerIndex: number;
+};
 export interface WordsInOrderComponentProps {
   contents: WordsInOrderContentData;
 }
@@ -40,9 +46,24 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
   >();
   const [userChoices, setUserChoices] = useState<WordInOrderChoice[]>([]);
   const [isShowAnswer, setIsShowAnswer] = useState(false);
+  const [sortAnswers, setSortAnswers] = useState<choice[]>([]);
 
   const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(false);
   const [isModalVideoOpen, setIsModalVideoOpen] = useState(false);
+
+  const sentences = useMemo(() => {
+    const newChoice: choice[] = [];
+    contents.data.choice.forEach((_choice) => {
+      if (_choice.isChoice) {
+        newChoice.push(_choice);
+      }
+    });
+    return newChoice;
+  }, [contents]);
+
+  useEffect(() => {
+    sortChoices(sentences, setSortAnswers);
+  }, [sentences]);
 
   const modalUuidRef = useRef(uuidv4());
 
@@ -132,7 +153,7 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
               setSelectedChoiceBox(undefined);
             }}
           >
-            {/* TODO: key설명 클릭하면 클래스 active 추가됨 */}
+            {/* key설명 클릭하면 클래스 active 추가됨 */}
             <div className="text">
               {userChoices[blankIndex].text ? (
                 <HtmlContentComponent html={userChoices[blankIndex].text} />
@@ -160,8 +181,7 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
 
   const choiceBoxes = useMemo(() => {
     if (userChoices.length < 1) return;
-    return contents.data.choice.map((content, contentIndex) => {
-      if (!content.isChoice) return;
+    return sortAnswers.map((content, contentIndex) => {
       const isChecked = userChoices.find((userChoice) => {
         return userChoice.text === content.text;
       });
@@ -203,11 +223,11 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
       );
     });
   }, [
-    contents.data.choice,
     selectedBlankBox,
     userChoices,
     isShowAnswer,
     selectedChoiceBox,
+    sortAnswers,
   ]);
 
   const isShowAnswerButton = useMemo(() => {
@@ -259,7 +279,7 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
           {contents.meta?.isUseCharacter && contents.data.character && (
             <div className="img-grp">
               <div className="img-wrap">
-                {/* TODO: key설명 - 음성이 있을 경우, 누르면 단일 음성이 재생되며, conversation-wrap 에 active 추가 */}
+                {/* key설명 - 음성이 있을 경우, 누르면 단일 음성이 재생되며, conversation-wrap 에 active 추가 */}
                 <div className="img-round">
                   <button className="btn-profile">
                     <img
@@ -277,8 +297,8 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
           {blankBoxes}
         </div>
       </div>
-      {/* TODO: key설명 정답확인후 정답일 때 answer-right 추가 */}
-      {/* TODO: key설명 정답확인후 오답일 때 answer-wrong 추가 */}
+      {/* key설명 정답확인후 정답일 때 answer-right 추가 */}
+      {/* key설명 정답확인후 오답일 때 answer-wrong 추가 */}
       <div className="quiz-answer-wrap hori-answer-wrap">{choiceBoxes}</div>
       <div className="btns-wrap">
         <ComponentButtonRadiBorderMain

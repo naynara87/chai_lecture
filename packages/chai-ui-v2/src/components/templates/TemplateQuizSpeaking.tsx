@@ -1,11 +1,8 @@
 import styled from "@emotion/styled";
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect } from "react";
 import { vh } from "../../assets";
-import {
-  TemplateProps,
-  TemplateQuizSpeakingData,
-  useContentMapper,
-} from "../../core";
+import { TemplateProps, TemplateQuizSpeakingData } from "../../core";
+import { ActivityGuideCharacterComponent } from "../contents";
 import FinalSpeakingComponent from "../contents/FinalSpeakingComponent";
 
 const DialogueContainer = styled.div`
@@ -24,21 +21,18 @@ const TemplateQuizSpeaking = ({
 
   console.log(thisPage);
 
-  const { getContentComponent } = useContentMapper();
+  // const { getContentComponent } = useContentMapper();
 
   useEffect(() => {
     setPageCompleted();
   }, [setPageCompleted]);
 
-  const leftContents = useMemo(() => {
-    return thisPage.leftContents.map((leftContent, contentIndex) => {
-      return getContentComponent(leftContent, contentIndex);
-    });
-  }, [getContentComponent, thisPage]);
-
   return (
     <DialogueContainer className="layout-panel-wrap grid-h-3-7">
-      <div className="layout-panel side-panel">{leftContents}</div>
+      <div className="layout-panel side-panel">
+        {/* {leftContents} */}
+        <ActivityGuideCharacterComponent contents={thisPage.leftContents} />
+      </div>
       <div className="layout-panel wide-panel conversation-panel-wrap">
         <FinalSpeakingComponent contents={thisPage.rightContents} />
       </div>

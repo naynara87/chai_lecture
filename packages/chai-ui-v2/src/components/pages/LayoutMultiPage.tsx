@@ -4,8 +4,9 @@ import React, { useMemo } from "react";
 import { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import "swiper/swiper-bundle.min.css";
-import "swiper/swiper.min.css";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 import {
   MultiPage,
   PageProps,
@@ -32,9 +33,9 @@ const LayoutMultiPage = ({ page, setPageCompleted }: LayoutMultiPageProps) => {
 
   const pages = useMemo(() => {
     if (!multiPageData) return;
-    return multiPageData.data.map((multiPage, pageIndex) => {
+    return multiPageData.data.map((multiPage) => {
       return (
-        <SwiperSlide key={pageIndex}>
+        <SwiperSlide key={multiPage.id}>
           {getTemplateComponent(multiPage.type, multiPage)}
         </SwiperSlide>
       );

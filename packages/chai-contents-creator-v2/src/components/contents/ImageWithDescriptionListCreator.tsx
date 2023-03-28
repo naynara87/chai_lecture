@@ -5,7 +5,10 @@ import UrlInputWrapper from "../molecules/UrlInputWrapper";
 import AddButton from "../atoms/AddButton";
 import ObjectDeleteButton from "../atoms/ObjectDeleteButton";
 import { DraggableContentCommonProps } from "../../types/page";
-import { ComponentImage, ImageWithDescriptionListContentData } from "chai-ui-v2";
+import {
+  ComponentImage,
+  ImageWithDescriptionListContentData,
+} from "chai-ui-v2";
 import TextEditorViewer from "../molecules/TextEditorViewer";
 import { useCallback, useEffect, useState } from "react";
 
@@ -59,7 +62,7 @@ const ImageWithDescriptionListCreator = ({
 }: DraggableContentCommonProps) => {
   const thisContent = content as ImageWithDescriptionListContentData;
   const [focusedTextEditorIndex, setFocusedTextEditorIndex] =
-  useState<number>();
+    useState<number>();
 
   const focusTextEditor = useCallback(
     (index: number) => (e: React.MouseEvent) => {
@@ -72,7 +75,6 @@ const ImageWithDescriptionListCreator = ({
   const resetFocusedTextEditor = useCallback(() => {
     setFocusedTextEditorIndex(undefined);
   }, []);
-
 
   const isTextEditorFocused = useCallback(
     (index: number) => {
@@ -152,7 +154,6 @@ const ImageWithDescriptionListCreator = ({
     updateContent(currentSlide.id, content.id, position, newContent);
   };
 
-
   useEffect(() => {
     window.addEventListener("click", resetFocusedTextEditor);
     return () => {
@@ -168,27 +169,38 @@ const ImageWithDescriptionListCreator = ({
       <ImageListCreatorWrapper>
         <AddButton onClick={addImage}>이미지 추가</AddButton>
         <ImageListWrapper>
-          {/* TODO: AddButton 클릭 시 ImageList 추가 */}
           {thisContent.data.map((item, index) => {
             return (
               <ImageList>
-                {/* TODO: default 이미지 노출 이후 이미지 등록하면 변경 */}
                 <div>
-                  {item.src ? <ComponentImage imageUrl={getThisContentImageSrc(index)} /> :
-                  <ImageThumb>
-                    <img src={ImageIcon} alt="" />
-                  </ImageThumb>
-                  }
-                  <UrlInputWrapper typeText="이미지" onSubmit={setImageUrl(index)}/>
+                  {item.src ? (
+                    <ComponentImage imageUrl={getThisContentImageSrc(index)} />
+                  ) : (
+                    <ImageThumb>
+                      <img src={ImageIcon} alt="" />
+                    </ImageThumb>
+                  )}
+                  <UrlInputWrapper
+                    typeText="이미지"
+                    onSubmit={setImageUrl(index)}
+                  />
                 </div>
-                {/* TODO: 캡션 입력안하면 없이 노출, 캡션 클릭 후 HTML로 입력하면 입력되어서 노출 */}
-                <p className="description-text" onClick={focusTextEditor(index)}>
-                  <TextEditorViewer isFocused={isTextEditorFocused(index)} setText={setText(index)} text={thisContent.data?.[index].description ?? ""}  defaultText={
+                <p
+                  className="description-text"
+                  onClick={focusTextEditor(index)}
+                >
+                  <TextEditorViewer
+                    isFocused={isTextEditorFocused(index)}
+                    setText={setText(index)}
+                    text={thisContent.data?.[index].description ?? ""}
+                    defaultText={
                       <p className="caption-text">설명을 입력해주세요.</p>
-                    }/>
+                    }
+                  />
                 </p>
-                {/* TODO: ObjectDeleteButton 클릭 시 해당 ImageList 제거 */}
-                {thisContent.data.length > 1 && <ObjectDeleteButton onClick={() => deleteImage(index)} />}
+                {thisContent.data.length > 1 && (
+                  <ObjectDeleteButton onClick={() => deleteImage(index)} />
+                )}
               </ImageList>
             );
           })}

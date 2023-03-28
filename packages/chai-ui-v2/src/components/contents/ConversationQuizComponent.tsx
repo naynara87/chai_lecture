@@ -162,7 +162,7 @@ const ConversationQuizComponent = ({
         >
           <div className="img-grp">
             <div className="img-wrap">
-              {/* TODO: key설명 - 누르면 단일 음성이 재생됨 */}
+              {/* key설명 - 누르면 단일 음성이 재생됨 */}
               <div className="img-round">
                 <button
                   className="btn-profile"
@@ -177,7 +177,7 @@ const ConversationQuizComponent = ({
                 </button>
               </div>
             </div>
-            {/* TODO: key설명 - 등록된 캐릭터의 이름을 가져옴. 디폴트 이미지일때는 이름이 없음 (피그마 참고: 2-복습-9) */}
+            {/* key설명 - 등록된 캐릭터의 이름을 가져옴. 디폴트 이미지일때는 이름이 없음 (피그마 참고: 2-복습-9) */}
             <p className="name">{content.character.name}</p>
           </div>
           <div className="txt-wrap">
@@ -202,13 +202,14 @@ const ConversationQuizComponent = ({
               contentIndex={contentIndex}
               onClickChoice={handleClickChoice}
               isShowAnswer={isShowAnswer}
+              contentId={contents.id}
             />
           </div>
         </li>
       );
     });
   }, [
-    contents.data,
+    contents,
     globalAudioState,
     speakingDialogueIndex,
     handleClickChoice,

@@ -68,6 +68,7 @@ export const commonLayouts: PageLayout[] = [
  * TP04 : TemplateConversation - 회화 학습
  * TP05 : TemplateConversationToggle - 회화 토글 학습
  * TP06 : TemplateConversationRepeat - 회화 따라 말하기 학습
+ * TP07 : TemplateWordCard - 단어 카드형
  */
 export const conversationLayouts: ConversationPageLayout[] = [
   {
@@ -83,6 +84,11 @@ export const conversationLayouts: ConversationPageLayout[] = [
   {
     type: "TemplateConversationRepeat",
     name: "회화 따라 말하기 학습",
+    image: "https://via.placeholder.com/150",
+  },
+  {
+    type: "TemplateWordCard",
+    name: "단어 카드형",
     image: "https://via.placeholder.com/150",
   },
 ];
@@ -533,6 +539,62 @@ export const getContentComponentsDefaultValue = (): Partial<
       isUseCharacter: false,
     },
   },
+  conversationQuiz: {
+    id: uuidV4(),
+    type: "conversationQuiz",
+    data: [
+      {
+        text: "",
+        pronunciation: "",
+        meaning: "",
+        character: {
+          name: "",
+          src: "",
+        },
+        audio: {
+          src: "",
+        },
+        choice: [
+          {
+            text: "",
+            isAnswer: false,
+          },
+          {
+            text: "",
+            isAnswer: false,
+          },
+        ],
+      },
+    ],
+  },
+  quizSentence: {
+    id: uuidV4(),
+    type: "quizSentence",
+    data: {
+      characters: [
+        {
+          name: "",
+          src: "",
+          sentences: [
+            {
+              sentence: "",
+              isChoice: false,
+              answerIndex: -1,
+            },
+          ],
+        },
+      ],
+      quizPopup: quizPopupData,
+    },
+  },
+  finalSpeaking: {
+    id: uuidV4(),
+    type: "finalSpeaking",
+    data: {
+      answerModel: "",
+      exampleContents: [],
+    },
+  },
 });
 
 /**
@@ -727,6 +789,151 @@ export const getTemplateDefaultValue = (): Partial<
         isUseCharacter: false,
       },
     },
+  },
+  TemplateQuizSentencesInOrder: {
+    id: uuidV4(),
+    type: "TemplateQuizSentencesInOrder",
+    titleContents: {
+      id: uuidV4(),
+      type: "iconText",
+      data: {
+        text: "",
+      },
+    },
+    mainContents: {
+      id: uuidV4(),
+      type: "quizSentence",
+      data: {
+        characters: [
+          {
+            name: "",
+            src: "",
+            sentences: [
+              {
+                sentence: "",
+                isChoice: false,
+                answerIndex: -1,
+              },
+            ],
+          },
+        ],
+        quizPopup: quizPopupData,
+      },
+    },
+  },
+  TemplateQuizConversation: {
+    id: uuidV4(),
+    type: "TemplateQuizConversation",
+    leftContents: [
+      {
+        id: uuidV4(),
+        type: "fullAudio",
+        data: {},
+      },
+      {
+        id: uuidV4(),
+        type: "activityGuideCharacter",
+        data: {
+          character: {
+            src: "",
+          },
+          text: "",
+        },
+      },
+    ],
+    rightContents: [
+      {
+        id: uuidV4(),
+        type: "conversationQuiz",
+        data: [
+          {
+            text: "",
+            pronunciation: "",
+            meaning: "",
+            character: {
+              name: "",
+              src: "",
+            },
+            audio: {
+              src: "",
+            },
+            choice: [
+              {
+                text: "",
+                isAnswer: false,
+              },
+              {
+                text: "",
+                isAnswer: false,
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  TemplateQuizSpeaking: {
+    id: uuidV4(),
+    type: "TemplateQuizSpeaking",
+    leftContents: {
+      id: uuidV4(),
+      type: "activityGuideCharacter",
+      data: {
+        character: {
+          src: "",
+        },
+        text: "",
+      },
+    },
+    rightContents: {
+      id: uuidV4(),
+      type: "finalSpeaking",
+      data: {
+        answerModel: "",
+        exampleContents: [],
+      },
+    },
+  },
+
+  TemplateWordCard: {
+    id: uuidV4(),
+    type: "TemplateWordCard",
+    leftContents: [
+      {
+        id: uuidV4(),
+        type: "fullAudio",
+        data: {},
+      },
+      {
+        id: uuidV4(),
+        type: "activityGuideCharacter",
+        data: {
+          character: {
+            src: "",
+          },
+          text: "",
+        },
+      },
+    ],
+    rightContents: [
+      {
+        id: uuidV4(),
+        type: "iconText",
+        data: {
+          text: "",
+        },
+      },
+      {
+        id: uuidV4(),
+        type: "contentsCardList",
+        data: [
+          {
+            isAccent: false,
+            contents: [],
+          },
+        ],
+      },
+    ],
   },
 });
 
