@@ -67,7 +67,7 @@ const LayoutFooter = ({
     <div>
       <footer className="cai-ft">
         {/* position: absolute */}
-        {/* TODO: key설명 - 클릭시 스스로와 cai-nav-container에 active 추가 */}
+        {/* key설명 - 클릭시 스스로와 cai-nav-container에 active 추가 */}
         <button
           className={`btn-ft-text ${isShowNav ? "active" : ""}`}
           onClick={() => {
@@ -103,7 +103,7 @@ const LayoutFooter = ({
         />
         <nav className="cai-nav-wrap">
           <ul className="cai-nav-list-wrap">
-            {/* TODO: key설명 - 반복영역 클릭시 해당 코너의 시작 페이지로 이동 */}
+            {/* key설명 - 반복영역 클릭시 해당 코너의 시작 페이지로 이동 */}
             {cornerList}
           </ul>
           <div className="btn-wrap">

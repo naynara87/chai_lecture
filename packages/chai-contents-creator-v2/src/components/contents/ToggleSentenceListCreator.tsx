@@ -244,7 +244,6 @@ const ToggleSentenceListCreator = ({
         onClick={(e) => setFocusedId(e, content.id)}
       >
         <TogglesWrapper />
-        {/* TODO: 누르면 sentencewrap이 추가됨 */}
         <AddButton onClick={addSentence}>문장 추가</AddButton>
         {sentences}
       </ToggleSentenceWrapper>

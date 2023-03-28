@@ -32,15 +32,12 @@ const MetaTestWordTestGrade = () => {
                 <p className="test-grade">결과</p>
               </li>
 
-              {/* TODO: 최대 20개 */}
               <li className="test-grade-conts">
                 <p className="test-word">{"篮球"}</p>
                 <div className="test-my-choice">
                   <p className="inp-radio-layout">{"huì"}</p>
-                  {/* TODO: 틀리면 wrong */}
                   <p className="inp-radio-layout wrong">{"~할 줄 모른다"}</p>
                 </div>
-                {/* TODO: 위 둘중 하나라도 틀리면 wrong */}
                 <p className="test-grade wrong">{"오답"}</p>
               </li>
 

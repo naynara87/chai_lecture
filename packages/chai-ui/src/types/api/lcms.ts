@@ -42,10 +42,10 @@ export interface CornerListDataBody {
 }
 
 export interface CornerListDataMeta {
-  subjectId: number; // TODO: 백엔드에 요청 후 데이터를 받아와야 한다
-  subjectName: string; // TODO: 백엔드에 요청 후 데이터를 받아와야 한다
-  // courseId: number; // TODO: 백엔드에 요청 후 데이터를 받아와야 한다
-  // courseName: string; // TODO: 백엔드에 요청 후 데이터를 받아와야 한다
+  subjectId: number;
+  subjectName: string;
+  // courseId: number;
+  // courseName: string;
   lessonId: number;
   lessonName: string;
   lessonTpCd: "10" | "20" | "30";

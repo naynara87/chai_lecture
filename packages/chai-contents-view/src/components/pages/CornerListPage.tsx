@@ -120,7 +120,6 @@ const CornerListPage = () => {
   };
 
   const pageIdMemo = useMemo(() => {
-    // TODO: 페이지 이어하기는 정책 필요 나중에 구현
     return currentCorner?.pages?.[0];
   }, [currentCorner]);
 
@@ -128,7 +127,6 @@ const CornerListPage = () => {
     if (!currentCorner) return;
     if (!appMetaData) return;
 
-    // TODO: 진도체크 API 호출 결과 반영하여 이어하기 기능 추가하기 -> useEffect로 코너 간지 거치지 않고 바로 시작
     const url = getPageUrl(
       appMetaData.courseId,
       appMetaData.lessonId,

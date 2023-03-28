@@ -1,8 +1,8 @@
 /* =================== problemLayout =================== */
 $cont-padding: vw(40);
-$main-color: #6673A3;
-$main-light-color: #E3E3E7;
-$gray-color: #D6D7DA;
+$main-color: #6673a3;
+$main-light-color: #e3e3e7;
+$gray-color: #d6d7da;
 
 // header style
 .problem-hd {
@@ -26,7 +26,7 @@ $gray-color: #D6D7DA;
   font-size: vw(26);
   color: color(gray-ff);
 
-  >img {
+  > img {
     margin-right: vw(10);
     vertical-align: bottom;
   }
@@ -40,6 +40,10 @@ $gray-color: #D6D7DA;
   .problem-top-button-wrapper {
     width: vw(1610);
     margin: vh(30) auto 0;
+    overflow-x: scroll;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   .pagination-wrapper {
@@ -72,7 +76,7 @@ $gray-color: #D6D7DA;
   transform: translateX(50%);
   box-shadow: 0 6px 20px rgba(120, 127, 153, 0.6);
 
-  >span {
+  > span {
     display: block;
     margin-bottom: vh(8);
     font-weight: 600;
@@ -136,7 +140,6 @@ $gray-color: #D6D7DA;
   flex-shrink: 0;
   min-width: vw(62);
   height: vw(62);
-  padding: vw(12) vw(24);
   border: 1px solid $gray-color;
   border-radius: vw(10);
   background-color: color(gray-f0);
@@ -162,7 +165,7 @@ $gray-color: #D6D7DA;
   background-color: $main-light-color;
   font-size: vw(24);
 
-  >b {
+  > b {
     color: $main-color;
   }
 }

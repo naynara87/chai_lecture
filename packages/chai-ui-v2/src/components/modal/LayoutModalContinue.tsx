@@ -31,7 +31,7 @@ const LayoutModalContinue = ({
   };
 
   return (
-    // TODO: key설명 - active가 되면 보임
+    // key설명 - active가 되면 보임
     <ModalCommon open={isModalOpen} onClose={handleClose}>
       {/* 제목영역 */}
       <ModalBaseTitle className="base-ttl">
@@ -50,7 +50,7 @@ const LayoutModalContinue = ({
         </div>
       </ModalBaseContents>
 
-      {/* TODO: key설명 - 버튼이 하나만 들어갈 수도 있음 */}
+      {/* key설명 - 버튼이 하나만 들어갈 수도 있음 */}
       <div className="btns-wrap">
         {/* <ComponentButtonRadiBorderMain text="처음부터 하기" />
             <ComponentButtonRadiFillMain text="이어서 하기" /> */}

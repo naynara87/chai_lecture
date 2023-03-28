@@ -41,13 +41,13 @@ const ExampleTextWrapper = styled.div`
 interface ExampleContentsCreatorProps {
   setText: (text: string) => void;
   getText: () => string;
-  isFocused: boolean
+  isFocused: boolean;
 }
 
 const ExampleContentsCreator = ({
   setText,
   getText,
-  isFocused
+  isFocused,
 }: ExampleContentsCreatorProps) => {
   return (
     <ExampleContentsWrapper>
@@ -56,7 +56,6 @@ const ExampleContentsCreator = ({
         <p>모범 답안</p>
       </ExampleTitleWrapper>
       <ExampleTextWrapper>
-        {/* TODO: 텍스트에디터 들어올 자리 */}
         <TextEditorViewer
           setText={(text) => setText(text)}
           text={getText()}

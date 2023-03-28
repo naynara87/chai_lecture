@@ -7,12 +7,17 @@ import { HOME_URL, NOT_FOUND_URL } from "../constants/url";
 import "chai-ui-v2/dist/assets/globalStyle.css";
 import LayoutProblem from "../components/pages/LayoutProblem ";
 import Home from "../components/pages/Home";
+import QuestionScore from "../components/pages/QuestionScore";
 
 const AppRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path={HOME_URL} element={<Home />} />
+        <Route
+          path="course/:courseId/lesson/:lessonId/corner/:cornerId/page/score"
+          element={<QuestionScore />}
+        />
         <Route
           path="course/:courseId/lesson/:lessonId/corner/:cornerId/page/:pageId"
           element={<Layout />}

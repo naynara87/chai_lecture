@@ -3,7 +3,7 @@ import { LessonMeta } from "chai-ui-v2";
 const useLessonColorMapper = () => {
   const getLessonColors = (colorCode?: LessonMeta["colorTypeCd"]) => {
     const lessonColorMapper = {
-      // TODO: key설명 - 레벨별 컬러는 헤더에서만 사용
+      // key설명 - 레벨별 컬러는 헤더에서만 사용
       10: {
         main: "#EE4141",
         sub: "#F89E9E",

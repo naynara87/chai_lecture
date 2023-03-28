@@ -11,7 +11,6 @@ interface QuizAnswerStyleProps {
   customCss?: SerializedStyles;
 }
 
-// TODO: vw, vh 를 px 단위로 변경
 export const QuizAnswerStyle = styled.li<QuizAnswerStyleProps>`
   .label-quiz-answer {
     display: inline-block;

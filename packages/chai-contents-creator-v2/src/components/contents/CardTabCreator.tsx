@@ -421,7 +421,6 @@ const CardTabCreator = ({
     >
       <CardTabWrapper className="card-tab-wrapper">
         <div className="flex-wrap">
-          {/* TODO: 클릭시 TabCard 추가 */}
           <AddButton onClick={addCard}>카드 추가</AddButton>
           <CheckBoxWrapper
             isActivated={thisContent.meta?.isUseTab ?? false}
@@ -431,7 +430,6 @@ const CardTabCreator = ({
           </CheckBoxWrapper>
         </div>
         <TabTitleWrap className="tab-title-view--wrap">
-          {/* TODO: 탭사용을 체크하면 버튼들이 disabled 되고, tab-title-wrap에 클래스 disabled 추가 */}
           <div
             className={`tab-title-wrap ${
               thisContent.meta?.isUseTab ? "" : "disabled"

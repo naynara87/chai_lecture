@@ -8,6 +8,9 @@ interface ModalQuestionProps {
   isModalOpen: boolean;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   wideModal: boolean;
+  quizTypeText: string;
+  quizTotalLength: number;
+  onClickStart: () => void;
 }
 
 const ModalQuestionWrapper = styled.div`
@@ -62,9 +65,13 @@ const ModalQuestionTemplate = ({
   isModalOpen,
   setIsModalOpen,
   wideModal,
+  quizTypeText,
+  quizTotalLength,
+  onClickStart,
 }: ModalQuestionProps) => {
   const handleClose = () => {
     setIsModalOpen(false);
+    onClickStart();
   };
   return (
     <ModalCommon open={isModalOpen} onClose={handleClose} wideModal={wideModal}>
@@ -73,7 +80,7 @@ const ModalQuestionTemplate = ({
       </button>
       <ModalQuestionWrapper>
         <p className="question-tit-wrapper">
-          <b>빨강 연습문제 </b>총 <b>40</b>문항
+          <b>{quizTypeText} </b>총 <b>{quizTotalLength}</b>문항
         </p>
         <div className="question-cont-wrapper">
           <p className="question-sub">{`<시험 중 유의사항>`}</p>
@@ -95,7 +102,7 @@ const ModalQuestionTemplate = ({
           </p>
         </div>
       </ModalQuestionWrapper>
-      <ButtonStart>시작</ButtonStart>
+      <ButtonStart onClick={handleClose}>시작</ButtonStart>
     </ModalCommon>
   );
 };

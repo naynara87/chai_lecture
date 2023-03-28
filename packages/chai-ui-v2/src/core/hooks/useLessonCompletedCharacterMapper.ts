@@ -1,4 +1,4 @@
-import { LessonMeta } from "chai-ui-v2";
+import { LessonMeta } from "../types";
 
 const useLessonCompletedCharacterMapper = () => {
   const getLessonCompletedCharacterCode = (

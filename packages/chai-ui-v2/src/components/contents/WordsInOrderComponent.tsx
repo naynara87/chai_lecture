@@ -153,7 +153,7 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
               setSelectedChoiceBox(undefined);
             }}
           >
-            {/* TODO: key설명 클릭하면 클래스 active 추가됨 */}
+            {/* key설명 클릭하면 클래스 active 추가됨 */}
             <div className="text">
               {userChoices[blankIndex].text ? (
                 <HtmlContentComponent html={userChoices[blankIndex].text} />
@@ -279,7 +279,7 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
           {contents.meta?.isUseCharacter && contents.data.character && (
             <div className="img-grp">
               <div className="img-wrap">
-                {/* TODO: key설명 - 음성이 있을 경우, 누르면 단일 음성이 재생되며, conversation-wrap 에 active 추가 */}
+                {/* key설명 - 음성이 있을 경우, 누르면 단일 음성이 재생되며, conversation-wrap 에 active 추가 */}
                 <div className="img-round">
                   <button className="btn-profile">
                     <img
@@ -297,8 +297,8 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
           {blankBoxes}
         </div>
       </div>
-      {/* TODO: key설명 정답확인후 정답일 때 answer-right 추가 */}
-      {/* TODO: key설명 정답확인후 오답일 때 answer-wrong 추가 */}
+      {/* key설명 정답확인후 정답일 때 answer-right 추가 */}
+      {/* key설명 정답확인후 오답일 때 answer-wrong 추가 */}
       <div className="quiz-answer-wrap hori-answer-wrap">{choiceBoxes}</div>
       <div className="btns-wrap">
         <ComponentButtonRadiBorderMain

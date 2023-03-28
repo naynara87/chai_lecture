@@ -77,7 +77,6 @@ const FinalSpeakingContentCreator = ({
           deleteComponent={deleteComponent}
           handleOnDragEnd={handleOnDragEnd}
         />
-        {/* TODO: ComponentGrayLineCreator 들어올 영역 */}
         <RecorderWrapper>
           <img src={IconMic} alt="" />
           <p>녹음을 시작해보세요</p>

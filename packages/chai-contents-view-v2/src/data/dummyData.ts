@@ -40,10 +40,10 @@ export const v2LessonData: LessonData = {
       id: 17,
       name: "회화",
     },
-    // {
-    //   id: 18,
-    //   name: "문제",
-    // },
+    {
+      id: 18,
+      name: "문제",
+    },
   ],
 };
 
@@ -159,7 +159,7 @@ export const v2CornerDataList: CornerData[] = [
               data: {
                 text: "<p>지난 시간에 배운 성모를 복습해 볼까요?<br>녹음을 듣고, 알맞은 발음을 골라보세요!</p>",
                 character: {
-                  src: "",
+                  src: "asdfasdf",
                 },
               },
             },
@@ -284,7 +284,7 @@ export const v2CornerDataList: CornerData[] = [
               data: {
                 text: "지난 시간에는 만날 때 하는 인사를 배웠어요. 올바른 한어병음을 골라보세요!",
                 character: {
-                  src: "",
+                  src: "asdfasdf",
                 },
               },
             },
@@ -408,7 +408,7 @@ export const v2CornerDataList: CornerData[] = [
                     text: "我觉得这里的冬天没有 那么冷。",
                     pronunciation:
                       "Wǒ juédé zhèlǐ de dōngtiān méiyǒu zhòng guó nàme lěng.",
-                    meaning: "나는 여기 겨울이 중국만큼 춥지 않은 것 같아2.",
+                    meaning: "나는 여기 겨울이 중국만큼 춥지 않은 것 같아.",
                     choice: [
                       { text: "下雪", isAnswer: true },
                       {
@@ -501,143 +501,74 @@ export const v2CornerDataList: CornerData[] = [
       {
         id: 5,
         name: "한어",
-        type: "multiPage",
-        data: [
-          {
-            id: uuidV4(),
-            type: "TemplateQuizMultiChoice",
-            leftContents: [
-              {
-                id: uuidV4(),
-                type: "activityGuideCharacter",
-                data: {
-                  text: "지난 시간엔 성조의 변화에 대해 학습했어요. 내용이 맞으면 O, 틀리면 X를 선택하세요.",
-                  character: {
-                    src: "asdfasdf",
-                  },
+        type: "singlePage",
+        data: {
+          id: uuidV4(),
+          type: "TemplateQuizMultiChoice",
+          leftContents: [
+            {
+              id: uuidV4(),
+              type: "activityGuideCharacter",
+              data: {
+                text: "지난 시간엔 성조의 변화에 대해 학습했어요. 내용이 맞으면 O, 틀리면 X를 선택하세요.",
+                character: {
+                  src: "asdfasdf",
                 },
               },
-            ],
-            multiChoice: {
-              id: uuidV4(),
-              type: "multiChoice",
-              data: {
-                choice: ["제2성+제3성", "제3성+제3성"],
-                answerIndex: 0,
-                exampleContents: [
-                  {
-                    id: uuidV4(),
-                    type: "text",
-                    data: {
-                      text: "제3성이 연이어 나올 때, 올바르게 발음한 것을 고르세요.",
+            },
+          ],
+          multiChoice: {
+            id: uuidV4(),
+            type: "multiChoice",
+            data: {
+              choice: ["제2성+제3성", "제3성+제3성"],
+              answerIndex: 0,
+              exampleContents: [
+                {
+                  id: uuidV4(),
+                  type: "text",
+                  data: {
+                    text: "제3성이 연이어 나올 때, 올바르게 발음한 것을 고르세요.",
+                  },
+                },
+              ],
+              quizPopup: {
+                id: uuidV4(),
+                type: "quizPopupModal",
+                data: {
+                  correct: {
+                    title: "做得好!",
+                    sub: "정답이에요!",
+                    description: "니하오입니다.",
+                    character: {
+                      src: "",
+                    },
+                    soundEffect: {
+                      src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
+                    },
+                    video: {
+                      src: "https://cdn.bubblecon.co.kr/videos/46.mp4",
                     },
                   },
-                ],
-                quizPopup: {
-                  id: uuidV4(),
-                  type: "quizPopupModal",
-                  data: {
-                    correct: {
-                      title: "做得好!",
-                      sub: "정답이에요!",
-                      description: "니하오입니다.",
-                      character: {
-                        src: "",
-                      },
-                      soundEffect: {
-                        src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
-                      },
-                      video: {
-                        src: "https://cdn.bubblecon.co.kr/videos/46.mp4",
-                      },
+                  incorrect: {
+                    title: "真难过!",
+                    sub: "아쉬워요!",
+                    description: "니하오라고요.",
+                    character: {
+                      src: "",
                     },
-                    incorrect: {
-                      title: "真难过!",
-                      sub: "아쉬워요!",
-                      description: "니하오라고요.",
-                      character: {
-                        src: "",
-                      },
-                      soundEffect: {
-                        src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
-                      },
-                      video: {
-                        src: "https://cdn.bubblecon.co.kr/videos/46.mp4",
-                      },
+                    soundEffect: {
+                      src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+                    },
+                    video: {
+                      src: "https://cdn.bubblecon.co.kr/videos/46.mp4",
                     },
                   },
                 },
               },
             },
           },
-          {
-            id: uuidV4(),
-            type: "TemplateQuizMultiChoice",
-            leftContents: [
-              {
-                id: uuidV4(),
-                type: "activityGuideCharacter",
-                data: {
-                  text: "지난 시간엔 성조의 변화에 대해 학습했어요. 내용이 맞으면 O, 틀리면 X를 선택하세요.",
-                  character: {
-                    src: "asdfasdf",
-                  },
-                },
-              },
-            ],
-            multiChoice: {
-              id: uuidV4(),
-              type: "multiChoice",
-              data: {
-                choice: ["제2성+제3성", "제3성+제3성"],
-                answerIndex: 0,
-                exampleContents: [
-                  {
-                    id: uuidV4(),
-                    type: "text",
-                    data: {
-                      text: "제3성이 연이어 나올 때, 올바르게 발음한 것을 고르세요.",
-                    },
-                  },
-                ],
-                quizPopup: {
-                  id: uuidV4(),
-                  type: "quizPopupModal",
-                  data: {
-                    correct: {
-                      title: "做得好!",
-                      sub: "정답이에요!",
-                      description: "니하오입니다.",
-                      character: {
-                        src: "",
-                      },
-                      soundEffect: {
-                        src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
-                      },
-                      video: {
-                        src: "https://cdn.bubblecon.co.kr/videos/46.mp4",
-                      },
-                    },
-                    incorrect: {
-                      title: "真难过!",
-                      sub: "아쉬워요!",
-                      description: "니하오라고요.",
-                      character: {
-                        src: "",
-                      },
-                      soundEffect: {
-                        src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
-                      },
-                      video: {
-                        src: "https://cdn.bubblecon.co.kr/videos/46.mp4",
-                      },
-                    },
-                  },
-                },
-              },
-            },
-          },
-        ],
+        },
       },
     ],
   },
@@ -2871,206 +2802,195 @@ export const v2CornerDataList: CornerData[] = [
           },
         ],
       },
+    ],
+  },
+  {
+    meta: {
+      id: 18,
+      name: "문제",
+      lessonId: 1,
+      lessonName: "Lesson 1",
+      lessonTpCd: "20",
+      courseId: 1,
+      courseName: "차이홍(샘플데이터)-빨강",
+      isCompleted: false,
+    },
+    data: [
       {
-        id: 4,
-        name: "롤플레잉",
+        id: 1,
+        name: "문제",
         type: "singlePage",
         data: {
           id: uuidV4(),
-          type: "TemplateRolePlaying",
-          iconText: {
+          type: "TemplateQuestion",
+          contents: {
             id: uuidV4(),
-            type: "iconText",
+            type: "question",
             data: {
-              text: "지시문",
+              iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20050",
+              answer: "4",
+              comment: "해설부분입니다.",
+              example: `① A: 洗手间离这儿近吗？Xǐshǒujiān lí zhèr jìn ma?
+
+              화장실은 여기서 가까워요?
+              
+              B: 离这儿很近。Lí zhèr hěn jìn.
+              
+              여기서 가까워요.
+              
+              ② A: 医院怎么走？Yīyuàn zěnme zǒu?
+              
+              병원은 어떻게 가나요?
+              
+              B: 往右拐就到了。Wǎng yòu guǎi jiù dào le.
+              
+              오른쪽으로 돌면 바로 도착해요.
+              
+              ③ A: 电影院怎么走？Diànyǐngyuàn zěnme zǒu?
+              
+              영화관은 어떻게 가나요?
+              
+              B: 往前走就到了。Wǎng qián zǒu jiù dào le.
+              
+              앞으로 가면 바로 도착해요.
+              
+              ④ A: 图书馆怎么走？Túshūguǎn zěnme zǒu?
+              
+              도서관은 어떻게 가나요?
+              
+              B: 一直往前走，到学校往左拐。Yìzhí wǎng qián zǒu, dào xuéxiào wǎng zuǒ guǎi.
+              
+              곧장 앞으로 가신 다음, 학교에서 왼쪽으로 가세요.
+              
+              ⑤ A: 银行怎么走？Yínháng zěnme zǒu?
+              
+              은행은 어떻게 가나요?
+              
+              B: 一直往前走，到学校往右拐。Yìzhí wǎng qián zǒu, dào xuéxiào wǎng yòu guǎi.
+              
+              곧장 앞으로 가신 다음, 학교에서 오른쪽으로 가세요.`,
             },
           },
-          guideContent: {
+        },
+      },
+      {
+        id: 2,
+        name: "문제",
+        type: "singlePage",
+        data: {
+          id: uuidV4(),
+          type: "TemplateQuestion",
+          contents: {
             id: uuidV4(),
-            type: "activityGuideCharacter",
+            type: "question",
             data: {
-              character: {
-                src: "",
-              },
-              text: "가이드",
+              iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20049",
+              answer: "1",
+              comment: "해설부분입니다.",
+              example: `중국의 수도는 베이징이다.`,
             },
           },
-          characters: [
-            {
-              id: 0,
-              name: "민호",
-              src: "",
-            },
-            {
-              id: 1,
-              name: "장밍",
-              src: "",
-            },
-            {
-              id: 2,
-              name: "민호엄마",
-              src: "",
-            },
-          ],
-          rolePlayingContents: {
+        },
+      },
+      {
+        id: 3,
+        name: "문제",
+        type: "singlePage",
+        data: {
+          id: uuidV4(),
+          type: "TemplateQuestion",
+          contents: {
             id: uuidV4(),
-            type: "roleplaying",
-            data: [
-              {
-                id: uuidV4(),
-                characterId: 0,
-                audio: {
-                  src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
-                },
-                text: "你好，你是张明吗？",
-                pronunciation: "Nî hâo, nî shì Zhãng Míng ma?",
-                meaning: "안녕",
-                position: "left",
-              },
-              {
-                id: uuidV4(),
-                characterId: 0,
-                audio: {
-                  src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
-                },
-                text: "没想到在路上遇见你。",
-                pronunciation: "Méi xiângdào zài lùshang yùjiàn nî.",
-                meaning: "반가워",
-                position: "left",
-              },
-              {
-                id: uuidV4(),
-                characterId: 1,
-                audio: {
-                  src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
-                },
-                text: "중국어중국어",
-                pronunciation: "Méi cuò, hâojiû bújiàn!",
-                meaning: "맞아, 오랜만이야!",
-                position: "right",
-              },
-              {
-                id: uuidV4(),
-                characterId: 1,
-                audio: {
-                  src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
-                },
-                text: "중국어중국어",
-                pronunciation: "Méi cuò, hâojiû bújiàn!",
-                meaning: "너는 예전과 같이 멋있구나, 조금도 변하지 않았어.",
-                position: "right",
-              },
-              {
-                id: uuidV4(),
-                characterId: 2,
-                audio: {
-                  src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
-                },
-                text: "你好！见到你很高兴！",
-                pronunciation: "Nî hâo! Jiàndào nî hên gãoxìng!",
-                meaning: "한국어한국어",
-                position: "left",
-              },
-            ],
+            type: "question",
+            data: {
+              iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20048",
+              answer: "1",
+              comment: "해석부분입니다.",
+              example: `중국어는 중국어에요`,
+            },
+          },
+        },
+      },
+      {
+        id: 4,
+        name: "문제",
+        type: "singlePage",
+        data: {
+          id: uuidV4(),
+          type: "TemplateQuestion",
+          contents: {
+            id: uuidV4(),
+            type: "question",
+            data: {
+              iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20047",
+              answer: "1",
+              comment: "해석이에요",
+              example: "중국의 수도는 베이징이다.",
+            },
+          },
+        },
+      },
+      {
+        id: 5,
+        name: "문제",
+        type: "singlePage",
+        data: {
+          id: uuidV4(),
+          type: "TemplateQuestion",
+          contents: {
+            id: uuidV4(),
+            type: "question",
+            data: {
+              iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20046",
+              answer: "1",
+              comment: "해석이에요",
+              example: "해설인가요",
+            },
+          },
+        },
+      },
+      {
+        id: 6,
+        name: "문제",
+        type: "singlePage",
+        data: {
+          id: uuidV4(),
+          type: "TemplateQuestion",
+          contents: {
+            id: uuidV4(),
+            type: "question",
+            data: {
+              iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20045",
+              answer: "3",
+              comment: "중국?",
+              example:
+                "중국인은 차를 약이라 여긴다. → 과거에는 약의 용도로 쓰이긴 했으나, 현재는 건강에 좋은 음료로 여긴다.",
+            },
+          },
+        },
+      },
+      {
+        id: 7,
+        name: "문제",
+        type: "singlePage",
+        data: {
+          id: uuidV4(),
+          type: "TemplateQuestion",
+          contents: {
+            id: uuidV4(),
+            type: "question",
+            data: {
+              iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20044",
+              answer: "3",
+              comment: "중국!",
+              example:
+                "중국인은 차를 약이라 여긴다. → 과거에는 약의 용도로 쓰이긴 했으나, 현재는 건강에 좋은 음료로 여긴다.",
+            },
           },
         },
       },
     ],
   },
-  // {
-  //   meta: {
-  //     id: 18,
-  //     name: "문제",
-  //     lessonId: 1,
-  //     lessonName: "Lesson 1",
-  //     lessonTpCd: "30",
-  //     courseId: 1,
-  //     courseName: "차이홍(샘플데이터)-빨강",
-  //     isCompleted: false,
-  //   },
-  //   data: [
-  //     {
-  //       id: 1,
-  //       name: "문제",
-  //       type: "singlePage",
-  //       data: {
-  //         id: uuidV4(),
-  //         type: "TemplateQuestion",
-  //         contents: {
-  //           id: uuidV4(),
-  //           type: "question",
-  //           data: {
-  //             iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20050",
-  //           },
-  //         },
-  //       },
-  //     },
-  //     {
-  //       id: 2,
-  //       name: "문제",
-  //       type: "singlePage",
-  //       data: {
-  //         id: uuidV4(),
-  //         type: "TemplateQuestion",
-  //         contents: {
-  //           id: uuidV4(),
-  //           type: "question",
-  //           data: {
-  //             iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20049",
-  //           },
-  //         },
-  //       },
-  //     },
-  //     {
-  //       id: 3,
-  //       name: "문제",
-  //       type: "singlePage",
-  //       data: {
-  //         id: uuidV4(),
-  //         type: "TemplateQuestion",
-  //         contents: {
-  //           id: uuidV4(),
-  //           type: "question",
-  //           data: {
-  //             iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20048",
-  //           },
-  //         },
-  //       },
-  //     },
-  //     {
-  //       id: 4,
-  //       name: "문제",
-  //       type: "singlePage",
-  //       data: {
-  //         id: uuidV4(),
-  //         type: "TemplateQuestion",
-  //         contents: {
-  //           id: uuidV4(),
-  //           type: "question",
-  //           data: {
-  //             iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20047",
-  //           },
-  //         },
-  //       },
-  //     },
-  //     {
-  //       id: 5,
-  //       name: "문제",
-  //       type: "singlePage",
-  //       data: {
-  //         id: uuidV4(),
-  //         type: "TemplateQuestion",
-  //         contents: {
-  //           id: uuidV4(),
-  //           type: "question",
-  //           data: {
-  //             iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20046",
-  //           },
-  //         },
-  //       },
-  //     },
-  //   ],
-  // },
 ];
 
 export const v1LessonDataServer = {

@@ -118,10 +118,10 @@ const ConversationComponent = ({
           } ${content.isBlank ? "blank" : ""}`}
           key={contentIndex}
         >
-          {/* TODO: key설명 - 음성이 재생될 때 active 가 추가됨(화자표시 애니메이션) */}
+          {/* key설명 - 음성이 재생될 때 active 가 추가됨(화자표시 애니메이션) */}
           <div className="img-grp">
             <div className="img-wrap">
-              {/* TODO: key설명 - 누르면 단일 음성이 재생됨 */}
+              {/* key설명 - 누르면 단일 음성이 재생됨 */}
               <div className="img-round">
                 <button
                   className="btn-profile"

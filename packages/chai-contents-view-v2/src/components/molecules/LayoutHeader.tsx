@@ -31,7 +31,7 @@ interface HdChaWrapProps {
 }
 
 const HdContWrap = styled.div<HdContWrapProps>`
-  /* TODO: key설명 - width: 100%일 때 after의 배경색을 div의 배경색으로 적용 */
+  /* key설명 - width: 100%일 때 after의 배경색을 div의 배경색으로 적용 */
   width: ${(props) =>
     props.cornerPercent > 99 ? "103%" : `${props.cornerPercent}%`};
 
