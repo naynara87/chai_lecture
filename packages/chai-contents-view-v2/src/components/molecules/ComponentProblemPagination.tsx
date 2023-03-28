@@ -26,8 +26,6 @@ const ComponentProblemPagination = ({
   pages,
   onClickPagination,
 }: ComponentProblemPaginationProps) => {
-  /* TODO: 설명 - 열면 클래스 active 추가, 문제풀면 end 추가 */
-
   const { pageId } = useParams();
   const pagination = useMemo(() => {
     const questionDatas = LocalStorage.getItem("pageData") as QuizData[];

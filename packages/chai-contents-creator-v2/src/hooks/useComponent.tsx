@@ -22,7 +22,7 @@ import {
 import AudioRecorderCreator from "../components/contents/AudioRecorderCreator";
 import MultilevelActionCardCreator from "../components/contents/MultilevelActionCardCreator";
 import ActivityGuideCharacterCreator from "../components/contents/ActivityGuideCharacterCreator";
-import ContentsCardList from "../components/contents/ContentsCardList";
+import ContentsCardListCreator from "../components/contents/ContentsCardListCreator";
 import ExplainingCharacterCreator from "../components/contents/ExplainingCharacterCreator";
 import CharacterCardListCreator from "../components/contents/CharacterCardListCreator";
 import ToggleSentenceListCreator from "../components/contents/ToggleSentenceListCreator";
@@ -33,7 +33,12 @@ import ConversationWordListCreator from "../components/contents/ConversationWord
 import WordsCarouselModalCreator from "../components/contents/WordsCarouselModalCreator";
 import FullAudioCreator from "../components/contents/FullAudioCreator";
 import ConversationCreator from "../components/contents/ConversationCreator";
+import AudioAndWordsCarouselModalCreator from "../components/contents/AudioAndWordsCarouselModalCreator";
 import MultiChoiceCreator from "../components/contents/MultiChoiceCreator";
+import WordsInOrderCreator from "../components/contents/WordsInOrderCreator";
+import ConversationQuizCreator from "../components/contents/ConversationQuizCreator";
+import SentenceWordsInOrderCreator from "../components/contents/SentenceWordsInOrderCreator";
+import FinalSpeakingContentCreator from "../components/contents/FinalSpeakingContentCreator";
 
 const useComponent = () => {
   const [focusedId, setFocusedId] = useRecoilState(focusedIdState);
@@ -56,7 +61,7 @@ const useComponent = () => {
       multiLevelActionCard: <MultilevelActionCardCreator {...props} />,
       cornerGuideCharacter: <CornerGuideCharacterCreator {...props} />,
       activityGuideCharacter: <ActivityGuideCharacterCreator {...props} />,
-      contentsCardList: <ContentsCardList {...props} />,
+      contentsCardList: <ContentsCardListCreator {...props} />,
       explainingCharacter: <ExplainingCharacterCreator {...props} />,
       characterCardList: <CharacterCardListCreator {...props} />,
       toggleSentenceList: <ToggleSentenceListCreator {...props} />,
@@ -69,7 +74,12 @@ const useComponent = () => {
       wordsCarousel: <WordsCarouselModalCreator {...props} />,
       fullAudio: <FullAudioCreator {...props} />,
       conversation: <ConversationCreator {...props} />,
+      audioAndWordsCarousel: <AudioAndWordsCarouselModalCreator {...props} />,
       multiChoice: <MultiChoiceCreator {...props} />,
+      wordsInOrder: <WordsInOrderCreator {...props} />,
+      conversationQuiz: <ConversationQuizCreator {...props} />,
+      quizSentence: <SentenceWordsInOrderCreator {...props} />,
+      finalSpeaking: <FinalSpeakingContentCreator {...props} />,
     };
 
     return componentMap[type];

@@ -26,6 +26,9 @@ const ContStartWrapper = styled.div`
   }
 `;
 
+/**
+ * CH-02-02 활동 안내
+ */
 const ActivityGuideCharacterComponent = ({
   contents,
 }: ActivityGuideCharacterComponentProps) => {

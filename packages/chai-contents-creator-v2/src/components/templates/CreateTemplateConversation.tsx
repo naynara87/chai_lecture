@@ -2,7 +2,7 @@ import {
   TemplateConversationData,
   TemplateConversationToggleData,
 } from "chai-ui-v2";
-import useComponentContext from "../../hooks/useComponentContext";
+import useComponentConversationContext from "../../hooks/useComponentConversationContext";
 import {
   CreateEditMain,
   CreateTemplateChoiceBtnWrap,
@@ -23,10 +23,10 @@ const CreateTemplateConversation = ({
   ...pageHeaderProps
 }: PageCommonProps) => {
   const {
-    ComponentsContextMenuCommon,
+    ComponentsConversationContextMenuCommon,
     isComponentsContextMenuOpen,
     toggleContextMenu,
-  } = useComponentContext();
+  } = useComponentConversationContext();
 
   const { focusedId, setFocusedId, getComponent, getDroppableId } =
     returnUseComponent;
@@ -56,6 +56,7 @@ const CreateTemplateConversation = ({
                 deleteContent,
                 position: "leftContents",
                 isDraggable: false,
+                isEditBtn: false,
               });
             })}
           </DashBoxArea>
@@ -66,7 +67,7 @@ const CreateTemplateConversation = ({
               <button className="btn-comp-select" onClick={toggleContextMenu}>
                 컴포넌트 선택
               </button>
-              <ComponentsContextMenuCommon
+              <ComponentsConversationContextMenuCommon
                 isComponentsContextMenuOpen={isComponentsContextMenuOpen}
                 addComponentMap={addComponentMap}
                 slideId={slideId}

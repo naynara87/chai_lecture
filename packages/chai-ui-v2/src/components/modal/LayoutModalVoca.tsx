@@ -75,8 +75,7 @@ const LayoutModalVoca = ({
 
   return (
     <ModalCommon open={isModalOpen} vocaModal={true} onClose={handleClose}>
-      {/* 
-        TODO: key설명 - 모달 닫기버튼*/}
+      {/* key설명 - 모달 닫기버튼*/}
       <button className="btn-close-modal" onClick={handleClose}>
         <img src={IconClose} alt="닫기" />
       </button>

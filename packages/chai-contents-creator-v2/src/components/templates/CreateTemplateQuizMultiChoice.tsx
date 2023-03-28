@@ -25,7 +25,7 @@ const CreateTemplateQuizMultiChoice = ({
 
   const leftDroppableId = getDroppableId(slideId, "leftContents");
 
-  const rightDroppableId = getDroppableId(slideId, "rightContents");
+  const rightDroppableId = getDroppableId(slideId, "multiChoice");
 
   return (
     <>
@@ -44,6 +44,7 @@ const CreateTemplateQuizMultiChoice = ({
                 deleteContent,
                 position: "leftContents",
                 isDraggable: false,
+                isEditBtn: false,
               });
             })}
           </DashBoxArea>

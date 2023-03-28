@@ -1,6 +1,13 @@
-import React, { useMemo } from "react";
+import styled from "@emotion/styled";
+import React, { useEffect, useMemo, useState } from "react";
 import { QuizSentenceContentData } from "../../core";
+import { sortChoices } from "../../core/util/sortChoices";
+import { HtmlContentComponent } from "../atoms";
 import { SentenceInOrderChoice } from "../templates/TemplateQuizSentenceBlank";
+
+const BoxWrap = styled.div`
+  width: 100%;
+`;
 
 interface LineCheckBoxesProps {
   contents: QuizSentenceContentData["data"]["characters"];
@@ -14,6 +21,12 @@ interface LineCheckBoxesProps {
   isShowAnswer: boolean;
 }
 
+type sentence = {
+  sentence: string;
+  isChoice: boolean;
+  answerIndex: number;
+};
+
 const LineCheckBoxes = ({
   contents,
   userChoices,
@@ -23,63 +36,74 @@ const LineCheckBoxes = ({
   setUserChoices,
   isShowAnswer,
 }: LineCheckBoxesProps) => {
-  const mainContents = useMemo(() => {
-    let sentenceCount = -1;
-    return contents.map((content) => {
-      return content.sentences.map((sentence) => {
+  const [sortSentences, setSortSentences] = useState<sentence[]>([]);
+
+  const sentences = useMemo(() => {
+    const newSentence: sentence[] = [];
+    contents.forEach((content) => {
+      content.sentences.forEach((sentence) => {
         if (sentence.isChoice) {
-          sentenceCount++;
-          const sentenceIndex = sentenceCount;
-          const isChecked = userChoices.find((userChoice) => {
-            return userChoice.text === sentence.sentence;
-          });
-          return (
-            <div className="inp-grp" key={sentenceIndex}>
-              <input
-                type="checkbox"
-                name={`answer${sentenceIndex}`}
-                id={`answer${sentenceIndex}`}
-                className="inp-chck-line none"
-                checked={selectedChoiceBox === sentenceIndex}
-                disabled={isChecked !== undefined}
-              />
-              <label
-                htmlFor={`answer${sentenceIndex}`}
-                className="label-chck-line"
-                onClick={() => {
-                  if (
-                    isShowAnswer ||
-                    selectedBlankBox === undefined ||
-                    userChoices[selectedBlankBox].text.length > 0 ||
-                    isChecked !== undefined
-                  )
-                    return;
-                  const copyUserChoices = [...userChoices];
-                  copyUserChoices[selectedBlankBox] = {
-                    text: sentence.sentence,
-                    answerIndex: sentence.answerIndex,
-                  };
-                  setSelectedChoiceBox(sentenceIndex);
-                  setUserChoices(copyUserChoices);
-                }}
-              >
-                <span className="text">{sentence.sentence}</span>
-              </label>
-            </div>
-          );
-        } else {
-          return <></>;
+          newSentence.push(sentence);
         }
       });
     });
+    return newSentence;
+  }, [contents]);
+
+  useEffect(() => {
+    sortChoices(sentences, setSortSentences);
+  }, [sentences]);
+
+  const mainContents = useMemo(() => {
+    return sortSentences.map((sentence, sentenceIndex) => {
+      const isChecked = userChoices.find((userChoice) => {
+        return userChoice.text === sentence.sentence;
+      });
+      return (
+        <BoxWrap className="inp-grp" key={sentenceIndex}>
+          <input
+            type="checkbox"
+            name={`answer${sentenceIndex}`}
+            id={`answer${sentenceIndex}`}
+            className="inp-chck-line none"
+            checked={selectedChoiceBox === sentenceIndex}
+            disabled={isChecked !== undefined}
+          />
+          <label
+            htmlFor={`answer${sentenceIndex}`}
+            className="label-chck-line"
+            onClick={() => {
+              if (
+                isShowAnswer ||
+                selectedBlankBox === undefined ||
+                userChoices[selectedBlankBox].text.length > 0 ||
+                isChecked !== undefined
+              )
+                return;
+              const copyUserChoices = [...userChoices];
+              copyUserChoices[selectedBlankBox] = {
+                text: sentence.sentence,
+                answerIndex: sentence.answerIndex,
+              };
+              setSelectedChoiceBox(sentenceIndex);
+              setUserChoices(copyUserChoices);
+            }}
+          >
+            <span className="text">
+              <HtmlContentComponent html={sentence.sentence} />
+            </span>
+          </label>
+        </BoxWrap>
+      );
+    });
   }, [
-    contents,
     selectedChoiceBox,
     userChoices,
     selectedBlankBox,
     setSelectedChoiceBox,
     setUserChoices,
     isShowAnswer,
+    sortSentences,
   ]);
 
   return <>{mainContents}</>;

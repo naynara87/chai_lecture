@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 
 const QuestionPanel = styled.div`
   padding: 0;
+  overflow-y: hidden;
 `;
 
 interface TemplateQuestionProps extends TemplateProps {

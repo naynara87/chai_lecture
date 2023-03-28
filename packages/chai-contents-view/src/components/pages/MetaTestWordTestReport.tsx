@@ -23,7 +23,6 @@ const MetaTestWordTestReport = () => {
           />
           <main className="word-test-main">
             {/* tab title */}
-            {/* TODO: 초기값은 모르는 단어 */}
             <div className="tab-title-wrap">
               <div className="tab-title">아는 단어</div>
               <div className="tab-title active">모르는 단어</div>
@@ -31,7 +30,6 @@ const MetaTestWordTestReport = () => {
 
             <div className="choice-card-wrap report-wrap">
               {/* word card */}
-              {/* TODO: 최대 20개. 5행 4줄 */}
               <div className="inp-grp">
                 <input type="checkbox" id="inputId" className="inp-chck" disabled />
                 <label htmlFor="inputId" className="inp-card-layout">

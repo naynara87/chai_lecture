@@ -3,7 +3,7 @@ import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 import IconMic from "chai-ui-v2/dist/assets/images/icon/icon_mic.svg";
 import { DraggableContentCommonProps } from "../../types/page";
 
-const RecorderWrapper = styled.div`
+export const RecorderWrapper = styled.div`
   display: flex;
   padding: 0 24px;
   width: 200px;
@@ -31,7 +31,7 @@ const AudioRecorderCreator = ({
 }: DraggableContentCommonProps) => {
   return (
     <ContentCreatorLayout
-          isDraggable={isDraggable}
+      isDraggable={isDraggable}
       draggableProvided={draggableProvided}
     >
       <RecorderWrapper>

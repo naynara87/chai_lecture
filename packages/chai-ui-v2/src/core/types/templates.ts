@@ -9,8 +9,8 @@ import {
   QuestionContentData,
   QuizContent,
   QuizSentenceContentData,
-  QuizWordsInOrderContentData,
   RoleplayingContentData,
+  WordsInOrderContentData,
 } from "./contents";
 
 export type AllTemplateData =
@@ -18,7 +18,6 @@ export type AllTemplateData =
   | ConversationTemplateData
   | QuizTemplateData
   | TemplateRolePlayingData
-  | TemplateWordCardData
   | TemplateQuestionData;
 
 export type TemplateData =
@@ -29,7 +28,8 @@ export type TemplateData =
 export type ConversationTemplateData =
   | TemplateConversationData
   | TemplateConversationToggleData
-  | TemplateConversationRepeatData;
+  | TemplateConversationRepeatData
+  | TemplateWordCardData;
 
 export type QuizTemplateData =
   | TemplateQuizConversationData
@@ -37,6 +37,12 @@ export type QuizTemplateData =
   | TemplateQuizWordsInOrderData
   | TemplateQuizSentencesInOrderData
   | TemplateQuizSpeakingData;
+
+export type RolePlayingCharacter = {
+  id: ID;
+  name: string;
+  src: string;
+};
 
 /**
  * 롤플레잉 레이아웃
@@ -46,6 +52,7 @@ export type TemplateRolePlayingData = {
   type: "TemplateRolePlaying";
   iconText: IconTextContentData;
   guideContent: ActivityGuideCharacterContentData;
+  characters: RolePlayingCharacter[];
   rolePlayingContents: RoleplayingContentData;
 };
 
@@ -146,7 +153,7 @@ export type TemplateQuizWordsInOrderData = {
   id: ID;
   type: "TemplateQuizWordsInOrder";
   leftContents: Content[];
-  rightContents: QuizWordsInOrderContentData;
+  wordsInOrder: WordsInOrderContentData;
 };
 
 /**
@@ -167,7 +174,7 @@ export type TemplateQuizSentencesInOrderData = {
 export type TemplateQuizSpeakingData = {
   id: ID;
   type: "TemplateQuizSpeaking";
-  leftContents: Content[];
+  leftContents: ActivityGuideCharacterContentData;
   rightContents: FinalSpeakingContentData;
 };
 

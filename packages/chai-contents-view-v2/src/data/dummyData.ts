@@ -2022,9 +2022,9 @@ export const v2CornerDataList: CornerData[] = [
                 },
               },
             ],
-            rightContents: {
+            wordsInOrder: {
               id: uuidV4(),
-              type: "quizWordsInOrder",
+              type: "wordsInOrder",
               data: {
                 choice: [
                   {
@@ -2514,9 +2514,9 @@ export const v2CornerDataList: CornerData[] = [
                 },
               },
             ],
-            rightContents: {
+            wordsInOrder: {
               id: uuidV4(),
-              type: "quizWordsInOrder",
+              type: "wordsInOrder",
               data: {
                 choice: [
                   {
@@ -2989,230 +2989,6 @@ export const v2CornerDataList: CornerData[] = [
           },
         },
       },
-      // {
-      //   id: 8,
-      //   name: "문제",
-      //   type: "singlePage",
-      //   data: {
-      //     id: uuidV4(),
-      //     type: "TemplateQuestion",
-      //     contents: {
-      //       id: uuidV4(),
-      //       type: "question",
-      //       data: {
-      //         iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20043",
-      //       },
-      //     },
-      //   },
-      // },
-      // {
-      //   id: 9,
-      //   name: "문제",
-      //   type: "singlePage",
-      //   data: {
-      //     id: uuidV4(),
-      //     type: "TemplateQuestion",
-      //     contents: {
-      //       id: uuidV4(),
-      //       type: "question",
-      //       data: {
-      //         iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20042",
-      //       },
-      //     },
-      //   },
-      // },
-      // {
-      //   id: 10,
-      //   name: "문제",
-      //   type: "singlePage",
-      //   data: {
-      //     id: uuidV4(),
-      //     type: "TemplateQuestion",
-      //     contents: {
-      //       id: uuidV4(),
-      //       type: "question",
-      //       data: {
-      //         iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20041",
-      //       },
-      //     },
-      //   },
-      // },
-      // {
-      //   id: 11,
-      //   name: "문제",
-      //   type: "singlePage",
-      //   data: {
-      //     id: uuidV4(),
-      //     type: "TemplateQuestion",
-      //     contents: {
-      //       id: uuidV4(),
-      //       type: "question",
-      //       data: {
-      //         iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20040",
-      //       },
-      //     },
-      //   },
-      // },
-      // {
-      //   id: 12,
-      //   name: "문제",
-      //   type: "singlePage",
-      //   data: {
-      //     id: uuidV4(),
-      //     type: "TemplateQuestion",
-      //     contents: {
-      //       id: uuidV4(),
-      //       type: "question",
-      //       data: {
-      //         iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20039",
-      //       },
-      //     },
-      //   },
-      // },
-      // {
-      //   id: 13,
-      //   name: "문제",
-      //   type: "singlePage",
-      //   data: {
-      //     id: uuidV4(),
-      //     type: "TemplateQuestion",
-      //     contents: {
-      //       id: uuidV4(),
-      //       type: "question",
-      //       data: {
-      //         iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20038",
-      //       },
-      //     },
-      //   },
-      // },
-      // {
-      //   id: 14,
-      //   name: "문제",
-      //   type: "singlePage",
-      //   data: {
-      //     id: uuidV4(),
-      //     type: "TemplateQuestion",
-      //     contents: {
-      //       id: uuidV4(),
-      //       type: "question",
-      //       data: {
-      //         iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20037",
-      //       },
-      //     },
-      //   },
-      // },
-      // {
-      //   id: 15,
-      //   name: "문제",
-      //   type: "singlePage",
-      //   data: {
-      //     id: uuidV4(),
-      //     type: "TemplateQuestion",
-      //     contents: {
-      //       id: uuidV4(),
-      //       type: "question",
-      //       data: {
-      //         iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20036",
-      //       },
-      //     },
-      //   },
-      // },
-      // {
-      //   id: 16,
-      //   name: "문제",
-      //   type: "singlePage",
-      //   data: {
-      //     id: uuidV4(),
-      //     type: "TemplateQuestion",
-      //     contents: {
-      //       id: uuidV4(),
-      //       type: "question",
-      //       data: {
-      //         iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20035",
-      //       },
-      //     },
-      //   },
-      // },
-      // {
-      //   id: 17,
-      //   name: "문제",
-      //   type: "singlePage",
-      //   data: {
-      //     id: uuidV4(),
-      //     type: "TemplateQuestion",
-      //     contents: {
-      //       id: uuidV4(),
-      //       type: "question",
-      //       data: {
-      //         iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20034",
-      //       },
-      //     },
-      //   },
-      // },
-      // {
-      //   id: 18,
-      //   name: "문제",
-      //   type: "singlePage",
-      //   data: {
-      //     id: uuidV4(),
-      //     type: "TemplateQuestion",
-      //     contents: {
-      //       id: uuidV4(),
-      //       type: "question",
-      //       data: {
-      //         iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20033",
-      //       },
-      //     },
-      //   },
-      // },
-      // {
-      //   id: 19,
-      //   name: "문제",
-      //   type: "singlePage",
-      //   data: {
-      //     id: uuidV4(),
-      //     type: "TemplateQuestion",
-      //     contents: {
-      //       id: uuidV4(),
-      //       type: "question",
-      //       data: {
-      //         iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20032",
-      //       },
-      //     },
-      //   },
-      // },
-      // {
-      //   id: 20,
-      //   name: "문제",
-      //   type: "singlePage",
-      //   data: {
-      //     id: uuidV4(),
-      //     type: "TemplateQuestion",
-      //     contents: {
-      //       id: uuidV4(),
-      //       type: "question",
-      //       data: {
-      //         iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20031",
-      //       },
-      //     },
-      //   },
-      // },
-      // {
-      //   id: 21,
-      //   name: "문제",
-      //   type: "singlePage",
-      //   data: {
-      //     id: uuidV4(),
-      //     type: "TemplateQuestion",
-      //     contents: {
-      //       id: uuidV4(),
-      //       type: "question",
-      //       data: {
-      //         iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20030",
-      //       },
-      //     },
-      //   },
-      // },
     ],
   },
 ];

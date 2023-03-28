@@ -28,6 +28,9 @@ export interface PageCommonProps extends PageHeaderProps {
   deleteContent: ReturnUsePage["deleteContent"];
   returnUseComponent: ReturnUseComponent;
   updateContentToMultiChoiceTemplate: ReturnUsePage["updateContentToMultiChoiceTemplate"];
+  updateContentToWordsInOrderTemplate: ReturnUsePage["updateContentToWordsInOrderTemplate"];
+  updateContentToSentenceInOrderTemplate: ReturnUsePage["updateContentToSentenceInOrderTemplate"];
+  updateContentToFinalSpeakingTemplate: ReturnUsePage["updateContentToFinalSpeakingTemplate"];
 }
 
 export type AddComponentMap = {
@@ -42,7 +45,10 @@ export type CommonTemplateComponentLocation =
   | "contents"
   | "leftContents"
   | "rightContents"
-  | "multiChoice";
+  | "multiChoice"
+  | "titleContents"
+  | "mainContents"
+  | "wordsInOrder";
 
 export type ContentCommonProps = {
   index: number; // 컴포넌트의 index
@@ -58,6 +64,9 @@ export type ContentCommonProps = {
   templateType?: TemplateType;
   dndOffsetContainerQuery?: string; // 모달을 사용한 경우 draggable이 모달 밖으로 나가는 것을 방지하기 위해 사용 e.g. ".base-modal"
   updateContentToMultiChoiceTemplate?: ReturnUsePage["updateContentToMultiChoiceTemplate"];
+  updateContentToWordsInOrderTemplate?: ReturnUsePage["updateContentToWordsInOrderTemplate"];
+  updateContentToSentenceInOrderTemplate?: ReturnUsePage["updateContentToSentenceInOrderTemplate"];
+  updateContentToFinalSpeakingTemplate?: ReturnUsePage["updateContentToFinalSpeakingTemplate"];
 };
 
 export type DraggableContentCommonProps = ContentCommonProps & {

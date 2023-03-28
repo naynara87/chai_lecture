@@ -33,9 +33,9 @@ const LayoutMultiPage = ({ page, setPageCompleted }: LayoutMultiPageProps) => {
 
   const pages = useMemo(() => {
     if (!multiPageData) return;
-    return multiPageData.data.map((multiPage, pageIndex) => {
+    return multiPageData.data.map((multiPage) => {
       return (
-        <SwiperSlide key={pageIndex}>
+        <SwiperSlide key={multiPage.id}>
           {getTemplateComponent(multiPage.type, multiPage)}
         </SwiperSlide>
       );

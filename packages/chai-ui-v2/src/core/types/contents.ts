@@ -17,7 +17,7 @@ export type Content =
   | ImageWithDescriptionListContentData
   | ActivityGuideCharacterContentData
   | ConversationQuizContentData
-  | QuizWordsInOrderContentData
+  | WordsInOrderContentData
   | MultiChoiceContentData
   | ImageWithCaptionListContentData
   | FinalSpeakingContentData
@@ -29,6 +29,7 @@ export type Content =
   | MultilevelActionSentenceCardContentData
   | FullAudioContentData
   | NotiCharacterListContentData
+  | QuizSentenceContentData
   | ContentsCardListContentData;
 export type ContentType = Content["type"];
 
@@ -42,7 +43,8 @@ export type QuizContent =
   | ConversationQuizContentData
   | ActivityGuideCharacterContentData
   | MultiChoiceContentData
-  | QuizWordsInOrderContentData
+  | QuizSentenceContentData
+  | WordsInOrderContentData
   | FullAudioContentData
   | FinalSpeakingContentData;
 
@@ -418,9 +420,9 @@ export type ConversationQuizContentData = {
 /**
  * 단어 배열형 퀴즈 컴포넌트
  */
-export type QuizWordsInOrderContentData = {
+export type WordsInOrderContentData = {
   id: ID;
-  type: "quizWordsInOrder";
+  type: "wordsInOrder";
   data: {
     choice: {
       text: string;
@@ -434,7 +436,9 @@ export type QuizWordsInOrderContentData = {
     exampleContents?: Content[];
     quizPopup: QuizPopupModalContentData;
   };
-  meta?: Meta;
+  meta?: {
+    isUseCharacter: boolean;
+  };
 };
 
 /**
@@ -479,11 +483,7 @@ export type FinalSpeakingContentData = {
   id: ID;
   type: "finalSpeaking";
   data: {
-    answerModel: {
-      text: string;
-      pronunciation: string;
-      meaning: string;
-    };
+    answerModel: string;
     exampleContents: Content[];
   };
   meta?: Meta;
@@ -498,10 +498,7 @@ export type RoleplayingContentData = {
   type: "roleplaying";
   data: {
     id: ID;
-    character: {
-      name: string;
-      src: string;
-    };
+    characterId: ID;
     position: "left" | "right";
     text: string;
     pronunciation: string;

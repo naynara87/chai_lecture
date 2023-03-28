@@ -24,7 +24,6 @@ const MetaTestWordChoice = () => {
           <main className="word-test-main">
             <div className="choice-card-wrap">
               {/* word card */}
-              {/* TODO: 최대 20개. 5행 4줄 */}
               <div className="inp-grp">
                 <input type="checkbox" id="inputId" className="inp-chck" />
                 <label htmlFor="inputId" className="inp-card-layout">

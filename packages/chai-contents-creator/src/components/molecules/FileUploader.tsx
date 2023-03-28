@@ -67,15 +67,14 @@ const FileUploader = ({
 
   const handleFile = useCallback(
     (files: FileList) => {
-      // TODO kjw 파일타입에따라 허용할지 안할지 조건 추가 ex) imageCreator에서 audio파일 인식못하게
       encodeFileToBase64(files[0], contentIndex);
     },
-    [encodeFileToBase64, contentIndex]
+    [encodeFileToBase64, contentIndex],
   );
 
   const handleDrag = useCallback(
     (
-      event: React.DragEvent<HTMLFormElement> | React.DragEvent<HTMLDivElement>
+      event: React.DragEvent<HTMLFormElement> | React.DragEvent<HTMLDivElement>,
     ) => {
       event.preventDefault();
       event.stopPropagation();
@@ -85,7 +84,7 @@ const FileUploader = ({
         setDragActive(false);
       }
     },
-    []
+    [],
   );
 
   const handleDrop = useCallback(
@@ -97,7 +96,7 @@ const FileUploader = ({
         handleFile(event.dataTransfer.files);
       }
     },
-    [handleFile]
+    [handleFile],
   );
 
   const handleChange = useCallback(
@@ -107,7 +106,7 @@ const FileUploader = ({
         handleFile(event.target.files);
       }
     },
-    [handleFile]
+    [handleFile],
   );
 
   const onButtonClick = useCallback(
@@ -116,7 +115,7 @@ const FileUploader = ({
       event.stopPropagation();
       inputRef.current.click();
     },
-    []
+    [],
   );
 
   return (

@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import React, { useMemo } from "react";
 import { vh, vw } from "../../assets";
-import { ID } from "../../core";
+import { ID, RolePlayingCharacter } from "../../core";
 import { ComponentButtonRadiFillMain, ImgTemp01Component } from "../atoms";
 
 const ChoiceRoleWrapper = styled.div`
@@ -15,7 +15,7 @@ const ChoiceRoleWrapper = styled.div`
 `;
 
 interface ComponentChoiceRoleProps {
-  characterList: { id: ID; name: string; imageSrc: string }[];
+  characterList: RolePlayingCharacter[];
   onClickSelectCharacter: (characterId: ID) => void;
 }
 
