@@ -93,7 +93,33 @@ export const v2CornerDataList: CornerData[] = [
                           id: uuidV4(),
                           type: "text",
                           data: {
-                            text: "adsfsdafaf",
+                            text: "테스트카드1",
+                          },
+                        },
+                      ],
+                    },
+                    {
+                      contents: [
+                        {
+                          id: uuidV4(),
+                          type: "text",
+                          data: {
+                            text: "테스트카드1-2",
+                          },
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  cards: [
+                    {
+                      contents: [
+                        {
+                          id: uuidV4(),
+                          type: "text",
+                          data: {
+                            text: "테스트카드2",
                           },
                         },
                       ],
