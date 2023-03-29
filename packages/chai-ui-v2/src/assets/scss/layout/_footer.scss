@@ -86,6 +86,8 @@
 }
 
 .cai-nav-list-wrap {
+	@include scrollbar;
+
 	overflow: auto;
 	height: 100%;
 	padding: vh(40) vw(40) 0;

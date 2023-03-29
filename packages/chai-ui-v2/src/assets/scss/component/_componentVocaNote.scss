@@ -1,23 +1,16 @@
 /* =================== componentVocaNote =================== */
 .voca-note-container {
+  @include scrollbar;
+
   overflow: hidden;
+  position: relative;
   width: 100%;
-  // height: vh(80);
-  padding: vh(24) vw(20);
+  height: vh(80);
+  padding: 0 vw(20) vh(24);
   border: 1px solid #dbe1ff;
   border-radius: vw(20);
-  background-color: #f4f3fa;
-  height: vh(80);
-  -ms-overflow-style: none;
-  /* IE and Edge */
-  scrollbar-width: none;
-  /* Firefox */
+  background-color: color(purple-200);
   transition: all 0.3s;
-
-  &::-webkit-scrollbar {
-    display: none;
-    /* Chrome, Safari, Opera*/
-  }
 
   &.active {
     overflow: auto;
@@ -26,22 +19,27 @@
 }
 
 .voca-title {
-  z-index: z(zero);
-  position: relative;
+  z-index: z(two);
+  overflow: hidden;
+  position: sticky;
+  top: 0;
+  left: 0;
+  padding-top: vh(24);
   padding-bottom: vh(22);
   font-size: vw(22);
   text-align: center;
+  background-color: color(purple-200);
 
   .img {
     position: absolute;
-    top: vh(-8);
+    top: vh(16);
     left: 0;
     width: vw(90);
   }
 
   .btn {
     position: absolute;
-    top: vh(-4);
+    top: vh(20);
     left: auto;
     right: 0;
   }
@@ -58,24 +56,32 @@
   padding: vh(15) vw(20);
   border-radius: vw(10);
   background-color: color(gray-ff);
+  font-size: vw(22);
+  color: color(gray-80);
 
   &:not(:first-child) {
     margin-top: vh(20);
   }
 
-  .chinese {
+  // .chinese {
+  //   font-weight: 600;
+  //   font-size: vw(28);
+  // }
+
+  // .pinyin {
+  //   font-size: vw(22);
+  //   color: color(gray-80);
+  // }
+
+  // .mean {
+  //   font-size: vw(22);
+  //   color: color(gray-80);
+  // }
+
+  b {
     font-weight: 600;
     font-size: vw(28);
-  }
-
-  .pinyin {
-    font-size: vw(22);
-    color: color(gray-80);
-  }
-
-  .mean {
-    font-size: vw(22);
-    color: color(gray-80);
+    color: color(text);
   }
 
   .btn-icon {
