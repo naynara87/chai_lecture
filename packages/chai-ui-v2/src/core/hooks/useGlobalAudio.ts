@@ -5,6 +5,8 @@ import { globalAudioState } from "../states";
 type AudioType =
   | "fullAudio"
   | "speaking"
+  | "speakingEffectStart"
+  | "speakingEffectEnd"
   | "audio"
   | "dialogue"
   | "recorder"
