@@ -5,8 +5,10 @@ import { HtmlContentComponent } from "../atoms";
 import { SentenceInOrderChoice } from "../templates/TemplateQuizSentenceBlank";
 import { v4 as uuidv4 } from "uuid";
 import ImgProfileDefault from "../../assets/images/img/img_profile_default.png";
+import { vh } from "../../assets";
 
-const BlankSpan = styled.input`
+const BlankSpan = styled.div`
+  min-height: ${vh(28)};
   cursor: pointer;
 `;
 
@@ -194,19 +196,8 @@ const DialogueSentenceBlank = ({
                       setSelectedBlankBox(blankIndex);
                       setSelectedChoiceBox(undefined);
                     }}
-                    readOnly
-                    value={userChoices[blankIndex].text.replace(
-                      /<[^>]*>?/g,
-                      "",
-                    )}
                   >
-                    {/* {userChoices[blankIndex].text ? (
-                      <HtmlContentComponent
-                        html={userChoices[blankIndex].text}
-                      />
-                    ) : (
-                      "\u00A0"
-                    )} */}
+                    {userChoices[blankIndex].text.replace(/<[^>]*>?/g, "")}
                   </BlankSpan>
                 );
               } else {
