@@ -13,6 +13,8 @@ const WordsCarouselModalCreator = ({
   isFocused,
   updateContent,
   deleteContent,
+  copyContent,
+  pasteContent,
   currentSlide,
   position,
   draggableProvided,
@@ -144,6 +146,8 @@ const WordsCarouselModalCreator = ({
       content={content}
       position={position}
       align="center"
+      copyContent={copyContent}
+      pasteContent={pasteContent}
     >
       <WordsCarousel
         wordsCarouselData={thisContent.data}

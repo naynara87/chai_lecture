@@ -38,6 +38,8 @@ const ConversationWordListCreator = ({
   setFocusedId,
   isFocused,
   updateContent,
+  copyContent,
+  pasteContent,
   currentSlide,
   position,
   draggableProvided,
@@ -159,7 +161,10 @@ const ConversationWordListCreator = ({
             />
           </div>
 
-          <AudioWrapper onSubmit={setAudio(wordIndex)} />
+          <AudioWrapper
+            onSubmit={setAudio(wordIndex)}
+            defaultText={thisContent.data.words[wordIndex].audio?.src}
+          />
         </VacaList>
       );
     });
@@ -193,6 +198,8 @@ const ConversationWordListCreator = ({
       position={position}
       isEditBtn={isEditBtn}
       align="center"
+      copyContent={copyContent}
+      pasteContent={pasteContent}
     >
       <div className="flex-wrap">
         <AddButton onClick={addWord}>단어 추가</AddButton>

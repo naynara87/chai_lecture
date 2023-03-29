@@ -41,6 +41,8 @@ const ConversationQuizCreator = ({
   isFocused,
   updateContent,
   deleteContent,
+  copyContent,
+  pasteContent,
   currentSlide,
   position,
   draggableProvided,
@@ -306,10 +308,12 @@ const ConversationQuizCreator = ({
             <UrlInputWrapper
               typeText="이미지"
               onSubmit={setImage(contentIndex)}
+              defaultText={thisContent.data[contentIndex].character.src}
             />
             <UrlInputWrapper
               typeText="오디오"
               onSubmit={setAudio(contentIndex)}
+              defaultText={thisContent.data[contentIndex].audio?.src}
             />
             <div
               className="chinese"
@@ -454,6 +458,8 @@ const ConversationQuizCreator = ({
       content={content}
       position={position}
       isEditBtn={isEditBtn}
+      copyContent={copyContent}
+      pasteContent={pasteContent}
     >
       <div className="flex-wrap">
         <AddButton onClick={addConversation}>대화 추가</AddButton>

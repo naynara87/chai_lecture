@@ -18,6 +18,8 @@ const AudioAndWordsCarouselModalCreator = ({
   isFocused,
   updateContent,
   deleteContent,
+  copyContent,
+  pasteContent,
   currentSlide,
   position,
   draggableProvided,
@@ -177,9 +179,14 @@ const AudioAndWordsCarouselModalCreator = ({
       slideId={currentSlide.id}
       content={content}
       position={position}
+      copyContent={copyContent}
+      pasteContent={pasteContent}
     >
       <AudioAndWordsCarouselWrapper>
-        <AudioWrapper onSubmit={handleSubmitAudioUrl} />
+        <AudioWrapper
+          onSubmit={handleSubmitAudioUrl}
+          defaultText={thisContent.data.audio.src}
+        />
         <WordsCarousel
           wordsCarouselData={thisContent.data.wordCarouselContents}
           isModalOpen={isModalOpen}

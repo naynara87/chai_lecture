@@ -84,6 +84,8 @@ const NotiCharacterListCreator = ({
   isFocused,
   updateContent,
   deleteContent,
+  copyContent,
+  pasteContent,
   currentSlide,
   position,
   draggableProvided,
@@ -202,6 +204,8 @@ const NotiCharacterListCreator = ({
       slideId={currentSlide.id}
       content={content}
       position={position}
+      copyContent={copyContent}
+      pasteContent={pasteContent}
     >
       <NotiCharacterWrapper>
         <AddButton onClick={addImage}>말풍선 추가</AddButton>
@@ -237,6 +241,7 @@ const NotiCharacterListCreator = ({
               <UrlInputWrapper
                 typeText="이미지"
                 onSubmit={setImageUrl(index)}
+                defaultText={thisContent.data[index].character.src}
               />
             </NotiCharacterWrap>
           );

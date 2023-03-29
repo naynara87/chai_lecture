@@ -6,6 +6,7 @@ import {
   ContentsCardListContentData,
   ContentType,
   ID,
+  LocalStorage,
 } from "chai-ui-v2";
 import { cloneDeep } from "lodash";
 import { useCallback, useEffect, useState } from "react";
@@ -79,6 +80,8 @@ const ContentsCardListCreator = ({
   content,
   updateContent,
   deleteContent,
+  copyContent,
+  pasteContent,
   currentSlide,
   position,
   draggableProvided,
@@ -215,6 +218,8 @@ const ContentsCardListCreator = ({
       content={content}
       position={position}
       align="center"
+      copyContent={copyContent}
+      pasteContent={pasteContent}
     >
       <MultilevelActionCardWrapper>
         <AddButton onClick={addCard}>카드 추가</AddButton>

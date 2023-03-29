@@ -1,4 +1,7 @@
 import styled from "@emotion/styled";
+import { Content } from "chai-ui-v2";
+
+import { v4 as uuidV4 } from "uuid";
 
 const ToggleWrapper = styled.div`
   .inp-toggle-wrap {
@@ -28,7 +31,11 @@ const ToggleWrapper = styled.div`
   }
 `;
 
-const TogglesWrapper = () => {
+export interface ToggleSentenceListComponentProps {
+  contents: Content;
+}
+
+const TogglesWrapper = ({ contents }: ToggleSentenceListComponentProps) => {
   return (
     <ToggleWrapper className="toggle-wrapper">
       <div className="inp-toggle-wrap">
@@ -36,10 +43,10 @@ const TogglesWrapper = () => {
         <input
           type="checkbox"
           name="input1"
-          id="input1"
+          id={`${contents.id}-input1`}
           className="toggle-input none"
         />
-        <label htmlFor="input1" className="toggle-label">
+        <label htmlFor={`${contents.id}-input1`} className="toggle-label">
           보이기
         </label>
       </div>
@@ -49,10 +56,10 @@ const TogglesWrapper = () => {
         <input
           type="checkbox"
           name="input2"
-          id="input2"
+          id={`${contents.id}-input2`}
           className="toggle-input none"
         />
-        <label htmlFor="input2" className="toggle-label">
+        <label htmlFor={`${contents.id}-input2`} className="toggle-label">
           보이기
         </label>
       </div>

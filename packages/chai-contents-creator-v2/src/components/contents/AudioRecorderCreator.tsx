@@ -26,6 +26,13 @@ export const RecorderWrapper = styled.div`
 `;
 
 const AudioRecorderCreator = ({
+  content,
+
+  deleteContent,
+  copyContent,
+  pasteContent,
+  currentSlide,
+  position,
   draggableProvided,
   isDraggable,
 }: DraggableContentCommonProps) => {
@@ -33,6 +40,12 @@ const AudioRecorderCreator = ({
     <ContentCreatorLayout
       isDraggable={isDraggable}
       draggableProvided={draggableProvided}
+      deleteContent={deleteContent}
+      slideId={currentSlide.id}
+      content={content}
+      position={position}
+      copyContent={copyContent}
+      pasteContent={pasteContent}
     >
       <RecorderWrapper>
         <img src={IconMic} alt="" />

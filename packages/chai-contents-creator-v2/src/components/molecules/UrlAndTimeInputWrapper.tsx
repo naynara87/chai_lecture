@@ -42,17 +42,21 @@ const UrlAndTimeWrapper = styled.div`
 
 const WarningMessage = styled.p`
   color: ${colorPalette.red700};
-  &.input-complete {
-    color: ${colorPalette.blue600};
-  }
 `;
 
 interface ButtonProps {
   typeText: string;
   onSubmit?: (src: string, speakingTime: number) => void;
+  defaultTime: number;
+  defaultURL: string;
 }
 
-const UrlAndTimeInputWrapper = ({ typeText, onSubmit }: ButtonProps) => {
+const UrlAndTimeInputWrapper = ({
+  typeText,
+  onSubmit,
+  defaultTime,
+  defaultURL,
+}: ButtonProps) => {
   const [message, setMessage] = useState<string>("");
   const [inputCheck, setInputCheck] = useState<boolean>(false);
 
@@ -78,7 +82,7 @@ const UrlAndTimeInputWrapper = ({ typeText, onSubmit }: ButtonProps) => {
       return;
     } else {
       setInputCheck(true);
-      setMessage("정상적으로 입력되었습니다.");
+      setMessage("");
     }
 
     onSubmit && onSubmit(src, time);
@@ -89,20 +93,20 @@ const UrlAndTimeInputWrapper = ({ typeText, onSubmit }: ButtonProps) => {
       <p className="text-tit">{typeText} URL</p>
       <form onSubmit={handleSubmit}>
         <div className="inputs-wrapper">
-          <input placeholder={`${typeText} URL 입력`}></input>
-          <input placeholder={"발화 시간(초) 입력"} type="number"></input>
+          <input
+            placeholder={`${typeText} URL 입력`}
+            defaultValue={defaultURL}
+          ></input>
+          <input
+            placeholder={"발화 시간(초) 입력"}
+            type="number"
+            defaultValue={defaultTime}
+          ></input>
         </div>
         <AddButton>등록</AddButton>
       </form>
-      {message ? (
-        inputCheck ? (
-          <WarningMessage className="input-complete">{message}</WarningMessage>
-        ) : (
-          <WarningMessage>{message}</WarningMessage>
-        )
-      ) : (
-        ""
-      )}
+
+      {message && <WarningMessage>{message}</WarningMessage>}
     </UrlAndTimeWrapper>
   );
 };
