@@ -53,6 +53,8 @@
   }
 
   .white-wrap {
+    @include scrollbar;
+
     overflow: auto;
     height: calc(100% - vw(165));
     padding: vh(30) vw(45);

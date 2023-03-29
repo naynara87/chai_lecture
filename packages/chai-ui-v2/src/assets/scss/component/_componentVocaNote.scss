@@ -20,6 +20,8 @@
   }
 
   &.active {
+    @include scrollbar;
+
     overflow: auto;
     height: 100%;
   }
