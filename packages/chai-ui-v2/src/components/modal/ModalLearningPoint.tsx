@@ -1,9 +1,9 @@
 import React, { useMemo } from "react";
 import styled from "@emotion/styled";
-import ModalCommon from "./ModalCommon";
 import IconClose from "../../assets/images/icon/icon_close_black.svg";
 import { vw } from "../../assets";
 import { Content, useContentMapper } from "../../core";
+import ModalBase from "./ModalBase";
 
 interface ModalLearningPointProps {
   isModalOpen: boolean;
@@ -37,12 +37,22 @@ const ModalLearningPoint = ({
   }, [modalContents, getContentComponent]);
 
   return (
-    <ModalCommon open={isModalOpen} onClose={handleClose} wideModal={wideModal}>
-      <button className="btn-close-modal" onClick={handleClose}>
-        <img src={IconClose} alt="닫기" />
-      </button>
-      <ModalContentsWrapper>{mainContents}</ModalContentsWrapper>
-    </ModalCommon>
+    <ModalBase open={isModalOpen} onClose={handleClose}>
+      <div className="modal active">
+        <div
+          className={`modal-container base-modal ${
+            wideModal ? "wide-modal" : ""
+          }`}
+        >
+          <div className="base-wrapper">
+            <button className="btn-close-modal" onClick={handleClose}>
+              <img src={IconClose} alt="닫기" />
+            </button>
+            <ModalContentsWrapper>{mainContents}</ModalContentsWrapper>
+          </div>
+        </div>
+      </div>
+    </ModalBase>
   );
 };
 

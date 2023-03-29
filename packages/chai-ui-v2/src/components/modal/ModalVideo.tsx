@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
-import ModalCommon from "./ModalCommon";
 import IconClose from "../../assets/images/icon/icon_close_white.svg";
 import { ComponentVideo } from "../atoms";
+import ModalBase from "./ModalBase";
 
 interface ModalVideoProps {
   videoSrc: string;
@@ -55,18 +55,28 @@ const ModalVideo = ({
 
   return (
     <ModalVideoContainer>
-      <ModalCommon open={isModalOpen} onClose={handleClose}>
-        <button className="btn-close-modal" onClick={handleClose}>
-          <img src={IconClose} alt="닫기" />
-        </button>
-        <ModalVideoWrapper>
-          <ModalInnerBox>
-            <ComponentVideo
-              content={{ id: "1", type: "video", data: { src: videoSrc } }}
-            />
-          </ModalInnerBox>
-        </ModalVideoWrapper>
-      </ModalCommon>
+      <ModalBase open={isModalOpen} onClose={handleClose}>
+        <div className="modal active">
+          <div className="modal-container base-modal">
+            <div className="base-wrapper">
+              <button className="btn-close-modal" onClick={handleClose}>
+                <img src={IconClose} alt="닫기" />
+              </button>
+              <ModalVideoWrapper>
+                <ModalInnerBox>
+                  <ComponentVideo
+                    content={{
+                      id: "1",
+                      type: "video",
+                      data: { src: videoSrc },
+                    }}
+                  />
+                </ModalInnerBox>
+              </ModalVideoWrapper>
+            </div>
+          </div>
+        </div>
+      </ModalBase>
     </ModalVideoContainer>
   );
 };
