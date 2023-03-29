@@ -25,6 +25,7 @@
 	}
 
 	.bg-wrap {
+		z-index: z(one);
 		overflow: hidden;
 		position: absolute;
 		top: 0;
@@ -49,13 +50,14 @@
 .hd-cha-wrap {
 	@include flex-center(inline-flex);
 
+	z-index: z(two);
 	position: relative;
 	margin-top: vw(10);
-	
+
 	.img {
 		width: vw(100);
 	}
-	
+
 	.txt {
 		position: absolute;
 		top: vh(40);
@@ -67,7 +69,7 @@
 		box-shadow: 0 3px 20px rgba(0, 0, 0, 0.15);
 		white-space: nowrap;
 	}
-	
+
 	&.first-half {
 		.img {
 			margin-left: vw(10);
@@ -78,7 +80,7 @@
 			border-top-left-radius: 0;
 		}
 	}
-	
+
 	&.second-half {
 		.img {
 			margin-right: vw(10);
@@ -99,5 +101,5 @@
 	font-weight: 600;
 	font-size: vw(30);
 	color: color(gray-ff);
-    vertical-align: top;
+	vertical-align: top;
 }
