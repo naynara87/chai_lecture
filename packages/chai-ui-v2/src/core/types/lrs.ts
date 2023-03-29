@@ -18,7 +18,7 @@ export interface LRSActivityState {
   progress_segments: string; // 페이지 이동에 대한 이동 이력
   time: number; // 학습창을 열고 학습한 총 시간
   incorrect_datas: LRSIncorrectData[];
-  corners: LRSCornerProgress[]; // 코너별 진도율
+  corners: LRSCornerProgress[]; // 코너별 진도 상태
 }
 
 export interface LRSIncorrectData {
