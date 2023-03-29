@@ -197,7 +197,6 @@ const ImageWithDescriptionListCreator = ({
                     defaultText={thisContent.data[index].src}
                   />
                 </div>
-                {/* TODO: 캡션 입력안하면 없이 노출, 캡션 클릭 후 HTML로 입력하면 입력되어서 노출 */}
                 <p
                   className="description-text"
                   onClick={focusTextEditor(index)}
