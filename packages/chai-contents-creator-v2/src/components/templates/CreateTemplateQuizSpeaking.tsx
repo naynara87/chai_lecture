@@ -32,37 +32,39 @@ const CreateTemplateQuizSpeaking = ({
       <CreateEditMainWrap37>
         <CreateEditMain>
           <DashBoxArea droppableId={leftDroppableId}>
-            {getComponent({
-              index: 0,
-              currentSlide: thisSlide,
-              content: thisSlide.leftContents,
-              isFocused: focusedId === thisSlide.leftContents.id,
-              setFocusedId,
-              updateContent,
-              deleteContent,
-              position: "leftContents",
-              templateType: thisSlide.type,
-              isDraggable: false,
-              isEditBtn: false,
-            })}
+            {thisSlide.leftContents &&
+              getComponent({
+                index: 0,
+                currentSlide: thisSlide,
+                content: thisSlide.leftContents,
+                isFocused: focusedId === thisSlide.leftContents.id,
+                setFocusedId,
+                updateContent,
+                deleteContent,
+                position: "leftContents",
+                templateType: thisSlide.type,
+                isDraggable: false,
+                isEditBtn: false,
+              })}
           </DashBoxArea>
         </CreateEditMain>
         <CreateEditMain>
           <DashBoxArea droppableId={rightDroppableId}>
-            {getComponent({
-              index: 1,
-              currentSlide: thisSlide,
-              content: thisSlide.rightContents,
-              isFocused: focusedId === thisSlide.rightContents.id,
-              setFocusedId,
-              updateContent,
-              deleteContent,
-              updateContentToFinalSpeakingTemplate,
-              position: "rightContents",
-              templateType: thisSlide.type,
-              isDraggable: false,
-              isEditBtn: false,
-            })}
+            {thisSlide.rightContents &&
+              getComponent({
+                index: 1,
+                currentSlide: thisSlide,
+                content: thisSlide.rightContents,
+                isFocused: focusedId === thisSlide.rightContents.id,
+                setFocusedId,
+                updateContent,
+                deleteContent,
+                updateContentToFinalSpeakingTemplate,
+                position: "rightContents",
+                templateType: thisSlide.type,
+                isDraggable: false,
+                isEditBtn: false,
+              })}
           </DashBoxArea>
         </CreateEditMain>
       </CreateEditMainWrap37>

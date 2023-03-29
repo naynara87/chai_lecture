@@ -103,6 +103,7 @@ const TemplateQuizSentenceBlank = ({
   }, [handleAudioReset]);
 
   const handleClickResetAnswer = useCallback(() => {
+    if (!thisPage.mainContents) return;
     const copyUserChoices: SentenceInOrderChoice[] = [];
     thisPage.mainContents.data.characters.forEach((content) => {
       content.sentences.forEach((sentence) => {
@@ -115,7 +116,7 @@ const TemplateQuizSentenceBlank = ({
     setIsShowAnswer(false);
     setSelectedBlankBox(undefined);
     setSelectedChoiceBox(undefined);
-  }, [thisPage.mainContents.data.characters]);
+  }, [thisPage.mainContents]);
 
   useEffect(() => {
     handleClickResetAnswer();
@@ -128,6 +129,7 @@ const TemplateQuizSentenceBlank = ({
   }, [userChoices]);
 
   const handleClickShowAnswer = useCallback(() => {
+    if (!thisPage.mainContents) return;
     setSelectedBlankBox(undefined);
     setSelectedChoiceBox(undefined);
     setIsShowAnswer(true);
@@ -142,11 +144,7 @@ const TemplateQuizSentenceBlank = ({
         : thisPage.mainContents.data.quizPopup.data.incorrect.soundEffect
             ?.src ?? "",
     );
-  }, [
-    handleClickAudioButton,
-    isCorrect,
-    thisPage.mainContents.data.quizPopup.data,
-  ]);
+  }, [handleClickAudioButton, isCorrect, thisPage.mainContents]);
 
   const handleClickModalClose = () => {
     handleAudioReset();
@@ -161,33 +159,39 @@ const TemplateQuizSentenceBlank = ({
   return (
     <DialogueContainer className="layout-panel-wrap grid-h-5-5">
       <div className="layout-panel side-panel conversation-panel-wrap">
-        <IconTextComponent contents={thisPage.titleContents} />
+        {thisPage.titleContents && (
+          <IconTextComponent contents={thisPage.titleContents} />
+        )}
         {/* 230217 회화영역 */}
         <ul className="conversation-wrapper">
           {/* speech bubble */}
-          <DialogueSentenceBlank
-            contents={thisPage.mainContents.data.characters}
-            selectedBlankBox={selectedBlankBox}
-            userChoices={userChoices}
-            setSelectedBlankBox={setSelectedBlankBox}
-            setSelectedChoiceBox={setSelectedChoiceBox}
-            isShowAnswer={isShowAnswer}
-          />
+          {thisPage.mainContents && (
+            <DialogueSentenceBlank
+              contents={thisPage.mainContents.data.characters}
+              selectedBlankBox={selectedBlankBox}
+              userChoices={userChoices}
+              setSelectedBlankBox={setSelectedBlankBox}
+              setSelectedChoiceBox={setSelectedChoiceBox}
+              isShowAnswer={isShowAnswer}
+            />
+          )}
           {/* end speech bubble */}
         </ul>
       </div>
       <div className="layout-panel wide-panel">
         <QuizContainer method="post" className="quiz-container">
           <AnswerContainer className="quiz-answer-wrap hori-answer-wrap">
-            <LineCheckBoxes
-              contents={thisPage.mainContents.data.characters}
-              userChoices={userChoices}
-              selectedChoiceBox={selectedChoiceBox}
-              selectedBlankBox={selectedBlankBox}
-              setSelectedChoiceBox={setSelectedChoiceBox}
-              setUserChoices={setUserChoices}
-              isShowAnswer={isShowAnswer}
-            />
+            {thisPage.mainContents && (
+              <LineCheckBoxes
+                contents={thisPage.mainContents.data.characters}
+                userChoices={userChoices}
+                selectedChoiceBox={selectedChoiceBox}
+                selectedBlankBox={selectedBlankBox}
+                setSelectedChoiceBox={setSelectedChoiceBox}
+                setUserChoices={setUserChoices}
+                isShowAnswer={isShowAnswer}
+              />
+            )}
           </AnswerContainer>
         </QuizContainer>
         <div className="btns-wrap">
@@ -204,24 +208,29 @@ const TemplateQuizSentenceBlank = ({
           />
         </div>
       </div>
-      <LayoutModalSolution
-        isModalOpen={isModalSolutionOpen}
-        setIsModalOpen={setIsModalSolutionOpen}
-        isCorrect={isCorrect === undefined ? true : false}
-        contents={thisPage.mainContents.data.quizPopup}
-        handleClickModalCloseBtnCallback={handleClickModalClose}
-        handleClickModalVideoBtnCallback={handleClickModalVideoBtn}
-      />
-      <ModalVideo
-        isModalOpen={isModalVideoOpen}
-        setIsModalOpen={setIsModalVideoOpen}
-        videoSrc={
-          isCorrect === undefined
-            ? thisPage.mainContents.data.quizPopup.data.correct.video?.src ?? ""
-            : thisPage.mainContents.data.quizPopup.data.incorrect.video?.src ??
-              ""
-        }
-      />
+      {thisPage.mainContents && (
+        <>
+          <LayoutModalSolution
+            isModalOpen={isModalSolutionOpen}
+            setIsModalOpen={setIsModalSolutionOpen}
+            isCorrect={isCorrect === undefined ? true : false}
+            contents={thisPage.mainContents.data.quizPopup}
+            handleClickModalCloseBtnCallback={handleClickModalClose}
+            handleClickModalVideoBtnCallback={handleClickModalVideoBtn}
+          />
+          <ModalVideo
+            isModalOpen={isModalVideoOpen}
+            setIsModalOpen={setIsModalVideoOpen}
+            videoSrc={
+              isCorrect === undefined
+                ? thisPage.mainContents.data.quizPopup.data.correct.video
+                    ?.src ?? ""
+                : thisPage.mainContents.data.quizPopup.data.incorrect.video
+                    ?.src ?? ""
+            }
+          />
+        </>
+      )}
     </DialogueContainer>
   );
 };

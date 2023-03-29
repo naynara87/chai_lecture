@@ -24,6 +24,7 @@ const TemplateQuizMultiChoice = ({
   const { getContentComponent } = useContentMapper();
 
   const leftContents = useMemo(() => {
+    if (!thisPage.leftContents) return;
     return thisPage.leftContents.map((leftContent, contentIndex) => {
       return getContentComponent(leftContent, contentIndex);
     });
@@ -42,7 +43,9 @@ const TemplateQuizMultiChoice = ({
 
           {/* TODO: key설명 - 클릭하면 input들 disabled 되고, 
           정답이면 answer-right 오답이면 answer-wrong 클래스 추가 */}
-          <MultiChoiceComponent contents={thisPage.multiChoice} />
+          {thisPage.multiChoice && (
+            <MultiChoiceComponent contents={thisPage.multiChoice} />
+          )}
           {/* <GrayRadioBoxes /> */}
         </QuizContainer>
       </div>

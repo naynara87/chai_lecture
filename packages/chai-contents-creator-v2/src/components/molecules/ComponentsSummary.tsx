@@ -55,18 +55,19 @@ const ComponentsSummary = ({
               toggleContextMenu={toggleContextMenu}
             />
           </CreateTemplateChoiceBtnWrap>
-          {thisSlide.contents.map((content, index) => {
-            return getComponent({
-              index,
-              currentSlide: thisSlide,
-              content,
-              isFocused: focusedId === content?.id,
-              setFocusedId,
-              updateContent,
-              deleteContent,
-              position: "contents",
-            });
-          })}
+          {thisSlide.contents &&
+            thisSlide.contents.map((content, index) => {
+              return getComponent({
+                index,
+                currentSlide: thisSlide,
+                content,
+                isFocused: focusedId === content?.id,
+                setFocusedId,
+                updateContent,
+                deleteContent,
+                position: "contents",
+              });
+            })}
         </CreateEditMain>
       </CreateEditMainWrap>
     </>

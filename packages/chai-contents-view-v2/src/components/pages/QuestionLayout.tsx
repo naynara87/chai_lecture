@@ -58,7 +58,9 @@ const QuestionLayout = ({
         state: {
           lessonName: getLessonName(lessonMetaData.colorTypeCd),
           lessonType:
-            cornerMetaData.lessonTpCd === "20" ? "연습문제" : "종합문제",
+            lessonMetaData.lessonTpCd.toString() === "20"
+              ? "연습문제"
+              : "종합문제",
           solvingTime: questionSolvingTime,
           pages,
         },
@@ -87,7 +89,9 @@ const QuestionLayout = ({
     <>
       <LayoutQuestionHeader
         headerText={`${getLessonName(lessonMetaData.colorTypeCd)} ${
-          cornerMetaData.lessonTpCd === "20" ? "연습문제" : "종합문제"
+          lessonMetaData.lessonTpCd.toString() === "20"
+            ? "연습문제"
+            : "종합문제"
         }`}
         solvingTime={questionSolvingTime}
       />
@@ -109,7 +113,9 @@ const QuestionLayout = ({
         setIsModalOpen={setIsQuestionStartModalOpen}
         wideModal
         quizTypeText={`${getLessonName(lessonMetaData.colorTypeCd)} ${
-          cornerMetaData.lessonTpCd === "20" ? "연습문제" : "종합문제"
+          lessonMetaData.lessonTpCd.toString() === "20"
+            ? "연습문제"
+            : "종합문제"
         }`}
         quizTotalLength={pages.length}
         onClickStart={startQuiz}

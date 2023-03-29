@@ -34,9 +34,11 @@ const Loader = styled.div`
 
 const Home = () => {
   const navigate = useNavigate();
-  const { lessonMetaData, corners } = useLesson(1);
+  const { lessonMetaData, corners } = useLesson(91);
   const [currentCornerId] = useRecoilState(currentCornerIdState);
-  const { cornerMetaData } = useCorner(currentCornerId ?? corners[0]?.id);
+  const { cornerMetaData, pages } = useCorner(
+    currentCornerId ?? corners[0]?.id,
+  );
 
   const getUrl = useCallback(
     (nextCornerId: ID) => {
@@ -46,11 +48,11 @@ const Home = () => {
         lessonMetaData?.courseId,
         cornerMetaData?.lessonId,
         nextCornerId,
-        1,
+        pages[0].id,
       );
       navigate(url);
     },
-    [cornerMetaData, lessonMetaData, navigate],
+    [cornerMetaData, lessonMetaData, navigate, pages],
   );
 
   const setCurrentCorner = useCallback(() => {

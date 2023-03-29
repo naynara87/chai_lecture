@@ -9,7 +9,6 @@ const useCorner = (cornerId: ID | undefined) => {
   const [pages, setPages] = useState<Page[]>([]);
   const [cornerMetaData, setCornerMetaData] = useState<CornerMeta>();
 
-
   useQuery(
     [QUERY_KEY.PAGES, String(cornerId)],
     () => {
@@ -17,6 +16,7 @@ const useCorner = (cornerId: ID | undefined) => {
         return;
       }
       return v2CornerDataList;
+      // return getPageListData(cornerId);
     },
     {
       enabled: isAuthorized && !!cornerId,
@@ -26,6 +26,12 @@ const useCorner = (cornerId: ID | undefined) => {
         );
         setPages(currentCorner?.data!);
         setCornerMetaData(currentCorner?.meta);
+        // const pages = data?.body?.data?.map((pageData: ContentData) =>
+        //   pageDataConverter(pageData),
+        // );
+        // console.log("cornerData", data);
+        // setPages(pages!);
+        // setCornerMetaData(data?.body?.meta);
       },
       onError: (error) => {
         console.log("코너 리스트 조회 실패");
