@@ -63,6 +63,8 @@ const NumberingTextListCreator = ({
   isFocused,
   updateContent,
   deleteContent,
+  copyContent,
+  pasteContent,
   currentSlide,
   position,
   draggableProvided,
@@ -181,6 +183,8 @@ const NumberingTextListCreator = ({
       slideId={currentSlide.id}
       content={content}
       position={position}
+      copyContent={copyContent}
+      pasteContent={pasteContent}
     >
       <NumberingTextCreatorWrapper>
         <AddButton onClick={addNumberingTextItem}>번호 추가</AddButton>

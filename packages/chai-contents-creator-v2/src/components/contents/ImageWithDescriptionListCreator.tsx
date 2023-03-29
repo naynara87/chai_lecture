@@ -9,6 +9,7 @@ import {
   ComponentImage,
   ImageWithDescriptionListContentData,
 } from "chai-ui-v2";
+
 import TextEditorViewer from "../molecules/TextEditorViewer";
 import { useCallback, useEffect, useState } from "react";
 
@@ -55,6 +56,9 @@ const ImageWithDescriptionListCreator = ({
   setFocusedId,
   isFocused,
   updateContent,
+  copyContent,
+  pasteContent,
+  deleteContent,
   currentSlide,
   position,
   draggableProvided,
@@ -163,8 +167,15 @@ const ImageWithDescriptionListCreator = ({
 
   return (
     <ContentCreatorLayout
-      draggableProvided={draggableProvided}
       isDraggable={isDraggable}
+      draggableProvided={draggableProvided}
+      deleteContent={deleteContent}
+      slideId={currentSlide.id}
+      content={content}
+      position={position}
+      align="center"
+      copyContent={copyContent}
+      pasteContent={pasteContent}
     >
       <ImageListCreatorWrapper>
         <AddButton onClick={addImage}>이미지 추가</AddButton>
@@ -183,6 +194,7 @@ const ImageWithDescriptionListCreator = ({
                   <UrlInputWrapper
                     typeText="이미지"
                     onSubmit={setImageUrl(index)}
+                    defaultText={thisContent.data[index].src}
                   />
                 </div>
                 <p

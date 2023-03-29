@@ -111,6 +111,8 @@ const CharacterCardListCreator = ({
   isFocused,
   updateContent,
   deleteContent,
+  copyContent,
+  pasteContent,
   currentSlide,
   position,
   draggableProvided,
@@ -346,6 +348,8 @@ const CharacterCardListCreator = ({
       content={content}
       position={position}
       align="center"
+      copyContent={copyContent}
+      pasteContent={pasteContent}
     >
       <TrainingWrapper className="training-wrapper">
         <AddButton onClick={addCard}>학습목표 추가</AddButton>
@@ -403,6 +407,7 @@ const CharacterCardListCreator = ({
                 <UrlInputWrapper
                   typeText="이미지"
                   onSubmit={setImageUrl(index)}
+                  defaultText={thisContent.data[index].character.src}
                 />
                 <ModalCharacterCardList
                   isModalOpen={modalState[index]}

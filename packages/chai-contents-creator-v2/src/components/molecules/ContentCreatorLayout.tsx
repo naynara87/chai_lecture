@@ -99,6 +99,8 @@ interface ContentCreatorLayoutProps extends ContentCreatorWrapperProps {
   isDraggable?: boolean;
   isEditBtn?: boolean;
   draggableProvided?: DraggableProvided;
+  copyContent?: ReturnUsePage["copyContent"];
+  pasteContent?: ReturnUsePage["pasteContent"];
   deleteContent?: ReturnUsePage["deleteContent"]; // FIXME: 나중에 모든 컴포넌트 구현 후 옵셔널 제거
   slideId?: ID; // FIXME: 나중에 모든 컴포넌트 구현 후 옵셔널 제거
   content?: Content; // FIXME: 나중에 모든 컴포넌트 구현 후 옵셔널 제거
@@ -110,6 +112,8 @@ const ContentCreatorLayout = ({
   align,
   draggableProvided,
   deleteContent,
+  copyContent,
+  pasteContent,
   slideId,
   content,
   position,
@@ -144,6 +148,16 @@ const ContentCreatorLayout = ({
     closeModal();
   };
 
+  const handleCopyComponent = () => {
+    if (!slideId?.toString() || !content || !position) return;
+    copyContent && copyContent(content);
+  };
+
+  const handlePasteComponent = () => {
+    if (!slideId?.toString() || !content || !position) return;
+    pasteContent && pasteContent(slideId, content.id, position);
+  };
+
   return (
     <ContentCreatorWrapper align={align}>
       <ContentCreatorContainer
@@ -166,12 +180,16 @@ const ContentCreatorLayout = ({
             >
               <IconHamburgerMenu />
               {isHamburgerMenuOpen && (
-                <HamburgMenu>
+                <HamburgMenu className="hamburg-menu">
                   <HamburgMenuItem onClick={() => setIsModalOpen(true)}>
                     삭제
                   </HamburgMenuItem>
-                  <HamburgMenuItem>복사</HamburgMenuItem>
-                  <HamburgMenuItem>붙여넣기</HamburgMenuItem>
+                  <HamburgMenuItem onClick={() => handleCopyComponent()}>
+                    복사
+                  </HamburgMenuItem>
+                  <HamburgMenuItem onClick={() => handlePasteComponent()}>
+                    붙여넣기
+                  </HamburgMenuItem>
                 </HamburgMenu>
               )}
             </IconWrapper>

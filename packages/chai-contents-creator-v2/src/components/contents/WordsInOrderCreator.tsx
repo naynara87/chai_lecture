@@ -76,6 +76,8 @@ const WordsInOrderCreator = ({
   isDraggable,
   isEditBtn,
   deleteContent,
+  copyContent,
+  pasteContent,
   updateContentToWordsInOrderTemplate,
 }: DraggableContentCommonProps) => {
   const thisContent = content as WordsInOrderContentData;
@@ -316,6 +318,8 @@ const WordsInOrderCreator = ({
       position={position}
       align="center"
       isContainerFullWidth={true}
+      copyContent={copyContent}
+      pasteContent={pasteContent}
     >
       <ContentBox className="flex-wrap">
         <Button

@@ -87,6 +87,8 @@ const MultilevelActionCardCreator = ({
   draggableProvided,
   isDraggable,
   deleteContent,
+  copyContent,
+  pasteContent,
 }: DraggableContentCommonProps) => {
   const thisContent = content as MultilevelActionCardContentData;
 
@@ -205,6 +207,8 @@ const MultilevelActionCardCreator = ({
       content={content}
       position={position}
       align="center"
+      copyContent={copyContent}
+      pasteContent={pasteContent}
     >
       <MultilevelActionCardWrapper>
         <MultilevelActionCardList>

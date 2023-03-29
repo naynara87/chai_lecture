@@ -16,6 +16,7 @@ import {
   FinalSpeakingContentData,
   TemplateQuizSpeakingData,
 } from "chai-ui-v2";
+import { v4 as uuidV4 } from "uuid";
 import { useCallback, useEffect, useMemo } from "react";
 import { useRecoilState } from "recoil";
 import {
@@ -185,6 +186,51 @@ const usePage = () => {
     [slides, setSlides],
   );
 
+  const copyContent = useCallback((content: Content) => {
+    LocalStorage.setItem("copyComponent", content);
+  }, []);
+
+  const pasteContent = useCallback(
+    (
+      slideId: ID,
+      contentId: ID,
+      position:
+        | "contents"
+        | "leftContents"
+        | "rightContents"
+        | "multiChoice"
+        | "titleContents"
+        | "mainContents"
+        | "wordsInOrder",
+    ) => {
+      const newSlides = slides.map((slide) => {
+        if (slide.id === slideId) {
+          const newSlide = cloneDeep(slide);
+          const copyComponent = LocalStorage.getItem(
+            "copyComponent",
+          ) as Content;
+          // @ts-ignore
+          const slideIndex = newSlide[position].findIndex(
+            (content: Content) => {
+              return content.id === contentId;
+            },
+          );
+          // @ts-ignore
+          newSlide[position].splice(slideIndex + 1, 0, {
+            ...copyComponent,
+            id: uuidV4(),
+          });
+          return newSlide;
+        }
+        return slide;
+      });
+
+      console.log("newSlides", newSlides);
+      setSlides(newSlides);
+    },
+    [slides, setSlides],
+  );
+
   /**
    * NOTE : componentLocation에 컴포넌트를 push
    * Template01
@@ -290,7 +336,9 @@ const usePage = () => {
     savePageDataToLocalStorage,
     getPageDataFromLocalStorage,
     removePageDataFromLocalStorage,
+    copyContent,
     deleteContent,
+    pasteContent,
     pageData,
     saveIntroductionModalData,
     updateContentToMultiChoiceTemplate,

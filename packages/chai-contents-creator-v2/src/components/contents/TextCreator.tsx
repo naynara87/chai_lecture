@@ -19,6 +19,8 @@ const TextCreator = ({
   isFocused,
   updateContent,
   deleteContent,
+  copyContent,
+  pasteContent,
   currentSlide,
   position,
   draggableProvided,
@@ -52,6 +54,8 @@ const TextCreator = ({
       slideId={currentSlide.id}
       content={content}
       position={position}
+      copyContent={copyContent}
+      pasteContent={pasteContent}
       align="center"
     >
       <TextCreatorWrapper onClick={handleClickComponent}>

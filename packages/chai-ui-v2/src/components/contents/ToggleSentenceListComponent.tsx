@@ -76,6 +76,7 @@ const ToggleSentenceListComponent = ({
       <ComponentToggle
         onClickPronunciationToggle={handleClickPronunciationToggle}
         onClickMeaningToggle={handleClickMeaningToggle}
+        contents={contents}
       />
       <ul className="sentence-list-wrap">
         {/* 반복영역 */}
