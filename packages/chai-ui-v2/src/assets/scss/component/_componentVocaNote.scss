@@ -56,24 +56,32 @@
   padding: vh(15) vw(20);
   border-radius: vw(10);
   background-color: color(gray-ff);
+  font-size: vw(22);
+  color: color(gray-80);
 
   &:not(:first-child) {
     margin-top: vh(20);
   }
 
-  .chinese {
+  // .chinese {
+  //   font-weight: 600;
+  //   font-size: vw(28);
+  // }
+
+  // .pinyin {
+  //   font-size: vw(22);
+  //   color: color(gray-80);
+  // }
+
+  // .mean {
+  //   font-size: vw(22);
+  //   color: color(gray-80);
+  // }
+
+  b {
     font-weight: 600;
     font-size: vw(28);
-  }
-
-  .pinyin {
-    font-size: vw(22);
-    color: color(gray-80);
-  }
-
-  .mean {
-    font-size: vw(22);
-    color: color(gray-80);
+    color: color(text);
   }
 
   .btn-icon {
