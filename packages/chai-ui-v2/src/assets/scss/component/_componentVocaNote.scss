@@ -20,6 +20,7 @@
 
 .voca-title {
   z-index: z(two);
+  overflow: hidden;
   position: sticky;
   top: 0;
   left: 0;
@@ -31,7 +32,6 @@
 
   .img {
     position: absolute;
-    // top: calc(vh(24) + vh(-8));
     top: vh(16);
     left: 0;
     width: vw(90);
