@@ -3,19 +3,20 @@ import { colorPalette } from "chai-ui-v2";
 
 const ButtonBorder = styled.button`
   width: fit-content;
-  height: 50px;
   margin-bottom: 8px;
-  padding: 14px 16px;
-  border: 1px solid ${colorPalette.subblue};
+  padding: 11px 21px 10px 20px;
+  border: 1px solid #dbe1ff;
   border-radius: 4px;
   background-color: ${colorPalette.white};
-  color: ${colorPalette.mainlight};
-  font-size: 14px;
+  color: #7686d4;
+  font-size: 10px;
+  line-height: 14px;
   font-weight: 500;
   text-align: center;
   appearance: none;
   outline: none;
   box-shadow: none;
+  opacity: 1;
 `;
 
 interface ButtonProps {

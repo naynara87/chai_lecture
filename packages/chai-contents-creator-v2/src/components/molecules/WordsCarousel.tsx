@@ -17,7 +17,6 @@ import { useMemo } from "react";
 import ObjectDeleteButton from "../atoms/ObjectDeleteButton";
 import TextEditorViewer from "./TextEditorViewer";
 import IconPlay from "chai-ui-v2/dist/assets/images/icon/icon_play.svg";
-import { ReturnUsePage } from "../../hooks/usePage";
 
 const WordsCardWrapper = styled.div`
   border-radius: 8px;

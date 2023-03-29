@@ -1,14 +1,9 @@
 import styled from "@emotion/styled";
-import React, { useMemo } from "react";
-import { colorPalette } from "../../assets";
+import React, { useCallback, useMemo } from "react";
 import { ID, RolePlayingCharacter, RoleplayingContentData } from "../../core";
 import RolePlayingCharacterComponent from "../molecules/RolePlayingCharacterComponent";
 
-const DialogueWrapper = styled.ul`
-  .right-conts .bubble-wrap {
-    background-color: ${colorPalette.gray300};
-  }
-`;
+const DialogueWrapper = styled.ul``;
 
 export interface RolePlayingComponentProps {
   contents: RoleplayingContentData;
@@ -21,17 +16,22 @@ const RolePlayingComponent = ({
   selectCharacterId,
   characterList,
 }: RolePlayingComponentProps) => {
+  const getCharacterById = useCallback(
+    (id: ID) => {
+      return characterList.find((character) => character.id === id);
+    },
+    [characterList],
+  );
+
   const mainContents = useMemo(() => {
     return contents.data.map((content) => {
-      const character = characterList.find(
-        (character) => character.id === content.characterId,
-      );
+      const character = getCharacterById(content.characterId);
       return (
         <RolePlayingCharacterComponent
           id={character?.id ?? ""}
           selectCharacterId={selectCharacterId}
           position={content.position}
-          name={character?.name ?? ""}
+          character={character}
           text={content.text}
           pronunciation={content.pronunciation}
           meaning={content.meaning}
@@ -40,7 +40,7 @@ const RolePlayingComponent = ({
         />
       );
     });
-  }, [contents.data, selectCharacterId, characterList]);
+  }, [contents.data, selectCharacterId, getCharacterById]);
 
   return (
     <div className="roleplay-container">

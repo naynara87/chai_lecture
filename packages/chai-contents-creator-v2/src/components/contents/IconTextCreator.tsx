@@ -6,7 +6,7 @@ import TextEditor from "../atoms/TextEditor";
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 import iconTip from "chai-ui-v2/dist/assets/images/icon/icon_tip.svg";
 
-const IconTextCreatorWrapper = styled.div`
+export const IconTextCreatorWrapper = styled.div`
   min-width: 240px;
   display: flex;
   align-items: center;
@@ -27,6 +27,8 @@ const IconTextCreator = ({
   isFocused,
   updateContent,
   deleteContent,
+  copyContent,
+  pasteContent,
   currentSlide,
   position,
   draggableProvided,
@@ -59,6 +61,8 @@ const IconTextCreator = ({
       slideId={currentSlide.id}
       content={content}
       position={position}
+      copyContent={copyContent}
+      pasteContent={pasteContent}
     >
       <IconTextCreatorWrapper onClick={handleClickComponent}>
         <img src={iconTip} alt="" />

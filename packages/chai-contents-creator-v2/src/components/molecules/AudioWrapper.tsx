@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 
 interface AudioWrapperProps {
   onSubmit?: (src: string) => void;
+  defaultText?: string;
 }
 
 const AudioCreatorWrapper = styled.div`
@@ -15,11 +16,15 @@ const AudioCreatorWrapper = styled.div`
   }
 `;
 
-const AudioWrapper = ({ onSubmit }: AudioWrapperProps) => {
+const AudioWrapper = ({ onSubmit, defaultText }: AudioWrapperProps) => {
   return (
     <AudioCreatorWrapper>
       <img src={iconPlay} alt="audio" />
-      <UrlInputWrapper typeText="오디오" onSubmit={onSubmit} />
+      <UrlInputWrapper
+        typeText="오디오"
+        onSubmit={onSubmit}
+        defaultText={defaultText}
+      />
     </AudioCreatorWrapper>
   );
 };

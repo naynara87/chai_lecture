@@ -170,6 +170,8 @@ $gray-color: #D6D7DA;
 	}
 
 	.tab-conts-wrapper {
+		@include scrollbar;
+
 		overflow: auto;
 		width: 100%;
 		height: vh(430);

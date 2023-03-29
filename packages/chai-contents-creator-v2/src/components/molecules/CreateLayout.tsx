@@ -140,15 +140,19 @@ const ChooseLayout = ({ onClickLayout }: ChooseLayoutProps) => {
         <MainSection>
           <MainSectionTitle>롤플레잉 레이아웃</MainSectionTitle>
           <LayoutContainer>
-            {rolePlayingLayouts.map((layout) => (
-              <LayoutItem
-                key={layout.name}
-                onClick={() => handleLayoutClick(layout.type)}
-              >
-                <img src={layout.image} alt={layout.name} draggable={false} />
-                <LayoutItemName>{layout.name}</LayoutItemName>
-              </LayoutItem>
-            ))}
+            {rolePlayingLayouts.map((layout) => {
+              return (
+                <LayoutItem
+                  key={layout.name}
+                  onClick={() => {
+                    handleLayoutClick(layout.type);
+                  }}
+                >
+                  <img src={layout.image} alt={layout.name} draggable={false} />
+                  <LayoutItemName>{layout.name}</LayoutItemName>
+                </LayoutItem>
+              );
+            })}
           </LayoutContainer>
         </MainSection>
       </Main>

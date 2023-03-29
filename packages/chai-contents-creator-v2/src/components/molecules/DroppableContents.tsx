@@ -7,6 +7,10 @@ import { ContentCommonProps } from "../../types/page";
 
 const DroppableContainer = styled.div`
   min-height: 40px;
+
+  & .hamburg-menu li:not(:first-child) {
+    display: none;
+  }
 `;
 
 export interface DroppableContentsProps
@@ -25,6 +29,8 @@ const DroppableContents = ({
   position,
   updateContent,
   deleteContent,
+  copyContent,
+  pasteContent,
   isDraggable,
   dndOffsetContainerQuery,
 }: DroppableContentsProps) => {
@@ -52,6 +58,8 @@ const DroppableContents = ({
               deleteContent,
               isDraggable,
               dndOffsetContainerQuery,
+              copyContent,
+              pasteContent,
             });
           })}
           {provided.placeholder}

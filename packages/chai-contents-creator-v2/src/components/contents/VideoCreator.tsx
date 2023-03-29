@@ -30,6 +30,8 @@ const VideoCreator = ({
   isFocused,
   updateContent,
   deleteContent,
+  copyContent,
+  pasteContent,
   currentSlide,
   position,
   draggableProvided,
@@ -57,6 +59,8 @@ const VideoCreator = ({
       content={content}
       position={position}
       align="center"
+      copyContent={copyContent}
+      pasteContent={pasteContent}
     >
       <VideoWrapper onClick={(e) => setFocusedId(e, content.id)}>
         {url ? (
@@ -66,7 +70,11 @@ const VideoCreator = ({
             <img src={VideoIcon} alt="" />
           </VideoThumb>
         )}
-        <UrlInputWrapper typeText="비디오" onSubmit={handleSubmitUrl} />
+        <UrlInputWrapper
+          typeText="비디오"
+          onSubmit={handleSubmitUrl}
+          defaultText={thisContent.data.src}
+        />
       </VideoWrapper>
     </ContentCreatorLayout>
   );
