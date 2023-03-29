@@ -12,11 +12,13 @@ interface ModalImageProps {
 
 const ModalImageWrapper = styled.div`
   text-align: center;
+  width: 100%;
+  max-height: 100%;
 `;
 
 const ModalInnerBox = styled.img`
   z-index: 2;
-  width: 90%;
+  max-width: 100%;
   max-height: 100%;
   object-fit: contain;
 `;

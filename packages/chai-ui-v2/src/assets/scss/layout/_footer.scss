@@ -94,7 +94,7 @@
 .cai-nav-list {
 	margin-bottom: vh(20);
 	border: 2px solid color(gray-db);
-	border-radius: 10px;
+	border-radius: vw(15);
 
 	.cai-nav-link {
 		@include flex-center;
