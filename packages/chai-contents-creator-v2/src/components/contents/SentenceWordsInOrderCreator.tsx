@@ -66,6 +66,8 @@ const SentenceWordsInOrderCreator = ({
   updateContentToSentenceInOrderTemplate,
   isFocused,
   setFocusedId,
+  copyContent,
+  pasteContent,
 }: DraggableContentCommonProps) => {
   const thisContent = content as QuizSentenceContentData;
 
@@ -413,6 +415,8 @@ const SentenceWordsInOrderCreator = ({
       slideId={currentSlide.id}
       content={content}
       position={position}
+      copyContent={copyContent}
+      pasteContent={pasteContent}
     >
       <div className="flex-wrap">
         <LayerEditButtonWrapper>

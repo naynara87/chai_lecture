@@ -24,6 +24,8 @@ const FinalSpeakingContentCreator = ({
   isDraggable,
   isEditBtn,
   deleteContent,
+  copyContent,
+  pasteContent,
   updateContentToFinalSpeakingTemplate,
   isFocused,
   setFocusedId,
@@ -66,6 +68,8 @@ const FinalSpeakingContentCreator = ({
       content={content}
       position={position}
       align="center"
+      copyContent={copyContent}
+      pasteContent={pasteContent}
     >
       <FinalSpeakingContentWrapper>
         <ComponentGrayLineCreator

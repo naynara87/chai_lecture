@@ -63,6 +63,8 @@ const ImageWithCaptionListCreator = ({
   isFocused,
   updateContent,
   deleteContent,
+  copyContent,
+  pasteContent,
   currentSlide,
   position,
   draggableProvided,
@@ -177,6 +179,8 @@ const ImageWithCaptionListCreator = ({
       content={content}
       position={position}
       align="center"
+      copyContent={copyContent}
+      pasteContent={pasteContent}
     >
       <ImageWithCaptionListCreatorWrapper>
         <AddButton
@@ -212,6 +216,7 @@ const ImageWithCaptionListCreator = ({
                 <UrlInputWrapper
                   typeText="이미지"
                   onSubmit={setImageUrl(index)}
+                  defaultText={thisContent.data?.[index].src}
                 />
                 <div onClick={focusTextEditor(index)}>
                   <TextEditorViewer

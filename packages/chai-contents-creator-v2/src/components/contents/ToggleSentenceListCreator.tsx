@@ -47,6 +47,8 @@ const ToggleSentenceListCreator = ({
   isFocused,
   updateContent,
   deleteContent,
+  copyContent,
+  pasteContent,
   currentSlide,
   position,
   draggableProvided,
@@ -238,12 +240,15 @@ const ToggleSentenceListCreator = ({
       slideId={currentSlide.id}
       content={content}
       position={position}
+      copyContent={copyContent}
+      pasteContent={pasteContent}
     >
       <ToggleSentenceWrapper
         className="toggle-sentence-wrapper"
         onClick={(e) => setFocusedId(e, content.id)}
       >
-        <TogglesWrapper />
+        <TogglesWrapper contents={thisContent} />
+        {/* TODO: 누르면 sentencewrap이 추가됨 */}
         <AddButton onClick={addSentence}>문장 추가</AddButton>
         {sentences}
       </ToggleSentenceWrapper>

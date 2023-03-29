@@ -9,6 +9,7 @@ import {
   ComponentImage,
   ImageWithDescriptionListContentData,
 } from "chai-ui-v2";
+
 import TextEditorViewer from "../molecules/TextEditorViewer";
 import { useCallback, useEffect, useState } from "react";
 
@@ -55,6 +56,9 @@ const ImageWithDescriptionListCreator = ({
   setFocusedId,
   isFocused,
   updateContent,
+  copyContent,
+  pasteContent,
+  deleteContent,
   currentSlide,
   position,
   draggableProvided,
@@ -163,8 +167,15 @@ const ImageWithDescriptionListCreator = ({
 
   return (
     <ContentCreatorLayout
-      draggableProvided={draggableProvided}
       isDraggable={isDraggable}
+      draggableProvided={draggableProvided}
+      deleteContent={deleteContent}
+      slideId={currentSlide.id}
+      content={content}
+      position={position}
+      align="center"
+      copyContent={copyContent}
+      pasteContent={pasteContent}
     >
       <ImageListCreatorWrapper>
         <AddButton onClick={addImage}>이미지 추가</AddButton>
@@ -183,8 +194,10 @@ const ImageWithDescriptionListCreator = ({
                   <UrlInputWrapper
                     typeText="이미지"
                     onSubmit={setImageUrl(index)}
+                    defaultText={thisContent.data[index].src}
                   />
                 </div>
+                {/* TODO: 캡션 입력안하면 없이 노출, 캡션 클릭 후 HTML로 입력하면 입력되어서 노출 */}
                 <p
                   className="description-text"
                   onClick={focusTextEditor(index)}

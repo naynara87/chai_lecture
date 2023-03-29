@@ -1,12 +1,16 @@
 import React from "react";
+import { Content } from "../../core";
+
 interface ComponentToggleProps {
   onClickPronunciationToggle: () => void;
   onClickMeaningToggle: () => void;
+  contents: Content;
 }
 
 const ComponentToggle = ({
   onClickMeaningToggle,
   onClickPronunciationToggle,
+  contents,
 }: ComponentToggleProps) => {
   return (
     <div className="toggles-wrapper">
@@ -16,11 +20,11 @@ const ComponentToggle = ({
         <input
           type="checkbox"
           name="input1"
-          id="input1"
+          id={`${contents.id}-input1`}
           className="toggle-input none"
         />
         <label
-          htmlFor="input1"
+          htmlFor={`${contents.id}-input1`}
           className="toggle-label"
           onClick={onClickPronunciationToggle}
         >
@@ -33,11 +37,11 @@ const ComponentToggle = ({
         <input
           type="checkbox"
           name="input2"
-          id="input2"
+          id={`${contents.id}-input2`}
           className="toggle-input none"
         />
         <label
-          htmlFor="input2"
+          htmlFor={`${contents.id}-input2`}
           className="toggle-label"
           onClick={onClickMeaningToggle}
         >

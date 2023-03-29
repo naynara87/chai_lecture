@@ -49,6 +49,8 @@ const CornerGuideCharacterCreator = ({
   setFocusedId,
   isFocused,
   updateContent,
+  copyContent,
+  pasteContent,
   currentSlide,
   position,
   draggableProvided,
@@ -91,6 +93,8 @@ const CornerGuideCharacterCreator = ({
       slideId={currentSlide.id}
       content={content}
       position={position}
+      copyContent={copyContent}
+      pasteContent={pasteContent}
     >
       <CornerGuideWrapper>
         <TextBubbleWrap onClick={(e) => setFocusedId(e, content.id)}>
@@ -105,7 +109,11 @@ const CornerGuideCharacterCreator = ({
         ) : (
           <ImageThumb />
         )}
-        <UrlInputWrapper typeText="이미지" onSubmit={setUrl}></UrlInputWrapper>
+        <UrlInputWrapper
+          typeText="이미지"
+          onSubmit={setUrl}
+          defaultText={thisContent.data.character.src}
+        ></UrlInputWrapper>
       </CornerGuideWrapper>
     </ContentCreatorLayout>
   );
