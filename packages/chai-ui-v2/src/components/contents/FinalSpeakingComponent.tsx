@@ -104,7 +104,7 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
       recordTimer.current = window.setTimeout(function go() {
         recordTime.current += 1;
         setRecordingTimeState((prev) => prev + 1);
-        if (recordTime.current > 60) {
+        if (recordTime.current > 29) {
           stopRecording();
           setRecordedAudioState("recorded");
         } else {
