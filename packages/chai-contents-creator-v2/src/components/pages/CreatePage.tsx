@@ -13,6 +13,8 @@ import { DragDropContext } from "react-beautiful-dnd";
 import { PREVIEW_URL } from "../../constants/url";
 import ModalIntroduction from "../molecules/modal/ModalIntroduction";
 import useCreatePage from "../../hooks/useCreatePage";
+import { css } from "@emotion/react";
+import { isDevEnv } from "../../constants/env";
 
 const CommonButtonContainer = styled.div`
   padding-bottom: 16px;
@@ -20,6 +22,10 @@ const CommonButtonContainer = styled.div`
   right: 0;
   top: 0;
   text-align: right;
+`;
+
+const saveButtonCss = css`
+  visibility: ${isDevEnv ? "visible" : "hidden"};
 `;
 
 const CreatePage = () => {
@@ -74,7 +80,12 @@ const CreatePage = () => {
     <CreateTemplateWrap>
       <CreateTemplateInner>
         <CommonButtonContainer>
-          <Button type="button" onClick={handleSavePageData}>
+          <Button
+            id="btn_save"
+            type="button"
+            onClick={handleSavePageData}
+            customCSS={saveButtonCss}
+          >
             테스트 저장 버튼
           </Button>
           <Button type="button" onClick={handleClickPreview}>

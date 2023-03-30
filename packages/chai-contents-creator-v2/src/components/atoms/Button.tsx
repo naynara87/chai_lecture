@@ -14,10 +14,15 @@ interface ButtonProps {
   children: React.ReactNode;
   type?: "button" | "submit" | "reset";
   onClick?: () => void;
+  id?: string;
   customCSS?: SerializedStyles;
 }
-const Button = ({ children, ...props }: ButtonProps) => {
-  return <StyledButton {...props}>{children}</StyledButton>;
+const Button = ({ children, id, ...props }: ButtonProps) => {
+  return (
+    <StyledButton id={id} {...props}>
+      {children}
+    </StyledButton>
+  );
 };
 
 export default Button;
