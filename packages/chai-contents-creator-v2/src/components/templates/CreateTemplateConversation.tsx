@@ -2,13 +2,15 @@ import {
   TemplateConversationData,
   TemplateConversationToggleData,
 } from "chai-ui-v2";
-import useComponentConversationContext from "../../hooks/useComponentConversationContext";
+import { conversationComponents } from "../../data/appData";
+import useComponentContext from "../../hooks/useComponentContext";
 import {
   CreateEditMain,
   CreateTemplateChoiceBtnWrap,
 } from "../../styles/template";
 import { PageCommonProps } from "../../types/page";
 import DashBoxArea from "../atoms/DashBoxArea";
+import ComponentsContextMenuCommon from "../molecules/ComponentsContextMenuCommon";
 import PageHeader from "../molecules/PageHeader";
 import { CreateEditMainWrap37 } from "./CreateTemplateH37";
 
@@ -22,11 +24,8 @@ const CreateTemplateConversation = ({
   returnUseComponent,
   ...pageHeaderProps
 }: PageCommonProps) => {
-  const {
-    ComponentsConversationContextMenuCommon,
-    isComponentsContextMenuOpen,
-    toggleContextMenu,
-  } = useComponentConversationContext();
+  const { isComponentsContextMenuOpen, toggleContextMenu } =
+    useComponentContext();
 
   const { focusedId, setFocusedId, getComponent, getDroppableId } =
     returnUseComponent;
@@ -68,12 +67,13 @@ const CreateTemplateConversation = ({
               <button className="btn-comp-select" onClick={toggleContextMenu}>
                 컴포넌트 선택
               </button>
-              <ComponentsConversationContextMenuCommon
+              <ComponentsContextMenuCommon
                 isComponentsContextMenuOpen={isComponentsContextMenuOpen}
                 addComponentMap={addComponentMap}
                 slideId={slideId}
                 position="rightContents"
                 toggleContextMenu={toggleContextMenu}
+                contentComponents={conversationComponents}
               />
             </CreateTemplateChoiceBtnWrap>
             {thisSlide.rightContents &&

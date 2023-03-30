@@ -8,8 +8,10 @@ import {
 } from "../../data/appData";
 import { colorPalette, TemplateType } from "chai-ui-v2";
 
+import IconClose from "../../assets/images/icon/icon_x.svg";
+
 const Header = styled.header`
-  padding: 20px;
+  padding: 20px 72px;
   padding-bottom: 0;
   text-align: center;
 `;
@@ -22,16 +24,28 @@ const HeaderTitle = styled.h1`
 
 const HeaderSubTitle = styled.p`
   margin-top: 10px;
+  margin-bottom: 35px;
   font-size: 24px;
   line-height: 1.5;
 `;
 
+const CloseButton = styled.button`
+  top: 24px;
+  right: 24px;
+  position: absolute;
+  background-color: transparent;
+`;
+
 const Main = styled.main`
-  padding: 0 20px 35px;
+  overflow-y: scroll;
+  margin: 0 32px;
+  padding: 0 40px 32px;
 `;
 
 const MainSection = styled.section`
-  margin-top: 35px;
+  &:not(:first-child) {
+    margin-top: 32px;
+  }
 `;
 
 const MainSectionTitle = styled.h2`
@@ -43,12 +57,12 @@ const MainSectionTitle = styled.h2`
 const LayoutContainer = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  gap: 15px 20px;
+  gap: 15px 24px;
   margin-top: 10px;
 `;
 
 const LayoutItem = styled.li`
-  width: calc(25% - 15px);
+  width: calc(20% - 24px);
   cursor: pointer;
   text-align: center;
 
@@ -73,15 +87,17 @@ const LayoutItemName = styled.div`
 `;
 
 const ChooseLayoutWrapper = styled.div`
-  overflow: auto;
   max-height: 70vh;
   background-color: ${colorPalette.white};
+  display: flex;
+  flex-direction: column;
 `;
 
 interface ChooseLayoutProps {
   onClickLayout: (templateType: TemplateType) => void;
+  onClose: () => void;
 }
-const ChooseLayout = ({ onClickLayout }: ChooseLayoutProps) => {
+const ChooseLayout = ({ onClickLayout, onClose }: ChooseLayoutProps) => {
   const handleLayoutClick = (templateType: TemplateType) => {
     onClickLayout(templateType);
   };
@@ -92,6 +108,9 @@ const ChooseLayout = ({ onClickLayout }: ChooseLayoutProps) => {
         <HeaderTitle className="CreateLayout__header__title">
           레이아웃 설정
         </HeaderTitle>
+        <CloseButton onClick={onClose}>
+          <img src={IconClose} alt="닫기" />
+        </CloseButton>
         <HeaderSubTitle>사용할 레이아웃을 선택해주세요.</HeaderSubTitle>
       </Header>
       <Main>

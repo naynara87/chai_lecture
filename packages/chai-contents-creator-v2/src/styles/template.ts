@@ -87,11 +87,11 @@ export const NavList = styled.ul`
     height: 50px;
     font-size: 12px;
     font-weight: 700;
-    background-color: ${colorPalette.gray600};
     line-height: 50px;
     text-align: center;
     border-radius: 4px;
     margin-right: 8px;
+    border: 1px solid ${colorPalette.gray500};
   }
   .txt-comp {
     font-size: 14px;
