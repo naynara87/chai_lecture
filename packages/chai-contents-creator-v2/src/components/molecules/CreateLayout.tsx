@@ -68,6 +68,7 @@ const LayoutItem = styled.li`
 
   > img {
     width: 100%;
+    border-radius: 20px;
   }
 
   @media all and (max-width: 768px) {
