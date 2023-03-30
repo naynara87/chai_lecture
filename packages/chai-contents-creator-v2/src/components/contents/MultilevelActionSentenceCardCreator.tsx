@@ -89,6 +89,8 @@ const MultilevelActionSentenceCardCreator = ({
   draggableProvided,
   isDraggable,
   deleteContent,
+  copyContent,
+  pasteContent,
 }: DraggableContentCommonProps) => {
   const thisContent = content as MultilevelActionCardContentData;
 
@@ -206,6 +208,8 @@ const MultilevelActionSentenceCardCreator = ({
       slideId={currentSlide.id}
       content={content}
       position={position}
+      copyContent={copyContent}
+      pasteContent={pasteContent}
     >
       <MultilevelActionCardWrapper>
         <MultilevelActionCardList>

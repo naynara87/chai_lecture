@@ -93,9 +93,8 @@ const LayoutHeader = ({
         lessonColor={getLessonColors(lessonColorCode)}
       >
         <HdChaWrap
-          className={`hd-cha-wrap ${
-            cornerPercent > 50 ? "second-half" : "first-half"
-          }`}
+          className={`hd-cha-wrap ${cornerPercent > 50 ? "second-half" : "none"
+            }`}
           lessonColor={getLessonColors(lessonColorCode)}
         >
           <p className="txt">{currentPage?.name}</p>
@@ -105,6 +104,17 @@ const LayoutHeader = ({
           />
         </HdChaWrap>
         <span className="corner-name">{cornerName}</span>
+        <HdChaWrap
+          className={`hd-cha-wrap ${cornerPercent > 50 ? "none" : "first-half"
+            }`}
+          lessonColor={getLessonColors(lessonColorCode)}
+        >
+          <p className="txt">{currentPage?.name}</p>
+          <ImgCharacterComponent
+            characterType="kkungiHeader"
+            characterAlt="꿍이"
+          />
+        </HdChaWrap>
         <div className="bg-wrap">
           <div className="bg-flag"></div>
         </div>

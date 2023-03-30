@@ -3,10 +3,10 @@ import React, { useCallback, useEffect, useRef } from "react";
 import { PageIntroduction, useGlobalAudio } from "../../core";
 import { colorPalette } from "../../assets";
 import ComponentButtonRadiFillMain from "../atoms/ComponentButtonRadiFillMain";
-import ModalCommon from "./ModalCommon";
 import CharacterProfile from "../../assets/images/img/cha_profile01.png";
 import { v4 as uuidV4 } from "uuid";
 import { HtmlContentComponent } from "../atoms";
+import ModalBase from "./ModalBase";
 
 // const RightColor = "#30C17B";
 // const WrongColor = "#EE8407";
@@ -90,41 +90,46 @@ const LayoutModalIntroduction = ({
 
   return (
     // NOTE: 설명 - active가 되면 보임
-    <ModalCommon open={isModalOpen} onClose={handleClose}>
-      {/* 제목영역 */}
-      <ModalBaseTitle className="base-ttl">
-        <div className="profile-img-wrap">
-          <img
-            src={
-              introduction.character.url
-                ? introduction.character.url
-                : CharacterProfile
-            }
-            alt="프로필"
-          />
-        </div>
-        <div className="txt-wrap">
-          {/* 간지 */}
-          <h2 className="ttl">
-            <HtmlContentComponent html={introduction.title} />
-          </h2>
-          <p className="txt">
-            <HtmlContentComponent html={introduction.subTitle} />
-          </p>
-        </div>
-      </ModalBaseTitle>
-      {/* 내용영역 */}
-      <ModalBaseContents className="base-conts">
-        <div className="dec">
-          <HtmlContentComponent html={introduction.contents} />
-        </div>
-      </ModalBaseContents>
+    <ModalBase open={isModalOpen} onClose={handleClose}>
+      <div className="modal active">
+        <div className="modal-container base-modal">
+          <div className="base-wrapper">
+            <ModalBaseTitle className="base-ttl">
+              <div className="profile-img-wrap">
+                <img
+                  src={
+                    introduction.character.url
+                      ? introduction.character.url
+                      : CharacterProfile
+                  }
+                  alt="프로필"
+                />
+              </div>
+              <div className="txt-wrap">
+                <h2 className="ttl">
+                  <HtmlContentComponent html={introduction.title} />
+                </h2>
+                <p className="txt">
+                  <HtmlContentComponent html={introduction.subTitle} />
+                </p>
+              </div>
+            </ModalBaseTitle>
+            <ModalBaseContents className="base-conts">
+              <div className="dec">
+                <HtmlContentComponent html={introduction.contents} />
+              </div>
+            </ModalBaseContents>
 
-      {/* NOTE: 설명 - 버튼이 하나만 들어갈 수도 있음 */}
-      <div className="btns-wrap">
-        <ComponentButtonRadiFillMain text="확인" onClickBtn={handleClose} />
+            <div className="btns-wrap">
+              <ComponentButtonRadiFillMain
+                text="확인"
+                onClickBtn={handleClose}
+              />
+            </div>
+          </div>
+        </div>
       </div>
-    </ModalCommon>
+    </ModalBase>
   );
 };
 

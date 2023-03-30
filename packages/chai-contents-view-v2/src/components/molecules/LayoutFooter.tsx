@@ -19,7 +19,6 @@ const LinkTag = styled.a``;
 interface LayoutFooterProps {
   corners: CornerListData[];
   pages?: Page[];
-  currentPageIndex: number;
   handleClickNext: () => void;
   handleClickPrev: () => void;
   totalPages: (string | number)[];
@@ -28,21 +27,19 @@ interface LayoutFooterProps {
 const LayoutFooter = ({
   pages,
   corners,
-  currentPageIndex,
   handleClickNext,
   handleClickPrev,
   totalPages,
 }: LayoutFooterProps) => {
   const [isShowNav, setIsShowNav] = useState(false);
   const [isExitModalOpen, setIsExitModalOpen] = useState(false);
-  const { courseId, lessonId, cornerId } = useParams();
+  const { courseId, lessonId, cornerId, pageId } = useParams();
 
   const navGetPageUrl = useCallback(
     (corner: string, page: string) => {
       if (!courseId || !lessonId) {
         return "/";
       }
-      console.log("뭔데", corner, page);
       return getPageUrl(courseId, lessonId, corner, page);
     },
     [courseId, lessonId],
@@ -78,8 +75,10 @@ const LayoutFooter = ({
 
   const totalPagesToCurrentPageIndex = useMemo(() => {
     if (!pages) return;
-    return totalPages.findIndex((page) => pages[currentPageIndex].id === page);
-  }, [pages, totalPages, currentPageIndex]);
+    return totalPages.findIndex(
+      (page) => pageId?.toString() === page.toString(),
+    );
+  }, [pages, totalPages, pageId]);
 
   return (
     <div>
@@ -100,7 +99,7 @@ const LayoutFooter = ({
           <button
             className="ft-icon-btn"
             onClick={handleClickPrev}
-            disabled={currentPageIndex === 0}
+            disabled={totalPagesToCurrentPageIndex === 0}
           >
             <IconLeftArrowComponent />
           </button>

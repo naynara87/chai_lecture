@@ -9,7 +9,7 @@ export const v2LessonData: LessonData = {
     courseId: 1,
     courseName: "차이홍(샘플데이터)-빨강",
     colorTypeCd: "10",
-    lessonTpCd: "10",
+    lessonTpCd: "20",
   },
   // 코너 리스트
   data: [
@@ -41,7 +41,7 @@ export const v2LessonData: LessonData = {
     {
       id: 16,
       name: "패턴 중국어",
-      pages: [17, 18, 19, 21, 22],
+      pages: [17, 18, 19, 20, 21, 22],
     },
     {
       id: 17,
@@ -51,7 +51,7 @@ export const v2LessonData: LessonData = {
     // {
     //   id: 18,
     //   name: "문제",
-    //   pages: [26, 37, 38, 39, 40],
+    //   pages: [1, 2, 3, 4, 5, 6, 7],
     // },
   ],
 };
@@ -138,7 +138,7 @@ export const v2CornerDataList: CornerData[] = [
         },
       },
       {
-        id: 1,
+        id: 2,
         name: "중국어 개요",
         type: "singlePage",
         data: {
@@ -159,7 +159,7 @@ export const v2CornerDataList: CornerData[] = [
         },
       },
       {
-        id: 2,
+        id: 3,
         name: "중국어 개요",
         type: "singlePage",
         introduction: {
@@ -289,7 +289,7 @@ export const v2CornerDataList: CornerData[] = [
         },
       },
       {
-        id: 3,
+        id: 4,
         name: "단어",
         type: "singlePage",
         introduction: {
@@ -374,7 +374,7 @@ export const v2CornerDataList: CornerData[] = [
         },
       },
       {
-        id: 4,
+        id: 5,
         name: "한어",
         type: "multiPage",
         introduction: {
@@ -526,78 +526,6 @@ export const v2CornerDataList: CornerData[] = [
             ],
           },
         ],
-      },
-      {
-        id: 5,
-        name: "한어",
-        type: "singlePage",
-        data: {
-          id: uuidV4(),
-          type: "TemplateQuizMultiChoice",
-          leftContents: [
-            {
-              id: uuidV4(),
-              type: "activityGuideCharacter",
-              data: {
-                text: "지난 시간엔 성조의 변화에 대해 학습했어요. 내용이 맞으면 O, 틀리면 X를 선택하세요.",
-                character: {
-                  src: "asdfasdf",
-                },
-              },
-            },
-          ],
-          multiChoice: {
-            id: uuidV4(),
-            type: "multiChoice",
-            data: {
-              choice: ["제2성+제3성", "제3성+제3성"],
-              answerIndex: 0,
-              exampleContents: [
-                {
-                  id: uuidV4(),
-                  type: "text",
-                  data: {
-                    text: "제3성이 연이어 나올 때, 올바르게 발음한 것을 고르세요.",
-                  },
-                },
-              ],
-              quizPopup: {
-                id: uuidV4(),
-                type: "quizPopupModal",
-                data: {
-                  correct: {
-                    title: "做得好!",
-                    sub: "정답이에요!",
-                    description: "니하오입니다.",
-                    character: {
-                      src: "",
-                    },
-                    soundEffect: {
-                      src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
-                    },
-                    video: {
-                      src: "https://cdn.bubblecon.co.kr/videos/46.mp4",
-                    },
-                  },
-                  incorrect: {
-                    title: "真难过!",
-                    sub: "아쉬워요!",
-                    description: "니하오라고요.",
-                    character: {
-                      src: "",
-                    },
-                    soundEffect: {
-                      src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
-                    },
-                    video: {
-                      src: "https://cdn.bubblecon.co.kr/videos/46.mp4",
-                    },
-                  },
-                },
-              },
-            },
-          },
-        },
       },
     ],
   },
@@ -1124,7 +1052,7 @@ export const v2CornerDataList: CornerData[] = [
                         id: uuidV4(),
                         type: "audio",
                         data: {
-                          src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+                          src: "https://samplelib.com/lib/preview/mp3/sample-3s.mp3",
                         },
                       },
                     ],
@@ -1152,7 +1080,7 @@ export const v2CornerDataList: CornerData[] = [
                 type: "speaking",
                 data: {
                   speakingTime: 5,
-                  src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
+                  src: "https://samplelib.com/lib/preview/mp3/sample-3s.mp3",
                 },
               },
             ],
@@ -2329,6 +2257,96 @@ export const v2CornerDataList: CornerData[] = [
           {
             id: uuidV4(),
             type: "TemplateConversation",
+            leftContents: [
+              {
+                id: uuidV4(),
+                type: "fullAudio",
+                data: {},
+              },
+              {
+                id: uuidV4(),
+                type: "conversationWordList",
+                data: {
+                  words: [
+                    {
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
+                      audio: {
+                        src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+                      },
+                    },
+                    {
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
+                      audio: {
+                        src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
+                      },
+                    },
+                    {
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
+                      audio: {
+                        src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
+                      },
+                    },
+                    {
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
+                      audio: {
+                        src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
+                      },
+                    },
+                    {
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
+                      audio: {
+                        src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
+                      },
+                    },
+                    {
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
+                      audio: {
+                        src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            rightContents: [
+              {
+                id: uuidV4(),
+                type: "conversation",
+                data: [
+                  {
+                    text: "我喜欢秋天，因为秋天不冷不热，很凉快。",
+                    pronunciation:
+                      "Wǒ xǐhuān qiūtiān, yīnwèi qiūtiān bù lěngbù rè, hěn liángkuai.",
+                    meaning: "안녕",
+                    character: {
+                      name: "왕리리",
+                      src: "이미지 주소",
+                    },
+                    audio: {
+                      src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+                    },
+                    speakingTime: 3,
+                  },
+                  {
+                    text: "是吗？ 你喜欢什么季节？",
+                    pronunciation: "Shì ma? Nǐ xǐhuān shénme jìjié?",
+                    meaning: "안녕",
+                    character: {
+                      name: "김민호",
+                      src: "이미지 주소",
+                    },
+                    audio: {
+                      src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
+                    },
+                    speakingTime: 3,
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            id: uuidV4(),
+            type: "TemplateConversationRepeat",
             leftContents: [
               {
                 id: uuidV4(),

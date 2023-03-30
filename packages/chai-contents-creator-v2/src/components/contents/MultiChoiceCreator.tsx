@@ -73,6 +73,8 @@ const MultiChoiceCreator = ({
   isDraggable,
   isEditBtn,
   deleteContent,
+  copyContent,
+  pasteContent,
   updateContentToMultiChoiceTemplate,
   isFocused,
   setFocusedId,
@@ -232,6 +234,8 @@ const MultiChoiceCreator = ({
       content={content}
       position={position}
       align="center"
+      copyContent={copyContent}
+      pasteContent={pasteContent}
     >
       <ContentBox className="flex-wrap">
         <Button

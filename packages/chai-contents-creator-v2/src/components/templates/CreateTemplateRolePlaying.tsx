@@ -14,14 +14,13 @@ import { v4 as uuidV4 } from "uuid";
 import {
   getRolePlayingCharacterDefaultById,
   getRolePlayingContentItemDefaultById,
-  getTemplateDefaultValue,
 } from "../../data/appData";
 import {
   ActivityGuideCharacterContentData,
   IconTextContentData,
   ID,
   RolePlayingCharacter,
-  TemplateRolePlayingData,
+  RoleplayingContentData,
 } from "chai-ui-v2";
 import {
   CornerGuideWrapper,
@@ -96,33 +95,23 @@ const CreateTemplateRolePlaying = ({
     updateCharacters,
   } = useRolePlaying(slideId);
 
-  const iconTextData = thisSlide.iconText ? thisSlide.iconText : undefined;
-  const guideContent = useMemo(() => {
-    return thisSlide.guideContent ? thisSlide.guideContent : undefined;
-  }, [thisSlide.guideContent]);
-  const rolePlayingContentsData = useMemo(() => {
-    return thisSlide.rolePlayingContents
-      ? thisSlide.rolePlayingContents.data
-      : [];
-  }, [thisSlide.rolePlayingContents]);
-  const characterList = useMemo(() => {
-    return thisSlide.characters ? thisSlide.characters : [];
-  }, [thisSlide.characters]);
+  const iconTextData = thisSlide.iconText;
+  const guideContent = thisSlide.guideContent;
+  const rolePlayingContentsData =
+    thisSlide.rolePlayingContents &&
+    (thisSlide.rolePlayingContents?.data as RoleplayingContentData["data"]);
+  const characterList = thisSlide.characters;
 
   const characterNameList = useMemo(() => {
-    return characterList?.map((item) => {
+    if (!characterList) return;
+    return characterList.map((item) => {
       return item.name;
     });
   }, [characterList]);
 
   const [iconText, setIconText] = useState<string>(
-    iconTextData ? iconTextData.data.text : "",
+    iconTextData ? iconTextData.data?.text : "",
   );
-
-  const getRoleplayingDefault = useCallback(() => {
-    return getTemplateDefaultValue()
-      .TemplateRolePlaying as TemplateRolePlayingData;
-  }, []);
 
   /* iconText */
   const handleEndEditText = () => {
@@ -139,6 +128,7 @@ const CreateTemplateRolePlaying = ({
 
   /* characterList */
   const addCharacter = (characterIndex: number) => {
+    if (!characterList) return;
     const newCharacter = getRolePlayingCharacterDefaultById(
       uuidV4(),
       characterBackgroundColorList[characterIndex],
@@ -147,6 +137,7 @@ const CreateTemplateRolePlaying = ({
   };
 
   const deleteCharacter = (index: number) => {
+    if (!characterList) return;
     const newCharacterWithColorList = characterList.filter(
       (item, itemIndex) => {
         return itemIndex !== index;
@@ -156,6 +147,7 @@ const CreateTemplateRolePlaying = ({
   };
 
   const changeCharacterName = (index: number) => (name: string) => {
+    if (!characterList) return;
     const isDuplicated = characterList.some((item, itemIndex) => {
       return itemIndex !== index && item.name === name;
     });
@@ -176,6 +168,7 @@ const CreateTemplateRolePlaying = ({
   };
 
   const changeCharacterImage = (index: number) => (url: string) => {
+    if (!characterList) return;
     const newCharacterList = characterList.map((item, itemIndex) => {
       if (itemIndex === index) {
         return {
@@ -190,14 +183,13 @@ const CreateTemplateRolePlaying = ({
 
   /* guideContent */
   const [guideText, setGuideText] = useState<string>(
-    guideContent?.data.text ?? "",
+    guideContent ? guideContent.data.text : "",
   );
   const handleEndEditGuideText = () => {
-    const guidContentDefault = getRoleplayingDefault()
-      .guideContent as ActivityGuideCharacterContentData;
+    if (!guideContent) return;
     const updatedGuideContent: ActivityGuideCharacterContentData = {
-      id: guideContent?.id ?? guidContentDefault.id,
-      type: guideContent?.type ?? guidContentDefault.type,
+      id: guideContent.id,
+      type: guideContent.type,
       data: {
         character: {
           src: guideContent?.data.character.src ?? "",
@@ -209,16 +201,14 @@ const CreateTemplateRolePlaying = ({
   };
 
   const handleSubmitGuideCharacterUrl = (url: string) => {
-    const guidContentDefault = getRoleplayingDefault()
-      .guideContent as ActivityGuideCharacterContentData;
+    if (!guideContent) return;
     const updatedGuideContent: ActivityGuideCharacterContentData = {
-      id: guideContent?.id ?? guidContentDefault.id,
-      type: guideContent?.type ?? guidContentDefault.type,
+      id: guideContent.id,
+      type: guideContent.type,
       data: {
-        text: guideContent?.data.text ?? "",
-        ...guideContent?.data,
+        ...guideContent.data,
         character: {
-          ...guideContent?.data.character,
+          ...guideContent.data.character,
           src: url,
         },
       },
@@ -256,6 +246,7 @@ const CreateTemplateRolePlaying = ({
   const findCharacterByName = useCallback(
     (characterName: string) => {
       // 캐릭터 이름 중복을 허용하면 안되는 이유
+      if (!characterList) return;
       return characterList.find((item) => {
         return item.name === characterName;
       });
@@ -265,6 +256,7 @@ const CreateTemplateRolePlaying = ({
 
   const findCharacterById = useCallback(
     (characterId: ID) => {
+      if (!characterList) return;
       return characterList.find((item) => {
         return item.id === characterId;
       });
@@ -287,6 +279,7 @@ const CreateTemplateRolePlaying = ({
       selectedCharacter: RolePlayingCharacter | undefined,
       conversationDirection: ConversationDirection,
     ) => {
+      if (!rolePlayingContentsData) return;
       if (!selectedCharacter) {
         alert("화자를 선택해주세요.");
         return;
@@ -310,6 +303,7 @@ const CreateTemplateRolePlaying = ({
   // delete rolePlayingContents
   const deleteRolePlayingContents = useCallback(
     (index: number) => {
+      if (!rolePlayingContentsData) return;
       const newRolePlayingContents = rolePlayingContentsData.filter(
         (item, itemIndex) => {
           return itemIndex !== index;
@@ -323,6 +317,7 @@ const CreateTemplateRolePlaying = ({
   // update rolePlayingContents audio url by index
   const updateRolePlayingContentsAudioUrl = useCallback(
     (index: number) => (url: string) => {
+      if (!rolePlayingContentsData) return;
       const newRolePlayingContents = rolePlayingContentsData.map(
         (item, itemIndex) => {
           if (itemIndex === index) {
@@ -345,6 +340,7 @@ const CreateTemplateRolePlaying = ({
   // update rolePlayingContents text by index
   const updateRolePlayingContentsText = useCallback(
     (index: number) => (text: string) => {
+      if (!rolePlayingContentsData) return;
       const newRolePlayingContents = rolePlayingContentsData.map(
         (item, itemIndex) => {
           if (itemIndex === index) {
@@ -364,6 +360,7 @@ const CreateTemplateRolePlaying = ({
   // update rolePlayingContents pronunciation by index
   const updateRolePlayingContentsPronunciation = useCallback(
     (index: number) => (pronunciation: string) => {
+      if (!rolePlayingContentsData) return;
       const newRolePlayingContents = rolePlayingContentsData.map(
         (item, itemIndex) => {
           if (itemIndex === index) {
@@ -383,6 +380,7 @@ const CreateTemplateRolePlaying = ({
   // update rolePlayingContents meaning by index
   const updateRolePlayingContentsMeaning = useCallback(
     (index: number) => (meaning: string) => {
+      if (!rolePlayingContentsData) return;
       const newRolePlayingContents = rolePlayingContentsData.map(
         (item, itemIndex) => {
           if (itemIndex === index) {
@@ -406,12 +404,12 @@ const CreateTemplateRolePlaying = ({
         <CreateEditMain>
           <DashBoxAreaWrapper>
             <ComponentWrapper
-              onClick={(e) => setFocusedId(e, iconTextData?.id ?? "")}
+              onClick={(e) => setFocusedId(e, iconTextData && iconTextData.id)}
             >
               <IconText
                 text={iconText}
                 setText={setIconText}
-                isFocused={focusedId === iconTextData?.id ?? ""}
+                isFocused={iconTextData ? focusedId === iconTextData.id : false}
                 handleEndEditText={handleEndEditText}
               />
             </ComponentWrapper>
@@ -419,20 +417,21 @@ const CreateTemplateRolePlaying = ({
               <AddButton onClick={() => addCharacter(characterList.length)}>
                 화자 추가
               </AddButton>
-              {characterList.map((character, index) => {
-                return (
-                  <CharacterCreator
-                    key={character.id}
-                    wrapperCss={characterWrapCss}
-                    characterUrl={character.src}
-                    onImageUrlSubmit={changeCharacterImage(index)}
-                    onSaveCharacterNameInput={changeCharacterName(index)}
-                    onDeleteCharacter={() => deleteCharacter(index)}
-                    urlInputWrapperCss={urlInputWrapperCss}
-                    characterName={character.name}
-                  />
-                );
-              })}
+              {characterList &&
+                characterList.map((character, index) => {
+                  return (
+                    <CharacterCreator
+                      key={character.id}
+                      wrapperCss={characterWrapCss}
+                      characterUrl={character.src}
+                      onImageUrlSubmit={changeCharacterImage(index)}
+                      onSaveCharacterNameInput={changeCharacterName(index)}
+                      onDeleteCharacter={() => deleteCharacter(index)}
+                      urlInputWrapperCss={urlInputWrapperCss}
+                      characterName={character.name}
+                    />
+                  );
+                })}
             </ComponentWrapper>
           </DashBoxAreaWrapper>
         </CreateEditMain>
@@ -442,16 +441,20 @@ const CreateTemplateRolePlaying = ({
           <DashBoxAreaWrapper>
             <CornerGuideWrapper>
               <TextBubbleWrap
-                onClick={(e) => setFocusedId(e, guideContent?.id ?? "")}
+                onClick={(e) =>
+                  setFocusedId(e, guideContent ? guideContent.id : -1)
+                }
               >
                 <TextEditorViewer
-                  isFocused={focusedId === guideContent?.id ?? ""}
+                  isFocused={
+                    guideContent ? focusedId === guideContent.id : false
+                  }
                   text={guideText}
                   setText={setGuideText}
                   handleSubmitTextOnBlur={handleEndEditGuideText}
                 />
               </TextBubbleWrap>
-              {guideContent?.data.character.src ? (
+              {guideContent && guideContent.data.character.src ? (
                 <img src={guideContent.data.character.src} alt="" />
               ) : (
                 <ImageThumb />
@@ -459,7 +462,9 @@ const CreateTemplateRolePlaying = ({
               <UrlInputWrapper
                 typeText="이미지"
                 onSubmit={handleSubmitGuideCharacterUrl}
-                defaultText={guideContent?.data.character.src}
+                defaultText={
+                  guideContent ? guideContent.data.character.src : ""
+                }
               />
             </CornerGuideWrapper>
           </DashBoxAreaWrapper>
@@ -490,39 +495,42 @@ const CreateTemplateRolePlaying = ({
               <SelectBox
                 value={selectedCharacter?.name ?? ""}
                 onChange={setSelectedCharacterByCharacterName}
-                optionList={characterNameList}
+                optionList={characterNameList ?? []}
                 label="화자 선택"
               />
             </ConversationButtonContainer>
             <RolePlayingConversationList>
-              {rolePlayingContentsData.map(
-                (rolePlayingConversationItem, index) => {
-                  return (
-                    <RolePlayingConversationItem
-                      key={rolePlayingConversationItem.id}
-                      character={
-                        findCharacterById(
-                          rolePlayingConversationItem.characterId,
-                        ) as RolePlayingCharacter
-                      }
-                      onDeleteConversationItem={() =>
-                        deleteRolePlayingContents(index)
-                      }
-                      displayDirection={
-                        rolePlayingConversationItem.position as ConversationDirection
-                      }
-                      onSubmitAudioUrl={updateRolePlayingContentsAudioUrl(
-                        index,
-                      )}
-                      onSubmitText={updateRolePlayingContentsText(index)}
-                      onSubmitPronunciation={updateRolePlayingContentsPronunciation(
-                        index,
-                      )}
-                      onSubmitMeaning={updateRolePlayingContentsMeaning(index)}
-                    />
-                  );
-                },
-              )}
+              {rolePlayingContentsData &&
+                rolePlayingContentsData.map(
+                  (rolePlayingConversationItem, index) => {
+                    return (
+                      <RolePlayingConversationItem
+                        key={rolePlayingConversationItem.id}
+                        character={
+                          findCharacterById(
+                            rolePlayingConversationItem.characterId,
+                          ) as RolePlayingCharacter
+                        }
+                        onDeleteConversationItem={() =>
+                          deleteRolePlayingContents(index)
+                        }
+                        displayDirection={
+                          rolePlayingConversationItem.position as ConversationDirection
+                        }
+                        onSubmitAudioUrl={updateRolePlayingContentsAudioUrl(
+                          index,
+                        )}
+                        onSubmitText={updateRolePlayingContentsText(index)}
+                        onSubmitPronunciation={updateRolePlayingContentsPronunciation(
+                          index,
+                        )}
+                        onSubmitMeaning={updateRolePlayingContentsMeaning(
+                          index,
+                        )}
+                      />
+                    );
+                  },
+                )}
             </RolePlayingConversationList>
           </DashBoxAreaWrapper>
         </CreateEditMain>

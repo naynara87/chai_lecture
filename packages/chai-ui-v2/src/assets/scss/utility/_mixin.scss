@@ -131,3 +131,17 @@ background-image: urlPath($path, $img);
 @mixin gradiant ($d: to top, $start: #E3E8FF 0%, $end: #E9FAFF 100%) {
 	background-image: linear-gradient($d, $start, $end);
 }
+
+@mixin scrollbar ($c: #EAEAEA, $sub-c: #D4D4D4, $r: vw(10), $s: vw(15)) {
+	&::-webkit-scrollbar {
+		width: $s;
+		height: $s;
+		background-color: $c;
+		border-radius: $r;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: $sub-c;
+		border-radius: $r;
+	}
+}

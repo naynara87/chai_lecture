@@ -48,6 +48,8 @@ const ConversationCreator = ({
   isFocused,
   updateContent,
   deleteContent,
+  copyContent,
+  pasteContent,
   currentSlide,
   position,
   draggableProvided,
@@ -263,8 +265,16 @@ const ConversationCreator = ({
             />
           </div>
           <div className="txt-wrap">
-            <UrlInputWrapper typeText="이미지" onSubmit={setImage(listIndex)} />
-            <UrlInputWrapper typeText="오디오" onSubmit={setAudio(listIndex)} />
+            <UrlInputWrapper
+              typeText="이미지"
+              onSubmit={setImage(listIndex)}
+              defaultText={thisContent.data[listIndex].character.src}
+            />
+            <UrlInputWrapper
+              typeText="오디오"
+              onSubmit={setAudio(listIndex)}
+              defaultText={thisContent.data[listIndex].audio?.src}
+            />
             <div
               className="chinese"
               onClick={focusTextEditor(listIndex, "text")}
@@ -351,10 +361,12 @@ const ConversationCreator = ({
       slideId={currentSlide.id}
       content={content}
       position={position}
+      copyContent={copyContent}
+      pasteContent={pasteContent}
     >
       <div className="flex-wrap">
         {thisTemplateType === "TemplateConversationToggle" && (
-          <TogglesWrapper />
+          <TogglesWrapper contents={thisContent} />
         )}
         <AddButton onClick={addConversation}>대화 추가</AddButton>
         <ConversationWrapper

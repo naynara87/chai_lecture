@@ -6,8 +6,6 @@ import React, {
   useRef,
   useState,
 } from "react";
-import IconO from "../../assets/images/icon/icon_o.svg";
-import IconX from "../../assets/images/icon/icon_x.svg";
 import {
   ConversationQuizContentData,
   TemplateProps,
@@ -45,7 +43,7 @@ const DialogueContainer = styled.div`
         background-repeat: no-repeat;
         background-position: center;
         background-size: 100% 100%;
-        background-image: url(${IconO});
+        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M0 30C0 46.5375 13.4625 60 30 60C46.5375 60 60 46.5375 60 30C60 13.4625 46.5375 0 30 0C13.4625 0 0 13.4625 0 30ZM9.99995 30.0004C9.99995 41.0254 18.975 50.0004 30 50.0004C41.025 50.0004 50 41.0254 50 30.0004C50 18.9754 41.025 10.0004 30 10.0004C18.975 10.0004 9.99995 18.9754 9.99995 30.0004Z' fill='%235FC996'/%3E%3C/svg%3E%0A");
         transform: translate(100%, -50%);
       }
     }
@@ -67,7 +65,7 @@ const DialogueContainer = styled.div`
         background-repeat: no-repeat;
         background-position: center;
         background-size: 100% 100%;
-        background-image: url(${IconX});
+        background-image: url("data:image/svg+xml,%3Csvg width='58' height='58' viewBox='0 0 58 58' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8.08447 55.3384L29 34.4229L49.9155 55.3384C50.6474 56.0703 51.5685 56.5 52.627 56.5C53.6855 56.5 54.6065 56.0703 55.3384 55.3384C56.0703 54.6065 56.5 53.6855 56.5 52.627C56.5 51.5685 56.0703 50.6474 55.3384 49.9155L34.4229 29L55.3384 8.08447C56.0703 7.35257 56.5 6.43154 56.5 5.37302C56.5 4.3145 56.0703 3.39346 55.3384 2.66156C54.6065 1.92967 53.6855 1.5 52.627 1.5C51.5685 1.5 50.6474 1.92967 49.9155 2.66156L29 23.5771L8.08447 2.66156C7.35257 1.92967 6.43154 1.5 5.37302 1.5C4.31449 1.5 3.39346 1.92967 2.66156 2.66156C1.92967 3.39346 1.5 4.31449 1.5 5.37302C1.5 6.43154 1.92967 7.35257 2.66156 8.08447L23.5771 29L2.66156 49.9155C1.92967 50.6474 1.5 51.5685 1.5 52.627C1.5 53.6855 1.92967 54.6065 2.66156 55.3384C3.39346 56.0703 4.3145 56.5 5.37302 56.5C6.43154 56.5 7.35257 56.0703 8.08447 55.3384Z' fill='%23ED8914' stroke='%23ED8914' stroke-width='3'/%3E%3C/svg%3E%0A");
         transform: translate(100%, -50%);
       }
     }
@@ -81,7 +79,7 @@ const DialogueContainer = styled.div`
   }
 `;
 
-interface TemplateQuizDialogueWordBlank extends TemplateProps {}
+interface TemplateQuizDialogueWordBlank extends TemplateProps { }
 
 const TemplateQuizDialogueWordBlank = ({
   template,

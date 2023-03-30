@@ -9,6 +9,8 @@ const AudioCreator = ({
   isFocused,
   updateContent,
   deleteContent,
+  copyContent,
+  pasteContent,
   currentSlide,
   position,
   draggableProvided,
@@ -34,8 +36,13 @@ const AudioCreator = ({
       slideId={currentSlide.id}
       content={content}
       position={position}
+      copyContent={copyContent}
+      pasteContent={pasteContent}
     >
-      <AudioWrapper onSubmit={handleSubmitUrl} />
+      <AudioWrapper
+        onSubmit={handleSubmitUrl}
+        defaultText={thisContent.data.src}
+      />
     </ContentCreatorLayout>
   );
 };

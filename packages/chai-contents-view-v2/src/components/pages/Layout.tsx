@@ -9,9 +9,9 @@ import ContentsLayout from "./ContentsLayout";
 import QuestionLayout from "./QuestionLayout";
 
 const Layout = () => {
-  const { cornerId } = useParams();
-  const { lessonMetaData, corners, totalPages } = useLesson(91);
-  const { pages, cornerMetaData } = useCorner(cornerId);
+  const { cornerId } = useParams(); // 이게 나중 실행됨
+  const { lessonMetaData, corners, totalPages } = useLesson(93);
+  const { pages, cornerMetaData } = useCorner(cornerId); // 이게 먼저 실행되고
 
   const [, setCurrentCornerId] = useRecoilState(currentCornerIdState);
 
@@ -38,6 +38,7 @@ const Layout = () => {
           pages={pages}
           lessonMetaData={lessonMetaData}
           cornerMetaData={cornerMetaData}
+          totalPages={totalPages}
         />
       );
     } else {

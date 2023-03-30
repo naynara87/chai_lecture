@@ -25,6 +25,8 @@ export interface PageCommonProps extends PageHeaderProps {
   templateType: TemplateType;
   addComponentMap: AddComponentMap;
   updateContent: ReturnUsePage["updateContent"];
+  copyContent?: ReturnUsePage["copyContent"];
+  pasteContent?: ReturnUsePage["pasteContent"];
   deleteContent: ReturnUsePage["deleteContent"];
   returnUseComponent: ReturnUseComponent;
   updateContentToMultiChoiceTemplate: ReturnUsePage["updateContentToMultiChoiceTemplate"];
@@ -58,6 +60,8 @@ export type ContentCommonProps = {
   setFocusedId: (e: React.MouseEvent, contentId: ID) => void;
   position: CommonTemplateComponentLocation;
   updateContent: ReturnUsePage["updateContent"];
+  copyContent?: ReturnUsePage["copyContent"];
+  pasteContent?: ReturnUsePage["pasteContent"];
   deleteContent: ReturnUsePage["deleteContent"];
   isDraggable?: boolean;
   isEditBtn?: boolean;

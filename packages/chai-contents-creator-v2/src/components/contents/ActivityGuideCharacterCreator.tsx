@@ -49,6 +49,8 @@ const ActivityGuideCharacterCreator = ({
   setFocusedId,
   isFocused,
   updateContent,
+  copyContent,
+  pasteContent,
   currentSlide,
   position,
   draggableProvided,
@@ -93,6 +95,8 @@ const ActivityGuideCharacterCreator = ({
       content={content}
       position={position}
       isEditBtn={isEditBtn}
+      copyContent={copyContent}
+      pasteContent={pasteContent}
     >
       <CornerGuideWrapper>
         <TextBubbleWrap onClick={(e) => setFocusedId(e, content.id)}>
@@ -107,7 +111,11 @@ const ActivityGuideCharacterCreator = ({
         ) : (
           <ImageThumb />
         )}
-        <UrlInputWrapper typeText="이미지" onSubmit={setUrl}></UrlInputWrapper>
+        <UrlInputWrapper
+          typeText="이미지"
+          onSubmit={setUrl}
+          defaultText={thisContent.data.character.src}
+        ></UrlInputWrapper>
       </CornerGuideWrapper>
     </ContentCreatorLayout>
   );

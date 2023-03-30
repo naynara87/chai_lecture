@@ -17,6 +17,8 @@ const CreateTemplate01 = ({
   slides,
   updateContent,
   deleteContent,
+  copyContent,
+  pasteContent,
   returnUseComponent,
   ...pageHeaderProps
 }: PageCommonProps) => {
@@ -63,6 +65,8 @@ const CreateTemplate01 = ({
                   setFocusedId,
                   updateContent,
                   deleteContent,
+                  copyContent,
+                  pasteContent,
                   position: "contents",
                 });
               })}

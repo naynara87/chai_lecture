@@ -111,6 +111,8 @@ const CardTabCreator = ({
   isFocused,
   updateContent,
   deleteContent,
+  copyContent,
+  pasteContent,
   currentSlide,
   position,
   draggableProvided,
@@ -418,6 +420,8 @@ const CardTabCreator = ({
       slideId={currentSlide.id}
       content={content}
       position={position}
+      copyContent={copyContent}
+      pasteContent={pasteContent}
     >
       <CardTabWrapper className="card-tab-wrapper">
         <div className="flex-wrap">

@@ -34,7 +34,7 @@ const Loader = styled.div`
 
 const Home = () => {
   const navigate = useNavigate();
-  const { lessonMetaData, corners } = useLesson(91);
+  const { lessonMetaData, corners } = useLesson(93);
   const [currentCornerId] = useRecoilState(currentCornerIdState);
   const { cornerMetaData, pages } = useCorner(
     currentCornerId ?? corners[0]?.id,
