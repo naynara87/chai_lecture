@@ -65,6 +65,7 @@ const TemplateDialogue = ({
   }, [handleAudioReset]);
 
   const setFullAudio = useCallback(() => {
+    if (!thisPage.rightContents) return;
     thisPage.rightContents.forEach((content) => {
       if (content.type === "conversation") {
         const audioList: string[] = [];
@@ -126,6 +127,7 @@ const TemplateDialogue = ({
   }, [handleAudioReset]);
 
   const leftContents = useMemo(() => {
+    if (!thisPage.leftContents) return;
     return thisPage.leftContents.map((leftContent, contentIndex) => {
       if (leftContent.type !== "fullAudio") {
         return getContentComponent(leftContent, contentIndex);
@@ -134,6 +136,7 @@ const TemplateDialogue = ({
   }, [getContentComponent, thisPage]);
 
   const fullAudioContents = useMemo(() => {
+    if (!thisPage.leftContents) return;
     return thisPage.leftContents.map((leftContent, contentIndex) => {
       if (leftContent.type === "fullAudio") {
         return (
@@ -149,6 +152,7 @@ const TemplateDialogue = ({
   }, [thisPage, handleStopFullAudio, listenFullAudio]);
 
   const rightContentTitle = useMemo(() => {
+    if (!thisPage.rightContents) return;
     return thisPage.rightContents.map((rightContent, contentIndex) => {
       if (rightContent.type === "iconText") {
         return <IconTextComponent contents={rightContent} key={contentIndex} />;
@@ -157,6 +161,7 @@ const TemplateDialogue = ({
   }, [thisPage]);
 
   const conversationContents = useMemo(() => {
+    if (!thisPage.rightContents) return;
     return thisPage.rightContents.map((rightContent, contentIndex) => {
       if (rightContent.type === "conversation") {
         return (

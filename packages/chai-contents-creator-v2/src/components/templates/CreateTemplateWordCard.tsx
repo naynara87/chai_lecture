@@ -42,20 +42,21 @@ const CreateTemplateWordCard = ({
       <CreateEditMainWrap37>
         <CreateEditMain>
           <DashBoxArea droppableId={leftDroppableId}>
-            {thisSlide.leftContents.map((content, index) => {
-              return getComponent({
-                index,
-                currentSlide: thisSlide,
-                content,
-                isFocused: focusedId === content.id,
-                setFocusedId,
-                updateContent,
-                deleteContent,
-                position: "leftContents",
-                isDraggable: false,
-                isEditBtn: false,
-              });
-            })}
+            {thisSlide.leftContents &&
+              thisSlide.leftContents.map((content, index) => {
+                return getComponent({
+                  index,
+                  currentSlide: thisSlide,
+                  content,
+                  isFocused: focusedId === content.id,
+                  setFocusedId,
+                  updateContent,
+                  deleteContent,
+                  position: "leftContents",
+                  isDraggable: false,
+                  isEditBtn: false,
+                });
+              })}
           </DashBoxArea>
         </CreateEditMain>
         <CreateEditMain>
@@ -72,21 +73,22 @@ const CreateTemplateWordCard = ({
                 toggleContextMenu={toggleContextMenu}
               />
             </CreateTemplateChoiceBtnWrap>
-            {thisSlide.rightContents.map((content, index) => {
-              return getComponent({
-                index,
-                currentSlide: thisSlide,
-                content,
-                isFocused: focusedId === content?.id,
-                setFocusedId,
-                updateContent,
-                deleteContent,
-                position: "rightContents",
-                templateType: thisSlide.type,
-                isDraggable: false,
-                isEditBtn: false,
-              });
-            })}
+            {thisSlide.rightContents &&
+              thisSlide.rightContents.map((content, index) => {
+                return getComponent({
+                  index,
+                  currentSlide: thisSlide,
+                  content,
+                  isFocused: focusedId === content?.id,
+                  setFocusedId,
+                  updateContent,
+                  deleteContent,
+                  position: "rightContents",
+                  templateType: thisSlide.type,
+                  isDraggable: false,
+                  isEditBtn: false,
+                });
+              })}
           </DashBoxArea>
         </CreateEditMain>
       </CreateEditMainWrap37>

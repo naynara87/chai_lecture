@@ -53,18 +53,19 @@ const CreateTemplate01 = ({
                 toggleContextMenu={toggleContextMenu}
               />
             </CreateTemplateChoiceBtnWrap>
-            {thisSlide.contents.map((content, index) => {
-              return getComponent({
-                index,
-                currentSlide: thisSlide,
-                content,
-                isFocused: focusedId === content?.id,
-                setFocusedId,
-                updateContent,
-                deleteContent,
-                position: "contents",
-              });
-            })}
+            {thisSlide.contents &&
+              thisSlide.contents.map((content, index) => {
+                return getComponent({
+                  index,
+                  currentSlide: thisSlide,
+                  content,
+                  isFocused: focusedId === content?.id,
+                  setFocusedId,
+                  updateContent,
+                  deleteContent,
+                  position: "contents",
+                });
+              })}
           </DashBoxArea>
         </CreateEditMain>
       </CreateEditMainWrap>

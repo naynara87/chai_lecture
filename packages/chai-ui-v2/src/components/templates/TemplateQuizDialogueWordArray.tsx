@@ -53,6 +53,7 @@ const TemplateQuizDialogueWordArray = ({
   const { getContentComponent } = useContentMapper();
 
   const leftContents = useMemo(() => {
+    if (!thisPage.leftContents) return;
     return thisPage.leftContents.map((leftContent, contentIndex) => {
       return getContentComponent(leftContent, contentIndex);
     });
@@ -63,7 +64,9 @@ const TemplateQuizDialogueWordArray = ({
       <div className="layout-panel side-panel">{leftContents}</div>
       <div className="layout-panel wide-panel">
         <QuizContainer className="quiz-container">
-          <WordsInOrderComponent contents={thisPage.wordsInOrder} />
+          {thisPage.wordsInOrder && (
+            <WordsInOrderComponent contents={thisPage.wordsInOrder} />
+          )}
         </QuizContainer>
       </div>
     </div>

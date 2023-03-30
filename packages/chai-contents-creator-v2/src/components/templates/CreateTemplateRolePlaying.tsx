@@ -14,12 +14,14 @@ import { v4 as uuidV4 } from "uuid";
 import {
   getRolePlayingCharacterDefaultById,
   getRolePlayingContentItemDefaultById,
+  getTemplateDefaultValue,
 } from "../../data/appData";
 import {
   ActivityGuideCharacterContentData,
   IconTextContentData,
   ID,
   RolePlayingCharacter,
+  TemplateRolePlayingData,
 } from "chai-ui-v2";
 import {
   CornerGuideWrapper,
@@ -94,26 +96,42 @@ const CreateTemplateRolePlaying = ({
     updateCharacters,
   } = useRolePlaying(slideId);
 
-  const iconTextData = thisSlide.iconText;
-  const guideContent = thisSlide.guideContent;
-  const rolePlayingContentsData = thisSlide.rolePlayingContents.data;
-  const characterList = thisSlide.characters;
+  const iconTextData = thisSlide.iconText ? thisSlide.iconText : undefined;
+  const guideContent = useMemo(() => {
+    return thisSlide.guideContent ? thisSlide.guideContent : undefined;
+  }, [thisSlide.guideContent]);
+  const rolePlayingContentsData = useMemo(() => {
+    return thisSlide.rolePlayingContents
+      ? thisSlide.rolePlayingContents.data
+      : [];
+  }, [thisSlide.rolePlayingContents]);
+  const characterList = useMemo(() => {
+    return thisSlide.characters ? thisSlide.characters : [];
+  }, [thisSlide.characters]);
 
   const characterNameList = useMemo(() => {
-    return characterList.map((item) => {
+    return characterList?.map((item) => {
       return item.name;
     });
   }, [characterList]);
 
-  const [iconText, setIconText] = useState<string>(iconTextData.data.text);
+  const [iconText, setIconText] = useState<string>(
+    iconTextData ? iconTextData.data.text : "",
+  );
+
+  const getRoleplayingDefault = useCallback(() => {
+    return getTemplateDefaultValue()
+      .TemplateRolePlaying as TemplateRolePlayingData;
+  }, []);
 
   /* iconText */
   const handleEndEditText = () => {
+    if (!thisSlide.iconText) return;
     const updatedIconText: IconTextContentData = {
       ...thisSlide.iconText,
       data: {
         ...thisSlide.iconText.data,
-        text: iconText,
+        text: iconText ?? "",
       },
     };
     updateIconText(updatedIconText);
@@ -171,12 +189,19 @@ const CreateTemplateRolePlaying = ({
   };
 
   /* guideContent */
-  const [guideText, setGuideText] = useState<string>(guideContent.data.text);
+  const [guideText, setGuideText] = useState<string>(
+    guideContent?.data.text ?? "",
+  );
   const handleEndEditGuideText = () => {
+    const guidContentDefault = getRoleplayingDefault()
+      .guideContent as ActivityGuideCharacterContentData;
     const updatedGuideContent: ActivityGuideCharacterContentData = {
-      ...guideContent,
+      id: guideContent?.id ?? guidContentDefault.id,
+      type: guideContent?.type ?? guidContentDefault.type,
       data: {
-        ...guideContent.data,
+        character: {
+          src: guideContent?.data.character.src ?? "",
+        },
         text: guideText,
       },
     };
@@ -184,12 +209,16 @@ const CreateTemplateRolePlaying = ({
   };
 
   const handleSubmitGuideCharacterUrl = (url: string) => {
+    const guidContentDefault = getRoleplayingDefault()
+      .guideContent as ActivityGuideCharacterContentData;
     const updatedGuideContent: ActivityGuideCharacterContentData = {
-      ...guideContent,
+      id: guideContent?.id ?? guidContentDefault.id,
+      type: guideContent?.type ?? guidContentDefault.type,
       data: {
-        ...guideContent.data,
+        text: guideContent?.data.text ?? "",
+        ...guideContent?.data,
         character: {
-          ...guideContent.data.character,
+          ...guideContent?.data.character,
           src: url,
         },
       },
@@ -376,11 +405,13 @@ const CreateTemplateRolePlaying = ({
       <CreateEditMainWrap>
         <CreateEditMain>
           <DashBoxAreaWrapper>
-            <ComponentWrapper onClick={(e) => setFocusedId(e, iconTextData.id)}>
+            <ComponentWrapper
+              onClick={(e) => setFocusedId(e, iconTextData?.id ?? "")}
+            >
               <IconText
                 text={iconText}
                 setText={setIconText}
-                isFocused={focusedId === iconTextData.id}
+                isFocused={focusedId === iconTextData?.id ?? ""}
                 handleEndEditText={handleEndEditText}
               />
             </ComponentWrapper>
@@ -410,15 +441,17 @@ const CreateTemplateRolePlaying = ({
         <CreateEditMain>
           <DashBoxAreaWrapper>
             <CornerGuideWrapper>
-              <TextBubbleWrap onClick={(e) => setFocusedId(e, guideContent.id)}>
+              <TextBubbleWrap
+                onClick={(e) => setFocusedId(e, guideContent?.id ?? "")}
+              >
                 <TextEditorViewer
-                  isFocused={focusedId === guideContent.id}
+                  isFocused={focusedId === guideContent?.id ?? ""}
                   text={guideText}
                   setText={setGuideText}
                   handleSubmitTextOnBlur={handleEndEditGuideText}
                 />
               </TextBubbleWrap>
-              {guideContent.data.character.src ? (
+              {guideContent?.data.character.src ? (
                 <img src={guideContent.data.character.src} alt="" />
               ) : (
                 <ImageThumb />
@@ -426,7 +459,7 @@ const CreateTemplateRolePlaying = ({
               <UrlInputWrapper
                 typeText="이미지"
                 onSubmit={handleSubmitGuideCharacterUrl}
-                defaultText={guideContent.data.character.src}
+                defaultText={guideContent?.data.character.src}
               />
             </CornerGuideWrapper>
           </DashBoxAreaWrapper>

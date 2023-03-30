@@ -21,6 +21,7 @@ interface ContentsLayoutProps {
   corners: CornerListData[];
   lessonMetaData: LessonMeta;
   cornerMetaData: CornerMeta;
+  totalPages: (string | number)[];
 }
 
 const ContentsLayout = ({
@@ -28,6 +29,7 @@ const ContentsLayout = ({
   lessonMetaData,
   cornerMetaData,
   corners,
+  totalPages,
 }: ContentsLayoutProps) => {
   const [, setIsPageCompleted] = useState(false);
   const [isCompleteModalOpen, setIsCompleteModalOpen] = useState(false);
@@ -71,7 +73,7 @@ const ContentsLayout = ({
           lessonMetaData?.courseId,
           cornerMetaData?.lessonId,
           nextCorner.id,
-          1,
+          nextCorner.pages[0],
         );
         navigate(url);
         return;
@@ -124,6 +126,7 @@ const ContentsLayout = ({
         currentPageIndex={currentPageIndex ?? 1}
         handleClickNext={handleClickNext}
         handleClickPrev={handleClickPrev}
+        totalPages={totalPages}
       />
       {isCompleteModalOpen && (
         <ModalCompleted lessonCode={lessonMetaData.colorTypeCd} />

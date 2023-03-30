@@ -51,10 +51,10 @@ export type RolePlayingCharacter = {
 export type TemplateRolePlayingData = {
   id: ID;
   type: "TemplateRolePlaying";
-  iconText: IconTextContentData;
-  guideContent: ActivityGuideCharacterContentData;
-  characters: RolePlayingCharacter[];
-  rolePlayingContents: RoleplayingContentData;
+  iconText: IconTextContentData | "";
+  guideContent: ActivityGuideCharacterContentData | "";
+  characters: RolePlayingCharacter[] | "";
+  rolePlayingContents: RoleplayingContentData | "";
 };
 
 /**
@@ -64,7 +64,7 @@ export type TemplateRolePlayingData = {
 export type Template01Data = {
   id: ID;
   type: "Template01";
-  contents: Content[];
+  contents: Content[] | "";
 };
 
 /**
@@ -75,8 +75,8 @@ export type Template01Data = {
 export type Template_H_3_7Data = {
   id: ID;
   type: "Template_H_3_7";
-  leftContents: Content[];
-  rightContents: Content[];
+  leftContents: Content[] | "";
+  rightContents: Content[] | "";
 };
 
 /**
@@ -87,8 +87,8 @@ export type Template_H_3_7Data = {
 export type Template_H_5_5Data = {
   id: ID;
   type: "Template_H_5_5";
-  leftContents: Content[];
-  rightContents: Content[];
+  leftContents: Content[] | "";
+  rightContents: Content[] | "";
 };
 
 /**
@@ -98,8 +98,8 @@ export type Template_H_5_5Data = {
 export type TemplateConversationData = {
   id: ID;
   type: "TemplateConversation";
-  leftContents: ConversationContent[];
-  rightContents: ConversationContent[];
+  leftContents: ConversationContent[] | "";
+  rightContents: ConversationContent[] | "";
 };
 
 /**
@@ -109,8 +109,8 @@ export type TemplateConversationData = {
 export type TemplateConversationToggleData = {
   id: ID;
   type: "TemplateConversationToggle";
-  leftContents: ConversationContent[];
-  rightContents: ConversationContent[];
+  leftContents: ConversationContent[] | "";
+  rightContents: ConversationContent[] | "";
 };
 
 /**
@@ -120,8 +120,8 @@ export type TemplateConversationToggleData = {
 export type TemplateConversationRepeatData = {
   id: ID;
   type: "TemplateConversationRepeat";
-  leftContents: ConversationContent[];
-  rightContents: ConversationContent[];
+  leftContents: ConversationContent[] | "";
+  rightContents: ConversationContent[] | "";
 };
 
 /**
@@ -131,8 +131,8 @@ export type TemplateConversationRepeatData = {
 export type TemplateQuizConversationData = {
   id: ID;
   type: "TemplateQuizConversation";
-  leftContents: QuizContent[];
-  rightContents: QuizContent[];
+  leftContents: QuizContent[] | "";
+  rightContents: QuizContent[] | "";
 };
 
 /**
@@ -142,8 +142,8 @@ export type TemplateQuizConversationData = {
 export type TemplateQuizMultiChoiceData = {
   id: ID;
   type: "TemplateQuizMultiChoice";
-  leftContents: Content[];
-  multiChoice: MultiChoiceContentData;
+  leftContents: Content[] | "";
+  multiChoice: MultiChoiceContentData | "";
 };
 
 /**
@@ -153,8 +153,8 @@ export type TemplateQuizMultiChoiceData = {
 export type TemplateQuizWordsInOrderData = {
   id: ID;
   type: "TemplateQuizWordsInOrder";
-  leftContents: Content[];
-  wordsInOrder: WordsInOrderContentData;
+  leftContents: Content[] | "";
+  wordsInOrder: WordsInOrderContentData | "";
 };
 
 /**
@@ -164,8 +164,8 @@ export type TemplateQuizWordsInOrderData = {
 export type TemplateQuizSentencesInOrderData = {
   id: ID;
   type: "TemplateQuizSentencesInOrder";
-  titleContents: IconTextContentData;
-  mainContents: QuizSentenceContentData;
+  titleContents: IconTextContentData | "";
+  mainContents: QuizSentenceContentData | "";
 };
 
 /**
@@ -175,8 +175,8 @@ export type TemplateQuizSentencesInOrderData = {
 export type TemplateQuizSpeakingData = {
   id: ID;
   type: "TemplateQuizSpeaking";
-  leftContents: ActivityGuideCharacterContentData;
-  rightContents: FinalSpeakingContentData;
+  leftContents: ActivityGuideCharacterContentData | "";
+  rightContents: FinalSpeakingContentData | "";
 };
 
 /**
@@ -186,8 +186,8 @@ export type TemplateQuizSpeakingData = {
 export type TemplateWordCardData = {
   id: ID;
   type: "TemplateWordCard";
-  leftContents: Content[];
-  rightContents: Content[];
+  leftContents: Content[] | "";
+  rightContents: Content[] | "";
 };
 
 /**
@@ -197,5 +197,5 @@ export type TemplateWordCardData = {
 export type TemplateQuestionData = {
   id: ID;
   type: "TemplateQuestion";
-  contents: QuestionContentData;
+  contents: QuestionContentData | "";
 };

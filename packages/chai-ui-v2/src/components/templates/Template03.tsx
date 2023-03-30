@@ -17,12 +17,14 @@ const Template03 = ({ template, setPageCompleted }: Template03Props) => {
   const { getContentComponent } = useContentMapper();
 
   const leftContents = useMemo(() => {
+    if (!thisPage.leftContents) return;
     return thisPage.leftContents.map((leftContent, leftContentIndex) => {
       return getContentComponent(leftContent, leftContentIndex);
     });
   }, [thisPage, getContentComponent]);
 
   const rightContents = useMemo(() => {
+    if (!thisPage.rightContents) return;
     return thisPage.rightContents.map((rightContent, rightContentIndex) => {
       return getContentComponent(rightContent, rightContentIndex);
     });

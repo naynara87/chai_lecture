@@ -31,11 +31,15 @@ const TemplateRolePlaying = ({
     return (
       <div className="layout-panel-wrap">
         <div className="layout-panel">
-          <IconTextComponent contents={thisPage.iconText} />
-          <ComponentChoiceRole
-            characterList={thisPage.characters}
-            onClickSelectCharacter={handleClickSelectCharacter}
-          />
+          {thisPage.iconText && (
+            <IconTextComponent contents={thisPage.iconText} />
+          )}
+          {thisPage.characters && (
+            <ComponentChoiceRole
+              characterList={thisPage.characters}
+              onClickSelectCharacter={handleClickSelectCharacter}
+            />
+          )}
         </div>
       </div>
     );
@@ -45,14 +49,18 @@ const TemplateRolePlaying = ({
     return (
       <div className="layout-panel-wrap grid-h-3-7">
         <div className="layout-panel side-panel">
-          <ActivityGuideCharacterComponent contents={thisPage.guideContent} />
+          {thisPage.guideContent && (
+            <ActivityGuideCharacterComponent contents={thisPage.guideContent} />
+          )}
         </div>
         <div className="layout-panel wide-panel">
-          <RolePlayingComponent
-            contents={thisPage.rolePlayingContents}
-            selectCharacterId={selectedCharacterId}
-            characterList={thisPage.characters}
-          />
+          {thisPage.rolePlayingContents && thisPage.characters && (
+            <RolePlayingComponent
+              contents={thisPage.rolePlayingContents}
+              selectCharacterId={selectedCharacterId}
+              characterList={thisPage.characters}
+            />
+          )}
         </div>
       </div>
     );
