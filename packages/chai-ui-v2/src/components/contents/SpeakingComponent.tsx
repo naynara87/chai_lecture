@@ -10,6 +10,8 @@ import { SpeakingContentData, useGlobalAudio } from "../../core";
 import ComponentButtonFillBlackMini from "../atoms/ComponentButtonFillBlackMini";
 import ComponentProgress from "../atoms/ComponentProgress";
 import iconCheck from "../../assets/images/icon/icon_check_green.svg";
+import effectSoundSEA02 from "../../assets/effectSounds/SEA02.mp3";
+import effectSoundSEA01 from "../../assets/effectSounds/SEA01.mp3";
 import { v4 as uuidv4 } from "uuid";
 
 const RepeatSpeak = styled.div``;
@@ -34,13 +36,39 @@ const SpeakingComponent = ({ contents }: SpeakingComponentProps) => {
 
   const audioEnded = useCallback(() => {
     if (globalAudioId === `speaking_${speakingAudioUuid.current}_0`) {
+      handleClickAudioButton(
+        "speakingEffectStart",
+        speakingAudioUuid.current,
+        0,
+        effectSoundSEA02,
+      );
+      return;
+    }
+    if (
+      globalAudioId === `speakingEffectStart_${speakingAudioUuid.current}_0`
+    ) {
       setIsAudioEnd(true);
       setTimeout(() => {
         setIsEndProgressBar(true);
-        handleAudioReset();
+        handleClickAudioButton(
+          "speakingEffectEnd",
+          speakingAudioUuid.current,
+          0,
+          effectSoundSEA01,
+        );
       }, contents.data.speakingTime * 1000);
+      return;
     }
-  }, [contents.data.speakingTime, globalAudioId, handleAudioReset]);
+    if (globalAudioId === `speakingEffectEnd_${speakingAudioUuid.current}_0`) {
+      handleAudioReset();
+      return;
+    }
+  }, [
+    contents.data.speakingTime,
+    globalAudioId,
+    handleAudioReset,
+    handleClickAudioButton,
+  ]);
 
   useEffect(() => {
     let globalAudioRefValue: HTMLAudioElement | null = null;
@@ -72,7 +100,7 @@ const SpeakingComponent = ({ contents }: SpeakingComponentProps) => {
         </div>
       );
     } else if (
-      globalAudioId === `speaking_${speakingAudioUuid.current}_0` &&
+      globalAudioId.toString().includes(`${speakingAudioUuid.current}_0`) &&
       isShowProgressBar &&
       !isEndProgressBar
     ) {
@@ -88,7 +116,7 @@ const SpeakingComponent = ({ contents }: SpeakingComponentProps) => {
         </>
       );
     } else if (
-      globalAudioId !== `speaking_${speakingAudioUuid.current}_0` &&
+      !globalAudioId.toString().includes(`${speakingAudioUuid.current}_0`) &&
       !isAudioEnd &&
       !isEndProgressBar
     ) {

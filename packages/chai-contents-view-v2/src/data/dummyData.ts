@@ -1052,7 +1052,7 @@ export const v2CornerDataList: CornerData[] = [
                         id: uuidV4(),
                         type: "audio",
                         data: {
-                          src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+                          src: "https://samplelib.com/lib/preview/mp3/sample-3s.mp3",
                         },
                       },
                     ],
@@ -1080,7 +1080,7 @@ export const v2CornerDataList: CornerData[] = [
                 type: "speaking",
                 data: {
                   speakingTime: 5,
-                  src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
+                  src: "https://samplelib.com/lib/preview/mp3/sample-3s.mp3",
                 },
               },
             ],
@@ -2257,6 +2257,96 @@ export const v2CornerDataList: CornerData[] = [
           {
             id: uuidV4(),
             type: "TemplateConversation",
+            leftContents: [
+              {
+                id: uuidV4(),
+                type: "fullAudio",
+                data: {},
+              },
+              {
+                id: uuidV4(),
+                type: "conversationWordList",
+                data: {
+                  words: [
+                    {
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
+                      audio: {
+                        src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+                      },
+                    },
+                    {
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
+                      audio: {
+                        src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
+                      },
+                    },
+                    {
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
+                      audio: {
+                        src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
+                      },
+                    },
+                    {
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
+                      audio: {
+                        src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
+                      },
+                    },
+                    {
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
+                      audio: {
+                        src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
+                      },
+                    },
+                    {
+                      text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
+                      audio: {
+                        src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            rightContents: [
+              {
+                id: uuidV4(),
+                type: "conversation",
+                data: [
+                  {
+                    text: "我喜欢秋天，因为秋天不冷不热，很凉快。",
+                    pronunciation:
+                      "Wǒ xǐhuān qiūtiān, yīnwèi qiūtiān bù lěngbù rè, hěn liángkuai.",
+                    meaning: "안녕",
+                    character: {
+                      name: "왕리리",
+                      src: "이미지 주소",
+                    },
+                    audio: {
+                      src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
+                    },
+                    speakingTime: 3,
+                  },
+                  {
+                    text: "是吗？ 你喜欢什么季节？",
+                    pronunciation: "Shì ma? Nǐ xǐhuān shénme jìjié?",
+                    meaning: "안녕",
+                    character: {
+                      name: "김민호",
+                      src: "이미지 주소",
+                    },
+                    audio: {
+                      src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
+                    },
+                    speakingTime: 3,
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            id: uuidV4(),
+            type: "TemplateConversationRepeat",
             leftContents: [
               {
                 id: uuidV4(),
