@@ -2,7 +2,7 @@ import { SerializedStyles } from "@emotion/react";
 import { ContentType } from "chai-ui-v2";
 import React from "react";
 import {
-  contentComponents,
+  ContentComponents,
   contentComponentsGroupMap,
   contentComponentsNameMap,
   ContentsGroup,
@@ -18,6 +18,7 @@ export interface ComponentsContextMenuProps {
   addComponent: (ContentType: ContentType) => void;
   toggleContextMenu: (e: React.MouseEvent) => void;
   customCSS?: SerializedStyles;
+  contentComponents: ContentComponents | Omit<ContentComponents, "character">;
 }
 
 const ComponentsContextMenuComponent = ({
@@ -25,6 +26,7 @@ const ComponentsContextMenuComponent = ({
   addComponent,
   toggleContextMenu,
   customCSS,
+  contentComponents,
 }: ComponentsContextMenuProps) => {
   const handleClickComponent = (
     e: React.MouseEvent,

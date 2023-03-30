@@ -17,7 +17,6 @@ import {
 import { vh } from "../../assets";
 import ConversationComponent from "../contents/ConversationComponent";
 import IconTextComponent from "../contents/IconTextComponent";
-import DialogueToggle from "../molecules/DialogueToggle";
 import { v4 as uuidv4 } from "uuid";
 import FullAudioComponent from "../contents/FullAudioComponent";
 
@@ -38,9 +37,6 @@ const TemplateDialogue = ({
     | TemplateConversationToggleData
     | TemplateConversationRepeatData;
 
-  // Dialogue Toggle 상태
-  const [isShowPronunciation, setIsShowPronunciation] = useState(false);
-  const [isShowMeaning, setIsShowMeaning] = useState(false);
   const [fullAudioList, setFullAudioList] = useState<string[]>([]);
 
   const fullAudioIndexRef = useRef(0);
@@ -151,16 +147,7 @@ const TemplateDialogue = ({
     });
   }, [thisPage, handleStopFullAudio, listenFullAudio]);
 
-  const rightContentTitle = useMemo(() => {
-    if (!thisPage.rightContents) return;
-    return thisPage.rightContents.map((rightContent, contentIndex) => {
-      if (rightContent.type === "iconText") {
-        return <IconTextComponent contents={rightContent} key={contentIndex} />;
-      }
-    });
-  }, [thisPage]);
-
-  const conversationContents = useMemo(() => {
+  const contents = useMemo(() => {
     if (!thisPage.rightContents) return;
     return thisPage.rightContents.map((rightContent, contentIndex) => {
       if (rightContent.type === "conversation") {
@@ -168,39 +155,16 @@ const TemplateDialogue = ({
           <ConversationComponent
             contents={rightContent}
             key={contentIndex}
-            isShowRepeat={thisPage.type === "TemplateConversationRepeat"}
-            isShowPronunciation={
-              thisPage.type === "TemplateConversationToggle"
-                ? isShowPronunciation
-                : true
-            }
-            isShowMeaning={
-              thisPage.type === "TemplateConversationToggle"
-                ? isShowMeaning
-                : true
-            }
             fullAudioId={`fullAudio_${fullAudioUuidRef.current}`}
+            pageType={thisPage.type}
           />
         );
       }
-    });
-  }, [
-    thisPage.rightContents,
-    isShowPronunciation,
-    isShowMeaning,
-    thisPage.type,
-  ]);
-
-  const handleClickOptions = useCallback(
-    (optionType: "pronunciation" | "meaning") => {
-      if (optionType === "pronunciation") {
-        setIsShowPronunciation(!isShowPronunciation);
-      } else {
-        setIsShowMeaning(!isShowMeaning);
+      if (rightContent.type === "iconText") {
+        return <IconTextComponent contents={rightContent} key={contentIndex} />;
       }
-    },
-    [isShowPronunciation, isShowMeaning],
-  );
+    });
+  }, [thisPage.rightContents, thisPage.type]);
 
   return (
     <DialogueContainer className="layout-panel-wrap grid-h-3-7">
@@ -215,14 +179,7 @@ const TemplateDialogue = ({
       {/* NOTE: key230217 회화는 단일 템플릿이어서 스타일을 위해 conversation-panel-wrap 클래스 추가함 */}
       <div className="layout-panel wide-panel conversation-panel-wrap">
         {/* 230216 회화의 제목이 있을 때에만 사용 */}
-        {/* ComponentTitle */}
-        {rightContentTitle}
-        {/* end ComponentTitle */}
-        {thisPage.type === "TemplateConversationToggle" && (
-          <DialogueToggle handleClickOptions={handleClickOptions} />
-        )}
-        {/* 230217 회화영역 */}
-        {conversationContents}
+        {contents}
       </div>
     </DialogueContainer>
   );

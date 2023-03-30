@@ -3,6 +3,7 @@ import {
   ComponentVideo,
   ActivityGuideCharacterComponent,
   FinalSpeakingComponent,
+  ConversationComponent,
 } from "../../components";
 import ExplainingCharacterComponent from "../../components/contents/ExplainingCharacterComponent";
 import BorderTextBoxComponent from "../../components/contents/BorderTextBoxComponent";
@@ -26,7 +27,6 @@ import {
   CardTabContentData,
   ConversationWordListContentData,
   ImageWithDescriptionListContentData,
-  ConversationContentData,
   ImageWithCaptionListContentData,
   ConversationQuizContentData,
   MultiChoiceContentData,
@@ -41,13 +41,13 @@ import {
   MultilevelActionSentenceCardContentData,
   ContentsCardListContentData,
   WordsInOrderContentData,
+  ConversationContentData,
 } from "../types";
 import CharacterCardListComponent from "../../components/contents/CharacterCardListComponent";
 import SpeakingComponent from "../../components/contents/SpeakingComponent";
 import MultilevelActionCardComponent from "../../components/contents/MultilevelActionCardComponent";
 import CardTabComponent from "../../components/contents/CardTabComponent";
 import ConversationWordListComponent from "../../components/contents/ConversationWordListComponent";
-import ConversationComponent from "../../components/contents/ConversationComponent";
 import ImageWithCaptionListComponent from "../../components/contents/ImageWithCaptionListComponent";
 import ConversationQuizComponent from "../../components/contents/ConversationQuizComponent";
 import WordsInOrderComponent from "../../components/contents/WordsInOrderComponent";

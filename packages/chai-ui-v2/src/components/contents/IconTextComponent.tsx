@@ -8,6 +8,9 @@ import { vw } from "../../assets";
 const IconTextWrapper = styled.div`
   display: flex;
   align-items: center;
+  font-weight: 600;
+  font-size: ${vw(26)};
+
   & > img {
     width: ${vw(44)};
     height: ${vw(44)};

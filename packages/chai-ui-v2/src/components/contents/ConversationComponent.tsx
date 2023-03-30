@@ -1,27 +1,30 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { ConversationContentData, useGlobalAudio } from "../../core";
+import {
+  ConversationContentData,
+  TemplateType,
+  useGlobalAudio,
+} from "../../core";
 import { HtmlContentComponent } from "../atoms";
 import SpeakingComponent from "./SpeakingComponent";
 import { v4 as uuidv4 } from "uuid";
 import ImgTemp01 from "../../assets/images/img/temp_profile01.png";
+import DialogueToggle from "../molecules/DialogueToggle";
 
 export interface ConversationComponentProps {
   contents: ConversationContentData;
-  isShowPronunciation?: boolean;
-  isShowMeaning?: boolean;
-  isShowRepeat?: boolean;
   fullAudioId?: string;
+  pageType?: TemplateType;
 }
 
 const ConversationComponent = ({
   contents,
-  isShowPronunciation = true,
-  isShowMeaning = true,
-  isShowRepeat,
   fullAudioId,
+  pageType,
 }: ConversationComponentProps) => {
   const [speakingDialogueIndex, setSpeakingDialogueIndex] = useState(-1);
   const [dialogueAudioUuids, setDialogueAudioUuids] = useState<string[]>([]);
+  const [isShowPronunciation, setIsShowPronunciation] = useState(false);
+  const [isShowMeaning, setIsShowMeaning] = useState(false);
 
   const {
     globalAudioRef,
@@ -106,6 +109,17 @@ const ConversationComponent = ({
     ],
   );
 
+  const handleClickOptions = useCallback(
+    (optionType: "pronunciation" | "meaning") => {
+      if (optionType === "pronunciation") {
+        setIsShowPronunciation(!isShowPronunciation);
+      } else {
+        setIsShowMeaning(!isShowMeaning);
+      }
+    },
+    [isShowPronunciation, isShowMeaning],
+  );
+
   const mainContents = useMemo(() => {
     return contents.data.map((content, contentIndex) => {
       return (
@@ -158,18 +172,19 @@ const ConversationComponent = ({
                 <HtmlContentComponent html={content.meaning} />
               </p>
             )}
-            {isShowRepeat && content.speakingTime !== undefined && (
-              <SpeakingComponent
-                contents={{
-                  id: uuidv4(),
-                  type: "speaking",
-                  data: {
-                    src: content.audio?.src ?? "",
-                    speakingTime: content.speakingTime,
-                  },
-                }}
-              />
-            )}
+            {pageType === "TemplateConversationRepeat" &&
+              content.speakingTime !== undefined && (
+                <SpeakingComponent
+                  contents={{
+                    id: uuidv4(),
+                    type: "speaking",
+                    data: {
+                      src: content.audio?.src ?? "",
+                      speakingTime: content.speakingTime,
+                    },
+                  }}
+                />
+              )}
           </div>
         </li>
       );
@@ -180,11 +195,21 @@ const ConversationComponent = ({
     globalAudioState,
     isShowPronunciation,
     isShowMeaning,
-    isShowRepeat,
     handleClickDialogueCharacter,
+    pageType,
   ]);
 
-  return <ul className="conversation-wrapper">{mainContents}</ul>;
+  return (
+    <>
+      {pageType === "TemplateConversationToggle" && (
+        <DialogueToggle
+          handleClickOptions={handleClickOptions}
+          contentId={contents.id}
+        />
+      )}
+      <ul className="conversation-wrapper">{mainContents}</ul>
+    </>
+  );
 };
 
 export default ConversationComponent;

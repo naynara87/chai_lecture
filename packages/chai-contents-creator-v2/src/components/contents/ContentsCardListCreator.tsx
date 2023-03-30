@@ -6,12 +6,14 @@ import {
   ContentsCardListContentData,
   ContentType,
   ID,
-  LocalStorage,
 } from "chai-ui-v2";
 import { cloneDeep } from "lodash";
 import { useCallback, useEffect, useState } from "react";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
-import { getContentComponentsDefaultValue } from "../../data/appData";
+import {
+  cardContentComponents,
+  getContentComponentsDefaultValue,
+} from "../../data/appData";
 import {
   CommonTemplateComponentLocation,
   DraggableContentCommonProps,
@@ -252,6 +254,7 @@ const ContentsCardListCreator = ({
                       addComponent={addComponent(listIndex)}
                       toggleContextMenu={toggleContextMenu(listIndex)}
                       customCSS={contextMenuStyle}
+                      contentComponents={cardContentComponents}
                     />
                   </TopArea>
                   <DroppableContents

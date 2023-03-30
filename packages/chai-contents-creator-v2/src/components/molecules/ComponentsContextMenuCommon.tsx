@@ -1,7 +1,7 @@
 import { ContentType, ID } from "chai-ui-v2";
 import React from "react";
 import {
-  contentComponents,
+  ContentComponents,
   contentComponentsGroupMap,
   contentComponentsNameMap,
   ContentsGroup,
@@ -19,6 +19,7 @@ export interface ComponentsContextMenuProps {
   position: "contents" | "leftContents" | "rightContents";
   addComponentMap: AddComponentMap;
   toggleContextMenu: (e: React.MouseEvent) => void;
+  contentComponents: ContentComponents;
 }
 
 const ComponentsContextMenuCommon = ({
@@ -27,6 +28,7 @@ const ComponentsContextMenuCommon = ({
   slideId,
   position,
   toggleContextMenu,
+  contentComponents,
 }: ComponentsContextMenuProps) => {
   const { addComponentToCommonTemplate } = addComponentMap;
   const handleClickComponent = (
