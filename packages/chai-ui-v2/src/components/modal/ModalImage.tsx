@@ -56,9 +56,8 @@ const ModalImage = ({
       <ModalBase open={isModalOpen} onClose={handleClose}>
         <div className="modal active">
           <div
-            className={`modal-container base-modal ${
-              isImageModal ? "wide-modal" : ""
-            }`}
+            className={`modal-container base-modal ${isImageModal ? "wide-modal" : ""
+              }`}
           >
             <div className="base-wrapper">
               <button className="btn-close-modal" onClick={handleClose}>

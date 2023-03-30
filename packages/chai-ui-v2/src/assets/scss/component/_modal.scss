@@ -52,6 +52,7 @@
   // height: vh(900);
 
   .btns-wrap {
+    width: 100%;
     margin-top: vh(40);
   }
 
@@ -194,8 +195,9 @@
   .voca-wrap {
     margin-bottom: vh(90);
     margin-right: auto;
-    text-align: left;
     line-height: 1.5;
+    font-size: vw(36);
+    text-align: left;
   }
 
   .chinese {
@@ -232,11 +234,13 @@
     transform: none;
 
     >img {
+      z-index: z(two) + 1;
       width: vw(600);
       margin-top: vh(-130);
     }
 
     .text {
+      z-index: z(two) + 1;
       font-weight: 600;
       font-size: vw(50);
       color: color(gray-ff);
@@ -249,7 +253,7 @@
     @extend %btn;
     @extend %btn-interaction;
 
-    z-index: z(two + 1);
+    z-index: z(two) + 1;
     position: relative;
     width: vw(252);
     margin-top: vh(90);

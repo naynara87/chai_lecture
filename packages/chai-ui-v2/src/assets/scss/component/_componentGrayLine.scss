@@ -3,10 +3,8 @@
 	padding: vh(40) vw(60);
 	border: 1px solid color(gray-db);
 	border-radius: vw(20);
-
-	&-text {
-		font-size: vw(32);
-		line-height: 1.6;
-		white-space: pre-line;
-	}
+	font-size: vw(32);
+	line-height: 1.6;
+	white-space: pre-line;
+	// &-text {}
 }

@@ -41,11 +41,11 @@
 	padding: vh(40) vw(40);
 	border: 1px solid color(gray-db);
 	border-radius: vw(20);
+	font-size: vw(28);
+	white-space: pre-line;
+	text-align: left;
 
 	.text {
-		font-size: vw(28);
-		white-space: pre-line;
-
 		b {
 			font-weight: 400;
 			color: color(red-600);

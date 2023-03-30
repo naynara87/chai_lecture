@@ -27,7 +27,7 @@ const ToggleTextWrapper = styled.div`
   }
 
   .mean {
-    color: ${colorPalette.orange700};
+    color: ${colorPalette.gray800};
   }
 `;
 
