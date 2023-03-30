@@ -15,7 +15,7 @@ const ModalBase = ({
   children,
   open,
   onClose,
-  closeOnBackgroundClick = true,
+  closeOnBackgroundClick = false,
 }: ModalBaseProps) => {
   const handleClose: ModalUnstyledOwnProps["onClose"] = (_, reason) => {
     if (!closeOnBackgroundClick && reason === "backdropClick") {

@@ -5,7 +5,7 @@ import {
   ComponentButtonRadiFillMain,
 } from "../atoms";
 import ImgContinueComponent from "../atoms/ImgContinueComponent";
-import ModalCommon from "./ModalCommon";
+import ModalBase from "./ModalBase";
 // import ComponentButtonRadiBorderMain from "./ComponentButtonRadiBorderMain";
 // import ComponentButtonRadiFillMain from "./ComponentButtonRadiFillMain";
 
@@ -36,36 +36,42 @@ const LayoutModalContinue = ({
 
   return (
     // key설명 - active가 되면 보임
-    <ModalCommon open={isModalOpen} onClose={handleClose}>
-      {/* 제목영역 */}
-      <ModalBaseTitle className="base-ttl">
-        <div className="profile-img-wrap">
-          <ImgContinueComponent />
-        </div>
-        <div className="txt-wrap">
-          <h2 className="ttl">학습 나가기</h2>
-        </div>
-      </ModalBaseTitle>
-      <ModalBaseContents className="base-conts">
-        <div className="dec">
-          아직 학습을 하지 않은 내용이 있어요.
-          <br />
-          학습을 종료 하시겠어요?
-        </div>
-      </ModalBaseContents>
+    <ModalBase open={isModalOpen} onClose={handleClose}>
+      <div className="modal active">
+        <div className="modal-container base-modal">
+          <div className="base-wrapper">
+            {/* 제목영역 */}
+            <ModalBaseTitle className="base-ttl">
+              <div className="profile-img-wrap">
+                <ImgContinueComponent />
+              </div>
+              <div className="txt-wrap">
+                <h2 className="ttl">학습 나가기</h2>
+              </div>
+            </ModalBaseTitle>
+            <ModalBaseContents className="base-conts">
+              <div className="dec">
+                아직 학습을 하지 않은 내용이 있어요.
+                <br />
+                학습을 종료 하시겠어요?
+              </div>
+            </ModalBaseContents>
 
-      {/* key설명 - 버튼이 하나만 들어갈 수도 있음 */}
-      <div className="btns-wrap">
-        <ComponentButtonRadiBorderMain
-          text="계속 학습하기"
-          onClickBtn={handleClose}
-        />
-        <ComponentButtonRadiFillMain
-          text="학습 종료하기"
-          onClickBtn={() => window.close()}
-        />
+            {/* key설명 - 버튼이 하나만 들어갈 수도 있음 */}
+            <div className="btns-wrap">
+              <ComponentButtonRadiBorderMain
+                text="계속 학습하기"
+                onClickBtn={handleClose}
+              />
+              <ComponentButtonRadiFillMain
+                text="학습 종료하기"
+                onClickBtn={() => window.close()}
+              />
+            </div>
+          </div>
+        </div>
       </div>
-    </ModalCommon>
+    </ModalBase>
   );
 };
 

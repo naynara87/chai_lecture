@@ -1,8 +1,8 @@
 import React from "react";
-import ModalCommon from "./ModalCommon";
 import IconClose from "../../assets/images/icon/icon_close_black.svg";
 import styled from "@emotion/styled";
 import { vw, vh } from "../../assets";
+import ModalBase from "./ModalBase";
 
 interface ModalQuestionProps {
   isModalOpen: boolean;
@@ -74,36 +74,46 @@ const ModalQuestionTemplate = ({
     onClickStart();
   };
   return (
-    <ModalCommon open={isModalOpen} onClose={handleClose} wideModal={wideModal}>
-      <button className="btn-close-modal" onClick={handleClose}>
-        <img src={IconClose} alt="닫기" />
-      </button>
-      <ModalQuestionWrapper>
-        <p className="question-tit-wrapper">
-          <b>{quizTypeText} </b>총 <b>{quizTotalLength}</b>문항
-        </p>
-        <div className="question-cont-wrapper">
-          <p className="question-sub">{`<시험 중 유의사항>`}</p>
-          <p className="question-cont">
-            1. 시험 응시 전 네트워크 상태를 확인해 주세요.
-            <br />
-            2. 제시된 문항을 모두 풀어 주세요.
-            <br />
-            3. 답안 선택 후 확인 버튼을 꼭 눌러 주세요. (확인 버튼을 누른 뒤엔
-            답변 수정이 불가합니다.)
-            <br />
-            4. ‘채점하기’ 버튼을 누르기 전 네트워크가 끊기면 처음부터 다시
-            문제를 풀어야 합니다.
-            <br />
-            5. ‘채점하기’ 버튼을 누르기 전까지는 문항을 자유롭게 이동하여 문제를
-            풀 수 있습니다.
-            <br />
-            6. 실제 시험에 임하는 자세로 문제를 풀어 주세요.
-          </p>
+    <ModalBase open={isModalOpen} onClose={handleClose}>
+      <div className="modal active">
+        <div
+          className={`modal-container base-modal ${
+            wideModal ? "wide-modal" : ""
+          }`}
+        >
+          <div className="base-wrapper">
+            <button className="btn-close-modal" onClick={handleClose}>
+              <img src={IconClose} alt="닫기" />
+            </button>
+            <ModalQuestionWrapper>
+              <p className="question-tit-wrapper">
+                <b>{quizTypeText} </b>총 <b>{quizTotalLength}</b>문항
+              </p>
+              <div className="question-cont-wrapper">
+                <p className="question-sub">{`<시험 중 유의사항>`}</p>
+                <p className="question-cont">
+                  1. 시험 응시 전 네트워크 상태를 확인해 주세요.
+                  <br />
+                  2. 제시된 문항을 모두 풀어 주세요.
+                  <br />
+                  3. 답안 선택 후 확인 버튼을 꼭 눌러 주세요. (확인 버튼을 누른
+                  뒤엔 답변 수정이 불가합니다.)
+                  <br />
+                  4. ‘채점하기’ 버튼을 누르기 전 네트워크가 끊기면 처음부터 다시
+                  문제를 풀어야 합니다.
+                  <br />
+                  5. ‘채점하기’ 버튼을 누르기 전까지는 문항을 자유롭게 이동하여
+                  문제를 풀 수 있습니다.
+                  <br />
+                  6. 실제 시험에 임하는 자세로 문제를 풀어 주세요.
+                </p>
+              </div>
+            </ModalQuestionWrapper>
+            <ButtonStart onClick={handleClose}>시작</ButtonStart>
+          </div>
         </div>
-      </ModalQuestionWrapper>
-      <ButtonStart onClick={handleClose}>시작</ButtonStart>
-    </ModalCommon>
+      </div>
+    </ModalBase>
   );
 };
 

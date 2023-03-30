@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
-import ModalCommon from "./ModalCommon";
 import IconClose from "../../assets/images/icon/icon_close_white.svg";
+import ModalBase from "./ModalBase";
 
 interface ModalImageProps {
   imageSrc: string;
@@ -53,18 +53,24 @@ const ModalImage = ({
 
   return (
     <ModalImageContainer>
-      <ModalCommon
-        open={isModalOpen}
-        onClose={handleClose}
-        wideModal={isImageModal}
-      >
-        <button className="btn-close-modal" onClick={handleClose}>
-          <img src={IconClose} alt="닫기" />
-        </button>
-        <ModalImageWrapper>
-          <ModalInnerBox src={imageSrc} />
-        </ModalImageWrapper>
-      </ModalCommon>
+      <ModalBase open={isModalOpen} onClose={handleClose}>
+        <div className="modal active">
+          <div
+            className={`modal-container base-modal ${
+              isImageModal ? "wide-modal" : ""
+            }`}
+          >
+            <div className="base-wrapper">
+              <button className="btn-close-modal" onClick={handleClose}>
+                <img src={IconClose} alt="닫기" />
+              </button>
+              <ModalImageWrapper>
+                <ModalInnerBox src={imageSrc} />
+              </ModalImageWrapper>
+            </div>
+          </div>
+        </div>
+      </ModalBase>
     </ModalImageContainer>
   );
 };
