@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 import {
   CornerListData,
+  HeaderCharacterComponent,
   ID,
-  ImgCharacterComponent,
   LessonMeta,
   Page,
 } from "chai-ui-v2";
@@ -82,6 +82,10 @@ const LayoutHeader = ({
     return ((cornerIndex + 1) / corners.length) * 100;
   }, [corners, cornerId]);
 
+  const character = useMemo(() => {
+    return <HeaderCharacterComponent cornerId={cornerId ?? ""} />;
+  }, [cornerId]);
+
   return (
     <CaiHeader
       className="cai-hd"
@@ -93,27 +97,23 @@ const LayoutHeader = ({
         lessonColor={getLessonColors(lessonColorCode)}
       >
         <HdChaWrap
-          className={`hd-cha-wrap ${cornerPercent > 50 ? "second-half" : "none"
-            }`}
+          className={`hd-cha-wrap ${
+            cornerPercent > 50 ? "second-half" : "none"
+          }`}
           lessonColor={getLessonColors(lessonColorCode)}
         >
           <p className="txt">{currentPage?.name}</p>
-          <ImgCharacterComponent
-            characterType="kkungiHeader"
-            characterAlt="꿍이"
-          />
+          {character}
         </HdChaWrap>
         <span className="corner-name">{cornerName}</span>
         <HdChaWrap
-          className={`hd-cha-wrap ${cornerPercent > 50 ? "none" : "first-half"
-            }`}
+          className={`hd-cha-wrap ${
+            cornerPercent > 50 ? "none" : "first-half"
+          }`}
           lessonColor={getLessonColors(lessonColorCode)}
         >
           <p className="txt">{currentPage?.name}</p>
-          <ImgCharacterComponent
-            characterType="kkungiHeader"
-            characterAlt="꿍이"
-          />
+          {character}
         </HdChaWrap>
         <div className="bg-wrap">
           <div className="bg-flag"></div>

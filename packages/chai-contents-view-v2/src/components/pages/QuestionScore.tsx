@@ -6,6 +6,7 @@ import {
   LocalStorage,
   QuizData,
   ModalConfirm,
+  ComponentProblemDefault,
 } from "chai-ui-v2";
 import { useMemo, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
@@ -13,7 +14,7 @@ import { getPageUrl } from "../../util/url";
 import LayoutQuestionHeader from "../molecules/LayoutQuestionHeader";
 
 const QuestionScore = () => {
-  const [quizPageIdx, setQuizPageIdx] = useState(0);
+  const [quizPageIdx, setQuizPageIdx] = useState(-1);
   const [isModalRestartConfirmOpen, setIsModalRestartConfirmOpen] =
     useState(false);
   const [isModalExitConfirmOpen, setIsModalExitConfirmOpen] = useState(false);
@@ -63,11 +64,15 @@ const QuestionScore = () => {
             />
           </div>
           <div className="layout-panel">
-            <ComponentProblemCommentary
-              quizPageIdx={quizPageIdx}
-              quizTemplateData={state.pages[quizPageIdx].data}
-              quizPageData={quizPageData}
-            />
+            {quizPageIdx < 0 ? (
+              <ComponentProblemDefault />
+            ) : (
+              <ComponentProblemCommentary
+                quizPageIdx={quizPageIdx}
+                quizTemplateData={state.pages[quizPageIdx].data}
+                quizPageData={quizPageData}
+              />
+            )}
           </div>
         </div>
         <ModalConfirm
