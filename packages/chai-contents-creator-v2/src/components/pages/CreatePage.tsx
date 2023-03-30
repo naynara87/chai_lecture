@@ -8,11 +8,13 @@ import {
 } from "../../styles/template";
 import TemplateMainLoading from "../templates/TemplateLoading";
 import Button from "../atoms/Button";
-import usePage from "../../hooks/usePage";
 import useComponent from "../../hooks/useComponent";
 import { DragDropContext } from "react-beautiful-dnd";
 import { PREVIEW_URL } from "../../constants/url";
 import ModalIntroduction from "../molecules/modal/ModalIntroduction";
+import useCreatePage from "../../hooks/useCreatePage";
+import { css } from "@emotion/react";
+import { isDevEnv } from "../../constants/env";
 
 const CommonButtonContainer = styled.div`
   padding-bottom: 16px;
@@ -22,10 +24,17 @@ const CommonButtonContainer = styled.div`
   text-align: right;
 `;
 
+const saveButtonCss = css`
+  visibility: ${isDevEnv ? "visible" : "hidden"};
+`;
+
 const CreatePage = () => {
   const [isModalIntroductionOpen, setIsModalIntroductionOpen] = useState(false);
 
   const { getTemplate } = useTemplate();
+
+  const { returnUsePage, handleSavePageData, initialPageData } =
+    useCreatePage();
 
   const {
     slides,
@@ -46,9 +55,10 @@ const CreatePage = () => {
     updateContentToWordsInOrderTemplate,
     updateContentToSentenceInOrderTemplate,
     updateContentToFinalSpeakingTemplate,
-  } = usePage();
+  } = returnUsePage;
 
   useEffect(() => {
+    // preview를 위한 localStorage 데이터 초기화
     removePageDataFromLocalStorage();
     return () => {
       removePageDataFromLocalStorage();
@@ -66,17 +76,15 @@ const CreatePage = () => {
     setIsModalIntroductionOpen(true);
   }, []);
 
-  const [isLoading] = useState(false); // setIsLoading
-
   return (
     <CreateTemplateWrap>
       <CreateTemplateInner>
         <CommonButtonContainer>
           <Button
+            id="btn_save"
             type="button"
-            onClick={() => {
-              console.log("저장");
-            }}
+            onClick={handleSavePageData}
+            customCSS={saveButtonCss}
           >
             테스트 저장 버튼
           </Button>
@@ -87,7 +95,7 @@ const CreatePage = () => {
             학습 변경 간지 추가
           </Button>
         </CommonButtonContainer>
-        {isLoading ? (
+        {!initialPageData ? (
           <TemplateMainLoading />
         ) : (
           <DragDropContext onDragEnd={handleOnDragEnd}>

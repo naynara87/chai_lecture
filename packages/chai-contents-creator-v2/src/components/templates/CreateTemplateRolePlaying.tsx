@@ -120,7 +120,7 @@ const CreateTemplateRolePlaying = ({
       ...thisSlide.iconText,
       data: {
         ...thisSlide.iconText.data,
-        text: iconText,
+        text: iconText ?? "",
       },
     };
     updateIconText(updatedIconText);
@@ -188,9 +188,12 @@ const CreateTemplateRolePlaying = ({
   const handleEndEditGuideText = () => {
     if (!guideContent) return;
     const updatedGuideContent: ActivityGuideCharacterContentData = {
-      ...guideContent,
+      id: guideContent.id,
+      type: guideContent.type,
       data: {
-        ...guideContent.data,
+        character: {
+          src: guideContent?.data.character.src ?? "",
+        },
         text: guideText,
       },
     };
@@ -200,7 +203,8 @@ const CreateTemplateRolePlaying = ({
   const handleSubmitGuideCharacterUrl = (url: string) => {
     if (!guideContent) return;
     const updatedGuideContent: ActivityGuideCharacterContentData = {
-      ...guideContent,
+      id: guideContent.id,
+      type: guideContent.type,
       data: {
         ...guideContent.data,
         character: {

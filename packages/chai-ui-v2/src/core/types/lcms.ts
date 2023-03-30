@@ -23,7 +23,9 @@ export interface PageListDataBody {
 
 export interface ContentData {
   page_id: ID;
-  contents_data: string;
+  contents_type: string; // 10 : 학습, 20 : 퀴즈, 30 : 테스트
+  contents_uuid: string; // contents_data에 대한 uuid
+  contents_data: string; // JSON.parse 필요
 }
 
 /**

@@ -16,4 +16,5 @@ export { default as ImgTemp01Component } from "./ImgTemp01Component";
 export { default as ImgTemp02Component } from "./ImgTemp02Component";
 export { default as ImgVocaComponent } from "./ImgVocaComponent";
 export { default as HtmlContentComponent } from "./HtmlContentComponent";
+export * from "./Loading";
 export { default as HeaderCharacterComponent } from "./HeaderCharacterComponent";
