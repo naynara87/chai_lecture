@@ -31,7 +31,10 @@ const ModalLayoutChange = ({
   return (
     <ModalBase open={isModalOpen} onClose={handleClose}>
       <ModalInner>
-        <ChooseLayout onClickLayout={handleLayoutChange} />
+        <ChooseLayout
+          onClickLayout={handleLayoutChange}
+          onClose={handleClose}
+        />
       </ModalInner>
     </ModalBase>
   );

@@ -7,6 +7,7 @@ import {
   contentComponentsNameMap,
   ContentsGroup,
 } from "../../data/appData";
+import { contentComponentsThumbMap } from "../../data/thumbnailData";
 import {
   CreateTemplateNav,
   CreateTemplateNavWrap,
@@ -56,7 +57,13 @@ const ComponentsContextMenuComponent = ({
                       key={contentType}
                       onClick={(e) => handleClickComponent(e, contentType)}
                     >
-                      <div className="thumb-comp">50*50</div>
+                      <img
+                        className="thumb-comp"
+                        src={
+                          contentComponentsThumbMap[contentType] || contentType
+                        }
+                        alt=""
+                      />
                       <p className="txt-comp">
                         {contentComponentsNameMap[contentType] || contentType}
                       </p>

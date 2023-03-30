@@ -13,6 +13,21 @@ import {
   TemplateData,
   TemplateRolePlayingData,
 } from "chai-ui-v2";
+
+import ThumbTemplate01 from "../assets/images/icon/thumbnail/template01.png";
+import ThumbTemplateH37 from "../assets/images/icon/thumbnail/template_h_3_7.png";
+import ThumbTemplateH55 from "../assets/images/icon/thumbnail/template_h_5_5.png";
+import ThumbTemplateQuizConversation from "../assets/images/icon/thumbnail/template_quiz_conversation.png";
+import ThumbTemplateQuizSentencesInOrder from "../assets/images/icon/thumbnail/template_quiz_sentences_in_order.png";
+import ThumbTemplateQuizSpeaking from "../assets/images/icon/thumbnail/template_quiz_speaking.png";
+import ThumbTemplateQuizWordsInOrder from "../assets/images/icon/thumbnail/template_quiz_words_in_order.png";
+import ThumbTemplateRolePlaying from "../assets/images/icon/thumbnail/template_role_playing.png";
+import ThumbTemplateWordCard from "../assets/images/icon/thumbnail/template_word_card.png";
+import ThumbTemplateQuizMultiChoice from "../assets/images/icon/thumbnail/template_quiz_multi_choice.png";
+import ThumbTemplateConversation from "../assets/images/icon/thumbnail/template_conversation.png";
+import TemplateConversationToggle from "../assets/images/icon/thumbnail/template_conversation_toggle.png";
+import TemplateConversationRepeat from "../assets/images/icon/thumbnail/template_conversation_repeat.png";
+
 import { ConversationDirection } from "../components/templates/CreateTemplateRolePlaying";
 
 type PageLayout = {
@@ -49,17 +64,17 @@ export const commonLayouts: PageLayout[] = [
   {
     type: "Template01",
     name: "1단 레이아웃",
-    image: "https://via.placeholder.com/150",
+    image: ThumbTemplate01,
   },
   {
     type: "Template_H_3_7",
     name: "3:7 레이아웃",
-    image: "https://via.placeholder.com/150",
+    image: ThumbTemplateH37,
   },
   {
     type: "Template_H_5_5",
     name: "5:5 레이아웃",
-    image: "https://via.placeholder.com/150",
+    image: ThumbTemplateH55,
   },
 ];
 
@@ -74,22 +89,22 @@ export const conversationLayouts: ConversationPageLayout[] = [
   {
     type: "TemplateConversation",
     name: "회화 학습",
-    image: "https://via.placeholder.com/150",
+    image: ThumbTemplateConversation,
   },
   {
     type: "TemplateConversationToggle",
     name: "회화 토글 학습",
-    image: "https://via.placeholder.com/150",
+    image: TemplateConversationToggle,
   },
   {
     type: "TemplateConversationRepeat",
     name: "회화 따라 말하기 학습",
-    image: "https://via.placeholder.com/150",
+    image: TemplateConversationRepeat,
   },
   {
     type: "TemplateWordCard",
     name: "단어 카드형",
-    image: "https://via.placeholder.com/150",
+    image: ThumbTemplateWordCard,
   },
 ];
 
@@ -105,27 +120,27 @@ export const quizLayouts: QuizPageLayout[] = [
   {
     type: "TemplateQuizConversation",
     name: "대화형 퀴즈",
-    image: "https://via.placeholder.com/150",
+    image: ThumbTemplateQuizConversation,
   },
   {
     type: "TemplateQuizMultiChoice",
     name: "2지선다 퀴즈",
-    image: "https://via.placeholder.com/150",
+    image: ThumbTemplateQuizMultiChoice,
   },
   {
     type: "TemplateQuizWordsInOrder",
     name: "단어 배열형",
-    image: "https://via.placeholder.com/150",
+    image: ThumbTemplateQuizWordsInOrder,
   },
   {
     type: "TemplateQuizSentencesInOrder",
     name: "문장 배열형",
-    image: "https://via.placeholder.com/150",
+    image: ThumbTemplateQuizSentencesInOrder,
   },
   {
     type: "TemplateQuizSpeaking",
     name: "종합 말하기",
-    image: "https://via.placeholder.com/150",
+    image: ThumbTemplateQuizSpeaking,
   },
 ];
 
@@ -136,7 +151,7 @@ export const rolePlayingLayouts: RolePlayingPageLayout[] = [
   {
     type: "TemplateRolePlaying",
     name: "롤 플레잉",
-    image: "https://via.placeholder.com/150",
+    image: ThumbTemplateRolePlaying,
   },
 ];
 
@@ -206,6 +221,16 @@ export const characterCardContentComponents: Omit<
   mixture: ["conversation"],
 };
 
+export const conversationComponents: Omit<ContentComponents, "character"> = {
+  common: ["iconText"],
+  mixture: ["conversation"],
+};
+
+export const wordCardComponents: Omit<ContentComponents, "character"> = {
+  common: ["iconText"],
+  mixture: ["contentsCardList"],
+};
+
 export const contentComponentsGroupMap: Record<
   keyof ContentComponents,
   string
@@ -241,6 +266,7 @@ export const contentComponentsNameMap: Partial<Record<ContentType, string>> = {
   conversation: "대화",
   audioAndWordsCarousel: "음성+단어장",
 };
+
 export const characterCardDefaultData = Object.freeze({
   title: "",
   description: "",

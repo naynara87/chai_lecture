@@ -1,5 +1,6 @@
 import { TemplateWordCardData } from "chai-ui-v2";
-import useComponentWordCardContext from "../../hooks/useComponentWordCardContext";
+import { wordCardComponents } from "../../data/appData";
+import useComponentContext from "../../hooks/useComponentContext";
 import {
   CreateEditMain,
   CreateTemplateChoiceBtnWrap,
@@ -20,10 +21,10 @@ const CreateTemplateWordCard = ({
   ...pageHeaderProps
 }: PageCommonProps) => {
   const {
-    ComponentsWordCardContextMenuCommon,
+    ComponentsContextMenuCommon,
     isComponentsContextMenuOpen,
     toggleContextMenu,
-  } = useComponentWordCardContext();
+  } = useComponentContext();
 
   const { focusedId, setFocusedId, getComponent, getDroppableId } =
     returnUseComponent;
@@ -65,12 +66,14 @@ const CreateTemplateWordCard = ({
               <button className="btn-comp-select" onClick={toggleContextMenu}>
                 컴포넌트 선택
               </button>
-              <ComponentsWordCardContextMenuCommon
+
+              <ComponentsContextMenuCommon
                 isComponentsContextMenuOpen={isComponentsContextMenuOpen}
                 addComponentMap={addComponentMap}
                 slideId={slideId}
                 position="rightContents"
                 toggleContextMenu={toggleContextMenu}
+                contentComponents={wordCardComponents}
               />
             </CreateTemplateChoiceBtnWrap>
             {thisSlide.rightContents &&
