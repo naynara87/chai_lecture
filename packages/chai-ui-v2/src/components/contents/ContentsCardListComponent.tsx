@@ -5,7 +5,7 @@ import {
   useGlobalAudio,
 } from "../../core";
 import styled from "@emotion/styled";
-import { vh, vw } from "../../assets";
+import { colorPalette, vh, vw } from "../../assets";
 import { v4 as uuidv4 } from "uuid";
 import IconPauseFillButton from "../atoms/Button/IconPauseFillButton";
 import { ComponentButtonPlay } from "../atoms";
@@ -24,23 +24,28 @@ const ContentBox = styled.div<TextBoxProps>`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-image: linear-gradient(to top, #e3e8ff 0%, #e9faff 100%);
   width: ${vw(205)};
   min-height: ${vh(269)};
   margin: 0 ${vw(30)} 0 0;
   padding: ${vh(60)} ${vw(75)};
+  border: ${vw(3)} solid ${colorPalette.subblue};
   border-radius: 1.5vw;
+  background-image: linear-gradient(to top, #e3e8ff 0%, #e9faff 100%);
+  font-size: ${vw(28)};
   transition: width 0.2s, height 0.2s;
 
   ${(props) =>
     !props.isAccent &&
     `
     background-image: none;
-    border: 3px solid #D6E9FF;
   `}
 
   &:last-of-type {
     margin: 0;
+  }
+
+  > div {
+    margin-bottom: ${vw(24)};
   }
 `;
 
