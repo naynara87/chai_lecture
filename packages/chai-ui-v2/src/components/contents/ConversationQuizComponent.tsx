@@ -173,7 +173,9 @@ const ConversationQuizComponent = ({
                     );
                   }}
                 >
-                  <ImgProfileDefaultComponent />
+                  <ImgProfileDefaultComponent
+                    imageSrc={content.character.src}
+                  />
                 </button>
               </div>
             </div>

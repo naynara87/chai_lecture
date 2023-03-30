@@ -49,6 +49,7 @@ const CharacterInputWrapper = ({
                 const target = e.target as HTMLInputElement;
                 characterSetName(target.value);
               }}
+              defaultValue={characterName}
             />
           </div>
           <UrlInputWrapper typeText="이미지" onSubmit={characterSetImage} />

@@ -302,6 +302,7 @@ const ConversationQuizCreator = ({
                 const target = e.target as HTMLInputElement;
                 setName(contentIndex, target.value);
               }}
+              defaultValue={thisContent.data[contentIndex].character.name}
             />
           </div>
           <div className="txt-wrap">
