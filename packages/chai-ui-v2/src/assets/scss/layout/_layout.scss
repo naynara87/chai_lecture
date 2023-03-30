@@ -54,7 +54,7 @@
   }
 
   >*:not(:first-child) {
-    margin-top: vh(40);
+    margin: vh(40) auto 0;
   }
 
   .description-bubble-container,

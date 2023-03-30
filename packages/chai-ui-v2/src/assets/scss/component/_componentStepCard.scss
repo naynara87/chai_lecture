@@ -11,7 +11,12 @@
   margin: 0 auto;
   padding: vh(70) vw(70);
   border-radius: vw(30);
-  transition: width 0.2s, height 0.2s;
+  transition: width 0.2s,
+  height 0.2s;
+
+  >div {
+    font-size: vw(40);
+  }
 
   .chinese {
     font-weight: 600;
@@ -54,6 +59,10 @@
   min-height: vw(468);
   padding: vh(50) vw(50);
   text-align: center;
+
+  >div {
+    font-size: vw(32);
+  }
 
   .text {
     font-size: vw(28);

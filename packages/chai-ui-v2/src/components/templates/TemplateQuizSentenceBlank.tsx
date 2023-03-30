@@ -33,6 +33,7 @@ const DialogueContainer = styled.div`
   .conversation-wrap .chinese {
     display: inline;
     word-break: break-all;
+    font-weight: 400;
   }
 `;
 
@@ -51,7 +52,7 @@ export type SentenceInOrderChoice = {
   answerIndex: number;
 };
 
-interface TemplateQuizSentenceBlankProps extends TemplateProps {}
+interface TemplateQuizSentenceBlankProps extends TemplateProps { }
 
 const TemplateQuizSentenceBlank = ({
   template,
@@ -140,9 +141,9 @@ const TemplateQuizSentenceBlank = ({
       0,
       isCorrect === undefined
         ? thisPage.mainContents.data.quizPopup.data.correct.soundEffect?.src ??
-            ""
+        ""
         : thisPage.mainContents.data.quizPopup.data.incorrect.soundEffect
-            ?.src ?? "",
+          ?.src ?? "",
     );
   }, [handleClickAudioButton, isCorrect, thisPage.mainContents]);
 
@@ -224,9 +225,9 @@ const TemplateQuizSentenceBlank = ({
             videoSrc={
               isCorrect === undefined
                 ? thisPage.mainContents.data.quizPopup.data.correct.video
-                    ?.src ?? ""
+                  ?.src ?? ""
                 : thisPage.mainContents.data.quizPopup.data.incorrect.video
-                    ?.src ?? ""
+                  ?.src ?? ""
             }
           />
         </>
