@@ -41,6 +41,7 @@ const useLesson = (lessonId: ID | undefined) => {
       onError: (error) => {
         console.log("코너 리스트 조회 실패");
       },
+      refetchOnWindowFocus: false,
     },
   );
 

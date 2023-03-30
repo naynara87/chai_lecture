@@ -26,7 +26,6 @@ const useCorner = (cornerId: ID | undefined) => {
         );
         setPages(currentCorner?.data!);
         setCornerMetaData(currentCorner?.meta);
-        console.log("useCorner", cornerId, pages);
 
         // const pages = data?.body?.data?.map((pageData: ContentData) =>
         //   pageDataConverter(pageData),
@@ -38,6 +37,7 @@ const useCorner = (cornerId: ID | undefined) => {
       onError: (error) => {
         console.log("코너 리스트 조회 실패");
       },
+      refetchOnWindowFocus: false,
     },
   );
 

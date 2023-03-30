@@ -27,7 +27,8 @@
     "typescript": "*",
     "uuid": "*",
     "web-vitals": "*",
-    "swiper": "*"
+    "swiper": "*",
+    "react-cookie": "*"
   },
   "scripts": {
     "start": "craco start",
