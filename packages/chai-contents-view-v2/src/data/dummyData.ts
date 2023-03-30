@@ -9,7 +9,7 @@ export const v2LessonData: LessonData = {
     courseId: 1,
     courseName: "차이홍(샘플데이터)-빨강",
     colorTypeCd: "10",
-    lessonTpCd: "20",
+    lessonTpCd: "10",
   },
   // 코너 리스트
   data: [
