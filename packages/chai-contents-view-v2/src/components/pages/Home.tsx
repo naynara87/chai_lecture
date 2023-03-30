@@ -1,9 +1,7 @@
-import React, { useCallback, useEffect } from "react";
-import { ID } from "chai-ui-v2";
+import React, { useCallback, useEffect, useMemo } from "react";
+import { getCookie, ID, InitialAppData } from "chai-ui-v2";
 import { getPageUrl } from "../../util/url";
 import { useNavigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
-import { currentCornerIdState } from "../../state/currentCornerId";
 import useLesson from "../../hooks/useLesson";
 import useCorner from "../../hooks/useCorner";
 import styled from "@emotion/styled";
@@ -34,39 +32,53 @@ const Loader = styled.div`
 
 const Home = () => {
   const navigate = useNavigate();
-  const { lessonMetaData, corners } = useLesson(93);
-  const [currentCornerId] = useRecoilState(currentCornerIdState);
+  const learningLogCookieData = getCookie<InitialAppData>("bubble-player");
+
+  const lessonIdMemo: ID | undefined = useMemo(() => {
+    return learningLogCookieData?.lessonId ?? 1;
+  }, [learningLogCookieData?.lessonId]);
+
+  const { lessonMetaData, corners } = useLesson(lessonIdMemo);
+
   const { cornerMetaData, pages } = useCorner(
-    currentCornerId ?? corners[0]?.id,
+    learningLogCookieData?.turnId ?? corners[0]?.id,
   );
 
   const getUrl = useCallback(
-    (nextCornerId: ID) => {
+    (nextCornerId: ID, nextPageId: ID) => {
       if (!lessonMetaData) return;
       if (!cornerMetaData) return;
       const url = getPageUrl(
         lessonMetaData?.courseId,
         cornerMetaData?.lessonId,
         nextCornerId,
-        pages[0].id,
+        nextPageId,
       );
       navigate(url);
     },
-    [cornerMetaData, lessonMetaData, navigate, pages],
+    [cornerMetaData, lessonMetaData, navigate],
   );
 
-  const setCurrentCorner = useCallback(() => {
+  const setInitialData = useCallback(() => {
     if (corners.length < 1) return;
+    if (pages.length < 1) return;
     const currentCornerIndex = corners.findIndex(
-      (corner) => corner.id.toString() === currentCornerId?.toString(),
+      (corner) =>
+        corner.id.toString() === learningLogCookieData?.turnId?.toString(),
     );
-    const nextCorner = corners[currentCornerIndex + 1];
-    getUrl(nextCorner.id);
-  }, [corners, currentCornerId, getUrl]);
+    const currentPageIndex = pages.findIndex(
+      (page) =>
+        page.id.toString() === learningLogCookieData?.pageId?.toString(),
+    );
+    const nextCorner = corners[currentCornerIndex] ?? corners[0];
+    const nextPage = pages[currentPageIndex] ?? pages[0];
+
+    getUrl(nextCorner.id, nextPage.id);
+  }, [corners, learningLogCookieData, getUrl, pages]);
 
   useEffect(() => {
-    setCurrentCorner();
-  }, [setCurrentCorner]);
+    setInitialData();
+  }, [setInitialData]);
 
   return <Loader />;
 };

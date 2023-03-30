@@ -143,3 +143,17 @@ export type QuizData = {
   state: "end" | "active" | "";
   isCorrect?: boolean;
 };
+
+// 저작도구로부터 cookie 에서 받아오는 초기데이터
+export interface InitialAppData {
+  uno: string;
+  uid: string;
+  applId: string;
+  turnId?: string;
+  courseId: string;
+  pageId?: string;
+  subjectId: string;
+  courseName: string;
+  lessonId: string;
+  lessonName: string;
+}
