@@ -16,7 +16,10 @@ import {
   DraggableContentCommonProps,
 } from "../../types/page";
 import useComponentContext from "../../hooks/useComponentContext";
-import { getContentComponentsDefaultValue } from "../../data/appData";
+import {
+  cardContentComponents,
+  getContentComponentsDefaultValue,
+} from "../../data/appData";
 import { cloneDeep } from "lodash";
 import useComponent from "../../hooks/useComponent";
 import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
@@ -324,6 +327,7 @@ const CardTabCreator = ({
                         }
                         addComponent={addComponent(cardIndex)}
                         toggleContextMenu={toggleContextMenu}
+                        contentComponents={cardContentComponents}
                       />
                     )}
                     {thisContent.data[focusedTabTitleIndex].cards.length >

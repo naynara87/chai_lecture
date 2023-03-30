@@ -1,5 +1,6 @@
 import { Template01Data } from "chai-ui-v2";
 import React from "react";
+import { contentComponents } from "../../data/appData";
 import useComponentContext from "../../hooks/useComponentContext";
 import {
   CreateEditMainWrap,
@@ -53,6 +54,7 @@ const CreateTemplate01 = ({
                 slideId={slideId}
                 position="contents"
                 toggleContextMenu={toggleContextMenu}
+                contentComponents={contentComponents}
               />
             </CreateTemplateChoiceBtnWrap>
             {thisSlide.contents.map((content, index) => {

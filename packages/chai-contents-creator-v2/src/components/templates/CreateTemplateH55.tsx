@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { Template_H_5_5Data } from "chai-ui-v2";
+import { contentComponents } from "../../data/appData";
 import useComponentContext from "../../hooks/useComponentContext";
 import {
   CreateEditMainWrap,
@@ -65,6 +66,7 @@ const CreateTemplateH55 = ({
                 slideId={slideId}
                 position="leftContents"
                 toggleContextMenu={toggleContextMenu}
+                contentComponents={contentComponents}
               />
             </CreateTemplateChoiceBtnWrap>
             {thisSlide.leftContents.map((content, index) => {
@@ -96,6 +98,7 @@ const CreateTemplateH55 = ({
                 slideId={slideId}
                 position="rightContents"
                 toggleContextMenu={toggleContextMenuRight}
+                contentComponents={contentComponents}
               />
             </CreateTemplateChoiceBtnWrap>
             {thisSlide.rightContents.map((content, index) => {

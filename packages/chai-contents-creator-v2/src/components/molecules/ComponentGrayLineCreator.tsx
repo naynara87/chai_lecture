@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { AllTemplateData, Content, ContentType, ID } from "chai-ui-v2";
 import React from "react";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
+import { grayLineContentComponents } from "../../data/appData";
 import useComponentContext from "../../hooks/useComponentContext";
 import { CommonTemplateComponentLocation } from "../../types/page";
 import DroppableContents from "./DroppableContents";
@@ -71,6 +72,7 @@ const ComponentGrayLineCreator = ({
           isComponentsContextMenuOpen={isComponentsContextMenuOpen}
           addComponent={addComponent}
           toggleContextMenu={toggleContextMenu}
+          contentComponents={grayLineContentComponents}
         />
       </TopArea>
       <DragDropContext onDragEnd={handleOnDragEnd}>
