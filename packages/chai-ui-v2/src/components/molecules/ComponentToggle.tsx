@@ -19,7 +19,7 @@ const ComponentToggle = ({
         <span className="toggle-name">한어병음</span>
         <input
           type="checkbox"
-          name="input1"
+          name={`${contents.id}-input1`}
           id={`${contents.id}-input1`}
           className="toggle-input none"
         />
@@ -36,7 +36,7 @@ const ComponentToggle = ({
         <span className="toggle-name">해석</span>
         <input
           type="checkbox"
-          name="input2"
+          name={`${contents.id}-input2`}
           id={`${contents.id}-input2`}
           className="toggle-input none"
         />
