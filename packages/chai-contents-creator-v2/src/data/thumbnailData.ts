@@ -23,6 +23,7 @@ import ThumbToggleSentenceList from "../assets/images/icon/thumbnail/comp_toggle
 import ThumbVideo from "../assets/images/icon/thumbnail/comp_video.png";
 import ThumbWordsCarousel from "../assets/images/icon/thumbnail/comp_words_carousel.png";
 import ThumbImage from "../assets/images/icon/thumbnail/comp_image.png";
+import ThumbRecorder from "../assets/images/icon/thumbnail/comp_recording.png";
 
 export const contentComponentsThumbMap: Partial<Record<ContentType, string>> = {
   activityGuideCharacter: ThumbActivityGuide,
@@ -43,7 +44,7 @@ export const contentComponentsThumbMap: Partial<Record<ContentType, string>> = {
   multiLevelActionSentenceCard: ThumbMultiLevelActionSentenceCard,
   notiCharacterList: ThumbNotiCharacterList,
   numberingTextList: ThumbNumberingTextList,
-  // recorder: ThumbSpeaking,
+  recorder: ThumbRecorder,
   speaking: ThumbSpeaking,
   text: ThumbText,
   toggleSentenceList: ThumbToggleSentenceList,

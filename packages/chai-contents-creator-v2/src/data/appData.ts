@@ -14,18 +14,19 @@ import {
   TemplateRolePlayingData,
 } from "chai-ui-v2";
 
-import ThumbTemplateConversation from "../../../chai-contents-creator-v2/src/assets/images/icon/thumbnail/template_conversation.png";
-
-import ThumbTemplate01 from "../../../chai-contents-creator-v2/src/assets/images/icon/thumbnail/template01.png";
-import ThumbTemplateH37 from "../../../chai-contents-creator-v2/src/assets/images/icon/thumbnail/template_h_3_7.png";
-import ThumbTemplateH55 from "../../../chai-contents-creator-v2/src/assets/images/icon/thumbnail/template_h_5_5.png";
-import ThumbTemplateQuizConversation from "../../../chai-contents-creator-v2/src/assets/images/icon/thumbnail/template_quiz_conversation.png";
-import ThumbTemplateQuizSentencesInOrder from "../../../chai-contents-creator-v2/src/assets/images/icon/thumbnail/template_quiz_sentences_in_order.png";
-import ThumbTemplateQuizSpeaking from "../../../chai-contents-creator-v2/src/assets/images/icon/thumbnail/template_quiz_speaking.png";
-import ThumbTemplateQuizWordsInOrder from "../../../chai-contents-creator-v2/src/assets/images/icon/thumbnail/template_quiz_words_in_order.png";
-import ThumbTemplateRolePlaying from "../../../chai-contents-creator-v2/src/assets/images/icon/thumbnail/template_role_playing.png";
-import ThumbTemplateWordCard from "../../../chai-contents-creator-v2/src/assets/images/icon/thumbnail/template_word_card.png";
-import ThumbTemplateQuizMultiChoice from "../../../chai-contents-creator-v2/src/assets/images/icon/thumbnail/template_quiz_multi_choice.png";
+import ThumbTemplate01 from "../assets/images/icon/thumbnail/template01.png";
+import ThumbTemplateH37 from "../assets/images/icon/thumbnail/template_h_3_7.png";
+import ThumbTemplateH55 from "../assets/images/icon/thumbnail/template_h_5_5.png";
+import ThumbTemplateQuizConversation from "../assets/images/icon/thumbnail/template_quiz_conversation.png";
+import ThumbTemplateQuizSentencesInOrder from "../assets/images/icon/thumbnail/template_quiz_sentences_in_order.png";
+import ThumbTemplateQuizSpeaking from "../assets/images/icon/thumbnail/template_quiz_speaking.png";
+import ThumbTemplateQuizWordsInOrder from "../assets/images/icon/thumbnail/template_quiz_words_in_order.png";
+import ThumbTemplateRolePlaying from "../assets/images/icon/thumbnail/template_role_playing.png";
+import ThumbTemplateWordCard from "../assets/images/icon/thumbnail/template_word_card.png";
+import ThumbTemplateQuizMultiChoice from "../assets/images/icon/thumbnail/template_quiz_multi_choice.png";
+import ThumbTemplateConversation from "../assets/images/icon/thumbnail/template_conversation.png";
+import TemplateConversationToggle from "../assets/images/icon/thumbnail/template_conversation_toggle.png";
+import TemplateConversationRepeat from "../assets/images/icon/thumbnail/template_conversation_repeat.png";
 
 import { ConversationDirection } from "../components/templates/CreateTemplateRolePlaying";
 
@@ -93,12 +94,12 @@ export const conversationLayouts: ConversationPageLayout[] = [
   {
     type: "TemplateConversationToggle",
     name: "회화 토글 학습",
-    image: "https://via.placeholder.com/150",
+    image: TemplateConversationToggle,
   },
   {
     type: "TemplateConversationRepeat",
     name: "회화 따라 말하기 학습",
-    image: "https://via.placeholder.com/150",
+    image: TemplateConversationRepeat,
   },
   {
     type: "TemplateWordCard",
