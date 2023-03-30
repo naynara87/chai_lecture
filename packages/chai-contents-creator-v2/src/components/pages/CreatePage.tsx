@@ -8,11 +8,11 @@ import {
 } from "../../styles/template";
 import TemplateMainLoading from "../templates/TemplateLoading";
 import Button from "../atoms/Button";
-import usePage from "../../hooks/usePage";
 import useComponent from "../../hooks/useComponent";
 import { DragDropContext } from "react-beautiful-dnd";
 import { PREVIEW_URL } from "../../constants/url";
 import ModalIntroduction from "../molecules/modal/ModalIntroduction";
+import useCreatePage from "../../hooks/useCreatePage";
 
 const CommonButtonContainer = styled.div`
   padding-bottom: 16px;
@@ -26,6 +26,9 @@ const CreatePage = () => {
   const [isModalIntroductionOpen, setIsModalIntroductionOpen] = useState(false);
 
   const { getTemplate } = useTemplate();
+
+  const { returnUsePage, handleSavePageData, initialPageData } =
+    useCreatePage();
 
   const {
     slides,
@@ -46,9 +49,10 @@ const CreatePage = () => {
     updateContentToWordsInOrderTemplate,
     updateContentToSentenceInOrderTemplate,
     updateContentToFinalSpeakingTemplate,
-  } = usePage();
+  } = returnUsePage;
 
   useEffect(() => {
+    // preview를 위한 localStorage 데이터 초기화
     removePageDataFromLocalStorage();
     return () => {
       removePageDataFromLocalStorage();
@@ -66,18 +70,11 @@ const CreatePage = () => {
     setIsModalIntroductionOpen(true);
   }, []);
 
-  const [isLoading] = useState(false); // setIsLoading
-
   return (
     <CreateTemplateWrap>
       <CreateTemplateInner>
         <CommonButtonContainer>
-          <Button
-            type="button"
-            onClick={() => {
-              console.log("저장");
-            }}
-          >
+          <Button type="button" onClick={handleSavePageData}>
             테스트 저장 버튼
           </Button>
           <Button type="button" onClick={handleClickPreview}>
@@ -87,7 +84,7 @@ const CreatePage = () => {
             학습 변경 간지 추가
           </Button>
         </CommonButtonContainer>
-        {isLoading ? (
+        {!initialPageData ? (
           <TemplateMainLoading />
         ) : (
           <DragDropContext onDragEnd={handleOnDragEnd}>

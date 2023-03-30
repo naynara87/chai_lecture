@@ -38,6 +38,37 @@ const usePage = () => {
   const [slides, setSlides] = useRecoilState(slidesState);
   const [pageData, setPageData] = useRecoilState(pageState);
 
+  const setInitialPageData = useCallback(
+    (initialPageData: Page) => {
+      if (initialPageData.type === "singlePage") {
+        // single page
+        const initialSlides = initialPageData.data;
+        setSlides([initialSlides]);
+      } else {
+        // multi page
+        const initialSlides = initialPageData.data;
+        setSlides(initialSlides);
+      }
+      setPageData(initialPageData);
+    },
+    [setSlides, setPageData],
+  );
+
+  useEffect(() => {
+    setPageData(
+      (prev) =>
+        ({
+          ...prev,
+          type: slides.length > 1 ? "multiPage" : "singlePage",
+          data: slides.length > 1 ? slides : slides[0],
+        } as Page),
+    );
+  }, [slides, setPageData]);
+
+  useEffect(() => {
+    console.log("pageData", pageData);
+  }, [pageData]);
+
   const saveIntroductionModalData = (data: PageIntroduction) => {
     const newPageData = cloneDeep(pageData);
     newPageData.introduction = data;
@@ -300,20 +331,9 @@ const usePage = () => {
     [slides, setSlides],
   );
 
-  const pagePreviewData = useMemo(() => {
-    const page: Page = {
-      id: "preview_page",
-      name: "미리보기",
-      type: slides.length > 1 ? "multiPage" : "singlePage",
-      data: slides.length > 1 ? slides : slides?.[0],
-      introduction: pageData.introduction,
-    } as Page;
-    return page;
-  }, [slides, pageData]);
-
   const savePageDataToLocalStorage = useCallback(() => {
-    LocalStorage.setItem(PAGE_DATA_KEY, pagePreviewData);
-  }, [pagePreviewData]);
+    LocalStorage.setItem(PAGE_DATA_KEY, pageData);
+  }, [pageData]);
 
   const getPageDataFromLocalStorage = useCallback(() => {
     const page = LocalStorage.getItem<Page>(PAGE_DATA_KEY);
@@ -327,6 +347,7 @@ const usePage = () => {
   return {
     slides,
     setSlides,
+    setInitialPageData,
     addSlide,
     deleteSlide,
     handleChangeLayout,
