@@ -262,6 +262,7 @@ const ConversationCreator = ({
                 const target = e.target as HTMLInputElement;
                 setName(listIndex, target.value);
               }}
+              defaultValue={thisContent.data[listIndex].character.name}
             />
           </div>
           <div className="txt-wrap">
