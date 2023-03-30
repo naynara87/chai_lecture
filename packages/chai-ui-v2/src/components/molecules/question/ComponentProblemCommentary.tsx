@@ -1,5 +1,4 @@
 import React, { useCallback, useState } from "react";
-import IconEmpty from "../../../assets/images/icon/icon_empty.svg";
 import IconRight from "../../../assets/images/icon/icon_problem_o.svg";
 import IconWrong from "../../../assets/images/icon/icon_problem_x.svg";
 import { QuizData, TemplateQuestionData } from "../../../core";
@@ -23,16 +22,6 @@ const ComponentProblemCommentary = ({
 
   return (
     <div className="problem-commentary-wrapper">
-      {/* TODO: key설명 - 항목 선택을 하지 않았을 때 */}
-      <div className="empty-conts none">
-        <img src={IconEmpty} alt="없음" className="img" />
-        <h3 className="emp-ttl">
-          채점표에서 번호를 <br />
-          선택해주세요
-        </h3>
-        <p className="emp-txt">여기에 정답과 해설이 표시됩니다.</p>
-      </div>
-
       {/* TODO: key설명 - 항목선택을 했을 때 */}
       <div className="problem-commentary-wrap">
         <h3 className="com-ttl">
