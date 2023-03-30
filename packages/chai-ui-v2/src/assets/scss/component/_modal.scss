@@ -52,6 +52,7 @@
   // height: vh(900);
 
   .btns-wrap {
+    width: 100%;
     margin-top: vh(40);
   }
 
@@ -194,8 +195,9 @@
   .voca-wrap {
     margin-bottom: vh(90);
     margin-right: auto;
-    text-align: left;
     line-height: 1.5;
+    font-size: vw(36);
+    text-align: left;
   }
 
   .chinese {
