@@ -18,12 +18,14 @@ interface QuestionLayoutProps {
   pages: Page[];
   lessonMetaData: LessonMeta;
   cornerMetaData: CornerMeta;
+  totalPages: (string | number)[];
 }
 
 const QuestionLayout = ({
   pages,
   lessonMetaData,
   cornerMetaData,
+  totalPages,
 }: QuestionLayoutProps) => {
   const [, setIsPageCompleted] = useState(false);
   const [isQuestionStartModalOpen, setIsQuestionStartModalOpen] =
@@ -34,9 +36,10 @@ const QuestionLayout = ({
 
   const { courseId, cornerId, lessonId, pageId } = useParams();
   const navigate = useNavigate();
-  const { currentPage, pageIds, currentPageIndex } = usePages({
+  const { currentPage, currentPageIndex } = usePages({
     pages,
     pageId,
+    totalPages,
   });
   const { getLessonName } = useLessonNameMapper();
 
@@ -46,9 +49,8 @@ const QuestionLayout = ({
 
   const handleClickPagination = (pageIndex: number) => {
     if (currentPageIndex === undefined) return;
-    if (!pageIds) return;
     if (cornerId && courseId && lessonId && pageId) {
-      navigate(getPageUrl(courseId, lessonId, cornerId, pageIds[pageIndex]));
+      navigate(getPageUrl(courseId, lessonId, cornerId, totalPages[pageIndex]));
     }
   };
 
@@ -58,7 +60,9 @@ const QuestionLayout = ({
         state: {
           lessonName: getLessonName(lessonMetaData.colorTypeCd),
           lessonType:
-            cornerMetaData.lessonTpCd === "20" ? "연습문제" : "종합문제",
+            lessonMetaData.lessonTpCd.toString() === "20"
+              ? "연습문제"
+              : "종합문제",
           solvingTime: questionSolvingTime,
           pages,
         },
@@ -87,7 +91,9 @@ const QuestionLayout = ({
     <>
       <LayoutQuestionHeader
         headerText={`${getLessonName(lessonMetaData.colorTypeCd)} ${
-          cornerMetaData.lessonTpCd === "20" ? "연습문제" : "종합문제"
+          lessonMetaData.lessonTpCd.toString() === "20"
+            ? "연습문제"
+            : "종합문제"
         }`}
         solvingTime={questionSolvingTime}
       />
@@ -109,7 +115,9 @@ const QuestionLayout = ({
         setIsModalOpen={setIsQuestionStartModalOpen}
         wideModal
         quizTypeText={`${getLessonName(lessonMetaData.colorTypeCd)} ${
-          cornerMetaData.lessonTpCd === "20" ? "연습문제" : "종합문제"
+          lessonMetaData.lessonTpCd.toString() === "20"
+            ? "연습문제"
+            : "종합문제"
         }`}
         quizTotalLength={pages.length}
         onClickStart={startQuiz}

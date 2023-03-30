@@ -9,9 +9,9 @@ import ContentsLayout from "./ContentsLayout";
 import QuestionLayout from "./QuestionLayout";
 
 const Layout = () => {
-  const { cornerId } = useParams();
-  const { lessonMetaData, corners } = useLesson(1);
-  const { pages, cornerMetaData } = useCorner(cornerId);
+  const { cornerId } = useParams(); // 이게 나중 실행됨
+  const { lessonMetaData, corners, totalPages } = useLesson(93);
+  const { pages, cornerMetaData } = useCorner(cornerId); // 이게 먼저 실행되고
 
   const [, setCurrentCornerId] = useRecoilState(currentCornerIdState);
 
@@ -23,7 +23,7 @@ const Layout = () => {
     if (!lessonMetaData) return;
     if (!cornerMetaData) return;
     // NOTE ms 문제 템플릿일 경우 레이아웃 호출
-    if (cornerMetaData.lessonTpCd !== "10") {
+    if (lessonMetaData.lessonTpCd.toString() !== "10") {
       // todo ms lcms에서 데이터 받아와서 데이터 구성 필요
       const dummyData: QuizData[] = pages.map((page, pageIndex) => {
         return {
@@ -38,6 +38,7 @@ const Layout = () => {
           pages={pages}
           lessonMetaData={lessonMetaData}
           cornerMetaData={cornerMetaData}
+          totalPages={totalPages}
         />
       );
     } else {
@@ -47,10 +48,11 @@ const Layout = () => {
           lessonMetaData={lessonMetaData}
           cornerMetaData={cornerMetaData}
           pages={pages}
+          totalPages={totalPages}
         />
       );
     }
-  }, [cornerMetaData, lessonMetaData, corners, pages]);
+  }, [cornerMetaData, lessonMetaData, corners, pages, totalPages]);
 
   return <>{layout}</>;
 };

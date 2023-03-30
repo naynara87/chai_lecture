@@ -52,37 +52,41 @@ const ComponentProblemCommentary = ({
             문제 보기
           </button>
           <div className={`tab-conts-wrapper ${isShowContent ? "" : "none"}`}>
-            <iframe
-              src={quizTemplateData.contents.data.iframeUrl}
-              title={quizTemplateData.contents.id.toString()}
-              width="100%"
-              height="100%"
-              frameBorder="0"
-              allowFullScreen
-              scrolling="no"
-            ></iframe>
+            {quizTemplateData.contents && (
+              <iframe
+                src={quizTemplateData.contents.data.iframeUrl}
+                title={quizTemplateData.contents.id.toString()}
+                width="100%"
+                height="100%"
+                frameBorder="0"
+                allowFullScreen
+                scrolling="no"
+              ></iframe>
+            )}
           </div>
         </div>
-        <div className="comment-list-wrap">
-          <dl className="comment-list">
-            <dt className="comment-ttl">정답</dt>
-            <dd className="comment-dec">
-              {quizTemplateData.contents.data.answer}
-            </dd>
-          </dl>
-          <dl className="comment-list">
-            <dt className="comment-ttl">해설</dt>
-            <dd className="comment-dec">
-              {quizTemplateData.contents.data.comment}
-            </dd>
-          </dl>
-          <dl className="comment-list">
-            <dt className="comment-ttl">예문 해석</dt>
-            <dd className="comment-dec">
-              {quizTemplateData.contents.data.example}
-            </dd>
-          </dl>
-        </div>
+        {quizTemplateData.contents && (
+          <div className="comment-list-wrap">
+            <dl className="comment-list">
+              <dt className="comment-ttl">정답</dt>
+              <dd className="comment-dec">
+                {quizTemplateData.contents.data.answer}
+              </dd>
+            </dl>
+            <dl className="comment-list">
+              <dt className="comment-ttl">해설</dt>
+              <dd className="comment-dec">
+                {quizTemplateData.contents.data.comment}
+              </dd>
+            </dl>
+            <dl className="comment-list">
+              <dt className="comment-ttl">예문 해석</dt>
+              <dd className="comment-dec">
+                {quizTemplateData.contents.data.example}
+              </dd>
+            </dl>
+          </div>
+        )}
       </div>
     </div>
   );

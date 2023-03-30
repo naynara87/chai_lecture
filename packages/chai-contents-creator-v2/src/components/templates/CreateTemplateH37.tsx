@@ -70,7 +70,7 @@ const CreateTemplateH37 = ({
                 toggleContextMenu={toggleContextMenu}
               />
             </CreateTemplateChoiceBtnWrap>
-            {thisSlide.leftContents.map((content, index) => {
+            {thisSlide.leftContents && thisSlide.leftContents.map((content, index) => {
               return getComponent({
                 index,
                 currentSlide: thisSlide,
@@ -101,7 +101,7 @@ const CreateTemplateH37 = ({
                 toggleContextMenu={toggleContextMenuRight}
               />
             </CreateTemplateChoiceBtnWrap>
-            {thisSlide.rightContents.map((content, index) => {
+            {thisSlide.rightContents && thisSlide.rightContents.map((content, index) => {
               return getComponent({
                 index,
                 currentSlide: thisSlide,

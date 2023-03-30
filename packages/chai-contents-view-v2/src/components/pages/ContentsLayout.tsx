@@ -21,6 +21,7 @@ interface ContentsLayoutProps {
   corners: CornerListData[];
   lessonMetaData: LessonMeta;
   cornerMetaData: CornerMeta;
+  totalPages: (string | number)[];
 }
 
 const ContentsLayout = ({
@@ -28,16 +29,22 @@ const ContentsLayout = ({
   lessonMetaData,
   cornerMetaData,
   corners,
+  totalPages,
 }: ContentsLayoutProps) => {
   const [, setIsPageCompleted] = useState(false);
   const [isCompleteModalOpen, setIsCompleteModalOpen] = useState(false);
   const { courseId, cornerId, lessonId, pageId } = useParams();
   const [currentCornerId] = useRecoilState(currentCornerIdState);
-
   const navigate = useNavigate();
-  const { currentPage, isLastPage, pageIds, currentPageIndex } = usePages({
+  const {
+    currentPage,
+    isCurrentCornerLastPage,
+    isCurrentCornerFirstPage,
+    currentPageIndex,
+  } = usePages({
     pages,
     pageId,
+    totalPages,
   });
 
   const setPageCompleted = () => {
@@ -46,18 +53,40 @@ const ContentsLayout = ({
 
   const handleClickPrev = () => {
     if (currentPageIndex === undefined) return;
-    if (!pageIds) return;
+    if (isCurrentCornerFirstPage) {
+      const currentCornerIndex = corners.findIndex(
+        (corner) => corner.id.toString() === currentCornerId?.toString(),
+      );
+      const prevCorner = corners[currentCornerIndex - 1];
+      if (prevCorner) {
+        // 다음 코너가 있을때
+        const url = getPageUrl(
+          lessonMetaData?.courseId,
+          cornerMetaData?.lessonId,
+          prevCorner.id,
+          prevCorner.pages[prevCorner.pages.length - 1],
+        );
+        navigate(url);
+        return;
+      } else {
+        return;
+      }
+    }
     if (cornerId && courseId && lessonId && pageId) {
       navigate(
-        getPageUrl(courseId, lessonId, cornerId, pageIds[currentPageIndex - 1]),
+        getPageUrl(
+          courseId,
+          lessonId,
+          cornerId,
+          totalPages[currentPageIndex - 1],
+        ),
       );
     }
   };
 
   const handleClickNext = () => {
     if (currentPageIndex === undefined) return;
-    if (!pageIds) return;
-    if (isLastPage) {
+    if (isCurrentCornerLastPage) {
       if (!lessonMetaData) return;
       if (!cornerMetaData) return;
 
@@ -71,7 +100,7 @@ const ContentsLayout = ({
           lessonMetaData?.courseId,
           cornerMetaData?.lessonId,
           nextCorner.id,
-          1,
+          nextCorner.pages[0],
         );
         navigate(url);
         return;
@@ -82,7 +111,12 @@ const ContentsLayout = ({
     }
     if (cornerId && courseId && lessonId && pageId) {
       navigate(
-        getPageUrl(courseId, lessonId, cornerId, pageIds[currentPageIndex + 1]),
+        getPageUrl(
+          courseId,
+          lessonId,
+          cornerId,
+          totalPages[currentPageIndex + 1],
+        ),
       );
     }
   };
@@ -121,9 +155,9 @@ const ContentsLayout = ({
       <LayoutFooter
         corners={corners}
         pages={pages}
-        currentPageIndex={currentPageIndex ?? 1}
         handleClickNext={handleClickNext}
         handleClickPrev={handleClickPrev}
+        totalPages={totalPages}
       />
       {isCompleteModalOpen && (
         <ModalCompleted lessonCode={lessonMetaData.colorTypeCd} />

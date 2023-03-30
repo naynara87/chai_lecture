@@ -31,10 +31,14 @@ const TemplateQuizSpeaking = ({
     <DialogueContainer className="layout-panel-wrap grid-h-3-7">
       <div className="layout-panel side-panel">
         {/* {leftContents} */}
-        <ActivityGuideCharacterComponent contents={thisPage.leftContents} />
+        {thisPage.leftContents && (
+          <ActivityGuideCharacterComponent contents={thisPage.leftContents} />
+        )}
       </div>
       <div className="layout-panel wide-panel conversation-panel-wrap">
-        <FinalSpeakingComponent contents={thisPage.rightContents} />
+        {thisPage.rightContents && (
+          <FinalSpeakingComponent contents={thisPage.rightContents} />
+        )}
       </div>
     </DialogueContainer>
   );

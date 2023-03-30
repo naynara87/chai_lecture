@@ -67,18 +67,19 @@ const CreateTemplateH55 = ({
                 toggleContextMenu={toggleContextMenu}
               />
             </CreateTemplateChoiceBtnWrap>
-            {thisSlide.leftContents.map((content, index) => {
-              return getComponent({
-                index,
-                currentSlide: thisSlide,
-                content,
-                isFocused: focusedId === content.id,
-                setFocusedId,
-                updateContent,
-                deleteContent,
-                position: "leftContents",
-              });
-            })}
+            {thisSlide.leftContents &&
+              thisSlide.leftContents.map((content, index) => {
+                return getComponent({
+                  index,
+                  currentSlide: thisSlide,
+                  content,
+                  isFocused: focusedId === content.id,
+                  setFocusedId,
+                  updateContent,
+                  deleteContent,
+                  position: "leftContents",
+                });
+              })}
           </DashBoxArea>
         </CreateEditMain>
         <CreateEditMain>
@@ -98,18 +99,19 @@ const CreateTemplateH55 = ({
                 toggleContextMenu={toggleContextMenuRight}
               />
             </CreateTemplateChoiceBtnWrap>
-            {thisSlide.rightContents.map((content, index) => {
-              return getComponent({
-                index,
-                currentSlide: thisSlide,
-                content,
-                isFocused: focusedId === content?.id,
-                setFocusedId,
-                updateContent,
-                deleteContent,
-                position: "rightContents",
-              });
-            })}
+            {thisSlide.rightContents &&
+              thisSlide.rightContents.map((content, index) => {
+                return getComponent({
+                  index,
+                  currentSlide: thisSlide,
+                  content,
+                  isFocused: focusedId === content?.id,
+                  setFocusedId,
+                  updateContent,
+                  deleteContent,
+                  position: "rightContents",
+                });
+              })}
           </DashBoxArea>
         </CreateEditMain>
       </CreateEditMainWrap55>

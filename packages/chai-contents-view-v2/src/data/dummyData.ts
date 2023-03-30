@@ -9,41 +9,50 @@ export const v2LessonData: LessonData = {
     courseId: 1,
     courseName: "차이홍(샘플데이터)-빨강",
     colorTypeCd: "10",
+    lessonTpCd: "20",
   },
   // 코너 리스트
   data: [
     {
       id: 11,
       name: "복습",
+      pages: [1, 2, 3, 4, 5],
     },
     {
       id: 12,
       name: "학습 들어가기",
+      pages: [6],
     },
     {
       id: 13,
       name: "중국어 개요",
+      pages: [7, 8, 9],
     },
     {
       id: 14,
       name: "성조",
+      pages: [10, 11, 12, 13],
     },
     {
       id: 15,
       name: "운모",
+      pages: [14, 15, 16],
     },
     {
       id: 16,
       name: "패턴 중국어",
+      pages: [17, 18, 19, 20, 21, 22],
     },
     {
       id: 17,
       name: "회화",
+      pages: [23, 24, 25],
     },
-    {
-      id: 18,
-      name: "문제",
-    },
+    // {
+    //   id: 18,
+    //   name: "문제",
+    //   pages: [1, 2, 3, 4, 5, 6, 7],
+    // },
   ],
 };
 
@@ -52,13 +61,7 @@ export const v2CornerDataList: CornerData[] = [
     // 복습 코너 메타 정보
     meta: {
       id: 11,
-      name: "복습",
       lessonId: 1,
-      lessonName: "Lesson 1",
-      lessonTpCd: "10",
-      courseId: 1,
-      courseName: "차이홍(샘플데이터)-빨강",
-      isCompleted: false,
     },
     // 복습 page 리스트
     data: [
@@ -134,29 +137,29 @@ export const v2CornerDataList: CornerData[] = [
           ],
         },
       },
-      // {
-      //   id: 1,
-      //   name: "중국어 개요",
-      //   type: "singlePage",
-      //   data: {
-      //     id: uuidV4(),
-      //     type: "Template01",
-      //     contents: [
-      //       {
-      //         id: uuidV4(),
-      //         type: "cornerGuideCharacter",
-      //         data: {
-      //           text: "먼저 지난 레슨에서 학습한 내용을 점검해 볼까요?",
-      //           character: {
-      //             src: "asdfasdf",
-      //           },
-      //         },
-      //       },
-      //     ],
-      //   },
-      // },
       {
         id: 2,
+        name: "중국어 개요",
+        type: "singlePage",
+        data: {
+          id: uuidV4(),
+          type: "Template01",
+          contents: [
+            {
+              id: uuidV4(),
+              type: "cornerGuideCharacter",
+              data: {
+                text: "먼저 지난 레슨에서 학습한 내용을 점검해 볼까요?",
+                character: {
+                  src: "asdfasdf",
+                },
+              },
+            },
+          ],
+        },
+      },
+      {
+        id: 3,
         name: "중국어 개요",
         type: "singlePage",
         introduction: {
@@ -286,7 +289,7 @@ export const v2CornerDataList: CornerData[] = [
         },
       },
       {
-        id: 3,
+        id: 4,
         name: "단어",
         type: "singlePage",
         introduction: {
@@ -371,7 +374,7 @@ export const v2CornerDataList: CornerData[] = [
         },
       },
       {
-        id: 4,
+        id: 5,
         name: "한어",
         type: "multiPage",
         introduction: {
@@ -524,96 +527,18 @@ export const v2CornerDataList: CornerData[] = [
           },
         ],
       },
-      {
-        id: 5,
-        name: "한어",
-        type: "singlePage",
-        data: {
-          id: uuidV4(),
-          type: "TemplateQuizMultiChoice",
-          leftContents: [
-            {
-              id: uuidV4(),
-              type: "activityGuideCharacter",
-              data: {
-                text: "지난 시간엔 성조의 변화에 대해 학습했어요. 내용이 맞으면 O, 틀리면 X를 선택하세요.",
-                character: {
-                  src: "asdfasdf",
-                },
-              },
-            },
-          ],
-          multiChoice: {
-            id: uuidV4(),
-            type: "multiChoice",
-            data: {
-              choice: ["제2성+제3성", "제3성+제3성"],
-              answerIndex: 0,
-              exampleContents: [
-                {
-                  id: uuidV4(),
-                  type: "text",
-                  data: {
-                    text: "제3성이 연이어 나올 때, 올바르게 발음한 것을 고르세요.",
-                  },
-                },
-              ],
-              quizPopup: {
-                id: uuidV4(),
-                type: "quizPopupModal",
-                data: {
-                  correct: {
-                    title: "做得好!",
-                    sub: "정답이에요!",
-                    description: "니하오입니다.",
-                    character: {
-                      src: "",
-                    },
-                    soundEffect: {
-                      src: "https://cdn.pixabay.com/audio/2021/10/08/audio_746d064ad0.mp3",
-                    },
-                    video: {
-                      src: "https://cdn.bubblecon.co.kr/videos/46.mp4",
-                    },
-                  },
-                  incorrect: {
-                    title: "真难过!",
-                    sub: "아쉬워요!",
-                    description: "니하오라고요.",
-                    character: {
-                      src: "",
-                    },
-                    soundEffect: {
-                      src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
-                    },
-                    video: {
-                      src: "https://cdn.bubblecon.co.kr/videos/46.mp4",
-                    },
-                  },
-                },
-              },
-            },
-          },
-        },
-      },
     ],
   },
   {
     // 학습1 코너 메타 정보
     meta: {
       id: 12,
-      name: "학습 들어가기",
       lessonId: 1,
-      lessonName: "Lesson 1",
-      lessonTpCd: "10",
-      courseId: 1,
-      courseName: "차이홍(샘플데이터)-빨강",
-      isCompleted: false,
     },
     // 복습 page 리스트
     data: [
       {
-        id: 1,
+        id: 6,
         name: "학습 내용",
         type: "singlePage",
         data: {
@@ -678,18 +603,12 @@ export const v2CornerDataList: CornerData[] = [
     // 학습1 코너 메타 정보
     meta: {
       id: 13,
-      name: "중국어 개요",
       lessonId: 1,
-      lessonName: "Lesson 1",
-      lessonTpCd: "10",
-      courseId: 1,
-      courseName: "차이홍(샘플데이터)-빨강",
-      isCompleted: false,
     },
     // 복습 page 리스트
     data: [
       {
-        id: 1,
+        id: 7,
         name: "한어",
         type: "singlePage",
         data: {
@@ -707,7 +626,7 @@ export const v2CornerDataList: CornerData[] = [
         },
       },
       {
-        id: 2,
+        id: 8,
         name: "한어",
         type: "multiPage",
         data: [
@@ -817,7 +736,7 @@ export const v2CornerDataList: CornerData[] = [
         ],
       },
       {
-        id: 3,
+        id: 9,
         name: "한어",
         type: "multiPage",
         data: [
@@ -965,18 +884,12 @@ export const v2CornerDataList: CornerData[] = [
     // 학습1 코너 메타 정보
     meta: {
       id: 14,
-      name: "성조",
       lessonId: 1,
-      lessonName: "Lesson 1",
-      lessonTpCd: "10",
-      courseId: 1,
-      courseName: "차이홍(샘플데이터)-빨강",
-      isCompleted: false,
     },
     // 복습 page 리스트
     data: [
       {
-        id: 1,
+        id: 10,
         name: "한어",
         type: "singlePage",
         data: {
@@ -1001,7 +914,7 @@ export const v2CornerDataList: CornerData[] = [
         },
       },
       {
-        id: 2,
+        id: 11,
         name: "한어",
         type: "singlePage",
         data: {
@@ -1113,7 +1026,7 @@ export const v2CornerDataList: CornerData[] = [
         },
       },
       {
-        id: 3,
+        id: 12,
         name: "한어",
         type: "multiPage",
         data: [
@@ -1224,7 +1137,7 @@ export const v2CornerDataList: CornerData[] = [
         ],
       },
       {
-        id: 4,
+        id: 13,
         name: "확인하기",
         type: "multiPage",
         data: [
@@ -1374,18 +1287,12 @@ export const v2CornerDataList: CornerData[] = [
     // 학습1 코너 메타 정보
     meta: {
       id: 15,
-      name: "운모",
       lessonId: 1,
-      lessonName: "Lesson 1",
-      lessonTpCd: "10",
-      courseId: 1,
-      courseName: "차이홍(샘플데이터)-빨강",
-      isCompleted: false,
     },
     // 복습 page 리스트
     data: [
       {
-        id: 1,
+        id: 14,
         name: "영상 시청",
         type: "singlePage",
         data: {
@@ -1403,7 +1310,7 @@ export const v2CornerDataList: CornerData[] = [
         },
       },
       {
-        id: 2,
+        id: 15,
         name: "성모 설명",
         type: "multiPage",
         data: [
@@ -1533,7 +1440,7 @@ export const v2CornerDataList: CornerData[] = [
         ],
       },
       {
-        id: 3,
+        id: 16,
         name: "한어",
         type: "multiPage",
         data: [
@@ -1707,18 +1614,12 @@ export const v2CornerDataList: CornerData[] = [
     // 학습1 코너 메타 정보
     meta: {
       id: 16,
-      name: "패턴 중국어",
       lessonId: 1,
-      lessonName: "Lesson 1",
-      lessonTpCd: "10",
-      courseId: 1,
-      courseName: "차이홍(샘플데이터)-빨강",
-      isCompleted: false,
     },
     // 복습 page 리스트
     data: [
       {
-        id: 1,
+        id: 17,
         name: "한눈에 보기",
         type: "singlePage",
         data: {
@@ -1754,7 +1655,7 @@ export const v2CornerDataList: CornerData[] = [
         },
       },
       {
-        id: 2,
+        id: 18,
         name: "핵심 단어",
         type: "multiPage",
         data: [
@@ -1807,7 +1708,7 @@ export const v2CornerDataList: CornerData[] = [
         ],
       },
       {
-        id: 3,
+        id: 19,
         name: "핵심 단어",
         type: "multiPage",
         data: [
@@ -1866,7 +1767,7 @@ export const v2CornerDataList: CornerData[] = [
         ],
       },
       {
-        id: 4,
+        id: 20,
         name: "패턴 설명",
         type: "singlePage",
         data: {
@@ -1945,7 +1846,7 @@ export const v2CornerDataList: CornerData[] = [
         },
       },
       {
-        id: 5,
+        id: 21,
         name: "문장 학습",
         type: "multiPage",
         data: [
@@ -2029,7 +1930,7 @@ export const v2CornerDataList: CornerData[] = [
         ],
       },
       {
-        id: 6,
+        id: 22,
         name: "확인하기",
         type: "multiPage",
         data: [
@@ -2139,18 +2040,12 @@ export const v2CornerDataList: CornerData[] = [
     // 학습1 코너 메타 정보
     meta: {
       id: 17,
-      name: "회화",
       lessonId: 1,
-      lessonName: "Lesson 1",
-      lessonTpCd: "10",
-      courseId: 1,
-      courseName: "차이홍(샘플데이터)-빨강",
-      isCompleted: false,
     },
     // 복습 page 리스트
     data: [
       {
-        id: 1,
+        id: 23,
         name: "영상 시청",
         type: "singlePage",
         data: {
@@ -2175,7 +2070,7 @@ export const v2CornerDataList: CornerData[] = [
         },
       },
       {
-        id: 2,
+        id: 24,
         name: "한문, 한어병음 학습",
         type: "multiPage",
         data: [
@@ -2452,7 +2347,7 @@ export const v2CornerDataList: CornerData[] = [
         ],
       },
       {
-        id: 3,
+        id: 25,
         type: "multiPage",
         name: "확인하기",
         data: [
@@ -2830,492 +2725,187 @@ export const v2CornerDataList: CornerData[] = [
       },
     ],
   },
-  {
-    meta: {
-      id: 18,
-      name: "문제",
-      lessonId: 1,
-      lessonName: "Lesson 1",
-      lessonTpCd: "20",
-      courseId: 1,
-      courseName: "차이홍(샘플데이터)-빨강",
-      isCompleted: false,
-    },
-    data: [
-      {
-        id: 1,
-        name: "문제",
-        type: "singlePage",
-        data: {
-          id: uuidV4(),
-          type: "TemplateQuestion",
-          contents: {
-            id: uuidV4(),
-            type: "question",
-            data: {
-              iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20050",
-              answer: "4",
-              comment: "해설부분입니다.",
-              example: `① A: 洗手间离这儿近吗？Xǐshǒujiān lí zhèr jìn ma?
+  // {
+  //   meta: {
+  //     id: 18,
+  //     lessonId: 1,
+  //   },
+  //   data: [
+  //     {
+  //       id: 1,
+  //       name: "문제",
+  //       type: "singlePage",
+  //       data: {
+  //         id: uuidV4(),
+  //         type: "TemplateQuestion",
+  //         contents: {
+  //           id: uuidV4(),
+  //           type: "question",
+  //           data: {
+  //             iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20050",
+  //             answer: "4",
+  //             comment: "해설부분입니다.",
+  //             example: `① A: 洗手间离这儿近吗？Xǐshǒujiān lí zhèr jìn ma?
 
-              화장실은 여기서 가까워요?
-              
-              B: 离这儿很近。Lí zhèr hěn jìn.
-              
-              여기서 가까워요.
-              
-              ② A: 医院怎么走？Yīyuàn zěnme zǒu?
-              
-              병원은 어떻게 가나요?
-              
-              B: 往右拐就到了。Wǎng yòu guǎi jiù dào le.
-              
-              오른쪽으로 돌면 바로 도착해요.
-              
-              ③ A: 电影院怎么走？Diànyǐngyuàn zěnme zǒu?
-              
-              영화관은 어떻게 가나요?
-              
-              B: 往前走就到了。Wǎng qián zǒu jiù dào le.
-              
-              앞으로 가면 바로 도착해요.
-              
-              ④ A: 图书馆怎么走？Túshūguǎn zěnme zǒu?
-              
-              도서관은 어떻게 가나요?
-              
-              B: 一直往前走，到学校往左拐。Yìzhí wǎng qián zǒu, dào xuéxiào wǎng zuǒ guǎi.
-              
-              곧장 앞으로 가신 다음, 학교에서 왼쪽으로 가세요.
-              
-              ⑤ A: 银行怎么走？Yínháng zěnme zǒu?
-              
-              은행은 어떻게 가나요?
-              
-              B: 一直往前走，到学校往右拐。Yìzhí wǎng qián zǒu, dào xuéxiào wǎng yòu guǎi.
-              
-              곧장 앞으로 가신 다음, 학교에서 오른쪽으로 가세요.`,
-            },
-          },
-        },
-      },
-      {
-        id: 2,
-        name: "문제",
-        type: "singlePage",
-        data: {
-          id: uuidV4(),
-          type: "TemplateQuestion",
-          contents: {
-            id: uuidV4(),
-            type: "question",
-            data: {
-              iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20049",
-              answer: "1",
-              comment: "해설부분입니다.",
-              example: `중국의 수도는 베이징이다.`,
-            },
-          },
-        },
-      },
-      {
-        id: 3,
-        name: "문제",
-        type: "singlePage",
-        data: {
-          id: uuidV4(),
-          type: "TemplateQuestion",
-          contents: {
-            id: uuidV4(),
-            type: "question",
-            data: {
-              iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20048",
-              answer: "1",
-              comment: "해석부분입니다.",
-              example: `중국어는 중국어에요`,
-            },
-          },
-        },
-      },
-      {
-        id: 4,
-        name: "문제",
-        type: "singlePage",
-        data: {
-          id: uuidV4(),
-          type: "TemplateQuestion",
-          contents: {
-            id: uuidV4(),
-            type: "question",
-            data: {
-              iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20047",
-              answer: "1",
-              comment: "해석이에요",
-              example: "중국의 수도는 베이징이다.",
-            },
-          },
-        },
-      },
-      {
-        id: 5,
-        name: "문제",
-        type: "singlePage",
-        data: {
-          id: uuidV4(),
-          type: "TemplateQuestion",
-          contents: {
-            id: uuidV4(),
-            type: "question",
-            data: {
-              iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20046",
-              answer: "1",
-              comment: "해석이에요",
-              example: "해설인가요",
-            },
-          },
-        },
-      },
-      {
-        id: 6,
-        name: "문제",
-        type: "singlePage",
-        data: {
-          id: uuidV4(),
-          type: "TemplateQuestion",
-          contents: {
-            id: uuidV4(),
-            type: "question",
-            data: {
-              iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20045",
-              answer: "3",
-              comment: "중국?",
-              example:
-                "중국인은 차를 약이라 여긴다. → 과거에는 약의 용도로 쓰이긴 했으나, 현재는 건강에 좋은 음료로 여긴다.",
-            },
-          },
-        },
-      },
-      {
-        id: 7,
-        name: "문제",
-        type: "singlePage",
-        data: {
-          id: uuidV4(),
-          type: "TemplateQuestion",
-          contents: {
-            id: uuidV4(),
-            type: "question",
-            data: {
-              iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20044",
-              answer: "3",
-              comment: "중국!",
-              example:
-                "중국인은 차를 약이라 여긴다. → 과거에는 약의 용도로 쓰이긴 했으나, 현재는 건강에 좋은 음료로 여긴다.",
-            },
-          },
-        },
-      },
-    ],
-  },
-  {
-    meta: {
-      id: 18,
-      name: "문제",
-      lessonId: 1,
-      lessonName: "Lesson 1",
-      lessonTpCd: "30",
-      courseId: 1,
-      courseName: "차이홍(샘플데이터)-빨강",
-      isCompleted: false,
-    },
-    data: [
-      {
-        id: 1,
-        name: "문제",
-        type: "singlePage",
-        data: {
-          id: uuidV4(),
-          type: "TemplateQuestion",
-          contents: {
-            id: uuidV4(),
-            type: "question",
-            data: {
-              iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20050",
-              answer: "4",
-              comment: "해설부분입니다.",
-              example: `① A: 洗手间离这儿近吗？Xǐshǒujiān lí zhèr jìn ma?
+  //             화장실은 여기서 가까워요?
 
-              화장실은 여기서 가까워요?
-              
-              B: 离这儿很近。Lí zhèr hěn jìn.
-              
-              여기서 가까워요.
-              
-              ② A: 医院怎么走？Yīyuàn zěnme zǒu?
-              
-              병원은 어떻게 가나요?
-              
-              B: 往右拐就到了。Wǎng yòu guǎi jiù dào le.
-              
-              오른쪽으로 돌면 바로 도착해요.
-              
-              ③ A: 电影院怎么走？Diànyǐngyuàn zěnme zǒu?
-              
-              영화관은 어떻게 가나요?
-              
-              B: 往前走就到了。Wǎng qián zǒu jiù dào le.
-              
-              앞으로 가면 바로 도착해요.
-              
-              ④ A: 图书馆怎么走？Túshūguǎn zěnme zǒu?
-              
-              도서관은 어떻게 가나요?
-              
-              B: 一直往前走，到学校往左拐。Yìzhí wǎng qián zǒu, dào xuéxiào wǎng zuǒ guǎi.
-              
-              곧장 앞으로 가신 다음, 학교에서 왼쪽으로 가세요.
-              
-              ⑤ A: 银行怎么走？Yínháng zěnme zǒu?
-              
-              은행은 어떻게 가나요?
-              
-              B: 一直往前走，到学校往右拐。Yìzhí wǎng qián zǒu, dào xuéxiào wǎng yòu guǎi.
-              
-              곧장 앞으로 가신 다음, 학교에서 오른쪽으로 가세요.`,
-            },
-          },
-        },
-      },
-      {
-        id: 2,
-        name: "문제",
-        type: "singlePage",
-        data: {
-          id: uuidV4(),
-          type: "TemplateQuestion",
-          contents: {
-            id: uuidV4(),
-            type: "question",
-            data: {
-              iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20050",
-              answer: "4",
-              comment: "해설부분입니다.",
-              example: `① A: 洗手间离这儿近吗？Xǐshǒujiān lí zhèr jìn ma?
+  //             B: 离这儿很近。Lí zhèr hěn jìn.
 
-              화장실은 여기서 가까워요?
-              
-              B: 离这儿很近。Lí zhèr hěn jìn.
-              
-              여기서 가까워요.
-              
-              ② A: 医院怎么走？Yīyuàn zěnme zǒu?
-              
-              병원은 어떻게 가나요?
-              
-              B: 往右拐就到了。Wǎng yòu guǎi jiù dào le.
-              
-              오른쪽으로 돌면 바로 도착해요.
-              
-              ③ A: 电影院怎么走？Diànyǐngyuàn zěnme zǒu?
-              
-              영화관은 어떻게 가나요?
-              
-              B: 往前走就到了。Wǎng qián zǒu jiù dào le.
-              
-              앞으로 가면 바로 도착해요.
-              
-              ④ A: 图书馆怎么走？Túshūguǎn zěnme zǒu?
-              
-              도서관은 어떻게 가나요?
-              
-              B: 一直往前走，到学校往左拐。Yìzhí wǎng qián zǒu, dào xuéxiào wǎng zuǒ guǎi.
-              
-              곧장 앞으로 가신 다음, 학교에서 왼쪽으로 가세요.
-              
-              ⑤ A: 银行怎么走？Yínháng zěnme zǒu?
-              
-              은행은 어떻게 가나요?
-              
-              B: 一直往前走，到学校往右拐。Yìzhí wǎng qián zǒu, dào xuéxiào wǎng yòu guǎi.
-              
-              곧장 앞으로 가신 다음, 학교에서 오른쪽으로 가세요.`,
-            },
-          },
-        },
-      },
-      {
-        id: 3,
-        name: "문제",
-        type: "singlePage",
-        data: {
-          id: uuidV4(),
-          type: "TemplateQuestion",
-          contents: {
-            id: uuidV4(),
-            type: "question",
-            data: {
-              iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20050",
-              answer: "4",
-              comment: "해설부분입니다.",
-              example: `① A: 洗手间离这儿近吗？Xǐshǒujiān lí zhèr jìn ma?
+  //             여기서 가까워요.
 
-              화장실은 여기서 가까워요?
-              
-              B: 离这儿很近。Lí zhèr hěn jìn.
-              
-              여기서 가까워요.
-              
-              ② A: 医院怎么走？Yīyuàn zěnme zǒu?
-              
-              병원은 어떻게 가나요?
-              
-              B: 往右拐就到了。Wǎng yòu guǎi jiù dào le.
-              
-              오른쪽으로 돌면 바로 도착해요.
-              
-              ③ A: 电影院怎么走？Diànyǐngyuàn zěnme zǒu?
-              
-              영화관은 어떻게 가나요?
-              
-              B: 往前走就到了。Wǎng qián zǒu jiù dào le.
-              
-              앞으로 가면 바로 도착해요.
-              
-              ④ A: 图书馆怎么走？Túshūguǎn zěnme zǒu?
-              
-              도서관은 어떻게 가나요?
-              
-              B: 一直往前走，到学校往左拐。Yìzhí wǎng qián zǒu, dào xuéxiào wǎng zuǒ guǎi.
-              
-              곧장 앞으로 가신 다음, 학교에서 왼쪽으로 가세요.
-              
-              ⑤ A: 银行怎么走？Yínháng zěnme zǒu?
-              
-              은행은 어떻게 가나요?
-              
-              B: 一直往前走，到学校往右拐。Yìzhí wǎng qián zǒu, dào xuéxiào wǎng yòu guǎi.
-              
-              곧장 앞으로 가신 다음, 학교에서 오른쪽으로 가세요.`,
-            },
-          },
-        },
-      },
-      {
-        id: 4,
-        name: "문제",
-        type: "singlePage",
-        data: {
-          id: uuidV4(),
-          type: "TemplateQuestion",
-          contents: {
-            id: uuidV4(),
-            type: "question",
-            data: {
-              iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20050",
-              answer: "4",
-              comment: "해설부분입니다.",
-              example: `① A: 洗手间离这儿近吗？Xǐshǒujiān lí zhèr jìn ma?
+  //             ② A: 医院怎么走？Yīyuàn zěnme zǒu?
 
-              화장실은 여기서 가까워요?
-              
-              B: 离这儿很近。Lí zhèr hěn jìn.
-              
-              여기서 가까워요.
-              
-              ② A: 医院怎么走？Yīyuàn zěnme zǒu?
-              
-              병원은 어떻게 가나요?
-              
-              B: 往右拐就到了。Wǎng yòu guǎi jiù dào le.
-              
-              오른쪽으로 돌면 바로 도착해요.
-              
-              ③ A: 电影院怎么走？Diànyǐngyuàn zěnme zǒu?
-              
-              영화관은 어떻게 가나요?
-              
-              B: 往前走就到了。Wǎng qián zǒu jiù dào le.
-              
-              앞으로 가면 바로 도착해요.
-              
-              ④ A: 图书馆怎么走？Túshūguǎn zěnme zǒu?
-              
-              도서관은 어떻게 가나요?
-              
-              B: 一直往前走，到学校往左拐。Yìzhí wǎng qián zǒu, dào xuéxiào wǎng zuǒ guǎi.
-              
-              곧장 앞으로 가신 다음, 학교에서 왼쪽으로 가세요.
-              
-              ⑤ A: 银行怎么走？Yínháng zěnme zǒu?
-              
-              은행은 어떻게 가나요?
-              
-              B: 一直往前走，到学校往右拐。Yìzhí wǎng qián zǒu, dào xuéxiào wǎng yòu guǎi.
-              
-              곧장 앞으로 가신 다음, 학교에서 오른쪽으로 가세요.`,
-            },
-          },
-        },
-      },
-      {
-        id: 5,
-        name: "문제",
-        type: "singlePage",
-        data: {
-          id: uuidV4(),
-          type: "TemplateQuestion",
-          contents: {
-            id: uuidV4(),
-            type: "question",
-            data: {
-              iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20050",
-              answer: "4",
-              comment: "해설부분입니다.",
-              example: `① A: 洗手间离这儿近吗？Xǐshǒujiān lí zhèr jìn ma?
+  //             병원은 어떻게 가나요?
 
-              화장실은 여기서 가까워요?
-              
-              B: 离这儿很近。Lí zhèr hěn jìn.
-              
-              여기서 가까워요.
-              
-              ② A: 医院怎么走？Yīyuàn zěnme zǒu?
-              
-              병원은 어떻게 가나요?
-              
-              B: 往右拐就到了。Wǎng yòu guǎi jiù dào le.
-              
-              오른쪽으로 돌면 바로 도착해요.
-              
-              ③ A: 电影院怎么走？Diànyǐngyuàn zěnme zǒu?
-              
-              영화관은 어떻게 가나요?
-              
-              B: 往前走就到了。Wǎng qián zǒu jiù dào le.
-              
-              앞으로 가면 바로 도착해요.
-              
-              ④ A: 图书馆怎么走？Túshūguǎn zěnme zǒu?
-              
-              도서관은 어떻게 가나요?
-              
-              B: 一直往前走，到学校往左拐。Yìzhí wǎng qián zǒu, dào xuéxiào wǎng zuǒ guǎi.
-              
-              곧장 앞으로 가신 다음, 학교에서 왼쪽으로 가세요.
-              
-              ⑤ A: 银行怎么走？Yínháng zěnme zǒu?
-              
-              은행은 어떻게 가나요?
-              
-              B: 一直往前走，到学校往右拐。Yìzhí wǎng qián zǒu, dào xuéxiào wǎng yòu guǎi.
-              
-              곧장 앞으로 가신 다음, 학교에서 오른쪽으로 가세요.`,
-            },
-          },
-        },
-      },
-    ],
-  },
+  //             B: 往右拐就到了。Wǎng yòu guǎi jiù dào le.
+
+  //             오른쪽으로 돌면 바로 도착해요.
+
+  //             ③ A: 电影院怎么走？Diànyǐngyuàn zěnme zǒu?
+
+  //             영화관은 어떻게 가나요?
+
+  //             B: 往前走就到了。Wǎng qián zǒu jiù dào le.
+
+  //             앞으로 가면 바로 도착해요.
+
+  //             ④ A: 图书馆怎么走？Túshūguǎn zěnme zǒu?
+
+  //             도서관은 어떻게 가나요?
+
+  //             B: 一直往前走，到学校往左拐。Yìzhí wǎng qián zǒu, dào xuéxiào wǎng zuǒ guǎi.
+
+  //             곧장 앞으로 가신 다음, 학교에서 왼쪽으로 가세요.
+
+  //             ⑤ A: 银行怎么走？Yínháng zěnme zǒu?
+
+  //             은행은 어떻게 가나요?
+
+  //             B: 一直往前走，到学校往右拐。Yìzhí wǎng qián zǒu, dào xuéxiào wǎng yòu guǎi.
+
+  //             곧장 앞으로 가신 다음, 학교에서 오른쪽으로 가세요.`,
+  //           },
+  //         },
+  //       },
+  //     },
+  //     {
+  //       id: 2,
+  //       name: "문제",
+  //       type: "singlePage",
+  //       data: {
+  //         id: uuidV4(),
+  //         type: "TemplateQuestion",
+  //         contents: {
+  //           id: uuidV4(),
+  //           type: "question",
+  //           data: {
+  //             iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20049",
+  //             answer: "1",
+  //             comment: "해설부분입니다.",
+  //             example: `중국의 수도는 베이징이다.`,
+  //           },
+  //         },
+  //       },
+  //     },
+  //     {
+  //       id: 3,
+  //       name: "문제",
+  //       type: "singlePage",
+  //       data: {
+  //         id: uuidV4(),
+  //         type: "TemplateQuestion",
+  //         contents: {
+  //           id: uuidV4(),
+  //           type: "question",
+  //           data: {
+  //             iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20048",
+  //             answer: "1",
+  //             comment: "해석부분입니다.",
+  //             example: `중국어는 중국어에요`,
+  //           },
+  //         },
+  //       },
+  //     },
+  //     {
+  //       id: 4,
+  //       name: "문제",
+  //       type: "singlePage",
+  //       data: {
+  //         id: uuidV4(),
+  //         type: "TemplateQuestion",
+  //         contents: {
+  //           id: uuidV4(),
+  //           type: "question",
+  //           data: {
+  //             iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20047",
+  //             answer: "1",
+  //             comment: "해석이에요",
+  //             example: "중국의 수도는 베이징이다.",
+  //           },
+  //         },
+  //       },
+  //     },
+  //     {
+  //       id: 5,
+  //       name: "문제",
+  //       type: "singlePage",
+  //       data: {
+  //         id: uuidV4(),
+  //         type: "TemplateQuestion",
+  //         contents: {
+  //           id: uuidV4(),
+  //           type: "question",
+  //           data: {
+  //             iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20046",
+  //             answer: "1",
+  //             comment: "해석이에요",
+  //             example: "해설인가요",
+  //           },
+  //         },
+  //       },
+  //     },
+  //     {
+  //       id: 6,
+  //       name: "문제",
+  //       type: "singlePage",
+  //       data: {
+  //         id: uuidV4(),
+  //         type: "TemplateQuestion",
+  //         contents: {
+  //           id: uuidV4(),
+  //           type: "question",
+  //           data: {
+  //             iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20045",
+  //             answer: "3",
+  //             comment: "중국?",
+  //             example:
+  //               "중국인은 차를 약이라 여긴다. → 과거에는 약의 용도로 쓰이긴 했으나, 현재는 건강에 좋은 음료로 여긴다.",
+  //           },
+  //         },
+  //       },
+  //     },
+  //     {
+  //       id: 7,
+  //       name: "문제",
+  //       type: "singlePage",
+  //       data: {
+  //         id: uuidV4(),
+  //         type: "TemplateQuestion",
+  //         contents: {
+  //           id: uuidV4(),
+  //           type: "question",
+  //           data: {
+  //             iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20044",
+  //             answer: "3",
+  //             comment: "중국!",
+  //             example:
+  //               "중국인은 차를 약이라 여긴다. → 과거에는 약의 용도로 쓰이긴 했으나, 현재는 건강에 좋은 음료로 여긴다.",
+  //           },
+  //         },
+  //       },
+  //     },
+  //   ],
+  // },
 ];
 
 export const v1LessonDataServer = {

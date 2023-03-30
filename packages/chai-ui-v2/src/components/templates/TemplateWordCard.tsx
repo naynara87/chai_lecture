@@ -49,6 +49,7 @@ const TemplateWordCard = ({
   }, [handleAudioReset]);
 
   const setFullAudio = useCallback(() => {
+    if (!thisPage.rightContents) return;
     thisPage.rightContents.forEach((content) => {
       if (content.type === "contentsCardList") {
         const audioList: string[] = [];
@@ -69,12 +70,14 @@ const TemplateWordCard = ({
   }, [setFullAudio]);
 
   const leftContents = useMemo(() => {
+    if (!thisPage.leftContents) return;
     return thisPage.leftContents.map((leftContent, contentIndex) => {
       return getContentComponent(leftContent, contentIndex);
     });
   }, [getContentComponent, thisPage]);
 
   const rightContents = useMemo(() => {
+    if (!thisPage.rightContents) return;
     return thisPage.rightContents.map((rightContent, contentIndex) => {
       if (rightContent.type !== "contentsCardList") {
         return getContentComponent(rightContent, contentIndex);

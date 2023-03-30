@@ -33,7 +33,9 @@ const useRolePlaying = (slideId: ID) => {
     const newSlides = slides.map((slide) => {
       if (slide.id === slideId) {
         const newSlide = cloneDeep(slide) as TemplateRolePlayingData;
-        newSlide.rolePlayingContents.data = updatedRolePlayingContents;
+        if (newSlide.rolePlayingContents) {
+          newSlide.rolePlayingContents.data = updatedRolePlayingContents;
+        }
         return newSlide;
       }
       return slide;

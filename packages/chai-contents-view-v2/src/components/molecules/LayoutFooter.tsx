@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import {
   ComponentButtonFillBlack,
   IconCloseComponent,
@@ -19,21 +19,31 @@ const LinkTag = styled.a``;
 interface LayoutFooterProps {
   corners: CornerListData[];
   pages?: Page[];
-  currentPageIndex: number;
   handleClickNext: () => void;
   handleClickPrev: () => void;
+  totalPages: (string | number)[];
 }
 
 const LayoutFooter = ({
   pages,
   corners,
-  currentPageIndex,
   handleClickNext,
   handleClickPrev,
+  totalPages,
 }: LayoutFooterProps) => {
   const [isShowNav, setIsShowNav] = useState(false);
   const [isExitModalOpen, setIsExitModalOpen] = useState(false);
-  const { courseId, lessonId, cornerId } = useParams();
+  const { courseId, lessonId, cornerId, pageId } = useParams();
+
+  const navGetPageUrl = useCallback(
+    (corner: string, page: string) => {
+      if (!courseId || !lessonId) {
+        return "/";
+      }
+      return getPageUrl(courseId, lessonId, corner, page);
+    },
+    [courseId, lessonId],
+  );
 
   const cornerList = useMemo(() => {
     if (!courseId && !lessonId) {
@@ -50,7 +60,7 @@ const LayoutFooter = ({
       return (
         <li className="cai-nav-list" key={cornerIndex}>
           <Link
-            to={getPageUrl(courseId ?? 1, lessonId ?? 1, corner.id, 1)}
+            to={navGetPageUrl(corner.id.toString(), corner.pages[0].toString())}
             className="cai-nav-link"
             onClick={() => {
               setIsShowNav(false);
@@ -61,7 +71,14 @@ const LayoutFooter = ({
         </li>
       );
     });
-  }, [corners, courseId, lessonId, cornerId]);
+  }, [corners, courseId, lessonId, cornerId, navGetPageUrl]);
+
+  const totalPagesToCurrentPageIndex = useMemo(() => {
+    if (!pages) return;
+    return totalPages.findIndex(
+      (page) => pageId?.toString() === page.toString(),
+    );
+  }, [pages, totalPages, pageId]);
 
   return (
     <div>
@@ -82,13 +99,13 @@ const LayoutFooter = ({
           <button
             className="ft-icon-btn"
             onClick={handleClickPrev}
-            disabled={currentPageIndex === 0}
+            disabled={totalPagesToCurrentPageIndex === 0}
           >
             <IconLeftArrowComponent />
           </button>
           <span className="txt">
-            <b>{currentPageIndex + 1}</b>
-            <small> / {pages?.length}</small>
+            <b>{totalPagesToCurrentPageIndex! + 1}</b>
+            <small> / {totalPages.length}</small>
           </span>
           <button className="ft-icon-btn" onClick={handleClickNext}>
             <IconRightArrowComponent />

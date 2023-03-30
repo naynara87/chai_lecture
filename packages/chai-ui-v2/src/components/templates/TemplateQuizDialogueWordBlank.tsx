@@ -111,12 +111,14 @@ const TemplateQuizDialogueWordBlank = ({
   }, [handleAudioReset]);
 
   const dialogueQuizContent = useMemo(() => {
+    if (!thisPage.rightContents) return;
     return thisPage.rightContents.find(
       (content) => content.type === "conversationQuiz",
     ) as ConversationQuizContentData;
   }, [thisPage.rightContents]);
 
   const setFullAudio = useCallback(() => {
+    if (!thisPage.rightContents) return;
     return thisPage.rightContents.forEach((content) => {
       if (content.type === "conversationQuiz") {
         const audioList: string[] = [];
@@ -179,6 +181,7 @@ const TemplateQuizDialogueWordBlank = ({
   }, [handleAudioReset]);
 
   const leftContents = useMemo(() => {
+    if (!thisPage.leftContents) return;
     return thisPage.leftContents.map((leftContent, contentIndex) => {
       if (leftContent.type !== "fullAudio") {
         return getContentComponent(leftContent, contentIndex);
@@ -187,6 +190,7 @@ const TemplateQuizDialogueWordBlank = ({
   }, [getContentComponent, thisPage]);
 
   const fullAudioContents = useMemo(() => {
+    if (!thisPage.leftContents) return;
     return thisPage.leftContents.map((leftContent, contentIndex) => {
       if (leftContent.type === "fullAudio") {
         return (
@@ -218,10 +222,12 @@ const TemplateQuizDialogueWordBlank = ({
         {/* 230217 회화영역 */}
         {/* speech bubble */}
         {/* end speech bubble */}
-        <ConversationQuizComponent
-          contents={dialogueQuizContent}
-          fullAudioId={`fullAudio_${fullAudioUuidRef.current}`}
-        />
+        {dialogueQuizContent && (
+          <ConversationQuizComponent
+            contents={dialogueQuizContent}
+            fullAudioId={`fullAudio_${fullAudioUuidRef.current}`}
+          />
+        )}
         {/* TODO: key설명 - input이 checked가 되는 순간 blank에 선택한 글자가 들어감 */}
       </div>
     </DialogueContainer>

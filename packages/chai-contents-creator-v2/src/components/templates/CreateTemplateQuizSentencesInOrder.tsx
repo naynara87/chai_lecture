@@ -34,40 +34,44 @@ const CreateTemplateQuizSentencesInOrder = ({
       <CreateEditMainWrap55>
         <CreateEditMain>
           <DashBoxArea droppableId={leftDroppableId}>
-            {getComponent({
-              index: 0,
-              currentSlide: thisSlide,
-              content: thisSlide.titleContents,
-              isFocused: focusedId === thisSlide.titleContents.id,
-              setFocusedId,
-              updateContent,
-              deleteContent,
-              position: "titleContents",
-              templateType: thisSlide.type,
-              isDraggable: false,
-              isEditBtn: false,
-            })}
-            {getComponent({
-              index: 1,
-              currentSlide: thisSlide,
-              content: thisSlide.mainContents,
-              isFocused: focusedId === thisSlide.mainContents.id,
-              setFocusedId,
-              updateContent,
-              deleteContent,
-              position: "mainContents",
-              templateType: thisSlide.type,
-              isDraggable: false,
-              isEditBtn: false,
-              updateContentToSentenceInOrderTemplate,
-            })}
+            {thisSlide.titleContents &&
+              getComponent({
+                index: 0,
+                currentSlide: thisSlide,
+                content: thisSlide.titleContents,
+                isFocused: focusedId === thisSlide.titleContents.id,
+                setFocusedId,
+                updateContent,
+                deleteContent,
+                position: "titleContents",
+                templateType: thisSlide.type,
+                isDraggable: false,
+                isEditBtn: false,
+              })}
+            {thisSlide.mainContents &&
+              getComponent({
+                index: 1,
+                currentSlide: thisSlide,
+                content: thisSlide.mainContents,
+                isFocused: focusedId === thisSlide.mainContents.id,
+                setFocusedId,
+                updateContent,
+                deleteContent,
+                position: "mainContents",
+                templateType: thisSlide.type,
+                isDraggable: false,
+                isEditBtn: false,
+                updateContentToSentenceInOrderTemplate,
+              })}
           </DashBoxArea>
         </CreateEditMain>
         <CreateEditMain>
           <DashBoxArea droppableId={rightDroppableId}>
-            <CharacterSentenceListCheckedCreator
-              content={thisSlide.mainContents}
-            />
+            {thisSlide.mainContents && (
+              <CharacterSentenceListCheckedCreator
+                content={thisSlide.mainContents}
+              />
+            )}
           </DashBoxArea>
         </CreateEditMain>
       </CreateEditMainWrap55>

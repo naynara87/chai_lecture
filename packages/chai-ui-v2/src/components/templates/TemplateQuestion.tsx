@@ -77,15 +77,17 @@ const TemplateQuestion = ({
       <div className="question-number attched">{`[50 ~ 87]`}</div>
       <div className="question-number">{`${pageId}번`}</div>
       <QuestionPanel className="layout-panel">
-        <iframe
-          src={thisPage.contents.data.iframeUrl}
-          title={thisPage.id.toString()}
-          width="100%"
-          height="100%"
-          frameBorder="0"
-          allowFullScreen
-          scrolling="no"
-        ></iframe>
+        {thisPage.contents && (
+          <iframe
+            src={thisPage.contents.data.iframeUrl ?? ""}
+            title={thisPage.id.toString()}
+            width="100%"
+            height="100%"
+            frameBorder="0"
+            allowFullScreen
+            scrolling="no"
+          ></iframe>
+        )}
       </QuestionPanel>
       {toViewScoreButton}
     </div>

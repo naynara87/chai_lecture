@@ -20,6 +20,7 @@ export type LessonMeta = {
   name: string;
   courseId: number;
   courseName: string;
+  lessonTpCd: string;
   // 레슨 컬러코드 왼쪽부터 빨강, 주황, 노랑, 초록, 파랑, 남색, 보라 순
   colorTypeCd: "10" | "20" | "30" | "40" | "50" | "60" | "70";
 };
@@ -30,6 +31,7 @@ export type LessonMeta = {
 export type CornerListData = {
   id: ID;
   name: string;
+  pages: number[];
   introduction?: LessonIntroduction;
 };
 
@@ -56,13 +58,7 @@ export type CornerData = {
  */
 export type CornerMeta = {
   id: ID;
-  name: string;
   lessonId: number;
-  lessonName: string;
-  lessonTpCd: "10" | "20" | "30"; // 문제 페이지인지 판단?
-  courseId: number;
-  courseName: string;
-  isCompleted: boolean;
 };
 
 export type PageIntroduction = {
