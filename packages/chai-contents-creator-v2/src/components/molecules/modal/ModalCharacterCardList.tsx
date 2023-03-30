@@ -9,6 +9,7 @@ import DroppableContents, {
 } from "../DroppableContents";
 import ComponentsContextMenuComponent from "../ComponentsContextMenuComponent";
 import { css } from "@emotion/react";
+import { characterCardContentComponents } from "../../../data/appData";
 
 const BtnSelect = styled(BtnSelectComponent)`
   position: absolute;
@@ -101,6 +102,7 @@ const ModalCharacterCardList = ({
             toggleContextMenu={toggleComponentsContextMenu}
             addComponent={addComponent}
             customCSS={ModalPositionCss}
+            contentComponents={characterCardContentComponents}
           />
         </ButtonContainer>
         <div className="base-wrapper">

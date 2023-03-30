@@ -188,6 +188,24 @@ export const contentComponents: ContentComponents = {
   ],
 };
 
+export const grayLineContentComponents: Omit<ContentComponents, "character"> = {
+  common: ["text", "video", "imageWithCaptionList", "audio"],
+  mixture: ["conversation"],
+};
+
+export const cardContentComponents: Omit<ContentComponents, "character"> = {
+  common: ["text", "imageWithCaptionList", "audio", "speaking"],
+  mixture: ["wordsCarousel", "audioAndWordsCarousel"],
+};
+
+export const characterCardContentComponents: Omit<
+  ContentComponents,
+  "character"
+> = {
+  common: ["text", "iconText", "numberingTextList"],
+  mixture: ["conversation"],
+};
+
 export const contentComponentsGroupMap: Record<
   keyof ContentComponents,
   string
@@ -645,7 +663,33 @@ export const getTemplateDefaultValue = (): Partial<
         },
       },
     ],
-    rightContents: [],
+    rightContents: [
+      {
+        id: uuidV4(),
+        type: "iconText",
+        data: {
+          text: "",
+        },
+      },
+      {
+        id: uuidV4(),
+        type: "conversation",
+        data: [
+          {
+            text: "",
+            pronunciation: "",
+            meaning: "",
+            audio: {
+              src: "",
+            },
+            character: {
+              name: "",
+              src: "",
+            },
+          },
+        ],
+      },
+    ],
   },
   TemplateConversationToggle: {
     id: uuidV4(),
@@ -671,7 +715,34 @@ export const getTemplateDefaultValue = (): Partial<
         },
       },
     ],
-    rightContents: [],
+    rightContents: [
+      {
+        id: uuidV4(),
+        type: "iconText",
+        data: {
+          text: "",
+        },
+      },
+      {
+        id: uuidV4(),
+        type: "conversation",
+        data: [
+          {
+            text: "",
+            pronunciation: "",
+            meaning: "",
+            audio: {
+              src: "",
+            },
+            character: {
+              name: "",
+              src: "",
+            },
+            speakingTime: 0,
+          },
+        ],
+      },
+    ],
   },
   TemplateConversationRepeat: {
     id: uuidV4(),
@@ -697,7 +768,33 @@ export const getTemplateDefaultValue = (): Partial<
         },
       },
     ],
-    rightContents: [],
+    rightContents: [
+      {
+        id: uuidV4(),
+        type: "iconText",
+        data: {
+          text: "",
+        },
+      },
+      {
+        id: uuidV4(),
+        type: "conversation",
+        data: [
+          {
+            text: "",
+            pronunciation: "",
+            meaning: "",
+            audio: {
+              src: "",
+            },
+            character: {
+              name: "",
+              src: "",
+            },
+          },
+        ],
+      },
+    ],
   },
   TemplateQuizMultiChoice: {
     id: uuidV4(),

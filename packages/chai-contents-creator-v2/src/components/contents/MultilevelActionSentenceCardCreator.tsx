@@ -14,7 +14,10 @@ import {
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 import useComponentContext from "../../hooks/useComponentContext";
 import { useCallback } from "react";
-import { getContentComponentsDefaultValue } from "../../data/appData";
+import {
+  cardContentComponents,
+  getContentComponentsDefaultValue,
+} from "../../data/appData";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { cloneDeep } from "lodash";
 import DroppableContents from "../molecules/DroppableContents";
@@ -222,6 +225,7 @@ const MultilevelActionSentenceCardCreator = ({
                 isComponentsContextMenuOpen={isComponentsContextMenuOpen}
                 addComponent={addComponent}
                 toggleContextMenu={toggleContextMenu}
+                contentComponents={cardContentComponents}
               />
             </TopArea>
             <DragDropContext onDragEnd={handleOnDragEnd}>
