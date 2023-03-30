@@ -149,7 +149,7 @@ export interface InitialAppData {
   uno: string;
   uid: string;
   applId: string;
-  turnId?: string;
+  cornerId?: string;
   courseId: string;
   pageId?: string;
   subjectId: string;

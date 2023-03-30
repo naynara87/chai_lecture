@@ -41,7 +41,7 @@ const Home = () => {
   const { lessonMetaData, corners } = useLesson(lessonIdMemo);
 
   const { cornerMetaData, pages } = useCorner(
-    learningLogCookieData?.turnId ?? corners[0]?.id,
+    learningLogCookieData?.cornerId ?? corners[0]?.id,
   );
 
   const getUrl = useCallback(
@@ -64,7 +64,7 @@ const Home = () => {
     if (pages.length < 1) return;
     const currentCornerIndex = corners.findIndex(
       (corner) =>
-        corner.id.toString() === learningLogCookieData?.turnId?.toString(),
+        corner.id.toString() === learningLogCookieData?.cornerId?.toString(),
     );
     const currentPageIndex = pages.findIndex(
       (page) =>
