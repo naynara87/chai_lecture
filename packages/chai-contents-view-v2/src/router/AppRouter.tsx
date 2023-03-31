@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
+import { Routes, Route, Navigate, HashRouter } from "react-router-dom";
 import Layout from "../components/pages/Layout";
 import LayoutTemp from "../components/pages/LayoutTemp";
 import NotFound from "../components/pages/NotFound";
@@ -11,7 +11,7 @@ import QuestionScore from "../components/pages/QuestionScore";
 
 const AppRouter = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path={HOME_URL} element={<Home />} />
         <Route
@@ -27,7 +27,7 @@ const AppRouter = () => {
         <Route path={"temp"} element={<LayoutTemp />} />
         <Route path="*" element={<Navigate to={NOT_FOUND_URL} replace />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 

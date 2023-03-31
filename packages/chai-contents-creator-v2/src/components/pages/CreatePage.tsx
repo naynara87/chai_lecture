@@ -15,6 +15,7 @@ import ModalIntroduction from "../molecules/modal/ModalIntroduction";
 import useCreatePage from "../../hooks/useCreatePage";
 import { css } from "@emotion/react";
 import { isDevEnv } from "../../constants/env";
+import { Link } from "react-router-dom";
 
 const CommonButtonContainer = styled.div`
   padding-bottom: 16px;
@@ -69,7 +70,6 @@ const CreatePage = () => {
 
   const handleClickPreview = useCallback(() => {
     savePageDataToLocalStorage();
-    window.open(PREVIEW_URL, "_blank");
   }, [savePageDataToLocalStorage]);
 
   const handleClickAddIntroductionModal = useCallback(() => {
@@ -89,7 +89,9 @@ const CreatePage = () => {
             테스트 저장 버튼
           </Button>
           <Button type="button" onClick={handleClickPreview}>
-            미리보기
+            <Link to={PREVIEW_URL} target="_blank">
+              미리보기
+            </Link>
           </Button>
           <Button type="button" onClick={handleClickAddIntroductionModal}>
             학습 변경 간지 추가
