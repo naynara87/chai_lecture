@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { ID, Page } from "chai-ui-v2";
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import { toast } from "react-toastify";
 import { getPageListData } from "../api/lcms/lcms";
 import { queryKey } from "../constants/queryKey";
@@ -27,13 +27,6 @@ const usePageData = ({ cornerId, pageId }: UsePageDataProps) => {
       staleTime: Infinity,
     },
   );
-
-  useEffect(() => {
-    console.log(
-      "cornerDataResponse?.data.body.data",
-      cornerDataResponse?.data.body.data,
-    );
-  });
 
   const pageServerData = useMemo(() => {
     if (!pageId) return;

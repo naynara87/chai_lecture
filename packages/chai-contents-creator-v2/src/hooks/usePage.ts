@@ -65,10 +65,6 @@ const usePage = () => {
     );
   }, [slides, setPageData]);
 
-  useEffect(() => {
-    console.log("pageData", pageData);
-  }, [pageData]);
-
   const saveIntroductionModalData = (data: PageIntroduction) => {
     const newPageData = cloneDeep(pageData);
     newPageData.introduction = data;
@@ -256,7 +252,6 @@ const usePage = () => {
         return slide;
       });
 
-      console.log("newSlides", newSlides);
       setSlides(newSlides);
     },
     [slides, setSlides],

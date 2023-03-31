@@ -23,7 +23,6 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   const fetchToken = useCallback(async () => {
     try {
       const tokenData = await getAccessToken();
-      console.log("tokenData", tokenData);
       setHttpLcmsToken(tokenData.body.accessToken);
       setIsAuthorized(true);
     } catch (error) {
