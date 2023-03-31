@@ -19,9 +19,14 @@ const ContStartWrapper = styled.div`
   }
 
   .character-wrap {
+    width: 100%;
+    text-align: center;
+
     .img {
-      width: ${vw(180)};
-      height: ${vw(180)};
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      max-height: ${vw(388)};
     }
   }
 `;
