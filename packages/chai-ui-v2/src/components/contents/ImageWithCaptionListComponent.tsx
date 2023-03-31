@@ -23,16 +23,14 @@ export const CaptionListImage = styled.img`
   height: ${vh(380)};
 `;
 
-const ImageWithCaptionList = styled.div`
-  margin-bottom: ${vh(40)};
-`;
+const ImageWithCaptionList = styled.div``;
 
 const ImageWithCaptionWrapper = styled.div`
   display: flex;
   flex-direction: column;
 
-  & > div {
-    margin-top: ${vh(13)};
+  > div {
+    margin-top: ${vh(15)};
     font-size: ${vw(24)};
     font-weight: 400;
     line-height: 1.5;
