@@ -32,7 +32,6 @@ const ConversationComponent = ({
     globalAudioId,
     handleAudioReset,
     handleClickAudioButton,
-    handleClickAudioStopButton,
   } = useGlobalAudio();
 
   useEffect(() => {
@@ -81,7 +80,7 @@ const ConversationComponent = ({
     (dialogueIndex: number, audioSrc?: string) => {
       if (speakingDialogueIndex === dialogueIndex) {
         if (globalAudioState === "playing") {
-          handleClickAudioStopButton();
+          handleAudioReset();
         } else {
           handleClickAudioButton(
             "dialogue",
@@ -103,7 +102,7 @@ const ConversationComponent = ({
     [
       handleClickAudioButton,
       speakingDialogueIndex,
-      handleClickAudioStopButton,
+      handleAudioReset,
       globalAudioState,
       dialogueAudioUuids,
     ],
