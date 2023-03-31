@@ -1324,6 +1324,11 @@ export const v2CornerDataList: CornerData[] = [
                 data: [
                   {
                     src: "https://fastly.picsum.photos/id/542/1000/1000.jpg?hmac=vijkzGUCIVd4x2RRii3NXbBV4anqTcMeZtyjxz7mI70",
+                    caption: "caption",
+                  },
+                  {
+                    src: "https://images.unsplash.com/photo-1680199188743-8f3a69613aae?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=600&q=60",
+                    caption: "caption",
                   },
                 ],
               },
