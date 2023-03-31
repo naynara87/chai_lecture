@@ -257,7 +257,7 @@
   border: 1px solid color(gray-ff);
   box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
 
-  >img {
+  > img {
     width: vw(16);
   }
 
@@ -365,7 +365,7 @@
   }
 }
 
-.toggle-input:checked~.toggle-label {
+.toggle-input:checked ~ .toggle-label {
   background-color: color(main);
 
   &:after {
@@ -388,6 +388,7 @@
   text-align: center;
   box-shadow: $btn-shadow;
   transition: all 0.2s;
+  cursor: pointer;
 
   .text {
     position: relative;
@@ -397,7 +398,7 @@
   }
 }
 
-.inp-chck-gray:checked~.label-chck-gray {
+.inp-chck-gray:checked ~ .label-chck-gray {
   border-color: color(main);
   background-color: color(gray-ff);
 
@@ -449,7 +450,7 @@
   }
 }
 
-.inp-chck-line:disabled~.label-chck-line {
+.inp-chck-line:disabled ~ .label-chck-line {
   border-color: color(gray-db);
   transition: all 0.2s;
   cursor: default;
@@ -460,7 +461,7 @@
   }
 }
 
-.inp-chck-line:checked~.label-chck-line {
+.inp-chck-line:checked ~ .label-chck-line {
   border-color: color(main);
 
   .text,
