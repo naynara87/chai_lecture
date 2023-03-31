@@ -47,6 +47,16 @@ const ModalPositionCss = css`
   top: 38px;
 `;
 
+const ContentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: calc(100% - 30px);
+  overflow: auto;
+  padding-top: 16px;
+`;
+
 export interface ModalCharacterCardListProps
   extends Omit<DroppableContentsProps, "droppableId" | "contents"> {
   isModalOpen: boolean;
@@ -95,7 +105,7 @@ const ModalCharacterCardList = ({
             컴포넌트 선택
           </BtnSelect>
           <BtnCloseModal className="btn-close-modal" onClick={closeModal}>
-            <img src={IconClose} alt="닫기" />
+            <img src={IconClose} alt="닫기" draggable={false} />
           </BtnCloseModal>
           <ComponentsContextMenuComponent
             isComponentsContextMenuOpen={isComponentsContextMenuOpen}
@@ -105,7 +115,7 @@ const ModalCharacterCardList = ({
             contentComponents={characterCardContentComponents}
           />
         </ButtonContainer>
-        <div className="base-wrapper">
+        <ContentContainer>
           <DragDropContext onDragEnd={handleDragEnd}>
             <DroppableContents
               droppableId={`characterCardModal`}
@@ -117,7 +127,7 @@ const ModalCharacterCardList = ({
               dndOffsetContainerQuery=".base-modal"
             />
           </DragDropContext>
-        </div>
+        </ContentContainer>
       </ModalContainer>
     </ModalBase>
   );
