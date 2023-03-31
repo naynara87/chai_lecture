@@ -33,19 +33,15 @@ const TemplateQuestion = ({
       const tmpPageDatas = LocalStorage.getItem("pageData") as QuizData[];
       // NOTE ms page index 받아서 page index active 추가
       if (tmpPageDatas != null) {
-        const { message } = event.data as {
-          message: {
-            correct: boolean;
-            id: string;
-            answer: string;
-          };
+        const { correct } = event.data as {
+          correct: boolean;
+          id: string;
+          answer: string;
         };
-        tmpPageDatas[parseInt(pageId) - 1].isCorrect = message.correct;
+        tmpPageDatas[parseInt(pageId) - 1].isCorrect = correct;
         tmpPageDatas[parseInt(pageId) - 1].state = "end";
         LocalStorage.setItem("pageData", tmpPageDatas);
       }
-      console.log(123123);
-      console.log("Received message:", event.data);
     },
     [pageId],
   );

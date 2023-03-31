@@ -1,3 +1,4 @@
+import { TimerIcon } from "chai-ui-v2";
 import { useMemo } from "react";
 
 interface LayoutQuestionHeaderProps {
@@ -30,7 +31,10 @@ const LayoutQuestionHeader = ({
       <div className="hd-conts-wrap">
         <h1 className="problem-hd-ttl">{headerText}</h1>
         {isShowSolvingTime && (
-          <div className="problem-hd-timer">{convertedSolvingTime}</div>
+          <div className="problem-hd-timer">
+            <TimerIcon />
+            {convertedSolvingTime}
+          </div>
         )}
       </div>
     </header>

@@ -24,6 +24,9 @@ $gray-color: #d6d7da;
 .problem-hd-timer {
   font-weight: 400;
   font-size: vw(26);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: color(gray-ff);
 
   > img {
