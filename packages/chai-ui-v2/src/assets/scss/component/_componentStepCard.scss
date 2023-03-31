@@ -11,10 +11,9 @@
   margin: 0 auto;
   padding: vh(70) vw(70);
   border-radius: vw(30);
-  transition: width 0.2s,
-  height 0.2s;
+  transition: width 0.2s, height 0.2s;
 
-  >div {
+  > div {
     font-size: vw(40);
   }
 
@@ -44,10 +43,6 @@
     min-height: vw(541);
   }
 
-  @at-root .step-card-wrap:first-child & {
-    margin-top: vh(150-60);
-  }
-
   @at-root .grid-h-5-5 .step3 {
     width: 100%;
   }
@@ -60,7 +55,7 @@
   padding: vh(50) vw(50);
   text-align: center;
 
-  >div {
+  > div {
     font-size: vw(32);
   }
 
