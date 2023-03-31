@@ -18,6 +18,16 @@ const ModalContentsWrapper = styled.div`
   }
 `;
 
+const ContentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+`;
+
 const ModalLearningPoint = ({
   isModalOpen,
   setIsModalOpen,
@@ -44,12 +54,12 @@ const ModalLearningPoint = ({
             wideModal ? "wide-modal" : ""
           }`}
         >
-          <div className="base-wrapper">
+          <ContentContainer>
             <button className="btn-close-modal" onClick={handleClose}>
-              <img src={IconClose} alt="닫기" />
+              <img src={IconClose} alt="닫기" draggable={false} />
             </button>
             <ModalContentsWrapper>{mainContents}</ModalContentsWrapper>
-          </div>
+          </ContentContainer>
         </div>
       </div>
     </ModalBase>
