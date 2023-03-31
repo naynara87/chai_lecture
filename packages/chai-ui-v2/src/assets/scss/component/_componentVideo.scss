@@ -2,7 +2,7 @@
 .player-wrap {
 	overflow: hidden;
 	position: relative;
-	width: vw(1000);
+	max-width: vw(900);
 	height: vh(563);
 	margin: 0 auto;
 	border-radius: vw(20);
@@ -18,7 +18,7 @@
 	}
 
 	@at-root .grid-h-3-7 & {
-		width: 100%;
+		width: vw(685);
 		height: auto;
 	}
 }
