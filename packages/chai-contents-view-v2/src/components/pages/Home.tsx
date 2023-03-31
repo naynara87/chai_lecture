@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import useLesson from "../../hooks/useLesson";
 import useCorner from "../../hooks/useCorner";
 import styled from "@emotion/styled";
+import { usePromiseConfirmModal } from "chai-ui-v2";
 
 const Loader = styled.div`
   width: 20px;
@@ -32,6 +33,14 @@ const Loader = styled.div`
 
 const Home = () => {
   const navigate = useNavigate();
+  const { modalContent, showOpenModal: showContinueOpenModal } =
+    usePromiseConfirmModal({
+      title: "학습 이어하기",
+      description:
+        " 아직 학습을 하지 않은 내용이 있어요.<br />지난 학습에 이어서 진행 하시겠어요?",
+      leftButtonText: "처음부터 하기",
+      rightButtonText: "이어서 하기",
+    });
   const learningLogCookieData = getCookie<InitialAppData>("bubble-player");
 
   const lessonIdMemo: ID | undefined = useMemo(() => {
@@ -59,7 +68,7 @@ const Home = () => {
     [cornerMetaData, lessonMetaData, navigate],
   );
 
-  const setInitialData = useCallback(() => {
+  const setInitialData = useCallback(async () => {
     if (corners.length < 1) return;
     if (pages.length < 1) return;
     const currentCornerIndex = corners.findIndex(
@@ -70,17 +79,28 @@ const Home = () => {
       (page) =>
         page.id.toString() === learningLogCookieData?.pageId?.toString(),
     );
-    const nextCorner = corners[currentCornerIndex] ?? corners[0];
-    const nextPage = pages[currentPageIndex] ?? pages[0];
 
-    getUrl(nextCorner.id, nextPage.id);
-  }, [corners, learningLogCookieData, getUrl, pages]);
+    if (corners[currentCornerIndex] && pages[currentPageIndex]) {
+      const confirmResult = await showContinueOpenModal();
+      if (confirmResult) {
+        getUrl(corners[currentCornerIndex].id, pages[currentPageIndex].id);
+        return;
+      }
+    }
+    getUrl(corners[0].id, pages[0].id);
+    return;
+  }, [corners, learningLogCookieData, getUrl, pages, showContinueOpenModal]);
 
   useEffect(() => {
     setInitialData();
   }, [setInitialData]);
 
-  return <Loader />;
+  return (
+    <>
+      <Loader />
+      {modalContent}
+    </>
+  );
 };
 
 export default Home;
