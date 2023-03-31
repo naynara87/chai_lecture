@@ -10,7 +10,7 @@ interface ModalVideoProps {
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const ModalVideoContainer = styled.div`
+const ModalVideoOnly = styled.div`
   .base-modal {
     width: auto;
     max-width: 60vw;
@@ -54,8 +54,8 @@ const ModalVideo = ({
   };
 
   return (
-    <ModalVideoContainer>
-      <ModalBase open={isModalOpen} onClose={handleClose}>
+    <ModalBase open={isModalOpen} onClose={handleClose}>
+      <ModalVideoOnly>
         <div className="modal active">
           <div className="modal-container base-modal">
             <div className="base-wrapper">
@@ -76,8 +76,8 @@ const ModalVideo = ({
             </div>
           </div>
         </div>
-      </ModalBase>
-    </ModalVideoContainer>
+      </ModalVideoOnly>
+    </ModalBase>
   );
 };
 

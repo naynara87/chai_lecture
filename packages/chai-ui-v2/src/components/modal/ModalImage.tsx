@@ -10,7 +10,7 @@ interface ModalImageProps {
   isImageModal: boolean;
 }
 
-const ModalImageContainer = styled.div`
+const ModalImageOnly = styled.div`
   .base-modal.wide-modal {
     width: auto;
     max-width: 60vw;
@@ -52,8 +52,8 @@ const ModalImage = ({
   };
 
   return (
-    <ModalImageContainer>
-      <ModalBase open={isModalOpen} onClose={handleClose}>
+    <ModalBase open={isModalOpen} onClose={handleClose}>
+      <ModalImageOnly>
         <div className="modal active">
           <div
             className={`modal-container base-modal ${isImageModal ? "wide-modal" : ""
@@ -69,8 +69,8 @@ const ModalImage = ({
             </div>
           </div>
         </div>
-      </ModalBase>
-    </ModalImageContainer>
+      </ModalImageOnly>
+    </ModalBase>
   );
 };
 
