@@ -91,7 +91,7 @@ const ContentsCardListComponent = ({
   }, [handleAudioReset, globalAudioId]);
 
   useEffect(() => {
-    if (fullAudioId && globalAudioId.toString().includes(fullAudioId)) {
+    if (fullAudioId && globalAudioId.toString().includes("fullAudio")) {
       const results = globalAudioId.toString().split("_");
       const [, , textBoxIndex] = results;
       setPlayBoxAudioIndex(parseInt(textBoxIndex, 10));
@@ -100,13 +100,13 @@ const ContentsCardListComponent = ({
 
   useEffect(() => {
     if (
-      fullAudioId &&
+      globalAudioId &&
       !globalAudioId.toString().includes("fullAudio") &&
       !globalAudioId.toString().includes("textBox")
     ) {
       setPlayBoxAudioIndex(-1);
     }
-  }, [globalAudioId, fullAudioId]);
+  }, [globalAudioId]);
 
   useEffect(() => {
     let globalAudioRefValue: HTMLAudioElement | null = null;

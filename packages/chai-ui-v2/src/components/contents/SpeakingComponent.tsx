@@ -24,6 +24,7 @@ const SpeakingComponent = ({ contents }: SpeakingComponentProps) => {
   const [isShowProgressBar, setIsShowProgressBar] = useState(false);
   const [isEndProgressBar, setIsEndProgressBar] = useState(false);
   const [isAudioEnd, setIsAudioEnd] = useState(false);
+  const speakingTimer = useRef<NodeJS.Timeout>();
 
   const {
     globalAudioId,
@@ -48,7 +49,7 @@ const SpeakingComponent = ({ contents }: SpeakingComponentProps) => {
       globalAudioId === `speakingEffectStart_${speakingAudioUuid.current}_0`
     ) {
       setIsAudioEnd(true);
-      setTimeout(() => {
+      speakingTimer.current = setTimeout(() => {
         setIsEndProgressBar(true);
         handleClickAudioButton(
           "speakingEffectEnd",
@@ -69,6 +70,19 @@ const SpeakingComponent = ({ contents }: SpeakingComponentProps) => {
     handleAudioReset,
     handleClickAudioButton,
   ]);
+
+  useEffect(() => {
+    if (
+      globalAudioId !== `speaking_${speakingAudioUuid.current}_0` &&
+      globalAudioId !== `speakingEffectStart_${speakingAudioUuid.current}_0` &&
+      globalAudioId !== `speakingEffectEnd_${speakingAudioUuid.current}_0` &&
+      !isEndProgressBar
+    ) {
+      setIsShowProgressBar(false);
+      setIsAudioEnd(false);
+      clearTimeout(speakingTimer.current);
+    }
+  }, [globalAudioId, isEndProgressBar]);
 
   useEffect(() => {
     let globalAudioRefValue: HTMLAudioElement | null = null;
