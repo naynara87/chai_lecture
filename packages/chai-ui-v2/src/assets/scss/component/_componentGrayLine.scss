@@ -6,5 +6,8 @@
 	font-size: vw(32);
 	line-height: 1.6;
 	white-space: pre-line;
-	// &-text {}
+
+	>div:not(:first-child) {
+		margin-top: vh(40);
+	}
 }
