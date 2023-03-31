@@ -18,4 +18,5 @@ export { default as ImgVocaComponent } from "./ImgVocaComponent";
 export { default as HtmlContentComponent } from "./HtmlContentComponent";
 export * from "./Loading";
 export { default as HeaderCharacterComponent } from "./HeaderCharacterComponent";
+export { default as TimerIcon } from "./TimerIcon";
 export * from "./Button";

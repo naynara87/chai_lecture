@@ -69,6 +69,7 @@ const Home = () => {
   );
 
   const setInitialData = useCallback(async () => {
+    if (!lessonMetaData) return;
     if (corners.length < 1) return;
     if (pages.length < 1) return;
     const currentCornerIndex = corners.findIndex(
@@ -79,8 +80,11 @@ const Home = () => {
       (page) =>
         page.id.toString() === learningLogCookieData?.pageId?.toString(),
     );
-
-    if (corners[currentCornerIndex] && pages[currentPageIndex]) {
+    if (
+      lessonMetaData.lessonTpCd.toString() === "10" &&
+      corners[currentCornerIndex] &&
+      pages[currentPageIndex]
+    ) {
       const confirmResult = await showContinueOpenModal();
       if (confirmResult) {
         getUrl(corners[currentCornerIndex].id, pages[currentPageIndex].id);
@@ -89,7 +93,14 @@ const Home = () => {
     }
     getUrl(corners[0].id, pages[0].id);
     return;
-  }, [corners, learningLogCookieData, getUrl, pages, showContinueOpenModal]);
+  }, [
+    corners,
+    learningLogCookieData,
+    getUrl,
+    pages,
+    showContinueOpenModal,
+    lessonMetaData,
+  ]);
 
   useEffect(() => {
     setInitialData();

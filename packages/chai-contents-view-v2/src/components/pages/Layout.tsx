@@ -25,14 +25,15 @@ const Layout = () => {
     // NOTE ms 문제 템플릿일 경우 레이아웃 호출
     if (lessonMetaData.lessonTpCd.toString() !== "10") {
       // todo ms lcms에서 데이터 받아와서 데이터 구성 필요
-      const dummyData: QuizData[] = pages.map((page, pageIndex) => {
+      const quizData: QuizData[] = pages.map((page, pageIndex) => {
         return {
           id: pageIndex + 1,
           state: "",
-          isCorrect: undefined,
+          isCorrect: false,
         };
       });
-      LocalStorage.setItem("pageData", dummyData);
+
+      LocalStorage.setItem("pageData", quizData);
       return (
         <QuestionLayout
           pages={pages}
