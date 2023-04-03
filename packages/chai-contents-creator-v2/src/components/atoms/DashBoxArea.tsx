@@ -5,10 +5,11 @@ import { Droppable } from "react-beautiful-dnd";
 
 export const DashBoxAreaWrapper = styled.div`
   width: 100%;
+  height: auto;
   border: 2px dashed ${colorPalette.gray700};
   padding: 16px;
   position: relative;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
 `;
 
 interface DashBoxAreaProps {
