@@ -257,7 +257,7 @@
   border: 1px solid color(gray-ff);
   box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
 
-  > img {
+  >img {
     width: vw(16);
   }
 
@@ -365,7 +365,7 @@
   }
 }
 
-.toggle-input:checked ~ .toggle-label {
+.toggle-input:checked~.toggle-label {
   background-color: color(main);
 
   &:after {
@@ -377,9 +377,10 @@
 // =================== input checked style
 // inp-chck-gray
 .label-chck-gray {
-  display: block;
+  @include flex-center;
+
   width: 100%;
-  height: vh(120);
+  min-height: vh(120);
   padding: 0 vw(40);
   border: 3px solid color(gray-f0);
   border-radius: vw(20);
@@ -398,7 +399,7 @@
   }
 }
 
-.inp-chck-gray:checked ~ .label-chck-gray {
+.inp-chck-gray:checked~.label-chck-gray {
   border-color: color(main);
   background-color: color(gray-ff);
 
@@ -450,7 +451,7 @@
   }
 }
 
-.inp-chck-line:disabled ~ .label-chck-line {
+.inp-chck-line:disabled~.label-chck-line {
   border-color: color(gray-db);
   transition: all 0.2s;
   cursor: default;
@@ -461,7 +462,7 @@
   }
 }
 
-.inp-chck-line:checked ~ .label-chck-line {
+.inp-chck-line:checked~.label-chck-line {
   border-color: color(main);
 
   .text,

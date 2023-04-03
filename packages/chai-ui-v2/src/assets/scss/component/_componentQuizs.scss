@@ -27,7 +27,7 @@
     color: color(gray-80);
   }
 
-  > * {
+  >* {
     margin-top: vh(30);
 
     &:first-child {
@@ -91,6 +91,8 @@
 
   .inp-grp {
     flex-basis: calc(50% - vw(15));
+    flex-shrink: 0;
+    flex-grow: 0;
   }
 }
 
