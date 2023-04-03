@@ -88,11 +88,11 @@ const CreatePage = () => {
           >
             테스트 저장 버튼
           </Button>
-          <Button type="button" onClick={handleClickPreview}>
-            <Link to={PREVIEW_URL} target="_blank">
+          <Link to={PREVIEW_URL} target="_blank">
+            <Button type="button" onClick={handleClickPreview}>
               미리보기
-            </Link>
-          </Button>
+            </Button>
+          </Link>
           <Button type="button" onClick={handleClickAddIntroductionModal}>
             학습 변경 간지 추가
           </Button>

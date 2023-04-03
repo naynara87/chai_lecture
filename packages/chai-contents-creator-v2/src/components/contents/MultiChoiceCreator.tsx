@@ -180,7 +180,7 @@ const MultiChoiceCreator = ({
   const choices = useMemo(() => {
     return thisContent.data.choice.map((choice, choiceIndex) => {
       return (
-        <div className="inp-grp">
+        <div key={`${choice}_${choiceIndex}`} className="inp-grp">
           <input
             name="answer"
             id={`answer${choiceIndex}`}

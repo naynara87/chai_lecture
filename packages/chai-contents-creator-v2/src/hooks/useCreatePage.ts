@@ -3,15 +3,17 @@ import { useCallback, useEffect } from "react";
 import { toast } from "react-toastify";
 import { savePageData } from "../api/lcms/lcms";
 import { isDevEnv } from "../constants/env";
-import { CookieBubblePlayer } from "../types/cookie";
-import { getCookie } from "../utils/cookie";
-// import { dummyPageData } from "../data/dummyData"; // test 용 dummy data
+import { InitialInputValue } from "../types/appData";
 import usePage from "./usePage";
 import usePageData from "./usePageData";
 
 const useCreatePage = () => {
-  const cookieFromPhp = getCookie<CookieBubblePlayer>("bubble-player");
-  const { pageId, cornerId } = cookieFromPhp || {};
+  const stringifiedValue =
+    document.querySelector<HTMLInputElement>("#bubble-player")?.value;
+  const initialDataFromPhp = stringifiedValue
+    ? (JSON.parse(stringifiedValue) as InitialInputValue)
+    : null;
+  const { pageId, cornerId } = initialDataFromPhp || {};
   const returnUsePage = usePage();
 
   const { setInitialPageData, pageData } = returnUsePage;
@@ -32,7 +34,6 @@ const useCreatePage = () => {
     if (!pageContentsUuid) return;
     try {
       await savePageData({
-        // page: dummyPageData, // test 용 dummy data
         page: pageData as Page,
         cornerId:
           cornerId || isDevEnv ? "f820ed45-3dbe-407f-b777-db46ff05183c" : "",
