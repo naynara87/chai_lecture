@@ -19,6 +19,15 @@ const ContStartWrapper = styled.div`
   }
 
   .character-wrap {
+    text-align: center;
+    
+    .img {
+      width: ${vw(180)};
+      height: ${vw(180)};
+    }
+  }
+
+  /* .character-wrap {
     width: 100%;
     text-align: center;
 
@@ -28,7 +37,7 @@ const ContStartWrapper = styled.div`
       height: auto;
       max-height: ${vw(388)};
     }
-  }
+  } */
 `;
 
 /**

@@ -20,12 +20,13 @@ const ImageWithDescriptionList = styled.div`
 `;
 
 const ListImage = styled.img`
-  max-width: ${vw(360)};
+  width: ${vw(360)};
+  height: ${vh(220)};
   margin-right: ${vw(43)};
   border-radius: ${vw(10)};
   -webkit-user-drag: none;
   cursor: pointer;
-  height: fit-content;
+  object-fit: cover;
 `;
 
 const ImageWithDescriptionWrapper = styled.div`
