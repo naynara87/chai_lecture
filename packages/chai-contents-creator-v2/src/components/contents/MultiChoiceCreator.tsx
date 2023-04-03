@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { MultiChoiceContentData, QuizPopupModalContentData } from "chai-ui-v2";
+import { MultiChoiceContentData, QuizPopupModalContentData, vw } from "chai-ui-v2";
 import React, { useCallback, useMemo, useState } from "react";
 import useGrayLineComponent from "../../hooks/useGrayLineComponent";
 import { DraggableContentCommonProps } from "../../types/page";
@@ -21,6 +21,8 @@ const ContentBox = styled.div`
 `;
 
 const ChoiceWrap = styled.div`
+  align-items: stretch;
+  flex-wrap: wrap;
   width: 100%;
 `;
 
@@ -33,6 +35,8 @@ interface ChoiceLabelProps {
 }
 
 const ChoiceLabel = styled.label<ChoiceLabelProps>`
+  height: 100%;
+  padding: ${vw(20)} ${vw(40)};
   margin-bottom: 8px;
   ${(props) =>
     props.isFocus && `height:auto; display:flex; align-items: center;`}
