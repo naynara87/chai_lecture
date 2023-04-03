@@ -29,11 +29,12 @@ const useLesson = (lessonId: ID | undefined) => {
             setTotalPages((prev) => [...prev, page]);
           });
         });
+
         // console.log("lessonData", data);
         // setCorners(data?.body.data!);
         // setLessonMetaData(data?.body?.meta!);
         // data?.body.data.forEach((cornerListData) => {
-        //   cornerListData.pages.forEach((page) => {
+        //   cornerListData.pages?.forEach((page) => {
         //     setTotalPages((prev) => [...prev, page]);
         //   });
         // });

@@ -1,3 +1,4 @@
+import { ContentData } from "./lcms";
 import { AllTemplateData } from "./templates";
 
 export type ID = string | number;
@@ -78,6 +79,7 @@ export type Page = SinglePage | MultiPage;
 export type SinglePage = {
   id: ID;
   name: string;
+  pageAreaType: ContentData["pageArea_type"];
   type: "singlePage";
   data: AllTemplateData;
   introduction?: PageIntroduction;
@@ -86,6 +88,7 @@ export type SinglePage = {
 export type MultiPage = {
   id: ID;
   name: string;
+  pageAreaType: ContentData["pageArea_type"];
   type: "multiPage";
   data: AllTemplateData[];
   introduction?: PageIntroduction;
