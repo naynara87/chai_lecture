@@ -43,17 +43,12 @@
 	border-radius: vw(20);
 	font-size: vw(28);
 	white-space: pre-line;
-	text-align: left;
 
-	.text {
-		b {
-			font-weight: 400;
-			color: color(red-600);
-		}
+	div {
+		text-align: left;
 
-		&.lg {
-			font-weight: 600;
-			font-size: vw(36);
+		:not(:first-child) {
+			margin-top: vw(40);
 		}
 	}
 
