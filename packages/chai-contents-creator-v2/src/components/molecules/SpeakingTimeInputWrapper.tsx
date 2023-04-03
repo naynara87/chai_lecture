@@ -45,6 +45,7 @@ interface ButtonProps {
 const SpeakingTimeInputWrapper = ({ onSubmit, defaultText }: ButtonProps) => {
   const [message, setMessage] = useState<string>("");
   const inputRef = useRef<HTMLInputElement>(null);
+  const [isUpload, setIsUpload] = useState<boolean>(false);
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -56,7 +57,8 @@ const SpeakingTimeInputWrapper = ({ onSubmit, defaultText }: ButtonProps) => {
       setMessage("발화시간을 정확히 입력해주세요.");
       return;
     } else {
-      setMessage("");
+      setIsUpload(true);
+      setMessage("정상적으로 등록되었습니다.");
     }
 
     onSubmit && onSubmit(time);
@@ -70,12 +72,13 @@ const SpeakingTimeInputWrapper = ({ onSubmit, defaultText }: ButtonProps) => {
 
     onSubmit && onSubmit(time);
     setMessage("");
+    setIsUpload(false);
     inputRef.current!.value = "";
     inputRef.current!.placeholder = `발화 시간 (초) 입력`;
   };
 
   return (
-    <UrlTextWrapper className="url-wrapper">
+    <UrlTextWrapper className={`${isUpload ? "upload-comp" : ""} url-Wrapper`}>
       <form>
         <input
           placeholder={"발화 시간(초) 입력"}
@@ -86,7 +89,9 @@ const SpeakingTimeInputWrapper = ({ onSubmit, defaultText }: ButtonProps) => {
         <ButtonRegister onClick={handleSubmit}>등록</ButtonRegister>
         <ButtonDelete onClick={deleteTime}>제거</ButtonDelete>
       </form>
-      {message && <WarningMessage>{message}</WarningMessage>}
+      {message && (
+        <WarningMessage className="waring-message">{message}</WarningMessage>
+      )}
     </UrlTextWrapper>
   );
 };
