@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
 import { colorPalette, validateURL } from "chai-ui-v2";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import AddButton from "../atoms/AddButton";
+import { ButtonDelete, ButtonRegister } from "../atoms/ButtonRegister";
 
 const UrlAndTimeWrapper = styled.div`
   & .text-tit {
@@ -58,52 +59,66 @@ const UrlAndTimeInputWrapper = ({
   defaultURL,
 }: ButtonProps) => {
   const [message, setMessage] = useState<string>("");
-  const [inputCheck, setInputCheck] = useState<boolean>(false);
+  const URLRef = useRef<HTMLInputElement>(null);
+  const timeRef = useRef<HTMLInputElement>(null);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const srcInput = e.currentTarget[0] as HTMLInputElement;
+
+    const timeInput = timeRef.current!;
+    const srcInput = URLRef.current!;
+
     const src = srcInput.value;
-
-    const timeInput = e.currentTarget[1] as HTMLInputElement;
     const time = Number(timeInput.value);
-
     const isUrl = validateURL(src);
 
     if (!isUrl) {
-      setInputCheck(false);
       setMessage("유효하지 않은 주소입니다.");
       onSubmit && onSubmit("", 0);
       return;
     } else if (!time || time < 1) {
-      setInputCheck(false);
       setMessage("발화시간을 입력해주세요.");
       onSubmit && onSubmit("", 0);
       return;
     } else {
-      setInputCheck(true);
       setMessage("");
     }
 
     onSubmit && onSubmit(src, time);
   };
 
+  const deleteURL = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    const src = "";
+    const time = "0";
+
+    onSubmit && onSubmit(src, Number(time));
+    setMessage("");
+    URLRef.current!.value = src;
+    URLRef.current!.placeholder = `${typeText} URL 입력`;
+    timeRef.current!.value = time;
+  };
+
   return (
     <UrlAndTimeWrapper className="url-wrapper">
       <p className="text-tit">{typeText} URL</p>
-      <form onSubmit={handleSubmit}>
+      <form>
         <div className="inputs-wrapper">
           <input
             placeholder={`${typeText} URL 입력`}
             defaultValue={defaultURL}
+            ref={URLRef}
           ></input>
           <input
             placeholder={"발화 시간(초) 입력"}
             type="number"
             defaultValue={defaultTime}
+            ref={timeRef}
           ></input>
         </div>
-        <AddButton>등록</AddButton>
+        <ButtonRegister onClick={handleSubmit}>등록</ButtonRegister>
+        <ButtonDelete onClick={deleteURL}>제거</ButtonDelete>
       </form>
 
       {message && <WarningMessage>{message}</WarningMessage>}
