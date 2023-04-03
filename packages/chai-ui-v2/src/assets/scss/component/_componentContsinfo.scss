@@ -7,7 +7,7 @@
 	height: 100%;
 
 	.character-wrapper {
-		text-align: center;
+		width: 100%;
 	}
 
 	.character-wrap {
@@ -16,6 +16,10 @@
 		.img {
 			height: vh(167);
 		}
+	}
+
+	.text-bubble-wrap {
+		margin: 0 auto;
 	}
 
 	.btns-wrap {

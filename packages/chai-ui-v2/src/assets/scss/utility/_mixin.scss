@@ -132,7 +132,7 @@ background-image: urlPath($path, $img);
 	background-image: linear-gradient($d, $start, $end);
 }
 
-@mixin scrollbar ($c: #EAEAEA, $sub-c: #D4D4D4, $r: vw(10), $s: vw(15)) {
+@mixin scrollbar ($c: color(gray-db), $sub-c: color(gray-80), $r: vw(10), $s: vw(10)) {
 	&::-webkit-scrollbar {
 		width: $s;
 		height: $s;
