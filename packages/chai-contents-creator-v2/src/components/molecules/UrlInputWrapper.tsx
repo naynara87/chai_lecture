@@ -1,8 +1,8 @@
 import { SerializedStyles } from "@emotion/react";
 import styled from "@emotion/styled";
 import { colorPalette, validateURL } from "chai-ui-v2";
-import { useState } from "react";
-import { ButtonRegister } from "../atoms/ButtonRegister";
+import { useRef, useState } from "react";
+import { ButtonDelete, ButtonRegister } from "../atoms/ButtonRegister";
 
 export interface UrlInputWrapperProps {
   urlInputWrapperCss?: SerializedStyles;
@@ -58,11 +58,13 @@ const UrlInputWrapper = ({
   urlInputWrapperCss,
 }: ButtonProps) => {
   const [message, setMessage] = useState<string>("");
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const input = e.currentTarget[0] as HTMLInputElement;
-    const src = input.value;
+
+    const input = inputRef.current;
+    const src = input!.value;
 
     const isUrl = validateURL(src);
 
@@ -73,7 +75,20 @@ const UrlInputWrapper = ({
       setMessage("");
     }
 
+    if (!src) return;
     onSubmit && onSubmit(src);
+  };
+
+  const deleteURL = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    const src = "";
+    console.log("src", src);
+
+    onSubmit && onSubmit(src);
+    setMessage("");
+    inputRef.current!.value = "";
+    inputRef.current!.placeholder = `${typeText} URL 입력`;
   };
 
   return (
@@ -82,12 +97,14 @@ const UrlInputWrapper = ({
       urlInputWrapperCss={urlInputWrapperCss}
     >
       <p className="text-tit">{typeText} URL</p>
-      <ContainerForm onSubmit={handleSubmit}>
+      <ContainerForm>
         <input
           placeholder={`${typeText} URL 입력`}
           defaultValue={defaultText}
+          ref={inputRef}
         ></input>
-        <ButtonRegister>등록</ButtonRegister>
+        <ButtonRegister onClick={handleSubmit}>등록</ButtonRegister>
+        <ButtonDelete onClick={deleteURL}>제거</ButtonDelete>
       </ContainerForm>
       {message && <WarningMessage>{message}</WarningMessage>}
     </UrlTextWrapper>

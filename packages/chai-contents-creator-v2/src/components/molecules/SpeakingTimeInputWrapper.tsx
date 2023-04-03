@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { colorPalette } from "chai-ui-v2";
-import { useState } from "react";
-import AddButton from "../atoms/AddButton";
+import { useRef, useState } from "react";
+import { ButtonRegister, ButtonDelete } from "../atoms/ButtonRegister";
 
 const UrlTextWrapper = styled.div`
   margin-top: 10px;
@@ -44,10 +44,11 @@ interface ButtonProps {
 
 const SpeakingTimeInputWrapper = ({ onSubmit, defaultText }: ButtonProps) => {
   const [message, setMessage] = useState<string>("");
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const timeInput = e.currentTarget[0] as HTMLInputElement;
+    const timeInput = e.currentTarget as HTMLInputElement;
 
     const time = Number(timeInput.value);
 
@@ -61,15 +62,29 @@ const SpeakingTimeInputWrapper = ({ onSubmit, defaultText }: ButtonProps) => {
     onSubmit && onSubmit(time);
   };
 
+  const deleteTime = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    const time = Number("");
+    console.log("src", time);
+
+    onSubmit && onSubmit(time);
+    setMessage("");
+    inputRef.current!.value = "";
+    inputRef.current!.placeholder = `발화 시간 (초) 입력`;
+  };
+
   return (
     <UrlTextWrapper className="url-wrapper">
-      <form onSubmit={handleSubmit}>
+      <form>
         <input
           placeholder={"발화 시간(초) 입력"}
           defaultValue={defaultText}
           type="number"
+          ref={inputRef}
         ></input>
-        <AddButton>등록</AddButton>
+        <ButtonRegister onClick={handleSubmit}>등록</ButtonRegister>
+        <ButtonDelete onClick={deleteTime}>제거</ButtonDelete>
       </form>
       {message && <WarningMessage>{message}</WarningMessage>}
     </UrlTextWrapper>
