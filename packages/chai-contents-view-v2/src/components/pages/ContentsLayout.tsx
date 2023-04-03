@@ -105,7 +105,7 @@ const ContentsLayout = ({
         navigate(url);
         return;
       }
-      // 마지막코너이고 모두 학습을 완료했을때
+      // 마지막코너이고 모두 학습을 완료했을때 xapi completed 이벤트 발생부분 레슨의 마지막페이지일때
       setIsCompleteModalOpen(true);
       return;
     }

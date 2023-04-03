@@ -54,6 +54,7 @@ const QuestionLayout = ({
     }
   };
 
+  // TODO xapi completed 이벤트 발생부분 채점하기버튼클릭이벤트
   const handleClickCheckScore = () => {
     if (cornerId && courseId && lessonId && pageId) {
       navigate(getPageUrl(courseId, lessonId, cornerId, "score"), {

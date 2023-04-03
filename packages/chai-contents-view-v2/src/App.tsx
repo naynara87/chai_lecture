@@ -11,6 +11,7 @@ import {
   setCookie,
 } from "chai-ui-v2";
 import { CookiesProvider } from "react-cookie";
+import XapiProvider from "./XapiProvider";
 
 const queryClient = new QueryClient();
 
@@ -23,8 +24,8 @@ function App() {
           uno: "1",
           uid: "1",
           applId: "1",
-          cornerId: "11",
-          pageId: "3",
+          cornerId: "18",
+          pageId: "1",
           courseId: "1",
           subjectId: "1",
           courseName: "\ube68\uac15",
@@ -49,9 +50,11 @@ function App() {
             closeButton={false}
           />
           <AuthProvider>
-            <GlobalAudioProvider>
-              <AppRouter />
-            </GlobalAudioProvider>
+            <XapiProvider>
+              <GlobalAudioProvider>
+                <AppRouter />
+              </GlobalAudioProvider>
+            </XapiProvider>
           </AuthProvider>
         </RecoilRoot>
       </CookiesProvider>

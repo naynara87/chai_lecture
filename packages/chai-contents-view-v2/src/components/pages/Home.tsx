@@ -53,6 +53,7 @@ const Home = () => {
     learningLogCookieData?.cornerId ?? corners[0]?.id,
   );
 
+  // TODO ready상태 만들어서 xapi initialize 전송
   const getUrl = useCallback(
     (nextCornerId: ID, nextPageId: ID) => {
       if (!lessonMetaData) return;

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * LRS Activity State type
  * https://bubblecon-corp.atlassian.net/l/cp/EDz40KZ0
@@ -31,9 +32,146 @@ export interface LRSCornerProgress {
   is_completed: boolean;
   pages: LRSPageProgress[];
 }
-
 export interface LRSPageProgress {
   is_checked: boolean;
   is_completed: boolean;
   page_id: number;
 }
+export interface XAPIWrapper {
+  lrs: {
+    endpoint: string;
+    auth: string;
+    actor: string; // XAPIWrapperLrsActor를 JSON.stringify로 형식변환한것.
+  };
+  base: string;
+  changeConfig: ({
+    endpoint,
+    auth,
+    actor,
+  }: XAPIWrapperActorChangeConfigPram) => void;
+}
+
+export interface XAPIWrapperActorChangeConfigPram {
+  endpoint?: string;
+  auth: string;
+  actor: string;
+}
+
+export interface XAPIWrapperLrsActor {
+  account: XAPIWrapperLrsActorAccount;
+  name: string;
+  objectType: string;
+}
+
+export interface XAPIWrapperLrsActorAccount {
+  homePage: string;
+  name: string;
+}
+
+export interface BubbleAPI {
+  getInstance: () => {
+    initialize: (
+      targetObjectApplication: unknown,
+      activityIdBase: string,
+      contentName: string,
+      description: string,
+      stateId: string,
+    ) => void;
+    suspend: () => void;
+    addContextDetail: (context_detail: ContextDetail) => void;
+    addExtensionDetail: (extension_detail: XapiIndicators) => void;
+    addObjectContext: (object_context: XapiIndicators) => void;
+    addResultExtension: (result_extension: XapiIndicators) => void;
+    saveState: () => void;
+  };
+}
+
+export interface XAPIOptions {
+  // #1 actor 정의
+  name?: string;
+  homePage?: string;
+  account_name?: string;
+  email?: string;
+  member?: string;
+  // #2 objecjt 정의
+  activity_id?: string; // object.id 값
+  content_name?: string; // 레슨 정보
+  description?: string; // 레슨 설명 정보
+  // #3 activityState의 stateId 정의
+  state_id?: string;
+  // #4 학습 정보 전송할 LRS url 기입
+  lrsUrl?: string;
+
+  use_group?: boolean;
+
+  // #5 xAPI 추가 context 사용
+  object_context?: XapiIndicators;
+  result_extensions?: XapiIndicators;
+  context_details?: ContextDetail;
+  extension_details?: XapiIndicators;
+}
+
+export interface ContextDetail {
+  registration: string;
+  revision: string;
+  contextActivities: {
+    category: [
+      {
+        id: string;
+        objectType: string;
+      },
+    ];
+    parent: [
+      {
+        definition: {
+          description: {
+            "en-US": string;
+          };
+          name: {
+            "en-US": string;
+          };
+        };
+        id: string;
+        objectType: string;
+      },
+    ];
+  };
+}
+
+export type XapiIndicators = Record<string, string | number>;
+
+export interface ADL {
+  XAPIWrapper: XAPIWrapper;
+  bubbleAPI: BubbleAPI;
+  // NOTE any로 정의한것은 통합플레이어에서 사용하진않지만 ADL내부적으로 사용 및 정의되어있는것.
+  XAPIStatement: any;
+  XHR_request: any;
+  XHR_sync_request: any;
+  activityTypes: any;
+  dataFromISOString: any;
+  formatHash: any;
+  launch: any;
+  ruuid: any;
+  verbs: any;
+  xapiutil: any;
+  xhrRequestOnError: any;
+}
+
+export type XapiVerb =
+  | "initialized"
+  | "progressed"
+  | "completed"
+  | "suspended"
+  | "played"
+  | "created"
+  | "answered";
+
+export type XapiEventName =
+  | "playerLoaded" // initialized
+  | "pageChanging" // progressed
+  | "playerEnded" // completed
+  | "playerSuspended" // suspended : 학습을 끝내지않고 중간에 나갈때
+  | "videoPlayed" // played
+  | "audioPlayed" // played
+  | "recordCreated" // created : 녹음
+  | "quizAnswered"; // answered : 퀴즈 다 풀고 답안확인시
