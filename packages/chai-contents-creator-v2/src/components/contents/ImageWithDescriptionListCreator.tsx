@@ -8,6 +8,8 @@ import { DraggableContentCommonProps } from "../../types/page";
 import {
   ComponentImage,
   ImageWithDescriptionListContentData,
+  vh,
+  vw,
 } from "chai-ui-v2";
 
 import TextEditorViewer from "../molecules/TextEditorViewer";
@@ -29,10 +31,17 @@ const ImageListWrapper = styled.ul`
     margin-left: 60px;
     margin-right: 16px;
   }
+  
 `;
 
 const ImageList = styled.li`
   display: flex;
+  
+  img {
+    width: ${vw(400)};
+    max-height: ${vh(337)};
+    object-fit: contain;
+  }
 `;
 
 const ImageThumb = styled.div`
@@ -42,7 +51,7 @@ const ImageThumb = styled.div`
   position: relative;
   margin-bottom: 10px;
   border-radius: 10px;
-  & > img {
+  img {
     position: absolute;
     top: 50%;
     left: 50%;
