@@ -72,7 +72,9 @@ const TemplateWordCard = ({
   const leftContents = useMemo(() => {
     if (!thisPage.leftContents) return;
     return thisPage.leftContents.map((leftContent, contentIndex) => {
-      return getContentComponent(leftContent, contentIndex);
+      if (leftContent.type !== "fullAudio") {
+        return getContentComponent(leftContent, contentIndex);
+      }
     });
   }, [getContentComponent, thisPage]);
 
