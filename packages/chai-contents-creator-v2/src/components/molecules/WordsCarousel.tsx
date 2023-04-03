@@ -169,13 +169,12 @@ const WordsCarousel = ({
         <SwiperSlide key={wordIndex}>
           <SlideCard>
             <WordsCardWrapper>
-              {wordsCarouselData.words.length > 1 && (
-                <ObjectDeleteButton
-                  onClick={() => {
-                    deleteImage(wordIndex);
-                  }}
-                />
-              )}
+              <ObjectDeleteButton
+                onClick={() => {
+                  deleteImage(wordIndex);
+                }}
+              />
+
               <div
                 onClick={focusTextEditor(wordIndex)}
                 className="words-card-text"

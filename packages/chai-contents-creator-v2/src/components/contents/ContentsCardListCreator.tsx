@@ -144,6 +144,11 @@ const ContentsCardListCreator = ({
    * listIndex는 삭제를 위한 state를 하나 만들어서 관리할 수 있을 것 같다
    */
   const deleteCard = (listIndex: number) => {
+    if (thisContent.data.length === 1) {
+      alert("최소 1개이상 입력하셔야 합니다.");
+      return;
+    }
+
     const newContent: ContentsCardListContentData = cloneDeep(thisContent);
     newContent.data.splice(listIndex, 1);
     updateContent(currentSlide.id, thisContent.id, position, newContent);

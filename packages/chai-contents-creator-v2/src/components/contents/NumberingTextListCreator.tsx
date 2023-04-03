@@ -171,6 +171,10 @@ const NumberingTextListCreator = ({
   };
 
   const deleteCurrentNumberingTextItem = (index: number) => {
+    if (thisContent.data.length === 1) {
+      alert("최소 1개이상 입력하셔야 합니다.");
+      return;
+    }
     const updatedData = thisContent.data.filter((_, i) => i !== index);
     updateNumberingTextData(updatedData);
   };

@@ -188,6 +188,11 @@ const WordsInOrderCreator = ({
 
   const deleteAnswer = useCallback(
     (listIndex: number) => () => {
+      if (thisContent.data.choice.length === 1) {
+        alert("최소 1개이상 입력하셔야 합니다.");
+        return;
+      }
+
       const newContent = cloneDeep(thisContent);
       const removeIndex = newContent.data.choice.findIndex(
         (v, i) => i === listIndex,
@@ -274,12 +279,11 @@ const WordsInOrderCreator = ({
           >
             문제
           </CheckBoxWrapper>
-          {thisContent.data.choice.length > 1 && (
-            <ObjectDeleteButton
-              onClick={deleteAnswer(choiceIndex)}
-              customCSS={deleteButtonStyle}
-            />
-          )}
+
+          <ObjectDeleteButton
+            onClick={deleteAnswer(choiceIndex)}
+            customCSS={deleteButtonStyle}
+          />
         </AnswerBoxWrap>
       );
     });

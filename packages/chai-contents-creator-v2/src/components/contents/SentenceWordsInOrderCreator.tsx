@@ -262,6 +262,11 @@ const SentenceWordsInOrderCreator = ({
 
   const deleteSentence = useCallback(
     (characterIndex: number, sentenceIndex: number) => {
+      if (thisContent.data.characters.length === 1) {
+        alert("최소 1개이상 입력하셔야 합니다.");
+        return;
+      }
+
       const updatedContent = cloneDeep(thisContent);
       const removeIndex = updatedContent.data.characters[
         characterIndex
