@@ -9,7 +9,7 @@ import ContentsLayout from "./ContentsLayout";
 import QuestionLayout from "./QuestionLayout";
 
 const Layout = () => {
-  const { lessonId, cornerId } = useParams(); // 이게 나중 실행됨
+  const { lessonId, cornerId, pageId } = useParams(); // 이게 나중 실행됨
   const { lessonMetaData, corners, totalPages } = useLesson(lessonId);
   const { pages, cornerMetaData } = useCorner(cornerId); // 이게 먼저 실행되고
 
@@ -18,6 +18,11 @@ const Layout = () => {
   useEffect(() => {
     setCurrentCornerId(cornerId);
   }, [cornerId, setCurrentCornerId]);
+
+  useEffect(() => {
+    console.log("pageId", pageId);
+    // TODO 페이지변경 이벤트 체킹 xapi
+  }, [pageId]);
 
   const layout = useMemo(() => {
     if (!lessonMetaData) return;

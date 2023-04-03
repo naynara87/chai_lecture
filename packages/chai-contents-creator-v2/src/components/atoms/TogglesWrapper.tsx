@@ -1,8 +1,6 @@
 import styled from "@emotion/styled";
 import { Content } from "chai-ui-v2";
 
-import { v4 as uuidV4 } from "uuid";
-
 const ToggleWrapper = styled.div`
   .inp-toggle-wrap {
     margin-right: 20px;

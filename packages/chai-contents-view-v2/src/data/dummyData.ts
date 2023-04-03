@@ -636,23 +636,18 @@ export const v2CornerDataList: CornerData[] = [
             contents: [
               {
                 id: uuidV4(),
-                type: "imageWithCaptionList",
-                data: [
-                  {
-                    src: "https://fastly.picsum.photos/id/671/1000/1000.jpg?hmac=bxVD65b0X4qKg3--v_IfvrX-tqhnt85uOqhIkdzSXjA",
-                  },
-                ],
-              },
-              {
-                id: uuidV4(),
-                type: "explainingCharacter",
+                type: "finalSpeaking",
                 data: {
-                  character: {
-                    src: "",
-                  },
-                  text: "중국에서는 중국어를 한어라고 합니다.",
-                  explain:
-                    "중국 인구의 대다수를 차지하는<br /> 한족이 쓰는 언어라는 뜻입니다.",
+                  answerModel: "테스트입니다.",
+                  exampleContents: [
+                    {
+                      id: uuidV4(),
+                      type: "text",
+                      data: {
+                        text: "테스트 텍스트 입니다.",
+                      },
+                    },
+                  ],
                 },
               },
             ],
@@ -1324,11 +1319,6 @@ export const v2CornerDataList: CornerData[] = [
                 data: [
                   {
                     src: "https://fastly.picsum.photos/id/542/1000/1000.jpg?hmac=vijkzGUCIVd4x2RRii3NXbBV4anqTcMeZtyjxz7mI70",
-                    caption: "caption",
-                  },
-                  {
-                    src: "https://images.unsplash.com/photo-1680199188743-8f3a69613aae?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=600&q=60",
-                    caption: "caption",
                   },
                 ],
               },
