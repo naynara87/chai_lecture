@@ -39,6 +39,9 @@ const UrlAndTimeWrapper = styled.div`
     padding: unset;
     font-size: 15px;
   }
+  &.upload-comp .waring-message {
+    color: ${colorPalette.purple700};
+  }
 `;
 
 const WarningMessage = styled.p`
@@ -61,6 +64,7 @@ const UrlAndTimeInputWrapper = ({
   const [message, setMessage] = useState<string>("");
   const URLRef = useRef<HTMLInputElement>(null);
   const timeRef = useRef<HTMLInputElement>(null);
+  const [isUpload, setIsUpload] = useState<boolean>(false);
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -81,7 +85,8 @@ const UrlAndTimeInputWrapper = ({
       onSubmit && onSubmit("", 0);
       return;
     } else {
-      setMessage("");
+      setIsUpload(true);
+      setMessage("정상적으로 등록되었습니다.");
     }
 
     onSubmit && onSubmit(src, time);
@@ -95,13 +100,16 @@ const UrlAndTimeInputWrapper = ({
 
     onSubmit && onSubmit(src, Number(time));
     setMessage("");
+    setIsUpload(false);
     URLRef.current!.value = src;
     URLRef.current!.placeholder = `${typeText} URL 입력`;
     timeRef.current!.value = time;
   };
 
   return (
-    <UrlAndTimeWrapper className="url-wrapper">
+    <UrlAndTimeWrapper
+      className={`${isUpload ? "upload-comp" : ""} url-Wrapper`}
+    >
       <p className="text-tit">{typeText} URL</p>
       <form>
         <div className="inputs-wrapper">
@@ -121,7 +129,9 @@ const UrlAndTimeInputWrapper = ({
         <ButtonDelete onClick={deleteURL}>제거</ButtonDelete>
       </form>
 
-      {message && <WarningMessage>{message}</WarningMessage>}
+      {message && (
+        <WarningMessage className="waring-message">{message}</WarningMessage>
+      )}
     </UrlAndTimeWrapper>
   );
 };

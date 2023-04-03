@@ -34,6 +34,10 @@ const UrlTextWrapper = styled.div<UrlInputWrapperProps>`
     }
   }
 
+  &.upload-comp .waring-message {
+    color: ${colorPalette.purple700};
+  }
+
   ${({ urlInputWrapperCss }) => urlInputWrapperCss}
 `;
 
@@ -58,6 +62,7 @@ const UrlInputWrapper = ({
   urlInputWrapperCss,
 }: ButtonProps) => {
   const [message, setMessage] = useState<string>("");
+  const [isUpload, setIsUpload] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -72,10 +77,10 @@ const UrlInputWrapper = ({
       setMessage("유효하지 않은 주소입니다.");
       return;
     } else {
-      setMessage("");
+      setIsUpload(true);
+      setMessage("정상적으로 등록 되었습니다.");
     }
 
-    if (!src) return;
     onSubmit && onSubmit(src);
   };
 
@@ -87,13 +92,15 @@ const UrlInputWrapper = ({
 
     onSubmit && onSubmit(src);
     setMessage("");
+    setIsUpload(false);
     inputRef.current!.value = "";
     inputRef.current!.placeholder = `${typeText} URL 입력`;
   };
 
   return (
     <UrlTextWrapper
-      className="url-wrapper"
+      className={`${isUpload ? "upload-comp" : ""} url-Wrapper`}
+      // className="url-wrapper"
       urlInputWrapperCss={urlInputWrapperCss}
     >
       <p className="text-tit">{typeText} URL</p>
@@ -106,7 +113,9 @@ const UrlInputWrapper = ({
         <ButtonRegister onClick={handleSubmit}>등록</ButtonRegister>
         <ButtonDelete onClick={deleteURL}>제거</ButtonDelete>
       </ContainerForm>
-      {message && <WarningMessage>{message}</WarningMessage>}
+      {message && (
+        <WarningMessage className="waring-message">{message}</WarningMessage>
+      )}
     </UrlTextWrapper>
   );
 };
