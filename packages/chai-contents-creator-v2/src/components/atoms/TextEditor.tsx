@@ -6,7 +6,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
 const Font = ReactQuill.Quill.import("formats/font");
-Font.whitelist = ["sans-serif", "yahei", "Noto-sans"];
+Font.whitelist = ["sans-serif"]; // , "yahei"
 ReactQuill.Quill.register(Font, true);
 export interface TextEditorWrapperProps {
   minHeight?: number;
@@ -31,12 +31,6 @@ const TextEditorWrapper = styled.div<TextEditorWrapperProps>`
     font-family: "yahei";
     ::before {
       content: "yahei" !important;
-    }
-  }
-  [data-value="Noto-sans"] {
-    font-family: "Noto-sans";
-    ::before {
-      content: "노토 산스" !important;
     }
   }
 `;
@@ -81,6 +75,7 @@ const TextEditor = ({
             [{ header: [1, 2, 3, false] }],
             ["bold"],
             [{ color: [] }, { background: [] }],
+            [{ align: [] }],
           ],
         }}
       />
