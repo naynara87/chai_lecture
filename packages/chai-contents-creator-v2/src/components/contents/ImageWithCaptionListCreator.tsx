@@ -161,6 +161,7 @@ const ImageWithCaptionListCreator = ({
 
   const deleteImage = (index: number) => {
     if (thisContent.data.length === 1) {
+      alert("최소 1개이상 입력하셔야 합니다.");
       return;
     }
     const newContent = {
@@ -195,13 +196,11 @@ const ImageWithCaptionListCreator = ({
             return (
               <ImageList key={index}>
                 <DeleteButtonWrapper>
-                  {thisContent.data.length > 1 && (
-                    <ObjectDeleteButton
-                      onClick={() => {
-                        deleteImage(index);
-                      }}
-                    />
-                  )}
+                  <ObjectDeleteButton
+                    onClick={() => {
+                      deleteImage(index);
+                    }}
+                  />
                 </DeleteButtonWrapper>
                 <ImageThumb>
                   {getThisContentImageSrc(index) ? (

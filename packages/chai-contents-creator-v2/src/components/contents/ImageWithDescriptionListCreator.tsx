@@ -31,12 +31,11 @@ const ImageListWrapper = styled.ul`
     margin-left: 60px;
     margin-right: 16px;
   }
-  
 `;
 
 const ImageList = styled.li`
   display: flex;
-  
+
   img {
     width: ${vw(400)};
     max-height: ${vh(337)};
@@ -130,11 +129,13 @@ const ImageWithDescriptionListCreator = ({
         },
       ],
     };
+
     updateContent(currentSlide.id, content.id, position, newContent);
   };
 
   const deleteImage = (index: number) => {
     if (thisContent.data.length === 1) {
+      alert("최소 1개이상 입력하셔야 합니다.");
       return;
     }
     const newContent = {
@@ -219,9 +220,8 @@ const ImageWithDescriptionListCreator = ({
                     }
                   />
                 </p>
-                {thisContent.data.length > 1 && (
-                  <ObjectDeleteButton onClick={() => deleteImage(index)} />
-                )}
+
+                <ObjectDeleteButton onClick={() => deleteImage(index)} />
               </ImageList>
             );
           })}

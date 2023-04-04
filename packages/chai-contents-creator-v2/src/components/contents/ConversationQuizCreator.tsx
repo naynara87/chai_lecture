@@ -138,6 +138,11 @@ const ConversationQuizCreator = ({
 
   const deleteConversation = useCallback(
     (listIndex: number) => () => {
+      if (thisContent.data.length === 1) {
+        alert("최소 1개이상 입력하셔야 합니다.");
+        return;
+      }
+
       const newContent = cloneDeep(thisContent);
       const removeIndex = newContent.data.findIndex((v, i) => i === listIndex);
       newContent.data.splice(removeIndex, 1);
@@ -277,12 +282,11 @@ const ConversationQuizCreator = ({
     return thisContent.data.map((content, contentIndex) => {
       return (
         <ConversationList className="conversation-wrap" key={contentIndex}>
-          {thisContent.data.length > 1 && (
-            <ObjectDeleteButton
-              onClick={deleteConversation(contentIndex)}
-              customCSS={deleteButtonStyle}
-            />
-          )}
+          <ObjectDeleteButton
+            onClick={deleteConversation(contentIndex)}
+            customCSS={deleteButtonStyle}
+          />
+
           <div className="img-grp">
             <div className="img-wrap">
               <div className="img-round">

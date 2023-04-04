@@ -212,6 +212,11 @@ const ConversationCreator = ({
 
   const deleteConversation = useCallback(
     (listIndex: number) => () => {
+      if (thisContent.data.length) {
+        alert("최소 1개이상 입력하셔야 합니다.");
+        return;
+      }
+
       const newContent = cloneDeep(thisContent);
       const removeIndex = newContent.data.findIndex((v, i) => i === listIndex);
       newContent.data.splice(removeIndex, 1);
@@ -240,12 +245,11 @@ const ConversationCreator = ({
     return thisContent.data.map((list, listIndex) => {
       return (
         <ConversationList className="conversation-wrap" key={listIndex}>
-          {thisContent.data.length > 1 && (
-            <ObjectDeleteButton
-              onClick={deleteConversation(listIndex)}
-              customCSS={deleteButtonStyle}
-            />
-          )}
+          <ObjectDeleteButton
+            onClick={deleteConversation(listIndex)}
+            customCSS={deleteButtonStyle}
+          />
+
           <div className="img-grp">
             <div className="img-wrap">
               <div className="img-round">

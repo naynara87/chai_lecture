@@ -287,6 +287,11 @@ const CardTabCreator = ({
 
   const deleteCard = useCallback(
     (cardIndex: number) => () => {
+      if (thisContent.data[cardIndex].cards.length === 1) {
+        alert("최소 1개이상 입력하셔야 합니다.");
+        return;
+      }
+
       const newContent = cloneDeep(thisContent);
       const { cards } = newContent.data[focusedTabTitleIndex];
       const removeIndex = cards.findIndex((v, i) => i === cardIndex);
@@ -330,10 +335,8 @@ const CardTabCreator = ({
                         contentComponents={cardContentComponents}
                       />
                     )}
-                    {thisContent.data[focusedTabTitleIndex].cards.length >
-                      1 && (
-                      <ObjectDeleteButton onClick={deleteCard(cardIndex)} />
-                    )}
+
+                    <ObjectDeleteButton onClick={deleteCard(cardIndex)} />
                   </div>
                   {card.contents.map((component, index) => {
                     return getComponent({

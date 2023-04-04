@@ -138,6 +138,11 @@ const CreateTemplateRolePlaying = ({
 
   const deleteCharacter = (index: number) => {
     if (!characterList) return;
+    if (characterList.length === 1) {
+      alert("최소 1개이상 입력하셔야 합니다.");
+      return;
+    }
+
     const newCharacterWithColorList = characterList.filter(
       (item, itemIndex) => {
         return itemIndex !== index;
@@ -304,6 +309,10 @@ const CreateTemplateRolePlaying = ({
   const deleteRolePlayingContents = useCallback(
     (index: number) => {
       if (!rolePlayingContentsData) return;
+      if (rolePlayingContentsData.length === 1) {
+        alert("최소 1개이상 입력하셔야 합니다.");
+        return;
+      }
       const newRolePlayingContents = rolePlayingContentsData.filter(
         (item, itemIndex) => {
           return itemIndex !== index;
