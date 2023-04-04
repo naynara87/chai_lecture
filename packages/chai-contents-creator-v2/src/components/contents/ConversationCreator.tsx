@@ -24,6 +24,10 @@ export const ConversationWrapper = styled.ul``;
 export const CharacterNameInput = styled.input`
   background: none !important;
   font-size: ${vw(25)} !important;
+
+  &::placeholder {
+    opacity: 0.6;
+  }
 `;
 
 export const ConversationList = styled.li`
