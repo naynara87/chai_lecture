@@ -156,4 +156,5 @@ export interface InitialAppData {
   courseName: string;
   lessonId: string;
   lessonName: string;
+  lessonTpCd: "10" | "20" | "30";
 }

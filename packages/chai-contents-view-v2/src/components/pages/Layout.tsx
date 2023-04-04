@@ -1,4 +1,4 @@
-import { LocalStorage, QuizData } from "chai-ui-v2";
+import { getCookie, InitialAppData, LocalStorage, QuizData } from "chai-ui-v2";
 import { useEffect, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
@@ -10,8 +10,12 @@ import QuestionLayout from "./QuestionLayout";
 
 const Layout = () => {
   const { lessonId, cornerId, pageId } = useParams(); // 이게 나중 실행됨
-  const { lessonMetaData, corners, totalPages } = useLesson(lessonId);
-  const { pages, cornerMetaData } = useCorner(cornerId); // 이게 먼저 실행되고
+  const learningLogCookieData = getCookie<InitialAppData>("bubble-player");
+  const { lessonMetaData, corners, totalPages } = useLesson(lessonId, learningLogCookieData?.lessonTpCd);
+  const { pages, cornerMetaData } = useCorner(
+    cornerId,
+    learningLogCookieData?.lessonTpCd
+  ); // 이게 먼저 실행되고
 
   const [, setCurrentCornerId] = useRecoilState(currentCornerIdState);
 
