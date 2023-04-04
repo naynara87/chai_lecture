@@ -86,7 +86,7 @@ const ContentsLayout = ({
     }
   };
 
-  const handleClickNext = async () => {
+  const handleClickNext = () => {
     if (currentPageIndex === undefined) return;
     if (!pageId) return;
     if (isCurrentCornerLastPage) {

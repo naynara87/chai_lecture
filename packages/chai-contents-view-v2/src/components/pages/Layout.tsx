@@ -24,6 +24,10 @@ const Layout = () => {
   }, [xapiInitialize]);
 
   useEffect(() => {
+    console.log("pages", pages);
+  }, [pages]);
+
+  useEffect(() => {
     if (!lessonMetaData) return;
     if (!cornerMetaData) return;
     if (isInitialActivityState) return;
