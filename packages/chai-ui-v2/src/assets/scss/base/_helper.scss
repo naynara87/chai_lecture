@@ -1,25 +1,38 @@
 /* =================== helper =================== */
 // 노출되지 않을 영역
 .none {
-	display: none !important;
+  display: none !important;
 }
 
 // 보이진 않지만 리딩되는 영역
 .voice-only {
-	overflow: hidden;
-	position: absolute;
-	top: 0;
-	left: -9999px;
-	width: 1px;
-	height: 1px;
-	color: transparent;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  color: transparent;
 }
 
 // 폰트별 클래스
 .ql-font-yahei {
-	font-family: 'yahei', arial, sans-serif;
+  font-family: "yahei", arial, sans-serif;
 }
 
 .ql-font-noto-sans {
-	font-family: 'noto', arial, sans-serif;
+  font-family: "noto", arial, sans-serif;
+}
+
+// quill editor text align
+.ql-align-center {
+  text-align: center;
+}
+
+.ql-align-right {
+  text-align: right;
+}
+
+.ql-align-justify {
+  text-align: justify;
 }

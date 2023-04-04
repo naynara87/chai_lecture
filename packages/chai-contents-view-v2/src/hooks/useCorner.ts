@@ -24,7 +24,7 @@ const useCorner = (cornerId: ID | undefined) => {
         const currentCorner = data?.find(
           (corner) => corner.meta.id.toString() === cornerId?.toString(),
         );
-        setPages(currentCorner?.data!);
+        setPages(currentCorner?.data ?? []);
         setCornerMetaData(currentCorner?.meta);
 
         // const pages = data?.body?.data?.map((pageData: ContentData) =>
@@ -35,7 +35,7 @@ const useCorner = (cornerId: ID | undefined) => {
         // setCornerMetaData(data?.body?.meta);
       },
       onError: (error) => {
-        console.log("코너 리스트 조회 실패");
+        console.log("페이지 리스트 조회 실패");
       },
       refetchOnWindowFocus: false,
     },
