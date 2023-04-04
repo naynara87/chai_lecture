@@ -1,12 +1,15 @@
 import { ADL, XAPIOptions } from "chai-ui-v2";
 import React, { useEffect } from "react";
+import { useRecoilState } from "recoil";
 import "../src/lib/xapi/lx-total-viewer.js";
+import { xapiElement } from "./constants/xapi";
 import {
   context_details,
   extension_details,
   object_context,
   result_extensions,
 } from "./data/xapiData";
+import { xapiV1State } from "./state/xapiV1State";
 
 interface XapiProviderProps {
   children: React.ReactNode;
@@ -97,6 +100,8 @@ const createActorObject = function (obj: XAPIOptions) {
 };
 
 const XapiProvider = ({ children }: XapiProviderProps) => {
+  const [, setXapiV1State] = useRecoilState(xapiV1State);
+
   //@ts-ignore
   const { ADL: _ADL } = window;
   const ADL = _ADL as ADL;
@@ -111,13 +116,41 @@ const XapiProvider = ({ children }: XapiProviderProps) => {
       ADL.XAPIWrapper.changeConfig(conf);
     }
     const v1 = ADL.bubbleAPI.getInstance();
+    setXapiV1State(v1);
     console.log("XapiProvider", v1);
-    // const nameEvent = new CustomEvent("name", {
-    //   detail: {
-    //     nameValue: "bubblecon",
-    //   },
-    // });
-  }, [ADL]);
+
+    if (options["object_context"]) {
+      v1.addObjectContext(options["object_context"]);
+    }
+
+    if (options["context_details"]) {
+      v1.addContextDetail(options["context_details"]);
+    }
+
+    if (options["extension_details"]) {
+      v1.addExtensionDetail(options["extension_details"]);
+    }
+
+    if (options["result_extensions"]) {
+      v1.addResultExtension(options["result_extensions"]);
+    }
+
+    if (
+      !options["activity_id"] ||
+      !options["content_name"] ||
+      !options["state_id"]
+    ) {
+      console.error("xapi 관련 정보를 정상적으로 받지 않았습니다.");
+    }
+
+    v1.initialize(
+      xapiElement,
+      options["activity_id"] ?? "",
+      options["content_name"] ?? "",
+      options["description"] ?? "",
+      options["state_id"] ?? "",
+    );
+  }, [ADL, setXapiV1State]);
 
   return <>{children}</>;
 };

@@ -15,6 +15,7 @@ import {
 } from "chai-ui-v2";
 import { currentCornerIdState } from "../../state/currentCornerId";
 import usePages from "../../hooks/usePages";
+import useXapi from "../../hooks/useXapi";
 
 interface ContentsLayoutProps {
   pages: Page[];
@@ -46,6 +47,7 @@ const ContentsLayout = ({
     pageId,
     totalPages,
   });
+  const { xapiProgress } = useXapi();
 
   const setPageCompleted = () => {
     setIsPageCompleted(true);
@@ -84,8 +86,9 @@ const ContentsLayout = ({
     }
   };
 
-  const handleClickNext = () => {
+  const handleClickNext = async () => {
     if (currentPageIndex === undefined) return;
+    if (!pageId) return;
     if (isCurrentCornerLastPage) {
       if (!lessonMetaData) return;
       if (!cornerMetaData) return;
@@ -109,7 +112,8 @@ const ContentsLayout = ({
       setIsCompleteModalOpen(true);
       return;
     }
-    if (cornerId && courseId && lessonId && pageId) {
+    if (cornerId && courseId && lessonId) {
+      xapiProgress(pageId, totalPages);
       navigate(
         getPageUrl(
           courseId,

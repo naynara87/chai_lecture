@@ -1,9 +1,10 @@
 import { LocalStorage, QuizData } from "chai-ui-v2";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import useCorner from "../../hooks/useCorner";
 import useLesson from "../../hooks/useLesson";
+import useXapi from "../../hooks/useXapi";
 import { currentCornerIdState } from "../../state/currentCornerId";
 import ContentsLayout from "./ContentsLayout";
 import QuestionLayout from "./QuestionLayout";
@@ -12,17 +13,38 @@ const Layout = () => {
   const { lessonId, cornerId, pageId } = useParams(); // 이게 나중 실행됨
   const { lessonMetaData, corners, totalPages } = useLesson(lessonId);
   const { pages, cornerMetaData } = useCorner(cornerId); // 이게 먼저 실행되고
+  const [isInitialActivityState, setIsInitialActivityState] = useState(false);
+
+  const { xapiInitialize, initialActivityState, xapiActivity } = useXapi();
 
   const [, setCurrentCornerId] = useRecoilState(currentCornerIdState);
 
   useEffect(() => {
-    setCurrentCornerId(cornerId);
-  }, [cornerId, setCurrentCornerId]);
+    xapiInitialize();
+  }, [xapiInitialize]);
 
   useEffect(() => {
-    console.log("pageId", pageId);
-    // TODO 페이지변경 이벤트 체킹 xapi
-  }, [pageId]);
+    if (!lessonMetaData) return;
+    if (!cornerMetaData) return;
+    if (isInitialActivityState) return;
+    initialActivityState(lessonMetaData, cornerMetaData, corners, totalPages);
+    setIsInitialActivityState(true);
+  }, [
+    cornerMetaData,
+    lessonMetaData,
+    corners,
+    totalPages,
+    initialActivityState,
+    isInitialActivityState,
+  ]);
+
+  useEffect(() => {
+    console.log("xapiActivity", xapiActivity);
+  }, [xapiActivity]);
+
+  useEffect(() => {
+    setCurrentCornerId(cornerId);
+  }, [cornerId, setCurrentCornerId]);
 
   const layout = useMemo(() => {
     if (!lessonMetaData) return;

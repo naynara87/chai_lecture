@@ -4558,12 +4558,75 @@ code.google.com/p/crypto-js/wiki/License
         _typeof(obj)
       );
     }
+    function ownKeys(object, enumerableOnly) {
+      var keys = Object.keys(object);
+      if (Object.getOwnPropertySymbols) {
+        var symbols = Object.getOwnPropertySymbols(object);
+        enumerableOnly &&
+          (symbols = symbols.filter(function (sym) {
+            return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+          })),
+          keys.push.apply(keys, symbols);
+      }
+      return keys;
+    }
+    function _objectSpread(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = null != arguments[i] ? arguments[i] : {};
+        i % 2
+          ? ownKeys(Object(source), !0).forEach(function (key) {
+              _defineProperty(target, key, source[key]);
+            })
+          : Object.getOwnPropertyDescriptors
+          ? Object.defineProperties(
+              target,
+              Object.getOwnPropertyDescriptors(source),
+            )
+          : ownKeys(Object(source)).forEach(function (key) {
+              Object.defineProperty(
+                target,
+                key,
+                Object.getOwnPropertyDescriptor(source, key),
+              );
+            });
+      }
+      return target;
+    }
+    function _defineProperty(obj, key, value) {
+      key = _toPropertyKey(key);
+      if (key in obj) {
+        Object.defineProperty(obj, key, {
+          value: value,
+          enumerable: true,
+          configurable: true,
+          writable: true,
+        });
+      } else {
+        obj[key] = value;
+      }
+      return obj;
+    }
+    function _toPropertyKey(arg) {
+      var key = _toPrimitive(arg, "string");
+      return _typeof(key) === "symbol" ? key : String(key);
+    }
+    function _toPrimitive(input, hint) {
+      if (_typeof(input) !== "object" || input === null) return input;
+      var prim = input[Symbol.toPrimitive];
+      if (prim !== undefined) {
+        var res = prim.call(input, hint || "default");
+        if (_typeof(res) !== "object") return res;
+        throw new TypeError("@@toPrimitive must return a primitive value.");
+      }
+      return (hint === "string" ? String : Number)(input);
+    }
     (function (ADL) {
       var bubbleAPI = function bubbleAPI() {
         function init() {
           var actor = JSON.parse(ADL.XAPIWrapper.lrs.actor);
           var XW = ADL.XAPIWrapper; // short ref
           var targetLoaded = false;
+          var activityID;
           var targetObject;
           var targetActivityObject;
           var sessionId;
@@ -4582,6 +4645,8 @@ code.google.com/p/crypto-js/wiki/License
           var eduStartTime = new Date();
           var debounceTimer = null;
           var completeRate = 0.98;
+          var sendSynchronous;
+          var playerLoadedEvent = new CustomEvent("playerLoaded");
           function addExtensionDetail(extension_details) {
             extensionDetails = extension_details;
           }
@@ -4694,11 +4759,11 @@ code.google.com/p/crypto-js/wiki/License
               resultExtensionStructure.completion = true;
             }
           }
-          function sendProgress() {
+          function sendProgress(curPage, newState) {
             var mys = bareStatement();
-            currentSegment = [targetObject.page, targetObject.page];
+            currentSegment = [curPage, curPage];
             addCurrentSegment();
-            saveState();
+            saveState(newState);
             mys.verb = new ADL.XAPIStatement.Verb(
               "http://adlnet.gov/expapi/verbs/progressed",
               "progressed",
@@ -4708,7 +4773,7 @@ code.google.com/p/crypto-js/wiki/License
                 "https://profile.caihong.co.kr/content-management/course/session-id":
                   sessionId,
                 "https://profile.caihong.co.kr/content-management/course/lessons/pages/page":
-                  targetObject.page,
+                  curPage,
                 "https://profile.caihong.co.kr/content-management/course/lessons/pages/progress-segments":
                   progressSegments,
               },
@@ -4723,9 +4788,9 @@ code.google.com/p/crypto-js/wiki/License
             XW.sendStatement(mys);
             window.postMessage(JSON.stringify(mys));
           }
-          function sendComplete() {
+          function sendComplete(curPage) {
             var mys = bareStatement();
-            currentSegment = [targetObject.page, targetObject.page];
+            currentSegment = [curPage, curPage];
             addCurrentSegment();
             mys.verb = new ADL.XAPIStatement.Verb(
               "http://adlnet.gov/expapi/verbs/completed",
@@ -4736,7 +4801,7 @@ code.google.com/p/crypto-js/wiki/License
                 "https://profile.caihong.co.kr/content-management/course/session-id":
                   sessionId,
                 "https://profile.caihong.co.kr/content-management/course/lessons/pages/page":
-                  targetObject.page,
+                  curPage,
                 "https://profile.caihong.co.kr/content-management/course/lessons/pages/progress-segments":
                   progressSegments,
               },
@@ -4901,13 +4966,16 @@ code.google.com/p/crypto-js/wiki/License
             }
             return res;
           }
-          function saveState() {
+          function saveState(newSate) {
             var reg = XW.lrs.registration || null;
             var temp = {
-              progressSegments: progressSegments,
+              account_name: actor.account.name,
+              progress_segments: progressSegments,
+              // TODO time값 계산해서넣기
             };
-            var state = setState(temp);
 
+            var state = _objectSpread(_objectSpread({}, newSate), temp);
+            var callback;
             // jsonState = JSON.stringify(state);
             if (!sendSynchronous) {
               callback = function callback(ev) {
@@ -4943,12 +5011,14 @@ code.google.com/p/crypto-js/wiki/License
           }
           function onReady() {
             // todo ms event listener 구성 필요
-            targetObject.eventBus.on("pagechanging", function (event) {
-              sendProgress();
-              if (event.pageNumber >= targetObject.pagesCount) {
-                sendComplete();
-              }
-            });
+            // targetObject.addEventListener("pageChanged", (event) => {
+            //   console.log(event.target);
+            //   sendProgress(event.detail.curPage);
+            //   if (event.pageNumber >= targetObject.pagesCount) {
+            //     sendComplete();
+            //   }
+            // });
+
             console.log("total player ready");
             targetLoaded = true;
             // sendInitialized();
@@ -4964,9 +5034,9 @@ code.google.com/p/crypto-js/wiki/License
             /* todo ms 초기 페이지 설정 값이 있는지 검사 필요
              */
 
-            if (setPage) {
-              // 기존의 초기 로드 페이지 값이 있는지 없는지 검사
-            }
+            // if (setPage) {
+            // 기존의 초기 로드 페이지 값이 있는지 없는지 검사
+            // }
             try {
               // if(ev.statusText !== 'Not Found') {
               //   const state = JSON.parse(ev.response);
@@ -5005,7 +5075,7 @@ code.google.com/p/crypto-js/wiki/License
             activityID = activityIdBase || "";
             targetActivityObject = new ADL.XAPIStatement.Activity(activityID);
             var object_temp = {
-              type: "https://w3id.org/xapi/pdf/activity-type/pdf",
+              type: "http://adlnet.gov/expapi/activities/cmi.interaction",
               name: {
                 "en-US": contentName || "",
               },
@@ -5028,11 +5098,13 @@ code.google.com/p/crypto-js/wiki/License
                 "en-US": description,
               };
             }
-            targetObject.initializedPromise.then(function () {
-              currentSegment = [targetObject.page, targetObject.page];
-              targetObject.eventBus.on("documentloaded", onReady);
-            });
+
+            // targetObject.initializedPromise.then(() => {
+            // currentSegment = [targetObject.page, targetObject.page];
+            targetObject.addEventListener("playerLoaded", onReady);
+            // });
           }
+
           function suspend() {
             sendSynchronous = true;
             // this function will be called from the outside, that's why it's not called 'onTerminate'
@@ -5046,6 +5118,9 @@ code.google.com/p/crypto-js/wiki/License
             addObjectContext: addObjectContext,
             addResultExtension: addResultExtension,
             saveState: saveState,
+            playerLoadedEvent: playerLoadedEvent,
+            sendProgress: sendProgress,
+            sendComplete: sendComplete,
           };
         }
         return {
