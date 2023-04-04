@@ -14,23 +14,31 @@ const NumberingTextCreatorWrapper = styled.div`
   width: 100%;
 `;
 const NumberingListWrapper = styled.ul`
-  display: flex;
-  flex-direction: column;
   padding-bottom: 24px;
 `;
 
 const NumberingList = styled.li`
-  align-items: flex-start;
-  width: 100%;
   display: flex;
+  width: 50vw;
+  align-items: flex-start;
+
   &:not(:last-child) {
     margin-bottom: 16px;
   }
+
   .number {
     position: relative;
     top: unset;
     left: unset;
+    flex-shrink: 0;
     margin-right: 16px;
+  }
+
+  .btn-delete {
+    position: absolute;
+    top: 10px;
+    left: auto;
+    right: 10px;
   }
 `;
 
@@ -210,6 +218,7 @@ const NumberingTextListCreator = ({
                       )}
                       setText={(text) => setText(index, "firstText", text)}
                       text={getText(index, "firstText")}
+                      defaultText="내용1 입력"
                     />
                   </div>
                   <div
@@ -224,6 +233,7 @@ const NumberingTextListCreator = ({
                       )}
                       setText={(text) => setText(index, "secondText", text)}
                       text={getText(index, "secondText")}
+                      defaultText="내용2 입력(선택)"
                     />
                   </div>
                 </TextWrap>

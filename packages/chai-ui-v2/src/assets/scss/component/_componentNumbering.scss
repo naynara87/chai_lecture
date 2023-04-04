@@ -5,6 +5,7 @@
 	}
 
 	position: relative;
+	min-height: vw(92);
 	padding: vh(25) vw(40);
 	border-radius: vw(20);
 	background-color: color(gray-f5);
@@ -17,7 +18,7 @@
 		@include circle(vw(36));
 
 		position: absolute;
-		top: vh(28);
+		top: vw(28);
 		left: vw(40);
 		background-color: color(main);
 		line-height: vw(34);
@@ -29,26 +30,26 @@
 
 	.text1 {
 		padding-left: vw(60);
-		font-size: vw(28);
+		font-size: vw(34);
 		white-space: pre-line;
 	}
-	
+
 	.text2 {
-		font-size: vw(24);
+		font-size: vw(34);
 		white-space: pre-line;
 	}
 
-	.chinese {
-		font-weight: 600;
-		font-size: vw(40);
-	}
+	// .chinese {
+	// 	font-weight: 600;
+	// 	font-size: vw(40);
+	// }
 
-	.pinyin {
-		font-size: vw(32);
-		color: color(gray-66);
-	}
+	// .pinyin {
+	// 	font-size: vw(32);
+	// 	color: color(gray-66);
+	// }
 
-	.c-red {
-		color: color(warning);
-	}
+	// .c-red {
+	// 	color: color(warning);
+	// }
 }
