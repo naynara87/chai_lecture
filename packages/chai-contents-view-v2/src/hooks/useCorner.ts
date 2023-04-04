@@ -24,7 +24,7 @@ const useCorner = (cornerId: ID | undefined) => {
         const currentCorner = data?.find(
           (corner) => corner.meta.id.toString() === cornerId?.toString(),
         );
-        setPages(currentCorner?.data!);
+        setPages(currentCorner?.data ?? []);
         setCornerMetaData(currentCorner?.meta);
 
         // const pages = data?.body?.data?.map((pageData: ContentData) =>

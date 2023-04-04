@@ -109,9 +109,9 @@ const LayoutModalIntroduction = ({
                 <h2 className="ttl">
                   <HtmlContentComponent html={introduction.title} />
                 </h2>
-                <p className="txt">
+                <div className="txt">
                   <HtmlContentComponent html={introduction.subTitle} />
-                </p>
+                </div>
               </div>
             </ModalBaseTitle>
             <ModalBaseContents className="base-conts">

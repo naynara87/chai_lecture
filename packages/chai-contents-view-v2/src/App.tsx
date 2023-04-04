@@ -24,7 +24,7 @@ function App() {
           uno: "1",
           uid: "1",
           applId: "1",
-          cornerId: "18",
+          cornerId: "12",
           pageId: "1",
           courseId: "1",
           subjectId: "1",
