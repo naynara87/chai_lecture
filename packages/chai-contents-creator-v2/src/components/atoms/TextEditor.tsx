@@ -69,6 +69,15 @@ const TextEditor = ({
         value={text}
         onBlur={onBlur}
         className="quill__custom"
+        formats={[
+          "bold",
+          "color",
+          "font",
+          "italic",
+          "size",
+          "strike",
+          "underline",
+        ]}
         modules={{
           toolbar: [
             [{ font: Font.whitelist }],
