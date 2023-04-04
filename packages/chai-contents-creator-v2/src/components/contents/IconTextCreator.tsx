@@ -7,10 +7,11 @@ import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 import iconTip from "chai-ui-v2/dist/assets/images/icon/icon_tip.svg";
 
 export const IconTextCreatorWrapper = styled.div`
-  min-width: 240px;
   display: flex;
   align-items: center;
-  & > img {
+  width: 90%;
+
+  > img {
     width: ${vw(44)};
     height: ${vw(44)};
     margin-right: ${vw(14)};
