@@ -22,6 +22,7 @@ const ImageListWrapper = styled.ul`
 
 const ImageList = styled.li`
   position: relative;
+  width: 50%;
 `;
 
 const ImageThumb = styled.div`
