@@ -18,6 +18,8 @@ const ExplainingWrapper = styled.div`
 `;
 const ExplainingTextWrapper = styled.div`
   display: flex;
+  margin-top: 30px;
+
   & > img {
     width: 120px;
     height: 120px;
