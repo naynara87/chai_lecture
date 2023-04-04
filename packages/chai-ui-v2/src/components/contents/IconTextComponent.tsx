@@ -7,7 +7,7 @@ import { vw } from "../../assets";
 
 const IconTextWrapper = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   font-weight: 600;
   font-size: ${vw(26)};
 
