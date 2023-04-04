@@ -8,7 +8,6 @@ import { DraggableContentCommonProps } from "../../types/page";
 import {
   ComponentImage,
   ImageWithDescriptionListContentData,
-  vh,
   vw,
 } from "chai-ui-v2";
 
@@ -16,31 +15,40 @@ import TextEditorViewer from "../molecules/TextEditorViewer";
 import { useCallback, useEffect, useState } from "react";
 
 const ImageListCreatorWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
 `;
 
 const ImageListWrapper = styled.ul`
-  display: flex;
-  gap: 16px;
-  flex-direction: column;
+  width: 1000px;
+  margin: 0 auto;
+
   .description-text {
+    flex-basis: 60%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    padding-left: 60px;
     font-size: 16px;
-    width: 280px;
-    margin-left: 60px;
-    margin-right: 16px;
+
+    p,div,span {
+      word-break: break-all;
+    }
+  }
+  
+  .image-wrap {
+    flex-basis: 40%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    img {
+      width: ${vw(360)};
+      height: ${vw(220)};
+      object-fit: cover;
+    }
   }
 `;
 
 const ImageList = styled.li`
   display: flex;
-
-  img {
-    width: ${vw(400)};
-    max-height: ${vh(337)};
-    object-fit: contain;
-  }
+  width: 100%;
+  margin-bottom: 40px;
 `;
 
 const ImageThumb = styled.div`
@@ -50,12 +58,14 @@ const ImageThumb = styled.div`
   position: relative;
   margin-bottom: 10px;
   border-radius: 10px;
+
   img {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
     width: 60px;
+    object-fit: contain;
+    transform: translate(-50%, -50%);
   }
 `;
 
@@ -193,7 +203,7 @@ const ImageWithDescriptionListCreator = ({
           {thisContent.data.map((item, index) => {
             return (
               <ImageList>
-                <div>
+                <div className="image-wrap">
                   {item.src ? (
                     <ComponentImage imageUrl={getThisContentImageSrc(index)} />
                   ) : (

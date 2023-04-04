@@ -20,6 +20,7 @@ const ImageWithDescriptionList = styled.div`
 `;
 
 const ListImage = styled.img`
+  flex-shrink: 0;
   width: ${vw(360)};
   height: ${vh(220)};
   margin-right: ${vw(43)};
