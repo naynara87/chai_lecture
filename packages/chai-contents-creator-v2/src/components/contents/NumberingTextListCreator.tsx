@@ -26,11 +26,20 @@ const NumberingList = styled.li`
   &:not(:last-child) {
     margin-bottom: 16px;
   }
+
   .number {
     position: relative;
     top: unset;
     left: unset;
+    flex-shrink: 0;
     margin-right: 16px;
+  }
+
+  .btn-delete {
+    position: absolute;
+    top: 10px;
+    left: auto;
+    right: 10px;
   }
 `;
 
