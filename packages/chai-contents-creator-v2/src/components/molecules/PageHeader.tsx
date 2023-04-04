@@ -66,7 +66,7 @@ const PageHeader = ({
       <ModalConfirm
         isModalOpen={isModalDeleteOpen}
         setIsModalOpen={setIsModalDeleteOpen}
-        title={"컴포넌트를 \n삭제하시겠습니까?"}
+        title={"슬라이드를 \n삭제하시겠습니까?"}
         description={
           "삭제 클릭 시 작업 중인 콘텐츠는 삭제되며, \n복원이 불가능합니다."
         }

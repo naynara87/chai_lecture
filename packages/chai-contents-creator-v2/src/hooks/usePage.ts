@@ -296,7 +296,7 @@ const usePage = () => {
   const addSlide = useCallback(() => {
     const newSlides = cloneDeep(slides);
     newSlides.push({
-      id: newSlides.length,
+      id: uuidV4(),
       type: "Template01",
       contents: [],
     });

@@ -77,6 +77,9 @@ const TextEditor = ({
           "size",
           "strike",
           "underline",
+          "header",
+          "align",
+          "background",
         ]}
         modules={{
           toolbar: [

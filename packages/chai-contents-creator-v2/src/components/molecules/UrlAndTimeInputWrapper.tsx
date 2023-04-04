@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import { colorPalette, validateURL } from "chai-ui-v2";
 import { useRef, useState } from "react";
-import AddButton from "../atoms/AddButton";
 import { ButtonDelete, ButtonRegister } from "../atoms/ButtonRegister";
 
 const UrlAndTimeWrapper = styled.div`
