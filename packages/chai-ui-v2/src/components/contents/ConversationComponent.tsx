@@ -39,11 +39,6 @@ const ConversationComponent = ({
   } = useGlobalAudio();
 
   useEffect(() => {
-    console.log("contents", contents);
-    console.log("contents.data[0].isBlank", contents.data[0].isBlank);
-  }, [contents]);
-
-  useEffect(() => {
     return () => {
       handleAudioReset();
     };
