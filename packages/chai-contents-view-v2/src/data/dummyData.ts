@@ -2091,6 +2091,9 @@ export const v2CornerDataList: CornerData[] = [
                         },
                       },
                     ],
+                    soundEffect: {
+                      src: "https://assets.mixkit.co/active_storage/sfx/213/213-preview.mp3",
+                    },
                   },
                 },
               },

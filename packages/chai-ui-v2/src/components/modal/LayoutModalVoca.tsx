@@ -1,5 +1,4 @@
-// import styled from "@emotion/styled";
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import ImgVocaComponent from "../atoms/ImgVocaComponent";
 import IconClose from "../../assets/images/icon/icon_close_black.svg";
 import { useGlobalAudio, WordsCarouselContentData } from "../../core";
@@ -44,6 +43,14 @@ const LayoutModalVoca = ({
     setIsModalOpen(false);
     handleAudioReset();
   };
+
+  const [isSwiperInitiated, setIsSwiperInitiated] = useState(false);
+
+  useEffect(() => {
+    return () => {
+      setIsSwiperInitiated(false);
+    };
+  });
 
   const slideContents = useMemo(() => {
     return contentsData.words.map((word, wordIndex) => {
@@ -98,7 +105,13 @@ const LayoutModalVoca = ({
                   spaceBetween={20}
                   slidesPerView={1}
                   centeredSlides
-                  onSlideChange={() => handleAudioReset()}
+                  onSlideChange={() => {
+                    if (!isSwiperInitiated) return;
+                    handleAudioReset();
+                  }}
+                  onInit={() => {
+                    setIsSwiperInitiated(true);
+                  }}
                 >
                   {slideContents}
                 </Swiper>
