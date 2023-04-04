@@ -37,6 +37,10 @@ const ImageWithCaptionWrapper = styled.div`
     text-align: center;
     color: ${colorPalette.gray800};
   }
+
+  .caption-wrap {
+  width: calc((${vh(380)} * 4) / 3);
+  }
 `;
 
 const ImageWithCaptionListComponent = ({
@@ -63,7 +67,9 @@ const ImageWithCaptionListComponent = ({
               }}
             />
             {imageWithCaption.caption && (
-              <HtmlContentComponent html={imageWithCaption.caption} />
+              <div className="caption-wrap">
+                <HtmlContentComponent html={imageWithCaption.caption} />
+              </div>
             )}
           </ImageWithCaptionWrapper>
         </ImageWithCaptionList>
