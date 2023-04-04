@@ -21,6 +21,7 @@ export const CaptionListImage = styled.img`
   cursor: pointer;
   width: calc((${vh(380)} * 4) / 3);
   height: ${vh(380)};
+  object-fit: cover;
 `;
 
 const ImageWithCaptionList = styled.div``;
