@@ -21,6 +21,10 @@ const CharacterNameInput = styled.input`
   line-height: 16px;
   text-align: center;
   width: 63px;
+
+  &::placeholder {
+    opacity: 0.6;
+  }
 `;
 
 const CharacterImgWrap = styled.div`
