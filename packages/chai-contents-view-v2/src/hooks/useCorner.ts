@@ -2,9 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import { ID, useAuth, Page, CornerMeta } from "chai-ui-v2";
 import { useState } from "react";
 import QUERY_KEY from "../constants/queryKey";
-import { v2CornerDataList } from "../data/dummyData";
+import { v2CornerDataList, v2QuizCornerDataList } from "../data/dummyData";
 
-const useCorner = (cornerId: ID | undefined) => {
+const useCorner = (
+  cornerId: ID | undefined,
+  lessonTpCd: string | undefined,
+) => {
   const { isAuthorized } = useAuth();
   const [pages, setPages] = useState<Page[]>([]);
   const [cornerMetaData, setCornerMetaData] = useState<CornerMeta>();
@@ -14,6 +17,9 @@ const useCorner = (cornerId: ID | undefined) => {
     () => {
       if (!cornerId) {
         return;
+      }
+      if (lessonTpCd !== "10") {
+        return v2QuizCornerDataList;
       }
       return v2CornerDataList;
       // return getPageListData(cornerId);
