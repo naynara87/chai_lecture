@@ -142,6 +142,7 @@ const AudioAndWordsCarouselModalCreator = ({
 
   const deleteImage = (index: number) => {
     if (thisContent.data.wordCarouselContents.words.length === 1) {
+      alert("최소 1개이상 입력하셔야 합니다.");
       return;
     }
     const newContent = {

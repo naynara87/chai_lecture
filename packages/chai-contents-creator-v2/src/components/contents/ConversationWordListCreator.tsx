@@ -134,6 +134,11 @@ const ConversationWordListCreator = ({
 
   const deleteWord = useCallback(
     (listIndex: number) => {
+      if (thisContent.data.words.length === 1) {
+        alert("최소 1개이상 입력하셔야 합니다.");
+        return;
+      }
+
       const newContent: ConversationWordListContentData =
         cloneDeep(thisContent);
       newContent.data.words.splice(listIndex, 1);
@@ -146,12 +151,11 @@ const ConversationWordListCreator = ({
     return thisContent.data.words.map((word, wordIndex) => {
       return (
         <VacaList className="voca-list" key={wordIndex}>
-          {thisContent.data.words.length > 1 && (
-            <ObjectDeleteButton
-              onClick={() => deleteWord(wordIndex)}
-              customCSS={deleteButtonStyle}
-            />
-          )}
+          <ObjectDeleteButton
+            onClick={() => deleteWord(wordIndex)}
+            customCSS={deleteButtonStyle}
+          />
+
           <div onClick={() => fucusTextEditor(wordIndex)}>
             <TextEditorViewer
               text={word.text}
