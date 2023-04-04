@@ -35,7 +35,7 @@ const useCorner = (cornerId: ID | undefined) => {
         // setCornerMetaData(data?.body?.meta);
       },
       onError: (error) => {
-        console.log("코너 리스트 조회 실패");
+        console.log("페이지 리스트 조회 실패");
       },
       refetchOnWindowFocus: false,
     },
