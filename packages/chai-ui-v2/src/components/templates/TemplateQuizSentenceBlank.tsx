@@ -12,15 +12,16 @@ import {
   ComponentButtonRadiFillMain,
 } from "../atoms";
 import LineCheckBoxes from "../molecules/LineCheckBoxes";
-import DialogueSentenceBlank from "../molecules/DialogueSentenceBlank";
 import {
   TemplateProps,
   TemplateQuizSentencesInOrderData,
   useGlobalAudio,
+  usePageCompleted,
 } from "../../core";
 import { IconTextComponent } from "../contents";
 import ModalVideo from "../modal/ModalVideo";
 import { v4 as uuidv4 } from "uuid";
+import DialogueSentenceBlank from "../contents/DialogueSentenceBlank";
 
 const DialogueContainer = styled.div`
   .blank-gray {
@@ -52,7 +53,7 @@ export type SentenceInOrderChoice = {
   answerIndex: number;
 };
 
-interface TemplateQuizSentenceBlankProps extends TemplateProps { }
+interface TemplateQuizSentenceBlankProps extends TemplateProps {}
 
 const TemplateQuizSentenceBlank = ({
   template,
@@ -77,6 +78,11 @@ const TemplateQuizSentenceBlank = ({
     handleAudioReset,
     handleClickAudioButton,
   } = useGlobalAudio();
+  const { setPushCompletedPageComponents } = usePageCompleted();
+
+  useEffect(() => {
+    setPushCompletedPageComponents("quiz", template.id);
+  }, [setPushCompletedPageComponents, template.id]);
 
   const audioEnded = useCallback(() => {
     if (globalAudioId.toString().includes("solutionModal")) {
@@ -141,9 +147,9 @@ const TemplateQuizSentenceBlank = ({
       0,
       isCorrect === undefined
         ? thisPage.mainContents.data.quizPopup.data.correct.soundEffect?.src ??
-        ""
+            ""
         : thisPage.mainContents.data.quizPopup.data.incorrect.soundEffect
-          ?.src ?? "",
+            ?.src ?? "",
     );
   }, [handleClickAudioButton, isCorrect, thisPage.mainContents]);
 
@@ -225,9 +231,9 @@ const TemplateQuizSentenceBlank = ({
             videoSrc={
               isCorrect === undefined
                 ? thisPage.mainContents.data.quizPopup.data.correct.video
-                  ?.src ?? ""
+                    ?.src ?? ""
                 : thisPage.mainContents.data.quizPopup.data.incorrect.video
-                  ?.src ?? ""
+                    ?.src ?? ""
             }
           />
         </>

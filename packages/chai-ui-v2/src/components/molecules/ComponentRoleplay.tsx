@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "@emotion/styled";
-import AudioRecorder from "./AudioRecorder";
 import { ImgProfileDefaultComponent, ImgTemp01Component } from "../atoms";
 import { colorPalette } from "../../assets";
 import ComponentButtonRadiFillOrange from "../atoms/ComponentButtonRadiFillOrange";
+import AudioRecorder from "../contents/AudioRecorder";
 
 const DialogueWrapper = styled.ul`
   .right-conts .bubble-wrap {

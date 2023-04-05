@@ -10,7 +10,7 @@ import { useReactMediaRecorder } from "react-media-recorder";
 import RecordPlayButton from "../atoms/Button/RecordPlayButton";
 import RecordMikeButton from "../atoms/Button/RecordMikeButton";
 import RecordStopButton from "../atoms/Button/RecordStopButton";
-import { useGlobalAudio } from "../../core";
+import { useGlobalAudio, usePageCompleted } from "../../core";
 import { v4 as uuidv4 } from "uuid";
 import IconReturnButton from "../atoms/Button/IconReturnButton";
 
@@ -48,6 +48,12 @@ const AudioRecorder = () => {
     handleAudioReset,
     handleClickAudioButton,
   } = useGlobalAudio();
+  const { setPushCompletedPageComponents, setComponentCompleted } =
+    usePageCompleted();
+
+  useEffect(() => {
+    setPushCompletedPageComponents("record", recordedAudioUuidRef.current);
+  }, [setPushCompletedPageComponents]);
 
   useEffect(() => {
     return () => {
@@ -83,9 +89,17 @@ const AudioRecorder = () => {
       // 녹음 중일 때
       stopRecording();
       setRecordedAudioState("recorded");
+      setComponentCompleted(recordedAudioUuidRef.current);
       window.clearTimeout(recordTimer.current);
     }
-  }, [startRecording, status, stopRecording, recordTime, handleAudioReset]);
+  }, [
+    startRecording,
+    status,
+    stopRecording,
+    recordTime,
+    handleAudioReset,
+    setComponentCompleted,
+  ]);
 
   const handleClickRecordedAudioButton = useCallback(() => {
     if (

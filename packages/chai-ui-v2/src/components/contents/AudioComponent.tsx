@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef } from "react";
-import { AudioContentData, useGlobalAudio } from "../../core";
+import { AudioContentData, useGlobalAudio, usePageCompleted } from "../../core";
 import { ComponentButtonPlay } from "../atoms";
 import IconPauseFillButton from "../atoms/Button/IconPauseFillButton";
 import { v4 as uuidv4 } from "uuid";
@@ -15,6 +15,12 @@ export interface AudioComponentProps {
 
 const AudioComponent = ({ contents }: AudioComponentProps) => {
   const audioUuidRef = useRef(uuidv4());
+  const { setPushCompletedPageComponents, setComponentCompleted } =
+    usePageCompleted();
+
+  useEffect(() => {
+    setPushCompletedPageComponents("audio", audioUuidRef.current);
+  }, [setPushCompletedPageComponents]);
 
   const {
     globalAudioRef,
@@ -59,6 +65,7 @@ const AudioComponent = ({ contents }: AudioComponentProps) => {
       return (
         <ComponentButtonPlay
           onClick={() => {
+            setComponentCompleted(audioUuidRef.current);
             handleClickAudioButton(
               "audio",
               audioUuidRef.current,
@@ -75,6 +82,7 @@ const AudioComponent = ({ contents }: AudioComponentProps) => {
     handleClickAudioButton,
     handleAudioReset,
     globalAudioState,
+    setComponentCompleted,
   ]);
 
   return <AudioWrap>{mainContents}</AudioWrap>;

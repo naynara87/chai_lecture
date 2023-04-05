@@ -1,5 +1,9 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { ConversationQuizContentData, useGlobalAudio } from "../../core";
+import {
+  ConversationQuizContentData,
+  useGlobalAudio,
+  usePageCompleted,
+} from "../../core";
 import {
   ComponentButtonRadiFillMain,
   ImgProfileDefaultComponent,
@@ -34,6 +38,12 @@ const ConversationQuizComponent = ({
     handleClickAudioButton,
     handleClickAudioStopButton,
   } = useGlobalAudio();
+  const { setPushCompletedPageComponents, setComponentCompleted } =
+    usePageCompleted();
+
+  useEffect(() => {
+    setPushCompletedPageComponents("quiz", contents.id);
+  }, [setPushCompletedPageComponents, contents.id]);
 
   useEffect(() => {
     return () => {
@@ -79,8 +89,9 @@ const ConversationQuizComponent = ({
   );
 
   const handleClickShowAnswer = useCallback(() => {
+    setComponentCompleted(contents.id);
     setIsShowAnswer(true);
-  }, []);
+  }, [setComponentCompleted, contents.id]);
 
   const answerCheckColor = useCallback(
     (contentIndex: number) => {

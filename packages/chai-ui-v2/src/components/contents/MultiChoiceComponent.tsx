@@ -5,7 +5,11 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { MultiChoiceContentData, useGlobalAudio } from "../../core";
+import {
+  MultiChoiceContentData,
+  useGlobalAudio,
+  usePageCompleted,
+} from "../../core";
 import { LayoutModalSolution } from "../modal";
 import ComponentGrayLine from "../molecules/ComponentGrayLine";
 import { v4 as uuidv4 } from "uuid";
@@ -28,6 +32,12 @@ const MultiChoiceComponent = ({ contents }: MultiChoiceComponentProps) => {
     handleAudioReset,
     handleClickAudioButton,
   } = useGlobalAudio();
+  const { setPushCompletedPageComponents, setComponentCompleted } =
+    usePageCompleted();
+
+  useEffect(() => {
+    setPushCompletedPageComponents("quiz", contents.id);
+  }, [setPushCompletedPageComponents, contents.id]);
 
   const audioEnded = useCallback(() => {
     if (globalAudioId.toString().includes("solutionModal")) {
@@ -71,6 +81,7 @@ const MultiChoiceComponent = ({ contents }: MultiChoiceComponentProps) => {
             onClick={() => {
               if (userChoice !== undefined) return;
               setUserChoice(choiceIndex);
+              setComponentCompleted(contents.id);
               setIsModalSolutionOpen(true);
               handleClickAudioButton(
                 "solutionModal",
@@ -90,7 +101,7 @@ const MultiChoiceComponent = ({ contents }: MultiChoiceComponentProps) => {
         </div>
       );
     });
-  }, [contents, userChoice, handleClickAudioButton]);
+  }, [contents, userChoice, handleClickAudioButton, setComponentCompleted]);
 
   const answerCheckColor = useMemo(() => {
     if (userChoice !== undefined) {

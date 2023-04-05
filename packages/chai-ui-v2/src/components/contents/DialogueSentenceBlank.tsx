@@ -147,11 +147,12 @@ const DialogueSentenceBlank = ({
     return contents.map((content, contentIndex) => {
       return (
         <li
-          className={`conversation-wrap ${speakingDialogueIndex === contentIndex &&
-              globalAudioState === "playing"
+          className={`conversation-wrap ${
+            speakingDialogueIndex === contentIndex &&
+            globalAudioState === "playing"
               ? "active"
               : ""
-            }`}
+          }`}
           key={contentIndex}
         >
           <div className="img-grp">
@@ -182,12 +183,13 @@ const DialogueSentenceBlank = ({
                 const blankIndex = blankCount;
                 return (
                   <BlankSpan
-                    className={`blank-gray ${selectedBlankBox === blankIndex ? "active" : ""
-                      } ${answerCheckColor(
-                        contentIndex,
-                        sentenceIndex,
-                        blankIndex,
-                      )}`}
+                    className={`blank-gray ${
+                      selectedBlankBox === blankIndex ? "active" : ""
+                    } ${answerCheckColor(
+                      contentIndex,
+                      sentenceIndex,
+                      blankIndex,
+                    )}`}
                     key={sentenceIndex}
                     onClick={() => {
                       if (!!userChoices[blankIndex].text) return;

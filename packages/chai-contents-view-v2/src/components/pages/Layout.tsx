@@ -1,4 +1,4 @@
-import { LocalStorage, QuizData } from "chai-ui-v2";
+import { LocalStorage, QuizData, usePageCompleted } from "chai-ui-v2";
 import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
@@ -16,6 +16,7 @@ const Layout = () => {
   const [isInitialActivityState, setIsInitialActivityState] = useState(false);
 
   const { xapiInitialize, initialActivityState, xapiActivity } = useXapi();
+  const { completedPageComponents } = usePageCompleted();
 
   const [, setCurrentCornerId] = useRecoilState(currentCornerIdState);
 
@@ -23,15 +24,20 @@ const Layout = () => {
     xapiInitialize();
   }, [xapiInitialize]);
 
-  useEffect(() => {
-    console.log("pages", pages);
-  }, [pages]);
+  console.log("completedPageComponents", completedPageComponents);
 
   useEffect(() => {
     if (!lessonMetaData) return;
     if (!cornerMetaData) return;
+    if (!pageId) return;
     if (isInitialActivityState) return;
-    initialActivityState(lessonMetaData, cornerMetaData, corners, totalPages);
+    initialActivityState(
+      lessonMetaData,
+      cornerMetaData,
+      corners,
+      totalPages,
+      pageId,
+    );
     setIsInitialActivityState(true);
   }, [
     cornerMetaData,
@@ -40,6 +46,7 @@ const Layout = () => {
     totalPages,
     initialActivityState,
     isInitialActivityState,
+    pageId,
   ]);
 
   useEffect(() => {

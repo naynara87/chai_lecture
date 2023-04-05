@@ -11,7 +11,11 @@ import RecordPlayButton from "../atoms/Button/RecordPlayButton";
 import RecordMikeButton from "../atoms/Button/RecordMikeButton";
 import IconReturnButton from "../atoms/Button/IconReturnButton";
 import RecordStopButton from "../atoms/Button/RecordStopButton";
-import { FinalSpeakingContentData, useGlobalAudio } from "../../core";
+import {
+  FinalSpeakingContentData,
+  useGlobalAudio,
+  usePageCompleted,
+} from "../../core";
 import { v4 as uuidv4 } from "uuid";
 import ComponentGrayLine from "../molecules/ComponentGrayLine";
 import IconLight from "../../assets/images/icon/icon_light_navy.svg";
@@ -57,6 +61,12 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
     handleAudioReset,
     handleClickAudioButton,
   } = useGlobalAudio();
+  const { setPushCompletedPageComponents, setComponentCompleted } =
+    usePageCompleted();
+
+  useEffect(() => {
+    setPushCompletedPageComponents("record", contents.id);
+  }, [setPushCompletedPageComponents, contents.id]);
 
   useEffect(() => {
     return () => {
@@ -122,10 +132,19 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
     } else {
       // 녹음 중일 때
       stopRecording();
+      setComponentCompleted(contents.id);
       setRecordedAudioState("recorded");
       window.clearTimeout(recordTimer.current);
     }
-  }, [startRecording, status, stopRecording, recordTime, handleAudioReset]);
+  }, [
+    startRecording,
+    status,
+    stopRecording,
+    recordTime,
+    handleAudioReset,
+    setComponentCompleted,
+    contents.id,
+  ]);
 
   const handleClickRecordedAudioButton = useCallback(() => {
     if (

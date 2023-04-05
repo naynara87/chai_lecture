@@ -11,7 +11,6 @@ import IconTextComponent from "../../components/contents/IconTextComponent";
 import ImageWithDescriptionListComponent from "../../components/contents/ImageWithDescriptionListComponent";
 import NumberingTextListComponent from "../../components/contents/NumberingTextListComponent";
 import TextContentComponent from "../../components/contents/TextContentComponent";
-import AudioRecorder from "../../components/molecules/AudioRecorder";
 import {
   Content,
   ContentType,
@@ -61,6 +60,7 @@ import AudioAndWordsCarouselComponent from "../../components/contents/AudioAndWo
 import ToggleSentenceListComponent from "../../components/contents/ToggleSentenceListComponent";
 import MultilevelActionSentenceCardComponent from "../../components/contents/MultilevelActionSentenceCardComponent";
 import FullAudioComponent from "../../components/contents/FullAudioComponent";
+import AudioRecorder from "../../components/contents/AudioRecorder";
 
 const useContentMapper = () => {
   const getContentComponent = (content: Content, contentIndex: number) => {

@@ -6,7 +6,11 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { useGlobalAudio, WordsInOrderContentData } from "../../core";
+import {
+  useGlobalAudio,
+  usePageCompleted,
+  WordsInOrderContentData,
+} from "../../core";
 import {
   ComponentButtonRadiBorderMain,
   ComponentButtonRadiFillMain,
@@ -73,6 +77,12 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
     handleAudioReset,
     handleClickAudioButton,
   } = useGlobalAudio();
+  const { setPushCompletedPageComponents, setComponentCompleted } =
+    usePageCompleted();
+
+  useEffect(() => {
+    setPushCompletedPageComponents("quiz", contents.id);
+  }, [setPushCompletedPageComponents, contents.id]);
 
   const audioEnded = useCallback(() => {
     if (globalAudioId.toString().includes("solutionModal")) {
@@ -258,6 +268,7 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
     setSelectedChoiceBox(undefined);
     setIsShowAnswer(true);
     setIsModalSolutionOpen(true);
+    setComponentCompleted(contents.id);
     handleClickAudioButton(
       "solutionModal",
       modalUuidRef.current,
@@ -266,7 +277,7 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
         ? contents.data.quizPopup.data.correct.soundEffect?.src ?? ""
         : contents.data.quizPopup.data.incorrect.soundEffect?.src ?? "",
     );
-  }, [contents.data.quizPopup.data, isCorrect, handleClickAudioButton]);
+  }, [contents, isCorrect, handleClickAudioButton, setComponentCompleted]);
 
   return (
     <>

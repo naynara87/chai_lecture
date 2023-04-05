@@ -100,6 +100,13 @@ export const v2CornerDataList: CornerData[] = [
                             text: "테스트카드1",
                           },
                         },
+                        {
+                          id: uuidV4(),
+                          type: "audio",
+                          data: {
+                            src: "",
+                          },
+                        },
                       ],
                     },
                     {
@@ -109,6 +116,13 @@ export const v2CornerDataList: CornerData[] = [
                           type: "text",
                           data: {
                             text: "테스트카드1-2",
+                          },
+                        },
+                        {
+                          id: uuidV4(),
+                          type: "audio",
+                          data: {
+                            src: "",
                           },
                         },
                       ],
@@ -527,6 +541,17 @@ export const v2CornerDataList: CornerData[] = [
                     },
                   },
                 ],
+              },
+            ],
+          },
+          {
+            id: uuidV4(),
+            type: "Template01",
+            contents: [
+              {
+                id: uuidV4(),
+                type: "recorder",
+                data: {},
               },
             ],
           },

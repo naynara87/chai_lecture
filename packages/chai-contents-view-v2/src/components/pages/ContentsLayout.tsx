@@ -12,6 +12,7 @@ import {
   LessonMeta,
   CornerMeta,
   CornerListData,
+  usePageCompleted,
 } from "chai-ui-v2";
 import { currentCornerIdState } from "../../state/currentCornerId";
 import usePages from "../../hooks/usePages";
@@ -48,6 +49,7 @@ const ContentsLayout = ({
     totalPages,
   });
   const { xapiProgress } = useXapi();
+  const { setCompletedPageComponents } = usePageCompleted();
 
   const setPageCompleted = () => {
     setIsPageCompleted(true);
@@ -55,13 +57,20 @@ const ContentsLayout = ({
 
   const handleClickPrev = () => {
     if (currentPageIndex === undefined) return;
+    const currentCornerIndex = corners.findIndex(
+      (corner) => corner.id.toString() === currentCornerId?.toString(),
+    );
     if (isCurrentCornerFirstPage) {
-      const currentCornerIndex = corners.findIndex(
-        (corner) => corner.id.toString() === currentCornerId?.toString(),
-      );
       const prevCorner = corners[currentCornerIndex - 1];
       if (prevCorner) {
         // 다음 코너가 있을때
+        xapiProgress(
+          prevCorner,
+          totalPages[currentPageIndex],
+          prevCorner.pages[prevCorner.pages.length - 1],
+          totalPages,
+        );
+        setCompletedPageComponents([]);
         const url = getPageUrl(
           lessonMetaData?.courseId,
           cornerMetaData?.lessonId,
@@ -75,6 +84,14 @@ const ContentsLayout = ({
       }
     }
     if (cornerId && courseId && lessonId && pageId) {
+      const currentCorner = corners[currentCornerIndex];
+      xapiProgress(
+        currentCorner,
+        totalPages[currentPageIndex],
+        totalPages[currentPageIndex - 1],
+        totalPages,
+      );
+      setCompletedPageComponents([]);
       navigate(
         getPageUrl(
           courseId,
@@ -89,16 +106,22 @@ const ContentsLayout = ({
   const handleClickNext = () => {
     if (currentPageIndex === undefined) return;
     if (!pageId) return;
+    const currentCornerIndex = corners.findIndex(
+      (corner) => corner.id.toString() === currentCornerId?.toString(),
+    );
     if (isCurrentCornerLastPage) {
       if (!lessonMetaData) return;
       if (!cornerMetaData) return;
-
-      const currentCornerIndex = corners.findIndex(
-        (corner) => corner.id.toString() === currentCornerId?.toString(),
-      );
       const nextCorner = corners[currentCornerIndex + 1];
       if (nextCorner) {
         // 다음 코너가 있을때
+        xapiProgress(
+          nextCorner,
+          totalPages[currentPageIndex],
+          nextCorner.pages[0],
+          totalPages,
+        );
+        setCompletedPageComponents([]);
         const url = getPageUrl(
           lessonMetaData?.courseId,
           cornerMetaData?.lessonId,
@@ -113,7 +136,14 @@ const ContentsLayout = ({
       return;
     }
     if (cornerId && courseId && lessonId) {
-      xapiProgress(pageId, totalPages);
+      const currentCorner = corners[currentCornerIndex];
+      xapiProgress(
+        currentCorner,
+        totalPages[currentPageIndex],
+        totalPages[currentPageIndex + 1],
+        totalPages,
+      );
+      setCompletedPageComponents([]);
       navigate(
         getPageUrl(
           courseId,
