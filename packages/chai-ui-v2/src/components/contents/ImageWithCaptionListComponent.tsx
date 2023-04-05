@@ -58,7 +58,7 @@ const ImageWithCaptionListComponent = ({
   const imageWithDescriptionList = useMemo(() => {
     return contents.data.map((imageWithCaption, imageWithCaptionIndex) => {
       return (
-        <ImageWithCaptionList key={imageWithCaptionIndex}>
+        <ImageWithCaptionList key={imageWithCaptionIndex} className="image-with-caption-list">
           <ImageWithCaptionWrapper className="image-with-caption-wrapper">
             <CaptionListImage
               src={imageWithCaption.src}
