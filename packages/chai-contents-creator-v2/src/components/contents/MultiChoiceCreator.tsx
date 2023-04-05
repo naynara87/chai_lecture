@@ -1,5 +1,9 @@
 import styled from "@emotion/styled";
-import { MultiChoiceContentData, QuizPopupModalContentData, vw } from "chai-ui-v2";
+import {
+  MultiChoiceContentData,
+  QuizPopupModalContentData,
+  vw,
+} from "chai-ui-v2";
 import React, { useCallback, useMemo, useState } from "react";
 import useGrayLineComponent from "../../hooks/useGrayLineComponent";
 import { DraggableContentCommonProps } from "../../types/page";
@@ -204,12 +208,12 @@ const MultiChoiceCreator = ({
           </ChoiceLabel>
           <AnswerInput
             type="radio"
-            name="answerCheck"
-            id={`answerCheck${choiceIndex}`}
+            name={`answerCheck_${thisContent.id}`}
+            id={`answerCheck_${choiceIndex}_${thisContent.id}`}
             onClick={() => setAnswer(choiceIndex)}
           />
           <label
-            htmlFor={`answerCheck${choiceIndex}`}
+            htmlFor={`answerCheck_${choiceIndex}_${thisContent.id}`}
             onClick={() => setAnswer(choiceIndex)}
           >
             <AnswerCheckText className="text">정답</AnswerCheckText>

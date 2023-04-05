@@ -5,6 +5,9 @@ import DashBoxArea from "../atoms/DashBoxArea";
 import PageHeader from "../molecules/PageHeader";
 import { CreateEditMainWrap37 } from "./CreateTemplateH37";
 
+/**
+ * TP07 : 대화형 퀴즈
+ */
 const CreateTemplateQuizConversation = ({
   templateType,
   addComponentMap,
