@@ -9,6 +9,22 @@ const StepCard = styled.div`
   > *:not(:first-child) {
     margin-top: ${vw(40)};
   }
+
+.image-with-caption-wrapper {
+  img {
+    width: 100%;
+    height: auto;
+    max-width: 503px;
+    max-height: 380px;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .caption-wrap {
+    width: 100%;
+    max-width: 503px;
+  }
+}
 `;
 
 export interface MultilevelActionCardComponentProps {
