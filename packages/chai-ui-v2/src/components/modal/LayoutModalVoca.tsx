@@ -99,7 +99,8 @@ const LayoutModalVoca = ({
                   modules={[Pagination]}
                   loop
                   pagination={{
-                    dynamicBullets: false,
+                    dynamicBullets: true,
+                    dynamicMainBullets: 4,
                     clickable: true,
                   }}
                   spaceBetween={20}
