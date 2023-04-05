@@ -5,7 +5,9 @@
   overflow: hidden;
   position: relative;
   width: 100%;
+  max-width: vw(391);
   height: vh(80);
+  margin: 0 auto;
   padding: 0 vw(20) vh(24);
   border: 1px solid #dbe1ff;
   border-radius: vw(20);
@@ -84,7 +86,12 @@
     color: color(text);
   }
 
+  .voca-wrap {
+    padding-right: vw(10);
+  }
+
   .btn-icon {
+    flex-shrink: 0;
     width: vw(55);
     height: vw(55);
   }
