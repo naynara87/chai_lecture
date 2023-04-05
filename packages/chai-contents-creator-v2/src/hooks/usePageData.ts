@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { ID, Page } from "chai-ui-v2";
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import { toast } from "react-toastify";
 import { getPageListData } from "../api/lcms/lcms";
 import { queryKey } from "../constants/queryKey";
@@ -11,11 +11,6 @@ type UsePageDataProps = {
   pageId?: ID;
 };
 const usePageData = ({ cornerId, pageId }: UsePageDataProps) => {
-  useEffect(() => {
-    console.log("usePageData");
-    console.log("cornerId", cornerId);
-    console.log("pageId", pageId);
-  }, [cornerId, pageId]);
   const { isAuthorized } = useAuth();
   const { data: cornerDataResponse, refetch } = useQuery(
     [queryKey.lcmsCorner],
