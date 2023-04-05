@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { ConversationQuizContentData, useGlobalAudio } from "../../core";
 import {
   ComponentButtonRadiFillMain,
+  HtmlContentComponent,
   ImgProfileDefaultComponent,
 } from "../atoms";
 import { LineRadioBoxes } from "../molecules";
@@ -187,7 +188,9 @@ const ConversationQuizComponent = ({
             <span className="chinese">
               {texts.map((text, index) => {
                 return text.indexOf("*") === -1 ? (
-                  <span key={index}>{text}</span>
+                  <span key={index}>
+                    <HtmlContentComponent html={text ?? ""} />
+                  </span>
                 ) : (
                   <span className="blank-gray" key={index}>
                     {userChoices[contentIndex].text
@@ -197,8 +200,12 @@ const ConversationQuizComponent = ({
                 );
               })}
             </span>
-            <div className="pinyin">{content.pronunciation}</div>
-            <div className="mean">{content.meaning}</div>
+            <div className="pinyin">
+              <HtmlContentComponent html={content.pronunciation ?? ""} />
+            </div>
+            <div className="mean">
+              <HtmlContentComponent html={content.meaning ?? ""} />
+            </div>
             <LineRadioBoxes
               choices={content.choice}
               contentIndex={contentIndex}

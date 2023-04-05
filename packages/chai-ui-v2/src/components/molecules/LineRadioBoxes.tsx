@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 import { ID } from "../../core";
+import { HtmlContentComponent } from "../atoms";
 import { QuizChoice } from "../contents/ConversationQuizComponent";
 
 interface LineRadioBoxesProps {
@@ -37,7 +38,9 @@ const LineRadioBoxes = ({
               onClickChoice(contentIndex, choice);
             }}
           >
-            <span className="text">{choice.text}</span>
+            <span className="text">
+              <HtmlContentComponent html={choice.text ?? ""} />
+            </span>
           </label>
         </div>
       );
