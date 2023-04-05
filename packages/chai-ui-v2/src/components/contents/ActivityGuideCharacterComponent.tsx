@@ -24,6 +24,7 @@ const ContStartWrapper = styled.div`
     .img {
       width: ${vw(180)};
       height: ${vw(180)};
+      object-fit: cover;
     }
   }
 
