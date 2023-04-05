@@ -1,8 +1,12 @@
 import React from "react";
 
-const IconHamburgerMenu = () => {
+interface IconHamburgerMenuProps {
+  onClick?: () => void;
+}
+const IconHamburgerMenu = ({ onClick }: IconHamburgerMenuProps) => {
   return (
     <svg
+      onClick={onClick}
       width="16"
       height="16"
       viewBox="0 0 16 16"
