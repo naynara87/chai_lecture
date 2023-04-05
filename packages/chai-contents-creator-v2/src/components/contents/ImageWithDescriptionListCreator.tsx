@@ -40,7 +40,19 @@ const ImageListWrapper = styled.ul`
     img {
       width: ${vw(360)};
       height: ${vw(220)};
+      border-radius: ${vw(10)};
       object-fit: cover;
+    }
+  }
+
+  .img-empty-wrap {
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 60px;
+      object-fit: contain;
+      transform: translate(-50%, -50%);
     }
   }
 `;
@@ -58,15 +70,6 @@ const ImageThumb = styled.div`
   position: relative;
   margin-bottom: 10px;
   border-radius: 10px;
-
-  img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 60px;
-    object-fit: contain;
-    transform: translate(-50%, -50%);
-  }
 `;
 
 const ImageWithDescriptionListCreator = ({
@@ -207,7 +210,7 @@ const ImageWithDescriptionListCreator = ({
                   {item.src ? (
                     <ComponentImage imageUrl={getThisContentImageSrc(index)} />
                   ) : (
-                    <ImageThumb>
+                    <ImageThumb className="img-empty-wrap">
                       <img src={ImageIcon} alt="" />
                     </ImageThumb>
                   )}
