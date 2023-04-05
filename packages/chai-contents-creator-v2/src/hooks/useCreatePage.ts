@@ -1,5 +1,5 @@
 import { Page } from "chai-ui-v2";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { toast } from "react-toastify";
 import { savePageData } from "../api/lcms/lcms";
 import { isDevEnv } from "../constants/env";
@@ -13,15 +13,29 @@ const useCreatePage = () => {
   const initialDataFromPhp = stringifiedValue
     ? (JSON.parse(stringifiedValue) as InitialInputValue)
     : null;
+
   const { pageId, cornerId } = initialDataFromPhp || {};
   const returnUsePage = usePage();
 
   const { setInitialPageData, pageData } = returnUsePage;
 
+  const pageIdByEnv = useMemo(() => {
+    if (isDevEnv) {
+      return pageId || "d80ccb9f-8db4-4a8b-844a-24d76183a037";
+    }
+    return pageId || "";
+  }, [pageId]);
+
+  const cornerIdByEnv = useMemo(() => {
+    if (isDevEnv) {
+      return cornerId || "f820ed45-3dbe-407f-b777-db46ff05183c";
+    }
+    return cornerId || "";
+  }, [cornerId]);
+
   const returnUsePageData = usePageData({
-    pageId: pageId || isDevEnv ? "d80ccb9f-8db4-4a8b-844a-24d76183a037" : "",
-    cornerId:
-      cornerId || isDevEnv ? "f820ed45-3dbe-407f-b777-db46ff05183c" : "",
+    pageId: pageIdByEnv,
+    cornerId: cornerIdByEnv,
   });
 
   const {
@@ -35,8 +49,7 @@ const useCreatePage = () => {
     try {
       await savePageData({
         page: pageData as Page,
-        cornerId:
-          cornerId || isDevEnv ? "f820ed45-3dbe-407f-b777-db46ff05183c" : "",
+        cornerId: cornerIdByEnv,
         contentsUuid: pageContentsUuid,
       });
       refetchPageData();
@@ -45,7 +58,7 @@ const useCreatePage = () => {
       console.log(error);
       toast("저장에 실패했습니다. 다시 시도해주세요.", { type: "error" }); // TODO gth : custom toast message로 변경하기
     }
-  }, [pageContentsUuid, pageData, refetchPageData, cornerId]);
+  }, [pageContentsUuid, pageData, refetchPageData, cornerIdByEnv]);
 
   useEffect(() => {
     if (!initialPageData) return;
