@@ -25,13 +25,6 @@ import DroppableContents from "../molecules/DroppableContents";
 const MultilevelActionSentenceContentContainer = styled.div`
   width: fit-content;
   margin: 0 auto;
-
-  .image-with-caption-wrapper {
-    img {
-      width: 200px;
-      height: 150px;
-    }
-  }
 `;
 
 const MultilevelActionCardWrapper = styled.div`
@@ -42,7 +35,7 @@ const MultilevelActionCardList = styled.div`
 `;
 const MultilevelActionCard = styled.div`
   display: flex;
-  width: 1000px;
+  width: 50vw;
   max-width: 100%;
   min-height: 134px;
   flex-direction: column;
