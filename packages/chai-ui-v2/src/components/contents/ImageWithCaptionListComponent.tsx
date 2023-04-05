@@ -13,34 +13,34 @@ const ImageWithCaptionListWrapper = styled.div`
   display: flex;
   gap: ${vw(30)};
   justify-content: center;
-  max-width: 100%;
 `;
 
 export const CaptionListImage = styled.img`
   border-radius: ${vw(10)};
   -webkit-user-drag: none;
   cursor: pointer;
-  /* width: calc((${vh(380)} * 4) / 3); */
-  width: 100%;
-  /* height: ${vh(380)}; */
-  aspect-ratio: 4 / 3;
+  width: calc((${vh(380)} * 4) / 3);
+  height: ${vh(380)};
   object-fit: cover;
 `;
 
-const ImageWithCaptionList = styled.div`
-width: 100%;
-`;
+const ImageWithCaptionList = styled.div``;
 
 const ImageWithCaptionWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
 
-    .caption-wrap {
-      /* width: calc((${vh(380)} * 4) / 3); */
+  > div {
     margin-top: ${vh(15)};
     font-size: ${vw(24)};
     font-weight: 400;
     line-height: 1.5;
     text-align: center;
     color: ${colorPalette.gray800};
+  }
+
+  .caption-wrap {
+  width: calc((${vh(380)} * 4) / 3);
   }
 `;
 
