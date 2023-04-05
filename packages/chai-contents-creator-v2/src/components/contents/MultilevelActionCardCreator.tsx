@@ -32,7 +32,7 @@ const MultilevelActionCardList = styled.div`
 `;
 const MultilevelActionCard = styled.div`
   display: flex;
-  width: 300px;
+  width: 1000px;
   min-height: 134px;
   flex-direction: column;
   padding: 8px;
