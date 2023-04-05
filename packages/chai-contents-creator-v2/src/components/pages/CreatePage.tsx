@@ -25,7 +25,8 @@ const CommonButtonContainer = styled.div`
 `;
 
 const saveButtonCss = css`
-  visibility: ${isDevEnv ? "visible" : "hidden"};
+  // NOTE gth 만약 LCMS에서 저장버튼을 제어하고 싶다면 아래 주석을 풀어주세요.
+  /* visibility: ${isDevEnv ? "visible" : "hidden"}; */
 `;
 
 const CreatePage = () => {
@@ -86,7 +87,7 @@ const CreatePage = () => {
             onClick={handleSavePageData}
             customCSS={saveButtonCss}
           >
-            테스트 저장 버튼
+            저장
           </Button>
           <Button type="button" onClick={handleClickPreview}>
             미리보기
