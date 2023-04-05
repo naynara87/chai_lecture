@@ -14,7 +14,6 @@ import { PREVIEW_URL } from "../../constants/url";
 import ModalIntroduction from "../molecules/modal/ModalIntroduction";
 import useCreatePage from "../../hooks/useCreatePage";
 import { css } from "@emotion/react";
-import { isDevEnv } from "../../constants/env";
 
 const CommonButtonContainer = styled.div`
   padding-bottom: 16px;
@@ -24,10 +23,7 @@ const CommonButtonContainer = styled.div`
   text-align: right;
 `;
 
-const saveButtonCss = css`
-  // NOTE gth 만약 LCMS에서 저장버튼을 제어하고 싶다면 아래 주석을 풀어주세요.
-  /* visibility: ${isDevEnv ? "visible" : "hidden"}; */
-`;
+const saveButtonCss = css``;
 
 const CreatePage = () => {
   const [isModalIntroductionOpen, setIsModalIntroductionOpen] = useState(false);
