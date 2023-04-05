@@ -393,12 +393,12 @@ const ConversationQuizCreator = ({
                     </AnswerBox>
                     <AnswerInput
                       type="radio"
-                      name={`answerCheck_${thisContent.id}`}
-                      id={`answerCheck_${choiceIndex}_${thisContent.id}`}
+                      name={`answerCheck_${thisContent.id}_${contentIndex}`}
+                      id={`answerCheck_${thisContent.id}_${contentIndex}_${choiceIndex}`}
                       onClick={() => setAnswer(contentIndex, choiceIndex)}
                     />
                     <label
-                      htmlFor={`answerCheck_${choiceIndex}_${thisContent.id}`}
+                      htmlFor={`answerCheck_${thisContent.id}_${contentIndex}_${choiceIndex}`}
                       onClick={() => setAnswer(contentIndex, choiceIndex)}
                     >
                       <AnswerCheckText className="text">정답</AnswerCheckText>
