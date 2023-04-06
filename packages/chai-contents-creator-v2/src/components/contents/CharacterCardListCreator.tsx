@@ -188,6 +188,10 @@ const CharacterCardListCreator = ({
   };
 
   const addCard = () => {
+    if (thisContent.data.length >= 4) {
+      alert("최대 4개까지 등록 가능합니다.");
+      return;
+    }
     const newContent = {
       ...thisContent,
       data: [
