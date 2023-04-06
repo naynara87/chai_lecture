@@ -998,16 +998,18 @@ export const getTemplateDefaultValue = (): Partial<
   TemplateQuizSpeaking: {
     id: uuidV4(),
     type: "TemplateQuizSpeaking",
-    leftContents: {
-      id: uuidV4(),
-      type: "activityGuideCharacter",
-      data: {
-        character: {
-          src: "",
+    leftContents: [
+      {
+        id: uuidV4(),
+        type: "activityGuideCharacter",
+        data: {
+          character: {
+            src: "",
+          },
+          text: "",
         },
-        text: "",
       },
-    },
+    ],
     rightContents: {
       id: uuidV4(),
       type: "finalSpeaking",
