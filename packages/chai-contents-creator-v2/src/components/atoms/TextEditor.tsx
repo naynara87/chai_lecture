@@ -43,6 +43,7 @@ export interface TextEditorProps extends TextEditorWrapperProps {
    * - setText에서 global state까지 업데이트 한다면 onBlur는 전달하지 않아도 된다
    */
   onBlur?: () => void;
+  limitTextLength?: number;
 }
 const TextEditor = ({
   text,
@@ -50,6 +51,7 @@ const TextEditor = ({
   onBlur,
   minHeight,
   editorCss,
+  limitTextLength,
 }: TextEditorProps) => {
   useEffect(() => {
     const quill = document.querySelector<HTMLDivElement>(".ql-editor");
@@ -58,15 +60,30 @@ const TextEditor = ({
     }
   }, []);
 
+  const [innerText, setInnerText] = React.useState<string>(text);
+
+  useEffect(() => {
+    if (innerText !== text) {
+      setText(innerText);
+    }
+  }, [innerText, setText, text]);
+
   const handleChange = (value: string) => {
-    setText(value.replace(/<[^>]*>?/g, "") ? value : "");
+    const pureText = value.replace(/<[^>]*>?/g, "");
+    // NOTE: limitTextLength가 있을 경우, 글자수 제한
+    if (limitTextLength && pureText.length > limitTextLength) {
+      setInnerText(pureText.slice(0, limitTextLength));
+      return;
+    }
+
+    setInnerText(pureText ? value : "");
   };
 
   return (
     <TextEditorWrapper minHeight={minHeight} editorCss={editorCss}>
       <ReactQuill
         onChange={handleChange}
-        value={text}
+        value={innerText}
         onBlur={onBlur}
         className="quill__custom"
         formats={[

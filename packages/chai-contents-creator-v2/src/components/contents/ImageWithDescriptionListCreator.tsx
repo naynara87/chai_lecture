@@ -13,9 +13,9 @@ import {
 
 import TextEditorViewer from "../molecules/TextEditorViewer";
 import { useCallback, useEffect, useState } from "react";
+import { v4 as uuidV4 } from "uuid";
 
-const ImageListCreatorWrapper = styled.div`
-`;
+const ImageListCreatorWrapper = styled.div``;
 
 const ImageListWrapper = styled.ul`
   width: 1000px;
@@ -28,11 +28,13 @@ const ImageListWrapper = styled.ul`
     padding-left: 60px;
     font-size: 16px;
 
-    p,div,span {
+    p,
+    div,
+    span {
       word-break: break-all;
     }
   }
-  
+
   .image-wrap {
     flex-basis: 40%;
     flex-grow: 0;
@@ -205,7 +207,7 @@ const ImageWithDescriptionListCreator = ({
         <ImageListWrapper>
           {thisContent.data.map((item, index) => {
             return (
-              <ImageList>
+              <ImageList key={uuidV4()}>
                 <div className="image-wrap">
                   {item.src ? (
                     <ComponentImage imageUrl={getThisContentImageSrc(index)} />

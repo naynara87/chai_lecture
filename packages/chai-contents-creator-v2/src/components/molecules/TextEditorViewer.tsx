@@ -19,6 +19,7 @@ interface TextEditorViewerProps extends TextViewerProps {
   defaultText?: React.ReactNode;
   editorMinHeight?: number;
   editorCss?: SerializedStyles;
+  limitTextLength?: number;
 }
 const TextEditorViewer = ({
   text,
@@ -29,6 +30,7 @@ const TextEditorViewer = ({
   defaultText = "텍스트를 입력해주세요",
   editorMinHeight,
   editorCss,
+  limitTextLength,
 }: TextEditorViewerProps) => {
   return (
     <>
@@ -43,6 +45,7 @@ const TextEditorViewer = ({
           onBlur={handleSubmitTextOnBlur}
           minHeight={editorMinHeight}
           editorCss={editorCss}
+          limitTextLength={limitTextLength}
         />
       )}
     </>

@@ -386,6 +386,7 @@ const CharacterCardListCreator = ({
                         )}
                         setText={(text) => setText(index, "title", text)}
                         text={getText(index, "title")}
+                        limitTextLength={10}
                       />
                     </TitleArea>
                   </GradiWrap>
