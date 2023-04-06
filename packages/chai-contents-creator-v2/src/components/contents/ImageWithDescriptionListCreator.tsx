@@ -17,14 +17,15 @@ import { v4 as uuidV4 } from "uuid";
 const ImageListCreatorWrapper = styled.div``;
 
 const ImageListWrapper = styled.ul`
-  width: 1000px;
+  width: 100%;
+  max-width: 1000px;
   margin: 0 auto;
 
   .description-text {
     flex-basis: 60%;
     flex-grow: 0;
     flex-shrink: 0;
-    padding-left: 60px;
+    padding-left: 20px;
     font-size: 16px;
 
     p,
@@ -59,6 +60,7 @@ const ImageListWrapper = styled.ul`
 `;
 
 const DeleteButtonWrapper = styled.div`
+  z-index: 3;
   position: absolute;
   top: 0;
   right: 0;

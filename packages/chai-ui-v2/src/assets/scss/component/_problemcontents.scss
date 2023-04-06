@@ -195,7 +195,7 @@ $gray-color: #D6D7DA;
 			@include flex-op(flex-start, flex-start);
 		}
 
-		margin-top: vh(40);
+		margin-top: vw(40);
 	}
 
 	.comment-ttl {
