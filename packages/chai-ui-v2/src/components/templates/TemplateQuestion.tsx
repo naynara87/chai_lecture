@@ -95,7 +95,7 @@ const TemplateQuestion = ({
     <div className="layout-panel-wrap">
       <div className="question-number attched">{`[50 ~ 87]`}</div>
       <div className="question-number">{`${pageId}번`}</div>
-      <QuestionPanel className="layout-panel">
+      <QuestionPanel className="layout-panel iframe-panel">
         {!isLoaded && (
           <LoadingSpinnerContainer>
             <LoadingSpinnerWrap>

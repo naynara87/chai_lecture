@@ -53,6 +53,11 @@
     padding: vw(40);
   }
 
+  &.iframe-panel {
+    padding: 0;
+    overflow: hidden;
+  }
+
   >*:not(:first-child) {
     margin: vh(40) auto 0;
   }
