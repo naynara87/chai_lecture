@@ -102,8 +102,8 @@ const ConversationWordListComponent = ({
       <h3 className="voca-title">
         회화 단어 목록
         <ImgCharacterComponent
-          characterType="kkungiSmile"
-          characterAlt="꿍이스마일"
+          characterType="kkungiHello"
+          characterAlt="꿍이윙크인사"
         />
         <ComponentButtonRoundArrow onClick={handleClickVocaNoteButton} />
       </h3>
