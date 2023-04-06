@@ -11,7 +11,7 @@ import {
   vw,
 } from "chai-ui-v2";
 import TextEditorViewer from "../molecules/TextEditorViewer";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { v4 as uuidV4 } from "uuid";
 
 const ImageListCreatorWrapper = styled.div``;
@@ -94,6 +94,25 @@ const ImageWithDescriptionListCreator = ({
   isDraggable,
 }: DraggableContentCommonProps) => {
   const thisContent = content as ImageWithDescriptionListContentData;
+
+  const keyListRef = useRef<string[]>(thisContent.data.map(() => uuidV4()));
+  const addKey = (index: number) => {
+    keyListRef.current = [
+      ...keyListRef.current.slice(0, index),
+      uuidV4(),
+      ...keyListRef.current.slice(index),
+    ];
+  };
+  const deleteKey = (index: number) => {
+    keyListRef.current = [
+      ...keyListRef.current.slice(0, index),
+      ...keyListRef.current.slice(index + 1),
+    ];
+  };
+  const getKey = (index: number) => {
+    return keyListRef.current[index] ?? index;
+  };
+
   const [focusedTextEditorIndex, setFocusedTextEditorIndex] =
     useState<number>();
 
@@ -150,7 +169,6 @@ const ImageWithDescriptionListCreator = ({
         },
       ],
     };
-
     updateContent(currentSlide.id, content.id, position, newContent);
   };
 
@@ -209,12 +227,18 @@ const ImageWithDescriptionListCreator = ({
       pasteContent={pasteContent}
     >
       <ImageListCreatorWrapper>
-        <AddButton onClick={addImage}>이미지 추가</AddButton>
+        <AddButton
+          onClick={() => {
+            addImage();
+            addKey(thisContent.data.length);
+          }}
+        >
+          이미지 추가
+        </AddButton>
         <ImageListWrapper>
           {thisContent.data.map((item, index) => {
-            console.log("image", item, index);
             return (
-              <ImageList key={uuidV4()}>
+              <ImageList key={getKey(index)}>
                 <div className="image-wrap">
                   {item.src ? (
                     <ComponentImage imageUrl={getThisContentImageSrc(index)} />
@@ -243,7 +267,12 @@ const ImageWithDescriptionListCreator = ({
                   />
                 </p>
                 <DeleteButtonWrapper>
-                  <ObjectDeleteButton onClick={() => deleteImage(index)} />
+                  <ObjectDeleteButton
+                    onClick={() => {
+                      deleteImage(index);
+                      deleteKey(index);
+                    }}
+                  />
                 </DeleteButtonWrapper>
               </ImageList>
             );
