@@ -2331,6 +2331,7 @@ export const v2CornerDataList: CornerData[] = [
                 id: uuidV4(),
                 type: "conversationWordList",
                 data: {
+                  title: "회화 단어 목록",
                   words: [
                     {
                       text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
@@ -2421,6 +2422,7 @@ export const v2CornerDataList: CornerData[] = [
                 id: uuidV4(),
                 type: "conversationWordList",
                 data: {
+                  title: "회화 단어 목록",
                   words: [
                     {
                       text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
@@ -2511,6 +2513,7 @@ export const v2CornerDataList: CornerData[] = [
                 id: uuidV4(),
                 type: "conversationWordList",
                 data: {
+                  title: "회화 단어 목록",
                   words: [
                     {
                       text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",
@@ -2601,6 +2604,7 @@ export const v2CornerDataList: CornerData[] = [
                 id: uuidV4(),
                 type: "conversationWordList",
                 data: {
+                  title: "회화 단어 목록",
                   words: [
                     {
                       text: "<p><b>游泳</b><br/>yóuyǒng<br/>수영하다</p>",

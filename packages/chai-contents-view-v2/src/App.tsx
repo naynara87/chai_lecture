@@ -31,7 +31,7 @@ function App() {
           courseName: "\ube68\uac15",
           lessonId: "1",
           lessonName: "\ub808\uc2a8+1",
-          lessonTpCd: "10",
+          lessonTpCd: "20",
         },
         {
           path: "/",
