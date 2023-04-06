@@ -10,32 +10,20 @@ const StepCard = styled.div`
     margin-top: ${vw(40)};
   }
 
-.image-with-caption-list {
-  img {
-    width: 200px;
-    height: 150px;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-  }
-  
-    .caption-wrap {
-      width: 200px;
-    }
-
-  &:only-child {
+  .image-with-caption-wrapper {
     img {
       width: 100%;
-      height: auto;
-      max-width: 503px;
-      max-height: 380px;
+      max-width: 200px;
+      max-height: 150px;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
     }
-  
+
     .caption-wrap {
       width: 100%;
-      max-width: 503px;
+      max-width: 200px;
     }
   }
-}
 `;
 
 export interface MultilevelActionSentenceCardComponentProps {
