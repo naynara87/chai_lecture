@@ -1,4 +1,8 @@
 /* =================== form =================== */
+button:hover {
+  opacity: 1;
+}
+
 // =================== button style
 .btns-wrap {
   @include flex-center {
