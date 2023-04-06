@@ -12,7 +12,7 @@ export const deleteQuestion = async (
   const res = await httpPhp.delete<DeleteQuestionData>(DELETE_PHP_URL, {
     data: {
       content_id: contentIds,
-      userId: userId,
+      user_id: userId,
     },
   });
   return res.data;
