@@ -26,7 +26,7 @@ const ContentCreatorContainer = styled.div<ContentCreatorContainerProps>`
   margin-bottom: ${vw(24)};
   width: ${(props) => props.isContainerFullWidth && "100%"};
   width: 100%;
-  /* border: 1px solid red; */
+  border: 1px solid red;
 `;
 
 interface IconContainerWrapperProps {
