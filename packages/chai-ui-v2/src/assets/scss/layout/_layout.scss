@@ -18,12 +18,12 @@
   grid-template-columns: 1fr 1fr;
 
   .image-with-caption-wrapper img {
-    width: calc((vw(220) * 4) / 3);
+    width: calc(vw(880) / 3);
     height: vw(220);
   }
 
   .image-with-caption-wrapper .caption-wrap {
-    width: calc((vw(220) * 4) / 3);
+    width: calc(vw(880) / 3);
   }
 }
 
@@ -37,12 +37,12 @@
   }
 
   .image-with-caption-wrapper img {
-    width: calc((vw(220) * 4) / 3);
+    width: calc(vw(880) / 3);
     height: vw(220);
   }
 
   .image-with-caption-wrapper .caption-wrap {
-    width: calc((vw(220) * 4) / 3);
+    width: calc(vw(880) / 3);
   }
 }
 

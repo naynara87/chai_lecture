@@ -25,11 +25,17 @@ import useComponent from "../../hooks/useComponent";
 import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
 
 const CardTabWrapper = styled.div`
+  width: 100%;
   .flex-wrap {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
   }
+`;
+
+const CheckBoxContainer = styled.div`
+  margin-bottom: 8px;
+  margin-left: 20px;
 `;
 
 const TabTitleWrap = styled.div`
@@ -77,7 +83,7 @@ const TabTitleWrap = styled.div`
 
 const TabCard = styled.div`
   position: relative;
-  width: 500px;
+  width: 100%;
   min-height: 80px;
   margin-top: 10px;
   padding: 8px;
@@ -429,16 +435,19 @@ const CardTabCreator = ({
       position={position}
       copyContent={copyContent}
       pasteContent={pasteContent}
+      isContainerFullWidth={true}
     >
       <CardTabWrapper className="card-tab-wrapper">
         <div className="flex-wrap">
           <AddButton onClick={addCard}>카드 추가</AddButton>
-          <CheckBoxWrapper
-            isActivated={thisContent.meta?.isUseTab ?? false}
-            onClick={setIsUseTab}
-          >
-            탭 사용
-          </CheckBoxWrapper>
+          <CheckBoxContainer>
+            <CheckBoxWrapper
+              isActivated={thisContent.meta?.isUseTab ?? false}
+              onClick={setIsUseTab}
+            >
+              탭 사용
+            </CheckBoxWrapper>
+          </CheckBoxContainer>
         </div>
         <TabTitleWrap className="tab-title-view--wrap">
           <div
