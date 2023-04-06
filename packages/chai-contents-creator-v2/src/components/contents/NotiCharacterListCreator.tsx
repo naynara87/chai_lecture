@@ -9,6 +9,7 @@ import AddButton from "../atoms/AddButton";
 import { DraggableContentCommonProps } from "../../types/page";
 import TextEditorViewer from "../molecules/TextEditorViewer";
 import { useCallback, useEffect, useState } from "react";
+import { v4 as uuidV4 } from "uuid";
 
 const NotiCharacterWrapper = styled.div`
   position: relative;
@@ -213,7 +214,7 @@ const NotiCharacterListCreator = ({
         {/* 반복영역 */}
         {thisContent.data.map((item, index) => {
           return (
-            <NotiCharacterWrap>
+            <NotiCharacterWrap key={uuidV4()}>
               <ObjectDeleteButton onClick={() => deleteImage(index)} />
               <TextBubbleWrap onClick={(e) => setFocusedId(e, content.id)}>
                 <p

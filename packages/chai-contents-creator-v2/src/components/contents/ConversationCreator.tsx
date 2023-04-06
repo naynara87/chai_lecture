@@ -18,6 +18,7 @@ import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 import SpeakingTimeInputWrapper from "../molecules/SpeakingTimeInputWrapper";
 import TextEditorViewer from "../molecules/TextEditorViewer";
 import UrlInputWrapper from "../molecules/UrlInputWrapper";
+import { v4 as uuidV4 } from "uuid";
 
 export const ConversationWrapper = styled.ul``;
 
@@ -216,7 +217,7 @@ const ConversationCreator = ({
 
   const deleteConversation = useCallback(
     (listIndex: number) => () => {
-      if (thisContent.data.length) {
+      if (thisContent.data.length === 1) {
         alert("최소 1개이상 입력하셔야 합니다.");
         return;
       }
@@ -248,7 +249,7 @@ const ConversationCreator = ({
   const conversationLists = useMemo(() => {
     return thisContent.data.map((list, listIndex) => {
       return (
-        <ConversationList className="conversation-wrap" key={listIndex}>
+        <ConversationList className="conversation-wrap" key={uuidV4()}>
           <ObjectDeleteButton
             onClick={deleteConversation(listIndex)}
             customCSS={deleteButtonStyle}

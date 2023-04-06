@@ -23,6 +23,7 @@ import ModalCharacterCardList from "../molecules/modal/ModalCharacterCardList";
 import { getContentComponentsDefaultValue } from "../../data/appData";
 import { cloneDeep } from "lodash";
 import { DropResult } from "react-beautiful-dnd";
+import { v4 as uuidV4 } from "uuid";
 
 const TrainingWrapper = styled.div`
   .training-create-wrap {
@@ -360,7 +361,7 @@ const CharacterCardListCreator = ({
         <div className="training-list-wrap training-end">
           {thisContent.data.map((item, index) => {
             return (
-              <div className="training-create-wrap" key={index}>
+              <div className="training-create-wrap" key={uuidV4()}>
                 <TrainingList className="training-list">
                   <ObjectDeleteButton onClick={() => deleteCard(index)} />
                   <GradiWrap>

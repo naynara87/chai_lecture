@@ -8,6 +8,7 @@ import TextEditorViewer from "../molecules/TextEditorViewer";
 import { useCallback, useEffect, useState } from "react";
 import AddButton from "../atoms/AddButton";
 import ObjectDeleteButton from "../atoms/ObjectDeleteButton";
+import { v4 as uuidV4 } from "uuid";
 
 const ImageListWrapper = styled.ul`
   display: flex;
@@ -195,7 +196,7 @@ const ImageWithCaptionListCreator = ({
         <ImageListWrapper>
           {thisContent.data.map((_, index) => {
             return (
-              <ImageList key={index}>
+              <ImageList key={uuidV4()}>
                 <DeleteButtonWrapper>
                   <ObjectDeleteButton
                     onClick={() => {
