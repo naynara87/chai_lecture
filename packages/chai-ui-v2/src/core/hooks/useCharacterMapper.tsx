@@ -27,6 +27,9 @@ import allFinish4 from "../../assets/images/img/cha_all_finish04.gif";
 import allFinish5 from "../../assets/images/img/cha_all_finish05.gif";
 import allFinish6 from "../../assets/images/img/cha_all_finish06.gif";
 import allFinish7 from "../../assets/images/img/cha_all_finish07.gif";
+import didiSmilejump from "../../assets/images/img/cha_didi_smilejump.png";
+import kkungiHappy from "../../assets/images/img/cha_kkungi_happy.png";
+import kkungiHello from "../../assets/images/img/cha_kkungi_hello.png";
 import { characterType } from "../types";
 
 const useCharacterMapper = () => {
@@ -39,6 +42,7 @@ const useCharacterMapper = () => {
     didiSurprise,
     didiWink,
     didiWinking,
+    didiSmilejump,
     kkungiHeart,
     kkungiHandsup,
     kkungiLaugh,
@@ -46,6 +50,8 @@ const useCharacterMapper = () => {
     kkungiSmile,
     kkungiWink,
     kkungiHeader,
+    kkungiHappy,
+    kkungiHello,
     winiProud,
     winiSad,
     winiShock,
