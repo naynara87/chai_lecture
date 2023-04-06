@@ -77,17 +77,17 @@ const TemplateQuestion = ({
   }, [receiveMessage]);
 
   const toViewScoreButton = useMemo(() => {
-    // const quizPageData = LocalStorage.getItem("pageData") as QuizData[];
-    // if (
-    //   quizPageData.find((quizPage) => quizPage.state !== "end") === undefined
-    // ) {
-    return (
-      <button className="btn btn-problem" onClick={handleClickCheckScore}>
-        <span>채점하기</span>
-        <img src={ArrowIcon} alt="바로가기아이콘" />
-      </button>
-    );
-    // }
+    const quizPageData = LocalStorage.getItem("pageData") as QuizData[];
+    if (
+      quizPageData.find((quizPage) => quizPage.state !== "end") === undefined
+    ) {
+      return (
+        <button className="btn btn-problem" onClick={handleClickCheckScore}>
+          <span>채점하기</span>
+          <img src={ArrowIcon} alt="바로가기아이콘" />
+        </button>
+      );
+    }
     return <></>;
   }, [handleClickCheckScore]);
 
