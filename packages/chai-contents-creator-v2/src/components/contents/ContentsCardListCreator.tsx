@@ -26,12 +26,12 @@ import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 import DroppableContents from "../molecules/DroppableContents";
 
 const MultilevelActionCardWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
 `;
 const MultilevelActionCardList = styled.div`
   display: flex;
   gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
 `;
 const MultilevelActionCard = styled.div`
   display: flex;

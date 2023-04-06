@@ -14,6 +14,7 @@ import { v4 as uuidV4 } from "uuid";
 const NotiCharacterWrapper = styled.div`
   position: relative;
   padding-top: 60px;
+  text-align: center;
 
   > .btn {
     position: absolute;

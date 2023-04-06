@@ -19,7 +19,8 @@ const NumberingListWrapper = styled.ul`
 
 const NumberingList = styled.li`
   display: flex;
-  width: 50vw;
+  max-width: 50vw;
+  width: 100%;
   align-items: flex-start;
 
   &:not(:last-child) {
