@@ -47,6 +47,17 @@ const SpeakingCreator = ({
     updateContent(currentSlide.id, content.id, position, newContent);
   };
 
+  const handleSubmitTime = (time: number) => {
+    const newContent = {
+      ...thisContent,
+      data: {
+        src: thisContent.data.src,
+        speakingTime: time,
+      },
+    };
+    updateContent(currentSlide.id, content.id, position, newContent);
+  };
+
   return (
     <ContentCreatorLayout
       isDraggable={isDraggable}
@@ -64,6 +75,7 @@ const SpeakingCreator = ({
           onSubmit={handleSubmitUrl}
           defaultURL={thisContent.data.src}
           defaultTime={thisContent.data.speakingTime}
+          onChangeTime={handleSubmitTime}
         />
       </SpeakingWrapper>
     </ContentCreatorLayout>

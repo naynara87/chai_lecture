@@ -47,19 +47,21 @@ const WarningMessage = styled.p`
   color: ${colorPalette.red700};
 `;
 
-interface ButtonProps {
+interface UrlAndTimeInputWrapperProps {
   typeText: string;
   onSubmit?: (src: string, speakingTime: number) => void;
   defaultTime: number;
   defaultURL: string;
+  onChangeTime: (time: number) => void;
 }
 
 const UrlAndTimeInputWrapper = ({
   typeText,
   onSubmit,
+  onChangeTime,
   defaultTime,
   defaultURL,
-}: ButtonProps) => {
+}: UrlAndTimeInputWrapperProps) => {
   const [message, setMessage] = useState<string>("");
   const URLRef = useRef<HTMLInputElement>(null);
   const timeRef = useRef<HTMLInputElement>(null);
@@ -105,6 +107,11 @@ const UrlAndTimeInputWrapper = ({
     timeRef.current!.value = time;
   };
 
+  const handleChangeTime = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const time = Number(e.target.value);
+    onChangeTime(time);
+  };
+
   return (
     <UrlAndTimeWrapper
       className={`${isUpload ? "upload-comp" : ""} url-Wrapper`}
@@ -122,6 +129,7 @@ const UrlAndTimeInputWrapper = ({
             type="number"
             defaultValue={defaultTime}
             ref={timeRef}
+            onChange={handleChangeTime}
           ></input>
         </div>
         <ButtonRegister onClick={handleSubmit}>등록</ButtonRegister>
