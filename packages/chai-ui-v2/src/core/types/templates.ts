@@ -175,7 +175,7 @@ export type TemplateQuizSentencesInOrderData = {
 export type TemplateQuizSpeakingData = {
   id: ID;
   type: "TemplateQuizSpeaking";
-  leftContents: ActivityGuideCharacterContentData | "";
+  leftContents: Content[] | "";
   rightContents: FinalSpeakingContentData | "";
 };
 
