@@ -48,6 +48,21 @@ const MultilevelActionCard = styled.div`
   &.important-card {
     background: linear-gradient(0deg, #e3e8ff, #e9faff);
   }
+
+  .image-with-caption-wrapper {
+    img {
+      width: 100%;
+      max-width: 200px;
+      max-height: 150px;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+    }
+
+    .caption-wrap {
+      width: 100%;
+      max-width: 200px;
+    }
+  }
 `;
 const TopArea = styled.div`
   display: flex;

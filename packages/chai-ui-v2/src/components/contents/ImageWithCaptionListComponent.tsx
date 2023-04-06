@@ -40,7 +40,7 @@ const ImageWithCaptionWrapper = styled.div`
   }
 
   .caption-wrap {
-  width: calc((${vh(380)} * 4) / 3);
+    width: calc((${vh(380)} * 4) / 3);
   }
 `;
 
@@ -58,7 +58,10 @@ const ImageWithCaptionListComponent = ({
   const imageWithDescriptionList = useMemo(() => {
     return contents.data.map((imageWithCaption, imageWithCaptionIndex) => {
       return (
-        <ImageWithCaptionList key={imageWithCaptionIndex} className="image-with-caption-list">
+        <ImageWithCaptionList
+          key={imageWithCaptionIndex}
+          className="image-with-caption-list"
+        >
           <ImageWithCaptionWrapper className="image-with-caption-wrapper">
             <CaptionListImage
               src={imageWithCaption.src}

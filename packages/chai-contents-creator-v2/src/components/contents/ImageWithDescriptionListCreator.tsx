@@ -12,6 +12,7 @@ import {
 } from "chai-ui-v2";
 import TextEditorViewer from "../molecules/TextEditorViewer";
 import { useCallback, useEffect, useState } from "react";
+import { v4 as uuidV4 } from "uuid";
 
 const ImageListCreatorWrapper = styled.div``;
 
