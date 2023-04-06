@@ -15,6 +15,7 @@ const CornerGuideWrapper = styled.div`
     width: 22.5vw;
     height: 22.5vw;
     background-size: 36px 36px;
+    object-fit: cover;
   }
 `;
 

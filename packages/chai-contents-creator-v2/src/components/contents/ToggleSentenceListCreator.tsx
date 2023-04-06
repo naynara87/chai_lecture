@@ -12,7 +12,7 @@ const ToggleSentenceWrapper = styled.div``;
 
 const SentenceWrap = styled.div`
   position: relative;
-  width: 500px;
+  width: 100%;
   margin-top: 10px;
   padding: 16px;
   border: 1px solid ${colorPalette.subpurple};

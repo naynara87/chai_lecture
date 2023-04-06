@@ -9,6 +9,9 @@ interface TextViewerProps {
 }
 const TextViewer = styled.div<TextViewerProps>`
   ${({ textViewerCss }) => textViewerCss};
+  overflow: auto;
+  max-height: 300px;
+  padding: 25px;
 `;
 
 interface TextEditorViewerProps extends TextViewerProps {

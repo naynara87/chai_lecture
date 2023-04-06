@@ -4,8 +4,6 @@ import { v4 as uuidV4 } from "uuid";
 function useSafeKey<T = any>(arr: T[]) {
   const keyListRef = useRef<string[]>(arr.map(() => uuidV4()));
 
-  console.log(keyListRef.current);
-
   const addKeyByArrayLength = (index: number) => {
     keyListRef.current = [
       ...keyListRef.current.slice(0, index),

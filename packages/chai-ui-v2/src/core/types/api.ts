@@ -11,7 +11,6 @@ interface PostAccessTokenDataBody {
   userId: string;
   accessToken: string;
 }
-
 export interface DeleteQuestionData {
   body: DeleteQuestionDataBody;
 }

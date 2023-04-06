@@ -3,7 +3,7 @@ import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 import ImageIcon from "../../assets/images/icon/icon_image.svg";
 import UrlInputWrapper from "../molecules/UrlInputWrapper";
 import { DraggableContentCommonProps } from "../../types/page";
-import { CaptionListImage, ImageWithCaptionListContentData } from "chai-ui-v2";
+import { CaptionListImage, ImageWithCaptionListContentData, vw } from "chai-ui-v2";
 import TextEditorViewer from "../molecules/TextEditorViewer";
 import { useCallback, useEffect, useState } from "react";
 import AddButton from "../atoms/AddButton";
@@ -12,7 +12,8 @@ import useSafeKey from "../../hooks/useSafeKey";
 
 const ImageListWrapper = styled.ul`
   display: flex;
-  gap: 60px;
+  gap: 20px;
+
   .caption-text {
     margin-top: 20px;
     color: #666666;
@@ -27,8 +28,9 @@ const ImageList = styled.li`
 `;
 
 const ImageThumb = styled.div`
-  width: 200px;
-  height: 150px;
+  max-width: 100%;
+  width: ${vw(200)};
+  height: ${vw(150)};
   background-color: #f0f0f0;
   position: relative;
   margin-bottom: 10px;
@@ -49,6 +51,7 @@ const ImageWithCaptionListCreatorWrapper = styled.div`
 `;
 
 const DeleteButtonWrapper = styled.div`
+  z-index: 3;
   position: absolute;
   top: 0;
   right: 0;

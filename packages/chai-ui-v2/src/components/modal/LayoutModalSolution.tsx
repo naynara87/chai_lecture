@@ -22,7 +22,7 @@ const ModalBaseTitle = styled.div`
 
 const ModalBaseContents = styled.div`
   /* NOTE: dec 의 height 가 36.3333333333vh(436px을 vh로 변경)이상일 때 추가됨 */
-  align-items: flex-start;
+  justify-content: flex-start;
 
   ~ .btns-wrap {
     width: 100%;

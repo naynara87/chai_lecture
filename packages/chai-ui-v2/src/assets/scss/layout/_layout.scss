@@ -19,8 +19,12 @@
 
   .image-with-caption-wrapper img,
   .image-with-description-wrapper img {
-    width: calc((vh(220) * 4) / 3);
-    height: vh(220);
+    width: calc((vw(220) * 4) / 3);
+    height: vw(220);
+  }
+
+  .image-with-caption-wrapper .caption-wrap {
+    width: calc((vw(220) * 4) / 3);
   }
 }
 
@@ -31,12 +35,26 @@
 
   .side-panel {
     padding: vh(40) vw(40);
+
+    .image-with-caption-wrapper img,
+    .image-with-description-wrapper img {
+      width: calc((vw(100) * 4) / 3);
+      height: vw(100);
+    }
+
+    .image-with-caption-wrapper .caption-wrap {
+      width: calc((vw(100) * 4) / 3);
+    }
   }
 
   .image-with-caption-wrapper img,
   .image-with-description-wrapper img {
-    width: calc((vh(220) * 4) / 3);
-    height: vh(220);
+    width: calc((vw(220) * 4) / 3);
+    height: vw(220);
+  }
+
+  .image-with-caption-wrapper .caption-wrap {
+    width: calc((vw(220) * 4) / 3);
   }
 }
 
@@ -60,7 +78,7 @@
     overflow: hidden;
   }
 
-  > *:not(:first-child) {
+  >*:not(:first-child) {
     margin: vh(40) auto 0;
   }
 

@@ -6,6 +6,7 @@ import useComponent from "../../hooks/useComponent";
 import { ContentCommonProps } from "../../types/page";
 
 const DroppableContainer = styled.div`
+  width: 100%;
   min-height: 40px;
 
   & .hamburg-menu li:not(:first-child) {

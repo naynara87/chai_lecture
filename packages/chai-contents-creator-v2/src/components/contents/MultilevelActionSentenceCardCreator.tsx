@@ -23,11 +23,11 @@ import { cloneDeep } from "lodash";
 import DroppableContents from "../molecules/DroppableContents";
 
 const MultilevelActionSentenceContentContainer = styled.div`
-  width: fit-content;
   margin: 0 auto;
 `;
 
 const MultilevelActionCardWrapper = styled.div`
+  width: 100%;
 `;
 const MultilevelActionCardList = styled.div`
   display: flex;
@@ -35,8 +35,8 @@ const MultilevelActionCardList = styled.div`
 `;
 const MultilevelActionCard = styled.div`
   display: flex;
-  width: 50vw;
-  max-width: 100%;
+  max-width: 50vw;
+  width: 100%;
   min-height: 134px;
   flex-direction: column;
   padding: 8px;

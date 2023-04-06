@@ -65,7 +65,7 @@ const WordsCarouselWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right: auto;
+
   & > img {
     margin-bottom: 8px;
     box-shadow: 0px 4px 0px rgba(88, 88, 88, 0.2);
@@ -73,6 +73,7 @@ const WordsCarouselWrapper = styled.div`
     width: 40px;
     height: 40px;
   }
+  
   .btn-text {
     width: 80px;
     border-radius: 50px;

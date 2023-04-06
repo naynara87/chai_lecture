@@ -38,6 +38,10 @@ export const ConversationList = styled.li`
   background-color: #f6f4ff;
   border: 1px solid #d9d0ff;
   position: relative;
+
+  .conversation-wrap .txt-wrap > div {
+    margin-top: 10px;
+  }
 `;
 
 export const deleteButtonStyle = css`

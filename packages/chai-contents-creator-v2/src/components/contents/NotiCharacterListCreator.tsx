@@ -14,6 +14,7 @@ import useSafeKey from "../../hooks/useSafeKey";
 const NotiCharacterWrapper = styled.div`
   position: relative;
   padding-top: 60px;
+  text-align: center;
 
   > .btn {
     position: absolute;
@@ -139,6 +140,10 @@ const NotiCharacterListCreator = ({
    */
   const addImage = () => {
     // 최대 2개 까지
+    if (thisContent.data.length >= 2) {
+      alert("학습예고는 최대 2개까지만 등록 가능합니다.");
+      return;
+    }
     const newContent = {
       ...thisContent,
       data: [
