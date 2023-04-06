@@ -25,6 +25,7 @@ const ExplainingTextWrapper = styled.div`
     height: 120px;
     background-size: 36px 36px;
     margin-right: 28px;
+    object-fit: cover;
   }
 `;
 
