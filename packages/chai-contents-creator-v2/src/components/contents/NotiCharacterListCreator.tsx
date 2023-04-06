@@ -140,6 +140,10 @@ const NotiCharacterListCreator = ({
    */
   const addImage = () => {
     // 최대 2개 까지
+    if (thisContent.data.length >= 2) {
+      alert("학습예고는 최대 2개까지만 등록 가능합니다.");
+      return;
+    }
     const newContent = {
       ...thisContent,
       data: [
@@ -216,7 +220,9 @@ const NotiCharacterListCreator = ({
         {thisContent.data.map((item, index) => {
           return (
             <NotiCharacterWrap key={uuidV4()}>
-              <ObjectDeleteButton onClick={() => deleteImage(index)} />
+              {thisContent.data.length > 1 && (
+                <ObjectDeleteButton onClick={() => deleteImage(index)} />
+              )}
               <TextBubbleWrap onClick={(e) => setFocusedId(e, content.id)}>
                 <p
                   className="description-text"
