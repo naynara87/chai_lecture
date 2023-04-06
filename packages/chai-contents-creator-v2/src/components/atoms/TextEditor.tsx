@@ -79,12 +79,21 @@ const TextEditor = ({
     setInnerText(pureText ? value : "");
   };
 
+  const handleBlur = (event: React.FocusEvent<HTMLDivElement>) => {
+    if (!event.relatedTarget || !event.relatedTarget.className.includes("ql")) {
+      onBlur && onBlur();
+    }
+  };
+
   return (
-    <TextEditorWrapper minHeight={minHeight} editorCss={editorCss}>
+    <TextEditorWrapper
+      minHeight={minHeight}
+      editorCss={editorCss}
+      onBlur={handleBlur}
+    >
       <ReactQuill
         onChange={handleChange}
         value={innerText}
-        onBlur={onBlur}
         className="quill__custom"
         formats={[
           "bold",

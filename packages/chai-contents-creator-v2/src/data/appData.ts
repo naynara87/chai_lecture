@@ -491,6 +491,7 @@ export const getContentComponentsDefaultValue = (): Partial<
     id: uuidV4(),
     type: "conversationWordList",
     data: {
+      title: "",
       words: [
         {
           text: "",
@@ -685,6 +686,7 @@ export const getTemplateDefaultValue = (): Partial<
         id: uuidV4(),
         type: "conversationWordList",
         data: {
+          title: "",
           words: [
             {
               text: "",
@@ -737,6 +739,7 @@ export const getTemplateDefaultValue = (): Partial<
         id: uuidV4(),
         type: "conversationWordList",
         data: {
+          title: "",
           words: [
             {
               text: "",
@@ -790,6 +793,7 @@ export const getTemplateDefaultValue = (): Partial<
         id: uuidV4(),
         type: "conversationWordList",
         data: {
+          title: "",
           words: [
             {
               text: "",
