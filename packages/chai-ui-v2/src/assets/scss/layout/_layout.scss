@@ -17,9 +17,10 @@
 
   grid-template-columns: 1fr 1fr;
 
-  .image-with-caption-wrapper img {
-    width: calc(880px / 3);
-    height: 220px;
+  .image-with-caption-wrapper img,
+  .image-with-description-wrapper img {
+    width: calc((vh(220) * 4) / 3);
+    height: vh(220);
   }
 }
 
@@ -32,9 +33,10 @@
     padding: vh(40) vw(40);
   }
 
-  .image-with-caption-wrapper img {
-    width: calc(880px / 3);
-    height: 220px;
+  .image-with-caption-wrapper img,
+  .image-with-description-wrapper img {
+    width: calc((vh(220) * 4) / 3);
+    height: vh(220);
   }
 }
 
