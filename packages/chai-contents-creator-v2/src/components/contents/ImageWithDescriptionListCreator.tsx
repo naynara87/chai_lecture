@@ -214,7 +214,7 @@ const ImageWithDescriptionListCreator = ({
           {thisContent.data.map((item, index) => {
             console.log("image", item, index);
             return (
-              <ImageList key={uuidV4()}>
+              <ImageList key={index}>
                 <div className="image-wrap">
                   {item.src ? (
                     <ComponentImage imageUrl={getThisContentImageSrc(index)} />
