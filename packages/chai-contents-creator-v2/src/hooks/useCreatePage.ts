@@ -21,14 +21,14 @@ const useCreatePage = () => {
 
   const pageIdByEnv = useMemo(() => {
     if (isDevEnv) {
-      return pageId || "d80ccb9f-8db4-4a8b-844a-24d76183a037";
+      return pageId || "38b83d31-07c4-4342-89a1-b249f628c03f";
     }
     return pageId || "";
   }, [pageId]);
 
   const cornerIdByEnv = useMemo(() => {
     if (isDevEnv) {
-      return cornerId || "f820ed45-3dbe-407f-b777-db46ff05183c";
+      return cornerId || "ff6af93a-886f-48a0-9ed1-0a74549d26b5";
     }
     return cornerId || "";
   }, [cornerId]);
