@@ -71,7 +71,7 @@ const QuestionScore = () => {
           <div className="layout-panel pd-40">
             <ComponentProblemUserInfo
               quizPageData={quizPageData}
-              quizTypeText={`${state.lessonName} ${state.lessonType} 채점 결과`}
+              quizTypeText={`${state.lessonName} ${state.lessonType}`}
             />
             <ComponentProblemGrade
               quizPageData={quizPageData}

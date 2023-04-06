@@ -38,7 +38,7 @@ const ComponentProblemCommentary = ({
             className={`tab-title ${isShowContent ? "active" : ""}`}
             onClick={handleClickShowContentButton}
           >
-            문제 보기
+            문제 {isShowContent ? "닫기" : "열기"}
           </button>
           <div className={`tab-conts-wrapper ${isShowContent ? "" : "none"}`}>
             {quizTemplateData.contents && (
