@@ -1,8 +1,9 @@
 /* =================== componentRecordButton =================== */
 .record-btn-wrap {
   position: relative;
+  max-width: vw(440);
+  width: 100%;
   margin: vh(20) auto;
-  width: vw(440);
 
   .record-btn-flex-wrap {
     @include flex {

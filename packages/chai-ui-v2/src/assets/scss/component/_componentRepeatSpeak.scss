@@ -4,7 +4,8 @@
     @include flex-op(flex-start, center);
   }
 
-  width: vw(390);
+  max-width: vw(390);
+  width: 100%;
   height: vw(140);
   padding: vw(10) vw(40);
   border: vw(2) solid color(blue-300);
