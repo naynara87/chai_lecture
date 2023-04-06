@@ -145,6 +145,7 @@ export type QuizData = {
   id: ID;
   state: "end" | "active" | "";
   isCorrect?: boolean;
+  contentId?: string;
 };
 
 // 저작도구로부터 cookie 에서 받아오는 초기데이터

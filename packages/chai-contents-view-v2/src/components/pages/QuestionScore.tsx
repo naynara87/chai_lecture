@@ -7,11 +7,15 @@ import {
   QuizData,
   ModalConfirm,
   ComponentProblemDefault,
+  deleteQuestion,
+  getCookie,
+  InitialAppData,
 } from "chai-ui-v2";
 import { useMemo, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { getPageUrl } from "../../util/url";
 import LayoutQuestionHeader from "../molecules/LayoutQuestionHeader";
+import { toast } from "react-toastify";
 
 const QuestionScore = () => {
   const [quizPageIdx, setQuizPageIdx] = useState(-1);
@@ -27,13 +31,25 @@ const QuestionScore = () => {
     return LocalStorage.getItem("pageData") as QuizData[];
   }, []);
 
+  const userId = useMemo(() => {
+    return getCookie<InitialAppData>("bubble-player");
+  }, []);
+
   const handleClickGradePageIdx = (pageIdx: number) => {
     setQuizPageIdx(pageIdx);
   };
 
-  const handleClickRestartQuiz = () => {
+  const handleClickRestartQuiz = async () => {
     if (courseId && lessonId && cornerId) {
-      navigate(getPageUrl(courseId, lessonId, cornerId, 1));
+      const contentIds = quizPageData.map((pageData) => pageData.contentId);
+      try {
+        await deleteQuestion(contentIds, userId?.uid ?? "");
+        navigate(getPageUrl(courseId, lessonId, cornerId, 1));
+      } catch (error) {
+        toast("서버 통신에 실패했습니다. 다시 시도해주세요.", {
+          type: "error",
+        });
+      }
     }
   };
 
