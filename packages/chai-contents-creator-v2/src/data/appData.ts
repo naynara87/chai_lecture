@@ -213,11 +213,18 @@ export const cardContentComponents: Omit<ContentComponents, "character"> = {
   mixture: ["wordsCarousel", "audioAndWordsCarousel"],
 };
 
+// 학습 요약 모달 창안에서 추가하는 컴포넌트들
 export const characterCardContentComponents: Omit<
   ContentComponents,
   "character"
 > = {
-  common: ["text", "iconText", "numberingTextList"],
+  common: [
+    "text",
+    "iconText",
+    "numberingTextList",
+    "imageWithCaptionList",
+    "imageWithDescriptionList",
+  ],
   mixture: ["conversation"],
 };
 
