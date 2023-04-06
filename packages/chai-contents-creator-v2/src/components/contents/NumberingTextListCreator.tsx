@@ -9,8 +9,6 @@ import { numberingTextDefaultData } from "../../data/appData";
 import TextEditorViewer from "../molecules/TextEditorViewer";
 
 const NumberingTextCreatorWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
   width: 100%;
 `;
 const NumberingListWrapper = styled.ul`
@@ -19,7 +17,7 @@ const NumberingListWrapper = styled.ul`
 
 const NumberingList = styled.li`
   display: flex;
-  max-width: 50vw;
+  /* max-width: 50vw; */
   width: 100%;
   align-items: flex-start;
 
