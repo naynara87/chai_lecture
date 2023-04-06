@@ -7,6 +7,7 @@ const data: ConversationWordListContentData = {
   id: "1",
   type: "conversationWordList",
   data: {
+    title: "회화 단어 목록",
     words: [
       {
         text: "游泳",

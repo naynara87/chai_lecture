@@ -100,7 +100,7 @@ const ConversationWordListComponent = ({
   return (
     <div className={`voca-note-container ${isVocaNoteOpen ? "active" : ""}`}>
       <h3 className="voca-title">
-        회화 단어 목록
+        {contents.data.title || "회화 단어 목록"}
         <ImgCharacterComponent
           characterType="kkungiHello"
           characterAlt="꿍이윙크인사"

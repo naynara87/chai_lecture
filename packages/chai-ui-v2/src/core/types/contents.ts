@@ -359,6 +359,7 @@ export type ConversationWordListContentData = {
   id: ID;
   type: "conversationWordList";
   data: {
+    title: string;
     words: {
       text: string;
       audio?: {

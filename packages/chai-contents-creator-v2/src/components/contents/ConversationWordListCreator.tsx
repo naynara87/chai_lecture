@@ -3,6 +3,7 @@ import {
   ComponentButtonRoundArrow,
   ConversationWordListContentData,
   ImgCharacterComponent,
+  vw,
 } from "chai-ui-v2";
 import React, { useCallback, useMemo, useState } from "react";
 import { DraggableContentCommonProps } from "../../types/page";
@@ -31,6 +32,15 @@ const deleteButtonStyle = css`
   top: 10px;
   right: 10px;
   background-color: #999999;
+`;
+
+const TitleInput = styled.input`
+  background: none !important;
+  font-size: ${vw(25)} !important;
+  text-align: center;
+  &::placeholder {
+    opacity: 0.6;
+  }
 `;
 
 const ConversationWordListCreator = ({
@@ -102,6 +112,17 @@ const ConversationWordListCreator = ({
           }
           return item;
         }),
+      };
+      updateConversationWordListData(updatedData);
+    },
+    [thisContent, updateConversationWordListData],
+  );
+
+  const setTitle = useCallback(
+    (text: string) => {
+      const updatedData = {
+        ...thisContent.data,
+        title: text,
       };
       updateConversationWordListData(updatedData);
     },
@@ -212,7 +233,16 @@ const ConversationWordListCreator = ({
           onClick={(e) => setFocusedId(e, content.id)}
         >
           <h3 className="voca-title">
-            회화 단어 목록
+            <TitleInput
+              type="text"
+              className="name"
+              placeholder="제목 입력"
+              onBlur={(e) => {
+                const target = e.target as HTMLInputElement;
+                setTitle(target.value);
+              }}
+              defaultValue={thisContent.data.title}
+            />
             <ImgCharacterComponent
               characterType="kkungiHello"
               characterAlt="꿍이윙크인사"
