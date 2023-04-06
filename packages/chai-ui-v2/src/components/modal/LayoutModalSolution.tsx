@@ -59,21 +59,26 @@ const LayoutModalSolution = ({
     if (isCorrect) {
       return (
         <>
-          <ComponentButtonRadiBorderMain
-            text="동영상 설명 보기"
-            onClickBtn={handleVideoBtnClick}
-          />
+          {contents.data.correct.video?.src && (
+            <ComponentButtonRadiBorderMain
+              text="동영상 설명 보기"
+              onClickBtn={handleVideoBtnClick}
+            />
+          )}
           <ComponentButtonRadiFillMain text="확인" onClickBtn={handleClose} />
         </>
       );
     }
-    return (
-      <ComponentButtonRadiFillMain
-        text="동영상 설명 보기"
-        onClickBtn={handleVideoBtnClick}
-      />
-    );
-  }, [isCorrect, handleClose, handleVideoBtnClick]);
+    if (contents.data.incorrect.video?.src) {
+      return (
+        <ComponentButtonRadiFillMain
+          text="동영상 설명 보기"
+          onClickBtn={handleVideoBtnClick}
+        />
+      );
+    }
+    return <ComponentButtonRadiFillMain text="확인" onClickBtn={handleClose} />;
+  }, [isCorrect, handleClose, handleVideoBtnClick, contents.data]);
 
   const modalCharacter = useMemo(() => {
     if (isCorrect) {
