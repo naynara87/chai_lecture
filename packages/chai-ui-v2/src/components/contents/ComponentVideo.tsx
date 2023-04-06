@@ -1,5 +1,9 @@
 import React, { useCallback, useEffect, useRef } from "react";
-import { usePageCompleted, VideoContentData } from "../../core/index.js";
+import {
+  usePageCompleted,
+  useXapi,
+  VideoContentData,
+} from "../../core/index.js";
 interface ComponentVideoProps {
   content: VideoContentData;
   isModal?: boolean;
@@ -11,25 +15,28 @@ const ComponentVideo = ({ content, isModal }: ComponentVideoProps) => {
   const { setPushCompletedPageComponents, setComponentCompleted } =
     usePageCompleted();
 
+  const { xapiPlayed } = useXapi();
+
   useEffect(() => {
     if (isModal) return;
     setPushCompletedPageComponents("video", content.id);
   }, [setPushCompletedPageComponents, content.id, isModal]);
 
-  const setVideoComponentCompleted = useCallback(() => {
+  const playedVideo = useCallback(() => {
+    xapiPlayed();
     setComponentCompleted(content.id);
-  }, [setComponentCompleted, content.id]);
+  }, [setComponentCompleted, content.id, xapiPlayed]);
 
   useEffect(() => {
     let videoRefValue: HTMLVideoElement | null = null;
     if (videoRef.current) {
       videoRefValue = videoRef.current;
-      videoRefValue?.addEventListener("play", setVideoComponentCompleted);
+      videoRefValue?.addEventListener("play", playedVideo);
     }
     return () => {
-      videoRefValue?.addEventListener("play", setVideoComponentCompleted);
+      videoRefValue?.removeEventListener("play", playedVideo);
     };
-  }, [setVideoComponentCompleted]);
+  }, [playedVideo]);
 
   return (
     <div className="container player-wrap">

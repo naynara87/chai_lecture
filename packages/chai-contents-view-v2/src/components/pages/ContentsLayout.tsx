@@ -13,10 +13,10 @@ import {
   CornerMeta,
   CornerListData,
   usePageCompleted,
+  useXapi,
 } from "chai-ui-v2";
 import { currentCornerIdState } from "../../state/currentCornerId";
 import usePages from "../../hooks/usePages";
-import useXapi from "../../hooks/useXapi";
 
 interface ContentsLayoutProps {
   pages: Page[];
@@ -60,11 +60,13 @@ const ContentsLayout = ({
     const currentCornerIndex = corners.findIndex(
       (corner) => corner.id.toString() === currentCornerId?.toString(),
     );
+    const prevCorner = corners[currentCornerIndex - 1];
+    const currentCorner = corners[currentCornerIndex];
     if (isCurrentCornerFirstPage) {
-      const prevCorner = corners[currentCornerIndex - 1];
       if (prevCorner) {
         // 다음 코너가 있을때
         xapiProgress(
+          currentCorner,
           prevCorner,
           totalPages[currentPageIndex],
           prevCorner.pages[prevCorner.pages.length - 1],
@@ -84,8 +86,8 @@ const ContentsLayout = ({
       }
     }
     if (cornerId && courseId && lessonId && pageId) {
-      const currentCorner = corners[currentCornerIndex];
       xapiProgress(
+        currentCorner,
         currentCorner,
         totalPages[currentPageIndex],
         totalPages[currentPageIndex - 1],
@@ -109,6 +111,7 @@ const ContentsLayout = ({
     const currentCornerIndex = corners.findIndex(
       (corner) => corner.id.toString() === currentCornerId?.toString(),
     );
+    const currentCorner = corners[currentCornerIndex];
     if (isCurrentCornerLastPage) {
       if (!lessonMetaData) return;
       if (!cornerMetaData) return;
@@ -116,6 +119,7 @@ const ContentsLayout = ({
       if (nextCorner) {
         // 다음 코너가 있을때
         xapiProgress(
+          currentCorner,
           nextCorner,
           totalPages[currentPageIndex],
           nextCorner.pages[0],
@@ -136,8 +140,8 @@ const ContentsLayout = ({
       return;
     }
     if (cornerId && courseId && lessonId) {
-      const currentCorner = corners[currentCornerIndex];
       xapiProgress(
+        currentCorner,
         currentCorner,
         totalPages[currentPageIndex],
         totalPages[currentPageIndex + 1],

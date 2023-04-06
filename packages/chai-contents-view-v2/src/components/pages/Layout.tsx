@@ -1,10 +1,9 @@
-import { LocalStorage, QuizData, usePageCompleted } from "chai-ui-v2";
+import { LocalStorage, QuizData, usePageCompleted, useXapi } from "chai-ui-v2";
 import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import useCorner from "../../hooks/useCorner";
 import useLesson from "../../hooks/useLesson";
-import useXapi from "../../hooks/useXapi";
 import { currentCornerIdState } from "../../state/currentCornerId";
 import ContentsLayout from "./ContentsLayout";
 import QuestionLayout from "./QuestionLayout";

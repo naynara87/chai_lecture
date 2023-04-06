@@ -1,15 +1,13 @@
-import { ADL, XAPIOptions } from "chai-ui-v2";
+import { ADL, xapiElement, XAPIOptions, xapiV1State } from "chai-ui-v2";
 import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import "../src/lib/xapi/lx-total-viewer.js";
-import { xapiElement } from "./constants/xapi";
 import {
   context_details,
   extension_details,
   object_context,
   result_extensions,
 } from "./data/xapiData";
-import { xapiV1State } from "./state/xapiV1State";
 
 interface XapiProviderProps {
   children: React.ReactNode;

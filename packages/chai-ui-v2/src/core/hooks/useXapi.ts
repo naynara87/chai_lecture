@@ -1,3 +1,8 @@
+import { cloneDeep } from "lodash";
+import { useCallback, useMemo } from "react";
+import { useRecoilState } from "recoil";
+import { xapiElement } from "../../constants";
+import { xapiActivityState, xapiV1State } from "../states";
 import {
   CornerListData,
   CornerMeta,
@@ -5,14 +10,8 @@ import {
   LessonMeta,
   LRSActivityState,
   LRSCornerProgress,
-  usePageCompleted,
-} from "chai-ui-v2";
-import { cloneDeep } from "lodash";
-import { useCallback, useMemo } from "react";
-import { useRecoilState } from "recoil";
-import { xapiElement } from "../constants/xapi";
-import { xapiActivityState } from "../state/xapiActivityState";
-import { xapiV1State } from "../state/xapiV1State";
+} from "../types";
+import usePageCompleted from "./usePageCompleted";
 
 const useXapi = () => {
   const [xapiV1] = useRecoilState(xapiV1State);
@@ -47,23 +46,17 @@ const useXapi = () => {
   }, [completedPageComponents]);
 
   const updateProgressDataPageCheck = useCallback(
-    (cornerId: ID, currentPageId: ID, nextPageId: ID) => {
+    (prevCornerId: ID, nextCornerId: ID, currentPageId: ID, nextPageId: ID) => {
       if (!xapiActivity) return;
-      console.log(
-        "cornerId",
-        cornerId,
-        "currentPageId",
-        currentPageId,
-        "nextPageId",
-        nextPageId,
-      );
-
       const newProgressData = cloneDeep(xapiActivity.progress_data);
-      const cornerIndex = newProgressData.findIndex(
-        (corner) => corner.corner_id.toString() === cornerId.toString(),
+      const prevCornerIndex = newProgressData.findIndex(
+        (corner) => corner.corner_id.toString() === prevCornerId.toString(),
       );
-      newProgressData[cornerIndex].pages = newProgressData[
-        cornerIndex
+      const nextCornerIndex = newProgressData.findIndex(
+        (corner) => corner.corner_id.toString() === nextCornerId.toString(),
+      );
+      newProgressData[prevCornerIndex].pages = newProgressData[
+        prevCornerIndex
       ].pages.map((page) => {
         if (page.page_id.toString() === currentPageId.toString()) {
           return {
@@ -71,6 +64,11 @@ const useXapi = () => {
             is_completed: isCompletedCurrentPage ? true : false,
           };
         }
+        return page;
+      });
+      newProgressData[nextCornerIndex].pages = newProgressData[
+        nextCornerIndex
+      ].pages.map((page) => {
         if (page.page_id.toString() === nextPageId.toString()) {
           return {
             ...page,
@@ -107,7 +105,8 @@ const useXapi = () => {
 
   const xapiProgress = useCallback(
     (
-      corner: CornerListData,
+      prevCorner: CornerListData,
+      nextCorner: CornerListData,
       currentPageId: ID,
       nextPageId: ID,
       totalPages: ID[],
@@ -118,13 +117,14 @@ const useXapi = () => {
         (page) => page.toString() === nextPageId?.toString(),
       );
       const newProgressData = updateProgressDataPageCheck(
-        corner.id,
+        prevCorner.id,
+        nextCorner.id,
         currentPageId,
         nextPageId,
       );
       const newXapiActivityState = updateActivityState({
-        part_id: corner.id,
-        part_name: corner.name,
+        part_id: nextCorner.id,
+        part_name: nextCorner.name,
         page: pageIndex + 1,
         progress_data: newProgressData,
         progress: updateProgress(
@@ -136,7 +136,12 @@ const useXapi = () => {
           totalPages,
         ).completed_progress,
       });
-      xapiV1?.sendProgress(pageIndex + 1, newXapiActivityState ?? xapiActivity);
+      xapiV1?.sendProgress(
+        // TODO 이전페이지 매개변수 currentPageId 계산해서 index넣으면될듯?
+        parseInt(currentPageId.toString()),
+        pageIndex + 1,
+        newXapiActivityState ?? xapiActivity,
+      );
       setXapiActivity(newXapiActivityState);
     },
     [
@@ -213,6 +218,10 @@ const useXapi = () => {
     [setXapiActivity],
   );
 
+  const xapiPlayed = useCallback(() => {
+    xapiV1?.sendPlayed();
+  }, [xapiV1]);
+
   return {
     xapiInitialize,
     xapiProgress,
@@ -221,6 +230,7 @@ const useXapi = () => {
     xapiActivity,
     updateActivityState,
     updateProgressDataPageCheck,
+    xapiPlayed,
   };
 };
 

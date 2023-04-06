@@ -4759,9 +4759,56 @@ code.google.com/p/crypto-js/wiki/License
               resultExtensionStructure.completion = true;
             }
           }
-          function sendProgress(curPage, newState) {
+          function sendPlayed() {
             var mys = bareStatement();
-            currentSegment = [curPage, curPage];
+            mys.verb = new ADL.XAPIStatement.Verb(
+              "https://w3id.org/xapi/video/verbs/played",
+              "played",
+            );
+            mys.result = {
+              extensions: {
+                "https://profile.caihong.co.kr/content-management/course/lessons/pages/page": 10,
+              },
+            };
+            mys.object = _objectSpread(
+              _objectSpread({}, mys.object),
+              {},
+              {
+                definition: _objectSpread(
+                  _objectSpread({}, mys.object.definition),
+                  {},
+                  {
+                    name: {
+                      "en-US": "동영상 이름",
+                    },
+                    extensions: _objectSpread(
+                      _objectSpread({}, mys.object.definition.extensions),
+                      {},
+                      {
+                        "https://profile.caihong.co.kr/content-management/course/local-content-id": 33,
+                        "https://profile.caihong.co.kr/content-management/course/subcontent-id":
+                          "cb22cb9f-508d-4691-bc77-46162d35fd1a",
+                        "https://profile.caihong.co.kr/content-management/course/subcontent-type":
+                          "video",
+                      },
+                    ),
+                  },
+                ),
+              },
+            );
+            if (resultExtensionStructure) {
+              setContext(
+                mys.result,
+                resultExtensionStructure,
+                resultExtensions,
+              );
+            }
+            XW.sendStatement(mys);
+            window.postMessage(JSON.stringify(mys));
+          }
+          function sendProgress(prevPage, currentPage, newState) {
+            var mys = bareStatement();
+            currentSegment = [prevPage, currentPage];
             addCurrentSegment();
             saveState(newState);
             mys.verb = new ADL.XAPIStatement.Verb(
@@ -5121,6 +5168,7 @@ code.google.com/p/crypto-js/wiki/License
             playerLoadedEvent: playerLoadedEvent,
             sendProgress: sendProgress,
             sendComplete: sendComplete,
+            sendPlayed: sendPlayed,
           };
         }
         return {

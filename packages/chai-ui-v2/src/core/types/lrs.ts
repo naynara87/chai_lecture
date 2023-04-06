@@ -93,8 +93,13 @@ export interface XapiV1 {
   addResultExtension: (result_extension: XapiIndicators) => void;
   saveState: () => void;
   playerLoadedEvent: CustomEvent<any>;
-  sendProgress: (curPage: number, newState: LRSActivityState) => void;
+  sendProgress: (
+    prevPage: number,
+    currentPage: number,
+    newState: LRSActivityState,
+  ) => void;
   sendComplete(curPage: number): void;
+  sendPlayed: () => void;
 }
 
 export interface XAPIOptions {
