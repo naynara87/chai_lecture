@@ -22,12 +22,7 @@ const ComponentProblemTopButtonArea = ({
     const sec = Math.floor(solvingTime % 60);
 
     return (
-      hour.toString().padStart(2, "0") +
-      "시간 " +
-      min.toString().padStart(2, "0") +
-      "분 " +
-      sec.toString().padStart(2, "0") +
-      "초"
+      hour.toString() + "시간 " + min.toString() + "분 " + sec.toString() + "초"
     );
   }, [solvingTime]);
 
@@ -44,10 +39,8 @@ const ComponentProblemTopButtonArea = ({
       </div>
       <div className="top-button-right">
         <h2 className="problem-title-wrap">
-          총<b>{quizPageData.length.toString().padStart(2, "0")}</b>
-          문항 풀이에
-          <b>{convertedSolvingTime}</b>
-          소요
+          총 <b>{quizPageData.length.toString().padStart(2, "0")} </b>문항
+          풀이에 <b>{convertedSolvingTime}</b> 소요
         </h2>
         <button
           type="button"

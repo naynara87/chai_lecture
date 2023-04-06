@@ -4,6 +4,7 @@ import { QuizData, TemplateProps, TemplateQuestionData } from "../../core";
 import { LocalStorage } from "../../core";
 import { useParams } from "react-router-dom";
 import { LoadingSpinner } from "../atoms";
+import ArrowIcon from "../../assets/images/icon/icon_stick_arrow_right_white.svg";
 
 const QuestionPanel = styled.div`
   padding: 0;
@@ -83,7 +84,7 @@ const TemplateQuestion = ({
       return (
         <button className="btn btn-problem" onClick={handleClickCheckScore}>
           <span>채점하기</span>
-          {/* <img src={BtnIcon} alt="바로가기아이콘" /> */}
+          <img src={ArrowIcon} alt="바로가기아이콘" />
         </button>
       );
     }
