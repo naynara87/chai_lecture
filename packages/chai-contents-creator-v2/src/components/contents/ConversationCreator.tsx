@@ -18,7 +18,7 @@ import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 import SpeakingTimeInputWrapper from "../molecules/SpeakingTimeInputWrapper";
 import TextEditorViewer from "../molecules/TextEditorViewer";
 import UrlInputWrapper from "../molecules/UrlInputWrapper";
-import { v4 as uuidV4 } from "uuid";
+import useSafeKey from "../../hooks/useSafeKey";
 
 export const ConversationWrapper = styled.ul``;
 
@@ -216,7 +216,7 @@ const ConversationCreator = ({
   );
 
   const deleteConversation = useCallback(
-    (listIndex: number) => () => {
+    (listIndex: number) => {
       if (thisContent.data.length === 1) {
         alert("최소 1개이상 입력하셔야 합니다.");
         return;
@@ -246,12 +246,22 @@ const ConversationCreator = ({
     [thisContent, updateConversationListData],
   );
 
+  const { addKeyByArrayLength, deleteKeyByIndex, getKeyByIndex } = useSafeKey(
+    thisContent.data,
+  );
+
   const conversationLists = useMemo(() => {
     return thisContent.data.map((list, listIndex) => {
       return (
-        <ConversationList className="conversation-wrap" key={uuidV4()}>
+        <ConversationList
+          className="conversation-wrap"
+          key={getKeyByIndex(listIndex)}
+        >
           <ObjectDeleteButton
-            onClick={deleteConversation(listIndex)}
+            onClick={() => {
+              deleteConversation(listIndex);
+              deleteKeyByIndex(listIndex);
+            }}
             customCSS={deleteButtonStyle}
           />
 
@@ -344,6 +354,8 @@ const ConversationCreator = ({
     deleteConversation,
     thisTemplateType,
     handleSubmitSpeakingTime,
+    getKeyByIndex,
+    deleteKeyByIndex,
   ]);
 
   const addConversation = useCallback(() => {
@@ -378,7 +390,14 @@ const ConversationCreator = ({
         {thisTemplateType === "TemplateConversationToggle" && (
           <TogglesWrapper contents={thisContent} />
         )}
-        <AddButton onClick={addConversation}>대화 추가</AddButton>
+        <AddButton
+          onClick={() => {
+            addConversation();
+            addKeyByArrayLength(thisContent.data.length);
+          }}
+        >
+          대화 추가
+        </AddButton>
         <ConversationWrapper
           className="conversation-wrapper"
           onClick={(e) => setFocusedId(e, content.id)}

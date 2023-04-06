@@ -5,10 +5,10 @@ import UrlInputWrapper from "../molecules/UrlInputWrapper";
 import { DraggableContentCommonProps } from "../../types/page";
 import { CaptionListImage, ImageWithCaptionListContentData } from "chai-ui-v2";
 import TextEditorViewer from "../molecules/TextEditorViewer";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import AddButton from "../atoms/AddButton";
 import ObjectDeleteButton from "../atoms/ObjectDeleteButton";
-import { v4 as uuidV4 } from "uuid";
+import useSafeKey from "../../hooks/useSafeKey";
 
 const ImageListWrapper = styled.ul`
   display: flex;
@@ -173,26 +173,9 @@ const ImageWithCaptionListCreator = ({
     updateContent(currentSlide.id, content.id, position, newContent);
   };
 
-  const keyListRef = useRef<string[]>(thisContent.data.map(() => uuidV4()));
-
-  const addKey = (index: number) => {
-    keyListRef.current = [
-      ...keyListRef.current.slice(0, index),
-      uuidV4(),
-      ...keyListRef.current.slice(index),
-    ];
-  };
-
-  const deleteKey = (index: number) => {
-    keyListRef.current = [
-      ...keyListRef.current.slice(0, index),
-      ...keyListRef.current.slice(index + 1),
-    ];
-  };
-
-  const getKey = (index: number) => {
-    return keyListRef.current[index] ?? index;
-  };
+  const { addKeyByArrayLength, deleteKeyByIndex, getKeyByIndex } = useSafeKey(
+    thisContent.data,
+  );
 
   return (
     <ContentCreatorLayout
@@ -209,7 +192,7 @@ const ImageWithCaptionListCreator = ({
       <ImageWithCaptionListCreatorWrapper>
         <AddButton
           onClick={() => {
-            addKey(thisContent.data.length);
+            addKeyByArrayLength(thisContent.data.length);
             addImage();
           }}
         >
@@ -218,11 +201,11 @@ const ImageWithCaptionListCreator = ({
         <ImageListWrapper>
           {thisContent.data.map((_, index) => {
             return (
-              <ImageList key={getKey(index)}>
+              <ImageList key={getKeyByIndex(index)}>
                 <DeleteButtonWrapper>
                   <ObjectDeleteButton
                     onClick={() => {
-                      deleteKey(index);
+                      deleteKeyByIndex(index);
                       deleteImage(index);
                     }}
                   />

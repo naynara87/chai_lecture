@@ -9,7 +9,7 @@ import AddButton from "../atoms/AddButton";
 import { DraggableContentCommonProps } from "../../types/page";
 import TextEditorViewer from "../molecules/TextEditorViewer";
 import { useCallback, useEffect, useState } from "react";
-import { v4 as uuidV4 } from "uuid";
+import useSafeKey from "../../hooks/useSafeKey";
 
 const NotiCharacterWrapper = styled.div`
   position: relative;
@@ -198,6 +198,10 @@ const NotiCharacterListCreator = ({
     };
   }, [resetFocusedTextEditor]);
 
+  const { addKeyByArrayLength, deleteKeyByIndex, getKeyByIndex } = useSafeKey(
+    thisContent.data,
+  );
+
   return (
     <ContentCreatorLayout
       isDraggable={isDraggable}
@@ -210,12 +214,24 @@ const NotiCharacterListCreator = ({
       pasteContent={pasteContent}
     >
       <NotiCharacterWrapper>
-        <AddButton onClick={addImage}>말풍선 추가</AddButton>
+        <AddButton
+          onClick={() => {
+            addImage();
+            addKeyByArrayLength(thisContent.data.length);
+          }}
+        >
+          말풍선 추가
+        </AddButton>
         {/* 반복영역 */}
         {thisContent.data.map((item, index) => {
           return (
-            <NotiCharacterWrap key={uuidV4()}>
-              <ObjectDeleteButton onClick={() => deleteImage(index)} />
+            <NotiCharacterWrap key={getKeyByIndex(index)}>
+              <ObjectDeleteButton
+                onClick={() => {
+                  deleteImage(index);
+                  deleteKeyByIndex(index);
+                }}
+              />
               <TextBubbleWrap onClick={(e) => setFocusedId(e, content.id)}>
                 <p
                   className="description-text"
