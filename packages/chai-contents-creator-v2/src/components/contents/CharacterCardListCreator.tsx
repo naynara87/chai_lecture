@@ -30,6 +30,10 @@ const TrainingWrapper = styled.div`
     margin-bottom: 50px;
   }
 
+  .training-list-wrap {
+    flex-wrap: wrap;
+  }
+
   .training-list {
     position: relative;
   }
@@ -98,7 +102,6 @@ const GradiWrap = styled.div`
 `;
 
 const TrainingList = styled.div`
-  height: max-content !important;
 `;
 
 type ColumnIndex = "title" | "description";
@@ -298,34 +301,34 @@ const CharacterCardListCreator = ({
    */
   const updateComponent =
     (cardIndex: number) =>
-    (
-      slideId: ID,
-      contentId: ID,
-      position: CommonTemplateComponentLocation,
-      updatedContent: Content,
-    ) => {
-      const newContent: CharacterCardListContentData = cloneDeep(thisContent);
-      const thisComponentIndex = newContent.data[
-        cardIndex
-      ].modalContents!.findIndex((component) => component.id === contentId);
-      newContent.data[cardIndex].modalContents![thisComponentIndex] =
-        updatedContent;
-      updateContent(currentSlide.id, content.id, position, newContent);
-    };
+      (
+        slideId: ID,
+        contentId: ID,
+        position: CommonTemplateComponentLocation,
+        updatedContent: Content,
+      ) => {
+        const newContent: CharacterCardListContentData = cloneDeep(thisContent);
+        const thisComponentIndex = newContent.data[
+          cardIndex
+        ].modalContents!.findIndex((component) => component.id === contentId);
+        newContent.data[cardIndex].modalContents![thisComponentIndex] =
+          updatedContent;
+        updateContent(currentSlide.id, content.id, position, newContent);
+      };
 
   /**
    * 모달안에서 동작할 컴포넌트 삭제 함수
    */
   const deleteComponent =
     (cardIndex: number) =>
-    (slideId: ID, contentId: ID, position: CommonTemplateComponentLocation) => {
-      const newContent: CharacterCardListContentData = cloneDeep(thisContent);
-      const thisComponentIndex = newContent.data[
-        cardIndex
-      ].modalContents!.findIndex((component) => component.id === contentId);
-      newContent.data[cardIndex].modalContents!.splice(thisComponentIndex, 1);
-      updateContent(currentSlide.id, content.id, position, newContent);
-    };
+      (slideId: ID, contentId: ID, position: CommonTemplateComponentLocation) => {
+        const newContent: CharacterCardListContentData = cloneDeep(thisContent);
+        const thisComponentIndex = newContent.data[
+          cardIndex
+        ].modalContents!.findIndex((component) => component.id === contentId);
+        newContent.data[cardIndex].modalContents!.splice(thisComponentIndex, 1);
+        updateContent(currentSlide.id, content.id, position, newContent);
+      };
 
   const handleDragEnd = (cardIndex: number) => (result: DropResult) => {
     const { destination, draggableId } = result;

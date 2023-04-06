@@ -58,10 +58,10 @@
   font-size: vw(28);
   white-space: pre-line;
 
-  div {
+  >div {
     text-align: left;
 
-    :not(:first-child) {
+    &:not(:first-child) {
       margin-top: vw(40);
     }
   }

@@ -22,6 +22,10 @@
     width: calc((vh(220) * 4) / 3);
     height: vh(220);
   }
+
+  .image-with-caption-wrapper .caption-wrap {
+    width: calc((vh(220) * 4) / 3);
+  }
 }
 
 .grid-h-3-7 {
@@ -37,6 +41,10 @@
   .image-with-description-wrapper img {
     width: calc((vh(220) * 4) / 3);
     height: vh(220);
+  }
+
+  .image-with-caption-wrapper .caption-wrap {
+    width: calc((vh(220) * 4) / 3);
   }
 }
 
@@ -60,7 +68,7 @@
     overflow: hidden;
   }
 
-  > *:not(:first-child) {
+  >*:not(:first-child) {
     margin: vh(40) auto 0;
   }
 
