@@ -178,9 +178,9 @@ export const contentComponents: ContentComponents = {
     "borderTextBox",
     "video",
     "imageWithCaptionList",
-    "speaking",
     "imageWithDescriptionList",
-    "audio",
+    "audio", // 음성듣기
+    "speaking", // 따라말하기
     "recorder",
   ],
   character: [
@@ -191,15 +191,15 @@ export const contentComponents: ContentComponents = {
     "characterCardList",
   ],
   mixture: [
-    "contentsCardList",
-    "multiLevelActionCard",
-    "conversationWordList",
-    "toggleSentenceList",
-    "cardTab",
-    "multiLevelActionSentenceCard",
-    "wordsCarousel",
-    "conversation",
-    "audioAndWordsCarousel",
+    "contentsCardList", // 학습 카드
+    "multiLevelActionCard", // 액션카드(단어용)
+    "multiLevelActionSentenceCard", // 액션카드(문장용)
+    "wordsCarousel", // 단어장
+    "audioAndWordsCarousel", // 음성+단어장
+    "conversationWordList", // 단어 목록
+    "conversation", // 대화
+    "cardTab", // 탭
+    "toggleSentenceList", // 문장 토글
   ],
 };
 
