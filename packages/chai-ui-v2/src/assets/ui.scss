@@ -11,6 +11,7 @@
 @import "scss/base/helper";
 
 // 3. vendor
+@import "scss/vendor/lxPlayer";
 
 // 4. layout
 @import "scss/layout/animation";
@@ -21,7 +22,6 @@
 @import "scss/layout/problemLayout";
 
 // 5. component
-@import "scss/component/lxPlayer";
 @import "scss/component/swiper";
 @import "scss/component/modal";
 @import "scss/component/componentContsinfo";
