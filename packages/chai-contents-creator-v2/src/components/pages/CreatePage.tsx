@@ -14,7 +14,6 @@ import { PREVIEW_URL } from "../../constants/url";
 import ModalIntroduction from "../molecules/modal/ModalIntroduction";
 import useCreatePage from "../../hooks/useCreatePage";
 import { css } from "@emotion/react";
-import { isDevEnv } from "../../constants/env";
 
 const CommonButtonContainer = styled.div`
   padding-bottom: 16px;
@@ -24,9 +23,7 @@ const CommonButtonContainer = styled.div`
   text-align: right;
 `;
 
-const saveButtonCss = css`
-  visibility: ${isDevEnv ? "visible" : "hidden"};
-`;
+const saveButtonCss = css``;
 
 const CreatePage = () => {
   const [isModalIntroductionOpen, setIsModalIntroductionOpen] = useState(false);
@@ -86,7 +83,7 @@ const CreatePage = () => {
             onClick={handleSavePageData}
             customCSS={saveButtonCss}
           >
-            테스트 저장 버튼
+            저장
           </Button>
           <Button type="button" onClick={handleClickPreview}>
             미리보기

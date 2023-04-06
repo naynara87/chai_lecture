@@ -10,12 +10,12 @@ import {
   ImageWithDescriptionListContentData,
   vw,
 } from "chai-ui-v2";
+import { v4 as uuidV4 } from "uuid";
 
 import TextEditorViewer from "../molecules/TextEditorViewer";
 import { useCallback, useEffect, useState } from "react";
 
-const ImageListCreatorWrapper = styled.div`
-`;
+const ImageListCreatorWrapper = styled.div``;
 
 const ImageListWrapper = styled.ul`
   width: 1000px;
@@ -28,11 +28,13 @@ const ImageListWrapper = styled.ul`
     padding-left: 60px;
     font-size: 16px;
 
-    p,div,span {
+    p,
+    div,
+    span {
       word-break: break-all;
     }
   }
-  
+
   .image-wrap {
     flex-basis: 40%;
     flex-grow: 0;
@@ -40,15 +42,34 @@ const ImageListWrapper = styled.ul`
     img {
       width: ${vw(360)};
       height: ${vw(220)};
+      border-radius: ${vw(10)};
       object-fit: cover;
     }
   }
+
+  .img-empty-wrap {
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 60px;
+      object-fit: contain;
+      transform: translate(-50%, -50%);
+    }
+  }
+`;
+
+const DeleteButtonWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
 `;
 
 const ImageList = styled.li`
   display: flex;
   width: 100%;
   margin-bottom: 40px;
+  position: relative;
 `;
 
 const ImageThumb = styled.div`
@@ -58,15 +79,6 @@ const ImageThumb = styled.div`
   position: relative;
   margin-bottom: 10px;
   border-radius: 10px;
-
-  img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 60px;
-    object-fit: contain;
-    transform: translate(-50%, -50%);
-  }
 `;
 
 const ImageWithDescriptionListCreator = ({
@@ -201,20 +213,21 @@ const ImageWithDescriptionListCreator = ({
         <AddButton onClick={addImage}>이미지 추가</AddButton>
         <ImageListWrapper>
           {thisContent.data.map((item, index) => {
+            console.log("image", item, index);
             return (
-              <ImageList>
+              <ImageList key={uuidV4()}>
                 <div className="image-wrap">
                   {item.src ? (
                     <ComponentImage imageUrl={getThisContentImageSrc(index)} />
                   ) : (
-                    <ImageThumb>
+                    <ImageThumb className="img-empty-wrap">
                       <img src={ImageIcon} alt="" />
                     </ImageThumb>
                   )}
                   <UrlInputWrapper
                     typeText="이미지"
                     onSubmit={setImageUrl(index)}
-                    defaultText={thisContent.data[index].src}
+                    defaultText={item.src}
                   />
                 </div>
                 <p
@@ -224,14 +237,15 @@ const ImageWithDescriptionListCreator = ({
                   <TextEditorViewer
                     isFocused={isTextEditorFocused(index)}
                     setText={setText(index)}
-                    text={thisContent.data?.[index].description ?? ""}
+                    text={item.description ?? ""}
                     defaultText={
                       <p className="caption-text">설명을 입력해주세요.</p>
                     }
                   />
                 </p>
-
-                <ObjectDeleteButton onClick={() => deleteImage(index)} />
+                <DeleteButtonWrapper>
+                  <ObjectDeleteButton onClick={() => deleteImage(index)} />
+                </DeleteButtonWrapper>
               </ImageList>
             );
           })}

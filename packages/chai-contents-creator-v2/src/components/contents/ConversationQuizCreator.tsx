@@ -15,6 +15,7 @@ import {
   deleteButtonStyle,
 } from "./ConversationCreator";
 import { AnswerCheckText, AnswerInput } from "./MultiChoiceCreator";
+import { v4 as uuidV4 } from "uuid";
 
 const AnswerBoxWrap = styled.div`
   display: flex;
@@ -281,7 +282,7 @@ const ConversationQuizCreator = ({
   const conversationQuizList = useMemo(() => {
     return thisContent.data.map((content, contentIndex) => {
       return (
-        <ConversationList className="conversation-wrap" key={contentIndex}>
+        <ConversationList className="conversation-wrap" key={uuidV4()}>
           <ObjectDeleteButton
             onClick={deleteConversation(contentIndex)}
             customCSS={deleteButtonStyle}
@@ -393,12 +394,12 @@ const ConversationQuizCreator = ({
                     </AnswerBox>
                     <AnswerInput
                       type="radio"
-                      name="answerCheck"
-                      id={`answerCheck${choiceIndex}`}
+                      name={`answerCheck_${thisContent.id}_${contentIndex}`}
+                      id={`answerCheck_${thisContent.id}_${contentIndex}_${choiceIndex}`}
                       onClick={() => setAnswer(contentIndex, choiceIndex)}
                     />
                     <label
-                      htmlFor={`answerCheck${choiceIndex}`}
+                      htmlFor={`answerCheck_${thisContent.id}_${contentIndex}_${choiceIndex}`}
                       onClick={() => setAnswer(contentIndex, choiceIndex)}
                     >
                       <AnswerCheckText className="text">정답</AnswerCheckText>

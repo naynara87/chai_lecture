@@ -116,6 +116,7 @@ export type characterType =
   | "didiSurprise"
   | "didiWink"
   | "didiWinking"
+  | "didiSmilejump"
   | "kkungiHeart"
   | "kkungiHandsup"
   | "kkungiLaugh"
@@ -123,6 +124,8 @@ export type characterType =
   | "kkungiSmile"
   | "kkungiWink"
   | "kkungiHeader"
+  | "kkungiHappy"
+  | "kkungiHello"
   | "winiProud"
   | "winiSad"
   | "winiShock"
@@ -142,6 +145,7 @@ export type QuizData = {
   id: ID;
   state: "end" | "active" | "";
   isCorrect?: boolean;
+  contentId?: string;
 };
 
 // 저작도구로부터 cookie 에서 받아오는 초기데이터

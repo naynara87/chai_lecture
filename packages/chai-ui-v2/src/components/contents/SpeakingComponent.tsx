@@ -9,10 +9,10 @@ import React, {
 import { SpeakingContentData, useGlobalAudio } from "../../core";
 import ComponentButtonFillBlackMini from "../atoms/ComponentButtonFillBlackMini";
 import ComponentProgress from "../atoms/ComponentProgress";
-import iconCheck from "../../assets/images/icon/icon_check_green.svg";
 import effectSoundSEA02 from "../../assets/effectSounds/SEA02.mp3";
 import effectSoundSEA01 from "../../assets/effectSounds/SEA01.mp3";
 import { v4 as uuidv4 } from "uuid";
+import { ImgCharacterComponent } from "../atoms";
 
 const RepeatSpeak = styled.div``;
 
@@ -110,7 +110,10 @@ const SpeakingComponent = ({ contents }: SpeakingComponentProps) => {
       return (
         <div className="text-wrap">
           <span className="text">잘했어요!</span>
-          <img src={iconCheck} alt="" className="icon" />
+          <ImgCharacterComponent
+            characterType="kkungiHappy"
+            characterAlt="꿍이기쁨"
+          />
         </div>
       );
     } else if (

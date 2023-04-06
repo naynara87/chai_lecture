@@ -35,7 +35,7 @@ const MultilevelActionCardList = styled.div`
 `;
 const MultilevelActionCard = styled.div`
   display: flex;
-  width: 300px;
+  min-width: 300px;
   min-height: 134px;
   flex-direction: column;
   padding: 8px;
@@ -185,36 +185,36 @@ const ContentsCardListCreator = ({
 
   const updateComponent =
     (listIndex: number) =>
-    (
-      slideId: ID,
-      contentId: ID,
-      position: CommonTemplateComponentLocation,
-      updatedContent: Content,
-    ) => {
-      const newContent: ContentsCardListContentData = cloneDeep(thisContent);
-      const thisList = newContent.data[listIndex];
-      const thisListCopy: ContentsCardItem = cloneDeep(thisList);
-      const thisComponentIndex = thisListCopy.contents.findIndex(
-        (component) => component.id === contentId,
-      );
-      thisListCopy.contents[thisComponentIndex] = updatedContent;
-      newContent.data[listIndex] = thisListCopy;
-      updateContent(currentSlide.id, thisContent.id, position, newContent);
-    };
+      (
+        slideId: ID,
+        contentId: ID,
+        position: CommonTemplateComponentLocation,
+        updatedContent: Content,
+      ) => {
+        const newContent: ContentsCardListContentData = cloneDeep(thisContent);
+        const thisList = newContent.data[listIndex];
+        const thisListCopy: ContentsCardItem = cloneDeep(thisList);
+        const thisComponentIndex = thisListCopy.contents.findIndex(
+          (component) => component.id === contentId,
+        );
+        thisListCopy.contents[thisComponentIndex] = updatedContent;
+        newContent.data[listIndex] = thisListCopy;
+        updateContent(currentSlide.id, thisContent.id, position, newContent);
+      };
 
   const deleteComponent =
     (listIndex: number) =>
-    (slideId: ID, contentId: ID, position: CommonTemplateComponentLocation) => {
-      const newContent: ContentsCardListContentData = cloneDeep(thisContent);
-      const thisList = newContent.data[listIndex];
-      const thisListCopy: ContentsCardItem = cloneDeep(thisList);
-      const thisComponentIndex = thisListCopy.contents.findIndex(
-        (component) => component.id === contentId,
-      );
-      thisListCopy.contents.splice(thisComponentIndex, 1);
-      newContent.data[listIndex] = thisListCopy;
-      updateContent(currentSlide.id, thisContent.id, position, newContent);
-    };
+      (slideId: ID, contentId: ID, position: CommonTemplateComponentLocation) => {
+        const newContent: ContentsCardListContentData = cloneDeep(thisContent);
+        const thisList = newContent.data[listIndex];
+        const thisListCopy: ContentsCardItem = cloneDeep(thisList);
+        const thisComponentIndex = thisListCopy.contents.findIndex(
+          (component) => component.id === contentId,
+        );
+        thisListCopy.contents.splice(thisComponentIndex, 1);
+        newContent.data[listIndex] = thisListCopy;
+        updateContent(currentSlide.id, thisContent.id, position, newContent);
+      };
 
   return (
     <ContentCreatorLayout
