@@ -69,7 +69,7 @@ const IconWrapper = styled.span<IconWrapperProps>`
 
 const ContentsContainer = styled.div`
   width: 100%;
-  display: flex;
+  /* display: flex; */
 `;
 
 interface ContentCreatorLayoutProps extends ContentCreatorWrapperProps {
