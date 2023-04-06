@@ -7,6 +7,9 @@ import {
   QuizData,
   ModalConfirm,
   ComponentProblemDefault,
+  deleteQuestion,
+  getCookie,
+  InitialAppData,
 } from "chai-ui-v2";
 import { useMemo, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
@@ -27,12 +30,18 @@ const QuestionScore = () => {
     return LocalStorage.getItem("pageData") as QuizData[];
   }, []);
 
+  const userId = useMemo(() => {
+    return getCookie<InitialAppData>("bubble-player");
+  }, []);
+
   const handleClickGradePageIdx = (pageIdx: number) => {
     setQuizPageIdx(pageIdx);
   };
 
-  const handleClickRestartQuiz = () => {
+  const handleClickRestartQuiz = async () => {
     if (courseId && lessonId && cornerId) {
+      const contentIds = quizPageData.map((pageData) => pageData.contentId);
+      await deleteQuestion(contentIds, userId?.uid ?? "");
       navigate(getPageUrl(courseId, lessonId, cornerId, 1));
     }
   };

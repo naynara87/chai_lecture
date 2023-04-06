@@ -9,6 +9,8 @@ export const API_KEY = "15968aad-ff43-484f-b5b5-b741fda1f521";
 // LCMS
 export const TOKEN_URL = "/lcms/get-token";
 
+export const DELETE_PHP_URL = `api/content-data-destroy`;
+
 // 레슨 데이터(코너 리스트)
 // export const getLcmsLessonDataUrl = (lessonId: ID) =>
 //   `/lcms/subject/lesson-detail-list/${lessonId}`;
