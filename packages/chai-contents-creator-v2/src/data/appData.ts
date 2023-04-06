@@ -927,13 +927,15 @@ export const getTemplateDefaultValue = (): Partial<
   TemplateQuizSentencesInOrder: {
     id: uuidV4(),
     type: "TemplateQuizSentencesInOrder",
-    titleContents: {
-      id: uuidV4(),
-      type: "iconText",
-      data: {
-        text: "",
+    titleContents: [
+      {
+        id: uuidV4(),
+        type: "iconText",
+        data: {
+          text: "",
+        },
       },
-    },
+    ],
     mainContents: {
       id: uuidV4(),
       type: "quizSentence",

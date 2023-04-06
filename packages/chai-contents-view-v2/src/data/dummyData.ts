@@ -2854,13 +2854,15 @@ export const v2CornerDataList: CornerData[] = [
           {
             id: uuidV4(),
             type: "TemplateQuizSentencesInOrder",
-            titleContents: {
-              id: uuidV4(),
-              type: "iconText",
-              data: {
-                text: "자연스러운 단문이 되도록 문장을 배열해 보세요.",
+            titleContents: [
+              {
+                id: uuidV4(),
+                type: "iconText",
+                data: {
+                  text: "자연스러운 단문이 되도록 문장을 배열해 보세요.",
+                },
               },
-            },
+            ],
             mainContents: {
               id: uuidV4(),
               type: "quizSentence",
@@ -2942,13 +2944,15 @@ export const v2CornerDataList: CornerData[] = [
           {
             id: uuidV4(),
             type: "TemplateQuizSentencesInOrder",
-            titleContents: {
-              id: uuidV4(),
-              type: "iconText",
-              data: {
-                text: "자연스러운 단문이 되도록 문장을 배열해 보세요.",
+            titleContents: [
+              {
+                id: uuidV4(),
+                type: "iconText",
+                data: {
+                  text: "자연스러운 단문이 되도록 문장을 배열해 보세요.",
+                },
               },
-            },
+            ],
             mainContents: {
               id: uuidV4(),
               type: "quizSentence",

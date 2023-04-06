@@ -16,9 +16,9 @@ import DialogueSentenceBlank from "../molecules/DialogueSentenceBlank";
 import {
   TemplateProps,
   TemplateQuizSentencesInOrderData,
+  useContentMapper,
   useGlobalAudio,
 } from "../../core";
-import { IconTextComponent } from "../contents";
 import ModalVideo from "../modal/ModalVideo";
 import { v4 as uuidv4 } from "uuid";
 
@@ -52,7 +52,7 @@ export type SentenceInOrderChoice = {
   answerIndex: number;
 };
 
-interface TemplateQuizSentenceBlankProps extends TemplateProps { }
+interface TemplateQuizSentenceBlankProps extends TemplateProps {}
 
 const TemplateQuizSentenceBlank = ({
   template,
@@ -141,9 +141,9 @@ const TemplateQuizSentenceBlank = ({
       0,
       isCorrect === undefined
         ? thisPage.mainContents.data.quizPopup.data.correct.soundEffect?.src ??
-        ""
+            ""
         : thisPage.mainContents.data.quizPopup.data.incorrect.soundEffect
-          ?.src ?? "",
+            ?.src ?? "",
     );
   }, [handleClickAudioButton, isCorrect, thisPage.mainContents]);
 
@@ -157,12 +157,19 @@ const TemplateQuizSentenceBlank = ({
     setIsModalVideoOpen(true);
   };
 
+  const { getContentComponent } = useContentMapper();
+
+  const titleContents = useMemo(() => {
+    if (!thisPage.titleContents) return;
+    return thisPage.titleContents.map((titleContent, contentIndex) => {
+      return getContentComponent(titleContent, contentIndex);
+    });
+  }, [getContentComponent, thisPage]);
+
   return (
     <DialogueContainer className="layout-panel-wrap grid-h-5-5">
       <div className="layout-panel side-panel conversation-panel-wrap">
-        {thisPage.titleContents && (
-          <IconTextComponent contents={thisPage.titleContents} />
-        )}
+        {thisPage.titleContents && titleContents}
         {/* 230217 회화영역 */}
         <ul className="conversation-wrapper">
           {/* speech bubble */}
@@ -225,9 +232,9 @@ const TemplateQuizSentenceBlank = ({
             videoSrc={
               isCorrect === undefined
                 ? thisPage.mainContents.data.quizPopup.data.correct.video
-                  ?.src ?? ""
+                    ?.src ?? ""
                 : thisPage.mainContents.data.quizPopup.data.incorrect.video
-                  ?.src ?? ""
+                    ?.src ?? ""
             }
           />
         </>
