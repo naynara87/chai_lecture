@@ -189,6 +189,10 @@ const CharacterCardListCreator = ({
   };
 
   const addCard = () => {
+    if (thisContent.data.length >= 4) {
+      alert("최대 4개까지 등록 가능합니다.");
+      return;
+    }
     const newContent = {
       ...thisContent,
       data: [
@@ -383,6 +387,7 @@ const CharacterCardListCreator = ({
                         )}
                         setText={(text) => setText(index, "title", text)}
                         text={getText(index, "title")}
+                        limitTextLength={10}
                       />
                     </TitleArea>
                   </GradiWrap>
