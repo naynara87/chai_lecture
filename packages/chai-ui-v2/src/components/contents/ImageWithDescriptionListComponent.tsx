@@ -21,8 +21,8 @@ const ImageWithDescriptionList = styled.div`
 
 const ListImage = styled.img`
   flex-shrink: 0;
-  width: ${vw(360)};
-  height: ${vh(220)};
+  width: calc((${vh(380)} * 4) / 3);
+  height: ${vh(380)};
   margin-right: ${vw(43)};
   border-radius: ${vw(10)};
   -webkit-user-drag: none;
@@ -55,7 +55,7 @@ const ImageWithDescriptionListComponent = ({
       (imageWithDescription, imageWithDescriptionIndex) => {
         return (
           <ImageWithDescriptionList key={imageWithDescriptionIndex}>
-            <ImageWithDescriptionWrapper>
+            <ImageWithDescriptionWrapper className="image-with-description-wrapper">
               <ListImage
                 src={imageWithDescription.src}
                 alt=""
