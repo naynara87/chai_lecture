@@ -75,6 +75,7 @@ export const DescriptionWrapper = styled.div`
   width: 100%;
   min-height: 220px;
   margin-top: 10px;
+  padding: 20px;
   border-radius: 8px;
   background-color: ${colorPalette.gray200};
   font-size: 12px;
