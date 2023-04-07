@@ -35,18 +35,19 @@ const CreateTemplateQuizSentencesInOrder = ({
         <CreateEditMain>
           <DashBoxArea droppableId={leftDroppableId}>
             {thisSlide.titleContents &&
-              getComponent({
-                index: 0,
-                currentSlide: thisSlide,
-                content: thisSlide.titleContents,
-                isFocused: focusedId === thisSlide.titleContents.id,
-                setFocusedId,
-                updateContent,
-                deleteContent,
-                position: "titleContents",
-                templateType: thisSlide.type,
-                isDraggable: false,
-                isEditBtn: false,
+              thisSlide.titleContents.map((content, index) => {
+                return getComponent({
+                  index,
+                  currentSlide: thisSlide,
+                  content,
+                  isFocused: focusedId === content.id,
+                  setFocusedId,
+                  updateContent,
+                  deleteContent,
+                  position: "titleContents",
+                  isDraggable: false,
+                  isEditBtn: false,
+                });
               })}
             {thisSlide.mainContents &&
               getComponent({

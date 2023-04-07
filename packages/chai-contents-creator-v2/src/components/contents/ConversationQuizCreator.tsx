@@ -15,7 +15,7 @@ import {
   deleteButtonStyle,
 } from "./ConversationCreator";
 import { AnswerCheckText } from "./MultiChoiceCreator";
-import { v4 as uuidV4 } from "uuid";
+import useSafeKey from "../../hooks/useSafeKey";
 
 const AnswerBoxWrap = styled.div`
   display: flex;
@@ -165,7 +165,7 @@ const ConversationQuizCreator = ({
   );
 
   const deleteConversation = useCallback(
-    (listIndex: number) => () => {
+    (listIndex: number) => {
       if (thisContent.data.length === 1) {
         alert("최소 1개이상 입력하셔야 합니다.");
         return;
@@ -306,12 +306,22 @@ const ConversationQuizCreator = ({
     [thisContent, updateConversationListData],
   );
 
+  const { addKeyByArrayLength, deleteKeyByIndex, getKeyByIndex } = useSafeKey(
+    thisContent.data,
+  );
+
   const conversationQuizList = useMemo(() => {
     return thisContent.data.map((content, contentIndex) => {
       return (
-        <ConversationList className="conversation-wrap" key={uuidV4()}>
+        <ConversationList
+          className="conversation-wrap"
+          key={getKeyByIndex(contentIndex)}
+        >
           <ObjectDeleteButton
-            onClick={deleteConversation(contentIndex)}
+            onClick={() => {
+              deleteConversation(contentIndex);
+              deleteKeyByIndex(contentIndex);
+            }}
             customCSS={deleteButtonStyle}
           />
 
@@ -454,6 +464,8 @@ const ConversationQuizCreator = ({
     setAudio,
     setChoiceText,
     setImage,
+    deleteKeyByIndex,
+    getKeyByIndex,
   ]);
 
   const addConversation = useCallback(() => {
@@ -496,7 +508,14 @@ const ConversationQuizCreator = ({
       pasteContent={pasteContent}
     >
       <div className="flex-wrap">
-        <AddButton onClick={addConversation}>대화 추가</AddButton>
+        <AddButton
+          onClick={() => {
+            addConversation();
+            addKeyByArrayLength(thisContent.data.length);
+          }}
+        >
+          대화 추가
+        </AddButton>
         <ConversationWrapper
           className="conversation-wrapper"
           onClick={(e) => setFocusedId(e, content.id)}

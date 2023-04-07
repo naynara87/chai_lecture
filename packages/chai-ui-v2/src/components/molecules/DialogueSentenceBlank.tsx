@@ -142,16 +142,16 @@ const DialogueSentenceBlank = ({
   );
 
   const mainContents = useMemo(() => {
-    if (userChoices.length < 1) return;
     let blankCount = -1;
     return contents.map((content, contentIndex) => {
       return (
         <li
-          className={`conversation-wrap ${speakingDialogueIndex === contentIndex &&
-              globalAudioState === "playing"
+          className={`conversation-wrap ${
+            speakingDialogueIndex === contentIndex &&
+            globalAudioState === "playing"
               ? "active"
               : ""
-            }`}
+          }`}
           key={contentIndex}
         >
           <div className="img-grp">
@@ -178,16 +178,19 @@ const DialogueSentenceBlank = ({
           <div className="txt-wrap">
             {content.sentences.map((sentence, sentenceIndex) => {
               if (sentence.isChoice) {
+                if (userChoices.length < 1) return;
+
                 blankCount++;
                 const blankIndex = blankCount;
                 return (
                   <BlankSpan
-                    className={`blank-gray ${selectedBlankBox === blankIndex ? "active" : ""
-                      } ${answerCheckColor(
-                        contentIndex,
-                        sentenceIndex,
-                        blankIndex,
-                      )}`}
+                    className={`blank-gray ${
+                      selectedBlankBox === blankIndex ? "active" : ""
+                    } ${answerCheckColor(
+                      contentIndex,
+                      sentenceIndex,
+                      blankIndex,
+                    )}`}
                     key={sentenceIndex}
                     onClick={() => {
                       if (!!userChoices[blankIndex].text) return;
@@ -195,7 +198,9 @@ const DialogueSentenceBlank = ({
                       setSelectedChoiceBox(undefined);
                     }}
                   >
-                    {userChoices[blankIndex].text.replace(/<[^>]*>?/g, "")}
+                    <span className="text">
+                      {userChoices[blankIndex].text.replace(/<[^>]*>?/g, "")}
+                    </span>
                   </BlankSpan>
                 );
               } else {
