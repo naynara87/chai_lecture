@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { colorPalette } from "chai-ui-v2";
+import { colorPalette, LocalStorage } from "chai-ui-v2";
 import React, { useEffect, useRef } from "react";
 
 const HamburgMenuContainer = styled.ul`
@@ -51,11 +51,14 @@ const HamburgMenu = ({
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [menuRef, closeHamburgerMenu]);
+
   return (
     <HamburgMenuContainer className="hamburg-menu" ref={menuRef}>
       <HamburgMenuItem onClick={onClickDelete}>삭제</HamburgMenuItem>
       <HamburgMenuItem onClick={onClickCopy}>복사</HamburgMenuItem>
-      <HamburgMenuItem onClick={onClickPaste}>붙여넣기</HamburgMenuItem>
+      {!!LocalStorage.getItem("copyComponent") && (
+        <HamburgMenuItem onClick={onClickPaste}>붙여넣기</HamburgMenuItem>
+      )}
     </HamburgMenuContainer>
   );
 };
