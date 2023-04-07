@@ -11,8 +11,8 @@ import {
   vw,
 } from "chai-ui-v2";
 import TextEditorViewer from "../molecules/TextEditorViewer";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { v4 as uuidV4 } from "uuid";
+import { useCallback, useEffect, useState } from "react";
+import useSafeKey from "../../hooks/useSafeKey";
 
 const ImageListCreatorWrapper = styled.div``;
 
@@ -97,23 +97,9 @@ const ImageWithDescriptionListCreator = ({
 }: DraggableContentCommonProps) => {
   const thisContent = content as ImageWithDescriptionListContentData;
 
-  const keyListRef = useRef<string[]>(thisContent.data.map(() => uuidV4()));
-  const addKey = (index: number) => {
-    keyListRef.current = [
-      ...keyListRef.current.slice(0, index),
-      uuidV4(),
-      ...keyListRef.current.slice(index),
-    ];
-  };
-  const deleteKey = (index: number) => {
-    keyListRef.current = [
-      ...keyListRef.current.slice(0, index),
-      ...keyListRef.current.slice(index + 1),
-    ];
-  };
-  const getKey = (index: number) => {
-    return keyListRef.current[index] ?? index;
-  };
+  const { addKeyByArrayLength, deleteKeyByIndex, getKeyByIndex } = useSafeKey(
+    thisContent.data,
+  );
 
   const [focusedTextEditorIndex, setFocusedTextEditorIndex] =
     useState<number>();
@@ -232,7 +218,7 @@ const ImageWithDescriptionListCreator = ({
         <AddButton
           onClick={() => {
             addImage();
-            addKey(thisContent.data.length);
+            addKeyByArrayLength(thisContent.data.length);
           }}
         >
           이미지 추가
@@ -240,7 +226,7 @@ const ImageWithDescriptionListCreator = ({
         <ImageListWrapper>
           {thisContent.data.map((item, index) => {
             return (
-              <ImageList key={getKey(index)}>
+              <ImageList key={getKeyByIndex(index)}>
                 <div className="image-wrap">
                   {item.src ? (
                     <ComponentImage imageUrl={getThisContentImageSrc(index)} />
@@ -272,7 +258,7 @@ const ImageWithDescriptionListCreator = ({
                   <ObjectDeleteButton
                     onClick={() => {
                       deleteImage(index);
-                      deleteKey(index);
+                      deleteKeyByIndex(index);
                     }}
                   />
                 </DeleteButtonWrapper>

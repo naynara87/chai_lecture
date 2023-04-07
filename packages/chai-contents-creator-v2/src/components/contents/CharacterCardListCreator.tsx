@@ -23,7 +23,7 @@ import ModalCharacterCardList from "../molecules/modal/ModalCharacterCardList";
 import { getContentComponentsDefaultValue } from "../../data/appData";
 import { cloneDeep } from "lodash";
 import { DropResult } from "react-beautiful-dnd";
-import { v4 as uuidV4 } from "uuid";
+import useSafeKey from "../../hooks/useSafeKey";
 
 const TrainingWrapper = styled.div`
   .training-create-wrap {
@@ -351,6 +351,10 @@ const CharacterCardListCreator = ({
     updateContent(currentSlide.id, content.id, position, newContent);
   };
 
+  const { addKeyByArrayLength, deleteKeyByIndex, getKeyByIndex } = useSafeKey(
+    thisContent.data,
+  );
+
   return (
     <ContentCreatorLayout
       isDraggable={isDraggable}
@@ -364,13 +368,25 @@ const CharacterCardListCreator = ({
       pasteContent={pasteContent}
     >
       <TrainingWrapper className="training-wrapper">
-        <AddButton onClick={addCard}>학습목표 추가</AddButton>
+        <AddButton
+          onClick={() => {
+            addCard();
+            addKeyByArrayLength(thisContent.data.length);
+          }}
+        >
+          학습목표 추가
+        </AddButton>
         <div className="training-list-wrap training-end">
           {thisContent.data.map((item, index) => {
             return (
-              <div className="training-create-wrap" key={uuidV4()}>
+              <div className="training-create-wrap" key={getKeyByIndex(index)}>
                 <TrainingList className="training-list">
-                  <ObjectDeleteButton onClick={() => deleteCard(index)} />
+                  <ObjectDeleteButton
+                    onClick={() => {
+                      deleteCard(index);
+                      deleteKeyByIndex(index);
+                    }}
+                  />
                   <GradiWrap>
                     <ImageThumbWrap>
                       <ImageThumb className="img-wrap">
