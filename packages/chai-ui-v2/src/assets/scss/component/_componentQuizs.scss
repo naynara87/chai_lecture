@@ -86,7 +86,7 @@
 .hori-answer-wrap {
   @include flex-center {
     gap: vw(30);
-    // flex-wrap: wrap;
+    flex-wrap: wrap;
   }
 
   .inp-grp {
@@ -116,7 +116,8 @@
   }
 
   .blank {
-    width: vw(160);
+    min-width: vw(160);
+    max-width: vw(300);
     padding: vh(15) vw(15);
     border: 2px solid color(gray-c9);
     border-radius: vw(15);
