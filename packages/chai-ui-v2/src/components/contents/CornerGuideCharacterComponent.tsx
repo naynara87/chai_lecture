@@ -11,7 +11,6 @@ export interface CornerGuideCharacterComponentProps {
 const ContStartWrapper = styled.div`
   .text-bubble-wrap {
     padding: ${vw(40)} ${vw(80)};
-    border-radius: 999px;
     font-weight: 600;
     font-size: ${vw(36)};
   }
