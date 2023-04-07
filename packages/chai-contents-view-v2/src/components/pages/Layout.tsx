@@ -61,16 +61,16 @@ const Layout = () => {
       const parsingLessonId = parseInt(lessonId);
       try {
         await saveLmsData({
-          uno: pasingUno,
-          applId: parsingApplIdId,
-          courseId: parsingCourseId,
-          subjectId: parsingSubjectId,
-          cornerId: parsingCornerId,
-          lessonId: parsingLessonId,
-          pageId: parsingPageId,
-          progressRate: currentProgress(pageId),
-          envlCatgYn: isLessonTp,
-          complYn: currentProgress(pageId) === 100 ? "Y" : "N",
+          uno: pasingUno, // user id 쿠키에서 받아옴
+          applId: parsingApplIdId, // 신청 id 쿠키에서 받아옴
+          courseId: parsingCourseId, // 과정 id useParam에서 받음
+          contsId: parsingSubjectId, // 과목 id 쿠키에서 받아옴
+          cornerId: parsingCornerId, // 코너 id useParam에서 받음
+          lessonId: parsingLessonId, // 레슨 id useParam에서 받음
+          pageId: parsingPageId, // 페이지 id useParam에서 받음
+          progressRate: currentProgress(pageId), // 학습진도율 현재는 현재페이지의 index에 따라 계산중
+          envlCatgYn: isLessonTp, // 문제레슨인지 콘텐츠레슨인지 구분
+          complYn: currentProgress(pageId) === 100 ? "Y" : "N", // 현재페이지가 마지막페이지이면 Y 아니면 N
         });
       } catch (error) {
         console.log(error);
