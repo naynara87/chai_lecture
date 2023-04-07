@@ -185,12 +185,6 @@ const MultiChoiceCreator = ({
     return thisContent.data.choice.map((choice, choiceIndex) => {
       return (
         <div key={`${choice}_${choiceIndex}`} className="inp-grp">
-          <input
-            name="answer"
-            id={`answer${choiceIndex}`}
-            className="inp-chck-gray none"
-            checked={false}
-          />
           <ChoiceLabel
             htmlFor={`answer${choiceIndex}`}
             className="label-chck-gray"
