@@ -46,7 +46,7 @@ function App() {
         <RecoilRoot>
           <ToastContainer
             limit={3}
-            autoClose={4000}
+            autoClose={3000}
             hideProgressBar={true}
             closeButton={false}
           />

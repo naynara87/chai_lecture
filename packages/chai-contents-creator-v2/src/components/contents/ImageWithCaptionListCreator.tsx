@@ -3,7 +3,12 @@ import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 import ImageIcon from "../../assets/images/icon/icon_image.svg";
 import UrlInputWrapper from "../molecules/UrlInputWrapper";
 import { DraggableContentCommonProps } from "../../types/page";
-import { CaptionListImage, ImageWithCaptionListContentData, vw } from "chai-ui-v2";
+import {
+  CaptionListImage,
+  ImageWithCaptionListContentData,
+  useToast,
+  vw,
+} from "chai-ui-v2";
 import TextEditorViewer from "../molecules/TextEditorViewer";
 import { useCallback, useEffect, useState } from "react";
 import AddButton from "../atoms/AddButton";
@@ -76,6 +81,7 @@ const ImageWithCaptionListCreator = ({
   isDraggable,
 }: DraggableContentCommonProps) => {
   const thisContent = content as ImageWithCaptionListContentData;
+  const { addToast } = useToast();
 
   const [focusedTextEditorIndex, setFocusedTextEditorIndex] =
     useState<number>();
@@ -148,7 +154,7 @@ const ImageWithCaptionListCreator = ({
   const addImage = () => {
     // 최대 2개 까지
     if (thisContent.data.length === 2) {
-      alert("이미지는 최대 2개까지만 등록 가능합니다.");
+      addToast("이미지는 최대 2개까지만 등록 가능합니다.", "info");
       return;
     }
     const newContent = {
@@ -166,7 +172,7 @@ const ImageWithCaptionListCreator = ({
 
   const deleteImage = (index: number) => {
     if (thisContent.data.length === 1) {
-      alert("최소 1개이상 입력하셔야 합니다.");
+      addToast("최소 1개이상 입력하셔야 합니다.", "info");
       return;
     }
     const newContent = {

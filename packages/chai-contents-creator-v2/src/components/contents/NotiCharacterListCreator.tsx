@@ -4,7 +4,11 @@ import UrlInputWrapper from "../molecules/UrlInputWrapper";
 import iconPlay from "chai-ui-v2/dist/assets/images/icon/icon_contsinfo_tail.svg";
 import ImageIcon from "../../assets/images/icon/icon_image_with_bg.svg";
 import ObjectDeleteButton from "../atoms/ObjectDeleteButton";
-import { colorPalette, NotiCharacterListContentData } from "chai-ui-v2";
+import {
+  colorPalette,
+  NotiCharacterListContentData,
+  useToast,
+} from "chai-ui-v2";
 import AddButton from "../atoms/AddButton";
 import { DraggableContentCommonProps } from "../../types/page";
 import TextEditorViewer from "../molecules/TextEditorViewer";
@@ -96,6 +100,7 @@ const NotiCharacterListCreator = ({
   const thisContent = content as NotiCharacterListContentData;
   const [focusedTextEditorIndex, setFocusedTextEditorIndex] =
     useState<number>();
+  const { addToast } = useToast();
 
   const focusTextEditor = useCallback(
     (index: number) => (e: React.MouseEvent) => {
@@ -141,7 +146,7 @@ const NotiCharacterListCreator = ({
   const addImage = () => {
     // 최대 2개 까지
     if (thisContent.data.length >= 2) {
-      alert("학습예고는 최대 2개까지만 등록 가능합니다.");
+      addToast("학습예고는 최대 2개까지만 등록 가능합니다.", "info");
       return;
     }
     const newContent = {
@@ -161,7 +166,7 @@ const NotiCharacterListCreator = ({
 
   const deleteImage = (index: number) => {
     if (thisContent.data.length === 1) {
-      alert("최소 1개이상 입력하셔야 합니다.");
+      addToast("최소 1개이상 입력하셔야 합니다.", "info");
       return;
     }
     const newContent = {

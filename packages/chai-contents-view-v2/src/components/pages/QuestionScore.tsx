@@ -10,18 +10,19 @@ import {
   deleteQuestion,
   getCookie,
   InitialAppData,
+  useToast,
 } from "chai-ui-v2";
 import { useMemo, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { getPageUrl } from "../../util/url";
 import LayoutQuestionHeader from "../molecules/LayoutQuestionHeader";
-import { toast } from "react-toastify";
 
 const QuestionScore = () => {
   const [quizPageIdx, setQuizPageIdx] = useState(-1);
   const [isModalRestartConfirmOpen, setIsModalRestartConfirmOpen] =
     useState(false);
   const [isModalExitConfirmOpen, setIsModalExitConfirmOpen] = useState(false);
+  const { addToast } = useToast();
 
   const { state } = useLocation();
   const { courseId, cornerId, lessonId } = useParams();
@@ -46,9 +47,7 @@ const QuestionScore = () => {
         await deleteQuestion(contentIds, userId?.uid ?? "");
         navigate(getPageUrl(courseId, lessonId, cornerId, 1));
       } catch (error) {
-        toast("서버 통신에 실패했습니다. 다시 시도해주세요.", {
-          type: "error",
-        });
+        addToast("서버 통신에 실패했습니다. 다시 시도해주세요.", "error");
       }
     }
   };

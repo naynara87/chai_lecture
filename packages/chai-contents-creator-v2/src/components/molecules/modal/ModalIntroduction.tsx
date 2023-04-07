@@ -3,6 +3,7 @@ import {
   ComponentButtonRadiFillMain,
   PageIntroduction,
   ModalBase,
+  useToast,
 } from "chai-ui-v2";
 import React, { useEffect, useMemo, useState } from "react";
 import ImageIcon from "../../../assets/images/icon/icon_image_with_bg.svg";
@@ -47,6 +48,7 @@ const ModalIntroduction = ({
   closeOnBackgroundClick = true,
 }: ModalIntroductionProps) => {
   const [focusedEditor, setFocusedEditor] = useState<EditorType>();
+  const { addToast } = useToast();
 
   const handleClose = () => {
     setIsModalOpen(false);
@@ -61,7 +63,7 @@ const ModalIntroduction = ({
     if (tempPageIntroductionData) {
       saveIntroductionModalData(tempPageIntroductionData);
     } else {
-      alert("데이터를 입력해주세요."); // FIXME: alert 대신 토스트 메시지로 변경
+      addToast("데이터를 입력해주세요.", "info");
       return;
     }
     setIsModalOpen(false);

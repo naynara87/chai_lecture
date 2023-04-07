@@ -3,6 +3,7 @@ import {
   ComponentButtonRoundArrow,
   ConversationWordListContentData,
   ImgCharacterComponent,
+  useToast,
   vw,
 } from "chai-ui-v2";
 import React, { useCallback, useMemo, useState } from "react";
@@ -60,6 +61,7 @@ const ConversationWordListCreator = ({
   const thisContent = content as ConversationWordListContentData;
   const [focusedTextEditorIndex, setFocusedTextEditorIndex] =
     useState<number>();
+  const { addToast } = useToast();
 
   const fucusTextEditor = useCallback((wordIndex: number) => {
     setFocusedTextEditorIndex(wordIndex);
@@ -156,7 +158,7 @@ const ConversationWordListCreator = ({
   const deleteWord = useCallback(
     (listIndex: number) => {
       if (thisContent.data.words.length === 1) {
-        alert("최소 1개이상 입력하셔야 합니다.");
+        addToast("최소 1개이상 입력하셔야 합니다.", "info");
         return;
       }
 
@@ -165,7 +167,7 @@ const ConversationWordListCreator = ({
       newContent.data.words.splice(listIndex, 1);
       updateContent(currentSlide.id, thisContent.id, position, newContent);
     },
-    [currentSlide.id, position, thisContent, updateContent],
+    [currentSlide.id, position, thisContent, updateContent, addToast],
   );
 
   const vocaLists = useMemo(() => {

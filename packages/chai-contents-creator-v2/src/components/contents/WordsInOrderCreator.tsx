@@ -2,6 +2,7 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import {
   QuizPopupModalContentData,
+  useToast,
   vh,
   vw,
   WordsInOrderContentData,
@@ -86,6 +87,7 @@ const WordsInOrderCreator = ({
     useState<number>();
   const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(false);
   const [solutionType, setSolutionType] = useState<"correct" | "incorrect">();
+  const { addToast } = useToast();
 
   const { addComponent, deleteComponent, updateComponent, handleOnDragEnd } =
     useGrayLineComponent({
@@ -189,7 +191,7 @@ const WordsInOrderCreator = ({
   const deleteAnswer = useCallback(
     (listIndex: number) => () => {
       if (thisContent.data.choice.length === 1) {
-        alert("최소 1개이상 입력하셔야 합니다.");
+        addToast("최소 1개이상 입력하셔야 합니다.", "info");
         return;
       }
 
@@ -201,7 +203,12 @@ const WordsInOrderCreator = ({
       updateContentToWordsInOrderTemplate &&
         updateContentToWordsInOrderTemplate(currentSlide.id, newContent);
     },
-    [thisContent, currentSlide.id, updateContentToWordsInOrderTemplate],
+    [
+      thisContent,
+      currentSlide.id,
+      updateContentToWordsInOrderTemplate,
+      addToast,
+    ],
   );
 
   const addAnswer = useCallback(() => {
