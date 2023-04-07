@@ -43,7 +43,7 @@ const Main = styled.main`
 `;
 
 const MainSection = styled.section`
-  &:not(:first-child) {
+  &:not(:first-of-type) {
     margin-top: 32px;
   }
 `;

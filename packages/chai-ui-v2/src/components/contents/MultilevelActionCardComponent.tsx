@@ -6,7 +6,7 @@ import useContentMapper from "../../core/hooks/useContentMapper";
 import ComponentButtonStep from "../atoms/Button/ComponentButtonStep";
 
 const StepCard = styled.div`
-  > *:not(:first-child) {
+  > *:not(:first-of-type) {
     margin-top: ${vw(40)};
   }
 

@@ -9,7 +9,7 @@ const DroppableContainer = styled.div`
   width: 100%;
   min-height: 40px;
 
-  & .hamburg-menu li:not(:first-child) {
+  & .hamburg-menu li:not(:first-of-type) {
     display: none;
   }
 `;

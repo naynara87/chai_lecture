@@ -9,7 +9,7 @@ const CultureListWrapper = styled.div`
     justify-content: flex-start;
     align-items: flex-start;
 
-    &:not(:first-child) {
+    &:not(:first-of-type) {
       margin-top: ${vh(40)};
     }
 

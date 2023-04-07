@@ -10,7 +10,7 @@
   border-radius: vw(20);
   background-color: color(gray-f5);
 
-  &:not(:first-child) {
+  &:not(:first-of-type) {
     margin-top: vh(20);
   }
 

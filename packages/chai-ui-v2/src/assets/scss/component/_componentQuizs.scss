@@ -27,10 +27,10 @@
     color: color(gray-80);
   }
 
-  >* {
+  > * {
     margin-top: vh(30);
 
-    &:first-child {
+    &:first-of-type {
       margin-top: 0;
     }
   }

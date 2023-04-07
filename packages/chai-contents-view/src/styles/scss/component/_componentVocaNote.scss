@@ -1,56 +1,56 @@
 /* =================== componentVocaNote =================== */
 .voca-bote-container {
-	@include full;
-	padding: vh(24) vw(20);
-	overflow: auto;
-	border: 1px solid #DBE1FF;
-	border-radius: vw(20);
-	background-color: #F4F3FA;
+  @include full;
+  padding: vh(24) vw(20);
+  overflow: auto;
+  border: 1px solid #dbe1ff;
+  border-radius: vw(20);
+  background-color: #f4f3fa;
 }
 
 .voca-title {
-	z-index: z(zero);
-	position: relative;
-	padding-bottom: vh(14);
-	font-size: vw(22);
-	text-align: center;
+  z-index: z(zero);
+  position: relative;
+  padding-bottom: vh(14);
+  font-size: vw(22);
+  text-align: center;
 
-	.img {
-		position: absolute;
-		top: vh(-8);
-		left: 0;
-		width: vw(90);
-	}
+  .img {
+    position: absolute;
+    top: vh(-8);
+    left: 0;
+    width: vw(90);
+  }
 }
 
 .voca-list-wrap {
-	z-index: z(one);
-	position: relative;
+  z-index: z(one);
+  position: relative;
 }
 
 .voca-list {
-	@include flex-btw;
-	
-	padding: vh(15) vw(20);
-	border-radius: vw(10);
-	background-color: color(gray-ff);
+  @include flex-btw;
 
-	&:not(:first-child) {
-		margin-top: vh(20);
-	}
+  padding: vh(15) vw(20);
+  border-radius: vw(10);
+  background-color: color(gray-ff);
 
-	.chinese {
-		font-weight: 600;
-		font-size: vw(28);
-	}
+  &:not(:first-of-type) {
+    margin-top: vh(20);
+  }
 
-	.pinyin {
-		font-size: vw(22);
-		color: color(gray-80);
-	}
+  .chinese {
+    font-weight: 600;
+    font-size: vw(28);
+  }
 
-	.mean {
-		font-size: vw(22);
-		color: color(gray-80);
-	}
+  .pinyin {
+    font-size: vw(22);
+    color: color(gray-80);
+  }
+
+  .mean {
+    font-size: vw(22);
+    color: color(gray-80);
+  }
 }

@@ -1,13 +1,13 @@
 /* =================== componentGrayLine =================== */
 .gray-line {
-	padding: vh(40) vw(60);
-	border: 1px solid color(gray-db);
-	border-radius: vw(20);
-	font-size: vw(32);
-	line-height: 1.6;
-	white-space: pre-line;
+  padding: vh(40) vw(60);
+  border: 1px solid color(gray-db);
+  border-radius: vw(20);
+  font-size: vw(32);
+  line-height: 1.6;
+  white-space: pre-line;
 
-	>div:not(:first-child) {
-		margin-top: vh(40);
-	}
+  > div:not(:first-of-type) {
+    margin-top: vh(40);
+  }
 }
