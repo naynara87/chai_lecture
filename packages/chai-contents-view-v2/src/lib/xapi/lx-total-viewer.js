@@ -4820,7 +4820,7 @@ code.google.com/p/crypto-js/wiki/License
                 "https://profile.caihong.co.kr/content-management/course/session-id":
                   sessionId,
                 "https://profile.caihong.co.kr/content-management/course/lessons/pages/page":
-                  curPage,
+                  currentPage,
                 "https://profile.caihong.co.kr/content-management/course/lessons/pages/progress-segments":
                   progressSegments,
               },

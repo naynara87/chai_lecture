@@ -10,6 +10,7 @@ import {
   LessonMeta,
   LRSActivityState,
   LRSCornerProgress,
+  ProgressPageData,
 } from "../types";
 import usePageCompleted from "./usePageCompleted";
 
@@ -136,10 +137,23 @@ const useXapi = () => {
           totalPages,
         ).completed_progress,
       });
+      const progressPageData: ProgressPageData = {
+        prevPage: parseInt(currentPageId.toString()),
+        currentPage: pageIndex + 1,
+        progress: updateProgress(
+          newProgressData ?? xapiActivity.progress_data,
+          totalPages,
+        ).progress,
+        partId: nextCorner.id,
+        partName: nextCorner.name,
+        pageId: nextPageId,
+        pageName: "",
+        tpType: "",
+        pageAreaCd: "",
+      };
       xapiV1?.sendProgress(
         // TODO 이전페이지 매개변수 currentPageId 계산해서 index넣으면될듯?
-        parseInt(currentPageId.toString()),
-        pageIndex + 1,
+        progressPageData,
         newXapiActivityState ?? xapiActivity,
       );
       setXapiActivity(newXapiActivityState);

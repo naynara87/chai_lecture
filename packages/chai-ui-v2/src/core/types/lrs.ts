@@ -78,6 +78,18 @@ export interface BubbleAPI {
   getInstance: () => XapiV1;
 }
 
+export interface ProgressPageData {
+  prevPage: number;
+  currentPage: number;
+  progress: number;
+  partName: string;
+  partId: ID;
+  pageId: ID;
+  pageName: string;
+  tpType: string;
+  pageAreaCd: string;
+}
+
 export interface XapiV1 {
   initialize: (
     targetObjectApplication: unknown,
@@ -94,8 +106,7 @@ export interface XapiV1 {
   saveState: () => void;
   playerLoadedEvent: CustomEvent<any>;
   sendProgress: (
-    prevPage: number,
-    currentPage: number,
+    pageData: ProgressPageData,
     newState: LRSActivityState,
   ) => void;
   sendComplete(curPage: number): void;
