@@ -14,7 +14,7 @@ import {
   ConversationWrapper,
   deleteButtonStyle,
 } from "./ConversationCreator";
-import { AnswerCheckText, AnswerInput } from "./MultiChoiceCreator";
+import { AnswerCheckText } from "./MultiChoiceCreator";
 import { v4 as uuidV4 } from "uuid";
 
 const AnswerBoxWrap = styled.div`
@@ -30,6 +30,33 @@ const AnswerBox = styled.div`
 
   &:first-of-type {
     margin-right: ${vw(10)};
+  }
+`;
+
+const AnswerInput = styled.input`
+  vertical-align: middle;
+  appearance: none;
+  border: max(2px, 0.1em) solid #c9c9c9;
+  border-radius: 50%;
+  margin-right: 5px;
+  width: 1em;
+  height: 1em;
+  position: relative;
+
+  &:checked {
+    border-color: #7686d4;
+  }
+
+  &:checked::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #7686d4;
   }
 `;
 
@@ -365,7 +392,7 @@ const ConversationQuizCreator = ({
             <AnswerBoxWrap>
               {content.choice.map((choice, choiceIndex) => {
                 return (
-                  <div className="flex-wrap" key={choiceIndex}>
+                  <div className="flex-wrap inp-grp" key={choiceIndex}>
                     <AnswerBox
                       onClick={focusTextEditor(
                         contentIndex,
@@ -394,12 +421,13 @@ const ConversationQuizCreator = ({
                     </AnswerBox>
                     <AnswerInput
                       type="radio"
-                      name={`answerCheck_${thisContent.id}_${contentIndex}`}
-                      id={`answerCheck_${thisContent.id}_${contentIndex}_${choiceIndex}`}
+                      name={`answerCheck_${contentIndex}_${thisContent.id}`}
+                      id={`answerCheck_${contentIndex}_${choiceIndex}_${thisContent.id}`}
                       onClick={() => setAnswer(contentIndex, choiceIndex)}
+                      checked={choice.isAnswer}
                     />
                     <label
-                      htmlFor={`answerCheck_${thisContent.id}_${contentIndex}_${choiceIndex}`}
+                      htmlFor={`answerCheck_${contentIndex}_${choiceIndex}_${thisContent.id}`}
                       onClick={() => setAnswer(contentIndex, choiceIndex)}
                     >
                       <AnswerCheckText className="text">정답</AnswerCheckText>
