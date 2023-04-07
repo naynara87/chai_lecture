@@ -7,6 +7,7 @@ import {
   Content,
   ContentType,
   ID,
+  useToast,
 } from "chai-ui-v2";
 import React, { useCallback, useEffect, useState } from "react";
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
@@ -101,8 +102,7 @@ const GradiWrap = styled.div`
   background-image: linear-gradient(to top, #e3e8ff 0%, #e9faff 100%);
 `;
 
-const TrainingList = styled.div`
-`;
+const TrainingList = styled.div``;
 
 type ColumnIndex = "title" | "description";
 
@@ -132,6 +132,8 @@ const CharacterCardListCreator = ({
   const [modalState, setModalState] = useState<boolean[]>(
     Array(thisContent.data.length).fill(false),
   );
+
+  const { addToast } = useToast();
 
   const fucusTextEditor = useCallback(
     (characterCardListIndex: number, columnIndex: ColumnIndex) =>
@@ -193,7 +195,7 @@ const CharacterCardListCreator = ({
 
   const addCard = () => {
     if (thisContent.data.length >= 4) {
-      alert("최대 4개까지 등록 가능합니다.");
+      addToast("최대 4개까지 등록 가능합니다.", "info");
       return;
     }
     const newContent = {
@@ -243,7 +245,7 @@ const CharacterCardListCreator = ({
 
   const deleteCard = (index: number) => {
     if (thisContent.data.length === 1) {
-      alert("최소 1개이상 입력하셔야 합니다.");
+      addToast("최소 1개이상 입력하셔야 합니다.", "info");
       return;
     }
     const updatedData = thisContent.data.filter((_, i) => i !== index);
@@ -301,34 +303,34 @@ const CharacterCardListCreator = ({
    */
   const updateComponent =
     (cardIndex: number) =>
-      (
-        slideId: ID,
-        contentId: ID,
-        position: CommonTemplateComponentLocation,
-        updatedContent: Content,
-      ) => {
-        const newContent: CharacterCardListContentData = cloneDeep(thisContent);
-        const thisComponentIndex = newContent.data[
-          cardIndex
-        ].modalContents!.findIndex((component) => component.id === contentId);
-        newContent.data[cardIndex].modalContents![thisComponentIndex] =
-          updatedContent;
-        updateContent(currentSlide.id, content.id, position, newContent);
-      };
+    (
+      slideId: ID,
+      contentId: ID,
+      position: CommonTemplateComponentLocation,
+      updatedContent: Content,
+    ) => {
+      const newContent: CharacterCardListContentData = cloneDeep(thisContent);
+      const thisComponentIndex = newContent.data[
+        cardIndex
+      ].modalContents!.findIndex((component) => component.id === contentId);
+      newContent.data[cardIndex].modalContents![thisComponentIndex] =
+        updatedContent;
+      updateContent(currentSlide.id, content.id, position, newContent);
+    };
 
   /**
    * 모달안에서 동작할 컴포넌트 삭제 함수
    */
   const deleteComponent =
     (cardIndex: number) =>
-      (slideId: ID, contentId: ID, position: CommonTemplateComponentLocation) => {
-        const newContent: CharacterCardListContentData = cloneDeep(thisContent);
-        const thisComponentIndex = newContent.data[
-          cardIndex
-        ].modalContents!.findIndex((component) => component.id === contentId);
-        newContent.data[cardIndex].modalContents!.splice(thisComponentIndex, 1);
-        updateContent(currentSlide.id, content.id, position, newContent);
-      };
+    (slideId: ID, contentId: ID, position: CommonTemplateComponentLocation) => {
+      const newContent: CharacterCardListContentData = cloneDeep(thisContent);
+      const thisComponentIndex = newContent.data[
+        cardIndex
+      ].modalContents!.findIndex((component) => component.id === contentId);
+      newContent.data[cardIndex].modalContents!.splice(thisComponentIndex, 1);
+      updateContent(currentSlide.id, content.id, position, newContent);
+    };
 
   const handleDragEnd = (cardIndex: number) => (result: DropResult) => {
     const { destination, draggableId } = result;

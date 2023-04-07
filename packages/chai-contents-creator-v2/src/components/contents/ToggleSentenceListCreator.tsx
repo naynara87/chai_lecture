@@ -4,7 +4,11 @@ import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 import AddButton from "../atoms/AddButton";
 import TogglesWrapper from "../atoms/TogglesWrapper";
 import ObjectDeleteButton from "../atoms/ObjectDeleteButton";
-import { colorPalette, ToggleSentenceListContentData } from "chai-ui-v2";
+import {
+  colorPalette,
+  ToggleSentenceListContentData,
+  useToast,
+} from "chai-ui-v2";
 import { DraggableContentCommonProps } from "../../types/page";
 import TextEditorViewer from "../molecules/TextEditorViewer";
 
@@ -59,6 +63,8 @@ const ToggleSentenceListCreator = ({
   const [focusedTextEditorIndex, setFocusedTextEditorIndex] =
     useState<number>();
   const [focusedColumnIndex, setFocusedColumnIndex] = useState<TextType>();
+
+  const { addToast } = useToast();
 
   const fucusTextEditor = useCallback(
     (sentenceListIndex: number, columnIndex: TextType) => () => {
@@ -166,7 +172,7 @@ const ToggleSentenceListCreator = ({
   const deleteSentence = useCallback(
     (sentenceListIndex: number) => {
       if (thisContent.data.length === 1) {
-        alert("최소 1개이상 입력하셔야 합니다.");
+        addToast("최소 1개이상 입력하셔야 합니다.", "info");
         return;
       }
       const updatedData = thisContent.data.filter(
@@ -174,7 +180,7 @@ const ToggleSentenceListCreator = ({
       );
       updateSentenceListData(updatedData);
     },
-    [thisContent.data, updateSentenceListData],
+    [thisContent.data, updateSentenceListData, addToast],
   );
 
   const sentences = useMemo(() => {

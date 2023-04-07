@@ -6,3 +6,4 @@ export { default as useGlobalAudio } from "./useGlobalAudio";
 export { default as useLessonNameMapper } from "./useLessonNameMapper";
 export { default as usePromiseConfirmModal } from "./usePromiseConfirmModal";
 export { default as useDebounced } from "./useDebounced";
+export { default as useToast } from "./useToast";

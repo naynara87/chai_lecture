@@ -8,6 +8,7 @@ import { DraggableContentCommonProps } from "../../types/page";
 import {
   ComponentImage,
   ImageWithDescriptionListContentData,
+  useToast,
   vw,
 } from "chai-ui-v2";
 import TextEditorViewer from "../molecules/TextEditorViewer";
@@ -100,6 +101,7 @@ const ImageWithDescriptionListCreator = ({
   const { addKeyByArrayLength, deleteKeyByIndex, getKeyByIndex } = useSafeKey(
     thisContent.data,
   );
+  const { addToast } = useToast();
 
   const [focusedTextEditorIndex, setFocusedTextEditorIndex] =
     useState<number>();
@@ -162,7 +164,7 @@ const ImageWithDescriptionListCreator = ({
 
   const deleteImage = (index: number) => {
     if (thisContent.data.length === 1) {
-      alert("최소 1개이상 입력하셔야 합니다.");
+      addToast("최소 1개이상 입력하셔야 합니다.", "info");
       return;
     }
     const newContent = {

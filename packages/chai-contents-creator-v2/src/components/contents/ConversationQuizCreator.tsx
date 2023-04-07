@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { ConversationQuizContentData, vh, vw } from "chai-ui-v2";
+import { ConversationQuizContentData, useToast, vh, vw } from "chai-ui-v2";
 import { cloneDeep } from "lodash";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { DraggableContentCommonProps } from "../../types/page";
@@ -85,6 +85,7 @@ const ConversationQuizCreator = ({
   const [focusedColumnIndex, setFocusedColumnIndex] = useState<
     TextType | ChoiceType
   >();
+  const { addToast } = useToast();
 
   const focusTextEditor = useCallback(
     (sentenceListIndex: number, columnIndex: TextType | ChoiceType) => () => {
@@ -167,7 +168,7 @@ const ConversationQuizCreator = ({
   const deleteConversation = useCallback(
     (listIndex: number) => {
       if (thisContent.data.length === 1) {
-        alert("최소 1개이상 입력하셔야 합니다.");
+        addToast("최소 1개이상 입력하셔야 합니다.", "info");
         return;
       }
 
@@ -176,7 +177,7 @@ const ConversationQuizCreator = ({
       newContent.data.splice(removeIndex, 1);
       updateContent(currentSlide.id, thisContent.id, position, newContent);
     },
-    [thisContent, currentSlide.id, updateContent, position],
+    [thisContent, currentSlide.id, updateContent, position, addToast],
   );
 
   /**

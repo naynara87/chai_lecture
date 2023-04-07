@@ -9,6 +9,7 @@ import {
   Content,
   ContentType,
   ID,
+  useToast,
 } from "chai-ui-v2";
 import CheckBoxWrapper from "../molecules/CheckBoxWrapper";
 import {
@@ -133,6 +134,7 @@ const CardTabCreator = ({
   const [focusedCardComponentSelectIndex, setFocusedCardComponentSelectIndex] =
     useState<number>(0);
   const [focusedTabTitleText, setFocusedTabTitleText] = useState<string>();
+  const { addToast } = useToast();
 
   const {
     ComponentsContextMenuComponent,
@@ -294,7 +296,7 @@ const CardTabCreator = ({
   const deleteCard = useCallback(
     (cardIndex: number) => () => {
       if (thisContent.data[cardIndex].cards.length === 1) {
-        alert("최소 1개이상 입력하셔야 합니다.");
+        addToast("최소 1개이상 입력하셔야 합니다.", "info");
         return;
       }
 
@@ -310,6 +312,7 @@ const CardTabCreator = ({
       currentSlide.id,
       updateContent,
       position,
+      addToast,
     ],
   );
 

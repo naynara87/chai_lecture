@@ -3,7 +3,7 @@ import AddButton from "../atoms/AddButton";
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 import ObjectDeleteButton from "../atoms/ObjectDeleteButton";
 import { DraggableContentCommonProps } from "../../types/page";
-import { NumberingTextListContentData } from "chai-ui-v2";
+import { NumberingTextListContentData, useToast } from "chai-ui-v2";
 import React, { useCallback, useEffect, useState } from "react";
 import { numberingTextDefaultData } from "../../data/appData";
 import TextEditorViewer from "../molecules/TextEditorViewer";
@@ -83,6 +83,8 @@ const NumberingTextListCreator = ({
     useState<number>();
 
   const [focusedColumnIndex, setFocusedColumnIndex] = useState<ColumnIndex>();
+
+  const { addToast } = useToast();
 
   const fucusTextEditor = useCallback(
     (numberListIndex: number, columnIndex: ColumnIndex) => () => {
@@ -179,7 +181,7 @@ const NumberingTextListCreator = ({
 
   const deleteCurrentNumberingTextItem = (index: number) => {
     if (thisContent.data.length === 1) {
-      alert("최소 1개이상 입력하셔야 합니다.");
+      addToast("최소 1개이상 입력하셔야 합니다.", "info");
       return;
     }
     const updatedData = thisContent.data.filter((_, i) => i !== index);

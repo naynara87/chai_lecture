@@ -16,69 +16,95 @@ article,
 aside,
 nav,
 [class] {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	box-sizing: border-box;
-	font-size: 100%;
-	font: inherit;
-	line-height: 1.5;
-	font-family: "noto", sans-serif;
-	letter-spacing: 0;
-	vertical-align: baseline;
-	word-break: keep-all;
-	overflow-wrap: break-word;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  font-size: 100%;
+  font: inherit;
+  line-height: 1.5;
+  font-family: "noto", sans-serif;
+  letter-spacing: 0;
+  vertical-align: baseline;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 html {
-	-webkit-tap-highlight-color: transparent;
-	-webkit-text-size-adjust: 100%;
-	font-size: 16px;
-	scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  font-size: 16px;
+  scroll-behavior: smooth;
 }
 
 a {
-	outline: 0;
-	background-color: transparent;
+  outline: 0;
+  background-color: transparent;
 
-	text: {
-		decoration: none;
-	}
+  text: {
+    decoration: none;
+  }
 
-	color: color(text);
-	cursor: pointer;
+  color: color(text);
+  cursor: pointer;
 }
 
 ol,
 ul,
 dl {
-	list-style: none;
+  list-style: none;
 }
 
 textarea {
-	resize: none;
+  resize: none;
 }
 
 select {
-	padding: 5px 10px;
+  padding: 5px 10px;
 }
 
 /* ie 화살표 제거 */
 select::-ms-expand {
-	display: none;
+  display: none;
 }
 
 address {
-	font-style: normal;
+  font-style: normal;
 }
 
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 /* Reset img */
 img {
-	max-width: 100%;
-	height: auto;
+  max-width: 100%;
+  height: auto;
+}
+
+.Toastify__toast {
+  padding: 0 !important;
+  margin-bottom: 1rem;
+}
+
+.Toastify__toast-body {
+  padding: 0 !important;
+  margin: 0;
+  & > div {
+    width: 100%;
+  }
+}
+
+:root {
+  --toastify-toast-min-height: 0 !important;
+}
+
+.btn-wrap {
+  margin-top: vw(64);
+  text-align: center;
+
+  > button:not(:first-of-type) {
+    margin-left: vw(24);
+  }
 }

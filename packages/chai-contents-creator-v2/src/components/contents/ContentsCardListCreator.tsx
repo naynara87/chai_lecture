@@ -6,6 +6,7 @@ import {
   ContentsCardListContentData,
   ContentType,
   ID,
+  useToast,
 } from "chai-ui-v2";
 import { cloneDeep } from "lodash";
 import { useCallback, useEffect, useState } from "react";
@@ -25,8 +26,7 @@ import ComponentsContextMenuComponent from "../molecules/ComponentsContextMenuCo
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 import DroppableContents from "../molecules/DroppableContents";
 
-const MultilevelActionCardWrapper = styled.div`
-`;
+const MultilevelActionCardWrapper = styled.div``;
 const MultilevelActionCardList = styled.div`
   display: flex;
   gap: 16px;
@@ -94,6 +94,7 @@ const ContentsCardListCreator = ({
   const [contextMenuOpenStateList, setContextMenuOpenStateList] = useState<
     boolean[]
   >(Array.from({ length: thisContent.data.length }, () => false));
+  const { addToast } = useToast();
 
   const toggleContextMenu = (index: number) => (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -145,7 +146,7 @@ const ContentsCardListCreator = ({
    */
   const deleteCard = (listIndex: number) => {
     if (thisContent.data.length === 1) {
-      alert("최소 1개이상 입력하셔야 합니다.");
+      addToast("최소 1개이상 입력하셔야 합니다.", "info");
       return;
     }
 
@@ -185,36 +186,36 @@ const ContentsCardListCreator = ({
 
   const updateComponent =
     (listIndex: number) =>
-      (
-        slideId: ID,
-        contentId: ID,
-        position: CommonTemplateComponentLocation,
-        updatedContent: Content,
-      ) => {
-        const newContent: ContentsCardListContentData = cloneDeep(thisContent);
-        const thisList = newContent.data[listIndex];
-        const thisListCopy: ContentsCardItem = cloneDeep(thisList);
-        const thisComponentIndex = thisListCopy.contents.findIndex(
-          (component) => component.id === contentId,
-        );
-        thisListCopy.contents[thisComponentIndex] = updatedContent;
-        newContent.data[listIndex] = thisListCopy;
-        updateContent(currentSlide.id, thisContent.id, position, newContent);
-      };
+    (
+      slideId: ID,
+      contentId: ID,
+      position: CommonTemplateComponentLocation,
+      updatedContent: Content,
+    ) => {
+      const newContent: ContentsCardListContentData = cloneDeep(thisContent);
+      const thisList = newContent.data[listIndex];
+      const thisListCopy: ContentsCardItem = cloneDeep(thisList);
+      const thisComponentIndex = thisListCopy.contents.findIndex(
+        (component) => component.id === contentId,
+      );
+      thisListCopy.contents[thisComponentIndex] = updatedContent;
+      newContent.data[listIndex] = thisListCopy;
+      updateContent(currentSlide.id, thisContent.id, position, newContent);
+    };
 
   const deleteComponent =
     (listIndex: number) =>
-      (slideId: ID, contentId: ID, position: CommonTemplateComponentLocation) => {
-        const newContent: ContentsCardListContentData = cloneDeep(thisContent);
-        const thisList = newContent.data[listIndex];
-        const thisListCopy: ContentsCardItem = cloneDeep(thisList);
-        const thisComponentIndex = thisListCopy.contents.findIndex(
-          (component) => component.id === contentId,
-        );
-        thisListCopy.contents.splice(thisComponentIndex, 1);
-        newContent.data[listIndex] = thisListCopy;
-        updateContent(currentSlide.id, thisContent.id, position, newContent);
-      };
+    (slideId: ID, contentId: ID, position: CommonTemplateComponentLocation) => {
+      const newContent: ContentsCardListContentData = cloneDeep(thisContent);
+      const thisList = newContent.data[listIndex];
+      const thisListCopy: ContentsCardItem = cloneDeep(thisList);
+      const thisComponentIndex = thisListCopy.contents.findIndex(
+        (component) => component.id === contentId,
+      );
+      thisListCopy.contents.splice(thisComponentIndex, 1);
+      newContent.data[listIndex] = thisListCopy;
+      updateContent(currentSlide.id, thisContent.id, position, newContent);
+    };
 
   return (
     <ContentCreatorLayout

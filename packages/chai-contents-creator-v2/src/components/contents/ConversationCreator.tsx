@@ -5,6 +5,7 @@ import {
   TemplateConversationData,
   TemplateConversationRepeatData,
   TemplateConversationToggleData,
+  useToast,
   vh,
   vw,
 } from "chai-ui-v2";
@@ -74,6 +75,7 @@ const ConversationCreator = ({
   const [focusedTextEditorIndex, setFocusedTextEditorIndex] =
     useState<number>();
   const [focusedColumnIndex, setFocusedColumnIndex] = useState<TextType>();
+  const { addToast } = useToast();
 
   const focusTextEditor = useCallback(
     (sentenceListIndex: number, columnIndex: TextType) => () => {
@@ -222,7 +224,7 @@ const ConversationCreator = ({
   const deleteConversation = useCallback(
     (listIndex: number) => {
       if (thisContent.data.length === 1) {
-        alert("최소 1개이상 입력하셔야 합니다.");
+        addToast("최소 1개이상 입력하셔야 합니다.", "info");
         return;
       }
 
@@ -231,7 +233,7 @@ const ConversationCreator = ({
       newContent.data.splice(removeIndex, 1);
       updateContent(currentSlide.id, thisContent.id, position, newContent);
     },
-    [thisContent, currentSlide.id, updateContent, position],
+    [thisContent, currentSlide.id, updateContent, position, addToast],
   );
 
   const handleSubmitSpeakingTime = useCallback(

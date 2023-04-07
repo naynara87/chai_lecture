@@ -3,6 +3,7 @@ import {
   ComponentButtonRadiFillMain,
   ModalBase,
   QuizPopupModalContentData,
+  useToast,
 } from "chai-ui-v2";
 import React, { useEffect, useMemo, useState } from "react";
 import { MODAL_CONTENT_EDITOR_HEIGHT } from "../../../constants/style";
@@ -49,6 +50,8 @@ const ModalSolution = ({
       quizPopupModalData ?? pageIntroductionDefaultData,
     );
 
+  const { addToast } = useToast();
+
   const handleClose = () => {
     setIsModalOpen(false);
   };
@@ -57,7 +60,7 @@ const ModalSolution = ({
     if (tempPageIntroductionData) {
       saveSolutionModalData(tempPageIntroductionData);
     } else {
-      alert("데이터를 입력해주세요."); // FIXME: alert 대신 토스트 메시지로 변경
+      addToast("데이터를 입력해주세요.", "info");
       return;
     }
     setIsModalOpen(false);

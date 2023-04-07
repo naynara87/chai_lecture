@@ -1,6 +1,5 @@
-import { Page } from "chai-ui-v2";
+import { Page, useToast } from "chai-ui-v2";
 import { useCallback, useEffect, useMemo } from "react";
-import { toast } from "react-toastify";
 import { savePageData } from "../api/lcms/lcms";
 import { isDevEnv } from "../constants/env";
 import { InitialInputValue } from "../types/appData";
@@ -16,6 +15,7 @@ const useCreatePage = () => {
 
   const { pageId, cornerId } = initialDataFromPhp || {};
   const returnUsePage = usePage();
+  const { addToast } = useToast();
 
   const { setInitialPageData, pageData } = returnUsePage;
 
@@ -53,12 +53,12 @@ const useCreatePage = () => {
         contentsUuid: pageContentsUuid,
       });
       refetchPageData();
-      toast("저장되었습니다.", { type: "success" });
+      addToast("저장되었습니다.", "success");
     } catch (error) {
       console.log(error);
-      toast("저장에 실패했습니다. 다시 시도해주세요.", { type: "error" }); // TODO gth : custom toast message로 변경하기
+      addToast("저장에 실패했습니다. 다시 시도해주세요.", "error"); // TODO gth : custom toast message로 변경하기
     }
-  }, [pageContentsUuid, pageData, refetchPageData, cornerIdByEnv]);
+  }, [pageContentsUuid, pageData, refetchPageData, cornerIdByEnv, addToast]);
 
   useEffect(() => {
     if (!initialPageData) return;
