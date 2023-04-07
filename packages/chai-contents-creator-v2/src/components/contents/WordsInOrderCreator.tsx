@@ -40,13 +40,19 @@ interface AnswerBoxProps {
 }
 
 const AnswerBox = styled.div<AnswerBoxProps>`
-  width: ${(props) => (props.isFocus ? "auto" : vw(220))};
-  height: ${(props) => (props.isFocus ? "auto" : vh(130))};
-  padding: ${vw(20)} ${vh(50)};
+  width: ${(props) => (props.isFocus ? "auto" : vw(150))};
+  /* height: ${(props) => (props.isFocus ? "auto" : vh(130))}; */
+  height: auto;
+  min-height: ${vh(130)};
+  padding: ${vw(20)};
   background-color: #f5f5f5;
   border: 1px solid #c9c9c9;
   border-radius: 8px;
   margin-bottom: 8px;
+`;
+
+const textViewerCss = css`
+  padding: 0;
 `;
 
 const WordsInOrderWrapper = styled.div`
@@ -271,6 +277,7 @@ const WordsInOrderCreator = ({
               isFocused={isTextEditorFocused(isFocused, choiceIndex)}
               handleSubmitTextOnBlur={resetFocusedTextEditorIndex}
               defaultText="단어입력"
+              textViewerCss={textViewerCss}
             />
           </AnswerBox>
           <CheckBoxWrapper
