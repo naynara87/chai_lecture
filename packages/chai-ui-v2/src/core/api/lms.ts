@@ -1,11 +1,11 @@
-import { LMS_SAVE_DATA } from "chai-ui";
+import { LMS_SAVE_DATA } from "../constants";
 import { httpLms } from "../lib";
 
 interface saveLmsDataParams {
   uno: number;
   applId: number;
   courseId: number;
-  subjectId: number;
+  contsId: number;
   cornerId: number;
   lessonId: number;
   pageId: number;
@@ -18,7 +18,7 @@ export const saveLmsData = async ({
   uno,
   applId,
   courseId,
-  subjectId,
+  contsId,
   cornerId,
   lessonId,
   pageId,
@@ -30,7 +30,7 @@ export const saveLmsData = async ({
     uno,
     applId,
     courseId,
-    contsId: subjectId,
+    contsId,
     lessonId,
     turnId: cornerId,
     pageId,
