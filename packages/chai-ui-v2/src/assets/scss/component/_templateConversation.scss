@@ -1,94 +1,93 @@
 /* =================== templateConversation =================== */
 // 230220 component roleplay와 공통으로 사용됨
 .conversation-panel-wrap {
-
-	.toggles-wrapper,
-	.conts-ttl {
-		~.conversation-wrapper {
-			margin-top: vh(50);
-		}
-	}
+  .toggles-wrapper,
+  .conts-ttl {
+    ~ .conversation-wrapper {
+      margin-top: vh(50);
+    }
+  }
 }
 
 .conversation-wrap {
-	@extend %speak-interaction;
+  @extend %speak-interaction;
 
-	@include flex {
-		align-items: flex-start;
-	}
+  @include flex {
+    align-items: flex-start;
+  }
 
-	&:not(:first-child) {
-		margin-top: vh(50);
-	}
+  &:not(:first-of-type) {
+    margin-top: vh(50);
+  }
 
-	.img-wrap {
-		flex-shrink: 0;
-		width: vw(100);
-		margin-right: vw(52);
-	}
+  .img-wrap {
+    flex-shrink: 0;
+    width: vw(100);
+    margin-right: vw(52);
+  }
 
-	.img-round {
-		@include circle(vw(100));
+  .img-round {
+    @include circle(vw(100));
 
-		overflow: hidden;
-		z-index: z(two);
-		position: relative;
-		border: 6px solid color(gray-ff);
-		box-shadow: $btn-shadow;
-	}
+    overflow: hidden;
+    z-index: z(two);
+    position: relative;
+    border: 6px solid color(gray-ff);
+    box-shadow: $btn-shadow;
+  }
 
-	.profile {
-		@include full;
+  .profile {
+    @include full;
 
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-	}
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 
-	.txt-wrap {
-		width: 100%;
-		line-height: 1.6;
-		word-break: break-all;
-	}
+  .txt-wrap {
+    width: 100%;
+    line-height: 1.6;
+    word-break: break-all;
+  }
 
-	.name {
-		width: vw(100);
-		margin-top: vh(10);
-		font-size: vw(22);
-		color: color(gray-66);
-		text-align: center;
-	}
+  .name {
+    width: vw(100);
+    margin-top: vh(10);
+    font-size: vw(22);
+    color: color(gray-66);
+    text-align: center;
+  }
 
-	.chinese {
-		font-weight: 600;
-		font-size: vw(36);
-	}
+  .chinese {
+    font-weight: 600;
+    font-size: vw(36);
+  }
 
-	.pinyin {
-		font-size: vw(28);
-	}
+  .pinyin {
+    font-size: vw(28);
+  }
 
-	.mean {
-		font-size: vw(28);
-	}
+  .mean {
+    font-size: vw(28);
+  }
 
-	&.blank {
-		align-items: stretch;
+  &.blank {
+    align-items: stretch;
 
-		.txt-wrap {
-			position: relative;
-			width: 100%;
+    .txt-wrap {
+      position: relative;
+      width: 100%;
 
-			@include make-before {
-				position: absolute;
-				top: 50%;
-				left: 0;
-				width: 50%;
-				height: 3px;
-				background-color: color(gray-66);
-				transform: translateY(-50%);
-			}
-		}
-	}
+      @include make-before {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 50%;
+        height: 3px;
+        background-color: color(gray-66);
+        transform: translateY(-50%);
+      }
+    }
+  }
 }

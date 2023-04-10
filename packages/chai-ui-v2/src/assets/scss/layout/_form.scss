@@ -261,7 +261,7 @@ button:hover {
   border: 1px solid color(gray-ff);
   box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
 
-  >img {
+  > img {
     width: vw(16);
   }
 
@@ -327,7 +327,7 @@ button:hover {
 
 // =================== input toggle style
 .toggles-wrapper {
-  .inp-toggle-wrap:not(:first-child) {
+  .inp-toggle-wrap:not(:first-of-type) {
     margin-left: vw(50);
   }
 }
@@ -369,7 +369,7 @@ button:hover {
   }
 }
 
-.toggle-input:checked~.toggle-label {
+.toggle-input:checked ~ .toggle-label {
   background-color: color(main);
 
   &:after {
@@ -403,7 +403,7 @@ button:hover {
   }
 }
 
-.inp-chck-gray:checked~.label-chck-gray {
+.inp-chck-gray:checked ~ .label-chck-gray {
   border-color: color(main);
   background-color: color(gray-ff);
 
@@ -456,7 +456,7 @@ button:hover {
   }
 }
 
-.inp-chck-line:disabled~.label-chck-line {
+.inp-chck-line:disabled ~ .label-chck-line {
   border-color: color(gray-db);
   transition: all 0.2s;
   cursor: default;
@@ -467,7 +467,7 @@ button:hover {
   }
 }
 
-.inp-chck-line:checked~.label-chck-line {
+.inp-chck-line:checked ~ .label-chck-line {
   border-color: color(main);
 
   .text,

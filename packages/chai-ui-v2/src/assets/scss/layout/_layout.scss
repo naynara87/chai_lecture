@@ -78,7 +78,7 @@
     overflow: hidden;
   }
 
-  >*:not(:first-child) {
+  > *:not(:first-of-type) {
     margin: vh(40) auto 0;
   }
 

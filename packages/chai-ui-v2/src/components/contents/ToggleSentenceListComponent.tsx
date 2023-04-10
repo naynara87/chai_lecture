@@ -6,11 +6,11 @@ import { HtmlContentComponent } from "../atoms";
 import { ComponentToggle } from "../molecules";
 
 const ToggleTextWrapper = styled.div`
-  > *:not(:first-child) {
+  > *:not(:first-of-type) {
     margin-top: ${vh(40)};
   }
 
-  .sentence:not(:first-child) {
+  .sentence:not(:first-of-type) {
     margin-top: ${vh(40)};
   }
 
