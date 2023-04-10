@@ -63,12 +63,12 @@ const ContentsLayout = ({
     const prevCorner = corners[currentCornerIndex - 1];
     const currentCorner = corners[currentCornerIndex];
     if (isCurrentCornerFirstPage) {
-      if (prevCorner) {
+      if (prevCorner && currentPage) {
         // 다음 코너가 있을때
         xapiProgress(
           currentCorner,
           prevCorner,
-          totalPages[currentPageIndex],
+          currentPage,
           prevCorner.pages[prevCorner.pages.length - 1],
           totalPages,
         );
@@ -85,11 +85,11 @@ const ContentsLayout = ({
         return;
       }
     }
-    if (cornerId && courseId && lessonId && pageId) {
+    if (cornerId && courseId && lessonId && pageId && currentPage) {
       xapiProgress(
         currentCorner,
         currentCorner,
-        totalPages[currentPageIndex],
+        currentPage,
         totalPages[currentPageIndex - 1],
         totalPages,
       );
@@ -116,12 +116,12 @@ const ContentsLayout = ({
       if (!lessonMetaData) return;
       if (!cornerMetaData) return;
       const nextCorner = corners[currentCornerIndex + 1];
-      if (nextCorner) {
+      if (nextCorner && currentPage) {
         // 다음 코너가 있을때
         xapiProgress(
           currentCorner,
           nextCorner,
-          totalPages[currentPageIndex],
+          currentPage,
           nextCorner.pages[0],
           totalPages,
         );
@@ -139,13 +139,11 @@ const ContentsLayout = ({
       setIsCompleteModalOpen(true);
       return;
     }
-    if (cornerId && courseId && lessonId) {
-      console.log("currentPage", currentPage);
-
+    if (cornerId && courseId && lessonId && currentPage) {
       xapiProgress(
         currentCorner,
         currentCorner,
-        totalPages[currentPageIndex],
+        currentPage,
         totalPages[currentPageIndex + 1],
         totalPages,
       );
@@ -198,6 +196,7 @@ const ContentsLayout = ({
         handleClickNext={handleClickNext}
         handleClickPrev={handleClickPrev}
         totalPages={totalPages}
+        currentPage={currentPage}
       />
       {isCompleteModalOpen && (
         <ModalCompleted lessonCode={lessonMetaData.colorTypeCd} />

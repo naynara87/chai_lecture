@@ -1,39 +1,10 @@
 import { ADL, xapiElement, XAPIOptions, xapiV1State } from "chai-ui-v2";
-import React, { useEffect } from "react";
+import React from "react";
 import { useRecoilState } from "recoil";
 import "../src/lib/xapi/lx-total-viewer.js";
-import {
-  context_details,
-  extension_details,
-  object_context,
-  result_extensions,
-} from "./data/xapiData";
-
 interface XapiProviderProps {
   children: React.ReactNode;
 }
-
-const options: XAPIOptions = {
-  // #1 actor 정의
-  name: "버블콘",
-  homePage: "https://profile.caihong.co.kr/account/user/1",
-  account_name: "123|bubblecon|버블콘|1679469317956_Card_EB01",
-  // #2 objecjt 정의
-  activity_id: "https://dev.caihong.co.kr/course/1/lesson/1/appl-id/asd123", // object.id 값
-  content_name: "1레슨", // 레슨 정보
-  description: "", // 레슨 설명 정보
-  // #3 activityState의 stateId 정의
-  state_id:
-    "https://dev.caihong.co.kr/state/course/1/student/1/device/1/interaction/1/type/1",
-  // #4 학습 정보 전송할 LRS url 기입
-  lrsUrl: "https://dev.caihong.co.kr/xAPI/",
-
-  // #5 xAPI 추가 context 사용
-  object_context: object_context,
-  result_extensions: result_extensions,
-  context_details: context_details,
-  extension_details: extension_details,
-};
 
 type AgentObjectType = "Group" | "Agent";
 
@@ -104,7 +75,7 @@ const XapiProvider = ({ children }: XapiProviderProps) => {
   const { ADL: _ADL } = window;
   const ADL = _ADL as ADL;
 
-  useEffect(() => {
+  const xapi_init = (options: XAPIOptions) => {
     if (!ADL.XAPIWrapper.lrs.actor) {
       const conf = {
         endpoint: options.lrsUrl,
@@ -148,7 +119,10 @@ const XapiProvider = ({ children }: XapiProviderProps) => {
       options["description"] ?? "",
       options["state_id"] ?? "",
     );
-  }, [ADL, setXapiV1State]);
+  };
+
+  //@ts-ignore
+  window.xapi_init = xapi_init;
 
   return <>{children}</>;
 };

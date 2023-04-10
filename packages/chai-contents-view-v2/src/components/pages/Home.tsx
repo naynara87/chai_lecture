@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo } from "react";
-import { getCookie, ID, InitialAppData } from "chai-ui-v2";
+import { getCookie, ID, InitialAppData, xapiElement } from "chai-ui-v2";
 import { getPageUrl } from "../../util/url";
 import { useNavigate } from "react-router-dom";
 import useLesson from "../../hooks/useLesson";
@@ -30,6 +30,8 @@ const Loader = styled.div`
     }
   }
 `;
+
+const playerLoadedEvent = new CustomEvent("playerLoaded");
 
 const Home = () => {
   const navigate = useNavigate();
@@ -89,10 +91,12 @@ const Home = () => {
       const confirmResult = await showContinueOpenModal();
       if (confirmResult) {
         getUrl(corners[currentCornerIndex].id, pages[currentPageIndex].id);
+        xapiElement.dispatchEvent(playerLoadedEvent);
         return;
       }
     }
     getUrl(corners[0].id, pages[0].id);
+    xapiElement.dispatchEvent(playerLoadedEvent);
     return;
   }, [
     corners,

@@ -3,6 +3,7 @@ import {
   ConversationQuizContentData,
   useGlobalAudio,
   usePageCompleted,
+  useXapi,
 } from "../../core";
 import {
   ComponentButtonRadiFillMain,
@@ -40,6 +41,7 @@ const ConversationQuizComponent = ({
   } = useGlobalAudio();
   const { setPushCompletedPageComponents, setComponentCompleted } =
     usePageCompleted();
+  const { xapiAnswered } = useXapi();
 
   useEffect(() => {
     setPushCompletedPageComponents("quiz", contents.id);
@@ -91,7 +93,8 @@ const ConversationQuizComponent = ({
   const handleClickShowAnswer = useCallback(() => {
     setComponentCompleted(contents.id);
     setIsShowAnswer(true);
-  }, [setComponentCompleted, contents.id]);
+    xapiAnswered();
+  }, [setComponentCompleted, contents.id, xapiAnswered]);
 
   const answerCheckColor = useCallback(
     (contentIndex: number) => {

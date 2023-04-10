@@ -9,6 +9,7 @@ import {
   MultiChoiceContentData,
   useGlobalAudio,
   usePageCompleted,
+  useXapi,
 } from "../../core";
 import { LayoutModalSolution } from "../modal";
 import ComponentGrayLine from "../molecules/ComponentGrayLine";
@@ -34,6 +35,7 @@ const MultiChoiceComponent = ({ contents }: MultiChoiceComponentProps) => {
   } = useGlobalAudio();
   const { setPushCompletedPageComponents, setComponentCompleted } =
     usePageCompleted();
+  const { xapiAnswered } = useXapi();
 
   useEffect(() => {
     setPushCompletedPageComponents("quiz", contents.id);
@@ -83,6 +85,7 @@ const MultiChoiceComponent = ({ contents }: MultiChoiceComponentProps) => {
               setUserChoice(choiceIndex);
               setComponentCompleted(contents.id);
               setIsModalSolutionOpen(true);
+              xapiAnswered();
               handleClickAudioButton(
                 "solutionModal",
                 modalUuidRef.current,
@@ -101,7 +104,13 @@ const MultiChoiceComponent = ({ contents }: MultiChoiceComponentProps) => {
         </div>
       );
     });
-  }, [contents, userChoice, handleClickAudioButton, setComponentCompleted]);
+  }, [
+    contents,
+    userChoice,
+    handleClickAudioButton,
+    setComponentCompleted,
+    xapiAnswered,
+  ]);
 
   const answerCheckColor = useMemo(() => {
     if (userChoice !== undefined) {

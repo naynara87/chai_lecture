@@ -79,8 +79,8 @@ export interface BubbleAPI {
 }
 
 export interface ProgressPageData {
-  prevPage: number;
   currentPage: number;
+  nextPage: number;
   progress: number;
   partName: string;
   partId: ID;
@@ -104,13 +104,14 @@ export interface XapiV1 {
   addObjectContext: (object_context: XapiIndicators) => void;
   addResultExtension: (result_extension: XapiIndicators) => void;
   saveState: () => void;
-  playerLoadedEvent: CustomEvent<any>;
+  playerInitEvent: CustomEvent<any>;
   sendProgress: (
     pageData: ProgressPageData,
     newState: LRSActivityState,
   ) => void;
   sendComplete(curPage: number): void;
-  sendPlayed: () => void;
+  sendPlayed: (contentType: "video" | "audio") => void;
+  sendAnswered: () => void;
 }
 
 export interface XAPIOptions {

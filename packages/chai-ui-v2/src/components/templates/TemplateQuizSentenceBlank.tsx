@@ -17,6 +17,7 @@ import {
   TemplateQuizSentencesInOrderData,
   useGlobalAudio,
   usePageCompleted,
+  useXapi,
 } from "../../core";
 import { IconTextComponent } from "../contents";
 import ModalVideo from "../modal/ModalVideo";
@@ -79,6 +80,7 @@ const TemplateQuizSentenceBlank = ({
     handleClickAudioButton,
   } = useGlobalAudio();
   const { setPushCompletedPageComponents } = usePageCompleted();
+  const { xapiAnswered } = useXapi();
 
   useEffect(() => {
     setPushCompletedPageComponents("quiz", template.id);
@@ -141,6 +143,7 @@ const TemplateQuizSentenceBlank = ({
     setSelectedChoiceBox(undefined);
     setIsShowAnswer(true);
     setIsModalSolutionOpen(true);
+    xapiAnswered();
     handleClickAudioButton(
       "solutionModal",
       modalUuidRef.current,
@@ -151,7 +154,7 @@ const TemplateQuizSentenceBlank = ({
         : thisPage.mainContents.data.quizPopup.data.incorrect.soundEffect
             ?.src ?? "",
     );
-  }, [handleClickAudioButton, isCorrect, thisPage.mainContents]);
+  }, [handleClickAudioButton, isCorrect, thisPage.mainContents, xapiAnswered]);
 
   const handleClickModalClose = () => {
     handleAudioReset();

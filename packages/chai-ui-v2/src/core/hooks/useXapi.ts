@@ -10,6 +10,7 @@ import {
   LessonMeta,
   LRSActivityState,
   LRSCornerProgress,
+  Page,
   ProgressPageData,
 } from "../types";
 import usePageCompleted from "./usePageCompleted";
@@ -22,7 +23,7 @@ const useXapi = () => {
 
   const xapiInitialize = useCallback(() => {
     if (!xapiV1) return;
-    xapiElement.dispatchEvent(xapiV1.playerLoadedEvent);
+    xapiElement.dispatchEvent(xapiV1.playerInitEvent);
   }, [xapiV1]);
 
   const updateActivityState = useCallback(
@@ -106,27 +107,31 @@ const useXapi = () => {
 
   const xapiProgress = useCallback(
     (
-      prevCorner: CornerListData,
+      currentCorner: CornerListData,
       nextCorner: CornerListData,
-      currentPageId: ID,
+      currentPage: Page,
       nextPageId: ID,
       totalPages: ID[],
     ) => {
       if (!xapiActivity) return;
       // TODO activity state 받아야함.
-      const pageIndex = totalPages.findIndex(
+      const nextPageIndex = totalPages.findIndex(
         (page) => page.toString() === nextPageId?.toString(),
       );
+      const currentPageIndex = totalPages.findIndex(
+        (page) => page.toString() === currentPage.id?.toString(),
+      );
+
       const newProgressData = updateProgressDataPageCheck(
-        prevCorner.id,
+        currentCorner.id,
         nextCorner.id,
-        currentPageId,
+        currentPage.id,
         nextPageId,
       );
       const newXapiActivityState = updateActivityState({
-        part_id: nextCorner.id,
-        part_name: nextCorner.name,
-        page: pageIndex + 1,
+        part_id: currentCorner.id,
+        part_name: currentCorner.name,
+        page: currentPageIndex + 1,
         progress_data: newProgressData,
         progress: updateProgress(
           newProgressData ?? xapiActivity.progress_data,
@@ -138,18 +143,18 @@ const useXapi = () => {
         ).completed_progress,
       });
       const progressPageData: ProgressPageData = {
-        prevPage: parseInt(currentPageId.toString()),
-        currentPage: pageIndex + 1,
+        currentPage: currentPageIndex + 1,
+        nextPage: nextPageIndex + 1,
         progress: updateProgress(
           newProgressData ?? xapiActivity.progress_data,
           totalPages,
         ).progress,
-        partId: nextCorner.id,
-        partName: nextCorner.name,
-        pageId: nextPageId,
-        pageName: "",
-        pageType: "",
-        pageAreaCd: "",
+        partId: currentCorner.id,
+        partName: currentCorner.name,
+        pageId: currentPage.id,
+        pageName: currentPage.name,
+        pageType: currentPage.type,
+        pageAreaCd: currentPage.pageAreaType,
       };
       xapiV1?.sendProgress(
         progressPageData,
@@ -231,8 +236,15 @@ const useXapi = () => {
     [setXapiActivity],
   );
 
-  const xapiPlayed = useCallback(() => {
-    xapiV1?.sendPlayed();
+  const xapiPlayed = useCallback(
+    (contentType: "video" | "audio") => {
+      xapiV1?.sendPlayed(contentType);
+    },
+    [xapiV1],
+  );
+
+  const xapiAnswered = useCallback(() => {
+    xapiV1?.sendAnswered();
   }, [xapiV1]);
 
   return {
@@ -244,6 +256,7 @@ const useXapi = () => {
     updateActivityState,
     updateProgressDataPageCheck,
     xapiPlayed,
+    xapiAnswered,
   };
 };
 

@@ -9,6 +9,7 @@ import React, {
 import {
   useGlobalAudio,
   usePageCompleted,
+  useXapi,
   WordsInOrderContentData,
 } from "../../core";
 import {
@@ -79,6 +80,7 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
   } = useGlobalAudio();
   const { setPushCompletedPageComponents, setComponentCompleted } =
     usePageCompleted();
+  const { xapiAnswered } = useXapi();
 
   useEffect(() => {
     setPushCompletedPageComponents("quiz", contents.id);
@@ -269,6 +271,7 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
     setIsShowAnswer(true);
     setIsModalSolutionOpen(true);
     setComponentCompleted(contents.id);
+    xapiAnswered();
     handleClickAudioButton(
       "solutionModal",
       modalUuidRef.current,
@@ -277,7 +280,13 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
         ? contents.data.quizPopup.data.correct.soundEffect?.src ?? ""
         : contents.data.quizPopup.data.incorrect.soundEffect?.src ?? "",
     );
-  }, [contents, isCorrect, handleClickAudioButton, setComponentCompleted]);
+  }, [
+    contents,
+    isCorrect,
+    handleClickAudioButton,
+    setComponentCompleted,
+    xapiAnswered,
+  ]);
 
   return (
     <>

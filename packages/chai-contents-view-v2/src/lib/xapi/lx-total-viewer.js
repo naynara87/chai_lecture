@@ -4640,13 +4640,14 @@ code.google.com/p/crypto-js/wiki/License
           var extensionDetails;
           var resultExtensions;
           var objectContext;
-          var resultExtensionStructure;
           var resultDuration = "PT0H0M0S";
-          var eduStartTime = new Date();
+          var eduStartTime;
+          var currentPageEduStartTime;
           var debounceTimer = null;
           var completeRate = 0.98;
+          var pageResult;
           var sendSynchronous;
-          var playerLoadedEvent = new CustomEvent("playerLoaded");
+          var playerInitEvent = new CustomEvent("playerInit");
           function addExtensionDetail(extension_details) {
             extensionDetails = extension_details;
           }
@@ -4658,18 +4659,18 @@ code.google.com/p/crypto-js/wiki/License
           }
           function addResultExtension(result_extensions) {
             resultExtensions = result_extensions;
-            resultExtensionStructure = {
-              completion: false,
-              response: "",
-              duration: resultDuration,
-              score: {
-                scaled: 0,
-                raw: 0,
-                max: 1,
-                min: 0,
-              },
-            };
+            // resultExtensionStructure = {
+            //   completion: false,
+            //   duration: resultDuration,
+            //   score: {
+            //     scaled: 0,
+            //     raw: 0,
+            //     max: 1,
+            //     min: 0,
+            //   },
+            // };
           }
+
           function formatFloat(number) {
             if (number == null) {
               return null;
@@ -4729,46 +4730,51 @@ code.google.com/p/crypto-js/wiki/License
             }
             return res;
           }
-          function setContext(obj, detail, Extensions) {
-            getScore();
-            Object.assign(obj, detail);
+          function setContext(obj, Extensions, detail) {
+            if (detail) {
+              Object.assign(obj, detail);
+            }
             Object.assign(obj.extensions, Extensions);
           }
-          function getScore() {
-            var currentProgress =
-              1 * (targetObject.page / targetObject.pagesCount).toFixed(2);
-            var sumActualLearning = miliSecToTime(new Date() - eduStartTime);
-            console.log(sumActualLearning);
-            resultExtensionStructure.score["scaled"] = currentProgress
-              ? currentProgress
-              : 0;
-            resultExtensionStructure.score["raw"] = currentProgress
-              ? currentProgress * 100
-              : 0;
-            resultExtensionStructure.duration =
-              "PT" +
-              sumActualLearning.hours +
-              "H" +
-              sumActualLearning.mins +
-              "M" +
-              sumActualLearning.secs +
-              "." +
-              sumActualLearning.ms +
-              "S";
-            if (completeRate <= currentProgress) {
-              resultExtensionStructure.completion = true;
-            }
-          }
-          function sendPlayed() {
+
+          // function getScore(currentProgress) {
+          //   // let currentProgress =
+          //   //   1 * (targetObject.page / targetObject.pagesCount).toFixed(2);
+          //   const sumActualLearning = miliSecToTime(
+          //     new Date() - currentPageEduStartTime
+          //   );
+          //   console.log(sumActualLearning);
+          //   resultExtensionStructure.score["scaled"] = currentProgress
+          //     ? currentProgress
+          //     : 0;
+          //   resultExtensionStructure.score["raw"] = currentProgress
+          //     ? currentProgress * 100
+          //     : 0;
+          //   resultExtensionStructure.duration =
+          //     "P" +
+          //     sumActualLearning.hours +
+          //     "DT" +
+          //     sumActualLearning.mins +
+          //     "H" +
+          //     sumActualLearning.secs +
+          //     "M";
+
+          //   if (completeRate <= currentProgress) {
+          //     resultExtensionStructure.completion = true;
+          //   }
+          // }
+
+          function sendPlayed(contentType) {
             var mys = bareStatement();
             mys.verb = new ADL.XAPIStatement.Verb(
               "https://w3id.org/xapi/video/verbs/played",
-              "played",
+              "".concat(
+                contentType === "video" ? "동영상" : "오디오",
+                "\uB97C \uC7AC\uC0DD\uD568",
+              ),
             );
             mys.result = {
-              extensions: {
-                "https://profile.caihong.co.kr/content-management/course/lessons/pages/page": 10,
-              },
+              extensions: _objectSpread({}, pageResult),
             };
             mys.object = _objectSpread(
               _objectSpread({}, mys.object),
@@ -4779,7 +4785,10 @@ code.google.com/p/crypto-js/wiki/License
                   {},
                   {
                     name: {
-                      "en-US": "동영상 이름",
+                      "en-US": "".concat(
+                        contentType === "video" ? "동영상" : "오디오",
+                        " \uC774\uB984",
+                      ),
                     },
                     extensions: _objectSpread(
                       _objectSpread({}, mys.object.definition.extensions),
@@ -4789,75 +4798,123 @@ code.google.com/p/crypto-js/wiki/License
                         "https://profile.caihong.co.kr/content-management/course/subcontent-id":
                           "cb22cb9f-508d-4691-bc77-46162d35fd1a",
                         "https://profile.caihong.co.kr/content-management/course/subcontent-type":
-                          "video",
+                          "".concat(
+                            contentType === "video" ? "video" : "audio",
+                          ),
                       },
                     ),
                   },
                 ),
               },
             );
-            if (resultExtensionStructure) {
-              setContext(
-                mys.result,
-                resultExtensionStructure,
-                resultExtensions,
-              );
+            if (resultExtensions) {
+              setContext(mys.result, resultExtensions);
             }
             XW.sendStatement(mys);
             window.postMessage(JSON.stringify(mys));
           }
-          function sendProgress(prevPage, currentPage, newState) {
+          function sendProgress(pageData, newState) {
             var mys = bareStatement();
-            currentSegment = [prevPage, currentPage];
+            var sumActualPageLearning = miliSecToTime(
+              new Date() - currentPageEduStartTime,
+            );
+            currentSegment = [pageData.currentPage, pageData.nextPage];
             addCurrentSegment();
             saveState(newState);
             mys.verb = new ADL.XAPIStatement.Verb(
               "http://adlnet.gov/expapi/verbs/progressed",
-              "progressed",
+              "학습 페이지 전환",
             );
             mys.result = {
               extensions: {
                 "https://profile.caihong.co.kr/content-management/course/session-id":
                   sessionId,
                 "https://profile.caihong.co.kr/content-management/course/lessons/pages/page":
-                  currentPage,
+                  pageData.currentPage,
                 "https://profile.caihong.co.kr/content-management/course/lessons/pages/progress-segments":
                   progressSegments,
+                "https://profile.caihong.co.kr/content-management/course/progress":
+                  pageData.progress,
+                "https://profile.caihong.co.kr/content-management/course/lessons/part-name":
+                  pageData.partName,
+                "https://profile.caihong.co.kr/content-management/course/lessons/part-id":
+                  pageData.partId,
+                "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-id":
+                  pageData.pageId,
+                "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-name":
+                  pageData.pageName,
+                "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-template-code": 10,
+                // ?
+                "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-template-name":
+                  pageData.pageType,
+                "https://profile.caihong.co.kr/content-management/course/lessons/pages/study-type-code": 10,
+                // ?
+                "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-style-code": 31,
+                // ?
+                "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-area-code":
+                  pageData.pageAreaCd,
               },
             };
-            if (resultExtensionStructure) {
-              setContext(
-                mys.result,
-                resultExtensionStructure,
-                resultExtensions,
-              );
+            pageResult = mys.result;
+            if (resultExtensions) {
+              setContext(mys.result, resultExtensions);
+              Object.assign(mys.result, {
+                duration:
+                  "P" +
+                  sumActualPageLearning.hours +
+                  // 날짜
+                  "DT" +
+                  sumActualPageLearning.hours +
+                  // 시간
+                  "H" +
+                  sumActualPageLearning.mins +
+                  // 분?
+                  "M",
+                completion: newState.progress >= completeRate ? true : false,
+              });
             }
+            currentPageEduStartTime = new Date();
             XW.sendStatement(mys);
             window.postMessage(JSON.stringify(mys));
           }
           function sendComplete(curPage) {
             var mys = bareStatement();
+            var sumActualPlayerLearning = miliSecToTime(
+              new Date() - eduStartTime,
+            );
             currentSegment = [curPage, curPage];
             addCurrentSegment();
             mys.verb = new ADL.XAPIStatement.Verb(
               "http://adlnet.gov/expapi/verbs/completed",
               "completed",
             );
-            mys.context = {
+            mys.result = {
               extensions: {
                 "https://profile.caihong.co.kr/content-management/course/session-id":
                   sessionId,
-                "https://profile.caihong.co.kr/content-management/course/lessons/pages/page":
-                  curPage,
                 "https://profile.caihong.co.kr/content-management/course/lessons/pages/progress-segments":
                   progressSegments,
               },
             };
-            if (contextDetails) {
-              Object.assign(mys.context, contextDetails);
-            }
-            if (extensionDetails) {
-              Object.assign(mys.context.extensions, extensionDetails);
+            if (resultExtensions) {
+              setContext(mys.result, resultExtensions);
+              Object.assign(mys.result, {
+                duration:
+                  "P" +
+                  sumActualPlayerLearning.hours +
+                  "DT" +
+                  sumActualPlayerLearning.mins +
+                  "H" +
+                  sumActualPlayerLearning.secs +
+                  "M",
+                score: {
+                  max: 100,
+                  min: 0,
+                  raw: 70,
+                  scaled: 0.7,
+                },
+                completion: newState.progress >= completeRate ? true : false,
+              });
             }
             XW.sendStatement(mys);
             window.postMessage(JSON.stringify(mys));
@@ -4868,15 +4925,12 @@ code.google.com/p/crypto-js/wiki/License
             mys.id = sessionId;
             mys.verb = new ADL.XAPIStatement.Verb(
               "http://adlnet.gov/expapi/verbs/initialized",
-              "initialized",
+              "통합학습 플레이어 로드",
             );
             mys.context = {
               extensions: {
                 "https://profile.caihong.co.kr/content-management/course/session-id":
                   sessionId,
-                "https://profile.caihong.co.kr/content-management/course/browser-info":
-                  navigator.userAgent.toLowerCase(),
-                "https://profile.caihong.co.kr/content-management/course/progress": 0.723,
               },
             };
             if (contextDetails) {
@@ -4885,6 +4939,8 @@ code.google.com/p/crypto-js/wiki/License
             if (extensionDetails) {
               Object.assign(mys.context.extensions, extensionDetails);
             }
+            currentPageEduStartTime = new Date();
+            eduStartTime = new Date();
             XW.sendStatement(mys);
             window.postMessage(JSON.stringify(mys));
           }
@@ -4892,8 +4948,8 @@ code.google.com/p/crypto-js/wiki/License
             var mys = bareStatement();
             saveState();
             mys.verb = new ADL.XAPIStatement.Verb(
-              "http://adlnet.gov/expapi/verbs/terminated",
-              "terminated",
+              "http://adlnet.gov/expapi/verbs/suspended",
+              "학습을 일시 중지함",
             );
             mys.result = {
               extensions: {
@@ -5085,6 +5141,7 @@ code.google.com/p/crypto-js/wiki/License
             // 기존의 초기 로드 페이지 값이 있는지 없는지 검사
             // }
             try {
+              // currentPageEduStartTime;
               // if(ev.statusText !== 'Not Found') {
               //   const state = JSON.parse(ev.response);
               //
@@ -5148,7 +5205,10 @@ code.google.com/p/crypto-js/wiki/License
 
             // targetObject.initializedPromise.then(() => {
             // currentSegment = [targetObject.page, targetObject.page];
-            targetObject.addEventListener("playerLoaded", onReady);
+
+            currentPageEduStartTime = new Date();
+            eduStartTime = new Date();
+            targetObject.addEventListener("playerInit", onReady);
             // });
           }
 
@@ -5165,7 +5225,7 @@ code.google.com/p/crypto-js/wiki/License
             addObjectContext: addObjectContext,
             addResultExtension: addResultExtension,
             saveState: saveState,
-            playerLoadedEvent: playerLoadedEvent,
+            playerInitEvent: playerInitEvent,
             sendProgress: sendProgress,
             sendComplete: sendComplete,
             sendPlayed: sendPlayed,
