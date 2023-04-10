@@ -1,7 +1,10 @@
 import axios from "axios";
 
 const httpLcms = axios.create({
-  baseURL: `${process.env.REACT_APP_LCMS_URL}`,
+  baseURL:
+    process.env.NODE_ENV === "development"
+      ? `${process.env.REACT_APP_LCMS_DEV_URL}`
+      : `${process.env.REACT_APP_LCMS_PROD_URL}`,
 });
 
 httpLcms.interceptors.request.use(
