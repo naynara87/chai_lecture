@@ -19,14 +19,8 @@ import QuestionLayout from "./QuestionLayout";
 const Layout = () => {
   const { courseId, lessonId, cornerId, pageId } = useParams(); // 이게 나중 실행됨
   const learningLogCookieData = getCookie<InitialAppData>("bubble-player");
-  const { lessonMetaData, corners, totalPages } = useLesson(
-    lessonId,
-    learningLogCookieData?.lessonTpCd,
-  );
-  const { pages, cornerMetaData } = useCorner(
-    cornerId,
-    learningLogCookieData?.lessonTpCd,
-  ); // 이게 먼저 실행되고
+  const { lessonMetaData, corners, totalPages } = useLesson(lessonId);
+  const { pages, cornerMetaData } = useCorner(cornerId); // 이게 먼저 실행되고
 
   const [, setCurrentCornerId] = useRecoilState(currentCornerIdState);
   const { currentProgress } = useProgressRate(totalPages);

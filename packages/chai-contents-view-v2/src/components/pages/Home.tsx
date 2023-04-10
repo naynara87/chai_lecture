@@ -47,14 +47,10 @@ const Home = () => {
     return learningLogCookieData?.lessonId ?? 1;
   }, [learningLogCookieData?.lessonId]);
 
-  const { lessonMetaData, corners } = useLesson(
-    lessonIdMemo,
-    learningLogCookieData?.lessonTpCd,
-  );
+  const { lessonMetaData, corners } = useLesson(lessonIdMemo);
 
   const { cornerMetaData, pages } = useCorner(
     learningLogCookieData?.cornerId ?? corners[0]?.id,
-    learningLogCookieData?.lessonTpCd,
   );
 
   // TODO ready상태 만들어서 xapi initialize 전송
