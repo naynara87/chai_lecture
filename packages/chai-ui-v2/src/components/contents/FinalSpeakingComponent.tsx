@@ -277,7 +277,9 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
             onClickBtn={handleClickRecordedAudioButton}
             recordTime={recordingTimeState}
           />
-          <IconReturnButton onClickBtn={handleClickResetBtn} />
+          {!isSendBlobUrl && (
+            <IconReturnButton onClickBtn={handleClickResetBtn} />
+          )}
         </>
       );
     }
@@ -287,6 +289,7 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
     handleClickResetBtn,
     recordedTimeState,
     recordingTimeState,
+    isSendBlobUrl,
   ]);
 
   return (
@@ -306,7 +309,12 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
           <div className="btns-wrap">
             <ComponentButtonRadiFillMain
               text="녹음 파일 제출"
-              onClickBtn={() => handleSendRecording}
+              onClickBtn={() => {
+                // TODO kjw toast message 띄우기
+                handleSendRecording()
+                  .then(() => console.log("성공"))
+                  .catch(() => console.log("실패"));
+              }}
               isDisabled={isSendBlobUrl}
             />
           </div>

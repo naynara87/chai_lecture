@@ -18,11 +18,14 @@ const ExplainingWrapper = styled.div`
 `;
 const ExplainingTextWrapper = styled.div`
   display: flex;
+  margin-top: 30px;
+
   & > img {
     width: 120px;
     height: 120px;
     background-size: 36px 36px;
     margin-right: 28px;
+    object-fit: cover;
   }
 `;
 
@@ -179,6 +182,7 @@ const ExplainingCharacterCreator = ({
                 isFocused={isTextEditorFocused(isFocused, "text")}
                 setText={(text) => setText("text", text)}
                 text={getText("text")}
+                defaultText="처음 노출될 내용을 입력해주세요."
               />
             </ExplainingText>
             <ExplainingText
@@ -189,6 +193,7 @@ const ExplainingCharacterCreator = ({
                 isFocused={isTextEditorFocused(isFocused, "explain")}
                 setText={(text) => setText("explain", text)}
                 text={getText("explain")}
+                defaultText="확인 클릭 후 노출될 내용을 입력해주세요."
               />
             </ExplainingText>
           </ExplainingTextListWrapper>

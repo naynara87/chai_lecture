@@ -164,7 +164,7 @@ export type TemplateQuizWordsInOrderData = {
 export type TemplateQuizSentencesInOrderData = {
   id: ID;
   type: "TemplateQuizSentencesInOrder";
-  titleContents: IconTextContentData | "";
+  titleContents: Content[] | "";
   mainContents: QuizSentenceContentData | "";
 };
 
@@ -175,7 +175,7 @@ export type TemplateQuizSentencesInOrderData = {
 export type TemplateQuizSpeakingData = {
   id: ID;
   type: "TemplateQuizSpeaking";
-  leftContents: ActivityGuideCharacterContentData | "";
+  leftContents: Content[] | "";
   rightContents: FinalSpeakingContentData | "";
 };
 

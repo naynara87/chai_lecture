@@ -9,6 +9,10 @@ const CharacterWrap = styled.div`
 const CharacterNameInput = styled.input`
   background: none !important;
   font-size: ${vw(25)} !important;
+
+  &::placeholder {
+    opacity: 0.6;
+  }
 `;
 
 const ConversationWrap = styled.div`

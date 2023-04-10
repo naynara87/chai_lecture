@@ -23,8 +23,12 @@ const ConversationComponent = ({
 }: ConversationComponentProps) => {
   const [speakingDialogueIndex, setSpeakingDialogueIndex] = useState(-1);
   const [dialogueAudioUuids, setDialogueAudioUuids] = useState<string[]>([]);
-  const [isShowPronunciation, setIsShowPronunciation] = useState(false);
-  const [isShowMeaning, setIsShowMeaning] = useState(false);
+  const [isShowPronunciation, setIsShowPronunciation] = useState(
+    pageType === "TemplateConversationToggle" ? false : true,
+  );
+  const [isShowMeaning, setIsShowMeaning] = useState(
+    pageType === "TemplateConversationToggle" ? false : true,
+  );
 
   const {
     globalAudioRef,

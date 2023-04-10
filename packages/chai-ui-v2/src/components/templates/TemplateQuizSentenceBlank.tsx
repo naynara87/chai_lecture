@@ -15,11 +15,11 @@ import LineCheckBoxes from "../molecules/LineCheckBoxes";
 import {
   TemplateProps,
   TemplateQuizSentencesInOrderData,
+  useContentMapper,
   useGlobalAudio,
   usePageCompleted,
   useXapi,
 } from "../../core";
-import { IconTextComponent } from "../contents";
 import ModalVideo from "../modal/ModalVideo";
 import { v4 as uuidv4 } from "uuid";
 import DialogueSentenceBlank from "../contents/DialogueSentenceBlank";
@@ -166,12 +166,19 @@ const TemplateQuizSentenceBlank = ({
     setIsModalVideoOpen(true);
   };
 
+  const { getContentComponent } = useContentMapper();
+
+  const titleContents = useMemo(() => {
+    if (!thisPage.titleContents) return;
+    return thisPage.titleContents.map((titleContent, contentIndex) => {
+      return getContentComponent(titleContent, contentIndex);
+    });
+  }, [getContentComponent, thisPage]);
+
   return (
     <DialogueContainer className="layout-panel-wrap grid-h-5-5">
       <div className="layout-panel side-panel conversation-panel-wrap">
-        {thisPage.titleContents && (
-          <IconTextComponent contents={thisPage.titleContents} />
-        )}
+        {thisPage.titleContents && titleContents}
         {/* 230217 회화영역 */}
         <ul className="conversation-wrapper">
           {/* speech bubble */}

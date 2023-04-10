@@ -3,6 +3,8 @@ import {
   ComponentButtonRoundArrow,
   ConversationWordListContentData,
   ImgCharacterComponent,
+  useToast,
+  vw,
 } from "chai-ui-v2";
 import React, { useCallback, useMemo, useState } from "react";
 import { DraggableContentCommonProps } from "../../types/page";
@@ -33,6 +35,15 @@ const deleteButtonStyle = css`
   background-color: #999999;
 `;
 
+const TitleInput = styled.input`
+  background: none !important;
+  font-size: ${vw(25)} !important;
+  text-align: center;
+  &::placeholder {
+    opacity: 0.6;
+  }
+`;
+
 const ConversationWordListCreator = ({
   content,
   setFocusedId,
@@ -50,6 +61,7 @@ const ConversationWordListCreator = ({
   const thisContent = content as ConversationWordListContentData;
   const [focusedTextEditorIndex, setFocusedTextEditorIndex] =
     useState<number>();
+  const { addToast } = useToast();
 
   const fucusTextEditor = useCallback((wordIndex: number) => {
     setFocusedTextEditorIndex(wordIndex);
@@ -108,6 +120,17 @@ const ConversationWordListCreator = ({
     [thisContent, updateConversationWordListData],
   );
 
+  const setTitle = useCallback(
+    (text: string) => {
+      const updatedData = {
+        ...thisContent.data,
+        title: text,
+      };
+      updateConversationWordListData(updatedData);
+    },
+    [thisContent, updateConversationWordListData],
+  );
+
   /**
    * 현재 선택 영역 텍스트 업데이트
    */
@@ -134,24 +157,28 @@ const ConversationWordListCreator = ({
 
   const deleteWord = useCallback(
     (listIndex: number) => {
+      if (thisContent.data.words.length === 1) {
+        addToast("최소 1개이상 입력하셔야 합니다.", "info");
+        return;
+      }
+
       const newContent: ConversationWordListContentData =
         cloneDeep(thisContent);
       newContent.data.words.splice(listIndex, 1);
       updateContent(currentSlide.id, thisContent.id, position, newContent);
     },
-    [currentSlide.id, position, thisContent, updateContent],
+    [currentSlide.id, position, thisContent, updateContent, addToast],
   );
 
   const vocaLists = useMemo(() => {
     return thisContent.data.words.map((word, wordIndex) => {
       return (
         <VacaList className="voca-list" key={wordIndex}>
-          {thisContent.data.words.length > 1 && (
-            <ObjectDeleteButton
-              onClick={() => deleteWord(wordIndex)}
-              customCSS={deleteButtonStyle}
-            />
-          )}
+          <ObjectDeleteButton
+            onClick={() => deleteWord(wordIndex)}
+            customCSS={deleteButtonStyle}
+          />
+
           <div onClick={() => fucusTextEditor(wordIndex)}>
             <TextEditorViewer
               text={word.text}
@@ -208,10 +235,19 @@ const ConversationWordListCreator = ({
           onClick={(e) => setFocusedId(e, content.id)}
         >
           <h3 className="voca-title">
-            회화 단어 목록
+            <TitleInput
+              type="text"
+              className="name"
+              placeholder="제목 입력"
+              onBlur={(e) => {
+                const target = e.target as HTMLInputElement;
+                setTitle(target.value);
+              }}
+              defaultValue={thisContent.data.title}
+            />
             <ImgCharacterComponent
-              characterType="kkungiSmile"
-              characterAlt="꿍이스마일"
+              characterType="kkungiHello"
+              characterAlt="꿍이윙크인사"
             />
             <ComponentButtonRoundArrow />
           </h3>

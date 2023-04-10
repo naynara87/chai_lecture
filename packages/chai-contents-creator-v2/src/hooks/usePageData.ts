@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { ID, Page } from "chai-ui-v2";
+import { ID, Page, useToast } from "chai-ui-v2";
 import { useMemo } from "react";
-import { toast } from "react-toastify";
 import { getPageListData } from "../api/lcms/lcms";
 import { queryKey } from "../constants/queryKey";
 import useAuth from "./useAuth";
@@ -11,6 +10,7 @@ type UsePageDataProps = {
   pageId?: ID;
 };
 const usePageData = ({ cornerId, pageId }: UsePageDataProps) => {
+  const { addToast } = useToast();
   const { isAuthorized } = useAuth();
   const { data: cornerDataResponse, refetch } = useQuery(
     [queryKey.lcmsCorner],
@@ -21,7 +21,7 @@ const usePageData = ({ cornerId, pageId }: UsePageDataProps) => {
       enabled: isAuthorized && !!cornerId,
       onError: (error) => {
         console.log(error);
-        toast("페이지 데이터 조회 실패", { type: "error" });
+        addToast("페이지 데이터 조회 실패", "error");
       },
       refetchOnWindowFocus: false,
       staleTime: Infinity,

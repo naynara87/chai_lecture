@@ -1,8 +1,11 @@
 import styled from "@emotion/styled";
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { vh } from "../../assets";
-import { TemplateProps, TemplateQuizSpeakingData } from "../../core";
-import { ActivityGuideCharacterComponent } from "../contents";
+import {
+  TemplateProps,
+  TemplateQuizSpeakingData,
+  useContentMapper,
+} from "../../core";
 import FinalSpeakingComponent from "../contents/FinalSpeakingComponent";
 
 const DialogueContainer = styled.div`
@@ -19,9 +22,14 @@ const TemplateQuizSpeaking = ({
 }: TemplateQuizSpeakingProps) => {
   const thisPage = template as TemplateQuizSpeakingData;
 
-  console.log(thisPage);
+  const { getContentComponent } = useContentMapper();
 
-  // const { getContentComponent } = useContentMapper();
+  const leftContents = useMemo(() => {
+    if (!thisPage.leftContents) return;
+    return thisPage.leftContents.map((leftContent, contentIndex) => {
+      return getContentComponent(leftContent, contentIndex);
+    });
+  }, [getContentComponent, thisPage]);
 
   useEffect(() => {
     setPageCompleted();
@@ -31,9 +39,7 @@ const TemplateQuizSpeaking = ({
     <DialogueContainer className="layout-panel-wrap grid-h-3-7">
       <div className="layout-panel side-panel">
         {/* {leftContents} */}
-        {thisPage.leftContents && (
-          <ActivityGuideCharacterComponent contents={thisPage.leftContents} />
-        )}
+        {leftContents}
       </div>
       <div className="layout-panel wide-panel conversation-panel-wrap">
         {thisPage.rightContents && (

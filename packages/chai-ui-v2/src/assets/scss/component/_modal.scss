@@ -112,6 +112,7 @@
     >img {
       width: 100%;
       height: 100%;
+      object-fit: cover;
     }
   }
 
@@ -149,7 +150,6 @@
   padding: vw(60);
 
   .dec {
-    padding: vw(20);
     line-height: 1.6;
     font-size: vw(28);
   }

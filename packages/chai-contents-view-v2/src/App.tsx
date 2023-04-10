@@ -32,19 +32,19 @@ const tempDataCookie = {
   uno: "1",
   uid: "1",
   applId: "1",
-  cornerId: "f820ed45-3dbe-407f-b777-db46ff05183c",
-  pageId: "8fbe969e-ab51-43b0-b0ab-55c8b11065e1",
+  cornerId: "808e1d4a-725c-45a4-bef7-ab01aae81103",
+  pageId: "8b2add73-6277-4f98-9a7d-7832bd14ae44",
   courseId: "1",
   subjectId: "1",
   courseName: "\ube68\uac15",
-  lessonId: "93",
+  lessonId: "279",
   lessonName: "\ub808\uc2a8+1",
 };
 
 function App() {
   useEffect(() => {
     if (process.env.NODE_ENV === "development") {
-      setCookie<InitialAppData>("bubble-player", dummyDataCookie, {
+      setCookie<InitialAppData>("bubble-player", tempDataCookie, {
         path: "/",
       });
     }
@@ -56,7 +56,7 @@ function App() {
         <RecoilRoot>
           <ToastContainer
             limit={3}
-            autoClose={4000}
+            autoClose={3000}
             hideProgressBar={true}
             closeButton={false}
           />

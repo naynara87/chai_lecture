@@ -22,9 +22,12 @@ import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { cloneDeep } from "lodash";
 import DroppableContents from "../molecules/DroppableContents";
 
+const MultilevelActionSentenceContentContainer = styled.div`
+  margin: 0 auto;
+`;
+
 const MultilevelActionCardWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
+  width: 100%;
 `;
 const MultilevelActionCardList = styled.div`
   display: flex;
@@ -32,7 +35,8 @@ const MultilevelActionCardList = styled.div`
 `;
 const MultilevelActionCard = styled.div`
   display: flex;
-  width: 500px;
+  max-width: 50vw;
+  width: 100%;
   min-height: 134px;
   flex-direction: column;
   padding: 8px;
@@ -204,56 +208,59 @@ const MultilevelActionSentenceCardCreator = ({
   };
 
   return (
-    <ContentCreatorLayout
-      isDraggable={isDraggable}
-      draggableProvided={draggableProvided}
-      deleteContent={deleteContent}
-      slideId={currentSlide.id}
-      content={content}
-      position={position}
-      copyContent={copyContent}
-      pasteContent={pasteContent}
-    >
-      <MultilevelActionCardWrapper>
-        <MultilevelActionCardList>
-          <MultilevelActionCard className="important-card">
-            <TopArea>
-              <button className="btn-comp-select" onClick={toggleContextMenu}>
-                컴포넌트 선택
-              </button>
-              <ComponentsContextMenuComponent
-                isComponentsContextMenuOpen={isComponentsContextMenuOpen}
-                addComponent={addComponent}
-                toggleContextMenu={toggleContextMenu}
-                contentComponents={cardContentComponents}
-              />
-            </TopArea>
-            <DragDropContext onDragEnd={handleOnDragEnd}>
-              {Array(thisContent.data.length)
-                .fill("")
-                .map((item, itemIndex) => {
-                  return (
-                    <div key={itemIndex}>
-                      {itemIndex !== 0 && <DashedBar />}
-                      <DroppableContents
-                        droppableId={`multiLevel_${itemIndex}`}
-                        currentSlide={currentSlide}
-                        contents={thisContent.data[itemIndex]}
-                        position={position}
-                        updateContent={updateComponent}
-                        deleteContent={deleteComponent}
-                      />
-                    </div>
-                  );
-                })}
-            </DragDropContext>
-            {thisContent.data.length < 3 && (
-              <AddStep onClick={addStep}>내용 추가</AddStep>
-            )}
-          </MultilevelActionCard>
-        </MultilevelActionCardList>
-      </MultilevelActionCardWrapper>
-    </ContentCreatorLayout>
+    <MultilevelActionSentenceContentContainer>
+
+      <ContentCreatorLayout
+        isDraggable={isDraggable}
+        draggableProvided={draggableProvided}
+        deleteContent={deleteContent}
+        slideId={currentSlide.id}
+        content={content}
+        position={position}
+        copyContent={copyContent}
+        pasteContent={pasteContent}
+      >
+        <MultilevelActionCardWrapper>
+          <MultilevelActionCardList>
+            <MultilevelActionCard className="important-card">
+              <TopArea>
+                <button className="btn-comp-select" onClick={toggleContextMenu}>
+                  컴포넌트 선택
+                </button>
+                <ComponentsContextMenuComponent
+                  isComponentsContextMenuOpen={isComponentsContextMenuOpen}
+                  addComponent={addComponent}
+                  toggleContextMenu={toggleContextMenu}
+                  contentComponents={cardContentComponents}
+                />
+              </TopArea>
+              <DragDropContext onDragEnd={handleOnDragEnd}>
+                {Array(thisContent.data.length)
+                  .fill("")
+                  .map((item, itemIndex) => {
+                    return (
+                      <div key={itemIndex}>
+                        {itemIndex !== 0 && <DashedBar />}
+                        <DroppableContents
+                          droppableId={`multiLevel_${itemIndex}`}
+                          currentSlide={currentSlide}
+                          contents={thisContent.data[itemIndex]}
+                          position={position}
+                          updateContent={updateComponent}
+                          deleteContent={deleteComponent}
+                        />
+                      </div>
+                    );
+                  })}
+              </DragDropContext>
+              {thisContent.data.length < 3 && (
+                <AddStep onClick={addStep}>내용 추가</AddStep>
+              )}
+            </MultilevelActionCard>
+          </MultilevelActionCardList>
+        </MultilevelActionCardWrapper>
+      </ContentCreatorLayout>
+    </MultilevelActionSentenceContentContainer>
   );
 };
 

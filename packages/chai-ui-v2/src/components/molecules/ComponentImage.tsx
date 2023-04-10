@@ -10,8 +10,9 @@ const ImageComponent = styled.div`
   text-align: center;
 
   img {
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 `;
 
@@ -19,7 +20,7 @@ interface ComponentImageProps {
   imageUrl: string;
 }
 
-const ComponentImage = ({imageUrl}:ComponentImageProps) => {
+const ComponentImage = ({ imageUrl }: ComponentImageProps) => {
   return (
     <ImageComponent>
       <img src={imageUrl} alt="예시이미지" />

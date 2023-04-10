@@ -58,15 +58,15 @@
     overflow: auto;
     height: calc(100% - vw(165));
     padding: vh(30) vw(45);
+    font-size: vw(24);
 
-    .text {
-      font-size: vw(24);
-      line-height: 1;
+    // .text {
+    //   line-height: 1;
 
-      &:not(:first-child) {
-        margin-top: vw(20);
-      }
-    }
+    //   &:not(:first-of-type) {
+    //     margin-top: vw(20);
+    //   }
+    // }
   }
 
   .btns-wrap {

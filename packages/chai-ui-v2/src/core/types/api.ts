@@ -11,3 +11,11 @@ interface PostAccessTokenDataBody {
   userId: string;
   accessToken: string;
 }
+export interface DeleteQuestionData {
+  body: DeleteQuestionDataBody;
+}
+
+interface DeleteQuestionDataBody {
+  content_id: string[];
+  user_id: string;
+}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ActivityGuideCharacterContentData } from "../../core";
 import { HtmlContentComponent } from "../atoms";
 import styled from "@emotion/styled";
@@ -19,14 +19,12 @@ const ContStartWrapper = styled.div`
   }
 
   .character-wrap {
-    width: 100%;
     text-align: center;
 
     .img {
-      width: auto;
-      max-width: 100%;
-      height: auto;
-      max-height: ${vw(388)};
+      width: ${vw(180)};
+      height: ${vw(180)};
+      object-fit: cover;
     }
   }
 `;
@@ -37,9 +35,26 @@ const ContStartWrapper = styled.div`
 const ActivityGuideCharacterComponent = ({
   contents,
 }: ActivityGuideCharacterComponentProps) => {
+  const thisComponentRef = React.useRef<HTMLDivElement>(null);
+  const characterWrapRef = React.useRef<HTMLDivElement>(null);
+  const layoutPanel = thisComponentRef.current?.closest(".layout-panel");
+  const layoutPanelHeight = layoutPanel?.clientHeight;
+
+  useEffect(() => {
+    if (
+      !layoutPanelHeight ||
+      !thisComponentRef.current ||
+      !characterWrapRef.current
+    ) {
+      return;
+    }
+    if (layoutPanelHeight <= characterWrapRef.current.clientHeight) {
+      thisComponentRef.current.style.justifyContent = "flex-start";
+    }
+  }, [layoutPanelHeight, thisComponentRef, characterWrapRef]);
   return (
-    <ContStartWrapper className="cont-info-wrap">
-      <div className="character-wrapper">
+    <ContStartWrapper className="cont-info-wrap" ref={thisComponentRef}>
+      <div className="character-wrapper" ref={characterWrapRef}>
         <div className="text-bubble-wrap">
           <HtmlContentComponent html={contents.data.text} />
         </div>

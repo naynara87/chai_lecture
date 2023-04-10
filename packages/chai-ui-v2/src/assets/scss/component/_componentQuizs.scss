@@ -30,7 +30,7 @@
   > * {
     margin-top: vh(30);
 
-    &:first-child {
+    &:first-of-type {
       margin-top: 0;
     }
   }
@@ -86,11 +86,13 @@
 .hori-answer-wrap {
   @include flex-center {
     gap: vw(30);
-    // flex-wrap: wrap;
+    flex-wrap: wrap;
   }
 
   .inp-grp {
     flex-basis: calc(50% - vw(15));
+    flex-shrink: 0;
+    flex-grow: 0;
   }
 }
 
@@ -114,7 +116,8 @@
   }
 
   .blank {
-    width: vw(160);
+    min-width: vw(160);
+    max-width: vw(300);
     padding: vh(15) vw(15);
     border: 2px solid color(gray-c9);
     border-radius: vw(15);

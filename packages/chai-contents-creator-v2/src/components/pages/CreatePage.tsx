@@ -14,8 +14,6 @@ import { PREVIEW_URL } from "../../constants/url";
 import ModalIntroduction from "../molecules/modal/ModalIntroduction";
 import useCreatePage from "../../hooks/useCreatePage";
 import { css } from "@emotion/react";
-import { isDevEnv } from "../../constants/env";
-import { Link } from "react-router-dom";
 
 const CommonButtonContainer = styled.div`
   padding-bottom: 16px;
@@ -25,9 +23,7 @@ const CommonButtonContainer = styled.div`
   text-align: right;
 `;
 
-const saveButtonCss = css`
-  visibility: ${isDevEnv ? "visible" : "hidden"};
-`;
+const saveButtonCss = css``;
 
 const CreatePage = () => {
   const [isModalIntroductionOpen, setIsModalIntroductionOpen] = useState(false);
@@ -70,6 +66,7 @@ const CreatePage = () => {
 
   const handleClickPreview = useCallback(() => {
     savePageDataToLocalStorage();
+    window.open(`#${PREVIEW_URL}`, "preview", "width=2000, height=1200");
   }, [savePageDataToLocalStorage]);
 
   const handleClickAddIntroductionModal = useCallback(() => {
@@ -86,12 +83,10 @@ const CreatePage = () => {
             onClick={handleSavePageData}
             customCSS={saveButtonCss}
           >
-            테스트 저장 버튼
+            저장
           </Button>
           <Button type="button" onClick={handleClickPreview}>
-            <Link to={PREVIEW_URL} target="_blank">
-              미리보기
-            </Link>
+            미리보기
           </Button>
           <Button type="button" onClick={handleClickAddIntroductionModal}>
             학습 변경 간지 추가

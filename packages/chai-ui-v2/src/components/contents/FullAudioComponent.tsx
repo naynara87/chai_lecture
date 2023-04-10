@@ -7,17 +7,19 @@ interface FullAudioComponentProps {
   fullAudioUuid?: string;
   onClickFullAudio?: () => void;
   onClickStopFullAudio?: () => void;
+  ref?: React.LegacyRef<HTMLDivElement>;
 }
 
 const FullAudioComponent = ({
   fullAudioUuid,
   onClickFullAudio,
   onClickStopFullAudio,
+  ref,
 }: FullAudioComponentProps) => {
   const { globalAudioId } = useGlobalAudio();
 
   return (
-    <div className="btns-wrap">
+    <div className="btns-wrap" ref={ref}>
       {globalAudioId.toString().includes(fullAudioUuid ?? "") ? (
         <IconPauseFillButton onClick={onClickStopFullAudio} />
       ) : (

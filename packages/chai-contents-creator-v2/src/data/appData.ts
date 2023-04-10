@@ -178,9 +178,9 @@ export const contentComponents: ContentComponents = {
     "borderTextBox",
     "video",
     "imageWithCaptionList",
-    "speaking",
     "imageWithDescriptionList",
-    "audio",
+    "audio", // 음성듣기
+    "speaking", // 따라말하기
     "recorder",
   ],
   character: [
@@ -191,15 +191,15 @@ export const contentComponents: ContentComponents = {
     "characterCardList",
   ],
   mixture: [
-    "contentsCardList",
-    "multiLevelActionCard",
-    "conversationWordList",
-    "toggleSentenceList",
-    "cardTab",
-    "multiLevelActionSentenceCard",
-    "wordsCarousel",
-    "conversation",
-    "audioAndWordsCarousel",
+    "contentsCardList", // 학습 카드
+    "multiLevelActionCard", // 액션카드(단어용)
+    "multiLevelActionSentenceCard", // 액션카드(문장용)
+    "wordsCarousel", // 단어장
+    "audioAndWordsCarousel", // 음성+단어장
+    "conversationWordList", // 단어 목록
+    "conversation", // 대화
+    "cardTab", // 탭
+    "toggleSentenceList", // 문장 토글
   ],
 };
 
@@ -213,11 +213,18 @@ export const cardContentComponents: Omit<ContentComponents, "character"> = {
   mixture: ["wordsCarousel", "audioAndWordsCarousel"],
 };
 
+// 학습 요약 모달 창안에서 추가하는 컴포넌트들
 export const characterCardContentComponents: Omit<
   ContentComponents,
   "character"
 > = {
-  common: ["text", "iconText", "numberingTextList"],
+  common: [
+    "text",
+    "iconText",
+    "numberingTextList",
+    "imageWithCaptionList",
+    "imageWithDescriptionList",
+  ],
   mixture: ["conversation"],
 };
 
@@ -484,6 +491,7 @@ export const getContentComponentsDefaultValue = (): Partial<
     id: uuidV4(),
     type: "conversationWordList",
     data: {
+      title: "",
       words: [
         {
           text: "",
@@ -678,6 +686,7 @@ export const getTemplateDefaultValue = (): Partial<
         id: uuidV4(),
         type: "conversationWordList",
         data: {
+          title: "",
           words: [
             {
               text: "",
@@ -730,6 +739,7 @@ export const getTemplateDefaultValue = (): Partial<
         id: uuidV4(),
         type: "conversationWordList",
         data: {
+          title: "",
           words: [
             {
               text: "",
@@ -783,6 +793,7 @@ export const getTemplateDefaultValue = (): Partial<
         id: uuidV4(),
         type: "conversationWordList",
         data: {
+          title: "",
           words: [
             {
               text: "",
@@ -916,13 +927,15 @@ export const getTemplateDefaultValue = (): Partial<
   TemplateQuizSentencesInOrder: {
     id: uuidV4(),
     type: "TemplateQuizSentencesInOrder",
-    titleContents: {
-      id: uuidV4(),
-      type: "iconText",
-      data: {
-        text: "",
+    titleContents: [
+      {
+        id: uuidV4(),
+        type: "iconText",
+        data: {
+          text: "",
+        },
       },
-    },
+    ],
     mainContents: {
       id: uuidV4(),
       type: "quizSentence",
@@ -998,16 +1011,18 @@ export const getTemplateDefaultValue = (): Partial<
   TemplateQuizSpeaking: {
     id: uuidV4(),
     type: "TemplateQuizSpeaking",
-    leftContents: {
-      id: uuidV4(),
-      type: "activityGuideCharacter",
-      data: {
-        character: {
-          src: "",
+    leftContents: [
+      {
+        id: uuidV4(),
+        type: "activityGuideCharacter",
+        data: {
+          character: {
+            src: "",
+          },
+          text: "",
         },
-        text: "",
       },
-    },
+    ],
     rightContents: {
       id: uuidV4(),
       type: "finalSpeaking",

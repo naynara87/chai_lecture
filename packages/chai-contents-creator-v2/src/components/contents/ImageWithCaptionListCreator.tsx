@@ -3,15 +3,22 @@ import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 import ImageIcon from "../../assets/images/icon/icon_image.svg";
 import UrlInputWrapper from "../molecules/UrlInputWrapper";
 import { DraggableContentCommonProps } from "../../types/page";
-import { CaptionListImage, ImageWithCaptionListContentData } from "chai-ui-v2";
+import {
+  CaptionListImage,
+  ImageWithCaptionListContentData,
+  useToast,
+  vw,
+} from "chai-ui-v2";
 import TextEditorViewer from "../molecules/TextEditorViewer";
 import { useCallback, useEffect, useState } from "react";
 import AddButton from "../atoms/AddButton";
 import ObjectDeleteButton from "../atoms/ObjectDeleteButton";
+import useSafeKey from "../../hooks/useSafeKey";
 
 const ImageListWrapper = styled.ul`
   display: flex;
-  gap: 60px;
+  gap: 20px;
+
   .caption-text {
     margin-top: 20px;
     color: #666666;
@@ -22,11 +29,13 @@ const ImageListWrapper = styled.ul`
 
 const ImageList = styled.li`
   position: relative;
+  width: 50%;
 `;
 
 const ImageThumb = styled.div`
-  width: 200px;
-  height: 150px;
+  max-width: 100%;
+  width: ${vw(200)};
+  height: ${vw(150)};
   background-color: #f0f0f0;
   position: relative;
   margin-bottom: 10px;
@@ -47,6 +56,7 @@ const ImageWithCaptionListCreatorWrapper = styled.div`
 `;
 
 const DeleteButtonWrapper = styled.div`
+  z-index: 3;
   position: absolute;
   top: 0;
   right: 0;
@@ -71,6 +81,7 @@ const ImageWithCaptionListCreator = ({
   isDraggable,
 }: DraggableContentCommonProps) => {
   const thisContent = content as ImageWithCaptionListContentData;
+  const { addToast } = useToast();
 
   const [focusedTextEditorIndex, setFocusedTextEditorIndex] =
     useState<number>();
@@ -143,7 +154,7 @@ const ImageWithCaptionListCreator = ({
   const addImage = () => {
     // 최대 2개 까지
     if (thisContent.data.length === 2) {
-      alert("이미지는 최대 2개까지만 등록 가능합니다.");
+      addToast("이미지는 최대 2개까지만 등록 가능합니다.", "info");
       return;
     }
     const newContent = {
@@ -161,6 +172,7 @@ const ImageWithCaptionListCreator = ({
 
   const deleteImage = (index: number) => {
     if (thisContent.data.length === 1) {
+      addToast("최소 1개이상 입력하셔야 합니다.", "info");
       return;
     }
     const newContent = {
@@ -169,6 +181,10 @@ const ImageWithCaptionListCreator = ({
     };
     updateContent(currentSlide.id, content.id, position, newContent);
   };
+
+  const { addKeyByArrayLength, deleteKeyByIndex, getKeyByIndex } = useSafeKey(
+    thisContent.data,
+  );
 
   return (
     <ContentCreatorLayout
@@ -185,6 +201,7 @@ const ImageWithCaptionListCreator = ({
       <ImageWithCaptionListCreatorWrapper>
         <AddButton
           onClick={() => {
+            addKeyByArrayLength(thisContent.data.length);
             addImage();
           }}
         >
@@ -193,15 +210,14 @@ const ImageWithCaptionListCreator = ({
         <ImageListWrapper>
           {thisContent.data.map((_, index) => {
             return (
-              <ImageList key={index}>
+              <ImageList key={getKeyByIndex(index)}>
                 <DeleteButtonWrapper>
-                  {thisContent.data.length > 1 && (
-                    <ObjectDeleteButton
-                      onClick={() => {
-                        deleteImage(index);
-                      }}
-                    />
-                  )}
+                  <ObjectDeleteButton
+                    onClick={() => {
+                      deleteKeyByIndex(index);
+                      deleteImage(index);
+                    }}
+                  />
                 </DeleteButtonWrapper>
                 <ImageThumb>
                   {getThisContentImageSrc(index) ? (

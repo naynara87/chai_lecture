@@ -3,7 +3,6 @@ import { NotiCharacterListContentData } from "../../core";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
 import styled from "@emotion/styled";
 import arrow from "../../assets/images/icon/icon_contsinfo_tail.svg";
-import profileImg from "../../assets/images/img/cha_profile01.png";
 import { vw, vh, colorPalette } from "../../assets";
 
 export interface NotiCharacterListComponentProps {
@@ -14,6 +13,7 @@ const NotiWrapper = styled.ul`
   display: flex;
   justify-content: center;
   gap: ${vw(50)};
+  flex-wrap: wrap;
 `;
 
 const NotiList = styled.li`
@@ -81,7 +81,7 @@ const NotiCharacterListComponent = ({
             NOTE: lsh dummyData에서 characterMapping 작업이 되어있지않아 우선 공통이미지로 넣었습니다.
             <img src={notiCharacter.character.src} alt="" />
             */}
-            <img src={profileImg} alt="" />
+            <img src={notiCharacter.character.src} alt="" />
           </ImageWrap>
         </NotiList>
       );

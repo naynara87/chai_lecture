@@ -5,7 +5,11 @@ import styled from "@emotion/styled";
 import { DraggableContentCommonProps } from "../../types/page";
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 import CharacterInputWrapper from "../molecules/ChracterInputWrapper";
-import { QuizPopupModalContentData, QuizSentenceContentData } from "chai-ui-v2";
+import {
+  QuizPopupModalContentData,
+  QuizSentenceContentData,
+  useToast,
+} from "chai-ui-v2";
 import { useCallback, useMemo, useState } from "react";
 import CheckBoxWrapper from "../molecules/CheckBoxWrapper";
 import { cloneDeep } from "lodash";
@@ -75,6 +79,8 @@ const SentenceWordsInOrderCreator = ({
   const [focusedTextEditorId, setFocusedTextEditorId] = useState<string>();
   const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(false);
   const [solutionType, setSolutionType] = useState<"correct" | "incorrect">();
+
+  const { addToast } = useToast();
 
   const focusTextEditor = useCallback(
     (sentenceId: string) => () => {
@@ -262,6 +268,11 @@ const SentenceWordsInOrderCreator = ({
 
   const deleteSentence = useCallback(
     (characterIndex: number, sentenceIndex: number) => {
+      if (thisContent.data.characters.length === 1) {
+        addToast("최소 1개이상 입력하셔야 합니다.", "info");
+        return;
+      }
+
       const updatedContent = cloneDeep(thisContent);
       const removeIndex = updatedContent.data.characters[
         characterIndex
@@ -282,6 +293,7 @@ const SentenceWordsInOrderCreator = ({
       currentSlide.id,
       updateContentToSentenceInOrderTemplate,
       setAnswerIndex,
+      addToast,
     ],
   );
 

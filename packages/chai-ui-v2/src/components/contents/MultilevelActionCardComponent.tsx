@@ -6,8 +6,24 @@ import useContentMapper from "../../core/hooks/useContentMapper";
 import ComponentButtonStep from "../atoms/Button/ComponentButtonStep";
 
 const StepCard = styled.div`
-  > *:not(:first-child) {
+  > *:not(:first-of-type) {
     margin-top: ${vw(40)};
+  }
+
+  .image-with-caption-wrapper {
+    img {
+      width: 100%;
+      height: auto;
+      max-width: 200px;
+      max-height: 150px;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+    }
+
+    .caption-wrap {
+      width: 100%;
+      max-width: 200px;
+    }
   }
 `;
 

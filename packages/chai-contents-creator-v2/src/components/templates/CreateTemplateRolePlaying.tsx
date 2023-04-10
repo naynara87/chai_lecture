@@ -21,6 +21,7 @@ import {
   ID,
   RolePlayingCharacter,
   RoleplayingContentData,
+  useToast,
 } from "chai-ui-v2";
 import {
   CornerGuideWrapper,
@@ -94,6 +95,7 @@ const CreateTemplateRolePlaying = ({
     updateGuideContent,
     updateCharacters,
   } = useRolePlaying(slideId);
+  const { addToast } = useToast();
 
   const iconTextData = thisSlide.iconText;
   const guideContent = thisSlide.guideContent;
@@ -138,6 +140,11 @@ const CreateTemplateRolePlaying = ({
 
   const deleteCharacter = (index: number) => {
     if (!characterList) return;
+    if (characterList.length === 1) {
+      addToast("최소 1개이상 입력하셔야 합니다.", "info");
+      return;
+    }
+
     const newCharacterWithColorList = characterList.filter(
       (item, itemIndex) => {
         return itemIndex !== index;
@@ -152,7 +159,7 @@ const CreateTemplateRolePlaying = ({
       return itemIndex !== index && item.name === name;
     });
     if (isDuplicated) {
-      alert("이름이 중복됩니다.");
+      addToast("이름이 중복됩니다.", "info");
       return;
     }
     const newCharacterList = characterList.map((item, itemIndex) => {
@@ -281,7 +288,7 @@ const CreateTemplateRolePlaying = ({
     ) => {
       if (!rolePlayingContentsData) return;
       if (!selectedCharacter) {
-        alert("화자를 선택해주세요.");
+        addToast("화자를 선택해주세요.", "info");
         return;
       }
 
@@ -297,13 +304,17 @@ const CreateTemplateRolePlaying = ({
 
       updateRolePlayingContents(updatedRolePlayingContents);
     },
-    [rolePlayingContentsData, updateRolePlayingContents],
+    [rolePlayingContentsData, updateRolePlayingContents, addToast],
   );
 
   // delete rolePlayingContents
   const deleteRolePlayingContents = useCallback(
     (index: number) => {
       if (!rolePlayingContentsData) return;
+      if (rolePlayingContentsData.length === 1) {
+        addToast("최소 1개이상 입력하셔야 합니다.", "info");
+        return;
+      }
       const newRolePlayingContents = rolePlayingContentsData.filter(
         (item, itemIndex) => {
           return itemIndex !== index;
@@ -311,7 +322,7 @@ const CreateTemplateRolePlaying = ({
       );
       updateRolePlayingContents(newRolePlayingContents);
     },
-    [rolePlayingContentsData, updateRolePlayingContents],
+    [rolePlayingContentsData, updateRolePlayingContents, addToast],
   );
 
   // update rolePlayingContents audio url by index

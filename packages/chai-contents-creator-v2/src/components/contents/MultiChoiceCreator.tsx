@@ -1,5 +1,9 @@
 import styled from "@emotion/styled";
-import { MultiChoiceContentData, QuizPopupModalContentData } from "chai-ui-v2";
+import {
+  MultiChoiceContentData,
+  QuizPopupModalContentData,
+  vw,
+} from "chai-ui-v2";
 import React, { useCallback, useMemo, useState } from "react";
 import useGrayLineComponent from "../../hooks/useGrayLineComponent";
 import { DraggableContentCommonProps } from "../../types/page";
@@ -21,6 +25,8 @@ const ContentBox = styled.div`
 `;
 
 const ChoiceWrap = styled.div`
+  align-items: stretch;
+  flex-wrap: wrap;
   width: 100%;
 `;
 
@@ -33,6 +39,8 @@ interface ChoiceLabelProps {
 }
 
 const ChoiceLabel = styled.label<ChoiceLabelProps>`
+  height: 100%;
+  padding: ${vw(20)} ${vw(40)};
   margin-bottom: 8px;
   ${(props) =>
     props.isFocus && `height:auto; display:flex; align-items: center;`}
@@ -176,13 +184,7 @@ const MultiChoiceCreator = ({
   const choices = useMemo(() => {
     return thisContent.data.choice.map((choice, choiceIndex) => {
       return (
-        <div className="inp-grp">
-          <input
-            name="answer"
-            id={`answer${choiceIndex}`}
-            className="inp-chck-gray none"
-            checked={false}
-          />
+        <div key={`${choice}_${choiceIndex}`} className="inp-grp">
           <ChoiceLabel
             htmlFor={`answer${choiceIndex}`}
             className="label-chck-gray"
@@ -200,12 +202,12 @@ const MultiChoiceCreator = ({
           </ChoiceLabel>
           <AnswerInput
             type="radio"
-            name="answerCheck"
-            id={`answerCheck${choiceIndex}`}
+            name={`answerCheck_${thisContent.id}`}
+            id={`answerCheck_${choiceIndex}_${thisContent.id}`}
             onClick={() => setAnswer(choiceIndex)}
           />
           <label
-            htmlFor={`answerCheck${choiceIndex}`}
+            htmlFor={`answerCheck_${choiceIndex}_${thisContent.id}`}
             onClick={() => setAnswer(choiceIndex)}
           >
             <AnswerCheckText className="text">정답</AnswerCheckText>

@@ -5,6 +5,7 @@ import {
   TemplateConversationData,
   TemplateConversationRepeatData,
   TemplateConversationToggleData,
+  useToast,
   vh,
   vw,
 } from "chai-ui-v2";
@@ -18,12 +19,17 @@ import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 import SpeakingTimeInputWrapper from "../molecules/SpeakingTimeInputWrapper";
 import TextEditorViewer from "../molecules/TextEditorViewer";
 import UrlInputWrapper from "../molecules/UrlInputWrapper";
+import useSafeKey from "../../hooks/useSafeKey";
 
 export const ConversationWrapper = styled.ul``;
 
 export const CharacterNameInput = styled.input`
   background: none !important;
   font-size: ${vw(25)} !important;
+
+  &::placeholder {
+    opacity: 0.6;
+  }
 `;
 
 export const ConversationList = styled.li`
@@ -33,6 +39,10 @@ export const ConversationList = styled.li`
   background-color: #f6f4ff;
   border: 1px solid #d9d0ff;
   position: relative;
+
+  .conversation-wrap .txt-wrap > div {
+    margin-top: 10px;
+  }
 `;
 
 export const deleteButtonStyle = css`
@@ -65,6 +75,7 @@ const ConversationCreator = ({
   const [focusedTextEditorIndex, setFocusedTextEditorIndex] =
     useState<number>();
   const [focusedColumnIndex, setFocusedColumnIndex] = useState<TextType>();
+  const { addToast } = useToast();
 
   const focusTextEditor = useCallback(
     (sentenceListIndex: number, columnIndex: TextType) => () => {
@@ -211,13 +222,18 @@ const ConversationCreator = ({
   );
 
   const deleteConversation = useCallback(
-    (listIndex: number) => () => {
+    (listIndex: number) => {
+      if (thisContent.data.length === 1) {
+        addToast("최소 1개이상 입력하셔야 합니다.", "info");
+        return;
+      }
+
       const newContent = cloneDeep(thisContent);
       const removeIndex = newContent.data.findIndex((v, i) => i === listIndex);
       newContent.data.splice(removeIndex, 1);
       updateContent(currentSlide.id, thisContent.id, position, newContent);
     },
-    [thisContent, currentSlide.id, updateContent, position],
+    [thisContent, currentSlide.id, updateContent, position, addToast],
   );
 
   const handleSubmitSpeakingTime = useCallback(
@@ -236,16 +252,25 @@ const ConversationCreator = ({
     [thisContent, updateConversationListData],
   );
 
+  const { addKeyByArrayLength, deleteKeyByIndex, getKeyByIndex } = useSafeKey(
+    thisContent.data,
+  );
+
   const conversationLists = useMemo(() => {
     return thisContent.data.map((list, listIndex) => {
       return (
-        <ConversationList className="conversation-wrap" key={listIndex}>
-          {thisContent.data.length > 1 && (
-            <ObjectDeleteButton
-              onClick={deleteConversation(listIndex)}
-              customCSS={deleteButtonStyle}
-            />
-          )}
+        <ConversationList
+          className="conversation-wrap"
+          key={getKeyByIndex(listIndex)}
+        >
+          <ObjectDeleteButton
+            onClick={() => {
+              deleteConversation(listIndex);
+              deleteKeyByIndex(listIndex);
+            }}
+            customCSS={deleteButtonStyle}
+          />
+
           <div className="img-grp">
             <div className="img-wrap">
               <div className="img-round">
@@ -335,6 +360,8 @@ const ConversationCreator = ({
     deleteConversation,
     thisTemplateType,
     handleSubmitSpeakingTime,
+    getKeyByIndex,
+    deleteKeyByIndex,
   ]);
 
   const addConversation = useCallback(() => {
@@ -369,7 +396,14 @@ const ConversationCreator = ({
         {thisTemplateType === "TemplateConversationToggle" && (
           <TogglesWrapper contents={thisContent} />
         )}
-        <AddButton onClick={addConversation}>대화 추가</AddButton>
+        <AddButton
+          onClick={() => {
+            addConversation();
+            addKeyByArrayLength(thisContent.data.length);
+          }}
+        >
+          대화 추가
+        </AddButton>
         <ConversationWrapper
           className="conversation-wrapper"
           onClick={(e) => setFocusedId(e, content.id)}

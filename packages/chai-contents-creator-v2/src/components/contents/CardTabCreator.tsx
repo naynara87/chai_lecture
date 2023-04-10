@@ -9,6 +9,7 @@ import {
   Content,
   ContentType,
   ID,
+  useToast,
 } from "chai-ui-v2";
 import CheckBoxWrapper from "../molecules/CheckBoxWrapper";
 import {
@@ -25,11 +26,17 @@ import useComponent from "../../hooks/useComponent";
 import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
 
 const CardTabWrapper = styled.div`
+  width: 100%;
   .flex-wrap {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
   }
+`;
+
+const CheckBoxContainer = styled.div`
+  margin-bottom: 8px;
+  margin-left: 20px;
 `;
 
 const TabTitleWrap = styled.div`
@@ -77,7 +84,7 @@ const TabTitleWrap = styled.div`
 
 const TabCard = styled.div`
   position: relative;
-  width: 500px;
+  width: 100%;
   min-height: 80px;
   margin-top: 10px;
   padding: 8px;
@@ -127,6 +134,7 @@ const CardTabCreator = ({
   const [focusedCardComponentSelectIndex, setFocusedCardComponentSelectIndex] =
     useState<number>(0);
   const [focusedTabTitleText, setFocusedTabTitleText] = useState<string>();
+  const { addToast } = useToast();
 
   const {
     ComponentsContextMenuComponent,
@@ -287,6 +295,11 @@ const CardTabCreator = ({
 
   const deleteCard = useCallback(
     (cardIndex: number) => () => {
+      if (thisContent.data[cardIndex].cards.length === 1) {
+        addToast("최소 1개이상 입력하셔야 합니다.", "info");
+        return;
+      }
+
       const newContent = cloneDeep(thisContent);
       const { cards } = newContent.data[focusedTabTitleIndex];
       const removeIndex = cards.findIndex((v, i) => i === cardIndex);
@@ -299,6 +312,7 @@ const CardTabCreator = ({
       currentSlide.id,
       updateContent,
       position,
+      addToast,
     ],
   );
 
@@ -330,10 +344,8 @@ const CardTabCreator = ({
                         contentComponents={cardContentComponents}
                       />
                     )}
-                    {thisContent.data[focusedTabTitleIndex].cards.length >
-                      1 && (
-                      <ObjectDeleteButton onClick={deleteCard(cardIndex)} />
-                    )}
+
+                    <ObjectDeleteButton onClick={deleteCard(cardIndex)} />
                   </div>
                   {card.contents.map((component, index) => {
                     return getComponent({
@@ -426,16 +438,19 @@ const CardTabCreator = ({
       position={position}
       copyContent={copyContent}
       pasteContent={pasteContent}
+      isContainerFullWidth={true}
     >
       <CardTabWrapper className="card-tab-wrapper">
         <div className="flex-wrap">
           <AddButton onClick={addCard}>카드 추가</AddButton>
-          <CheckBoxWrapper
-            isActivated={thisContent.meta?.isUseTab ?? false}
-            onClick={setIsUseTab}
-          >
-            탭 사용
-          </CheckBoxWrapper>
+          <CheckBoxContainer>
+            <CheckBoxWrapper
+              isActivated={thisContent.meta?.isUseTab ?? false}
+              onClick={setIsUseTab}
+            >
+              탭 사용
+            </CheckBoxWrapper>
+          </CheckBoxContainer>
         </div>
         <TabTitleWrap className="tab-title-view--wrap">
           <div

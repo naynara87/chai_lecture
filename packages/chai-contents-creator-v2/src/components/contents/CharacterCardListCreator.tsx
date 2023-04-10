@@ -7,6 +7,7 @@ import {
   Content,
   ContentType,
   ID,
+  useToast,
 } from "chai-ui-v2";
 import React, { useCallback, useEffect, useState } from "react";
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
@@ -23,10 +24,15 @@ import ModalCharacterCardList from "../molecules/modal/ModalCharacterCardList";
 import { getContentComponentsDefaultValue } from "../../data/appData";
 import { cloneDeep } from "lodash";
 import { DropResult } from "react-beautiful-dnd";
+import useSafeKey from "../../hooks/useSafeKey";
 
 const TrainingWrapper = styled.div`
   .training-create-wrap {
     margin-bottom: 50px;
+  }
+
+  .training-list-wrap {
+    flex-wrap: wrap;
   }
 
   .training-list {
@@ -96,9 +102,7 @@ const GradiWrap = styled.div`
   background-image: linear-gradient(to top, #e3e8ff 0%, #e9faff 100%);
 `;
 
-const TrainingList = styled.div`
-  height: max-content !important;
-`;
+const TrainingList = styled.div``;
 
 type ColumnIndex = "title" | "description";
 
@@ -128,6 +132,8 @@ const CharacterCardListCreator = ({
   const [modalState, setModalState] = useState<boolean[]>(
     Array(thisContent.data.length).fill(false),
   );
+
+  const { addToast } = useToast();
 
   const fucusTextEditor = useCallback(
     (characterCardListIndex: number, columnIndex: ColumnIndex) =>
@@ -188,6 +194,10 @@ const CharacterCardListCreator = ({
   };
 
   const addCard = () => {
+    if (thisContent.data.length >= 4) {
+      addToast("최대 4개까지 등록 가능합니다.", "info");
+      return;
+    }
     const newContent = {
       ...thisContent,
       data: [
@@ -234,6 +244,10 @@ const CharacterCardListCreator = ({
   };
 
   const deleteCard = (index: number) => {
+    if (thisContent.data.length === 1) {
+      addToast("최소 1개이상 입력하셔야 합니다.", "info");
+      return;
+    }
     const updatedData = thisContent.data.filter((_, i) => i !== index);
     updateCharacterCardData(updatedData);
     setModalState([...modalState, false]);
@@ -339,6 +353,10 @@ const CharacterCardListCreator = ({
     updateContent(currentSlide.id, content.id, position, newContent);
   };
 
+  const { addKeyByArrayLength, deleteKeyByIndex, getKeyByIndex } = useSafeKey(
+    thisContent.data,
+  );
+
   return (
     <ContentCreatorLayout
       isDraggable={isDraggable}
@@ -352,13 +370,25 @@ const CharacterCardListCreator = ({
       pasteContent={pasteContent}
     >
       <TrainingWrapper className="training-wrapper">
-        <AddButton onClick={addCard}>학습목표 추가</AddButton>
+        <AddButton
+          onClick={() => {
+            addCard();
+            addKeyByArrayLength(thisContent.data.length);
+          }}
+        >
+          학습목표 추가
+        </AddButton>
         <div className="training-list-wrap training-end">
           {thisContent.data.map((item, index) => {
             return (
-              <div className="training-create-wrap" key={index}>
+              <div className="training-create-wrap" key={getKeyByIndex(index)}>
                 <TrainingList className="training-list">
-                  <ObjectDeleteButton onClick={() => deleteCard(index)} />
+                  <ObjectDeleteButton
+                    onClick={() => {
+                      deleteCard(index);
+                      deleteKeyByIndex(index);
+                    }}
+                  />
                   <GradiWrap>
                     <ImageThumbWrap>
                       <ImageThumb className="img-wrap">
@@ -378,6 +408,7 @@ const CharacterCardListCreator = ({
                         )}
                         setText={(text) => setText(index, "title", text)}
                         text={getText(index, "title")}
+                        limitTextLength={10}
                       />
                     </TitleArea>
                   </GradiWrap>

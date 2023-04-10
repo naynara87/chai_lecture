@@ -3,34 +3,41 @@ import AddButton from "../atoms/AddButton";
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 import ObjectDeleteButton from "../atoms/ObjectDeleteButton";
 import { DraggableContentCommonProps } from "../../types/page";
-import { NumberingTextListContentData } from "chai-ui-v2";
+import { NumberingTextListContentData, useToast } from "chai-ui-v2";
 import React, { useCallback, useEffect, useState } from "react";
 import { numberingTextDefaultData } from "../../data/appData";
 import TextEditorViewer from "../molecules/TextEditorViewer";
 
 const NumberingTextCreatorWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
   width: 100%;
 `;
 const NumberingListWrapper = styled.ul`
-  display: flex;
-  flex-direction: column;
   padding-bottom: 24px;
 `;
 
 const NumberingList = styled.li`
-  align-items: flex-start;
-  width: 100%;
   display: flex;
+  /* max-width: 50vw; */
+  width: 100%;
+  align-items: flex-start;
+
   &:not(:last-child) {
     margin-bottom: 16px;
   }
+
   .number {
     position: relative;
     top: unset;
     left: unset;
+    flex-shrink: 0;
     margin-right: 16px;
+  }
+
+  .btn-delete {
+    position: absolute;
+    top: 10px;
+    left: auto;
+    right: 10px;
   }
 `;
 
@@ -76,6 +83,8 @@ const NumberingTextListCreator = ({
     useState<number>();
 
   const [focusedColumnIndex, setFocusedColumnIndex] = useState<ColumnIndex>();
+
+  const { addToast } = useToast();
 
   const fucusTextEditor = useCallback(
     (numberListIndex: number, columnIndex: ColumnIndex) => () => {
@@ -171,6 +180,10 @@ const NumberingTextListCreator = ({
   };
 
   const deleteCurrentNumberingTextItem = (index: number) => {
+    if (thisContent.data.length === 1) {
+      addToast("최소 1개이상 입력하셔야 합니다.", "info");
+      return;
+    }
     const updatedData = thisContent.data.filter((_, i) => i !== index);
     updateNumberingTextData(updatedData);
   };
@@ -206,6 +219,7 @@ const NumberingTextListCreator = ({
                       )}
                       setText={(text) => setText(index, "firstText", text)}
                       text={getText(index, "firstText")}
+                      defaultText="내용1 입력"
                     />
                   </div>
                   <div
@@ -220,6 +234,7 @@ const NumberingTextListCreator = ({
                       )}
                       setText={(text) => setText(index, "secondText", text)}
                       text={getText(index, "secondText")}
+                      defaultText="내용2 입력(선택)"
                     />
                   </div>
                 </TextWrap>

@@ -13,6 +13,8 @@ import { ComponentButtonPlay } from "../atoms";
 const ContentsBoxWrap = styled.div`
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
+  gap: ${vw(30)};
 `;
 
 interface TextBoxProps {
@@ -26,7 +28,6 @@ const ContentBox = styled.div<TextBoxProps>`
   flex-direction: column;
   min-width: ${vw(205)};
   min-height: ${vh(269)};
-  margin: 0 ${vw(30)} 0 0;
   padding: ${vh(60)} ${vw(75)};
   border: ${vw(3)} solid ${colorPalette.subblue};
   border-radius: 1.5vw;

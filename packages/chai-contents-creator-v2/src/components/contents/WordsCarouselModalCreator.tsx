@@ -2,7 +2,7 @@ import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 import { DraggableContentCommonProps } from "../../types/page";
 import WordsCarousel from "../molecules/WordsCarousel";
 import { useCallback, useEffect, useState } from "react";
-import { WordsCarouselContentData } from "chai-ui-v2";
+import { useToast, WordsCarouselContentData } from "chai-ui-v2";
 import "swiper/css";
 import "swiper/css/pagination";
 import { cloneDeep } from "lodash";
@@ -25,6 +25,8 @@ const WordsCarouselModalCreator = ({
 
   const [focusedTextEditorIndex, setFocusedTextEditorIndex] =
     useState<number>();
+
+  const { addToast } = useToast();
 
   const focusTextEditor = useCallback(
     (index: number) => (e: React.MouseEvent) => {
@@ -124,8 +126,10 @@ const WordsCarouselModalCreator = ({
 
   const deleteImage = (index: number) => {
     if (thisContent.data.words.length === 1) {
+      addToast("최소 1개이상 입력하셔야 합니다.", "info");
       return;
     }
+
     const newContent = {
       ...thisContent,
       data: {

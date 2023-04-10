@@ -42,10 +42,18 @@ const ExplainingCharacterComponent = ({
 
   return (
     <DescriptionBubble className="description-bubble-container">
-      <ImgCharacterComponent
-        characterType="didiSmile"
-        characterAlt="디디미소"
-      />
+      {contents.data.character.src ? (
+        <img
+          src={contents.data.character.src}
+          alt="설명하는 캐릭터"
+          className="img"
+        ></img>
+      ) : (
+        <ImgCharacterComponent
+          characterType="didiSmilejump"
+          characterAlt="디디웃으며점프"
+        />
+      )}
       <div className="description-bubble-wrap">
         <div className="bubble-conts">{explainText}</div>
       </div>

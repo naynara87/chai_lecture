@@ -16,6 +16,7 @@ export const getPageListData = async (cornerId: ID) => {
       params: {
         apiKey: API_KEY,
         turnUuid: cornerId,
+        type: "lesson", // 콘텐트 : "lesson"
       },
     },
   );

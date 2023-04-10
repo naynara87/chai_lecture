@@ -142,7 +142,6 @@ const DialogueSentenceBlank = ({
   );
 
   const mainContents = useMemo(() => {
-    if (userChoices.length < 1) return;
     let blankCount = -1;
     return contents.map((content, contentIndex) => {
       return (
@@ -179,6 +178,8 @@ const DialogueSentenceBlank = ({
           <div className="txt-wrap">
             {content.sentences.map((sentence, sentenceIndex) => {
               if (sentence.isChoice) {
+                if (userChoices.length < 1) return;
+
                 blankCount++;
                 const blankIndex = blankCount;
                 return (
@@ -197,7 +198,9 @@ const DialogueSentenceBlank = ({
                       setSelectedChoiceBox(undefined);
                     }}
                   >
-                    {userChoices[blankIndex].text.replace(/<[^>]*>?/g, "")}
+                    <span className="text">
+                      {userChoices[blankIndex].text.replace(/<[^>]*>?/g, "")}
+                    </span>
                   </BlankSpan>
                 );
               } else {

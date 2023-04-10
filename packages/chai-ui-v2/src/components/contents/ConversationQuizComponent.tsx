@@ -7,6 +7,7 @@ import {
 } from "../../core";
 import {
   ComponentButtonRadiFillMain,
+  HtmlContentComponent,
   ImgProfileDefaultComponent,
 } from "../atoms";
 import { LineRadioBoxes } from "../molecules";
@@ -166,13 +167,13 @@ const ConversationQuizComponent = ({
         });
       return (
         <li
+          key={contentIndex}
           className={`conversation-wrap ${
             speakingDialogueIndex === contentIndex &&
             globalAudioState === "playing"
               ? "active"
               : ""
           } ${answerCheckColor(contentIndex)}`}
-          key={contentIndex}
         >
           <div className="img-grp">
             <div className="img-wrap">
@@ -198,21 +199,27 @@ const ConversationQuizComponent = ({
           </div>
           <div className="txt-wrap">
             {/* <p className="chinese">{'今天刮风，下雪，很冷。'}</p> */}
-            <p className="chinese">
-              {texts.map((text) => {
+            <span className="chinese">
+              {texts.map((text, index) => {
                 return text.indexOf("*") === -1 ? (
-                  <>{text}</>
+                  <span key={index}>
+                    <HtmlContentComponent html={text ?? ""} />
+                  </span>
                 ) : (
-                  <p className="blank-gray">
+                  <span className="blank-gray" key={index}>
                     {userChoices[contentIndex].text
                       ? userChoices[contentIndex].text
                       : "\u00A0"}
-                  </p>
+                  </span>
                 );
               })}
-            </p>
-            <p className="pinyin">{content.pronunciation}</p>
-            <p className="mean">{content.meaning}</p>
+            </span>
+            <div className="pinyin">
+              <HtmlContentComponent html={content.pronunciation ?? ""} />
+            </div>
+            <div className="mean">
+              <HtmlContentComponent html={content.meaning ?? ""} />
+            </div>
             <LineRadioBoxes
               choices={content.choice}
               contentIndex={contentIndex}

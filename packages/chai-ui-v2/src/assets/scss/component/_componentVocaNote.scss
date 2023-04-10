@@ -5,9 +5,11 @@
   overflow: hidden;
   position: relative;
   width: 100%;
+  max-width: vw(391);
   height: vh(80);
+  margin: 0 auto;
   padding: 0 vw(20) vh(24);
-  border: 1px solid #dbe1ff;
+  border: 1px solid color(sub);
   border-radius: vw(20);
   background-color: color(purple-200);
   transition: all 0.3s;
@@ -15,6 +17,11 @@
   &.active {
     overflow: auto;
     height: 100%;
+  }
+
+  &::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
   }
 }
 
@@ -32,7 +39,6 @@
 
   .img {
     position: absolute;
-    top: vh(16);
     left: 0;
     width: vw(90);
   }
@@ -59,7 +65,7 @@
   font-size: vw(22);
   color: color(gray-80);
 
-  &:not(:first-child) {
+  &:not(:first-of-type) {
     margin-top: vh(20);
   }
 
@@ -84,7 +90,12 @@
     color: color(text);
   }
 
+  .voca-wrap {
+    padding-right: vw(10);
+  }
+
   .btn-icon {
+    flex-shrink: 0;
     width: vw(55);
     height: vw(55);
   }

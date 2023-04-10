@@ -6,6 +6,7 @@ import {
   ContentsCardListContentData,
   ContentType,
   ID,
+  useToast,
 } from "chai-ui-v2";
 import { cloneDeep } from "lodash";
 import { useCallback, useEffect, useState } from "react";
@@ -25,17 +26,16 @@ import ComponentsContextMenuComponent from "../molecules/ComponentsContextMenuCo
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 import DroppableContents from "../molecules/DroppableContents";
 
-const MultilevelActionCardWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
+const MultilevelActionCardWrapper = styled.div``;
 const MultilevelActionCardList = styled.div`
   display: flex;
   gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
 `;
 const MultilevelActionCard = styled.div`
   display: flex;
-  width: 300px;
+  min-width: 300px;
   min-height: 134px;
   flex-direction: column;
   padding: 8px;
@@ -94,6 +94,7 @@ const ContentsCardListCreator = ({
   const [contextMenuOpenStateList, setContextMenuOpenStateList] = useState<
     boolean[]
   >(Array.from({ length: thisContent.data.length }, () => false));
+  const { addToast } = useToast();
 
   const toggleContextMenu = (index: number) => (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -144,6 +145,11 @@ const ContentsCardListCreator = ({
    * listIndex는 삭제를 위한 state를 하나 만들어서 관리할 수 있을 것 같다
    */
   const deleteCard = (listIndex: number) => {
+    if (thisContent.data.length === 1) {
+      addToast("최소 1개이상 입력하셔야 합니다.", "info");
+      return;
+    }
+
     const newContent: ContentsCardListContentData = cloneDeep(thisContent);
     newContent.data.splice(listIndex, 1);
     updateContent(currentSlide.id, thisContent.id, position, newContent);

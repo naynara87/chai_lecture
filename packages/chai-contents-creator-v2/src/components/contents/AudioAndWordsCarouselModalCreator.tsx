@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { AudioAndWordsCarouselContentData } from "chai-ui-v2";
+import { AudioAndWordsCarouselContentData, useToast } from "chai-ui-v2";
 import { cloneDeep } from "lodash";
 import { useCallback, useEffect, useState } from "react";
 import { DraggableContentCommonProps } from "../../types/page";
@@ -30,6 +30,8 @@ const AudioAndWordsCarouselModalCreator = ({
 
   const [focusedTextEditorIndex, setFocusedTextEditorIndex] =
     useState<number>();
+
+  const { addToast } = useToast();
 
   const focusTextEditor = useCallback(
     (index: number) => (e: React.MouseEvent) => {
@@ -142,6 +144,7 @@ const AudioAndWordsCarouselModalCreator = ({
 
   const deleteImage = (index: number) => {
     if (thisContent.data.wordCarouselContents.words.length === 1) {
+      addToast("최소 1개이상 입력하셔야 합니다.", "info");
       return;
     }
     const newContent = {

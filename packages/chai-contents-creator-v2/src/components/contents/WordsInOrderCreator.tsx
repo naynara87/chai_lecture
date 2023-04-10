@@ -2,6 +2,7 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import {
   QuizPopupModalContentData,
+  useToast,
   vh,
   vw,
   WordsInOrderContentData,
@@ -40,13 +41,19 @@ interface AnswerBoxProps {
 }
 
 const AnswerBox = styled.div<AnswerBoxProps>`
-  width: ${(props) => (props.isFocus ? "auto" : vw(220))};
-  height: ${(props) => (props.isFocus ? "auto" : vh(130))};
-  padding: ${vw(20)} ${vh(50)};
+  width: ${(props) => (props.isFocus ? "auto" : vw(150))};
+  /* height: ${(props) => (props.isFocus ? "auto" : vh(130))}; */
+  height: auto;
+  min-height: ${vh(130)};
+  padding: ${vw(20)};
   background-color: #f5f5f5;
   border: 1px solid #c9c9c9;
   border-radius: 8px;
   margin-bottom: 8px;
+`;
+
+const textViewerCss = css`
+  padding: 0;
 `;
 
 const WordsInOrderWrapper = styled.div`
@@ -86,6 +93,7 @@ const WordsInOrderCreator = ({
     useState<number>();
   const [isModalSolutionOpen, setIsModalSolutionOpen] = useState(false);
   const [solutionType, setSolutionType] = useState<"correct" | "incorrect">();
+  const { addToast } = useToast();
 
   const { addComponent, deleteComponent, updateComponent, handleOnDragEnd } =
     useGrayLineComponent({
@@ -188,6 +196,11 @@ const WordsInOrderCreator = ({
 
   const deleteAnswer = useCallback(
     (listIndex: number) => () => {
+      if (thisContent.data.choice.length === 1) {
+        addToast("최소 1개이상 입력하셔야 합니다.", "info");
+        return;
+      }
+
       const newContent = cloneDeep(thisContent);
       const removeIndex = newContent.data.choice.findIndex(
         (v, i) => i === listIndex,
@@ -196,7 +209,12 @@ const WordsInOrderCreator = ({
       updateContentToWordsInOrderTemplate &&
         updateContentToWordsInOrderTemplate(currentSlide.id, newContent);
     },
-    [thisContent, currentSlide.id, updateContentToWordsInOrderTemplate],
+    [
+      thisContent,
+      currentSlide.id,
+      updateContentToWordsInOrderTemplate,
+      addToast,
+    ],
   );
 
   const addAnswer = useCallback(() => {
@@ -266,6 +284,7 @@ const WordsInOrderCreator = ({
               isFocused={isTextEditorFocused(isFocused, choiceIndex)}
               handleSubmitTextOnBlur={resetFocusedTextEditorIndex}
               defaultText="단어입력"
+              textViewerCss={textViewerCss}
             />
           </AnswerBox>
           <CheckBoxWrapper
@@ -274,12 +293,11 @@ const WordsInOrderCreator = ({
           >
             문제
           </CheckBoxWrapper>
-          {thisContent.data.choice.length > 1 && (
-            <ObjectDeleteButton
-              onClick={deleteAnswer(choiceIndex)}
-              customCSS={deleteButtonStyle}
-            />
-          )}
+
+          <ObjectDeleteButton
+            onClick={deleteAnswer(choiceIndex)}
+            customCSS={deleteButtonStyle}
+          />
         </AnswerBoxWrap>
       );
     });

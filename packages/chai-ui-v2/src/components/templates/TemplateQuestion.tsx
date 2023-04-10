@@ -1,12 +1,27 @@
 import styled from "@emotion/styled";
-import React, { useCallback, useEffect, useMemo } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { QuizData, TemplateProps, TemplateQuestionData } from "../../core";
 import { LocalStorage } from "../../core";
 import { useParams } from "react-router-dom";
+import { LoadingSpinner } from "../atoms";
+import ArrowIcon from "../../assets/images/icon/icon_stick_arrow_right_white.svg";
 
 const QuestionPanel = styled.div`
   padding: 0;
   overflow-y: hidden;
+`;
+
+const LoadingSpinnerWrap = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+`;
+
+const LoadingSpinnerContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
 `;
 
 interface TemplateQuestionProps extends TemplateProps {
@@ -19,12 +34,17 @@ const TemplateQuestion = ({
   handleClickCheckScore,
 }: TemplateQuestionProps) => {
   const thisPage = template as TemplateQuestionData;
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     setPageCompleted();
   }, [setPageCompleted]);
 
   const { pageId } = useParams();
+
+  useEffect(() => {
+    setIsLoaded(false);
+  }, [pageId]);
 
   const receiveMessage = useCallback(
     (event: MessageEvent) => {
@@ -33,13 +53,16 @@ const TemplateQuestion = ({
       const tmpPageDatas = LocalStorage.getItem("pageData") as QuizData[];
       // NOTE ms page index 받아서 page index active 추가
       if (tmpPageDatas != null) {
-        const { correct } = event.data as {
+        const { correct, id } = event.data as {
           correct: boolean;
           id: string;
           answer: string;
+          contentId: string;
         };
+        if (!id) return;
         tmpPageDatas[parseInt(pageId) - 1].isCorrect = correct;
         tmpPageDatas[parseInt(pageId) - 1].state = "end";
+        tmpPageDatas[parseInt(pageId) - 1].contentId = id;
         LocalStorage.setItem("pageData", tmpPageDatas);
       }
     },
@@ -61,7 +84,7 @@ const TemplateQuestion = ({
       return (
         <button className="btn btn-problem" onClick={handleClickCheckScore}>
           <span>채점하기</span>
-          {/* <img src={BtnIcon} alt="바로가기아이콘" /> */}
+          <img src={ArrowIcon} alt="바로가기아이콘" />
         </button>
       );
     }
@@ -72,11 +95,19 @@ const TemplateQuestion = ({
     <div className="layout-panel-wrap">
       <div className="question-number attched">{`[50 ~ 87]`}</div>
       <div className="question-number">{`${pageId}번`}</div>
-      <QuestionPanel className="layout-panel">
+      <QuestionPanel className="layout-panel iframe-panel">
+        {!isLoaded && (
+          <LoadingSpinnerContainer>
+            <LoadingSpinnerWrap>
+              <LoadingSpinner />
+            </LoadingSpinnerWrap>
+          </LoadingSpinnerContainer>
+        )}
         {thisPage.contents && (
           <iframe
             src={thisPage.contents.data.iframeUrl ?? ""}
             title={thisPage.id.toString()}
+            onLoad={() => setIsLoaded(true)}
             width="100%"
             height="100%"
             frameBorder="0"

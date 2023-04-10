@@ -1,65 +1,74 @@
 /* =================== componentTabContents =================== */
 .tab-contents-container {
-	height: 100%;
+  height: 100%;
+
+  .image-with-caption-wrapper {
+    img {
+      width: 100%;
+      max-width: 200px;
+      max-height: 150px;
+      object-fit: cover;
+    }
+
+    .caption-wrap {
+      width: 100%;
+      max-width: 200px;
+    }
+  }
 }
 
 // tab title
 .tab-title-wrap {
-	@include flex-center;
+  @include flex-center;
 
-	border-radius: vw(20);
-	background-color: color(bubble-gray);
+  border-radius: vw(20);
+  background-color: color(bubble-gray);
 
-	.tab-title {
-		width: 50%;
-		height: vh(70);
-		border-radius: vw(20);
-		font-weight: 600;
-		font-size: vw(28);
-		line-height: vh(70);
-		color: color(gray-66);
-		text-align: center;
+  .tab-title {
+    width: 50%;
+    height: vh(70);
+    border-radius: vw(20);
+    font-weight: 600;
+    font-size: vw(28);
+    line-height: vh(70);
+    color: color(gray-66);
+    text-align: center;
 
-		&.active {
-			background-color: color(main);
-			color: color(gray-ff);
-		}
-	}
+    &.active {
+      background-color: color(main);
+      color: color(gray-ff);
+    }
+  }
 }
 
 // END tab title
 // tab content
 .tab-conts-container {
-	@include scrollbar;
+  @include scrollbar;
 
-	overflow: auto;
-	height: calc(100% - vh(70));
+  overflow: auto;
+  height: calc(100% - vh(70));
 }
 
 .tab-conts-wrap {
-	margin-top: vh(30);
-	padding: vh(40) vw(40);
-	border: 1px solid color(gray-db);
-	border-radius: vw(20);
-	font-size: vw(28);
-	white-space: pre-line;
-	text-align: left;
+  margin-top: vh(30);
+  padding: vh(40) vw(40);
+  border: 1px solid color(gray-db);
+  border-radius: vw(20);
+  font-size: vw(28);
+  white-space: pre-line;
 
-	.text {
-		b {
-			font-weight: 400;
-			color: color(red-600);
-		}
+  > div {
+    text-align: left;
 
-		&.lg {
-			font-weight: 600;
-			font-size: vw(36);
-		}
-	}
+    &:not(:first-of-type) {
+      margin-top: vw(40);
+    }
+  }
 
-	.btns-wrap {
-		margin-top: vh(24);
-	}
+  .btns-wrap {
+    margin-top: vh(24);
+  }
 }
 
 // END tab content

@@ -65,7 +65,7 @@ const WordsCarouselWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right: auto;
+
   & > img {
     margin-bottom: 8px;
     box-shadow: 0px 4px 0px rgba(88, 88, 88, 0.2);
@@ -73,6 +73,7 @@ const WordsCarouselWrapper = styled.div`
     width: 40px;
     height: 40px;
   }
+  
   .btn-text {
     width: 80px;
     border-radius: 50px;
@@ -169,13 +170,12 @@ const WordsCarousel = ({
         <SwiperSlide key={wordIndex}>
           <SlideCard>
             <WordsCardWrapper>
-              {wordsCarouselData.words.length > 1 && (
-                <ObjectDeleteButton
-                  onClick={() => {
-                    deleteImage(wordIndex);
-                  }}
-                />
-              )}
+              <ObjectDeleteButton
+                onClick={() => {
+                  deleteImage(wordIndex);
+                }}
+              />
+
               <div
                 onClick={focusTextEditor(wordIndex)}
                 className="words-card-text"
@@ -225,7 +225,8 @@ const WordsCarousel = ({
                 modules={[Pagination]}
                 loop={false}
                 pagination={{
-                  dynamicBullets: false,
+                  dynamicBullets: true,
+                  dynamicMainBullets: 4,
                   clickable: true,
                 }}
                 spaceBetween={20}

@@ -33,18 +33,20 @@ const CreateTemplateQuizSpeaking = ({
         <CreateEditMain>
           <DashBoxArea droppableId={leftDroppableId}>
             {thisSlide.leftContents &&
-              getComponent({
-                index: 0,
-                currentSlide: thisSlide,
-                content: thisSlide.leftContents,
-                isFocused: focusedId === thisSlide.leftContents.id,
-                setFocusedId,
-                updateContent,
-                deleteContent,
-                position: "leftContents",
-                templateType: thisSlide.type,
-                isDraggable: false,
-                isEditBtn: false,
+              thisSlide.leftContents.map((content, index) => {
+                return getComponent({
+                  index,
+                  currentSlide: thisSlide,
+                  content,
+                  isFocused: focusedId === content.id,
+                  setFocusedId,
+                  updateContent,
+                  deleteContent,
+                  position: "leftContents",
+                  templateType: thisSlide.type,
+                  isDraggable: false,
+                  isEditBtn: false,
+                });
               })}
           </DashBoxArea>
         </CreateEditMain>

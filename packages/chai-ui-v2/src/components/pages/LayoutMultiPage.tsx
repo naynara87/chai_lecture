@@ -47,7 +47,8 @@ const LayoutMultiPage = ({ page, setPageCompleted }: LayoutMultiPageProps) => {
       <Swiper
         modules={[Pagination, Navigation]}
         pagination={{
-          dynamicBullets: false,
+          dynamicBullets: true,
+          dynamicMainBullets: 4,
           clickable: true,
         }}
         navigation

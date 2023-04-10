@@ -21,7 +21,7 @@ const ModalBaseTitle = styled.div`
 
 const ModalBaseContents = styled.div`
   /* NOTE: dec 의 height 가 36.3333333333vh(436px을 vh로 변경)이상일 때 추가됨 */
-  align-items: flex-start;
+  justify-content: flex-start;
 `;
 
 interface LayoutModalIntroductionProps {
@@ -109,9 +109,9 @@ const LayoutModalIntroduction = ({
                 <h2 className="ttl">
                   <HtmlContentComponent html={introduction.title} />
                 </h2>
-                <p className="txt">
+                <div className="txt">
                   <HtmlContentComponent html={introduction.subTitle} />
-                </p>
+                </div>
               </div>
             </ModalBaseTitle>
             <ModalBaseContents className="base-conts">

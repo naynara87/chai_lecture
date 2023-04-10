@@ -4,15 +4,21 @@ import UrlInputWrapper from "../molecules/UrlInputWrapper";
 import iconPlay from "chai-ui-v2/dist/assets/images/icon/icon_contsinfo_tail.svg";
 import ImageIcon from "../../assets/images/icon/icon_image_with_bg.svg";
 import ObjectDeleteButton from "../atoms/ObjectDeleteButton";
-import { colorPalette, NotiCharacterListContentData } from "chai-ui-v2";
+import {
+  colorPalette,
+  NotiCharacterListContentData,
+  useToast,
+} from "chai-ui-v2";
 import AddButton from "../atoms/AddButton";
 import { DraggableContentCommonProps } from "../../types/page";
 import TextEditorViewer from "../molecules/TextEditorViewer";
 import { useCallback, useEffect, useState } from "react";
+import useSafeKey from "../../hooks/useSafeKey";
 
 const NotiCharacterWrapper = styled.div`
   position: relative;
   padding-top: 60px;
+  text-align: center;
 
   > .btn {
     position: absolute;
@@ -94,6 +100,7 @@ const NotiCharacterListCreator = ({
   const thisContent = content as NotiCharacterListContentData;
   const [focusedTextEditorIndex, setFocusedTextEditorIndex] =
     useState<number>();
+  const { addToast } = useToast();
 
   const focusTextEditor = useCallback(
     (index: number) => (e: React.MouseEvent) => {
@@ -138,6 +145,10 @@ const NotiCharacterListCreator = ({
    */
   const addImage = () => {
     // 최대 2개 까지
+    if (thisContent.data.length >= 2) {
+      addToast("학습예고는 최대 2개까지만 등록 가능합니다.", "info");
+      return;
+    }
     const newContent = {
       ...thisContent,
       data: [
@@ -155,6 +166,7 @@ const NotiCharacterListCreator = ({
 
   const deleteImage = (index: number) => {
     if (thisContent.data.length === 1) {
+      addToast("최소 1개이상 입력하셔야 합니다.", "info");
       return;
     }
     const newContent = {
@@ -196,6 +208,10 @@ const NotiCharacterListCreator = ({
     };
   }, [resetFocusedTextEditor]);
 
+  const { addKeyByArrayLength, deleteKeyByIndex, getKeyByIndex } = useSafeKey(
+    thisContent.data,
+  );
+
   return (
     <ContentCreatorLayout
       isDraggable={isDraggable}
@@ -208,12 +224,24 @@ const NotiCharacterListCreator = ({
       pasteContent={pasteContent}
     >
       <NotiCharacterWrapper>
-        <AddButton onClick={addImage}>말풍선 추가</AddButton>
+        <AddButton
+          onClick={() => {
+            addImage();
+            addKeyByArrayLength(thisContent.data.length);
+          }}
+        >
+          말풍선 추가
+        </AddButton>
         {/* 반복영역 */}
         {thisContent.data.map((item, index) => {
           return (
-            <NotiCharacterWrap>
-              <ObjectDeleteButton onClick={() => deleteImage(index)} />
+            <NotiCharacterWrap key={getKeyByIndex(index)}>
+              <ObjectDeleteButton
+                onClick={() => {
+                  deleteImage(index);
+                  deleteKeyByIndex(index);
+                }}
+              />
               <TextBubbleWrap onClick={(e) => setFocusedId(e, content.id)}>
                 <p
                   className="description-text"

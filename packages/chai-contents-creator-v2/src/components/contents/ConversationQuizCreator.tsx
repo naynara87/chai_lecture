@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { ConversationQuizContentData, vh, vw } from "chai-ui-v2";
+import { ConversationQuizContentData, useToast, vh, vw } from "chai-ui-v2";
 import { cloneDeep } from "lodash";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { DraggableContentCommonProps } from "../../types/page";
@@ -14,7 +14,8 @@ import {
   ConversationWrapper,
   deleteButtonStyle,
 } from "./ConversationCreator";
-import { AnswerCheckText, AnswerInput } from "./MultiChoiceCreator";
+import { AnswerCheckText } from "./MultiChoiceCreator";
+import useSafeKey from "../../hooks/useSafeKey";
 
 const AnswerBoxWrap = styled.div`
   display: flex;
@@ -29,6 +30,33 @@ const AnswerBox = styled.div`
 
   &:first-of-type {
     margin-right: ${vw(10)};
+  }
+`;
+
+const AnswerInput = styled.input`
+  vertical-align: middle;
+  appearance: none;
+  border: max(2px, 0.1em) solid #c9c9c9;
+  border-radius: 50%;
+  margin-right: 5px;
+  width: 1em;
+  height: 1em;
+  position: relative;
+
+  &:checked {
+    border-color: #7686d4;
+  }
+
+  &:checked::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #7686d4;
   }
 `;
 
@@ -57,6 +85,7 @@ const ConversationQuizCreator = ({
   const [focusedColumnIndex, setFocusedColumnIndex] = useState<
     TextType | ChoiceType
   >();
+  const { addToast } = useToast();
 
   const focusTextEditor = useCallback(
     (sentenceListIndex: number, columnIndex: TextType | ChoiceType) => () => {
@@ -137,13 +166,18 @@ const ConversationQuizCreator = ({
   );
 
   const deleteConversation = useCallback(
-    (listIndex: number) => () => {
+    (listIndex: number) => {
+      if (thisContent.data.length === 1) {
+        addToast("최소 1개이상 입력하셔야 합니다.", "info");
+        return;
+      }
+
       const newContent = cloneDeep(thisContent);
       const removeIndex = newContent.data.findIndex((v, i) => i === listIndex);
       newContent.data.splice(removeIndex, 1);
       updateContent(currentSlide.id, thisContent.id, position, newContent);
     },
-    [thisContent, currentSlide.id, updateContent, position],
+    [thisContent, currentSlide.id, updateContent, position, addToast],
   );
 
   /**
@@ -273,16 +307,25 @@ const ConversationQuizCreator = ({
     [thisContent, updateConversationListData],
   );
 
+  const { addKeyByArrayLength, deleteKeyByIndex, getKeyByIndex } = useSafeKey(
+    thisContent.data,
+  );
+
   const conversationQuizList = useMemo(() => {
     return thisContent.data.map((content, contentIndex) => {
       return (
-        <ConversationList className="conversation-wrap" key={contentIndex}>
-          {thisContent.data.length > 1 && (
-            <ObjectDeleteButton
-              onClick={deleteConversation(contentIndex)}
-              customCSS={deleteButtonStyle}
-            />
-          )}
+        <ConversationList
+          className="conversation-wrap"
+          key={getKeyByIndex(contentIndex)}
+        >
+          <ObjectDeleteButton
+            onClick={() => {
+              deleteConversation(contentIndex);
+              deleteKeyByIndex(contentIndex);
+            }}
+            customCSS={deleteButtonStyle}
+          />
+
           <div className="img-grp">
             <div className="img-wrap">
               <div className="img-round">
@@ -360,7 +403,7 @@ const ConversationQuizCreator = ({
             <AnswerBoxWrap>
               {content.choice.map((choice, choiceIndex) => {
                 return (
-                  <div className="flex-wrap" key={choiceIndex}>
+                  <div className="flex-wrap inp-grp" key={choiceIndex}>
                     <AnswerBox
                       onClick={focusTextEditor(
                         contentIndex,
@@ -389,12 +432,13 @@ const ConversationQuizCreator = ({
                     </AnswerBox>
                     <AnswerInput
                       type="radio"
-                      name="answerCheck"
-                      id={`answerCheck${choiceIndex}`}
+                      name={`answerCheck_${contentIndex}_${thisContent.id}`}
+                      id={`answerCheck_${contentIndex}_${choiceIndex}_${thisContent.id}`}
                       onClick={() => setAnswer(contentIndex, choiceIndex)}
+                      checked={choice.isAnswer}
                     />
                     <label
-                      htmlFor={`answerCheck${choiceIndex}`}
+                      htmlFor={`answerCheck_${contentIndex}_${choiceIndex}_${thisContent.id}`}
                       onClick={() => setAnswer(contentIndex, choiceIndex)}
                     >
                       <AnswerCheckText className="text">정답</AnswerCheckText>
@@ -421,6 +465,8 @@ const ConversationQuizCreator = ({
     setAudio,
     setChoiceText,
     setImage,
+    deleteKeyByIndex,
+    getKeyByIndex,
   ]);
 
   const addConversation = useCallback(() => {
@@ -463,7 +509,14 @@ const ConversationQuizCreator = ({
       pasteContent={pasteContent}
     >
       <div className="flex-wrap">
-        <AddButton onClick={addConversation}>대화 추가</AddButton>
+        <AddButton
+          onClick={() => {
+            addConversation();
+            addKeyByArrayLength(thisContent.data.length);
+          }}
+        >
+          대화 추가
+        </AddButton>
         <ConversationWrapper
           className="conversation-wrapper"
           onClick={(e) => setFocusedId(e, content.id)}

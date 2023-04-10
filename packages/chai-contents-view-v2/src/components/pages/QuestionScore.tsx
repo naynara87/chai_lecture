@@ -7,6 +7,10 @@ import {
   QuizData,
   ModalConfirm,
   ComponentProblemDefault,
+  deleteQuestion,
+  getCookie,
+  InitialAppData,
+  useToast,
 } from "chai-ui-v2";
 import { useMemo, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
@@ -18,6 +22,7 @@ const QuestionScore = () => {
   const [isModalRestartConfirmOpen, setIsModalRestartConfirmOpen] =
     useState(false);
   const [isModalExitConfirmOpen, setIsModalExitConfirmOpen] = useState(false);
+  const { addToast } = useToast();
 
   const { state } = useLocation();
   const { courseId, cornerId, lessonId } = useParams();
@@ -27,13 +32,23 @@ const QuestionScore = () => {
     return LocalStorage.getItem("pageData") as QuizData[];
   }, []);
 
+  const userId = useMemo(() => {
+    return getCookie<InitialAppData>("bubble-player");
+  }, []);
+
   const handleClickGradePageIdx = (pageIdx: number) => {
     setQuizPageIdx(pageIdx);
   };
 
-  const handleClickRestartQuiz = () => {
+  const handleClickRestartQuiz = async () => {
     if (courseId && lessonId && cornerId) {
-      navigate(getPageUrl(courseId, lessonId, cornerId, 1));
+      const contentIds = quizPageData.map((pageData) => pageData.contentId);
+      try {
+        await deleteQuestion(contentIds, userId?.uid ?? "");
+        navigate(getPageUrl(courseId, lessonId, cornerId, 1));
+      } catch (error) {
+        addToast("서버 통신에 실패했습니다. 다시 시도해주세요.", "error");
+      }
     }
   };
 
@@ -55,7 +70,7 @@ const QuestionScore = () => {
           <div className="layout-panel pd-40">
             <ComponentProblemUserInfo
               quizPageData={quizPageData}
-              quizTypeText={`${state.lessonName} ${state.lessonType} 채점 결과`}
+              quizTypeText={`${state.lessonName} ${state.lessonType}`}
             />
             <ComponentProblemGrade
               quizPageData={quizPageData}

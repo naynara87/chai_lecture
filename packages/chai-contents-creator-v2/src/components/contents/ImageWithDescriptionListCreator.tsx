@@ -8,31 +8,70 @@ import { DraggableContentCommonProps } from "../../types/page";
 import {
   ComponentImage,
   ImageWithDescriptionListContentData,
+  useToast,
+  vw,
 } from "chai-ui-v2";
-
 import TextEditorViewer from "../molecules/TextEditorViewer";
 import { useCallback, useEffect, useState } from "react";
+import useSafeKey from "../../hooks/useSafeKey";
 
-const ImageListCreatorWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-`;
+const ImageListCreatorWrapper = styled.div``;
 
 const ImageListWrapper = styled.ul`
-  display: flex;
-  gap: 16px;
-  flex-direction: column;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+
   .description-text {
+    flex-basis: 60%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    padding-left: 20px;
     font-size: 16px;
-    width: 280px;
-    margin-left: 60px;
-    margin-right: 16px;
+
+    p,
+    div,
+    span {
+      word-break: break-all;
+    }
   }
+
+  .image-wrap {
+    flex-basis: 40%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    img {
+      width: ${vw(360)};
+      height: ${vw(220)};
+      border-radius: ${vw(10)};
+      object-fit: cover;
+    }
+  }
+
+  .img-empty-wrap {
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 60px;
+      object-fit: contain;
+      transform: translate(-50%, -50%);
+    }
+  }
+`;
+
+const DeleteButtonWrapper = styled.div`
+  z-index: 3;
+  position: absolute;
+  top: 0;
+  right: 0;
 `;
 
 const ImageList = styled.li`
   display: flex;
+  width: 100%;
+  margin-bottom: 40px;
+  position: relative;
 `;
 
 const ImageThumb = styled.div`
@@ -42,13 +81,6 @@ const ImageThumb = styled.div`
   position: relative;
   margin-bottom: 10px;
   border-radius: 10px;
-  & > img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60px;
-  }
 `;
 
 const ImageWithDescriptionListCreator = ({
@@ -65,6 +97,12 @@ const ImageWithDescriptionListCreator = ({
   isDraggable,
 }: DraggableContentCommonProps) => {
   const thisContent = content as ImageWithDescriptionListContentData;
+
+  const { addKeyByArrayLength, deleteKeyByIndex, getKeyByIndex } = useSafeKey(
+    thisContent.data,
+  );
+  const { addToast } = useToast();
+
   const [focusedTextEditorIndex, setFocusedTextEditorIndex] =
     useState<number>();
 
@@ -126,6 +164,7 @@ const ImageWithDescriptionListCreator = ({
 
   const deleteImage = (index: number) => {
     if (thisContent.data.length === 1) {
+      addToast("최소 1개이상 입력하셔야 합니다.", "info");
       return;
     }
     const newContent = {
@@ -178,23 +217,30 @@ const ImageWithDescriptionListCreator = ({
       pasteContent={pasteContent}
     >
       <ImageListCreatorWrapper>
-        <AddButton onClick={addImage}>이미지 추가</AddButton>
+        <AddButton
+          onClick={() => {
+            addImage();
+            addKeyByArrayLength(thisContent.data.length);
+          }}
+        >
+          이미지 추가
+        </AddButton>
         <ImageListWrapper>
           {thisContent.data.map((item, index) => {
             return (
-              <ImageList>
-                <div>
+              <ImageList key={getKeyByIndex(index)}>
+                <div className="image-wrap">
                   {item.src ? (
                     <ComponentImage imageUrl={getThisContentImageSrc(index)} />
                   ) : (
-                    <ImageThumb>
+                    <ImageThumb className="img-empty-wrap">
                       <img src={ImageIcon} alt="" />
                     </ImageThumb>
                   )}
                   <UrlInputWrapper
                     typeText="이미지"
                     onSubmit={setImageUrl(index)}
-                    defaultText={thisContent.data[index].src}
+                    defaultText={item.src}
                   />
                 </div>
                 <p
@@ -204,15 +250,20 @@ const ImageWithDescriptionListCreator = ({
                   <TextEditorViewer
                     isFocused={isTextEditorFocused(index)}
                     setText={setText(index)}
-                    text={thisContent.data?.[index].description ?? ""}
+                    text={item.description ?? ""}
                     defaultText={
                       <p className="caption-text">설명을 입력해주세요.</p>
                     }
                   />
                 </p>
-                {thisContent.data.length > 1 && (
-                  <ObjectDeleteButton onClick={() => deleteImage(index)} />
-                )}
+                <DeleteButtonWrapper>
+                  <ObjectDeleteButton
+                    onClick={() => {
+                      deleteImage(index);
+                      deleteKeyByIndex(index);
+                    }}
+                  />
+                </DeleteButtonWrapper>
               </ImageList>
             );
           })}

@@ -43,6 +43,7 @@ export interface WordsInOrderComponentProps {
 }
 
 const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
+  // TODO activity state 계산시 userChoices.length > 0 일때만 completeProgress 조건에 넣기
   const [selectedBlankBox, setSelectedBlankBox] = useState<
     undefined | number
   >();
@@ -147,10 +148,10 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
   );
 
   const blankBoxes = useMemo(() => {
-    if (userChoices.length < 1) return;
     let blankCount = -1;
     return contents.data.choice.map((content, contentIndex) => {
       if (content.isChoice) {
+        if (userChoices.length < 1) return;
         blankCount++;
         const blankIndex = blankCount;
         return (
@@ -320,17 +321,19 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
       {/* key설명 정답확인후 정답일 때 answer-right 추가 */}
       {/* key설명 정답확인후 오답일 때 answer-wrong 추가 */}
       <div className="quiz-answer-wrap hori-answer-wrap">{choiceBoxes}</div>
-      <div className="btns-wrap">
-        <ComponentButtonRadiBorderMain
-          text="다시하기"
-          onClickBtn={handleClickResetAnswer}
-        />
-        <ComponentButtonRadiFillMain
-          text="정답확인"
-          onClickBtn={handleClickShowAnswer}
-          isDisabled={isShowAnswerButton}
-        />
-      </div>
+      {userChoices.length > 0 && (
+        <div className="btns-wrap">
+          <ComponentButtonRadiBorderMain
+            text="다시하기"
+            onClickBtn={handleClickResetAnswer}
+          />
+          <ComponentButtonRadiFillMain
+            text="정답확인"
+            onClickBtn={handleClickShowAnswer}
+            isDisabled={isShowAnswerButton}
+          />
+        </div>
+      )}
       <LayoutModalSolution
         isModalOpen={isModalSolutionOpen}
         setIsModalOpen={setIsModalSolutionOpen}

@@ -1,4 +1,8 @@
 /* =================== form =================== */
+button:hover {
+  opacity: 1;
+}
+
 // =================== button style
 .btns-wrap {
   @include flex-center {
@@ -323,7 +327,7 @@
 
 // =================== input toggle style
 .toggles-wrapper {
-  .inp-toggle-wrap:not(:first-child) {
+  .inp-toggle-wrap:not(:first-of-type) {
     margin-left: vw(50);
   }
 }
@@ -377,9 +381,10 @@
 // =================== input checked style
 // inp-chck-gray
 .label-chck-gray {
-  display: block;
+  @include flex-center;
+
   width: 100%;
-  height: vh(120);
+  min-height: vh(120);
   padding: 0 vw(40);
   border: 3px solid color(gray-f0);
   border-radius: vw(20);
@@ -428,6 +433,7 @@
 // inp-chck-line
 .label-chck-line {
   display: block;
+  max-width: vw(300);
   padding: vh(15) vw(32);
   border: 2px solid color(gray-db);
   border-radius: vw(15);

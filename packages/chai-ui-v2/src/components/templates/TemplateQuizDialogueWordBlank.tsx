@@ -79,8 +79,11 @@ const DialogueContainer = styled.div`
   }
 `;
 
-interface TemplateQuizDialogueWordBlank extends TemplateProps { }
+interface TemplateQuizDialogueWordBlank extends TemplateProps {}
 
+/**
+ * 대화형 퀴즈 뷰어
+ */
 const TemplateQuizDialogueWordBlank = ({
   template,
   setPageCompleted,
@@ -180,40 +183,64 @@ const TemplateQuizDialogueWordBlank = ({
     handleAudioReset();
   }, [handleAudioReset]);
 
-  const leftContents = useMemo(() => {
-    if (!thisPage.leftContents) return;
-    return thisPage.leftContents.map((leftContent, contentIndex) => {
-      if (leftContent.type !== "fullAudio") {
-        return getContentComponent(leftContent, contentIndex);
-      }
-    });
-  }, [getContentComponent, thisPage]);
+  const leftContentsContainerRef = useRef<HTMLDivElement>(null);
+  const contInfoWrap = useRef<HTMLDivElement>(null);
 
-  const fullAudioContents = useMemo(() => {
-    if (!thisPage.leftContents) return;
-    return thisPage.leftContents.map((leftContent, contentIndex) => {
-      if (leftContent.type === "fullAudio") {
-        return (
-          <FullAudioComponent
-            fullAudioUuid={`fullAudio_${fullAudioUuidRef.current}`}
-            onClickFullAudio={listenFullAudio}
-            onClickStopFullAudio={handleStopFullAudio}
-            key={contentIndex}
-          />
-        );
-      }
-    });
-  }, [thisPage, handleStopFullAudio, listenFullAudio]);
+  const leftContentsRef = useRef<HTMLDivElement>(null);
+  const fullAudioContentsRef = useRef<HTMLDivElement>(null);
+
+  const leftContentsHeight = leftContentsRef.current?.offsetHeight;
+  const fullAudioContentsHeight = fullAudioContentsRef.current?.offsetHeight;
+
+  useEffect(() => {
+    const leftContentsContainerHeight =
+      leftContentsContainerRef.current?.offsetHeight;
+    if (
+      !leftContentsContainerHeight ||
+      !leftContentsHeight ||
+      !fullAudioContentsHeight ||
+      !contInfoWrap.current
+    ) {
+      return;
+    }
+    if (
+      fullAudioContentsHeight + leftContentsHeight >=
+      leftContentsContainerHeight
+    ) {
+      contInfoWrap.current.style.justifyContent = "flex-start";
+    }
+  }, [leftContentsHeight, fullAudioContentsHeight]);
 
   return (
     <DialogueContainer className="layout-panel-wrap grid-h-3-7">
-      <div className="layout-panel side-panel">
-        <div className="cont-info-wrap">
+      <div className="layout-panel side-panel" ref={leftContentsContainerRef}>
+        <div className="cont-info-wrap" ref={contInfoWrap}>
           <>
-            {fullAudioContents}
+            {/* 전체 음성 듣기 */}
+            <div ref={fullAudioContentsRef}>
+              {thisPage.leftContents &&
+                thisPage.leftContents.map((leftContent, contentIndex) => {
+                  if (leftContent.type === "fullAudio") {
+                    return (
+                      <FullAudioComponent
+                        fullAudioUuid={`fullAudio_${fullAudioUuidRef.current}`}
+                        onClickFullAudio={listenFullAudio}
+                        onClickStopFullAudio={handleStopFullAudio}
+                        key={contentIndex}
+                      />
+                    );
+                  }
+                })}
+            </div>
             {/* 말풍선 캐릭터 */}
-            {leftContents}
-            {/* end 말풍선 캐릭터 */}
+            <div ref={leftContentsRef}>
+              {thisPage.leftContents &&
+                thisPage.leftContents.map((leftContent, contentIndex) => {
+                  if (leftContent.type !== "fullAudio") {
+                    return getContentComponent(leftContent, contentIndex);
+                  }
+                })}
+            </div>
           </>
         </div>
       </div>

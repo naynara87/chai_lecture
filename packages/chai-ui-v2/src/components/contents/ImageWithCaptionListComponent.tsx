@@ -21,6 +21,7 @@ export const CaptionListImage = styled.img`
   cursor: pointer;
   width: calc((${vh(380)} * 4) / 3);
   height: ${vh(380)};
+  object-fit: cover;
 `;
 
 const ImageWithCaptionList = styled.div``;
@@ -36,6 +37,10 @@ const ImageWithCaptionWrapper = styled.div`
     line-height: 1.5;
     text-align: center;
     color: ${colorPalette.gray800};
+  }
+
+  .caption-wrap {
+    width: calc((${vh(380)} * 4) / 3);
   }
 `;
 
@@ -53,7 +58,10 @@ const ImageWithCaptionListComponent = ({
   const imageWithDescriptionList = useMemo(() => {
     return contents.data.map((imageWithCaption, imageWithCaptionIndex) => {
       return (
-        <ImageWithCaptionList key={imageWithCaptionIndex}>
+        <ImageWithCaptionList
+          key={imageWithCaptionIndex}
+          className="image-with-caption-list"
+        >
           <ImageWithCaptionWrapper className="image-with-caption-wrapper">
             <CaptionListImage
               src={imageWithCaption.src}
@@ -63,7 +71,9 @@ const ImageWithCaptionListComponent = ({
               }}
             />
             {imageWithCaption.caption && (
-              <HtmlContentComponent html={imageWithCaption.caption} />
+              <div className="caption-wrap">
+                <HtmlContentComponent html={imageWithCaption.caption} />
+              </div>
             )}
           </ImageWithCaptionWrapper>
         </ImageWithCaptionList>

@@ -22,9 +22,14 @@ import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { cloneDeep } from "lodash";
 import DroppableContents from "../molecules/DroppableContents";
 
+const MultilevelActionContentContainer = styled.div`
+  margin: 0 auto;
+`;
+
 const MultilevelActionCardWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  width: 90%;
 `;
 const MultilevelActionCardList = styled.div`
   display: flex;
@@ -32,7 +37,8 @@ const MultilevelActionCardList = styled.div`
 `;
 const MultilevelActionCard = styled.div`
   display: flex;
-  width: 300px;
+  max-width: 30vw;
+  width: 100%;
   min-height: 134px;
   flex-direction: column;
   padding: 8px;
@@ -41,6 +47,21 @@ const MultilevelActionCard = styled.div`
   border-radius: 16px;
   &.important-card {
     background: linear-gradient(0deg, #e3e8ff, #e9faff);
+  }
+
+  .image-with-caption-wrapper {
+    img {
+      width: 100%;
+      max-width: 200px;
+      max-height: 150px;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+    }
+
+    .caption-wrap {
+      width: 100%;
+      max-width: 200px;
+    }
   }
 `;
 const TopArea = styled.div`
@@ -202,57 +223,59 @@ const MultilevelActionCardCreator = ({
   };
 
   return (
-    <ContentCreatorLayout
-      isDraggable={isDraggable}
-      draggableProvided={draggableProvided}
-      deleteContent={deleteContent}
-      slideId={currentSlide.id}
-      content={content}
-      position={position}
-      align="center"
-      copyContent={copyContent}
-      pasteContent={pasteContent}
-    >
-      <MultilevelActionCardWrapper>
-        <MultilevelActionCardList>
-          <MultilevelActionCard className="important-card">
-            <TopArea>
-              <button className="btn-comp-select" onClick={toggleContextMenu}>
-                컴포넌트 선택
-              </button>
-              <ComponentsContextMenuComponent
-                isComponentsContextMenuOpen={isComponentsContextMenuOpen}
-                addComponent={addComponent}
-                toggleContextMenu={toggleContextMenu}
-                contentComponents={cardContentComponents}
-              />
-            </TopArea>
-            <DragDropContext onDragEnd={handleOnDragEnd}>
-              {Array(thisContent.data.length)
-                .fill("")
-                .map((item, itemIndex) => {
-                  return (
-                    <div key={itemIndex}>
-                      {itemIndex !== 0 && <DashedBar />}
-                      <DroppableContents
-                        droppableId={`multiLevel_${itemIndex}`}
-                        currentSlide={currentSlide}
-                        contents={thisContent.data[itemIndex]}
-                        position={position}
-                        updateContent={updateComponent}
-                        deleteContent={deleteComponent}
-                      />
-                    </div>
-                  );
-                })}
-            </DragDropContext>
-            {thisContent.data.length < 3 && (
-              <AddStep onClick={addStep}>내용 추가</AddStep>
-            )}
-          </MultilevelActionCard>
-        </MultilevelActionCardList>
-      </MultilevelActionCardWrapper>
-    </ContentCreatorLayout>
+    <MultilevelActionContentContainer>
+      <ContentCreatorLayout
+        isDraggable={isDraggable}
+        draggableProvided={draggableProvided}
+        deleteContent={deleteContent}
+        slideId={currentSlide.id}
+        content={content}
+        position={position}
+        align="center"
+        copyContent={copyContent}
+        pasteContent={pasteContent}
+      >
+        <MultilevelActionCardWrapper>
+          <MultilevelActionCardList>
+            <MultilevelActionCard className="important-card">
+              <TopArea>
+                <button className="btn-comp-select" onClick={toggleContextMenu}>
+                  컴포넌트 선택
+                </button>
+                <ComponentsContextMenuComponent
+                  isComponentsContextMenuOpen={isComponentsContextMenuOpen}
+                  addComponent={addComponent}
+                  toggleContextMenu={toggleContextMenu}
+                  contentComponents={cardContentComponents}
+                />
+              </TopArea>
+              <DragDropContext onDragEnd={handleOnDragEnd}>
+                {Array(thisContent.data.length)
+                  .fill("")
+                  .map((item, itemIndex) => {
+                    return (
+                      <div key={itemIndex}>
+                        {itemIndex !== 0 && <DashedBar />}
+                        <DroppableContents
+                          droppableId={`multiLevel_${itemIndex}`}
+                          currentSlide={currentSlide}
+                          contents={thisContent.data[itemIndex]}
+                          position={position}
+                          updateContent={updateComponent}
+                          deleteContent={deleteComponent}
+                        />
+                      </div>
+                    );
+                  })}
+              </DragDropContext>
+              {thisContent.data.length < 3 && (
+                <AddStep onClick={addStep}>내용 추가</AddStep>
+              )}
+            </MultilevelActionCard>
+          </MultilevelActionCardList>
+        </MultilevelActionCardWrapper>
+      </ContentCreatorLayout>
+    </MultilevelActionContentContainer>
   );
 };
 
