@@ -140,6 +140,8 @@ const ContentsLayout = ({
       return;
     }
     if (cornerId && courseId && lessonId) {
+      console.log("currentPage", currentPage);
+
       xapiProgress(
         currentCorner,
         currentCorner,

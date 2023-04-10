@@ -86,7 +86,7 @@ export interface ProgressPageData {
   partId: ID;
   pageId: ID;
   pageName: string;
-  tpType: string;
+  pageType: string;
   pageAreaCd: string;
 }
 

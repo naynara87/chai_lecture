@@ -148,11 +148,10 @@ const useXapi = () => {
         partName: nextCorner.name,
         pageId: nextPageId,
         pageName: "",
-        tpType: "",
+        pageType: "",
         pageAreaCd: "",
       };
       xapiV1?.sendProgress(
-        // TODO 이전페이지 매개변수 currentPageId 계산해서 index넣으면될듯?
         progressPageData,
         newXapiActivityState ?? xapiActivity,
       );
