@@ -1,14 +1,15 @@
 import { LMS_SAVE_DATA } from "../constants";
 import { httpLms } from "../lib";
+import { ID } from "../types";
 
 interface saveLmsDataParams {
   uno: number;
   applId: number;
   courseId: number;
   contsId: number;
-  cornerId: number;
-  lessonId: number;
-  pageId: number;
+  cornerId: ID;
+  lessonId: ID;
+  pageId: ID;
   progressRate: number;
   envlCatgYn: string;
   complYn: string;

@@ -19,14 +19,8 @@ import QuestionLayout from "./QuestionLayout";
 const Layout = () => {
   const { courseId, lessonId, cornerId, pageId } = useParams(); // 이게 나중 실행됨
   const learningLogCookieData = getCookie<InitialAppData>("bubble-player");
-  const { lessonMetaData, corners, totalPages } = useLesson(
-    lessonId,
-    learningLogCookieData?.lessonTpCd,
-  );
-  const { pages, cornerMetaData } = useCorner(
-    cornerId,
-    learningLogCookieData?.lessonTpCd,
-  ); // 이게 먼저 실행되고
+  const { lessonMetaData, corners, totalPages } = useLesson(lessonId);
+  const { pages, cornerMetaData } = useCorner(cornerId); // 이게 먼저 실행되고
 
   const [, setCurrentCornerId] = useRecoilState(currentCornerIdState);
   const { currentProgress } = useProgressRate(totalPages);
@@ -53,21 +47,18 @@ const Layout = () => {
     }
     if (courseId && cornerId && lessonId && pageId) {
       const parsingCourseId = parseInt(courseId);
-      const parsingPageId = parseInt(pageId);
       const pasingUno = parseInt(learningLogCookieData.uno);
       const parsingApplIdId = parseInt(learningLogCookieData.applId);
-      const parsingCornerId = parseInt(cornerId);
       const parsingSubjectId = parseInt(learningLogCookieData.subjectId);
-      const parsingLessonId = parseInt(lessonId);
       try {
         await saveLmsData({
           uno: pasingUno, // user id 쿠키에서 받아옴
           applId: parsingApplIdId, // 신청 id 쿠키에서 받아옴
           courseId: parsingCourseId, // 과정 id useParam에서 받음
           contsId: parsingSubjectId, // 과목 id 쿠키에서 받아옴
-          cornerId: parsingCornerId, // 코너 id useParam에서 받음
-          lessonId: parsingLessonId, // 레슨 id useParam에서 받음
-          pageId: parsingPageId, // 페이지 id useParam에서 받음
+          cornerId: cornerId, // 코너 id useParam에서 받음
+          lessonId: lessonId, // 레슨 id useParam에서 받음
+          pageId: pageId, // 페이지 id useParam에서 받음
           progressRate: currentProgress(pageId), // 학습진도율 현재는 현재페이지의 index에 따라 계산중
           envlCatgYn: isLessonTp, // 문제레슨인지 콘텐츠레슨인지 구분
           complYn: currentProgress(pageId) === 100 ? "Y" : "N", // 현재페이지가 마지막페이지이면 Y 아니면 N
