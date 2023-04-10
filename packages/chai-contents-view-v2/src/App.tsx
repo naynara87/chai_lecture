@@ -25,7 +25,7 @@ function App() {
           uid: "1",
           applId: "1",
           cornerId: "808e1d4a-725c-45a4-bef7-ab01aae81103",
-          pageId: "8b2add73-6277-4f98-9a7d-7832bd14ae44",
+          pageId: "fa25b9ac-e940-46a6-a487-4410e32d784a",
           courseId: "1",
           subjectId: "1",
           courseName: "\ube68\uac15",
