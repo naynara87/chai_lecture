@@ -31,7 +31,7 @@ export type LessonMeta = {
 export type CornerListData = {
   id: ID;
   name: string;
-  pages: number[];
+  pages: ID[];
   introduction?: LessonIntroduction;
 };
 

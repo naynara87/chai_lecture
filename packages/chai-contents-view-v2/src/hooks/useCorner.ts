@@ -10,17 +10,19 @@ const useCorner = (cornerId: ID | undefined) => {
   const [pages, setPages] = useState<Page[]>([]);
   const [cornerMetaData, setCornerMetaData] = useState<CornerMeta>();
 
-  useQuery(
+  const { refetch } = useQuery(
     [QUERY_KEY.PAGES, String(cornerId)],
-    () => {
-      if (!cornerId) {
+    ({ queryKey }) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const [_, _cornerId] = queryKey;
+      if (!_cornerId && _cornerId !== "undefined") {
         return;
       }
       // if (lessonTpCd !== "10") {
       //   return v2QuizCornerDataList;
       // }
       // return v2CornerDataList;
-      return getPageListData(cornerId);
+      return getPageListData(_cornerId);
     },
     {
       enabled: isAuthorized && !!cornerId,
@@ -34,7 +36,6 @@ const useCorner = (cornerId: ID | undefined) => {
         const pages = data?.body?.data?.map((pageData: ContentData) =>
           pageDataConverter(pageData),
         );
-        console.log("cornerData", data);
         setPages(pages!);
         setCornerMetaData(data?.body?.meta);
       },
@@ -45,7 +46,7 @@ const useCorner = (cornerId: ID | undefined) => {
     },
   );
 
-  return { pages, cornerMetaData };
+  return { pages, cornerMetaData, refetchPages: refetch };
 };
 
 export default useCorner;
