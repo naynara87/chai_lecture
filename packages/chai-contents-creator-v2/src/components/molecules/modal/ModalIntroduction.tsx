@@ -59,6 +59,12 @@ const ModalIntroduction = ({
       introductionModalData ?? pageIntroductionDefaultData,
     );
 
+  useEffect(() => {
+    setTempPageIntroductionData(
+      introductionModalData ?? pageIntroductionDefaultData,
+    );
+  }, [introductionModalData]);
+
   const handleSave = () => {
     if (tempPageIntroductionData) {
       saveIntroductionModalData(tempPageIntroductionData);
@@ -183,6 +189,7 @@ const ModalIntroduction = ({
             onSubmit={handleCharacterUrlInput}
             defaultText={profileUrl}
           />
+          {/* 본문 */}
           <DescriptionWrapper onClick={focusThisEditor("contents")}>
             <TextEditorViewer
               text={contents}
