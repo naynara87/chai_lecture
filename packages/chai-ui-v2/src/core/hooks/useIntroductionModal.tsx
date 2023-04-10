@@ -10,11 +10,26 @@ interface UseIntroductionModalProps {
 const useIntroductionModal = ({ page }: UseIntroductionModalProps) => {
   const [isIntroductionModalOpen, setIsIntroductionModalOpen] = useState(false);
 
+  const hasIntroduction = useMemo(() => {
+    if (!page?.introduction) {
+      return false;
+    }
+    if (
+      page.introduction.title !== "" ||
+      page.introduction.subTitle !== "" ||
+      page.introduction.contents !== ""
+    ) {
+      return true;
+    }
+
+    return false;
+  }, [page]);
+
   useEffect(() => {
-    if (page?.introduction) {
+    if (hasIntroduction) {
       setIsIntroductionModalOpen(true);
     }
-  }, [page, setIsIntroductionModalOpen]);
+  }, [hasIntroduction]);
 
   const introduction = useMemo(() => {
     if (page?.introduction) {
