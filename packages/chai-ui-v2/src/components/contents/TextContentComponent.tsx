@@ -6,7 +6,6 @@ import HtmlContentComponent from "../atoms/HtmlContentComponent";
 
 const TextWrap = styled.div`
   font-size: ${vw(24)};
-  text-align: center;
 `;
 export interface TextContentComponentProps {
   contents: TextContentData;
