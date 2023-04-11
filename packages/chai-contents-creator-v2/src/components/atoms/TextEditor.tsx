@@ -7,6 +7,12 @@ import { TextEditorWrapper } from "../../styles/textEditor";
 const Font = ReactQuill.Quill.import("formats/font");
 Font.whitelist = ["timesRoman"]; // , "yahei"
 ReactQuill.Quill.register(Font, true);
+
+const Align = ReactQuill.Quill.import("formats/align");
+Align.whitelist = ["left", "center", "right", "justify"];
+var Icons = ReactQuill.Quill.import("ui/icons");
+Icons.align["left"] = Icons.align[""];
+
 export interface TextEditorWrapperProps {
   minHeight?: number;
   editorCss?: SerializedStyles;
@@ -106,7 +112,7 @@ const TextEditor = ({
                 ],
               },
             ],
-            [{ align: [] }],
+            [{ align: ["left", "center", "right", "justify"] }],
           ],
         }}
       />
