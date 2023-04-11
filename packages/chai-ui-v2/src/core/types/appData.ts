@@ -32,7 +32,7 @@ export type LessonMeta = {
 export type CornerListData = {
   id: ID;
   name: string;
-  pages: number[];
+  pages: ID[];
   introduction?: LessonIntroduction;
 };
 
@@ -80,6 +80,7 @@ export type SinglePage = {
   id: ID;
   name: string;
   pageAreaType: ContentData["pageArea_type"];
+  contentTypeName: string;
   type: "singlePage";
   data: AllTemplateData;
   introduction?: PageIntroduction;
@@ -89,6 +90,7 @@ export type MultiPage = {
   id: ID;
   name: string;
   pageAreaType: ContentData["pageArea_type"];
+  contentTypeName: string;
   type: "multiPage";
   data: AllTemplateData[];
   introduction?: PageIntroduction;

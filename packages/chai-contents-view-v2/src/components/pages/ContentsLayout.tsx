@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import LayoutFooter from "../molecules/LayoutFooter";
 import LayoutHeader from "../molecules/LayoutHeader";
 import { useNavigate, useParams } from "react-router-dom";
@@ -48,8 +48,38 @@ const ContentsLayout = ({
     pageId,
     totalPages,
   });
-  const { xapiProgress } = useXapi();
+  const { xapiProgress, xapiComplete, xapiSuspended } = useXapi();
   const { setCompletedPageComponents } = usePageCompleted();
+
+  const exitPlayer = useCallback(async () => {
+    if (!currentPage || !currentPageIndex) return;
+    const currentCornerIndex = corners.findIndex(
+      (corner) => corner.id.toString() === currentCornerId?.toString(),
+    );
+    const currentCorner = corners[currentCornerIndex];
+    await xapiSuspended(
+      currentCorner,
+      currentCorner,
+      currentPage,
+      totalPages[currentPageIndex - 1],
+      totalPages,
+    );
+    return "";
+  }, [
+    xapiSuspended,
+    corners,
+    currentCornerId,
+    currentPage,
+    currentPageIndex,
+    totalPages,
+  ]);
+
+  useEffect(() => {
+    window.addEventListener("beforeunload", exitPlayer);
+    return () => {
+      window.addEventListener("beforeunload", exitPlayer);
+    };
+  }, [exitPlayer]);
 
   const setPageCompleted = () => {
     setIsPageCompleted(true);
@@ -112,11 +142,12 @@ const ContentsLayout = ({
       (corner) => corner.id.toString() === currentCornerId?.toString(),
     );
     const currentCorner = corners[currentCornerIndex];
-    if (isCurrentCornerLastPage) {
+    if (isCurrentCornerLastPage && currentPage) {
       if (!lessonMetaData) return;
       if (!cornerMetaData) return;
+
       const nextCorner = corners[currentCornerIndex + 1];
-      if (nextCorner && currentPage) {
+      if (nextCorner) {
         // 다음 코너가 있을때
         xapiProgress(
           currentCorner,
@@ -136,6 +167,13 @@ const ContentsLayout = ({
         return;
       }
       // 마지막코너이고 모두 학습을 완료했을때 xapi completed 이벤트 발생부분 레슨의 마지막페이지일때
+      xapiComplete(
+        currentCorner,
+        currentCorner,
+        currentPage,
+        currentPage.id,
+        totalPages,
+      );
       setIsCompleteModalOpen(true);
       return;
     }

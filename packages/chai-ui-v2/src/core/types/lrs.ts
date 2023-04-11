@@ -88,6 +88,7 @@ export interface ProgressPageData {
   pageName: string;
   pageType: string;
   pageAreaCd: string;
+  pageTemplateCode: string;
 }
 
 export interface XapiV1 {
@@ -98,7 +99,7 @@ export interface XapiV1 {
     description: string,
     stateId: string,
   ) => void;
-  suspend: () => void;
+  suspend: (newState: LRSActivityState) => void;
   addContextDetail: (context_detail: ContextDetail) => void;
   addExtensionDetail: (extension_detail: XapiIndicators) => void;
   addObjectContext: (object_context: XapiIndicators) => void;
@@ -109,7 +110,7 @@ export interface XapiV1 {
     pageData: ProgressPageData,
     newState: LRSActivityState,
   ) => void;
-  sendComplete(curPage: number): void;
+  sendComplete(pageData: ProgressPageData, newState: LRSActivityState): void;
   sendPlayed: (contentType: "video" | "audio") => void;
   sendAnswered: () => void;
 }

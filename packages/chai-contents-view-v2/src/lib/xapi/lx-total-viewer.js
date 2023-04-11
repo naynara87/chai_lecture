@@ -4706,7 +4706,9 @@ code.google.com/p/crypto-js/wiki/License
             s = (s - secs) / 60;
             var mins = s % 60;
             var hours = (s - mins) / 60;
+            var day = Math.floor(hours / 24);
             return {
+              day: day,
               hours: hours,
               mins: mins,
               secs: secs,
@@ -4813,6 +4815,88 @@ code.google.com/p/crypto-js/wiki/License
             XW.sendStatement(mys);
             window.postMessage(JSON.stringify(mys));
           }
+          function sendAnswered() {
+            var mys = bareStatement();
+            mys.verb = new ADL.XAPIStatement.Verb(
+              "https://w3id.org/xapi/video/verbs/played",
+              "퀴즈에 응답함",
+            );
+            mys.result = {
+              extensions: _objectSpread({}, pageResult),
+            };
+            mys.object = _objectSpread(
+              _objectSpread({}, mys.object),
+              {},
+              {
+                definition: _objectSpread(
+                  _objectSpread({}, mys.object.definition),
+                  {},
+                  {
+                    name: {
+                      "en-US": "퀴즈 설명",
+                    },
+                    extensions: _objectSpread(
+                      _objectSpread({}, mys.object.definition.extensions),
+                      {},
+                      {
+                        "https://profile.caihong.co.kr/content-management/course/local-content-id": 33,
+                        "https://profile.caihong.co.kr/content-management/course/subcontent-id":
+                          "cb22cb9f-508d-4691-bc77-46162d35fd1a",
+                        "https://profile.caihong.co.kr/content-management/course/subcontent-type":
+                          "question",
+                      },
+                    ),
+                  },
+                ),
+              },
+            );
+            if (resultExtensions) {
+              setContext(mys.result, resultExtensions);
+            }
+            XW.sendStatement(mys);
+            window.postMessage(JSON.stringify(mys));
+          }
+          function sendCreated() {
+            var mys = bareStatement();
+            mys.verb = new ADL.XAPIStatement.Verb(
+              "https://w3id.org/xapi/video/verbs/played",
+              "녹음 파일 생성함",
+            );
+            mys.result = {
+              extensions: _objectSpread({}, pageResult),
+            };
+            mys.object = _objectSpread(
+              _objectSpread({}, mys.object),
+              {},
+              {
+                definition: _objectSpread(
+                  _objectSpread({}, mys.object.definition),
+                  {},
+                  {
+                    name: {
+                      "en-US": "파일명",
+                    },
+                    extensions: _objectSpread(
+                      _objectSpread({}, mys.object.definition.extensions),
+                      {},
+                      {
+                        "https://profile.caihong.co.kr/content-management/course/local-content-id": 33,
+                        "https://profile.caihong.co.kr/content-management/course/subcontent-id":
+                          "cb22cb9f-508d-4691-bc77-46162d35fd1a",
+                        "https://profile.caihong.co.kr/content-management/course/subcontent-type":
+                          "recorded-audio",
+                      },
+                    ),
+                  },
+                ),
+              },
+            );
+            if (resultExtensions) {
+              setContext(mys.result, resultExtensions);
+            }
+            XW.sendStatement(mys);
+            window.postMessage(JSON.stringify(mys));
+          }
           function sendProgress(pageData, newState) {
             var mys = bareStatement();
             var sumActualPageLearning = miliSecToTime(
@@ -4861,7 +4945,7 @@ code.google.com/p/crypto-js/wiki/License
               Object.assign(mys.result, {
                 duration:
                   "P" +
-                  sumActualPageLearning.hours +
+                  sumActualPageLearning.day +
                   // 날짜
                   "DT" +
                   sumActualPageLearning.hours +
@@ -4877,13 +4961,14 @@ code.google.com/p/crypto-js/wiki/License
             XW.sendStatement(mys);
             window.postMessage(JSON.stringify(mys));
           }
-          function sendComplete(curPage) {
+          function sendComplete(pageData, newState) {
             var mys = bareStatement();
             var sumActualPlayerLearning = miliSecToTime(
               new Date() - eduStartTime,
             );
-            currentSegment = [curPage, curPage];
+            currentSegment = [pageData.currentPage, pageData.currentPage];
             addCurrentSegment();
+            saveState(newState);
             mys.verb = new ADL.XAPIStatement.Verb(
               "http://adlnet.gov/expapi/verbs/completed",
               "completed",
@@ -4897,21 +4982,29 @@ code.google.com/p/crypto-js/wiki/License
               },
             };
             if (resultExtensions) {
+              var _ref, _newState$progress;
               setContext(mys.result, resultExtensions);
               Object.assign(mys.result, {
                 duration:
                   "P" +
-                  sumActualPlayerLearning.hours +
+                  sumActualPlayerLearning.day +
                   "DT" +
-                  sumActualPlayerLearning.mins +
+                  sumActualPlayerLearning.hours +
                   "H" +
-                  sumActualPlayerLearning.secs +
+                  sumActualPlayerLearning.mins +
                   "M",
                 score: {
                   max: 100,
                   min: 0,
-                  raw: 70,
-                  scaled: 0.7,
+                  raw:
+                    (_ref = newState.progress * 100) !== null && _ref !== void 0
+                      ? _ref
+                      : 0,
+                  scaled:
+                    (_newState$progress = newState.progress) !== null &&
+                    _newState$progress !== void 0
+                      ? _newState$progress
+                      : 0,
                 },
                 completion: newState.progress >= completeRate ? true : false,
               });
@@ -5229,6 +5322,8 @@ code.google.com/p/crypto-js/wiki/License
             sendProgress: sendProgress,
             sendComplete: sendComplete,
             sendPlayed: sendPlayed,
+            sendAnswered: sendAnswered,
+            sendCreated: sendCreated,
           };
         }
         return {

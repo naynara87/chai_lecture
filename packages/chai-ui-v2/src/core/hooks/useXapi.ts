@@ -155,6 +155,7 @@ const useXapi = () => {
         pageName: currentPage.name,
         pageType: currentPage.type,
         pageAreaCd: currentPage.pageAreaType,
+        pageTemplateCode: currentPage.contentTypeName,
       };
       xapiV1?.sendProgress(
         progressPageData,
@@ -173,13 +174,67 @@ const useXapi = () => {
   );
 
   const xapiComplete = useCallback(
-    (pageId: ID, totalPages: ID[]) => {
-      const pageIndex = totalPages.findIndex(
-        (page) => page.toString() === pageId?.toString(),
+    (
+      currentCorner: CornerListData,
+      nextCorner: CornerListData,
+      currentPage: Page,
+      nextPageId: ID,
+      totalPages: ID[],
+    ) => {
+      if (!xapiActivity) return;
+      const currentPageIndex = totalPages.findIndex(
+        (page) => page.toString() === currentPage.id?.toString(),
       );
-      xapiV1?.sendComplete(pageIndex + 1);
+
+      const newProgressData = updateProgressDataPageCheck(
+        currentCorner.id,
+        nextCorner.id,
+        currentPage.id,
+        nextPageId,
+      );
+      const newXapiActivityState = updateActivityState({
+        part_id: currentCorner.id,
+        part_name: currentCorner.name,
+        page: currentPageIndex + 1,
+        progress_data: newProgressData,
+        progress: updateProgress(
+          newProgressData ?? xapiActivity.progress_data,
+          totalPages,
+        ).progress,
+        complete_progress: updateProgress(
+          newProgressData ?? xapiActivity.progress_data,
+          totalPages,
+        ).completed_progress,
+      });
+      const progressPageData: ProgressPageData = {
+        currentPage: currentPageIndex + 1,
+        nextPage: currentPageIndex + 1,
+        progress: updateProgress(
+          newProgressData ?? xapiActivity.progress_data,
+          totalPages,
+        ).progress,
+        partId: currentCorner.id,
+        partName: currentCorner.name,
+        pageId: currentPage.id,
+        pageName: currentPage.name,
+        pageType: currentPage.type,
+        pageAreaCd: currentPage.pageAreaType,
+        pageTemplateCode: currentPage.contentTypeName,
+      };
+      xapiV1?.sendComplete(
+        progressPageData,
+        newXapiActivityState ?? xapiActivity,
+      );
+      setXapiActivity(newXapiActivityState);
     },
-    [xapiV1],
+    [
+      xapiV1,
+      xapiActivity,
+      updateActivityState,
+      setXapiActivity,
+      updateProgressDataPageCheck,
+      updateProgress,
+    ],
   );
   // NOTE 처음 통합플레이어 로드시 state값이 없을때 실행
   const initialActivityState = useCallback(
@@ -247,6 +302,51 @@ const useXapi = () => {
     xapiV1?.sendAnswered();
   }, [xapiV1]);
 
+  const xapiSuspended = useCallback(
+    (
+      currentCorner: CornerListData,
+      nextCorner: CornerListData,
+      currentPage: Page,
+      nextPageId: ID,
+      totalPages: ID[],
+    ) => {
+      if (!xapiActivity) return;
+      const currentPageIndex = totalPages.findIndex(
+        (page) => page.toString() === currentPage.id?.toString(),
+      );
+
+      const newProgressData = updateProgressDataPageCheck(
+        currentCorner.id,
+        nextCorner.id,
+        currentPage.id,
+        nextPageId,
+      );
+      const newXapiActivityState = updateActivityState({
+        part_id: currentCorner.id,
+        part_name: currentCorner.name,
+        page: currentPageIndex + 1,
+        progress_data: newProgressData,
+        progress: updateProgress(
+          newProgressData ?? xapiActivity.progress_data,
+          totalPages,
+        ).progress,
+        complete_progress: updateProgress(
+          newProgressData ?? xapiActivity.progress_data,
+          totalPages,
+        ).completed_progress,
+      });
+
+      xapiV1?.suspend(newXapiActivityState ?? xapiActivity);
+    },
+    [
+      updateActivityState,
+      updateProgress,
+      updateProgressDataPageCheck,
+      xapiV1,
+      xapiActivity,
+    ],
+  );
+
   return {
     xapiInitialize,
     xapiProgress,
@@ -257,6 +357,7 @@ const useXapi = () => {
     updateProgressDataPageCheck,
     xapiPlayed,
     xapiAnswered,
+    xapiSuspended,
   };
 };
 

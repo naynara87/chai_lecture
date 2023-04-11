@@ -3,7 +3,6 @@ import { getCookie, ID, InitialAppData, xapiElement } from "chai-ui-v2";
 import { getPageUrl } from "../../util/url";
 import { useNavigate } from "react-router-dom";
 import useLesson from "../../hooks/useLesson";
-import useCorner from "../../hooks/useCorner";
 import styled from "@emotion/styled";
 import { usePromiseConfirmModal } from "chai-ui-v2";
 
@@ -51,60 +50,56 @@ const Home = () => {
 
   const { lessonMetaData, corners } = useLesson(lessonIdMemo);
 
-  const { cornerMetaData, pages } = useCorner(
-    learningLogCookieData?.cornerId ?? corners[0]?.id,
-  );
-
   // TODO ready상태 만들어서 xapi initialize 전송
   const getUrl = useCallback(
     (nextCornerId: ID, nextPageId: ID) => {
       if (!lessonMetaData) return;
-      if (!cornerMetaData) return;
       const url = getPageUrl(
         lessonMetaData?.courseId,
-        cornerMetaData?.lessonId,
+        lessonMetaData.id,
         nextCornerId,
         nextPageId,
       );
       navigate(url);
     },
-    [cornerMetaData, lessonMetaData, navigate],
+    [lessonMetaData, navigate],
   );
 
   const setInitialData = useCallback(async () => {
     if (!lessonMetaData) return;
     if (corners.length < 1) return;
-    if (pages.length < 1) return;
     const currentCornerIndex = corners.findIndex(
       (corner) =>
         corner.id.toString() === learningLogCookieData?.cornerId?.toString(),
     );
-    const currentPageIndex = pages.findIndex(
-      (page) =>
-        page.id.toString() === learningLogCookieData?.pageId?.toString(),
+    const pageId = corners[currentCornerIndex].pages.find(
+      (pageId) => pageId.toString() === learningLogCookieData?.pageId,
     );
     if (
       lessonMetaData.lessonTpCd.toString() === "10" &&
       corners[currentCornerIndex] &&
-      pages[currentPageIndex]
+      pageId
     ) {
       const confirmResult = await showContinueOpenModal();
       if (confirmResult) {
-        getUrl(corners[currentCornerIndex].id, pages[currentPageIndex].id);
+        // 이어서 학습
+        getUrl(corners[currentCornerIndex].id, pageId);
         xapiElement.dispatchEvent(playerLoadedEvent);
         return;
       }
     }
-    getUrl(corners[0].id, pages[0].id);
+
+    // 처음부터 학습
+    getUrl(corners[0].id, corners[0].pages[0]);
     xapiElement.dispatchEvent(playerLoadedEvent);
     return;
   }, [
     corners,
-    learningLogCookieData,
     getUrl,
-    pages,
-    showContinueOpenModal,
     lessonMetaData,
+    showContinueOpenModal,
+    learningLogCookieData?.cornerId,
+    learningLogCookieData?.pageId,
   ]);
 
   useEffect(() => {
