@@ -18,7 +18,7 @@ export const TextEditorWrapper = styled.div<TextEditorWrapperProps>`
   }
 
   [data-value="timesRoman"] {
-    font-family: "timesRoman";
+    font-family: "timesRoman", "serif";
     ::before {
       content: "TimesRoman" !important;
     }
