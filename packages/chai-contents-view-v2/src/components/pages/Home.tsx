@@ -50,7 +50,6 @@ const Home = () => {
 
   const { lessonMetaData, corners } = useLesson(lessonIdMemo);
 
-  // TODO ready상태 만들어서 xapi initialize 전송
   const getUrl = useCallback(
     (nextCornerId: ID, nextPageId: ID) => {
       if (!lessonMetaData) return;
@@ -60,6 +59,7 @@ const Home = () => {
         nextCornerId,
         nextPageId,
       );
+      xapiElement.dispatchEvent(playerLoadedEvent);
       navigate(url);
     },
     [lessonMetaData, navigate],
@@ -72,6 +72,7 @@ const Home = () => {
       (corner) =>
         corner.id.toString() === learningLogCookieData?.cornerId?.toString(),
     );
+
     const pageId = corners[currentCornerIndex].pages.find(
       (pageId) => pageId.toString() === learningLogCookieData?.pageId,
     );
@@ -84,14 +85,12 @@ const Home = () => {
       if (confirmResult) {
         // 이어서 학습
         getUrl(corners[currentCornerIndex].id, pageId);
-        xapiElement.dispatchEvent(playerLoadedEvent);
         return;
       }
     }
 
     // 처음부터 학습
     getUrl(corners[0].id, corners[0].pages[0]);
-    xapiElement.dispatchEvent(playerLoadedEvent);
     return;
   }, [
     corners,

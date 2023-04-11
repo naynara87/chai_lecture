@@ -68,6 +68,12 @@ const useXapi = () => {
         }
         return page;
       });
+      const isCornerCompleted = newProgressData[prevCornerIndex].pages.find(
+        (page) => page.is_completed !== false,
+      )
+        ? true
+        : false;
+      newProgressData[prevCornerIndex].is_completed = isCornerCompleted;
       newProgressData[nextCornerIndex].pages = newProgressData[
         nextCornerIndex
       ].pages.map((page) => {
@@ -155,7 +161,7 @@ const useXapi = () => {
         pageName: currentPage.name,
         pageType: currentPage.type,
         pageAreaCd: currentPage.pageAreaType,
-        pageTemplateCode: currentPage.contentTypeName,
+        pageTemplateCode: currentPage.contentsType,
       };
       xapiV1?.sendProgress(
         progressPageData,
@@ -219,7 +225,7 @@ const useXapi = () => {
         pageName: currentPage.name,
         pageType: currentPage.type,
         pageAreaCd: currentPage.pageAreaType,
-        pageTemplateCode: currentPage.contentTypeName,
+        pageTemplateCode: currentPage.contentsType,
       };
       xapiV1?.sendComplete(
         progressPageData,

@@ -137,6 +137,7 @@ const Layout = () => {
       return (
         <QuestionLayout
           pages={pages}
+          corners={corners}
           lessonMetaData={lessonMetaData}
           cornerMetaData={cornerMetaData}
           totalPages={totalPages}

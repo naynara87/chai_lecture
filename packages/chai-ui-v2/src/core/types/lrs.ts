@@ -88,7 +88,7 @@ export interface ProgressPageData {
   pageName: string;
   pageType: string;
   pageAreaCd: string;
-  pageTemplateCode: string;
+  pageTemplateCode: number;
 }
 
 export interface XapiV1 {

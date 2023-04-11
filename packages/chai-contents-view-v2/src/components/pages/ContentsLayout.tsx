@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import LayoutFooter from "../molecules/LayoutFooter";
 import LayoutHeader from "../molecules/LayoutHeader";
 import { useNavigate, useParams } from "react-router-dom";
@@ -17,6 +17,7 @@ import {
 } from "chai-ui-v2";
 import { currentCornerIdState } from "../../state/currentCornerId";
 import usePages from "../../hooks/usePages";
+import useUnload from "../../hooks/useUnload";
 
 interface ContentsLayoutProps {
   pages: Page[];
@@ -51,20 +52,19 @@ const ContentsLayout = ({
   const { xapiProgress, xapiComplete, xapiSuspended } = useXapi();
   const { setCompletedPageComponents } = usePageCompleted();
 
-  const exitPlayer = useCallback(async () => {
+  const exitPlayer = useCallback(() => {
     if (!currentPage || !currentPageIndex) return;
     const currentCornerIndex = corners.findIndex(
       (corner) => corner.id.toString() === currentCornerId?.toString(),
     );
     const currentCorner = corners[currentCornerIndex];
-    await xapiSuspended(
+    xapiSuspended(
       currentCorner,
       currentCorner,
       currentPage,
       totalPages[currentPageIndex - 1],
       totalPages,
     );
-    return "";
   }, [
     xapiSuspended,
     corners,
@@ -74,12 +74,12 @@ const ContentsLayout = ({
     totalPages,
   ]);
 
-  useEffect(() => {
-    window.addEventListener("beforeunload", exitPlayer);
-    return () => {
-      window.addEventListener("beforeunload", exitPlayer);
-    };
-  }, [exitPlayer]);
+  useUnload((event: BeforeUnloadEvent) => {
+    exitPlayer();
+    event.preventDefault();
+    event.returnValue = "학습을 종료하시겠습니까?";
+    return "학습을 종료하시겠습니까?";
+  });
 
   const setPageCompleted = () => {
     setIsPageCompleted(true);

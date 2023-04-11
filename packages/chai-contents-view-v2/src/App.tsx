@@ -41,10 +41,23 @@ const questionDummyCookie = {
   lessonName: "\ub808\uc2a8+1",
 };
 
+const dummyCookie = {
+  uno: "1",
+  uid: "1",
+  applId: "1",
+  cornerId: "11",
+  pageId: "1",
+  courseId: "1",
+  subjectId: "1",
+  courseName: "\ube68\uac15",
+  lessonId: "1",
+  lessonName: "\ub808\uc2a8+1",
+};
+
 function App() {
   useEffect(() => {
     if (process.env.NODE_ENV === "development") {
-      setCookie<InitialAppData>("bubble-player", contentDummyCookie, {
+      setCookie<InitialAppData>("bubble-player", dummyCookie, {
         path: "/",
       });
     }
