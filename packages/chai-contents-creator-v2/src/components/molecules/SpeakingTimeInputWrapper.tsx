@@ -49,9 +49,9 @@ const SpeakingTimeInputWrapper = ({ onSubmit, defaultText }: ButtonProps) => {
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const timeInput = e.currentTarget as HTMLInputElement;
+    const timeRef = inputRef.current as HTMLInputElement;
 
-    const time = Number(timeInput.value);
+    const time = Number(timeRef.value);
 
     if (!time || time < 1) {
       setMessage("발화시간을 정확히 입력해주세요.");
