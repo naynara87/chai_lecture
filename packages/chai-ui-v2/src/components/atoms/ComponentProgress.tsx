@@ -16,7 +16,7 @@ const ProgressBar = styled.div<ProgressBarProps>`
   top: 0;
   left: 0;
   transform: translateX(-100%);
-  transition: all ${(props) => props.duration}s ease-in;
+  transition: all ${(props) => (props.isAudioEnd ? props.duration : 0)}s ease-in;
   transform: ${(props) => props.isAudioEnd && "translateX(0%)"};
 `;
 
