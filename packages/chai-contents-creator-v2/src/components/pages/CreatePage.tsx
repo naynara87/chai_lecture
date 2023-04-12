@@ -6,7 +6,6 @@ import {
   CreateTemplateInner,
   CreateTemplateWrap,
 } from "../../styles/template";
-import TemplateMainLoading from "../templates/TemplateLoading";
 import Button from "../atoms/Button";
 import useComponent from "../../hooks/useComponent";
 import { DragDropContext } from "react-beautiful-dnd";
@@ -14,6 +13,7 @@ import { PREVIEW_URL } from "../../constants/url";
 import ModalIntroduction from "../molecules/modal/ModalIntroduction";
 import useCreatePage from "../../hooks/useCreatePage";
 import { css } from "@emotion/react";
+import { LoadingSpinner } from "chai-ui-v2";
 
 const CommonButtonContainer = styled.div`
   padding-bottom: 16px;
@@ -23,6 +23,14 @@ const CommonButtonContainer = styled.div`
   text-align: right;
 `;
 
+const LoadingScreen = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80vh;
+`;
+
 const saveButtonCss = css``;
 
 const CreatePage = () => {
@@ -30,7 +38,7 @@ const CreatePage = () => {
 
   const { getTemplate } = useTemplate();
 
-  const { returnUsePage, handleSavePageData, initialPageData } =
+  const { returnUsePage, handleSavePageData, initialPageData, isPageReady } =
     useCreatePage();
 
   const {
@@ -75,51 +83,58 @@ const CreatePage = () => {
 
   return (
     <CreateTemplateWrap>
-      <CreateTemplateInner>
-        <CommonButtonContainer>
-          <Button
-            id="btn_save"
-            type="button"
-            onClick={handleSavePageData}
-            customCSS={saveButtonCss}
-          >
-            저장
-          </Button>
-          <Button type="button" onClick={handleClickPreview}>
-            미리보기
-          </Button>
-          <Button type="button" onClick={handleClickAddIntroductionModal}>
-            학습 변경 간지 추가
-          </Button>
-        </CommonButtonContainer>
-        {!initialPageData ? (
-          <TemplateMainLoading />
-        ) : (
-          <DragDropContext onDragEnd={handleOnDragEnd}>
-            {slides.map((slide, index) => {
-              return getTemplate({
-                key: index,
-                templateType: slide.type,
-                slideId: slide.id,
-                handleChangeLayout,
-                deleteSlide,
-                slides,
-                addComponentMap,
-                updateContent,
-                returnUseComponent,
-                deleteContent,
-                copyContent,
-                pasteContent,
-                updateContentToMultiChoiceTemplate,
-                updateContentToWordsInOrderTemplate,
-                updateContentToSentenceInOrderTemplate,
-                updateContentToFinalSpeakingTemplate,
-              });
-            })}
-          </DragDropContext>
-        )}
-        <CreateAddBtn onClick={addSlide}>+ 슬라이드 추가</CreateAddBtn>
-      </CreateTemplateInner>
+      {isPageReady ? (
+        <CreateTemplateInner>
+          <CommonButtonContainer>
+            <Button
+              id="btn_save"
+              type="button"
+              onClick={handleSavePageData}
+              customCSS={saveButtonCss}
+            >
+              저장
+            </Button>
+            <Button type="button" onClick={handleClickPreview}>
+              미리보기
+            </Button>
+            <Button type="button" onClick={handleClickAddIntroductionModal}>
+              학습 변경 간지 추가
+            </Button>
+          </CommonButtonContainer>
+          {!initialPageData ? null : (
+            <DragDropContext onDragEnd={handleOnDragEnd}>
+              {slides.map((slide, index) => {
+                return getTemplate({
+                  key: index,
+                  templateType: slide.type,
+                  slideId: slide.id,
+                  handleChangeLayout,
+                  deleteSlide,
+                  slides,
+                  addComponentMap,
+                  updateContent,
+                  returnUseComponent,
+                  deleteContent,
+                  copyContent,
+                  pasteContent,
+                  updateContentToMultiChoiceTemplate,
+                  updateContentToWordsInOrderTemplate,
+                  updateContentToSentenceInOrderTemplate,
+                  updateContentToFinalSpeakingTemplate,
+                });
+              })}
+            </DragDropContext>
+          )}
+          {!initialPageData ? null : (
+            <CreateAddBtn onClick={addSlide}>+ 슬라이드 추가</CreateAddBtn>
+          )}
+        </CreateTemplateInner>
+      ) : (
+        <LoadingScreen>
+          <LoadingSpinner />
+        </LoadingScreen>
+      )}
+
       <ModalIntroduction
         isModalOpen={isModalIntroductionOpen}
         setIsModalOpen={setIsModalIntroductionOpen}

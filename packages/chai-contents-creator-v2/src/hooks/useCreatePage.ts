@@ -5,8 +5,11 @@ import { isDevEnv } from "../constants/env";
 import { InitialInputValue } from "../types/appData";
 import usePage from "./usePage";
 import usePageData from "./usePageData";
+import { useRecoilState } from "recoil";
+import { authState } from "../states/authState";
 
 const useCreatePage = () => {
+  const [isAuthorized] = useRecoilState(authState);
   const stringifiedValue =
     document.querySelector<HTMLInputElement>("#bubble-player")?.value;
   const initialDataFromPhp = stringifiedValue
@@ -65,10 +68,15 @@ const useCreatePage = () => {
     setInitialPageData(initialPageData);
   }, [initialPageData, setInitialPageData]);
 
+  const isPageReady = useMemo(() => {
+    return isAuthorized && !!initialPageData;
+  }, [isAuthorized, initialPageData]);
+
   return {
     returnUsePage,
     handleSavePageData,
     initialPageData,
+    isPageReady,
   };
 };
 
