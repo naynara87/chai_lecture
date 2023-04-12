@@ -5120,6 +5120,7 @@ code.google.com/p/crypto-js/wiki/License
                 "." +
                 sumActualPageLearning.ms +
                 "S",
+              success: true,
             });
             Object.assign(mys.result.extensions, {
               "https://profile.caihong.co.kr/content-management/course/lessons/pages/progress-segments":
