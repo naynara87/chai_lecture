@@ -26,12 +26,14 @@ const LoadingSpinnerContainer = styled.div`
 
 interface TemplateQuestionProps extends TemplateProps {
   handleClickCheckScore?: () => void;
+  pageIdx?: number;
 }
 
 const TemplateQuestion = ({
   template,
   setPageCompleted,
   handleClickCheckScore,
+  pageIdx,
 }: TemplateQuestionProps) => {
   const thisPage = template as TemplateQuestionData;
   const [isLoaded, setIsLoaded] = useState(false);
@@ -49,24 +51,25 @@ const TemplateQuestion = ({
   const receiveMessage = useCallback(
     (event: MessageEvent) => {
       // event.data에는 iframe에서 보낸 메시지가 포함됩니다.
-      if (!pageId) return;
+      if (pageIdx === undefined) return;
       const tmpPageDatas = LocalStorage.getItem("pageData") as QuizData[];
       // NOTE ms page index 받아서 page index active 추가
       if (tmpPageDatas != null) {
-        const { correct, id } = event.data as {
+        const { correct, id, answer } = event.data as {
           correct: boolean;
           id: string;
           answer: string;
           contentId: string;
         };
         if (!id) return;
-        tmpPageDatas[parseInt(pageId) - 1].isCorrect = correct;
-        tmpPageDatas[parseInt(pageId) - 1].state = "end";
-        tmpPageDatas[parseInt(pageId) - 1].contentId = id;
+        tmpPageDatas[pageIdx].isCorrect = correct;
+        tmpPageDatas[pageIdx].state = "end";
+        tmpPageDatas[pageIdx].contentId = id;
+        tmpPageDatas[pageIdx].answer = answer;
         LocalStorage.setItem("pageData", tmpPageDatas);
       }
     },
-    [pageId],
+    [pageIdx],
   );
 
   useEffect(() => {
@@ -93,8 +96,8 @@ const TemplateQuestion = ({
 
   return (
     <div className="layout-panel-wrap">
-      <div className="question-number attched">{`[50 ~ 87]`}</div>
-      <div className="question-number">{`${pageId}번`}</div>
+      {/* <div className="question-number attched">{`[50 ~ 87]`}</div> */}
+      <div className="question-number">{`${pageIdx ? pageIdx + 1 : 0}번`}</div>
       <QuestionPanel className="layout-panel iframe-panel">
         {!isLoaded && (
           <LoadingSpinnerContainer>
@@ -105,7 +108,7 @@ const TemplateQuestion = ({
         )}
         {thisPage.contents && (
           <iframe
-            src={thisPage.contents.data.iframeUrl ?? ""}
+            src={thisPage.contents.data.interact_url ?? ""}
             title={thisPage.id.toString()}
             onLoad={() => setIsLoaded(true)}
             width="100%"

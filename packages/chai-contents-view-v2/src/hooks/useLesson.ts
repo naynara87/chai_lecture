@@ -17,7 +17,7 @@ const useLesson = (lessonId: ID | undefined) => {
         return;
       }
       // if (lessonTpCd !== "10") {
-      //   return v2LessonQuizData;
+      // return v2LessonQuizData;
       // }
       // return v2LessonData;
       return getCornerListData(lessonId);

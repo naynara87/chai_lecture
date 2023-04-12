@@ -7,7 +7,13 @@ import {
   TemplateQuestionData,
   useLessonNameMapper,
 } from "chai-ui-v2";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import usePages from "../../hooks/usePages";
 import { getPageUrl } from "../../util/url";
@@ -88,6 +94,11 @@ const QuestionLayout = ({
     }, 1000);
   }, []);
 
+  const pageIdx = useMemo(() => {
+    if (!pageId) return;
+    return pages.findIndex((page) => page.id.toString() === pageId.toString());
+  }, [pageId, pages]);
+
   return (
     <>
       <LayoutQuestionHeader
@@ -108,6 +119,7 @@ const QuestionLayout = ({
             template={currentPage.data as TemplateQuestionData}
             setPageCompleted={setPageCompleted}
             handleClickCheckScore={handleClickCheckScore}
+            pageIdx={pageIdx}
           />
         )}
       </main>

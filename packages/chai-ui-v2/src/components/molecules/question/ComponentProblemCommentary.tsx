@@ -43,7 +43,7 @@ const ComponentProblemCommentary = ({
           <div className={`tab-conts-wrapper ${isShowContent ? "" : "none"}`}>
             {quizTemplateData.contents && (
               <iframe
-                src={quizTemplateData.contents.data.iframeUrl}
+                src={quizTemplateData.contents.data.interact_url}
                 title={quizTemplateData.contents.id.toString()}
                 width="100%"
                 height="100%"
@@ -59,19 +59,19 @@ const ComponentProblemCommentary = ({
             <dl className="comment-list">
               <dt className="comment-ttl">정답</dt>
               <dd className="comment-dec">
-                {quizTemplateData.contents.data.answer}
+                {quizPageData[quizPageIdx].answer}
               </dd>
             </dl>
             <dl className="comment-list">
               <dt className="comment-ttl">해설</dt>
               <dd className="comment-dec">
-                {quizTemplateData.contents.data.comment}
+                {quizTemplateData.contents.data.explan}
               </dd>
             </dl>
             <dl className="comment-list">
               <dt className="comment-ttl">예문 해석</dt>
               <dd className="comment-dec">
-                {quizTemplateData.contents.data.example}
+                {quizTemplateData.contents.data.interpet}
               </dd>
             </dl>
           </div>

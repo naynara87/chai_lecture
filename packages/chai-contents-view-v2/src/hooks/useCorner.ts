@@ -19,7 +19,7 @@ const useCorner = (cornerId: ID | undefined) => {
         return;
       }
       // if (lessonTpCd !== "10") {
-      //   return v2QuizCornerDataList;
+      // return v2QuizCornerDataList;
       // }
       // return v2CornerDataList;
       return getPageListData(_cornerId);
