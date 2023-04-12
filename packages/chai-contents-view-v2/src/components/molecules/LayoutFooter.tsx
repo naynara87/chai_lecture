@@ -25,6 +25,7 @@ interface LayoutFooterProps {
   handleClickPrev: () => void;
   totalPages: (string | number)[];
   currentPage?: Page;
+  exitPlayer?: () => void;
 }
 
 const LayoutFooter = ({
@@ -34,6 +35,7 @@ const LayoutFooter = ({
   handleClickPrev,
   totalPages,
   currentPage,
+  exitPlayer,
 }: LayoutFooterProps) => {
   const [isShowNav, setIsShowNav] = useState(false);
   const [isExitModalOpen, setIsExitModalOpen] = useState(false);
@@ -175,6 +177,7 @@ const LayoutFooter = ({
       <LayoutModalExit
         isModalOpen={isExitModalOpen}
         setIsModalOpen={setIsExitModalOpen}
+        exitPlayer={exitPlayer}
       />
     </div>
   );

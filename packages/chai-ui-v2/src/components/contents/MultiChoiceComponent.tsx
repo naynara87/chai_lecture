@@ -16,6 +16,7 @@ import ComponentGrayLine from "../molecules/ComponentGrayLine";
 import { v4 as uuidv4 } from "uuid";
 import ModalVideo from "../modal/ModalVideo";
 import { HtmlContentComponent } from "../atoms";
+import { useParams } from "react-router-dom";
 export interface MultiChoiceComponentProps {
   contents: MultiChoiceContentData;
 }
@@ -36,6 +37,7 @@ const MultiChoiceComponent = ({ contents }: MultiChoiceComponentProps) => {
   const { setPushCompletedPageComponents, setComponentCompleted } =
     usePageCompleted();
   const { xapiAnswered } = useXapi();
+  const { pageId } = useParams();
 
   useEffect(() => {
     setPushCompletedPageComponents("quiz", contents.id);
@@ -85,7 +87,9 @@ const MultiChoiceComponent = ({ contents }: MultiChoiceComponentProps) => {
               setUserChoice(choiceIndex);
               setComponentCompleted(contents.id);
               setIsModalSolutionOpen(true);
-              xapiAnswered(contents.id);
+              if (pageId) {
+                xapiAnswered(contents.id, pageId);
+              }
               handleClickAudioButton(
                 "solutionModal",
                 modalUuidRef.current,
@@ -110,6 +114,7 @@ const MultiChoiceComponent = ({ contents }: MultiChoiceComponentProps) => {
     handleClickAudioButton,
     setComponentCompleted,
     xapiAnswered,
+    pageId,
   ]);
 
   const answerCheckColor = useMemo(() => {

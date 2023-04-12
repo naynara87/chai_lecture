@@ -12,6 +12,7 @@ import {
 } from "../atoms";
 import { LineRadioBoxes } from "../molecules";
 import { v4 as uuidv4 } from "uuid";
+import { useParams } from "react-router-dom";
 
 export interface ConversationQuizComponentProps {
   contents: ConversationQuizContentData;
@@ -43,6 +44,7 @@ const ConversationQuizComponent = ({
   const { setPushCompletedPageComponents, setComponentCompleted } =
     usePageCompleted();
   const { xapiAnswered } = useXapi();
+  const { pageId } = useParams();
 
   useEffect(() => {
     setPushCompletedPageComponents("quiz", contents.id);
@@ -94,8 +96,10 @@ const ConversationQuizComponent = ({
   const handleClickShowAnswer = useCallback(() => {
     setComponentCompleted(contents.id);
     setIsShowAnswer(true);
-    xapiAnswered(contents.id);
-  }, [setComponentCompleted, contents.id, xapiAnswered]);
+    if (pageId) {
+      xapiAnswered(contents.id, pageId);
+    }
+  }, [setComponentCompleted, contents.id, xapiAnswered, pageId]);
 
   const answerCheckColor = useCallback(
     (contentIndex: number) => {

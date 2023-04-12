@@ -6,7 +6,7 @@ export const v2LessonData: LessonData = {
   meta: {
     id: 1,
     name: "Lesson 1",
-    courseId: 1,
+    courseId: 3,
     courseName: "차이홍(샘플데이터)-빨강",
     colorTypeCd: "10",
     lessonTpCd: "10",

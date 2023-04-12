@@ -235,9 +235,13 @@ const ContentsLayout = ({
         handleClickPrev={handleClickPrev}
         totalPages={totalPages}
         currentPage={currentPage}
+        exitPlayer={exitPlayer}
       />
       {isCompleteModalOpen && (
-        <ModalCompleted lessonCode={lessonMetaData.colorTypeCd} />
+        <ModalCompleted
+          lessonCode={lessonMetaData.colorTypeCd}
+          exitPlayer={exitPlayer}
+        />
       )}
     </>
   );

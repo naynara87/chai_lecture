@@ -73,9 +73,9 @@
         "https://profile.caihong.co.kr/content-management/course/lessons": 10,
         "https://profile.caihong.co.kr/content-management/course/lessons/lesson": 3,
       };
-      const result_extensions = {
-        "https://profile.caihong.co.kr/content-management/course/lessons/pages": 20, // 총페이지 수
-      };
+      // const result_extensions = {
+      //   "https://profile.caihong.co.kr/content-management/course/lessons/pages": 20, // 총페이지수 계산해서 넣기
+      // };
       const context_details = {
         registration: "cf3ca788-d7cc-464e-a654-a98a777d2372",
         revision: "1.0",
@@ -96,7 +96,7 @@
                   "en-US": "과정명",
                 },
               },
-              id: "https://profile.caihong.co.kr/content-management/course/1234",
+              id: "https://profile.caihong.co.kr/content-management/course/",
               objectType: "Activity",
             },
           ],
@@ -196,13 +196,12 @@
       const options = {
         // #1 actor 정의
         name: "버블콘",
-        homePage: "https://profile.caihong.co.kr/account/user/1",
+        homePage: "https://profile.caihong.co.kr/account/user/",
         account_name: "123|bubblecon|버블콘|1679469317956_Card_EB01",
         // #2 objecjt 정의
-        activity_id:
-          "https://dev.caihong.co.kr/course/1/lesson/1/appl-id/asd123", // object.id 값
+        activity_id: "https://dev.caihong.co.kr/course/1/lesson/1", // object.id 값
         content_name: "1레슨", // 레슨 정보
-        description: "", // 레슨 설명 정보
+        description: null, // 레슨 설명 정보
         // #3 activityState의 stateId 정의
         state_id:
           "https://dev.caihong.co.kr/state/course/1/student/1/device/1/interaction/1/type/1",
@@ -212,7 +211,7 @@
 
         // #5 xAPI 추가 context 사용
         object_context: object_context,
-        result_extensions: result_extensions,
+        // result_extensions: result_extensions,
         context_details: context_details,
         extension_details: extension_details,
       };

@@ -99,7 +99,7 @@ export interface XapiV1 {
     description: string,
     stateId: string,
   ) => void;
-  suspend: (newState: LRSActivityState) => void;
+  suspend: (newState: LRSActivityState, pageId: ID) => void;
   addContextDetail: (context_detail: ContextDetail) => void;
   addExtensionDetail: (extension_detail: XapiIndicators) => void;
   addObjectContext: (object_context: XapiIndicators) => void;
@@ -110,10 +110,20 @@ export interface XapiV1 {
     newState: LRSActivityState,
   ) => void;
   sendComplete(pageData: ProgressPageData, newState: LRSActivityState): void;
-  sendPlayed: (contentType: "video" | "audio", subContentId: ID) => void;
-  sendAnswered: (subContentId: ID) => void;
-  sendCreated: (subContentId: ID) => void;
-  sendInitialized: () => LRSActivityState;
+  sendPlayed: (
+    pageId: ID,
+    contentType: "video" | "audio",
+    subContentId: ID,
+    contentUrl: string,
+  ) => void;
+  sendAnswered: (subContentId: ID, pageId: ID) => void;
+  sendCreated: (subContentId: ID, pageId: ID) => void;
+  sendInitialized: (
+    uid: ID,
+    courseId: ID,
+    lessonId: ID,
+    totalPages: ID[],
+  ) => LRSActivityState;
 }
 
 export interface XAPIOptions {

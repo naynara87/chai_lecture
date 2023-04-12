@@ -8,7 +8,7 @@ import {
   usePageCompleted,
   useXapi,
 } from "chai-ui-v2";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import useCorner from "../../hooks/useCorner";
@@ -24,6 +24,7 @@ const Layout = () => {
   const { lessonMetaData, corners, totalPages } = useLesson(lessonId);
   const { pages, cornerMetaData } = useCorner(cornerId); // 이게 먼저 실행되고
   const [isInitialActivityState, setIsInitialActivityState] = useState(false);
+  const isXapiInitialize = useRef(false);
 
   const { xapiInitialize, initialActivityState, xapiActivity } = useXapi();
   const { completedPageComponents } = usePageCompleted();
@@ -32,8 +33,26 @@ const Layout = () => {
   const { currentProgress } = useProgressRate(totalPages);
 
   useEffect(() => {
-    xapiInitialize();
-  }, [xapiInitialize]);
+    if (isXapiInitialize.current) return;
+    if (totalPages.length < 1) return;
+    if (learningLogCookieData?.uid && courseId && lessonId) {
+      isXapiInitialize.current = true;
+      console.log("totalPages", totalPages);
+      xapiInitialize(
+        learningLogCookieData?.uid,
+        courseId,
+        lessonId,
+        totalPages,
+      );
+    }
+  }, [
+    xapiInitialize,
+    courseId,
+    learningLogCookieData,
+    lessonId,
+    totalPages,
+    isXapiInitialize,
+  ]);
 
   console.log("completedPageComponents", completedPageComponents);
 

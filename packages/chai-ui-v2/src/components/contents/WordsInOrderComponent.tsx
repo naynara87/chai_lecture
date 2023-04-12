@@ -23,6 +23,7 @@ import ComponentGrayLine from "../molecules/ComponentGrayLine";
 import { v4 as uuidv4 } from "uuid";
 import ImgProfileDefault from "../../assets/images/img/img_profile_default.png";
 import { sortChoices } from "../../core/util/sortChoices";
+import { useParams } from "react-router-dom";
 
 const BlankBox = styled.div`
   cursor: pointer;
@@ -82,6 +83,7 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
   const { setPushCompletedPageComponents, setComponentCompleted } =
     usePageCompleted();
   const { xapiAnswered } = useXapi();
+  const { pageId } = useParams();
 
   useEffect(() => {
     setPushCompletedPageComponents("quiz", contents.id);
@@ -272,7 +274,9 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
     setIsShowAnswer(true);
     setIsModalSolutionOpen(true);
     setComponentCompleted(contents.id);
-    xapiAnswered(contents.id);
+    if (pageId) {
+      xapiAnswered(contents.id, pageId);
+    }
     handleClickAudioButton(
       "solutionModal",
       modalUuidRef.current,
@@ -287,6 +291,7 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
     handleClickAudioButton,
     setComponentCompleted,
     xapiAnswered,
+    pageId,
   ]);
 
   return (

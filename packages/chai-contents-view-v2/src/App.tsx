@@ -41,7 +41,7 @@ const questionDummyCookie = {
   lessonName: "\ub808\uc2a8+1",
 };
 
-const dummyCookie = {
+const dummyQuizCookie = {
   uno: "1",
   uid: "1",
   applId: "1",
@@ -57,7 +57,7 @@ const dummyCookie = {
 function App() {
   useEffect(() => {
     if (process.env.NODE_ENV === "development") {
-      setCookie<InitialAppData>("bubble-player", questionDummyCookie, {
+      setCookie<InitialAppData>("bubble-player", dummyQuizCookie, {
         path: "/",
       });
     }

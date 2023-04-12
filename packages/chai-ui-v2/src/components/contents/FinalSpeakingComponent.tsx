@@ -22,6 +22,7 @@ import ComponentGrayLine from "../molecules/ComponentGrayLine";
 import IconLight from "../../assets/images/icon/icon_light_navy.svg";
 import { ComponentButtonRadiFillMain } from "../atoms";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
+import { useParams } from "react-router-dom";
 
 const ButtonWrapper = styled.div`
   line-height: 0;
@@ -62,6 +63,7 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
     handleAudioReset,
     handleClickAudioButton,
   } = useGlobalAudio();
+  const { pageId } = useParams();
   const { setPushCompletedPageComponents, setComponentCompleted } =
     usePageCompleted();
   const { xapiCreated } = useXapi();
@@ -135,7 +137,9 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
       // 녹음 중일 때
       stopRecording();
       setComponentCompleted(contents.id);
-      xapiCreated(contents.id);
+      if (pageId) {
+        xapiCreated(contents.id, pageId);
+      }
       setRecordedAudioState("recorded");
       window.clearTimeout(recordTimer.current);
     }
@@ -148,6 +152,7 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
     setComponentCompleted,
     contents.id,
     xapiCreated,
+    pageId,
   ]);
 
   const handleClickRecordedAudioButton = useCallback(() => {

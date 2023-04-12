@@ -20,12 +20,20 @@ const useXapi = () => {
 
   const { completedPageComponents } = usePageCompleted();
 
-  const xapiInitialize = useCallback(() => {
-    if (!xapiV1) return;
-    const loadActivityState = xapiV1.sendInitialized();
-    console.log("loadActivityState", loadActivityState);
-    setXapiActivity(loadActivityState);
-  }, [xapiV1, setXapiActivity]);
+  const xapiInitialize = useCallback(
+    (uid: ID, courseId: ID, lessonId: ID, totalPages: ID[]) => {
+      if (!xapiV1) return;
+      const loadActivityState = xapiV1.sendInitialized(
+        uid,
+        courseId,
+        lessonId,
+        totalPages,
+      );
+      console.log("loadActivityState", loadActivityState);
+      setXapiActivity(loadActivityState);
+    },
+    [xapiV1, setXapiActivity],
+  );
 
   const updateActivityState = useCallback(
     (activityValues: Partial<LRSActivityState>) => {
@@ -118,12 +126,12 @@ const useXapi = () => {
         }
         return page;
       });
-      const isCornerCompleted = newProgressData[prevCornerIndex].pages.find(
-        (page) => page.is_completed !== false,
-      )
-        ? true
-        : false;
-      newProgressData[prevCornerIndex].is_completed = isCornerCompleted;
+      const isCornerCompleted = newProgressData[
+        prevCornerIndex
+      ].pages.findIndex((page) => page.is_completed === false);
+      if (isCornerCompleted === -1) {
+        newProgressData[prevCornerIndex].is_completed = true;
+      }
       newProgressData[nextCornerIndex].pages = newProgressData[
         nextCornerIndex
       ].pages.map((page) => {
@@ -350,22 +358,27 @@ const useXapi = () => {
   );
 
   const xapiPlayed = useCallback(
-    (contentType: "video" | "audio", subContentId: ID) => {
-      xapiV1?.sendPlayed(contentType, subContentId);
+    (
+      pageId: ID,
+      contentType: "video" | "audio",
+      subContentId: ID,
+      contentUrl: string,
+    ) => {
+      xapiV1?.sendPlayed(pageId, contentType, subContentId, contentUrl);
     },
     [xapiV1],
   );
 
   const xapiAnswered = useCallback(
-    (subContentId: ID) => {
-      xapiV1?.sendAnswered(subContentId);
+    (subContentId: ID, pageId: ID) => {
+      xapiV1?.sendAnswered(subContentId, pageId);
     },
     [xapiV1],
   );
 
   const xapiCreated = useCallback(
-    (subContentId: ID) => {
-      xapiV1?.sendCreated(subContentId);
+    (subContentId: ID, pageId: ID) => {
+      xapiV1?.sendCreated(subContentId, pageId);
     },
     [xapiV1],
   );
@@ -404,7 +417,7 @@ const useXapi = () => {
         ).completed_progress,
       });
 
-      xapiV1?.suspend(newXapiActivityState ?? xapiActivity);
+      xapiV1?.suspend(newXapiActivityState ?? xapiActivity, currentPage.id);
     },
     [
       updateActivityState,

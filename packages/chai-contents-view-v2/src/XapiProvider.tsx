@@ -115,8 +115,8 @@ const XapiProvider = ({ children }: XapiProviderProps) => {
     v1.initialize(
       xapiElement,
       options["activity_id"] ?? "",
-      options["content_name"] ?? "",
-      options["description"] ?? "",
+      options["content_name"]!,
+      options["description"]!,
       options["state_id"] ?? "",
     );
   };
