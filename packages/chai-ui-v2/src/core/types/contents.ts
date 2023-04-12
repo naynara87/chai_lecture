@@ -589,10 +589,9 @@ export type QuestionContentData = {
   id: ID;
   type: "question";
   data: {
-    iframeUrl: string;
-    answer: string;
-    comment: string;
-    example: string;
+    interact_url: string;
+    explan: string; // 해설
+    interpet: string; // 해석
   };
   meta?: Meta;
 };
