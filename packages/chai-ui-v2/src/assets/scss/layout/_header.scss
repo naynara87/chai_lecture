@@ -1,4 +1,6 @@
 /* =================== header =================== */
+$flag-width: 42px;
+
 .cai-hd {
 	z-index: z(header);
 	position: fixed;
@@ -11,7 +13,7 @@
 .hd-conts-wrap {
 	position: relative;
 	height: 100%;
-	padding-right: vw(62);
+	padding-right: clamp($flag-width, vw(62), 62px);
 	text-align: right;
 	transition: width 1200ms;
 	transition-timing-function: linear;
@@ -21,7 +23,7 @@
 		position: absolute;
 		top: 0;
 		left: 0;
-		width: calc(100% - 42px);
+		width: calc(100% - $flag-width);
 		height: 100%;
 	}
 
@@ -43,7 +45,7 @@
 		top: 0;
 		left: auto;
 		right: 0;
-		width: 42px;
+		width: $flag-width;
 		height: $hd-height;
 	}
 
