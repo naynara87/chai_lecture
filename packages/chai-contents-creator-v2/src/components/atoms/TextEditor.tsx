@@ -1,40 +1,22 @@
 import { SerializedStyles } from "@emotion/react";
-import styled from "@emotion/styled";
-import { colorPalette } from "chai-ui-v2";
 import React, { useEffect } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { TextEditorWrapper } from "../../styles/textEditor";
 
 const Font = ReactQuill.Quill.import("formats/font");
-Font.whitelist = ["sans-serif"]; // , "yahei"
+Font.whitelist = ["timesRoman"]; // , "yahei"
 ReactQuill.Quill.register(Font, true);
+
+const Align = ReactQuill.Quill.import("formats/align");
+Align.whitelist = ["left", "center", "right", "justify"];
+var Icons = ReactQuill.Quill.import("ui/icons");
+Icons.align["left"] = Icons.align[""];
+
 export interface TextEditorWrapperProps {
   minHeight?: number;
   editorCss?: SerializedStyles;
 }
-const TextEditorWrapper = styled.div<TextEditorWrapperProps>`
-  background-color: ${colorPalette.white};
-  .ql-container {
-    ${({ minHeight }) => (minHeight ? `min-height: ${minHeight}px;` : "")}
-  }
-  .ql-editor {
-    ${({ minHeight }) => (minHeight ? `min-height: ${minHeight}px;` : "")}
-  }
-  .quill__custom {
-    ${({ editorCss }) => editorCss}
-  }
-  .ql-formats {
-    margin-right: 0 !important;
-  }
-
-  [data-value="yahei"] {
-    font-family: "yahei";
-    ::before {
-      content: "yahei" !important;
-    }
-  }
-`;
-
 export interface TextEditorProps extends TextEditorWrapperProps {
   text: string;
   setText: (text: string) => void;
@@ -113,7 +95,24 @@ const TextEditor = ({
             [{ header: [1, 2, 3, false] }],
             ["bold"],
             [{ color: [] }, { background: [] }],
-            [{ align: [] }],
+            [
+              {
+                size: [
+                  "20px",
+                  "22px",
+                  "24px",
+                  "26px",
+                  "28px",
+                  "36px",
+                  "48px",
+                  "56px",
+                  "64px",
+                  "70px",
+                  "80px",
+                ],
+              },
+            ],
+            [{ align: ["left", "center", "right", "justify"] }],
           ],
         }}
       />

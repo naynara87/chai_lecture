@@ -1,7 +1,6 @@
 import { cloneDeep } from "lodash";
 import { useCallback, useMemo } from "react";
 import { useRecoilState } from "recoil";
-import { xapiElement } from "../../constants";
 import { xapiActivityState, xapiV1State } from "../states";
 import {
   CornerListData,
@@ -23,8 +22,10 @@ const useXapi = () => {
 
   const xapiInitialize = useCallback(() => {
     if (!xapiV1) return;
-    xapiElement.dispatchEvent(xapiV1.playerInitEvent);
-  }, [xapiV1]);
+    const loadActivityState = xapiV1.sendInitialized();
+    console.log("loadActivityState", loadActivityState);
+    setXapiActivity(loadActivityState);
+  }, [xapiV1, setXapiActivity]);
 
   const updateActivityState = useCallback(
     (activityValues: Partial<LRSActivityState>) => {
@@ -46,6 +47,55 @@ const useXapi = () => {
       ) === undefined
     );
   }, [completedPageComponents]);
+
+  const updateIsCorrectDataCheck = useCallback(
+    (currentPage: Page, isCorrect: boolean) => {
+      if (!xapiActivity) return;
+      const currentTime = new Date();
+      const currentTimeStamp = `${currentTime.getFullYear()}.${currentTime
+        .getMonth()
+        .toString()
+        .padStart(2, "0")}.${currentTime
+        .getDate()
+        .toString()
+        .padStart(
+          2,
+          "0",
+        )} ${currentTime.getHours()}:${currentTime.getMinutes()}:${currentTime.getSeconds()}`;
+      if (isCorrect) {
+        const newCorrectData = [...xapiActivity.correct_data];
+        const findSamePage = newCorrectData.find(
+          (quizPageData) => quizPageData.page_id === currentPage.id,
+        );
+        if (findSamePage) return;
+        newCorrectData.push({
+          page_id: currentPage.id,
+          page_area_code: currentPage.pageAreaType,
+          timestamp: currentTimeStamp,
+        });
+        const newXapiActivityState = updateActivityState({
+          correct_data: newCorrectData,
+        });
+        setXapiActivity(newXapiActivityState);
+      } else {
+        const newInCorrectData = [...xapiActivity.incorrect_data];
+        const findSamePage = newInCorrectData.find(
+          (quizPageData) => quizPageData.page_id === currentPage.id,
+        );
+        if (findSamePage) return;
+        newInCorrectData.push({
+          page_id: currentPage.id,
+          page_area_code: currentPage.pageAreaType,
+          timestamp: currentTimeStamp,
+        });
+        const newXapiActivityState = updateActivityState({
+          incorrect_data: newInCorrectData,
+        });
+        setXapiActivity(newXapiActivityState);
+      }
+    },
+    [xapiActivity, setXapiActivity, updateActivityState],
+  );
 
   const updateProgressDataPageCheck = useCallback(
     (prevCornerId: ID, nextCornerId: ID, currentPageId: ID, nextPageId: ID) => {
@@ -242,7 +292,6 @@ const useXapi = () => {
       updateProgress,
     ],
   );
-  // NOTE 처음 통합플레이어 로드시 state값이 없을때 실행
   const initialActivityState = useCallback(
     (
       lessonMetaData: LessonMeta,
@@ -251,6 +300,9 @@ const useXapi = () => {
       totalPages: ID[],
       pageId: ID,
     ) => {
+      console.log("xapiActivityinitial", xapiActivity);
+      if (xapiActivity !== undefined) return;
+      // NOTE kjw 처음 통합플레이어 로드시 state값이 있으면 기존 state값을 반영하여 실행
       const currentPageIdx = totalPages.findIndex(
         (page) => page.toString() === pageId.toString(),
       );
@@ -294,7 +346,7 @@ const useXapi = () => {
 
       setXapiActivity(newActivityState);
     },
-    [setXapiActivity],
+    [setXapiActivity, xapiActivity],
   );
 
   const xapiPlayed = useCallback(
@@ -364,6 +416,7 @@ const useXapi = () => {
     xapiPlayed,
     xapiAnswered,
     xapiSuspended,
+    updateIsCorrectDataCheck,
   };
 };
 

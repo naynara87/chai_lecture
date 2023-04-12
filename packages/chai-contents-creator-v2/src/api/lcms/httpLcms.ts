@@ -1,7 +1,10 @@
 import axios from "axios";
+import { isDevEnv } from "../../constants/env";
 
 const httpLcms = axios.create({
-  baseURL: `${process.env.REACT_APP_LCMS_URL}`,
+  baseURL: isDevEnv
+    ? `${process.env.REACT_APP_LCMS_DEV_URL}`
+    : `${process.env.REACT_APP_LCMS_PROD_URL}`,
 });
 
 httpLcms.interceptors.request.use(

@@ -105,7 +105,6 @@ export interface XapiV1 {
   addObjectContext: (object_context: XapiIndicators) => void;
   addResultExtension: (result_extension: XapiIndicators) => void;
   saveState: () => void;
-  playerInitEvent: CustomEvent<any>;
   sendProgress: (
     pageData: ProgressPageData,
     newState: LRSActivityState,
@@ -113,6 +112,7 @@ export interface XapiV1 {
   sendComplete(pageData: ProgressPageData, newState: LRSActivityState): void;
   sendPlayed: (contentType: "video" | "audio") => void;
   sendAnswered: () => void;
+  sendInitialized: () => LRSActivityState;
 }
 
 export interface XAPIOptions {

@@ -51,7 +51,12 @@ const QuestionLayout = ({
     totalPages,
   });
   const { getLessonName } = useLessonNameMapper();
-  const { xapiProgress, xapiComplete, xapiSuspended } = useXapi();
+  const {
+    xapiProgress,
+    xapiComplete,
+    xapiSuspended,
+    updateIsCorrectDataCheck,
+  } = useXapi();
 
   const setPageCompleted = () => {
     setIsPageCompleted(true);
@@ -132,6 +137,14 @@ const QuestionLayout = ({
     }
   };
 
+  const handleClickCheckAnswer = useCallback(
+    (isCorrect: boolean) => {
+      if (!currentPage) return;
+      updateIsCorrectDataCheck(currentPage, isCorrect);
+    },
+    [currentPage, updateIsCorrectDataCheck],
+  );
+
   useEffect(() => {
     setIsQuestionStartModalOpen(true);
   }, []);
@@ -169,6 +182,7 @@ const QuestionLayout = ({
             template={currentPage.data as TemplateQuestionData}
             setPageCompleted={setPageCompleted}
             handleClickCheckScore={handleClickCheckScore}
+            handleClickCheckAnswer={handleClickCheckAnswer}
           />
         )}
       </main>

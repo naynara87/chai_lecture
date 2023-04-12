@@ -23,6 +23,7 @@ export interface SpeakingComponentProps {
 const SpeakingComponent = ({ contents }: SpeakingComponentProps) => {
   const [isShowProgressBar, setIsShowProgressBar] = useState(false);
   const [isEndProgressBar, setIsEndProgressBar] = useState(false);
+  const [isFirstSpeaked, setIsFirstSpeaked] = useState(false);
   const [isAudioEnd, setIsAudioEnd] = useState(false);
   const speakingTimer = useRef<NodeJS.Timeout>();
 
@@ -50,7 +51,9 @@ const SpeakingComponent = ({ contents }: SpeakingComponentProps) => {
     ) {
       setIsAudioEnd(true);
       speakingTimer.current = setTimeout(() => {
-        setIsEndProgressBar(true);
+        if (isFirstSpeaked) {
+          setIsEndProgressBar(true);
+        }
         handleClickAudioButton(
           "speakingEffectEnd",
           speakingAudioUuid.current,
@@ -61,14 +64,26 @@ const SpeakingComponent = ({ contents }: SpeakingComponentProps) => {
       return;
     }
     if (globalAudioId === `speakingEffectEnd_${speakingAudioUuid.current}_0`) {
+      if (!isFirstSpeaked) {
+        handleClickAudioButton(
+          "speaking",
+          speakingAudioUuid.current,
+          0,
+          contents.data.src,
+        );
+        setIsFirstSpeaked(true);
+        setIsAudioEnd(false);
+        return;
+      }
       handleAudioReset();
       return;
     }
   }, [
-    contents.data.speakingTime,
+    contents.data,
     globalAudioId,
     handleAudioReset,
     handleClickAudioButton,
+    isFirstSpeaked,
   ]);
 
   useEffect(() => {

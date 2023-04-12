@@ -26,12 +26,14 @@ const LoadingSpinnerContainer = styled.div`
 
 interface TemplateQuestionProps extends TemplateProps {
   handleClickCheckScore?: () => void;
+  handleClickCheckAnswer?: (isCorrect: boolean) => void;
 }
 
 const TemplateQuestion = ({
   template,
   setPageCompleted,
   handleClickCheckScore,
+  handleClickCheckAnswer,
 }: TemplateQuestionProps) => {
   const thisPage = template as TemplateQuestionData;
   const [isLoaded, setIsLoaded] = useState(false);
@@ -64,9 +66,10 @@ const TemplateQuestion = ({
         tmpPageDatas[parseInt(pageId) - 1].state = "end";
         tmpPageDatas[parseInt(pageId) - 1].contentId = id;
         LocalStorage.setItem("pageData", tmpPageDatas);
+        handleClickCheckAnswer && handleClickCheckAnswer(correct);
       }
     },
-    [pageId],
+    [pageId, handleClickCheckAnswer],
   );
 
   useEffect(() => {

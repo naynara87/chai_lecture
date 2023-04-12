@@ -4635,6 +4635,8 @@ code.google.com/p/crypto-js/wiki/License
           var progressSegments;
           var currentSegment;
           var activityStateId;
+          var playerActivityState;
+
           // NOTE kjw xapi 지표관련 변수
           var contextDetails;
           var extensionDetails;
@@ -4647,7 +4649,6 @@ code.google.com/p/crypto-js/wiki/License
           var completeRate = 0.98;
           var currentPageResultExtensions;
           var sendSynchronous;
-          var playerInitEvent = new CustomEvent("playerInit");
           function addExtensionDetail(extension_details) {
             extensionDetails = extension_details;
           }
@@ -5040,6 +5041,7 @@ code.google.com/p/crypto-js/wiki/License
             eduStartTime = new Date();
             XW.sendStatement(mys);
             window.postMessage(JSON.stringify(mys));
+            return playerActivityState;
           }
           function sendSuspended(newState) {
             var mys = bareStatement();
@@ -5233,7 +5235,7 @@ code.google.com/p/crypto-js/wiki/License
             console.log("total player ready");
             targetLoaded = true;
             // sendInitialized();
-            loadState(onStateLoaded());
+            loadState(onStateLoaded);
           }
           function setListenerForUnload() {
             window.onbeforeunload = function () {
@@ -5251,25 +5253,29 @@ code.google.com/p/crypto-js/wiki/License
             try {
               // currentPageEduStartTime;
               // if(ev.statusText !== 'Not Found') {
-              //   const state = JSON.parse(ev.response);
+              var state = JSON.parse(ev.response);
               //
               //   // console.log('State loaded', state);
-              //   if (state) {
-              //     if (state.played_segments) {
-              //       played_segments = state.played_segments;
-              //     }
-              //     // NOTE ms setTime이 있으면 그곳에서 로드
-              //     if (setPage) {
-              //       // currentSegment = [setTime, setTime];
-              //     }
-              //   }
-              // }
+              if (state) {
+                progressSegments = state.progress_segments;
+                playerActivityState = state;
+                //     if (state.played_segments) {
+                //       played_segments = state.played_segments;
+                //     }
+                //     // NOTE ms setTime이 있으면 그곳에서 로드
+                //     if (setPage) {
+                //       // currentSegment = [setTime, setTime];
+                //     }
+                //   }
+              }
             } catch (error) {
               // console.error(error);
-            } finally {
-              sendInitialized();
             }
+            // finally {
+            //   sendInitialized();
+            // }
           }
+
           function initialize(
             targetObjectApplication,
             activityIdBase,
@@ -5316,11 +5322,12 @@ code.google.com/p/crypto-js/wiki/License
 
             currentPageEduStartTime = new Date();
             eduStartTime = new Date();
-            targetObject.addEventListener("playerInit", onReady);
-            // });
+            targetLoaded = true;
+            // sendInitialized();
+            loadState(onStateLoaded);
           }
-
           function suspend(newState) {
+            if (targetCompleted) return;
             sendSynchronous = true;
             // this function will be called from the outside, that's why it's not called 'onTerminate'
             sendSuspended(newState);
@@ -5333,12 +5340,12 @@ code.google.com/p/crypto-js/wiki/License
             addObjectContext: addObjectContext,
             addResultExtension: addResultExtension,
             saveState: saveState,
-            playerInitEvent: playerInitEvent,
             sendProgress: sendProgress,
             sendComplete: sendComplete,
             sendPlayed: sendPlayed,
             sendAnswered: sendAnswered,
             sendCreated: sendCreated,
+            sendInitialized: sendInitialized,
           };
         }
         return {

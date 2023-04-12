@@ -65,22 +65,34 @@ const Home = () => {
     [lessonMetaData, navigate],
   );
 
+  const goToFirstPage = useCallback(() => {
+    getUrl(corners[0].id, corners[0].pages[0]);
+  }, [corners, getUrl]);
+
   const setInitialData = useCallback(async () => {
     if (!lessonMetaData) return;
     if (corners.length < 1) return;
+
+    if (!learningLogCookieData?.cornerId && !learningLogCookieData?.pageId) {
+      // 코너, 페이지 아이디 둘다 없는 경우 : 처음부터 학습
+      goToFirstPage();
+      return;
+    }
+
     const currentCornerIndex = corners.findIndex(
       (corner) =>
         corner.id.toString() === learningLogCookieData?.cornerId?.toString(),
     );
 
-    const pageId = corners[currentCornerIndex].pages.find(
-      (pageId) => pageId.toString() === learningLogCookieData?.pageId,
-    );
     if (
       lessonMetaData.lessonTpCd.toString() === "10" &&
-      corners[currentCornerIndex] &&
-      pageId
+      corners[currentCornerIndex]
     ) {
+      // NOTE gth 코너아이디는 있지만 페이지 아이디가 없으면 해당 코너의 첫 페이지로 이동
+      const pageId =
+        corners[currentCornerIndex].pages.find(
+          (pageId) => pageId.toString() === learningLogCookieData?.pageId,
+        ) ?? corners[currentCornerIndex].pages[0];
       const confirmResult = await showContinueOpenModal();
       if (confirmResult) {
         // 이어서 학습
@@ -90,7 +102,7 @@ const Home = () => {
     }
 
     // 처음부터 학습
-    getUrl(corners[0].id, corners[0].pages[0]);
+    goToFirstPage();
     return;
   }, [
     corners,
@@ -99,6 +111,7 @@ const Home = () => {
     showContinueOpenModal,
     learningLogCookieData?.cornerId,
     learningLogCookieData?.pageId,
+    goToFirstPage,
   ]);
 
   useEffect(() => {
