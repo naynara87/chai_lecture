@@ -10,7 +10,12 @@ import { useReactMediaRecorder } from "react-media-recorder";
 import RecordPlayButton from "../atoms/Button/RecordPlayButton";
 import RecordMikeButton from "../atoms/Button/RecordMikeButton";
 import RecordStopButton from "../atoms/Button/RecordStopButton";
-import { useGlobalAudio, usePageCompleted } from "../../core";
+import {
+  RecorderContentData,
+  useGlobalAudio,
+  usePageCompleted,
+  useXapi,
+} from "../../core";
 import { v4 as uuidv4 } from "uuid";
 import IconReturnButton from "../atoms/Button/IconReturnButton";
 
@@ -20,7 +25,11 @@ const ButtonWrapper = styled.div`
 
 type RecordedAudioState = "not-recorded" | "recorded" | "playing" | "stopped";
 
-const AudioRecorder = () => {
+interface AudioRecorderProps {
+  contents: RecorderContentData;
+}
+
+const AudioRecorder = ({ contents }: AudioRecorderProps) => {
   const recordedAudioUuidRef = useRef(uuidv4());
   const recordTimer = useRef<NodeJS.Timeout | number>();
   const recordTime = useRef(0);
@@ -50,6 +59,7 @@ const AudioRecorder = () => {
   } = useGlobalAudio();
   const { setPushCompletedPageComponents, setComponentCompleted } =
     usePageCompleted();
+  const { xapiCreated } = useXapi();
 
   useEffect(() => {
     setPushCompletedPageComponents("record", recordedAudioUuidRef.current);
@@ -90,6 +100,7 @@ const AudioRecorder = () => {
       stopRecording();
       setRecordedAudioState("recorded");
       setComponentCompleted(recordedAudioUuidRef.current);
+      xapiCreated(contents.id);
       window.clearTimeout(recordTimer.current);
     }
   }, [
@@ -99,6 +110,8 @@ const AudioRecorder = () => {
     recordTime,
     handleAudioReset,
     setComponentCompleted,
+    xapiCreated,
+    contents.id,
   ]);
 
   const handleClickRecordedAudioButton = useCallback(() => {

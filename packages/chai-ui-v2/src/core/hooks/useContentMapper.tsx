@@ -41,6 +41,7 @@ import {
   ContentsCardListContentData,
   WordsInOrderContentData,
   ConversationContentData,
+  RecorderContentData,
 } from "../types";
 import CharacterCardListComponent from "../../components/contents/CharacterCardListComponent";
 import SpeakingComponent from "../../components/contents/SpeakingComponent";
@@ -71,7 +72,12 @@ const useContentMapper = () => {
           key={contentIndex}
         />
       ),
-      recorder: <AudioRecorder key={contentIndex} />,
+      recorder: (
+        <AudioRecorder
+          key={contentIndex}
+          contents={content as RecorderContentData}
+        />
+      ),
       numberingTextList: (
         <NumberingTextListComponent
           contents={content as NumberingTextListContentData}

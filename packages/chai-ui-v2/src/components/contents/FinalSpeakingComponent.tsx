@@ -15,6 +15,7 @@ import {
   FinalSpeakingContentData,
   useGlobalAudio,
   usePageCompleted,
+  useXapi,
 } from "../../core";
 import { v4 as uuidv4 } from "uuid";
 import ComponentGrayLine from "../molecules/ComponentGrayLine";
@@ -63,6 +64,7 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
   } = useGlobalAudio();
   const { setPushCompletedPageComponents, setComponentCompleted } =
     usePageCompleted();
+  const { xapiCreated } = useXapi();
 
   useEffect(() => {
     setPushCompletedPageComponents("record", contents.id);
@@ -133,6 +135,7 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
       // 녹음 중일 때
       stopRecording();
       setComponentCompleted(contents.id);
+      xapiCreated(contents.id);
       setRecordedAudioState("recorded");
       window.clearTimeout(recordTimer.current);
     }
@@ -144,6 +147,7 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
     handleAudioReset,
     setComponentCompleted,
     contents.id,
+    xapiCreated,
   ]);
 
   const handleClickRecordedAudioButton = useCallback(() => {

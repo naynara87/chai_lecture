@@ -85,7 +85,7 @@ const MultiChoiceComponent = ({ contents }: MultiChoiceComponentProps) => {
               setUserChoice(choiceIndex);
               setComponentCompleted(contents.id);
               setIsModalSolutionOpen(true);
-              xapiAnswered();
+              xapiAnswered(contents.id);
               handleClickAudioButton(
                 "solutionModal",
                 modalUuidRef.current,

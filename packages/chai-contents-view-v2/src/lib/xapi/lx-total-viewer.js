@@ -4767,7 +4767,7 @@ code.google.com/p/crypto-js/wiki/License
           //   }
           // }
 
-          function sendPlayed(contentType) {
+          function sendPlayed(contentType, subContentId) {
             var mys = bareStatement();
             mys.verb = new ADL.XAPIStatement.Verb(
               "https://w3id.org/xapi/video/verbs/played",
@@ -4799,7 +4799,7 @@ code.google.com/p/crypto-js/wiki/License
                       {
                         "https://profile.caihong.co.kr/content-management/course/local-content-id": 33,
                         "https://profile.caihong.co.kr/content-management/course/subcontent-id":
-                          "cb22cb9f-508d-4691-bc77-46162d35fd1a",
+                          subContentId,
                         "https://profile.caihong.co.kr/content-management/course/subcontent-type":
                           "".concat(
                             contentType === "video" ? "video" : "audio",
@@ -4816,7 +4816,7 @@ code.google.com/p/crypto-js/wiki/License
             XW.sendStatement(mys);
             window.postMessage(JSON.stringify(mys));
           }
-          function sendAnswered() {
+          function sendAnswered(subContentId) {
             var mys = bareStatement();
             mys.verb = new ADL.XAPIStatement.Verb(
               "https://w3id.org/xapi/video/verbs/answered",
@@ -4842,7 +4842,7 @@ code.google.com/p/crypto-js/wiki/License
                       {
                         "https://profile.caihong.co.kr/content-management/course/local-content-id": 33,
                         "https://profile.caihong.co.kr/content-management/course/subcontent-id":
-                          "cb22cb9f-508d-4691-bc77-46162d35fd1a",
+                          subContentId,
                         "https://profile.caihong.co.kr/content-management/course/subcontent-type":
                           "question",
                       },
@@ -4857,7 +4857,7 @@ code.google.com/p/crypto-js/wiki/License
             XW.sendStatement(mys);
             window.postMessage(JSON.stringify(mys));
           }
-          function sendCreated() {
+          function sendCreated(subContentId) {
             var mys = bareStatement();
             mys.verb = new ADL.XAPIStatement.Verb(
               "https://w3id.org/xapi/video/verbs/created",
@@ -4883,7 +4883,7 @@ code.google.com/p/crypto-js/wiki/License
                       {
                         "https://profile.caihong.co.kr/content-management/course/local-content-id": 33,
                         "https://profile.caihong.co.kr/content-management/course/subcontent-id":
-                          "cb22cb9f-508d-4691-bc77-46162d35fd1a",
+                          subContentId,
                         "https://profile.caihong.co.kr/content-management/course/subcontent-type":
                           "recorded-audio",
                       },

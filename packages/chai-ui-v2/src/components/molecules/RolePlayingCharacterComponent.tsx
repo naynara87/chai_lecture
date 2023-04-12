@@ -149,7 +149,9 @@ const RolePlayingCharacterComponent = ({
             {id === selectCharacterId && <p className="mean">{meaning}</p>}
           </BubbleWrap>
         </div>
-        {selectCharacterId === id && <AudioRecorder />}
+        {selectCharacterId === id && (
+          <AudioRecorder contents={{ id: id, type: "recorder", data: {} }} />
+        )}
       </div>
     </li>
   );

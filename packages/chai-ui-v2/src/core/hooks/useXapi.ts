@@ -350,15 +350,25 @@ const useXapi = () => {
   );
 
   const xapiPlayed = useCallback(
-    (contentType: "video" | "audio") => {
-      xapiV1?.sendPlayed(contentType);
+    (contentType: "video" | "audio", subContentId: ID) => {
+      xapiV1?.sendPlayed(contentType, subContentId);
     },
     [xapiV1],
   );
 
-  const xapiAnswered = useCallback(() => {
-    xapiV1?.sendAnswered();
-  }, [xapiV1]);
+  const xapiAnswered = useCallback(
+    (subContentId: ID) => {
+      xapiV1?.sendAnswered(subContentId);
+    },
+    [xapiV1],
+  );
+
+  const xapiCreated = useCallback(
+    (subContentId: ID) => {
+      xapiV1?.sendCreated(subContentId);
+    },
+    [xapiV1],
+  );
 
   const xapiSuspended = useCallback(
     (
@@ -416,6 +426,7 @@ const useXapi = () => {
     xapiPlayed,
     xapiAnswered,
     xapiSuspended,
+    xapiCreated,
     updateIsCorrectDataCheck,
   };
 };

@@ -23,7 +23,7 @@ const ComponentVideo = ({ content, isModal }: ComponentVideoProps) => {
   }, [setPushCompletedPageComponents, content.id, isModal]);
 
   const playedVideo = useCallback(() => {
-    xapiPlayed("video");
+    xapiPlayed("video", content.id);
     setComponentCompleted(content.id);
   }, [setComponentCompleted, content.id, xapiPlayed]);
 

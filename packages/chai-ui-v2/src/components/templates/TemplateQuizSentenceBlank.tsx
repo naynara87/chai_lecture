@@ -143,7 +143,7 @@ const TemplateQuizSentenceBlank = ({
     setSelectedChoiceBox(undefined);
     setIsShowAnswer(true);
     setIsModalSolutionOpen(true);
-    xapiAnswered();
+    xapiAnswered(thisPage.mainContents.id);
     handleClickAudioButton(
       "solutionModal",
       modalUuidRef.current,

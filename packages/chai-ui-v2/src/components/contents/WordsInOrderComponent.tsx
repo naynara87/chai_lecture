@@ -272,7 +272,7 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
     setIsShowAnswer(true);
     setIsModalSolutionOpen(true);
     setComponentCompleted(contents.id);
-    xapiAnswered();
+    xapiAnswered(contents.id);
     handleClickAudioButton(
       "solutionModal",
       modalUuidRef.current,

@@ -78,13 +78,13 @@ const AudioComponent = ({ contents }: AudioComponentProps) => {
               0,
               contents.data.src ?? "",
             );
-            xapiPlayed("audio");
+            xapiPlayed("audio", contents.id);
           }}
         />
       );
     }
   }, [
-    contents.data,
+    contents,
     globalAudioId,
     handleClickAudioButton,
     handleAudioReset,

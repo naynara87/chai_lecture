@@ -94,7 +94,7 @@ const ConversationQuizComponent = ({
   const handleClickShowAnswer = useCallback(() => {
     setComponentCompleted(contents.id);
     setIsShowAnswer(true);
-    xapiAnswered();
+    xapiAnswered(contents.id);
   }, [setComponentCompleted, contents.id, xapiAnswered]);
 
   const answerCheckColor = useCallback(

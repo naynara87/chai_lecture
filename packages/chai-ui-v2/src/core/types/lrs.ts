@@ -110,8 +110,9 @@ export interface XapiV1 {
     newState: LRSActivityState,
   ) => void;
   sendComplete(pageData: ProgressPageData, newState: LRSActivityState): void;
-  sendPlayed: (contentType: "video" | "audio") => void;
-  sendAnswered: () => void;
+  sendPlayed: (contentType: "video" | "audio", subContentId: ID) => void;
+  sendAnswered: (subContentId: ID) => void;
+  sendCreated: (subContentId: ID) => void;
   sendInitialized: () => LRSActivityState;
 }
 
