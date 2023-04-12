@@ -15,6 +15,18 @@ const ModalCompleted = ({ lessonCode }: ModalCompletedProps) => {
   const { getLessonCompletedCharacterCode } =
     useLessonCompletedCharacterMapper();
 
+  const handleClickClose = () => {
+    console.log("학습 종료");
+    const btnQuit = document.querySelector<HTMLDivElement>("#quit");
+    window.parent.postMessage(
+      {
+        func: "pageReload",
+      },
+      "*",
+    );
+    btnQuit?.click();
+  };
+
   return (
     <ModalCompletedWrapper className="modal modal-completed">
       <div className="modal-bg"></div>
@@ -27,7 +39,7 @@ const ModalCompleted = ({ lessonCode }: ModalCompletedProps) => {
         />
         <p className="text">{`오늘의 학습을 완료했어요!
           이제 연습문제를 풀러 가볼까요?`}</p>
-        <button className="btn" onClick={() => window.close()}>
+        <button className="btn" onClick={handleClickClose}>
           확인
         </button>
         <Confetti numberOfPieces={300} />
