@@ -58,7 +58,9 @@ const MultilevelActionCardComponent = ({
       <StepCard className={`step-card step${step + 1}`}>
         <>{multiLevelContents}</>
         {contents.data[step + 1] && (
-          <ComponentButtonStep onClick={handleClickStepButton} />
+          <div className="btns-wrap">
+            <ComponentButtonStep onClick={handleClickStepButton} />
+          </div>
         )}
       </StepCard>
     </div>
