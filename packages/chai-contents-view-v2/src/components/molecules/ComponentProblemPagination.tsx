@@ -35,9 +35,11 @@ const ComponentProblemPagination = ({
           <button
             className={`problem-pagination ${
               questionDatas ? questionDatas[pageIndex].state : ""
-            } ${(pageIndex + 1).toString() === pageId ? "active" : ""} `}
+            } ${page.id.toString() === pageId ? "active" : ""} `}
             key={pageIndex}
-            onClick={() => onClickPagination(pageIndex)}
+            onClick={() => {
+              onClickPagination(pageIndex);
+            }}
           >
             {pageIndex + 1}
           </button>

@@ -149,6 +149,7 @@ export type characterType =
 export type QuizData = {
   id: ID;
   state: "end" | "active" | "";
+  answer: string | number;
   isCorrect?: boolean;
   contentId?: string;
 };

@@ -96,10 +96,9 @@ export const v2QuizCornerDataList: CornerData[] = [
             id: uuidV4(),
             type: "question",
             data: {
-              iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20407",
-              answer: "4",
-              comment: "해설부분입니다.",
-              example: "해석부분입니다.",
+              interact_url: "http://md-admin.bubblecon.io/bubble/embed/20407",
+              explan: "해설부분입니다.",
+              interpet: "해석부분입니다.",
             },
           },
         },
@@ -117,10 +116,9 @@ export const v2QuizCornerDataList: CornerData[] = [
             id: uuidV4(),
             type: "question",
             data: {
-              iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20610",
-              answer: "1",
-              comment: "해설부분입니다.",
-              example: `중국의 수도는 베이징이다.`,
+              interact_url: "http://md-admin.bubblecon.io/bubble/embed/20610",
+              explan: "해설부분입니다.",
+              interpet: `중국의 수도는 베이징이다.`,
             },
           },
         },
@@ -138,10 +136,9 @@ export const v2QuizCornerDataList: CornerData[] = [
             id: uuidV4(),
             type: "question",
             data: {
-              iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20548",
-              answer: "1",
-              comment: "해석부분입니다.",
-              example: `중국어는 중국어에요`,
+              interact_url: "http://md-admin.bubblecon.io/bubble/embed/20548",
+              explan: "해석부분입니다.",
+              interpet: `중국어는 중국어에요`,
             },
           },
         },
@@ -159,10 +156,9 @@ export const v2QuizCornerDataList: CornerData[] = [
             id: uuidV4(),
             type: "question",
             data: {
-              iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20608",
-              answer: "1",
-              comment: "해석이에요",
-              example: "중국의 수도는 베이징이다.",
+              interact_url: "http://md-admin.bubblecon.io/bubble/embed/20608",
+              explan: "해석이에요",
+              interpet: "중국의 수도는 베이징이다.",
             },
           },
         },
@@ -180,10 +176,9 @@ export const v2QuizCornerDataList: CornerData[] = [
             id: uuidV4(),
             type: "question",
             data: {
-              iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20613",
-              answer: "1",
-              comment: "해석이에요",
-              example: "해설인가요",
+              interact_url: "http://md-admin.bubblecon.io/bubble/embed/20613",
+              explan: "해석이에요",
+              interpet: "해설인가요",
             },
           },
         },
@@ -201,10 +196,9 @@ export const v2QuizCornerDataList: CornerData[] = [
             id: uuidV4(),
             type: "question",
             data: {
-              iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20607",
-              answer: "3",
-              comment: "중국?",
-              example:
+              interact_url: "http://md-admin.bubblecon.io/bubble/embed/20607",
+              explan: "중국?",
+              interpet:
                 "중국인은 차를 약이라 여긴다. → 과거에는 약의 용도로 쓰이긴 했으나, 현재는 건강에 좋은 음료로 여긴다.",
             },
           },
@@ -223,10 +217,9 @@ export const v2QuizCornerDataList: CornerData[] = [
             id: uuidV4(),
             type: "question",
             data: {
-              iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20614",
-              answer: "3",
-              comment: "중국!",
-              example:
+              interact_url: "http://md-admin.bubblecon.io/bubble/embed/20614",
+              explan: "중국!",
+              interpet:
                 "중국인은 차를 약이라 여긴다. → 과거에는 약의 용도로 쓰이긴 했으나, 현재는 건강에 좋은 음료로 여긴다.",
             },
           },
@@ -245,10 +238,9 @@ export const v2QuizCornerDataList: CornerData[] = [
             id: uuidV4(),
             type: "question",
             data: {
-              iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20615",
-              answer: "3",
-              comment: "중국!",
-              example:
+              interact_url: "http://md-admin.bubblecon.io/bubble/embed/20615",
+              explan: "중국!",
+              interpet:
                 "중국인은 차를 약이라 여긴다. → 과거에는 약의 용도로 쓰이긴 했으나, 현재는 건강에 좋은 음료로 여긴다.",
             },
           },
@@ -267,10 +259,9 @@ export const v2QuizCornerDataList: CornerData[] = [
             id: uuidV4(),
             type: "question",
             data: {
-              iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20606",
-              answer: "3",
-              comment: "중국!",
-              example:
+              interact_url: "http://md-admin.bubblecon.io/bubble/embed/20606",
+              explan: "중국!",
+              interpet:
                 "중국인은 차를 약이라 여긴다. → 과거에는 약의 용도로 쓰이긴 했으나, 현재는 건강에 좋은 음료로 여긴다.",
             },
           },
@@ -289,10 +280,9 @@ export const v2QuizCornerDataList: CornerData[] = [
             id: uuidV4(),
             type: "question",
             data: {
-              iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20609",
-              answer: "3",
-              comment: "중국!",
-              example:
+              interact_url: "http://md-admin.bubblecon.io/bubble/embed/20609",
+              explan: "중국!",
+              interpet:
                 "중국인은 차를 약이라 여긴다. → 과거에는 약의 용도로 쓰이긴 했으나, 현재는 건강에 좋은 음료로 여긴다.",
             },
           },
@@ -311,10 +301,9 @@ export const v2QuizCornerDataList: CornerData[] = [
             id: uuidV4(),
             type: "question",
             data: {
-              iframeUrl: "http://md-admin.bubblecon.io/bubble/embed/20611",
-              answer: "3",
-              comment: "중국!",
-              example:
+              interact_url: "http://md-admin.bubblecon.io/bubble/embed/20611",
+              explan: "중국!",
+              interpet:
                 "중국인은 차를 약이라 여긴다. → 과거에는 약의 용도로 쓰이긴 했으나, 현재는 건강에 좋은 음료로 여긴다.",
             },
           },

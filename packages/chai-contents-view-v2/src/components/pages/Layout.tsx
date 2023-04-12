@@ -131,6 +131,7 @@ const Layout = () => {
           id: pageIndex + 1,
           state: "",
           isCorrect: false,
+          answer: "",
         };
       });
 

@@ -4,22 +4,12 @@ import { useRecoilState } from "recoil";
 import { clearHttpLcmsToken, setHttpLcmsToken } from "../api/lcms/httpLcms";
 import { getAccessToken } from "../api/lcms/auth";
 import { authState } from "../states/authState";
-import styled from "@emotion/styled";
-import { LoadingSpinner } from "chai-ui-v2";
-
-const LoadingScreen = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100vh;
-`;
 
 interface AuthProviderProps {
   children: React.ReactNode;
 }
 const AuthProvider = ({ children }: AuthProviderProps) => {
-  const [isAuthorized, setIsAuthorized] = useRecoilState(authState);
+  const [, setIsAuthorized] = useRecoilState(authState);
   const fetchToken = useCallback(async () => {
     try {
       const tokenData = await getAccessToken();
@@ -36,17 +26,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     void fetchToken();
   }, [fetchToken]);
 
-  return (
-    <>
-      {isAuthorized ? (
-        children
-      ) : (
-        <LoadingScreen>
-          <LoadingSpinner />
-        </LoadingScreen>
-      )}
-    </>
-  );
+  return <>{children}</>;
 };
 
 export default AuthProvider;
