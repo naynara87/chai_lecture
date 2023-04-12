@@ -7,6 +7,21 @@ import { TextEditorWrapper } from "../../styles/textEditor";
 const Font = ReactQuill.Quill.import("formats/font");
 Font.whitelist = ["timesRoman"]; // , "yahei"
 ReactQuill.Quill.register(Font, true);
+const Size = ReactQuill.Quill.import("attributors/style/size");
+Size.whitelist = [
+  "20px",
+  "22px",
+  "24px",
+  "26px",
+  "28px",
+  "36px",
+  "48px",
+  "56px",
+  "64px",
+  "70px",
+  "80px",
+]; // , "yahei"
+ReactQuill.Quill.register(Size, true);
 
 const Align = ReactQuill.Quill.import("formats/align");
 Align.whitelist = ["left", "center", "right", "justify"];
@@ -95,23 +110,7 @@ const TextEditor = ({
             [{ header: [1, 2, 3, false] }],
             ["bold"],
             [{ color: [] }, { background: [] }],
-            [
-              {
-                size: [
-                  "20px",
-                  "22px",
-                  "24px",
-                  "26px",
-                  "28px",
-                  "36px",
-                  "48px",
-                  "56px",
-                  "64px",
-                  "70px",
-                  "80px",
-                ],
-              },
-            ],
+            [{ size: Size.whitelist }],
             [{ align: ["left", "center", "right", "justify"] }],
           ],
         }}
