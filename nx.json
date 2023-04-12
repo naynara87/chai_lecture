@@ -16,12 +16,6 @@
     },
     "dev": {
       "dependsOn": ["^build"]
-    },
-    "v1-build": {
-      "dependsOn": ["^v1-build"]
-    },
-    "v1-dev": {
-      "dependsOn": ["^v1-build"]
     }
   }
 }
