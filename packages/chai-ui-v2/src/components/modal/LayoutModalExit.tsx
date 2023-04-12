@@ -34,6 +34,18 @@ const LayoutModalContinue = ({
     setIsModalOpen(false);
   };
 
+  const handleClickClose = () => {
+    console.log("학습 종료");
+    const btnQuit = document.querySelector<HTMLDivElement>("#quit");
+    window.parent.postMessage(
+      {
+        func: "pageReload",
+      },
+      "*",
+    );
+    btnQuit?.click();
+  };
+
   return (
     // key설명 - active가 되면 보임
     <ModalBase open={isModalOpen} onClose={handleClose}>
@@ -65,7 +77,7 @@ const LayoutModalContinue = ({
               />
               <ComponentButtonRadiFillMain
                 text="학습 종료하기"
-                onClickBtn={() => window.close()}
+                onClickBtn={handleClickClose}
               />
             </div>
           </div>
