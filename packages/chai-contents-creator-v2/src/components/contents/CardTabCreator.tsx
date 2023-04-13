@@ -478,6 +478,10 @@ const CardTabCreator = ({
                   const target = e.target as HTMLInputElement;
                   setFocusedTabTitleText(target.value);
                 }}
+                onBlur={(e) => {
+                  const target = e.target as HTMLInputElement;
+                  setTabName(focusedTabTitleIndex, target.value || "");
+                }}
               />
             </form>
           </div>
