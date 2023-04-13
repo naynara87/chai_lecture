@@ -100,7 +100,9 @@ const TemplateQuestion = ({
   return (
     <div className="layout-panel-wrap">
       {/* <div className="question-number attched">{`[50 ~ 87]`}</div> */}
-      <div className="question-number">{`${pageIdx ? pageIdx + 1 : 0}번`}</div>
+      <div className="question-number">{`${
+        pageIdx !== undefined ? pageIdx + 1 : 0
+      }번`}</div>
       <QuestionPanel className="layout-panel iframe-panel">
         {!isLoaded && (
           <LoadingSpinnerContainer>
