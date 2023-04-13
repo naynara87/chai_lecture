@@ -17,8 +17,6 @@ import {
 } from "chai-ui-v2";
 import { currentCornerIdState } from "../../state/currentCornerId";
 import usePages from "../../hooks/usePages";
-import useUnload from "../../hooks/useUnload";
-
 interface ContentsLayoutProps {
   pages: Page[];
   corners: CornerListData[];
@@ -74,12 +72,12 @@ const ContentsLayout = ({
     totalPages,
   ]);
 
-  useUnload((event: BeforeUnloadEvent) => {
-    exitPlayer();
-    event.preventDefault();
-    event.returnValue = "학습을 종료하시겠습니까?";
-    return "학습을 종료하시겠습니까?";
-  });
+  // useUnload((event: BeforeUnloadEvent) => {
+  //   exitPlayer();
+  //   event.preventDefault();
+  //   event.returnValue = "학습을 종료하시겠습니까?";
+  //   return "학습을 종료하시겠습니까?";
+  // });
 
   const setPageCompleted = () => {
     setIsPageCompleted(true);

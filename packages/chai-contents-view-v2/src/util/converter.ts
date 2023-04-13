@@ -11,28 +11,28 @@ export const pageDataConverter = (pageData: ContentData): Page => {
     } as Page;
   }
   const contentData = JSON.parse(contents_data);
-  if (!contentData) {
-    return {
-      id: page_id,
-      type: "singlePage",
-      pageAreaType: pageArea_type,
-      contentsType: contents_type,
-      name: "문제",
-      data: {
-        id: 0,
-        type: "TemplateQuestion",
-        contents: {
-          id: 0,
-          type: "question",
-          data: {
-            interact_url: "",
-            explan: "",
-            interpet: "",
-          },
-        },
-      },
-    };
-  }
+  // if (!contentData) {
+  //   return {
+  //     id: page_id,
+  //     type: "singlePage",
+  //     pageAreaType: pageArea_type,
+  //     contentsType: contents_type,
+  //     name: "문제",
+  //     data: {
+  //       id: 0,
+  //       type: "TemplateQuestion",
+  //       contents: {
+  //         id: 0,
+  //         type: "question",
+  //         data: {
+  //           interact_url: "",
+  //           explan: "",
+  //           interpet: "",
+  //         },
+  //       },
+  //     },
+  //   };
+  // }
   return {
     id: page_id,
     type: "singlePage",
@@ -43,7 +43,7 @@ export const pageDataConverter = (pageData: ContentData): Page => {
       id: page_id,
       type: "TemplateQuestion",
       contents: {
-        id: contentData.id,
+        id: contentData?.id,
         type: "question",
         data: {
           ...contentData,

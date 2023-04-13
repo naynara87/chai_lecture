@@ -19,7 +19,6 @@ import React, {
 import { useNavigate, useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import usePages from "../../hooks/usePages";
-import useUnload from "../../hooks/useUnload";
 import { currentCornerIdState } from "../../state/currentCornerId";
 import { getPageUrl } from "../../util/url";
 import ComponentProblemPagination from "../molecules/ComponentProblemPagination";
@@ -57,45 +56,40 @@ const QuestionLayout = ({
     totalPages,
   });
   const { getLessonName } = useLessonNameMapper();
-  const {
-    xapiProgress,
-    xapiComplete,
-    xapiSuspended,
-    updateIsCorrectDataCheck,
-  } = useXapi();
+  const { xapiProgress, xapiComplete, updateIsCorrectDataCheck } = useXapi();
 
   const setPageCompleted = () => {
     setIsPageCompleted(true);
   };
 
-  const exitPlayer = useCallback(() => {
-    if (!currentPage || !currentPageIndex) return;
-    const currentCornerIndex = corners.findIndex(
-      (corner) => corner.id.toString() === currentCornerId?.toString(),
-    );
-    const currentCorner = corners[currentCornerIndex];
-    xapiSuspended(
-      currentCorner,
-      currentCorner,
-      currentPage,
-      totalPages[currentPageIndex - 1],
-      totalPages,
-    );
-  }, [
-    xapiSuspended,
-    corners,
-    currentCornerId,
-    currentPage,
-    currentPageIndex,
-    totalPages,
-  ]);
+  // const exitPlayer = useCallback(() => {
+  //   if (!currentPage || !currentPageIndex) return;
+  //   const currentCornerIndex = corners.findIndex(
+  //     (corner) => corner.id.toString() === currentCornerId?.toString(),
+  //   );
+  //   const currentCorner = corners[currentCornerIndex];
+  //   xapiSuspended(
+  //     currentCorner,
+  //     currentCorner,
+  //     currentPage,
+  //     totalPages[currentPageIndex - 1],
+  //     totalPages,
+  //   );
+  // }, [
+  //   xapiSuspended,
+  //   corners,
+  //   currentCornerId,
+  //   currentPage,
+  //   currentPageIndex,
+  //   totalPages,
+  // ]);
 
-  useUnload((event: BeforeUnloadEvent) => {
-    exitPlayer();
-    event.preventDefault();
-    event.returnValue = "학습을 종료하시겠습니까?";
-    return "학습을 종료하시겠습니까?";
-  });
+  // useUnload((event: BeforeUnloadEvent) => {
+  //   exitPlayer();
+  //   event.preventDefault();
+  //   event.returnValue = "학습을 종료하시겠습니까?";
+  //   return "학습을 종료하시겠습니까?";
+  // });
 
   const handleClickPagination = (pageIndex: number) => {
     if (currentPageIndex === undefined) return;
