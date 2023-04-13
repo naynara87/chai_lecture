@@ -1,4 +1,4 @@
-import IconDictionary from "chai-ui-v2/dist/assets/images/icon/icon_dictionary.svg";
+import IconDictionary from "chai-ui-v2/dist/assets/images/img/img_voca.png";
 import AddButton from "../atoms/AddButton";
 import styled from "@emotion/styled";
 import {
@@ -6,6 +6,7 @@ import {
   ComponentButtonRadiBorderMain,
   ComponentButtonRadiFillMain,
   ModalBase,
+  vh,
   WordsCarouselContentData,
 } from "chai-ui-v2";
 import { Pagination } from "swiper";
@@ -19,11 +20,14 @@ import TextEditorViewer from "./TextEditorViewer";
 import IconPlay from "chai-ui-v2/dist/assets/images/icon/icon_play.svg";
 
 const WordsCardWrapper = styled.div`
-  border-radius: 8px;
-  padding: 40px 24px 24px;
-  background-color: #f0f0f0;
-  margin-bottom: 16px;
+  overflow: auto;
   position: relative;
+  max-height: ${vh(300)};
+  margin-bottom: 16px;
+  padding: 40px 24px 24px;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+
   .btn-delete {
     position: absolute;
     top: 16px;

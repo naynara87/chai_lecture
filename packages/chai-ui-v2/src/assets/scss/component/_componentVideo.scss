@@ -19,6 +19,7 @@
 
 	@at-root .grid-h-3-7 & {
 		width: vw(685);
+		max-width: 100%;
 		height: auto;
 	}
 }

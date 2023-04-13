@@ -8,6 +8,7 @@ interface AudioWrapperProps {
 }
 
 const AudioCreatorWrapper = styled.div`
+  margin-top: 10px;
   & > img {
     width: 40px;
     height: 40px;

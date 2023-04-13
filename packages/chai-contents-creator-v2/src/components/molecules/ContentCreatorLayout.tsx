@@ -68,7 +68,7 @@ const IconWrapper = styled.span<IconWrapperProps>`
 `;
 
 const ContentsContainer = styled.div`
-  width: 100%;
+  width: 90%;
   /* display: flex; */
 `;
 

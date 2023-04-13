@@ -3,6 +3,7 @@ import { NotiCharacterListContentData } from "../../core";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
 import styled from "@emotion/styled";
 import arrow from "../../assets/images/icon/icon_contsinfo_tail.svg";
+import ProfileDefault from "../../assets/images/img/cha_all.png";
 import { vw, vh, colorPalette } from "../../assets";
 
 export interface NotiCharacterListComponentProps {
@@ -11,6 +12,7 @@ export interface NotiCharacterListComponentProps {
 
 const NotiWrapper = styled.ul`
   display: flex;
+  align-items: flex-end;
   justify-content: center;
   gap: ${vw(50)};
   flex-wrap: wrap;
@@ -21,7 +23,7 @@ const NotiList = styled.li`
 `;
 
 const TextBubbleWrap = styled.div`
-  display: flex;
+  display: flex; 
   justify-content: center;
   align-items: center;
   min-height: ${vh(280)};
@@ -53,7 +55,6 @@ const TextBubbleWrap = styled.div`
 const ImageWrap = styled.div`
   width: ${vw(200)};
   height: ${vw(200)};
-  border-radius: 50%;
 
   overflow: hidden;
   margin: ${vw(60)} auto 0;
@@ -81,7 +82,7 @@ const NotiCharacterListComponent = ({
             NOTE: lsh dummyData에서 characterMapping 작업이 되어있지않아 우선 공통이미지로 넣었습니다.
             <img src={notiCharacter.character.src} alt="" />
             */}
-            <img src={notiCharacter.character.src} alt="" />
+            <img src={notiCharacter.character.src || ProfileDefault} alt="" />
           </ImageWrap>
         </NotiList>
       );
