@@ -25,6 +25,7 @@ export interface ContentData {
   page_id: ID;
   contents_type: string; // 10 : 학습, 20 : 퀴즈, 30 : 테스트
   contents_uuid: string; // contents_data에 대한 uuid
+  pageStyle_code: string | number; // 페이지 유형 코드
   contents_data: string; // JSON.parse 필요
   /**
    * a1:중국어 개요,

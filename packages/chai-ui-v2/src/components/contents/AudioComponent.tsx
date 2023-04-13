@@ -9,7 +9,6 @@ import { ComponentButtonPlay } from "../atoms";
 import IconPauseFillButton from "../atoms/Button/IconPauseFillButton";
 import { v4 as uuidv4 } from "uuid";
 import styled from "@emotion/styled";
-import { useParams } from "react-router-dom";
 
 const AudioWrap = styled.div`
   display: flex;
@@ -24,7 +23,6 @@ const AudioComponent = ({ contents }: AudioComponentProps) => {
   const { setPushCompletedPageComponents, setComponentCompleted } =
     usePageCompleted();
   const { xapiPlayed } = useXapi();
-  const { pageId } = useParams();
 
   useEffect(() => {
     setPushCompletedPageComponents("audio", audioUuidRef.current);
@@ -80,9 +78,7 @@ const AudioComponent = ({ contents }: AudioComponentProps) => {
               0,
               contents.data.src ?? "",
             );
-            if (pageId) {
-              xapiPlayed(pageId, "audio", contents.id, contents.data.src);
-            }
+            xapiPlayed("audio", contents.id, contents.data.src);
           }}
         />
       );
@@ -95,7 +91,6 @@ const AudioComponent = ({ contents }: AudioComponentProps) => {
     globalAudioState,
     setComponentCompleted,
     xapiPlayed,
-    pageId,
   ]);
 
   return <AudioWrap>{mainContents}</AudioWrap>;

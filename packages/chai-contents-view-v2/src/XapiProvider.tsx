@@ -88,7 +88,7 @@ const XapiProvider = ({ children }: XapiProviderProps) => {
   const xapi_init = (options: XAPIOptions) => {
     if (!ADL.XAPIWrapper.lrs.actor) {
       const conf = {
-        endpoint: options.lrsUrl,
+        endpoint: `${process.env.REACT_APP_LRS_URL}`,
         auth: "Basic Og==",
         actor: JSON.stringify(createActorObject(options)),
       };
