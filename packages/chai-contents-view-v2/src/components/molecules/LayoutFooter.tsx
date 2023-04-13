@@ -56,8 +56,6 @@ const LayoutFooter = ({
 
   const handleClickNavList = useCallback(
     (corner: CornerListData) => {
-      console.log("currentPage", currentPage);
-
       if (!currentPage) return;
       const currentCornerIndex = corners.findIndex(
         (corner) => corner.id.toString() === cornerId?.toString(),

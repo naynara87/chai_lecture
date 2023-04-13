@@ -1,4 +1,11 @@
-import { ADL, getCookie, InitialAppData, xapiElement, XAPIOptions, xapiV1State } from "chai-ui-v2";
+import {
+  ADL,
+  getCookie,
+  InitialAppData,
+  xapiElement,
+  XAPIOptions,
+  xapiV1State,
+} from "chai-ui-v2";
 import React from "react";
 import { useRecoilState } from "recoil";
 import "../src/lib/xapi/lx-total-viewer.js";
@@ -87,7 +94,6 @@ const XapiProvider = ({ children }: XapiProviderProps) => {
     }
     const v1 = ADL.bubbleAPI.getInstance();
     setXapiV1State(v1);
-    console.log("XapiProvider", v1);
 
     if (options["object_context"]) {
       v1.addObjectContext(options["object_context"]);
@@ -113,18 +119,16 @@ const XapiProvider = ({ children }: XapiProviderProps) => {
       console.error("xapi 관련 정보를 정상적으로 받지 않았습니다.");
     }
 
-    if (learningLogCookieData){
-
-    v1.initialize(
-      xapiElement,
-      options["activity_id"] ?? "",
-      options["content_name"]!,
-      options["description"]!,
-      options["state_id"] ?? "",
-      learningLogCookieData?.uid
-    );
-  }
-
+    if (learningLogCookieData) {
+      v1.initialize(
+        xapiElement,
+        options["activity_id"] ?? "",
+        options["content_name"]!,
+        options["description"]!,
+        options["state_id"] ?? "",
+        learningLogCookieData?.uid,
+      );
+    }
   };
 
   //@ts-ignore
