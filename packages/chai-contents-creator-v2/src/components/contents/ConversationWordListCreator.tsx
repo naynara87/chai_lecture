@@ -44,6 +44,10 @@ const TitleInput = styled.input`
   }
 `;
 
+const EditorWrapper = styled.div`
+  width: 100%;
+`;
+
 const ConversationWordListCreator = ({
   content,
   setFocusedId,
@@ -179,14 +183,14 @@ const ConversationWordListCreator = ({
             customCSS={deleteButtonStyle}
           />
 
-          <div onClick={() => fucusTextEditor(wordIndex)}>
+          <EditorWrapper onClick={() => fucusTextEditor(wordIndex)}>
             <TextEditorViewer
               text={word.text}
               setText={(text) => setText(wordIndex, text)}
               isFocused={isTextEditorFocused(wordIndex)}
               handleSubmitTextOnBlur={() => fucusTextEditor(-1)}
             />
-          </div>
+          </EditorWrapper>
 
           <AudioWrapper
             onSubmit={setAudio(wordIndex)}
