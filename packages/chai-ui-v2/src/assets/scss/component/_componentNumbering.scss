@@ -29,23 +29,17 @@
   }
 
   .text1 {
-    padding-left: vw(60);
+    padding-left: vw(24);
     font-size: vw(34);
     white-space: pre-line;
     width: 100%;
   }
 
   .text2 {
+    width: 100%;
+    padding-left: vw(24);
     font-size: vw(34);
     white-space: pre-line;
-    padding-left: vw(60);
-
-    width: 100%;
-    display: flex;
-    gap: vw(20);
-    & > div {
-      width: 50%;
-    }
   }
 
   // .chinese {
