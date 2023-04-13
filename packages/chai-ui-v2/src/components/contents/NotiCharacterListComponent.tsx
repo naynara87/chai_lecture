@@ -89,7 +89,7 @@ const NotiCharacterListComponent = ({
     });
   }, [contents.data]);
 
-  return <NotiWrapper>{notiCharacterList}</NotiWrapper>;
+  return <div><NotiWrapper>{notiCharacterList}</NotiWrapper></div>;
 };
 
 export default NotiCharacterListComponent;
