@@ -33,6 +33,7 @@ const ExplainingTextListWrapper = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  width: calc(100% - 150px);
 `;
 
 const ExplainingText = styled.div`
@@ -43,7 +44,6 @@ const ExplainingText = styled.div`
   font-weight: 400;
   font-size: 12px;
   text-align: left;
-  width: 600px;
   &::before {
     content: "";
     background-image: url("${iconTail}");
