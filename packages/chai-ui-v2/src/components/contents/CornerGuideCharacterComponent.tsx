@@ -9,6 +9,11 @@ export interface CornerGuideCharacterComponentProps {
 }
 
 const ContStartWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  
   .text-bubble-wrap {
     padding: ${vw(40)} ${vw(80)};
     font-weight: 600;
@@ -48,7 +53,7 @@ const CornerGuideCharacterComponent = ({
     }
   }, [layoutPanelHeight, thisComponentRef, characterWrapRef]);
   return (
-    <ContStartWrapper className="cont-info-wrap" ref={thisComponentRef}>
+    <ContStartWrapper ref={thisComponentRef}>
       <div className="character-wrapper" ref={characterWrapRef}>
         <div className="text-bubble-wrap">
           <HtmlContentComponent html={contents.data.text} />

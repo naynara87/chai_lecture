@@ -10,6 +10,11 @@ export interface ActivityGuideCharacterComponentProps {
 }
 
 const ContStartWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
   .text-bubble-wrap {
     padding: ${vw(30)};
     border-radius: ${vw(20)};
@@ -53,7 +58,7 @@ const ActivityGuideCharacterComponent = ({
     }
   }, [layoutPanelHeight, thisComponentRef, characterWrapRef]);
   return (
-    <ContStartWrapper className="cont-info-wrap" ref={thisComponentRef}>
+    <ContStartWrapper ref={thisComponentRef}>
       <div className="character-wrapper" ref={characterWrapRef}>
         <div className="text-bubble-wrap">
           <HtmlContentComponent html={contents.data.text} />
