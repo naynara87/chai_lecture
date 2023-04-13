@@ -1,7 +1,7 @@
 import { cloneDeep } from "lodash";
 import { useCallback, useMemo } from "react";
 import { useRecoilState } from "recoil";
-import { xapiActivityState, xapiV1State } from "../states";
+import { currentPageState, xapiActivityState, xapiV1State } from "../states";
 import {
   CornerListData,
   CornerMeta,
@@ -17,6 +17,7 @@ import usePageCompleted from "./usePageCompleted";
 const useXapi = () => {
   const [xapiV1] = useRecoilState(xapiV1State);
   const [xapiActivity, setXapiActivity] = useRecoilState(xapiActivityState);
+  const [currentPage] = useRecoilState(currentPageState);
 
   const { completedPageComponents } = usePageCompleted();
 
@@ -217,6 +218,7 @@ const useXapi = () => {
         pageName: currentPage.name,
         pageType: currentPage.type,
         pageAreaCd: currentPage.pageAreaType,
+        pageStyleCode: currentPage.pageStyleCode,
         pageTemplateCode: currentPage.contentsType,
       };
       xapiV1?.sendProgress(
@@ -281,6 +283,7 @@ const useXapi = () => {
         pageName: currentPage.name,
         pageType: currentPage.type,
         pageAreaCd: currentPage.pageAreaType,
+        pageStyleCode: currentPage.pageStyleCode,
         pageTemplateCode: currentPage.contentsType,
       };
       xapiV1?.sendComplete(
@@ -355,29 +358,30 @@ const useXapi = () => {
   );
 
   const xapiPlayed = useCallback(
-    (
-      pageId: ID,
-      contentType: "video" | "audio",
-      subContentId: ID,
-      contentUrl: string,
-    ) => {
-      xapiV1?.sendPlayed(pageId, contentType, subContentId, contentUrl);
+    (contentType: "video" | "audio", subContentId: ID, contentUrl: string) => {
+      if (currentPage) {
+        xapiV1?.sendPlayed(currentPage, contentType, subContentId, contentUrl);
+      }
     },
-    [xapiV1],
+    [xapiV1, currentPage],
   );
 
   const xapiAnswered = useCallback(
-    (subContentId: ID, pageId: ID) => {
-      xapiV1?.sendAnswered(subContentId, pageId);
+    (subContentId: ID) => {
+      if (currentPage) {
+        xapiV1?.sendAnswered(subContentId, currentPage);
+      }
     },
-    [xapiV1],
+    [xapiV1, currentPage],
   );
 
   const xapiCreated = useCallback(
-    (subContentId: ID, pageId: ID) => {
-      xapiV1?.sendCreated(subContentId, pageId);
+    (subContentId: ID) => {
+      if (currentPage) {
+        xapiV1?.sendCreated(subContentId, currentPage);
+      }
     },
-    [xapiV1],
+    [xapiV1, currentPage],
   );
 
   const xapiSuspended = useCallback(
@@ -406,6 +410,7 @@ const useXapi = () => {
         pageName: currentPage.name,
         pageType: currentPage.type,
         pageAreaCd: currentPage.pageAreaType,
+        pageStyleCode: currentPage.pageStyleCode,
         currentPage: currentPageIndex + 1,
       };
       const newXapiActivityState = updateActivityState({

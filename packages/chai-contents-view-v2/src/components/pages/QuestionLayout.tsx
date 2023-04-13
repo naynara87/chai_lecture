@@ -1,6 +1,7 @@
 import {
   CornerListData,
   CornerMeta,
+  currentPageState,
   LessonMeta,
   ModalQuestionTemplate,
   Page,
@@ -43,6 +44,7 @@ const QuestionLayout = ({
   const [isQuestionStartModalOpen, setIsQuestionStartModalOpen] =
     useState(false);
   const [questionSolvingTime, setQuestionSolvingTime] = useState(0);
+  const [, setCurrentPage] = useRecoilState(currentPageState);
 
   const [currentCornerId] = useRecoilState(currentCornerIdState);
 
@@ -61,6 +63,10 @@ const QuestionLayout = ({
   const setPageCompleted = () => {
     setIsPageCompleted(true);
   };
+
+  useEffect(() => {
+    setCurrentPage(currentPage);
+  }, [currentPage, setCurrentPage]);
 
   // const exitPlayer = useCallback(() => {
   //   if (!currentPage || !currentPageIndex) return;

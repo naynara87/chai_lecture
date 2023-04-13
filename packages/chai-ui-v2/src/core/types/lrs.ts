@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { ID } from "./appData";
+import { ID, Page } from "./appData";
 import { ContentData } from "./lcms";
 
 /**
@@ -88,6 +88,7 @@ export interface ProgressPageData {
   pageName: string;
   pageType: string;
   pageAreaCd: string | number;
+  pageStyleCode: string | number;
   pageTemplateCode: string | number;
 }
 
@@ -115,13 +116,13 @@ export interface XapiV1 {
   ) => void;
   sendComplete(pageData: ProgressPageData, newState: LRSActivityState): void;
   sendPlayed: (
-    pageId: ID,
+    currentPage: Page,
     contentType: "video" | "audio",
     subContentId: ID,
     contentUrl: string,
   ) => void;
-  sendAnswered: (subContentId: ID, pageId: ID) => void;
-  sendCreated: (subContentId: ID, pageId: ID) => void;
+  sendAnswered: (subContentId: ID, currentPage: Page) => void;
+  sendCreated: (subContentId: ID, currentPage: Page) => void;
   sendInitialized: (
     courseId: ID,
     lessonId: ID,

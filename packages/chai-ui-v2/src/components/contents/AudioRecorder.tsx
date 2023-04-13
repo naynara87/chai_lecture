@@ -18,7 +18,6 @@ import {
 } from "../../core";
 import { v4 as uuidv4 } from "uuid";
 import IconReturnButton from "../atoms/Button/IconReturnButton";
-import { useParams } from "react-router-dom";
 import ComponentProgress from "../atoms/ComponentProgress";
 
 const ButtonWrapper = styled.div`
@@ -38,8 +37,6 @@ const AudioRecorder = ({ contents }: AudioRecorderProps) => {
   const [recordingTimeState, setRecordingTimeState] = useState(0);
   const [recordedTimeState, setRecordedTimeState] = useState(0);
   const [isProgressBarStart, setIsProgressBarStart] = useState(false);
-
-  const { pageId } = useParams();
 
   const [recordedAudioState, setRecordedAudioState] =
     useState<RecordedAudioState>("not-recorded");
@@ -108,9 +105,7 @@ const AudioRecorder = ({ contents }: AudioRecorderProps) => {
       setRecordedAudioState("recorded");
       setIsProgressBarStart(false);
       setComponentCompleted(recordedAudioUuidRef.current);
-      if (pageId) {
-        xapiCreated(contents.id, pageId);
-      }
+      xapiCreated(contents.id);
       window.clearTimeout(recordTimer.current);
     }
   }, [
@@ -122,7 +117,6 @@ const AudioRecorder = ({ contents }: AudioRecorderProps) => {
     setComponentCompleted,
     xapiCreated,
     contents.id,
-    pageId,
   ]);
 
   const handleClickRecordedAudioButton = useCallback(() => {

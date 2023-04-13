@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useRef } from "react";
-import { useParams } from "react-router-dom";
 import {
   usePageCompleted,
   useXapi,
@@ -17,7 +16,6 @@ const ComponentVideo = ({ content, isModal }: ComponentVideoProps) => {
     usePageCompleted();
 
   const { xapiPlayed } = useXapi();
-  const { pageId } = useParams();
 
   useEffect(() => {
     if (isModal) return;
@@ -25,11 +23,9 @@ const ComponentVideo = ({ content, isModal }: ComponentVideoProps) => {
   }, [setPushCompletedPageComponents, content.id, isModal]);
 
   const playedVideo = useCallback(() => {
-    if (pageId) {
-      xapiPlayed(pageId, "video", content.id, content.data.src);
-    }
+    xapiPlayed("video", content.id, content.data.src);
     setComponentCompleted(content.id);
-  }, [setComponentCompleted, content, xapiPlayed, pageId]);
+  }, [setComponentCompleted, content, xapiPlayed]);
 
   useEffect(() => {
     let videoRefValue: HTMLVideoElement | null = null;

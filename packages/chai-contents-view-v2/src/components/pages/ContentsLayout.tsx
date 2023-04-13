@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import LayoutFooter from "../molecules/LayoutFooter";
 import LayoutHeader from "../molecules/LayoutHeader";
 import { useNavigate, useParams } from "react-router-dom";
@@ -14,6 +14,7 @@ import {
   CornerListData,
   usePageCompleted,
   useXapi,
+  currentPageState,
 } from "chai-ui-v2";
 import { currentCornerIdState } from "../../state/currentCornerId";
 import usePages from "../../hooks/usePages";
@@ -36,6 +37,7 @@ const ContentsLayout = ({
   const [isCompleteModalOpen, setIsCompleteModalOpen] = useState(false);
   const { courseId, cornerId, lessonId, pageId } = useParams();
   const [currentCornerId] = useRecoilState(currentCornerIdState);
+  const [, setCurrentPage] = useRecoilState(currentPageState);
   const navigate = useNavigate();
   const {
     currentPage,
@@ -78,6 +80,10 @@ const ContentsLayout = ({
   //   event.returnValue = "학습을 종료하시겠습니까?";
   //   return "학습을 종료하시겠습니까?";
   // });
+
+  useEffect(() => {
+    setCurrentPage(currentPage);
+  }, [currentPage, setCurrentPage]);
 
   const setPageCompleted = () => {
     setIsPageCompleted(true);

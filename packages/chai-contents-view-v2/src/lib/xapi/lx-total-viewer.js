@@ -4769,7 +4769,7 @@ code.google.com/p/crypto-js/wiki/License
           //   }
           // }
 
-          function sendPlayed(pageId, contentType, subContentId, contentUrl) {
+          function sendPlayed(curPage, contentType, subContentId, contentUrl) {
             var mys = bareStatement();
             mys.verb = new ADL.XAPIStatement.Verb(
               "http://adlnet.gov/expapi/verbs/played",
@@ -4817,7 +4817,21 @@ code.google.com/p/crypto-js/wiki/License
               "https://profile.caihong.co.kr/content-management/course/lessons/pages/page":
                 formatFloat(currentSegment[1]),
               "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-id":
-                pageId,
+                curPage.id,
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-name":
+                curPage.name,
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-template-code":
+                curPage.contentsType,
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-template-name":
+                curPage.type,
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/study-type-code":
+                null,
+              // ?
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-style-code":
+                curPage.pageStyleCode,
+              // ?
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-area-code":
+                curPage.pageAreaType,
             });
             delete mys.result.duration;
             XW.sendStatement(mys);
@@ -4866,13 +4880,27 @@ code.google.com/p/crypto-js/wiki/License
               "https://profile.caihong.co.kr/content-management/course/lessons/pages/page":
                 formatFloat(currentSegment[1]),
               "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-id":
-                pageId,
+                curPage.id,
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-name":
+                curPage.name,
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-template-code":
+                curPage.contentsType,
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-template-name":
+                curPage.type,
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/study-type-code":
+                null,
+              // ?
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-style-code":
+                curPage.pageStyleCode,
+              // ?
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-area-code":
+                curPage.pageAreaType,
             });
             delete mys.result.duration;
             XW.sendStatement(mys);
             window.postMessage(JSON.stringify(mys));
           }
-          function sendCreated(subContentId, pageId) {
+          function sendCreated(subContentId, curPage) {
             var mys = bareStatement();
             mys.verb = new ADL.XAPIStatement.Verb(
               "http://adlnet.gov/expapi/verbs/created",
@@ -4915,7 +4943,21 @@ code.google.com/p/crypto-js/wiki/License
               "https://profile.caihong.co.kr/content-management/course/lessons/pages/page":
                 formatFloat(currentSegment[1]),
               "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-id":
-                pageId,
+                curPage.id,
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-name":
+                curPage.name,
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-template-code":
+                curPage.contentsType,
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-template-name":
+                curPage.type,
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/study-type-code":
+                null,
+              // ?
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-style-code":
+                curPage.pageStyleCode,
+              // ?
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-area-code":
+                curPage.pageAreaType,
             });
             delete mys.result.duration;
             XW.sendStatement(mys);
@@ -4939,20 +4981,6 @@ code.google.com/p/crypto-js/wiki/License
                   pageData.partName,
                 "https://profile.caihong.co.kr/content-management/course/lessons/part-id":
                   pageData.partId,
-                "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-name":
-                  pageData.pageName,
-                "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-template-code":
-                  pageData.pageTemplateCode,
-                "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-template-name":
-                  pageData.pageType,
-                "https://profile.caihong.co.kr/content-management/course/lessons/pages/study-type-code":
-                  null,
-                // ?
-                "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-style-code":
-                  null,
-                // ?
-                "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-area-code":
-                  pageData.pageAreaCd,
               },
             };
             currentPageResultExtensions = JSON.parse(
@@ -4991,6 +5019,20 @@ code.google.com/p/crypto-js/wiki/License
                 pageData.pageId,
               "https://profile.caihong.co.kr/content-management/course/progress":
                 pageData.progress,
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-name":
+                pageData.pageName,
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-template-code":
+                pageData.pageTemplateCode,
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-template-name":
+                pageData.pageType,
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/study-type-code":
+                null,
+              // ?
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-style-code":
+                pageData.pageStyleCode,
+              // ?
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-area-code":
+                pageData.pageAreaCd,
             });
             currentPageEduStartTime = new Date();
             XW.sendStatement(mys);
@@ -5104,20 +5146,6 @@ code.google.com/p/crypto-js/wiki/License
                   pageData.partName,
                 "https://profile.caihong.co.kr/content-management/course/lessons/part-id":
                   pageData.partId,
-                "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-name":
-                  pageData.pageName,
-                "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-template-code":
-                  pageData.pageTemplateCode,
-                "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-template-name":
-                  pageData.pageType,
-                "https://profile.caihong.co.kr/content-management/course/lessons/pages/study-type-code":
-                  null,
-                // ?
-                "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-style-code":
-                  null,
-                // ?
-                "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-area-code":
-                  pageData.pageAreaCd,
               },
             };
             Object.assign(mys.result, {
@@ -5147,6 +5175,20 @@ code.google.com/p/crypto-js/wiki/License
                 pageData.currentPage,
               "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-id":
                 pageData.pageId,
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-name":
+                pageData.pageName,
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-template-code":
+                pageData.pageTemplateCode,
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-template-name":
+                pageData.pageType,
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/study-type-code":
+                null,
+              // ?
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-style-code":
+                pageData.pageStyleCode,
+              // ?
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-area-code":
+                pageData.pageAreaCd,
             });
             XW.sendStatement(mys); // send synchronously
             window.postMessage(JSON.stringify(mys));
