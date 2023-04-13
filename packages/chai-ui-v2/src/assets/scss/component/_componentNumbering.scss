@@ -17,9 +17,9 @@
   .number {
     @include circle(vw(36));
 
-    position: absolute;
-    top: vw(28);
-    left: vw(40);
+    // position: absolute;
+    // top: vw(28);
+    // left: vw(40);
     background-color: color(main);
     line-height: vw(34);
     font-weight: 600;

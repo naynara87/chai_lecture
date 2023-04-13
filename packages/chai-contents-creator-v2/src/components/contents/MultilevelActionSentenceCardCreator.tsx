@@ -23,7 +23,7 @@ import { cloneDeep } from "lodash";
 import DroppableContents from "../molecules/DroppableContents";
 
 const MultilevelActionSentenceContentContainer = styled.div`
-  margin: 0 auto;
+  margin: 40px auto 0;
 `;
 
 const MultilevelActionCardWrapper = styled.div`

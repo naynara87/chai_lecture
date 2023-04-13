@@ -3,7 +3,7 @@ import { NotiCharacterListContentData } from "../../core";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
 import styled from "@emotion/styled";
 import arrow from "../../assets/images/icon/icon_contsinfo_tail.svg";
-import ProfileDefault from "../../assets/images/img/cha_all.png";
+import ProfileDefault from "../../assets/images/img/cha_profile01.png";
 import { vw, vh, colorPalette } from "../../assets";
 
 export interface NotiCharacterListComponentProps {

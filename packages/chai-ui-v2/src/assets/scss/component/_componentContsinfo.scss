@@ -4,7 +4,8 @@
 		flex-direction: column;
 	}
 
-	min-height: 100%;
+	overflow: auto;
+	height: 100%;
 
 	.character-wrapper {
 		width: 100%;

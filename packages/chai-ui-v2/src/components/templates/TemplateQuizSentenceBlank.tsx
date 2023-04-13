@@ -54,7 +54,7 @@ export type SentenceInOrderChoice = {
   answerIndex: number;
 };
 
-interface TemplateQuizSentenceBlankProps extends TemplateProps {}
+interface TemplateQuizSentenceBlankProps extends TemplateProps { }
 
 const TemplateQuizSentenceBlank = ({
   template,
@@ -150,9 +150,9 @@ const TemplateQuizSentenceBlank = ({
       0,
       isCorrect === undefined
         ? thisPage.mainContents.data.quizPopup.data.correct.soundEffect?.src ??
-            ""
+        ""
         : thisPage.mainContents.data.quizPopup.data.incorrect.soundEffect
-            ?.src ?? "",
+          ?.src ?? "",
     );
   }, [handleClickAudioButton, isCorrect, thisPage.mainContents, xapiAnswered]);
 
@@ -180,20 +180,22 @@ const TemplateQuizSentenceBlank = ({
       <div className="layout-panel side-panel conversation-panel-wrap">
         {thisPage.titleContents && titleContents}
         {/* 230217 회화영역 */}
-        <ul className="conversation-wrapper">
-          {/* speech bubble */}
-          {thisPage.mainContents && (
-            <DialogueSentenceBlank
-              contents={thisPage.mainContents.data.characters}
-              selectedBlankBox={selectedBlankBox}
-              userChoices={userChoices}
-              setSelectedBlankBox={setSelectedBlankBox}
-              setSelectedChoiceBox={setSelectedChoiceBox}
-              isShowAnswer={isShowAnswer}
-            />
-          )}
-          {/* end speech bubble */}
-        </ul>
+        <div>
+          <ul className="conversation-wrapper">
+            {/* speech bubble */}
+            {thisPage.mainContents && (
+              <DialogueSentenceBlank
+                contents={thisPage.mainContents.data.characters}
+                selectedBlankBox={selectedBlankBox}
+                userChoices={userChoices}
+                setSelectedBlankBox={setSelectedBlankBox}
+                setSelectedChoiceBox={setSelectedChoiceBox}
+                isShowAnswer={isShowAnswer}
+              />
+            )}
+            {/* end speech bubble */}
+          </ul>
+        </div>
       </div>
       <div className="layout-panel wide-panel">
         <QuizContainer method="post" className="quiz-container">
@@ -241,9 +243,9 @@ const TemplateQuizSentenceBlank = ({
             videoSrc={
               isCorrect === undefined
                 ? thisPage.mainContents.data.quizPopup.data.correct.video
-                    ?.src ?? ""
+                  ?.src ?? ""
                 : thisPage.mainContents.data.quizPopup.data.incorrect.video
-                    ?.src ?? ""
+                  ?.src ?? ""
             }
           />
         </>
