@@ -21,6 +21,7 @@ const CornerGuideWrapper = styled.div`
 
 const TextBubbleWrap = styled.div`
   position: relative;
+  width: 100%;
   padding: 24px 40px;
   border-radius: 50px;
   background-color: #eff1f5;
