@@ -138,6 +138,7 @@ const QuestionLayout = ({
               : "종합문제",
           solvingTime: questionSolvingTime,
           pages,
+          totalPages,
         },
       });
     }

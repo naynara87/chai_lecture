@@ -45,11 +45,30 @@ const QuestionScore = () => {
       const contentIds = quizPageData.map((pageData) => pageData.contentId);
       try {
         await deleteQuestion(contentIds, userId?.uid ?? "");
-        navigate(getPageUrl(courseId, lessonId, cornerId, 1));
+        navigate(getPageUrl(courseId, lessonId, cornerId, state.totalPages[0]));
       } catch (error) {
         addToast("서버 통신에 실패했습니다. 다시 시도해주세요.", "error");
       }
     }
+  };
+
+  const handleClickClose = async () => {
+    if (courseId && lessonId && cornerId) {
+      const contentIds = quizPageData.map((pageData) => pageData.contentId);
+      try {
+        await deleteQuestion(contentIds, userId?.uid ?? "");
+      } catch (error) {
+        addToast("서버 통신에 실패했습니다. 다시 시도해주세요.", "error");
+      }
+    }
+    const btnQuit = document.querySelector<HTMLDivElement>("#quit");
+    window.parent.postMessage(
+      {
+        func: "pageReload",
+      },
+      "*",
+    );
+    btnQuit?.click();
   };
 
   return (
@@ -107,9 +126,7 @@ const QuestionScore = () => {
           rightButtonText="나가기"
           leftButtonText="취소"
           title=""
-          handleClickRightButton={() =>
-            console.log("lms 내 마이페이지로 이동해야합니다.")
-          }
+          handleClickRightButton={() => handleClickClose()}
           handleClickLeftButton={() => setIsModalExitConfirmOpen(false)}
         />
       </main>
