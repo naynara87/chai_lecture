@@ -19,6 +19,7 @@ import {
 import { v4 as uuidv4 } from "uuid";
 import IconReturnButton from "../atoms/Button/IconReturnButton";
 import { useParams } from "react-router-dom";
+import ComponentProgress from "../atoms/ComponentProgress";
 
 const ButtonWrapper = styled.div`
   line-height: 0;
@@ -36,6 +37,7 @@ const AudioRecorder = ({ contents }: AudioRecorderProps) => {
   const recordTime = useRef(0);
   const [recordingTimeState, setRecordingTimeState] = useState(0);
   const [recordedTimeState, setRecordedTimeState] = useState(0);
+  const [isProgressBarStart, setIsProgressBarStart] = useState(false);
 
   const { pageId } = useParams();
 
@@ -79,6 +81,7 @@ const AudioRecorder = ({ contents }: AudioRecorderProps) => {
     if (globalAudioId !== -1 && status === "recording") {
       stopRecording();
       setRecordedAudioState("recorded");
+      setIsProgressBarStart(false);
       window.clearTimeout(recordTimer.current);
     }
   }, [globalAudioId, status, stopRecording]);
@@ -94,6 +97,7 @@ const AudioRecorder = ({ contents }: AudioRecorderProps) => {
         if (recordTime.current > 29) {
           stopRecording();
           setRecordedAudioState("recorded");
+          setIsProgressBarStart(false);
         } else {
           recordTimer.current = setTimeout(go, 1000);
         }
@@ -102,6 +106,7 @@ const AudioRecorder = ({ contents }: AudioRecorderProps) => {
       // 녹음 중일 때
       stopRecording();
       setRecordedAudioState("recorded");
+      setIsProgressBarStart(false);
       setComponentCompleted(recordedAudioUuidRef.current);
       if (pageId) {
         xapiCreated(contents.id, pageId);
@@ -142,6 +147,7 @@ const AudioRecorder = ({ contents }: AudioRecorderProps) => {
         setRecordedTimeState((prev) => prev - 1);
         if (recordTime.current < 0) {
           setRecordedAudioState("recorded");
+          setIsProgressBarStart(false);
         } else {
           recordTimer.current = setTimeout(go, 1000);
         }
@@ -152,6 +158,7 @@ const AudioRecorder = ({ contents }: AudioRecorderProps) => {
       // stop playing audio
       handleAudioReset();
       setRecordedAudioState("recorded");
+      setIsProgressBarStart(false);
       window.clearTimeout(recordTimer.current);
     }
   }, [
@@ -206,15 +213,25 @@ const AudioRecorder = ({ contents }: AudioRecorderProps) => {
     handleAudioReset();
     recordTime.current = 0;
     setRecordingTimeState(0);
+    setIsProgressBarStart(false);
   }, [handleAudioReset, clearBlobUrl]);
 
   const renderRecordingAudioIcon = useMemo(() => {
     if (status === "recording") {
+      setTimeout(() => {
+        setIsProgressBarStart(true);
+      }, 0);
       return (
-        <RecordStopButton
-          onClickBtn={handleClickRecordingAudioButton}
-          recordTime={recordingTimeState}
-        />
+        <>
+          <RecordStopButton
+            onClickBtn={handleClickRecordingAudioButton}
+            recordTime={recordingTimeState}
+          />
+          <ComponentProgress
+            progressDuration={30}
+            isAudioEnd={isProgressBarStart}
+          />
+        </>
       );
     } else {
       if (status === "idle") {
@@ -224,15 +241,29 @@ const AudioRecorder = ({ contents }: AudioRecorderProps) => {
         );
       }
     }
-  }, [status, handleClickRecordingAudioButton, recordingTimeState]);
+  }, [
+    status,
+    handleClickRecordingAudioButton,
+    recordingTimeState,
+    isProgressBarStart,
+  ]);
 
   const renderRecordedAudioIcon = useMemo(() => {
     if (recordedAudioState === "playing") {
+      setTimeout(() => {
+        setIsProgressBarStart(true);
+      }, 0);
       return (
-        <RecordStopButton
-          onClickBtn={handleClickRecordedAudioButton}
-          recordTime={recordedTimeState}
-        />
+        <>
+          <RecordStopButton
+            onClickBtn={handleClickRecordedAudioButton}
+            recordTime={recordedTimeState}
+          />
+          <ComponentProgress
+            progressDuration={recordedTimeState}
+            isAudioEnd={isProgressBarStart}
+          />
+        </>
       );
     } else {
       // recordedAudioState === "recorded"
@@ -252,6 +283,7 @@ const AudioRecorder = ({ contents }: AudioRecorderProps) => {
     handleClickResetBtn,
     recordedTimeState,
     recordingTimeState,
+    isProgressBarStart,
   ]);
 
   return (
