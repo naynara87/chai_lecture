@@ -2,6 +2,7 @@ import {
   ADL,
   getCookie,
   InitialAppData,
+  userNameState,
   xapiElement,
   XAPIOptions,
   xapiV1State,
@@ -77,6 +78,7 @@ const createActorObject = function (obj: XAPIOptions) {
 
 const XapiProvider = ({ children }: XapiProviderProps) => {
   const [, setXapiV1State] = useRecoilState(xapiV1State);
+  const [, setUserName] = useRecoilState(userNameState);
   const learningLogCookieData = getCookie<InitialAppData>("bubble-player");
 
   //@ts-ignore
@@ -128,6 +130,10 @@ const XapiProvider = ({ children }: XapiProviderProps) => {
         options["state_id"] ?? "",
         learningLogCookieData?.uid,
       );
+    }
+
+    if (options["name"]) {
+      setUserName(options["name"]);
     }
   };
 

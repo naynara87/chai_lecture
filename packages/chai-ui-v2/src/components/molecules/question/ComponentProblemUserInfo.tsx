@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
-import { QuizData } from "../../../core";
+import { useRecoilState } from "recoil";
+import { QuizData, userNameState } from "../../../core";
 
 interface ComponentProblemUserInfoProps {
   quizPageData: QuizData[];
@@ -10,6 +11,8 @@ const ComponentProblemUserInfo = ({
   quizPageData,
   quizTypeText,
 }: ComponentProblemUserInfoProps) => {
+  const [userName] = useRecoilState(userNameState);
+
   const score = useMemo(() => {
     const correctQuizPages = quizPageData.filter((quizPage) => {
       return quizPage.isCorrect;
@@ -21,7 +24,7 @@ const ComponentProblemUserInfo = ({
     <div className="problem-user-info-wrap">
       <h3 className="user-title">
         {/* TODO 세션데이터받아와서 이름 변경해주기 */}
-        {`홍길동`}님<br />
+        {userName}님<br />
         <b>{quizTypeText}</b>
         <br />
         채점 결과
