@@ -127,12 +127,11 @@ const ConversationComponent = ({
     return contents.data.map((content, contentIndex) => {
       return (
         <li
-          className={`conversation-wrap ${
-            speakingDialogueIndex === contentIndex &&
-            globalAudioState === "playing"
+          className={`conversation-wrap ${speakingDialogueIndex === contentIndex &&
+              globalAudioState === "playing"
               ? "active"
               : ""
-          } ${content.isBlank ? "blank" : ""}`}
+            } ${content.isBlank ? "blank" : ""}`}
           key={contentIndex}
         >
           {/* key설명 - 음성이 재생될 때 active 가 추가됨(화자표시 애니메이션) */}
@@ -203,7 +202,7 @@ const ConversationComponent = ({
   ]);
 
   return (
-    <>
+    <div>
       {pageType === "TemplateConversationToggle" && (
         <DialogueToggle
           handleClickOptions={handleClickOptions}
@@ -211,7 +210,7 @@ const ConversationComponent = ({
         />
       )}
       <ul className="conversation-wrapper">{mainContents}</ul>
-    </>
+    </div>
   );
 };
 
