@@ -12,15 +12,18 @@ import {
   ComponentButtonRadiFillMain,
 } from "../atoms";
 import LineCheckBoxes from "../molecules/LineCheckBoxes";
-import DialogueSentenceBlank from "../molecules/DialogueSentenceBlank";
 import {
   TemplateProps,
   TemplateQuizSentencesInOrderData,
   useContentMapper,
   useGlobalAudio,
+  usePageCompleted,
+  useXapi,
 } from "../../core";
 import ModalVideo from "../modal/ModalVideo";
 import { v4 as uuidv4 } from "uuid";
+import DialogueSentenceBlank from "../contents/DialogueSentenceBlank";
+import { useParams } from "react-router-dom";
 
 const DialogueContainer = styled.div`
   .blank-gray {
@@ -77,6 +80,13 @@ const TemplateQuizSentenceBlank = ({
     handleAudioReset,
     handleClickAudioButton,
   } = useGlobalAudio();
+  const { setPushCompletedPageComponents } = usePageCompleted();
+  const { xapiAnswered } = useXapi();
+  const { pageId } = useParams();
+
+  useEffect(() => {
+    setPushCompletedPageComponents("quiz", template.id);
+  }, [setPushCompletedPageComponents, template.id]);
 
   const audioEnded = useCallback(() => {
     if (globalAudioId.toString().includes("solutionModal")) {
@@ -135,6 +145,9 @@ const TemplateQuizSentenceBlank = ({
     setSelectedChoiceBox(undefined);
     setIsShowAnswer(true);
     setIsModalSolutionOpen(true);
+    if (pageId) {
+      xapiAnswered(thisPage.mainContents.id, pageId);
+    }
     handleClickAudioButton(
       "solutionModal",
       modalUuidRef.current,
@@ -145,7 +158,13 @@ const TemplateQuizSentenceBlank = ({
         : thisPage.mainContents.data.quizPopup.data.incorrect.soundEffect
             ?.src ?? "",
     );
-  }, [handleClickAudioButton, isCorrect, thisPage.mainContents]);
+  }, [
+    handleClickAudioButton,
+    isCorrect,
+    thisPage.mainContents,
+    xapiAnswered,
+    pageId,
+  ]);
 
   const handleClickModalClose = () => {
     handleAudioReset();

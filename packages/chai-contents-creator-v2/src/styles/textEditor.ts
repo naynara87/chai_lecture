@@ -62,6 +62,16 @@ export const TextEditorWrapper = styled.div<TextEditorWrapperProps>`
         content: "36px" !important;
       }
     }
+    [data-value="40px"] {
+      ::before {
+        content: "40px" !important;
+      }
+    }
+    [data-value="45px"] {
+      ::before {
+        content: "45px" !important;
+      }
+    }
     [data-value="48px"] {
       ::before {
         content: "48px" !important;

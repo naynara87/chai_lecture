@@ -11,12 +11,18 @@ import RecordPlayButton from "../atoms/Button/RecordPlayButton";
 import RecordMikeButton from "../atoms/Button/RecordMikeButton";
 import IconReturnButton from "../atoms/Button/IconReturnButton";
 import RecordStopButton from "../atoms/Button/RecordStopButton";
-import { FinalSpeakingContentData, useGlobalAudio } from "../../core";
+import {
+  FinalSpeakingContentData,
+  useGlobalAudio,
+  usePageCompleted,
+  useXapi,
+} from "../../core";
 import { v4 as uuidv4 } from "uuid";
 import ComponentGrayLine from "../molecules/ComponentGrayLine";
 import IconLight from "../../assets/images/icon/icon_light_navy.svg";
 import { ComponentButtonRadiFillMain } from "../atoms";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
+import { useParams } from "react-router-dom";
 
 const ButtonWrapper = styled.div`
   line-height: 0;
@@ -57,6 +63,14 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
     handleAudioReset,
     handleClickAudioButton,
   } = useGlobalAudio();
+  const { pageId } = useParams();
+  const { setPushCompletedPageComponents, setComponentCompleted } =
+    usePageCompleted();
+  const { xapiCreated } = useXapi();
+
+  useEffect(() => {
+    setPushCompletedPageComponents("record", contents.id);
+  }, [setPushCompletedPageComponents, contents.id]);
 
   useEffect(() => {
     return () => {
@@ -122,10 +136,24 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
     } else {
       // 녹음 중일 때
       stopRecording();
+      setComponentCompleted(contents.id);
+      if (pageId) {
+        xapiCreated(contents.id, pageId);
+      }
       setRecordedAudioState("recorded");
       window.clearTimeout(recordTimer.current);
     }
-  }, [startRecording, status, stopRecording, recordTime, handleAudioReset]);
+  }, [
+    startRecording,
+    status,
+    stopRecording,
+    recordTime,
+    handleAudioReset,
+    setComponentCompleted,
+    contents.id,
+    xapiCreated,
+    pageId,
+  ]);
 
   const handleClickRecordedAudioButton = useCallback(() => {
     if (

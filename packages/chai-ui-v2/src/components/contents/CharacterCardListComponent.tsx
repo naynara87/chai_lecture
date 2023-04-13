@@ -30,9 +30,23 @@ const CharacterCardListComponent = ({
     });
   }, [contents.data, handleClickSummaryBtn]);
 
+  const hasSummaryModal = useMemo(() => {
+    return contents.data.some((characterCard) => {
+      return (
+        characterCard.modalContents && characterCard.modalContents.length > 0
+      );
+    });
+  }, [contents.data]);
+
   return (
     <div className="training-wrapper">
-      <ul className="training-list-wrap training-end">{characterCards}</ul>
+      <ul
+        className={`training-list-wrap ${
+          hasSummaryModal ? "training-end" : ""
+        }`}
+      >
+        {characterCards}
+      </ul>
       <ModalLearningPoint
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}

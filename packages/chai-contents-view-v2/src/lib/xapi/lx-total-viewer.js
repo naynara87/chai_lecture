@@ -4539,10 +4539,10 @@ code.google.com/p/crypto-js/wiki/License
     /*!******************************************!*\
   !*** ./src/js/xapi/xapi-total-player.js ***!
   \******************************************/
-    function _typeof(obj) {
+    function _typeof2(obj) {
       "@babel/helpers - typeof";
       return (
-        (_typeof =
+        (_typeof2 =
           "function" == typeof Symbol && "symbol" == typeof Symbol.iterator
             ? function (obj) {
                 return typeof obj;
@@ -4555,8 +4555,70 @@ code.google.com/p/crypto-js/wiki/License
                   ? "symbol"
                   : typeof obj;
               }),
-        _typeof(obj)
+        _typeof2(obj)
       );
+    }
+    function ownKeys(object, enumerableOnly) {
+      var keys = Object.keys(object);
+      if (Object.getOwnPropertySymbols) {
+        var symbols = Object.getOwnPropertySymbols(object);
+        enumerableOnly &&
+          (symbols = symbols.filter(function (sym) {
+            return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+          })),
+          keys.push.apply(keys, symbols);
+      }
+      return keys;
+    }
+    function _objectSpread(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = null != arguments[i] ? arguments[i] : {};
+        i % 2
+          ? ownKeys(Object(source), !0).forEach(function (key) {
+              _defineProperty(target, key, source[key]);
+            })
+          : Object.getOwnPropertyDescriptors
+          ? Object.defineProperties(
+              target,
+              Object.getOwnPropertyDescriptors(source),
+            )
+          : ownKeys(Object(source)).forEach(function (key) {
+              Object.defineProperty(
+                target,
+                key,
+                Object.getOwnPropertyDescriptor(source, key),
+              );
+            });
+      }
+      return target;
+    }
+    function _defineProperty(obj, key, value) {
+      key = _toPropertyKey(key);
+      if (key in obj) {
+        Object.defineProperty(obj, key, {
+          value: value,
+          enumerable: true,
+          configurable: true,
+          writable: true,
+        });
+      } else {
+        obj[key] = value;
+      }
+      return obj;
+    }
+    function _toPropertyKey(arg) {
+      var key = _toPrimitive(arg, "string");
+      return _typeof2(key) === "symbol" ? key : String(key);
+    }
+    function _toPrimitive(input, hint) {
+      if (_typeof2(input) !== "object" || input === null) return input;
+      var prim = input[Symbol.toPrimitive];
+      if (prim !== undefined) {
+        var res = prim.call(input, hint || "default");
+        if (_typeof2(res) !== "object") return res;
+        throw new TypeError("@@toPrimitive must return a primitive value.");
+      }
+      return (hint === "string" ? String : Number)(input);
     }
     (function (ADL) {
       var bubbleAPI = function bubbleAPI() {
@@ -4564,6 +4626,7 @@ code.google.com/p/crypto-js/wiki/License
           var actor = JSON.parse(ADL.XAPIWrapper.lrs.actor);
           var XW = ADL.XAPIWrapper; // short ref
           var targetLoaded = false;
+          var activityID;
           var targetObject;
           var targetActivityObject;
           var sessionId;
@@ -4572,16 +4635,22 @@ code.google.com/p/crypto-js/wiki/License
           var progressSegments;
           var currentSegment;
           var activityStateId;
+          var playerActivityState;
+
           // NOTE kjw xapi 지표관련 변수
           var contextDetails;
           var extensionDetails;
           var resultExtensions;
           var objectContext;
-          var resultExtensionStructure;
           var resultDuration = "PT0H0M0S";
-          var eduStartTime = new Date();
+          var eduStartTime;
+          var currentPageEduStartTime;
           var debounceTimer = null;
           var completeRate = 0.98;
+          var playerTotalPages;
+          var playerLessonId;
+          var currentPageResultExtensions;
+          var sendSynchronous;
           function addExtensionDetail(extension_details) {
             extensionDetails = extension_details;
           }
@@ -4593,18 +4662,18 @@ code.google.com/p/crypto-js/wiki/License
           }
           function addResultExtension(result_extensions) {
             resultExtensions = result_extensions;
-            resultExtensionStructure = {
-              completion: false,
-              response: "",
-              duration: resultDuration,
-              score: {
-                scaled: 0,
-                raw: 0,
-                max: 1,
-                min: 0,
-              },
-            };
+            // resultExtensionStructure = {
+            //   completion: false,
+            //   duration: resultDuration,
+            //   score: {
+            //     scaled: 0,
+            //     raw: 0,
+            //     max: 1,
+            //     min: 0,
+            //   },
+            // };
           }
+
           function formatFloat(number) {
             if (number == null) {
               return null;
@@ -4640,7 +4709,9 @@ code.google.com/p/crypto-js/wiki/License
             s = (s - secs) / 60;
             var mins = s % 60;
             var hours = (s - mins) / 60;
+            var day = Math.floor(hours / 24);
             return {
+              day: day,
               hours: hours,
               mins: mins,
               secs: secs,
@@ -4664,107 +4735,343 @@ code.google.com/p/crypto-js/wiki/License
             }
             return res;
           }
-          function setContext(obj, detail, Extensions) {
-            getScore();
-            Object.assign(obj, detail);
+          function setContext(obj, Extensions, detail) {
+            if (detail) {
+              Object.assign(obj, detail);
+            }
             Object.assign(obj.extensions, Extensions);
           }
-          function getScore() {
-            var currentProgress =
-              1 * (targetObject.page / targetObject.pagesCount).toFixed(2);
-            var sumActualLearning = miliSecToTime(new Date() - eduStartTime);
-            console.log(sumActualLearning);
-            resultExtensionStructure.score["scaled"] = currentProgress
-              ? currentProgress
-              : 0;
-            resultExtensionStructure.score["raw"] = currentProgress
-              ? currentProgress * 100
-              : 0;
-            resultExtensionStructure.duration =
-              "PT" +
-              sumActualLearning.hours +
-              "H" +
-              sumActualLearning.mins +
-              "M" +
-              sumActualLearning.secs +
-              "." +
-              sumActualLearning.ms +
-              "S";
-            if (completeRate <= currentProgress) {
-              resultExtensionStructure.completion = true;
-            }
-          }
-          function sendProgress() {
+
+          // function getScore(currentProgress) {
+          //   // let currentProgress =
+          //   //   1 * (targetObject.page / targetObject.pagesCount).toFixed(2);
+          //   const sumActualLearning = miliSecToTime(
+          //     new Date() - currentPageEduStartTime
+          //   );
+          //   console.log(sumActualLearning);
+          //   resultExtensionStructure.score["scaled"] = currentProgress
+          //     ? currentProgress
+          //     : 0;
+          //   resultExtensionStructure.score["raw"] = currentProgress
+          //     ? currentProgress * 100
+          //     : 0;
+          //   resultExtensionStructure.duration =
+          //     "P" +
+          //     sumActualLearning.hours +
+          //     "DT" +
+          //     sumActualLearning.mins +
+          //     "H" +
+          //     sumActualLearning.secs +
+          //     "M";
+
+          //   if (completeRate <= currentProgress) {
+          //     resultExtensionStructure.completion = true;
+          //   }
+          // }
+
+          function sendPlayed(pageId, contentType, subContentId, contentUrl) {
             var mys = bareStatement();
-            currentSegment = [targetObject.page, targetObject.page];
+            mys.verb = new ADL.XAPIStatement.Verb(
+              "http://adlnet.gov/expapi/verbs/played",
+              "".concat(
+                contentType === "video" ? "동영상" : "오디오",
+                "\uB97C \uC7AC\uC0DD\uD568",
+              ),
+            );
+            mys.result = _objectSpread({}, currentPageResultExtensions);
+            mys.object = _objectSpread(
+              _objectSpread({}, mys.object),
+              {},
+              {
+                id: mys.object.id + "?subContentId=".concat(subContentId),
+                definition: _objectSpread(
+                  _objectSpread({}, mys.object.definition),
+                  {},
+                  {
+                    name: {
+                      "en-US": "".concat(contentUrl),
+                    },
+                    extensions: _objectSpread(
+                      _objectSpread({}, mys.object.definition.extensions),
+                      {},
+                      {
+                        "https://profile.caihong.co.kr/content-management/course/local-content-id":
+                          playerLessonId,
+                        "https://profile.caihong.co.kr/content-management/course/subcontent-id":
+                          subContentId,
+                        "https://profile.caihong.co.kr/content-management/course/subcontent-type":
+                          "".concat(
+                            contentType === "video" ? "video" : "audio",
+                          ),
+                      },
+                    ),
+                  },
+                ),
+              },
+            );
+            setContext(mys.result, resultExtensions);
+            Object.assign(mys.result, {
+              success: true,
+            });
+            Object.assign(mys.result.extensions, {
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/page":
+                formatFloat(currentSegment[1]),
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-id":
+                pageId,
+            });
+            delete mys.result.duration;
+            XW.sendStatement(mys);
+            window.postMessage(JSON.stringify(mys));
+          }
+          function sendAnswered(subContentId, pageId) {
+            var mys = bareStatement();
+            mys.verb = new ADL.XAPIStatement.Verb(
+              "http://adlnet.gov/expapi/verbs/answered",
+              "퀴즈에 응답함",
+            );
+            mys.result = _objectSpread({}, currentPageResultExtensions);
+            mys.object = _objectSpread(
+              _objectSpread({}, mys.object),
+              {},
+              {
+                id: mys.object.id + "?subContentId=".concat(subContentId),
+                definition: _objectSpread(
+                  _objectSpread({}, mys.object.definition),
+                  {},
+                  {
+                    name: {
+                      "en-US": "퀴즈 설명",
+                    },
+                    extensions: _objectSpread(
+                      _objectSpread({}, mys.object.definition.extensions),
+                      {},
+                      {
+                        "https://profile.caihong.co.kr/content-management/course/local-content-id":
+                          playerLessonId,
+                        "https://profile.caihong.co.kr/content-management/course/subcontent-id":
+                          subContentId,
+                        "https://profile.caihong.co.kr/content-management/course/subcontent-type":
+                          "question",
+                      },
+                    ),
+                  },
+                ),
+              },
+            );
+            setContext(mys.result, resultExtensions);
+            Object.assign(mys.result, {
+              success: true,
+            });
+            Object.assign(mys.result.extensions, {
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/page":
+                formatFloat(currentSegment[1]),
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-id":
+                pageId,
+            });
+            delete mys.result.duration;
+            XW.sendStatement(mys);
+            window.postMessage(JSON.stringify(mys));
+          }
+          function sendCreated(subContentId, pageId) {
+            var mys = bareStatement();
+            mys.verb = new ADL.XAPIStatement.Verb(
+              "http://adlnet.gov/expapi/verbs/created",
+              "녹음 파일 생성함",
+            );
+            mys.result = _objectSpread({}, currentPageResultExtensions);
+            mys.object = _objectSpread(
+              _objectSpread({}, mys.object),
+              {},
+              {
+                id: mys.object.id + "?subContentId=".concat(subContentId),
+                definition: _objectSpread(
+                  _objectSpread({}, mys.object.definition),
+                  {},
+                  {
+                    name: {
+                      "en-US": "파일명",
+                    },
+                    extensions: _objectSpread(
+                      _objectSpread({}, mys.object.definition.extensions),
+                      {},
+                      {
+                        "https://profile.caihong.co.kr/content-management/course/local-content-id":
+                          playerLessonId,
+                        "https://profile.caihong.co.kr/content-management/course/subcontent-id":
+                          subContentId,
+                        "https://profile.caihong.co.kr/content-management/course/subcontent-type":
+                          "recorded-audio",
+                      },
+                    ),
+                  },
+                ),
+              },
+            );
+            setContext(mys.result, resultExtensions);
+            Object.assign(mys.result, {
+              success: true,
+            });
+            Object.assign(mys.result.extensions, {
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/page":
+                formatFloat(currentSegment[1]),
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-id":
+                pageId,
+            });
+            delete mys.result.duration;
+            XW.sendStatement(mys);
+            window.postMessage(JSON.stringify(mys));
+          }
+          function sendProgress(pageData, newState) {
+            var mys = bareStatement();
+            var sumActualPageLearning = miliSecToTime(
+              new Date() - currentPageEduStartTime,
+            );
+            currentSegment = [pageData.currentPage, pageData.nextPage];
             addCurrentSegment();
-            saveState();
+            saveState(newState);
             mys.verb = new ADL.XAPIStatement.Verb(
               "http://adlnet.gov/expapi/verbs/progressed",
-              "progressed",
+              "학습 페이지 전환",
+            );
+            mys.result = {
+              extensions: {
+                "https://profile.caihong.co.kr/content-management/course/lessons/part-name":
+                  pageData.partName,
+                "https://profile.caihong.co.kr/content-management/course/lessons/part-id":
+                  pageData.partId,
+                "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-name":
+                  pageData.pageName,
+                "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-template-code":
+                  pageData.pageTemplateCode,
+                "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-template-name":
+                  pageData.pageType,
+                "https://profile.caihong.co.kr/content-management/course/lessons/pages/study-type-code":
+                  null,
+                // ?
+                "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-style-code":
+                  null,
+                // ?
+                "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-area-code":
+                  pageData.pageAreaCd,
+              },
+            };
+            currentPageResultExtensions = JSON.parse(
+              JSON.stringify(mys.result),
+            );
+            setContext(mys.result, resultExtensions);
+            Object.assign(mys.result, {
+              duration:
+                "P" +
+                sumActualPageLearning.day +
+                // 날짜
+                "DT" +
+                sumActualPageLearning.hours +
+                // 시간
+                "H" +
+                sumActualPageLearning.mins +
+                // 분?
+                "M" +
+                sumActualPageLearning.secs +
+                "." +
+                sumActualPageLearning.ms +
+                "S",
+              success: true,
+              completion: newState.progress >= completeRate ? true : false,
+            });
+            Object.assign(mys.result.extensions, {
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages":
+                playerTotalPages.length,
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/progress-segments":
+                progressSegments,
+              "https://profile.caihong.co.kr/content-management/course/session-id":
+                sessionId,
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/page":
+                pageData.currentPage,
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-id":
+                pageData.pageId,
+              "https://profile.caihong.co.kr/content-management/course/progress":
+                pageData.progress,
+            });
+            currentPageEduStartTime = new Date();
+            XW.sendStatement(mys);
+            window.postMessage(JSON.stringify(mys));
+          }
+          function sendComplete(pageData, newState) {
+            var _parseInt, _parseInt2;
+            if (targetCompleted) return;
+            var mys = bareStatement();
+            var sumActualPlayerLearning = miliSecToTime(
+              new Date() - eduStartTime,
+            );
+            currentSegment = [pageData.currentPage, pageData.currentPage];
+            addCurrentSegment();
+            saveState(newState);
+            mys.verb = new ADL.XAPIStatement.Verb(
+              "http://adlnet.gov/expapi/verbs/completed",
+              "이수 기준을 달성함",
             );
             mys.result = {
               extensions: {
                 "https://profile.caihong.co.kr/content-management/course/session-id":
                   sessionId,
-                "https://profile.caihong.co.kr/content-management/course/lessons/pages/page":
-                  targetObject.page,
                 "https://profile.caihong.co.kr/content-management/course/lessons/pages/progress-segments":
                   progressSegments,
               },
             };
-            if (resultExtensionStructure) {
-              setContext(
-                mys.result,
-                resultExtensionStructure,
-                resultExtensions,
-              );
-            }
-            XW.sendStatement(mys);
-            window.postMessage(JSON.stringify(mys));
-          }
-          function sendComplete() {
-            var mys = bareStatement();
-            currentSegment = [targetObject.page, targetObject.page];
-            addCurrentSegment();
-            mys.verb = new ADL.XAPIStatement.Verb(
-              "http://adlnet.gov/expapi/verbs/completed",
-              "completed",
-            );
-            mys.context = {
-              extensions: {
-                "https://profile.caihong.co.kr/content-management/course/session-id":
-                  sessionId,
-                "https://profile.caihong.co.kr/content-management/course/lessons/pages/page":
-                  targetObject.page,
-                "https://profile.caihong.co.kr/content-management/course/lessons/pages/progress-segments":
-                  progressSegments,
+            setContext(mys.result, resultExtensions);
+            Object.assign(mys.result, {
+              duration:
+                "P" +
+                sumActualPlayerLearning.day +
+                "DT" +
+                sumActualPlayerLearning.hours +
+                "H" +
+                sumActualPlayerLearning.mins +
+                "M" +
+                sumActualPlayerLearning.secs +
+                "." +
+                sumActualPlayerLearning.ms +
+                "S",
+              score: {
+                max: 100,
+                min: 0,
+                raw:
+                  (_parseInt = parseInt(
+                    (newState.progress * 100).toFixed(3),
+                  )) !== null && _parseInt !== void 0
+                    ? _parseInt
+                    : 0,
+                scaled:
+                  (_parseInt2 = parseInt(newState.progress.toFixed(3))) !==
+                    null && _parseInt2 !== void 0
+                    ? _parseInt2
+                    : 0,
               },
-            };
-            if (contextDetails) {
-              Object.assign(mys.context, contextDetails);
-            }
-            if (extensionDetails) {
-              Object.assign(mys.context.extensions, extensionDetails);
-            }
+              completion: newState.progress >= completeRate ? true : false,
+            });
             XW.sendStatement(mys);
             window.postMessage(JSON.stringify(mys));
+            targetCompleted = true;
           }
-          function sendInitialized() {
+          function sendInitialized(courseId, lessonId, totalPages) {
             sessionId = ADL.ruuid(); // Different from current xAPI Video Profile
             var mys = bareStatement();
+            playerTotalPages = totalPages;
+            playerLessonId = lessonId;
             mys.id = sessionId;
             mys.verb = new ADL.XAPIStatement.Verb(
               "http://adlnet.gov/expapi/verbs/initialized",
-              "initialized",
+              "통합학습 플레이어 로드",
             );
             mys.context = {
               extensions: {
+                "https://profile.caihong.co.kr/content-management/course/local-content-id":
+                  lessonId,
+                // 레슨 id
                 "https://profile.caihong.co.kr/content-management/course/session-id":
                   sessionId,
-                "https://profile.caihong.co.kr/content-management/course/browser-info":
-                  navigator.userAgent.toLowerCase(),
-                "https://profile.caihong.co.kr/content-management/course/progress": 0.723,
+                "https://profile.caihong.co.kr/content-management/course/lessons/pages":
+                  playerTotalPages.length,
               },
             };
             if (contextDetails) {
@@ -4773,22 +5080,74 @@ code.google.com/p/crypto-js/wiki/License
             if (extensionDetails) {
               Object.assign(mys.context.extensions, extensionDetails);
             }
+            mys.context.contextActivities.parent[0].id =
+              mys.context.contextActivities.parent[0].id + courseId;
+            currentPageEduStartTime = new Date();
+            eduStartTime = new Date();
             XW.sendStatement(mys);
             window.postMessage(JSON.stringify(mys));
+            return playerActivityState;
           }
-          function sendSuspended() {
+          function sendSuspended(newState, pageData) {
             var mys = bareStatement();
-            saveState();
+            var sumActualPageLearning = miliSecToTime(
+              new Date() - currentPageEduStartTime,
+            );
+            saveState(newState);
             mys.verb = new ADL.XAPIStatement.Verb(
-              "http://adlnet.gov/expapi/verbs/terminated",
-              "terminated",
+              "http://adlnet.gov/expapi/verbs/suspended",
+              "학습을 일시 중지함",
             );
             mys.result = {
               extensions: {
-                "https://profile.caihong.co.kr/content-management/course/session-id":
-                  sessionId,
+                "https://profile.caihong.co.kr/content-management/course/lessons/part-name":
+                  pageData.partName,
+                "https://profile.caihong.co.kr/content-management/course/lessons/part-id":
+                  pageData.partId,
+                "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-name":
+                  pageData.pageName,
+                "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-template-code":
+                  pageData.pageTemplateCode,
+                "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-template-name":
+                  pageData.pageType,
+                "https://profile.caihong.co.kr/content-management/course/lessons/pages/study-type-code":
+                  null,
+                // ?
+                "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-style-code":
+                  null,
+                // ?
+                "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-area-code":
+                  pageData.pageAreaCd,
               },
             };
+            Object.assign(mys.result, {
+              duration:
+                "P" +
+                sumActualPageLearning.day +
+                // 날짜
+                "DT" +
+                sumActualPageLearning.hours +
+                // 시간
+                "H" +
+                sumActualPageLearning.mins +
+                // 분?
+                "M" +
+                sumActualPageLearning.secs +
+                "." +
+                sumActualPageLearning.ms +
+                "S",
+              success: true,
+            });
+            Object.assign(mys.result.extensions, {
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/progress-segments":
+                progressSegments,
+              "https://profile.caihong.co.kr/content-management/course/session-id":
+                sessionId,
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/page":
+                pageData.currentPage,
+              "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-id":
+                pageData.pageId,
+            });
             XW.sendStatement(mys); // send synchronously
             window.postMessage(JSON.stringify(mys));
           }
@@ -4901,13 +5260,15 @@ code.google.com/p/crypto-js/wiki/License
             }
             return res;
           }
-          function saveState() {
+          function saveState(newSate) {
             var reg = XW.lrs.registration || null;
             var temp = {
-              progressSegments: progressSegments,
+              account_name: actor.account.name,
+              progress_segments: progressSegments,
+              time: Number(((new Date() - eduStartTime) / 1000).toFixed(3)),
             };
-            var state = setState(temp);
-
+            var state = _objectSpread(_objectSpread({}, newSate), temp);
+            var callback;
             // jsonState = JSON.stringify(state);
             if (!sendSynchronous) {
               callback = function callback(ev) {
@@ -4943,16 +5304,18 @@ code.google.com/p/crypto-js/wiki/License
           }
           function onReady() {
             // todo ms event listener 구성 필요
-            targetObject.eventBus.on("pagechanging", function (event) {
-              sendProgress();
-              if (event.pageNumber >= targetObject.pagesCount) {
-                sendComplete();
-              }
-            });
+            // targetObject.addEventListener("pageChanged", (event) => {
+            //   console.log(event.target);
+            //   sendProgress(event.detail.curPage);
+            //   if (event.pageNumber >= targetObject.pagesCount) {
+            //     sendComplete();
+            //   }
+            // });
+
             console.log("total player ready");
             targetLoaded = true;
             // sendInitialized();
-            loadState(onStateLoaded());
+            loadState(onStateLoaded);
           }
           function setListenerForUnload() {
             window.onbeforeunload = function () {
@@ -4964,36 +5327,42 @@ code.google.com/p/crypto-js/wiki/License
             /* todo ms 초기 페이지 설정 값이 있는지 검사 필요
              */
 
-            if (setPage) {
-              // 기존의 초기 로드 페이지 값이 있는지 없는지 검사
-            }
+            // if (setPage) {
+            // 기존의 초기 로드 페이지 값이 있는지 없는지 검사
+            // }
             try {
+              // currentPageEduStartTime;
               // if(ev.statusText !== 'Not Found') {
-              //   const state = JSON.parse(ev.response);
+              var state = JSON.parse(ev.response);
               //
               //   // console.log('State loaded', state);
-              //   if (state) {
-              //     if (state.played_segments) {
-              //       played_segments = state.played_segments;
-              //     }
-              //     // NOTE ms setTime이 있으면 그곳에서 로드
-              //     if (setPage) {
-              //       // currentSegment = [setTime, setTime];
-              //     }
-              //   }
-              // }
+              if (state) {
+                progressSegments = state.progress_segments;
+                playerActivityState = state;
+                //     if (state.played_segments) {
+                //       played_segments = state.played_segments;
+                //     }
+                //     // NOTE ms setTime이 있으면 그곳에서 로드
+                //     if (setPage) {
+                //       // currentSegment = [setTime, setTime];
+                //     }
+                //   }
+              }
             } catch (error) {
               // console.error(error);
-            } finally {
-              sendInitialized();
             }
+            // finally {
+            //   sendInitialized();
+            // }
           }
+
           function initialize(
             targetObjectApplication,
             activityIdBase,
             contentName,
             description,
             stateId,
+            uid,
           ) {
             setListenerForUnload();
             // NOTE kjw 초기설정
@@ -5003,40 +5372,53 @@ code.google.com/p/crypto-js/wiki/License
             activityStateId = stateId;
             targetObject = targetObjectApplication;
             activityID = activityIdBase || "";
+            actor.account = _objectSpread(
+              _objectSpread({}, actor.account),
+              {},
+              {
+                homePage: actor.account.homePage + uid,
+              },
+            );
             targetActivityObject = new ADL.XAPIStatement.Activity(activityID);
             var object_temp = {
-              type: "https://w3id.org/xapi/pdf/activity-type/pdf",
+              type: "http://adlnet.gov/expapi/activities/cmi.interaction",
               name: {
-                "en-US": contentName || "",
+                "en-US": contentName,
               },
               description: {
-                "en-US": description || "",
+                "en-US": description,
               },
             };
             targetActivityObject.definition = setObject(object_temp);
-            if (_typeof(contentName) === "object") {
-              targetActivityObject.definition.name = contentName;
-            } else {
+            if (description === null || _typeof(description) !== "object") {
               targetActivityObject.definition.name = {
                 "en-US": contentName,
               };
-            }
-            if (_typeof(description) === "object") {
-              targetActivityObject.definition.description = description;
             } else {
+              targetActivityObject.definition.name = contentName;
+            }
+            if (description === null || _typeof(description) !== "object") {
               targetActivityObject.definition.description = {
                 "en-US": description,
               };
+            } else {
+              targetActivityObject.definition.description = description;
             }
-            targetObject.initializedPromise.then(function () {
-              currentSegment = [targetObject.page, targetObject.page];
-              targetObject.eventBus.on("documentloaded", onReady);
-            });
+
+            // targetObject.initializedPromise.then(() => {
+            // currentSegment = [targetObject.page, targetObject.page];
+
+            currentPageEduStartTime = new Date();
+            eduStartTime = new Date();
+            targetLoaded = true;
+            // sendInitialized();
+            loadState(onStateLoaded);
           }
-          function suspend() {
+          function suspend(newState, pageData) {
+            if (targetCompleted) return;
             sendSynchronous = true;
             // this function will be called from the outside, that's why it's not called 'onTerminate'
-            sendSuspended();
+            sendSuspended(newState, pageData);
           }
           return {
             initialize: initialize,
@@ -5046,6 +5428,12 @@ code.google.com/p/crypto-js/wiki/License
             addObjectContext: addObjectContext,
             addResultExtension: addResultExtension,
             saveState: saveState,
+            sendProgress: sendProgress,
+            sendComplete: sendComplete,
+            sendPlayed: sendPlayed,
+            sendAnswered: sendAnswered,
+            sendCreated: sendCreated,
+            sendInitialized: sendInitialized,
           };
         }
         return {

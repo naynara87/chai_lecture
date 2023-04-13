@@ -24,11 +24,13 @@ const ModalBaseContents = styled.div``;
 interface LayoutModalContinueProps {
   isModalOpen: boolean;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  exitPlayer?: () => void;
 }
 
 const LayoutModalContinue = ({
   isModalOpen,
   setIsModalOpen,
+  exitPlayer,
 }: LayoutModalContinueProps) => {
   const handleClose = () => {
     setIsModalOpen(false);
@@ -36,6 +38,7 @@ const LayoutModalContinue = ({
 
   const handleClickClose = () => {
     console.log("학습 종료");
+    exitPlayer && exitPlayer();
     const btnQuit = document.querySelector<HTMLDivElement>("#quit");
     window.parent.postMessage(
       {

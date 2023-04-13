@@ -1,4 +1,5 @@
 import {
+  CornerListData,
   CornerMeta,
   LessonMeta,
   ModalQuestionTemplate,
@@ -6,6 +7,7 @@ import {
   TemplateQuestion,
   TemplateQuestionData,
   useLessonNameMapper,
+  useXapi,
 } from "chai-ui-v2";
 import React, {
   useCallback,
@@ -15,7 +17,9 @@ import React, {
   useState,
 } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useRecoilState } from "recoil";
 import usePages from "../../hooks/usePages";
+import { currentCornerIdState } from "../../state/currentCornerId";
 import { getPageUrl } from "../../util/url";
 import ComponentProblemPagination from "../molecules/ComponentProblemPagination";
 import LayoutQuestionHeader from "../molecules/LayoutQuestionHeader";
@@ -25,6 +29,7 @@ interface QuestionLayoutProps {
   lessonMetaData: LessonMeta;
   cornerMetaData: CornerMeta;
   totalPages: (string | number)[];
+  corners: CornerListData[];
 }
 
 const QuestionLayout = ({
@@ -32,11 +37,14 @@ const QuestionLayout = ({
   lessonMetaData,
   cornerMetaData,
   totalPages,
+  corners,
 }: QuestionLayoutProps) => {
   const [, setIsPageCompleted] = useState(false);
   const [isQuestionStartModalOpen, setIsQuestionStartModalOpen] =
     useState(false);
   const [questionSolvingTime, setQuestionSolvingTime] = useState(0);
+
+  const [currentCornerId] = useRecoilState(currentCornerIdState);
 
   const questionSolvingTimer = useRef<NodeJS.Timeout | number>();
 
@@ -48,21 +56,73 @@ const QuestionLayout = ({
     totalPages,
   });
   const { getLessonName } = useLessonNameMapper();
+  const { xapiProgress, xapiComplete, updateIsCorrectDataCheck } = useXapi();
 
   const setPageCompleted = () => {
     setIsPageCompleted(true);
   };
 
+  // const exitPlayer = useCallback(() => {
+  //   if (!currentPage || !currentPageIndex) return;
+  //   const currentCornerIndex = corners.findIndex(
+  //     (corner) => corner.id.toString() === currentCornerId?.toString(),
+  //   );
+  //   const currentCorner = corners[currentCornerIndex];
+  //   xapiSuspended(
+  //     currentCorner,
+  //     currentCorner,
+  //     currentPage,
+  //     totalPages[currentPageIndex - 1],
+  //     totalPages,
+  //   );
+  // }, [
+  //   xapiSuspended,
+  //   corners,
+  //   currentCornerId,
+  //   currentPage,
+  //   currentPageIndex,
+  //   totalPages,
+  // ]);
+
+  // useUnload((event: BeforeUnloadEvent) => {
+  //   exitPlayer();
+  //   event.preventDefault();
+  //   event.returnValue = "학습을 종료하시겠습니까?";
+  //   return "학습을 종료하시겠습니까?";
+  // });
+
   const handleClickPagination = (pageIndex: number) => {
     if (currentPageIndex === undefined) return;
-    if (cornerId && courseId && lessonId && pageId) {
+    if (cornerId && courseId && lessonId && pageId && currentPage) {
+      const currentCornerIndex = corners.findIndex(
+        (corner) => corner.id.toString() === currentCornerId?.toString(),
+      );
+      const currentCorner = corners[currentCornerIndex];
+      xapiProgress(
+        currentCorner,
+        currentCorner,
+        currentPage,
+        totalPages[pageIndex],
+        totalPages,
+      );
       navigate(getPageUrl(courseId, lessonId, cornerId, totalPages[pageIndex]));
     }
   };
 
   // TODO xapi completed 이벤트 발생부분 채점하기버튼클릭이벤트
   const handleClickCheckScore = () => {
-    if (cornerId && courseId && lessonId && pageId) {
+    if (cornerId && courseId && lessonId && pageId && currentPage) {
+      const currentCornerIndex = corners.findIndex(
+        (corner) => corner.id.toString() === currentCornerId?.toString(),
+      );
+      const currentCorner = corners[currentCornerIndex];
+      xapiComplete(
+        currentCorner,
+        currentCorner,
+        currentPage,
+        currentPage.id,
+        totalPages,
+      );
       navigate(getPageUrl(courseId, lessonId, cornerId, "score"), {
         state: {
           lessonName: getLessonName(lessonMetaData.colorTypeCd),
@@ -76,6 +136,14 @@ const QuestionLayout = ({
       });
     }
   };
+
+  const handleClickCheckAnswer = useCallback(
+    (isCorrect: boolean) => {
+      if (!currentPage) return;
+      updateIsCorrectDataCheck(currentPage, isCorrect);
+    },
+    [currentPage, updateIsCorrectDataCheck],
+  );
 
   useEffect(() => {
     setIsQuestionStartModalOpen(true);
@@ -119,6 +187,7 @@ const QuestionLayout = ({
             template={currentPage.data as TemplateQuestionData}
             setPageCompleted={setPageCompleted}
             handleClickCheckScore={handleClickCheckScore}
+            handleClickCheckAnswer={handleClickCheckAnswer}
             pageIdx={pageIdx}
           />
         )}

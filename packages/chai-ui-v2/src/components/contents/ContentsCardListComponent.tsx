@@ -3,12 +3,14 @@ import {
   ContentsCardListContentData,
   useContentMapper,
   useGlobalAudio,
+  useXapi,
 } from "../../core";
 import styled from "@emotion/styled";
 import { colorPalette, vh, vw } from "../../assets";
 import { v4 as uuidv4 } from "uuid";
 import IconPauseFillButton from "../atoms/Button/IconPauseFillButton";
 import { ComponentButtonPlay } from "../atoms";
+import { useParams } from "react-router-dom";
 
 const ContentsBoxWrap = styled.div`
   display: flex;
@@ -63,6 +65,8 @@ const ContentsCardListComponent = ({
   const [playBoxAudioIndex, setPlayBoxAudioIndex] = useState(-1);
   const [textBoxAudioUuids, setTextBoxAudioUuids] = useState<string[]>([]);
 
+  const { pageId } = useParams();
+
   const {
     globalAudioRef,
     globalAudioState,
@@ -71,6 +75,8 @@ const ContentsCardListComponent = ({
     handleClickAudioButton,
     handleClickAudioStopButton,
   } = useGlobalAudio();
+
+  const { xapiPlayed } = useXapi();
 
   useEffect(() => {
     return () => {
@@ -182,6 +188,14 @@ const ContentsCardListComponent = ({
                   onClick={() => {
                     if (component.data.src) {
                       handleClickTextBoxAudio(contentIndex, component.data.src);
+                      if (pageId) {
+                        xapiPlayed(
+                          pageId,
+                          "audio",
+                          component.id,
+                          component.data.src,
+                        );
+                      }
                     }
                   }}
                 />
@@ -198,6 +212,8 @@ const ContentsCardListComponent = ({
     handleAudioReset,
     handleClickTextBoxAudio,
     playBoxAudioIndex,
+    pageId,
+    xapiPlayed,
   ]);
 
   return <ContentsBoxWrap>{textBoxes}</ContentsBoxWrap>;

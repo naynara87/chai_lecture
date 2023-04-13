@@ -8,7 +8,7 @@ const useLesson = (lessonId: ID | undefined) => {
   const { isAuthorized } = useAuth();
   const [corners, setCorners] = useState<CornerListData[]>([]);
   const [lessonMetaData, setLessonMetaData] = useState<LessonMeta>();
-  const [totalPages, setTotalPages] = useState<(string | number)[]>([]);
+  const [totalPages, setTotalPages] = useState<ID[]>([]);
 
   useQuery(
     [QUERY_KEY.CORNER, String(lessonId)],

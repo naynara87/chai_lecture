@@ -1,5 +1,10 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { ConversationQuizContentData, useGlobalAudio } from "../../core";
+import {
+  ConversationQuizContentData,
+  useGlobalAudio,
+  usePageCompleted,
+  useXapi,
+} from "../../core";
 import {
   ComponentButtonRadiFillMain,
   HtmlContentComponent,
@@ -7,6 +12,7 @@ import {
 } from "../atoms";
 import { LineRadioBoxes } from "../molecules";
 import { v4 as uuidv4 } from "uuid";
+import { useParams } from "react-router-dom";
 
 export interface ConversationQuizComponentProps {
   contents: ConversationQuizContentData;
@@ -35,6 +41,14 @@ const ConversationQuizComponent = ({
     handleClickAudioButton,
     handleClickAudioStopButton,
   } = useGlobalAudio();
+  const { setPushCompletedPageComponents, setComponentCompleted } =
+    usePageCompleted();
+  const { xapiAnswered } = useXapi();
+  const { pageId } = useParams();
+
+  useEffect(() => {
+    setPushCompletedPageComponents("quiz", contents.id);
+  }, [setPushCompletedPageComponents, contents.id]);
 
   useEffect(() => {
     return () => {
@@ -80,8 +94,12 @@ const ConversationQuizComponent = ({
   );
 
   const handleClickShowAnswer = useCallback(() => {
+    setComponentCompleted(contents.id);
     setIsShowAnswer(true);
-  }, []);
+    if (pageId) {
+      xapiAnswered(contents.id, pageId);
+    }
+  }, [setComponentCompleted, contents.id, xapiAnswered, pageId]);
 
   const answerCheckColor = useCallback(
     (contentIndex: number) => {

@@ -27,23 +27,23 @@ export const object_context: XapiIndicators = {
 };
 export const result_extensions: XapiIndicators = {
   // todo ms 통합플레이어에서 가져와야함
-  "https://profile.caihong.co.kr/content-management/course/lessons/part-name":
-    "복습",
-  "https://profile.caihong.co.kr/content-management/course/lessons/part-id": 70,
-  "https://profile.caihong.co.kr/content-management/course/lessons/pages/page": 4, // 현재페이지라 js 구성 필요
-  "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-id": 123, // 현재페이지라 js 구성 필요
+  // "https://profile.caihong.co.kr/content-management/course/lessons/part-name":
+  //   "복습",
+  // "https://profile.caihong.co.kr/content-management/course/lessons/part-id": 70,
+  // "https://profile.caihong.co.kr/content-management/course/lessons/pages/page": 4, // 현재페이지라 js 구성 필요
+  // "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-id": 123, // 현재페이지라 js 구성 필요
 
   // todo ms lms에서 데이터를 받아와야 함
   "https://profile.caihong.co.kr/content-management/course/lessons/pages": 20, // 총페이지 수
-  "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-name":
-    "1-1-2페이지", // 못구함...
-  "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-template-code": 10,
-  "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-template-name":
-    "TP01",
-  "https://profile.caihong.co.kr/content-management/course/lessons/pages/study-type-code": 10,
-  "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-style-code": 31,
-  "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-area-code":
-    "a1",
+  // "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-name":
+  //   "1-1-2페이지", // 못구함...
+  // "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-template-code": 10,
+  // "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-template-name":
+  //   "TP01",
+  // "https://profile.caihong.co.kr/content-management/course/lessons/pages/study-type-code": 10,
+  // "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-style-code": 31,
+  // "https://profile.caihong.co.kr/content-management/course/lessons/pages/page-area-code":
+  //   "a1",
 };
 
 export const context_details: ContextDetail = {

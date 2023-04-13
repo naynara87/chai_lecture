@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
 import IconClose from "../../assets/images/icon/icon_close_white.svg";
-import { ComponentVideo } from "../atoms";
 import ModalBase from "./ModalBase";
+import { ComponentVideo } from "../contents";
 
 interface ModalVideoProps {
   videoSrc: string;
@@ -70,6 +70,7 @@ const ModalVideo = ({
                       type: "video",
                       data: { src: videoSrc },
                     }}
+                    isModal={true}
                   />
                 </ModalInnerBox>
               </ModalVideoWrapper>

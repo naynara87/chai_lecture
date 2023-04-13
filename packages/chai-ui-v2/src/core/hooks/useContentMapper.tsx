@@ -11,7 +11,6 @@ import IconTextComponent from "../../components/contents/IconTextComponent";
 import ImageWithDescriptionListComponent from "../../components/contents/ImageWithDescriptionListComponent";
 import NumberingTextListComponent from "../../components/contents/NumberingTextListComponent";
 import TextContentComponent from "../../components/contents/TextContentComponent";
-import AudioRecorder from "../../components/molecules/AudioRecorder";
 import {
   Content,
   ContentType,
@@ -42,6 +41,7 @@ import {
   ContentsCardListContentData,
   WordsInOrderContentData,
   ConversationContentData,
+  RecorderContentData,
 } from "../types";
 import CharacterCardListComponent from "../../components/contents/CharacterCardListComponent";
 import SpeakingComponent from "../../components/contents/SpeakingComponent";
@@ -61,6 +61,7 @@ import AudioAndWordsCarouselComponent from "../../components/contents/AudioAndWo
 import ToggleSentenceListComponent from "../../components/contents/ToggleSentenceListComponent";
 import MultilevelActionSentenceCardComponent from "../../components/contents/MultilevelActionSentenceCardComponent";
 import FullAudioComponent from "../../components/contents/FullAudioComponent";
+import AudioRecorder from "../../components/contents/AudioRecorder";
 
 const useContentMapper = () => {
   const getContentComponent = (content: Content, contentIndex: number) => {
@@ -71,7 +72,12 @@ const useContentMapper = () => {
           key={contentIndex}
         />
       ),
-      recorder: <AudioRecorder key={contentIndex} />,
+      recorder: (
+        <AudioRecorder
+          key={contentIndex}
+          contents={content as RecorderContentData}
+        />
+      ),
       numberingTextList: (
         <NumberingTextListComponent
           contents={content as NumberingTextListContentData}

@@ -15,6 +15,8 @@ Size.whitelist = [
   "26px",
   "28px",
   "36px",
+  "40px",
+  "45px",
   "48px",
   "56px",
   "64px",
