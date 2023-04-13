@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo } from "react";
-import { getCookie, ID, InitialAppData } from "chai-ui-v2";
+import { getCookie, ID, InitialAppData, xapiElement } from "chai-ui-v2";
 import { getPageUrl } from "../../util/url";
 import { useNavigate } from "react-router-dom";
 import useLesson from "../../hooks/useLesson";
@@ -30,6 +30,8 @@ const Loader = styled.div`
   }
 `;
 
+const playerLoadedEvent = new CustomEvent("playerLoaded");
+
 const Home = () => {
   const navigate = useNavigate();
   const { modalContent, showOpenModal: showContinueOpenModal } =
@@ -48,7 +50,6 @@ const Home = () => {
 
   const { lessonMetaData, corners } = useLesson(lessonIdMemo);
 
-  // TODO ready상태 만들어서 xapi initialize 전송
   const getUrl = useCallback(
     (nextCornerId: ID, nextPageId: ID) => {
       if (!lessonMetaData) return;
@@ -58,6 +59,7 @@ const Home = () => {
         nextCornerId,
         nextPageId,
       );
+      xapiElement.dispatchEvent(playerLoadedEvent);
       navigate(url);
     },
     [lessonMetaData, navigate],

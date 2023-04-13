@@ -16,3 +16,4 @@ export { default as NumberingTextListComponent } from "./NumberingTextListCompon
 export { default as SpeakingComponent } from "./SpeakingComponent";
 export { default as TextContentComponent } from "./TextContentComponent";
 export { default as FinalSpeakingComponent } from "./FinalSpeakingComponent";
+export { default as ComponentVideo } from "./ComponentVideo";

@@ -9,14 +9,16 @@ const ModalCompletedWrapper = styled.div``;
 
 interface ModalCompletedProps {
   lessonCode: LessonMeta["colorTypeCd"];
+  exitPlayer?: () => void;
 }
 
-const ModalCompleted = ({ lessonCode }: ModalCompletedProps) => {
+const ModalCompleted = ({ lessonCode, exitPlayer }: ModalCompletedProps) => {
   const { getLessonCompletedCharacterCode } =
     useLessonCompletedCharacterMapper();
 
   const handleClickClose = () => {
     console.log("학습 종료");
+    exitPlayer && exitPlayer();
     const btnQuit = document.querySelector<HTMLDivElement>("#quit");
     window.parent.postMessage(
       {

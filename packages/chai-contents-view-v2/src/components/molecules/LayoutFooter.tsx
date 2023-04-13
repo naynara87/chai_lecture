@@ -9,6 +9,8 @@ import {
   Page,
   CornerListData,
   LayoutModalExit,
+  useXapi,
+  usePageCompleted,
 } from "chai-ui-v2";
 import { Link, useParams } from "react-router-dom";
 import { getPageUrl } from "../../util/url";
@@ -22,6 +24,8 @@ interface LayoutFooterProps {
   handleClickNext: () => void;
   handleClickPrev: () => void;
   totalPages: (string | number)[];
+  currentPage?: Page;
+  exitPlayer?: () => void;
 }
 
 const LayoutFooter = ({
@@ -30,10 +34,15 @@ const LayoutFooter = ({
   handleClickNext,
   handleClickPrev,
   totalPages,
+  currentPage,
+  exitPlayer,
 }: LayoutFooterProps) => {
   const [isShowNav, setIsShowNav] = useState(false);
   const [isExitModalOpen, setIsExitModalOpen] = useState(false);
   const { courseId, lessonId, cornerId, pageId } = useParams();
+
+  const { xapiProgress } = useXapi();
+  const { setCompletedPageComponents } = usePageCompleted();
 
   const navGetPageUrl = useCallback(
     (corner: string, page: string) => {
@@ -43,6 +52,33 @@ const LayoutFooter = ({
       return getPageUrl(courseId, lessonId, corner, page);
     },
     [courseId, lessonId],
+  );
+
+  const handleClickNavList = useCallback(
+    (corner: CornerListData) => {
+      if (!currentPage) return;
+      const currentCornerIndex = corners.findIndex(
+        (corner) => corner.id.toString() === cornerId?.toString(),
+      );
+      const currentCorner = corners[currentCornerIndex];
+      xapiProgress(
+        currentCorner,
+        corner,
+        currentPage,
+        corner.pages[0],
+        totalPages,
+      );
+      setCompletedPageComponents([]);
+      setIsShowNav(false);
+    },
+    [
+      cornerId,
+      corners,
+      currentPage,
+      setCompletedPageComponents,
+      totalPages,
+      xapiProgress,
+    ],
   );
 
   const cornerList = useMemo(() => {
@@ -62,16 +98,21 @@ const LayoutFooter = ({
           <Link
             to={navGetPageUrl(corner.id.toString(), corner.pages[0].toString())}
             className="cai-nav-link"
-            onClick={() => {
-              setIsShowNav(false);
-            }}
+            onClick={() => handleClickNavList(corner)}
           >
             {corner.name}
           </Link>
         </li>
       );
     });
-  }, [corners, courseId, lessonId, cornerId, navGetPageUrl]);
+  }, [
+    corners,
+    courseId,
+    lessonId,
+    cornerId,
+    navGetPageUrl,
+    handleClickNavList,
+  ]);
 
   const totalPagesToCurrentPageIndex = useMemo(() => {
     if (!pages) return;
@@ -134,6 +175,7 @@ const LayoutFooter = ({
       <LayoutModalExit
         isModalOpen={isExitModalOpen}
         setIsModalOpen={setIsExitModalOpen}
+        exitPlayer={exitPlayer}
       />
     </div>
   );

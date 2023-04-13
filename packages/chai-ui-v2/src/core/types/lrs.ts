@@ -1,41 +1,47 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
+import { ID } from "./appData";
+import { ContentData } from "./lcms";
+
 /**
  * LRS Activity State type
  * https://bubblecon-corp.atlassian.net/l/cp/EDz40KZ0
  */
 export interface LRSActivityState {
   account_name: string; // 회원의 actor 구성 정보. | 값으로 인자를 구분한다.
-  course_id: number; // 코스 seq_id
+  course_id: ID; // 코스 seq_id
   course_name: string; // 과정 이름
-  lesson_id: number; // 레슨 seq_id
+  lesson_id: ID; // 레슨 seq_id
   lesson_name: string; // 레슨 이름
-  lesson_type_code: number; // 레슨 타입 코드 id
+  lesson_type_code: ID; // 레슨 타입 코드 id
   page: number; // 현재 페이지 번호
   pages: number; // 전체 페이지 수
-  part_id: number; // 코너 seq_id
+  part_id: ID; // 코너 seq_id
   part_name: string; // 코너 이름
   complete_progress: number; // 학습 이수율. 소수 3자리까지 노출
   progress: number; // 페이지 진도율. 소수 3자리까지 생성
   progress_segments: string; // 페이지 이동에 대한 이동 이력
   time: number; // 학습창을 열고 학습한 총 시간
-  incorrect_datas: LRSIncorrectData[];
-  corners: LRSCornerProgress[]; // 코너별 진도 상태
+  incorrect_data: LRSAnswerData[];
+  correct_data: LRSAnswerData[];
+  progress_data: LRSCornerProgress[]; // 코너별 진도 상태
 }
 
-export interface LRSIncorrectData {
-  page_id: number;
+export interface LRSAnswerData {
+  page_id: ID;
+  page_area_code: ContentData["pageArea_type"];
   timestamp: string;
 }
 
 export interface LRSCornerProgress {
-  corner_id: number;
+  corner_id: ID;
   is_completed: boolean;
   pages: LRSPageProgress[];
 }
 export interface LRSPageProgress {
   is_checked: boolean;
   is_completed: boolean;
-  page_id: number;
+  page_id: ID;
 }
 export interface XAPIWrapper {
   lrs: {
@@ -69,21 +75,58 @@ export interface XAPIWrapperLrsActorAccount {
 }
 
 export interface BubbleAPI {
-  getInstance: () => {
-    initialize: (
-      targetObjectApplication: unknown,
-      activityIdBase: string,
-      contentName: string,
-      description: string,
-      stateId: string,
-    ) => void;
-    suspend: () => void;
-    addContextDetail: (context_detail: ContextDetail) => void;
-    addExtensionDetail: (extension_detail: XapiIndicators) => void;
-    addObjectContext: (object_context: XapiIndicators) => void;
-    addResultExtension: (result_extension: XapiIndicators) => void;
-    saveState: () => void;
-  };
+  getInstance: () => XapiV1;
+}
+
+export interface ProgressPageData {
+  currentPage: number;
+  nextPage: number;
+  progress: number;
+  partName: string;
+  partId: ID;
+  pageId: ID;
+  pageName: string;
+  pageType: string;
+  pageAreaCd: string | number;
+  pageTemplateCode: string | number;
+}
+
+export interface XapiV1 {
+  initialize: (
+    targetObjectApplication: unknown,
+    activityIdBase: string,
+    contentName: string,
+    description: string,
+    stateId: string,
+    uid: ID,
+  ) => void;
+  suspend: (
+    newState: LRSActivityState,
+    pageData: Partial<ProgressPageData>,
+  ) => void;
+  addContextDetail: (context_detail: ContextDetail) => void;
+  addExtensionDetail: (extension_detail: XapiIndicators) => void;
+  addObjectContext: (object_context: XapiIndicators) => void;
+  addResultExtension: (result_extension: XapiIndicators) => void;
+  saveState: () => void;
+  sendProgress: (
+    pageData: ProgressPageData,
+    newState: LRSActivityState,
+  ) => void;
+  sendComplete(pageData: ProgressPageData, newState: LRSActivityState): void;
+  sendPlayed: (
+    pageId: ID,
+    contentType: "video" | "audio",
+    subContentId: ID,
+    contentUrl: string,
+  ) => void;
+  sendAnswered: (subContentId: ID, pageId: ID) => void;
+  sendCreated: (subContentId: ID, pageId: ID) => void;
+  sendInitialized: (
+    courseId: ID,
+    lessonId: ID,
+    totalPages: ID[],
+  ) => LRSActivityState;
 }
 
 export interface XAPIOptions {
@@ -168,7 +211,7 @@ export type XapiVerb =
 
 export type XapiEventName =
   | "playerLoaded" // initialized
-  | "pageChanging" // progressed
+  | "pageChanged" // progressed
   | "playerEnded" // completed
   | "playerSuspended" // suspended : 학습을 끝내지않고 중간에 나갈때
   | "videoPlayed" // played

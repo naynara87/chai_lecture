@@ -6,7 +6,7 @@ export const v2LessonData: LessonData = {
   meta: {
     id: 1,
     name: "Lesson 1",
-    courseId: 1,
+    courseId: 3,
     courseName: "차이홍(샘플데이터)-빨강",
     colorTypeCd: "10",
     lessonTpCd: "10",
@@ -87,6 +87,8 @@ export const v2QuizCornerDataList: CornerData[] = [
         id: 1,
         name: "문제",
         type: "singlePage",
+        pageAreaType: "a1",
+        contentsType: 10,
         data: {
           id: uuidV4(),
           type: "TemplateQuestion",
@@ -105,6 +107,8 @@ export const v2QuizCornerDataList: CornerData[] = [
         id: 2,
         name: "문제",
         type: "singlePage",
+        pageAreaType: "a1",
+        contentsType: 10,
         data: {
           id: uuidV4(),
           type: "TemplateQuestion",
@@ -123,6 +127,8 @@ export const v2QuizCornerDataList: CornerData[] = [
         id: 3,
         name: "문제",
         type: "singlePage",
+        pageAreaType: "a1",
+        contentsType: 10,
         data: {
           id: uuidV4(),
           type: "TemplateQuestion",
@@ -141,6 +147,8 @@ export const v2QuizCornerDataList: CornerData[] = [
         id: 4,
         name: "문제",
         type: "singlePage",
+        pageAreaType: "a1",
+        contentsType: 10,
         data: {
           id: uuidV4(),
           type: "TemplateQuestion",
@@ -159,6 +167,8 @@ export const v2QuizCornerDataList: CornerData[] = [
         id: 5,
         name: "문제",
         type: "singlePage",
+        pageAreaType: "a1",
+        contentsType: 10,
         data: {
           id: uuidV4(),
           type: "TemplateQuestion",
@@ -177,6 +187,8 @@ export const v2QuizCornerDataList: CornerData[] = [
         id: 6,
         name: "문제",
         type: "singlePage",
+        pageAreaType: "a1",
+        contentsType: 10,
         data: {
           id: uuidV4(),
           type: "TemplateQuestion",
@@ -196,6 +208,8 @@ export const v2QuizCornerDataList: CornerData[] = [
         id: 7,
         name: "문제",
         type: "singlePage",
+        pageAreaType: "a1",
+        contentsType: 10,
         data: {
           id: uuidV4(),
           type: "TemplateQuestion",
@@ -215,6 +229,8 @@ export const v2QuizCornerDataList: CornerData[] = [
         id: 8,
         name: "문제",
         type: "singlePage",
+        pageAreaType: "a1",
+        contentsType: 10,
         data: {
           id: uuidV4(),
           type: "TemplateQuestion",
@@ -234,6 +250,8 @@ export const v2QuizCornerDataList: CornerData[] = [
         id: 9,
         name: "문제",
         type: "singlePage",
+        pageAreaType: "a1",
+        contentsType: 10,
         data: {
           id: uuidV4(),
           type: "TemplateQuestion",
@@ -253,6 +271,8 @@ export const v2QuizCornerDataList: CornerData[] = [
         id: 10,
         name: "문제",
         type: "singlePage",
+        pageAreaType: "a1",
+        contentsType: 10,
         data: {
           id: uuidV4(),
           type: "TemplateQuestion",
@@ -272,6 +292,8 @@ export const v2QuizCornerDataList: CornerData[] = [
         id: 11,
         name: "문제",
         type: "singlePage",
+        pageAreaType: "a1",
+        contentsType: 10,
         data: {
           id: uuidV4(),
           type: "TemplateQuestion",
@@ -304,6 +326,8 @@ export const v2CornerDataList: CornerData[] = [
         id: 1,
         name: "",
         type: "singlePage",
+        pageAreaType: "a1",
+        contentsType: 10,
         introduction: {
           title: "",
           subTitle: "",
@@ -376,6 +400,8 @@ export const v2CornerDataList: CornerData[] = [
         id: 2,
         name: "중국어 개요",
         type: "singlePage",
+        pageAreaType: "a1",
+        contentsType: 10,
         data: {
           id: uuidV4(),
           type: "Template01",
@@ -397,6 +423,8 @@ export const v2CornerDataList: CornerData[] = [
         id: 3,
         name: "중국어 개요",
         type: "singlePage",
+        pageAreaType: "a1",
+        contentsType: 10,
         introduction: {
           title: "",
           subTitle: "",
@@ -527,6 +555,8 @@ export const v2CornerDataList: CornerData[] = [
         id: 4,
         name: "단어",
         type: "singlePage",
+        pageAreaType: "a1",
+        contentsType: 10,
         introduction: {
           title: "",
           subTitle: "",
@@ -612,6 +642,8 @@ export const v2CornerDataList: CornerData[] = [
         id: 5,
         name: "한어",
         type: "multiPage",
+        pageAreaType: "a1",
+        contentsType: 10,
         introduction: {
           title: "",
           subTitle: "",
@@ -776,6 +808,8 @@ export const v2CornerDataList: CornerData[] = [
         id: 6,
         name: "학습 내용",
         type: "singlePage",
+        pageAreaType: "a1",
+        contentsType: 10,
         data: {
           id: uuidV4(),
           type: "Template01",
@@ -846,6 +880,8 @@ export const v2CornerDataList: CornerData[] = [
         id: 7,
         name: "한어",
         type: "singlePage",
+        pageAreaType: "a1",
+        contentsType: 10,
         data: {
           id: uuidV4(),
           type: "Template01",
@@ -864,6 +900,8 @@ export const v2CornerDataList: CornerData[] = [
         id: 8,
         name: "한어",
         type: "multiPage",
+        pageAreaType: "a1",
+        contentsType: 10,
         data: [
           {
             id: uuidV4(),
@@ -969,6 +1007,8 @@ export const v2CornerDataList: CornerData[] = [
         id: 9,
         name: "한어",
         type: "multiPage",
+        pageAreaType: "a1",
+        contentsType: 10,
         data: [
           {
             id: uuidV4(),
@@ -1122,6 +1162,8 @@ export const v2CornerDataList: CornerData[] = [
         id: 10,
         name: "한어",
         type: "singlePage",
+        pageAreaType: "a1",
+        contentsType: 10,
         data: {
           id: uuidV4(),
           type: "Template01",
@@ -1147,6 +1189,8 @@ export const v2CornerDataList: CornerData[] = [
         id: 11,
         name: "한어",
         type: "singlePage",
+        pageAreaType: "a1",
+        contentsType: 10,
         data: {
           id: uuidV4(),
           type: "Template01",
@@ -1259,6 +1303,8 @@ export const v2CornerDataList: CornerData[] = [
         id: 12,
         name: "한어",
         type: "multiPage",
+        pageAreaType: "a1",
+        contentsType: 10,
         data: [
           {
             id: uuidV4(),
@@ -1370,6 +1416,8 @@ export const v2CornerDataList: CornerData[] = [
         id: 13,
         name: "확인하기",
         type: "multiPage",
+        pageAreaType: "a1",
+        contentsType: 10,
         data: [
           {
             id: uuidV4(),
@@ -1525,6 +1573,8 @@ export const v2CornerDataList: CornerData[] = [
         id: 14,
         name: "영상 시청",
         type: "singlePage",
+        pageAreaType: "a1",
+        contentsType: 10,
         data: {
           id: uuidV4(),
           type: "Template01",
@@ -1543,6 +1593,8 @@ export const v2CornerDataList: CornerData[] = [
         id: 15,
         name: "성모 설명",
         type: "multiPage",
+        pageAreaType: "a1",
+        contentsType: 10,
         data: [
           {
             id: uuidV4(),
@@ -1673,6 +1725,8 @@ export const v2CornerDataList: CornerData[] = [
         id: 16,
         name: "한어",
         type: "multiPage",
+        pageAreaType: "a1",
+        contentsType: 10,
         data: [
           {
             id: uuidV4(),
@@ -1852,6 +1906,8 @@ export const v2CornerDataList: CornerData[] = [
         id: 17,
         name: "한눈에 보기",
         type: "singlePage",
+        pageAreaType: "a1",
+        contentsType: 10,
         data: {
           id: uuidV4(),
           type: "Template01",
@@ -1888,6 +1944,8 @@ export const v2CornerDataList: CornerData[] = [
         id: 18,
         name: "핵심 단어",
         type: "multiPage",
+        pageAreaType: "a1",
+        contentsType: 10,
         data: [
           {
             id: uuidV4(),
@@ -1941,6 +1999,8 @@ export const v2CornerDataList: CornerData[] = [
         id: 19,
         name: "핵심 단어",
         type: "multiPage",
+        pageAreaType: "a1",
+        contentsType: 10,
         data: [
           {
             id: uuidV4(),
@@ -2000,6 +2060,8 @@ export const v2CornerDataList: CornerData[] = [
         id: 20,
         name: "패턴 설명",
         type: "singlePage",
+        pageAreaType: "a1",
+        contentsType: 10,
         data: {
           id: uuidV4(),
           type: "Template01",
@@ -2079,6 +2141,8 @@ export const v2CornerDataList: CornerData[] = [
         id: 21,
         name: "문장 학습",
         type: "multiPage",
+        pageAreaType: "a1",
+        contentsType: 10,
         data: [
           {
             id: uuidV4(),
@@ -2166,6 +2230,8 @@ export const v2CornerDataList: CornerData[] = [
         id: 22,
         name: "확인하기",
         type: "multiPage",
+        pageAreaType: "a1",
+        contentsType: 10,
         data: [
           {
             id: uuidV4(),
@@ -2281,6 +2347,8 @@ export const v2CornerDataList: CornerData[] = [
         id: 23,
         name: "영상 시청",
         type: "singlePage",
+        pageAreaType: "a1",
+        contentsType: 10,
         data: {
           id: uuidV4(),
           type: "Template01",
@@ -2306,6 +2374,8 @@ export const v2CornerDataList: CornerData[] = [
         id: 24,
         name: "한문, 한어병음 학습",
         type: "multiPage",
+        pageAreaType: "a1",
+        contentsType: 10,
         data: [
           {
             id: uuidV4(),
@@ -2676,6 +2746,8 @@ export const v2CornerDataList: CornerData[] = [
       {
         id: 25,
         type: "multiPage",
+        pageAreaType: "a1",
+        contentsType: 10,
         name: "확인하기",
         data: [
           {

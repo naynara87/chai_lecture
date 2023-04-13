@@ -5,8 +5,9 @@ import {
   QuizData,
   saveLmsData,
   useDebounced,
+  useXapi,
 } from "chai-ui-v2";
-import { useCallback, useEffect, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import useCorner from "../../hooks/useCorner";
@@ -21,9 +22,45 @@ const Layout = () => {
   const learningLogCookieData = getCookie<InitialAppData>("bubble-player");
   const { lessonMetaData, corners, totalPages } = useLesson(lessonId);
   const { pages, cornerMetaData } = useCorner(cornerId); // 이게 먼저 실행되고
+  const [isInitialActivityState, setIsInitialActivityState] = useState(false);
+  const isXapiInitialize = useRef(false);
+
+  const { xapiInitialize, initialActivityState } = useXapi();
 
   const [, setCurrentCornerId] = useRecoilState(currentCornerIdState);
   const { currentProgress } = useProgressRate(totalPages);
+
+  useEffect(() => {
+    if (isXapiInitialize.current) return;
+    if (totalPages.length < 1) return;
+    if (courseId && lessonId) {
+      isXapiInitialize.current = true;
+      xapiInitialize(courseId, lessonId, totalPages);
+    }
+  }, [xapiInitialize, courseId, lessonId, totalPages, isXapiInitialize]);
+
+  useEffect(() => {
+    if (!lessonMetaData) return;
+    if (!cornerMetaData) return;
+    if (!pageId) return;
+    if (isInitialActivityState) return;
+    initialActivityState(
+      lessonMetaData,
+      cornerMetaData,
+      corners,
+      totalPages,
+      pageId,
+    );
+    setIsInitialActivityState(true);
+  }, [
+    cornerMetaData,
+    lessonMetaData,
+    corners,
+    totalPages,
+    initialActivityState,
+    isInitialActivityState,
+    pageId,
+  ]);
 
   useEffect(() => {
     setCurrentCornerId(cornerId);
@@ -100,6 +137,7 @@ const Layout = () => {
       return (
         <QuestionLayout
           pages={pages}
+          corners={corners}
           lessonMetaData={lessonMetaData}
           cornerMetaData={cornerMetaData}
           totalPages={totalPages}

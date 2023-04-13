@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import LayoutFooter from "../molecules/LayoutFooter";
 import LayoutHeader from "../molecules/LayoutHeader";
 import { useNavigate, useParams } from "react-router-dom";
@@ -12,10 +12,11 @@ import {
   LessonMeta,
   CornerMeta,
   CornerListData,
+  usePageCompleted,
+  useXapi,
 } from "chai-ui-v2";
 import { currentCornerIdState } from "../../state/currentCornerId";
 import usePages from "../../hooks/usePages";
-
 interface ContentsLayoutProps {
   pages: Page[];
   corners: CornerListData[];
@@ -46,6 +47,37 @@ const ContentsLayout = ({
     pageId,
     totalPages,
   });
+  const { xapiProgress, xapiComplete, xapiSuspended } = useXapi();
+  const { setCompletedPageComponents } = usePageCompleted();
+
+  const exitPlayer = useCallback(() => {
+    if (currentPage === undefined || currentPageIndex === undefined) return;
+    const currentCornerIndex = corners.findIndex(
+      (corner) => corner.id.toString() === currentCornerId?.toString(),
+    );
+    const currentCorner = corners[currentCornerIndex];
+    xapiSuspended(
+      currentCorner,
+      currentCorner,
+      currentPage,
+      totalPages[currentPageIndex],
+      totalPages,
+    );
+  }, [
+    xapiSuspended,
+    corners,
+    currentCornerId,
+    currentPage,
+    currentPageIndex,
+    totalPages,
+  ]);
+
+  // useUnload((event: BeforeUnloadEvent) => {
+  //   exitPlayer();
+  //   event.preventDefault();
+  //   event.returnValue = "학습을 종료하시겠습니까?";
+  //   return "학습을 종료하시겠습니까?";
+  // });
 
   const setPageCompleted = () => {
     setIsPageCompleted(true);
@@ -53,13 +85,22 @@ const ContentsLayout = ({
 
   const handleClickPrev = () => {
     if (currentPageIndex === undefined) return;
+    const currentCornerIndex = corners.findIndex(
+      (corner) => corner.id.toString() === currentCornerId?.toString(),
+    );
+    const prevCorner = corners[currentCornerIndex - 1];
+    const currentCorner = corners[currentCornerIndex];
     if (isCurrentCornerFirstPage) {
-      const currentCornerIndex = corners.findIndex(
-        (corner) => corner.id.toString() === currentCornerId?.toString(),
-      );
-      const prevCorner = corners[currentCornerIndex - 1];
-      if (prevCorner) {
+      if (prevCorner && currentPage) {
         // 다음 코너가 있을때
+        xapiProgress(
+          currentCorner,
+          prevCorner,
+          currentPage,
+          prevCorner.pages[prevCorner.pages.length - 1],
+          totalPages,
+        );
+        setCompletedPageComponents([]);
         const url = getPageUrl(
           lessonMetaData?.courseId,
           cornerMetaData?.lessonId,
@@ -72,7 +113,15 @@ const ContentsLayout = ({
         return;
       }
     }
-    if (cornerId && courseId && lessonId && pageId) {
+    if (cornerId && courseId && lessonId && pageId && currentPage) {
+      xapiProgress(
+        currentCorner,
+        currentCorner,
+        currentPage,
+        totalPages[currentPageIndex - 1],
+        totalPages,
+      );
+      setCompletedPageComponents([]);
       navigate(
         getPageUrl(
           courseId,
@@ -86,16 +135,26 @@ const ContentsLayout = ({
 
   const handleClickNext = () => {
     if (currentPageIndex === undefined) return;
-    if (isCurrentCornerLastPage) {
+    if (!pageId) return;
+    const currentCornerIndex = corners.findIndex(
+      (corner) => corner.id.toString() === currentCornerId?.toString(),
+    );
+    const currentCorner = corners[currentCornerIndex];
+    if (isCurrentCornerLastPage && currentPage) {
       if (!lessonMetaData) return;
       if (!cornerMetaData) return;
 
-      const currentCornerIndex = corners.findIndex(
-        (corner) => corner.id.toString() === currentCornerId?.toString(),
-      );
       const nextCorner = corners[currentCornerIndex + 1];
       if (nextCorner) {
         // 다음 코너가 있을때
+        xapiProgress(
+          currentCorner,
+          nextCorner,
+          currentPage,
+          nextCorner.pages[0],
+          totalPages,
+        );
+        setCompletedPageComponents([]);
         const url = getPageUrl(
           lessonMetaData?.courseId,
           cornerMetaData?.lessonId,
@@ -106,10 +165,25 @@ const ContentsLayout = ({
         return;
       }
       // 마지막코너이고 모두 학습을 완료했을때 xapi completed 이벤트 발생부분 레슨의 마지막페이지일때
+      xapiComplete(
+        currentCorner,
+        currentCorner,
+        currentPage,
+        currentPage.id,
+        totalPages,
+      );
       setIsCompleteModalOpen(true);
       return;
     }
-    if (cornerId && courseId && lessonId && pageId) {
+    if (cornerId && courseId && lessonId && currentPage) {
+      xapiProgress(
+        currentCorner,
+        currentCorner,
+        currentPage,
+        totalPages[currentPageIndex + 1],
+        totalPages,
+      );
+      setCompletedPageComponents([]);
       navigate(
         getPageUrl(
           courseId,
@@ -158,9 +232,14 @@ const ContentsLayout = ({
         handleClickNext={handleClickNext}
         handleClickPrev={handleClickPrev}
         totalPages={totalPages}
+        currentPage={currentPage}
+        exitPlayer={exitPlayer}
       />
       {isCompleteModalOpen && (
-        <ModalCompleted lessonCode={lessonMetaData.colorTypeCd} />
+        <ModalCompleted
+          lessonCode={lessonMetaData.colorTypeCd}
+          exitPlayer={exitPlayer}
+        />
       )}
     </>
   );

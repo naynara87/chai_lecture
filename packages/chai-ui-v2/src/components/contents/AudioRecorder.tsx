@@ -10,9 +10,15 @@ import { useReactMediaRecorder } from "react-media-recorder";
 import RecordPlayButton from "../atoms/Button/RecordPlayButton";
 import RecordMikeButton from "../atoms/Button/RecordMikeButton";
 import RecordStopButton from "../atoms/Button/RecordStopButton";
-import { useGlobalAudio } from "../../core";
+import {
+  RecorderContentData,
+  useGlobalAudio,
+  usePageCompleted,
+  useXapi,
+} from "../../core";
 import { v4 as uuidv4 } from "uuid";
 import IconReturnButton from "../atoms/Button/IconReturnButton";
+import { useParams } from "react-router-dom";
 
 const ButtonWrapper = styled.div`
   line-height: 0;
@@ -20,12 +26,18 @@ const ButtonWrapper = styled.div`
 
 type RecordedAudioState = "not-recorded" | "recorded" | "playing" | "stopped";
 
-const AudioRecorder = () => {
+interface AudioRecorderProps {
+  contents: RecorderContentData;
+}
+
+const AudioRecorder = ({ contents }: AudioRecorderProps) => {
   const recordedAudioUuidRef = useRef(uuidv4());
   const recordTimer = useRef<NodeJS.Timeout | number>();
   const recordTime = useRef(0);
   const [recordingTimeState, setRecordingTimeState] = useState(0);
   const [recordedTimeState, setRecordedTimeState] = useState(0);
+
+  const { pageId } = useParams();
 
   const [recordedAudioState, setRecordedAudioState] =
     useState<RecordedAudioState>("not-recorded");
@@ -48,6 +60,13 @@ const AudioRecorder = () => {
     handleAudioReset,
     handleClickAudioButton,
   } = useGlobalAudio();
+  const { setPushCompletedPageComponents, setComponentCompleted } =
+    usePageCompleted();
+  const { xapiCreated } = useXapi();
+
+  useEffect(() => {
+    setPushCompletedPageComponents("record", recordedAudioUuidRef.current);
+  }, [setPushCompletedPageComponents]);
 
   useEffect(() => {
     return () => {
@@ -83,9 +102,23 @@ const AudioRecorder = () => {
       // 녹음 중일 때
       stopRecording();
       setRecordedAudioState("recorded");
+      setComponentCompleted(recordedAudioUuidRef.current);
+      if (pageId) {
+        xapiCreated(contents.id, pageId);
+      }
       window.clearTimeout(recordTimer.current);
     }
-  }, [startRecording, status, stopRecording, recordTime, handleAudioReset]);
+  }, [
+    startRecording,
+    status,
+    stopRecording,
+    recordTime,
+    handleAudioReset,
+    setComponentCompleted,
+    xapiCreated,
+    contents.id,
+    pageId,
+  ]);
 
   const handleClickRecordedAudioButton = useCallback(() => {
     if (

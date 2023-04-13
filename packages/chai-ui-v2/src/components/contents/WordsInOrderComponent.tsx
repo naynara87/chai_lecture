@@ -6,7 +6,12 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { useGlobalAudio, WordsInOrderContentData } from "../../core";
+import {
+  useGlobalAudio,
+  usePageCompleted,
+  useXapi,
+  WordsInOrderContentData,
+} from "../../core";
 import {
   ComponentButtonRadiBorderMain,
   ComponentButtonRadiFillMain,
@@ -18,6 +23,7 @@ import ComponentGrayLine from "../molecules/ComponentGrayLine";
 import { v4 as uuidv4 } from "uuid";
 import ImgProfileDefault from "../../assets/images/img/img_profile_default.png";
 import { sortChoices } from "../../core/util/sortChoices";
+import { useParams } from "react-router-dom";
 
 const BlankBox = styled.div`
   cursor: pointer;
@@ -74,6 +80,14 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
     handleAudioReset,
     handleClickAudioButton,
   } = useGlobalAudio();
+  const { setPushCompletedPageComponents, setComponentCompleted } =
+    usePageCompleted();
+  const { xapiAnswered } = useXapi();
+  const { pageId } = useParams();
+
+  useEffect(() => {
+    setPushCompletedPageComponents("quiz", contents.id);
+  }, [setPushCompletedPageComponents, contents.id]);
 
   const audioEnded = useCallback(() => {
     if (globalAudioId.toString().includes("solutionModal")) {
@@ -259,6 +273,10 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
     setSelectedChoiceBox(undefined);
     setIsShowAnswer(true);
     setIsModalSolutionOpen(true);
+    setComponentCompleted(contents.id);
+    if (pageId) {
+      xapiAnswered(contents.id, pageId);
+    }
     handleClickAudioButton(
       "solutionModal",
       modalUuidRef.current,
@@ -267,7 +285,14 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
         ? contents.data.quizPopup.data.correct.soundEffect?.src ?? ""
         : contents.data.quizPopup.data.incorrect.soundEffect?.src ?? "",
     );
-  }, [contents.data.quizPopup.data, isCorrect, handleClickAudioButton]);
+  }, [
+    contents,
+    isCorrect,
+    handleClickAudioButton,
+    setComponentCompleted,
+    xapiAnswered,
+    pageId,
+  ]);
 
   return (
     <>

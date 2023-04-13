@@ -1,9 +1,15 @@
 import React, { useCallback, useEffect, useMemo, useRef } from "react";
-import { AudioContentData, useGlobalAudio } from "../../core";
+import {
+  AudioContentData,
+  useGlobalAudio,
+  usePageCompleted,
+  useXapi,
+} from "../../core";
 import { ComponentButtonPlay } from "../atoms";
 import IconPauseFillButton from "../atoms/Button/IconPauseFillButton";
 import { v4 as uuidv4 } from "uuid";
 import styled from "@emotion/styled";
+import { useParams } from "react-router-dom";
 
 const AudioWrap = styled.div`
   display: flex;
@@ -15,6 +21,14 @@ export interface AudioComponentProps {
 
 const AudioComponent = ({ contents }: AudioComponentProps) => {
   const audioUuidRef = useRef(uuidv4());
+  const { setPushCompletedPageComponents, setComponentCompleted } =
+    usePageCompleted();
+  const { xapiPlayed } = useXapi();
+  const { pageId } = useParams();
+
+  useEffect(() => {
+    setPushCompletedPageComponents("audio", audioUuidRef.current);
+  }, [setPushCompletedPageComponents]);
 
   const {
     globalAudioRef,
@@ -59,22 +73,29 @@ const AudioComponent = ({ contents }: AudioComponentProps) => {
       return (
         <ComponentButtonPlay
           onClick={() => {
+            setComponentCompleted(audioUuidRef.current);
             handleClickAudioButton(
               "audio",
               audioUuidRef.current,
               0,
               contents.data.src ?? "",
             );
+            if (pageId) {
+              xapiPlayed(pageId, "audio", contents.id, contents.data.src);
+            }
           }}
         />
       );
     }
   }, [
-    contents.data,
+    contents,
     globalAudioId,
     handleClickAudioButton,
     handleAudioReset,
     globalAudioState,
+    setComponentCompleted,
+    xapiPlayed,
+    pageId,
   ]);
 
   return <AudioWrap>{mainContents}</AudioWrap>;

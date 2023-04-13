@@ -10,8 +10,8 @@ import { colorPalette } from "../../assets";
 import { ID, RolePlayingCharacter, useGlobalAudio } from "../../core";
 import { ImgProfileDefaultComponent } from "../atoms";
 import ComponentButtonRadiFillOrange from "../atoms/ComponentButtonRadiFillOrange";
-import AudioRecorder from "./AudioRecorder";
 import { v4 as uuidv4 } from "uuid";
+import AudioRecorder from "../contents/AudioRecorder";
 
 interface BubbleWrapProps {
   backgroundColor: string;
@@ -149,7 +149,9 @@ const RolePlayingCharacterComponent = ({
             {id === selectCharacterId && <p className="mean">{meaning}</p>}
           </BubbleWrap>
         </div>
-        {selectCharacterId === id && <AudioRecorder />}
+        {selectCharacterId === id && (
+          <AudioRecorder contents={{ id: id, type: "recorder", data: {} }} />
+        )}
       </div>
     </li>
   );

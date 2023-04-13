@@ -26,6 +26,16 @@ export interface ContentData {
   contents_type: string; // 10 : 학습, 20 : 퀴즈, 30 : 테스트
   contents_uuid: string; // contents_data에 대한 uuid
   contents_data: string; // JSON.parse 필요
+  /**
+   * a1:중국어 개요,
+   * a2:발음,
+   * a3:발음 및 문자,
+   * a4:어휘,
+   * a5:문법,
+   * a6:의사소통 표현,
+   * a7:문화,
+   */
+  pageArea_type: "a1" | "a2" | "a3" | "a4" | "a5" | "a6" | "a7";
 }
 
 /**

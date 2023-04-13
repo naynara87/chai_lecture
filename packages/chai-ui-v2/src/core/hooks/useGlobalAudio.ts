@@ -68,7 +68,6 @@ const useGlobalAudio = () => {
   }, [setGlobalAudio, globalAudio]);
 
   const handleAudioReset = useCallback(() => {
-    console.log("handleAudioReset!");
     setGlobalAudio({
       id: -1,
       audioSrc: "",

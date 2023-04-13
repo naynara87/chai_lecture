@@ -5,12 +5,18 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { MultiChoiceContentData, useGlobalAudio } from "../../core";
+import {
+  MultiChoiceContentData,
+  useGlobalAudio,
+  usePageCompleted,
+  useXapi,
+} from "../../core";
 import { LayoutModalSolution } from "../modal";
 import ComponentGrayLine from "../molecules/ComponentGrayLine";
 import { v4 as uuidv4 } from "uuid";
 import ModalVideo from "../modal/ModalVideo";
 import { HtmlContentComponent } from "../atoms";
+import { useParams } from "react-router-dom";
 export interface MultiChoiceComponentProps {
   contents: MultiChoiceContentData;
 }
@@ -28,6 +34,14 @@ const MultiChoiceComponent = ({ contents }: MultiChoiceComponentProps) => {
     handleAudioReset,
     handleClickAudioButton,
   } = useGlobalAudio();
+  const { setPushCompletedPageComponents, setComponentCompleted } =
+    usePageCompleted();
+  const { xapiAnswered } = useXapi();
+  const { pageId } = useParams();
+
+  useEffect(() => {
+    setPushCompletedPageComponents("quiz", contents.id);
+  }, [setPushCompletedPageComponents, contents.id]);
 
   const audioEnded = useCallback(() => {
     if (globalAudioId.toString().includes("solutionModal")) {
@@ -71,7 +85,11 @@ const MultiChoiceComponent = ({ contents }: MultiChoiceComponentProps) => {
             onClick={() => {
               if (userChoice !== undefined) return;
               setUserChoice(choiceIndex);
+              setComponentCompleted(contents.id);
               setIsModalSolutionOpen(true);
+              if (pageId) {
+                xapiAnswered(contents.id, pageId);
+              }
               handleClickAudioButton(
                 "solutionModal",
                 modalUuidRef.current,
@@ -90,7 +108,14 @@ const MultiChoiceComponent = ({ contents }: MultiChoiceComponentProps) => {
         </div>
       );
     });
-  }, [contents, userChoice, handleClickAudioButton]);
+  }, [
+    contents,
+    userChoice,
+    handleClickAudioButton,
+    setComponentCompleted,
+    xapiAnswered,
+    pageId,
+  ]);
 
   const answerCheckColor = useMemo(() => {
     if (userChoice !== undefined) {
