@@ -17,7 +17,7 @@ const queryClient = new QueryClient();
 
 const contentDummyCookie = {
   uno: "1",
-  uid: "1",
+  uid: "12345",
   applId: "1",
   cornerId: "808e1d4a-725c-45a4-bef7-ab01aae81103",
   pageId: "fa25b9ac-e940-46a6-a487-4410e32d784a",
@@ -30,7 +30,7 @@ const contentDummyCookie = {
 
 const questionDummyCookie = {
   uno: "1",
-  uid: "1",
+  uid: "12345",
   applId: "1",
   cornerId: "0c3460cf-f765-4526-8f28-2a0722377ba8",
   pageId: "4b4ce5e8-4e83-4eec-9352-cb62122ceca5",
@@ -57,7 +57,7 @@ const dummyQuizCookie = {
 function App() {
   useEffect(() => {
     if (process.env.NODE_ENV === "development") {
-      setCookie<InitialAppData>("bubble-player", dummyQuizCookie, {
+      setCookie<InitialAppData>("bubble-player", contentDummyCookie, {
         path: "/",
       });
     }

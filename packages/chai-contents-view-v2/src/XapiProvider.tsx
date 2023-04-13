@@ -1,4 +1,4 @@
-import { ADL, xapiElement, XAPIOptions, xapiV1State } from "chai-ui-v2";
+import { ADL, getCookie, InitialAppData, xapiElement, XAPIOptions, xapiV1State } from "chai-ui-v2";
 import React from "react";
 import { useRecoilState } from "recoil";
 import "../src/lib/xapi/lx-total-viewer.js";
@@ -70,6 +70,7 @@ const createActorObject = function (obj: XAPIOptions) {
 
 const XapiProvider = ({ children }: XapiProviderProps) => {
   const [, setXapiV1State] = useRecoilState(xapiV1State);
+  const learningLogCookieData = getCookie<InitialAppData>("bubble-player");
 
   //@ts-ignore
   const { ADL: _ADL } = window;
@@ -112,13 +113,18 @@ const XapiProvider = ({ children }: XapiProviderProps) => {
       console.error("xapi 관련 정보를 정상적으로 받지 않았습니다.");
     }
 
+    if (learningLogCookieData){
+
     v1.initialize(
       xapiElement,
       options["activity_id"] ?? "",
       options["content_name"]!,
       options["description"]!,
       options["state_id"] ?? "",
+      learningLogCookieData?.uid
     );
+  }
+
   };
 
   //@ts-ignore

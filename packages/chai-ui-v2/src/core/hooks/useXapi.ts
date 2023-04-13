@@ -21,15 +21,13 @@ const useXapi = () => {
   const { completedPageComponents } = usePageCompleted();
 
   const xapiInitialize = useCallback(
-    (uid: ID, courseId: ID, lessonId: ID, totalPages: ID[]) => {
+    (courseId: ID, lessonId: ID, totalPages: ID[]) => {
       if (!xapiV1) return;
       const loadActivityState = xapiV1.sendInitialized(
-        uid,
         courseId,
         lessonId,
         totalPages,
       );
-      console.log("loadActivityState", loadActivityState);
       setXapiActivity(loadActivityState);
     },
     [xapiV1, setXapiActivity],
@@ -308,7 +306,6 @@ const useXapi = () => {
       totalPages: ID[],
       pageId: ID,
     ) => {
-      console.log("xapiActivityinitial", xapiActivity);
       if (xapiActivity !== undefined) return;
       // NOTE kjw 처음 통합플레이어 로드시 state값이 있으면 기존 state값을 반영하여 실행
       const currentPageIdx = totalPages.findIndex(
@@ -402,6 +399,15 @@ const useXapi = () => {
         currentPage.id,
         nextPageId,
       );
+      const progressPageData: Partial<ProgressPageData> = {
+        partId: currentCorner.id,
+        partName: currentCorner.name,
+        pageId: currentPage.id,
+        pageName: currentPage.name,
+        pageType: currentPage.type,
+        pageAreaCd: currentPage.pageAreaType,
+        currentPage: currentPageIndex + 1,
+      };
       const newXapiActivityState = updateActivityState({
         part_id: currentCorner.id,
         part_name: currentCorner.name,
@@ -417,7 +423,7 @@ const useXapi = () => {
         ).completed_progress,
       });
 
-      xapiV1?.suspend(newXapiActivityState ?? xapiActivity, currentPage.id);
+      xapiV1?.suspend(newXapiActivityState ?? xapiActivity, progressPageData);
     },
     [
       updateActivityState,

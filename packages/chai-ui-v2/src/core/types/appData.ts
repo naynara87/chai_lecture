@@ -80,7 +80,7 @@ export type SinglePage = {
   id: ID;
   name: string;
   pageAreaType: ContentData["pageArea_type"];
-  contentsType: number;
+  contentsType: number | string;
   type: "singlePage";
   data: AllTemplateData;
   introduction?: PageIntroduction;
@@ -90,7 +90,7 @@ export type MultiPage = {
   id: ID;
   name: string;
   pageAreaType: ContentData["pageArea_type"];
-  contentsType: number;
+  contentsType: number | string;
   type: "multiPage";
   data: AllTemplateData[];
   introduction?: PageIntroduction;

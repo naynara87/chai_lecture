@@ -87,8 +87,8 @@ export interface ProgressPageData {
   pageId: ID;
   pageName: string;
   pageType: string;
-  pageAreaCd: string;
-  pageTemplateCode: number;
+  pageAreaCd: string | number;
+  pageTemplateCode: string | number;
 }
 
 export interface XapiV1 {
@@ -98,8 +98,12 @@ export interface XapiV1 {
     contentName: string,
     description: string,
     stateId: string,
+    uid: ID,
   ) => void;
-  suspend: (newState: LRSActivityState, pageId: ID) => void;
+  suspend: (
+    newState: LRSActivityState,
+    pageData: Partial<ProgressPageData>,
+  ) => void;
   addContextDetail: (context_detail: ContextDetail) => void;
   addExtensionDetail: (extension_detail: XapiIndicators) => void;
   addObjectContext: (object_context: XapiIndicators) => void;
@@ -119,7 +123,6 @@ export interface XapiV1 {
   sendAnswered: (subContentId: ID, pageId: ID) => void;
   sendCreated: (subContentId: ID, pageId: ID) => void;
   sendInitialized: (
-    uid: ID,
     courseId: ID,
     lessonId: ID,
     totalPages: ID[],

@@ -5,7 +5,6 @@ import {
   QuizData,
   saveLmsData,
   useDebounced,
-  usePageCompleted,
   useXapi,
 } from "chai-ui-v2";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -26,8 +25,7 @@ const Layout = () => {
   const [isInitialActivityState, setIsInitialActivityState] = useState(false);
   const isXapiInitialize = useRef(false);
 
-  const { xapiInitialize, initialActivityState, xapiActivity } = useXapi();
-  const { completedPageComponents } = usePageCompleted();
+  const { xapiInitialize, initialActivityState } = useXapi();
 
   const [, setCurrentCornerId] = useRecoilState(currentCornerIdState);
   const { currentProgress } = useProgressRate(totalPages);
@@ -35,26 +33,11 @@ const Layout = () => {
   useEffect(() => {
     if (isXapiInitialize.current) return;
     if (totalPages.length < 1) return;
-    if (learningLogCookieData?.uid && courseId && lessonId) {
+    if (courseId && lessonId) {
       isXapiInitialize.current = true;
-      console.log("totalPages", totalPages);
-      xapiInitialize(
-        learningLogCookieData?.uid,
-        courseId,
-        lessonId,
-        totalPages,
-      );
+      xapiInitialize(courseId, lessonId, totalPages);
     }
-  }, [
-    xapiInitialize,
-    courseId,
-    learningLogCookieData,
-    lessonId,
-    totalPages,
-    isXapiInitialize,
-  ]);
-
-  console.log("completedPageComponents", completedPageComponents);
+  }, [xapiInitialize, courseId, lessonId, totalPages, isXapiInitialize]);
 
   useEffect(() => {
     if (!lessonMetaData) return;
@@ -78,10 +61,6 @@ const Layout = () => {
     isInitialActivityState,
     pageId,
   ]);
-
-  useEffect(() => {
-    console.log("xapiActivity", xapiActivity);
-  }, [xapiActivity]);
 
   useEffect(() => {
     setCurrentCornerId(cornerId);

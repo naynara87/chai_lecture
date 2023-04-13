@@ -53,7 +53,7 @@ const ContentsLayout = ({
   const { setCompletedPageComponents } = usePageCompleted();
 
   const exitPlayer = useCallback(() => {
-    if (!currentPage || !currentPageIndex) return;
+    if (currentPage === undefined || currentPageIndex === undefined) return;
     const currentCornerIndex = corners.findIndex(
       (corner) => corner.id.toString() === currentCornerId?.toString(),
     );
@@ -62,7 +62,7 @@ const ContentsLayout = ({
       currentCorner,
       currentCorner,
       currentPage,
-      totalPages[currentPageIndex - 1],
+      totalPages[currentPageIndex],
       totalPages,
     );
   }, [
