@@ -35,6 +35,10 @@ const NotiCharacterWrap = styled.div`
     margin-left: 50px;
   }
 
+  .description-text {
+    width: 100%;
+  }
+
   .btn-delete {
     z-index: 1;
     position: absolute;
