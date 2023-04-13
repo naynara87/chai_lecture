@@ -69,11 +69,12 @@ export const TitleWrap = styled.div`
 `;
 
 export const DescriptionWrapper = styled.div`
+  overflow: auto;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
-  min-height: 220px;
+  height: 220px;
   margin-top: 10px;
   padding: 20px;
   border-radius: 8px;
@@ -97,4 +98,5 @@ export const TextEditorViewerWrapper = styled.div``;
 export const ContentEditorCss = css`
   max-height: ${MODAL_CONTENT_EDITOR_HEIGHT + 50}px;
   overflow-y: auto;
+  width: 100%;
 `;
