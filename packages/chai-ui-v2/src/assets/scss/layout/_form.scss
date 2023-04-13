@@ -328,12 +328,16 @@ button:hover {
 // =================== input toggle style
 .toggles-wrapper {
   .inp-toggle-wrap:not(:first-of-type) {
-    margin-left: vw(50);
+    margin-left: vw(30);
   }
 }
 
 .inp-toggle-wrap {
   display: inline-flex;
+
+  &:not(:first-of-type) {
+    margin-top: 5px;
+  }
 }
 
 .toggle-name {

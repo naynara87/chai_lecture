@@ -7,13 +7,15 @@
   @include gradiant;
 
   width: vw(550);
+  max-width: 100%;
   min-height: vw(456);
   margin: 0 auto;
   padding: vh(70) vw(70);
   border-radius: vw(30);
-  transition: width 0.2s, height 0.2s;
+  transition: width 0.2s,
+  height 0.2s;
 
-  > div {
+  >div {
     font-size: vw(40);
   }
 
@@ -55,7 +57,7 @@
   padding: vh(50) vw(50);
   text-align: center;
 
-  > div {
+  >div {
     font-size: vw(32);
   }
 
