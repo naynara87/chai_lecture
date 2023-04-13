@@ -20,6 +20,20 @@ import SpeakingTimeInputWrapper from "../molecules/SpeakingTimeInputWrapper";
 import TextEditorViewer from "../molecules/TextEditorViewer";
 import UrlInputWrapper from "../molecules/UrlInputWrapper";
 import useSafeKey from "../../hooks/useSafeKey";
+import ImgProfileDefault from "chai-ui-v2/dist/assets/images/img/img_profile_default.png";
+
+const ImgRound = styled.div`
+  .btn-profile {
+    width: 100%;
+    height: 100%;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+`;
 
 export const ConversationWrapper = styled.ul``;
 
@@ -273,11 +287,11 @@ const ConversationCreator = ({
 
           <div className="img-grp">
             <div className="img-wrap">
-              <div className="img-round">
+              <ImgRound className="img-round">
                 <button className="btn-profile">
-                  <img src={list.character.src} alt={list.character.name} />
+                  <img src={list.character.src || ImgProfileDefault} alt={list.character.name} />
                 </button>
-              </div>
+              </ImgRound>
             </div>
             <CharacterNameInput
               type="text"
