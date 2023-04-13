@@ -16,6 +16,8 @@ const ContStartWrapper = styled.div`
   }
 
   .character-wrap {
+    text-align: center;
+    
     .img {
       width: ${vw(450)};
       height: ${vw(450)};
