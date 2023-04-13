@@ -8,7 +8,7 @@ import iconTip from "chai-ui-v2/dist/assets/images/icon/icon_tip.svg";
 
 export const IconTextCreatorWrapper = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
 
   > img {
