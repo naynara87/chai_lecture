@@ -3,7 +3,9 @@ import { colorPalette } from "chai-ui-v2";
 import { TextEditorWrapperProps } from "../components/atoms/TextEditor";
 
 export const TextEditorWrapper = styled.div<TextEditorWrapperProps>`
+  width: 100%;
   background-color: ${colorPalette.white};
+
   .ql-container {
     ${({ minHeight }) => (minHeight ? `min-height: ${minHeight}px;` : "")}
   }
