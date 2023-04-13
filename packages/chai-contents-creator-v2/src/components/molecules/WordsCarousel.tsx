@@ -1,4 +1,4 @@
-import IconDictionary from "chai-ui-v2/dist/assets/images/icon/icon_dictionary.svg";
+import IconDictionary from "chai-ui-v2/dist/assets/images/img/img_voca.png";
 import AddButton from "../atoms/AddButton";
 import styled from "@emotion/styled";
 import {
