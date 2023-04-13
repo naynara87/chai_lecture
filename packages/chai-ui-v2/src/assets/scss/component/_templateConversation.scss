@@ -1,9 +1,10 @@
 /* =================== templateConversation =================== */
 // 230220 component roleplay와 공통으로 사용됨
 .conversation-panel-wrap {
+
   .toggles-wrapper,
   .conts-ttl {
-    ~ .conversation-wrapper {
+    ~.conversation-wrapper {
       margin-top: vh(50);
     }
   }
@@ -46,7 +47,7 @@
   }
 
   .txt-wrap {
-    width: 100%;
+    width: calc(100% - vw(160));
     line-height: 1.6;
     word-break: break-all;
   }
