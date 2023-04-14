@@ -9,6 +9,7 @@ Font.whitelist = ["timesRoman"]; // , "yahei"
 ReactQuill.Quill.register(Font, true);
 const Size = ReactQuill.Quill.import("attributors/style/size");
 Size.whitelist = [
+  "16px",
   "20px",
   "22px",
   "24px",
