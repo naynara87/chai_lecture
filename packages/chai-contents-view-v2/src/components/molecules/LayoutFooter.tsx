@@ -25,7 +25,7 @@ interface LayoutFooterProps {
   handleClickPrev: () => void;
   totalPages: (string | number)[];
   currentPage?: Page;
-  exitPlayer?: () => void;
+  exitPlayer: () => Promise<unknown> | undefined;
 }
 
 const LayoutFooter = ({

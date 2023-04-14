@@ -24,7 +24,7 @@ const ModalBaseContents = styled.div``;
 interface LayoutModalContinueProps {
   isModalOpen: boolean;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  exitPlayer?: () => void;
+  exitPlayer: () => Promise<unknown> | undefined;
 }
 
 const LayoutModalContinue = ({
@@ -36,9 +36,11 @@ const LayoutModalContinue = ({
     setIsModalOpen(false);
   };
 
-  const handleClickClose = () => {
+  const handleClickClose = async () => {
+    if (exitPlayer) {
+      await exitPlayer();
+    }
     console.log("학습 종료");
-    exitPlayer && exitPlayer();
     const btnQuit = document.querySelector<HTMLDivElement>("#quit");
     window.parent.postMessage(
       {
@@ -80,7 +82,13 @@ const LayoutModalContinue = ({
               />
               <ComponentButtonRadiFillMain
                 text="학습 종료하기"
-                onClickBtn={handleClickClose}
+                onClickBtn={() => {
+                  handleClickClose()
+                    .then((result) => {
+                      console.log(result);
+                    })
+                    .catch((err) => console.log(err));
+                }}
               />
             </div>
           </div>

@@ -57,7 +57,7 @@ const dummyQuizCookie = {
 function App() {
   useEffect(() => {
     if (process.env.NODE_ENV === "development") {
-      setCookie<InitialAppData>("bubble-player", contentDummyCookie, {
+      setCookie<InitialAppData>("bubble-player", questionDummyCookie, {
         path: "/",
       });
     }
