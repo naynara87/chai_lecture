@@ -32,6 +32,11 @@ export const TextEditorWrapper = styled.div<TextEditorWrapperProps>`
       overflow: scroll;
       overflow-x: hidden;
     }
+    [data-value="16px"] {
+      ::before {
+        content: "16px" !important;
+      }
+    }
     [data-value="20px"] {
       ::before {
         content: "20px" !important;
