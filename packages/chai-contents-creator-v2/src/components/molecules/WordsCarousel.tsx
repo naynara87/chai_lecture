@@ -19,6 +19,8 @@ import { useMemo } from "react";
 import ObjectDeleteButton from "../atoms/ObjectDeleteButton";
 import TextEditorViewer from "./TextEditorViewer";
 import IconPlay from "chai-ui-v2/dist/assets/images/icon/icon_play.svg";
+import IconArrowRight from "chai-ui-v2/dist/assets/images/icon/icon_arrow_right_gray.svg";
+import IconArrowLeft from "chai-ui-v2/dist/assets/images/icon/icon_arrow_left_gray.svg";
 
 const WordsCardWrapper = styled.div`
   overflow: auto;
@@ -144,10 +146,61 @@ const ModalVocaContainer = styled.div`
     min-width: unset;
     margin-top: 8px;
   }
+
+  .btns-wrap {
+    justify-content: flex-start;
+    gap: 10px;
+
+    .btn {
+      margin-bottom: 5px;
+    }
+  }
 `;
 
 const SwiperWrapper = styled.div`
   position: relative;
+  `;
+
+const PageButton = styled.button`
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid ${colorPalette.gray600};
+  border-radius: 4px;
+  appearance: none;
+  outline: none;
+  box-shadow: none;
+  background-color: white;
+  background-position: center center;
+  background-size: 12px;
+  background-repeat: no-repeat;
+  
+  &.btn-right {
+    background-image: url(${IconArrowRight});
+  }
+  
+  &.btn-left {
+    background-image: url(${IconArrowLeft});
+  }
+
+  &:disabled {
+    opacity: 0.3;
+  }
+
+  &:hover, &:focus {
+    border-color: ${colorPalette.gray800};
+  }
+
+  span {
+    overflow: hidden;
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    width: 1px;
+    height: 1px;
+    font-size: 1px;
+    color: transparent;
+  }
 `;
 
 const WordsCarousel = ({
@@ -224,7 +277,11 @@ const WordsCarousel = ({
         <ModalInner>
           <ModalVocaContainer>
             <img src={ImgDictionary} alt="" className="icon-dictionary" />
-            <AddButton onClick={addCard}>단어카드 추가</AddButton>
+            <div className="btns-wrap">
+              <AddButton onClick={addCard}>단어카드 추가</AddButton>
+              <PageButton className="btn btn-left" disabled><span>이전</span></PageButton>
+              <PageButton className="btn btn-right"><span>다음</span></PageButton>
+            </div>
             <SwiperWrapper>
               <Swiper
                 modules={[Pagination]}
