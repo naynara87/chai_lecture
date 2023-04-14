@@ -355,8 +355,6 @@ button:hover {
   margin-left: vw(20);
   border-radius: vw(21);
   background-color: color(gray-c9);
-  font-size: 1px;
-  color: transparent;
   transition: all 0.3s;
   box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.2);
 
@@ -370,6 +368,17 @@ button:hover {
     transform: translateY(-50%);
     transition: all 0.3s;
     box-shadow: 2px 6px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .txt {
+    overflow: hidden;
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    width: 1px;
+    height: 1px;
+    font-size: 1px;
+    color: transparent;
   }
 }
 

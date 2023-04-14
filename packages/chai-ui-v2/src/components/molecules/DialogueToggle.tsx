@@ -27,7 +27,7 @@ const DialogueToggle = ({ handleClickOptions, contentId }: DialogueToggle) => {
             handleClickOptions("pronunciation");
           }}
         >
-          보이기
+          <span className="txt">보이기</span>
         </ToggleLabel>
       </div>
       <div className="inp-toggle-wrap">
@@ -45,7 +45,7 @@ const DialogueToggle = ({ handleClickOptions, contentId }: DialogueToggle) => {
             handleClickOptions("meaning");
           }}
         >
-          보이기
+          <span className="txt">보이기</span>
         </ToggleLabel>
       </div>
     </div>
