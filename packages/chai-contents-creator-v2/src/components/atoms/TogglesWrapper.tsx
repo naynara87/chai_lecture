@@ -45,7 +45,7 @@ const TogglesWrapper = ({ contents }: ToggleSentenceListComponentProps) => {
           className="toggle-input none"
         />
         <label htmlFor={`${contents.id}-input1`} className="toggle-label">
-          보이기
+          <span className="txt">보이기</span>
         </label>
       </div>
 
@@ -58,7 +58,7 @@ const TogglesWrapper = ({ contents }: ToggleSentenceListComponentProps) => {
           className="toggle-input none"
         />
         <label htmlFor={`${contents.id}-input2`} className="toggle-label">
-          보이기
+          <span className="txt">보이기</span>
         </label>
       </div>
     </ToggleWrapper>

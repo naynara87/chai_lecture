@@ -28,7 +28,7 @@ const ComponentToggle = ({
           className="toggle-label"
           onClick={onClickPronunciationToggle}
         >
-          보이기
+          <span className="txt">보이기</span>
         </label>
       </div>
 
@@ -45,7 +45,7 @@ const ComponentToggle = ({
           className="toggle-label"
           onClick={onClickMeaningToggle}
         >
-          보이기
+          <span className="txt">보이기</span>
         </label>
       </div>
     </div>
