@@ -10,12 +10,10 @@ import {
   vh,
   WordsCarouselContentData,
 } from "chai-ui-v2";
-import { Pagination } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import UrlInputWrapper from "./UrlInputWrapper";
-import { useMemo } from "react";
+import { useCallback, useEffect, useState } from "react";
 import ObjectDeleteButton from "../atoms/ObjectDeleteButton";
 import TextEditorViewer from "./TextEditorViewer";
 import IconPlay from "chai-ui-v2/dist/assets/images/icon/icon_play.svg";
@@ -80,7 +78,7 @@ const WordsCarouselWrapper = styled.div`
     width: 40px;
     height: 40px;
   }
-  
+
   .btn-text {
     width: 80px;
     border-radius: 50px;
@@ -159,7 +157,7 @@ const ModalVocaContainer = styled.div`
 
 const SwiperWrapper = styled.div`
   position: relative;
-  `;
+`;
 
 const PageButton = styled.button`
   width: 36px;
@@ -174,11 +172,11 @@ const PageButton = styled.button`
   background-position: center center;
   background-size: 12px;
   background-repeat: no-repeat;
-  
+
   &.btn-right {
     background-image: url(${IconArrowRight});
   }
-  
+
   &.btn-left {
     background-image: url(${IconArrowLeft});
   }
@@ -187,7 +185,8 @@ const PageButton = styled.button`
     opacity: 0.3;
   }
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     border-color: ${colorPalette.gray800};
   }
 
@@ -222,52 +221,67 @@ const WordsCarousel = ({
     setIsModalOpen(false);
   };
 
-  const slideContents = useMemo(() => {
-    return wordsCarouselData.words.map((word, wordIndex) => {
-      return (
-        <SwiperSlide key={wordIndex}>
-          <SlideCard>
-            <WordsCardWrapper>
-              <ObjectDeleteButton
-                onClick={() => {
-                  deleteImage(wordIndex);
-                }}
-              />
+  const [moving, setMoving] = useState(false);
 
-              <div
-                onClick={focusTextEditor(wordIndex)}
-                className="words-card-text"
-              >
-                <TextEditorViewer
-                  isFocused={isTextEditorFocused(wordIndex)}
-                  text={word.word ?? ""}
-                  setText={setText(wordIndex)}
-                  defaultText={
-                    <p className="caption-text">텍스트를 입력해주세요</p>
-                  }
-                />
-              </div>
-              <div>
-                <img src={IconPlay} alt="" className="icon-play" />
-                <UrlInputWrapper
-                  typeText="오디오"
-                  onSubmit={setAudioUrl(wordIndex)}
-                  defaultText={word.audio?.src}
-                ></UrlInputWrapper>
-              </div>
-            </WordsCardWrapper>
-          </SlideCard>
-        </SwiperSlide>
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+
+  useEffect(() => {
+    console.log("currentWordIndex", currentWordIndex);
+  }, [currentWordIndex]);
+
+  useEffect(() => {
+    if (moving && wordsCarouselData.words.length) {
+      setCurrentWordIndex(wordsCarouselData.words.length - 1);
+      setMoving(false);
+    }
+  }, [wordsCarouselData.words.length, moving]);
+
+  const getWordByIndex = useCallback(
+    (wordIndex: number) => {
+      const word = wordsCarouselData.words[wordIndex];
+      return (
+        <SlideCard>
+          <WordsCardWrapper>
+            <ObjectDeleteButton
+              onClick={() => {
+                deleteImage(wordIndex);
+              }}
+            />
+
+            <div
+              onClick={focusTextEditor(wordIndex)}
+              className="words-card-text"
+            >
+              <TextEditorViewer
+                isFocused={isTextEditorFocused(wordIndex)}
+                text={word.word ?? ""}
+                setText={setText(wordIndex)}
+                defaultText={
+                  <p className="caption-text">텍스트를 입력해주세요</p>
+                }
+              />
+            </div>
+            <div>
+              <img src={IconPlay} alt="" className="icon-play" />
+              <UrlInputWrapper
+                typeText="오디오"
+                onSubmit={setAudioUrl(wordIndex)}
+                defaultText={word.audio?.src}
+              ></UrlInputWrapper>
+            </div>
+          </WordsCardWrapper>
+        </SlideCard>
       );
-    });
-  }, [
-    isTextEditorFocused,
-    setText,
-    focusTextEditor,
-    setAudioUrl,
-    wordsCarouselData,
-    deleteImage,
-  ]);
+    },
+    [
+      wordsCarouselData.words,
+      isTextEditorFocused,
+      focusTextEditor,
+      deleteImage,
+      setAudioUrl,
+      setText,
+    ],
+  );
 
   return (
     <WordsCarouselWrapper>
@@ -278,26 +292,42 @@ const WordsCarousel = ({
           <ModalVocaContainer>
             <img src={ImgDictionary} alt="" className="icon-dictionary" />
             <div className="btns-wrap">
-              <AddButton onClick={addCard}>단어카드 추가</AddButton>
-              <PageButton className="btn btn-left" disabled><span>이전</span></PageButton>
-              <PageButton className="btn btn-right"><span>다음</span></PageButton>
-            </div>
-            <SwiperWrapper>
-              <Swiper
-                modules={[Pagination]}
-                loop={false}
-                pagination={{
-                  dynamicBullets: true,
-                  dynamicMainBullets: 4,
-                  clickable: true,
+              <AddButton
+                onClick={() => {
+                  addCard();
+                  setMoving(true);
                 }}
-                spaceBetween={20}
-                slidesPerView={1}
-                centeredSlides
               >
-                {slideContents}
-              </Swiper>
-            </SwiperWrapper>
+                단어카드 추가
+              </AddButton>
+              <PageButton
+                className="btn btn-left"
+                disabled={currentWordIndex === 0}
+                onClick={() => {
+                  if (currentWordIndex === 0) {
+                    return;
+                  }
+                  setCurrentWordIndex(currentWordIndex - 1);
+                }}
+              >
+                <span>이전</span>
+              </PageButton>
+              <PageButton
+                className="btn btn-right"
+                disabled={
+                  currentWordIndex === wordsCarouselData.words.length - 1
+                }
+                onClick={() => {
+                  if (currentWordIndex === wordsCarouselData.words.length - 1) {
+                    return;
+                  }
+                  setCurrentWordIndex(currentWordIndex + 1);
+                }}
+              >
+                <span>다음</span>
+              </PageButton>
+            </div>
+            <SwiperWrapper>{getWordByIndex(currentWordIndex)}</SwiperWrapper>
 
             <UrlInputWrapper
               typeText="효과음"
