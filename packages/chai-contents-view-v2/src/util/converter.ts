@@ -18,28 +18,6 @@ export const pageDataConverter = (pageData: ContentData): Page => {
     } as Page;
   }
   const contentData = JSON.parse(contents_data);
-  // if (!contentData) {
-  //   return {
-  //     id: page_id,
-  //     type: "singlePage",
-  //     pageAreaType: pageArea_type,
-  //     contentsType: contents_type,
-  //     name: "문제",
-  //     data: {
-  //       id: 0,
-  //       type: "TemplateQuestion",
-  //       contents: {
-  //         id: 0,
-  //         type: "question",
-  //         data: {
-  //           interact_url: "",
-  //           explan: "",
-  //           interpet: "",
-  //         },
-  //       },
-  //     },
-  //   };
-  // }
   return {
     id: page_id,
     type: "singlePage",

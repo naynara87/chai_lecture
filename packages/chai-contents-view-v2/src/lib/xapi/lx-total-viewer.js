@@ -5122,8 +5122,10 @@ code.google.com/p/crypto-js/wiki/License
             if (extensionDetails) {
               Object.assign(mys.context.extensions, extensionDetails);
             }
-            mys.context.contextActivities.parent[0].id =
-              mys.context.contextActivities.parent[0].id + courseId;
+            if (mys.context.contextActivities) {
+              mys.context.contextActivities.parent[0].id =
+                mys.context.contextActivities.parent[0].id + courseId;
+            }
             currentPageEduStartTime = new Date();
             eduStartTime = new Date();
             XW.sendStatement(mys);
@@ -5404,7 +5406,6 @@ code.google.com/p/crypto-js/wiki/License
             contentName,
             description,
             stateId,
-            uid,
           ) {
             setListenerForUnload();
             // NOTE kjw 초기설정
@@ -5414,13 +5415,6 @@ code.google.com/p/crypto-js/wiki/License
             activityStateId = stateId;
             targetObject = targetObjectApplication;
             activityID = activityIdBase || "";
-            actor.account = _objectSpread(
-              _objectSpread({}, actor.account),
-              {},
-              {
-                homePage: actor.account.homePage + uid,
-              },
-            );
             targetActivityObject = new ADL.XAPIStatement.Activity(activityID);
             var object_temp = {
               type: "http://adlnet.gov/expapi/activities/cmi.interaction",
