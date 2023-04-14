@@ -1,4 +1,5 @@
 import { ContentData } from "./lcms";
+import { ContextDetail, XapiIndicators } from "./lrs";
 import { AllTemplateData } from "./templates";
 
 export type ID = string | number;
@@ -160,6 +161,7 @@ export type QuizData = {
 export interface InitialAppData {
   uno: string;
   uid: string;
+  uname: string;
   applId: string;
   cornerId?: string;
   courseId: string;
@@ -168,4 +170,11 @@ export interface InitialAppData {
   courseName: string;
   lessonId: string;
   lessonName: string;
+}
+
+export interface InitialInputAppData {
+  object_context?: XapiIndicators;
+  result_extensions?: XapiIndicators;
+  context_details?: ContextDetail;
+  extension_details?: XapiIndicators;
 }

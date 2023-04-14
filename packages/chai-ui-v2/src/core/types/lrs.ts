@@ -97,9 +97,8 @@ export interface XapiV1 {
     targetObjectApplication: unknown,
     activityIdBase: string,
     contentName: string,
-    description: string,
+    description: string | null,
     stateId: string,
-    uid: ID,
   ) => void;
   suspend: (
     newState: LRSActivityState,
@@ -133,16 +132,16 @@ export interface XapiV1 {
 export interface XAPIOptions {
   // #1 actor 정의
   name?: string;
-  homePage?: string;
-  account_name?: string;
+  homePage: string;
+  account_name: string;
   email?: string;
   member?: string;
   // #2 objecjt 정의
-  activity_id?: string; // object.id 값
+  activity_id: string; // object.id 값
   content_name?: string; // 레슨 정보
-  description?: string; // 레슨 설명 정보
+  description: string | null; // 레슨 설명 정보
   // #3 activityState의 stateId 정의
-  state_id?: string;
+  state_id: string;
   // #4 학습 정보 전송할 LRS url 기입
   lrsUrl?: string;
 
@@ -159,30 +158,26 @@ export interface ContextDetail {
   registration: string;
   revision: string;
   contextActivities: {
-    category: [
-      {
-        id: string;
-        objectType: string;
-      },
-    ];
-    parent: [
-      {
-        definition: {
-          description: {
-            "en-US": string;
-          };
-          name: {
-            "en-US": string;
-          };
+    category: {
+      id: string;
+      objectType: string;
+    }[];
+    parent: {
+      definition: {
+        description: {
+          "en-US": string;
         };
-        id: string;
-        objectType: string;
-      },
-    ];
+        name: {
+          "en-US": string;
+        };
+      };
+      id: string;
+      objectType: string;
+    }[];
   };
 }
 
-export type XapiIndicators = Record<string, string | number>;
+export type XapiIndicators = Record<string, string | number | null>;
 
 export interface ADL {
   XAPIWrapper: XAPIWrapper;

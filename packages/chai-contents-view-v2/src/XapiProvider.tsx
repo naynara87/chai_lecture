@@ -2,7 +2,7 @@ import {
   ADL,
   getCookie,
   InitialAppData,
-  userNameState,
+  InitialInputAppData,
   xapiElement,
   XAPIOptions,
   xapiV1State,
@@ -78,14 +78,41 @@ const createActorObject = function (obj: XAPIOptions) {
 
 const XapiProvider = ({ children }: XapiProviderProps) => {
   const [, setXapiV1State] = useRecoilState(xapiV1State);
-  const [, setUserName] = useRecoilState(userNameState);
   const learningLogCookieData = getCookie<InitialAppData>("bubble-player");
+
+  const stringifiedValue =
+    document.querySelector<HTMLInputElement>("#bubble-player")?.value;
+  const initialDataFromPhp = stringifiedValue
+    ? (JSON.parse(stringifiedValue) as InitialInputAppData)
+    : null;
 
   //@ts-ignore
   const { ADL: _ADL } = window;
   const ADL = _ADL as ADL;
 
-  const xapi_init = (options: XAPIOptions) => {
+  const options = {
+    // #1 actor 정의
+    name: learningLogCookieData?.uname,
+    homePage: `https://www.caihong.co.kr/account/user/${learningLogCookieData?.uid}`,
+    account_name: `${learningLogCookieData?.uno}|${learningLogCookieData?.uid}|${learningLogCookieData?.uname}|${learningLogCookieData?.applId}`,
+    // #2 objecjt 정의
+    activity_id: `https://www.caihong.co.kr/course/${learningLogCookieData?.courseId}/lesson/${learningLogCookieData?.lessonId}`, // object.id 값
+    content_name: learningLogCookieData?.lessonName, // 레슨 정보
+    description: null, // 레슨 설명 정보
+    // #3 activityState의 stateId 정의
+    state_id: `https://www.caihong.co.kr/activity/profile/course/${learningLogCookieData?.courseId}/lesson/${learningLogCookieData?.lessonId}/appl-id/${learningLogCookieData?.applId}`,
+    // #4 학습 정보 전송할 LRS url 기입
+    // lrsUrl: "https://dev.caihong.co.kr/xAPI/",
+    // lrsUrl: "http://clrs.bubblecon.co.kr/xAPI/",
+
+    // #5 xAPI 추가 context 사용
+    object_context: initialDataFromPhp?.object_context,
+    // result_extensions: result_extensions,
+    context_details: initialDataFromPhp?.context_details,
+    extension_details: initialDataFromPhp?.extension_details,
+  };
+
+  const xapi_init = () => {
     if (!ADL.XAPIWrapper.lrs.actor) {
       const conf = {
         endpoint: `${process.env.REACT_APP_LRS_URL}`,
@@ -109,10 +136,6 @@ const XapiProvider = ({ children }: XapiProviderProps) => {
       v1.addExtensionDetail(options["extension_details"]);
     }
 
-    if (options["result_extensions"]) {
-      v1.addResultExtension(options["result_extensions"]);
-    }
-
     if (
       !options["activity_id"] ||
       !options["content_name"] ||
@@ -121,21 +144,20 @@ const XapiProvider = ({ children }: XapiProviderProps) => {
       console.error("xapi 관련 정보를 정상적으로 받지 않았습니다.");
     }
 
-    if (learningLogCookieData) {
-      v1.initialize(
-        xapiElement,
-        options["activity_id"] ?? "",
-        options["content_name"]!,
-        options["description"]!,
-        options["state_id"] ?? "",
-        learningLogCookieData?.uid,
-      );
-    }
-
-    if (options["name"]) {
-      setUserName(options["name"]);
-    }
+    v1.initialize(
+      xapiElement,
+      options["activity_id"] ?? "",
+      options["content_name"]!,
+      options["description"]!,
+      options["state_id"] ?? "",
+    );
   };
+
+  document.addEventListener("playerLoaded", () => {
+    if (learningLogCookieData && initialDataFromPhp) {
+      xapi_init();
+    }
+  });
 
   //@ts-ignore
   window.xapi_init = xapi_init;
