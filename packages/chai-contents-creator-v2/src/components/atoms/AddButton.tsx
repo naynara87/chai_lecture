@@ -3,6 +3,7 @@ import { colorPalette } from "chai-ui-v2";
 
 const ButtonBorder = styled.button`
   width: fit-content;
+  height: 36px;
   margin-bottom: 8px;
   padding: 11px 21px 10px 20px;
   border: 1px solid #dbe1ff;
