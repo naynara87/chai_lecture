@@ -183,12 +183,14 @@ const PageButton = styled.button`
     background-image: url(${IconArrowLeft});
   }
 
-  &:disabled {
-    opacity: 0.3;
-  }
-
   &:hover, &:focus {
     border-color: ${colorPalette.gray800};
+  }
+  
+  &:disabled {
+    opacity: 0.3;
+    border-color: ${colorPalette.gray600};
+    cursor: default;
   }
 
   span {
