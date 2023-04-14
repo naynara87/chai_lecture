@@ -18,15 +18,15 @@ const Preview = () => {
   }, [handleAudioReset]);
 
   return (
-    <section>
+    <section className="cai-view-yahei">
       <header>미리보기</header>
       <main className="cai-main">
         {pageData === null ? (
           <div>페이지 데이터가 없습니다.</div>
         ) : pageData.type === "singlePage" ? (
-          <LayoutSinglePage page={pageData} setPageCompleted={() => {}} />
+          <LayoutSinglePage page={pageData} setPageCompleted={() => { }} />
         ) : (
-          <LayoutMultiPage page={pageData} setPageCompleted={() => {}} />
+          <LayoutMultiPage page={pageData} setPageCompleted={() => { }} />
         )}
       </main>
     </section>

@@ -15,17 +15,31 @@
   color: transparent;
 }
 
-// 폰트별 클래스
-.ql-font-yahei {
-  font-family: "yahei", arial, sans-serif;
+// 뷰화면에서만 야헤이 적용
+.cai-view-yahei {
+
+  div,
+  p,
+  span,
+  li,
+  b,
+  [class] {
+    // font change
+    font-family: "yahei", arial, sans-serif;
+  }
 }
 
+// 폰트별 클래스
 .ql-font-noto-sans {
   font-family: "noto", arial, sans-serif;
 }
 
 .ql-font-timesRoman {
   font-family: "timesRoman", serif;
+}
+
+.ql-font-yahei {
+  font-family: "yahei", arial, sans-serif;
 }
 
 // quill editor text align

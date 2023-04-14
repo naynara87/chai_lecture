@@ -10,6 +10,16 @@
   transform: translate(-50%, -50%);
   transition-delay: 0.2s;
 
+  div,
+  p,
+  span,
+  li,
+  b,
+  [class] {
+    // font change
+    font-family: "yahei", arial, sans-serif;
+  }
+
   &.active {
     width: 100%;
     height: 100%;
