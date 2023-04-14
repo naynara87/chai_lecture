@@ -9,16 +9,18 @@ const ModalCompletedWrapper = styled.div``;
 
 interface ModalCompletedProps {
   lessonCode: LessonMeta["colorTypeCd"];
-  exitPlayer?: () => void;
+  exitPlayer: () => Promise<unknown> | undefined;
 }
 
 const ModalCompleted = ({ lessonCode, exitPlayer }: ModalCompletedProps) => {
   const { getLessonCompletedCharacterCode } =
     useLessonCompletedCharacterMapper();
 
-  const handleClickClose = () => {
+  const handleClickClose = async () => {
+    if (exitPlayer) {
+      await exitPlayer();
+    }
     console.log("학습 종료");
-    exitPlayer && exitPlayer();
     const btnQuit = document.querySelector<HTMLDivElement>("#quit");
     window.parent.postMessage(
       {
@@ -41,7 +43,16 @@ const ModalCompleted = ({ lessonCode, exitPlayer }: ModalCompletedProps) => {
         />
         <p className="text">{`오늘의 학습을 완료했어요!
           이제 연습문제를 풀러 가볼까요?`}</p>
-        <button className="btn" onClick={handleClickClose}>
+        <button
+          className="btn"
+          onClick={() => {
+            handleClickClose()
+              .then((result) => {
+                console.log(result);
+              })
+              .catch((err) => console.log(err));
+          }}
+        >
           확인
         </button>
         <Confetti numberOfPieces={300} />
