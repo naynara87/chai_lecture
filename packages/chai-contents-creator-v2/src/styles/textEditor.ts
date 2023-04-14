@@ -57,6 +57,11 @@ export const TextEditorWrapper = styled.div<TextEditorWrapperProps>`
         content: "28px" !important;
       }
     }
+    [data-value="32px"] {
+      ::before {
+        content: "32px" !important;
+      }
+    }
     [data-value="36px"] {
       ::before {
         content: "36px" !important;
@@ -77,9 +82,19 @@ export const TextEditorWrapper = styled.div<TextEditorWrapperProps>`
         content: "48px" !important;
       }
     }
+    [data-value="50px"] {
+      ::before {
+        content: "50px" !important;
+      }
+    }
     [data-value="56px"] {
       ::before {
         content: "56px" !important;
+      }
+    }
+    [data-value="60px"] {
+      ::before {
+        content: "60px" !important;
       }
     }
     [data-value="64px"] {
