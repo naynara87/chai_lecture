@@ -175,13 +175,12 @@ const QuestionLayout = ({
   }, [pageId, pages]);
 
   return (
-    <>
+    <div className="cai-view-yahei">
       <LayoutQuestionHeader
-        headerText={`${getLessonName(lessonMetaData.colorTypeCd)} ${
-          lessonMetaData.lessonTpCd.toString() === "20"
+        headerText={`${getLessonName(lessonMetaData.colorTypeCd)} ${lessonMetaData.lessonTpCd.toString() === "20"
             ? "연습문제"
             : "종합문제"
-        }`}
+          }`}
         solvingTime={questionSolvingTime}
       />
       <main className="cai-main problem-main">
@@ -203,15 +202,14 @@ const QuestionLayout = ({
         isModalOpen={isQuestionStartModalOpen}
         setIsModalOpen={setIsQuestionStartModalOpen}
         wideModal
-        quizTypeText={`${getLessonName(lessonMetaData.colorTypeCd)} ${
-          lessonMetaData.lessonTpCd.toString() === "20"
+        quizTypeText={`${getLessonName(lessonMetaData.colorTypeCd)} ${lessonMetaData.lessonTpCd.toString() === "20"
             ? "연습문제"
             : "종합문제"
-        }`}
+          }`}
         quizTotalLength={pages.length}
         onClickStart={startQuiz}
       />
-    </>
+    </div>
   );
 };
 

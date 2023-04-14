@@ -12,8 +12,6 @@ import {
 } from "chai-ui-v2";
 import { CookiesProvider } from "react-cookie";
 import XapiProvider from "./XapiProvider";
-import { Global } from "@emotion/react";
-import viewGlobal from "./styles/viewGlobal";
 
 const queryClient = new QueryClient();
 
@@ -69,7 +67,6 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <CookiesProvider>
         <RecoilRoot>
-          <Global styles={viewGlobal} />
           <ToastContainer
             limit={3}
             autoClose={3000}

@@ -231,7 +231,7 @@ const ContentsLayout = ({
   }, [currentPage]);
 
   return (
-    <>
+    <div className="cai-view-yahei">
       <LayoutHeader
         corners={corners}
         cornerId={cornerId}
@@ -257,7 +257,7 @@ const ContentsLayout = ({
           exitPlayer={exitPlayer}
         />
       )}
-    </>
+    </div>
   );
 };
 
