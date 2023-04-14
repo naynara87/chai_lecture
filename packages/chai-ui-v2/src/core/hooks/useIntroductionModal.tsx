@@ -17,7 +17,8 @@ const useIntroductionModal = ({ page }: UseIntroductionModalProps) => {
     if (
       page.introduction.title !== "" ||
       page.introduction.subTitle !== "" ||
-      page.introduction.contents !== ""
+      page.introduction.contents !== "" ||
+      page.introduction.soundEffect?.src !== ""
     ) {
       return true;
     }

@@ -14,7 +14,9 @@ const Preview = () => {
   const [pageData] = React.useState<Page | null>(getPageDataFromLocalStorage());
 
   useEffect(() => {
-    handleAudioReset();
+    if (handleAudioReset) {
+      handleAudioReset();
+    }
   }, [handleAudioReset]);
 
   return (

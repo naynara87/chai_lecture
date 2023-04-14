@@ -73,15 +73,20 @@ const LayoutModalIntroduction = ({
   }, [handleAudioReset]);
 
   useEffect(() => {
-    handleClickAudioButton(
-      "introductionModal",
-      modalUuidRef.current,
-      0,
-      introduction?.soundEffect?.src ?? "",
-    );
+    setTimeout(() => {
+      if (introduction?.soundEffect?.src && globalAudioRef?.current) {
+        handleClickAudioButton(
+          "introductionModal",
+          modalUuidRef.current,
+          0,
+          introduction.soundEffect.src,
+        );
+      }
+    }, 0);
+
     // FIXME kjw handleClickAudioButton을 디펜던시에 넣으면 콜스택맥스 에러가 뜹니다... 이따가 수정할게요.. throttle을 써도 안됩니다..
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [introduction]);
+  }, [introduction, globalAudioRef?.current]);
 
   const handleClose = () => {
     setIsModalOpen(false);
