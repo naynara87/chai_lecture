@@ -522,6 +522,9 @@ const CreateTemplateRolePlaying = ({
                             rolePlayingConversationItem.characterId,
                           ) as RolePlayingCharacter
                         }
+                        rolePlayingConversationItem={
+                          rolePlayingConversationItem
+                        }
                         onDeleteConversationItem={() =>
                           deleteRolePlayingContents(index)
                         }

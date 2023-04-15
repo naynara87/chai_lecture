@@ -6,7 +6,11 @@ import CharacterProfile from "../atoms/CharacterProfile";
 import { css, SerializedStyles } from "@emotion/react";
 import UrlInputWrapper from "./UrlInputWrapper";
 import { InputBgNone } from "../atoms/InputBgNone";
-import { colorPalette, RolePlayingCharacter } from "chai-ui-v2";
+import {
+  colorPalette,
+  RolePlayingCharacter,
+  RolePlayingContentItem,
+} from "chai-ui-v2";
 import { ConversationDirection } from "../templates/CreateTemplateRolePlaying";
 
 const ItemWrap = styled.li`
@@ -67,6 +71,7 @@ const urlInputWrapperCss = css`
 
 interface RolePlayingConversationItemProps {
   character: RolePlayingCharacter;
+  rolePlayingConversationItem: RolePlayingContentItem;
   onDeleteConversationItem: () => void;
   characterContainerCss?: SerializedStyles;
   displayDirection?: ConversationDirection; // "left" | "right"
@@ -77,6 +82,7 @@ interface RolePlayingConversationItemProps {
 }
 const RolePlayingConversationItem = ({
   character,
+  rolePlayingConversationItem,
   onDeleteConversationItem,
   displayDirection = ConversationDirection.LEFT,
   onSubmitAudioUrl,
@@ -110,22 +116,26 @@ const RolePlayingConversationItem = ({
           <UrlInputWrapper
             typeText="오디오"
             urlInputWrapperCss={urlInputWrapperCss}
+            defaultText={rolePlayingConversationItem.audio?.src ?? ""}
             onSubmit={onSubmitAudioUrl}
           />
           <InputText
             type="text"
             placeholder="한문을 입력해주세요"
             onBlur={handleOnBlurText}
+            defaultValue={rolePlayingConversationItem.text || ""}
           />
           <InputPronunciation
             type="text"
             placeholder="한어병음을 입력해주세요"
             onBlur={handleOnBlurPronunciation}
+            defaultValue={rolePlayingConversationItem.pronunciation || ""}
           />
           <InputMeaning
             type="text"
             placeholder="해석을 입력해주세요"
             onBlur={handleOnBlurMeaning}
+            defaultValue={rolePlayingConversationItem.meaning || ""}
           />
         </ConversationItem>
       </CharacterAndContent>
