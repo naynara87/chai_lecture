@@ -7,7 +7,6 @@ const NumberingWrapper = styled.div``;
 
 const NumberingTextList = styled.div`
   display: flex;
-  justify-content: space-around;
 `;
 
 interface NumberingTextProps {
