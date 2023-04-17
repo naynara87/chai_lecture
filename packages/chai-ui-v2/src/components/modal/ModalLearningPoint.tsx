@@ -19,6 +19,8 @@ const ModalScrollArea = styled.div`
 `;
 
 const ModalContentsWrapper = styled.div`
+  width: 100%;
+
   .conts-wrap:not(:first-of-type) {
     margin-top: ${vw(60)};
   }
@@ -58,9 +60,8 @@ const ModalLearningPoint = ({
       <ModalScrollArea>
         <div className="modal active">
           <div
-            className={`modal-container base-modal ${
-              wideModal ? "wide-modal" : ""
-            }`}
+            className={`modal-container base-modal ${wideModal ? "wide-modal" : ""
+              }`}
           >
             <ContentContainer>
               <button className="btn-close-modal" onClick={handleClose}>

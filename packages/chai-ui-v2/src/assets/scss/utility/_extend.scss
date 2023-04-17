@@ -13,15 +13,6 @@
 %btn-interaction {
 	position: relative;
 	transition: all 0.2s;
-
-	@include hover {
-		opacity: 1;
-		box-shadow: $active-shadow;
-	}
-
-	&:disabled {
-		box-shadow: $btn-shadow;
-	}
 }
 
 %speak-interaction {
