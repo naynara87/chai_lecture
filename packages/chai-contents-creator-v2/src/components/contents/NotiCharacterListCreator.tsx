@@ -70,7 +70,7 @@ const TextBubbleWrap = styled.div`
     width: 38px;
     height: 37px;
     background-image: url("${iconPlay}");
-    background-size: 100% 100%;
+    background-size: 100%;
     transform: translateX(-50%);
   }
 `;

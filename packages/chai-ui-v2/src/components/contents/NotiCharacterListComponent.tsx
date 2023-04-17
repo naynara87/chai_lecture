@@ -42,7 +42,7 @@ const TextBubbleWrap = styled.div`
     background-image: url("${arrow}");
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 100% 100%;
+    background-size: 100%;
     position: absolute;
     top: 100%;
     left: 50%;

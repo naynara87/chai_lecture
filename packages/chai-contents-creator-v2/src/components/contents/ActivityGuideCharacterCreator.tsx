@@ -33,7 +33,7 @@ export const TextBubbleWrap = styled.div`
   &::after {
     content: "";
     background-image: url("${iconTail}");
-    background-size: 100% 100%;
+    background-size: 100%;
     position: absolute;
     top: 100%;
     left: 50%;
