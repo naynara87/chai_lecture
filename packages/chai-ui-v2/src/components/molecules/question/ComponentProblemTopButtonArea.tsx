@@ -21,9 +21,9 @@ const ComponentProblemTopButtonArea = ({
     const min = Math.floor((solvingTime % 3600) / 60);
     const sec = Math.floor(solvingTime % 60);
 
-    return (
-      hour.toString() + "시간 " + min.toString() + "분 " + sec.toString() + "초"
-    );
+    return `${
+      hour > 0 ? hour.toString() + "시간 " : ""
+    }${min.toString()}분 ${sec.toString()}초`;
   }, [solvingTime]);
 
   return (
