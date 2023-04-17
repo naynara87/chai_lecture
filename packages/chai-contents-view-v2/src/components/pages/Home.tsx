@@ -73,7 +73,7 @@ const Home = () => {
     if (!lessonMetaData) return;
     if (corners.length < 1) return;
 
-    if (!learningLogCookieData?.cornerId && !learningLogCookieData?.pageId) {
+    if (!learningLogCookieData?.turnId && !learningLogCookieData?.pageId) {
       // 코너, 페이지 아이디 둘다 없는 경우 : 처음부터 학습
       goToFirstPage();
       return;
@@ -81,7 +81,7 @@ const Home = () => {
 
     const currentCornerIndex = corners.findIndex(
       (corner) =>
-        corner.id.toString() === learningLogCookieData?.cornerId?.toString(),
+        corner.id.toString() === learningLogCookieData?.turnId?.toString(),
     );
 
     if (
@@ -109,7 +109,7 @@ const Home = () => {
     getUrl,
     lessonMetaData,
     showContinueOpenModal,
-    learningLogCookieData?.cornerId,
+    learningLogCookieData?.turnId,
     learningLogCookieData?.pageId,
     goToFirstPage,
   ]);
