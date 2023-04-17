@@ -20,7 +20,7 @@ const ModalScrollArea = styled.div`
 
 const ModalContentsWrapper = styled.div`
   width: 100%;
-
+  
   .conts-wrap:not(:first-of-type) {
     margin-top: ${vw(60)};
   }
