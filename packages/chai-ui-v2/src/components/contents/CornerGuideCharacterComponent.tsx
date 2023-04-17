@@ -16,6 +16,7 @@ const ContStartWrapper = styled.div`
   
   .text-bubble-wrap {
     padding: ${vw(40)} ${vw(80)};
+    border-radius: ${vw(100)};
     font-weight: 600;
     font-size: ${vw(36)};
   }

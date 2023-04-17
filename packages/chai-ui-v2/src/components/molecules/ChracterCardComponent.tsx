@@ -54,7 +54,9 @@ const CharacterCardComponent = ({
         </div>
       </div>
       <div className="white-wrap">
-        <HtmlContentComponent html={characterCard.description} />
+        <div className="text-wrap">
+          <HtmlContentComponent html={characterCard.description} />
+        </div>
         {characterCard.modalContents &&
           characterCard.modalContents.length > 0 && (
             <div className="btns-wrap">

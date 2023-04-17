@@ -4,7 +4,7 @@
 		gap: vw(10);
 	}
 
-	> .img {
+	>.img {
 		height: vh(100);
 	}
 }
@@ -24,8 +24,8 @@
 		height: vw(24);
 		transform: translateY(-50%);
 	}
-	
-	.bubble-conts{
+
+	.bubble-conts {
 		@include flex-btw;
 
 		max-width: vw(900);
@@ -33,6 +33,7 @@
 		padding: vh(25) vw(40);
 		border-radius: vw(60);
 		background-color: color(bubble-gray);
+		transition: width 0.3s;
 
 		.text {
 			font-size: vw(25);
