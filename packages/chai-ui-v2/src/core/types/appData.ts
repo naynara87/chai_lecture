@@ -163,7 +163,7 @@ export interface InitialAppData {
   uid: string;
   uname: string;
   applId: string;
-  cornerId?: string;
+  turnId?: string;
   courseId: string;
   pageId?: string;
   subjectId: string;
