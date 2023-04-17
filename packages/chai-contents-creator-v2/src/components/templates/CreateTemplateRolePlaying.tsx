@@ -79,6 +79,12 @@ const conversationDirectionEngToKor = Object.freeze({
   [ConversationDirection.RIGHT]: "우측",
 });
 
+const LeftContentContainer = styled.div`
+  display: flex;
+  align-items: center;
+  height: 100%;
+`;
+
 const CreateTemplateRolePlaying = ({
   templateType,
   addComponentMap,
@@ -450,34 +456,36 @@ const CreateTemplateRolePlaying = ({
       <CreateEditMainWrap37>
         <CreateEditMain>
           <DashBoxAreaWrapper>
-            <CornerGuideWrapper>
-              <TextBubbleWrap
-                onClick={(e) =>
-                  setFocusedId(e, guideContent ? guideContent.id : -1)
-                }
-              >
-                <TextEditorViewer
-                  isFocused={
-                    guideContent ? focusedId === guideContent.id : false
+            <LeftContentContainer>
+              <CornerGuideWrapper>
+                <TextBubbleWrap
+                  onClick={(e) =>
+                    setFocusedId(e, guideContent ? guideContent.id : -1)
                   }
-                  text={guideText}
-                  setText={setGuideText}
-                  handleSubmitTextOnBlur={handleEndEditGuideText}
+                >
+                  <TextEditorViewer
+                    isFocused={
+                      guideContent ? focusedId === guideContent.id : false
+                    }
+                    text={guideText}
+                    setText={setGuideText}
+                    handleSubmitTextOnBlur={handleEndEditGuideText}
+                  />
+                </TextBubbleWrap>
+                {guideContent && guideContent.data.character.src ? (
+                  <img src={guideContent.data.character.src} alt="" />
+                ) : (
+                  <ImageThumb />
+                )}
+                <UrlInputWrapper
+                  typeText="이미지"
+                  onSubmit={handleSubmitGuideCharacterUrl}
+                  defaultText={
+                    guideContent ? guideContent.data.character.src : ""
+                  }
                 />
-              </TextBubbleWrap>
-              {guideContent && guideContent.data.character.src ? (
-                <img src={guideContent.data.character.src} alt="" />
-              ) : (
-                <ImageThumb />
-              )}
-              <UrlInputWrapper
-                typeText="이미지"
-                onSubmit={handleSubmitGuideCharacterUrl}
-                defaultText={
-                  guideContent ? guideContent.data.character.src : ""
-                }
-              />
-            </CornerGuideWrapper>
+              </CornerGuideWrapper>
+            </LeftContentContainer>
           </DashBoxAreaWrapper>
         </CreateEditMain>
         <CreateEditMain>
