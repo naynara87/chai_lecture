@@ -16,6 +16,8 @@
     @include flex {
       align-items: center;
     }
+
+    max-height: vw(140);
   }
 
   .text {
@@ -24,7 +26,8 @@
     margin-right: vw(20);
   }
 
-  .icon {
+  .img {
+    max-height: 90%;
     margin-left: vw(14);
   }
 
@@ -33,35 +36,6 @@
   }
 
   .cai-progress-track {
-    // display: none;
     margin-top: vw(26);
   }
-
-  // .text-wrap .icon {
-  //   display: none;
-  // }
-
-  // &.step2 {
-  //   .btn {
-  //     display: none;
-  //   }
-
-  //   .cai-progress-track {
-  //     display: block;
-  //   }
-  // }
-
-  // &.step3 {
-  //   .btn {
-  //     display: none;
-  //   }
-
-  //   .cai-progress-track {
-  //     display: none;
-  //   }
-
-  //   .text-wrap .icon {
-  //     display: block;
-  //   }
-  // }
 }
