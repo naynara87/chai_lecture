@@ -120,6 +120,7 @@ const TextEditor = ({
             [{ align: ["left", "center", "right", "justify"] }],
           ],
         }}
+        preserveWhitespace
       />
     </TextEditorWrapper>
   );
