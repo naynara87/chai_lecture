@@ -37,20 +37,16 @@ button:hover {
   border-radius: vw(14);
 }
 
-.btn-play-fill {
-  @include bg-url(icon, "icon_play_fill.svg");
-
-  border-radius: vw(20);
-
-  &:disabled {
-    @include bg-url(icon, "icon_play_fill_disabled.svg");
-  }
-}
-
 .btn-play {
   @include bg-url(icon, "icon_play.svg");
 
-  &:disabled {
+  @include hover {
+    @include bg-url(icon, "icon_play_hover.svg");
+  }
+
+  &:disabled,
+  &:disabled:hover,
+  &:disabled:focus {
     @include bg-url(icon, "icon_play_disabled.svg");
   }
 }
@@ -58,7 +54,13 @@ button:hover {
 .btn-pause-fill {
   @include bg-url(icon, "icon_pause_fill.svg");
 
-  &:disabled {
+  @include hover {
+    @include bg-url(icon, "icon_pause_fill_hover.svg");
+  }
+
+  &:disabled,
+  &:disabled:hover,
+  &:disabled:focus {
     @include bg-url(icon, "icon_pause_fill_disabled.svg");
   }
 }
@@ -66,7 +68,13 @@ button:hover {
 .btn-stop-fill {
   @include bg-url(icon, "icon_stop_fill.svg");
 
-  &:disabled {
+  @include hover {
+    @include bg-url(icon, "icon_stop_fill_hover.svg");
+  }
+
+  &:disabled,
+  &:disabled:hover,
+  &:disabled:focus {
     @include bg-url(icon, "icon_stop_fill_disabled.svg");
   }
 }
@@ -74,7 +82,13 @@ button:hover {
 .btn-mic {
   @include bg-url(icon, "icon_mic.svg");
 
-  &:disabled {
+  @include hover {
+    @include bg-url(icon, "icon_mic_hover.svg");
+  }
+
+  &:disabled,
+  &:disabled:hover,
+  &:disabled:focus {
     @include bg-url(icon, "icon_mic_disabled.svg");
   }
 }
@@ -82,7 +96,13 @@ button:hover {
 .btn-return {
   @include bg-url(icon, "icon_return.svg");
 
-  &:disabled {
+  @include hover {
+    @include bg-url(icon, "icon_return_hover.svg");
+  }
+
+  &:disabled,
+  &:disabled:hover,
+  &:disabled:focus {
     @include bg-url(icon, "icon_return_disabled.svg");
   }
 }
@@ -90,16 +110,33 @@ button:hover {
 .btn-dictionary {
   @include bg-url(icon, "icon_dictionary.svg");
 
-  &:disabled {
+  @include hover {
+    @include bg-url(icon, "icon_dictionary_hover.svg");
+  }
+
+  &:disabled,
+  &:disabled:hover,
+  &:disabled:focus {
     @include bg-url(icon, "icon_dictionary_disabled.svg");
   }
 }
 
-.btn-dictionary-fill {
-  @include bg-url(icon, "icon_dictionary_fill.svg");
+.btn-profile {
+  @include make-before {
+    @include full;
 
-  &:disabled {
-    @include bg-url(icon, "icon_dictionary_fill_disabled.svg");
+    opacity: 0;
+    z-index: z(two);
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: color(gray-ff);
+  }
+
+  @include hover {
+    &:before {
+      opacity: 0.25;
+    }
   }
 }
 
@@ -143,6 +180,10 @@ button:hover {
   font-size: vw(22);
   color: color(gray-ff);
   box-shadow: $btn-shadow;
+
+  @include hover {
+    background-color: color(gray-22);
+  }
 }
 
 .btn-radi-border-main {
@@ -151,7 +192,7 @@ button:hover {
 
   min-width: vw(325);
   height: vh(82);
-  border: 1px solid color(main);
+  border: 1px solid color(gray-f0);
   border-radius: vw(100);
   font-weight: 600;
   font-size: vw(26);
@@ -162,7 +203,13 @@ button:hover {
     letter-spacing: -0.04em;
   }
 
-  &:disabled {
+  @include hover {
+    background-color: color(gray-f5);
+  }
+
+  &:disabled,
+  &:disabled:focus,
+  &:disabled:hover {
     background-color: color(gray-c9);
     border-color: color(gray-f5);
   }
@@ -186,7 +233,13 @@ button:hover {
     width: 100%;
   }
 
-  &:disabled {
+  @include hover {
+    background-color: color(main-dark);
+  }
+
+  &:disabled,
+  &:disabled:hover,
+  &:disabled:focus {
     background-color: color(gray-c9);
     border-color: color(gray-c9);
     color: color(gray-ff);
@@ -210,6 +263,10 @@ button:hover {
 
   &:before {
     letter-spacing: -0.04em;
+  }
+
+  @include hover {
+    background-color: color(orange-600);
   }
 }
 
@@ -245,6 +302,11 @@ button:hover {
   font-weight: 600;
   font-size: vw(24);
   box-shadow: $btn-shadow;
+
+  @include hover {
+    background-color: color(gray-f5);
+    border-color: color(gray-db);
+  }
 
   .icon {
     margin-left: vw(12);
@@ -408,6 +470,11 @@ button:hover {
   transition: all 0.2s;
   cursor: pointer;
 
+  @include hover {
+    background-color: color(gray-f0);
+    border-color: color(gray-db);
+  }
+
   .text {
     position: relative;
     display: inline-block;
@@ -453,6 +520,11 @@ button:hover {
   box-shadow: $btn-shadow;
   text-align: center;
   cursor: pointer;
+
+  @include hover {
+    border-color: color(main-light);
+    color: color(main-light);
+  }
 
   .text {
     position: relative;
