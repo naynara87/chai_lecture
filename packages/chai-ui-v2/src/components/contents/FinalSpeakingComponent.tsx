@@ -88,18 +88,18 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
     }
   }, [globalAudioId, status, stopRecording]);
 
-  const handleSendRecording = async () => {
+  const handleSendRecording = () => {
     console.log("onStopRecording", mediaBlobUrl);
     if (!mediaBlobUrl) return;
     setRecordedAudioState("recorded");
     setIsSendBlobUrl(true);
-    const audioBlob = await fetch(mediaBlobUrl).then((r) => r.blob());
-    const elem = document.createElement("a");
-    elem.href = URL.createObjectURL(audioBlob);
-    elem.download = "voice.mp3";
-    document.body.appendChild(elem);
-    elem.click();
-    document.body.removeChild(elem);
+    // const audioBlob = await fetch(mediaBlobUrl).then((r) => r.blob());
+    // const elem = document.createElement("a");
+    // elem.href = URL.createObjectURL(audioBlob);
+    // elem.download = "voice.mp3";
+    // document.body.appendChild(elem);
+    // elem.click();
+    // document.body.removeChild(elem);
     // TODO : 녹음 후 생성한 파일을 서버로 전송하기 => BBC-978
     // convert blob to mp3 file
     // const file = new File([blob], `audio${new Date().getTime()}`, {
@@ -345,9 +345,7 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
               text="녹음 파일 제출"
               onClickBtn={() => {
                 // TODO kjw toast message 띄우기
-                handleSendRecording()
-                  .then(() => console.log("성공"))
-                  .catch(() => console.log("실패"));
+                handleSendRecording();
               }}
               isDisabled={isSendBlobUrl}
             />
