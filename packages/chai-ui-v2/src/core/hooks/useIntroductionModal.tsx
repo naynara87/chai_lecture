@@ -30,7 +30,7 @@ const useIntroductionModal = ({ page }: UseIntroductionModalProps) => {
     if (hasIntroduction) {
       setIsIntroductionModalOpen(true);
     }
-  }, [hasIntroduction]);
+  }, [hasIntroduction, page]);
 
   const introduction = useMemo(() => {
     if (page?.introduction) {
