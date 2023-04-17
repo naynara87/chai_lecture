@@ -128,6 +128,7 @@ const MultiChoiceItem = ({
         name={`answerCheck_${thisContent.id}`}
         id={`answerCheck_${choiceIndex}_${thisContent.id}`}
         onClick={() => setAnswer(choiceIndex)}
+        defaultChecked={thisContent.data.answerIndex === choiceIndex}
       />
       <label
         htmlFor={`answerCheck_${choiceIndex}_${thisContent.id}`}
