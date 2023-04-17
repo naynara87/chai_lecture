@@ -1,17 +1,13 @@
 import styled from "@emotion/styled";
-import {
-  MultiChoiceContentData,
-  QuizPopupModalContentData,
-  vw,
-} from "chai-ui-v2";
-import React, { useCallback, useMemo, useState } from "react";
+import { MultiChoiceContentData, QuizPopupModalContentData } from "chai-ui-v2";
+import React, { useState } from "react";
 import useGrayLineComponent from "../../hooks/useGrayLineComponent";
 import { DraggableContentCommonProps } from "../../types/page";
 import Button from "../atoms/Button";
 import ComponentGrayLineCreator from "../molecules/ComponentGrayLineCreator";
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 import ModalSolution from "../molecules/modal/ModalSolution";
-import TextEditorViewer from "../molecules/TextEditorViewer";
+import MultiChoiceItem from "../molecules/MultiChoiceItem";
 
 const MultiChoiceWrapper = styled.div`
   width: 100%;
@@ -32,18 +28,6 @@ const ChoiceWrap = styled.div`
 
 export const AnswerCheckText = styled.span`
   font-size: 12px;
-`;
-
-interface ChoiceLabelProps {
-  isFocus: boolean;
-}
-
-const ChoiceLabel = styled.label<ChoiceLabelProps>`
-  height: 100%;
-  padding: ${vw(20)} ${vw(40)};
-  margin-bottom: 8px;
-  ${(props) =>
-    props.isFocus && `height:auto; display:flex; align-items: center;`}
 `;
 
 export const AnswerInput = styled.input`
@@ -101,74 +85,6 @@ const MultiChoiceCreator = ({
       updateContentToTemplate: updateContentToMultiChoiceTemplate,
     });
 
-  const focusTextEditor = useCallback(
-    (choiceIndex: number) => () => {
-      setFocusedTextEditorIndex(choiceIndex);
-    },
-    [],
-  );
-
-  const resetFocusedTextEditorIndex = useCallback(() => {
-    setFocusedTextEditorIndex(undefined);
-  }, []);
-
-  /**
-   * 현재 선택 영역 텍스트 업데이트
-   */
-  const setText = useCallback(
-    (rowIndex: number, text: string) => {
-      const newContent = {
-        ...thisContent,
-        data: {
-          ...thisContent.data,
-          choice: thisContent.data.choice.map((ch, chIndex) => {
-            if (chIndex === rowIndex) {
-              return text;
-            }
-            return ch;
-          }),
-        },
-      };
-      updateContentToMultiChoiceTemplate &&
-        updateContentToMultiChoiceTemplate(currentSlide.id, newContent);
-    },
-    [thisContent, updateContentToMultiChoiceTemplate, currentSlide.id],
-  );
-
-  const setAnswer = useCallback(
-    (rowIndex: number) => {
-      const newContent = {
-        ...thisContent,
-        data: {
-          ...thisContent.data,
-          answerIndex: rowIndex,
-        },
-      };
-      updateContentToMultiChoiceTemplate &&
-        updateContentToMultiChoiceTemplate(currentSlide.id, newContent);
-    },
-    [thisContent, updateContentToMultiChoiceTemplate, currentSlide.id],
-  );
-
-  /**
-   * 현재 선택 영역 텍스트 가져오기
-   */
-  const getText = useCallback(
-    (rowIndex: number) => {
-      return thisContent.data.choice[rowIndex] ?? "";
-    },
-    [thisContent.data],
-  );
-
-  const isTextEditorFocused = useCallback(
-    (isCurrentComponentFocused: boolean, choiceIndex: number) => {
-      return (
-        isCurrentComponentFocused && focusedTextEditorIndex === choiceIndex
-      );
-    },
-    [focusedTextEditorIndex],
-  );
-
   const saveQuizPopupModalData = (data: QuizPopupModalContentData) => {
     const newContent = {
       ...thisContent,
@@ -180,51 +96,6 @@ const MultiChoiceCreator = ({
     updateContentToMultiChoiceTemplate &&
       updateContentToMultiChoiceTemplate(currentSlide.id, newContent);
   };
-
-  const choices = useMemo(() => {
-    return thisContent.data.choice.map((choice, choiceIndex) => {
-      return (
-        <div key={`${choice}_${choiceIndex}`} className="inp-grp">
-          <ChoiceLabel
-            htmlFor={`answer${choiceIndex}`}
-            className="label-chck-gray"
-            onClick={focusTextEditor(choiceIndex)}
-            isFocus={isTextEditorFocused(isFocused, choiceIndex)}
-          >
-            <span className="text">
-              <TextEditorViewer
-                setText={(text) => setText(choiceIndex, text)}
-                text={getText(choiceIndex)}
-                isFocused={isTextEditorFocused(isFocused, choiceIndex)}
-                handleSubmitTextOnBlur={resetFocusedTextEditorIndex}
-              />
-            </span>
-          </ChoiceLabel>
-          <AnswerInput
-            type="radio"
-            name={`answerCheck_${thisContent.id}`}
-            id={`answerCheck_${choiceIndex}_${thisContent.id}`}
-            onClick={() => setAnswer(choiceIndex)}
-          />
-          <label
-            htmlFor={`answerCheck_${choiceIndex}_${thisContent.id}`}
-            onClick={() => setAnswer(choiceIndex)}
-          >
-            <AnswerCheckText className="text">정답</AnswerCheckText>
-          </label>
-        </div>
-      );
-    });
-  }, [
-    thisContent,
-    focusTextEditor,
-    getText,
-    isFocused,
-    isTextEditorFocused,
-    setText,
-    setAnswer,
-    resetFocusedTextEditorIndex,
-  ]);
 
   return (
     <ContentCreatorLayout
@@ -269,7 +140,20 @@ const MultiChoiceCreator = ({
             handleOnDragEnd={handleOnDragEnd}
           />
           <ChoiceWrap className={`quiz-answer-wrap hori-answer-wrap`}>
-            {choices}
+            {thisContent.data.choice.map((_, choiceIndex) => (
+              <MultiChoiceItem
+                key={`${choiceIndex}`}
+                currentSlide={currentSlide}
+                choiceIndex={choiceIndex}
+                isFocused={isFocused}
+                focusedTextEditorIndex={focusedTextEditorIndex}
+                setFocusedTextEditorIndex={setFocusedTextEditorIndex}
+                thisContent={thisContent}
+                updateContentToMultiChoiceTemplate={
+                  updateContentToMultiChoiceTemplate
+                }
+              />
+            ))}
           </ChoiceWrap>
         </MultiChoiceWrapper>
       </ContentBox>
