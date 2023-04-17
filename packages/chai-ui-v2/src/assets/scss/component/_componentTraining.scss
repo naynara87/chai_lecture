@@ -57,7 +57,7 @@
 
     overflow: auto;
     height: calc(100% - vw(165));
-    padding: vh(30) vw(45);
+    padding-bottom: vh(30);
     font-size: vw(24);
 
     // .text {
@@ -67,6 +67,14 @@
     //     margin-top: vw(20);
     //   }
     // }
+
+    .text-wrap {
+      @include scrollbar;
+
+      overflow: auto;
+      max-height: calc(100% - vh(20));
+      padding: vh(30) vw(45) 0;
+    }
   }
 
   .btns-wrap {
