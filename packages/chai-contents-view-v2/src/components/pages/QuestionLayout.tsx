@@ -2,6 +2,9 @@ import {
   CornerListData,
   CornerMeta,
   currentPageState,
+  deleteQuestion,
+  getCookie,
+  InitialAppData,
   LessonMeta,
   ModalQuestionTemplate,
   Page,
@@ -44,6 +47,8 @@ const QuestionLayout = ({
   const [isQuestionStartModalOpen, setIsQuestionStartModalOpen] =
     useState(false);
   const [questionSolvingTime, setQuestionSolvingTime] = useState(0);
+  const isSendDeletePagesData = useRef(false);
+  const learningLogCookieData = getCookie<InitialAppData>("bubble-player");
   const [, setCurrentPage] = useRecoilState(currentPageState);
 
   const [currentCornerId] = useRecoilState(currentCornerIdState);
@@ -67,6 +72,30 @@ const QuestionLayout = ({
   useEffect(() => {
     setCurrentPage(currentPage);
   }, [currentPage, setCurrentPage]);
+
+  const deleteQuestionsData = useCallback(
+    async (contentIds: string[]) => {
+      try {
+        await deleteQuestion(contentIds, learningLogCookieData?.uid ?? "");
+      } catch (error) {
+        console.log("서버 통신에 실패했습니다.");
+      }
+    },
+    [learningLogCookieData],
+  );
+
+  useEffect(() => {
+    if (isSendDeletePagesData.current) return;
+    isSendDeletePagesData.current = true;
+    const contentIds = pages.map((page) => {
+      const curPageData = page.data as TemplateQuestionData;
+      if (!curPageData.contents) {
+        return "0";
+      }
+      return curPageData.contents.id.toString();
+    });
+    deleteQuestionsData(contentIds);
+  }, [deleteQuestionsData, pages, isSendDeletePagesData]);
 
   // const exitPlayer = useCallback(() => {
   //   if (!currentPage || !currentPageIndex) return;
@@ -177,10 +206,11 @@ const QuestionLayout = ({
   return (
     <div className="cai-view-yahei">
       <LayoutQuestionHeader
-        headerText={`${getLessonName(lessonMetaData.colorTypeCd)} ${lessonMetaData.lessonTpCd.toString() === "20"
+        headerText={`${getLessonName(lessonMetaData.colorTypeCd)} ${
+          lessonMetaData.lessonTpCd.toString() === "20"
             ? "연습문제"
             : "종합문제"
-          }`}
+        }`}
         solvingTime={questionSolvingTime}
       />
       <main className="cai-main problem-main">
@@ -202,10 +232,11 @@ const QuestionLayout = ({
         isModalOpen={isQuestionStartModalOpen}
         setIsModalOpen={setIsQuestionStartModalOpen}
         wideModal
-        quizTypeText={`${getLessonName(lessonMetaData.colorTypeCd)} ${lessonMetaData.lessonTpCd.toString() === "20"
+        quizTypeText={`${getLessonName(lessonMetaData.colorTypeCd)} ${
+          lessonMetaData.lessonTpCd.toString() === "20"
             ? "연습문제"
             : "종합문제"
-          }`}
+        }`}
         quizTotalLength={pages.length}
         onClickStart={startQuiz}
       />
