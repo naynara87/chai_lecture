@@ -13,6 +13,8 @@ const ContStartWrapper = styled.div`
   }
 
   .character-wrap {
+    margin-top: ${vw(57)};
+
     .img {
       width: ${vw(450)};
       height: ${vw(450)};

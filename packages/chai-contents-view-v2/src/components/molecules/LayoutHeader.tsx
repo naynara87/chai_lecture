@@ -43,6 +43,7 @@ const HdContWrap = styled.div<HdContWrapProps>`
 
   &:before {
     width: ${(props) => props.cornerPercent > 99 ? "100%" : `${props.cornerPercent}%`};
+    min-width: 17%;
     background-color: ${(props) => props.lessonColor.main};
   }
 
