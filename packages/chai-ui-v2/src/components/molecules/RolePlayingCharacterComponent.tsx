@@ -8,7 +8,7 @@ import React, {
 } from "react";
 import { colorPalette } from "../../assets";
 import { ID, RolePlayingCharacter, useGlobalAudio } from "../../core";
-import { ImgProfileDefaultComponent } from "../atoms";
+import { HtmlContentComponent, ImgProfileDefaultComponent } from "../atoms";
 import ComponentButtonRadiFillOrange from "../atoms/ComponentButtonRadiFillOrange";
 import { v4 as uuidv4 } from "uuid";
 import AudioRecorder from "../contents/AudioRecorder";
@@ -81,10 +81,18 @@ const RolePlayingCharacterComponent = ({
 
   const pinyin = useMemo(() => {
     if (selectCharacterId !== id) {
-      return <p className="pinyin">{pronunciation}</p>;
+      return (
+        <p className="pinyin">
+          <HtmlContentComponent html={pronunciation} />
+        </p>
+      );
     }
     if (isShowHint) {
-      return <p className="pinyin">{pronunciation}</p>;
+      return (
+        <p className="pinyin">
+          <HtmlContentComponent html={pronunciation} />
+        </p>
+      );
     } else {
       return (
         <ComponentButtonRadiFillOrange
@@ -144,9 +152,15 @@ const RolePlayingCharacterComponent = ({
             className="bubble-wrap"
             backgroundColor={character?.backgroundColor ?? ""}
           >
-            <p className="chinese">{text}</p>
+            <p className="chinese">
+              <HtmlContentComponent html={text} />
+            </p>
             {pinyin}
-            {id === selectCharacterId && <p className="mean">{meaning}</p>}
+            {id === selectCharacterId && (
+              <p className="mean">
+                <HtmlContentComponent html={meaning} />
+              </p>
+            )}
           </BubbleWrap>
         </div>
         {selectCharacterId === id && (
