@@ -20,6 +20,7 @@ const ContStartWrapper = styled.div`
   }
 
   .character-wrap {
+    margin-top: ${vw(57)};
     text-align: center;
 
     .img {
