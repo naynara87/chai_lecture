@@ -6,6 +6,15 @@ import {
 } from "../contents";
 import { ComponentChoiceRole } from "../molecules";
 import RolePlayingComponent from "../contents/RolePlayingComponent";
+import styled from "@emotion/styled";
+
+const GuideContentContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ActivityGuideCharacterComponentWrapper = styled.div``;
 
 interface TemplateRolePlayingProps extends TemplateProps {}
 
@@ -45,14 +54,43 @@ const TemplateRolePlaying = ({
     );
   }, [handleClickSelectCharacter, thisPage]);
 
+  const guideContentContainerRef = React.useRef<HTMLDivElement>(null);
+  const containerHeight = guideContentContainerRef.current?.clientHeight;
+
+  const guideContentWrapperRef = React.useRef<HTMLDivElement>(null);
+  const contentHeight = guideContentWrapperRef.current?.clientHeight;
+
+  useEffect(() => {
+    if (
+      !guideContentContainerRef.current ||
+      !guideContentWrapperRef.current ||
+      !containerHeight ||
+      !contentHeight
+    ) {
+      return;
+    }
+    if (containerHeight <= contentHeight) {
+      guideContentContainerRef.current.style.alignItems = "flex-start";
+    }
+  });
+
   const rolePlayingLayout = useMemo(() => {
     return (
       <div className="layout-panel-wrap grid-h-3-7">
-        <div className="layout-panel side-panel">
+        <GuideContentContainer
+          className="layout-panel side-panel"
+          ref={guideContentContainerRef}
+        >
           {thisPage.guideContent && (
-            <ActivityGuideCharacterComponent contents={thisPage.guideContent} />
+            <ActivityGuideCharacterComponentWrapper
+              ref={guideContentWrapperRef}
+            >
+              <ActivityGuideCharacterComponent
+                contents={thisPage.guideContent}
+              />
+            </ActivityGuideCharacterComponentWrapper>
           )}
-        </div>
+        </GuideContentContainer>
         <div className="layout-panel wide-panel">
           {thisPage.rolePlayingContents && thisPage.characters && (
             <RolePlayingComponent

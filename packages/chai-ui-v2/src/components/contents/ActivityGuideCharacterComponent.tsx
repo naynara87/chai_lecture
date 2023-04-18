@@ -5,10 +5,6 @@ import styled from "@emotion/styled";
 import { vw } from "../../assets";
 import allCharacter from "../../assets/images/img/cha_all.png";
 
-export interface ActivityGuideCharacterComponentProps {
-  contents: ActivityGuideCharacterContentData;
-}
-
 const ContStartWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -33,6 +29,10 @@ const ContStartWrapper = styled.div`
     }
   }
 `;
+
+export interface ActivityGuideCharacterComponentProps {
+  contents: ActivityGuideCharacterContentData;
+}
 
 /**
  * CH-02-02 활동 안내
