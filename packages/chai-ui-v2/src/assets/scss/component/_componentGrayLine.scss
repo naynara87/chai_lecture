@@ -7,7 +7,12 @@
   line-height: 1.6;
   white-space: pre-line;
 
-  > div:not(:first-of-type) {
+  >div:not(:first-of-type) {
     margin-top: vh(40);
+  }
+
+  .image-with-caption-wrapper img {
+    width: vw(200);
+    height: vw(150);
   }
 }
