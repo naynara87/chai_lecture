@@ -77,6 +77,7 @@ const QuestionLayout = ({
     async (contentIds: string[]) => {
       try {
         await deleteQuestion(contentIds, learningLogCookieData?.uid ?? "");
+        isSendDeletePagesData.current = true;
       } catch (error) {
         console.log("서버 통신에 실패했습니다.");
       }
@@ -86,7 +87,6 @@ const QuestionLayout = ({
 
   useEffect(() => {
     if (isSendDeletePagesData.current) return;
-    isSendDeletePagesData.current = true;
     const contentIds = pages.map((page) => {
       const curPageData = page.data as TemplateQuestionData;
       if (!curPageData.contents) {
@@ -218,7 +218,7 @@ const QuestionLayout = ({
           pages={pages}
           onClickPagination={handleClickPagination}
         />
-        {currentPage?.data && (
+        {isSendDeletePagesData && currentPage?.data && (
           <TemplateQuestion
             template={currentPage.data as TemplateQuestionData}
             setPageCompleted={setPageCompleted}
