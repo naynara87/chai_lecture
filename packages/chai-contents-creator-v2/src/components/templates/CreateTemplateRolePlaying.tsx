@@ -549,6 +549,8 @@ const CreateTemplateRolePlaying = ({
                         onSubmitMeaning={updateRolePlayingContentsMeaning(
                           index,
                         )}
+                        setFocusedId={setFocusedId}
+                        focusedId={focusedId}
                       />
                     );
                   },
