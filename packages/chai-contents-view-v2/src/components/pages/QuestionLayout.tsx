@@ -218,7 +218,7 @@ const QuestionLayout = ({
           pages={pages}
           onClickPagination={handleClickPagination}
         />
-        {isSendDeletePagesData && currentPage?.data && (
+        {isSendDeletePagesData.current && currentPage?.data && (
           <TemplateQuestion
             template={currentPage.data as TemplateQuestionData}
             setPageCompleted={setPageCompleted}
