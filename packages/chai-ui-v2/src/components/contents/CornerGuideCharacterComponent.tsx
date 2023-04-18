@@ -15,6 +15,7 @@ const ContStartWrapper = styled.div`
   flex-direction: column;
   
   .text-bubble-wrap {
+    margin-top: ${vw(27)};
     padding: ${vw(40)} ${vw(80)};
     border-radius: ${vw(100)};
     font-weight: 600;

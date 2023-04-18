@@ -78,12 +78,12 @@
     overflow: hidden;
   }
 
-  > *:not(:first-of-type) {
+  >*:not(:first-of-type) {
     margin: vh(40) auto 0;
   }
 
-  .description-bubble-container,
-  .btns-wrap {
+  .description-bubble-container:not(:first-of-type),
+  .btns-wrap:not(:first-of-type) {
     margin-top: vh(60);
   }
 

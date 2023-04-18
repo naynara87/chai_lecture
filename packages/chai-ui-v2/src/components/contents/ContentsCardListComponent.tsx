@@ -16,6 +16,11 @@ const ContentsBoxWrap = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   gap: ${vw(30)};
+  
+  .image-with-caption-wrapper img {
+    width: ${vw(200)};
+    height: ${vw(150)};
+  }
 `;
 
 interface TextBoxProps {

@@ -29,7 +29,7 @@ $gray-color: #d6d7da;
   align-items: center;
   color: color(gray-ff);
 
-  > img {
+  >img {
     margin-right: vw(10);
     vertical-align: bottom;
   }
@@ -43,7 +43,8 @@ $gray-color: #d6d7da;
   .problem-top-button-wrapper {
     width: vw(1610);
     margin: vh(30) auto 0;
-    overflow-x: scroll;
+    // overflow-x: scroll;
+
     &::-webkit-scrollbar {
       display: none;
     }
@@ -62,6 +63,10 @@ $gray-color: #d6d7da;
   .btn-radi-border-main {
     background-color: color(gray-ff);
   }
+
+  .layout-panel {
+    overflow-y: scroll;
+  }
 }
 
 // submit button style
@@ -79,7 +84,7 @@ $gray-color: #d6d7da;
   transform: translateX(50%);
   box-shadow: 0 6px 20px rgba(120, 127, 153, 0.6);
 
-  > span {
+  >span {
     display: block;
     margin-bottom: vh(8);
     font-weight: 600;
@@ -168,7 +173,7 @@ $gray-color: #d6d7da;
   background-color: $main-light-color;
   font-size: vw(24);
 
-  > b {
+  >b {
     color: $main-color;
   }
 }
