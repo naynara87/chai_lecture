@@ -1,9 +1,16 @@
+import styled from "@emotion/styled";
 import { TemplateQuizMultiChoiceData } from "chai-ui-v2";
 import { CreateEditMain } from "../../styles/template";
 import { PageCommonProps } from "../../types/page";
 import DashBoxArea from "../atoms/DashBoxArea";
 import PageHeader from "../molecules/PageHeader";
 import { CreateEditMainWrap37 } from "./CreateTemplateH37";
+
+const LeftContentContainer = styled.div`
+  display: flex;
+  align-items: center;
+  height: 100%;
+`;
 
 const CreateTemplateQuizMultiChoice = ({
   templateType,
@@ -33,21 +40,23 @@ const CreateTemplateQuizMultiChoice = ({
       <CreateEditMainWrap37>
         <CreateEditMain>
           <DashBoxArea droppableId={leftDroppableId}>
-            {thisSlide.leftContents &&
-              thisSlide.leftContents.map((content, index) => {
-                return getComponent({
-                  index,
-                  currentSlide: thisSlide,
-                  content,
-                  isFocused: focusedId === content.id,
-                  setFocusedId,
-                  updateContent,
-                  deleteContent,
-                  position: "leftContents",
-                  isDraggable: false,
-                  isEditBtn: false,
-                });
-              })}
+            <LeftContentContainer>
+              {thisSlide.leftContents &&
+                thisSlide.leftContents.map((content, index) => {
+                  return getComponent({
+                    index,
+                    currentSlide: thisSlide,
+                    content,
+                    isFocused: focusedId === content.id,
+                    setFocusedId,
+                    updateContent,
+                    deleteContent,
+                    position: "leftContents",
+                    isDraggable: false,
+                    isEditBtn: false,
+                  });
+                })}
+            </LeftContentContainer>
           </DashBoxArea>
         </CreateEditMain>
         <CreateEditMain>
