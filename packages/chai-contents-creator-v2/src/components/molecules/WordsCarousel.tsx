@@ -19,6 +19,7 @@ import TextEditorViewer from "./TextEditorViewer";
 import IconPlay from "chai-ui-v2/dist/assets/images/icon/icon_play.svg";
 import IconArrowRight from "chai-ui-v2/dist/assets/images/icon/icon_arrow_right_gray.svg";
 import IconArrowLeft from "chai-ui-v2/dist/assets/images/icon/icon_arrow_left_gray.svg";
+import useSafeKey from "../../hooks/useSafeKey";
 
 const WordsCardWrapper = styled.div`
   overflow: auto;
@@ -227,6 +228,10 @@ const WordsCarousel = ({
 
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
 
+  const { addKeyByArrayLength, deleteKeyByIndex, getKeyByIndex } = useSafeKey(
+    wordsCarouselData.words,
+  );
+
   useEffect(() => {
     if (moving && wordsCarouselData.words.length) {
       setCurrentWordIndex(wordsCarouselData.words.length - 1);
@@ -238,11 +243,12 @@ const WordsCarousel = ({
     (wordIndex: number) => {
       const word = wordsCarouselData.words[wordIndex];
       return (
-        <SlideCard>
+        <SlideCard key={getKeyByIndex(wordIndex)}>
           <WordsCardWrapper>
             <ObjectDeleteButton
               onClick={() => {
                 deleteImage(wordIndex);
+                deleteKeyByIndex(wordIndex);
               }}
             />
 
@@ -278,6 +284,8 @@ const WordsCarousel = ({
       deleteImage,
       setAudioUrl,
       setText,
+      deleteKeyByIndex,
+      getKeyByIndex,
     ],
   );
 
@@ -294,6 +302,7 @@ const WordsCarousel = ({
                 onClick={() => {
                   addCard();
                   setMoving(true);
+                  addKeyByArrayLength(wordsCarouselData.words.length);
                 }}
               >
                 단어카드 추가
