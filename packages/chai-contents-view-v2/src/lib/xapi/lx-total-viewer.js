@@ -4773,10 +4773,7 @@ code.google.com/p/crypto-js/wiki/License
             var mys = bareStatement();
             mys.verb = new ADL.XAPIStatement.Verb(
               "http://adlnet.gov/expapi/verbs/played",
-              "".concat(
-                contentType === "video" ? "동영상" : "오디오",
-                "\uB97C \uC7AC\uC0DD\uD568",
-              ),
+              "재생함",
             );
             mys.result = _objectSpread({}, currentPageResultExtensions);
             mys.object = _objectSpread(
@@ -4975,6 +4972,26 @@ code.google.com/p/crypto-js/wiki/License
               "http://adlnet.gov/expapi/verbs/progressed",
               "학습 페이지 전환",
             );
+            mys.object = _objectSpread(
+              _objectSpread({}, mys.object),
+              {},
+              {
+                definition: _objectSpread(
+                  _objectSpread({}, mys.object.definition),
+                  {},
+                  {
+                    extensions: _objectSpread(
+                      _objectSpread({}, mys.object.definition.extensions),
+                      {},
+                      {
+                        "https://profile.caihong.co.kr/content-management/course/local-content-id":
+                          playerLessonId,
+                      },
+                    ),
+                  },
+                ),
+              },
+            );
             mys.result = {
               extensions: {
                 "https://profile.caihong.co.kr/content-management/course/lessons/part-name":
@@ -5050,7 +5067,27 @@ code.google.com/p/crypto-js/wiki/License
             saveState(newState);
             mys.verb = new ADL.XAPIStatement.Verb(
               "http://adlnet.gov/expapi/verbs/completed",
-              "이수 기준을 달성함",
+              "완료함",
+            );
+            mys.object = _objectSpread(
+              _objectSpread({}, mys.object),
+              {},
+              {
+                definition: _objectSpread(
+                  _objectSpread({}, mys.object.definition),
+                  {},
+                  {
+                    extensions: _objectSpread(
+                      _objectSpread({}, mys.object.definition.extensions),
+                      {},
+                      {
+                        "https://profile.caihong.co.kr/content-management/course/local-content-id":
+                          playerLessonId,
+                      },
+                    ),
+                  },
+                ),
+              },
             );
             mys.result = {
               extensions: {
@@ -5099,28 +5136,46 @@ code.google.com/p/crypto-js/wiki/License
             sessionId = ADL.ruuid(); // Different from current xAPI Video Profile
             var mys = bareStatement();
             playerTotalPages = totalPages;
-            playerLessonId = lessonId;
+            playerLessonId = parseInt(lessonId);
             mys.id = sessionId;
             mys.verb = new ADL.XAPIStatement.Verb(
               "http://adlnet.gov/expapi/verbs/initialized",
               "통합학습 플레이어 로드",
             );
-            mys.context = {
-              extensions: {
-                "https://profile.caihong.co.kr/content-management/course/local-content-id":
-                  lessonId,
-                // 레슨 id
-                "https://profile.caihong.co.kr/content-management/course/session-id":
-                  sessionId,
-                "https://profile.caihong.co.kr/content-management/course/lessons/pages":
-                  playerTotalPages.length,
+            mys.object = _objectSpread(
+              _objectSpread({}, mys.object),
+              {},
+              {
+                definition: _objectSpread(
+                  _objectSpread({}, mys.object.definition),
+                  {},
+                  {
+                    extensions: _objectSpread(
+                      _objectSpread({}, mys.object.definition.extensions),
+                      {},
+                      {
+                        "https://profile.caihong.co.kr/content-management/course/local-content-id":
+                          playerLessonId,
+                      },
+                    ),
+                  },
+                ),
               },
+            );
+            mys.context = {
+              extensions: {},
             };
             if (contextDetails) {
               Object.assign(mys.context, contextDetails);
             }
             if (extensionDetails) {
               Object.assign(mys.context.extensions, extensionDetails);
+              Object.assign(mys.context.extensions, {
+                "https://profile.caihong.co.kr/content-management/course/session-id":
+                  sessionId,
+                "https://profile.caihong.co.kr/content-management/course/lessons/pages":
+                  playerTotalPages.length,
+              });
             }
             if (mys.context.contextActivities) {
               mys.context.contextActivities.parent[0].id =
@@ -5141,6 +5196,26 @@ code.google.com/p/crypto-js/wiki/License
             mys.verb = new ADL.XAPIStatement.Verb(
               "http://adlnet.gov/expapi/verbs/suspended",
               "학습을 일시 중지함",
+            );
+            mys.object = _objectSpread(
+              _objectSpread({}, mys.object),
+              {},
+              {
+                definition: _objectSpread(
+                  _objectSpread({}, mys.object.definition),
+                  {},
+                  {
+                    extensions: _objectSpread(
+                      _objectSpread({}, mys.object.definition.extensions),
+                      {},
+                      {
+                        "https://profile.caihong.co.kr/content-management/course/local-content-id":
+                          playerLessonId,
+                      },
+                    ),
+                  },
+                ),
+              },
             );
             mys.result = {
               extensions: {
