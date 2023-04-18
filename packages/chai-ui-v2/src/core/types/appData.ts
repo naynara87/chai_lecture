@@ -157,6 +157,12 @@ export type QuizData = {
   contentId?: string;
 };
 
+/**
+ * lesson : 콘텐트, 문제 학습
+ * paper : 시험지
+ */
+export type AppType = "lesson" | "paper";
+
 // 저작도구로부터 cookie 에서 받아오는 초기데이터
 export interface InitialAppData {
   uno: string;
@@ -170,6 +176,7 @@ export interface InitialAppData {
   courseName: string;
   lessonId: string;
   lessonName: string;
+  type: AppType;
 }
 
 export interface InitialInputAppData {
