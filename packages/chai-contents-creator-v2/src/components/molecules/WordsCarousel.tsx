@@ -242,6 +242,9 @@ const WordsCarousel = ({
   const getWordByIndex = useCallback(
     (wordIndex: number) => {
       const word = wordsCarouselData.words[wordIndex];
+      if (!word) {
+        return null;
+      }
       return (
         <SlideCard key={getKeyByIndex(wordIndex)}>
           <WordsCardWrapper>
@@ -249,6 +252,9 @@ const WordsCarousel = ({
               onClick={() => {
                 deleteImage(wordIndex);
                 deleteKeyByIndex(wordIndex);
+                if (currentWordIndex !== 0) {
+                  setCurrentWordIndex((prev) => prev - 1);
+                }
               }}
             />
 
@@ -286,6 +292,7 @@ const WordsCarousel = ({
       setText,
       deleteKeyByIndex,
       getKeyByIndex,
+      currentWordIndex,
     ],
   );
 
