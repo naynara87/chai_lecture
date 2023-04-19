@@ -1,7 +1,8 @@
 /* =================== problemLayout =================== */
 $cont-padding: vw(40);
-$main-color: #6673a3;
 $main-light-color: #e3e3e7;
+$main-color: #6673a3;
+$main-dark-color: #46538C;
 $gray-color: #d6d7da;
 
 // header style
@@ -82,7 +83,8 @@ $gray-color: #d6d7da;
   right: 0;
   background-color: $main-color;
   transform: translateX(50%);
-  box-shadow: 0 6px 20px rgba(120, 127, 153, 0.6);
+  box-shadow: 0 vw(6) vw(20) rgba(120, 127, 153, 0.6);
+  transition: all 0.3s;
 
   >span {
     display: block;
@@ -91,6 +93,10 @@ $gray-color: #d6d7da;
     font-size: vw(20);
     color: color(gray-ff);
     text-align: center;
+  }
+
+  @include hover {
+    background-color: $main-dark-color;
   }
 }
 
@@ -139,7 +145,7 @@ $gray-color: #d6d7da;
   gap: vw(16);
   height: vh(90);
   padding: 0 $cont-padding;
-  background-color: color(gray-f5);
+  background-color: $main-light-color;
 }
 
 .problem-pagination {
@@ -148,22 +154,23 @@ $gray-color: #d6d7da;
   flex-shrink: 0;
   min-width: vw(62);
   height: vw(62);
-  border: 1px solid $gray-color;
+  border: 1px solid color(gray-f0);
   border-radius: vw(10);
-  background-color: color(gray-f0);
+  background-color: $gray-color;
   font-weight: 500;
   font-size: vw(24);
   color: color(gray-80);
   text-align: center;
 
   &.end {
-    background-color: color(gray-ff);
+    background-color: color(gray-f5);
     color: $main-color;
   }
 
   &.active {
     background-color: $main-color;
     color: color(gray-ff);
+    box-shadow: 0 vw(2) vw(10) rgba(0, 0, 0, 0.25);
   }
 }
 
@@ -192,9 +199,15 @@ $gray-color: #d6d7da;
   border-radius: vw(10);
   background-color: color(gray-ff);
   font-size: vw(22);
+  transition: all 0.2s;
 
   img {
     width: vw(18);
+  }
+
+  @include hover {
+    border-color: $main-color;
+    color: $main-dark-color;
   }
 }
 
@@ -212,6 +225,12 @@ $gray-color: #d6d7da;
   border-radius: vw(100);
   background-color: color(gray-ff);
   font-size: vw(22);
+  transition: all 0.2s;
+
+  @include hover {
+    border-color: $main-color;
+    color: $main-dark-color;
+  }
 }
 
 .btn-problem-gray {
@@ -228,8 +247,13 @@ $gray-color: #d6d7da;
   background-color: color(gray-80);
   font-size: vw(22);
   color: color(gray-ff);
+  transition: all 0.2s;
 
   img {
     width: vw(20);
+  }
+
+  @include hover {
+    background-color: color(gray-56);
   }
 }

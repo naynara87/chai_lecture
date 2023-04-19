@@ -90,7 +90,7 @@ const TemplateQuestion = ({
       return (
         <button className="btn btn-problem" onClick={handleClickCheckScore}>
           <span>채점하기</span>
-          <img src={ArrowIcon} alt="바로가기아이콘" />
+          <img src={ArrowIcon} alt="바로가기" />
         </button>
       );
     }
@@ -100,9 +100,8 @@ const TemplateQuestion = ({
   return (
     <div className="layout-panel-wrap">
       {/* <div className="question-number attched">{`[50 ~ 87]`}</div> */}
-      <div className="question-number">{`${
-        pageIdx !== undefined ? pageIdx + 1 : 0
-      }번`}</div>
+      <div className="question-number">{`${pageIdx !== undefined ? pageIdx + 1 : 0
+        }번`}</div>
       <QuestionPanel className="layout-panel iframe-panel">
         {!isLoaded && (
           <LoadingSpinnerContainer>

@@ -48,7 +48,7 @@ const TemplateProblem = () => {
           </div>
           <button className="btn btn-problem">
             <span>채점하기</span>
-            {/* <img src={BtnIcon} alt="바로가기아이콘" /> */}
+            {/* <img src={BtnIcon} alt="바로가기" /> */}
           </button>
         </div>
       </main>
