@@ -47,10 +47,6 @@
   }
 
   .txt-wrap {
-    @include flex {
-      flex-wrap: wrap;
-    }
-
     width: calc(100% - vw(160));
     line-height: 1.6;
     word-break: break-all;

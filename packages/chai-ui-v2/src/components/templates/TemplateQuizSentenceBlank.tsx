@@ -37,6 +37,11 @@ const DialogueContainer = styled.div`
     word-break: break-all;
     font-weight: 400;
   }
+
+  .txt-wrap {
+    display: flex;
+    flex-wrap: wrap;
+  }
 `;
 
 const QuizContainer = styled.form`
