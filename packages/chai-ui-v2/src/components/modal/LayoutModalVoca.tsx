@@ -97,7 +97,6 @@ const LayoutModalVoca = ({
               <SwiperWrapper>
                 <Swiper
                   modules={[Pagination]}
-                  loop
                   pagination={{
                     dynamicBullets: true,
                     dynamicMainBullets: 4,
