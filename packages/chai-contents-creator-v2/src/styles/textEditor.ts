@@ -32,87 +32,87 @@ export const TextEditorWrapper = styled.div<TextEditorWrapperProps>`
       overflow: scroll;
       overflow-x: hidden;
     }
-    [data-value="16px"] {
+    [data-value="0.8vw"] {
       ::before {
         content: "16px" !important;
       }
     }
-    [data-value="20px"] {
+    [data-value="1vw"] {
       ::before {
         content: "20px" !important;
       }
     }
-    [data-value="22px"] {
+    [data-value="1.1vw"] {
       ::before {
         content: "22px" !important;
       }
     }
-    [data-value="24px"] {
+    [data-value="1.2vw"] {
       ::before {
         content: "24px" !important;
       }
     }
-    [data-value="26px"] {
+    [data-value="1.3vw"] {
       ::before {
         content: "26px" !important;
       }
     }
-    [data-value="28px"] {
+    [data-value="1.4vw"] {
       ::before {
         content: "28px" !important;
       }
     }
-    [data-value="32px"] {
+    [data-value="1.6vw"] {
       ::before {
         content: "32px" !important;
       }
     }
-    [data-value="36px"] {
+    [data-value="1.8vw"] {
       ::before {
         content: "36px" !important;
       }
     }
-    [data-value="40px"] {
+    [data-value="2vw"] {
       ::before {
         content: "40px" !important;
       }
     }
-    [data-value="45px"] {
+    [data-value="2.25vw"] {
       ::before {
         content: "45px" !important;
       }
     }
-    [data-value="48px"] {
+    [data-value="2.4vw"] {
       ::before {
         content: "48px" !important;
       }
     }
-    [data-value="50px"] {
+    [data-value="2.5vw"] {
       ::before {
         content: "50px" !important;
       }
     }
-    [data-value="56px"] {
+    [data-value="2.8vw"] {
       ::before {
         content: "56px" !important;
       }
     }
-    [data-value="60px"] {
+    [data-value="3vw"] {
       ::before {
         content: "60px" !important;
       }
     }
-    [data-value="64px"] {
+    [data-value="3.2vw"] {
       ::before {
         content: "64px" !important;
       }
     }
-    [data-value="70px"] {
+    [data-value="3.5vw"] {
       ::before {
         content: "70px" !important;
       }
     }
-    [data-value="80px"] {
+    [data-value="4vw"] {
       ::before {
         content: "80px" !important;
       }
