@@ -59,6 +59,12 @@ const ButtonStart = styled.button`
   border-radius: ${vw(100)};
   font-size: ${vw(24)};
   font-weight: 700;
+  transition: all 0.3s;
+
+  &:hover,
+  &:focus {
+    background-color: #46538C;
+  }
 `;
 
 const ModalQuestionTemplate = ({
@@ -77,9 +83,8 @@ const ModalQuestionTemplate = ({
     <ModalBase open={isModalOpen} onClose={handleClose}>
       <div className="modal active">
         <div
-          className={`modal-container base-modal ${
-            wideModal ? "wide-modal" : ""
-          }`}
+          className={`modal-container base-modal ${wideModal ? "wide-modal" : ""
+            }`}
         >
           <div className="base-wrapper">
             <button className="btn-close-modal" onClick={handleClose}>
