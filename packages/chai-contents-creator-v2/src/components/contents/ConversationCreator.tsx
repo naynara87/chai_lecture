@@ -355,6 +355,7 @@ const ConversationCreator = ({
             {thisTemplateType === "TemplateConversationRepeat" && (
               <SpeakingTimeInputWrapper
                 onSubmit={handleSubmitSpeakingTime(listIndex)}
+                defaultText={list.speakingTime ? list.speakingTime.toString() : undefined}
               />
             )}
           </div>
