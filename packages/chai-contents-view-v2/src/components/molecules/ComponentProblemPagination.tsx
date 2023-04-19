@@ -17,6 +17,7 @@ const SwiperWrapper = styled.div`
   .swiper-wrapper {
     padding: 14px 0;
   }
+
   .swiper-slide:not(.swiper-slide-active) {
     opacity: 1;
   }
@@ -33,9 +34,8 @@ const ComponentProblemPagination = ({
       return (
         <SwiperSlide key={pageIndex}>
           <button
-            className={`problem-pagination ${
-              questionDatas ? questionDatas[pageIndex].state : ""
-            } ${page.id.toString() === pageId ? "active" : ""} `}
+            className={`problem-pagination ${questionDatas ? questionDatas[pageIndex].state : ""
+              } ${page.id.toString() === pageId ? "active" : ""} `}
             key={pageIndex}
             onClick={() => {
               onClickPagination(pageIndex);
@@ -54,7 +54,7 @@ const ComponentProblemPagination = ({
         loop={false}
         pagination={false}
         spaceBetween={16}
-        slidesPerView={18}
+        slidesPerView={20.5}
         slidesPerGroup={1}
         scrollbar={{ draggable: true }}
         className="problem-top-button-wrapper pagination-wrapper"
