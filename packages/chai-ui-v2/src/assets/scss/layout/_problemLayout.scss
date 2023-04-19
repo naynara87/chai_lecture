@@ -139,7 +139,7 @@ $gray-color: #d6d7da;
   gap: vw(16);
   height: vh(90);
   padding: 0 $cont-padding;
-  background-color: color(gray-f5);
+  background-color: $main-light-color;
 }
 
 .problem-pagination {
@@ -148,22 +148,23 @@ $gray-color: #d6d7da;
   flex-shrink: 0;
   min-width: vw(62);
   height: vw(62);
-  border: 1px solid $gray-color;
+  border: 1px solid color(gray-f0);
   border-radius: vw(10);
-  background-color: color(gray-f0);
+  background-color: $gray-color;
   font-weight: 500;
   font-size: vw(24);
   color: color(gray-80);
   text-align: center;
 
   &.end {
-    background-color: color(gray-ff);
+    background-color: color(gray-f5);
     color: $main-color;
   }
 
   &.active {
     background-color: $main-color;
     color: color(gray-ff);
+    box-shadow: 0 vw(2) vw(10) rgba(0, 0, 0, 0.25);
   }
 }
 
