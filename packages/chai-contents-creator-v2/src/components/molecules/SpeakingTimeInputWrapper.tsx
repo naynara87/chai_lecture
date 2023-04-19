@@ -33,8 +33,11 @@ const UrlTextWrapper = styled.div`
   }
 `;
 
-const WarningMessage = styled.p`
-  color: ${colorPalette.red700};
+interface WarningMessageProps {
+  isInputOk: boolean;
+}
+const WarningMessage = styled.p<WarningMessageProps>`
+  color: ${({isInputOk}) => isInputOk ? colorPalette.purple700 : colorPalette.red700};
 `;
 
 interface ButtonProps {
@@ -55,6 +58,7 @@ const SpeakingTimeInputWrapper = ({ onSubmit, defaultText }: ButtonProps) => {
 
     if (!time || time < 1) {
       setMessage("발화시간을 정확히 입력해주세요.");
+      setIsUpload(false);
       return;
     } else {
       setIsUpload(true);
@@ -90,7 +94,7 @@ const SpeakingTimeInputWrapper = ({ onSubmit, defaultText }: ButtonProps) => {
         <ButtonDelete onClick={deleteTime}>제거</ButtonDelete>
       </form>
       {message && (
-        <WarningMessage className="waring-message">{message}</WarningMessage>
+        <WarningMessage className="waring-message" isInputOk={isUpload}>{message}</WarningMessage>
       )}
     </UrlTextWrapper>
   );
