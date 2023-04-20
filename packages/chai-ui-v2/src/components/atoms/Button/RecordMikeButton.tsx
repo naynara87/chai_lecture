@@ -9,7 +9,7 @@ const RecordMikeButton = ({ onClickBtn }: RecordMikeButtonProps) => {
   return (
     <>
       <IconMikeButton onClickBtn={onClickBtn} />
-      <p className="txt">녹음을 시작해보세요</p>
+      <p className="txt">녹음을 시작해 보세요</p>
     </>
   );
 };

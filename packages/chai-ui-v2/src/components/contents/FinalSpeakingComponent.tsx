@@ -339,21 +339,21 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
               : renderRecordedAudioIcon}
           </div>
         </ButtonWrapper>
-        {isSendBlobUrl || recordedAudioState === "recorded" ? (
-          <div className="btns-wrap">
-            <ComponentButtonRadiFillMain
-              text="녹음 파일 제출"
-              onClickBtn={() => {
-                // TODO kjw toast message 띄우기
-                handleSendRecording();
-              }}
-              isDisabled={isSendBlobUrl}
-            />
-          </div>
-        ) : (
-          <></>
-        )}
       </div>
+      {isSendBlobUrl || recordedAudioState === "recorded" ? (
+        <div className="btns-wrap">
+          <ComponentButtonRadiFillMain
+            text="녹음 파일 제출"
+            onClickBtn={() => {
+              // TODO kjw toast message 띄우기
+              handleSendRecording();
+            }}
+            isDisabled={isSendBlobUrl}
+          />
+        </div>
+      ) : (
+        <></>
+      )}
       {isSendBlobUrl && (
         <div className="answer-sheet-wrapper">
           <div className="answer-sheet-title">

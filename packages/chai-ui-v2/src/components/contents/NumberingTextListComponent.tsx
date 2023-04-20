@@ -31,16 +31,15 @@ const NumberingTextListComponent = ({
           <span className="number">{numberingTextIndex + 1}</span>
           {/* key설명 - 저작도구에서 text2의 입력이 없어 text2가 생성되지 않고, text1 width: 100% */}
           <NumberingTextList
-            className={numberingText.secondText ? "text2" : "text1"}
+            className="text"
           >
             <NumberingText
-              className="chinese"
               isWithSecondText={numberingText.secondText ? true : false}
             >
               <HtmlContentComponent html={numberingText.firstText} />
             </NumberingText>
             {numberingText.secondText && (
-              <NumberingText className="pinyin" isWithSecondText={true}>
+              <NumberingText isWithSecondText={true}>
                 <HtmlContentComponent html={numberingText.secondText} />
               </NumberingText>
             )}

@@ -17,9 +17,10 @@
   .number {
     @include circle(vw(36));
 
-    // position: absolute;
-    // top: vw(28);
-    // left: vw(40);
+    position: absolute;
+    top: vw(35);
+    left: vw(40);
+    // margin-top: vw(10);
     background-color: color(main);
     line-height: vw(34);
     font-weight: 600;
@@ -28,31 +29,10 @@
     text-align: center;
   }
 
-  .text1 {
-    padding-left: vw(24);
-    font-size: vw(34);
-    white-space: pre-line;
+  .text {
     width: 100%;
-  }
-
-  .text2 {
-    width: 100%;
-    padding-left: vw(24);
+    padding-left: vw(60);
     font-size: vw(34);
     white-space: pre-line;
   }
-
-  // .chinese {
-  // 	font-weight: 600;
-  // 	font-size: vw(40);
-  // }
-
-  // .pinyin {
-  // 	font-size: vw(32);
-  // 	color: color(gray-66);
-  // }
-
-  // .c-red {
-  // 	color: color(warning);
-  // }
 }
