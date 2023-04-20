@@ -5,7 +5,14 @@ import { characterType, LessonMeta } from "../../core";
 import useLessonCompletedCharacterMapper from "../../core/hooks/useLessonCompletedCharacterMapper";
 import { ImgCharacterComponent } from "../atoms";
 
-const ModalCompletedWrapper = styled.div``;
+const ModalCompletedWrapper = styled.div`
+  canvas {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+`;
 
 interface ModalCompletedProps {
   lessonCode: LessonMeta["colorTypeCd"];

@@ -10,11 +10,11 @@ import FinalSpeakingComponent from "../contents/FinalSpeakingComponent";
 
 const DialogueContainer = styled.div`
   .repeat-speak-wrapper {
-    margin-top: ${vh(20)};
+    margin-top: ${vh(30)};
   }
 `;
 
-interface TemplateQuizSpeakingProps extends TemplateProps {}
+interface TemplateQuizSpeakingProps extends TemplateProps { }
 
 const TemplateQuizSpeaking = ({
   template,
