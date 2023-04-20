@@ -36,6 +36,10 @@
     transform: translateY(-50%);
   }
 
+  .btns-wrap {
+    margin-top: vh(40);
+  }
+
   &.step2 {
     width: vw(630);
     min-height: vw(541);
