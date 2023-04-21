@@ -53,8 +53,7 @@ const ComponentProblemPagination = ({
       <Swiper
         loop={false}
         pagination={false}
-        spaceBetween={16}
-        slidesPerView={20.5}
+        slidesPerView={20}
         slidesPerGroup={1}
         scrollbar={{ draggable: true }}
         className="problem-top-button-wrapper pagination-wrapper"
