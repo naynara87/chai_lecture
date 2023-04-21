@@ -22,11 +22,11 @@ import FullAudioComponent from "../contents/FullAudioComponent";
 
 const DialogueContainer = styled.div`
   .repeat-speak-wrapper {
-    margin-top: ${vh(20)};
+    margin-top: ${vh(30)};
   }
 `;
 
-interface TemplateDialogueProps extends TemplateProps {}
+interface TemplateDialogueProps extends TemplateProps { }
 
 const TemplateDialogue = ({
   template,

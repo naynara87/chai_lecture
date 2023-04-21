@@ -27,7 +27,7 @@
     color: color(gray-80);
   }
 
-  > * {
+  >* {
     margin-top: vh(30);
 
     &:first-of-type {
@@ -77,10 +77,6 @@
       color: color(warning);
     }
   }
-}
-
-.quiz-answer-wrap {
-  margin: vh(60) auto;
 }
 
 .hori-answer-wrap {

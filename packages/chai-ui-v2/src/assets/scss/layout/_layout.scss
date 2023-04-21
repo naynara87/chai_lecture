@@ -83,7 +83,8 @@
   }
 
   .description-bubble-container:not(:first-of-type),
-  .btns-wrap:not(:first-of-type) {
+  .btns-wrap:not(:first-of-type),
+  .repeat-speak-wrapper:not(:first-of-type) {
     margin-top: vh(60);
   }
 

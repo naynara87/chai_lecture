@@ -16,6 +16,7 @@ const NotiWrapper = styled.ul`
   justify-content: center;
   gap: ${vw(50)};
   flex-wrap: wrap;
+  margin-top: ${vh(60)};
 `;
 
 const NotiList = styled.li`

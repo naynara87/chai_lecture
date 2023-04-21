@@ -7,7 +7,7 @@ import { ActivityGuideCharacterComponent } from "../contents";
 
 const DialogueContainer = styled.div`
   .repeat-speak-wrapper {
-    margin-top: ${vh(20)};
+    margin-top: ${vh(30)};
   }
 `;
 
