@@ -1,11 +1,8 @@
 import styled from "@emotion/styled";
 import React, { useEffect, useMemo } from "react";
 import { vh, vw } from "../../assets";
-import {
-  TemplateProps,
-  TemplateQuizWordsInOrderData,
-  useContentMapper,
-} from "../../core";
+import { TemplateProps, TemplateQuizWordsInOrderData } from "../../core";
+import { ActivityGuideCharacterComponent } from "../contents";
 import WordsInOrderComponent from "../contents/WordsInOrderComponent";
 
 const QuizContainer = styled.div`
@@ -38,6 +35,14 @@ const QuizContainer = styled.div`
   }
 `;
 
+const GuideContentContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ActivityGuideCharacterComponentWrapper = styled.div``;
+
 interface TemplateQuizDialogueWordArrayProps extends TemplateProps {}
 
 const TemplateQuizDialogueWordArray = ({
@@ -50,18 +55,50 @@ const TemplateQuizDialogueWordArray = ({
     setPageCompleted();
   }, [setPageCompleted]);
 
-  const { getContentComponent } = useContentMapper();
+  const guideContentContainerRef = React.useRef<HTMLDivElement>(null);
+  const containerHeight = guideContentContainerRef.current?.clientHeight;
+
+  const guideContentWrapperRef = React.useRef<HTMLDivElement>(null);
+  const contentHeight = guideContentWrapperRef.current?.clientHeight;
+
+  useEffect(() => {
+    if (
+      !guideContentContainerRef.current ||
+      !guideContentWrapperRef.current ||
+      !containerHeight ||
+      !contentHeight
+    ) {
+      return;
+    }
+    if (containerHeight <= contentHeight) {
+      guideContentContainerRef.current.style.alignItems = "flex-start";
+    }
+  });
 
   const leftContents = useMemo(() => {
     if (!thisPage.leftContents) return;
-    return thisPage.leftContents.map((leftContent, contentIndex) => {
-      return getContentComponent(leftContent, contentIndex);
+    return thisPage.leftContents.map((leftContent) => {
+      if (leftContent.type === "activityGuideCharacter") {
+        return (
+          <ActivityGuideCharacterComponentWrapper
+            key={leftContent.id}
+            ref={guideContentWrapperRef}
+          >
+            <ActivityGuideCharacterComponent contents={leftContent} />
+          </ActivityGuideCharacterComponentWrapper>
+        );
+      }
     });
-  }, [getContentComponent, thisPage]);
+  }, [thisPage]);
 
   return (
     <div className="layout-panel-wrap grid-h-3-7">
-      <div className="layout-panel side-panel">{leftContents}</div>
+      <GuideContentContainer
+        ref={guideContentContainerRef}
+        className="layout-panel side-panel"
+      >
+        {leftContents}
+      </GuideContentContainer>
       <div className="layout-panel wide-panel">
         <QuizContainer className="quiz-container">
           {thisPage.wordsInOrder && (
