@@ -92,7 +92,7 @@ img {
   padding: 0 !important;
   margin: 0;
 
-  &>div {
+  & > div {
     width: 100%;
   }
 }
@@ -105,7 +105,20 @@ img {
   margin-top: vw(64);
   text-align: center;
 
-  >button:not(:first-of-type) {
+  > button:not(:first-of-type) {
     margin-left: vw(24);
   }
+}
+
+c1 {
+  color: #222;
+}
+c2 {
+  color: #6070cf;
+}
+c3 {
+  color: #f65555;
+}
+c4 {
+  color: #666;
 }

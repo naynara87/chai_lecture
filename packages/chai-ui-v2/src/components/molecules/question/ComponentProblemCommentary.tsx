@@ -2,6 +2,7 @@ import React, { useCallback, useState } from "react";
 import IconRight from "../../../assets/images/icon/icon_problem_o.svg";
 import IconWrong from "../../../assets/images/icon/icon_problem_x.svg";
 import { QuizData, TemplateQuestionData } from "../../../core";
+import { HtmlContentComponent } from "../../atoms";
 
 interface ComponentProblemCommentaryProps {
   quizPageIdx: number;
@@ -59,19 +60,23 @@ const ComponentProblemCommentary = ({
             <dl className="comment-list">
               <dt className="comment-ttl">정답</dt>
               <dd className="comment-dec">
-                {quizPageData[quizPageIdx].answer}
+                {quizTemplateData.contents.data.correct ?? ""}
               </dd>
             </dl>
             <dl className="comment-list">
               <dt className="comment-ttl">해설</dt>
               <dd className="comment-dec">
-                {quizTemplateData.contents.data.explan}
+                <HtmlContentComponent
+                  html={quizTemplateData.contents.data.explan}
+                />
               </dd>
             </dl>
             <dl className="comment-list">
               <dt className="comment-ttl">예문 해석</dt>
               <dd className="comment-dec">
-                {quizTemplateData.contents.data.interpet}
+                <HtmlContentComponent
+                  html={quizTemplateData.contents.data.interpet}
+                />
               </dd>
             </dl>
           </div>
