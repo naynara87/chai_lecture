@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import React from "react";
 import Confetti from "react-confetti";
-import { characterType, LessonMeta } from "../../core";
+import { characterType, LessonMeta, ProgressData } from "../../core";
 import useLessonCompletedCharacterMapper from "../../core/hooks/useLessonCompletedCharacterMapper";
 import { ImgCharacterComponent } from "../atoms";
 
@@ -17,13 +17,15 @@ const ModalCompletedWrapper = styled.div`
 interface ModalCompletedProps {
   lessonCode: LessonMeta["colorTypeCd"];
   exitPlayer: () => Promise<unknown> | undefined;
-  saveProgress: () => Promise<void>;
+  saveProgress?: () => Promise<void>;
+  progressData: ProgressData | undefined;
 }
 
 const ModalCompleted = ({
   lessonCode,
   exitPlayer,
   saveProgress,
+  progressData,
 }: ModalCompletedProps) => {
   const { getLessonCompletedCharacterCode } =
     useLessonCompletedCharacterMapper();
@@ -34,10 +36,11 @@ const ModalCompleted = ({
     }
     console.log("학습 종료");
     const btnQuit = document.querySelector<HTMLDivElement>("#quit");
-    await saveProgress();
+    saveProgress && (await saveProgress());
     window.parent.postMessage(
       {
-        func: "pageReload",
+        func: "progressRate",
+        data: progressData,
       },
       "*",
     );

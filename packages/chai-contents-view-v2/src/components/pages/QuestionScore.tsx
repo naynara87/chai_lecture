@@ -32,7 +32,7 @@ const QuestionScore = () => {
 
   const { lessonMetaData, totalPages } = useLesson(lessonId);
 
-  const { saveProgress } = useProgressRate({
+  const { progressData } = useProgressRate({
     lessonMetaData,
     totalPages,
     isCompleted: true,
@@ -72,10 +72,11 @@ const QuestionScore = () => {
       }
     }
     const btnQuit = document.querySelector<HTMLDivElement>("#quit");
-    await saveProgress();
+    // await saveProgress();
     window.parent.postMessage(
       {
-        func: "pageReload",
+        func: "progressRate",
+        data: progressData,
       },
       "*",
     );
