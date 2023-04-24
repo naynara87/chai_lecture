@@ -79,7 +79,7 @@ const useProgressRate = ({
       contsId: parsingSubjectId, // 과목 id 쿠키에서 받아옴
       courseId: parsingCourseId, // 과정 id 쿠키에서 받아옴
       lessonId: parsingLessonId, // 레슨 id 쿠키에서 받아옴
-      cornerId: cornerId, // 코너 id useParam에서 받음
+      turnId: cornerId, // 코너 id useParam에서 받음
       pageId: pageId, // 페이지 id useParam에서 받음
       progressRate: currentProgress(pageId),
       envlCatgYn: lessonTp, // 문제레슨인지 콘텐츠레슨인지 구분
@@ -91,7 +91,11 @@ const useProgressRate = ({
   const saveProgress = useCallback(async () => {
     if (!progressData) return;
     try {
-      await saveLmsData(progressData);
+      const newProgressData = {
+        ...progressData,
+        cornerId: progressData.turnId,
+      };
+      await saveLmsData(newProgressData);
     } catch (error) {
       console.error("진도율 저장 실패", error);
     }

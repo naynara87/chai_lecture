@@ -4,7 +4,7 @@ export type ProgressData = {
   contsId: number;
   courseId: number;
   lessonId: string;
-  cornerId: string;
+  turnId: string;
   pageId: string;
   progressRate: number;
   envlCatgYn: string;
