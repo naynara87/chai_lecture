@@ -5055,8 +5055,8 @@ code.google.com/p/crypto-js/wiki/License
             XW.sendStatement(mys);
             window.postMessage(JSON.stringify(mys));
           }
-          function sendComplete(pageData, newState) {
-            var _parseInt, _parseInt2;
+          function sendComplete(pageData, newState, lessonTypeCode, quizScore) {
+            var _Number, _Number2;
             if (targetCompleted) return;
             var mys = bareStatement();
             var sumActualPlayerLearning = miliSecToTime(
@@ -5115,15 +5115,18 @@ code.google.com/p/crypto-js/wiki/License
                 max: 100,
                 min: 0,
                 raw:
-                  (_parseInt = parseInt(
-                    (newState.progress * 100).toFixed(3),
-                  )) !== null && _parseInt !== void 0
-                    ? _parseInt
+                  lessonTypeCode.toString() === "10"
+                    ? Number((newState.progress * 100).toFixed(3))
+                    : (_Number = Number(quizScore.toFixed(3))) !== null &&
+                      _Number !== void 0
+                    ? _Number
                     : 0,
                 scaled:
-                  (_parseInt2 = parseInt(newState.progress.toFixed(3))) !==
-                    null && _parseInt2 !== void 0
-                    ? _parseInt2
+                  lessonTypeCode.toString() === "10"
+                    ? Number(newState.progress.toFixed(3))
+                    : (_Number2 = Number((quizScore / 100).toFixed(3))) !==
+                        null && _Number2 !== void 0
+                    ? _Number2
                     : 0,
               },
               completion: newState.progress >= completeRate ? true : false,

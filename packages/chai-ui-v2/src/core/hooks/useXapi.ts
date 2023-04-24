@@ -11,7 +11,9 @@ import {
   LRSCornerProgress,
   Page,
   ProgressPageData,
+  QuizData,
 } from "../types";
+import { LocalStorage } from "../util";
 import usePageCompleted from "./usePageCompleted";
 
 const useXapi = () => {
@@ -237,6 +239,19 @@ const useXapi = () => {
     ],
   );
 
+  const getScore = useCallback(() => {
+    const quizPageData = LocalStorage.getItem<QuizData[]>("pageData");
+
+    if (quizPageData) {
+      const correctQuizPages = quizPageData?.filter((quizPage) => {
+        return quizPage.isCorrect;
+      });
+      return (100 / quizPageData?.length) * correctQuizPages?.length;
+    } else {
+      return undefined;
+    }
+  }, []);
+
   const xapiComplete = useCallback(
     (
       currentCorner: CornerListData,
@@ -244,6 +259,7 @@ const useXapi = () => {
       currentPage: Page,
       nextPageId: ID,
       totalPages: ID[],
+      lessonTypeCode: LessonMeta["lessonTpCd"],
     ) => {
       if (!xapiActivity) return;
       const currentPageIndex = totalPages.findIndex(
@@ -289,6 +305,8 @@ const useXapi = () => {
       xapiV1?.sendComplete(
         progressPageData,
         newXapiActivityState ?? xapiActivity,
+        lessonTypeCode,
+        getScore(),
       );
       setXapiActivity(newXapiActivityState);
     },
@@ -299,6 +317,7 @@ const useXapi = () => {
       setXapiActivity,
       updateProgressDataPageCheck,
       updateProgress,
+      getScore,
     ],
   );
   const initialActivityState = useCallback(
@@ -309,7 +328,7 @@ const useXapi = () => {
       totalPages: ID[],
       pageId: ID,
     ) => {
-      if (!xapiActivity) return;
+      if (xapiActivity) return;
       // NOTE kjw 처음 통합플레이어 로드시 state값이 있으면 기존 state값을 반영하여 실행
       const currentPageIdx = totalPages.findIndex(
         (page) => page.toString() === pageId.toString(),
