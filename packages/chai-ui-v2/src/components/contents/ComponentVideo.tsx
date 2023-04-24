@@ -50,6 +50,7 @@ const ComponentVideo = ({ content, isModal }: ComponentVideoProps) => {
         src={content.data.src}
         disablePictureInPicture
         ref={videoRef}
+        controlsList="nodownload"
       >
         <p className="vjs-no-js">
           영상 로드중 문제가 발생하였습니다. 영상을 시청하시려면 자바스크립트를
