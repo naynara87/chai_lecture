@@ -15,10 +15,13 @@ import {
 import { Link, useParams } from "react-router-dom";
 import { getPageUrl } from "../../util/url";
 import styled from "@emotion/styled";
+import useProgressRate, {
+  UseProgressRateProps,
+} from "../../hooks/useProgressRate";
 
 const LinkTag = styled.a``;
 
-interface LayoutFooterProps {
+interface LayoutFooterProps extends UseProgressRateProps {
   corners: CornerListData[];
   pages?: Page[];
   handleClickNext: () => void;
@@ -36,6 +39,7 @@ const LayoutFooter = ({
   totalPages,
   currentPage,
   exitPlayer,
+  lessonMetaData,
 }: LayoutFooterProps) => {
   const [isShowNav, setIsShowNav] = useState(false);
   const [isExitModalOpen, setIsExitModalOpen] = useState(false);
@@ -43,6 +47,8 @@ const LayoutFooter = ({
 
   const { xapiProgress } = useXapi();
   const { setCompletedPageComponents } = usePageCompleted();
+
+  const { progressData } = useProgressRate({ totalPages, lessonMetaData });
 
   const navGetPageUrl = useCallback(
     (corner: string, page: string) => {
@@ -176,6 +182,7 @@ const LayoutFooter = ({
         isModalOpen={isExitModalOpen}
         setIsModalOpen={setIsExitModalOpen}
         exitPlayer={exitPlayer}
+        progressData={progressData}
       />
     </div>
   );

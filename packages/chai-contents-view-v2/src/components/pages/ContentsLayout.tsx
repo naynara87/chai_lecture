@@ -18,6 +18,7 @@ import {
 } from "chai-ui-v2";
 import { currentCornerIdState } from "../../state/currentCornerId";
 import usePages from "../../hooks/usePages";
+import useProgressRate from "../../hooks/useProgressRate";
 interface ContentsLayoutProps {
   pages: Page[];
   corners: CornerListData[];
@@ -211,6 +212,8 @@ const ContentsLayout = ({
     }
   };
 
+  const { progressData } = useProgressRate({ totalPages, lessonMetaData });
+
   const layoutMain = useMemo(() => {
     if (!currentPage) return;
     if (currentPage?.type === "singlePage") {
@@ -250,12 +253,13 @@ const ContentsLayout = ({
         totalPages={totalPages}
         currentPage={currentPage}
         exitPlayer={exitPlayer}
+        lessonMetaData={lessonMetaData}
       />
       {isCompleteModalOpen && (
         <ModalCompleted
           lessonCode={lessonMetaData.colorTypeCd}
           exitPlayer={exitPlayer}
-          lessonMetaData={lessonMetaData}
+          progressData={progressData}
         />
       )}
     </div>
