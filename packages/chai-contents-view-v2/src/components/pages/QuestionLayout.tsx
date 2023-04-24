@@ -10,7 +10,6 @@ import {
   Page,
   TemplateQuestion,
   TemplateQuestionData,
-  useLessonNameMapper,
   useXapi,
 } from "chai-ui-v2";
 import React, {
@@ -62,7 +61,6 @@ const QuestionLayout = ({
     pageId,
     totalPages,
   });
-  const { getLessonName } = useLessonNameMapper();
   const { xapiProgress, xapiComplete, updateIsCorrectDataCheck } = useXapi();
 
   const setPageCompleted = () => {
@@ -160,11 +158,7 @@ const QuestionLayout = ({
       );
       navigate(getPageUrl(courseId, lessonId, cornerId, "score"), {
         state: {
-          lessonName: getLessonName(lessonMetaData.colorTypeCd),
-          lessonType:
-            lessonMetaData.lessonTpCd.toString() === "20"
-              ? "연습문제"
-              : "종합문제",
+          lessonName: lessonMetaData.name,
           solvingTime: questionSolvingTime,
           pages,
           totalPages,
@@ -206,11 +200,7 @@ const QuestionLayout = ({
   return (
     <div className="cai-view-yahei">
       <LayoutQuestionHeader
-        headerText={`${getLessonName(lessonMetaData.colorTypeCd)} ${
-          lessonMetaData.lessonTpCd.toString() === "20"
-            ? "연습문제"
-            : "종합문제"
-        }`}
+        headerText={lessonMetaData.name}
         solvingTime={questionSolvingTime}
       />
       <main className="cai-main problem-main">
@@ -232,11 +222,7 @@ const QuestionLayout = ({
         isModalOpen={isQuestionStartModalOpen}
         setIsModalOpen={setIsQuestionStartModalOpen}
         wideModal
-        quizTypeText={`${getLessonName(lessonMetaData.colorTypeCd)} ${
-          lessonMetaData.lessonTpCd.toString() === "20"
-            ? "연습문제"
-            : "종합문제"
-        }`}
+        quizTypeText={lessonMetaData.name}
         quizTotalLength={pages.length}
         onClickStart={startQuiz}
       />
