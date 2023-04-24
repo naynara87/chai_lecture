@@ -74,7 +74,7 @@ const QuestionScore = () => {
   return (
     <>
       <LayoutQuestionHeader
-        headerText={`${state.lessonName} ${state.lessonType} 채점 결과`}
+        headerText={`${state.lessonName} 채점 결과`}
         solvingTime={state.solvingTime}
         isShowSolvingTime={false}
       />
@@ -89,7 +89,7 @@ const QuestionScore = () => {
           <div className="layout-panel pd-40">
             <ComponentProblemUserInfo
               quizPageData={quizPageData}
-              quizTypeText={`${state.lessonName} ${state.lessonType}`}
+              quizTypeText={state.lessonName}
             />
             <ComponentProblemGrade
               quizPageData={quizPageData}
