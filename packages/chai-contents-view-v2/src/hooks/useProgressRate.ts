@@ -59,10 +59,10 @@ const useProgressRate = ({
   }, []);
 
   const score = useMemo(() => {
-    const correctQuizPages = quizPageData.filter((quizPage) => {
+    const correctQuizPages = quizPageData?.filter((quizPage) => {
       return quizPage.isCorrect;
     });
-    return (100 / quizPageData.length) * correctQuizPages.length;
+    return (100 / quizPageData?.length) * correctQuizPages?.length;
   }, [quizPageData]);
 
   const progressData = useMemo(() => {
