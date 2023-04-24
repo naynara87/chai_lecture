@@ -6,6 +6,7 @@ import {
   getCookie,
   QuizData,
   LocalStorage,
+  saveLmsData,
 } from "chai-ui-v2";
 import { useCallback, useMemo } from "react";
 import { useParams } from "react-router-dom";
@@ -71,14 +72,14 @@ const useProgressRate = ({
     const parsingLessonId = learningLogCookieData.lessonId;
     const pasingUno = parseInt(learningLogCookieData.uno);
     const parsingApplIdId = parseInt(learningLogCookieData.applId);
-    const parsingSubjectId = learningLogCookieData.subjectId;
+    const parsingSubjectId = parseInt(learningLogCookieData.subjectId);
     return {
       uno: pasingUno, // user id 쿠키에서 받아옴
       applId: parsingApplIdId, // 신청 id 쿠키에서 받아옴
       contsId: parsingSubjectId, // 과목 id 쿠키에서 받아옴
       courseId: parsingCourseId, // 과정 id 쿠키에서 받아옴
       lessonId: parsingLessonId, // 레슨 id 쿠키에서 받아옴
-      turnId: cornerId, // 코너 id useParam에서 받음
+      cornerId: cornerId, // 코너 id useParam에서 받음
       pageId: pageId, // 페이지 id useParam에서 받음
       progressRate: currentProgress(pageId),
       envlCatgYn: lessonTp, // 문제레슨인지 콘텐츠레슨인지 구분
@@ -87,9 +88,19 @@ const useProgressRate = ({
     } as ProgressData;
   }, [cornerId, pageId, lessonTp, currentProgress, score]);
 
+  const saveProgress = useCallback(async () => {
+    if (!progressData) return;
+    try {
+      await saveLmsData(progressData);
+    } catch (error) {
+      console.error("진도율 저장 실패", error);
+    }
+  }, [progressData]);
+
   return {
     currentProgress,
     progressData,
+    saveProgress,
   };
 };
 export default useProgressRate;

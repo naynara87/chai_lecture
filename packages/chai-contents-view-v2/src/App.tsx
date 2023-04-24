@@ -45,6 +45,21 @@ const questionDummyCookie: InitialAppData = {
   type: "lesson",
 };
 
+const paperDummyCookie: InitialAppData = {
+  uno: "1",
+  uid: "12345",
+  uname: "버블콘",
+  applId: "1",
+  courseId: "1",
+  courseName: "\ube68\uac15",
+  subjectId: "1",
+  lessonId: "6",
+  lessonName: "\ub808\uc2a8+1",
+  turnId: "0c3460cf-f765-4526-8f28-2a0722377ba8",
+  pageId: "4b4ce5e8-4e83-4eec-9352-cb62122ceca5",
+  type: "paper",
+};
+
 function App() {
   useEffect(() => {
     if (process.env.NODE_ENV === "development") {

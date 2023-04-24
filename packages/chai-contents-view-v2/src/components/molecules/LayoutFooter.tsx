@@ -48,7 +48,7 @@ const LayoutFooter = ({
   const { xapiProgress } = useXapi();
   const { setCompletedPageComponents } = usePageCompleted();
 
-  const { progressData } = useProgressRate({ totalPages, lessonMetaData });
+  const { saveProgress } = useProgressRate({ totalPages, lessonMetaData });
 
   const navGetPageUrl = useCallback(
     (corner: string, page: string) => {
@@ -182,7 +182,7 @@ const LayoutFooter = ({
         isModalOpen={isExitModalOpen}
         setIsModalOpen={setIsExitModalOpen}
         exitPlayer={exitPlayer}
-        progressData={progressData}
+        saveProgress={saveProgress}
       />
     </div>
   );

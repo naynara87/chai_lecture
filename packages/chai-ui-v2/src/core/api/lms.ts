@@ -2,7 +2,7 @@ import { LMS_SAVE_DATA } from "../constants";
 import { httpLms } from "../lib";
 import { ID } from "../types";
 
-interface saveLmsDataParams {
+export interface saveLmsDataParams {
   uno: number;
   applId: number;
   courseId: number;
