@@ -16,6 +16,8 @@ import { useMemo, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { getPageUrl } from "../../util/url";
 import LayoutQuestionHeader from "../molecules/LayoutQuestionHeader";
+import useProgressRate from "../../hooks/useProgressRate";
+import useLesson from "../../hooks/useLesson";
 
 const QuestionScore = () => {
   const [quizPageIdx, setQuizPageIdx] = useState(-1);
@@ -27,6 +29,14 @@ const QuestionScore = () => {
   const { state } = useLocation();
   const { courseId, cornerId, lessonId } = useParams();
   const navigate = useNavigate();
+
+  const { lessonMetaData, totalPages } = useLesson(lessonId);
+
+  const { progressData } = useProgressRate({
+    lessonMetaData,
+    totalPages,
+    isCompleted: true,
+  });
 
   const quizPageData = useMemo(() => {
     return LocalStorage.getItem("pageData") as QuizData[];
@@ -65,6 +75,7 @@ const QuestionScore = () => {
     window.parent.postMessage(
       {
         func: "pageReload",
+        data: progressData,
       },
       "*",
     );
@@ -81,7 +92,7 @@ const QuestionScore = () => {
       <main className="cai-main problem-main">
         <ComponentProblemTopButtonArea
           quizPageData={quizPageData}
-          solvingTime={state.solvingTime}
+          solvingTime={state?.solvingTime}
           onClickRestartButton={() => setIsModalRestartConfirmOpen(true)}
           onClickExitButton={() => setIsModalExitConfirmOpen(true)}
         />
@@ -103,7 +114,7 @@ const QuestionScore = () => {
             ) : (
               <ComponentProblemCommentary
                 quizPageIdx={quizPageIdx}
-                quizTemplateData={state.pages[quizPageIdx].data}
+                quizTemplateData={state?.pages[quizPageIdx].data}
                 quizPageData={quizPageData}
               />
             )}
