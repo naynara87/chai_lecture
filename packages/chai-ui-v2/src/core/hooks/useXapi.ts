@@ -309,7 +309,7 @@ const useXapi = () => {
       totalPages: ID[],
       pageId: ID,
     ) => {
-      if (xapiActivity !== undefined) return;
+      if (!xapiActivity) return;
       // NOTE kjw 처음 통합플레이어 로드시 state값이 있으면 기존 state값을 반영하여 실행
       const currentPageIdx = totalPages.findIndex(
         (page) => page.toString() === pageId.toString(),
