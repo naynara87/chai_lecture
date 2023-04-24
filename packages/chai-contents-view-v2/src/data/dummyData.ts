@@ -100,6 +100,7 @@ export const v2QuizCornerDataList: CornerData[] = [
               interact_url: "http://md-admin.bubblecon.io/bubble/embed/20407",
               explan: "해설부분입니다.",
               interpet: "해석부분입니다.",
+              correct: "2",
             },
           },
         },
@@ -121,6 +122,7 @@ export const v2QuizCornerDataList: CornerData[] = [
               interact_url: "http://md-admin.bubblecon.io/bubble/embed/20610",
               explan: "해설부분입니다.",
               interpet: `중국의 수도는 베이징이다.`,
+              correct: "2",
             },
           },
         },
@@ -142,6 +144,7 @@ export const v2QuizCornerDataList: CornerData[] = [
               interact_url: "http://md-admin.bubblecon.io/bubble/embed/20548",
               explan: "해석부분입니다.",
               interpet: `중국어는 중국어에요`,
+              correct: "2",
             },
           },
         },
@@ -163,6 +166,7 @@ export const v2QuizCornerDataList: CornerData[] = [
               interact_url: "http://md-admin.bubblecon.io/bubble/embed/20608",
               explan: "해석이에요",
               interpet: "중국의 수도는 베이징이다.",
+              correct: "2",
             },
           },
         },
@@ -184,6 +188,7 @@ export const v2QuizCornerDataList: CornerData[] = [
               interact_url: "http://md-admin.bubblecon.io/bubble/embed/20613",
               explan: "해석이에요",
               interpet: "해설인가요",
+              correct: "2",
             },
           },
         },
@@ -206,6 +211,7 @@ export const v2QuizCornerDataList: CornerData[] = [
               explan: "중국?",
               interpet:
                 "중국인은 차를 약이라 여긴다. → 과거에는 약의 용도로 쓰이긴 했으나, 현재는 건강에 좋은 음료로 여긴다.",
+              correct: "2",
             },
           },
         },
@@ -228,6 +234,7 @@ export const v2QuizCornerDataList: CornerData[] = [
               explan: "중국!",
               interpet:
                 "중국인은 차를 약이라 여긴다. → 과거에는 약의 용도로 쓰이긴 했으나, 현재는 건강에 좋은 음료로 여긴다.",
+              correct: "2",
             },
           },
         },
@@ -250,6 +257,7 @@ export const v2QuizCornerDataList: CornerData[] = [
               explan: "중국!",
               interpet:
                 "중국인은 차를 약이라 여긴다. → 과거에는 약의 용도로 쓰이긴 했으나, 현재는 건강에 좋은 음료로 여긴다.",
+              correct: "2",
             },
           },
         },
@@ -272,6 +280,7 @@ export const v2QuizCornerDataList: CornerData[] = [
               explan: "중국!",
               interpet:
                 "중국인은 차를 약이라 여긴다. → 과거에는 약의 용도로 쓰이긴 했으나, 현재는 건강에 좋은 음료로 여긴다.",
+              correct: "2",
             },
           },
         },
@@ -294,6 +303,7 @@ export const v2QuizCornerDataList: CornerData[] = [
               explan: "중국!",
               interpet:
                 "중국인은 차를 약이라 여긴다. → 과거에는 약의 용도로 쓰이긴 했으나, 현재는 건강에 좋은 음료로 여긴다.",
+              correct: "2",
             },
           },
         },
@@ -316,6 +326,7 @@ export const v2QuizCornerDataList: CornerData[] = [
               explan: "중국!",
               interpet:
                 "중국인은 차를 약이라 여긴다. → 과거에는 약의 용도로 쓰이긴 했으나, 현재는 건강에 좋은 음료로 여긴다.",
+              correct: "2",
             },
           },
         },

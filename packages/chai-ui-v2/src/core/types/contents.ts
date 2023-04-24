@@ -592,6 +592,7 @@ export type QuestionContentData = {
     interact_url: string;
     explan: string; // 해설
     interpet: string; // 해석
+    correct: string;
   };
   meta?: Meta;
 };
