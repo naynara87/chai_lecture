@@ -85,8 +85,8 @@ const QuestionScore = () => {
   return (
     <>
       <LayoutQuestionHeader
-        headerText={`${state?.lessonName} ${state?.lessonType} 채점 결과`}
-        solvingTime={state?.solvingTime}
+        headerText={`${state.lessonName} 채점 결과`}
+        solvingTime={state.solvingTime}
         isShowSolvingTime={false}
       />
       <main className="cai-main problem-main">
@@ -100,7 +100,7 @@ const QuestionScore = () => {
           <div className="layout-panel pd-40">
             <ComponentProblemUserInfo
               quizPageData={quizPageData}
-              quizTypeText={`${state?.lessonName} ${state?.lessonType}`}
+              quizTypeText={state.lessonName}
             />
             <ComponentProblemGrade
               quizPageData={quizPageData}
