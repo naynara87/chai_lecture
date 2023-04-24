@@ -212,7 +212,7 @@ const ContentsLayout = ({
     }
   };
 
-  const { progressData } = useProgressRate({ totalPages, lessonMetaData });
+  const { saveProgress } = useProgressRate({ totalPages, lessonMetaData });
 
   const layoutMain = useMemo(() => {
     if (!currentPage) return;
@@ -259,7 +259,7 @@ const ContentsLayout = ({
         <ModalCompleted
           lessonCode={lessonMetaData.colorTypeCd}
           exitPlayer={exitPlayer}
-          progressData={progressData}
+          saveProgress={saveProgress}
         />
       )}
     </div>

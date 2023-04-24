@@ -6,7 +6,6 @@ import {
 } from "../atoms";
 import ImgContinueComponent from "../atoms/ImgContinueComponent";
 import ModalBase from "./ModalBase";
-import { ProgressData } from "../../core";
 // import ComponentButtonRadiBorderMain from "./ComponentButtonRadiBorderMain";
 // import ComponentButtonRadiFillMain from "./ComponentButtonRadiFillMain";
 
@@ -26,14 +25,14 @@ interface LayoutModalContinueProps {
   isModalOpen: boolean;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   exitPlayer: () => Promise<unknown> | undefined;
-  progressData: ProgressData | undefined;
+  saveProgress: () => Promise<void>;
 }
 
 const LayoutModalExit = ({
   isModalOpen,
   setIsModalOpen,
   exitPlayer,
-  progressData,
+  saveProgress,
 }: LayoutModalContinueProps) => {
   const handleClose = () => {
     setIsModalOpen(false);
@@ -45,10 +44,10 @@ const LayoutModalExit = ({
     }
     console.log("학습 종료");
     const btnQuit = document.querySelector<HTMLDivElement>("#quit");
+    await saveProgress();
     window.parent.postMessage(
       {
         func: "pageReload",
-        data: progressData,
       },
       "*",
     );
