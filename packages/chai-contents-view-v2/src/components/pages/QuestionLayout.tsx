@@ -155,6 +155,7 @@ const QuestionLayout = ({
         currentPage,
         currentPage.id,
         totalPages,
+        lessonMetaData.lessonTpCd,
       );
       navigate(getPageUrl(courseId, lessonId, cornerId, "score"), {
         state: {

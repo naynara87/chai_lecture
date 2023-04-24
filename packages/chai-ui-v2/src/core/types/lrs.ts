@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { ID, Page } from "./appData";
+import { ID, LessonMeta, Page } from "./appData";
 import { ContentData } from "./lcms";
 
 /**
@@ -113,7 +113,12 @@ export interface XapiV1 {
     pageData: ProgressPageData,
     newState: LRSActivityState,
   ) => void;
-  sendComplete(pageData: ProgressPageData, newState: LRSActivityState): void;
+  sendComplete(
+    pageData: ProgressPageData,
+    newState: LRSActivityState,
+    lessonTypeCode: LessonMeta["lessonTpCd"],
+    quizScore?: number,
+  ): void;
   sendPlayed: (
     currentPage: Page,
     contentType: "video" | "audio",

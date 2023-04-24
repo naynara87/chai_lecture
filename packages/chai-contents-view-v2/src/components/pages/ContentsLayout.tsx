@@ -188,6 +188,7 @@ const ContentsLayout = ({
         currentPage,
         currentPage.id,
         totalPages,
+        lessonMetaData.lessonTpCd,
       );
       setIsCompleteModalOpen(true);
       return;
