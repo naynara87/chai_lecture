@@ -4,6 +4,8 @@ import {
   LessonMeta,
   ProgressData,
   getCookie,
+  QuizData,
+  LocalStorage,
 } from "chai-ui-v2";
 import { useCallback, useMemo } from "react";
 import { useParams } from "react-router-dom";
@@ -51,6 +53,17 @@ const useProgressRate = ({
     }
   }, [lessonMetaData?.lessonTpCd]);
 
+  const quizPageData = useMemo(() => {
+    return LocalStorage.getItem("pageData") as QuizData[];
+  }, []);
+
+  const score = useMemo(() => {
+    const correctQuizPages = quizPageData.filter((quizPage) => {
+      return quizPage.isCorrect;
+    });
+    return (100 / quizPageData.length) * correctQuizPages.length;
+  }, [quizPageData]);
+
   const progressData = useMemo(() => {
     const learningLogCookieData = getCookie<InitialAppData>("bubble-player");
     if (!learningLogCookieData || !cornerId || !pageId) return;
@@ -70,8 +83,9 @@ const useProgressRate = ({
       progressRate: currentProgress(pageId),
       envlCatgYn: lessonTp, // 문제레슨인지 콘텐츠레슨인지 구분
       complYn: currentProgress(pageId) === 100 ? "Y" : "N",
+      envlScr: lessonTp === "Y" ? Math.floor(score) : undefined,
     } as ProgressData;
-  }, [cornerId, pageId, lessonTp, currentProgress]);
+  }, [cornerId, pageId, lessonTp, currentProgress, score]);
 
   return {
     currentProgress,
