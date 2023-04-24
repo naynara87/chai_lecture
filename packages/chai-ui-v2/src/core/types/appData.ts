@@ -180,8 +180,8 @@ export interface InitialAppData {
 }
 
 export interface InitialInputAppData {
-  object_context?: XapiIndicators;
-  result_extensions?: XapiIndicators;
-  context_details?: ContextDetail;
-  extension_details?: XapiIndicators;
+  object_context?: XapiIndicators | string;
+  result_extensions?: XapiIndicators | string;
+  context_details?: ContextDetail | string;
+  extension_details?: XapiIndicators | string;
 }

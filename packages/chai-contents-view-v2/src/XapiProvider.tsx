@@ -7,7 +7,7 @@ import {
   XAPIOptions,
   xapiV1State,
 } from "chai-ui-v2";
-import React from "react";
+import React, { useMemo } from "react";
 import { useRecoilState } from "recoil";
 import "../src/lib/xapi/lx-total-viewer.js";
 interface XapiProviderProps {
@@ -90,6 +90,34 @@ const XapiProvider = ({ children }: XapiProviderProps) => {
   const { ADL: _ADL } = window;
   const ADL = _ADL as ADL;
 
+  const objectContext = useMemo(() => {
+    if (!initialDataFromPhp?.object_context) return null;
+    if (typeof initialDataFromPhp.object_context === "object") {
+      return initialDataFromPhp.object_context;
+    } else if (typeof initialDataFromPhp.object_context === "string") {
+      return JSON.parse(initialDataFromPhp.object_context);
+    }
+    return undefined;
+  }, [initialDataFromPhp]);
+  const contextDetails = useMemo(() => {
+    if (!initialDataFromPhp?.context_details) return null;
+    if (typeof initialDataFromPhp.context_details === "object") {
+      return initialDataFromPhp.context_details;
+    } else if (typeof initialDataFromPhp.context_details === "string") {
+      return JSON.parse(initialDataFromPhp.context_details);
+    }
+    return undefined;
+  }, [initialDataFromPhp]);
+  const extensionDetails = useMemo(() => {
+    if (!initialDataFromPhp?.extension_details) return null;
+    if (typeof initialDataFromPhp.extension_details === "object") {
+      return initialDataFromPhp.extension_details;
+    } else if (typeof initialDataFromPhp.extension_details === "string") {
+      return JSON.parse(initialDataFromPhp.extension_details);
+    }
+    return undefined;
+  }, [initialDataFromPhp]);
+
   const options = {
     // #1 actor 정의
     name: learningLogCookieData?.uname,
@@ -106,10 +134,10 @@ const XapiProvider = ({ children }: XapiProviderProps) => {
     // lrsUrl: "http://clrs.bubblecon.co.kr/xAPI/",
 
     // #5 xAPI 추가 context 사용
-    object_context: initialDataFromPhp?.object_context,
+    object_context: objectContext,
     // result_extensions: result_extensions,
-    context_details: initialDataFromPhp?.context_details,
-    extension_details: initialDataFromPhp?.extension_details,
+    context_details: contextDetails,
+    extension_details: extensionDetails,
   };
 
   const xapi_init = () => {
