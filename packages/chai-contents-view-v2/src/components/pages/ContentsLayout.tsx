@@ -255,6 +255,7 @@ const ContentsLayout = ({
         <ModalCompleted
           lessonCode={lessonMetaData.colorTypeCd}
           exitPlayer={exitPlayer}
+          lessonMetaData={lessonMetaData}
         />
       )}
     </div>
