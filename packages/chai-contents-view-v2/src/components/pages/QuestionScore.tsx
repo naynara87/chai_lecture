@@ -84,7 +84,7 @@ const QuestionScore = () => {
   };
 
   return (
-    <>
+    <div className="cai-view-yahei">
       <LayoutQuestionHeader
         headerText={`${state.lessonName} 채점 결과`}
         solvingTime={state.solvingTime}
@@ -142,7 +142,7 @@ const QuestionScore = () => {
           handleClickLeftButton={() => setIsModalExitConfirmOpen(false)}
         />
       </main>
-    </>
+    </ㅇ>
   );
 };
 
