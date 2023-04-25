@@ -105,8 +105,8 @@ const AudioRecorder = ({ contents }: AudioRecorderProps) => {
       setRecordedAudioState("recorded");
       setIsProgressBarStart(false);
       setComponentCompleted(recordedAudioUuidRef.current);
-      xapiCreated(contents.id);
       window.clearTimeout(recordTimer.current);
+      xapiCreated(contents.id);
     }
   }, [
     startRecording,

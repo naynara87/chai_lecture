@@ -272,7 +272,6 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
     setIsShowAnswer(true);
     setIsModalSolutionOpen(true);
     setComponentCompleted(contents.id);
-    xapiAnswered(contents.id);
     handleClickAudioButton(
       "solutionModal",
       modalUuidRef.current,
@@ -281,6 +280,7 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
         ? contents.data.quizPopup.data.correct.soundEffect?.src ?? ""
         : contents.data.quizPopup.data.incorrect.soundEffect?.src ?? "",
     );
+    xapiAnswered(contents.id);
   }, [
     contents,
     isCorrect,

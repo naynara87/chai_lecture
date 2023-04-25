@@ -140,9 +140,9 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
       stopRecording();
       setComponentCompleted(contents.id);
       setIsProgressBarStart(false);
-      xapiCreated(contents.id);
       setRecordedAudioState("recorded");
       window.clearTimeout(recordTimer.current);
+      xapiCreated(contents.id);
     }
   }, [
     startRecording,

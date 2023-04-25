@@ -97,7 +97,6 @@ const MultiChoiceComponent = ({ contents }: MultiChoiceComponentProps) => {
               setUserChoice(choiceIndex);
               setComponentCompleted(contents.id);
               setIsModalSolutionOpen(true);
-              xapiAnswered(contents.id);
               handleClickAudioButton(
                 "solutionModal",
                 modalUuidRef.current,
@@ -107,6 +106,7 @@ const MultiChoiceComponent = ({ contents }: MultiChoiceComponentProps) => {
                   : contents.data.quizPopup.data.incorrect.soundEffect?.src ??
                   "",
               );
+              xapiAnswered(contents.id);
             }}
           >
             <span className="text">

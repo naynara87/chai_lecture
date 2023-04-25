@@ -4834,7 +4834,7 @@ code.google.com/p/crypto-js/wiki/License
             XW.sendStatement(mys);
             window.postMessage(JSON.stringify(mys));
           }
-          function sendAnswered(subContentId, pageId) {
+          function sendAnswered(subContentId, curPage) {
             var mys = bareStatement();
             mys.verb = new ADL.XAPIStatement.Verb(
               "http://adlnet.gov/expapi/verbs/answered",
