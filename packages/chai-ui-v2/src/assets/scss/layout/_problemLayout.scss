@@ -226,6 +226,7 @@ $gray-color: #d6d7da;
   border-radius: vw(100);
   background-color: color(gray-ff);
   font-size: vw(22);
+  letter-spacing: vw(-2);
   transition: all 0.2s;
 
   @include hover {

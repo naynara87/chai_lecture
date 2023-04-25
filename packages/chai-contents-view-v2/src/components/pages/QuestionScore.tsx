@@ -84,7 +84,7 @@ const QuestionScore = () => {
   };
 
   return (
-    <>
+    <div className="cai-view-yahei">
       <LayoutQuestionHeader
         headerText={`${state.lessonName} 채점 결과`}
         solvingTime={state.solvingTime}
@@ -121,28 +121,30 @@ const QuestionScore = () => {
             )}
           </div>
         </div>
-        <ModalConfirm
-          isModalOpen={isModalRestartConfirmOpen}
-          setIsModalOpen={setIsModalRestartConfirmOpen}
-          description="학습 성취도에는 첫 번째 점수만 반영됩니다. 그래도 다시 푸시겠어요?"
-          rightButtonText="다시 풀기"
-          leftButtonText="취소"
-          title=""
-          handleClickRightButton={handleClickRestartQuiz}
-          handleClickLeftButton={() => setIsModalRestartConfirmOpen(false)}
-        />
-        <ModalConfirm
-          isModalOpen={isModalExitConfirmOpen}
-          setIsModalOpen={setIsModalExitConfirmOpen}
-          description="이 페이지를 닫고 마이페이지로 이동할까요? 채점결과 및 해설은 다시 볼 수 있습니다."
-          rightButtonText="나가기"
-          leftButtonText="취소"
-          title=""
-          handleClickRightButton={() => handleClickClose()}
-          handleClickLeftButton={() => setIsModalExitConfirmOpen(false)}
-        />
+        <div className="cai-view-yahei">
+          <ModalConfirm
+            isModalOpen={isModalRestartConfirmOpen}
+            setIsModalOpen={setIsModalRestartConfirmOpen}
+            description="학습 성취도에는 첫 번째 점수만 반영됩니다. 그래도 다시 푸시겠어요?"
+            rightButtonText="다시 풀기"
+            leftButtonText="취소"
+            title=""
+            handleClickRightButton={handleClickRestartQuiz}
+            handleClickLeftButton={() => setIsModalRestartConfirmOpen(false)}
+          />
+          <ModalConfirm
+            isModalOpen={isModalExitConfirmOpen}
+            setIsModalOpen={setIsModalExitConfirmOpen}
+            description="이 페이지를 닫고 마이페이지로 이동할까요? 채점결과 및 해설은 다시 볼 수 있습니다."
+            rightButtonText="나가기"
+            leftButtonText="취소"
+            title=""
+            handleClickRightButton={() => handleClickClose()}
+            handleClickLeftButton={() => setIsModalExitConfirmOpen(false)}
+          />
+        </div>
       </main>
-    </>
+    </div>
   );
 };
 

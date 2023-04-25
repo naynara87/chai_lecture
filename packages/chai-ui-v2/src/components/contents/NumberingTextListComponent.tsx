@@ -2,8 +2,11 @@ import styled from "@emotion/styled";
 import React, { useMemo } from "react";
 import { NumberingTextListContentData } from "../../core";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
+import { vw } from "../../assets";
 
-const NumberingWrapper = styled.div``;
+const NumberingWrapper = styled.div`
+  margin-top: ${vw(40)};
+`;
 
 const NumberingTextList = styled.div`
   display: flex;
