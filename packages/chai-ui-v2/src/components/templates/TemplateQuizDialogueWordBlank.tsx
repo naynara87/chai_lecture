@@ -21,6 +21,7 @@ import FullAudioComponent from "../contents/FullAudioComponent";
 const DialogueContainer = styled.div`
   .hori-answer-wrap {
     justify-content: flex-start;
+    margin-top: ${vw(40)};
 
     .inp-grp {
       flex-basis: auto;
@@ -79,7 +80,7 @@ const DialogueContainer = styled.div`
   }
 `;
 
-interface TemplateQuizDialogueWordBlank extends TemplateProps {}
+interface TemplateQuizDialogueWordBlank extends TemplateProps { }
 
 /**
  * 대화형 퀴즈 뷰어

@@ -23,6 +23,7 @@ import {
 import ModalVideo from "../modal/ModalVideo";
 import { v4 as uuidv4 } from "uuid";
 import DialogueSentenceBlank from "../contents/DialogueSentenceBlank";
+import { vw } from "../../assets";
 
 const DialogueContainer = styled.div`
   .blank-gray {
@@ -47,6 +48,10 @@ const DialogueContainer = styled.div`
 const QuizContainer = styled.form`
   .hori-answer-wrap .inp-grp {
     flex-basis: 100%;
+  }
+
+  ~.btns-wrap {
+    margin-top: ${vw(60)};
   }
 `;
 
