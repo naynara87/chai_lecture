@@ -67,10 +67,16 @@ const useXapi = () => {
         .padStart(2, "0")}.${currentTime
         .getDate()
         .toString()
-        .padStart(
-          2,
-          "0",
-        )} ${currentTime.getHours()}:${currentTime.getMinutes()}:${currentTime.getSeconds()}`;
+        .padStart(2, "0")} ${currentTime
+        .getHours()
+        .toString()
+        .padStart(2, "0")}:${currentTime
+        .getMinutes()
+        .toString()
+        .padStart(2, "0")}:${currentTime
+        .getSeconds()
+        .toString()
+        .padStart(2, "0")}`;
       if (isCorrect) {
         const newCorrectData = [...xapiActivity.correct_data];
         const findSamePage = newCorrectData.find(

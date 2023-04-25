@@ -120,9 +120,9 @@ const XapiProvider = ({ children }: XapiProviderProps) => {
 
   const options = {
     // #1 actor 정의
-    name: learningLogCookieData?.uname,
+    name: learningLogCookieData?.name,
     homePage: `https://www.caihong.co.kr/account/user/${learningLogCookieData?.uid}`,
-    account_name: `${learningLogCookieData?.uno}|${learningLogCookieData?.uid}|${learningLogCookieData?.uname}|${learningLogCookieData?.applId}`,
+    account_name: `${learningLogCookieData?.uno}|${learningLogCookieData?.uid}|${learningLogCookieData?.name}|${learningLogCookieData?.applId}`,
     // #2 objecjt 정의
     activity_id: `https://www.caihong.co.kr/course/${learningLogCookieData?.courseId}/lesson/${learningLogCookieData?.lessonId}`, // object.id 값
     content_name: learningLogCookieData?.lessonName, // 레슨 정보

@@ -18,7 +18,7 @@ const queryClient = new QueryClient();
 const contentDummyCookie: InitialAppData = {
   uno: "1",
   uid: "12345",
-  uname: "버블콘",
+  name: "버블콘",
   applId: "1",
   courseId: "1",
   courseName: "red",
@@ -33,7 +33,7 @@ const contentDummyCookie: InitialAppData = {
 const questionDummyCookie: InitialAppData = {
   uno: "1",
   uid: "12345",
-  uname: "버블콘",
+  name: "버블콘",
   applId: "1",
   courseId: "1",
   courseName: "\ube68\uac15",
@@ -48,7 +48,7 @@ const questionDummyCookie: InitialAppData = {
 const paperDummyCookie: InitialAppData = {
   uno: "1",
   uid: "12345",
-  uname: "버블콘",
+  name: "버블콘",
   applId: "1",
   courseId: "1",
   courseName: "\ube68\uac15",
@@ -63,7 +63,7 @@ const paperDummyCookie: InitialAppData = {
 function App() {
   useEffect(() => {
     if (process.env.NODE_ENV === "development") {
-      setCookie<InitialAppData>("bubble-player", contentDummyCookie, {
+      setCookie<InitialAppData>("bubble-player", paperDummyCookie, {
         path: "/",
       });
     }
