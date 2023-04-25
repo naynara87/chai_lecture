@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { MultiChoiceContentData, QuizPopupModalContentData } from "chai-ui-v2";
+import { MultiChoiceContentData, QuizPopupModalContentData, vw } from "chai-ui-v2";
 import React, { useState } from "react";
 import useGrayLineComponent from "../../hooks/useGrayLineComponent";
 import { DraggableContentCommonProps } from "../../types/page";
@@ -14,6 +14,14 @@ const MultiChoiceWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 8px;
+
+  > div {
+    margin-top: ${vw(60)};
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+  }
 `;
 
 const ContentBox = styled.div`
