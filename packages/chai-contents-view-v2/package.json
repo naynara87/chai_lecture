@@ -57,6 +57,8 @@
   },
   "devDependencies": {
     "@craco/craco": "^7.0.0",
-    "@emotion/babel-plugin": "^11.10.6"
+    "@emotion/babel-plugin": "^11.10.6",
+    "cra-bundle-analyzer": "*",
+    "webpack-bundle-analyzer": "*"
   }
 }
