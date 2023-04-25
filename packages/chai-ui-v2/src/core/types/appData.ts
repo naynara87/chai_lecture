@@ -167,7 +167,7 @@ export type AppType = "lesson" | "paper";
 export interface InitialAppData {
   uno: string;
   uid: string;
-  uname: string;
+  name: string;
   applId: string;
   turnId?: string;
   courseId: string;

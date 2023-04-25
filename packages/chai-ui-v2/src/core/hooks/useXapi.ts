@@ -61,16 +61,23 @@ const useXapi = () => {
     (currentPage: Page, isCorrect: boolean) => {
       if (!xapiActivity) return;
       const currentTime = new Date();
-      const currentTimeStamp = `${currentTime.getFullYear()}.${currentTime
-        .getMonth()
+      const currentTimeStamp = `${currentTime.getFullYear()}.${(
+        currentTime.getMonth() + 1
+      )
         .toString()
         .padStart(2, "0")}.${currentTime
         .getDate()
         .toString()
-        .padStart(
-          2,
-          "0",
-        )} ${currentTime.getHours()}:${currentTime.getMinutes()}:${currentTime.getSeconds()}`;
+        .padStart(2, "0")} ${currentTime
+        .getHours()
+        .toString()
+        .padStart(2, "0")}:${currentTime
+        .getMinutes()
+        .toString()
+        .padStart(2, "0")}:${currentTime
+        .getSeconds()
+        .toString()
+        .padStart(2, "0")}`;
       if (isCorrect) {
         const newCorrectData = [...xapiActivity.correct_data];
         const findSamePage = newCorrectData.find(

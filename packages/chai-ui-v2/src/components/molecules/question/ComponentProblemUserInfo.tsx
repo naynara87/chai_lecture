@@ -21,7 +21,7 @@ const ComponentProblemUserInfo = ({
   return (
     <div className="problem-user-info-wrap">
       <h3 className="user-title">
-        {learningLogCookieData?.uname}님<br />
+        {learningLogCookieData?.name}님<br />
         <b>{quizTypeText}</b>
         <br />
         채점 결과
