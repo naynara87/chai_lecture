@@ -64,7 +64,7 @@ export type SentenceInOrderChoice = {
   answerIndex: number;
 };
 
-interface TemplateQuizSentenceBlankProps extends TemplateProps { }
+interface TemplateQuizSentenceBlankProps extends TemplateProps {}
 
 const TemplateQuizSentenceBlank = ({
   template,
@@ -153,17 +153,17 @@ const TemplateQuizSentenceBlank = ({
     setSelectedChoiceBox(undefined);
     setIsShowAnswer(true);
     setIsModalSolutionOpen(true);
-    xapiAnswered(thisPage.mainContents.id);
     handleClickAudioButton(
       "solutionModal",
       modalUuidRef.current,
       0,
       isCorrect === undefined
         ? thisPage.mainContents.data.quizPopup.data.correct.soundEffect?.src ??
-        ""
+            ""
         : thisPage.mainContents.data.quizPopup.data.incorrect.soundEffect
-          ?.src ?? "",
+            ?.src ?? "",
     );
+    xapiAnswered(thisPage.mainContents.id);
   }, [handleClickAudioButton, isCorrect, thisPage.mainContents, xapiAnswered]);
 
   const handleClickModalClose = () => {
@@ -253,9 +253,9 @@ const TemplateQuizSentenceBlank = ({
             videoSrc={
               isCorrect === undefined
                 ? thisPage.mainContents.data.quizPopup.data.correct.video
-                  ?.src ?? ""
+                    ?.src ?? ""
                 : thisPage.mainContents.data.quizPopup.data.incorrect.video
-                  ?.src ?? ""
+                    ?.src ?? ""
             }
           />
         </>
