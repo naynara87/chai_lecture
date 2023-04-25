@@ -142,7 +142,7 @@ const QuestionScore = () => {
           handleClickLeftButton={() => setIsModalExitConfirmOpen(false)}
         />
       </main>
-    </ㅇ>
+    </div>
   );
 };
 
