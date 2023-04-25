@@ -30,6 +30,21 @@ const contentDummyCookie: InitialAppData = {
   type: "lesson",
 };
 
+const prdContentDummyCookie: InitialAppData = {
+  uno: "1",
+  uid: "12345",
+  name: "버블콘",
+  applId: "1",
+  courseId: "10",
+  courseName: "red",
+  subjectId: "1",
+  lessonId: "194",
+  lessonName: "red1",
+  turnId: "0892255b-3b04-46c7-acdc-cf16f1c3f49e",
+  pageId: "3ea2f658-b6ab-4509-96b2-de5fa88dea46",
+  type: "lesson",
+};
+
 const questionDummyCookie: InitialAppData = {
   uno: "1",
   uid: "12345",
@@ -63,7 +78,7 @@ const paperDummyCookie: InitialAppData = {
 function App() {
   useEffect(() => {
     if (process.env.NODE_ENV === "development") {
-      setCookie<InitialAppData>("bubble-player", paperDummyCookie, {
+      setCookie<InitialAppData>("bubble-player", contentDummyCookie, {
         path: "/",
       });
     }

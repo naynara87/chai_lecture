@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import kkungiHeaderGif from "../../assets/images/img/cha_kkungi_header.gif";
+// import kkungiHeaderGif from "../../assets/images/img/cha_kkungi_header.gif";
 import kkungiHeaderPng from "../../assets/images/img/cha_kkungi_header.png";
-import { ID } from "../../core";
+import { ID, viewAssets } from "../../core";
 
 interface HeaderCharacterComponentProps {
   cornerId: ID;
@@ -15,7 +15,7 @@ const HeaderCharacterComponent = ({
   useEffect(() => {
     setGifSrc(kkungiHeaderPng);
     setTimeout(() => {
-      setGifSrc(kkungiHeaderGif);
+      setGifSrc(viewAssets.kkungiHeader);
     }, 0);
   }, [cornerId]);
 
