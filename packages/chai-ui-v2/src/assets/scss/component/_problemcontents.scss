@@ -170,12 +170,12 @@ $gray-color: #D6D7DA;
 	}
 
 	.tab-conts-wrapper {
-		@include scrollbar;
+		// @include scrollbar;
 
-		overflow: auto;
+		// overflow: auto;
 		width: 100%;
 		height: vh(430);
-		padding: vw(35);
+		// padding: vw(35);
 		border: 1px solid color(gray-db);
 		border-top: 0;
 		border-radius: 0 0 vw(10) vw(10);
