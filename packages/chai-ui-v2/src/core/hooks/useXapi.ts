@@ -61,8 +61,9 @@ const useXapi = () => {
     (currentPage: Page, isCorrect: boolean) => {
       if (!xapiActivity) return;
       const currentTime = new Date();
-      const currentTimeStamp = `${currentTime.getFullYear()}.${currentTime
-        .getMonth()
+      const currentTimeStamp = `${currentTime.getFullYear()}.${(
+        currentTime.getMonth() + 1
+      )
         .toString()
         .padStart(2, "0")}.${currentTime
         .getDate()
