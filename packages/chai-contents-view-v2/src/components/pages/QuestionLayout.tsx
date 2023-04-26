@@ -47,7 +47,7 @@ const QuestionLayout = ({
   const [isQuestionStartModalOpen, setIsQuestionStartModalOpen] =
     useState(false);
   const [questionSolvingTime, setQuestionSolvingTime] = useState(0);
-  const isSendDeletePagesData = useRef(false);
+  const [isSendDeletePagesData, setIsSendDeletePagesData] = useState(false);
   const learningLogCookieData = getCookie<InitialAppData>("bubble-player");
   const [, setCurrentPage] = useRecoilState(currentPageState);
 
@@ -76,7 +76,7 @@ const QuestionLayout = ({
     async (contentIds: string[]) => {
       try {
         await deleteQuestion(contentIds, learningLogCookieData?.uid ?? "");
-        isSendDeletePagesData.current = true;
+        setIsSendDeletePagesData(true);
       } catch (error) {
         console.log("서버 통신에 실패했습니다.");
       }
@@ -85,7 +85,7 @@ const QuestionLayout = ({
   );
 
   useEffect(() => {
-    if (isSendDeletePagesData.current) return;
+    if (isSendDeletePagesData) return;
     const contentIds = pages.map((page) => {
       const curPageData = page.data as TemplateQuestionData;
       if (!curPageData.contents) {
@@ -222,7 +222,7 @@ const QuestionLayout = ({
           pages={pages}
           onClickPagination={handleClickPagination}
         />
-        {isSendDeletePagesData.current && currentPage?.data && (
+        {isSendDeletePagesData && currentPage?.data && (
           <TemplateQuestion
             template={currentPage.data as TemplateQuestionData}
             setPageCompleted={setPageCompleted}
