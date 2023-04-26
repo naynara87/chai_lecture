@@ -8,6 +8,7 @@ import {
   LessonMeta,
   ModalQuestionTemplate,
   Page,
+  setCookie,
   TemplateQuestion,
   TemplateQuestionData,
   useXapi,
@@ -123,6 +124,18 @@ const QuestionLayout = ({
   //   event.returnValue = "학습을 종료하시겠습니까?";
   //   return "학습을 종료하시겠습니까?";
   // });
+
+  useEffect(() => {
+    if (!currentPage) return;
+    const curPageIndex = pages.findIndex((page) => page.id === currentPage.id);
+    const pageData = {
+      ...currentPage,
+      pageIndex: curPageIndex + 1,
+    };
+    setCookie("bubble-player-page-data", pageData, {
+      path: "/",
+    });
+  }, [currentPage, pages]);
 
   const handleClickPagination = (pageIndex: number) => {
     if (currentPageIndex === undefined) return;
