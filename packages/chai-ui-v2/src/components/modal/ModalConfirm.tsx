@@ -103,14 +103,22 @@ const ModalConfirm = ({
     >
       <ModalInnerBox>
         <InnerTextContainer>
-          <Title>{title}</Title>
-          <Description>{description}</Description>
+          <Title className="modal-confirm-text">{title}</Title>
+          <Description className="modal-confirm-text">
+            {description}
+          </Description>
         </InnerTextContainer>
         <ButtonContainer>
-          <ModalBorderButton onClick={_handleClickLeftButton}>
+          <ModalBorderButton
+            className="modal-confirm-text"
+            onClick={_handleClickLeftButton}
+          >
             {leftButtonText || "아니오"}
           </ModalBorderButton>
-          <ModalColorButton onClick={_handleClickRightButton}>
+          <ModalColorButton
+            className="modal-confirm-text"
+            onClick={_handleClickRightButton}
+          >
             {rightButtonText || "예"}
           </ModalColorButton>
         </ButtonContainer>
