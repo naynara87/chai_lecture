@@ -133,7 +133,9 @@ const ConversationComponent = ({
       if (pageType === "TemplateConversationRepeat") {
         if (showConversationIndex < contentIndex) return <></>;
         if (showConversationIndex === contentIndex && !content.speakingTime) {
-          addShowConversationIndex();
+          setTimeout(() => {
+            addShowConversationIndex();
+          }, 1000);
         }
       }
       return (
