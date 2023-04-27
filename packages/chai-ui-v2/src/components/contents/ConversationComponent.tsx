@@ -29,6 +29,7 @@ const ConversationComponent = ({
   const [isShowMeaning, setIsShowMeaning] = useState(
     pageType === "TemplateConversationToggle" ? false : true,
   );
+  const [showConversationIndex, setShowConversationIndex] = useState(0);
 
   const {
     globalAudioRef,
@@ -123,15 +124,26 @@ const ConversationComponent = ({
     [isShowPronunciation, isShowMeaning],
   );
 
+  const addShowConversationIndex = () => {
+    setShowConversationIndex((prev) => prev + 1);
+  };
+
   const mainContents = useMemo(() => {
     return contents.data.map((content, contentIndex) => {
+      if (pageType === "TemplateConversationRepeat") {
+        if (showConversationIndex < contentIndex) return <></>;
+        if (showConversationIndex === contentIndex && !content.speakingTime) {
+          addShowConversationIndex();
+        }
+      }
       return (
         <li
-          className={`conversation-wrap ${speakingDialogueIndex === contentIndex &&
-              globalAudioState === "playing"
+          className={`conversation-wrap ${
+            speakingDialogueIndex === contentIndex &&
+            globalAudioState === "playing"
               ? "active"
               : ""
-            } ${content.isBlank ? "blank" : ""}`}
+          } ${content.isBlank ? "blank" : ""}`}
           key={contentIndex}
         >
           {/* key설명 - 음성이 재생될 때 active 가 추가됨(화자표시 애니메이션) */}
@@ -185,6 +197,7 @@ const ConversationComponent = ({
                       speakingTime: content.speakingTime,
                     },
                   }}
+                  handleEndSpeaking={addShowConversationIndex}
                 />
               )}
           </div>
@@ -199,6 +212,7 @@ const ConversationComponent = ({
     isShowMeaning,
     handleClickDialogueCharacter,
     pageType,
+    showConversationIndex,
   ]);
 
   return (

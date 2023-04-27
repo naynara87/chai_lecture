@@ -28,9 +28,10 @@ type RecordedAudioState = "not-recorded" | "recorded" | "playing" | "stopped";
 
 interface AudioRecorderProps {
   contents: RecorderContentData;
+  handleEndRecord?: () => void;
 }
 
-const AudioRecorder = ({ contents }: AudioRecorderProps) => {
+const AudioRecorder = ({ contents, handleEndRecord }: AudioRecorderProps) => {
   const recordedAudioUuidRef = useRef(uuidv4());
   const recordTimer = useRef<NodeJS.Timeout | number>();
   const recordTime = useRef(0);
@@ -79,9 +80,10 @@ const AudioRecorder = ({ contents }: AudioRecorderProps) => {
       stopRecording();
       setRecordedAudioState("recorded");
       setIsProgressBarStart(false);
+      handleEndRecord && handleEndRecord();
       window.clearTimeout(recordTimer.current);
     }
-  }, [globalAudioId, status, stopRecording]);
+  }, [globalAudioId, status, stopRecording, handleEndRecord]);
 
   const handleClickRecordingAudioButton = useCallback(() => {
     if (status === "idle" || status === "stopped") {
@@ -95,6 +97,7 @@ const AudioRecorder = ({ contents }: AudioRecorderProps) => {
           stopRecording();
           setRecordedAudioState("recorded");
           setIsProgressBarStart(false);
+          handleEndRecord && handleEndRecord();
         } else {
           recordTimer.current = setTimeout(go, 1000);
         }
@@ -104,6 +107,7 @@ const AudioRecorder = ({ contents }: AudioRecorderProps) => {
       stopRecording();
       setRecordedAudioState("recorded");
       setIsProgressBarStart(false);
+      handleEndRecord && handleEndRecord();
       setComponentCompleted(recordedAudioUuidRef.current);
       window.clearTimeout(recordTimer.current);
       xapiCreated(contents.id);
@@ -117,6 +121,7 @@ const AudioRecorder = ({ contents }: AudioRecorderProps) => {
     setComponentCompleted,
     xapiCreated,
     contents.id,
+    handleEndRecord,
   ]);
 
   const handleClickRecordedAudioButton = useCallback(() => {
