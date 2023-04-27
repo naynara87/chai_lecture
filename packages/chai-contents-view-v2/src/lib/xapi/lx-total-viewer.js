@@ -5382,14 +5382,71 @@ code.google.com/p/crypto-js/wiki/License
             }
             return res;
           }
-          function saveState(newSate) {
+          function saveState(newState) {
             var reg = XW.lrs.registration || null;
+            if (!newState) return;
             var temp = {
               account_name: actor.account.name,
               progress_segments: progressSegments,
               time: Number(((new Date() - eduStartTime) / 1000).toFixed(3)),
+              course_id:
+                (newState === null || newState === void 0
+                  ? void 0
+                  : newState.course_id) || null,
+              course_name:
+                (newState === null || newState === void 0
+                  ? void 0
+                  : newState.course_name) || null,
+              lesson_id:
+                (newState === null || newState === void 0
+                  ? void 0
+                  : newState.lesson_id) || null,
+              lesson_name:
+                (newState === null || newState === void 0
+                  ? void 0
+                  : newState.lesson_name) || null,
+              lesson_type_code:
+                (newState === null || newState === void 0
+                  ? void 0
+                  : newState.lesson_type_code) || null,
+              part_id:
+                (newState === null || newState === void 0
+                  ? void 0
+                  : newState.part_id) || null,
+              part_name:
+                (newState === null || newState === void 0
+                  ? void 0
+                  : newState.part_name) || null,
+              page:
+                (newState === null || newState === void 0
+                  ? void 0
+                  : newState.page) || 0,
+              pages:
+                (newState === null || newState === void 0
+                  ? void 0
+                  : newState.pages) || 0,
+              correct_data:
+                (newState === null || newState === void 0
+                  ? void 0
+                  : newState.correct_data) || [],
+              incorrect_data:
+                (newState === null || newState === void 0
+                  ? void 0
+                  : newState.incorrect_data) || [],
+              progress_data:
+                (newState === null || newState === void 0
+                  ? void 0
+                  : newState.progress_data) || [],
+              complete_progress:
+                (newState === null || newState === void 0
+                  ? void 0
+                  : newState.complete_progress) || 0,
+              progress:
+                (newState === null || newState === void 0
+                  ? void 0
+                  : newState.progress) || 0,
             };
-            var state = _objectSpread(_objectSpread({}, newSate), temp);
+            var state = _objectSpread(_objectSpread({}, newState), temp);
             var callback;
             // jsonState = JSON.stringify(state);
             if (!sendSynchronous) {
