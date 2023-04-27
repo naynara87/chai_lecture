@@ -12,6 +12,8 @@ import {
 } from "chai-ui-v2";
 import { CookiesProvider } from "react-cookie";
 import XapiProvider from "./XapiProvider";
+import viewGlobal from "./styles/viewGlobal";
+import { Global } from "@emotion/react";
 
 const queryClient = new QueryClient();
 
@@ -78,7 +80,7 @@ const paperDummyCookie: InitialAppData = {
 function App() {
   useEffect(() => {
     if (process.env.NODE_ENV === "development") {
-      setCookie<InitialAppData>("bubble-player", contentDummyCookie, {
+      setCookie<InitialAppData>("bubble-player", paperDummyCookie, {
         path: "/",
       });
     }
@@ -94,6 +96,7 @@ function App() {
             hideProgressBar={true}
             closeButton={false}
           />
+          <Global styles={viewGlobal} />
           <AuthProvider>
             <XapiProvider>
               <GlobalAudioProvider>

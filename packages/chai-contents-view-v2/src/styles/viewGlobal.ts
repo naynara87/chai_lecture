@@ -1,9 +1,8 @@
 import { css } from "@emotion/react";
 
 const viewGlobal = css`
-  [class] {
-    // font change
-    font-family: "yahei", arial, sans-serif;
+  .modal-confirm-text {
+    font-family: "yahei", sans-serif;
   }
 `;
 
