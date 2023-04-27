@@ -3,10 +3,11 @@ import ImgVocaComponent from "../atoms/ImgVocaComponent";
 import IconClose from "../../assets/images/icon/icon_close_black.svg";
 import { useGlobalAudio, WordsCarouselContentData } from "../../core";
 import styled from "@emotion/styled";
-import { Pagination } from "swiper";
+import { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
+import "swiper/css/navigation";
 import { HtmlContentComponent } from "../atoms";
 import AudioComponent from "../contents/AudioComponent";
 import ModalBase from "./ModalBase";
@@ -25,6 +26,16 @@ const SlideCard = styled.div`
 
 const SwiperWrapper = styled.div`
   position: relative;
+
+  .swiper-button-prev {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .swiper-button-next {
+    top: 50%;
+    transform: translateY(-50%);
+  }
 `;
 interface LayoutModalVocaProps {
   isModalOpen: boolean;
@@ -96,12 +107,13 @@ const LayoutModalVoca = ({
             <Page>
               <SwiperWrapper>
                 <Swiper
-                  modules={[Pagination]}
+                  modules={[Pagination, Navigation]}
                   pagination={{
                     dynamicBullets: true,
                     dynamicMainBullets: 4,
                     clickable: true,
                   }}
+                  navigation
                   spaceBetween={20}
                   slidesPerView={1}
                   centeredSlides
