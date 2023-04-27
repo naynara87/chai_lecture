@@ -18,9 +18,13 @@ const RepeatSpeak = styled.div``;
 
 export interface SpeakingComponentProps {
   contents: SpeakingContentData;
+  handleEndSpeaking?: () => void;
 }
 
-const SpeakingComponent = ({ contents }: SpeakingComponentProps) => {
+const SpeakingComponent = ({
+  contents,
+  handleEndSpeaking,
+}: SpeakingComponentProps) => {
   const [isShowProgressBar, setIsShowProgressBar] = useState(false);
   const [isEndProgressBar, setIsEndProgressBar] = useState(false);
   const [isFirstSpeaked, setIsFirstSpeaked] = useState(false);
@@ -75,6 +79,7 @@ const SpeakingComponent = ({ contents }: SpeakingComponentProps) => {
         setIsAudioEnd(false);
         return;
       }
+      handleEndSpeaking && handleEndSpeaking();
       handleAudioReset();
       return;
     }
@@ -84,6 +89,7 @@ const SpeakingComponent = ({ contents }: SpeakingComponentProps) => {
     handleAudioReset,
     handleClickAudioButton,
     isFirstSpeaked,
+    handleEndSpeaking,
   ]);
 
   useEffect(() => {

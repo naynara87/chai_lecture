@@ -30,6 +30,7 @@ interface RolePlayingCharacterComponentProps {
   pronunciation: string;
   meaning: string;
   audioSrc?: string;
+  addShowRolePlayingIndex?: () => void;
 }
 
 const RolePlayingCharacterComponent = ({
@@ -41,6 +42,7 @@ const RolePlayingCharacterComponent = ({
   pronunciation,
   meaning,
   audioSrc,
+  addShowRolePlayingIndex,
 }: RolePlayingCharacterComponentProps) => {
   const [isShowHint, setIsShowHint] = useState(false);
 
@@ -56,9 +58,18 @@ const RolePlayingCharacterComponent = ({
 
   const resetAudio = useCallback(() => {
     if (globalAudioId.toString().includes(`rolePlay_${audioUuidRef.current}`)) {
+      if (selectCharacterId !== id) {
+        addShowRolePlayingIndex && addShowRolePlayingIndex();
+      }
       handleAudioReset();
     }
-  }, [globalAudioId, handleAudioReset]);
+  }, [
+    globalAudioId,
+    handleAudioReset,
+    addShowRolePlayingIndex,
+    selectCharacterId,
+    id,
+  ]);
 
   useEffect(() => {
     let globalAudioRefValue: HTMLAudioElement | null = null;
@@ -164,7 +175,10 @@ const RolePlayingCharacterComponent = ({
           </BubbleWrap>
         </div>
         {selectCharacterId === id && (
-          <AudioRecorder contents={{ id: id, type: "recorder", data: {} }} />
+          <AudioRecorder
+            contents={{ id: id, type: "recorder", data: {} }}
+            handleEndRecord={addShowRolePlayingIndex}
+          />
         )}
       </div>
     </li>

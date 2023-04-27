@@ -80,7 +80,7 @@ const DialogueContainer = styled.div`
   }
 `;
 
-interface TemplateQuizDialogueWordBlank extends TemplateProps { }
+interface TemplateQuizDialogueWordBlank extends TemplateProps {}
 
 /**
  * 대화형 퀴즈 뷰어
@@ -138,13 +138,23 @@ const TemplateQuizDialogueWordBlank = ({
     setFullAudio();
   }, [setFullAudio]);
 
+  const currentFullAudioUrlCheck = useCallback(() => {
+    fullAudioIndexRef.current += 1;
+    if (
+      fullAudioIndexRef.current > fullAudioList.length ||
+      fullAudioList[fullAudioIndexRef.current]
+    ) {
+      return;
+    }
+    currentFullAudioUrlCheck();
+  }, [fullAudioList]);
+
   const audioEnded = useCallback(() => {
     if (
       globalAudioId.toString().includes(`fullAudio_${fullAudioUuidRef.current}`)
     ) {
-      fullAudioIndexRef.current += 1;
-
-      if (!fullAudioList[fullAudioIndexRef.current]) {
+      currentFullAudioUrlCheck();
+      if (fullAudioIndexRef.current > fullAudioList.length) {
         handleAudioReset();
         return;
       }
@@ -155,7 +165,13 @@ const TemplateQuizDialogueWordBlank = ({
         fullAudioList[fullAudioIndexRef.current] ?? "",
       );
     }
-  }, [handleAudioReset, globalAudioId, fullAudioList, handleClickAudioButton]);
+  }, [
+    handleAudioReset,
+    globalAudioId,
+    fullAudioList,
+    handleClickAudioButton,
+    currentFullAudioUrlCheck,
+  ]);
 
   useEffect(() => {
     let globalAudioRefValue: HTMLAudioElement | null = null;

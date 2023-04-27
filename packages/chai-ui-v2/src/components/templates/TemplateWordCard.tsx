@@ -95,12 +95,23 @@ const TemplateWordCard = ({
     });
   }, [getContentComponent, thisPage]);
 
+  const currentFullAudioUrlCheck = useCallback(() => {
+    fullAudioIndexRef.current += 1;
+    if (
+      fullAudioIndexRef.current > fullAudioList.length ||
+      fullAudioList[fullAudioIndexRef.current]
+    ) {
+      return;
+    }
+    currentFullAudioUrlCheck();
+  }, [fullAudioList]);
+
   const audioEnded = useCallback(() => {
     if (
       globalAudioId.toString().includes(`fullAudio_${fullAudioUuidRef.current}`)
     ) {
-      fullAudioIndexRef.current += 1;
-      if (!fullAudioList[fullAudioIndexRef.current]) {
+      currentFullAudioUrlCheck();
+      if (fullAudioIndexRef.current > fullAudioList.length) {
         handleAudioReset();
         return;
       }
@@ -111,7 +122,13 @@ const TemplateWordCard = ({
         fullAudioList[fullAudioIndexRef.current] ?? "",
       );
     }
-  }, [handleAudioReset, globalAudioId, fullAudioList, handleClickAudioButton]);
+  }, [
+    handleAudioReset,
+    globalAudioId,
+    fullAudioList,
+    handleClickAudioButton,
+    currentFullAudioUrlCheck,
+  ]);
 
   const listenFullAudio = useCallback(() => {
     fullAudioIndexRef.current = 0;
