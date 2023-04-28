@@ -16,7 +16,7 @@ const ModalCompletedWrapper = styled.div`
 
 interface ModalCompletedProps {
   lessonCode: LessonMeta["colorTypeCd"];
-  exitPlayer: () => Promise<unknown> | undefined;
+  exitPlayer: () => void;
   saveProgress?: () => Promise<void>;
   progressData: ProgressData | undefined;
 }
@@ -32,7 +32,7 @@ const ModalCompleted = ({
 
   const handleClickClose = async () => {
     if (exitPlayer) {
-      await exitPlayer();
+      exitPlayer();
     }
     console.log("학습 종료");
     const btnQuit = document.querySelector<HTMLDivElement>("#quit");

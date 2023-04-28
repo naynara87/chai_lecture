@@ -79,7 +79,7 @@ const useXapi = () => {
         .toString()
         .padStart(2, "0")}`;
       if (isCorrect) {
-        const newCorrectData = [...xapiActivity.correct_data];
+        const newCorrectData = [...xapiActivity?.correct_data];
         const findSamePage = newCorrectData.find(
           (quizPageData) => quizPageData.page_id === currentPage.id,
         );
@@ -94,7 +94,7 @@ const useXapi = () => {
         });
         setXapiActivity(newXapiActivityState);
       } else {
-        const newInCorrectData = [...xapiActivity.incorrect_data];
+        const newInCorrectData = [...xapiActivity?.incorrect_data];
         const findSamePage = newInCorrectData.find(
           (quizPageData) => quizPageData.page_id === currentPage.id,
         );
@@ -116,13 +116,15 @@ const useXapi = () => {
   const updateProgressDataPageCheck = useCallback(
     (prevCornerId: ID, nextCornerId: ID, currentPageId: ID, nextPageId: ID) => {
       if (!xapiActivity) return;
-      const newProgressData = cloneDeep(xapiActivity.progress_data);
-      const prevCornerIndex = newProgressData.findIndex(
+      const newProgressData = cloneDeep(xapiActivity?.progress_data);
+      const prevCornerIndex = newProgressData?.findIndex(
         (corner) => corner.corner_id.toString() === prevCornerId.toString(),
       );
-      const nextCornerIndex = newProgressData.findIndex(
+      const nextCornerIndex = newProgressData?.findIndex(
         (corner) => corner.corner_id.toString() === nextCornerId.toString(),
       );
+      if (prevCornerIndex === undefined || nextCornerIndex === undefined)
+        return;
       newProgressData[prevCornerIndex].pages = newProgressData[
         prevCornerIndex
       ].pages.map((page) => {
@@ -158,19 +160,19 @@ const useXapi = () => {
 
   const updateProgress = useCallback(
     (progressData: LRSCornerProgress[], totalPages: ID[]) => {
-      const flatMapPages = progressData.flatMap((corner) => corner.pages);
-      const filteredCheckedPages = flatMapPages.filter(
+      const flatMapPages = progressData?.flatMap((corner) => corner.pages);
+      const filteredCheckedPages = flatMapPages?.filter(
         (page) => page.is_checked === true,
       );
-      const filteredCompletedPages = flatMapPages.filter(
+      const filteredCompletedPages = flatMapPages?.filter(
         (page) => page.is_completed === true,
       );
       return {
         progress: parseFloat(
-          (filteredCheckedPages.length / totalPages.length).toFixed(3),
+          (filteredCheckedPages?.length / totalPages.length).toFixed(3),
         ),
         completed_progress: parseFloat(
-          (filteredCompletedPages.length / totalPages.length).toFixed(3),
+          (filteredCompletedPages?.length / totalPages.length).toFixed(3),
         ),
       };
     },

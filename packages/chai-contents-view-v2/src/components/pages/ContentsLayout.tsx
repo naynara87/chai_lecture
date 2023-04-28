@@ -55,27 +55,17 @@ const ContentsLayout = ({
 
   const exitPlayer = useCallback(() => {
     if (currentPage === undefined || currentPageIndex === undefined) return;
-    let result: boolean;
-    return new Promise((resolve, reject) => {
-      try {
-        const currentCornerIndex = corners.findIndex(
-          (corner) => corner.id.toString() === currentCornerId?.toString(),
-        );
-        const currentCorner = corners[currentCornerIndex];
-        xapiSuspended(
-          currentCorner,
-          currentCorner,
-          currentPage,
-          totalPages[currentPageIndex],
-          totalPages,
-        );
-        result = true;
-      } catch (error) {
-        console.log(error);
-        reject(error);
-      }
-      resolve(result);
-    });
+    const currentCornerIndex = corners.findIndex(
+      (corner) => corner.id.toString() === currentCornerId?.toString(),
+    );
+    const currentCorner = corners[currentCornerIndex];
+    xapiSuspended(
+      currentCorner,
+      currentCorner,
+      currentPage,
+      totalPages[currentPageIndex],
+      totalPages,
+    );
   }, [
     xapiSuspended,
     corners,

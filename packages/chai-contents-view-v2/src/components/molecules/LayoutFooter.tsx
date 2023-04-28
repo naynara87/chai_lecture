@@ -28,7 +28,7 @@ interface LayoutFooterProps extends UseProgressRateProps {
   handleClickPrev: () => void;
   totalPages: (string | number)[];
   currentPage?: Page;
-  exitPlayer: () => Promise<unknown> | undefined;
+  exitPlayer: () => void;
 }
 
 const LayoutFooter = ({
