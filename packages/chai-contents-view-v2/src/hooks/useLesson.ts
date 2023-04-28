@@ -25,21 +25,13 @@ const useLesson = (lessonId: ID | undefined) => {
     {
       enabled: isAuthorized && !!lessonId,
       onSuccess: (data) => {
-        // setCorners(data?.data!);
-        // setLessonMetaData(data?.meta!);
-        // data?.data.forEach((cornerListData) => {
-        //   cornerListData.pages.forEach((page) => {
-        //     setTotalPages((prev) => [...prev, page]);
-        //   });
-        // });
-        console.log("lessonData", data);
         setCorners(data?.body.data!);
         setLessonMetaData(data?.body?.meta!);
-        data?.body.data.forEach((cornerListData) => {
-          cornerListData.pages.forEach((page) => {
-            setTotalPages((prev) => [...prev, page]);
-          });
-        });
+        const _totalPages =
+          data?.body.data.reduce((acc, cur) => {
+            return [...acc, ...cur.pages];
+          }, [] as ID[]) ?? [];
+        setTotalPages(_totalPages);
       },
       onError: (error) => {
         console.log("코너 리스트 조회 실패");
