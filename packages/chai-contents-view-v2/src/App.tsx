@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import AppRouter from "./router/AppRouter";
 import { RecoilRoot } from "recoil";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
@@ -80,7 +81,7 @@ const paperDummyCookie: InitialAppData = {
 function App() {
   useEffect(() => {
     if (process.env.NODE_ENV === "development") {
-      setCookie<InitialAppData>("bubble-player", paperDummyCookie, {
+      setCookie<InitialAppData>("bubble-player", contentDummyCookie, {
         path: "/",
       });
     }
@@ -106,6 +107,7 @@ function App() {
           </AuthProvider>
         </RecoilRoot>
       </CookiesProvider>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }
