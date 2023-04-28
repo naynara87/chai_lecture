@@ -5097,6 +5097,12 @@ code.google.com/p/crypto-js/wiki/License
                   progressSegments,
               },
             };
+            mys.context = {
+              extensions: {
+                "https://profile.caihong.co.kr/content-management/course/lessons/pages":
+                  playerTotalPages.length,
+              },
+            };
             setContext(mys.result, resultExtensions);
             Object.assign(mys.result, {
               duration:
