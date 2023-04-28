@@ -1,1 +1,1 @@
-export const PAGE_DATA_KEY = "pageData";
+export const PAGE_DATA_KEY = "createPageData";
