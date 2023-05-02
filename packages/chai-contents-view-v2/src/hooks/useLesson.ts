@@ -1,5 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { ID, useAuth, CornerListData, LessonMeta } from "chai-ui-v2";
+import {
+  ID,
+  useAuth,
+  CornerListData,
+  LessonMeta,
+  useLmsInputValue,
+} from "chai-ui-v2";
 import { useState } from "react";
 import { getCornerListData } from "../api/lcms";
 import QUERY_KEY from "../constants/queryKey";
@@ -9,6 +15,7 @@ const useLesson = (lessonId: ID | undefined) => {
   const [corners, setCorners] = useState<CornerListData[]>([]);
   const [lessonMetaData, setLessonMetaData] = useState<LessonMeta>();
   const [totalPages, setTotalPages] = useState<ID[]>([]);
+  const { lmsInputValue: initialDataFromPhp } = useLmsInputValue();
 
   useQuery(
     [QUERY_KEY.CORNER, String(lessonId)],
@@ -20,7 +27,7 @@ const useLesson = (lessonId: ID | undefined) => {
       // return v2LessonQuizData;
       // }
       // return v2LessonData;
-      return getCornerListData(lessonId);
+      return getCornerListData(lessonId, initialDataFromPhp?.type);
     },
     {
       enabled: isAuthorized && !!lessonId,

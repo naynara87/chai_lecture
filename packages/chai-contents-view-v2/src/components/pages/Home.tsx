@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo } from "react";
-import { getCookie, ID, InitialAppData, xapiElement } from "chai-ui-v2";
+import { ID, useLmsInputValue, xapiElement } from "chai-ui-v2";
 import { getPageUrl } from "../../util/url";
 import { useNavigate } from "react-router-dom";
 import useLesson from "../../hooks/useLesson";
@@ -42,11 +42,11 @@ const Home = () => {
       leftButtonText: "처음부터 하기",
       rightButtonText: "이어서 하기",
     });
-  const learningLogCookieData = getCookie<InitialAppData>("bubble-player");
+  const { lmsInputValue: initialDataFromPhp } = useLmsInputValue();
 
   const lessonIdMemo: ID | undefined = useMemo(() => {
-    return learningLogCookieData?.lessonId ?? 1;
-  }, [learningLogCookieData?.lessonId]);
+    return initialDataFromPhp?.lessonId ?? 1;
+  }, [initialDataFromPhp?.lessonId]);
 
   const { lessonMetaData, corners } = useLesson(lessonIdMemo);
 
@@ -73,7 +73,7 @@ const Home = () => {
     if (!lessonMetaData) return;
     if (corners.length < 1) return;
 
-    if (!learningLogCookieData?.turnId && !learningLogCookieData?.pageId) {
+    if (!initialDataFromPhp?.turnId && !initialDataFromPhp?.pageId) {
       // 코너, 페이지 아이디 둘다 없는 경우 : 처음부터 학습
       goToFirstPage();
       return;
@@ -81,7 +81,7 @@ const Home = () => {
 
     const currentCornerIndex = corners.findIndex(
       (corner) =>
-        corner.id.toString() === learningLogCookieData?.turnId?.toString(),
+        corner.id.toString() === initialDataFromPhp?.turnId?.toString(),
     );
 
     if (
@@ -91,7 +91,7 @@ const Home = () => {
       // NOTE gth 코너아이디는 있지만 페이지 아이디가 없으면 해당 코너의 첫 페이지로 이동
       const pageId =
         corners[currentCornerIndex].pages.find(
-          (pageId) => pageId.toString() === learningLogCookieData?.pageId,
+          (pageId) => pageId.toString() === initialDataFromPhp?.pageId,
         ) ?? corners[currentCornerIndex].pages[0];
       const confirmResult = await showContinueOpenModal();
       if (confirmResult) {
@@ -109,8 +109,8 @@ const Home = () => {
     getUrl,
     lessonMetaData,
     showContinueOpenModal,
-    learningLogCookieData?.turnId,
-    learningLogCookieData?.pageId,
+    initialDataFromPhp?.turnId,
+    initialDataFromPhp?.pageId,
     goToFirstPage,
   ]);
 

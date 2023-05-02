@@ -8,9 +8,8 @@ import {
   ModalConfirm,
   ComponentProblemDefault,
   deleteQuestion,
-  getCookie,
-  InitialAppData,
   useToast,
+  useLmsInputValue,
 } from "chai-ui-v2";
 import { useMemo, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
@@ -25,6 +24,7 @@ const QuestionScore = () => {
     useState(false);
   const [isModalExitConfirmOpen, setIsModalExitConfirmOpen] = useState(false);
   const { addToast } = useToast();
+  const { lmsInputValue: initialDataFromPhp } = useLmsInputValue();
 
   const { state } = useLocation();
   const { courseId, cornerId, lessonId } = useParams();
@@ -42,10 +42,6 @@ const QuestionScore = () => {
     return LocalStorage.getItem("pageData") as QuizData[];
   }, []);
 
-  const userId = useMemo(() => {
-    return getCookie<InitialAppData>("bubble-player");
-  }, []);
-
   const handleClickGradePageIdx = (pageIdx: number) => {
     setQuizPageIdx(pageIdx);
   };
@@ -54,7 +50,7 @@ const QuestionScore = () => {
     if (courseId && lessonId && cornerId) {
       const contentIds = quizPageData.map((pageData) => pageData.contentId);
       try {
-        await deleteQuestion(contentIds, userId?.uid ?? "");
+        await deleteQuestion(contentIds, initialDataFromPhp?.uid ?? "");
         navigate(getPageUrl(courseId, lessonId, cornerId, state.totalPages[0]));
       } catch (error) {
         addToast("서버 통신에 실패했습니다. 다시 시도해주세요.", "error");
@@ -66,7 +62,7 @@ const QuestionScore = () => {
     if (courseId && lessonId && cornerId) {
       const contentIds = quizPageData.map((pageData) => pageData.contentId);
       try {
-        await deleteQuestion(contentIds, userId?.uid ?? "");
+        await deleteQuestion(contentIds, initialDataFromPhp?.uid ?? "");
       } catch (error) {
         addToast("서버 통신에 실패했습니다. 다시 시도해주세요.", "error");
       }

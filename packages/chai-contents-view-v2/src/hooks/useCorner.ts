@@ -1,5 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import { ID, useAuth, Page, CornerMeta, ContentData } from "chai-ui-v2";
+import {
+  ID,
+  useAuth,
+  Page,
+  CornerMeta,
+  ContentData,
+  useLmsInputValue,
+} from "chai-ui-v2";
 import { useState } from "react";
 import { getPageListData } from "../api/lcms";
 import QUERY_KEY from "../constants/queryKey";
@@ -9,6 +16,7 @@ const useCorner = (cornerId: ID | undefined) => {
   const { isAuthorized } = useAuth();
   const [pages, setPages] = useState<Page[]>([]);
   const [cornerMetaData, setCornerMetaData] = useState<CornerMeta>();
+  const { lmsInputValue: initialDataFromPhp } = useLmsInputValue();
 
   const { refetch } = useQuery(
     [QUERY_KEY.PAGES, String(cornerId)],
@@ -22,7 +30,7 @@ const useCorner = (cornerId: ID | undefined) => {
       // return v2QuizCornerDataList;
       // }
       // return v2CornerDataList;
-      return getPageListData(_cornerId);
+      return getPageListData(_cornerId, initialDataFromPhp?.type);
     },
     {
       enabled: isAuthorized && !!cornerId,

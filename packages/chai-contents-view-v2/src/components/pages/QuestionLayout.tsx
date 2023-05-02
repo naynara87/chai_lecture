@@ -3,14 +3,13 @@ import {
   CornerMeta,
   currentPageState,
   deleteQuestion,
-  getCookie,
-  InitialAppData,
   LessonMeta,
   ModalQuestionTemplate,
   Page,
   setCookie,
   TemplateQuestion,
   TemplateQuestionData,
+  useLmsInputValue,
   useXapi,
 } from "chai-ui-v2";
 import React, {
@@ -48,7 +47,7 @@ const QuestionLayout = ({
     useState(false);
   const [questionSolvingTime, setQuestionSolvingTime] = useState(0);
   const [isSendDeletePagesData, setIsSendDeletePagesData] = useState(false);
-  const learningLogCookieData = getCookie<InitialAppData>("bubble-player");
+  const { lmsInputValue: initialDataFromPhp } = useLmsInputValue();
   const [, setCurrentPage] = useRecoilState(currentPageState);
 
   const [currentCornerId] = useRecoilState(currentCornerIdState);
@@ -75,13 +74,13 @@ const QuestionLayout = ({
   const deleteQuestionsData = useCallback(
     async (contentIds: string[]) => {
       try {
-        await deleteQuestion(contentIds, learningLogCookieData?.uid ?? "");
+        await deleteQuestion(contentIds, initialDataFromPhp?.uid ?? "");
         setIsSendDeletePagesData(true);
       } catch (error) {
         console.log("서버 통신에 실패했습니다.");
       }
     },
-    [learningLogCookieData],
+    [initialDataFromPhp],
   );
 
   useEffect(() => {

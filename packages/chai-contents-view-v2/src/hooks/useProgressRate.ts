@@ -1,12 +1,11 @@
 import {
   ID,
-  InitialAppData,
   LessonMeta,
   ProgressData,
-  getCookie,
   QuizData,
   LocalStorage,
   saveLmsData,
+  useLmsInputValue,
 } from "chai-ui-v2";
 import { useCallback, useMemo } from "react";
 import { useParams } from "react-router-dom";
@@ -22,6 +21,7 @@ const useProgressRate = ({
   isCompleted,
 }: UseProgressRateProps) => {
   const { cornerId, pageId: _pageId } = useParams();
+  const { lmsInputValue: initialDataFromPhp } = useLmsInputValue();
   const currentProgress = useCallback(
     (currentPageId: ID) => {
       const pageIdx = totalPages.findIndex((pageId) => {
@@ -66,13 +66,12 @@ const useProgressRate = ({
   }, [quizPageData]);
 
   const progressData = useMemo(() => {
-    const learningLogCookieData = getCookie<InitialAppData>("bubble-player");
-    if (!learningLogCookieData || !cornerId || !pageId) return;
-    const parsingCourseId = parseInt(learningLogCookieData.courseId);
-    const parsingLessonId = learningLogCookieData.lessonId;
-    const pasingUno = parseInt(learningLogCookieData.uno);
-    const parsingApplIdId = parseInt(learningLogCookieData.applId);
-    const parsingSubjectId = parseInt(learningLogCookieData.subjectId);
+    if (!initialDataFromPhp || !cornerId || !pageId) return;
+    const parsingCourseId = parseInt(initialDataFromPhp.courseId);
+    const parsingLessonId = initialDataFromPhp.lessonId;
+    const pasingUno = parseInt(initialDataFromPhp.uno);
+    const parsingApplIdId = parseInt(initialDataFromPhp.applId);
+    const parsingSubjectId = parseInt(initialDataFromPhp.subjectId);
     return {
       uno: pasingUno, // user id 쿠키에서 받아옴
       applId: parsingApplIdId, // 신청 id 쿠키에서 받아옴
@@ -86,7 +85,7 @@ const useProgressRate = ({
       complYn: currentProgress(pageId) === 100 ? "Y" : "N",
       envlScr: lessonTp === "Y" ? Math.floor(score) : undefined,
     } as ProgressData;
-  }, [cornerId, pageId, lessonTp, currentProgress, score]);
+  }, [cornerId, pageId, lessonTp, currentProgress, score, initialDataFromPhp]);
 
   const saveProgress = useCallback(async () => {
     if (!progressData) return;
