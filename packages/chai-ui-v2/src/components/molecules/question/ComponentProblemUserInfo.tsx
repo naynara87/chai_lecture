@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { getCookie, InitialAppData, QuizData } from "../../../core";
+import { QuizData, useLmsInputValue } from "../../../core";
 
 interface ComponentProblemUserInfoProps {
   quizPageData: QuizData[];
@@ -10,7 +10,7 @@ const ComponentProblemUserInfo = ({
   quizPageData,
   quizTypeText,
 }: ComponentProblemUserInfoProps) => {
-  const learningLogCookieData = getCookie<InitialAppData>("bubble-player");
+  const { lmsInputValue: initialDataFromPhp } = useLmsInputValue();
   const score = useMemo(() => {
     const correctQuizPages = quizPageData.filter((quizPage) => {
       return quizPage.isCorrect;
@@ -18,10 +18,14 @@ const ComponentProblemUserInfo = ({
     return (100 / quizPageData.length) * correctQuizPages.length;
   }, [quizPageData]);
 
+  const userName = useMemo(() => {
+    return initialDataFromPhp?.name;
+  }, [initialDataFromPhp]);
+
   return (
     <div className="problem-user-info-wrap">
       <h3 className="user-title">
-        {learningLogCookieData?.name}님<br />
+        {userName}님<br />
         <b>{quizTypeText}</b>
         <br />
         채점 결과

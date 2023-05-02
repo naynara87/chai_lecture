@@ -1,8 +1,6 @@
 import {
   ADL,
-  getCookie,
-  InitialAppData,
-  InitialInputAppData,
+  useLmsInputValue,
   xapiElement,
   XAPIOptions,
   xapiV1State,
@@ -78,13 +76,7 @@ const createActorObject = function (obj: XAPIOptions) {
 
 const XapiProvider = ({ children }: XapiProviderProps) => {
   const [, setXapiV1State] = useRecoilState(xapiV1State);
-  const learningLogCookieData = getCookie<InitialAppData>("bubble-player");
-
-  const stringifiedValue =
-    document.querySelector<HTMLInputElement>("#bubble-player")?.value;
-  const initialDataFromPhp = stringifiedValue
-    ? (JSON.parse(stringifiedValue) as InitialInputAppData)
-    : null;
+  const { lmsInputValue: initialDataFromPhp } = useLmsInputValue();
 
   //@ts-ignore
   const { ADL: _ADL } = window;
@@ -120,15 +112,15 @@ const XapiProvider = ({ children }: XapiProviderProps) => {
 
   const options = {
     // #1 actor 정의
-    name: learningLogCookieData?.name,
-    homePage: `https://www.caihong.co.kr/account/user/${learningLogCookieData?.uid}`,
-    account_name: `${learningLogCookieData?.uno}|${learningLogCookieData?.uid}|${learningLogCookieData?.name}|${learningLogCookieData?.applId}`,
+    name: initialDataFromPhp?.name,
+    homePage: `https://www.caihong.co.kr/account/user/${initialDataFromPhp?.uid}`,
+    account_name: `${initialDataFromPhp?.uno}|${initialDataFromPhp?.uid}|${initialDataFromPhp?.name}|${initialDataFromPhp?.applId}`,
     // #2 objecjt 정의
-    activity_id: `https://www.caihong.co.kr/course/${learningLogCookieData?.courseId}/lesson/${learningLogCookieData?.lessonId}`, // object.id 값
-    content_name: learningLogCookieData?.lessonName, // 레슨 정보
+    activity_id: `https://www.caihong.co.kr/course/${initialDataFromPhp?.courseId}/lesson/${initialDataFromPhp?.lessonId}`, // object.id 값
+    content_name: initialDataFromPhp?.lessonName, // 레슨 정보
     description: null, // 레슨 설명 정보
     // #3 activityState의 stateId 정의
-    state_id: `https://www.caihong.co.kr/activity/profile/course/${learningLogCookieData?.courseId}/lesson/${learningLogCookieData?.lessonId}/appl-id/${learningLogCookieData?.applId}`,
+    state_id: `https://www.caihong.co.kr/activity/profile/course/${initialDataFromPhp?.courseId}/lesson/${initialDataFromPhp?.lessonId}/appl-id/${initialDataFromPhp?.applId}`,
     // #4 학습 정보 전송할 LRS url 기입
     // lrsUrl: "https://dev.caihong.co.kr/xAPI/",
     // lrsUrl: "http://clrs.bubblecon.co.kr/xAPI/",
@@ -182,7 +174,7 @@ const XapiProvider = ({ children }: XapiProviderProps) => {
   };
 
   document.addEventListener("playerLoaded", () => {
-    if (learningLogCookieData && initialDataFromPhp) {
+    if (initialDataFromPhp) {
       xapi_init();
     }
   });
