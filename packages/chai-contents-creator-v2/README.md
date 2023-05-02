@@ -45,9 +45,26 @@ chai-monorepo
 └─ packages // 여러 레포지토리를 모아놓은 폴더
    ├─ .gitkeep
    ├─ chai-contents-creator // 저작 도구
-   | └─ src
-   |    ├─ public
+   |  ├─ public // 정적 파일들
+   |  └─ src
+   |     ├─ api // api 호출 관련 함수들 - axios instance, api 호출 함수
+   |     ├─ components // 컴포넌트
+   |     ├─ constants // 상수
+   |     ├─ data // 앱 전역에서 사용하는 데이터 - 컴포넌트 및 레이아웃 기본값 등
+   |     ├─ hooks // 커스텀 훅
+   |     ├─ router // 라우터 설정
+   |     ├─ states // 글로벌 상태 관리 - recoil
+   |     ├─ styles // 스타일 관련 파일들
+   |     ├─ types // 타입 관련 파일들
+   |     └─ utils // 유틸리티 함수들
    ├─ chai-contents-view // 컨텐츠 뷰어
    └─ chai-ui // 공통 UI 패키지
 
 ```
+
+## 상세 문서
+
+- [1. 프로젝트 구조](../../docs/creator/01_project.md)
+- [2. 레이아웃 및 컴포넌트 추가](../../docs/creator/02_add-components.md)
+- [3. 에디터가 포함된 컴포넌트 추가](../../docs/creator/03_editor.md)
+- [4. 미리보기 및 저장](../../docs/creator/04_preview-save.md)
