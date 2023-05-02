@@ -14,10 +14,11 @@ npm run dev
 
 - chai-content-view는 http://localhost:3000 에서 실행되고
 - chai-content-creator는 http://localhost:3001 에서 실행됩니다
+- chai-ui가 먼저 빌드되고 chai-content-view와 chai-content-creator는 병렬로 실행됩니다
 
 ## 빌드
 
-```
+```bash
 npm install
 npm run build
 ```
@@ -45,22 +46,4 @@ chai-monorepo
    ├─ chai-contents-view // 컨텐츠 뷰어
    └─ chai-ui // 공통 UI 패키지
 
-```
-
-## 로컬에서 실행 시 필독 !!
-
-- chai-contents-view에서 LCMS서버의 API를 호출하기 위해 host 설정이 필요합니다
-- 터미널에서 아래 명령어를 입력합니다
-
-```
-sudo vi /etc/hosts
-```
-
-- 맨 끝에 # End of section 위에 아래와 같이 추가
-  - 편집 모드 진입 : i
-  - 수정 후 esc 누른다음 :wq 로 저장
-
-```bash
-106.248.245.114    caihong-api.bubblecon.io
-# End of section
 ```
