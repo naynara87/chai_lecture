@@ -160,6 +160,16 @@ const ConversationQuizComponent = ({
     ],
   );
 
+  const convertText = useCallback(
+    (text: string, tags: RegExpMatchArray | null) => {
+      if (!tags) return;
+      const newArr = [...tags];
+      newArr.splice(newArr.length / 2, 0, text);
+      return newArr.join("");
+    },
+    [],
+  );
+
   const mainContents = useMemo(() => {
     if (userChoices.length < 1) return;
     return contents.data.map((content, contentIndex) => {
@@ -169,6 +179,7 @@ const ConversationQuizComponent = ({
         .filter((content) => {
           return content.length > 0;
         });
+      const tags = content.text.match(/<([^>]+)>/g);
       return (
         <li
           key={contentIndex}
@@ -203,11 +214,13 @@ const ConversationQuizComponent = ({
           </div>
           <div className="txt-wrap">
             {/* <p className="chinese">{'今天刮风，下雪，很冷。'}</p> */}
-            <span className="chinese">
+            <div className="chinese">
               {texts.map((text, index) => {
                 return text.indexOf("*") === -1 ? (
                   <ChineseTextSpan key={index}>
-                    <HtmlContentComponent html={text ?? ""} />
+                    <HtmlContentComponent
+                      html={convertText(text, tags) ?? ""}
+                    />
                   </ChineseTextSpan>
                 ) : (
                   <ChineseTextSpan className="blank-gray" key={index}>
@@ -221,7 +234,7 @@ const ConversationQuizComponent = ({
                   </ChineseTextSpan>
                 );
               })}
-            </span>
+            </div>
             <div className="pinyin">
               <HtmlContentComponent html={content.pronunciation ?? ""} />
             </div>
@@ -248,6 +261,7 @@ const ConversationQuizComponent = ({
     answerCheckColor,
     userChoices,
     handleClickDialogueCharacter,
+    convertText,
   ]);
 
   return (
