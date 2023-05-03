@@ -1,13 +1,13 @@
 export type ProgressData = {
   uno: number;
-  applId: string;
-  contsId: string;
-  courseId: string;
+  applId: number;
+  contsId: number;
+  courseId: number;
   lessonId: string;
   turnId: string;
   pageId: string;
-  progressRate: string;
+  progressRate: number;
   envlCatgYn: string;
   envlScr?: number;
-  complYn: string;
+  complYn: "Y" | "N";
 };
