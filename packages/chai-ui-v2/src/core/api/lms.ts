@@ -1,39 +1,26 @@
 import { LMS_SAVE_DATA } from "../constants";
 import { httpLms } from "../lib";
-import { ID } from "../types";
-
-export interface saveLmsDataParams {
-  uno: number;
-  applId: number;
-  courseId: number;
-  contsId: number;
-  cornerId: ID;
-  lessonId: ID;
-  pageId: ID;
-  progressRate: number;
-  envlCatgYn: string;
-  complYn: string;
-}
+import { ProgressData } from "../types";
 
 export const saveLmsData = async ({
   uno,
   applId,
   courseId,
   contsId,
-  cornerId,
+  turnId,
   lessonId,
   pageId,
   progressRate,
   envlCatgYn,
   complYn,
-}: saveLmsDataParams) => {
+}: ProgressData) => {
   const res = await httpLms.post(LMS_SAVE_DATA, {
     uno,
     applId,
     courseId,
     contsId,
     lessonId,
-    turnId: cornerId,
+    turnId,
     pageId,
     progressRate,
     envlCatgYn,
