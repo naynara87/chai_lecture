@@ -10,3 +10,4 @@ export { default as useXapi } from "./useXapi";
 export { default as useDebounced } from "./useDebounced";
 export { default as useToast } from "./useToast";
 export { default as useLmsInputValue } from "./useLmsInputValue";
+export { default as useAES256 } from "./useAES256";
