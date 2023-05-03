@@ -6,7 +6,6 @@ import {
   LocalStorage,
   saveLmsData,
   useLmsInputValue,
-  useAES256,
 } from "chai-ui-v2";
 import { useCallback, useMemo } from "react";
 import { useParams } from "react-router-dom";
@@ -23,7 +22,6 @@ const useProgressRate = ({
 }: UseProgressRateProps) => {
   const { cornerId, pageId: _pageId } = useParams();
   const { lmsInputValue: initialDataFromPhp } = useLmsInputValue();
-  const { encryptAES256 } = useAES256();
   const currentProgress = useCallback(
     (currentPageId: ID) => {
       const pageIdx = totalPages.findIndex((pageId) => {
@@ -76,35 +74,25 @@ const useProgressRate = ({
     const parsingSubjectId = parseInt(initialDataFromPhp.subjectId);
     return {
       uno: pasingUno, // user id 쿠키에서 받아옴
-      applId: encryptAES256(parsingApplIdId.toString()), // 신청 id 쿠키에서 받아옴
-      contsId: encryptAES256(parsingSubjectId.toString()), // 과목 id 쿠키에서 받아옴
-      courseId: encryptAES256(parsingCourseId.toString()), // 과정 id 쿠키에서 받아옴
-      lessonId: encryptAES256(parsingLessonId.toString()), // 레슨 id 쿠키에서 받아옴
-      turnId: encryptAES256(cornerId.toString()), // 코너 id useParam에서 받음
-      pageId: encryptAES256(pageId.toString()), // 페이지 id useParam에서 받음
-      progressRate: encryptAES256(currentProgress(pageId).toString()),
+      applId: parsingApplIdId, // 신청 id 쿠키에서 받아옴
+      contsId: parsingSubjectId, // 과목 id 쿠키에서 받아옴
+      courseId: parsingCourseId, // 과정 id 쿠키에서 받아옴
+      lessonId: parsingLessonId, // 레슨 id 쿠키에서 받아옴
+      turnId: cornerId, // 코너 id useParam에서 받음
+      pageId: pageId, // 페이지 id useParam에서 받음
+      progressRate: currentProgress(pageId),
       envlCatgYn: lessonTp, // 문제레슨인지 콘텐츠레슨인지 구분
-      complYn:
-        currentProgress(pageId) === 100
-          ? encryptAES256("Y")
-          : encryptAES256("N"),
+      complYn: currentProgress(pageId) === 100 ? "Y" : "N",
       envlScr: lessonTp === "Y" ? Math.floor(score) : undefined,
     } as ProgressData;
-  }, [
-    cornerId,
-    pageId,
-    lessonTp,
-    currentProgress,
-    score,
-    initialDataFromPhp,
-    encryptAES256,
-  ]);
+  }, [cornerId, pageId, lessonTp, currentProgress, score, initialDataFromPhp]);
 
   const saveProgress = useCallback(async () => {
     if (!progressData) return;
     try {
       const newProgressData = {
         ...progressData,
+        cornerId: progressData.turnId,
       };
       await saveLmsData(newProgressData);
     } catch (error) {

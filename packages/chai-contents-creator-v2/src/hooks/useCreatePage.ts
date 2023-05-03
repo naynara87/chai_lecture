@@ -1,7 +1,8 @@
-import { Page, useLmsInputValue, useToast } from "chai-ui-v2";
+import { Page, useToast } from "chai-ui-v2";
 import { useCallback, useEffect, useMemo } from "react";
 import { savePageData } from "../api/lcms/lcms";
 import { isDevEnv } from "../constants/env";
+import { InitialInputValue } from "../types/appData";
 import usePage from "./usePage";
 import usePageData from "./usePageData";
 import { useRecoilState } from "recoil";
@@ -9,9 +10,13 @@ import { authState } from "../states/authState";
 
 const useCreatePage = () => {
   const [isAuthorized] = useRecoilState(authState);
-  const { lmsInputValue: initialDataFromPhp } = useLmsInputValue();
+  const stringifiedValue =
+    document.querySelector<HTMLInputElement>("#bubble-player")?.value;
+  const initialDataFromPhp = stringifiedValue
+    ? (JSON.parse(stringifiedValue) as InitialInputValue)
+    : null;
 
-  const { pageId, turnId } = initialDataFromPhp || {};
+  const { pageId, cornerId } = initialDataFromPhp || {};
   const returnUsePage = usePage();
   const { addToast } = useToast();
 
@@ -26,10 +31,10 @@ const useCreatePage = () => {
 
   const cornerIdByEnv = useMemo(() => {
     if (isDevEnv) {
-      return turnId || "ff6af93a-886f-48a0-9ed1-0a74549d26b5";
+      return cornerId || "ff6af93a-886f-48a0-9ed1-0a74549d26b5";
     }
-    return turnId || "";
-  }, [turnId]);
+    return cornerId || "";
+  }, [cornerId]);
 
   const returnUsePageData = usePageData({
     pageId: pageIdByEnv,
