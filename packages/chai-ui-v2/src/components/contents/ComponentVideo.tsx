@@ -47,7 +47,7 @@ const ComponentVideo = ({ content, isModal }: ComponentVideoProps) => {
         preload="auto"
         playsInline
         data-setup='{ "controlBar": {"pictureInPictureToggle": false} }'
-        src={content.data.src}
+        src={`${content.data.src}#t=0.001`}
         disablePictureInPicture
         ref={videoRef}
         controlsList="nodownload"
