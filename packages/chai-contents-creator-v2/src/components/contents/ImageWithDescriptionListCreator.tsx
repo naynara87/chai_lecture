@@ -254,6 +254,7 @@ const ImageWithDescriptionListCreator = ({
                     defaultText={
                       <p className="caption-text">설명을 입력해주세요.</p>
                     }
+                    hasFontSize={false}
                   />
                 </p>
                 <DeleteButtonWrapper>

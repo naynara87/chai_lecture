@@ -57,6 +57,7 @@ const BorderTextBoxCreator = ({
           isFocused={isFocused}
           text={thisContent.data.text}
           setText={setText}
+          hasFontSize={false}
         />
       </BorderTextBoxWrapper>
     </ContentCreatorLayout>

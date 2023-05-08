@@ -220,6 +220,7 @@ const NumberingTextListCreator = ({
                       setText={(text) => setText(index, "firstText", text)}
                       text={getText(index, "firstText")}
                       defaultText="내용1 입력"
+                      hasFontSize={false}
                     />
                   </div>
                   <div
@@ -235,6 +236,7 @@ const NumberingTextListCreator = ({
                       setText={(text) => setText(index, "secondText", text)}
                       text={getText(index, "secondText")}
                       defaultText="내용2 입력(선택)"
+                      hasFontSize={false}
                     />
                   </div>
                 </TextWrap>
