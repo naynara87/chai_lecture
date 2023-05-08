@@ -155,6 +155,9 @@ export type QuizData = {
   answer: string | number;
   isCorrect?: boolean;
   contentId?: string;
+  pageId: string;
+  pageAreaCode: ContentData["pageArea_type"];
+  timeStamp?: string;
 };
 
 /**

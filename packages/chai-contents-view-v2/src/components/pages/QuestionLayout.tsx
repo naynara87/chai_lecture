@@ -26,6 +26,7 @@ import { currentCornerIdState } from "../../state/currentCornerId";
 import { getPageUrl } from "../../util/url";
 import ComponentProblemPagination from "../molecules/ComponentProblemPagination";
 import LayoutQuestionHeader from "../molecules/LayoutQuestionHeader";
+import ComponentProblemNavigation from "../molecules/ComponentProblemNavigation";
 
 interface QuestionLayoutProps {
   pages: Page[];
@@ -62,7 +63,6 @@ const QuestionLayout = ({
     totalPages,
   });
   const { xapiProgress, xapiComplete, updateIsCorrectDataCheck } = useXapi();
-
   const setPageCompleted = () => {
     setIsPageCompleted(true);
   };
@@ -136,31 +136,50 @@ const QuestionLayout = ({
     });
   }, [currentPage, pages]);
 
-  const handleClickPagination = (pageIndex: number) => {
-    if (currentPageIndex === undefined) return;
-    if (cornerId && courseId && lessonId && pageId && currentPage) {
-      const currentCornerIndex = corners.findIndex(
-        (corner) => corner.id.toString() === currentCornerId?.toString(),
-      );
-      const currentCorner = corners[currentCornerIndex];
-      xapiProgress(
-        currentCorner,
-        currentCorner,
-        currentPage,
-        totalPages[pageIndex],
-        totalPages,
-      );
-      navigate(getPageUrl(courseId, lessonId, cornerId, totalPages[pageIndex]));
-    }
-  };
+  const handleClickPagination = useCallback(
+    (pageIndex: number) => {
+      if (currentPageIndex === undefined) return;
+      if (!totalPages[pageIndex]) return;
+      if (cornerId && courseId && lessonId && pageId && currentPage) {
+        const currentCornerIndex = corners.findIndex(
+          (corner) => corner.id.toString() === currentCornerId?.toString(),
+        );
+        const currentCorner = corners[currentCornerIndex];
+        xapiProgress(
+          currentCorner,
+          currentCorner,
+          currentPage,
+          totalPages[pageIndex],
+          totalPages,
+        );
+        navigate(
+          getPageUrl(courseId, lessonId, cornerId, totalPages[pageIndex]),
+        );
+      }
+    },
+    [
+      cornerId,
+      corners,
+      courseId,
+      currentCornerId,
+      currentPage,
+      currentPageIndex,
+      lessonId,
+      navigate,
+      pageId,
+      totalPages,
+      xapiProgress,
+    ],
+  );
 
   // TODO xapi completed 이벤트 발생부분 채점하기버튼클릭이벤트
-  const handleClickCheckScore = () => {
+  const handleClickCheckScore = useCallback(() => {
     if (cornerId && courseId && lessonId && pageId && currentPage) {
       const currentCornerIndex = corners.findIndex(
         (corner) => corner.id.toString() === currentCornerId?.toString(),
       );
       const currentCorner = corners[currentCornerIndex];
+      const newXapiActivityState = updateIsCorrectDataCheck(totalPages);
       xapiComplete(
         currentCorner,
         currentCorner,
@@ -168,6 +187,7 @@ const QuestionLayout = ({
         currentPage.id,
         totalPages,
         lessonMetaData.lessonTpCd,
+        newXapiActivityState,
       );
       navigate(getPageUrl(courseId, lessonId, cornerId, "score"), {
         state: {
@@ -178,15 +198,55 @@ const QuestionLayout = ({
         },
       });
     }
-  };
+  }, [
+    cornerId,
+    corners,
+    courseId,
+    currentCornerId,
+    currentPage,
+    lessonId,
+    navigate,
+    pageId,
+    totalPages,
+    lessonMetaData,
+    pages,
+    questionSolvingTime,
+    xapiComplete,
+    updateIsCorrectDataCheck,
+  ]);
 
-  const handleClickCheckAnswer = useCallback(
-    (isCorrect: boolean) => {
-      if (!currentPage) return;
-      updateIsCorrectDataCheck(currentPage, isCorrect);
-    },
-    [currentPage, updateIsCorrectDataCheck],
-  );
+  const pageIdx = useMemo(() => {
+    if (!pageId) return;
+    return pages.findIndex((page) => page.id.toString() === pageId.toString());
+  }, [pageId, pages]);
+
+  const handleClickCheckAnswer = useCallback(() => {
+    if (!currentPage) return;
+    if (pageIdx === undefined) return;
+    // NOTE kjw 마지막페이지에서 다음버튼 눌렀을때 풀지않은 문제로 이동하는것으로 변경되면 주석풀면 됨.
+    // const questionDatas = LocalStorage.getItem<QuizData[]>("pageData");
+    // const notCompletedQuestionPage = questionDatas?.find(
+    //   (questionData) => questionData.state !== "end",
+    // );
+    // if (notCompletedQuestionPage === undefined) {
+    //   handleClickCheckScore();
+    //   return;
+    // }
+    if (pageIdx + 1 >= totalPages.length) {
+      // NOTE kjw 마지막페이지에서 다음버튼 눌렀을때 풀지않은 문제로 이동하는것으로 변경되면 주석풀고 handleClickCheckScore 제거
+      handleClickCheckScore();
+      // handleClickPagination(
+      //   parseInt(notCompletedQuestionPage.id.toString()) - 1,
+      // );
+    }
+    handleClickPagination(pageIdx + 1);
+  }, [
+    currentPage,
+    pageIdx,
+    handleClickPagination,
+    handleClickCheckScore,
+    totalPages,
+  ]);
 
   useEffect(() => {
     setIsQuestionStartModalOpen(true);
@@ -198,17 +258,22 @@ const QuestionLayout = ({
     };
   }, []);
 
+  const handleClickLeftBtn = useCallback(() => {
+    if (pageIdx === undefined) return;
+    handleClickPagination(pageIdx - 1);
+  }, [pageIdx, handleClickPagination]);
+
+  const handleClickRightBtn = useCallback(() => {
+    if (pageIdx === undefined) return;
+    handleClickPagination(pageIdx + 1);
+  }, [pageIdx, handleClickPagination]);
+
   const startQuiz = useCallback(() => {
     questionSolvingTimer.current = window.setTimeout(function go() {
       setQuestionSolvingTime((prev) => prev + 1);
       questionSolvingTimer.current = setTimeout(go, 1000);
     }, 1000);
   }, []);
-
-  const pageIdx = useMemo(() => {
-    if (!pageId) return;
-    return pages.findIndex((page) => page.id.toString() === pageId.toString());
-  }, [pageId, pages]);
 
   return (
     <div className="cai-view-yahei">
@@ -221,6 +286,10 @@ const QuestionLayout = ({
           pages={pages}
           onClickPagination={handleClickPagination}
         />
+        <ComponentProblemNavigation
+          handleClickLeftBtn={handleClickLeftBtn}
+          handleClickRightBtn={handleClickRightBtn}
+        />
         {isSendDeletePagesData && currentPage?.data && (
           <TemplateQuestion
             template={currentPage.data as TemplateQuestionData}
@@ -228,6 +297,7 @@ const QuestionLayout = ({
             handleClickCheckScore={handleClickCheckScore}
             handleClickCheckAnswer={handleClickCheckAnswer}
             pageIdx={pageIdx}
+            totalPages={totalPages}
           />
         )}
       </main>
