@@ -6,7 +6,7 @@ import { vh, vw } from "chai-ui-v2";
 
 const NavigationWrapper = styled.div`
   position: absolute;
-  top: 50%;
+  top: 58%;
   width: 100%;
   display: flex;
   justify-content: space-between;
