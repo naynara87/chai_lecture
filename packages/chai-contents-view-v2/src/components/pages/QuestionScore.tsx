@@ -51,7 +51,14 @@ const QuestionScore = () => {
       const contentIds = quizPageData.map((pageData) => pageData.contentId);
       try {
         await deleteQuestion(contentIds, initialDataFromPhp?.uid ?? "");
-        navigate(getPageUrl(courseId, lessonId, cornerId, state.totalPages[0]));
+        navigate(
+          getPageUrl(courseId, lessonId, cornerId, state.totalPages[0]),
+          {
+            state: {
+              isRestartedQuiz: true,
+            },
+          },
+        );
       } catch (error) {
         addToast("서버 통신에 실패했습니다. 다시 시도해주세요.", "error");
       }

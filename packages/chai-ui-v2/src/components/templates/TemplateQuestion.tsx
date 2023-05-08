@@ -1,6 +1,12 @@
 import styled from "@emotion/styled";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { QuizData, TemplateProps, TemplateQuestionData } from "../../core";
+import {
+  ID,
+  QuizData,
+  TemplateProps,
+  TemplateQuestionData,
+  timeStamp,
+} from "../../core";
 import { LocalStorage } from "../../core";
 import { useParams } from "react-router-dom";
 import { LoadingSpinner } from "../atoms";
@@ -26,8 +32,9 @@ const LoadingSpinnerContainer = styled.div`
 
 interface TemplateQuestionProps extends TemplateProps {
   handleClickCheckScore?: () => void;
-  handleClickCheckAnswer?: (isCorrect: boolean) => void;
+  handleClickCheckAnswer?: () => void;
   pageIdx?: number;
+  totalPages?: ID[];
 }
 
 const TemplateQuestion = ({
@@ -36,6 +43,7 @@ const TemplateQuestion = ({
   handleClickCheckScore,
   handleClickCheckAnswer,
   pageIdx,
+  totalPages,
 }: TemplateQuestionProps) => {
   const thisPage = template as TemplateQuestionData;
   const [isLoaded, setIsLoaded] = useState(false);
@@ -68,8 +76,9 @@ const TemplateQuestion = ({
         tmpPageDatas[pageIdx].state = "end";
         tmpPageDatas[pageIdx].contentId = id;
         tmpPageDatas[pageIdx].answer = answer;
+        tmpPageDatas[pageIdx].timeStamp = timeStamp();
         LocalStorage.setItem("pageData", tmpPageDatas);
-        handleClickCheckAnswer && handleClickCheckAnswer(correct);
+        handleClickCheckAnswer && handleClickCheckAnswer();
       }
     },
     [pageIdx, handleClickCheckAnswer],
@@ -83,25 +92,26 @@ const TemplateQuestion = ({
   }, [receiveMessage]);
 
   const toViewScoreButton = useMemo(() => {
-    const quizPageData = LocalStorage.getItem("pageData") as QuizData[];
-    if (
-      quizPageData.find((quizPage) => quizPage.state !== "end") === undefined
-    ) {
+    if (pageIdx === undefined) return;
+    if (totalPages === undefined) return;
+    if (pageIdx + 1 >= totalPages?.length) {
       return (
         <button className="btn btn-problem" onClick={handleClickCheckScore}>
           <span>채점하기</span>
           <img src={ArrowIcon} alt="바로가기" />
         </button>
       );
+    } else {
+      return <></>;
     }
-    return <></>;
-  }, [handleClickCheckScore]);
+  }, [handleClickCheckScore, pageIdx, totalPages]);
 
   return (
     <div className="layout-panel-wrap">
       {/* <div className="question-number attched">{`[50 ~ 87]`}</div> */}
-      <div className="question-number">{`${pageIdx !== undefined ? pageIdx + 1 : 0
-        }번`}</div>
+      <div className="question-number">{`${
+        pageIdx !== undefined ? pageIdx + 1 : 0
+      }번`}</div>
       <QuestionPanel className="layout-panel iframe-panel">
         {!isLoaded && (
           <LoadingSpinnerContainer>

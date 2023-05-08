@@ -8,12 +8,13 @@ import {
   ID,
   LessonMeta,
   LRSActivityState,
+  LRSAnswerData,
   LRSCornerProgress,
   Page,
   ProgressPageData,
   QuizData,
 } from "../types";
-import { LocalStorage } from "../util";
+import { LocalStorage, timeStamp } from "../util";
 import usePageCompleted from "./usePageCompleted";
 
 const useXapi = () => {
@@ -58,59 +59,44 @@ const useXapi = () => {
   }, [completedPageComponents]);
 
   const updateIsCorrectDataCheck = useCallback(
-    (currentPage: Page, isCorrect: boolean) => {
+    (totalPages: ID[]) => {
       if (!xapiActivity) return;
-      const currentTime = new Date();
-      const currentTimeStamp = `${currentTime.getFullYear()}.${(
-        currentTime.getMonth() + 1
-      )
-        .toString()
-        .padStart(2, "0")}.${currentTime
-        .getDate()
-        .toString()
-        .padStart(2, "0")} ${currentTime
-        .getHours()
-        .toString()
-        .padStart(2, "0")}:${currentTime
-        .getMinutes()
-        .toString()
-        .padStart(2, "0")}:${currentTime
-        .getSeconds()
-        .toString()
-        .padStart(2, "0")}`;
-      if (isCorrect) {
-        const newCorrectData = [...xapiActivity?.correct_data];
-        const findSamePage = newCorrectData.find(
-          (quizPageData) => quizPageData.page_id === currentPage.id,
-        );
-        if (findSamePage) return;
-        newCorrectData.push({
-          page_id: currentPage.id,
-          page_area_code: currentPage.pageAreaType,
-          timestamp: currentTimeStamp,
-        });
-        const newXapiActivityState = updateActivityState({
-          correct_data: newCorrectData,
-        });
-        setXapiActivity(newXapiActivityState);
-      } else {
-        const newInCorrectData = [...xapiActivity?.incorrect_data];
-        const findSamePage = newInCorrectData.find(
-          (quizPageData) => quizPageData.page_id === currentPage.id,
-        );
-        if (findSamePage) return;
-        newInCorrectData.push({
-          page_id: currentPage.id,
-          page_area_code: currentPage.pageAreaType,
-          timestamp: currentTimeStamp,
-        });
-        const newXapiActivityState = updateActivityState({
-          incorrect_data: newInCorrectData,
-        });
-        setXapiActivity(newXapiActivityState);
+      if (
+        xapiActivity.correct_data.length + xapiActivity.incorrect_data.length >=
+        totalPages.length
+      ) {
+        return;
       }
+
+      const quizDatas = LocalStorage.getItem<QuizData[]>("pageData");
+      const correctDatas: LRSAnswerData[] = [];
+      const incorrectDatas: LRSAnswerData[] = [];
+
+      if (!quizDatas) return;
+      quizDatas.forEach((quizData) => {
+        if (quizData.isCorrect) {
+          correctDatas.push({
+            page_id: quizData.pageId,
+            page_area_code: quizData.pageAreaCode,
+            timestamp: quizData.timeStamp || timeStamp(),
+          });
+        } else {
+          incorrectDatas.push({
+            page_id: quizData.pageId,
+            page_area_code: quizData.pageAreaCode,
+            timestamp: quizData.timeStamp || timeStamp(),
+          });
+        }
+      });
+
+      const newActivityState = updateActivityState({
+        correct_data: correctDatas,
+        incorrect_data: incorrectDatas,
+      });
+
+      return newActivityState;
     },
-    [xapiActivity, setXapiActivity, updateActivityState],
+    [xapiActivity, updateActivityState],
   );
 
   const updateProgressDataPageCheck = useCallback(
@@ -269,12 +255,12 @@ const useXapi = () => {
       nextPageId: ID,
       totalPages: ID[],
       lessonTypeCode: LessonMeta["lessonTpCd"],
+      newXapiActivityStateToUpdateProgressData?: LRSActivityState,
     ) => {
       if (!xapiActivity) return;
       const currentPageIndex = totalPages.findIndex(
         (page) => page.toString() === currentPage.id?.toString(),
       );
-
       const newProgressData = updateProgressDataPageCheck(
         currentCorner.id,
         nextCorner.id,
@@ -282,6 +268,7 @@ const useXapi = () => {
         nextPageId,
       );
       const newXapiActivityState = updateActivityState({
+        ...newXapiActivityStateToUpdateProgressData,
         part_id: currentCorner.id,
         part_name: currentCorner.name,
         page: currentPageIndex + 1,
