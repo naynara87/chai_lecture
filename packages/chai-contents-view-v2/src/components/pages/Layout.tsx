@@ -52,6 +52,7 @@ const Layout = () => {
     if (!lessonMetaData) return;
     if (!cornerMetaData) return;
     if (!pageId) return;
+    if (state?.isRestartedQuiz) return;
     if (isInitialActivityState) return;
     initialActivityState(
       lessonMetaData,
@@ -69,6 +70,7 @@ const Layout = () => {
     initialActivityState,
     isInitialActivityState,
     pageId,
+    state,
   ]);
 
   useEffect(() => {

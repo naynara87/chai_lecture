@@ -9,27 +9,22 @@ import {
 } from "../../core";
 import { LocalStorage } from "../../core";
 import { useParams } from "react-router-dom";
-import { LoadingSpinner } from "../atoms";
 import ArrowIcon from "../../assets/images/icon/icon_stick_arrow_right_white.svg";
+import { colorPalette, vw } from "../../assets";
 
 const QuestionPanel = styled.div`
   padding: 0;
   overflow-y: hidden;
 `;
 
-const LoadingSpinnerWrap = styled.div`
+const LoadingText = styled.div`
+  font-size: ${vw(32)};
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translateX(-50%) translateY(-50%);
+  transform: translateY(-50%) translateX(-50%);
+  color: ${colorPalette.gray700};
 `;
-
-const LoadingSpinnerContainer = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
-`;
-
 interface TemplateQuestionProps extends TemplateProps {
   handleClickCheckScore?: () => void;
   handleClickCheckAnswer?: () => void;
@@ -113,13 +108,7 @@ const TemplateQuestion = ({
         pageIdx !== undefined ? pageIdx + 1 : 0
       }번`}</div>
       <QuestionPanel className="layout-panel iframe-panel">
-        {!isLoaded && (
-          <LoadingSpinnerContainer>
-            <LoadingSpinnerWrap>
-              <LoadingSpinner />
-            </LoadingSpinnerWrap>
-          </LoadingSpinnerContainer>
-        )}
+        {!isLoaded && <LoadingText>준비 중입니다.</LoadingText>}
         {thisPage.contents && (
           <iframe
             src={thisPage.contents.data.interact_url ?? ""}
