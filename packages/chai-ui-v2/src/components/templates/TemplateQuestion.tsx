@@ -17,6 +17,12 @@ const QuestionPanel = styled.div`
   overflow-y: hidden;
 `;
 
+const LoadingTextContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+`;
+
 const LoadingText = styled.div`
   font-size: ${vw(32)};
   position: absolute;
@@ -108,7 +114,11 @@ const TemplateQuestion = ({
         pageIdx !== undefined ? pageIdx + 1 : 0
       }번`}</div>
       <QuestionPanel className="layout-panel iframe-panel">
-        {!isLoaded && <LoadingText>준비 중입니다.</LoadingText>}
+        {!isLoaded && (
+          <LoadingTextContainer>
+            <LoadingText>준비 중입니다.</LoadingText>
+          </LoadingTextContainer>
+        )}
         {thisPage.contents && (
           <iframe
             src={thisPage.contents.data.interact_url ?? ""}
