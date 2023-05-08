@@ -4,12 +4,15 @@ import {
   currentPageState,
   deleteQuestion,
   LessonMeta,
+  LocalStorage,
   ModalQuestionTemplate,
   Page,
+  QuizData,
   setCookie,
   TemplateQuestion,
   TemplateQuestionData,
   useLmsInputValue,
+  usePromiseConfirmModal,
   useXapi,
 } from "chai-ui-v2";
 import React, {
@@ -63,6 +66,9 @@ const QuestionLayout = ({
     totalPages,
   });
   const { xapiProgress, xapiComplete, updateIsCorrectDataCheck } = useXapi();
+  const { showOpenModal: showCompleteOpenModal, modalContent } =
+    usePromiseConfirmModal();
+
   const setPageCompleted = () => {
     setIsPageCompleted(true);
   };
@@ -172,9 +178,41 @@ const QuestionLayout = ({
     ],
   );
 
+  const startQuiz = useCallback(() => {
+    questionSolvingTimer.current = window.setTimeout(function go() {
+      setQuestionSolvingTime((prev) => prev + 1);
+      questionSolvingTimer.current = setTimeout(go, 1000);
+    }, 1000);
+  }, []);
+
   // TODO xapi completed 이벤트 발생부분 채점하기버튼클릭이벤트
-  const handleClickCheckScore = useCallback(() => {
+  const handleClickCheckScore = useCallback(async () => {
     if (cornerId && courseId && lessonId && pageId && currentPage) {
+      const quizData = LocalStorage.getItem<QuizData[]>("pageData");
+      window.clearTimeout(questionSolvingTimer.current);
+      if (quizData?.find((data) => data.state !== "end")) {
+        const confirmResult = await showCompleteOpenModal({
+          title: "아직 안 푼 문제가 있어요.",
+          description: "그래도 채점하러 갈까요?",
+          leftButtonText: "취소",
+          rightButtonText: "채점하기",
+        });
+        if (!confirmResult) {
+          startQuiz();
+          return;
+        }
+      } else {
+        const confirmResult = await showCompleteOpenModal({
+          title: "모든 문제를 푸셨습니다!",
+          description: "지금 채점하러 갈까요?",
+          leftButtonText: "취소",
+          rightButtonText: "채점하기",
+        });
+        if (!confirmResult) {
+          startQuiz();
+          return;
+        }
+      }
       const currentCornerIndex = corners.findIndex(
         (corner) => corner.id.toString() === currentCornerId?.toString(),
       );
@@ -213,6 +251,8 @@ const QuestionLayout = ({
     questionSolvingTime,
     xapiComplete,
     updateIsCorrectDataCheck,
+    showCompleteOpenModal,
+    startQuiz,
   ]);
 
   const pageIdx = useMemo(() => {
@@ -268,13 +308,6 @@ const QuestionLayout = ({
     handleClickPagination(pageIdx + 1);
   }, [pageIdx, handleClickPagination]);
 
-  const startQuiz = useCallback(() => {
-    questionSolvingTimer.current = window.setTimeout(function go() {
-      setQuestionSolvingTime((prev) => prev + 1);
-      questionSolvingTimer.current = setTimeout(go, 1000);
-    }, 1000);
-  }, []);
-
   return (
     <div className="cai-view-yahei">
       <LayoutQuestionHeader
@@ -309,6 +342,7 @@ const QuestionLayout = ({
         quizTotalLength={pages.length}
         onClickStart={startQuiz}
       />
+      {modalContent}
     </div>
   );
 };
