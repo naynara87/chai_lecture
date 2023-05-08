@@ -35,13 +35,7 @@ const playerLoadedEvent = new CustomEvent("playerLoaded");
 const Home = () => {
   const navigate = useNavigate();
   const { modalContent, showOpenModal: showContinueOpenModal } =
-    usePromiseConfirmModal({
-      title: "학습 이어하기",
-      description:
-        " 아직 학습을 하지 않은 내용이 있어요.<br />지난 학습에 이어서 진행 하시겠어요?",
-      leftButtonText: "처음부터 하기",
-      rightButtonText: "이어서 하기",
-    });
+    usePromiseConfirmModal();
   const { lmsInputValue: initialDataFromPhp } = useLmsInputValue();
 
   const lessonIdMemo: ID | undefined = useMemo(() => {
@@ -93,7 +87,13 @@ const Home = () => {
         corners[currentCornerIndex].pages.find(
           (pageId) => pageId.toString() === initialDataFromPhp?.pageId,
         ) ?? corners[currentCornerIndex].pages[0];
-      const confirmResult = await showContinueOpenModal();
+      const confirmResult = await showContinueOpenModal({
+        title: "학습 이어하기",
+        description:
+          " 아직 학습을 하지 않은 내용이 있어요.<br />지난 학습에 이어서 진행 하시겠어요?",
+        leftButtonText: "처음부터 하기",
+        rightButtonText: "이어서 하기",
+      });
       if (confirmResult) {
         // 이어서 학습
         getUrl(corners[currentCornerIndex].id, pageId);

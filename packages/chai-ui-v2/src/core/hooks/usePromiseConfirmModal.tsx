@@ -20,26 +20,34 @@ const ModalBaseTitle = styled.div`
 
 const ModalBaseContents = styled.div``;
 
-interface usePromiseConfirmModalProps {
+interface modalContentProps {
   title: string;
   description: string;
-  leftButtonText?: string;
-  rightButtonText?: string;
+  leftButtonText: string;
+  rightButtonText: string;
 }
 
-const usePromiseConfirmModal = ({
-  title,
-  description,
-  leftButtonText,
-  rightButtonText,
-}: usePromiseConfirmModalProps) => {
+const usePromiseConfirmModal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [leftButtonText, setLeftButtonText] = useState("");
+  const [rightButtonText, setRightButtonText] = useState("");
   const resolveRef = useRef<(value: unknown) => void>(
     (value: unknown) => value,
   );
 
-  const showOpenModal = () => {
+  const showOpenModal = ({
+    title,
+    description,
+    leftButtonText,
+    rightButtonText,
+  }: modalContentProps) => {
     setIsModalOpen(true);
+    setTitle(title);
+    setDescription(description);
+    setLeftButtonText(leftButtonText);
+    setRightButtonText(rightButtonText);
 
     return new Promise((resolve) => {
       resolveRef.current = resolve;
