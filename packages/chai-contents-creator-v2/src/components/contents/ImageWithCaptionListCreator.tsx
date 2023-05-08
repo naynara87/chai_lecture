@@ -242,6 +242,7 @@ const ImageWithCaptionListCreator = ({
                     defaultText={
                       <p className="caption-text">캡션을 입력해주세요.</p>
                     }
+                    hasFontSize={false}
                   />
                 </div>
               </ImageList>

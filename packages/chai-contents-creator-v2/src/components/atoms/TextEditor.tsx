@@ -3,9 +3,11 @@ import React, { useEffect } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { TextEditorWrapper } from "../../styles/textEditor";
+import { useToast } from "chai-ui-v2";
+// import { rem } from "../../utils/font";
 
 const Font = ReactQuill.Quill.import("formats/font");
-Font.whitelist = ["timesRoman"]; // , "yahei"
+Font.whitelist = ["timesRoman"];
 ReactQuill.Quill.register(Font, true);
 const Size = ReactQuill.Quill.import("attributors/style/size");
 Size.whitelist = [
@@ -26,7 +28,7 @@ Size.whitelist = [
   "64px",
   "70px",
   "80px",
-]; // , "yahei"
+];
 ReactQuill.Quill.register(Size, true);
 
 const Align = ReactQuill.Quill.import("formats/align");
@@ -37,6 +39,7 @@ Icons.align["left"] = Icons.align[""];
 export interface TextEditorWrapperProps {
   minHeight?: number;
   editorCss?: SerializedStyles;
+  hasFontSize?: boolean;
 }
 export interface TextEditorProps extends TextEditorWrapperProps {
   text: string;
@@ -55,6 +58,7 @@ const TextEditor = ({
   minHeight,
   editorCss,
   limitTextLength,
+  hasFontSize = true,
 }: TextEditorProps) => {
   useEffect(() => {
     const quill = document.querySelector<HTMLDivElement>(".ql-editor");
@@ -62,6 +66,8 @@ const TextEditor = ({
       quill.focus();
     }
   }, []);
+
+  const { addToast } = useToast();
 
   const [innerText, setInnerText] = React.useState<string>(text);
 
@@ -88,11 +94,43 @@ const TextEditor = ({
     }
   };
 
+  useEffect(() => {
+    if (hasFontSize) {
+      return;
+    }
+    const fontSizeSelector =
+      document.querySelector<HTMLDivElement>(".ql-size")!;
+    const fontSizeBox = fontSizeSelector.parentElement!;
+    fontSizeBox.style.display = "none";
+    // NOTE gth 만약 프론트에서 적용된 폰트 사이즈를 제거하려면 아래와 같이 적용 가능합니다
+    // Size.whitelist = [
+    //   rem(16),
+    //   rem(20),
+    //   rem(22),
+    //   rem(24),
+    //   rem(26),
+    //   rem(28),
+    //   rem(32),
+    //   rem(36),
+    //   rem(40),
+    //   rem(45),
+    //   rem(48),
+    //   rem(50),
+    //   rem(56),
+    //   rem(60),
+    //   rem(64),
+    //   rem(70),
+    //   rem(80),
+    // ];
+    // addToast("에디터가 보이지 않는다면 다시 클릭해주세요.");
+  }, [hasFontSize, addToast]);
+
   return (
     <TextEditorWrapper
       minHeight={minHeight}
       editorCss={editorCss}
       onBlur={handleBlur}
+      hasFontSize={hasFontSize}
     >
       <ReactQuill
         onChange={handleChange}

@@ -1,6 +1,6 @@
-import React from 'react';
-import { Alert, AlertColor } from '@mui/material';
-import { toast } from 'react-toastify';
+import React, { useCallback } from "react";
+import { Alert, AlertColor } from "@mui/material";
+import { toast } from "react-toastify";
 
 type ToastType = AlertColor;
 
@@ -9,9 +9,9 @@ type ToastType = AlertColor;
  * @docs https://fkhadra.github.io/react-toastify/introduction
  */
 const useToast = () => {
-  const addToast = (message: string, type: ToastType = 'info') => {
+  const addToast = useCallback((message: string, type: ToastType = "info") => {
     return toast(<Alert severity={type}>{message}</Alert>);
-  };
+  }, []);
 
   return { addToast };
 };

@@ -183,6 +183,7 @@ const ExplainingCharacterCreator = ({
                 setText={(text) => setText("text", text)}
                 text={getText("text")}
                 defaultText="처음 노출될 내용을 입력해주세요."
+                hasFontSize={false}
               />
             </ExplainingText>
             <ExplainingText
@@ -194,6 +195,7 @@ const ExplainingCharacterCreator = ({
                 setText={(text) => setText("explain", text)}
                 text={getText("explain")}
                 defaultText="확인 클릭 후 노출될 내용을 입력해주세요."
+                hasFontSize={false}
               />
             </ExplainingText>
           </ExplainingTextListWrapper>

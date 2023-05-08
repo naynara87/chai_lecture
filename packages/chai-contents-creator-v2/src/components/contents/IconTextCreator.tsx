@@ -84,6 +84,7 @@ const IconTextCreator = ({
             text={text}
             setText={setText}
             onBlur={handleEndEditText}
+            hasFontSize={false}
           />
         )}
       </IconTextCreatorWrapper>
