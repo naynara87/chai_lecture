@@ -27,7 +27,7 @@ const StepCard = styled.div`
 
   p,
   span {
-    line-height: 1 !important;
+    line-height: 1.4 !important;
   }
 `;
 
