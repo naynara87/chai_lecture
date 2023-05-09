@@ -196,7 +196,7 @@ const QuestionLayout = ({
         const confirmResult = await showCompleteOpenModal({
           title: `풀지 않은 문제가 있어요.
           그래도 채점하시겠습니까?`,
-          description: "* 풀지 않은 문제를 풀려면 해당 번호를 클릭하세요.",
+          description: "* 풀지 않은 문제를 풀려면 해당 번호를 선택하세요.",
           leftButtonText: "취소",
           rightButtonText: "채점하기",
         });
@@ -307,13 +307,13 @@ const QuestionLayout = ({
   }, [pageIdx, handleClickPagination]);
 
   const quizTitle = useMemo(() => {
-    if (lessonMetaData.colorTypeCd.toString() === "80") {
+    if (
+      lessonMetaData.colorTypeCd.toString() === "80" ||
+      lessonMetaData.lessonTpCd.toString() !== "30"
+    ) {
       return lessonMetaData.name;
     }
-    if (lessonMetaData.lessonTpCd.toString() === "30") {
-      return `${lessonMetaData.colorTypeCdName} ${currentCorner.name}`;
-    }
-    return lessonMetaData.name;
+    return `${lessonMetaData.colorTypeCdName} ${currentCorner.name}`;
   }, [lessonMetaData, currentCorner]);
 
   return (
