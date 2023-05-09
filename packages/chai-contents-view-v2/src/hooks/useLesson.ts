@@ -9,9 +9,10 @@ import {
 import { useState } from "react";
 import { getCornerListData } from "../api/lcms";
 import QUERY_KEY from "../constants/queryKey";
+import { AxiosError } from "axios";
 
 const useLesson = (lessonId: ID | undefined) => {
-  const { isAuthorized } = useAuth();
+  const { isAuthorized, logout } = useAuth();
   const [corners, setCorners] = useState<CornerListData[]>([]);
   const [lessonMetaData, setLessonMetaData] = useState<LessonMeta>();
   const [totalPages, setTotalPages] = useState<ID[]>([]);
@@ -40,8 +41,22 @@ const useLesson = (lessonId: ID | undefined) => {
           }, [] as ID[]) ?? [];
         setTotalPages(_totalPages);
       },
-      onError: (error) => {
+      onError: (_error) => {
         console.log("코너 리스트 조회 실패");
+        const error = _error as AxiosError<any>;
+        console.log(error);
+        if (
+          // TODO gth : 토큰 만료 조건 조정 필요 - LCMS와 협의 필요
+          error.response?.data.exception ===
+          "io.bubblecon.contentshub.api.common.jwt.exception.NotHeaderException"
+        ) {
+          // addToast(
+          //   "이용 시간이 경과하여 보안을 위해 자동 로그아웃 되었습니다.",
+          //   "warning",
+          // );
+          logout();
+          return;
+        }
       },
       refetchOnWindowFocus: false,
     },

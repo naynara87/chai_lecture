@@ -5,11 +5,11 @@ import { isDevEnv } from "../constants/env";
 import { InitialInputValue } from "../types/appData";
 import usePage from "./usePage";
 import usePageData from "./usePageData";
-import { useRecoilState } from "recoil";
-import { authState } from "../states/authState";
+import { AxiosError } from "axios";
+import useAuth from "./useAuth";
 
 const useCreatePage = () => {
-  const [isAuthorized] = useRecoilState(authState);
+  const { isAuthorized, logout } = useAuth();
   const stringifiedValue =
     document.querySelector<HTMLInputElement>("#bubble-player")?.value;
   const initialDataFromPhp = stringifiedValue
@@ -57,11 +57,31 @@ const useCreatePage = () => {
       });
       refetchPageData();
       addToast("저장되었습니다.", "success");
-    } catch (error) {
+    } catch (_error: any) {
+      const error = _error as AxiosError<any>;
       console.log(error);
-      addToast("저장에 실패했습니다. 다시 시도해주세요.", "error"); // TODO gth : custom toast message로 변경하기
+      if (
+        // TODO gth : 토큰 만료 조건 조정 필요 - LCMS와 협의 필요
+        error.response?.data.exception ===
+        "io.bubblecon.contentshub.api.common.jwt.exception.NotHeaderException"
+      ) {
+        // addToast(
+        //   "이용 시간이 경과하여 보안을 위해 자동 로그아웃 되었습니다.",
+        //   "warning",
+        // );
+        logout();
+      }
+
+      addToast("저장에 실패했습니다. 다시 시도해주세요.", "error");
     }
-  }, [pageContentsUuid, pageData, refetchPageData, cornerIdByEnv, addToast]);
+  }, [
+    pageContentsUuid,
+    pageData,
+    refetchPageData,
+    cornerIdByEnv,
+    addToast,
+    logout,
+  ]);
 
   useEffect(() => {
     if (!initialPageData) return;
