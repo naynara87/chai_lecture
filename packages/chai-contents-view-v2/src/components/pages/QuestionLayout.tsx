@@ -12,7 +12,7 @@ import {
   TemplateQuestion,
   TemplateQuestionData,
   useLmsInputValue,
-  usePromiseConfirmModal,
+  usePromiseQuestionExitConfirmModal,
   useXapi,
 } from "chai-ui-v2";
 import React, {
@@ -67,7 +67,7 @@ const QuestionLayout = ({
   });
   const { xapiProgress, xapiComplete, updateIsCorrectDataCheck } = useXapi();
   const { showOpenModal: showCompleteOpenModal, modalContent } =
-    usePromiseConfirmModal();
+    usePromiseQuestionExitConfirmModal();
 
   const setPageCompleted = () => {
     setIsPageCompleted(true);
@@ -194,7 +194,8 @@ const QuestionLayout = ({
       window.clearTimeout(questionSolvingTimer.current);
       if (quizData?.find((data) => data.state !== "end")) {
         const confirmResult = await showCompleteOpenModal({
-          title: "풀지 않은 문제가 있어요. 그래도 채점하시겠습니까?",
+          title: `풀지 않은 문제가 있어요.
+          그래도 채점하시겠습니까?`,
           description: "* 풀지 않은 문제를 풀려면 해당 번호를 클릭하세요.",
           leftButtonText: "취소",
           rightButtonText: "채점하기",
