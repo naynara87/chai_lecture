@@ -16,7 +16,7 @@ const ContentsBoxWrap = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   gap: ${vw(30)};
-  
+
   .image-with-caption-wrapper img {
     width: ${vw(200)};
     height: ${vw(150)};
@@ -51,8 +51,13 @@ const ContentBox = styled.div<TextBoxProps>`
     margin: 0;
   }
 
-  > div {
+  > div:not(:last-of-type) {
     margin-bottom: ${vw(24)};
+  }
+
+  p,
+  span {
+    line-height: 1.4 !important;
   }
 `;
 
@@ -61,6 +66,10 @@ export interface ContentsCardListProps {
   fullAudioId?: string;
 }
 
+/**
+ * CH-03-01 학습 카드
+ * ContentsCardList
+ */
 const ContentsCardListComponent = ({
   contents,
   fullAudioId,
