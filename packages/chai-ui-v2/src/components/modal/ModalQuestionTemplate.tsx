@@ -47,6 +47,7 @@ const ModalQuestionWrapper = styled.div`
     .question-cont {
       font-size: ${vw(24)};
       font-weight: 400;
+      white-space: pre-line;
     }
   }
 `;
@@ -63,7 +64,7 @@ const ButtonStart = styled.button`
 
   &:hover,
   &:focus {
-    background-color: #46538C;
+    background-color: #46538c;
   }
 `;
 
@@ -83,8 +84,9 @@ const ModalQuestionTemplate = ({
     <ModalBase open={isModalOpen} onClose={handleClose}>
       <div className="modal active">
         <div
-          className={`modal-container base-modal ${wideModal ? "wide-modal" : ""
-            }`}
+          className={`modal-container base-modal ${
+            wideModal ? "wide-modal" : ""
+          }`}
         >
           <div className="base-wrapper">
             <button className="btn-close-modal" onClick={handleClose}>
@@ -97,20 +99,17 @@ const ModalQuestionTemplate = ({
               <div className="question-cont-wrapper">
                 <p className="question-sub">{`<시험 중 유의사항>`}</p>
                 <p className="question-cont">
-                  1. 시험 응시 전 네트워크 상태를 확인해 주세요.
-                  <br />
-                  2. 제시된 문항을 모두 풀어 주세요.
-                  <br />
-                  3. 답안 선택 후 확인 버튼을 꼭 눌러 주세요. (확인 버튼을 누른
-                  뒤엔 답변 수정이 불가합니다.)
-                  <br />
-                  4. ‘채점하기’ 버튼을 누르기 전 네트워크가 끊기면 처음부터 다시
-                  문제를 풀어야 합니다.
-                  <br />
-                  5. ‘채점하기’ 버튼을 누르기 전까지는 문항을 자유롭게 이동하여
-                  문제를 풀 수 있습니다.
-                  <br />
-                  6. 실제 시험에 임하는 자세로 문제를 풀어 주세요.
+                  {`1. 시험 응시 전 네트워크 상태를 확인해 주세요.
+
+                  2. 마지막 문항에서만 ‘채점하기’ 버튼이 노출됩니다.
+
+                  3. 답안을 선택한 후, ‘다음’ 버튼을 누르면 수정할 수 없으니
+                     답을 신중하게 선택하세요.
+
+                  4. ‘채점하기’ 버튼을 누르기 전 네트워크 상태가 불안정하면
+                     문제를 처음부터 다시 풀어야 합니다.
+
+                  6. 실제 시험에 임하는 자세로 문제를 풀어 주세요.`}
                 </p>
               </div>
             </ModalQuestionWrapper>

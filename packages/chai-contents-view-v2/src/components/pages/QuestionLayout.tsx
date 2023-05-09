@@ -142,15 +142,18 @@ const QuestionLayout = ({
     });
   }, [currentPage, pages]);
 
+  const currentCorner = useMemo(() => {
+    const currentCornerIndex = corners.findIndex(
+      (corner) => corner.id.toString() === currentCornerId?.toString(),
+    );
+    return corners[currentCornerIndex];
+  }, [corners, currentCornerId]);
+
   const handleClickPagination = useCallback(
     (pageIndex: number) => {
       if (currentPageIndex === undefined) return;
       if (!totalPages[pageIndex]) return;
       if (cornerId && courseId && lessonId && pageId && currentPage) {
-        const currentCornerIndex = corners.findIndex(
-          (corner) => corner.id.toString() === currentCornerId?.toString(),
-        );
-        const currentCorner = corners[currentCornerIndex];
         xapiProgress(
           currentCorner,
           currentCorner,
@@ -165,9 +168,7 @@ const QuestionLayout = ({
     },
     [
       cornerId,
-      corners,
       courseId,
-      currentCornerId,
       currentPage,
       currentPageIndex,
       lessonId,
@@ -175,6 +176,7 @@ const QuestionLayout = ({
       pageId,
       totalPages,
       xapiProgress,
+      currentCorner,
     ],
   );
 
@@ -192,8 +194,8 @@ const QuestionLayout = ({
       window.clearTimeout(questionSolvingTimer.current);
       if (quizData?.find((data) => data.state !== "end")) {
         const confirmResult = await showCompleteOpenModal({
-          title: "아직 안 푼 문제가 있어요.",
-          description: "그래도 채점하러 갈까요?",
+          title: "풀지 않은 문제가 있어요. 그래도 채점하시겠습니까?",
+          description: "* 풀지 않은 문제를 풀려면 해당 번호를 클릭하세요.",
           leftButtonText: "취소",
           rightButtonText: "채점하기",
         });
@@ -203,8 +205,8 @@ const QuestionLayout = ({
         }
       } else {
         const confirmResult = await showCompleteOpenModal({
-          title: "모든 문제를 푸셨습니다!",
-          description: "지금 채점하러 갈까요?",
+          title: "모든 문제를 풀었어요.",
+          description: "이제 채점해 볼까요?",
           leftButtonText: "취소",
           rightButtonText: "채점하기",
         });
@@ -213,10 +215,6 @@ const QuestionLayout = ({
           return;
         }
       }
-      const currentCornerIndex = corners.findIndex(
-        (corner) => corner.id.toString() === currentCornerId?.toString(),
-      );
-      const currentCorner = corners[currentCornerIndex];
       const newXapiActivityState = updateIsCorrectDataCheck(totalPages);
       xapiComplete(
         currentCorner,
@@ -238,10 +236,9 @@ const QuestionLayout = ({
     }
   }, [
     cornerId,
-    corners,
     courseId,
-    currentCornerId,
     currentPage,
+    currentCorner,
     lessonId,
     navigate,
     pageId,
@@ -311,7 +308,11 @@ const QuestionLayout = ({
   return (
     <div className="cai-view-yahei">
       <LayoutQuestionHeader
-        headerText={lessonMetaData.name}
+        headerText={
+          lessonMetaData.lessonTpCd.toString() === "30"
+            ? `${lessonMetaData.colorTypeCdName} ${currentCorner.turnName}`
+            : `${lessonMetaData.name}`
+        }
         solvingTime={questionSolvingTime}
       />
       <main className="cai-main problem-main">
@@ -338,7 +339,11 @@ const QuestionLayout = ({
         isModalOpen={isQuestionStartModalOpen}
         setIsModalOpen={setIsQuestionStartModalOpen}
         wideModal
-        quizTypeText={lessonMetaData.name}
+        quizTypeText={
+          lessonMetaData.lessonTpCd.toString() === "30"
+            ? `${lessonMetaData.colorTypeCdName} ${currentCorner.turnName}`
+            : `${lessonMetaData.name}`
+        }
         quizTotalLength={pages.length}
         onClickStart={startQuiz}
       />
