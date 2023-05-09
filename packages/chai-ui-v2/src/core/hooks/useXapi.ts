@@ -100,9 +100,17 @@ const useXapi = () => {
   );
 
   const updateProgressDataPageCheck = useCallback(
-    (prevCornerId: ID, nextCornerId: ID, currentPageId: ID, nextPageId: ID) => {
+    (
+      prevCornerId: ID,
+      nextCornerId: ID,
+      currentPageId: ID,
+      nextPageId: ID,
+      totalPages: ID[],
+    ) => {
       if (!xapiActivity) return;
       const newProgressData = cloneDeep(xapiActivity?.progress_data);
+      const flatMapPages = newProgressData?.flatMap((corner) => corner.pages);
+      if (flatMapPages?.length !== totalPages.length) return;
       const prevCornerIndex = newProgressData?.findIndex(
         (corner) => corner.corner_id.toString() === prevCornerId.toString(),
       );
@@ -147,6 +155,7 @@ const useXapi = () => {
   const updateProgress = useCallback(
     (progressData: LRSCornerProgress[], totalPages: ID[]) => {
       const flatMapPages = progressData?.flatMap((corner) => corner.pages);
+      if (flatMapPages?.length !== totalPages.length) return;
       const filteredCheckedPages = flatMapPages?.filter(
         (page) => page.is_checked === true,
       );
@@ -187,6 +196,7 @@ const useXapi = () => {
         nextCorner.id,
         currentPage.id,
         nextPageId,
+        totalPages,
       );
       const newXapiActivityState = updateActivityState({
         part_id: currentCorner.id,
@@ -196,19 +206,20 @@ const useXapi = () => {
         progress: updateProgress(
           newProgressData ?? xapiActivity.progress_data,
           totalPages,
-        ).progress,
+        )?.progress,
         complete_progress: updateProgress(
           newProgressData ?? xapiActivity.progress_data,
           totalPages,
-        ).completed_progress,
+        )?.completed_progress,
       });
       const progressPageData: ProgressPageData = {
         currentPage: currentPageIndex + 1,
         nextPage: nextPageIndex + 1,
-        progress: updateProgress(
-          newProgressData ?? xapiActivity.progress_data,
-          totalPages,
-        ).progress,
+        progress:
+          updateProgress(
+            newProgressData ?? xapiActivity.progress_data,
+            totalPages,
+          )?.progress || 0,
         partId: currentCorner.id,
         partName: currentCorner.name,
         pageId: currentPage.id,
@@ -266,6 +277,7 @@ const useXapi = () => {
         nextCorner.id,
         currentPage.id,
         nextPageId,
+        totalPages,
       );
       const newXapiActivityState = updateActivityState({
         ...newXapiActivityStateToUpdateProgressData,
@@ -276,19 +288,20 @@ const useXapi = () => {
         progress: updateProgress(
           newProgressData ?? xapiActivity.progress_data,
           totalPages,
-        ).progress,
+        )?.progress,
         complete_progress: updateProgress(
           newProgressData ?? xapiActivity.progress_data,
           totalPages,
-        ).completed_progress,
+        )?.completed_progress,
       });
       const progressPageData: ProgressPageData = {
         currentPage: currentPageIndex + 1,
         nextPage: currentPageIndex + 1,
-        progress: updateProgress(
-          newProgressData ?? xapiActivity.progress_data,
-          totalPages,
-        ).progress,
+        progress:
+          updateProgress(
+            newProgressData ?? xapiActivity.progress_data,
+            totalPages,
+          )?.progress || 0,
         partId: currentCorner.id,
         partName: currentCorner.name,
         pageId: currentPage.id,
@@ -352,7 +365,7 @@ const useXapi = () => {
         time: 0,
         progress_segments: "",
       };
-
+      // newActivityState.progress_data = [];
       newActivityState.progress_data = corners.map((corner) => {
         return {
           corner_id: corner.id,
@@ -417,6 +430,7 @@ const useXapi = () => {
         nextCorner.id,
         currentPage.id,
         nextPageId,
+        totalPages,
       );
       const progressPageData: Partial<ProgressPageData> = {
         partId: currentCorner.id,
@@ -436,11 +450,11 @@ const useXapi = () => {
         progress: updateProgress(
           newProgressData ?? xapiActivity.progress_data,
           totalPages,
-        ).progress,
+        )?.progress,
         complete_progress: updateProgress(
           newProgressData ?? xapiActivity.progress_data,
           totalPages,
-        ).completed_progress,
+        )?.completed_progress,
       });
 
       xapiV1?.suspend(newXapiActivityState ?? xapiActivity, progressPageData);

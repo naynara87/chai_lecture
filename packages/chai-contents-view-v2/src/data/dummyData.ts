@@ -10,6 +10,7 @@ export const v2LessonData: LessonData = {
     courseName: "차이홍(샘플데이터)-빨강",
     colorTypeCd: "10",
     lessonTpCd: "10",
+    colorTypeCdName: "빨강",
   },
   // 코너 리스트
   data: [
@@ -17,35 +18,42 @@ export const v2LessonData: LessonData = {
       id: 11,
       name: "복습",
       pages: [1, 2, 3, 4, 5],
+      turnName: "복습",
     },
     {
       id: 12,
       name: "학습 들어가기",
+      turnName: "학습 들어가기",
       pages: [6],
     },
     {
       id: 13,
       name: "중국어 개요",
+      turnName: "중국어 개요",
       pages: [7, 8, 9],
     },
     {
       id: 14,
       name: "성조",
+      turnName: "성조",
       pages: [10, 11, 12, 13],
     },
     {
       id: 15,
       name: "운모",
+      turnName: "운모",
       pages: [14, 15, 16],
     },
     {
       id: 16,
       name: "패턴 중국어",
+      turnName: "패턴 중국어",
       pages: [17, 18, 19, 20, 21, 22],
     },
     {
       id: 17,
       name: "회화",
+      turnName: "회화",
       pages: [23, 24, 25],
     },
     // {
@@ -65,12 +73,14 @@ export const v2LessonQuizData: LessonData = {
     courseName: "차이홍(샘플데이터)-빨강",
     colorTypeCd: "10",
     lessonTpCd: "20",
+    colorTypeCdName: "빨강",
   },
   // 코너 리스트
   data: [
     {
       id: 11,
       name: "문제",
+      turnName: "문제",
       pages: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
     },
   ],
