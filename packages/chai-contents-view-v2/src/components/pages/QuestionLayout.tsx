@@ -305,14 +305,20 @@ const QuestionLayout = ({
     handleClickPagination(pageIdx + 1);
   }, [pageIdx, handleClickPagination]);
 
+  const quizTitle = useMemo(() => {
+    if (lessonMetaData.colorTypeCd.toString() === "80") {
+      return lessonMetaData.name;
+    }
+    if (lessonMetaData.lessonTpCd.toString() === "30") {
+      return `${lessonMetaData.colorTypeCdName} ${currentCorner.name}`;
+    }
+    return lessonMetaData.name;
+  }, [lessonMetaData, currentCorner]);
+
   return (
     <div className="cai-view-yahei">
       <LayoutQuestionHeader
-        headerText={
-          lessonMetaData.lessonTpCd.toString() === "30"
-            ? `${lessonMetaData.colorTypeCdName} ${currentCorner.turnName}`
-            : `${lessonMetaData.name}`
-        }
+        headerText={quizTitle}
         solvingTime={questionSolvingTime}
       />
       <main className="cai-main problem-main">
@@ -339,11 +345,7 @@ const QuestionLayout = ({
         isModalOpen={isQuestionStartModalOpen}
         setIsModalOpen={setIsQuestionStartModalOpen}
         wideModal
-        quizTypeText={
-          lessonMetaData.lessonTpCd.toString() === "30"
-            ? `${lessonMetaData.colorTypeCdName} ${currentCorner.turnName}`
-            : `${lessonMetaData.name}`
-        }
+        quizTypeText={quizTitle}
         quizTotalLength={pages.length}
         onClickStart={startQuiz}
       />
