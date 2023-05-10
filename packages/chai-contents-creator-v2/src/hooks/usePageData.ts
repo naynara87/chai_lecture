@@ -25,15 +25,20 @@ const usePageData = ({ cornerId, pageId }: UsePageDataProps) => {
         console.log(error);
 
         if (
-          // TODO gth : 토큰 만료 조건 조정 필요 - LCMS와 협의 필요
-          error.response?.data.exception ===
-          "io.bubblecon.contentshub.api.common.jwt.exception.NotHeaderException"
+          // 토큰 만료
+          error.response?.status === 401
         ) {
-          // addToast(
-          //   "이용 시간이 경과하여 보안을 위해 자동 로그아웃 되었습니다.",
-          //   "warning",
-          // );
           logout();
+          return;
+        }
+        if (
+          // 토큰 인증 실패
+          error.response?.status === 403
+        ) {
+          addToast(
+            "이용 시간이 경과하여 보안을 위해 자동 로그아웃 되었습니다.",
+            "warning",
+          );
           return;
         }
 
@@ -41,6 +46,8 @@ const usePageData = ({ cornerId, pageId }: UsePageDataProps) => {
       },
       refetchOnWindowFocus: false,
       staleTime: Infinity,
+      retry: 1,
+      retryDelay: 300,
     },
   );
 

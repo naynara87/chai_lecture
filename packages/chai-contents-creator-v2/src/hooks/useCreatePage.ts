@@ -61,15 +61,22 @@ const useCreatePage = () => {
       const error = _error as AxiosError<any>;
       console.log(error);
       if (
-        // TODO gth : 토큰 만료 조건 조정 필요 - LCMS와 협의 필요
-        error.response?.data.exception ===
-        "io.bubblecon.contentshub.api.common.jwt.exception.NotHeaderException"
+        // 토큰 만료
+        error.response?.status === 401
       ) {
-        // addToast(
-        //   "이용 시간이 경과하여 보안을 위해 자동 로그아웃 되었습니다.",
-        //   "warning",
-        // );
+        addToast("저장에 실패했습니다. 다시 시도해주세요.", "error");
         logout();
+        return;
+      }
+      if (
+        // 토큰 인증 실패
+        error.response?.status === 403
+      ) {
+        addToast(
+          "이용 시간이 경과하여 보안을 위해 자동 로그아웃 되었습니다.",
+          "warning",
+        );
+        return;
       }
 
       addToast("저장에 실패했습니다. 다시 시도해주세요.", "error");
