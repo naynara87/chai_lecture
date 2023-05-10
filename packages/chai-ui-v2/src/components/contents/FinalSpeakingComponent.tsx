@@ -13,6 +13,7 @@ import IconReturnButton from "../atoms/Button/IconReturnButton";
 import RecordStopButton from "../atoms/Button/RecordStopButton";
 import {
   FinalSpeakingContentData,
+  saveStt,
   useGlobalAudio,
   usePageCompleted,
   useXapi,
@@ -88,7 +89,7 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
     }
   }, [globalAudioId, status, stopRecording]);
 
-  const handleSendRecording = () => {
+  const handleSendRecording = async () => {
     console.log("onStopRecording", mediaBlobUrl);
     if (!mediaBlobUrl) return;
     setRecordedAudioState("recorded");
@@ -102,14 +103,22 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
     // document.body.removeChild(elem);
     // TODO : 녹음 후 생성한 파일을 서버로 전송하기 => BBC-978
     // convert blob to mp3 file
-    // const file = new File([blob], `audio${new Date().getTime()}`, {
-    //   type: blob.type,
-    //   lastModified: Date.now(),
-    // });
+    // TODO kjw 파일명 applId_lessonId_cornerId_pageId
+    const file = new File([mediaBlobUrl], `audio${new Date().getTime()}`, {
+      type: "audio/ogg",
+      lastModified: Date.now(),
+    });
+
+    console.log("asdf", file);
 
     // send file to server : http://localhost:3000/api/upload
-    // const formData = new FormData();
-    // formData.append("file", file);
+    const formData = new FormData();
+    formData.append("file", file);
+    try {
+      await saveStt(formData);
+    } catch (error) {
+      console.log(error);
+    }
     // fetch("http://localhost:3000/api/upload", {
     //   method: "POST",
     //   body: formData,
@@ -346,7 +355,7 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
             text="녹음 파일 제출"
             onClickBtn={() => {
               // TODO kjw toast message 띄우기
-              handleSendRecording();
+              void handleSendRecording();
             }}
             isDisabled={isSendBlobUrl}
           />
