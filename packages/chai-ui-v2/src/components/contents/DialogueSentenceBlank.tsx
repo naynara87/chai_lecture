@@ -169,7 +169,6 @@ const DialogueSentenceBlank = ({
                     alt=""
                     className="profile"
                   />
-                  ;
                 </button>
               </div>
             </div>
