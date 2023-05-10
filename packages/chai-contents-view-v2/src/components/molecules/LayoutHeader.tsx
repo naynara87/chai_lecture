@@ -34,15 +34,19 @@ const HdContWrap = styled.div<HdContWrapProps>`
   /* key설명 - width: 100%일 때 after의 배경색을 div의 배경색으로 적용 */
   width: ${(props) =>
     props.cornerPercent > 99 ? "100%" : `${props.cornerPercent}%`};
-  /* background-color: ${(props) => props.cornerPercent > 99 ? props.lessonColor.main : "none"}; */
-  transition: ${(props) => props.cornerPercent > 99 ? "width 1000ms" : "width 1200ms"};
+  /* background-color: ${(props) =>
+    props.cornerPercent > 99 ? props.lessonColor.main : "none"}; */
+  transition: ${(props) =>
+    props.cornerPercent > 99 ? "width 1000ms" : "width 1200ms"};
+  min-width: 17%;
 
   &:after {
     background-color: ${(props) => props.lessonColor.main};
   }
 
   &:before {
-    width: ${(props) => props.cornerPercent > 99 ? "100%" : `${props.cornerPercent}%`};
+    width: ${(props) =>
+      props.cornerPercent > 99 ? "100%" : `${props.cornerPercent}%`};
     min-width: 17%;
     background-color: ${(props) => props.lessonColor.main};
   }
@@ -105,8 +109,9 @@ const LayoutHeader = ({
         lessonColor={getLessonColors(lessonColorCode)}
       >
         <HdChaWrap
-          className={`hd-cha-wrap ${cornerPercent > 50 ? "second-half" : "none"
-            }`}
+          className={`hd-cha-wrap ${
+            cornerPercent > 50 ? "second-half" : "none"
+          }`}
           lessonColor={getLessonColors(lessonColorCode)}
         >
           <p className="txt">{currentPage?.name}</p>
@@ -114,8 +119,9 @@ const LayoutHeader = ({
         </HdChaWrap>
         <span className="corner-name">{cornerName}</span>
         <HdChaWrap
-          className={`hd-cha-wrap ${cornerPercent > 50 ? "none" : "first-half"
-            }`}
+          className={`hd-cha-wrap ${
+            cornerPercent > 50 ? "none" : "first-half"
+          }`}
           lessonColor={getLessonColors(lessonColorCode)}
         >
           <p className="txt">{currentPage?.name}</p>
