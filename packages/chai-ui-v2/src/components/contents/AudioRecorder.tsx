@@ -147,7 +147,6 @@ const AudioRecorder = ({ contents, handleEndRecord }: AudioRecorderProps) => {
         recordTime.current = recordTime.current - 1;
         if (recordTime.current <= 0) {
           handleResetRecordedAudio();
-          console.log("이게실행안됨?");
           return;
         } else {
           recordTimer.current = setTimeout(go, 1000);
