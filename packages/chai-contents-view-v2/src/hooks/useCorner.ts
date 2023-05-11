@@ -6,17 +6,20 @@ import {
   CornerMeta,
   ContentData,
   useLmsInputValue,
+  useToast,
 } from "chai-ui-v2";
 import { useState } from "react";
 import { getPageListData } from "../api/lcms";
 import QUERY_KEY from "../constants/queryKey";
 import { pageDataConverter } from "../util/converter";
+import { AxiosError } from "axios";
 
 const useCorner = (cornerId: ID | undefined) => {
-  const { isAuthorized } = useAuth();
+  const { isAuthorized, logout } = useAuth();
   const [pages, setPages] = useState<Page[]>([]);
   const [cornerMetaData, setCornerMetaData] = useState<CornerMeta>();
   const { lmsInputValue: initialDataFromPhp } = useLmsInputValue();
+  const { addToast } = useToast();
 
   const { refetch } = useQuery(
     [QUERY_KEY.PAGES, String(cornerId)],
@@ -47,10 +50,31 @@ const useCorner = (cornerId: ID | undefined) => {
         setPages(pages!);
         setCornerMetaData(data?.body?.meta);
       },
-      onError: (error) => {
+      onError: (_error: any) => {
         console.log("페이지 리스트 조회 실패");
+        const error = _error as AxiosError<any>;
+        console.log(error);
+        if (
+          // 토큰 만료
+          error.response?.status === 401
+        ) {
+          logout();
+          return;
+        }
+        if (
+          // 토큰 인증 실패
+          error.response?.status === 403
+        ) {
+          addToast(
+            "이용 시간이 경과하여 보안을 위해 자동 로그아웃 되었습니다.",
+            "warning",
+          );
+          return;
+        }
       },
       refetchOnWindowFocus: false,
+      retry: 1,
+      retryDelay: 300,
     },
   );
 

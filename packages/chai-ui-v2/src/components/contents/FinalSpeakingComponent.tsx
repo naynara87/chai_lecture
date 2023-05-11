@@ -50,7 +50,6 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
   const [recordingTimeState, setRecordingTimeState] = useState(0);
   const [recordedTimeState, setRecordedTimeState] = useState(0);
   const [isSendBlobUrl, setIsSendBlobUrl] = useState(false);
-  const [isProgressBarStart, setIsProgressBarStart] = useState(false);
   const { lmsInputValue: initialDataFromPhp } = useLmsInputValue();
   const { lessonId, cornerId, pageId } = useParams();
   const { addToast } = useToast();
@@ -70,12 +69,8 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
         // type: "audio/mpeg",
       },
     });
-  const {
-    globalAudioRef,
-    globalAudioId,
-    handleAudioReset,
-    handleClickAudioButton,
-  } = useGlobalAudio();
+  const { globalAudioId, handleAudioReset, handleClickAudioButton } =
+    useGlobalAudio();
   const { setPushCompletedPageComponents, setComponentCompleted } =
     usePageCompleted();
   const { xapiCreated } = useXapi();
@@ -95,7 +90,6 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
     if (globalAudioId !== -1 && status === "recording") {
       stopRecording();
       setRecordedAudioState("recorded");
-      setIsProgressBarStart(false);
       window.clearTimeout(recordTimer.current);
     }
   }, [globalAudioId, status, stopRecording]);
@@ -160,8 +154,8 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
         setRecordingTimeState((prev) => prev + 1);
         if (recordTime.current > 29) {
           stopRecording();
+          setRecordedTimeState(recordTime.current);
           setRecordedAudioState("recorded");
-          setIsProgressBarStart(false);
         } else {
           recordTimer.current = setTimeout(go, 1000);
         }
@@ -169,8 +163,8 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
     } else {
       // 녹음 중일 때
       stopRecording();
+      setRecordedTimeState(recordTime.current);
       setComponentCompleted(contents.id);
-      setIsProgressBarStart(false);
       setRecordedAudioState("recorded");
       window.clearTimeout(recordTimer.current);
       xapiCreated(contents.id);
@@ -179,12 +173,17 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
     startRecording,
     status,
     stopRecording,
-    recordTime,
     handleAudioReset,
     setComponentCompleted,
     contents.id,
     xapiCreated,
   ]);
+
+  const handleResetRecordedAudio = useCallback(() => {
+    handleAudioReset();
+    setRecordedAudioState("recorded");
+    window.clearTimeout(recordTimer.current);
+  }, [handleAudioReset]);
 
   const handleClickRecordedAudioButton = useCallback(() => {
     if (
@@ -202,13 +201,14 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
         0,
         mediaBlobUrl,
       );
-      setRecordedTimeState(recordingTimeState);
+      recordTime.current = recordedTimeState;
+      setRecordingTimeState(recordedTimeState);
       setRecordedAudioState("playing");
       recordTimer.current = window.setTimeout(function go() {
-        setRecordedTimeState((prev) => prev - 1);
-        if (recordTime.current < 0) {
-          setRecordedAudioState("recorded");
-          setIsProgressBarStart(false);
+        setRecordingTimeState((prev) => prev - 1);
+        recordTime.current = recordTime.current - 1;
+        if (recordTime.current <= 0) {
+          handleResetRecordedAudio();
         } else {
           recordTimer.current = setTimeout(go, 1000);
         }
@@ -217,56 +217,16 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
 
     if (recordedAudioState === "playing") {
       // stop playing audio
-      handleAudioReset();
-      setRecordedAudioState("recorded");
-      setIsProgressBarStart(false);
-      window.clearTimeout(recordTimer.current);
+      handleResetRecordedAudio();
     }
   }, [
     recordedAudioState,
     status,
     handleClickAudioButton,
-    handleAudioReset,
+    handleResetRecordedAudio,
     mediaBlobUrl,
-    recordingTimeState,
+    recordedTimeState,
   ]);
-
-  const audioEnded = useCallback(() => {
-    if (
-      globalAudioId
-        .toString()
-        .includes(`recorder_${recordedAudioUuidRef.current}`)
-    ) {
-      handleAudioReset();
-      setRecordedAudioState("recorded");
-      window.clearTimeout(recordTimer.current);
-    }
-  }, [globalAudioId, handleAudioReset]);
-
-  useEffect(() => {
-    let globalAudioRefValue: HTMLAudioElement | null = null;
-    if (globalAudioRef?.current) {
-      globalAudioRefValue = globalAudioRef.current;
-      globalAudioRefValue?.addEventListener("ended", audioEnded);
-    }
-    return () => {
-      if (globalAudioRefValue) {
-        globalAudioRefValue.removeEventListener("ended", audioEnded);
-      }
-    };
-  }, [globalAudioRef, audioEnded, globalAudioId]);
-
-  useEffect(() => {
-    if (
-      recordedAudioState !== "not-recorded" &&
-      !globalAudioId
-        .toString()
-        .includes(`recorder_${recordedAudioUuidRef.current}`)
-    ) {
-      setRecordedAudioState("recorded");
-      window.clearTimeout(recordTimer.current);
-    }
-  }, [globalAudioId, recordedAudioState]);
 
   const handleClickResetBtn = useCallback(() => {
     clearBlobUrl();
@@ -274,24 +234,18 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
     handleAudioReset();
     recordTime.current = 0;
     setRecordingTimeState(0);
-    setIsProgressBarStart(false);
+    setRecordedTimeState(0);
   }, [handleAudioReset, clearBlobUrl]);
 
   const renderRecordingAudioIcon = useMemo(() => {
     if (status === "recording") {
-      setTimeout(() => {
-        setIsProgressBarStart(true);
-      }, 0);
       return (
         <>
           <RecordStopButton
             onClickBtn={handleClickRecordingAudioButton}
             recordTime={recordingTimeState}
           />
-          <ComponentProgress
-            progressDuration={30}
-            isAudioEnd={isProgressBarStart}
-          />
+          <ComponentProgress progressDuration={30} />
         </>
       );
     } else {
@@ -302,12 +256,7 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
         );
       }
     }
-  }, [
-    status,
-    handleClickRecordingAudioButton,
-    recordingTimeState,
-    isProgressBarStart,
-  ]);
+  }, [status, handleClickRecordingAudioButton, recordingTimeState]);
 
   const renderRecordedAudioIcon = useMemo(() => {
     if (recordedAudioState === "not-recorded") {
@@ -318,19 +267,13 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
         />
       );
     } else if (recordedAudioState === "playing") {
-      setTimeout(() => {
-        setIsProgressBarStart(true);
-      }, 0);
       return (
         <>
           <RecordStopButton
             onClickBtn={handleClickRecordedAudioButton}
-            recordTime={recordedTimeState}
+            recordTime={recordingTimeState}
           />
-          <ComponentProgress
-            progressDuration={recordedTimeState}
-            isAudioEnd={isProgressBarStart}
-          />
+          <ComponentProgress progressDuration={recordedTimeState} />
         </>
       );
     } else {
@@ -339,7 +282,7 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
         <>
           <RecordPlayButton
             onClickBtn={handleClickRecordedAudioButton}
-            recordTime={recordingTimeState}
+            recordTime={recordedTimeState}
           />
           {!isSendBlobUrl && (
             <IconReturnButton onClickBtn={handleClickResetBtn} />
@@ -354,7 +297,6 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
     recordedTimeState,
     recordingTimeState,
     isSendBlobUrl,
-    isProgressBarStart,
   ]);
 
   return (

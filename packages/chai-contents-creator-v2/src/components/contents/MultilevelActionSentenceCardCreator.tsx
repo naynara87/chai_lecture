@@ -86,7 +86,7 @@ const DashedBar = styled.div`
 `;
 
 /**
- * CH-03-02-01 액션 학습 카드 - 단어용
+ * CH-03-02-02 액션 학습 카드 - 문장용
  */
 const MultilevelActionSentenceCardCreator = ({
   content,
@@ -209,7 +209,6 @@ const MultilevelActionSentenceCardCreator = ({
 
   return (
     <MultilevelActionSentenceContentContainer>
-
       <ContentCreatorLayout
         isDraggable={isDraggable}
         draggableProvided={draggableProvided}

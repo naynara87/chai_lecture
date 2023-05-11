@@ -7,7 +7,7 @@ import ComponentButtonStep from "../atoms/Button/ComponentButtonStep";
 
 const StepCard = styled.div`
   > *:not(:first-of-type) {
-    margin-top: ${vw(40)};
+    margin-top: ${vw(20)};
   }
 
   .image-with-caption-wrapper {
@@ -24,12 +24,20 @@ const StepCard = styled.div`
       max-width: 200px;
     }
   }
+
+  p,
+  span {
+    line-height: 1.4 !important;
+  }
 `;
 
 export interface MultilevelActionSentenceCardComponentProps {
   contents: MultilevelActionSentenceCardContentData;
 }
 
+/**
+ * CH-03-02-02 액션 학습 카드 - 문장용
+ */
 const MultilevelActionSentenceCardComponent = ({
   contents,
 }: MultilevelActionSentenceCardComponentProps) => {
@@ -57,7 +65,7 @@ const MultilevelActionSentenceCardComponent = ({
       <StepCard className={`step-card sentence-card step${step + 1}`}>
         <>{multiLevelContents}</>
         {contents.data[step + 1] && (
-          <div className="btns-wrap">
+          <div>
             <ComponentButtonStep onClick={handleClickStepButton} />
           </div>
         )}
