@@ -24,6 +24,10 @@ const QuizContainer = styled.div`
     font-size: ${vw(22)};
   }
 
+  .conversation-wrap:not(:first-of-type) {
+    margin-top: 0;
+  }
+
   > .btns-wrap {
     max-width: 382px;
     margin: 0 auto;

@@ -6,9 +6,10 @@ import {
   // saveLmsData,
   // useDebounced,
   useXapi,
+  xapiActivityState,
 } from "chai-ui-v2";
-import { useEffect, useMemo, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import useCorner from "../../hooks/useCorner";
 import useLesson from "../../hooks/useLesson";
@@ -16,6 +17,7 @@ import useLesson from "../../hooks/useLesson";
 import { currentCornerIdState } from "../../state/currentCornerId";
 import ContentsLayout from "./ContentsLayout";
 import QuestionLayout from "./QuestionLayout";
+import { getPageUrl } from "../../util/url";
 
 const Layout = () => {
   const { courseId, lessonId, cornerId, pageId } = useParams(); // 이게 나중 실행됨
@@ -23,26 +25,34 @@ const Layout = () => {
   const { lessonMetaData, corners, totalPages } = useLesson(lessonId);
   const { pages, cornerMetaData } = useCorner(cornerId); // 이게 먼저 실행되고
   const [isInitialActivityState, setIsInitialActivityState] = useState(false);
+  const isStartedQuiz = useRef(false);
   const isXapiInitialize = useRef(false);
+  const navigate = useNavigate();
+  const { state } = useLocation();
 
   const { xapiInitialize, initialActivityState } = useXapi();
 
   const [, setCurrentCornerId] = useRecoilState(currentCornerIdState);
-  // const { currentProgress } = useProgressRate(totalPages);
+  const [xapiActivity] = useRecoilState(xapiActivityState);
 
   useEffect(() => {
     if (isXapiInitialize.current) return;
     if (totalPages.length < 1) return;
+    if (state?.isRestartedQuiz) {
+      isXapiInitialize.current = true;
+      return;
+    }
     if (courseId && lessonId) {
       isXapiInitialize.current = true;
       xapiInitialize(courseId, lessonId, totalPages);
     }
-  }, [xapiInitialize, courseId, lessonId, totalPages, isXapiInitialize]);
+  }, [xapiInitialize, courseId, lessonId, totalPages, isXapiInitialize, state]);
 
   useEffect(() => {
     if (!lessonMetaData) return;
     if (!cornerMetaData) return;
     if (!pageId) return;
+    if (state?.isRestartedQuiz) return;
     if (isInitialActivityState) return;
     initialActivityState(
       lessonMetaData,
@@ -60,6 +70,7 @@ const Layout = () => {
     initialActivityState,
     isInitialActivityState,
     pageId,
+    state,
   ]);
 
   useEffect(() => {
@@ -118,6 +129,75 @@ const Layout = () => {
 
   // useDebounced(saveData, 200);
 
+  const toScorePage = useCallback(() => {
+    if (!xapiActivity) return;
+    if (!lessonMetaData) return;
+    if (!xapiActivity.correct_data || !xapiActivity.incorrect_data) return;
+    if (
+      xapiActivity.correct_data.length > 0 ||
+      xapiActivity.incorrect_data.length > 0
+    ) {
+      const quizData: QuizData[] = [];
+      pages.forEach((page, pageIndex) => {
+        quizData.push({
+          id: pageIndex + 1,
+          state: "end",
+          isCorrect: xapiActivity.correct_data.find(
+            (data) => data.page_id === page.id,
+          )
+            ? true
+            : false,
+          answer: "",
+          pageId: page.id.toString(),
+          pageAreaCode: page.pageAreaType,
+        });
+      });
+
+      LocalStorage.setItem("pageData", quizData);
+
+      if (courseId && lessonId && cornerId) {
+        navigate(getPageUrl(courseId, lessonId, cornerId, "score"), {
+          state: {
+            lessonName: lessonMetaData.name,
+            solvingTime: xapiActivity.time,
+            pages,
+            totalPages,
+          },
+        });
+      }
+    }
+  }, [
+    pages,
+    xapiActivity,
+    cornerId,
+    courseId,
+    lessonId,
+    lessonMetaData,
+    navigate,
+    totalPages,
+  ]);
+
+  useEffect(() => {
+    if (!lessonMetaData) return;
+    if (!cornerMetaData) return;
+    if (lessonMetaData.lessonTpCd.toString() === "10") return;
+    if (isStartedQuiz.current || !xapiActivity) {
+      return;
+    }
+    if (
+      !state?.isRestartedQuiz &&
+      (xapiActivity?.correct_data.length > 0 ||
+        xapiActivity?.incorrect_data.length > 0)
+    ) {
+      isStartedQuiz.current = false;
+      toScorePage();
+      return;
+    } else {
+      isStartedQuiz.current = true;
+      return;
+    }
+  }, [state, xapiActivity, toScorePage, lessonMetaData, cornerMetaData]);
+
   const layout = useMemo(() => {
     if (!lessonMetaData) return;
     if (!cornerMetaData) return;
@@ -130,6 +210,8 @@ const Layout = () => {
           state: "",
           isCorrect: false,
           answer: "",
+          pageId: page.id.toString(),
+          pageAreaCode: page.pageAreaType,
         };
       });
 

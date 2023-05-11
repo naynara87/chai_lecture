@@ -172,6 +172,7 @@ const ModalIntroduction = ({
                   setText={setTitle}
                   isFocused={focusedEditor === "title"}
                   textViewerCss={TitleCss}
+                  hasFontSize={false}
                 />
               </TextEditorViewerWrapper>
               <TextEditorViewerWrapper onClick={focusThisEditor("subTitle")}>
@@ -180,6 +181,7 @@ const ModalIntroduction = ({
                   setText={setSubTitle}
                   isFocused={focusedEditor === "subTitle"}
                   textViewerCss={SubTitleCss}
+                  hasFontSize={false}
                 />
               </TextEditorViewerWrapper>
             </TitleWrap>
@@ -197,6 +199,7 @@ const ModalIntroduction = ({
               isFocused={focusedEditor === "contents"}
               editorCss={ContentEditorCss}
               editorMinHeight={MODAL_CONTENT_EDITOR_HEIGHT}
+              hasFontSize={false}
             />
           </DescriptionWrapper>
           <UrlInputWrapper

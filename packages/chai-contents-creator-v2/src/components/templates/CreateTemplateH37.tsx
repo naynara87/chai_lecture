@@ -27,6 +27,8 @@ const CreateTemplateH37 = ({
   slides,
   updateContent,
   deleteContent,
+  copyContent,
+  pasteContent,
   returnUseComponent,
   ...pageHeaderProps
 }: PageCommonProps) => {
@@ -72,18 +74,21 @@ const CreateTemplateH37 = ({
                 contentComponents={contentComponents}
               />
             </CreateTemplateChoiceBtnWrap>
-            {thisSlide.leftContents && thisSlide.leftContents.map((content, index) => {
-              return getComponent({
-                index,
-                currentSlide: thisSlide,
-                content,
-                isFocused: focusedId === content.id,
-                setFocusedId,
-                updateContent,
-                deleteContent,
-                position: "leftContents",
-              });
-            })}
+            {thisSlide.leftContents &&
+              thisSlide.leftContents.map((content, index) => {
+                return getComponent({
+                  index,
+                  currentSlide: thisSlide,
+                  content,
+                  isFocused: focusedId === content.id,
+                  setFocusedId,
+                  updateContent,
+                  deleteContent,
+                  copyContent,
+                  pasteContent,
+                  position: "leftContents",
+                });
+              })}
           </DashBoxArea>
         </CreateEditMain>
         <CreateEditMain>
@@ -104,18 +109,21 @@ const CreateTemplateH37 = ({
                 contentComponents={contentComponents}
               />
             </CreateTemplateChoiceBtnWrap>
-            {thisSlide.rightContents && thisSlide.rightContents.map((content, index) => {
-              return getComponent({
-                index,
-                currentSlide: thisSlide,
-                content,
-                isFocused: focusedId === content?.id,
-                setFocusedId,
-                updateContent,
-                deleteContent,
-                position: "rightContents",
-              });
-            })}
+            {thisSlide.rightContents &&
+              thisSlide.rightContents.map((content, index) => {
+                return getComponent({
+                  index,
+                  currentSlide: thisSlide,
+                  content,
+                  isFocused: focusedId === content?.id,
+                  setFocusedId,
+                  updateContent,
+                  deleteContent,
+                  copyContent,
+                  pasteContent,
+                  position: "rightContents",
+                });
+              })}
           </DashBoxArea>
         </CreateEditMain>
       </CreateEditMainWrap37>

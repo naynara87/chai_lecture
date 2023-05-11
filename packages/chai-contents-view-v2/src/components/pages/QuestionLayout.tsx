@@ -4,12 +4,15 @@ import {
   currentPageState,
   deleteQuestion,
   LessonMeta,
+  LocalStorage,
   ModalQuestionTemplate,
   Page,
+  QuizData,
   setCookie,
   TemplateQuestion,
   TemplateQuestionData,
   useLmsInputValue,
+  usePromiseQuestionExitConfirmModal,
   useXapi,
 } from "chai-ui-v2";
 import React, {
@@ -26,6 +29,7 @@ import { currentCornerIdState } from "../../state/currentCornerId";
 import { getPageUrl } from "../../util/url";
 import ComponentProblemPagination from "../molecules/ComponentProblemPagination";
 import LayoutQuestionHeader from "../molecules/LayoutQuestionHeader";
+import ComponentProblemNavigation from "../molecules/ComponentProblemNavigation";
 
 interface QuestionLayoutProps {
   pages: Page[];
@@ -62,6 +66,8 @@ const QuestionLayout = ({
     totalPages,
   });
   const { xapiProgress, xapiComplete, updateIsCorrectDataCheck } = useXapi();
+  const { showOpenModal: showCompleteOpenModal, modalContent } =
+    usePromiseQuestionExitConfirmModal();
 
   const setPageCompleted = () => {
     setIsPageCompleted(true);
@@ -136,31 +142,81 @@ const QuestionLayout = ({
     });
   }, [currentPage, pages]);
 
-  const handleClickPagination = (pageIndex: number) => {
-    if (currentPageIndex === undefined) return;
-    if (cornerId && courseId && lessonId && pageId && currentPage) {
-      const currentCornerIndex = corners.findIndex(
-        (corner) => corner.id.toString() === currentCornerId?.toString(),
-      );
-      const currentCorner = corners[currentCornerIndex];
-      xapiProgress(
-        currentCorner,
-        currentCorner,
-        currentPage,
-        totalPages[pageIndex],
-        totalPages,
-      );
-      navigate(getPageUrl(courseId, lessonId, cornerId, totalPages[pageIndex]));
-    }
-  };
+  const currentCorner = useMemo(() => {
+    const currentCornerIndex = corners.findIndex(
+      (corner) => corner.id.toString() === currentCornerId?.toString(),
+    );
+    return corners[currentCornerIndex];
+  }, [corners, currentCornerId]);
+
+  const handleClickPagination = useCallback(
+    (pageIndex: number) => {
+      if (currentPageIndex === undefined) return;
+      if (!totalPages[pageIndex]) return;
+      if (cornerId && courseId && lessonId && pageId && currentPage) {
+        xapiProgress(
+          currentCorner,
+          currentCorner,
+          currentPage,
+          totalPages[pageIndex],
+          totalPages,
+        );
+        navigate(
+          getPageUrl(courseId, lessonId, cornerId, totalPages[pageIndex]),
+        );
+      }
+    },
+    [
+      cornerId,
+      courseId,
+      currentPage,
+      currentPageIndex,
+      lessonId,
+      navigate,
+      pageId,
+      totalPages,
+      xapiProgress,
+      currentCorner,
+    ],
+  );
+
+  const startQuiz = useCallback(() => {
+    questionSolvingTimer.current = window.setTimeout(function go() {
+      setQuestionSolvingTime((prev) => prev + 1);
+      questionSolvingTimer.current = setTimeout(go, 1000);
+    }, 1000);
+  }, []);
 
   // TODO xapi completed 이벤트 발생부분 채점하기버튼클릭이벤트
-  const handleClickCheckScore = () => {
+  const handleClickCheckScore = useCallback(async () => {
     if (cornerId && courseId && lessonId && pageId && currentPage) {
-      const currentCornerIndex = corners.findIndex(
-        (corner) => corner.id.toString() === currentCornerId?.toString(),
-      );
-      const currentCorner = corners[currentCornerIndex];
+      const quizData = LocalStorage.getItem<QuizData[]>("pageData");
+      window.clearTimeout(questionSolvingTimer.current);
+      if (quizData?.find((data) => data.state !== "end")) {
+        const confirmResult = await showCompleteOpenModal({
+          title: `풀지 않은 문제가 있어요.
+          그래도 채점하시겠습니까?`,
+          description: "* 풀지 않은 문제를 풀려면 해당 번호를 선택하세요.",
+          leftButtonText: "취소",
+          rightButtonText: "채점하기",
+        });
+        if (!confirmResult) {
+          startQuiz();
+          return;
+        }
+      } else {
+        const confirmResult = await showCompleteOpenModal({
+          title: "모든 문제를 풀었어요.",
+          description: "이제 채점해 볼까요?",
+          leftButtonText: "취소",
+          rightButtonText: "채점하기",
+        });
+        if (!confirmResult) {
+          startQuiz();
+          return;
+        }
+      }
+      const newXapiActivityState = updateIsCorrectDataCheck(totalPages);
       xapiComplete(
         currentCorner,
         currentCorner,
@@ -168,6 +224,7 @@ const QuestionLayout = ({
         currentPage.id,
         totalPages,
         lessonMetaData.lessonTpCd,
+        newXapiActivityState,
       );
       navigate(getPageUrl(courseId, lessonId, cornerId, "score"), {
         state: {
@@ -178,15 +235,56 @@ const QuestionLayout = ({
         },
       });
     }
-  };
+  }, [
+    cornerId,
+    courseId,
+    currentPage,
+    currentCorner,
+    lessonId,
+    navigate,
+    pageId,
+    totalPages,
+    lessonMetaData,
+    pages,
+    questionSolvingTime,
+    xapiComplete,
+    updateIsCorrectDataCheck,
+    showCompleteOpenModal,
+    startQuiz,
+  ]);
 
-  const handleClickCheckAnswer = useCallback(
-    (isCorrect: boolean) => {
-      if (!currentPage) return;
-      updateIsCorrectDataCheck(currentPage, isCorrect);
-    },
-    [currentPage, updateIsCorrectDataCheck],
-  );
+  const pageIdx = useMemo(() => {
+    if (!pageId) return;
+    return pages.findIndex((page) => page.id.toString() === pageId.toString());
+  }, [pageId, pages]);
+
+  const handleClickCheckAnswer = useCallback(() => {
+    if (!currentPage) return;
+    if (pageIdx === undefined) return;
+    // NOTE kjw 마지막페이지에서 다음버튼 눌렀을때 풀지않은 문제로 이동하는것으로 변경되면 주석풀면 됨.
+    // const questionDatas = LocalStorage.getItem<QuizData[]>("pageData");
+    // const notCompletedQuestionPage = questionDatas?.find(
+    //   (questionData) => questionData.state !== "end",
+    // );
+    // if (notCompletedQuestionPage === undefined) {
+    //   handleClickCheckScore();
+    //   return;
+    // }
+    if (pageIdx + 1 >= totalPages.length) {
+      // NOTE kjw 마지막페이지에서 다음버튼 눌렀을때 풀지않은 문제로 이동하는것으로 변경되면 주석풀고 handleClickCheckScore 제거
+      handleClickCheckScore();
+      // handleClickPagination(
+      //   parseInt(notCompletedQuestionPage.id.toString()) - 1,
+      // );
+    }
+    handleClickPagination(pageIdx + 1);
+  }, [
+    currentPage,
+    pageIdx,
+    handleClickPagination,
+    handleClickCheckScore,
+    totalPages,
+  ]);
 
   useEffect(() => {
     setIsQuestionStartModalOpen(true);
@@ -198,28 +296,40 @@ const QuestionLayout = ({
     };
   }, []);
 
-  const startQuiz = useCallback(() => {
-    questionSolvingTimer.current = window.setTimeout(function go() {
-      setQuestionSolvingTime((prev) => prev + 1);
-      questionSolvingTimer.current = setTimeout(go, 1000);
-    }, 1000);
-  }, []);
+  const handleClickLeftBtn = useCallback(() => {
+    if (pageIdx === undefined) return;
+    handleClickPagination(pageIdx - 1);
+  }, [pageIdx, handleClickPagination]);
 
-  const pageIdx = useMemo(() => {
-    if (!pageId) return;
-    return pages.findIndex((page) => page.id.toString() === pageId.toString());
-  }, [pageId, pages]);
+  const handleClickRightBtn = useCallback(() => {
+    if (pageIdx === undefined) return;
+    handleClickPagination(pageIdx + 1);
+  }, [pageIdx, handleClickPagination]);
+
+  const quizTitle = useMemo(() => {
+    if (
+      lessonMetaData.colorTypeCd.toString() === "80" ||
+      lessonMetaData.lessonTpCd.toString() !== "30"
+    ) {
+      return lessonMetaData.name;
+    }
+    return `${lessonMetaData.colorTypeCdName} ${currentCorner.name}`;
+  }, [lessonMetaData, currentCorner]);
 
   return (
     <div className="cai-view-yahei">
       <LayoutQuestionHeader
-        headerText={lessonMetaData.name}
+        headerText={quizTitle}
         solvingTime={questionSolvingTime}
       />
       <main className="cai-main problem-main">
         <ComponentProblemPagination
           pages={pages}
           onClickPagination={handleClickPagination}
+        />
+        <ComponentProblemNavigation
+          handleClickLeftBtn={handleClickLeftBtn}
+          handleClickRightBtn={handleClickRightBtn}
         />
         {isSendDeletePagesData && currentPage?.data && (
           <TemplateQuestion
@@ -228,6 +338,7 @@ const QuestionLayout = ({
             handleClickCheckScore={handleClickCheckScore}
             handleClickCheckAnswer={handleClickCheckAnswer}
             pageIdx={pageIdx}
+            totalPages={totalPages}
           />
         )}
       </main>
@@ -235,10 +346,11 @@ const QuestionLayout = ({
         isModalOpen={isQuestionStartModalOpen}
         setIsModalOpen={setIsQuestionStartModalOpen}
         wideModal
-        quizTypeText={lessonMetaData.name}
+        quizTypeText={quizTitle}
         quizTotalLength={pages.length}
         onClickStart={startQuiz}
       />
+      {modalContent}
     </div>
   );
 };

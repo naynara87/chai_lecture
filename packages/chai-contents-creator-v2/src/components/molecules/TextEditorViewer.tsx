@@ -20,6 +20,7 @@ interface TextEditorViewerProps extends TextViewerProps {
   editorMinHeight?: number;
   editorCss?: SerializedStyles;
   limitTextLength?: number;
+  hasFontSize?: boolean;
 }
 const TextEditorViewer = ({
   text,
@@ -31,6 +32,7 @@ const TextEditorViewer = ({
   editorMinHeight,
   editorCss,
   limitTextLength,
+  hasFontSize,
 }: TextEditorViewerProps) => {
   return (
     <>
@@ -46,6 +48,7 @@ const TextEditorViewer = ({
           minHeight={editorMinHeight}
           editorCss={editorCss}
           limitTextLength={limitTextLength}
+          hasFontSize={hasFontSize}
         />
       )}
     </>

@@ -10,6 +10,10 @@ const NumberingWrapper = styled.div`
 
 const NumberingTextList = styled.div`
   display: flex;
+  p,
+  span {
+    line-height: 1.4 !important;
+  }
 `;
 
 interface NumberingTextProps {
@@ -33,9 +37,7 @@ const NumberingTextListComponent = ({
         <li className="numbering-list" key={numberingTextIndex}>
           <span className="number">{numberingTextIndex + 1}</span>
           {/* key설명 - 저작도구에서 text2의 입력이 없어 text2가 생성되지 않고, text1 width: 100% */}
-          <NumberingTextList
-            className="text"
-          >
+          <NumberingTextList className="text">
             <NumberingText
               isWithSecondText={numberingText.secondText ? true : false}
             >

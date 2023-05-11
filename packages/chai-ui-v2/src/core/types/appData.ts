@@ -25,6 +25,7 @@ export type LessonMeta = {
   lessonTpCd: string;
   // 레슨 컬러코드 왼쪽부터 빨강, 주황, 노랑, 초록, 파랑, 남색, 보라 순
   colorTypeCd: "10" | "20" | "30" | "40" | "50" | "60" | "70";
+  colorTypeCdName: string;
 };
 
 /**
@@ -35,6 +36,7 @@ export type CornerListData = {
   name: string;
   pages: ID[];
   introduction?: LessonIntroduction;
+  turnName: string;
 };
 
 /**
@@ -155,6 +157,9 @@ export type QuizData = {
   answer: string | number;
   isCorrect?: boolean;
   contentId?: string;
+  pageId: string;
+  pageAreaCode: ContentData["pageArea_type"];
+  timeStamp?: string;
 };
 
 /**

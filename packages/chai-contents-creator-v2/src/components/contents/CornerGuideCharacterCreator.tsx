@@ -104,6 +104,7 @@ const CornerGuideCharacterCreator = ({
             isFocused={isFocused}
             text={thisContent.data.text}
             setText={setText}
+            hasFontSize={false}
           />
         </TextBubbleWrap>
         {url ? (
