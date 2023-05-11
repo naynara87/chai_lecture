@@ -24,14 +24,16 @@ const useCreatePage = () => {
 
   const pageIdByEnv = useMemo(() => {
     if (isDevEnv) {
-      return pageId || "38b83d31-07c4-4342-89a1-b249f628c03f";
+      // return pageId || "38b83d31-07c4-4342-89a1-b249f628c03f";
+      return pageId || "b7a77db1-9417-4295-abc1-a2314cfdb149"; // lessonId 279번의 1번째 코너의 2번째 페이지
     }
     return pageId || "";
   }, [pageId]);
 
   const cornerIdByEnv = useMemo(() => {
     if (isDevEnv) {
-      return cornerId || "ff6af93a-886f-48a0-9ed1-0a74549d26b5";
+      // return cornerId || "ff6af93a-886f-48a0-9ed1-0a74549d26b5";
+      return cornerId || "41a51372-02ed-4093-b010-270a3088a819"; // lessonId 279번의 1번째 코너
     }
     return cornerId || "";
   }, [cornerId]);

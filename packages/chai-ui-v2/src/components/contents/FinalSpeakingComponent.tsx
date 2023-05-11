@@ -13,8 +13,12 @@ import IconReturnButton from "../atoms/Button/IconReturnButton";
 import RecordStopButton from "../atoms/Button/RecordStopButton";
 import {
   FinalSpeakingContentData,
+  getSttAccessToken,
+  saveStt,
   useGlobalAudio,
+  useLmsInputValue,
   usePageCompleted,
+  useToast,
   useXapi,
 } from "../../core";
 import { v4 as uuidv4 } from "uuid";
@@ -23,6 +27,11 @@ import IconLight from "../../assets/images/icon/icon_light_navy.svg";
 import { ComponentButtonRadiFillMain } from "../atoms";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
 import ComponentProgress from "../atoms/ComponentProgress";
+import { useParams } from "react-router-dom";
+import {
+  clearHttpSttToken,
+  setHttpSttToken,
+} from "../../core/lib/axios/httpStt";
 
 const ButtonWrapper = styled.div`
   line-height: 0;
@@ -41,6 +50,9 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
   const [recordingTimeState, setRecordingTimeState] = useState(0);
   const [recordedTimeState, setRecordedTimeState] = useState(0);
   const [isSendBlobUrl, setIsSendBlobUrl] = useState(false);
+  const { lmsInputValue: initialDataFromPhp } = useLmsInputValue();
+  const { lessonId, cornerId, pageId } = useParams();
+  const { addToast } = useToast();
 
   const [recordedAudioState, setRecordedAudioState] =
     useState<RecordedAudioState>("not-recorded");
@@ -82,35 +94,72 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
     }
   }, [globalAudioId, status, stopRecording]);
 
-  const handleSendRecording = () => {
-    console.log("onStopRecording", mediaBlobUrl);
+  const [sttApiLogin, setSttApiLogin] = useState(true);
+
+  useEffect(() => {
+    const getToken = async () => {
+      try {
+        const tokenData = await getSttAccessToken();
+        const token = tokenData?.token;
+        setHttpSttToken(token);
+        setSttApiLogin(true);
+      } catch (error) {
+        clearHttpSttToken();
+      }
+    };
+    void getToken();
+  }, []);
+
+  const [sendingAudio, setSendingAudio] = useState(false);
+
+  const handleSendRecording = async () => {
     if (!mediaBlobUrl) return;
+    if (
+      !lessonId ||
+      !cornerId ||
+      !pageId ||
+      !initialDataFromPhp?.applId ||
+      !sttApiLogin
+    ) {
+      // NOTE gth 저작도구 미리보기에선 녹음파일을 저장하지 않도록 함
+      addToast("녹음파일을 전송할 수 없는 환경입니다");
+      return;
+    }
+    setSendingAudio(true);
     setRecordedAudioState("recorded");
     setIsSendBlobUrl(true);
-    // const audioBlob = await fetch(mediaBlobUrl).then((r) => r.blob());
+
+    // convert blob to mp3 file
+    const fileName = `${initialDataFromPhp.applId}_${lessonId}_${cornerId}_${pageId}.ogg`;
+    const audioBlob = await fetch(mediaBlobUrl).then((r) => r.blob());
+    const file = new File([audioBlob], fileName, {
+      type: "audio/ogg",
+      lastModified: Date.now(),
+    });
+
+    // test 다운로드 파일
     // const elem = document.createElement("a");
-    // elem.href = URL.createObjectURL(audioBlob);
-    // elem.download = "voice.mp3";
+    // const url = URL.createObjectURL(file);
+    // elem.href = url;
+    // elem.download = file.name;
     // document.body.appendChild(elem);
     // elem.click();
+    // URL.revokeObjectURL(url);
     // document.body.removeChild(elem);
-    // TODO : 녹음 후 생성한 파일을 서버로 전송하기 => BBC-978
-    // convert blob to mp3 file
-    // const file = new File([blob], `audio${new Date().getTime()}`, {
-    //   type: blob.type,
-    //   lastModified: Date.now(),
-    // });
+    // console.log("file", file);
+    // test 다운로드 파일 끝
 
-    // send file to server : http://localhost:3000/api/upload
-    // const formData = new FormData();
-    // formData.append("file", file);
-    // fetch("http://localhost:3000/api/upload", {
-    //   method: "POST",
-    //   body: formData,
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => console.log("data", data))
-    //   .catch((err) => console.log("err", err));
+    const formData = new FormData();
+    formData.append("upload_file", file);
+    try {
+      await saveStt(formData);
+      addToast("녹음파일을 제출하였습니다", "success");
+    } catch (error) {
+      console.log(error);
+      addToast("녹음파일 전송에 실패하였습니다", "error");
+    } finally {
+      setSendingAudio(false);
+    }
   };
 
   const handleClickRecordingAudioButton = useCallback(() => {
@@ -288,9 +337,10 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
             text="녹음 파일 제출"
             onClickBtn={() => {
               // TODO kjw toast message 띄우기
-              handleSendRecording();
+              void handleSendRecording();
             }}
             isDisabled={isSendBlobUrl}
+            sendingAudio={sendingAudio}
           />
         </div>
       ) : (
