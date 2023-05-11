@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { vw } from "../../assets";
 
 interface ProgressBarProps {
@@ -22,16 +22,31 @@ const ProgressBar = styled.div<ProgressBarProps>`
 
 interface ComponentProgressProps {
   progressDuration: number;
-  isAudioEnd: boolean;
+  isAudioEnd?: boolean;
 }
 
 const ComponentProgress = ({
   progressDuration,
   isAudioEnd,
 }: ComponentProgressProps) => {
+  const [isShowProgressBar, setIsShowProgressBar] = useState(false);
+  const progressBarRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isAudioEnd === undefined && progressBarRef.current) {
+      setTimeout(() => {
+        setIsShowProgressBar(true);
+      }, 100);
+    }
+  }, [isAudioEnd]);
+
   return (
     <div className="cai-progress-track">
-      <ProgressBar duration={progressDuration} isAudioEnd={isAudioEnd} />
+      <ProgressBar
+        duration={progressDuration}
+        isAudioEnd={isAudioEnd !== undefined ? isAudioEnd : isShowProgressBar}
+        ref={progressBarRef}
+      />
     </div>
   );
 };

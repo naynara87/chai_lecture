@@ -37,7 +37,6 @@ const AudioRecorder = ({ contents, handleEndRecord }: AudioRecorderProps) => {
   const recordTime = useRef(0);
   const [recordingTimeState, setRecordingTimeState] = useState(0);
   const [recordedTimeState, setRecordedTimeState] = useState(0);
-  const [isProgressBarStart, setIsProgressBarStart] = useState(false);
 
   const [recordedAudioState, setRecordedAudioState] =
     useState<RecordedAudioState>("not-recorded");
@@ -54,12 +53,8 @@ const AudioRecorder = ({ contents, handleEndRecord }: AudioRecorderProps) => {
         // type: "audio/mpeg",
       },
     });
-  const {
-    globalAudioRef,
-    globalAudioId,
-    handleAudioReset,
-    handleClickAudioButton,
-  } = useGlobalAudio();
+  const { globalAudioId, handleAudioReset, handleClickAudioButton } =
+    useGlobalAudio();
   const { setPushCompletedPageComponents, setComponentCompleted } =
     usePageCompleted();
   const { xapiCreated } = useXapi();
@@ -79,7 +74,6 @@ const AudioRecorder = ({ contents, handleEndRecord }: AudioRecorderProps) => {
     if (globalAudioId !== -1 && status === "recording") {
       stopRecording();
       setRecordedAudioState("recorded");
-      setIsProgressBarStart(false);
       handleEndRecord && handleEndRecord();
       window.clearTimeout(recordTimer.current);
     }
@@ -95,8 +89,8 @@ const AudioRecorder = ({ contents, handleEndRecord }: AudioRecorderProps) => {
         setRecordingTimeState((prev) => prev + 1);
         if (recordTime.current > 29) {
           stopRecording();
+          setRecordedTimeState(recordTime.current);
           setRecordedAudioState("recorded");
-          setIsProgressBarStart(false);
           handleEndRecord && handleEndRecord();
         } else {
           recordTimer.current = setTimeout(go, 1000);
@@ -105,8 +99,8 @@ const AudioRecorder = ({ contents, handleEndRecord }: AudioRecorderProps) => {
     } else {
       // 녹음 중일 때
       stopRecording();
+      setRecordedTimeState(recordTime.current);
       setRecordedAudioState("recorded");
-      setIsProgressBarStart(false);
       handleEndRecord && handleEndRecord();
       setComponentCompleted(recordedAudioUuidRef.current);
       window.clearTimeout(recordTimer.current);
@@ -116,13 +110,18 @@ const AudioRecorder = ({ contents, handleEndRecord }: AudioRecorderProps) => {
     startRecording,
     status,
     stopRecording,
-    recordTime,
     handleAudioReset,
     setComponentCompleted,
     xapiCreated,
     contents.id,
     handleEndRecord,
   ]);
+
+  const handleResetRecordedAudio = useCallback(() => {
+    handleAudioReset();
+    setRecordedAudioState("recorded");
+    window.clearTimeout(recordTimer.current);
+  }, [handleAudioReset]);
 
   const handleClickRecordedAudioButton = useCallback(() => {
     if (
@@ -140,13 +139,16 @@ const AudioRecorder = ({ contents, handleEndRecord }: AudioRecorderProps) => {
         0,
         mediaBlobUrl,
       );
-      setRecordedTimeState(recordingTimeState);
+      recordTime.current = recordedTimeState;
+      setRecordingTimeState(recordedTimeState);
       setRecordedAudioState("playing");
       recordTimer.current = window.setTimeout(function go() {
-        setRecordedTimeState((prev) => prev - 1);
-        if (recordTime.current < 0) {
-          setRecordedAudioState("recorded");
-          setIsProgressBarStart(false);
+        setRecordingTimeState((prev) => prev - 1);
+        recordTime.current = recordTime.current - 1;
+        if (recordTime.current <= 0) {
+          handleResetRecordedAudio();
+          console.log("이게실행안됨?");
+          return;
         } else {
           recordTimer.current = setTimeout(go, 1000);
         }
@@ -155,56 +157,16 @@ const AudioRecorder = ({ contents, handleEndRecord }: AudioRecorderProps) => {
 
     if (recordedAudioState === "playing") {
       // stop playing audio
-      handleAudioReset();
-      setRecordedAudioState("recorded");
-      setIsProgressBarStart(false);
-      window.clearTimeout(recordTimer.current);
+      handleResetRecordedAudio();
     }
   }, [
     recordedAudioState,
     status,
     handleClickAudioButton,
-    handleAudioReset,
     mediaBlobUrl,
-    recordingTimeState,
+    recordedTimeState,
+    handleResetRecordedAudio,
   ]);
-
-  const audioEnded = useCallback(() => {
-    if (
-      globalAudioId
-        .toString()
-        .includes(`recorder_${recordedAudioUuidRef.current}`)
-    ) {
-      handleAudioReset();
-      setRecordedAudioState("recorded");
-      window.clearTimeout(recordTimer.current);
-    }
-  }, [globalAudioId, handleAudioReset]);
-
-  useEffect(() => {
-    let globalAudioRefValue: HTMLAudioElement | null = null;
-    if (globalAudioRef?.current) {
-      globalAudioRefValue = globalAudioRef.current;
-      globalAudioRefValue?.addEventListener("ended", audioEnded);
-    }
-    return () => {
-      if (globalAudioRefValue) {
-        globalAudioRefValue.removeEventListener("ended", audioEnded);
-      }
-    };
-  }, [globalAudioRef, audioEnded, globalAudioId]);
-
-  useEffect(() => {
-    if (
-      recordedAudioState !== "not-recorded" &&
-      !globalAudioId
-        .toString()
-        .includes(`recorder_${recordedAudioUuidRef.current}`)
-    ) {
-      setRecordedAudioState("recorded");
-      window.clearTimeout(recordTimer.current);
-    }
-  }, [globalAudioId, recordedAudioState]);
 
   const handleClickResetBtn = useCallback(() => {
     clearBlobUrl();
@@ -212,24 +174,18 @@ const AudioRecorder = ({ contents, handleEndRecord }: AudioRecorderProps) => {
     handleAudioReset();
     recordTime.current = 0;
     setRecordingTimeState(0);
-    setIsProgressBarStart(false);
+    setRecordedTimeState(0);
   }, [handleAudioReset, clearBlobUrl]);
 
   const renderRecordingAudioIcon = useMemo(() => {
     if (status === "recording") {
-      setTimeout(() => {
-        setIsProgressBarStart(true);
-      }, 0);
       return (
         <>
           <RecordStopButton
             onClickBtn={handleClickRecordingAudioButton}
             recordTime={recordingTimeState}
           />
-          <ComponentProgress
-            progressDuration={30}
-            isAudioEnd={isProgressBarStart}
-          />
+          <ComponentProgress progressDuration={30} />
         </>
       );
     } else {
@@ -240,28 +196,17 @@ const AudioRecorder = ({ contents, handleEndRecord }: AudioRecorderProps) => {
         );
       }
     }
-  }, [
-    status,
-    handleClickRecordingAudioButton,
-    recordingTimeState,
-    isProgressBarStart,
-  ]);
+  }, [status, handleClickRecordingAudioButton, recordingTimeState]);
 
   const renderRecordedAudioIcon = useMemo(() => {
     if (recordedAudioState === "playing") {
-      setTimeout(() => {
-        setIsProgressBarStart(true);
-      }, 0);
       return (
         <>
           <RecordStopButton
             onClickBtn={handleClickRecordedAudioButton}
-            recordTime={recordedTimeState}
+            recordTime={recordingTimeState}
           />
-          <ComponentProgress
-            progressDuration={recordedTimeState}
-            isAudioEnd={isProgressBarStart}
-          />
+          <ComponentProgress progressDuration={recordedTimeState} />
         </>
       );
     } else {
@@ -270,7 +215,7 @@ const AudioRecorder = ({ contents, handleEndRecord }: AudioRecorderProps) => {
         <>
           <RecordPlayButton
             onClickBtn={handleClickRecordedAudioButton}
-            recordTime={recordingTimeState}
+            recordTime={recordedTimeState}
           />
           <IconReturnButton onClickBtn={handleClickResetBtn} />
         </>
@@ -280,9 +225,8 @@ const AudioRecorder = ({ contents, handleEndRecord }: AudioRecorderProps) => {
     recordedAudioState,
     handleClickRecordedAudioButton,
     handleClickResetBtn,
-    recordedTimeState,
     recordingTimeState,
-    isProgressBarStart,
+    recordedTimeState,
   ]);
 
   return (
