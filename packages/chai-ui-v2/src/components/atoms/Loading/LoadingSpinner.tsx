@@ -1,9 +1,15 @@
 import styled from "@emotion/styled";
 
-export const LoadingSpinner = styled.div`
-  width: 20px;
-  height: 20px;
-  border: 5px solid #dfdfdf;
+interface LoadingSpinnerProps {
+  size?: number;
+  borderWidth?: number;
+}
+
+export const LoadingSpinner = styled.div<LoadingSpinnerProps>`
+  width: ${({ size }) => (size ? size : 20)}px;
+  height: ${({ size }) => (size ? size : 20)}px;
+  border: ${({ borderWidth }) => (borderWidth ? borderWidth : 5)}px solid
+    #dfdfdf;
   border-bottom-color: transparent;
   border-radius: 50%;
   display: inline-block;

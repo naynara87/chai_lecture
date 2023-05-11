@@ -110,6 +110,8 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
     void getToken();
   }, []);
 
+  const [sendingAudio, setSendingAudio] = useState(false);
+
   const handleSendRecording = async () => {
     if (!mediaBlobUrl) return;
     if (
@@ -123,15 +125,29 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
       addToast("녹음파일을 전송할 수 없는 환경입니다");
       return;
     }
+    setSendingAudio(true);
     setRecordedAudioState("recorded");
     setIsSendBlobUrl(true);
 
     // convert blob to mp3 file
     const fileName = `${initialDataFromPhp.applId}_${lessonId}_${cornerId}_${pageId}.ogg`;
-    const file = new File([mediaBlobUrl], fileName, {
+    const audioBlob = await fetch(mediaBlobUrl).then((r) => r.blob());
+    const file = new File([audioBlob], fileName, {
       type: "audio/ogg",
       lastModified: Date.now(),
     });
+
+    // test 다운로드 파일
+    // const elem = document.createElement("a");
+    // const url = URL.createObjectURL(file);
+    // elem.href = url;
+    // elem.download = file.name;
+    // document.body.appendChild(elem);
+    // elem.click();
+    // URL.revokeObjectURL(url);
+    // document.body.removeChild(elem);
+    // console.log("file", file);
+    // test 다운로드 파일 끝
 
     const formData = new FormData();
     formData.append("upload_file", file);
@@ -141,6 +157,8 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
     } catch (error) {
       console.log(error);
       addToast("녹음파일 전송에 실패하였습니다", "error");
+    } finally {
+      setSendingAudio(false);
     }
   };
 
@@ -322,6 +340,7 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
               void handleSendRecording();
             }}
             isDisabled={isSendBlobUrl}
+            sendingAudio={sendingAudio}
           />
         </div>
       ) : (
