@@ -57,28 +57,34 @@ const ComponentProblemCommentary = ({
         </div>
         {quizTemplateData.contents && (
           <div className="comment-list-wrap">
-            <dl className="comment-list">
-              <dt className="comment-ttl">정답</dt>
-              <dd className="comment-dec">
-                {quizTemplateData.contents.data.correct ?? ""}
-              </dd>
-            </dl>
-            <dl className="comment-list">
-              <dt className="comment-ttl">해설</dt>
-              <dd className="comment-dec">
-                <HtmlContentComponent
-                  html={quizTemplateData.contents.data.explan}
-                />
-              </dd>
-            </dl>
-            <dl className="comment-list">
-              <dt className="comment-ttl">예문 해석</dt>
-              <dd className="comment-dec">
-                <HtmlContentComponent
-                  html={quizTemplateData.contents.data.interpet}
-                />
-              </dd>
-            </dl>
+            {quizTemplateData.contents.data.correct && (
+              <dl className="comment-list">
+                <dt className="comment-ttl">정답</dt>
+                <dd className="comment-dec">
+                  {quizTemplateData.contents.data.correct ?? ""}
+                </dd>
+              </dl>
+            )}
+            {quizTemplateData.contents.data.explan && (
+              <dl className="comment-list">
+                <dt className="comment-ttl">해설</dt>
+                <dd className="comment-dec">
+                  <HtmlContentComponent
+                    html={quizTemplateData.contents.data.explan}
+                  />
+                </dd>
+              </dl>
+            )}
+            {quizTemplateData.contents.data.interpet && (
+              <dl className="comment-list">
+                <dt className="comment-ttl">예문 해석</dt>
+                <dd className="comment-dec">
+                  <HtmlContentComponent
+                    html={quizTemplateData.contents.data.interpet}
+                  />
+                </dd>
+              </dl>
+            )}
           </div>
         )}
       </div>
