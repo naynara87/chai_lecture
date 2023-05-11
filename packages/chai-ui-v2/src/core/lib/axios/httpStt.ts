@@ -1,10 +1,7 @@
 import axios from "axios";
 
 const httpStt = axios.create({
-  baseURL: "",
-  headers: {
-    "Content-Type": "multipart/form-data",
-  },
+  baseURL: `${process.env.REACT_APP_STT_URL}`,
 });
 
 httpStt.interceptors.request.use(
@@ -28,5 +25,13 @@ httpStt.interceptors.response.use(
     return Promise.reject(error);
   },
 );
+
+export const setHttpSttToken = (token: string) => {
+  httpStt.defaults.headers.common.Authorization = `jwt ${token}`;
+};
+
+export const clearHttpSttToken = () => {
+  httpStt.defaults.headers.common.Authorization = undefined;
+};
 
 export default httpStt;

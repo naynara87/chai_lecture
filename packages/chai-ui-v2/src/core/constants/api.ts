@@ -21,3 +21,7 @@ export const DELETE_PHP_URL = `api/content-data-destroy`;
 // 코너 데이터(페이지 리스트)
 // export const getLcmsSubjectTurnUrl = (turnId: ID) =>
 //   `/lcms/subject/turn/${turnId}`;
+
+/* STT */
+export const SAVE_STT = "/post_stt/";
+export const GET_STT_TOKEN = "/token/";
