@@ -44,7 +44,7 @@
 
 ### LCMS데이터 가져오기
 
-- AuthProvider.tsx에서 `토큰`을 가져받아옵니다
+- AuthProvider.tsx에서 `토큰`을 발급받습니다
 - usePage
   - `토큰`과 `api key` 이용하여 LCMS에서 페이지 데이터를 가져옵니다
     - 토큰을 가져오기 위한 id, pw와 api key는 하드코딩되어 있습니다
