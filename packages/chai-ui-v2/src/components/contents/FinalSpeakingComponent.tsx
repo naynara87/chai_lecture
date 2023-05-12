@@ -13,8 +13,8 @@ import IconReturnButton from "../atoms/Button/IconReturnButton";
 import RecordStopButton from "../atoms/Button/RecordStopButton";
 import {
   FinalSpeakingContentData,
-  getSttAccessToken,
-  saveStt,
+  // getSttAccessToken, // TODO gth STT 서버 붙이기 BBC-1557
+  // saveStt, // TODO gth STT 서버 붙이기 BBC-1557
   useGlobalAudio,
   useLmsInputValue,
   usePageCompleted,
@@ -28,10 +28,10 @@ import { ComponentButtonRadiFillMain } from "../atoms";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
 import ComponentProgress from "../atoms/ComponentProgress";
 import { useParams } from "react-router-dom";
-import {
-  clearHttpSttToken,
-  setHttpSttToken,
-} from "../../core/lib/axios/httpStt";
+// import { // TODO gth STT 서버 붙이기 BBC-1557
+//   clearHttpSttToken,
+//   setHttpSttToken,
+// } from "../../core/lib/axios/httpStt";
 
 const ButtonWrapper = styled.div`
   line-height: 0;
@@ -94,72 +94,75 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
     }
   }, [globalAudioId, status, stopRecording]);
 
-  const [sttApiLogin, setSttApiLogin] = useState(true);
+  // const [sttApiLogin, setSttApiLogin] = useState(true); // TODO gth STT 서버 붙이기 BBC-1557
 
-  useEffect(() => {
-    const getToken = async () => {
-      try {
-        const tokenData = await getSttAccessToken();
-        const token = tokenData?.token;
-        setHttpSttToken(token);
-        setSttApiLogin(true);
-      } catch (error) {
-        clearHttpSttToken();
-      }
-    };
-    void getToken();
-  }, []);
+  // useEffect(() => { // TODO gth STT 서버 붙이기 BBC-1557
+  //   const getToken = async () => {
+  //     try {
+  //       const tokenData = await getSttAccessToken();
+  //       const token = tokenData?.token;
+  //       setHttpSttToken(token);
+  //       setSttApiLogin(true);
+  //     } catch (error) {
+  //       clearHttpSttToken();
+  //     }
+  //   };
+  //   void getToken();
+  // }, []);
 
-  const [sendingAudio, setSendingAudio] = useState(false);
+  // const [sendingAudio, setSendingAudio] = useState(false);
 
-  const handleSendRecording = async () => {
+  const handleSendRecording = () => {
+    // async () => { : TODO gth STT 서버 붙이기 BBC-1557
     if (!mediaBlobUrl) return;
     if (
       !lessonId ||
       !cornerId ||
       !pageId ||
-      !initialDataFromPhp?.applId ||
-      !sttApiLogin
+      !initialDataFromPhp?.applId
+      // || !sttApiLogin // TODO gth STT 서버 붙이기 BBC-1557
     ) {
       // NOTE gth 저작도구 미리보기에선 녹음파일을 저장하지 않도록 함
       addToast("녹음파일을 전송할 수 없는 환경입니다");
       return;
     }
-    setSendingAudio(true);
+    // setSendingAudio(true); // TODO gth STT 서버 붙이기 BBC-1557
     setRecordedAudioState("recorded");
     setIsSendBlobUrl(true);
 
+    // 임시 배포를 위해 해당 기능 주석 처리 시작부분 -> TODO gth STT 서버 붙이기 BBC-1557
     // convert blob to mp3 file
-    const fileName = `${initialDataFromPhp.applId}_${lessonId}_${cornerId}_${pageId}.ogg`;
-    const audioBlob = await fetch(mediaBlobUrl).then((r) => r.blob());
-    const file = new File([audioBlob], fileName, {
-      type: "audio/ogg",
-      lastModified: Date.now(),
-    });
+    // const fileName = `${initialDataFromPhp.applId}_${lessonId}_${cornerId}_${pageId}.ogg`;
+    // const audioBlob = await fetch(mediaBlobUrl).then((r) => r.blob());
+    // const file = new File([audioBlob], fileName, {
+    //   type: "audio/ogg",
+    //   lastModified: Date.now(),
+    // });
 
-    // test 다운로드 파일
-    // const elem = document.createElement("a");
-    // const url = URL.createObjectURL(file);
-    // elem.href = url;
-    // elem.download = file.name;
-    // document.body.appendChild(elem);
-    // elem.click();
-    // URL.revokeObjectURL(url);
-    // document.body.removeChild(elem);
-    // console.log("file", file);
-    // test 다운로드 파일 끝
+    // // test 다운로드 파일
+    // // const elem = document.createElement("a");
+    // // const url = URL.createObjectURL(file);
+    // // elem.href = url;
+    // // elem.download = file.name;
+    // // document.body.appendChild(elem);
+    // // elem.click();
+    // // URL.revokeObjectURL(url);
+    // // document.body.removeChild(elem);
+    // // console.log("file", file);
+    // // test 다운로드 파일 끝
 
-    const formData = new FormData();
-    formData.append("upload_file", file);
-    try {
-      await saveStt(formData);
-      addToast("녹음파일을 제출하였습니다", "success");
-    } catch (error) {
-      console.log(error);
-      addToast("녹음파일 전송에 실패하였습니다", "error");
-    } finally {
-      setSendingAudio(false);
-    }
+    // const formData = new FormData();
+    // formData.append("upload_file", file);
+    // try {
+    //   await saveStt(formData);
+    //   addToast("녹음파일을 제출하였습니다", "success");
+    // } catch (error) {
+    //   console.log(error);
+    //   addToast("녹음파일 전송에 실패하였습니다", "error");
+    // } finally {
+    //   setSendingAudio(false);
+    // }
+    // 임시 배포를 위해 해당 기능 주석 처리 끝부분 -> TODO gth STT 서버 붙이기 BBC-1557
   };
 
   const handleClickRecordingAudioButton = useCallback(() => {
@@ -340,7 +343,7 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
               void handleSendRecording();
             }}
             isDisabled={isSendBlobUrl}
-            sendingAudio={sendingAudio}
+            // sendingAudio={sendingAudio}
           />
         </div>
       ) : (
