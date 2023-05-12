@@ -46,6 +46,16 @@ const TemplateRolePlaying = ({
   );
 
   const handleClickNextPage = () => {
+    const multiPageBtn = document.querySelector<HTMLDivElement>(
+      ".swiper-button-next",
+    );
+    if (
+      multiPageBtn &&
+      !multiPageBtn.className.includes("swiper-button-disabled")
+    ) {
+      multiPageBtn.click();
+      return;
+    }
     const footerNextBtn =
       document.querySelector<HTMLButtonElement>(".x-next-btn");
     footerNextBtn?.click();
