@@ -68,3 +68,4 @@ chai-monorepo
 - [2. 레이아웃 및 컴포넌트 추가](../../docs/creator/02_add-components.md)
 - [3. 에디터가 포함된 컴포넌트 추가](../../docs/creator/03_editor.md)
 - [4. 미리보기 및 저장](../../docs/creator/04_preview-save.md)
+- [5. 초기 데이터 가져오기](../../docs/creator/05_fetching-data.md)
