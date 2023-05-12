@@ -36,7 +36,7 @@
 - NumberingTextListCreator에선 text state를 직접 관리하지 않습니다
 - 장점 : text state를 관리하지 않기 때문에 코드가 간결해집니다
 - 단점 : onBlur가 아닌 onChange에서 글로벌 state를 업데이트하기 때문에 약간 버벅임이 있습니다
-  - 극복 방법 : debounce로 글로벌 state를 업데이트하는 함수를 감싸줍니다(현재 적용되지 않은 상태입니다)
+  - 극복 방법 : debounce로 글로벌 state를 업데이트하는 함수를 감싸줍니다([BBC-1555](https://bubblecon-corp.atlassian.net/browse/BBC-1555?atlOrigin=eyJpIjoiMmY5MDliNDg0ZTQwNDIyNDkwNDk3Y2U4YTE1MmUxZTQiLCJwIjoiaiJ9))
 - TextEditorViewer 사용
   - text에 글로벌 text state를 전달합니다
   - setText에 글로벌 text state를 업데이트하는 함수를 전달합니다
