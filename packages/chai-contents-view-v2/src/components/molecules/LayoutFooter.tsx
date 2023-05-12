@@ -154,7 +154,7 @@ const LayoutFooter = ({
             <b>{totalPagesToCurrentPageIndex! + 1}</b>
             <small> / {totalPages.length}</small>
           </span>
-          <button className="ft-icon-btn" onClick={handleClickNext}>
+          <button className="ft-icon-btn x-next-btn" onClick={handleClickNext}>
             <IconRightArrowComponent />
           </button>
         </div>
