@@ -2,19 +2,29 @@ import styled from "@emotion/styled";
 import React, { useCallback, useMemo, useState } from "react";
 import { ID, RolePlayingCharacter, RoleplayingContentData } from "../../core";
 import RolePlayingCharacterComponent from "../molecules/RolePlayingCharacterComponent";
+import { ComponentButtonRadiBorderMain } from "../atoms";
+import { vh } from "../../assets";
 
 const DialogueWrapper = styled.ul``;
+
+const BtnWrapper = styled.div`
+  margin-top: ${vh(38)};
+`;
 
 export interface RolePlayingComponentProps {
   contents: RoleplayingContentData;
   selectCharacterId?: ID;
   characterList: RolePlayingCharacter[];
+  handleClickSelectCharacter: (characterId: ID | undefined) => void;
+  handleClickRestartRolePlayingButton: () => void;
 }
 
 const RolePlayingComponent = ({
   contents,
   selectCharacterId,
   characterList,
+  handleClickSelectCharacter,
+  handleClickRestartRolePlayingButton,
 }: RolePlayingComponentProps) => {
   const [showRolePlayingIndex, setShowRolePlayingIndex] = useState(0);
 
@@ -65,6 +75,17 @@ const RolePlayingComponent = ({
       <DialogueWrapper className="conversation-wrapper">
         {mainContents}
       </DialogueWrapper>
+      {contents.data.length <= showRolePlayingIndex + 1 && (
+        <BtnWrapper className="btns-wrap">
+          <ComponentButtonRadiBorderMain
+            text="다시하기"
+            onClickBtn={() => {
+              handleClickRestartRolePlayingButton();
+              handleClickSelectCharacter(undefined);
+            }}
+          />
+        </BtnWrapper>
+      )}
     </div>
   );
 };
