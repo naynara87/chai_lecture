@@ -23,6 +23,7 @@
     "@rollup/plugin-image": "^3.0.2",
     "@types/react": "*",
     "immer": "*",
+    "crypto-js": "*",
     "lodash": "*",
     "react": "*",
     "react-confetti": "*",

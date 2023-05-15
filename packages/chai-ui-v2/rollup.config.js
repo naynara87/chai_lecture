@@ -40,6 +40,7 @@ export default {
     "@emotion/styled",
     "@mui/material",
     "@emotion/react",
+    "crypto-js",
     "immer",
     "lodash",
     "react",
