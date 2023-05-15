@@ -8,15 +8,16 @@ import { AxiosError } from "axios";
 
 type UsePageDataProps = {
   cornerId: ID;
+  lessonId: ID;
   pageId?: ID;
 };
-const usePageData = ({ cornerId, pageId }: UsePageDataProps) => {
+const usePageData = ({ cornerId, pageId, lessonId }: UsePageDataProps) => {
   const { addToast } = useToast();
   const { isAuthorized, logout } = useAuth();
   const { data: cornerDataResponse, refetch } = useQuery(
     [queryKey.lcmsCorner],
     () => {
-      return getPageListData(cornerId);
+      return getPageListData(cornerId, lessonId);
     },
     {
       enabled: isAuthorized && !!cornerId,

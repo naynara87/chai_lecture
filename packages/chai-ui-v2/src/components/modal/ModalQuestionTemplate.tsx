@@ -39,6 +39,8 @@ const ModalQuestionWrapper = styled.div`
     height: ${vh(572)};
     margin-bottom: ${vh(30)};
     border-radius: ${vw(20)};
+    overflow: auto;
+
     .question-sub {
       font-size: ${vw(28)};
       font-weight: 700;
@@ -101,13 +103,16 @@ const ModalQuestionTemplate = ({
                 <p className="question-cont">
                   {`1. 시험 응시 전 네트워크 상태를 확인해 주세요.
 
-                  2. 마지막 문항에서만 ‘채점하기’ 버튼이 노출됩니다.
+                  2. 마지막 문항에서만 '채점하기' 버튼이 노출됩니다.
 
-                  3. 답안을 선택 후, '다음' 버튼을 누르면 답이 저장됩니다. '다음' 버튼을 누르면 답을 수정할 수 없으니 신중하게 선택하세요.
+                  3. 답안을 선택 후, '다음' 버튼을 누르면 답이 저장됩니다.  
+                  `}
+                  &nbsp;&nbsp;&nbsp;
+                  {` '다음' 버튼을 누르면 답을 수정할 수 없으니 신중하게 선택하세요.
 
-                  4. ‘채점하기’ 버튼을 누르기 전 네트워크 상태가 불안정하면 문제를 처음부터 다시 풀어야 합니다.
+                  4. '채점하기' 버튼을 누르기 전 네트워크 상태가 불안정하면 문제를 처음부터 다시 풀어야 합니다.
 
-                  6. 실제 시험에 임하는 자세로 문제를 풀어 주세요.`}
+                  5. 실제 시험에 임하는 자세로 문제를 풀어 주세요.`}
                 </p>
               </div>
             </ModalQuestionWrapper>

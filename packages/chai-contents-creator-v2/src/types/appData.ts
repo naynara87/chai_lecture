@@ -3,4 +3,5 @@ export type InitialInputValue = {
   uid: string;
   pageId: string;
   cornerId: string;
+  lessonId: string;
 };

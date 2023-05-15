@@ -9,7 +9,7 @@ import { LCMS_API_PATH } from "../../constants/apiPath";
 import { SaveContentRequest } from "../../types/api/lcms";
 import httpLcms from "./httpLcms";
 
-export const getPageListData = async (cornerId: ID) => {
+export const getPageListData = async (cornerId: ID, lessonId: ID) => {
   const res = await httpLcms.get<PageListDataResponse>(
     getLcmsSubjectTurnUrl(cornerId),
     {
@@ -17,6 +17,7 @@ export const getPageListData = async (cornerId: ID) => {
         apiKey: API_KEY,
         turnUuid: cornerId,
         type: "lesson", // 콘텐트 : "lesson"
+        lesson_id: lessonId,
       },
     },
   );
