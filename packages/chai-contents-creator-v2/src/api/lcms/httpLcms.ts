@@ -1,5 +1,5 @@
 import axios from "axios";
-import { isDevEnv } from "../../constants/env";
+import { isDevEnv } from "chai-ui-v2";
 
 const httpLcms = axios.create({
   baseURL: isDevEnv
