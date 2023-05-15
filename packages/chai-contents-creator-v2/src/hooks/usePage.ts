@@ -29,6 +29,7 @@ import {
   CommonTemplateComponentLocation,
 } from "../types/page";
 import cloneDeep from "lodash/cloneDeep";
+import debounce from "lodash/debounce";
 import { DropResult } from "react-beautiful-dnd";
 import { PAGE_DATA_KEY } from "../constants/storage";
 import { pageState } from "../states/pageState";
@@ -134,6 +135,8 @@ const usePage = () => {
     },
     [slides, setSlides],
   );
+
+  const updateContentWithDebounce = debounce(updateContent, 200);
 
   const updateContentToMultiChoiceTemplate = useCallback(
     (slideId: ID, updatedContent: ExampleUseContent) => {
@@ -347,7 +350,8 @@ const usePage = () => {
     deleteSlide,
     handleChangeLayout,
     addComponentMap,
-    updateContent,
+    updateContent: updateContentWithDebounce,
+    _updateContent: updateContent,
     handleOnDragEnd,
     savePageDataToLocalStorage,
     getPageDataFromLocalStorage,
@@ -366,4 +370,10 @@ const usePage = () => {
 
 export default usePage;
 
-export type ReturnUsePage = ReturnType<typeof usePage>;
+type ReturnUsePagePrivate = ReturnType<typeof usePage>;
+export type ReturnUsePage = Omit<
+  ReturnUsePagePrivate,
+  "_updateContent" | "updateContent"
+> & {
+  updateContent: ReturnUsePagePrivate["_updateContent"];
+};
