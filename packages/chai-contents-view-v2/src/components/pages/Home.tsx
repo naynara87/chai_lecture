@@ -44,6 +44,15 @@ const Home = () => {
 
   const { lessonMetaData, corners } = useLesson(lessonIdMemo);
 
+  const studyStart = () => {
+    window.parent.postMessage(
+      {
+        func: "studyStart",
+      },
+      "*",
+    );
+  };
+
   const getUrl = useCallback(
     (nextCornerId: ID, nextPageId: ID) => {
       if (!lessonMetaData) return;
@@ -55,6 +64,7 @@ const Home = () => {
       );
       xapiElement.dispatchEvent(playerLoadedEvent);
       navigate(url);
+      studyStart();
     },
     [lessonMetaData, navigate],
   );
