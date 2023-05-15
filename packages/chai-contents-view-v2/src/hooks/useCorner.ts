@@ -13,8 +13,9 @@ import { getPageListData } from "../api/lcms";
 import QUERY_KEY from "../constants/queryKey";
 import { pageDataConverter } from "../util/converter";
 import { AxiosError } from "axios";
+// import { v2CornerDataList } from "../data/dummyData";
 
-const useCorner = (cornerId: ID | undefined) => {
+const useCorner = (cornerId: ID | undefined, lessonId: ID | undefined) => {
   const { isAuthorized } = useAuth(); // logout
   const [pages, setPages] = useState<Page[]>([]);
   const [cornerMetaData, setCornerMetaData] = useState<CornerMeta>();
@@ -26,14 +27,14 @@ const useCorner = (cornerId: ID | undefined) => {
     ({ queryKey }) => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const [_, _cornerId] = queryKey;
-      if (!_cornerId && _cornerId !== "undefined") {
+      if ((!_cornerId && _cornerId !== "undefined") || !lessonId) {
         return;
       }
       // if (lessonTpCd !== "10") {
       // return v2QuizCornerDataList;
       // }
       // return v2CornerDataList;
-      return getPageListData(_cornerId, initialDataFromPhp?.type);
+      return getPageListData(_cornerId, lessonId, initialDataFromPhp?.type);
     },
     {
       enabled: isAuthorized && !!cornerId,

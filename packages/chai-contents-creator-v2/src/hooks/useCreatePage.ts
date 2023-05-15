@@ -15,7 +15,7 @@ const useCreatePage = () => {
     ? (JSON.parse(stringifiedValue) as InitialInputValue)
     : null;
 
-  const { pageId, cornerId } = initialDataFromPhp || {};
+  const { pageId, cornerId, lessonId } = initialDataFromPhp || {};
   const returnUsePage = usePage();
   const { addToast } = useToast();
 
@@ -24,7 +24,7 @@ const useCreatePage = () => {
   const pageIdByEnv = useMemo(() => {
     if (isDevEnv) {
       // return pageId || "38b83d31-07c4-4342-89a1-b249f628c03f";
-      return pageId || "b7a77db1-9417-4295-abc1-a2314cfdb149"; // lessonId 279번의 1번째 코너의 2번째 페이지
+      return pageId || "8b2add73-6277-4f98-9a7d-7832bd14ae44"; // lessonId 279번의 1번째 코너의 1번째 페이지
     }
     return pageId || "";
   }, [pageId]);
@@ -37,9 +37,17 @@ const useCreatePage = () => {
     return cornerId || "";
   }, [cornerId]);
 
+  const lessonIdByEnv = useMemo(() => {
+    if (isDevEnv) {
+      return lessonId || "279"; // 개발서버 279번 레슨
+    }
+    return lessonId || "";
+  }, [lessonId]);
+
   const returnUsePageData = usePageData({
     pageId: pageIdByEnv,
     cornerId: cornerIdByEnv,
+    lessonId: lessonIdByEnv,
   });
 
   const {

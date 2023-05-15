@@ -9,7 +9,11 @@ import {
   AppType,
 } from "chai-ui-v2";
 
-export const getPageListData = async (cornerId: ID, lessonType?: AppType) => {
+export const getPageListData = async (
+  cornerId: ID,
+  lessonId: ID,
+  lessonType?: AppType,
+) => {
   const res = await httpLcms.get<PageListDataResponse>(
     getLcmsSubjectTurnUrl(cornerId),
     {
@@ -17,6 +21,7 @@ export const getPageListData = async (cornerId: ID, lessonType?: AppType) => {
         apiKey: API_KEY,
         turnUuid: cornerId,
         type: lessonType || "lesson",
+        lesson_id: lessonId,
       },
     },
   );

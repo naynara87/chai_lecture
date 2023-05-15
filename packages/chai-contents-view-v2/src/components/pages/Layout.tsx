@@ -23,7 +23,7 @@ const Layout = () => {
   const { courseId, lessonId, cornerId, pageId } = useParams(); // 이게 나중 실행됨
   // const learningLogCookieData = getCookie<InitialAppData>("bubble-player");
   const { lessonMetaData, corners, totalPages } = useLesson(lessonId);
-  const { pages, cornerMetaData } = useCorner(cornerId); // 이게 먼저 실행되고
+  const { pages, cornerMetaData } = useCorner(cornerId, lessonId); // 이게 먼저 실행되고
   const [isInitialActivityState, setIsInitialActivityState] = useState(false);
   const isStartedQuiz = useRef(false);
   const isXapiInitialize = useRef(false);
