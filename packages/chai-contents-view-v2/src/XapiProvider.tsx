@@ -1,5 +1,6 @@
 import {
   ADL,
+  isDevEnv,
   useLmsInputValue,
   xapiElement,
   XAPIOptions,
@@ -135,7 +136,9 @@ const XapiProvider = ({ children }: XapiProviderProps) => {
   const xapi_init = () => {
     if (!ADL.XAPIWrapper.lrs.actor) {
       const conf = {
-        endpoint: `${process.env.REACT_APP_LRS_URL}`,
+        endpoint: isDevEnv
+          ? process.env.REACT_APP_LRS_DEV_URL
+          : process.env.REACT_APP_LRS_PROD_URL,
         auth: "Basic Og==",
         actor: JSON.stringify(createActorObject(options)),
       };
