@@ -6,6 +6,7 @@ import {
   LocalStorage,
   saveLmsData,
   useLmsInputValue,
+  useAES256,
 } from "chai-ui-v2";
 import { useCallback, useMemo } from "react";
 import { useParams } from "react-router-dom";
@@ -22,6 +23,8 @@ const useProgressRate = ({
 }: UseProgressRateProps) => {
   const { cornerId, pageId: _pageId } = useParams();
   const { lmsInputValue: initialDataFromPhp } = useLmsInputValue();
+  const { encryptAES256 } = useAES256();
+
   const currentProgress = useCallback(
     (currentPageId: ID) => {
       const pageIdx = totalPages.findIndex((pageId) => {
@@ -80,12 +83,23 @@ const useProgressRate = ({
       lessonId: parsingLessonId, // 레슨 id 쿠키에서 받아옴
       turnId: cornerId, // 코너 id useParam에서 받음
       pageId: pageId, // 페이지 id useParam에서 받음
-      progressRate: currentProgress(pageId),
+      progressRate: encryptAES256(currentProgress(pageId).toString()),
       envlCatgYn: lessonTp, // 문제레슨인지 콘텐츠레슨인지 구분
-      complYn: currentProgress(pageId) === 100 ? "Y" : "N",
+      complYn:
+        currentProgress(pageId) === 100
+          ? encryptAES256("Y")
+          : encryptAES256("N"),
       envlScr: lessonTp === "Y" ? Math.floor(score) : undefined,
     } as ProgressData;
-  }, [cornerId, pageId, lessonTp, currentProgress, score, initialDataFromPhp]);
+  }, [
+    cornerId,
+    pageId,
+    lessonTp,
+    currentProgress,
+    score,
+    initialDataFromPhp,
+    encryptAES256,
+  ]);
 
   const saveProgress = useCallback(async () => {
     if (!progressData) return;

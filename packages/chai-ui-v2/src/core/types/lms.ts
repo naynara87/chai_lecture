@@ -6,8 +6,8 @@ export type ProgressData = {
   lessonId: string;
   turnId: string;
   pageId: string;
-  progressRate: number;
+  progressRate: string;
   envlCatgYn: string;
   envlScr?: number;
-  complYn: "Y" | "N";
+  complYn: string;
 };

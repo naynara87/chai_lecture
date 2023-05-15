@@ -10,7 +10,7 @@ export interface saveLmsDataParams {
   cornerId: ID;
   lessonId: ID;
   pageId: ID;
-  progressRate: number;
+  progressRate: string;
   envlCatgYn: string;
   complYn: string;
 }
