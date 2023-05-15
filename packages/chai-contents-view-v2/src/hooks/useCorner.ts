@@ -15,7 +15,7 @@ import { pageDataConverter } from "../util/converter";
 import { AxiosError } from "axios";
 
 const useCorner = (cornerId: ID | undefined) => {
-  const { isAuthorized, logout } = useAuth();
+  const { isAuthorized } = useAuth(); // logout
   const [pages, setPages] = useState<Page[]>([]);
   const [cornerMetaData, setCornerMetaData] = useState<CornerMeta>();
   const { lmsInputValue: initialDataFromPhp } = useLmsInputValue();
@@ -58,7 +58,11 @@ const useCorner = (cornerId: ID | undefined) => {
           // 토큰 만료
           error.response?.status === 401
         ) {
-          logout();
+          // logout();
+          addToast(
+            "이용 시간이 경과하여 보안을 위해 자동 로그아웃 되었습니다",
+            "error",
+          );
           return;
         }
         if (
@@ -66,8 +70,8 @@ const useCorner = (cornerId: ID | undefined) => {
           error.response?.status === 403
         ) {
           addToast(
-            "이용 시간이 경과하여 보안을 위해 자동 로그아웃 되었습니다.",
-            "warning",
+            "이용 시간이 경과하여 보안을 위해 자동 로그아웃 되었습니다",
+            "error",
           );
           return;
         }
