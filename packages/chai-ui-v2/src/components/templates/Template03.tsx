@@ -14,7 +14,7 @@ const GuideContentContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
 `;
 
 const Template03 = ({ template, setPageCompleted }: Template03Props) => {

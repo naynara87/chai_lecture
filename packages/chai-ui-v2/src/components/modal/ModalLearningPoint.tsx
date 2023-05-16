@@ -20,7 +20,7 @@ const ModalScrollArea = styled.div`
 
 const ModalContentsWrapper = styled.div`
   width: 100%;
-  
+
   .conts-wrap:not(:first-of-type) {
     margin-top: ${vw(60)};
   }
@@ -35,6 +35,18 @@ const ContentContainer = styled.div`
   width: 100%;
   height: 100%;
   padding: ${vh(60)} ${vw(60)};
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #c3c3c3;
+    border-radius: ${vw(10)};
+  }
+
+  &::-webkit-scrollbar {
+    background-color: #e2e2e2;
+    border-radius: ${vw(10)};
+    height: ${vw(10)};
+    width: ${vw(10)};
+  }
 `;
 
 const ModalLearningPoint = ({
@@ -60,8 +72,9 @@ const ModalLearningPoint = ({
       <ModalScrollArea>
         <div className="modal active">
           <div
-            className={`modal-container base-modal ${wideModal ? "wide-modal" : ""
-              }`}
+            className={`modal-container base-modal ${
+              wideModal ? "wide-modal" : ""
+            }`}
           >
             <ContentContainer>
               <button className="btn-close-modal" onClick={handleClose}>

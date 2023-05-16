@@ -83,7 +83,7 @@ const FinalSpeakingContentCreator = ({
         />
         <RecorderWrapper>
           <img src={IconMic} alt="" />
-          <p>녹음을 시작해 보세요</p>
+          <p>녹음을시작해 보세요.</p>
         </RecorderWrapper>
         <div onClick={(e) => setFocusedId(e, thisContent.id)}>
           <ExampleContentsCreator
