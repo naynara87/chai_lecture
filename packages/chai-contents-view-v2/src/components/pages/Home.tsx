@@ -100,7 +100,7 @@ const Home = () => {
       const confirmResult = await showContinueOpenModal({
         title: "학습 이어하기",
         description:
-          " 아직 학습을 하지 않은 내용이 있어요.<br />지난 학습에 이어서 진행 하시겠어요?",
+          " 아직 학습을 하지 않은 내용이 있어요.<br />지난 학습에 이어서 진행하시겠어요?",
         leftButtonText: "처음부터 하기",
         rightButtonText: "이어서 하기",
       });

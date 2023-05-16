@@ -145,7 +145,7 @@ const SpeakingComponent = ({
       return (
         <>
           <div className="text-wrap">
-            <span className="text">잘 듣고 따라 말해보세요!</span>
+            <span className="text">잘 듣고 따라 말해 보세요!</span>
           </div>
           <ComponentProgress
             progressDuration={contents.data.speakingTime}
@@ -161,7 +161,7 @@ const SpeakingComponent = ({
       return (
         <>
           <div className="text-wrap">
-            <span className="text">직접 따라 말해볼까요?</span>
+            <span className="text">직접 따라 말해 볼까요?</span>
           </div>
           <ComponentButtonFillBlackMini
             text="시작"

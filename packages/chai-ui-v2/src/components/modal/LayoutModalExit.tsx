@@ -77,7 +77,7 @@ const LayoutModalExit = ({
               <div className="dec">
                 아직 학습을 하지 않은 내용이 있어요.
                 <br />
-                학습을 종료 하시겠어요?
+                학습을 종료하시겠어요?
               </div>
             </ModalBaseContents>
 
