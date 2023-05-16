@@ -73,7 +73,7 @@ const useProgressRate = ({
     const pasingUno = parseInt(initialDataFromPhp.uno);
     return {
       uno: pasingUno, // user id 쿠키에서 받아옴
-      applId: encryptAES256(initialDataFromPhp.courseId.toString()), // 신청 id 쿠키에서 받아옴
+      applId: encryptAES256(initialDataFromPhp.applId.toString()), // 신청 id 쿠키에서 받아옴
       contsId: encryptAES256(initialDataFromPhp.subjectId.toString()), // 과목 id 쿠키에서 받아옴
       courseId: encryptAES256(initialDataFromPhp.courseId.toString()), // 과정 id 쿠키에서 받아옴
       lessonId: encryptAES256(initialDataFromPhp.lessonId.toString()), // 레슨 id 쿠키에서 받아옴
