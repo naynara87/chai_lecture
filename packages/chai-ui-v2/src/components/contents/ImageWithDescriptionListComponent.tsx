@@ -19,10 +19,12 @@ const ImageWithDescriptionList = styled.div`
   margin-bottom: ${vh(40)};
 `;
 
+const IMAGE_HEIGHT = 290;
+
 const ListImage = styled.img`
   flex-shrink: 0;
-  width: calc((${vh(380)} * 4) / 3);
-  height: ${vh(380)};
+  width: calc((${vh(IMAGE_HEIGHT)} * 4) / 3);
+  height: ${vh(IMAGE_HEIGHT)};
   margin-right: ${vw(43)};
   border-radius: ${vw(10)};
   -webkit-user-drag: none;

@@ -15,12 +15,14 @@ const ImageWithCaptionListWrapper = styled.div`
   justify-content: center;
 `;
 
+const IMAGE_HEIGHT = 290;
+
 export const CaptionListImage = styled.img`
   border-radius: ${vw(10)};
   -webkit-user-drag: none;
   cursor: pointer;
-  width: calc((${vh(380)} * 4) / 3);
-  height: ${vh(380)};
+  width: calc((${vh(IMAGE_HEIGHT)} * 4) / 3);
+  height: ${vh(IMAGE_HEIGHT)};
   object-fit: cover;
 `;
 
@@ -40,7 +42,7 @@ const ImageWithCaptionWrapper = styled.div`
   }
 
   .caption-wrap {
-    width: calc((${vh(380)} * 4) / 3);
+    width: calc((${vh(IMAGE_HEIGHT)} * 4) / 3);
   }
 `;
 
