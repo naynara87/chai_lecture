@@ -47,7 +47,7 @@ const ModalQuestionWrapper = styled.div`
       margin-bottom: ${vh(50)};
     }
     .question-cont {
-      font-size: ${vw(24)};
+      font-size: ${vw(22)};
       font-weight: 400;
       white-space: pre-line;
     }
