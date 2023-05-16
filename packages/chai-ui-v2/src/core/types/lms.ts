@@ -1,8 +1,8 @@
 export type ProgressData = {
   uno: number;
-  applId: number;
-  contsId: number;
-  courseId: number;
+  applId: string;
+  contsId: string;
+  courseId: string;
   lessonId: string;
   turnId: string;
   pageId: string;

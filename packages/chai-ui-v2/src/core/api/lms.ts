@@ -4,9 +4,9 @@ import { ID } from "../types";
 
 export interface saveLmsDataParams {
   uno: number;
-  applId: number;
-  courseId: number;
-  contsId: number;
+  applId: ID;
+  courseId: ID;
+  contsId: ID;
   cornerId: ID;
   lessonId: ID;
   pageId: ID;

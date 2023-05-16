@@ -70,17 +70,13 @@ const useProgressRate = ({
 
   const progressData = useMemo(() => {
     if (!initialDataFromPhp || !cornerId || !pageId) return;
-    const parsingCourseId = parseInt(initialDataFromPhp.courseId);
-    const parsingLessonId = initialDataFromPhp.lessonId;
     const pasingUno = parseInt(initialDataFromPhp.uno);
-    const parsingApplIdId = parseInt(initialDataFromPhp.applId);
-    const parsingSubjectId = parseInt(initialDataFromPhp.subjectId);
     return {
       uno: pasingUno, // user id 쿠키에서 받아옴
-      applId: parsingApplIdId, // 신청 id 쿠키에서 받아옴
-      contsId: parsingSubjectId, // 과목 id 쿠키에서 받아옴
-      courseId: parsingCourseId, // 과정 id 쿠키에서 받아옴
-      lessonId: parsingLessonId, // 레슨 id 쿠키에서 받아옴
+      applId: encryptAES256(initialDataFromPhp.courseId.toString()), // 신청 id 쿠키에서 받아옴
+      contsId: encryptAES256(initialDataFromPhp.subjectId.toString()), // 과목 id 쿠키에서 받아옴
+      courseId: encryptAES256(initialDataFromPhp.courseId.toString()), // 과정 id 쿠키에서 받아옴
+      lessonId: encryptAES256(initialDataFromPhp.lessonId.toString()), // 레슨 id 쿠키에서 받아옴
       turnId: cornerId, // 코너 id useParam에서 받음
       pageId: pageId, // 페이지 id useParam에서 받음
       progressRate: encryptAES256(currentProgress(pageId).toString()),
