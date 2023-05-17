@@ -12,7 +12,6 @@ export interface ImageWithDescriptionListProps {
 const ImageWithDescriptionListWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  padding: ${vh(22)} ${vw(23)};
 `;
 
 const ImageWithDescriptionList = styled.div`
