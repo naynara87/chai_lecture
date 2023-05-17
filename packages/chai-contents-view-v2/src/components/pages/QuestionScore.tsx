@@ -5,7 +5,7 @@ import {
   ComponentProblemUserInfo,
   LocalStorage,
   QuizData,
-  ModalConfirm,
+  ModalConfirmView,
   ComponentProblemDefault,
   deleteQuestion,
   useToast,
@@ -125,23 +125,25 @@ const QuestionScore = () => {
           </div>
         </div>
         <div className="cai-view-yahei">
-          <ModalConfirm
+          <ModalConfirmView
             isModalOpen={isModalRestartConfirmOpen}
             setIsModalOpen={setIsModalRestartConfirmOpen}
-            description="학습 성취도에는 첫 번째 점수만 반영됩니다. 그래도 다시 푸시겠어요?"
+            description=""
             rightButtonText="다시 풀기"
             leftButtonText="취소"
-            title=""
+            title={`학습 성취도에는 첫 번째 점수만 반영됩니다.
+            그래도 다시 푸시겠어요?`}
             handleClickRightButton={handleClickRestartQuiz}
             handleClickLeftButton={() => setIsModalRestartConfirmOpen(false)}
           />
-          <ModalConfirm
+          <ModalConfirmView
             isModalOpen={isModalExitConfirmOpen}
             setIsModalOpen={setIsModalExitConfirmOpen}
-            description="이 페이지를 닫고 마이페이지로 이동할까요? 채점결과 및 해설은 다시 볼 수 있습니다."
+            description=""
             rightButtonText="나가기"
             leftButtonText="취소"
-            title=""
+            title={`이 페이지를 닫고 마이페이지로 이동할까요?
+            채점결과 및 해설은 다시 볼 수 있습니다.`}
             handleClickRightButton={() => handleClickClose()}
             handleClickLeftButton={() => setIsModalExitConfirmOpen(false)}
           />
