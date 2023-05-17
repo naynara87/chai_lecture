@@ -46,17 +46,21 @@
 .tab-conts-container {
   @include scrollbar;
 
+  margin-top: vh(30);
   overflow: auto;
-  height: calc(100% - vh(70));
+  height: calc(100% - vh(100));
 }
 
 .tab-conts-wrap {
-  margin-top: vh(30);
   padding: vh(40) vw(40);
   border: 1px solid color(gray-db);
   border-radius: vw(20);
   font-size: vw(28);
   white-space: pre-line;
+
+  &:not(:first-of-type) {
+    margin-top: vw(30);
+  }
 
   > div {
     text-align: left;
