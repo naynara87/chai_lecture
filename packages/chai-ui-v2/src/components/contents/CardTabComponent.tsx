@@ -1,10 +1,29 @@
 import styled from "@emotion/styled";
-import React, { useCallback, useMemo, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { CardTabContentData } from "../../core";
 import useContentMapper from "../../core/hooks/useContentMapper";
 
 const TabTitle = styled.div`
   cursor: pointer;
+`;
+
+interface TabContsContainerProps {
+  isUseTab?: boolean;
+  isShadow: boolean;
+}
+
+const TabContsContainer = styled.div<TabContsContainerProps>`
+  ${(props) => !props.isUseTab && "height: 100%;"}
+  ${(props) => !props.isUseTab && "margin-top: 0;"}
+    box-shadow: ${(props) =>
+    props.isShadow ? "inset 0px 20px 25px -10px rgba(0, 0, 0, 0.05);" : ""};
+  transition: all ease-in 0.3s;
 `;
 
 export interface CardTabComponentProps {
@@ -13,10 +32,17 @@ export interface CardTabComponentProps {
 
 const CardTabComponent = ({ contents }: CardTabComponentProps) => {
   const [tabActiveIndex, setTabActiveIndex] = useState(0);
+  const [isShadow, setIsShadow] = useState(false);
+  const tabContainerRef = useRef<HTMLDivElement>(null);
+  const timeoutRef = useRef<NodeJS.Timeout | number>();
+
   const { getContentComponent } = useContentMapper();
 
   const handleClickTab = useCallback((tabIndex: number) => {
     setTabActiveIndex(tabIndex);
+    if (tabContainerRef.current) {
+      tabContainerRef.current.scrollTo(0, 0);
+    }
   }, []);
 
   const tabTitle = useMemo(() => {
@@ -49,14 +75,42 @@ const CardTabComponent = ({ contents }: CardTabComponentProps) => {
     });
   }, [contents.data, getContentComponent, tabActiveIndex]);
 
+  const handleScroll = useCallback((event: Event) => {
+    const target = event.target as HTMLDivElement;
+    clearTimeout(timeoutRef.current);
+    setIsShadow(target.scrollTop > 0);
+    timeoutRef.current = window.setTimeout(() => {
+      setIsShadow(false);
+    }, 1000);
+  }, []);
+
+  useEffect(() => {
+    const curTabContainerRef = tabContainerRef.current;
+    curTabContainerRef?.addEventListener("scroll", handleScroll);
+    return () => {
+      curTabContainerRef?.removeEventListener("scroll", handleScroll);
+    };
+  }, [handleScroll]);
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(timeoutRef.current);
+    };
+  }, []);
+
   return (
     <div className="tab-contents-container">
       {contents.meta?.isUseTab && (
         <div className="tab-title-wrap">{tabTitle}</div>
       )}
-      <div className="tab-conts-container">
+      <TabContsContainer
+        isUseTab={contents.meta?.isUseTab}
+        isShadow={isShadow}
+        className="tab-conts-container"
+        ref={tabContainerRef}
+      >
         <ul className="tab-conts-wrapper">{mainContents}</ul>
-      </div>
+      </TabContsContainer>
     </div>
   );
 };
