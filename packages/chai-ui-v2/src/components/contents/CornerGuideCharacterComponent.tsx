@@ -13,7 +13,7 @@ const ContStartWrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  
+
   .text-bubble-wrap {
     margin-top: ${vw(27)};
     padding: ${vw(40)} ${vw(80)};
@@ -25,10 +25,11 @@ const ContStartWrapper = styled.div`
   .character-wrap {
     margin-top: ${vw(57)};
     text-align: center;
-    
+
     .img {
       width: ${vw(450)};
       height: ${vw(450)};
+      object-fit: cover;
     }
   }
 `;
