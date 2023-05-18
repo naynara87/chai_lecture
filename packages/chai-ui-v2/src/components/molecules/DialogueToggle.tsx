@@ -31,7 +31,7 @@ const DialogueToggle = ({ handleClickOptions, contentId }: DialogueToggle) => {
         </ToggleLabel>
       </div>
       <div className="inp-toggle-wrap">
-        <span className="toggle-name">뜻</span>
+        <span className="toggle-name">해석</span>
         <input
           type="checkbox"
           name={`input2${contentId}`}

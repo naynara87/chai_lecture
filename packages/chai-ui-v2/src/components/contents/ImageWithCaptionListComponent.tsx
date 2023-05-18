@@ -15,7 +15,7 @@ const ImageWithCaptionListWrapper = styled.div`
   justify-content: center;
 `;
 
-const IMAGE_HEIGHT = 290;
+const IMAGE_HEIGHT = 280;
 
 export const CaptionListImage = styled.img`
   border-radius: ${vw(10)};

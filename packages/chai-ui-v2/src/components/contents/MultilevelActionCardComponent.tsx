@@ -7,7 +7,7 @@ import ComponentButtonStep from "../atoms/Button/ComponentButtonStep";
 
 const StepCard = styled.div`
   > *:not(:first-of-type) {
-    margin-top: ${vw(20)};
+    margin-top: ${vw(34)};
   }
 
   .image-with-caption-wrapper {

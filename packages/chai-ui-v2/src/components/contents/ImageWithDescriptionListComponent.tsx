@@ -18,7 +18,7 @@ const ImageWithDescriptionList = styled.div`
   margin-bottom: ${vh(40)};
 `;
 
-const IMAGE_HEIGHT = 290;
+const IMAGE_HEIGHT = 280;
 
 const ListImage = styled.img`
   flex-shrink: 0;
