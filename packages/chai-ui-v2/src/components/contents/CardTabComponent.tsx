@@ -15,15 +15,18 @@ const TabTitle = styled.div`
 
 interface TabContsContainerProps {
   isUseTab?: boolean;
-  isShadow: boolean;
 }
 
 const TabContsContainer = styled.div<TabContsContainerProps>`
   ${(props) => !props.isUseTab && "height: 100%;"}
   ${(props) => !props.isUseTab && "margin-top: 0;"}
-    box-shadow: ${(props) =>
-    props.isShadow ? "inset 0px 20px 25px -10px rgba(0, 0, 0, 0.05);" : ""};
-  transition: all ease-in 0.3s;
+    
+  box-shadow: inset 0px 20px 25px -10px rgba(0, 0, 0, 0);
+  transition: all ease-in-out 0.3s;
+
+  &.scrolled {
+    box-shadow: inset 0px 20px 25px -10px rgba(0, 0, 0, 0.05);
+  }
 `;
 
 export interface CardTabComponentProps {
@@ -105,8 +108,7 @@ const CardTabComponent = ({ contents }: CardTabComponentProps) => {
       )}
       <TabContsContainer
         isUseTab={contents.meta?.isUseTab}
-        isShadow={isShadow}
-        className="tab-conts-container"
+        className={`tab-conts-container ${isShadow ? "scrolled" : ""}`}
         ref={tabContainerRef}
       >
         <ul className="tab-conts-wrapper">{mainContents}</ul>
