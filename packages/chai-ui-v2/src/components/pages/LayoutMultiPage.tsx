@@ -10,7 +10,6 @@ import "swiper/css/navigation";
 import {
   MultiPage,
   PageProps,
-  isMobile,
   useGlobalAudio,
   useTemplateMapper,
 } from "../../core";
@@ -63,7 +62,6 @@ const LayoutMultiPage = ({ page, setPageCompleted }: LayoutMultiPageProps) => {
         slidesPerView={1.2}
         centeredSlides
         onSlideChange={handleAudioReset}
-        allowTouchMove={!isMobile}
       >
         {pages}
       </Swiper>
