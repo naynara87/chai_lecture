@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import ImgVocaComponent from "../atoms/ImgVocaComponent";
 import IconClose from "../../assets/images/icon/icon_close_black.svg";
-import { useGlobalAudio, WordsCarouselContentData } from "../../core";
+import { isMobile, useGlobalAudio, WordsCarouselContentData } from "../../core";
 import styled from "@emotion/styled";
 import { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -124,6 +124,7 @@ const LayoutModalVoca = ({
                   onInit={() => {
                     setIsSwiperInitiated(true);
                   }}
+                  allowTouchMove={!isMobile}
                 >
                   {slideContents}
                 </Swiper>
