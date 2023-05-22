@@ -37,6 +37,12 @@ export type CornerListData = {
   pages: ID[];
   introduction?: LessonIntroduction;
   turnName: string;
+  stepCd?: string;
+  /**
+   * "140": 연습문제
+   * "150": 오답점검
+   * "160": 형성평가
+   */
 };
 
 /**

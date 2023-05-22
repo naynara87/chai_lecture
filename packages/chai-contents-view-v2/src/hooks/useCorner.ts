@@ -13,6 +13,9 @@ import { getPageListData } from "../api/lcms";
 import QUERY_KEY from "../constants/queryKey";
 import { pageDataConverter } from "../util/converter";
 import { AxiosError } from "axios";
+// import { v2QuizCornerDataList } from "../data/dummyData";
+import { getIncorrectPageListData } from "../api/lcms";
+// import { v2IncorrectCornerDataList } from "../data/dummyData";
 // import { v2CornerDataList } from "../data/dummyData";
 
 const useCorner = (cornerId: ID | undefined, lessonId: ID | undefined) => {
@@ -32,16 +35,62 @@ const useCorner = (cornerId: ID | undefined, lessonId: ID | undefined) => {
       }
       // if (lessonTpCd !== "10") {
       // return v2QuizCornerDataList;
+      // return v2IncorrectCornerDataList;
       // }
       // return v2CornerDataList;
       return getPageListData(_cornerId, lessonId, initialDataFromPhp?.type);
     },
     {
       enabled: isAuthorized && !!cornerId,
-      onSuccess: (data) => {
+      onSuccess: async (data) => {
         // const currentCorner = data?.find(
         //   (corner) => corner.meta.id.toString() === cornerId?.toString(),
         // );
+        const currentCorner = { ...data?.body };
+
+        // NOTE kjw 오답점검시 로직 start
+        if (initialDataFromPhp?.incorrectPageDatas) {
+          let pageIds = "";
+          // NOTE kjw 배열데이터로 들어오는 값을 pageId만 추출하여 pageId들을 string으로 만듬
+          initialDataFromPhp.incorrectPageDatas.forEach((page, pageIdx) => {
+            if (pageIdx === 0) {
+              pageIds += page.page_id;
+            } else {
+              pageIds += `, ${page.page_id}`;
+            }
+          });
+          const datas = await getIncorrectPageListData(pageIds);
+
+          // NOTE kjw api로 전달받는 page데이터값에 pageAreaCode값이 없어 inputValue로 받는 데이터를 넣어줌
+          datas.body.list.forEach((pageData, pageIdx) => {
+            if (!initialDataFromPhp?.incorrectPageDatas || !currentCorner?.data)
+              return;
+            currentCorner.data.push({
+              ...pageData,
+              pageArea_type:
+                initialDataFromPhp?.incorrectPageDatas[pageIdx].page_area_code,
+              pageStyle_code: null,
+            });
+            // currentCorner.data.push(
+            //   pageDataConverter({
+            //     ...pageData,
+            //     pageArea_type:
+            //       initialDataFromPhp?.incorrectPageDatas[pageIdx]
+            //         .page_area_code,
+            //     pageStyle_code: null,
+            //   }),
+            // );
+          });
+          const pages = data?.body?.data?.map((pageData: ContentData) =>
+            pageDataConverter(pageData),
+          );
+
+          // setPages(currentCorner?.data!);
+          setPages(pages!);
+          setCornerMetaData(currentCorner?.meta);
+          return;
+        }
+        // NOTE kjw 오답점검시 로직 end
         // setPages(currentCorner?.data ?? []);
         // setCornerMetaData(currentCorner?.meta);
 

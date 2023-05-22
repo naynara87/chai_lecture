@@ -38,39 +38,41 @@ const Layout = () => {
   useEffect(() => {
     if (isXapiInitialize.current) return;
     if (totalPages.length < 1) return;
+    if (!lessonMetaData || !cornerMetaData || !pageId) return;
+
     if (state?.isRestartedQuiz) {
       isXapiInitialize.current = true;
       return;
     }
     if (courseId && lessonId) {
-      isXapiInitialize.current = true;
-      xapiInitialize(courseId, lessonId, totalPages);
-    }
-  }, [xapiInitialize, courseId, lessonId, totalPages, isXapiInitialize, state]);
+      const loadActivityState = xapiInitialize(courseId, lessonId, totalPages);
 
-  useEffect(() => {
-    if (!lessonMetaData) return;
-    if (!cornerMetaData) return;
-    if (!pageId) return;
-    if (state?.isRestartedQuiz) return;
-    if (isInitialActivityState) return;
-    initialActivityState(
-      lessonMetaData,
-      cornerMetaData,
-      corners,
-      totalPages,
-      pageId,
-    );
-    setIsInitialActivityState(true);
+      isXapiInitialize.current = true;
+      console.log("loadActivityState", loadActivityState);
+
+      if (loadActivityState || isInitialActivityState) return;
+      initialActivityState(
+        lessonMetaData,
+        cornerMetaData,
+        corners,
+        totalPages,
+        pageId,
+      );
+      setIsInitialActivityState(true);
+    }
   }, [
+    xapiInitialize,
+    courseId,
+    lessonId,
+    totalPages,
+    isXapiInitialize,
+    state,
     cornerMetaData,
     lessonMetaData,
-    corners,
-    totalPages,
     initialActivityState,
-    isInitialActivityState,
+    corners,
     pageId,
-    state,
+    isInitialActivityState,
   ]);
 
   useEffect(() => {
@@ -143,7 +145,7 @@ const Layout = () => {
           id: pageIndex + 1,
           state: "end",
           isCorrect: xapiActivity.correct_data.find(
-            (data) => data.page_id === page.id,
+            (data) => data.page_id.toString() === page.id.toString(),
           )
             ? true
             : false,

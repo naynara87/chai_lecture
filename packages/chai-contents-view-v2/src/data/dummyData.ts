@@ -64,24 +64,58 @@ export const v2LessonData: LessonData = {
   ],
 };
 
-export const v2LessonQuizData: LessonData = {
+export const v2LessonIncorrectQuizData: LessonData = {
   // 레슨 메타 정보
   meta: {
-    id: 1,
+    id: 12345,
     name: "Lesson 1",
     courseId: 1,
     courseName: "차이홍(샘플데이터)-빨강",
     colorTypeCd: "10",
-    lessonTpCd: "20",
+    lessonTpCd: "30",
     colorTypeCdName: "빨강",
   },
   // 코너 리스트
   data: [
     {
       id: 11,
-      name: "문제",
-      turnName: "문제",
+      name: "오답점검",
+      turnName: "오답점검",
+      pages: [],
+      stepCd: "150",
+    },
+  ],
+};
+
+export const v2IncorrectCornerDataList: CornerData[] = [
+  {
+    meta: {
+      id: 11,
+      lessonId: 1,
+    },
+    data: [],
+  },
+];
+
+export const v2LessonQuizData: LessonData = {
+  // 레슨 메타 정보
+  meta: {
+    id: 1234,
+    name: "Lesson 1",
+    courseId: 1,
+    courseName: "차이홍(샘플데이터)-빨강",
+    colorTypeCd: "10",
+    lessonTpCd: "30",
+    colorTypeCdName: "빨강",
+  },
+  // 코너 리스트
+  data: [
+    {
+      id: 12,
+      name: "형성평가",
+      turnName: "형성평가",
       pages: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      stepCd: "160",
     },
   ],
 };
@@ -89,7 +123,7 @@ export const v2LessonQuizData: LessonData = {
 export const v2QuizCornerDataList: CornerData[] = [
   {
     meta: {
-      id: 11,
+      id: 12,
       lessonId: 1,
     },
     data: [
@@ -361,17 +395,6 @@ export const v2CornerDataList: CornerData[] = [
         pageAreaType: "a1",
         pageStyleCode: 10,
         contentsType: 10,
-        introduction: {
-          title: "",
-          subTitle: "",
-          character: {
-            url: "",
-          },
-          contents: "",
-          soundEffect: {
-            src: "https://cdn.pixabay.com/audio/2022/11/17/audio_7064c14095.mp3",
-          },
-        },
         data: {
           id: 1,
           type: "Template01",
@@ -437,20 +460,90 @@ export const v2CornerDataList: CornerData[] = [
         pageStyleCode: 10,
         contentsType: 10,
         data: {
-          id: uuidV4(),
-          type: "Template01",
-          contents: [
+          id: "f85baa44-aee4-4a4d-aca4-2c3fa8b989be",
+          type: "TemplateRolePlaying",
+          iconText: {
+            id: "7e7c6316-05b5-476f-b76c-9c742c7e1934",
+            data: {
+              text: '<p><span style="">인물을 선택하여 말하기 연습을 해 봅시다.</span></p>',
+            },
+            type: "iconText",
+          },
+          characters: [
             {
-              id: uuidV4(),
-              type: "cornerGuideCharacter",
-              data: {
-                text: "먼저 지난 레슨에서 학습한 내용을 점검해 볼까요?",
-                character: {
-                  src: "asdfasdf",
-                },
-              },
+              id: "e59fa8aa-d9ab-4358-b3f1-d579762a7348",
+              src: "https://d3ck2c76fu5pug.cloudfront.net/assets/Tscp7DDNwDvm4ECqK18CCbmc/Eicv8B5DjssIjsgSUt31JN2bbsmXVPmj.png",
+              name: "김민호",
+              backgroundColor: "#FFF3EA",
+            },
+            {
+              id: "97b142b3-c1e1-4d91-acc0-25fdb5a8ac85",
+              src: "https://d3ck2c76fu5pug.cloudfront.net/assets/myAPiLEDxcW5SLCbbKr3MQo8/gXRD0huC3L0oPJ6nGsunyzVFiJ8YMWua.png",
+              name: "왕리리",
+              backgroundColor: "#EFF1F5",
             },
           ],
+          guideContent: {
+            id: "cadef58e-d076-46cf-8daa-7604913ee1ee",
+            data: {
+              text: '<p><span style="">선택한 인물로 대화 연습을 해 봐요.</span></p>',
+              character: {
+                src: "https://d3ck2c76fu5pug.cloudfront.net/assets/qBQ6abusWTmTZAfqdrveodlL/eAFBfxRYkd7adN5mHA6YznyxnXeMwmg9.png",
+              },
+            },
+            type: "activityGuideCharacter",
+          },
+          rolePlayingContents: {
+            id: "50fac80a-d13f-4068-9c29-8686d0f9684f",
+            data: [
+              {
+                id: "c44c387b-9ee8-4dcd-97af-bcae609ee6e7",
+                text: "桌子上边儿有一个红色的书包。\t",
+                audio: {
+                  src: "https://d3ck2c76fu5pug.cloudfront.net/assets/j8rjeOOt631M8GDsPsYjmty9/sjvRINDxP035qhpAGImd2gk5yuJ8s2CH.mp3",
+                },
+                meaning: "탁자 위에 빨간색 책가방이 하나 있어.",
+                position: "left",
+                characterId: "e59fa8aa-d9ab-4358-b3f1-d579762a7348",
+                pronunciation:
+                  "Zhuōzi shàngbianr yǒu yí ge hóngsè de shūbāo.\t",
+              },
+              {
+                id: "ad8cc931-fba3-47de-835e-09bd90c35c5a",
+                text: "那是我的书包。\t",
+                audio: {
+                  src: "https://d3ck2c76fu5pug.cloudfront.net/assets/4D9ho6V0TQzQQcenezGzakrB/HYteIWBgIWP2Bf3Age3mxeL5wFxmzxBc.mp3",
+                },
+                meaning: "그것은 내 책가방이야.",
+                position: "right",
+                characterId: "97b142b3-c1e1-4d91-acc0-25fdb5a8ac85",
+                pronunciation: "Nà shì wǒ de shūbāo.\t",
+              },
+              {
+                id: "17328f47-bb24-40f6-a840-3e2b7c417e3d",
+                text: "<p>书包里边儿有什么?</p>",
+                audio: {
+                  src: "https://d3ck2c76fu5pug.cloudfront.net/assets/D2W0hZQcHnjUZW7aMMUV2y47/kNanRElFEZXV61otnyhzz3mRLaUuQIfB.mp3",
+                },
+                meaning: "책가방 안에는 뭐가 있어?",
+                position: "left",
+                characterId: "e59fa8aa-d9ab-4358-b3f1-d579762a7348",
+                pronunciation: "Shūbāo lǐbianr yǒu shénme? \t",
+              },
+              {
+                id: "8c3b1906-9dad-4199-bf74-bc8640c2b7db",
+                text: "书包里边儿有书、本子、笔盒。\t",
+                audio: {
+                  src: "https://d3ck2c76fu5pug.cloudfront.net/assets/MqS18FvKTVDjftviiL8FIIHi/ECV7gWRjh4e5dLmvjFTuc5g2VbKO5w5j.mp3",
+                },
+                meaning: "책가방 안에는 책, 공책, 필통이 있어.",
+                position: "right",
+                characterId: "97b142b3-c1e1-4d91-acc0-25fdb5a8ac85",
+                pronunciation: "Shūbāo lǐbianr yǒu shū、běnzi、bǐhé. \t",
+              },
+            ],
+            type: "roleplaying",
+          },
         },
       },
       {
