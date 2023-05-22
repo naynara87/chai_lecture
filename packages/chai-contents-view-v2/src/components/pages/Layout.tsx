@@ -48,7 +48,6 @@ const Layout = () => {
       const loadActivityState = xapiInitialize(courseId, lessonId, totalPages);
 
       isXapiInitialize.current = true;
-      console.log("loadActivityState", loadActivityState);
 
       if (loadActivityState || isInitialActivityState) return;
       initialActivityState(
