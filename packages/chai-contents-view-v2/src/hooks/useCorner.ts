@@ -49,7 +49,11 @@ const useCorner = (cornerId: ID | undefined, lessonId: ID | undefined) => {
         const currentCorner = { ...data?.body };
 
         // NOTE kjw 오답점검시 로직 start
-        if (initialDataFromPhp?.incorrectPageDatas) {
+        if (
+          initialDataFromPhp?.incorrectPageDatas &&
+          currentCorner.data &&
+          currentCorner.data.length < 1
+        ) {
           let pageIds = "";
           // NOTE kjw 배열데이터로 들어오는 값을 pageId만 추출하여 pageId들을 string으로 만듬
           initialDataFromPhp.incorrectPageDatas.forEach((page, pageIdx) => {

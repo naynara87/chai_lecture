@@ -47,7 +47,10 @@ const useLesson = (lessonId: ID | undefined) => {
 
         // TODO kjw 추후 오답점검 레슨이 나눠지면 레슨에 구분값이 생길수도 있음. 현재는 구분할 수 있는 값이 없기때문에 아래와같이 작업
         // NOTE kjw 오답점검시 로직 start
-        if (initialDataFromPhp?.incorrectPageDatas) {
+        if (
+          initialDataFromPhp?.incorrectPageDatas &&
+          _corners[0].pages.length < 1
+        ) {
           const _totalPages: ID[] = [];
           initialDataFromPhp.incorrectPageDatas.forEach((page) => {
             _totalPages.push(page.page_id);
