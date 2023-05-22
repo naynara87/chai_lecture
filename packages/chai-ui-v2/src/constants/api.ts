@@ -23,3 +23,6 @@ export const getLcmsSubjectUrl = (subjectId: ID) =>
 
 export const getLcmsLessonDataUrl = (lessonId: ID) =>
   `/lcms/subject/lesson-detail-list/${lessonId}`;
+
+export const getLcmsIncorrectPageDataUrl = (pageId: string) =>
+  `/lcms/subject/contents-data-detail/${pageId}`;

@@ -1,4 +1,4 @@
-import { LocalStorage, Page, QuizData } from "chai-ui-v2";
+import { ID, LocalStorage, QuizData } from "chai-ui-v2";
 import React, { useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -7,7 +7,7 @@ import "swiper/css/pagination";
 import styled from "@emotion/styled";
 
 interface ComponentProblemPaginationProps {
-  pages: Page[];
+  totalPages: ID[];
   onClickPagination: (pageIndex: number) => void;
 }
 
@@ -24,18 +24,19 @@ const SwiperWrapper = styled.div`
 `;
 
 const ComponentProblemPagination = ({
-  pages,
+  totalPages,
   onClickPagination,
 }: ComponentProblemPaginationProps) => {
   const { pageId } = useParams();
   const pagination = useMemo(() => {
     const questionDatas = LocalStorage.getItem("pageData") as QuizData[];
-    return pages.map((page, pageIndex) => {
+    return totalPages.map((page, pageIndex) => {
       return (
         <SwiperSlide key={pageIndex}>
           <button
-            className={`problem-pagination ${questionDatas ? questionDatas[pageIndex].state : ""
-              } ${page.id.toString() === pageId ? "active" : ""} `}
+            className={`problem-pagination ${
+              questionDatas ? questionDatas[pageIndex].state : ""
+            } ${page.toString() === pageId ? "active" : ""} `}
             key={pageIndex}
             onClick={() => {
               onClickPagination(pageIndex);
@@ -46,7 +47,7 @@ const ComponentProblemPagination = ({
         </SwiperSlide>
       );
     });
-  }, [pages, onClickPagination, pageId]);
+  }, [totalPages, onClickPagination, pageId]);
 
   return (
     <SwiperWrapper>

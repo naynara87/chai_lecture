@@ -187,6 +187,16 @@ const QuestionLayout = ({
     }, 1000);
   }, []);
 
+  const quizTitle = useMemo(() => {
+    if (
+      lessonMetaData.colorTypeCd.toString() === "80" ||
+      lessonMetaData.lessonTpCd.toString() !== "30"
+    ) {
+      return lessonMetaData.name;
+    }
+    return `${lessonMetaData.colorTypeCdName} ${currentCorner.name}`;
+  }, [lessonMetaData, currentCorner]);
+
   // TODO xapi completed 이벤트 발생부분 채점하기버튼클릭이벤트
   const handleClickCheckScore = useCallback(async () => {
     if (cornerId && courseId && lessonId && pageId && currentPage) {
@@ -228,7 +238,7 @@ const QuestionLayout = ({
       );
       navigate(getPageUrl(courseId, lessonId, cornerId, "score"), {
         state: {
-          lessonName: lessonMetaData.name,
+          lessonName: quizTitle,
           solvingTime: questionSolvingTime,
           pages,
           totalPages,
@@ -251,6 +261,7 @@ const QuestionLayout = ({
     updateIsCorrectDataCheck,
     showCompleteOpenModal,
     startQuiz,
+    quizTitle,
   ]);
 
   const pageIdx = useMemo(() => {
@@ -276,6 +287,7 @@ const QuestionLayout = ({
       // handleClickPagination(
       //   parseInt(notCompletedQuestionPage.id.toString()) - 1,
       // );
+      return;
     }
     handleClickPagination(pageIdx + 1);
   }, [
@@ -306,16 +318,6 @@ const QuestionLayout = ({
     handleClickPagination(pageIdx + 1);
   }, [pageIdx, handleClickPagination]);
 
-  const quizTitle = useMemo(() => {
-    if (
-      lessonMetaData.colorTypeCd.toString() === "80" ||
-      lessonMetaData.lessonTpCd.toString() !== "30"
-    ) {
-      return lessonMetaData.name;
-    }
-    return `${lessonMetaData.colorTypeCdName} ${currentCorner.name}`;
-  }, [lessonMetaData, currentCorner]);
-
   return (
     <div className="cai-view-yahei">
       <LayoutQuestionHeader
@@ -324,7 +326,7 @@ const QuestionLayout = ({
       />
       <main className="cai-main problem-main">
         <ComponentProblemPagination
-          pages={pages}
+          totalPages={totalPages}
           onClickPagination={handleClickPagination}
         />
         <ComponentProblemNavigation

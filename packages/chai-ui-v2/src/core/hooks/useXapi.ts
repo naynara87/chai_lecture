@@ -33,6 +33,8 @@ const useXapi = () => {
         totalPages,
       );
       setXapiActivity(loadActivityState);
+      // NOTE kjw layout.tsx에서 getState시 값이 있는지 확인하기위해 return
+      return loadActivityState;
     },
     [xapiV1, setXapiActivity],
   );
@@ -226,7 +228,7 @@ const useXapi = () => {
         pageName: currentPage.name,
         pageType: currentPage.type,
         pageAreaCd: currentPage.pageAreaType,
-        pageStyleCode: currentPage.pageStyleCode,
+        pageStyleCode: currentPage.pageStyleCode ?? null,
         pageTemplateCode: currentPage.contentsType,
       };
       xapiV1?.sendProgress(

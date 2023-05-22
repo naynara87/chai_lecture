@@ -1,6 +1,17 @@
 import { useMemo } from "react";
-import { AppType, ContextDetail, XapiIndicators, isDevEnv } from "../types";
+import {
+  AppType,
+  ContentData,
+  ContextDetail,
+  XapiIndicators,
+  isDevEnv,
+} from "../types";
 
+interface IncorrectPageData {
+  page_id: string;
+  page_area_code: ContentData["pageArea_type"];
+  timestamp: string;
+}
 interface InitialAppData {
   uno: string;
   uid: string;
@@ -18,17 +29,20 @@ interface InitialAppData {
   result_extensions?: XapiIndicators | string;
   context_details?: ContextDetail | string;
   extension_details?: XapiIndicators | string;
+  incorrectPageDatas?: IncorrectPageData[];
 }
 
 const testData: InitialAppData = {
   uno: "1",
   uid: "12345",
-  name: "버블콘테스트123",
+  name: "버블콘테스트12458",
   applId: "123456",
   courseId: "1",
   courseName: "red",
   subjectId: "1",
-  lessonId: "279",
+  lessonId: "418",
+  // lessonId: "329",
+  // lessonId: "12345",
   lessonName: "red1",
   // turnId: "808e1d4a-725c-45a4-bef7-ab01aae81103",
   // pageId: "fa25b9ac-e940-46a6-a487-4410e32d784a",
@@ -173,6 +187,24 @@ const testData: InitialAppData = {
       null,
     "https://profile.caihong.co.kr/content-management/course/lessons/pages": 20,
   },
+  // NOTE kjw 오답점검때만 있는 데이터
+  // incorrectPageDatas: [
+  //   {
+  //     page_id: "2136f2ca-6217-424f-89af-00352d6d2470",
+  //     page_area_code: "a3",
+  //     timestamp: "2023.05.18 16:42:23",
+  //   },
+  //   {
+  //     page_id: "694c442c-3b05-4ed7-aff2-0e810958563e",
+  //     page_area_code: "a6",
+  //     timestamp: "2023.05.18 16:42:26",
+  //   },
+  //   {
+  //     page_id: "e34ff60a-365d-455c-893a-ed0f3a589f14",
+  //     page_area_code: "a3",
+  //     timestamp: "2023.05.18 16:42:28",
+  //   },
+  // ],
 };
 
 const useLmsInputValue = () => {

@@ -88,7 +88,8 @@ export interface ProgressPageData {
   pageName: string;
   pageType: string;
   pageAreaCd: string | number;
-  pageStyleCode: string | number;
+  // NOTE kjw 오답점검에선 해당 데이터를 가져올 수 없음 문제레슨에선 해당 코드 필요없다하여 null 처리
+  pageStyleCode: string | number | null;
   pageTemplateCode: string | number;
 }
 

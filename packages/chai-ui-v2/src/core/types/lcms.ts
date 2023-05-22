@@ -25,7 +25,8 @@ export interface ContentData {
   page_id: ID;
   contents_type: string; // 10 : 학습, 20 : 퀴즈, 30 : 테스트
   contents_uuid: string; // contents_data에 대한 uuid
-  pageStyle_code: string | number; // 페이지 유형 코드
+  // NOTE kjw 오답점검에선 해당 데이터를 가져올 수 없음 문제레슨에선 해당 코드 필요없다하여 null 처리
+  pageStyle_code: string | number | null; // 페이지 유형 코드
   contents_data: string; // JSON.parse 필요
   /**
    * a1:중국어 개요,
@@ -70,3 +71,14 @@ export interface CornerListDataBody {
 //   name: string;
 //   pages: number[];
 // }
+
+export interface ContentsDataDetailListResponse {
+  body: {
+    list: {
+      page_id: ID;
+      contents_type: string; // 10 : 학습, 20 : 퀴즈, 30 : 테스트
+      contents_uuid: string; // contents_data에 대한 uuid
+      contents_data: string; // JSON.parse 필요
+    }[];
+  };
+}
