@@ -86,6 +86,25 @@ const QuestionScore = () => {
     btnQuit?.click();
   };
 
+  const handleClickReport = async () => {
+    if (courseId && lessonId && cornerId) {
+      const contentIds = quizPageData.map((pageData) => pageData.contentId);
+      try {
+        await deleteQuestion(contentIds, initialDataFromPhp?.uid ?? "");
+      } catch (error) {
+        addToast("서버 통신에 실패했습니다. 다시 시도해주세요.", "error");
+      }
+    }
+    console.log("report", progressData);
+    window.parent.postMessage(
+      {
+        func: "report",
+        data: progressData,
+      },
+      "*",
+    );
+  };
+
   return (
     <div className="cai-view-yahei">
       <LayoutQuestionHeader
@@ -105,6 +124,7 @@ const QuestionScore = () => {
             <ComponentProblemUserInfo
               quizPageData={quizPageData}
               quizTypeText={state.lessonName}
+              onClickReportBtn={handleClickReport}
             />
             <ComponentProblemGrade
               quizPageData={quizPageData}

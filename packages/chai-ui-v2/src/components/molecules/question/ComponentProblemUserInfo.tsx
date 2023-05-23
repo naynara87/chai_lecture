@@ -4,11 +4,13 @@ import { QuizData, useLmsInputValue } from "../../../core";
 interface ComponentProblemUserInfoProps {
   quizPageData: QuizData[];
   quizTypeText: string;
+  onClickReportBtn: () => void;
 }
 
 const ComponentProblemUserInfo = ({
   quizPageData,
   quizTypeText,
+  onClickReportBtn,
 }: ComponentProblemUserInfoProps) => {
   const { lmsInputValue: initialDataFromPhp } = useLmsInputValue();
   const score = useMemo(() => {
@@ -22,6 +24,10 @@ const ComponentProblemUserInfo = ({
     return initialDataFromPhp?.name;
   }, [initialDataFromPhp]);
 
+  const handleClickReport = () => {
+    onClickReportBtn();
+  };
+
   return (
     <div className="problem-user-info-wrap">
       <h3 className="user-title">
@@ -34,9 +40,13 @@ const ComponentProblemUserInfo = ({
         <div className="score">
           <b>{Math.floor(score)}</b>점
         </div>
-        {/* <button type="button" className="btn-problem-white-round btn">
+        <button
+          type="button"
+          onClick={handleClickReport}
+          className="btn-problem-white-round btn"
+        >
           내 성취도 보러가기
-        </button> */}
+        </button>
       </div>
     </div>
   );

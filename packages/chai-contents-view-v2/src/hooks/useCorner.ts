@@ -110,22 +110,20 @@ const useCorner = (cornerId: ID | undefined, lessonId: ID | undefined) => {
         console.log(error);
         if (
           // 토큰 만료
-          error.response?.status === 401
+          error.response?.status === 401 ||
+          // 토큰 인증 실패
+          error.response?.status === 403
         ) {
           // logout();
           addToast(
             "이용 시간이 경과하여 보안을 위해 자동 로그아웃 되었습니다",
             "error",
           );
-          return;
-        }
-        if (
-          // 토큰 인증 실패
-          error.response?.status === 403
-        ) {
-          addToast(
-            "이용 시간이 경과하여 보안을 위해 자동 로그아웃 되었습니다",
-            "error",
+          window.parent.postMessage(
+            {
+              func: "",
+            },
+            "*",
           );
           return;
         }
