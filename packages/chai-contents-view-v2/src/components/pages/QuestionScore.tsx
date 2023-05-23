@@ -95,7 +95,6 @@ const QuestionScore = () => {
         addToast("서버 통신에 실패했습니다. 다시 시도해주세요.", "error");
       }
     }
-    console.log("report", progressData);
     window.parent.postMessage(
       {
         func: "report",
