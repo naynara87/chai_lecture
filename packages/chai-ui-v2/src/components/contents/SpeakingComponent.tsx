@@ -116,6 +116,12 @@ const SpeakingComponent = ({
     };
   }, [globalAudioRef, audioEnded]);
 
+  useEffect(() => {
+    return () => {
+      clearTimeout(speakingTimer.current);
+    };
+  }, []);
+
   const handleClickStartButton = useCallback(() => {
     setIsShowProgressBar(true);
     handleClickAudioButton(
