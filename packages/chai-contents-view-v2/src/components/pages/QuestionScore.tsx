@@ -131,8 +131,8 @@ const QuestionScore = () => {
             description=""
             rightButtonText="다시 풀기"
             leftButtonText="취소"
-            title={`학습 성취도에는 첫 번째 점수만 반영됩니다.
-            그래도 다시 푸시겠어요?`}
+            title={`평가 학습 결과에 재응시 결과가 반영됩니다. 
+            재응시하시겠습니까?`}
             handleClickRightButton={handleClickRestartQuiz}
             handleClickLeftButton={() => setIsModalRestartConfirmOpen(false)}
           />
