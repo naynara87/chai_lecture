@@ -43,8 +43,8 @@
   "scripts": {
     "start": "craco start",
     "dev": "cross-env PORT=3001 craco start",
-    "build": "craco build",
-    "build:prod": "craco build",
+    "build": "GENERATE_SOURCEMAP=false craco build",
+    "build:prod": "GENERATE_SOURCEMAP=false craco build",
     "check-ts": "tsc --noEmit"
   },
   "eslintConfig": {
