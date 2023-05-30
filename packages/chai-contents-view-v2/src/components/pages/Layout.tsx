@@ -178,6 +178,9 @@ const Layout = () => {
     totalPages,
   ]);
 
+  const [deletingQuestionsData, setDeletingQuestionsData] =
+    useState<boolean>(false);
+
   useEffect(() => {
     if (!lessonMetaData) return;
     if (!cornerMetaData) return;
@@ -191,10 +194,12 @@ const Layout = () => {
         xapiActivity?.incorrect_data.length > 0)
     ) {
       isStartedQuiz.current = false;
-      toScorePage();
+      toScorePage(); // 채점 페이지로 이동
+      setDeletingQuestionsData(false);
       return;
     } else {
       isStartedQuiz.current = true;
+      setDeletingQuestionsData(true);
       return;
     }
   }, [state, xapiActivity, toScorePage, lessonMetaData, cornerMetaData]);
@@ -224,6 +229,7 @@ const Layout = () => {
           lessonMetaData={lessonMetaData}
           cornerMetaData={cornerMetaData}
           totalPages={totalPages}
+          deletingQuestionsData={deletingQuestionsData}
         />
       );
     } else {
@@ -237,7 +243,14 @@ const Layout = () => {
         />
       );
     }
-  }, [cornerMetaData, lessonMetaData, corners, pages, totalPages]);
+  }, [
+    cornerMetaData,
+    lessonMetaData,
+    corners,
+    pages,
+    totalPages,
+    deletingQuestionsData,
+  ]);
 
   return <>{layout}</>;
 };

@@ -37,6 +37,7 @@ interface QuestionLayoutProps {
   cornerMetaData: CornerMeta;
   totalPages: (string | number)[];
   corners: CornerListData[];
+  deletingQuestionsData: boolean;
 }
 
 const QuestionLayout = ({
@@ -45,6 +46,7 @@ const QuestionLayout = ({
   cornerMetaData,
   totalPages,
   corners,
+  deletingQuestionsData,
 }: QuestionLayoutProps) => {
   const [, setIsPageCompleted] = useState(false);
   const [isQuestionStartModalOpen, setIsQuestionStartModalOpen] =
@@ -98,8 +100,17 @@ const QuestionLayout = ({
       }
       return curPageData.contents.id.toString();
     });
-    deleteQuestionsData(contentIds);
-  }, [deleteQuestionsData, pages, isSendDeletePagesData]);
+
+    // 처음에 보내지 않다가 스코어페이지로 가는게 아니라면 퀴즈 데이터 삭제 요청
+    if (deletingQuestionsData) {
+      deleteQuestionsData(contentIds);
+    }
+  }, [
+    deleteQuestionsData,
+    pages,
+    isSendDeletePagesData,
+    deletingQuestionsData,
+  ]);
 
   // const exitPlayer = useCallback(() => {
   //   if (!currentPage || !currentPageIndex) return;
