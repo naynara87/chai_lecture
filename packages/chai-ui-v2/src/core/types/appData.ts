@@ -22,8 +22,17 @@ export type LessonMeta = {
   name: string;
   courseId: number;
   courseName: string;
+  /**
+   * lessonTpCd
+   * 10 : 학습 (콘텐츠)
+   * 20 : 연습문제 (문제)
+   * 30 : 종합평가 (문제)
+   */
   lessonTpCd: string;
-  // 레슨 컬러코드 왼쪽부터 빨강, 주황, 노랑, 초록, 파랑, 남색, 보라 순
+  /**
+   * colorTypeCd
+   * 레슨 컬러코드 왼쪽부터 빨강, 주황, 노랑, 초록, 파랑, 남색, 보라 순
+   */
   colorTypeCd: "10" | "20" | "30" | "40" | "50" | "60" | "70";
   colorTypeCdName: string;
 };
