@@ -153,10 +153,10 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
     formData.append("upload_file", file);
     try {
       await saveStt(formData);
-      addToast("녹음파일을 제출하였습니다", "success");
+      // addToast("녹음파일을 제출하였습니다", "success");
     } catch (error) {
       console.log(error);
-      addToast("녹음파일 전송에 실패하였습니다", "error");
+      // addToast("녹음파일 전송에 실패하였습니다", "error");
     } finally {
       setSendingAudio(false);
     }
