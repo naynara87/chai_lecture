@@ -66,14 +66,14 @@ const QuestionScore = () => {
   };
 
   const handleClickClose = async () => {
-    if (courseId && lessonId && cornerId) {
-      const contentIds = quizPageData.map((pageData) => pageData.contentId);
-      try {
-        await deleteQuestion(contentIds, initialDataFromPhp?.uid ?? "");
-      } catch (error) {
-        addToast("서버 통신에 실패했습니다. 다시 시도해주세요.", "error");
-      }
-    }
+    // if (courseId && lessonId && cornerId) {
+    //   const contentIds = quizPageData.map((pageData) => pageData.contentId);
+    //   try {
+    //     await deleteQuestion(contentIds, initialDataFromPhp?.uid ?? "");
+    //   } catch (error) {
+    //     addToast("서버 통신에 실패했습니다. 다시 시도해주세요.", "error");
+    //   }
+    // }
     const btnQuit = document.querySelector<HTMLDivElement>("#quit");
     // await saveProgress();
     window.parent.postMessage(
