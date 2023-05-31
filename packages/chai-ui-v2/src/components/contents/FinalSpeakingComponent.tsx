@@ -110,7 +110,7 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
     void getToken();
   }, []);
 
-  const [sendingAudio, setSendingAudio] = useState(false);
+  const [, setSendingAudio] = useState(false); // sendingAudio
 
   const handleSendRecording = async () => {
     if (!mediaBlobUrl) return;
@@ -340,7 +340,7 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
               void handleSendRecording();
             }}
             isDisabled={isSendBlobUrl}
-            sendingAudio={sendingAudio}
+            // sendingAudio={sendingAudio}
           />
         </div>
       ) : (
