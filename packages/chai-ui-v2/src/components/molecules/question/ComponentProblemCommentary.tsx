@@ -3,8 +3,17 @@ import IconRight from "../../../assets/images/icon/icon_problem_o.svg";
 import IconWrong from "../../../assets/images/icon/icon_problem_x.svg";
 import { QuizData, TemplateQuestionData } from "../../../core";
 import { HtmlContentComponent } from "../../atoms";
+import styled from "@emotion/styled";
 
-interface ComponentProblemCommentaryProps {
+interface ContentsIframeWrapperProps {
+  blockEvent?: boolean;
+}
+
+const ContentsIframeWrapper = styled.div<ContentsIframeWrapperProps>`
+  ${({ blockEvent }) => blockEvent && `pointer-events: none;`}
+`;
+
+interface ComponentProblemCommentaryProps extends ContentsIframeWrapperProps {
   quizPageIdx: number;
   quizTemplateData: TemplateQuestionData;
   quizPageData: QuizData[];
@@ -14,6 +23,7 @@ const ComponentProblemCommentary = ({
   quizPageIdx,
   quizTemplateData,
   quizPageData,
+  blockEvent,
 }: ComponentProblemCommentaryProps) => {
   const [isShowContent, setIsShowContent] = useState(false);
 
@@ -41,7 +51,10 @@ const ComponentProblemCommentary = ({
           >
             문제 {isShowContent ? "닫기" : "열기"}
           </button>
-          <div className={`tab-conts-wrapper ${isShowContent ? "" : "none"}`}>
+          <ContentsIframeWrapper
+            className={`tab-conts-wrapper ${isShowContent ? "" : "none"}`}
+            blockEvent={blockEvent}
+          >
             {quizTemplateData.contents && (
               <iframe
                 src={quizTemplateData.contents.data.interact_url}
@@ -53,7 +66,7 @@ const ComponentProblemCommentary = ({
                 scrolling="no"
               ></iframe>
             )}
-          </div>
+          </ContentsIframeWrapper>
         </div>
         {quizTemplateData.contents && (
           <div className="comment-list-wrap">
