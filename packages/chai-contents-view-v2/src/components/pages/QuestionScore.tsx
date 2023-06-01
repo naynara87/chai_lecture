@@ -139,6 +139,7 @@ const QuestionScore = () => {
                 quizPageIdx={quizPageIdx}
                 quizTemplateData={state?.pages[quizPageIdx].data}
                 quizPageData={quizPageData}
+                blockEvent
               />
             )}
           </div>
