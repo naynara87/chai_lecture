@@ -62,7 +62,7 @@ chai-monorepo
 - [3. 상태 관리](../../docs/view/03_상태관리.md)
 - [4. 스타일](../../docs/view/04_스타일.md)
 - [5. 라우터](../../docs/view/05_라우터.md)
-- 6. API
+- [6. API](../../docs/view/06_API.md)
 - 7. 유틸리티 함수
 - 8. 커스텀 훅
 - 9. 타입
