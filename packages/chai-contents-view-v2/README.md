@@ -59,7 +59,7 @@ chai-monorepo
 
 - [1. 프로젝트 구조](../../docs/view/01_project.md)
 - [2. 컴포넌트](../../docs/view/02_컴포넌트.md)
-- 3. 상태 관리
+- [3. 상태 관리](../../docs/view/03_상태관리.md)
 - 4. 스타일
 - 5. 라우터
 - 6. API
