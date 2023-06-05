@@ -24,6 +24,9 @@ const useXapi = () => {
 
   const { completedPageComponents } = usePageCompleted();
 
+  /**
+   * NOTE kjw 플레이어 실행시 initialize를 발생시켜주는 함수 xapi wrapper에서 activityState를 반환해 플레이어에서 Recoil로 관리할 수 있도록 해준다.
+   */
   const xapiInitialize = useCallback(
     (courseId: ID, lessonId: ID, totalPages: ID[]) => {
       if (!xapiV1) return;
@@ -39,6 +42,9 @@ const useXapi = () => {
     [xapiV1, setXapiActivity],
   );
 
+  /**
+   * NOTE kjw activityState를 수정하는 함수.
+   */
   const updateActivityState = useCallback(
     (activityValues: Partial<LRSActivityState>) => {
       if (!xapiActivity) return;
@@ -52,6 +58,9 @@ const useXapi = () => {
     [xapiActivity],
   );
 
+  /**
+   * NOTE kjw activityState의 progress_data에서 현재 코너의 is_completed를 체크.
+   */
   const isCompletedCurrentPage = useMemo(() => {
     return (
       completedPageComponents.find(
@@ -60,6 +69,10 @@ const useXapi = () => {
     );
   }, [completedPageComponents]);
 
+  /**
+   * NOTE kjw activityState의 incorrect_data, correct_data의 값을 넣어주는 함수.
+   * 문제템플릿에서 채점하기 버튼을 클릭할때 실행이된다.
+   */
   const updateIsCorrectDataCheck = useCallback(
     (totalPages: ID[]) => {
       if (!xapiActivity) return;
@@ -101,6 +114,9 @@ const useXapi = () => {
     [xapiActivity, updateActivityState],
   );
 
+  /**
+   * NOTE kjw activityState의 progress_data에서 현재 페이지의 is_checked, is_completed를 체크해주는 함수.
+   */
   const updateProgressDataPageCheck = useCallback(
     (
       prevCornerId: ID,
@@ -154,6 +170,9 @@ const useXapi = () => {
     [xapiActivity, isCompletedCurrentPage],
   );
 
+  /**
+   * NOTE kjw activityState의 progress와 complete_progress를 체크해주는 함수.
+   */
   const updateProgress = useCallback(
     (progressData: LRSCornerProgress[], totalPages: ID[]) => {
       const flatMapPages = progressData?.flatMap((corner) => corner.pages);
@@ -176,6 +195,10 @@ const useXapi = () => {
     [],
   );
 
+  /**
+   * NOTE kjw 페이지 데이터를 최신화하여 xapi wrapper의 sendProgress 함수를 실행시키는 함수.
+   * 페이지의 데이터값을 가져와 result 값을 최신화한다.
+   */
   const xapiProgress = useCallback(
     (
       currentCorner: CornerListData,
@@ -185,7 +208,7 @@ const useXapi = () => {
       totalPages: ID[],
     ) => {
       if (!xapiActivity) return;
-      // TODO activity state 받아야함.
+
       const nextPageIndex = totalPages.findIndex(
         (page) => page.toString() === nextPageId?.toString(),
       );
@@ -247,6 +270,9 @@ const useXapi = () => {
     ],
   );
 
+  /**
+   * NOTE kjw 문제템플릿일때 sendComplete에서 score부분을 문제 풀이 점수로 넣어주는 함수
+   */
   const getScore = useCallback(() => {
     const quizPageData = LocalStorage.getItem<QuizData[]>("pageData");
 
@@ -260,6 +286,9 @@ const useXapi = () => {
     }
   }, []);
 
+  /**
+   * NOTE kjw xapi wrapper의 sendComplete 함수를 실행시키는 함수.
+   */
   const xapiComplete = useCallback(
     (
       currentCorner: CornerListData,
@@ -331,6 +360,10 @@ const useXapi = () => {
       getScore,
     ],
   );
+  /**
+   * NOTE kjw 최초 실행시 activityState값을 초기화해주는함수.
+   * initialize에서 getState를 하여 기존의 activityState값이 있어 반환을 받았다면 해당함수는 실행되지 않는다.
+   */
   const initialActivityState = useCallback(
     (
       lessonMetaData: LessonMeta,
@@ -387,6 +420,10 @@ const useXapi = () => {
     [setXapiActivity, xapiActivity],
   );
 
+  /**
+   * NOTE kjw video, audio 실행시마다 발생하는 함수. 
+   * sendPlayed를 실행시켜준다.
+   */
   const xapiPlayed = useCallback(
     (contentType: "video" | "audio", subContentId: ID, contentUrl: string) => {
       if (currentPage) {
@@ -396,6 +433,10 @@ const useXapi = () => {
     [xapiV1, currentPage],
   );
 
+  /**
+   * NOTE kjw 콘텐츠템플릿에서 문제콘텐츠를 풀 때 마다 발생하는 함수. 
+   * sendAnswered를 실행시켜준다.
+   */
   const xapiAnswered = useCallback(
     (subContentId: ID) => {
       if (currentPage) {
@@ -405,6 +446,10 @@ const useXapi = () => {
     [xapiV1, currentPage],
   );
 
+  /**
+   * NOTE kjw 콘텐츠템플릿에서 녹음을 완료할 때 마다 발생하는 함수. 
+   * sendCreated를 실행시켜준다.
+   */
   const xapiCreated = useCallback(
     (subContentId: ID) => {
       if (currentPage) {
@@ -414,6 +459,11 @@ const useXapi = () => {
     [xapiV1, currentPage],
   );
 
+  /**
+   * NOTE kjw 플레이어에서 학습을 완료하지 않고 중간에 나갔을 때 발생하는 함수.
+   * sendSuspend를 실행시켜준다.
+   * 현재는 문제템플릿에서 도중에 나가는 프로세스가 없기 때문에 콘텐츠템플릿에서만 발생한다.
+   */
   const xapiSuspended = useCallback(
     (
       currentCorner: CornerListData,
