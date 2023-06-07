@@ -1,13 +1,8 @@
 # 콘텐츠 저작도구
 
 - chai-contents-creator-v2
-
-## 개요
-
-- 콘텐츠 저작도구(creator)를 이용해서 만든 컨텐츠를 만들고 콘텐츠 플레이어(viewer)에서 콘텐츠 학습을 합니다
-- 콘텐츠 저작도구와 콘텐츠 플레이어는 공통으로 chai-ui를 사용하고 있습니다
-- chai-ui는 사용자에게 보여지는 컴포넌트위주로 구성된 공통 UI 패키지(라이브러리)입니다
-- 콘텐츠 저작도구에서 미리보기를 통해 콘텐츠 플레이어와 동일한 화면을 확인할 수 있습니다
+- 학습 콘텐츠를 만드는 저작도구입니다
+- 학습 관리자가 콘텐츠 저작을 위해 사용합니다
 
 ## 설치 및 실행
 
@@ -22,13 +17,13 @@ npm run dev
 
 ## 빌드
 
-- 빌드 후 빌드된 파일은 아래 경로에 생성됩니다
-  - chai-content-creator: /packages/chai-content-creator/build/
-
 ```bash
 npm install
 npm run build
 ```
+
+- 빌드 후 빌드된 파일은 아래 경로에 생성됩니다
+  - chai-content-creator: /packages/chai-content-creator/build/
 
 ## 폴더 구조
 
@@ -44,7 +39,7 @@ chai-monorepo
 ├─ package.json // 공통 라이브러리
 └─ packages // 여러 레포지토리를 모아놓은 폴더
    ├─ .gitkeep
-   ├─ chai-contents-creator // 저작 도구
+   ├─ chai-contents-creator-v2 // 저작 도구
    |  ├─ public // 정적 파일들
    |  └─ src
    |     ├─ api // api 호출 관련 함수들 - axios instance, api 호출 함수
