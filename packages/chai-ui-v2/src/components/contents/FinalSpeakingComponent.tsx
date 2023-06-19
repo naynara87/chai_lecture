@@ -13,8 +13,10 @@ import IconReturnButton from "../atoms/Button/IconReturnButton";
 import RecordStopButton from "../atoms/Button/RecordStopButton";
 import {
   FinalSpeakingContentData,
-  getSttAccessToken,
-  saveStt,
+  ID,
+  // getSttAccessToken,
+  nasAddFile,
+  // saveStt,
   useGlobalAudio,
   useLmsInputValue,
   usePageCompleted,
@@ -28,14 +30,25 @@ import { ComponentButtonRadiFillMain } from "../atoms";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
 import ComponentProgress from "../atoms/ComponentProgress";
 import { useParams } from "react-router-dom";
-import {
-  clearHttpSttToken,
-  setHttpSttToken,
-} from "../../core/lib/axios/httpStt";
+// import {
+//   clearHttpSttToken,
+//   setHttpSttToken,
+// } from "../../core/lib/axios/httpStt";
 
 const ButtonWrapper = styled.div`
   line-height: 0;
 `;
+
+interface StudyAddFileData {
+  courseId: ID;
+  lessonId: ID;
+  pageId: ID;
+  origFileName: string;
+  saveFileName: string;
+  filePath: string;
+  fileCpmId?: string;
+  fileCpmUrl?: string;
+}
 
 type RecordedAudioState = "not-recorded" | "recorded" | "playing" | "stopped";
 
@@ -63,8 +76,8 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
       askPermissionOnMount: true,
       blobPropertyBag: {
         // type: "audio/wav",
-        // type: "audio/mp3",
-        type: "audio/ogg", // 재생 됨
+        type: "audio/mp3",
+        // type: "audio/ogg", // 재생 됨
         // type: "audio/webm", // 재생 됨
         // type: "audio/mpeg",
       },
@@ -94,23 +107,33 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
     }
   }, [globalAudioId, status, stopRecording]);
 
-  const [sttApiLogin, setSttApiLogin] = useState(true);
+  // const [sttApiLogin, setSttApiLogin] = useState(true);
 
-  useEffect(() => {
-    const getToken = async () => {
-      try {
-        const tokenData = await getSttAccessToken();
-        const token = tokenData?.token;
-        setHttpSttToken(token);
-        setSttApiLogin(true);
-      } catch (error) {
-        clearHttpSttToken();
-      }
-    };
-    void getToken();
-  }, []);
+  // useEffect(() => {
+  //   const getToken = async () => {
+  //     try {
+  //       const tokenData = await getSttAccessToken();
+  //       const token = tokenData?.token;
+  //       setHttpSttToken(token);
+  //       setSttApiLogin(true);
+  //     } catch (error) {
+  //       clearHttpSttToken();
+  //     }
+  //   };
+  //   void getToken();
+  // }, []);
 
-  const [, setSendingAudio] = useState(false); // sendingAudio
+  const [sendingAudio, setSendingAudio] = useState(false); // sendingAudio
+
+  const studyAdFile = (fileData: StudyAddFileData) => {
+    window.parent.postMessage(
+      {
+        func: "studyAdFile",
+        data: fileData,
+      },
+      "*",
+    );
+  };
 
   const handleSendRecording = async () => {
     if (!mediaBlobUrl) return;
@@ -118,8 +141,8 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
       !lessonId ||
       !cornerId ||
       !pageId ||
-      !initialDataFromPhp?.applId ||
-      !sttApiLogin
+      !initialDataFromPhp?.applId
+      // !sttApiLogin
     ) {
       // NOTE gth 저작도구 미리보기에선 녹음파일을 저장하지 않도록 함
       addToast("녹음파일을 전송할 수 없는 환경입니다");
@@ -130,10 +153,10 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
     setIsSendBlobUrl(true);
 
     // convert blob to mp3 file
-    const fileName = `${initialDataFromPhp.applId}_${lessonId}_${cornerId}_${pageId}.ogg`;
+    const fileName = `${initialDataFromPhp.applId}_${lessonId}_${cornerId}_${pageId}.mp3`;
     const audioBlob = await fetch(mediaBlobUrl).then((r) => r.blob());
     const file = new File([audioBlob], fileName, {
-      type: "audio/ogg",
+      type: "audio/mp3",
       lastModified: Date.now(),
     });
 
@@ -150,9 +173,18 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
     // test 다운로드 파일 끝
 
     const formData = new FormData();
-    formData.append("upload_file", file);
+    formData.append("file", file);
     try {
-      await saveStt(formData);
+      await nasAddFile(formData);
+      studyAdFile({
+        courseId: initialDataFromPhp?.courseId,
+        lessonId: initialDataFromPhp?.lessonId,
+        pageId: pageId,
+        origFileName: fileName,
+        saveFileName: fileName,
+        filePath: `bubblecon/${fileName}`,
+      });
+      // await saveStt(formData);
       // addToast("녹음파일을 제출하였습니다", "success");
     } catch (error) {
       console.log(error);
@@ -340,7 +372,7 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
               void handleSendRecording();
             }}
             isDisabled={isSendBlobUrl}
-            // sendingAudio={sendingAudio}
+            sendingAudio={sendingAudio}
           />
         </div>
       ) : (

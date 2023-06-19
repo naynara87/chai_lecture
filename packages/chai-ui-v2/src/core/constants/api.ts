@@ -12,7 +12,9 @@ export const LMS_SAVE_DATA = "/api/edu/add";
 // LCMS
 export const TOKEN_URL = "/lcms/get-token";
 
+// PHP
 export const DELETE_PHP_URL = `api/content-data-destroy`;
+export const NAS_UPLOAD_URL = `api/essay-upload`;
 
 // 레슨 데이터(코너 리스트)
 // export const getLcmsLessonDataUrl = (lessonId: ID) =>
