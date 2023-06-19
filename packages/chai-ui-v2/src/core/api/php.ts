@@ -1,4 +1,4 @@
-import { DELETE_PHP_URL } from "../constants";
+import { DELETE_PHP_URL, NAS_UPLOAD_URL } from "../constants";
 import httpPhp from "../lib/axios/httpPhp";
 import { DeleteQuestionData } from "../types";
 
@@ -13,6 +13,19 @@ export const deleteQuestion = async (
     data: {
       content_id: contentIds,
       user_id: userId,
+    },
+  });
+  return res.data;
+};
+
+interface NasAddFileResponse {
+  url: string;
+}
+
+export const nasAddFile = async (formData: FormData) => {
+  const res = await httpPhp.post<NasAddFileResponse>(NAS_UPLOAD_URL, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
     },
   });
   return res.data;
