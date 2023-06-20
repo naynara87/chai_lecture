@@ -42,7 +42,8 @@ const ButtonWrapper = styled.div`
 interface StudyAddFileData {
   courseId: ID;
   lessonId: ID;
-  pageId: ID;
+  pageIndex: ID;
+  contentsId: ID;
   origFileName: string;
   saveFileName: string;
   filePath: string;
@@ -152,8 +153,11 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
     setRecordedAudioState("recorded");
     setIsSendBlobUrl(true);
 
+    const pageIndex = document.querySelector(
+      ".ft-conts-wrap .txt b",
+    )?.textContent;
     // convert blob to mp3 file
-    const fileName = `${initialDataFromPhp.applId}_${lessonId}_${cornerId}_${pageId}.mp3`;
+    const fileName = `${initialDataFromPhp.applId}_${lessonId}_${pageIndex}_${contents.id}.mp3`;
     const audioBlob = await fetch(mediaBlobUrl).then((r) => r.blob());
     const file = new File([audioBlob], fileName, {
       type: "audio/mp3",
@@ -179,7 +183,8 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
       studyAdFile({
         courseId: initialDataFromPhp?.courseId,
         lessonId: initialDataFromPhp?.lessonId,
-        pageId: pageId,
+        pageIndex: pageIndex ?? 1,
+        contentsId: contents.id,
         origFileName: fileName,
         saveFileName: fileName,
         filePath: `bubblecon/${fileName}`,
