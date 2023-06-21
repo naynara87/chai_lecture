@@ -11,18 +11,30 @@ export const ConfirmModalButton = styled.button`
   line-height: 1;
 `;
 
-export const ConfirmModalBorderButton = styled(ConfirmModalButton)`
+interface ConfirmModalBorderButtonProps {
+  color?: string;
+}
+
+export const ConfirmModalBorderButton = styled(
+  ConfirmModalButton,
+)<ConfirmModalBorderButtonProps>`
   width: ${vw(195)};
   height: ${vh(72)};
   border: 1px solid ${colorPalette.gray550};
   background-color: ${colorPalette.white};
-  color: #6673a3;
+  color: ${(props) => (props.color ? props.color : "#6673a3")};
 `;
 
-export const ConfirmModalColorButton = styled(ConfirmModalButton)`
+interface ConfirmModalColorButtonProps {
+  color?: string;
+}
+
+export const ConfirmModalColorButton = styled(
+  ConfirmModalButton,
+)<ConfirmModalColorButtonProps>`
   width: ${vw(195)};
   height: ${vh(72)};
-  background-color: #6673a3;
+  background-color: ${(props) => (props.color ? props.color : "#6673a3")};
   color: ${colorPalette.white};
 `;
 
@@ -75,6 +87,7 @@ export interface ModalConfirmViewProps {
   leftButtonText?: string;
   rightButtonText?: string;
   closeOnBackgroundClick?: boolean;
+  btnColor?: string;
 }
 
 const ModalConfirmView = ({
@@ -87,6 +100,7 @@ const ModalConfirmView = ({
   leftButtonText,
   rightButtonText,
   closeOnBackgroundClick,
+  btnColor,
 }: ModalConfirmViewProps) => {
   const handleClose = () => {
     setIsModalOpen(false);
@@ -119,12 +133,14 @@ const ModalConfirmView = ({
           <ConfirmModalBorderButton
             className="modal-confirm-text"
             onClick={_handleClickLeftButton}
+            color={btnColor}
           >
             {leftButtonText || "아니오"}
           </ConfirmModalBorderButton>
           <ConfirmModalColorButton
             className="modal-confirm-text"
             onClick={_handleClickRightButton}
+            color={btnColor}
           >
             {rightButtonText || "예"}
           </ConfirmModalColorButton>

@@ -177,7 +177,12 @@ const XapiProvider = ({ children }: XapiProviderProps) => {
   };
 
   document.addEventListener("playerLoaded", () => {
-    if (initialDataFromPhp) {
+    if (
+      initialDataFromPhp &&
+      objectContext &&
+      contextDetails &&
+      extensionDetails
+    ) {
       xapi_init();
     }
   });

@@ -30,6 +30,7 @@ import { ComponentButtonRadiFillMain } from "../atoms";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
 import ComponentProgress from "../atoms/ComponentProgress";
 import { useParams } from "react-router-dom";
+import { ModalConfirmView } from "../modal";
 // import {
 //   clearHttpSttToken,
 //   setHttpSttToken,
@@ -63,6 +64,7 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
   const recordTime = useRef(0);
   const [recordingTimeState, setRecordingTimeState] = useState(0);
   const [recordedTimeState, setRecordedTimeState] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSendBlobUrl, setIsSendBlobUrl] = useState(false);
   const { lmsInputValue: initialDataFromPhp } = useLmsInputValue();
   const { lessonId, cornerId, pageId } = useParams();
@@ -374,7 +376,8 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
             text="녹음 파일 제출"
             onClickBtn={() => {
               // TODO kjw toast message 띄우기
-              void handleSendRecording();
+              // void handleSendRecording();
+              setIsModalOpen(true);
             }}
             isDisabled={isSendBlobUrl}
             sendingAudio={sendingAudio}
@@ -394,6 +397,24 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
           </div>
         </div>
       )}
+      <ModalConfirmView
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+        title="녹음한 파일을 제출하면 재녹음이 불가능합니다.
+        현재 녹음한 파일을 제출하시겠습니까?"
+        description="다시 녹음을 하시려면 [제출 취소] 버튼을 누른 후,
+        [새로고침] 아이콘을 클릭하세요!"
+        leftButtonText="제출 취소"
+        rightButtonText="제출하기"
+        handleClickLeftButton={() => {
+          setIsModalOpen(false);
+        }}
+        handleClickRightButton={() => {
+          void handleSendRecording();
+          setIsModalOpen(false);
+        }}
+        btnColor="#6e79bd"
+      />
     </div>
   );
 };
