@@ -31,6 +31,7 @@ import HtmlContentComponent from "../atoms/HtmlContentComponent";
 import ComponentProgress from "../atoms/ComponentProgress";
 import { useParams } from "react-router-dom";
 import { ModalConfirmView } from "../modal";
+import html2canvas from "html2canvas";
 // import {
 //   clearHttpSttToken,
 //   setHttpSttToken,
@@ -48,6 +49,7 @@ interface StudyAddFileData {
   origFileName: string;
   saveFileName: string;
   filePath: string;
+  imgFilePath: string;
   fileCpmId?: string;
   fileCpmUrl?: string;
 }
@@ -69,6 +71,7 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
   const { lmsInputValue: initialDataFromPhp } = useLmsInputValue();
   const { lessonId, cornerId, pageId } = useParams();
   const { addToast } = useToast();
+  const exampleContentsRef = useRef<HTMLDivElement>(null);
 
   const [recordedAudioState, setRecordedAudioState] =
     useState<RecordedAudioState>("not-recorded");
@@ -169,6 +172,7 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
     // test 다운로드 파일
     // const elem = document.createElement("a");
     // const url = URL.createObjectURL(file);
+    // console.log("url", url);
     // elem.href = url;
     // elem.download = file.name;
     // document.body.appendChild(elem);
@@ -178,9 +182,23 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
     // console.log("file", file);
     // test 다운로드 파일 끝
 
+    // if (exampleContentsRef.current) {
+    //   const canvas = await html2canvas(exampleContentsRef.current);
+    //   console.log("canvas", canvas.toDataURL("image/png"));
+    //   // const link = document.createElement("a");
+    //   // document.body.appendChild(link);
+    //   // link.href = canvas.toDataURL("image/png");
+    //   // link.download = "result.png";
+    //   // link.click();
+    //   // document.body.removeChild(link);
+    // }
+
     const formData = new FormData();
     formData.append("file", file);
+
     try {
+      if (!exampleContentsRef.current) return;
+      const canvas = await html2canvas(exampleContentsRef.current);
       await nasAddFile(formData);
       studyAdFile({
         courseId: initialDataFromPhp?.courseId,
@@ -190,6 +208,7 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
         origFileName: fileName,
         saveFileName: fileName,
         filePath: `bubblecon/${fileName}`,
+        imgFilePath: canvas.toDataURL("image/png"),
       });
       // await saveStt(formData);
       // addToast("녹음파일을 제출하였습니다", "success");
@@ -359,7 +378,10 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
   return (
     <div>
       {contents.data.exampleContents && (
-        <ComponentGrayLine contents={contents.data.exampleContents} />
+        <ComponentGrayLine
+          contents={contents.data.exampleContents}
+          exampleContentsRef={exampleContentsRef}
+        />
       )}
       <div className="record-btn-wrap">
         <ButtonWrapper>

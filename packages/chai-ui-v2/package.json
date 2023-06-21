@@ -39,7 +39,8 @@
     "sass": "*",
     "swiper": "*",
     "typescript": "*",
-    "uuid": "*"
+    "uuid": "*",
+    "html2canvas": "*"
   },
   "devDependencies": {
     "@babel/core": "*",
