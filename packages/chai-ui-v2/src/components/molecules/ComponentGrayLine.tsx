@@ -3,9 +3,13 @@ import { Content, useContentMapper } from "../../core";
 
 interface ComponentGrayLineProps {
   contents: Content[];
+  exampleContentsRef?: React.RefObject<HTMLDivElement>;
 }
 
-const ComponentGrayLine = ({ contents }: ComponentGrayLineProps) => {
+const ComponentGrayLine = ({
+  contents,
+  exampleContentsRef,
+}: ComponentGrayLineProps) => {
   const { getContentComponent } = useContentMapper();
 
   const mainContents = useMemo(() => {
@@ -14,7 +18,11 @@ const ComponentGrayLine = ({ contents }: ComponentGrayLineProps) => {
     });
   }, [contents, getContentComponent]);
 
-  return <div className="gray-line">{mainContents}</div>;
+  return (
+    <div className="gray-line" ref={exampleContentsRef}>
+      {mainContents}
+    </div>
+  );
 };
 
 export default ComponentGrayLine;
