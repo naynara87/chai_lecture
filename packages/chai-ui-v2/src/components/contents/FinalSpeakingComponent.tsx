@@ -198,7 +198,10 @@ const FinalSpeakingComponent = ({ contents }: FinalSpeakingComponentProps) => {
 
     try {
       if (!exampleContentsRef.current) return;
-      const canvas = await html2canvas(exampleContentsRef.current);
+      const canvas = await html2canvas(exampleContentsRef.current, {
+        allowTaint: true,
+        useCORS: true,
+      });
       await nasAddFile(formData);
       studyAdFile({
         courseId: initialDataFromPhp?.courseId,
