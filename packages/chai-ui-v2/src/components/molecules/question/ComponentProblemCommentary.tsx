@@ -1,19 +1,19 @@
-import React, { useCallback, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import IconRight from "../../../assets/images/icon/icon_problem_o.svg";
 import IconWrong from "../../../assets/images/icon/icon_problem_x.svg";
-import { QuizData, TemplateQuestionData } from "../../../core";
+import { QuizData, TemplateQuestionData, isDevEnv } from "../../../core";
 import { HtmlContentComponent } from "../../atoms";
 import styled from "@emotion/styled";
 
-interface ContentsIframeWrapperProps {
-  blockEvent?: boolean;
-}
+const ContentsIframeWrapper = styled.div``;
 
-const ContentsIframeWrapper = styled.div<ContentsIframeWrapperProps>`
-  ${({ blockEvent }) => blockEvent && `pointer-events: none;`}
-`;
-
-interface ComponentProblemCommentaryProps extends ContentsIframeWrapperProps {
+interface ComponentProblemCommentaryProps {
   quizPageIdx: number;
   quizTemplateData: TemplateQuestionData;
   quizPageData: QuizData[];
@@ -23,13 +23,58 @@ const ComponentProblemCommentary = ({
   quizPageIdx,
   quizTemplateData,
   quizPageData,
-  blockEvent,
 }: ComponentProblemCommentaryProps) => {
   const [isShowContent, setIsShowContent] = useState(false);
+
+  const [currentPageNumber, setCurrentPageNumber] = useState(quizPageIdx);
+
+  useEffect(() => {
+    setCurrentPageNumber(quizPageIdx);
+  }, [quizPageIdx]);
+
+  const reloadIframe = useMemo(() => {
+    return currentPageNumber !== quizPageIdx;
+  }, [currentPageNumber, quizPageIdx]);
 
   const handleClickShowContentButton = useCallback(() => {
     setIsShowContent(!isShowContent);
   }, [isShowContent]);
+
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  /**
+   * NOTE gth 채점결과 페이지에서 문제 미리 보기에서
+   * 안 푼 문제의 경우 풀고 제출하는 버그가 있는데 해당 이벤트를 막기 위한 함수
+   */
+  const handleBlockEvent = useCallback(() => {
+    if (isDevEnv) {
+      iframeRef.current?.setAttribute("style", "pointer-events: none;");
+      return;
+    }
+    const h5pIframe =
+      iframeRef.current?.contentWindow?.document.querySelector<HTMLIFrameElement>(
+        ".h5p-iframe",
+      );
+    const h5pContent =
+      h5pIframe?.contentWindow?.document.querySelector(".h5p-content");
+    if (h5pContent) {
+      h5pContent.setAttribute("style", "pointer-events: none;");
+    }
+  }, []);
+
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    if (reloadIframe) {
+      setIsLoaded(false);
+    }
+  }, [reloadIframe]);
+
+  useEffect(() => {
+    if (isShowContent && isLoaded) {
+      handleBlockEvent();
+    }
+  }, [isShowContent, handleBlockEvent, isLoaded]);
 
   return (
     <div className="problem-commentary-wrapper">
@@ -53,7 +98,6 @@ const ComponentProblemCommentary = ({
           </button>
           <ContentsIframeWrapper
             className={`tab-conts-wrapper ${isShowContent ? "" : "none"}`}
-            blockEvent={blockEvent}
           >
             {quizTemplateData.contents && (
               <iframe
@@ -64,6 +108,8 @@ const ComponentProblemCommentary = ({
                 frameBorder="0"
                 allowFullScreen
                 scrolling="no"
+                onLoad={() => setIsLoaded(true)}
+                ref={iframeRef}
               ></iframe>
             )}
           </ContentsIframeWrapper>

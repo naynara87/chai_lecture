@@ -11,16 +11,6 @@ const TemplateProblem = () => {
       {/* end problem header */}
       {/* problem main layout */}
       <main className="cai-main problem-main">
-        {/* <ComponentProblemTopButtonArea />
-        <div className="layout-panel-wrap grid-h-3-7">
-          <div className="layout-panel pd-40">
-            <ComponentProblemUserInfo />
-            <ComponentProblemGrade />
-          </div>
-          <div className="layout-panel">
-            <ComponentProblemCommentary />
-          </div>
-        </div> */}
         <ComponentButtonRadiFillMain text="채점하기" />
       </main>
 
