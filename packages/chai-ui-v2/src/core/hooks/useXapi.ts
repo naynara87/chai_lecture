@@ -280,7 +280,7 @@ const useXapi = () => {
       const correctQuizPages = quizPageData?.filter((quizPage) => {
         return quizPage.isCorrect;
       });
-      return (100 / quizPageData?.length) * correctQuizPages?.length;
+      return Math.round((100 / quizPageData?.length) * correctQuizPages?.length);
     } else {
       return undefined;
     }
