@@ -38,7 +38,7 @@ const ComponentProblemUserInfo = ({
       </h3>
       <div className="score-wrapper">
         <div className="score">
-          <b>{Math.floor(score)}</b>점
+          <b>{Math.round(score)}</b>점
         </div>
         <button
           type="button"
