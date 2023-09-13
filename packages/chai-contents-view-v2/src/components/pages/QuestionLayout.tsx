@@ -8,7 +8,6 @@ import {
   ModalQuestionTemplate,
   Page,
   QuizData,
-  setCookie,
   TemplateQuestion,
   TemplateQuestionData,
   useLmsInputValue,
@@ -53,6 +52,9 @@ const QuestionLayout = ({
     useState(false);
   const [questionSolvingTime, setQuestionSolvingTime] = useState(0);
   const [isSendDeletePagesData, setIsSendDeletePagesData] = useState(false);
+  const [iframeElement, setIframeElement] = useState<HTMLIFrameElement | null>(
+    null,
+  );
   const { lmsInputValue: initialDataFromPhp } = useLmsInputValue();
   const [, setCurrentPage] = useRecoilState(currentPageState);
 
@@ -148,10 +150,17 @@ const QuestionLayout = ({
       ...currentPage,
       pageIndex: curPageIndex + 1,
     };
-    setCookie("bubble-player-page-data", pageData, {
-      path: "/",
-    });
-  }, [currentPage, pages]);
+
+    if (iframeElement) {
+      iframeElement.contentWindow?.postMessage(
+        {
+          type: "bubble-player-page-data",
+          data: pageData,
+        },
+        "*",
+      );
+    }
+  }, [currentPage, pages, iframeElement]);
 
   const currentCorner = useMemo(() => {
     const currentCornerIndex = corners.findIndex(
@@ -353,6 +362,7 @@ const QuestionLayout = ({
             handleClickCheckAnswer={handleClickCheckAnswer}
             pageIdx={pageIdx}
             totalPages={totalPages}
+            setIframeElement={setIframeElement}
           />
         )}
       </main>
