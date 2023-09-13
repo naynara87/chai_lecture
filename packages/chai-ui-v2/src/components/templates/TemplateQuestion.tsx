@@ -111,12 +111,6 @@ const TemplateQuestion = ({
 
   const iframeRef = React.useRef<HTMLIFrameElement>(null);
 
-  useEffect(() => {
-    if (iframeRef.current && setIframeElement) {
-      setIframeElement(iframeRef.current);
-    }
-  }, [setIframeElement]);
-
   return (
     <div className="layout-panel-wrap">
       {/* <div className="question-number attched">{`[50 ~ 87]`}</div> */}
@@ -134,7 +128,12 @@ const TemplateQuestion = ({
             ref={iframeRef}
             src={thisPage.contents.data.interact_url ?? ""}
             title={thisPage.id.toString()}
-            onLoad={() => setIsLoaded(true)}
+            onLoad={() => {
+              setIsLoaded(true);
+              if (iframeRef.current && setIframeElement) {
+                setIframeElement(iframeRef.current);
+              }
+            }}
             width="100%"
             height="100%"
             frameBorder="0"
