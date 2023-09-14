@@ -1,2 +1,3 @@
 rollup.config.js
+jest.config.mjs
 chai-ui
