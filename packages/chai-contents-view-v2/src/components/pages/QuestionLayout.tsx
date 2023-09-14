@@ -151,7 +151,7 @@ const QuestionLayout = ({
       pageIndex: curPageIndex + 1,
     };
 
-    if (iframeElement) {
+    if (iframeElement && initialDataFromPhp) {
       iframeElement.contentWindow?.postMessage(
         {
           type: "bubble-player-page-data",
@@ -159,8 +159,16 @@ const QuestionLayout = ({
         },
         "*",
       );
+
+      iframeElement.contentWindow?.postMessage(
+        {
+          type: "initial-data",
+          data: initialDataFromPhp,
+        },
+        "*",
+      );
     }
-  }, [currentPage, pages, iframeElement]);
+  }, [currentPage, pages, iframeElement, initialDataFromPhp]);
 
   const currentCorner = useMemo(() => {
     const currentCornerIndex = corners.findIndex(
