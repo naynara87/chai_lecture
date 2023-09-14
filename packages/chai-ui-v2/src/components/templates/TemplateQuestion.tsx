@@ -36,6 +36,7 @@ interface TemplateQuestionProps extends TemplateProps {
   handleClickCheckAnswer?: () => void;
   pageIdx?: number;
   totalPages?: ID[];
+  setIframeElement?: (iframeElement: HTMLIFrameElement) => void;
 }
 
 const TemplateQuestion = ({
@@ -45,6 +46,7 @@ const TemplateQuestion = ({
   handleClickCheckAnswer,
   pageIdx,
   totalPages,
+  setIframeElement,
 }: TemplateQuestionProps) => {
   const thisPage = template as TemplateQuestionData;
   const [isLoaded, setIsLoaded] = useState(false);
@@ -107,6 +109,8 @@ const TemplateQuestion = ({
     }
   }, [handleClickCheckScore, pageIdx, totalPages]);
 
+  const iframeRef = React.useRef<HTMLIFrameElement>(null);
+
   return (
     <div className="layout-panel-wrap">
       {/* <div className="question-number attched">{`[50 ~ 87]`}</div> */}
@@ -121,9 +125,15 @@ const TemplateQuestion = ({
         )}
         {thisPage.contents && (
           <iframe
+            ref={iframeRef}
             src={thisPage.contents.data.interact_url ?? ""}
             title={thisPage.id.toString()}
-            onLoad={() => setIsLoaded(true)}
+            onLoad={() => {
+              setIsLoaded(true);
+              if (iframeRef.current && setIframeElement) {
+                setIframeElement(iframeRef.current);
+              }
+            }}
             width="100%"
             height="100%"
             frameBorder="0"
