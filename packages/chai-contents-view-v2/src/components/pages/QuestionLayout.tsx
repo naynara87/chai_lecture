@@ -26,9 +26,9 @@ import { useRecoilState } from "recoil";
 import usePages from "../../hooks/usePages";
 import { currentCornerIdState } from "../../state/currentCornerId";
 import { getPageUrl } from "../../util/url";
+import ComponentProblemNavigation from "../molecules/ComponentProblemNavigation";
 import ComponentProblemPagination from "../molecules/ComponentProblemPagination";
 import LayoutQuestionHeader from "../molecules/LayoutQuestionHeader";
-import ComponentProblemNavigation from "../molecules/ComponentProblemNavigation";
 
 interface QuestionLayoutProps {
   pages: Page[];
@@ -52,9 +52,6 @@ const QuestionLayout = ({
     useState(false);
   const [questionSolvingTime, setQuestionSolvingTime] = useState(0);
   const [isSendDeletePagesData, setIsSendDeletePagesData] = useState(false);
-  const [iframeElement, setIframeElement] = useState<HTMLIFrameElement | null>(
-    null,
-  );
   const { lmsInputValue: initialDataFromPhp } = useLmsInputValue();
   const [, setCurrentPage] = useRecoilState(currentPageState);
 
@@ -143,32 +140,36 @@ const QuestionLayout = ({
   //   return "학습을 종료하시겠습니까?";
   // });
 
-  useEffect(() => {
-    if (!currentPage) return;
-    const curPageIndex = pages.findIndex((page) => page.id === currentPage.id);
-    const pageData = {
-      ...currentPage,
-      pageIndex: curPageIndex + 1,
-    };
-
-    if (iframeElement && initialDataFromPhp) {
-      iframeElement.contentWindow?.postMessage(
-        {
-          type: "bubble-player-page-data",
-          data: pageData,
-        },
-        "*",
+  const throwPageDataHandler = useCallback(
+    (iframeElement: HTMLIFrameElement) => {
+      if (!currentPage) return;
+      const curPageIndex = pages.findIndex(
+        (page) => page.id === currentPage.id,
       );
+      const pageData = {
+        ...currentPage,
+        pageIndex: curPageIndex + 1,
+      };
+      if (iframeElement && initialDataFromPhp) {
+        iframeElement.contentWindow?.postMessage(
+          {
+            type: "bubble-player-page-data",
+            data: pageData,
+          },
+          "*",
+        );
 
-      iframeElement.contentWindow?.postMessage(
-        {
-          type: "initial-data",
-          data: initialDataFromPhp,
-        },
-        "*",
-      );
-    }
-  }, [currentPage, pages, iframeElement, initialDataFromPhp]);
+        iframeElement.contentWindow?.postMessage(
+          {
+            type: "initial-data",
+            data: initialDataFromPhp,
+          },
+          "*",
+        );
+      }
+    },
+    [currentPage, pages, initialDataFromPhp],
+  );
 
   const currentCorner = useMemo(() => {
     const currentCornerIndex = corners.findIndex(
@@ -370,7 +371,7 @@ const QuestionLayout = ({
             handleClickCheckAnswer={handleClickCheckAnswer}
             pageIdx={pageIdx}
             totalPages={totalPages}
-            setIframeElement={setIframeElement}
+            throwPageDataHandler={throwPageDataHandler}
           />
         )}
       </main>

@@ -36,7 +36,7 @@ interface TemplateQuestionProps extends TemplateProps {
   handleClickCheckAnswer?: () => void;
   pageIdx?: number;
   totalPages?: ID[];
-  setIframeElement?: (iframeElement: HTMLIFrameElement) => void;
+  throwPageDataHandler?: (iframeElement: HTMLIFrameElement) => void;
 }
 
 const TemplateQuestion = ({
@@ -46,7 +46,7 @@ const TemplateQuestion = ({
   handleClickCheckAnswer,
   pageIdx,
   totalPages,
-  setIframeElement,
+  throwPageDataHandler,
 }: TemplateQuestionProps) => {
   const thisPage = template as TemplateQuestionData;
   const [isLoaded, setIsLoaded] = useState(false);
@@ -130,8 +130,8 @@ const TemplateQuestion = ({
             title={thisPage.id.toString()}
             onLoad={() => {
               setIsLoaded(true);
-              if (iframeRef.current && setIframeElement) {
-                setIframeElement(iframeRef.current);
+              if (iframeRef.current) {
+                throwPageDataHandler && throwPageDataHandler(iframeRef.current);
               }
             }}
             width="100%"

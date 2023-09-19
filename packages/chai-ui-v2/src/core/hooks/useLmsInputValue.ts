@@ -34,7 +34,7 @@ interface InitialAppData {
 
 const getTestData = (): InitialAppData => {
   // const lessonId = 329;
-  const lessonId = 418;
+  const lessonId = 98;
   const isContents = false; // 콘텐츠 true, 문제 false
 
   return {
