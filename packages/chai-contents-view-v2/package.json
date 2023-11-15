@@ -17,6 +17,7 @@
     "@types/react-dom": "*",
     "axios": "*",
     "chai-ui-v2": "*",
+    "cross-env": "*",
     "react": "*",
     "react-dom": "*",
     "react-router-dom": "*",
@@ -33,6 +34,7 @@
   "scripts": {
     "start": "craco start",
     "dev": "craco start",
+    "dev:content": "cross-env REACT_APP_MODE=content craco start",
     "build": "GENERATE_SOURCEMAP=false craco build",
     "build:prod": "GENERATE_SOURCEMAP=false craco build",
     "check-ts": "tsc --noEmit"

@@ -9,6 +9,7 @@
     "build": "nx run-many --target=build",
     "build:prod": "nx run-many --target=build:prod",
     "dev": "nx run-many --target=dev",
+    "dev:content": "nx run chai-ui-v2:dev & nx run chai-contents-creator-v2:dev & nx run chai-contents-view-v2:dev:content",
     "lint": "nx run-many --target=check-ts && eslint \"./packages/**/src/**/*.{ts,jsx,tsx}\"",
     "prepare": "husky install"
   },
