@@ -33,9 +33,12 @@ interface InitialAppData {
 }
 
 const getTestData = (): InitialAppData => {
-  // const lessonId = 329;
-  const lessonId = 98;
-  const isContents = false; // 콘텐츠 true, 문제 false
+  const mode = process.env.REACT_APP_MODE;
+  let lessonId = 98;
+  if (mode === "content") {
+    lessonId = 329;
+  }
+  const isContents = mode === "content";
 
   return {
     uno: "1",
