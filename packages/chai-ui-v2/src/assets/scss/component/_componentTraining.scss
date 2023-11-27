@@ -4,12 +4,12 @@
     gap: vw(36);
   }
 
-  margin-top: vh(90);
+  margin-top: 7.5vmin;
 }
 
 .training-list {
-  width: vw(348);
-  height: vw(361);
+  width: 34vmin;
+  height: 33vmin;
   border: 1px solid color(gray-db);
   border-radius: vw(20);
   background: #ffffff;
@@ -18,7 +18,7 @@
     @include gradiant;
 
     position: relative;
-    height: vw(165);
+    height: 44%;
     padding-bottom: vh(29);
     border-radius: vw(20) vw(20) 0 0;
     text-align: center;
@@ -26,16 +26,14 @@
 
   .gradi-conts-wrap {
     position: relative;
-    top: vw(-70);
+    top: -6vmin;
   }
 
   .img-wrap {
-    @include circle(vw(140));
+    @include circle(11vmin);
 
-    max-width: 140px;
-    max-height: 140px;
     margin: 0 auto;
-    border: vw(10) solid color(gray-ff);
+    border: 0.7vmin solid color(gray-ff);
     box-shadow: 0 6px 0 rgba(88, 88, 88, 0.2);
 
     img {
@@ -46,9 +44,9 @@
   }
 
   .title {
-    margin-top: vh(18);
+    margin-top: 1.5vmin;
     font-weight: 600;
-    font-size: vw(32);
+    font-size: 3.4vmin;
     line-height: 1.5;
   }
 
@@ -56,9 +54,8 @@
     @include scrollbar;
 
     overflow: auto;
-    height: calc(100% - vw(165));
-    padding-bottom: vh(30);
-    font-size: vw(24);
+    /* height: calc(100% - vw(165)); */
+    font-size: 2vmin;
 
     // .text {
     //   line-height: 1;
@@ -72,8 +69,8 @@
       @include scrollbar;
 
       overflow: auto;
-      max-height: calc(100% - vh(20));
-      padding: vh(30) vw(45) 0;
+      max-height: calc(100% - 1vmin);
+      padding: 2.5vmin 4vmin 0;
     }
   }
 

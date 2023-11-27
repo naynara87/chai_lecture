@@ -1,13 +1,13 @@
 /* =================== componentGrayLine =================== */
 .gray-line {
-  padding: vh(40) vw(60);
+  padding: 3vmin 3vmin;
   border: 1px solid color(gray-db);
-  border-radius: vw(20);
-  font-size: vw(32);
+  border-radius: calc($border-radius * 0.5);
+  font-size: 1.6vmin;
   line-height: 1.6;
   white-space: pre-line;
 
-  >div:not(:first-of-type) {
+  > div:not(:first-of-type) {
     margin-top: vh(40);
   }
 
@@ -16,7 +16,7 @@
     height: vw(150);
   }
 
-  ~.record-btn-wrap {
+  ~ .record-btn-wrap {
     margin-top: vw(40);
   }
 }

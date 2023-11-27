@@ -2,7 +2,7 @@
 $cont-padding: vw(40);
 $main-light-color: #e3e3e7;
 $main-color: #6673a3;
-$main-dark-color: #46538C;
+$main-dark-color: #46538c;
 $gray-color: #d6d7da;
 
 // header style
@@ -30,7 +30,7 @@ $gray-color: #d6d7da;
   align-items: center;
   color: color(gray-ff);
 
-  >img {
+  > img {
     margin-right: vw(10);
     vertical-align: bottom;
   }
@@ -86,7 +86,7 @@ $gray-color: #d6d7da;
   box-shadow: 0 vw(6) vw(20) rgba(120, 127, 153, 0.6);
   transition: all 0.3s;
 
-  >span {
+  > span {
     display: block;
     margin-bottom: vh(8);
     font-weight: 600;
@@ -182,7 +182,7 @@ $gray-color: #d6d7da;
   background-color: $main-light-color;
   font-size: vw(24);
 
-  >b {
+  > b {
     color: $main-color;
   }
 }

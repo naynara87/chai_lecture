@@ -225,7 +225,7 @@ button:hover {
   border-radius: vw(100);
   background-color: color(main);
   font-weight: 600;
-  font-size: vw(26);
+  font-size: 2.6vmin;
   color: color(gray-ff);
   box-shadow: $btn-shadow;
 
@@ -320,14 +320,15 @@ button:hover {
 .ft-icon-btn {
   @extend %btn;
 
-  @include circle(vw(50));
+  @include circle(5vmin);
+
   @include flex-center;
 
   border: 1px solid color(gray-ff);
   box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
 
   > img {
-    width: vw(16);
+    width: 30%;
   }
 
   @media (hover: hover) and (pointer: fine) {
@@ -350,16 +351,16 @@ button:hover {
   position: absolute;
   top: 0;
   left: 0;
-  width: vw(215);
+  width: 25vmin;
   height: 100%;
-  padding: 0 vw(40);
+  padding: 0 2em;
   font-weight: 600;
-  font-size: vw(26);
+  font-size: 3vmin;
   color: color(gray-ff);
 
   .icon {
     display: inline;
-    width: vw(20);
+    width: 20%;
     margin-left: vw(20);
   }
 

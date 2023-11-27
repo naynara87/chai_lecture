@@ -2,118 +2,117 @@
 $flag-width: 42px;
 
 .cai-hd {
-	z-index: z(header);
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: $hd-height;
+  z-index: z(header);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: $hd-height;
 }
 
 .hd-conts-wrap {
-	position: relative;
-	height: 100%;
-	padding-right: clamp($flag-width, vw(62), 62px);
-	text-align: right;
-	transition: width 1200ms;
-	transition-timing-function: linear;
+  position: relative;
+  height: 100%;
+  padding-right: clamp($flag-width, vw(62), 62px);
+  text-align: right;
+  transition: width 1200ms;
+  transition-timing-function: linear;
 
-	@include make-after {
-		z-index: z(minus);
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: calc(100% - $flag-width);
-		height: 100%;
-	}
+  @include make-after {
+    z-index: z(minus);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100% - $flag-width);
+    height: 100%;
+  }
 
-	@include make-before {
-		z-index: z(minus);
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 0;
-		height: 100%;
-		transition: width 1200ms;
-		transition-timing-function: linear;
-	}
+  @include make-before {
+    z-index: z(minus);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    transition: width 1200ms;
+    transition-timing-function: linear;
+  }
 
-	.bg-wrap {
-		z-index: z(one);
-		overflow: hidden;
-		position: absolute;
-		top: 0;
-		left: auto;
-		right: 0;
-		width: $flag-width;
-		height: $hd-height;
-	}
+  .bg-wrap {
+    z-index: z(one);
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: auto;
+    right: 0;
+    width: $flag-width;
+    height: $hd-height;
+  }
 
-	.bg-flag {
-		@include square(100px);
-
-		position: absolute;
-		top: 50%;
-		left: auto;
-		right: -30px;
-		border-radius: 10px;
-		transform: translate(-50%, -50%) rotate(45deg);
-	}
+  .bg-flag {
+    @include square(100px);
+    position: absolute;
+    top: 50%;
+    left: auto;
+    right: -30px;
+    border-radius: 10px;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
 }
 
 .hd-cha-wrap {
-	@include flex-center(inline-flex);
+  @include flex-center(inline-flex);
 
-	z-index: z(two);
-	position: relative;
-	margin-top: vw(10);
+  z-index: z(two);
+  position: relative;
+  margin-top: 0.4em;
 
-	.img {
-		width: vw(100);
-	}
+  .img {
+    width: 9vmin;
+  }
 
-	.txt {
-		position: absolute;
-		top: vh(40);
-		padding: vh(12) vw(34);
-		border-radius: vw(35);
-		background-color: color(gray-ff);
-		font-weight: 600;
-		font-size: vw(26);
-		box-shadow: 0 3px 20px rgba(0, 0, 0, 0.15);
-		white-space: nowrap;
-	}
+  .txt {
+    position: absolute;
+    top: 1.5em;
+    padding: 0.5em 1em;
+    border-radius: $border-pill-radius;
+    background-color: color(gray-ff);
+    font-weight: 600;
+    font-size: 2.4vmin;
+    box-shadow: $box-shadow;
+    white-space: nowrap;
+  }
 
-	&.first-half {
-		.img {
-			margin-left: vw(10);
-		}
+  &.first-half {
+    .img {
+      margin-left: vw(10);
+    }
 
-		.txt {
-			left: calc(100% + vw(10));
-			border-top-left-radius: 0;
-		}
-	}
+    .txt {
+      left: calc(100% + vw(10));
+      border-top-left-radius: 0;
+    }
+  }
 
-	&.second-half {
-		.img {
-			margin-right: vw(10);
-		}
+  &.second-half {
+    .img {
+      margin-right: vw(10);
+    }
 
-		.txt {
-			left: auto;
-			right: calc(100% + vw(10));
-			border-top-right-radius: 0;
-		}
-	}
+    .txt {
+      left: auto;
+      right: calc(100% + vw(10));
+      border-top-right-radius: 0;
+    }
+  }
 }
 
 .corner-name {
-	display: inline-block;
-	height: $hd-height;
-	line-height: $hd-height;
-	font-weight: 600;
-	font-size: vw(30);
-	color: color(gray-ff);
-	vertical-align: top;
+  display: inline-block;
+  height: $hd-height;
+  font-weight: 600;
+  font-size: 3vmin;
+  color: color(gray-ff);
+  vertical-align: top;
+  padding: 0.4em 0;
 }

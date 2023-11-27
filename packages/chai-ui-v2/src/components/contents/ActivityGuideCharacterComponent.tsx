@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { ActivityGuideCharacterContentData } from "../../core";
 import { HtmlContentComponent } from "../atoms";
 import styled from "@emotion/styled";
-import { vw } from "../../assets";
 import allCharacter from "../../assets/images/img/cha_all.png";
 
 const ContStartWrapper = styled.div`
@@ -12,20 +11,19 @@ const ContStartWrapper = styled.div`
   flex-direction: column;
 
   .text-bubble-wrap {
-    padding: ${vw(30)};
-    border-radius: ${vw(20)};
+    padding: 4vmin;
+    border-radius: 20vmin;
     font-weight: 400;
-    font-size: ${vw(22)};
-    max-width: ${vw(310)};
+    font-size: 2.2vmin;
   }
 
   .character-wrap {
-    margin-top: ${vw(57)};
+    margin-top: 3.85vmin;
     text-align: center;
 
     .img {
-      width: ${vw(180)};
-      height: ${vw(180)};
+      width: 18vmin;
+      height: 18vmin;
       object-fit: cover;
     }
   }

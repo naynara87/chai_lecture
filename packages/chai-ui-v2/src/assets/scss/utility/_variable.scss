@@ -18,7 +18,7 @@ $green-500: #30c17b; // fix: right
 $orange-300: #f5b057;
 $orange-400: #ee8407; // fix: warning
 $orange-500: #fea451;
-$orange-600: #FE8F29;
+$orange-600: #fe8f29;
 $orange-700: #e28733;
 $gray-22: #222222; // fix
 $gray-56: #565656; // fix
@@ -82,9 +82,33 @@ $path-set: (
   img: "./images/img/",
 );
 
-// common size
-$hd-height: clamp(40px, vh(85), 85px);
-$ft-height: clamp(40px, vh(90), 90px);
+/* common size */
+$hd-height: 7vmin;
+$ft-height: 7vmin;
+$line-height: 2.3;
 $btn-shadow: 0 vw(8) 0 rgba(88, 88, 88, 0.2);
 $active-shadow: 0 vw(4) 0 rgba(88, 88, 88, 0.2),
   inset 0 vw(4) 0 rgba(88, 88, 88, 0.2);
+$border-radius: 2.6vmin;
+$border-pill-radius: 2em;
+$box-shadow: 0 3px 20px rgba(0, 0, 0, 0.15);
+
+.height_fit {
+  --ratio: 19 / 9;
+  --width: calc(var(--height) * var(--ratio));
+  --height: min(80vw, calc(80vh * 0.9));
+}
+.width_fit {
+  --ratio: 9 / 19 !important;
+  --width: 98vmin;
+  --height: calc(var(--width) * var(--ratio));
+}
+:root {
+  --rem: 16;
+  --hd-height: 7vmin;
+  --ft-height: 7vmin;
+  --bg-color: #f0f0f0;
+  --top-color: #f89e9e;
+  --bottom-color: #565656;
+  --box-shadow: 2px 6px 12px rgba(0, 0, 0, 0.15);
+}

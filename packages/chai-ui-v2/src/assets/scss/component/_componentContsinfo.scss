@@ -1,58 +1,58 @@
 /* =================== componentContsinfo =================== */
 .cont-info-wrap {
-	@include flex-center {
-		flex-direction: column;
-	}
+  @include flex-center {
+    flex-direction: column;
+  }
 
-	overflow: auto;
-	height: 100%;
+  overflow: auto;
+  height: 100%;
 
-	.character-wrapper {
-		width: 100%;
-	}
+  .character-wrapper {
+    width: 100%;
+  }
 
-	.character-wrap {
-		margin-top: vh(62);
+  .character-wrap {
+    margin-top: vh(62);
 
-		.img {
-			height: vh(167);
-		}
-	}
+    .img {
+      height: vh(167);
+    }
+  }
 
-	.text-bubble-wrap {
-		margin: 0 auto;
-	}
+  .text-bubble-wrap {
+    margin: 0 auto;
+  }
 
-	.btns-wrap {
-		display: block;
-		margin-bottom: vh(57);
-		text-align: center;
+  .btns-wrap {
+    display: block;
+    margin-bottom: vh(57);
+    text-align: center;
 
-		.txt {
-			margin-top: vh(20);
-			font-size: vw(26);
-		}
-	}
+    .txt {
+      margin-top: vh(20);
+      font-size: vw(26);
+    }
+  }
 }
 
 .text-bubble-wrap {
-	position: relative;
-	padding: vh(30) vw(30);
-	border-radius: vw(20);
-	background-color: color(bubble-gray);
-	font-weight: 400;
-	font-size: vw(22);
-	text-align: center;
+  position: relative;
+  padding: vh(30) vw(30);
+  border-radius: $border-radius;
+  background-color: color(bubble-gray);
+  font-weight: 400;
+  font-size: 2.4vmin;
+  text-align: center;
 
-	@include make-after {
-		@include bg-url(icon, 'icon_contsinfo_tail.svg');
-		@include bg-op($s: 100%);
+  @include make-after {
+    @include bg-url(icon, "icon_contsinfo_tail.svg");
+    @include bg-op($s: 100%);
 
-		position: absolute;
-		top: 99%;
-		left: 50%;
-		width: vw(38);
-		height: vw(37);
-		transform: translateX(-50%);
-	}
+    position: absolute;
+    top: 99%;
+    left: 50%;
+    width: 3vmin;
+    height: 3vmin;
+    transform: translateX(-50%);
+  }
 }

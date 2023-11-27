@@ -44,13 +44,13 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: vw(800);
-  padding: vh(60) vw(60);
-  border-radius: vw(30);
+  width: 78vmin;
+  padding: 4vmin 5vmin;
+  border-radius: $border-radius;
   background-color: color(gray-ff);
   transform: translate(-50%, -50%) scale(0.2);
-  transition: all 0.3s;
-  transition-timing-function: ease-in-out;
+  /* transition: all 0.3s;
+  transition-timing-function: ease-in-out; */
 
   @at-root .active & {
     transform: translate(-50%, -50%);
@@ -85,9 +85,9 @@
     }
 
     .swiper-pagination-bullet {
-      width: vw(16);
-      height: vw(16);
-      margin: 0 vw(9) !important;
+      width: 1.5vmin;
+      height: 1.5vmin;
+      margin: 0 0.75vmin !important;
       background-color: color(gray-c9);
       opacity: 1;
       line-height: 1;
@@ -95,7 +95,7 @@
 
     .swiper-pagination-bullet-active {
       background-color: color(gray-80);
-      width: vw(40);
+      width: 4vmin;
       border-radius: vw(30);
     }
   }
@@ -115,7 +115,7 @@
   }
 
   .profile-img-wrap {
-    @include circle(vw(180));
+    @include circle(18vmin);
 
     flex-shrink: 0;
 
@@ -132,13 +132,12 @@
 
   .ttl {
     font-weight: 600;
-    font-size: vw(60);
+    font-size: 6vmin;
   }
 
   .txt {
-    // margin-top: vh(15);
     font-weight: 600;
-    font-size: vw(32);
+    font-size: 2.4vmin;
     color: color(gray-80);
   }
 }
@@ -151,17 +150,17 @@
   flex-direction: column;
   touch-action: pan-y;
   width: 100%;
-  max-height: vh(440);
-  margin-top: vh(40);
-  // margin-bottom: vh(60);
+  max-height: 30vmin;
+  margin-top: 5vmin;
   background-color: color(gray-f0);
   text-align: center;
   white-space: pre-wrap;
-  padding: vw(60);
+  padding: 1em 2em;
+  border-radius: calc($border-radius * 0.5);
 
   .dec {
     line-height: 1.6;
-    font-size: vw(28);
+    font-size: 2.2vmin;
   }
 
   .btn-icon {
@@ -186,8 +185,8 @@
 
     .profile-img-wrap {
       overflow: visible;
-      width: vw(180);
-      height: vw(180);
+      width: 18vmin;
+      height: 18vmin;
     }
 
     .img {
