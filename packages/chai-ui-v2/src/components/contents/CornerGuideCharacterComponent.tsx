@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { CornerGuideCharacterContentData } from "../../core";
 import { HtmlContentComponent, ImgCharacterComponent } from "../atoms";
 import styled from "@emotion/styled";
-import { vw } from "../../assets";
 
 export interface CornerGuideCharacterComponentProps {
   contents: CornerGuideCharacterContentData;
@@ -15,20 +14,20 @@ const ContStartWrapper = styled.div`
   flex-direction: column;
 
   .text-bubble-wrap {
-    margin-top: ${vw(27)};
-    padding: ${vw(40)} ${vw(80)};
-    border-radius: ${vw(100)};
+    margin-top: 3vmin;
+    padding: 1em 2.5em;
+    border-radius: 10vmin;
     font-weight: 600;
-    font-size: ${vw(36)};
+    font-size: 3vmin;
   }
 
   .character-wrap {
-    margin-top: ${vw(57)};
+    margin-top: 5vmin;
     text-align: center;
 
     .img {
-      width: ${vw(450)};
-      height: ${vw(450)};
+      width: 40vmin;
+      height: 40vmin;
       object-fit: cover;
     }
   }

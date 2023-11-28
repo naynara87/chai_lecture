@@ -6,7 +6,7 @@ button:hover {
 // =================== button style
 .btns-wrap {
   @include flex-center {
-    gap: vw(30);
+    gap: 3vmin;
   }
 }
 
@@ -14,7 +14,11 @@ button:hover {
 .btn-icon {
   @extend %btn;
   @extend %btn-interaction;
-  @include rounded(vw(80));
+
+  width: 8vmin;
+  height: 8vmin;
+  border-radius: 2vmin;
+
   @include bg-op($s: 100% 100%);
 
   overflow: hidden;
@@ -33,8 +37,9 @@ button:hover {
 .btn-icon-mini {
   @extend .btn-icon;
 
-  @include rounded(vw(55));
-  border-radius: vw(14);
+  @include rounded(5.5vmin);
+
+  border-radius: 10vmin;
 }
 
 .btn-play {
@@ -143,7 +148,7 @@ button:hover {
 .btn-round-icon-arrow {
   @extend %btn;
   @include flex-center;
-  @include circle(vw(36));
+  @include circle(4vmin);
 
   background-color: color(gray-ff);
   box-shadow: $btn-shadow;
@@ -157,13 +162,13 @@ button:hover {
 
 .btn-close-modal {
   @extend %btn;
-  @include square(vw(48));
+  @include square(5vmin);
 
   z-index: z(two);
   position: absolute;
-  top: vh(20);
+  top: 1vmin;
   left: auto;
-  right: vw(20);
+  right: 1vmin;
 }
 
 // text button
@@ -190,12 +195,12 @@ button:hover {
   @extend %btn;
   @extend %btn-interaction;
 
-  min-width: vw(325);
-  height: vh(82);
+  min-width: 50%;
+  padding: 0.5em 1em;
   border: 1px solid color(gray-f0);
-  border-radius: vw(100);
+  border-radius: 10vmin;
   font-weight: 600;
-  font-size: vw(26);
+  font-size: 3vmin;
   color: color(main);
   box-shadow: $btn-shadow;
 
@@ -219,13 +224,13 @@ button:hover {
   @extend %btn;
   @extend %btn-interaction;
 
-  min-width: vw(325);
-  height: vh(82);
+  min-width: 50%;
+  padding: 0.5em 1em;
   border: 1px solid color(main);
-  border-radius: vw(100);
+  border-radius: 10vmin;
   background-color: color(main);
   font-weight: 600;
-  font-size: 2.6vmin;
+  font-size: 3vmin;
   color: color(gray-ff);
   box-shadow: $btn-shadow;
 
@@ -273,14 +278,14 @@ button:hover {
 .btn-radi-fill-black-mini {
   @extend %btn;
 
-  width: vw(111);
-  height: vh(48);
+  width: 12vmin;
+  padding: 0.5em 1em;
   border: 1px solid color(gray-56);
-  border-radius: vw(50);
+  border-radius: 10vmin;
   background-color: color(gray-56);
   line-height: 1;
   font-weight: 600;
-  font-size: vw(22);
+  font-size: 2.2vmin;
   color: color(gray-ff);
   box-shadow: $btn-shadow;
 
@@ -293,14 +298,14 @@ button:hover {
   @extend %btn;
   @include flex-center;
 
-  width: vw(282);
+  width: 25vmin;
   max-width: 282px;
-  height: vh(86);
+  padding: 0.5em 1em;
   border: 2px solid color(gray-db);
   border-radius: vw(100);
   background-color: color(gray-ff);
   font-weight: 600;
-  font-size: vw(24);
+  font-size: 2.4vmin;
   box-shadow: $btn-shadow;
 
   @media (hover: hover) and (pointer: fine) {
@@ -311,8 +316,9 @@ button:hover {
   }
 
   .icon {
-    margin-left: vw(12);
+    margin-left: 0.6vmin;
     transform: scale(1);
+    width: 3vmin;
   }
 }
 

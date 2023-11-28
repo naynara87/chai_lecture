@@ -1,15 +1,15 @@
 /* =================== componentRepeatSpeak =================== */
 .repeat-speak-wrapper {
   @include flex-col {
-    @include flex-op(flex-start, center);
+    @include flex-op(center, center);
   }
 
-  max-width: vw(390);
+  max-width: 40vmin;
   width: 100%;
-  height: vw(140);
-  padding: vw(10) vw(40);
-  border: vw(2) solid color(blue-300);
-  border-radius: vw(20);
+  height: auto;
+  padding: 3vmin;
+  border: 0.2vmin solid color(blue-300);
+  border-radius: 2vmin;
   background-color: rgba(255, 255, 255, 0.5);
 
   .text-wrap {
@@ -21,18 +21,18 @@
   }
 
   .text {
-    font-size: vw(24);
+    font-size: 2.2vmin;
     line-height: 1;
-    margin-right: vw(20);
+    margin-right: 2vmin;
   }
 
   .img {
     max-height: 90%;
-    margin-left: vw(14);
+    margin-left: 2vmin;
   }
 
   .btn {
-    margin-top: vw(16);
+    margin-top: 2vmin;
   }
 
   .cai-progress-track {

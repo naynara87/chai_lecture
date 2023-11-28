@@ -59,11 +59,9 @@
 
 // 모달 기본형
 .base-modal {
-  // height: vh(900);
-
   .btns-wrap {
     width: 100%;
-    margin-top: vh(40);
+    margin-top: 3.5vmin;
   }
 
   .base-wrapper {
@@ -96,7 +94,7 @@
     .swiper-pagination-bullet-active {
       background-color: color(gray-80);
       width: 4vmin;
-      border-radius: vw(30);
+      border-radius: 3vmin;
     }
   }
 
@@ -146,12 +144,13 @@
   @include flex-center;
   @include scrollbar;
 
+  font-size: 2.4vmin;
   overflow: auto;
   flex-direction: column;
   touch-action: pan-y;
   width: 100%;
   max-height: 30vmin;
-  margin-top: 5vmin;
+  margin-top: 3vmin;
   background-color: color(gray-f0);
   text-align: center;
   white-space: pre-wrap;
@@ -160,12 +159,12 @@
 
   .dec {
     line-height: 1.6;
-    font-size: 2.2vmin;
+    font-size: 2.4vmin;
   }
 
   .btn-icon {
-    width: vw(80);
-    height: vw(80);
+    width: 8vmin;
+    height: 8vmin;
   }
 }
 
@@ -176,7 +175,7 @@
   }
 
   .btn-close-modal {
-    right: vw(12);
+    right: 1vmin;
   }
 
   .base-ttl {
@@ -196,16 +195,16 @@
 
   .base-conts {
     display: block;
-    min-height: vh(485);
-    margin-bottom: vh(50);
-    padding: vh(40) vw(60) vh(60);
+    min-height: 30vmin;
+    margin-bottom: 5vmin;
+    padding: 1em 2em;
   }
 
   .voca-wrap {
-    margin-bottom: vh(60);
+    margin-bottom: 5vmin;
     margin-right: auto;
     line-height: 1.5;
-    font-size: vw(36);
+    font-size: 2.4vmin;
     text-align: left;
   }
 
@@ -230,8 +229,11 @@
 
 // 학습완료
 .modal-completed {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  transform: translate(0);
 
   .modal-container {
     top: 0;
@@ -244,8 +246,8 @@
 
     > img {
       z-index: z(two) + 1;
-      width: vw(600);
-      margin-top: vh(-130);
+      width: 60vmin;
+      margin-top: -13vmin;
     }
 
     .text {
@@ -264,12 +266,12 @@
 
     z-index: z(two) + 1;
     position: relative;
-    width: vw(252);
-    margin-top: vh(90);
-    padding: vh(30) vw(20);
-    border-radius: vw(20);
+    width: 10%;
+    margin-top: 5vmin;
+    padding: 0.5em 1em;
+    border-radius: 10vmin;
     background-color: color(gray-ff);
     font-weight: 600;
-    font-size: vw(28);
+    font-size: 3vmin;
   }
 }

@@ -93,12 +93,10 @@ const ContentsLayout = ({
 
       if (window.innerWidth < window.innerHeight) {
         // 가로가 세로보다 길 때
-        console.log("chaiJs 가로가 길어요");
         body.classList.add("width_fit");
         body.classList.remove("height_fit");
       } else {
         // 세로가 가로보다 길 때는 다시 원래값으로
-        console.log("윈도우가 더 길어요");
         body.classList.remove("width_fit");
         body.classList.add("height_fit");
       }

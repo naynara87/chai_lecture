@@ -86,8 +86,8 @@ $path-set: (
 $hd-height: 7vmin;
 $ft-height: 7vmin;
 $line-height: 2.3;
-$btn-shadow: 0 vw(8) 0 rgba(88, 88, 88, 0.2);
-$active-shadow: 0 vw(4) 0 rgba(88, 88, 88, 0.2),
+$btn-shadow: 0 0.6vmin 0 rgba(88, 88, 88, 0.2);
+$active-shadow: 0 0.5vmin 0 rgba(88, 88, 88, 0.2),
   inset 0 vw(4) 0 rgba(88, 88, 88, 0.2);
 $border-radius: 2.6vmin;
 $border-pill-radius: 2em;
@@ -101,7 +101,8 @@ $box-shadow: 0 3px 20px rgba(0, 0, 0, 0.15);
 .width_fit {
   --ratio: 9 / 19 !important;
   --width: 98vmin;
-  --height: calc(var(--width) * var(--ratio));
+  --height: 70vmin;
+  /* --height: calc(var(--width) * var(--ratio)); */
 }
 :root {
   --rem: 16;

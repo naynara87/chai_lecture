@@ -11,19 +11,20 @@ const ContStartWrapper = styled.div`
   flex-direction: column;
 
   .text-bubble-wrap {
-    padding: 4vmin;
+    padding: 3vmin;
     border-radius: 20vmin;
     font-weight: 400;
     font-size: 2.2vmin;
   }
 
   .character-wrap {
-    margin-top: 3.85vmin;
+    width: 20vmin;
+    margin: 3.85vmin auto 0;
     text-align: center;
 
     .img {
-      width: 18vmin;
-      height: 18vmin;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
     }
   }

@@ -8,28 +8,27 @@
 
 .swiper-pagination {
   position: relative;
-  // top: 0;
-  bottom: 45px;
+  bottom: calc(var(--ft-height) * 0.2);
 }
 
 .swiper-pagination-bullet {
   opacity: 1;
-  width: vw(16);
-  height: vw(16);
-  margin: 0 vw(9) !important;
+  width: 2vmin;
+  height: 2vmin;
+  margin: 0 1vmin !important;
   background-color: color(gray-c9);
   line-height: 1;
 }
 
 .swiper-pagination-bullet-active {
-  width: vw(40);
-  border-radius: vw(30);
+  width: 4vmin;
+  border-radius: 4vmin;
   background-color: color(gray-80);
 }
 
 .swiper-button-prev {
-  width: vw(68);
-  height: vw(68);
+  width: 8vmin;
+  height: 8vmin;
   border-radius: 50%;
   background-color: color(gray-80);
   box-shadow: 0px 1px 3px rgba(95, 95, 95, 0.5);
@@ -42,13 +41,13 @@
     height: 100%;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: vw(34) vw(34);
+    background-size: 2vmin;
   }
 }
 
 .swiper-button-next {
-  width: vw(68);
-  height: vw(68);
+  width: 8vmin;
+  height: 8vmin;
   border-radius: 50%;
   background-color: color(gray-80);
   box-shadow: 0px 1px 3px rgba(95, 95, 95, 0.5);
@@ -61,6 +60,6 @@
     height: 100%;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: vw(34) vw(34);
+    background-size: 2vmin;
   }
 }

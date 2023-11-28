@@ -1,11 +1,10 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { vw } from "../../assets";
 import { TextContentData } from "../../core";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
 
 const TextWrap = styled.div`
-  font-size: ${vw(24)};
+  font-size: 3vmin;
 `;
 export interface TextContentComponentProps {
   contents: TextContentData;

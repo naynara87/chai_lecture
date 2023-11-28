@@ -1,62 +1,61 @@
 /* =================== componentRoleplay =================== */
 .roleplay-container {
-	.conversation-wrap {
-		.img-wrap {
-			margin-right: vw(40);
-		}
+  .conversation-wrap {
+    .img-wrap {
+      margin-right: 3vmin;
+    }
 
-		.mean {
-			display: none;
-		}
+    .mean {
+      display: none;
+    }
 
-		.record-btn-wrap {
-			margin-left: 0;
-		}
-	}
+    .record-btn-wrap {
+      margin-left: 0;
+    }
+  }
 
-	.bubble-wrap {
-		position: relative;
-		width: vw(600);
-		margin-top: vh(12);
-		padding: vh(25) vw(40);
-		border-radius: 0 vw(30) vw(30) vw(30);
+  .bubble-wrap {
+    position: relative;
+    width: vw(600);
+    margin-top: vh(12);
+    padding: vh(25) vw(40);
+    border-radius: 0 vw(30) vw(30) vw(30);
 
-		.btn {
-			margin-bottom: vh(10);
-		}
-	}
+    .btn {
+      margin-bottom: vh(10);
+    }
+  }
 
-	.right-conts {
-		flex-direction: row-reverse;
+  .right-conts {
+    flex-direction: row-reverse;
 
-		.img-wrap {
-			margin-right: 0;
-			margin-left: vw(40);
-		}
+    .img-wrap {
+      margin-right: 0;
+      margin-left: vw(40);
+    }
 
-		.bubble-wrap {
-			border-radius: vw(30) 0 vw(30) vw(30);
-		}
+    .bubble-wrap {
+      border-radius: vw(30) 0 vw(30) vw(30);
+    }
 
-		.name {
-			margin-left: auto;
-			margin-right: auto;
-			text-align: right;
-		}
+    .name {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: right;
+    }
+  }
 
-	}
+  .choice {
+    .chinese {
+      display: none;
+    }
 
-	.choice {
-		.chinese {
-			display: none;
-		}
+    .pinyin {
+      color: color(orange-700);
+    }
 
-		.pinyin {
-			color: color(orange-700);
-		}
-
-		.mean {
-			display: block;
-		}
-	}
+    .mean {
+      display: block;
+    }
+  }
 }

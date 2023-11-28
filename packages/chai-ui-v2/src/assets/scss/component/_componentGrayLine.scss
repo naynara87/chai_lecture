@@ -8,7 +8,7 @@
   white-space: pre-line;
 
   > div:not(:first-of-type) {
-    margin-top: vh(40);
+    margin-top: 2.6vmin;
   }
 
   .image-with-caption-wrapper img {
@@ -17,6 +17,6 @@
   }
 
   ~ .record-btn-wrap {
-    margin-top: vw(40);
+    margin-top: 1.3em;
   }
 }

@@ -158,6 +158,7 @@ const ModalVocaContainer = styled.div`
 
 const SwiperWrapper = styled.div`
   position: relative;
+  bottom: 1em;
 `;
 
 const PageButton = styled.button`

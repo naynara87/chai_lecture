@@ -5,8 +5,8 @@
   }
 
   position: relative;
-  min-height: vw(92);
-  padding: vh(25) vw(40);
+  min-height: 10vmin;
+  padding: 3vmin 4vmin;
   border-radius: vw(20);
   background-color: color(gray-f5);
 
@@ -15,24 +15,21 @@
   }
 
   .number {
-    @include circle(vw(36));
+    @include circle(3.3vmin);
 
     position: absolute;
-    top: vw(35);
-    left: vw(40);
-    // margin-top: vw(10);
+    top: 3.2vmin;
     background-color: color(main);
-    line-height: vw(34);
     font-weight: 600;
-    font-size: vw(22);
+    font-size: 2.2vmin;
     color: color(gray-ff);
     text-align: center;
   }
 
   .text {
     width: 100%;
-    padding-left: vw(60);
-    font-size: vw(28);
+    padding-left: 6vmin;
+    font-size: 2.4vmin;
     white-space: pre-line;
   }
 }

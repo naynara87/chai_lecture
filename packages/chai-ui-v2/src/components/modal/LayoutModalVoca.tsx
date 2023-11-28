@@ -29,6 +29,7 @@ const SlideCard = styled.div`
 
 const SwiperWrapper = styled.div`
   position: relative;
+  bottom: 1em;
 
   .swiper-button-prev {
     top: 50%;

@@ -16,13 +16,9 @@ import {
 import useIntroductionModal from "../../core/hooks/useIntroductionModal";
 
 const SwiperWrapper = styled.div`
-  position: relative;
-  height: 100%;
-
   .swiper-pagination {
-    position: relative;
-    // top: 0;
-    bottom: 45px;
+    position: absolute;
+    bottom: 1em;
   }
 `;
 

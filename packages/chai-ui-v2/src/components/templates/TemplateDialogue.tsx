@@ -14,7 +14,6 @@ import {
   useContentMapper,
   useGlobalAudio,
 } from "../../core";
-import { vh } from "../../assets";
 import ConversationComponent from "../contents/ConversationComponent";
 import IconTextComponent from "../contents/IconTextComponent";
 import { v4 as uuidv4 } from "uuid";
@@ -22,7 +21,7 @@ import FullAudioComponent from "../contents/FullAudioComponent";
 
 const DialogueContainer = styled.div`
   .repeat-speak-wrapper {
-    margin-top: ${vh(30)};
+    margin-top: 3vmin;
   }
 `;
 

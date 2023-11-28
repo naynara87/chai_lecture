@@ -4,7 +4,7 @@ import HtmlContentComponent from "../atoms/HtmlContentComponent";
 import styled from "@emotion/styled";
 import arrow from "../../assets/images/icon/icon_contsinfo_tail.svg";
 import ProfileDefault from "../../assets/images/img/cha_profile01.png";
-import { vw, vh, colorPalette } from "../../assets";
+import { colorPalette } from "../../assets";
 
 export interface NotiCharacterListComponentProps {
   contents: NotiCharacterListContentData;
@@ -14,28 +14,28 @@ const NotiWrapper = styled.ul`
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  gap: ${vw(50)};
+  gap: 4vmin;
   flex-wrap: wrap;
-  margin-top: ${vh(60)};
+  margin-top: 5vmin;
 `;
 
 const NotiList = styled.li`
-  width: ${vw(420)};
+  width: 22%;
 `;
 
 const TextBubbleWrap = styled.div`
-  display: flex; 
+  display: flex;
   justify-content: center;
   align-items: center;
-  min-height: ${vh(280)};
+  min-height: 20vmin;
   font-weight: 600;
-  font-size: ${vw(32)};
+  font-size: 2.4vmin;
   white-space: pre-line;
   background-color: ${colorPalette.bubblegray};
-  border-radius: ${vw(20)};
+  border-radius: 3vmin;
   position: relative;
   text-align: center;
-  padding: ${vw(30)};
+  padding: 1em;
 
   &:after {
     content: "";
@@ -45,20 +45,20 @@ const TextBubbleWrap = styled.div`
     background-repeat: no-repeat;
     background-size: 100%;
     position: absolute;
-    top: 100%;
+    top: calc(100% - 2px);
     left: 50%;
     transform: translateX(-50%);
-    width: ${vw(38)};
-    height: ${vh(37)};
+    width: 4vmin;
+    height: 3vmin;
   }
 `;
 
 const ImageWrap = styled.div`
-  width: ${vw(200)};
-  height: ${vw(200)};
+  width: 20vmin;
+  height: 20vmin;
 
   overflow: hidden;
-  margin: ${vw(60)} auto 0;
+  margin: 6vmin auto 0;
 
   & > img {
     width: 100%;
@@ -90,7 +90,11 @@ const NotiCharacterListComponent = ({
     });
   }, [contents.data]);
 
-  return <div><NotiWrapper>{notiCharacterList}</NotiWrapper></div>;
+  return (
+    <div>
+      <NotiWrapper>{notiCharacterList}</NotiWrapper>
+    </div>
+  );
 };
 
 export default NotiCharacterListComponent;

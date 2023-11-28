@@ -1,13 +1,12 @@
 import styled from "@emotion/styled";
 import React, { useCallback, useMemo, useState } from "react";
-import { vw } from "../../assets";
 import { MultilevelActionCardContentData } from "../../core";
 import useContentMapper from "../../core/hooks/useContentMapper";
 import ComponentButtonStep from "../atoms/Button/ComponentButtonStep";
 
 const StepCard = styled.div`
   > *:not(:first-of-type) {
-    margin-top: ${vw(34)};
+    margin-top: 3vmin;
   }
 
   .image-with-caption-wrapper {

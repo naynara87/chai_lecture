@@ -70,21 +70,6 @@
     margin-top: vh(20);
   }
 
-  // .chinese {
-  //   font-weight: 600;
-  //   font-size: vw(28);
-  // }
-
-  // .pinyin {
-  //   font-size: vw(22);
-  //   color: color(gray-80);
-  // }
-
-  // .mean {
-  //   font-size: vw(22);
-  //   color: color(gray-80);
-  // }
-
   b {
     font-weight: 600;
     font-size: vw(28);
@@ -97,7 +82,7 @@
 
   .btn-icon {
     flex-shrink: 0;
-    width: vw(55);
-    height: vw(55);
+    width: 5.5vmin;
+    height: 5.5vmin;
   }
 }

@@ -13,6 +13,7 @@ interface ComponentProblemPaginationProps {
 
 const SwiperWrapper = styled.div`
   position: relative;
+  bottom: 1em;
 
   .swiper-wrapper {
     padding: 14px 0;

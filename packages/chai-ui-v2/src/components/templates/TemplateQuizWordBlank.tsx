@@ -12,7 +12,7 @@ import QuizWordBlankChoices from "../molecules/QuizWordBlankChoices";
 const QuizContainer = styled.form`
   .quiz-question-wrap {
     .btn-icon {
-      margin-top: ${vh(40)};
+      margin-top: 4vmin;
     }
   }
 
@@ -21,7 +21,7 @@ const QuizContainer = styled.form`
   }
 
   .label-chck-line .text {
-    font-size: ${vw(22)};
+    font-size: 2vmin;
   }
 
   > .btns-wrap {

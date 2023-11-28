@@ -4,7 +4,6 @@ import { vw } from "../../assets";
 import { ImgCharacterComponent } from "../atoms";
 
 const ContStartWrapper = styled.div`
-
   .text-bubble-wrap {
     padding: ${vw(40)} ${vw(80)};
     border-radius: 999px;
@@ -16,8 +15,8 @@ const ContStartWrapper = styled.div`
     margin-top: ${vw(57)};
 
     .img {
-      width: ${vw(450)};
-      height: ${vw(450)};
+      width: 45vmin;
+      height: 45vmin;
     }
   }
 `;

@@ -4,7 +4,7 @@
   .toggles-wrapper,
   .conts-ttl {
     ~ .conversation-wrapper {
-      margin-top: vh(50);
+      margin-top: 5vmin;
     }
   }
 }
@@ -16,23 +16,25 @@
     align-items: flex-start;
   }
 
+  gap: 5vmin;
+
   &:not(:first-of-type) {
-    margin-top: vh(38);
+    margin-top: 3vmin;
   }
 
   .img-wrap {
     flex-shrink: 0;
-    width: vw(100);
-    margin-right: vw(52);
+    width: 10vmin;
+    height: 10vmin;
   }
 
   .img-round {
-    @include circle(vw(100));
+    @include circle(10vmin);
 
     overflow: hidden;
     z-index: z(two);
     position: relative;
-    border: 6px solid color(gray-ff);
+    border: 1vmin solid color(gray-ff);
     box-shadow: $btn-shadow;
   }
 
@@ -46,29 +48,29 @@
   }
 
   .txt-wrap {
-    width: calc(100% - vw(160));
+    width: 100%;
     line-height: 1.6;
     word-break: break-all;
   }
 
   .name {
-    width: vw(100);
-    margin-top: vh(10);
-    font-size: vw(22);
+    width: 100%;
+    margin-top: 0.2em;
+    font-size: 2vmin;
     color: color(gray-66);
     text-align: center;
   }
 
   .chinese {
-    font-size: vw(36);
+    font-size: 2.6vmin;
   }
 
   .pinyin {
-    font-size: vw(28);
+    font-size: 2.2vmin;
   }
 
   .mean {
-    font-size: vw(28);
+    font-size: 2.2vmin;
   }
 
   &.blank {

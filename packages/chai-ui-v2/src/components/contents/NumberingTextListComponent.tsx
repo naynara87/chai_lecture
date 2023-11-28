@@ -2,15 +2,13 @@ import styled from "@emotion/styled";
 import React, { useMemo } from "react";
 import { NumberingTextListContentData } from "../../core";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
-import { vw } from "../../assets";
-
-const NumberingWrapper = styled.div`
-  margin-top: ${vw(40)};
-`;
 
 const NumberingTextList = styled.div`
   display: flex;
-  p,
+  p {
+    font-weight: bold;
+    line-height: 1.4 !important;
+  }
   span {
     line-height: 1.4 !important;
   }
@@ -55,9 +53,9 @@ const NumberingTextListComponent = ({
   }, [contents.data]);
 
   return (
-    <NumberingWrapper className="numbering-wrapper">
+    <div className="numbering-wrapper">
       <ul className="numbering-list-wrap">{numberingTextList}</ul>
-    </NumberingWrapper>
+    </div>
   );
 };
 

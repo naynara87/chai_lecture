@@ -1,17 +1,17 @@
 /* =================== componentTraining =================== */
 .training-list-wrap {
   @include flex-center {
-    gap: vw(36);
+    gap: 3vmin;
   }
 
-  margin-top: 7.5vmin;
+  margin-top: 12vmin;
 }
 
 .training-list {
   width: 34vmin;
   height: 33vmin;
   border: 1px solid color(gray-db);
-  border-radius: vw(20);
+  border-radius: 2vmin;
   background: #ffffff;
 
   .gradi-wrap {
@@ -19,8 +19,8 @@
 
     position: relative;
     height: 44%;
-    padding-bottom: vh(29);
-    border-radius: vw(20) vw(20) 0 0;
+    padding-bottom: 2vmin;
+    border-radius: 2vmin 2vmin 0 0;
     text-align: center;
   }
 
@@ -46,7 +46,7 @@
   .title {
     margin-top: 1.5vmin;
     font-weight: 600;
-    font-size: 3.4vmin;
+    font-size: 2.6vmin;
     line-height: 1.5;
   }
 
@@ -54,40 +54,33 @@
     @include scrollbar;
 
     overflow: auto;
-    /* height: calc(100% - vw(165)); */
     font-size: 2vmin;
-
-    // .text {
-    //   line-height: 1;
-
-    //   &:not(:first-of-type) {
-    //     margin-top: vw(20);
-    //   }
-    // }
 
     .text-wrap {
       @include scrollbar;
 
       overflow: auto;
-      max-height: calc(100% - 1vmin);
-      padding: 2.5vmin 4vmin 0;
+      max-height: 15vmin;
+      padding: 2.5vmin 3vmin 0;
+      > div {
+        word-break: break-all;
+      }
     }
   }
 
   .btns-wrap {
     position: absolute;
     top: auto;
-    bottom: vh(38);
+    bottom: 1vmin;
     left: 0;
     width: 100%;
-    height: vh(60);
-    padding: 0 vw(45);
+    padding: 0 2em;
 
     .btn {
       min-width: 0;
       width: 100%;
       height: 100%;
-      font-size: vw(22);
+      font-size: 2vmin;
     }
   }
 }

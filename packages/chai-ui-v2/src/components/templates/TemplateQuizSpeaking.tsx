@@ -1,13 +1,12 @@
 import styled from "@emotion/styled";
 import React, { useEffect, useMemo } from "react";
-import { vh } from "../../assets";
 import { TemplateProps, TemplateQuizSpeakingData } from "../../core";
 import FinalSpeakingComponent from "../contents/FinalSpeakingComponent";
 import { ActivityGuideCharacterComponent } from "../contents";
 
 const DialogueContainer = styled.div`
   .repeat-speak-wrapper {
-    margin-top: ${vh(30)};
+    margin-top: 3vmin;
   }
 `;
 

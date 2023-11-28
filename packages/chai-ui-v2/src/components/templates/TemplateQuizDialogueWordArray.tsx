@@ -8,7 +8,7 @@ import WordsInOrderComponent from "../contents/WordsInOrderComponent";
 const QuizContainer = styled.div`
   .quiz-question-wrap {
     .btn-icon {
-      margin-top: ${vh(40)};
+      margin-top: 4vmin;
     }
   }
 
@@ -21,7 +21,7 @@ const QuizContainer = styled.div`
   }
 
   .label-chck-line .text {
-    font-size: ${vw(22)};
+    font-size: 2vmin;
   }
 
   .conversation-wrap:not(:first-of-type) {

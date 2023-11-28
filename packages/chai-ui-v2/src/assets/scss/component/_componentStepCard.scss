@@ -6,27 +6,27 @@
 
   @include gradiant;
 
-  width: vw(550);
+  width: 54vmin;
   max-width: 100%;
-  min-height: vw(456);
+  min-height: 44vmin;
   margin: 0 auto;
-  padding: vh(48) vw(70);
-  border: vw(3) solid color(sub-blue);
-  border-radius: vw(30);
+  padding: 5vmin 7vmin;
+  border: 0.3vmin solid color(sub-blue);
+  border-radius: 3vmin;
   transition: width 0.2s, height 0.2s;
 
   > div {
-    font-size: vw(40);
+    font-size: 4vmin;
   }
 
   .chinese {
     font-weight: 600;
-    font-size: vw(70);
+    font-size: 7vmin;
     line-height: 1;
   }
 
   .pinyin {
-    font-size: vw(45);
+    font-size: 4vmin;
     line-height: 1;
   }
 
@@ -36,17 +36,15 @@
   }
 
   .btns-wrap {
-    margin-top: vh(40);
+    margin-top: 3vmin;
   }
 
   &.step2 {
-    width: vw(630);
-    min-height: vw(541);
+    width: 54vmin;
   }
 
   &.step3 {
-    width: vw(710);
-    min-height: vw(541);
+    width: 54vmin;
   }
 
   @at-root .grid-h-5-5 .step3 {
@@ -56,9 +54,9 @@
 
 // step sentence card
 .step-card.sentence-card {
-  width: vw(524);
-  min-height: vw(468);
-  padding: vh(48) vw(50);
+  width: 50vmin;
+  min-height: 40vmin;
+  padding: 3vmin 4vmin;
   text-align: center;
 
   > div {
@@ -88,5 +86,3 @@
     min-height: vw(520);
   }
 }
-
-// END step sentence card

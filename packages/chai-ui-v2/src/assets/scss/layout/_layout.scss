@@ -1,18 +1,30 @@
 /* =================== layout =================== */
 .cai-main {
   height: 100vh;
+  overflow: hidden;
   padding-top: $hd-height;
   padding-bottom: $ft-height;
   background-color: color(gray-f0);
 }
 
-.main-center {
-}
 .layout-panel-wrap {
-  width: var(--width);
+  width: 100%;
+  max-width: var(--width);
   height: var(--height);
+  padding: 0 15px;
   margin: calc((100vh - calc(9 / 19 * var(--width))) * 0.5 - var(--hd-height))
     auto;
+}
+
+.width_fit .layout-panel-wrap {
+  width: var(--width);
+  height: var(--height);
+  margin: calc((100vh - var(--height)) * 0.5 - var(--hd-height)) auto;
+}
+
+.swiper-slide .layout-panel-wrap {
+  width: 100%;
+  max-width: var(--width);
 }
 
 .grid-h-5-5 {
@@ -83,7 +95,7 @@
   }
 
   > *:not(:first-of-type) {
-    margin: vh(40) auto 0;
+    margin: 5vmin auto 0;
   }
   .border-box {
     border: 1px solid #dbdbdb;
@@ -101,14 +113,14 @@
     & > img {
       width: 5vmin;
       height: 5vmin;
-      margin-right: 1rem;
+      margin-right: 1em;
     }
   }
 
   .description-bubble-container:not(:first-of-type),
   .btns-wrap:not(:first-of-type),
   .repeat-speak-wrapper:not(:first-of-type) {
-    margin-top: vh(36);
+    margin-top: 3vmin;
   }
 
   .modal {
@@ -119,9 +131,9 @@
 // prograss bar
 .cai-progress-track {
   overflow: hidden;
-  width: vw(218);
-  height: vh(15);
-  border-radius: vw(50);
+  width: 100%;
+  height: 1vmin;
+  border-radius: 2vmin;
   background-color: color(gray-c9);
   position: relative;
 }

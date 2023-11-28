@@ -38,14 +38,14 @@ const ContentContainer = styled.div`
 
   &::-webkit-scrollbar-thumb {
     background-color: #c3c3c3;
-    border-radius: ${vw(10)};
+    border-radius: 1vmin;
   }
 
   &::-webkit-scrollbar {
     background-color: #e2e2e2;
-    border-radius: ${vw(10)};
-    height: ${vw(10)};
-    width: ${vw(10)};
+    border-radius: 1vmin;
+    height: 1vmin;
+    width: 1vmin;
   }
 `;
 

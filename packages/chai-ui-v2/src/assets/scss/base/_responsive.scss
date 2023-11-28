@@ -1,0 +1,25 @@
+/* 1920px 이상의 큰 화면에 대한 스타일 */
+@media only screen and (min-width: 1920px) {
+  /* 여기에 1920px 이상의 화면에 적용할 스타일 작성 */
+}
+
+/* 1024px 이상 1919px 이하의 화면에 대한 스타일 */
+@media only screen and (min-width: 1024px) and (max-width: 1919px) {
+  /* 여기에 1024px 이상 1919px 이하의 화면에 적용할 스타일 작성 */
+}
+
+/* 768px 이상 1023px 이하의 중간 크기 화면에 대한 스타일 */
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  /* 여기에 768px 이상 1023px 이하의 화면에 적용할 스타일 작성 */
+}
+
+/* 360px 이상 767px 이하의 작은 화면에 대한 스타일 */
+@media only screen and (min-width: 360px) and (max-width: 767px) {
+  /* 여기에 360px 이상 767px 이하의 화면에 적용할 스타일 작성 */
+}
+
+@media only screen and (max-width: 359px) {
+  main {
+    display: none;
+  }
+}

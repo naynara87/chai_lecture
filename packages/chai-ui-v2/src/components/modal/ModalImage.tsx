@@ -13,11 +13,11 @@ interface ModalImageProps {
 const ModalImageOnly = styled.div`
   .base-modal.wide-modal {
     width: auto;
-    max-width: 60vw;
+    max-width: 60vmin;
     height: auto;
-    max-height: 80vh;
+    max-height: 80vmin;
     padding: 0;
-    padding-top: 50px;
+    padding-top: 5vmin;
     border-radius: 0;
     background-color: transparent;
   }
@@ -56,8 +56,9 @@ const ModalImage = ({
       <ModalImageOnly>
         <div className="modal active">
           <div
-            className={`modal-container base-modal ${isImageModal ? "wide-modal" : ""
-              }`}
+            className={`modal-container base-modal ${
+              isImageModal ? "wide-modal" : ""
+            }`}
           >
             <div className="base-wrapper">
               <button className="btn-close-modal" onClick={handleClose}>
