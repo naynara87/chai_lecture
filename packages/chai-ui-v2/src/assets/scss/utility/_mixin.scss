@@ -1,138 +1,138 @@
 // size
 @mixin circle($s) {
-	width: $s;
-	height: $s;
-	border-radius: 50%;
-	@content;
+  width: $s;
+  height: $s;
+  border-radius: 50%;
+  @content;
 }
 
-@mixin rounded($s, $r: vw(20)) {
-	width: $s;
-	height: $s;
-	border-radius: $r;
-	@content;
+@mixin rounded($s, $r: 2vmin) {
+  width: $s;
+  height: $s;
+  border-radius: $r;
+  @content;
 }
 
 @mixin square($s) {
-	width: $s;
-	height: $s;
+  width: $s;
+  height: $s;
 }
 
 @mixin full {
-	width: 100%;
-	height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 // flex items
 @mixin flex($d: flex) {
-	display: $d;
-	@content;
+  display: $d;
+  @content;
 }
 
 @mixin flex-col($d: flex) {
-	display: $d;
-	flex-direction: column;
-	@content;
+  display: $d;
+  flex-direction: column;
+  @content;
 }
 
 @mixin flex-op($ai: null, $jc: null) {
-	align-items: $ai;
-	justify-content: $jc;
+  align-items: $ai;
+  justify-content: $jc;
 }
 
 @mixin flex-center($d: flex) {
-	display: $d;
-	@include flex-op(center, center);
+  display: $d;
+  @include flex-op(center, center);
 
-	@content;
+  @content;
 }
 
 @mixin flex-btw($d: flex) {
-	display: $d;
-	@include flex-op(center, space-between);
+  display: $d;
+  @include flex-op(center, space-between);
 
-	@content;
+  @content;
 }
 
 // background image
-@mixin bg-url($path, $img){
-background-image: urlPath($path, $img);
+@mixin bg-url($path, $img) {
+  background-image: urlPath($path, $img);
 }
 
 @mixin bg-op($p: center center, $s: auto, $r: no-repeat) {
-	background: {
-		position: $p;
-		size: $s;
-		repeat: $r;
-	}
+  background: {
+    position: $p;
+    size: $s;
+    repeat: $r;
+  }
 }
 
 // bafore, after
 @mixin make-before($c: "", $d: block) {
-	&:before {
-		content: $c;
-		display: $d;
+  &:before {
+    content: $c;
+    display: $d;
 
-		@content;
-	}
+    @content;
+  }
 }
 
 @mixin make-after($c: "", $d: block) {
-	&:after {
-		content: $c;
-		display: $d;
+  &:after {
+    content: $c;
+    display: $d;
 
-		@content;
-	}
+    @content;
+  }
 }
 
 @mixin make-virtual($c: "", $d: block) {
-	&:before {
-		content: $c;
-		display: $d;
+  &:before {
+    content: $c;
+    display: $d;
 
-		@content;
-	}
+    @content;
+  }
 
-	&:after {
-		content: $c;
-		display: $d;
+  &:after {
+    content: $c;
+    display: $d;
 
-		@content;
-	}
+    @content;
+  }
 }
 
 // input
 @mixin input-reset {
-	padding: 0;
-	border: 0;
-	border-radius: 0;
-	background-color: transparent;
-	appearance: none;
-	outline: none;
-	box-shadow: none;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background-color: transparent;
+  appearance: none;
+  outline: none;
+  box-shadow: none;
 }
 
 @mixin hover {
-	&:hover {
-		@content;
-	}
+  &:hover {
+    @content;
+  }
 }
 
-@mixin gradiant ($d: to top, $start: #E3E8FF 0%, $end: #E9FAFF 100%) {
-	background-image: linear-gradient($d, $start, $end);
+@mixin gradiant($d: to top, $start: #e3e8ff 0%, $end: #e9faff 100%) {
+  background-image: linear-gradient($d, $start, $end);
 }
 
-@mixin scrollbar ($c: #E2E2E2, $sub-c: #C3C3C3, $r: vw(10), $s: vw(10)) {
-	&::-webkit-scrollbar {
-		width: $s;
-		height: $s;
-		background-color: $c;
-		border-radius: $r;
-	}
+@mixin scrollbar($c: #e2e2e2, $sub-c: #c3c3c3, $r: 1vmin, $s: 1vmin) {
+  &::-webkit-scrollbar {
+    width: $s;
+    height: $s;
+    background-color: $c;
+    border-radius: $r;
+  }
 
-	&::-webkit-scrollbar-thumb {
-		background-color: $sub-c;
-		border-radius: $r;
-	}
+  &::-webkit-scrollbar-thumb {
+    background-color: $sub-c;
+    border-radius: $r;
+  }
 }

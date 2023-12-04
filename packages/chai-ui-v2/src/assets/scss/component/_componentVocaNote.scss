@@ -1,22 +1,25 @@
 /* =================== componentVocaNote =================== */
 .voca-note-container {
   @include scrollbar;
-
   overflow: hidden;
   position: relative;
   width: 100%;
-  max-width: vw(391);
-  height: vh(80);
+  /* max-width: 35vmin; */
+  height: fit-content;
   margin: 0 auto;
-  padding: 0 vw(20) vh(24);
-  border: 1px solid color(sub);
-  border-radius: vw(20);
+  padding: 0 1.5vmin;
+  border: 0.2vmin solid color(sub);
+  border-radius: 2vmin;
   background-color: color(purple-200);
-  transition: all 0.3s;
+  /* transition: height 0.3s; */
 
   &.active {
     overflow: auto;
-    height: 100%;
+    max-height: 100%;
+    height: fit-content;
+    .voca-list-wrap {
+      display: block;
+    }
   }
 
   &::-webkit-scrollbar {
@@ -25,59 +28,63 @@
   }
 }
 
-.voca-title {
+.voca-header {
+  display: flex;
   z-index: z(two);
   overflow: hidden;
   position: sticky;
-  top: 0;
-  left: 0;
-  padding-top: vh(24);
-  padding-bottom: vh(22);
-  font-size: vw(22);
-  text-align: center;
-  background-color: color(purple-200);
+  align-items: self-end;
 
-  .img {
-    position: absolute;
+  .voca-title {
+    top: 0;
     left: 0;
-    width: vw(90);
-    bottom: 0;
+    width: calc(100% - 4vmin);
+    padding: 2vmin 0;
+    font-size: 2.2vmin;
+    font-weight: 500;
+    background-color: color(purple-200);
+  }
+  .img {
+    width: 8vmin;
+    max-width: 40%;
   }
 
   .btn {
     position: absolute;
-    top: vh(20);
+    top: 1.5vmin;
     left: auto;
     right: 0;
   }
 }
-
 .voca-list-wrap {
   z-index: z(one);
   position: relative;
+  display: none;
 }
 
 .voca-list {
   @include flex-btw;
-
-  padding: vh(15) vw(20);
-  border-radius: vw(10);
+  flex-wrap: wrap;
+  padding: 0.5em 1em;
+  border-radius: 1vmin;
   background-color: color(gray-ff);
-  font-size: vw(22);
+  font-size: 2vmin;
   color: color(gray-80);
-
-  &:not(:first-of-type) {
-    margin-top: vh(20);
-  }
+  margin-bottom: 2vmin;
+  /* &:not(:first-of-type) {
+    margin-top: 2vmin;
+  } */
 
   b {
     font-weight: 600;
-    font-size: vw(28);
+    font-size: 2.4vmin;
     color: color(text);
   }
 
   .voca-wrap {
-    padding-right: vw(10);
+  }
+  .btn-icon-mini {
+    margin-left: auto;
   }
 
   .btn-icon {
