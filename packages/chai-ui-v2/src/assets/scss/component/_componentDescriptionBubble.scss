@@ -1,49 +1,49 @@
 /* =================== componentDescriptionBubble =================== */
 .description-bubble-container {
-	@include flex-center {
-		gap: vw(10);
-	}
+  @include flex-center {
+    gap: 1vmin;
+  }
 
-	>.img {
-		height: vh(100);
-	}
+  > .img {
+    height: vh(100);
+  }
 }
 
 .description-bubble-wrap {
-	position: relative;
-	padding-left: vw(20);
+  position: relative;
+  padding-left: 2vmin;
 
-	@include make-before {
-		@include bg-op($p: left center, $s: 100% 100%);
-		@include bg-url(icon, 'icon_bubble_tail.svg');
+  @include make-before {
+    @include bg-op($p: left center, $s: 100% 100%);
+    @include bg-url(icon, "icon_bubble_tail.svg");
 
-		position: absolute;
-		top: 50%;
-		left: vw(3);
-		width: vw(23);
-		height: vw(24);
-		transform: translateY(-50%);
-	}
+    position: absolute;
+    top: 50%;
+    left: 0.3vmin;
+    width: 2.3vmin;
+    height: 2.4vmin;
+    transform: translateY(-50%);
+  }
 
-	.bubble-conts {
-		@include flex-btw;
+  .bubble-conts {
+    @include flex-btw;
 
-		max-width: vw(900);
-		min-height: vh(102);
-		padding: vh(25) vw(40);
-		border-radius: vw(60);
-		background-color: color(bubble-gray);
-		transition: width 0.3s;
+    max-width: 90vmin;
+    min-height: vh(102);
+    padding: 3vmin 4vmin;
+    border-radius: 6vmin;
+    background-color: color(bubble-gray);
+    transition: width 0.3s;
 
-		.text {
-			font-size: vw(25);
-			line-height: 1.5;
-			white-space: pre-line;
-		}
+    .text {
+      font-size: 2.6vmin;
+      line-height: 1.5;
+      white-space: pre-line;
+    }
 
-		.btn {
-			margin-left: vw(40);
-			box-shadow: none;
-		}
-	}
+    .btn {
+      margin-left: 4vmin;
+      box-shadow: none;
+    }
+  }
 }

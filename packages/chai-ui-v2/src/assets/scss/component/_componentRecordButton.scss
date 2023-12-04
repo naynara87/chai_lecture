@@ -14,12 +14,13 @@
 
     height: 8vmin;
     padding: 0 4vmin;
-    border: 2px solid color(blue-300);
+    border: 0.2vmin solid color(blue-300);
     border-radius: 2vmin;
     background-color: color(gray-ff);
 
     .btn-icon {
-      @include rounded(5.5vmin);
+      width: 5.5vmin;
+      height: 5.5vmin;
       border-radius: 1.4vmin;
     }
 
@@ -32,6 +33,6 @@
     position: absolute;
     top: 50%;
     left: 100%;
-    transform: translate(vw(20), -50%);
+    transform: translate(2vmin, -54%);
   }
 }

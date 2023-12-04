@@ -12,7 +12,7 @@
 
 %btn-interaction {
   position: relative;
-  transition: all 0.2s;
+  /* transition: all 0.2s; */
 }
 
 %speak-interaction {
@@ -30,6 +30,12 @@
       background-color: color(orange-300);
       transform-origin: center center;
     }
+    .img-wrap {
+      &:before,
+      &:after {
+        transform: scale(0.9);
+      }
+    }
   }
 
   &.active {
@@ -40,6 +46,8 @@
         animation-duration: 1.8s;
         animation-iteration-count: infinite;
         animation-timing-function: linear;
+        outline: none;
+        border: none;
       }
 
       &:after {

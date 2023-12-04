@@ -6,7 +6,7 @@ button:hover {
 // =================== button style
 .btns-wrap {
   @include flex-center {
-    gap: 3vmin;
+    gap: 2vmin;
   }
 }
 
@@ -27,7 +27,7 @@ button:hover {
   color: transparent;
   text-align: left;
   box-shadow: $btn-shadow;
-  transition: all 0.3s;
+  /* transition: all 0.3s; */
 
   .icon {
     @include full;
@@ -35,11 +35,18 @@ button:hover {
 }
 
 .btn-icon-mini {
-  @extend .btn-icon;
-
-  @include rounded(5.5vmin);
-
-  border-radius: 10vmin;
+  flex: none;
+  width: 4.5vmin;
+  height: 4.5vmin;
+  border-radius: 1vmin;
+  background-position: center center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  text-indent: -10rem;
+  color: transparent;
+  text-align: left;
+  box-shadow: 0 0.6vmin 0 rgba(88, 88, 88, 0.2);
 }
 
 .btn-play {
@@ -158,6 +165,9 @@ button:hover {
       transform: rotate(180deg);
     }
   }
+  img {
+    max-width: 2vmin;
+  }
 }
 
 .btn-close-modal {
@@ -179,10 +189,10 @@ button:hover {
   width: 100%;
   height: vh(75);
   border: 1px solid color(gray-56);
-  border-radius: vw(10);
+  border-radius: var(--small-radius);
   background-color: color(gray-56);
   font-weight: 600;
-  font-size: vw(22);
+  font-size: var(--font-size-22);
   color: color(gray-ff);
   box-shadow: $btn-shadow;
 
@@ -197,7 +207,7 @@ button:hover {
 
   min-width: 50%;
   padding: 0.5em 1em;
-  border: 1px solid color(gray-f0);
+  border: 0.4vmin solid color(gray-f0);
   border-radius: 10vmin;
   font-weight: 600;
   font-size: 3vmin;
@@ -230,7 +240,7 @@ button:hover {
   border-radius: 10vmin;
   background-color: color(main);
   font-weight: 600;
-  font-size: 3vmin;
+  font-size: var(--font-size-26);
   color: color(gray-ff);
   box-shadow: $btn-shadow;
 
@@ -255,14 +265,14 @@ button:hover {
   @extend %btn;
   @extend %btn-interaction;
 
-  width: vw(95);
+  width: 10vmin;
   height: vh(46);
   border: 1px solid color(orange-500);
-  border-radius: vw(100);
+  border-radius: 10vmin;
   background-color: color(orange-500);
   line-height: 1;
   font-weight: 600;
-  font-size: vw(22);
+  font-size: var(--font-size-22);
   color: color(gray-ff);
   box-shadow: $btn-shadow;
 
@@ -285,7 +295,7 @@ button:hover {
   background-color: color(gray-56);
   line-height: 1;
   font-weight: 600;
-  font-size: 2.2vmin;
+  font-size: var(--font-size-22);
   color: color(gray-ff);
   box-shadow: $btn-shadow;
 
@@ -302,7 +312,7 @@ button:hover {
   max-width: 282px;
   padding: 0.5em 1em;
   border: 2px solid color(gray-db);
-  border-radius: vw(100);
+  border-radius: 10vmin;
   background-color: color(gray-ff);
   font-weight: 600;
   font-size: 2.4vmin;
@@ -367,7 +377,7 @@ button:hover {
   .icon {
     display: inline;
     width: 20%;
-    margin-left: vw(20);
+    margin-left: 2vmin;
   }
 
   .icon-close {
@@ -389,10 +399,10 @@ button:hover {
 .inp-txt {
   width: 100%;
   height: vh(88);
-  padding: 0 vw(30);
+  padding: 0 3vmin;
   border: 1px solid color(gray-db);
-  border-radius: vw(20);
-  font-size: vw(28);
+  border-radius: 2vmin;
+  font-size: var(--font-size-28);
 
   &::placeholder {
     color: color(gray-80);
@@ -402,7 +412,7 @@ button:hover {
 // =================== input toggle style
 .toggles-wrapper {
   .inp-toggle-wrap:not(:first-of-type) {
-    margin-left: vw(30);
+    margin-left: 3vmin;
   }
 }
 
@@ -415,29 +425,29 @@ button:hover {
 }
 
 .toggle-name {
+  display: flex;
+  align-items: center;
   font-weight: 400;
-  font-size: vw(24);
-  // toggle height
-  line-height: vh(42);
+  font-size: 2vmin;
 }
 
 .toggle-label {
   position: relative;
   display: block;
-  width: vw(80);
-  height: vh(42);
-  margin-left: vw(20);
-  border-radius: vw(21);
+  width: 7vmin;
+  height: 4vmin;
+  margin-left: 2vmin;
+  border-radius: 2vmin;
   background-color: color(gray-c9);
   transition: all 0.3s;
   box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.2);
 
   @include make-after {
-    @include circle(vw(30));
+    @include circle(3vmin);
 
     position: absolute;
     top: 50%;
-    left: vw(6);
+    left: 0.5vmin;
     background-color: #ffffff;
     transform: translateY(-50%);
     transition: all 0.3s;
@@ -460,8 +470,7 @@ button:hover {
   background-color: color(main);
 
   &:after {
-    // 100% - (width + padding)
-    left: calc(100% - vw(36));
+    left: calc(100% - 3.5vmin);
   }
 }
 
@@ -471,12 +480,11 @@ button:hover {
   @include flex-center;
 
   width: 100%;
-  min-height: vh(120);
-  padding: vh(35) vw(40);
-  border: 3px solid color(gray-f0);
-  border-radius: vw(20);
+  min-height: 2vmin;
+  padding: 2vmin 3vmin;
+  border: 0.3vmin solid color(gray-f0);
+  border-radius: 2vmin;
   background-color: color(gray-f5);
-  line-height: vh(124);
   text-align: center;
   box-shadow: $btn-shadow;
   transition: all 0.2s;
@@ -490,7 +498,7 @@ button:hover {
   .text {
     position: relative;
     display: inline-block;
-    font-size: vw(28);
+    font-size: 2.6vmin;
   }
 }
 
@@ -524,10 +532,9 @@ button:hover {
 // inp-chck-line
 .label-chck-line {
   display: block;
-  // min-width: vw(300);
-  padding: vh(15) vw(32);
-  border: 2px solid color(gray-db);
-  border-radius: vw(15);
+  padding: 1.5vmin 3vmin;
+  border: 0.3vmin solid color(gray-db);
+  border-radius: 2vmin;
   box-shadow: $btn-shadow;
   text-align: center;
   cursor: pointer;
@@ -541,13 +548,13 @@ button:hover {
     position: relative;
     display: block;
     font-weight: 600;
-    font-size: vw(28);
+    font-size: 2.6vmin;
     color: color(gray-80);
   }
 
   .text-sm {
     display: block;
-    font-size: vw(22);
+    font-size: var(--font-size-22);
     color: color(gray-80);
   }
 }

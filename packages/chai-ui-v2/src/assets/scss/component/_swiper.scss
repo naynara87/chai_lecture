@@ -8,7 +8,7 @@
 
 .swiper-pagination {
   position: relative;
-  bottom: calc(var(--ft-height) * 0.2);
+  bottom: calc(var(--footer-height) * 0.2);
 }
 
 .swiper-pagination-bullet {
@@ -61,5 +61,27 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: 2vmin;
+  }
+}
+
+.swiper-position-3 {
+  .swiper-pagination {
+    position: relative;
+    bottom: calc(var(--height) * 0.06);
+  }
+
+  .swiper-wrapper {
+    padding: 14px 0;
+  }
+
+  .swiper-slide:not(.swiper-slide-active) {
+    opacity: 1;
+  }
+}
+
+.swiper-position-2 {
+  .swiper-pagination {
+    position: relative;
+    bottom: calc(var(--height) * 0.06);
   }
 }

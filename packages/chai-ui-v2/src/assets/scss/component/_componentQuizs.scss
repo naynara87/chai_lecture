@@ -4,31 +4,31 @@
 }
 
 .quiz-question-wrap {
-  padding: vh(40) vw(40);
+  padding: 4vmin;
   border: 1px solid color(gray-db);
-  border-radius: vw(30);
+  border-radius: 3vmin;
   font-weight: 600;
   text-align: center;
   white-space: pre-line;
 
   .text-lg {
-    margin-bottom: vw(40);
-    font-size: vw(70);
+    margin-bottom: 4vmin;
+    font-size: var(--head1);
   }
 
   .text-md {
-    font-size: vw(32);
+    font-size: var(--font-size-32);
   }
 
   .text-sm {
-    margin-top: vh(30);
+    margin-top: 3vmin;
     font-weight: 400;
-    font-size: vw(28);
+    font-size: var(--font-size-28);
     color: color(gray-80);
   }
 
-  >* {
-    margin-top: vh(30);
+  > * {
+    margin-top: 3vmin;
 
     &:first-of-type {
       margin-top: 0;
@@ -38,20 +38,20 @@
 
 .blank-line {
   display: inline-block;
-  width: vw(72);
+  width: 7.2vmin;
   border-bottom: 2px solid color(gray-80);
 }
 
 .blank-gray {
   display: inline-block;
-  min-width: vw(80);
+  min-width: 8vmin;
   margin-top: vh(5);
-  padding: vh(3) vw(10);
+  padding: vh(3) 1vmin;
   border: 3px solid color(gray-c9);
-  border-radius: vw(7);
+  border-radius: 1vmin;
   background-color: color(gray-f5);
   font-weight: 600;
-  font-size: vw(28);
+  font-size: var(--font-size-28);
   color: color(main);
   text-align: center;
 
@@ -81,12 +81,11 @@
 
 .hori-answer-wrap {
   @include flex-center {
-    gap: vw(30);
-    flex-wrap: wrap;
+    gap: 3vmin;
   }
 
   .inp-grp {
-    flex-basis: calc(50% - vw(15));
+    flex-basis: calc(50% - 1vmin);
     flex-shrink: 0;
     flex-grow: 0;
   }
@@ -94,15 +93,15 @@
 
 .quiz-sentence-wrap {
   @include flex-center {
-    gap: vw(20);
+    gap: 2vmin;
   }
 
-  margin: vh(30) auto;
+  margin: 3vmin 0;
 
   .text {
     display: inline-block;
     font-weight: 600;
-    font-size: vw(22);
+    font-size: 2vmin;
     text-align: center;
 
     .sm {
@@ -112,11 +111,11 @@
   }
 
   .blank {
-    min-width: vw(160);
-    max-width: vw(300);
-    padding: vh(15) vw(15);
-    border: 2px solid color(gray-c9);
-    border-radius: vw(15);
+    min-width: 16vmin;
+    max-width: 30vmin;
+    padding: 1.5vmin;
+    border: 0.2vmin solid color(gray-c9);
+    border-radius: 1.5vmin;
     background-color: color(gray-f5);
     color: color(main);
 

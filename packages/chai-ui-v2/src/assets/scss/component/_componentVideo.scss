@@ -2,7 +2,7 @@
 .player-wrap {
   overflow: hidden;
   position: relative;
-  max-width: vw(900);
+  max-width: 90vmin;
   height: vh(563);
   margin: 0 auto;
 
@@ -12,12 +12,12 @@
   }
 
   @at-root .grid-h-5-5 & {
-    width: vw(462);
+    width: 46vmin;
     height: auto;
   }
 
   @at-root .grid-h-3-7 & {
-    width: vw(685);
+    width: 68vmin;
     max-width: 100%;
     height: auto;
   }

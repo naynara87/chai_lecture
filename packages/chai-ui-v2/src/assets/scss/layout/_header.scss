@@ -7,13 +7,13 @@ $flag-width: 42px;
   top: 0;
   left: 0;
   width: 100%;
-  height: $hd-height;
+  height: $header-height;
 }
 
 .hd-conts-wrap {
   position: relative;
   height: 100%;
-  padding-right: clamp($flag-width, vw(62), 62px);
+  padding-right: clamp($flag-width, 6.2vmin, 62px);
   text-align: right;
   transition: width 1200ms;
   transition-timing-function: linear;
@@ -46,7 +46,7 @@ $flag-width: 42px;
     left: auto;
     right: 0;
     width: $flag-width;
-    height: $hd-height;
+    height: $header-height;
   }
 
   .bg-flag {
@@ -65,6 +65,7 @@ $flag-width: 42px;
 
   z-index: z(two);
   position: relative;
+  top: 0;
   margin-top: 0.4em;
 
   .img {
@@ -85,23 +86,23 @@ $flag-width: 42px;
 
   &.first-half {
     .img {
-      margin-left: vw(10);
+      margin-left: 1vmin;
     }
 
     .txt {
-      left: calc(100% + vw(10));
+      left: calc(100% + 1vmin);
       border-top-left-radius: 0;
     }
   }
 
   &.second-half {
     .img {
-      margin-right: vw(10);
+      margin-right: 1vmin;
     }
 
     .txt {
       left: auto;
-      right: calc(100% + vw(10));
+      right: calc(100% + 1vmin);
       border-top-right-radius: 0;
     }
   }
@@ -109,10 +110,11 @@ $flag-width: 42px;
 
 .corner-name {
   display: inline-block;
-  height: $hd-height;
+  height: $header-height;
   font-weight: 600;
   font-size: 3vmin;
   color: color(gray-ff);
   vertical-align: top;
   padding: 0.4em 0;
+  background-color: #ee4141;
 }

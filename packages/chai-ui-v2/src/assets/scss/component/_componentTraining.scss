@@ -54,7 +54,7 @@
     @include scrollbar;
 
     overflow: auto;
-    font-size: 2vmin;
+    font-size: var(--font-size-24);
 
     .text-wrap {
       @include scrollbar;

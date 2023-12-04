@@ -40,11 +40,13 @@
   }
 
   &.step2 {
-    width: 54vmin;
+    width: 56vmin;
+    min-height: 46vmin;
   }
 
   &.step3 {
-    width: 54vmin;
+    width: 58vmin;
+    min-height: 48vmin;
   }
 
   @at-root .grid-h-5-5 .step3 {
@@ -60,29 +62,29 @@
   text-align: center;
 
   > div {
-    font-size: vw(32);
+    font-size: var(--font-size-32);
   }
 
   .text {
-    font-size: vw(28);
+    font-size: var(--font-size-28);
   }
 
   .chinese {
-    font-size: vw(50);
+    font-size: var(--head3);
   }
 
   .pinyin {
-    margin-top: vw(20);
-    font-size: vw(28);
+    margin-top: 2vmin;
+    font-size: var(--font-size-28);
   }
 
   &.step2 {
-    width: vw(1328);
-    min-height: vw(468);
+    width: 133vmin;
+    min-height: 47vmin;
   }
 
   &.step3 {
-    width: vw(1328);
-    min-height: vw(520);
+    width: 133vmin;
+    min-height: 52vmin;
   }
 }

@@ -1,33 +1,33 @@
 /* =================== componentNextLesson =================== */
 .next-lesson-wrapper {
-	@include flex {
-		justify-content: center;
-		gap: vw(50);
-	}
+  @include flex {
+    justify-content: center;
+    gap: 5vmin;
+  }
 
-	.lesson-list {
-		width: vw(420);
-	}
+  .lesson-list {
+    width: 42vmin;
+  }
 
-	.text-bubble-wrap {
-		@include flex-center;
+  .text-bubble-wrap {
+    @include flex-center;
 
-		min-height: vh(280);
-		font-weight: 600;
-		font-size: vw(32);
-		white-space: pre-line;
-	}
+    min-height: vh(280);
+    font-weight: 600;
+    font-size: 3.2vmin;
+    white-space: pre-line;
+  }
 
-	.img-wrap {
-		@include square(vw(200));
+  .img-wrap {
+    @include square(20vmin);
 
-		overflow: hidden;
-		margin: vh(60) auto 0;
+    overflow: hidden;
+    margin: vh(60) auto 0;
 
-		>img {
-			@include full;
+    > img {
+      @include full;
 
-			object-fit: cover;
-		}
-	}
+      object-fit: cover;
+    }
+  }
 }

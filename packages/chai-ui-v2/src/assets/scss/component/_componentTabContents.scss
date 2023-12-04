@@ -27,7 +27,7 @@
   .tab-title {
     width: 50%;
     border-radius: 2vmin;
-    padding: 0.5em 1em;
+    padding: 1vmin 2vmin;
     font-size: 2.8vmin;
     line-height: 2;
     color: color(gray-80);
@@ -52,21 +52,21 @@
 }
 
 .tab-conts-wrap {
-  padding: vh(40) vw(40);
+  padding: 1em;
   border: 1px solid color(gray-db);
-  border-radius: vw(20);
-  font-size: vw(28);
+  border-radius: 2vmin;
+  font-size: 2.6vmin;
   white-space: pre-line;
 
   &:not(:first-of-type) {
-    margin-top: vw(30);
+    margin-top: 3vmin;
   }
 
   > div {
     text-align: left;
 
     &:not(:first-of-type) {
-      margin-top: vw(40);
+      margin-top: 3vmin;
     }
   }
 

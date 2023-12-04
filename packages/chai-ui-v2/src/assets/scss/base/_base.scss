@@ -102,13 +102,15 @@ img {
 }
 
 .btn-wrap {
-  margin-top: vw(64);
+  margin-top: 6.4vmin;
   text-align: center;
 
   > button:not(:first-of-type) {
-    margin-left: vw(24);
+    margin-left: 3vmin;
   }
 }
+
+/* lx-player color */
 
 c1 {
   color: #222;
@@ -121,4 +123,41 @@ c3 {
 }
 c4 {
   color: #666;
+}
+
+/* font-size */
+
+.font-head1 {
+  font-size: var(--head1);
+}
+.font-head2 {
+  font-size: var(--head2);
+}
+.font-head3 {
+  font-size: var(--head3);
+}
+.font-head4 {
+  font-size: var(--head4);
+}
+
+.font-36vmin {
+  font-size: var(--font-size-36);
+}
+.font-32vmin {
+  font-size: var(--font-size-32);
+}
+.font-28vmin {
+  font-size: var(--font-size-28);
+}
+.font-26vmin {
+  font-size: var(--font-size-26);
+}
+.font-24vmin {
+  font-size: var(--font-size-24);
+}
+.font-22vmin {
+  font-size: var(--font-size-22);
+}
+.font-20vmin {
+  font-size: var(--font-size-20);
 }

@@ -12,7 +12,7 @@
   }
 
   .character-wrap {
-    margin-top: vh(62);
+    margin-top: 3vmin;
 
     .img {
       height: vh(167);
@@ -29,7 +29,7 @@
     text-align: center;
 
     .txt {
-      margin-top: 1vmin;
+      margin-top: 2vmin;
       font-size: 2.2vmin;
     }
   }
@@ -37,11 +37,11 @@
 
 .text-bubble-wrap {
   position: relative;
-  padding: vh(30) vw(30);
-  border-radius: $border-radius;
+  padding: 4vmin 6vmin;
+  border-radius: $border-pill-radius;
   background-color: color(bubble-gray);
-  font-weight: 400;
-  font-size: 2.4vmin;
+  font-weight: 500;
+  font-size: var(--font-size-36);
   text-align: center;
 
   @include make-after {

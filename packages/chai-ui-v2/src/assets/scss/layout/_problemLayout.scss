@@ -1,5 +1,5 @@
 /* =================== problemLayout =================== */
-$cont-padding: vw(40);
+$cont-padding: 4vmin;
 $main-light-color: #e3e3e7;
 $main-color: #6673a3;
 $main-dark-color: #46538c;
@@ -18,31 +18,31 @@ $gray-color: #d6d7da;
 
 .problem-hd-ttl {
   font-weight: 600;
-  font-size: vw(26);
+  font-size: var(--font-size-26);
   color: color(gray-ff);
 }
 
 .problem-hd-timer {
   font-weight: 400;
-  font-size: vw(26);
+  font-size: var(--font-size-26);
   display: flex;
   justify-content: center;
   align-items: center;
   color: color(gray-ff);
 
   > img {
-    margin-right: vw(10);
+    margin-right: 1vmin;
     vertical-align: bottom;
   }
 }
 
 // main layout style
 .problem-main {
-  padding-top: $hd-height;
+  padding-top: $header-height;
   padding-bottom: 0;
 
   .problem-top-button-wrapper {
-    width: vw(1610);
+    width: 161vmin;
     margin: vh(30) auto 0;
     // overflow-x: scroll;
 
@@ -52,7 +52,7 @@ $gray-color: #d6d7da;
   }
 
   .pagination-wrapper {
-    gap: vw(15);
+    gap: 1.5vmin;
   }
 
   .layout-panel-wrap {
@@ -74,7 +74,7 @@ $gray-color: #d6d7da;
 .btn-problem {
   @extend %btn;
 
-  @include circle(vw(115));
+  @include circle(12vmin);
 
   position: absolute;
   top: auto;
@@ -83,14 +83,14 @@ $gray-color: #d6d7da;
   right: 0;
   background-color: $main-color;
   transform: translateX(50%);
-  box-shadow: 0 vw(6) vw(20) rgba(120, 127, 153, 0.6);
+  box-shadow: 0 0.6vmin 2vmin rgba(120, 127, 153, 0.6);
   transition: all 0.3s;
 
   > span {
     display: block;
     margin-bottom: vh(8);
     font-weight: 600;
-    font-size: vw(20);
+    font-size: var(--font-size-20);
     color: color(gray-ff);
     text-align: center;
   }
@@ -105,23 +105,23 @@ $gray-color: #d6d7da;
   position: absolute;
   top: vh(60);
   left: 0;
-  min-width: vw(125);
-  padding: vw(7) vw(15);
-  border-radius: vw(5);
+  min-width: 13vmin;
+  padding: 0.7vmin 1.5vmin;
+  border-radius: 0.5vmin;
   background-color: $main-color;
   font-weight: 500;
-  font-size: vw(24);
+  font-size: var(--font-size-24);
   line-height: 1.6;
   color: color(gray-ff);
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
-  transform: translateX(vw(-62));
+  transform: translateX(-6vmin);
   white-space: pre-line;
 }
 
 // pagination style
 .problem-top-button-wrapper {
   @include flex-btw {
-    gap: vw(50);
+    gap: 5vmin;
   }
 
   width: 100%;
@@ -142,10 +142,10 @@ $gray-color: #d6d7da;
   @include flex-op(center, flex-start);
 
   overflow-x: auto;
-  gap: vw(16);
+  gap: 2v, om;
   height: vh(90);
   padding: 0 $cont-padding;
-  border-radius: vw(10);
+  border-radius: var(--small-radius);
   background-color: $main-light-color;
 }
 
@@ -153,14 +153,14 @@ $gray-color: #d6d7da;
   @extend %btn;
 
   flex-shrink: 0;
-  min-width: vw(62);
-  height: vw(62);
-  padding: 0 vw(15);
+  min-width: 6.2vmin;
+  height: 6.2vmin;
+  padding: 0 1.5vmin;
   border: 1px solid color(gray-f0);
-  border-radius: vw(10);
+  border-radius: 1vmin;
   background-color: $gray-color;
   font-weight: 500;
-  font-size: vw(24);
+  font-size: var(--font-size-24);
   color: color(gray-80);
   text-align: center;
 
@@ -172,15 +172,15 @@ $gray-color: #d6d7da;
   &.active {
     background-color: $main-color;
     color: color(gray-ff);
-    box-shadow: 0 vw(2) vw(10) rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0.2vmin 1vmin rgba(0, 0, 0, 0.25);
   }
 }
 
 .problem-title-wrap {
-  padding: vw(14) vw(25);
-  border-radius: vw(10);
+  padding: 1.4vmin 2.5vmin;
+  border-radius: 1vmin;
   background-color: $main-light-color;
-  font-size: vw(24);
+  font-size: var(--font-size-24);
 
   > b {
     color: $main-color;
@@ -192,19 +192,19 @@ $gray-color: #d6d7da;
   @extend %btn;
 
   @include flex-center {
-    gap: vw(10);
+    gap: 1vmin;
   }
 
-  height: vw(55);
-  padding: vw(10) vw(20);
+  height: 5.5vmin;
+  padding: 1vmin 2vmin;
   border: 1px solid color(gray-db);
-  border-radius: vw(10);
+  border-radius: 1vmin;
   background-color: color(gray-ff);
-  font-size: vw(22);
+  font-size: var(--font-size-24);
   transition: all 0.2s;
 
   img {
-    width: vw(18);
+    width: 1.8vmin;
   }
 
   @include hover {
@@ -217,17 +217,17 @@ $gray-color: #d6d7da;
   @extend %btn;
 
   @include flex-center {
-    gap: vw(10);
+    gap: 1vmin;
   }
 
   width: 100%;
-  height: vw(55);
-  padding: vw(12) vw(27);
+  height: 5.5vmin;
+  padding: 1.2vmin 2.7vmin;
   border: 1px solid color(gray-db);
-  border-radius: vw(100);
+  border-radius: 10vmin;
   background-color: color(gray-ff);
-  font-size: vw(22);
-  letter-spacing: vw(-2);
+  font-size: var(--font-size-22);
+  letter-spacing: -2vmin;
   transition: all 0.2s;
 
   @include hover {
@@ -240,20 +240,20 @@ $gray-color: #d6d7da;
   @extend %btn;
 
   @include flex-center {
-    gap: vw(10);
+    gap: 1vmin;
   }
 
-  height: vw(55);
-  padding: vw(10) vw(20);
+  height: 5.5vmin;
+  padding: 1vmin 2vmin;
   border: 1px solid color(gray-80);
-  border-radius: vw(10);
+  border-radius: var(--small-radius);
   background-color: color(gray-80);
-  font-size: vw(22);
+  font-size: var(--font-size-22);
   color: color(gray-ff);
   transition: all 0.2s;
 
   img {
-    width: vw(20);
+    width: 2vmin;
   }
 
   @include hover {
