@@ -83,9 +83,9 @@ const ImageThumb = styled.div`
 `;
 
 const TitleArea = styled.div`
-  padding-top: 4vw;
+  padding-top: 4vmin;
   font-weight: 600;
-  font-size: 1.6vw;
+  font-size: 1.6vmin;
   line-height: 1.5;
 `;
 
@@ -95,9 +95,9 @@ const DescriptionArea = styled.div`
 `;
 
 const GradiWrap = styled.div`
-  min-height: 8.25vw;
-  padding-bottom: 2.5vw;
-  border-radius: 1vw 1vw 0 0;
+  min-height: 8.25vmin;
+  padding-bottom: 2.5vmin;
+  border-radius: 1vmin 1vmin 0 0;
   text-align: center;
   background-image: linear-gradient(to top, #e3e8ff 0%, #e9faff 100%);
 `;

@@ -11,23 +11,21 @@ Font.whitelist = ["timesRoman"];
 ReactQuill.Quill.register(Font, true);
 const Size = ReactQuill.Quill.import("attributors/style/size");
 Size.whitelist = [
-  "16px",
-  "20px",
-  "22px",
-  "24px",
-  "26px",
-  "28px",
-  "32px",
-  "36px",
-  "40px",
-  "45px",
-  "48px",
-  "50px",
-  "56px",
-  "60px",
-  "64px",
-  "70px",
-  "80px",
+  "2vmin",
+  "2.2vmin",
+  "2.4vmin",
+  "2.6vmin",
+  "2.8vmin",
+  "3.2vmin",
+  "3.6vmin",
+  "4vmin",
+  "4.5vmin",
+  "4.8vmin",
+  "5vmin",
+  "5.6vmin",
+  "6vmin",
+  "6.4vmin",
+  "7vmin",
 ];
 ReactQuill.Quill.register(Size, true);
 
