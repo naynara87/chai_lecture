@@ -4,22 +4,36 @@
 }
 
 /* 1024px 이상 1919px 이하의 화면에 대한 스타일 */
-@media only screen and (min-width: 1024px) and (max-width: 1919px) {
+@media only screen and (max-width: 1919px) {
   /* 여기에 1024px 이상 1919px 이하의 화면에 적용할 스타일 작성 */
 }
 
 /* 768px 이상 1023px 이하의 중간 크기 화면에 대한 스타일 */
-@media only screen and (min-width: 768px) and (max-width: 1023px) {
+@media only screen and (max-width: 1023px) {
   /* 여기에 768px 이상 1023px 이하의 화면에 적용할 스타일 작성 */
+  .btn-round-icon-arrow {
+    width: 3vw;
+    height: 3vw;
+  }
+  .width_fit {
+    .voca-header {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+      .voca-title {
+        padding: 2vmin 0;
+        font-size: 2vmin;
+      }
+    }
+  }
 }
 
 /* 360px 이상 767px 이하의 작은 화면에 대한 스타일 */
-@media only screen and (min-width: 360px) and (max-width: 767px) {
+@media only screen and (max-width: 767px) {
   /* 여기에 360px 이상 767px 이하의 화면에 적용할 스타일 작성 */
 }
 
 @media only screen and (max-width: 359px) {
-  main {
+  body {
     display: none;
   }
 }
