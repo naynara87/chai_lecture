@@ -17,10 +17,10 @@
   @return map-get($zIndex-set, $layer);
 }
 
-@function vw($px) {
+/* @function vw($px) {
   @return $px / 2000 * 100vw;
 }
 
 @function vh($px) {
   @return $px / 1200 * 100vh;
-}
+} */
