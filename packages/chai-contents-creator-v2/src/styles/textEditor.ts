@@ -7,93 +7,83 @@ import { rem } from "../utils/font";
 const QlSizeHasFontSize = css`
   .ql-size {
     .ql-picker-options {
-      height: 100px;
+      height: 300px;
       overflow: scroll;
       overflow-x: hidden;
     }
-    [data-value="16px"] {
-      ::before {
-        content: "16px" !important;
-      }
-    }
-    [data-value="20px"] {
+    [data-value="2vmin"] {
       ::before {
         content: "20px" !important;
       }
     }
-    [data-value="22px"] {
+    [data-value="2.2vmin"] {
       ::before {
         content: "22px" !important;
       }
     }
-    [data-value="24px"] {
+    [data-value="2.4vmin"] {
       ::before {
         content: "24px" !important;
       }
     }
-    [data-value="26px"] {
+    [data-value="2.6vmin"] {
       ::before {
         content: "26px" !important;
       }
     }
-    [data-value="28px"] {
+    [data-value="2.8vmin"] {
       ::before {
         content: "28px" !important;
       }
     }
-    [data-value="32px"] {
+    [data-value="3.2vmin"] {
       ::before {
         content: "32px" !important;
       }
     }
-    [data-value="36px"] {
+    [data-value="3.6vmin"] {
       ::before {
         content: "36px" !important;
       }
     }
-    [data-value="40px"] {
+    [data-value="4vmin"] {
       ::before {
         content: "40px" !important;
       }
     }
-    [data-value="45px"] {
+    [data-value="4.5vmin"] {
       ::before {
         content: "45px" !important;
       }
     }
-    [data-value="48px"] {
+    [data-value="4.8vmin"] {
       ::before {
         content: "48px" !important;
       }
     }
-    [data-value="50px"] {
+    [data-value="5vmin"] {
       ::before {
         content: "50px" !important;
       }
     }
-    [data-value="56px"] {
+    [data-value="5.6vmin"] {
       ::before {
         content: "56px" !important;
       }
     }
-    [data-value="60px"] {
+    [data-value="6vmin"] {
       ::before {
         content: "60px" !important;
       }
     }
-    [data-value="64px"] {
+    [data-value="6.4vmin"] {
       ::before {
         content: "64px" !important;
       }
     }
-    [data-value="70px"] {
+    [data-value="7vmin"] {
       ::before {
         content: "70px" !important;
-      }
-    }
-    [data-value="80px"] {
-      ::before {
-        content: "80px" !important;
       }
     }
   }
