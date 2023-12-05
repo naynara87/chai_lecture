@@ -76,7 +76,13 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-
+/* 에디터 초기값 */
+.ql-toolbar {
+  line-height: 1;
+}
+.ql-editor {
+  padding: 6px 12px;
+}
 /* Reset img */
 img {
   max-width: 100%;
@@ -126,16 +132,24 @@ c4 {
 }
 
 /* font-size */
-
+h1,
+h2,
+h3,
+h4 {
+  font-weight: normal;
+}
 .font-head1 {
   font-size: var(--head1);
 }
+
 .font-head2 {
   font-size: var(--head2);
 }
+
 .font-head3 {
   font-size: var(--head3);
 }
+
 .font-head4 {
   font-size: var(--head4);
 }
