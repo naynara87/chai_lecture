@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { AllTemplateData, ID, MultiChoiceContentData, vw } from "chai-ui-v2";
+import { AllTemplateData, ID, MultiChoiceContentData } from "chai-ui-v2";
 import React, { useCallback } from "react";
 import TextEditorViewer from "./TextEditorViewer";
 import { AnswerCheckText, AnswerInput } from "../contents/MultiChoiceCreator";
@@ -11,7 +11,7 @@ interface ChoiceLabelProps {
 
 const ChoiceLabel = styled.label<ChoiceLabelProps>`
   height: 100%;
-  padding: ${vw(20)} ${vw(40)};
+  padding: 2vmin 4vmin;
   margin-bottom: 8px;
   ${(props) =>
     props.isFocus && `height:auto; display:flex; align-items: center;`}

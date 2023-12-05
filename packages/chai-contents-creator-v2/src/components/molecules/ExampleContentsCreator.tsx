@@ -7,7 +7,7 @@ const ExampleContentsWrapper = styled.div`
   border-radius: 20px;
   border: 1px solid #d9d0ff;
   background-color: #f6f4ff;
-  width: 450px;
+  width: 50vmin;
 `;
 
 const ExampleTitleWrapper = styled.div`

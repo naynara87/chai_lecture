@@ -10,6 +10,9 @@ import WordsCarousel from "../molecules/WordsCarousel";
 const AudioAndWordsCarouselWrapper = styled.div`
   display: flex;
   gap: 16px;
+  > div {
+    flex: 1;
+  }
 `;
 
 const AudioAndWordsCarouselModalCreator = ({

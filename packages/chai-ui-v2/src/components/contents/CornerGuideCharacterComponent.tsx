@@ -22,12 +22,14 @@ const ContStartWrapper = styled.div`
   }
 
   .character-wrap {
-    margin-top: 5vmin;
+    width: 40vmin;
+    height: 40vmin;
+    margin: 5vmin auto 0;
     text-align: center;
 
     .img {
-      width: 40vmin;
-      height: 40vmin;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
     }
   }

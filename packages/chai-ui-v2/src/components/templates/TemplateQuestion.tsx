@@ -10,7 +10,7 @@ import {
 import { LocalStorage } from "../../core";
 import { useParams } from "react-router-dom";
 import ArrowIcon from "../../assets/images/icon/icon_stick_arrow_right_white.svg";
-import { colorPalette, vw } from "../../assets";
+import { colorPalette } from "../../assets";
 
 const QuestionPanel = styled.div`
   padding: 0;
@@ -24,7 +24,7 @@ const LoadingTextContainer = styled.div`
 `;
 
 const LoadingText = styled.div`
-  font-size: ${vw(32)};
+  font-size: 3.2vmin;
   position: absolute;
   top: 50%;
   left: 50%;

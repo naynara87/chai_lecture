@@ -7,7 +7,6 @@ import {
   CaptionListImage,
   ImageWithCaptionListContentData,
   useToast,
-  vw,
 } from "chai-ui-v2";
 import TextEditorViewer from "../molecules/TextEditorViewer";
 import { useCallback, useEffect, useState } from "react";
@@ -18,6 +17,7 @@ import useSafeKey from "../../hooks/useSafeKey";
 const ImageListWrapper = styled.ul`
   display: flex;
   gap: 20px;
+  margin: 0 auto;
 
   .caption-text {
     margin-top: 20px;
@@ -30,12 +30,13 @@ const ImageListWrapper = styled.ul`
 const ImageList = styled.li`
   position: relative;
   width: 50%;
+  flex: 1;
 `;
 
 const ImageThumb = styled.div`
   max-width: 100%;
-  width: ${vw(200)};
-  height: ${vw(150)};
+  width: 20vmin;
+  height: 15vmin;
   background-color: #f0f0f0;
   position: relative;
   margin-bottom: 10px;

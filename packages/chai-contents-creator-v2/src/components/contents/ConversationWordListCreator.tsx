@@ -4,7 +4,6 @@ import {
   ConversationWordListContentData,
   ImgCharacterComponent,
   useToast,
-  vw,
 } from "chai-ui-v2";
 import React, { useCallback, useMemo, useState } from "react";
 import { DraggableContentCommonProps } from "../../types/page";
@@ -37,8 +36,7 @@ const deleteButtonStyle = css`
 
 const TitleInput = styled.input`
   background: none !important;
-  font-size: ${vw(25)} !important;
-  text-align: center;
+  font-size: 2.4vmin !important;
   &::placeholder {
     opacity: 0.6;
   }
@@ -238,23 +236,25 @@ const ConversationWordListCreator = ({
           className="voca-note-container active"
           onClick={(e) => setFocusedId(e, content.id)}
         >
-          <h3 className="voca-title">
-            <TitleInput
-              type="text"
-              className="name"
-              placeholder="제목 입력"
-              onBlur={(e) => {
-                const target = e.target as HTMLInputElement;
-                setTitle(target.value);
-              }}
-              defaultValue={thisContent.data.title}
-            />
+          <div className="voca-header">
             <ImgCharacterComponent
               characterType="kkungiHello"
               characterAlt="꿍이윙크인사"
             />
+            <h3 className="voca-title">
+              <TitleInput
+                type="text"
+                className="name"
+                placeholder="제목 입력"
+                onBlur={(e) => {
+                  const target = e.target as HTMLInputElement;
+                  setTitle(target.value);
+                }}
+                defaultValue={thisContent.data.title}
+              />
+            </h3>
             <ComponentButtonRoundArrow />
-          </h3>
+          </div>
           <ul className="voca-list-wrap">{vocaLists}</ul>
         </ConversationWordListWrapper>
       </div>

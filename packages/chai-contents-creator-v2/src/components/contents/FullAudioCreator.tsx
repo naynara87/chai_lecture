@@ -8,14 +8,14 @@ const AudioCreatorWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   & > img {
-    width: 40px;
-    height: 40px;
-    box-shadow: 0px 4px 0px rgba(88, 88, 88, 0.2);
-    border-radius: 8px;
-    margin-bottom: 8px;
+    width: 5vmin;
+    height: 5vmin;
+    box-shadow: 0 0.4vmin 0 rgba(88, 88, 88, 0.2);
+    border-radius: 1vmin;
+    margin-bottom: 1vmin;
   }
   & .full-audio-text {
-    font-size: 12px;
+    font-size: 2vmin;
     font-weight: 400;
   }
 `;

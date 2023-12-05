@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { vh, vw } from "../../assets";
 import { ImgTemp01Component } from "../atoms";
 import ComponentButtonPlay from "../atoms/ComponentButtonPlay";
 import ComponentButtonRadiBorderMain from "../atoms/ComponentButtonRadiBorderMain";
@@ -25,12 +24,12 @@ const QuizContainer = styled.form`
   }
 
   > .btns-wrap {
-    max-width: 382px;
-    margin: 0 auto;
+    max-width: 50%;
+    margin: 2vmin auto;
 
     .btn {
-      height: ${vh(62)};
-      font-size: ${vw(22)};
+      padding: 0.5em 1em;
+      font-size: 2.6vmin;
     }
   }
 `;

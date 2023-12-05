@@ -43,7 +43,7 @@ $gray-color: #d6d7da;
 
   .problem-top-button-wrapper {
     width: 161vmin;
-    margin: vh(30) auto 0;
+    margin: 3vmin auto 0;
     // overflow-x: scroll;
 
     &::-webkit-scrollbar {
@@ -57,8 +57,8 @@ $gray-color: #d6d7da;
 
   .layout-panel-wrap {
     position: relative;
-    height: calc(100% - vh(70) - vh(140));
-    margin-top: vh(30);
+    height: calc(100% - 7vh - 14vh);
+    margin-top: 3vmin;
   }
 
   .btn-radi-border-main {
@@ -78,7 +78,7 @@ $gray-color: #d6d7da;
 
   position: absolute;
   top: auto;
-  bottom: vh(40);
+  bottom: 4vmin;
   left: auto;
   right: 0;
   background-color: $main-color;
@@ -88,7 +88,7 @@ $gray-color: #d6d7da;
 
   > span {
     display: block;
-    margin-bottom: vh(8);
+    margin-bottom: 1vmin;
     font-weight: 600;
     font-size: var(--font-size-20);
     color: color(gray-ff);
@@ -103,7 +103,7 @@ $gray-color: #d6d7da;
 // question number style
 .question-number {
   position: absolute;
-  top: vh(60);
+  top: 6vmin;
   left: 0;
   min-width: 13vmin;
   padding: 0.7vmin 1.5vmin;
@@ -125,7 +125,7 @@ $gray-color: #d6d7da;
   }
 
   width: 100%;
-  height: vh(60);
+  height: 6vmin;
 }
 
 .top-button-left {
@@ -143,9 +143,9 @@ $gray-color: #d6d7da;
 
   overflow-x: auto;
   gap: 2v, om;
-  height: vh(90);
+  height: 9vmin;
   padding: 0 $cont-padding;
-  border-radius: var(--small-radius);
+  border-radius: 1vmin;
   background-color: $main-light-color;
 }
 
@@ -246,7 +246,7 @@ $gray-color: #d6d7da;
   height: 5.5vmin;
   padding: 1vmin 2vmin;
   border: 1px solid color(gray-80);
-  border-radius: var(--small-radius);
+  border-radius: 1vmin;
   background-color: color(gray-80);
   font-size: var(--font-size-22);
   color: color(gray-ff);

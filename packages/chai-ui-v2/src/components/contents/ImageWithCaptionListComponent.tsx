@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import React, { useMemo, useState } from "react";
 import { ImageWithCaptionListContentData } from "../../core";
-import { vw, vh, colorPalette } from "../../assets";
+import { colorPalette } from "../../assets";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
 import { ModalImage } from "../modal";
 
@@ -11,18 +11,16 @@ export interface ImageWithCaptionListProps {
 
 const ImageWithCaptionListWrapper = styled.div`
   display: flex;
-  gap: ${vw(30)};
+  gap: 3vmin;
   justify-content: center;
 `;
 
-const IMAGE_HEIGHT = 280;
-
 export const CaptionListImage = styled.img`
-  border-radius: ${vw(10)};
+  border-radius: 1vmin;
   -webkit-user-drag: none;
   cursor: pointer;
-  width: calc((${vh(IMAGE_HEIGHT)} * 4) / 3);
-  height: ${vh(IMAGE_HEIGHT)};
+  width: calc((20vh * 4) / 3);
+  height: 20vh;
   object-fit: cover;
 `;
 
@@ -33,8 +31,8 @@ const ImageWithCaptionWrapper = styled.div`
   flex-direction: column;
 
   > div {
-    margin-top: ${vh(15)};
-    font-size: ${vw(24)};
+    margin-top: 1vmin;
+    font-size: 2vmin;
     font-weight: 400;
     line-height: 1.5;
     text-align: center;
@@ -42,7 +40,7 @@ const ImageWithCaptionWrapper = styled.div`
   }
 
   .caption-wrap {
-    width: calc((${vh(IMAGE_HEIGHT)} * 4) / 3);
+    width: calc((20vh * 4) / 3);
   }
 `;
 

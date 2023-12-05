@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { MultiChoiceContentData, QuizPopupModalContentData, vw } from "chai-ui-v2";
+import { MultiChoiceContentData, QuizPopupModalContentData } from "chai-ui-v2";
 import React, { useState } from "react";
 import useGrayLineComponent from "../../hooks/useGrayLineComponent";
 import { DraggableContentCommonProps } from "../../types/page";
@@ -16,7 +16,7 @@ const MultiChoiceWrapper = styled.div`
   margin-top: 8px;
 
   > div {
-    margin-top: ${vw(60)};
+    margin-top: 5vmin;
 
     &:first-of-type {
       margin-top: 0;
@@ -41,7 +41,7 @@ export const AnswerCheckText = styled.span`
 export const AnswerInput = styled.input`
   vertical-align: middle;
   appearance: none;
-  border: max(2px, 0.1em) solid #c9c9c9;
+  border: $border-3 solid #c9c9c9;
   border-radius: 50%;
   margin-right: 5px;
   width: 1em;

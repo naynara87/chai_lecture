@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
 import TempImage1 from "../../assets/images/img/temp_profile05.png";
-import { vh, vw } from "../../assets";
 
 const CultureListWrapper = styled.div`
   .culture-list {
@@ -10,14 +9,14 @@ const CultureListWrapper = styled.div`
     align-items: flex-start;
 
     &:not(:first-of-type) {
-      margin-top: ${vh(40)};
+      margin-top: 5vmin;
     }
 
     .img-wrap {
       overflow: hidden;
       flex-shrink: 0;
-      width: ${vw(350)};
-      border-radius: ${vw(10)};
+      width: 35vmin;
+      border-radius: 1vmin;
 
       > img {
         width: 100%;
@@ -26,8 +25,8 @@ const CultureListWrapper = styled.div`
 
     .text {
       width: 100%;
-      padding-left: ${vw(40)};
-      font-size: ${vw(28)};
+      padding-left: 4vmin;
+      font-size: 2.8vmin;
     }
   }
 `;

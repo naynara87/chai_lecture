@@ -6,22 +6,22 @@ import { DraggableContentCommonProps } from "../../types/page";
 export const RecorderWrapper = styled.div`
   display: flex;
   padding: 0 24px;
-  width: 200px;
-  height: 50px;
-  line-height: 50px;
+  width: 34vmin;
+  padding: 1.5vmin 3vmin;
   border-radius: 8px;
   border: 2px solid #dce6ff;
   align-items: center;
+  margin: 0 auto;
   & img {
-    width: 24px;
-    height: 24px;
+    width: 5vmin;
+    height: 5vmin;
     box-shadow: 0px 6px 0px rgba(88, 88, 88, 0.2);
-    border-radius: 6px;
-    margin-right: 20px;
+    border-radius: 1vmin;
+    margin-right: 2vmin;
     cursor: pointer;
   }
   & p {
-    font-size: 12px;
+    font-size: 2vmin;
   }
 `;
 

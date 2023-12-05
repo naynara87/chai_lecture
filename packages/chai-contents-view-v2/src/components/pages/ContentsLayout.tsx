@@ -91,6 +91,7 @@ const ContentsLayout = ({
         return;
       }
 
+      // if (window.innerWidth < window.innerHeight) {
       if (window.innerWidth < window.innerHeight) {
         // 가로가 세로보다 길 때
         body.classList.add("width_fit");

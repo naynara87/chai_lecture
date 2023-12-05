@@ -3,8 +3,6 @@ import styled from "@emotion/styled";
 import {
   QuizPopupModalContentData,
   useToast,
-  vh,
-  vw,
   WordsInOrderContentData,
 } from "chai-ui-v2";
 import { cloneDeep } from "lodash";
@@ -41,11 +39,10 @@ interface AnswerBoxProps {
 }
 
 const AnswerBox = styled.div<AnswerBoxProps>`
-  width: ${(props) => (props.isFocus ? "auto" : vw(150))};
-  /* height: ${(props) => (props.isFocus ? "auto" : vh(130))}; */
+  width: ${(props) => (props.isFocus ? "auto" : "15vmin")};
   height: auto;
-  min-height: ${vh(130)};
-  padding: ${vw(20)};
+  min-height: 20vmin;
+  padding: 2vmin;
   background-color: #f5f5f5;
   border: 1px solid #c9c9c9;
   border-radius: 8px;

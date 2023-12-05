@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import React, { useEffect, useMemo } from "react";
-import { vh, vw } from "../../assets";
 import { TemplateProps, TemplateQuizWordsInOrderData } from "../../core";
 import { ActivityGuideCharacterComponent } from "../contents";
 import WordsInOrderComponent from "../contents/WordsInOrderComponent";
@@ -29,12 +28,11 @@ const QuizContainer = styled.div`
   }
 
   > .btns-wrap {
-    max-width: 382px;
-    margin: 0 auto;
+    max-width: 50%;
+    margin: 3vmin auto;
 
     .btn {
-      height: ${vh(62)};
-      font-size: ${vw(22)};
+      font-size: 2.6vmin;
     }
   }
 `;

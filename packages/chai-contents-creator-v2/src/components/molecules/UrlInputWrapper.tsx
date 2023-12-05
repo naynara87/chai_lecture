@@ -9,6 +9,7 @@ export interface UrlInputWrapperProps {
 }
 const UrlTextWrapper = styled.div<UrlInputWrapperProps>`
   margin-top: 10px;
+  flex: auto;
 
   & .text-tit {
     margin-bottom: 5px;

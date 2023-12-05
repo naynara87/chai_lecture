@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import React, { useMemo } from "react";
-import { vh, vw } from "../../assets";
 import { ID, RolePlayingCharacter } from "../../core";
 import { ComponentButtonRadiFillMain, ImgTemp01Component } from "../atoms";
 
@@ -8,8 +7,8 @@ const ChoiceRoleWrapper = styled.div`
   .btn-wrap {
     text-align: center;
     .btn {
-      width: ${vw(471)};
-      margin-top: ${vh(60)};
+      width: 47vmin;
+      margin-top: 6vmin;
     }
   }
 `;

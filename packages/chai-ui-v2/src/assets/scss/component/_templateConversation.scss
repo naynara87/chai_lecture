@@ -21,6 +21,9 @@
   &:not(:first-of-type) {
     margin-top: 3vmin;
   }
+  .img-grp {
+    flex: 1;
+  }
 
   .img-wrap {
     flex-shrink: 0;
@@ -40,7 +43,7 @@
     overflow: hidden;
     z-index: z(two);
     position: relative;
-    border: 1vmin solid color(gray-ff);
+    border: 0.6vmin solid color(gray-ff);
     box-shadow: $btn-shadow;
   }
 
@@ -61,22 +64,22 @@
 
   .name {
     width: 100%;
-    margin-top: 1.5vmin;
-    font-size: 2vmin;
+    margin-top: 1vmin;
+    font-size: var(--font-size-22);
     color: color(gray-66);
     text-align: center;
   }
 
   .chinese {
-    font-size: 2.6vmin;
+    font-size: var(--font-size-36);
   }
 
   .pinyin {
-    font-size: 2.2vmin;
+    font-size: var(--font-size-28);
   }
 
   .mean {
-    font-size: 2.2vmin;
+    font-size: var(--font-size-24);
   }
 
   &.blank {

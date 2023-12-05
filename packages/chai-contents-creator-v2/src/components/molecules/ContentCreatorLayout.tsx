@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
 import IconDndHandle from "../atoms/icons/IconDndHandle";
 import IconHamburgerMenu from "../atoms/icons/IconHamburgerMenu";
-import { Content, ID, ModalConfirm, vw } from "chai-ui-v2";
+import { Content, ID, ModalConfirm } from "chai-ui-v2";
 import { DraggableProvided } from "react-beautiful-dnd";
 import { ReturnUsePage } from "../../hooks/usePage";
 import { CommonTemplateComponentLocation } from "../../types/page";
@@ -23,7 +23,7 @@ interface ContentCreatorContainerProps {
 
 const ContentCreatorContainer = styled.div<ContentCreatorContainerProps>`
   display: inline-flex;
-  margin-bottom: ${vw(24)};
+  margin-bottom: 3vmin;
   width: ${(props) => props.isContainerFullWidth && "100%"};
   width: 100%;
   /* border: 1px solid red; */
@@ -35,7 +35,6 @@ interface IconContainerWrapperProps {
 
 const IconContainerWrapper = styled.div<IconContainerWrapperProps>`
   display: ${(props) => (props.showWrapper ? "flex" : "none")};
-  /* align-items: center; */
 `;
 
 const IconContainer = styled.div`
@@ -68,8 +67,7 @@ const IconWrapper = styled.span<IconWrapperProps>`
 `;
 
 const ContentsContainer = styled.div`
-  width: 90%;
-  /* display: flex; */
+  width: 100%;
 `;
 
 interface ContentCreatorLayoutProps extends ContentCreatorWrapperProps {
@@ -140,7 +138,7 @@ const ContentCreatorLayout = ({
   return (
     <ContentCreatorWrapper align={align}>
       <ContentCreatorContainer
-        className="contentCreator"
+        className={"contentCreator"}
         isContainerFullWidth={isContainerFullWidth}
       >
         <IconContainerWrapper showWrapper={isDraggable && isEditBtn}>

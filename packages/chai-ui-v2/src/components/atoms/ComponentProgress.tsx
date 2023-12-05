@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import React, { useEffect, useRef, useState } from "react";
-import { vw } from "../../assets";
 
 interface ProgressBarProps {
   duration: number;
@@ -10,7 +9,7 @@ interface ProgressBarProps {
 const ProgressBar = styled.div<ProgressBarProps>`
   height: 100%;
   width: 100%;
-  border-radius: ${vw(50)};
+  border-radius: 5vmin;
   background-image: linear-gradient(to right, #66daff 0%, #677eff 100%);
   position: absolute;
   top: 0;

@@ -100,6 +100,9 @@ $main-radius: 3vmin;
 $inner-radius: 2vmin;
 $small-radius: 1vmin;
 
+$border-1: min(2px, 0.1vmin);
+$border-3: min(3px, 0.4vmin);
+
 .height_fit {
   --ratio: 19 / 9;
   --width: calc(var(--height) * var(--ratio));

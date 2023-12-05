@@ -187,9 +187,9 @@ button:hover {
   @extend %btn-interaction;
 
   width: 100%;
-  height: vh(75);
+  height: 8vmin;
   border: 1px solid color(gray-56);
-  border-radius: var(--small-radius);
+  border-radius: 1vmin;
   background-color: color(gray-56);
   font-weight: 600;
   font-size: var(--font-size-22);
@@ -208,9 +208,9 @@ button:hover {
   min-width: 50%;
   padding: 0.5em 1em;
   border: 0.4vmin solid color(gray-f0);
-  border-radius: 10vmin;
+  border-radius: 2em;
   font-weight: 600;
-  font-size: 3vmin;
+  font-size: var(--font-size-26);
   color: color(main);
   box-shadow: $btn-shadow;
 
@@ -234,7 +234,7 @@ button:hover {
   @extend %btn;
   @extend %btn-interaction;
 
-  min-width: 50%;
+  min-width: 36%;
   padding: 0.5em 1em;
   border: 1px solid color(main);
   border-radius: 10vmin;
@@ -266,7 +266,7 @@ button:hover {
   @extend %btn-interaction;
 
   width: 10vmin;
-  height: vh(46);
+  height: 4.6vmin;
   border: 1px solid color(orange-500);
   border-radius: 10vmin;
   background-color: color(orange-500);
@@ -398,7 +398,7 @@ button:hover {
 // =================== input text style
 .inp-txt {
   width: 100%;
-  height: vh(88);
+  height: 8.8vmin;
   padding: 0 3vmin;
   border: 1px solid color(gray-db);
   border-radius: 2vmin;
@@ -482,7 +482,7 @@ button:hover {
   width: 100%;
   min-height: 2vmin;
   padding: 2vmin 3vmin;
-  border: 0.3vmin solid color(gray-f0);
+  border: 0.4vmin solid color(gray-f0);
   border-radius: 2vmin;
   background-color: color(gray-f5);
   text-align: center;
@@ -498,7 +498,7 @@ button:hover {
   .text {
     position: relative;
     display: inline-block;
-    font-size: 2.6vmin;
+    font-size: var(--font-size-36);
   }
 }
 
@@ -533,8 +533,8 @@ button:hover {
 .label-chck-line {
   display: block;
   padding: 1.5vmin 3vmin;
-  border: 0.3vmin solid color(gray-db);
-  border-radius: 2vmin;
+  border: $border-3 solid color(gray-db);
+  border-radius: 1vmin;
   box-shadow: $btn-shadow;
   text-align: center;
   cursor: pointer;

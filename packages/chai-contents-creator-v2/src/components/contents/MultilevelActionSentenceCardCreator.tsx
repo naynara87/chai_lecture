@@ -5,7 +5,6 @@ import {
   ContentType,
   ID,
   MultilevelActionCardContentData,
-  vh,
 } from "chai-ui-v2";
 import {
   CommonTemplateComponentLocation,
@@ -82,7 +81,7 @@ const AddStep = styled.button`
 const DashedBar = styled.div`
   height: 0px;
   border: 1px dashed #7686d5;
-  margin: ${vh(24)};
+  margin: 3vmin;
 `;
 
 /**

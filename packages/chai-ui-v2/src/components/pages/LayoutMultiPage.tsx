@@ -1,5 +1,3 @@
-import styled from "@emotion/styled";
-
 import React, { useMemo } from "react";
 import { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -14,13 +12,6 @@ import {
   useTemplateMapper,
 } from "../../core";
 import useIntroductionModal from "../../core/hooks/useIntroductionModal";
-
-const SwiperWrapper = styled.div`
-  .swiper-pagination {
-    position: absolute;
-    bottom: 1em;
-  }
-`;
 
 interface LayoutMultiPageProps extends PageProps {}
 const LayoutMultiPage = ({ page, setPageCompleted }: LayoutMultiPageProps) => {
@@ -45,7 +36,7 @@ const LayoutMultiPage = ({ page, setPageCompleted }: LayoutMultiPageProps) => {
   }, [multiPageData, getTemplateComponent]);
 
   return (
-    <SwiperWrapper key={multiPageData.id}>
+    <div key={multiPageData.id} className="swiper-position-2">
       <Swiper
         modules={[Pagination, Navigation]}
         pagination={{
@@ -62,7 +53,7 @@ const LayoutMultiPage = ({ page, setPageCompleted }: LayoutMultiPageProps) => {
         {pages}
       </Swiper>
       {introduction}
-    </SwiperWrapper>
+    </div>
   );
 };
 

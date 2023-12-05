@@ -2,27 +2,27 @@ import styled from "@emotion/styled";
 import React from "react";
 import TempImage1 from "../../assets/images/img/temp_profile05.png";
 import TempImage2 from "../../assets/images/img/temp_profile04.png";
-import { colorPalette, vw } from "../../assets";
+import { colorPalette } from "../../assets";
 
 const ImageContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
-  gap: ${vw(30)};
+  gap: 3vmin;
 `;
 
 const ImageComponent = styled.div`
-  width: calc(50% - ${vw(15)});
+  width: calc(50% - 1.5vmin);
 
   > img {
     width: 100%;
-    border-radius: ${vw(10)};
+    border-radius: 1vmin;
   }
 
   .text {
-    margin-top: ${vw(13)};
-    font-size: ${vw(24)};
+    margin-top: 1.3vmin;
+    font-size: 2.4vmin;
     color: ${colorPalette.gray800};
     text-align: center;
   }

@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import React, { useMemo, useState } from "react";
 import { ImageWithDescriptionListContentData } from "../../core";
-import { vw, vh } from "../../assets";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
 import { ModalImage } from "../modal";
 
@@ -15,17 +14,15 @@ const ImageWithDescriptionListWrapper = styled.div`
 `;
 
 const ImageWithDescriptionList = styled.div`
-  margin-bottom: ${vh(40)};
+  margin-bottom: 5vmin;
 `;
-
-const IMAGE_HEIGHT = 280;
 
 const ListImage = styled.img`
   flex-shrink: 0;
-  width: calc((${vh(IMAGE_HEIGHT)} * 4) / 3);
-  height: ${vh(IMAGE_HEIGHT)};
-  margin-right: ${vw(43)};
-  border-radius: ${vw(10)};
+  width: calc((20vh * 4) / 3);
+  height: 20vh;
+  margin-right: 4vmin;
+  border-radius: 1vmin;
   -webkit-user-drag: none;
   cursor: pointer;
   object-fit: cover;

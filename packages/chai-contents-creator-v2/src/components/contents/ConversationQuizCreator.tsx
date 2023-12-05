@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { ConversationQuizContentData, useToast, vh, vw } from "chai-ui-v2";
+import { ConversationQuizContentData, useToast } from "chai-ui-v2";
 import { cloneDeep } from "lodash";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { DraggableContentCommonProps } from "../../types/page";
@@ -22,7 +22,7 @@ const ImgRound = styled.div`
   .btn-profile {
     width: 100%;
     height: 100%;
-    
+
     img {
       width: 100%;
       height: 100%;
@@ -36,14 +36,14 @@ const AnswerBoxWrap = styled.div`
 `;
 
 const AnswerBox = styled.div`
-  padding: ${vh(16)} ${vw(12)};
-  border: 2px solid #c9c9c9;
+  padding: 2vmin;
+  border: 0.2vmin solid #c9c9c9;
   background-color: #fff;
-  border-radius: 8px;
-  font-size: 12px;
+  border-radius: 2vmin;
+  font-size: 1.5vmin;
 
   &:first-of-type {
-    margin-right: ${vw(10)};
+    margin-right: 1vmin;
   }
 `;
 

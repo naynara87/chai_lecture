@@ -6,8 +6,6 @@ import {
   TemplateConversationRepeatData,
   TemplateConversationToggleData,
   useToast,
-  vh,
-  vw,
 } from "chai-ui-v2";
 import { cloneDeep } from "lodash";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
@@ -26,7 +24,7 @@ const ImgRound = styled.div`
   .btn-profile {
     width: 100%;
     height: 100%;
-    
+
     img {
       width: 100%;
       height: 100%;
@@ -39,7 +37,7 @@ export const ConversationWrapper = styled.ul``;
 
 export const CharacterNameInput = styled.input`
   background: none !important;
-  font-size: ${vw(25)} !important;
+  font-size: var(--font-size-22) !important;
 
   &::placeholder {
     opacity: 0.6;
@@ -48,20 +46,25 @@ export const CharacterNameInput = styled.input`
 
 export const ConversationList = styled.li`
   width: 100%;
-  padding: ${vh(16)} ${vw(16)};
-  border-radius: 8px;
+  padding: 2vmin;
+  border-radius: 2vmin;
   background-color: #f6f4ff;
-  border: 1px solid #d9d0ff;
+  border: min(2px, 0.1vmin) solid #d9d0ff;
   position: relative;
 
-  .conversation-wrap .txt-wrap > div {
-    margin-top: 10px;
+  .conversation-wrap {
+    .img-grp {
+      flex: 1;
+    }
+    .txt-wrap > div {
+      margin-top: 10px;
+    }
   }
 `;
 
 export const deleteButtonStyle = css`
   position: absolute;
-  right: 10px;
+  right: 2vmin;
 `;
 
 type TextType = "text" | "pronunciation" | "meaning";
@@ -289,7 +292,10 @@ const ConversationCreator = ({
             <div className="img-wrap">
               <ImgRound className="img-round">
                 <button className="btn-profile">
-                  <img src={list.character.src || ImgProfileDefault} alt={list.character.name} />
+                  <img
+                    src={list.character.src || ImgProfileDefault}
+                    alt={list.character.name}
+                  />
                 </button>
               </ImgRound>
             </div>
@@ -355,7 +361,9 @@ const ConversationCreator = ({
             {thisTemplateType === "TemplateConversationRepeat" && (
               <SpeakingTimeInputWrapper
                 onSubmit={handleSubmitSpeakingTime(listIndex)}
-                defaultText={list.speakingTime ? list.speakingTime.toString() : undefined}
+                defaultText={
+                  list.speakingTime ? list.speakingTime.toString() : undefined
+                }
               />
             )}
           </div>

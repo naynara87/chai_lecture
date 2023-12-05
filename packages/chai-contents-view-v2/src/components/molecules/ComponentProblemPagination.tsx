@@ -4,25 +4,11 @@ import { useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import styled from "@emotion/styled";
 
 interface ComponentProblemPaginationProps {
   totalPages: ID[];
   onClickPagination: (pageIndex: number) => void;
 }
-
-const SwiperWrapper = styled.div`
-  position: relative;
-  bottom: 1em;
-
-  .swiper-wrapper {
-    padding: 14px 0;
-  }
-
-  .swiper-slide:not(.swiper-slide-active) {
-    opacity: 1;
-  }
-`;
 
 const ComponentProblemPagination = ({
   totalPages,
@@ -51,7 +37,7 @@ const ComponentProblemPagination = ({
   }, [totalPages, onClickPagination, pageId]);
 
   return (
-    <SwiperWrapper>
+    <div className="swiper-position-3">
       <Swiper
         loop={false}
         pagination={false}
@@ -62,7 +48,7 @@ const ComponentProblemPagination = ({
       >
         {pagination}
       </Swiper>
-    </SwiperWrapper>
+    </div>
   );
 };
 

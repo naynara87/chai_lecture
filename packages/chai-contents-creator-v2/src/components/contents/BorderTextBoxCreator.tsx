@@ -5,11 +5,11 @@ import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 import TextEditorViewer from "../molecules/TextEditorViewer";
 
 const BorderTextBoxWrapper = styled.div`
-  border: 1px solid ${colorPalette.gray800};
+  border: min(2px, 0.1vmin) solid ${colorPalette.gray800};
   width: 100%;
   max-width: 90vw;
   border-radius: 20px;
-  padding: 45px 60px;
+  padding: 5vmin;
   text-align: left;
 `;
 

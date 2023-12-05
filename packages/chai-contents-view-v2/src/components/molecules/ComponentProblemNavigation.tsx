@@ -2,7 +2,6 @@ import React from "react";
 import styled from "@emotion/styled";
 import QuestionIconArrowLeft from "chai-ui-v2/dist/assets/images/icon/icon_arrow_left_question.svg";
 import QuestionIconArrowRight from "chai-ui-v2/dist/assets/images/icon/icon_arrow_right_question.svg";
-import { vh, vw } from "chai-ui-v2";
 
 const NavigationWrapper = styled.div`
   position: absolute;
@@ -10,13 +9,13 @@ const NavigationWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 0 ${vw(100)};
+  padding: 0 10vmin;
   transform: translateY(-50%);
 `;
 
 const LeftNavigation = styled.div`
-  width: ${vw(50)};
-  height: ${vh(60)};
+  width: 5vmin;
+  height: 5vmin;
   padding: 0;
   appearance: none;
   outline: none;
@@ -29,8 +28,8 @@ const LeftNavigation = styled.div`
   background-image: url(${QuestionIconArrowLeft});
 `;
 const RightNavigation = styled.div`
-  width: ${vw(50)};
-  height: ${vh(60)};
+  width: 5vmin;
+  height: 5vmin;
   padding: 0;
   appearance: none;
   outline: none;

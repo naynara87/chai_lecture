@@ -1,22 +1,22 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { vw } from "../../assets";
 import { ImgCharacterComponent } from "../atoms";
 
 const ContStartWrapper = styled.div`
   .text-bubble-wrap {
-    padding: ${vw(40)} ${vw(80)};
-    border-radius: 999px;
+    padding: 1em 2.5em;
+    border-radius: 10vmin;
     font-weight: 600;
-    font-size: ${vw(36)};
+    font-size: 3vmin;
   }
 
   .character-wrap {
-    margin-top: ${vw(57)};
+    width: 20vmin;
+    margin: 3.85vmin auto 0;
 
     .img {
-      width: 45vmin;
-      height: 45vmin;
+      width: 100%;
+      height: 100%;
     }
   }
 `;

@@ -12,7 +12,7 @@
   .text-bubble-wrap {
     @include flex-center;
 
-    min-height: vh(280);
+    min-height: 30vmin;
     font-weight: 600;
     font-size: 3.2vmin;
     white-space: pre-line;
@@ -22,7 +22,7 @@
     @include square(20vmin);
 
     overflow: hidden;
-    margin: vh(60) auto 0;
+    margin: 3vmin auto 0;
 
     > img {
       @include full;

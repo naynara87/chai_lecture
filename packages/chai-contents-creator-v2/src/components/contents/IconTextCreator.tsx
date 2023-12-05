@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { HtmlContentComponent, IconTextContentData, vw } from "chai-ui-v2";
+import { HtmlContentComponent, IconTextContentData } from "chai-ui-v2";
 import React, { useState } from "react";
 import { DraggableContentCommonProps } from "../../types/page";
 import TextEditor from "../atoms/TextEditor";
@@ -12,13 +12,13 @@ export const IconTextCreatorWrapper = styled.div`
   width: 100%;
 
   > img {
-    width: ${vw(44)};
-    height: ${vw(44)};
-    margin-right: ${vw(14)};
+    width: 4.4vmin;
+    height: 4.4vmin;
+    margin-right: 1vmin;
   }
 
   > div {
-    width: calc(100% - ${vw(60)});
+    width: calc(100% - 6vmin);
   }
 `;
 

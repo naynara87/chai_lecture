@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { vw } from "chai-ui-v2";
 import UrlInputWrapper from "./UrlInputWrapper";
 import ImgProfileDefault from "chai-ui-v2/dist/assets/images/img/img_profile_default.png";
 
@@ -7,7 +6,7 @@ const ImgRound = styled.div`
   .btn-profile {
     width: 100%;
     height: 100%;
-    
+
     img {
       width: 100%;
       height: 100%;
@@ -18,11 +17,12 @@ const ImgRound = styled.div`
 
 const CharacterWrap = styled.div`
   display: flex;
+  gap: 3vmin;
 `;
 
 const CharacterNameInput = styled.input`
   background: none !important;
-  font-size: ${vw(25)} !important;
+  font-size: var(--font-size-22) !important;
 
   &::placeholder {
     opacity: 0.6;
@@ -55,7 +55,10 @@ const CharacterInputWrapper = ({
               {/* TODO: key설명 - 음성이 있을 경우, 누르면 단일 음성이 재생되며, conversation-wrap 에 active 추가 */}
               <ImgRound className="img-round">
                 <button className="btn-profile">
-                  <img src={characterImageSrc || ImgProfileDefault} alt={characterName} />
+                  <img
+                    src={characterImageSrc || ImgProfileDefault}
+                    alt={characterName}
+                  />
                 </button>
               </ImgRound>
             </div>

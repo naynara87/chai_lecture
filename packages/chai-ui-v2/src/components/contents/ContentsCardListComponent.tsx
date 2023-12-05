@@ -6,7 +6,7 @@ import {
   useXapi,
 } from "../../core";
 import styled from "@emotion/styled";
-import { colorPalette, vh, vw } from "../../assets";
+import { colorPalette } from "../../assets";
 import { v4 as uuidv4 } from "uuid";
 import IconPauseFillButton from "../atoms/Button/IconPauseFillButton";
 import { ComponentButtonPlay } from "../atoms";
@@ -15,11 +15,11 @@ const ContentsBoxWrap = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: ${vw(30)};
+  gap: 3vmin;
 
   .image-with-caption-wrapper img {
-    width: ${vw(200)};
-    height: ${vw(150)};
+    width: 20vmin;
+    height: 15vmin;
   }
 `;
 
@@ -32,14 +32,15 @@ const ContentBox = styled.div<TextBoxProps>`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  min-width: ${vw(205)};
-  min-height: ${vh(269)};
-  padding: ${vh(60)} ${vw(75)};
-  border: ${vw(3)} solid ${colorPalette.subblue};
-  border-radius: 1.5vw;
+  width: 100%;
+  max-width: 20vmin;
+  height: 25vmin;
+  padding: 2vmin 3vmin;
+  border: min(4px, 0.3vmin) solid ${colorPalette.subblue};
+  border-radius: 3vmin;
   background-image: linear-gradient(to top, #e3e8ff 0%, #e9faff 100%);
-  font-size: ${vw(28)};
-  transition: width 0.2s, height 0.2s;
+  font-size: 3vmin;
+  /* transition: width 0.2s, height 0.2s; */
 
   ${(props) =>
     !props.isAccent &&
@@ -52,7 +53,7 @@ const ContentBox = styled.div<TextBoxProps>`
   }
 
   > div:not(:last-of-type) {
-    margin-bottom: ${vw(24)};
+    margin-bottom: 2vmin;
   }
 
   p,

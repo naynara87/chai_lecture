@@ -1,10 +1,9 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { vw } from "../../assets";
 import IconTimer from "../../assets/images/icon/icon_timer.svg";
 
 const TimerImg = styled.img`
-  width: ${vw(30)};
+  width: 3vmin;
 `;
 
 const TimerIcon = () => {

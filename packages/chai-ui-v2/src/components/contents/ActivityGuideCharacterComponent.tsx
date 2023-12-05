@@ -12,13 +12,14 @@ const ContStartWrapper = styled.div`
 
   .text-bubble-wrap {
     padding: 3vmin;
-    border-radius: 20vmin;
+    border-radius: 2vmin;
     font-weight: 400;
     font-size: 2.2vmin;
   }
 
   .character-wrap {
-    width: 20vmin;
+    width: 100%;
+    max-width: 20vmin;
     margin: 3.85vmin auto 0;
     text-align: center;
 

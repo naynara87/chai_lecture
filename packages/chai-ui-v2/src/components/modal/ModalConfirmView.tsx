@@ -18,7 +18,7 @@ interface ConfirmModalBorderButtonProps {
 export const ConfirmModalBorderButton = styled(
   ConfirmModalButton,
 )<ConfirmModalBorderButtonProps>`
-  border: 1px solid ${colorPalette.gray550};
+  border: min(2px, 0.1vmin) solid ${colorPalette.gray550};
   background-color: ${colorPalette.white};
   color: ${(props) => (props.color ? props.color : "#6673a3")};
 `;

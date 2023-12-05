@@ -3,12 +3,11 @@ import React, { useCallback, useMemo, useState } from "react";
 import { ID, RolePlayingCharacter, RoleplayingContentData } from "../../core";
 import RolePlayingCharacterComponent from "../molecules/RolePlayingCharacterComponent";
 import { ComponentButtonRadiBorderMain } from "../atoms";
-import { vh } from "../../assets";
 
 const DialogueWrapper = styled.ul``;
 
 const BtnWrapper = styled.div`
-  margin-top: ${vh(38)};
+  margin-top: 5vmin;
 `;
 
 export interface RolePlayingComponentProps {

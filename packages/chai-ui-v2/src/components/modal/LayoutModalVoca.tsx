@@ -13,7 +13,7 @@ import AudioComponent from "../contents/AudioComponent";
 import ModalBase from "./ModalBase";
 import ArrowButton from "../atoms/Button/ArrowButton";
 import { css } from "@emotion/react";
-import { colorPalette, vw } from "../../assets";
+import { colorPalette } from "../../assets";
 
 const Page = styled.div`
   background-color: white;
@@ -48,8 +48,8 @@ const ArrowButtonCommonCss = css`
   position: absolute;
   top: 50%;
   z-index: 10;
-  width: ${vw(60)};
-  height: ${vw(60)};
+  width: 6vmin;
+  height: 6vmin;
   border-radius: 50%;
   background-color: ${colorPalette.main};
   display: flex;
@@ -59,8 +59,8 @@ const ArrowButtonCommonCss = css`
 `;
 
 const ArrowIconCss = css`
-  width: ${vw(18)};
-  height: ${vw(30)};
+  width: 1.8vmin;
+  height: 3vmin;
 `;
 
 const ArrowButtonLeftCss = css`

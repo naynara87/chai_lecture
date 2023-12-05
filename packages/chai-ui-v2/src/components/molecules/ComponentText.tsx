@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { colorPalette, vw } from "../../assets";
+import { colorPalette } from "../../assets";
 
 const TextComponent = styled.div`
   .text {
-    font-size: ${vw(28)};
+    font-size: 2.8vmin;
     white-space: pre-line;
 
     > b {
@@ -13,7 +13,7 @@ const TextComponent = styled.div`
 
     &.lg {
       font-weight: 600;
-      font-size: ${vw(50)};
+      font-size: 5vmin;
     }
 
     &.bold {
@@ -22,7 +22,7 @@ const TextComponent = styled.div`
 
     &.bold-ttl {
       font-weight: 600;
-      font-size: ${vw(32)};
+      font-size: 3.2vmin;
     }
   }
 `;

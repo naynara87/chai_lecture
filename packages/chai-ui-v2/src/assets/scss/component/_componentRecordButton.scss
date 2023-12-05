@@ -3,7 +3,7 @@
   position: relative;
   max-width: 44vmin;
   width: 100%;
-  margin: 1.3em auto;
+  margin: 3vmin auto;
 
   .record-btn-flex-wrap {
     @include flex {
@@ -12,8 +12,7 @@
       gap: 2vmin;
     }
 
-    height: 8vmin;
-    padding: 0 4vmin;
+    padding: 2vmin 3.5vmin;
     border: 0.2vmin solid color(blue-300);
     border-radius: 2vmin;
     background-color: color(gray-ff);

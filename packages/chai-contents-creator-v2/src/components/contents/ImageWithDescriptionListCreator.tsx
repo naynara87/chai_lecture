@@ -9,7 +9,6 @@ import {
   ComponentImage,
   ImageWithDescriptionListContentData,
   useToast,
-  vw,
 } from "chai-ui-v2";
 import TextEditorViewer from "../molecules/TextEditorViewer";
 import { useCallback, useEffect, useState } from "react";
@@ -41,9 +40,9 @@ const ImageListWrapper = styled.ul`
     flex-grow: 0;
     flex-shrink: 0;
     img {
-      width: ${vw(360)};
-      height: ${vw(220)};
-      border-radius: ${vw(10)};
+      width: 36vmin;
+      height: 22vmin;
+      border-radius: 1vmin;
       object-fit: cover;
     }
   }

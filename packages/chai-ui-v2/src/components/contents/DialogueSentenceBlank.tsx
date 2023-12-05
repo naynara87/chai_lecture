@@ -5,10 +5,9 @@ import { HtmlContentComponent } from "../atoms";
 import { SentenceInOrderChoice } from "../templates/TemplateQuizSentenceBlank";
 import { v4 as uuidv4 } from "uuid";
 import ImgProfileDefault from "../../assets/images/img/img_profile_default.png";
-import { vh } from "../../assets";
 
 const BlankSpan = styled.div`
-  min-height: ${vh(58)};
+  min-height: 5vmin;
   cursor: pointer;
 `;
 

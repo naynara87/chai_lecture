@@ -1,12 +1,11 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { vh, vw } from "../../assets";
 
 const ImageComponent = styled.div`
-  max-width: ${vw(600)};
-  max-height: ${vh(337)};
+  max-width: 60vmin;
+  max-height: 34vmin;
   margin: 0 auto;
-  border-radius: ${vw(10)};
+  border-radius: 1vmin;
   text-align: center;
 
   img {

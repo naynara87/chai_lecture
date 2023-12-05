@@ -46,16 +46,16 @@
 .tab-conts-container {
   @include scrollbar;
 
-  margin-top: vh(30);
+  margin-top: 3vmin;
   overflow: auto;
-  height: calc(100% - vh(100));
+  height: calc(100% - 10vmin);
 }
 
 .tab-conts-wrap {
   padding: 1em;
-  border: 1px solid color(gray-db);
+  border: $border-1 solid color(gray-db);
   border-radius: 2vmin;
-  font-size: 2.6vmin;
+  font-size: var(--font-size-26);
   white-space: pre-line;
 
   &:not(:first-of-type) {

@@ -8,12 +8,13 @@ interface AudioWrapperProps {
 }
 
 const AudioCreatorWrapper = styled.div`
+  width: 100%;
   margin-top: 10px;
   & > img {
-    width: 40px;
-    height: 40px;
-    box-shadow: 0px 4px 0px rgba(88, 88, 88, 0.2);
-    border-radius: 8px;
+    width: 5vmin;
+    height: 5vmin;
+    box-shadow: 0px 0.4vmin 0px rgba(88, 88, 88, 0.2);
+    border-radius: 1vmin;
   }
 `;
 

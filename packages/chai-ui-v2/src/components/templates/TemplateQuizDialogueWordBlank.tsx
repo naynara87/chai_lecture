@@ -14,14 +14,13 @@ import {
   useGlobalAudio,
 } from "../../core";
 import ConversationQuizComponent from "../contents/ConversationQuizComponent";
-import { vw } from "../../assets";
 import { v4 as uuidv4 } from "uuid";
 import FullAudioComponent from "../contents/FullAudioComponent";
 
 const DialogueContainer = styled.div`
   .hori-answer-wrap {
     justify-content: flex-start;
-    margin-top: ${vw(40)};
+    margin-top: 3vmin;
 
     .inp-grp {
       flex-basis: auto;
@@ -38,9 +37,9 @@ const DialogueContainer = styled.div`
         position: absolute;
         top: 50%;
         left: auto;
-        right: ${vw(-40)};
-        width: ${vw(52)};
-        height: ${vw(52)};
+        right: -4vmin;
+        width: 5vmin;
+        height: 5vmin;
         background-repeat: no-repeat;
         background-position: center;
         background-size: 100% 100%;
@@ -60,9 +59,9 @@ const DialogueContainer = styled.div`
         position: absolute;
         top: 50%;
         left: auto;
-        right: ${vw(-40)};
-        width: ${vw(52)};
-        height: ${vw(52)};
+        right: -4vmin;
+        width: 5.2vmin;
+        height: 5.2vmin;
         background-repeat: no-repeat;
         background-position: center;
         background-size: 100% 100%;
@@ -74,8 +73,8 @@ const DialogueContainer = styled.div`
 
   .wide-panel {
     .btns-wrap {
-      max-width: 310px;
-      margin: 5vh auto 0;
+      max-width: 50%;
+      margin: 3vmin auto 0;
     }
   }
 `;

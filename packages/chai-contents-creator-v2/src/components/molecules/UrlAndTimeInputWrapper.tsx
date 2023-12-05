@@ -6,6 +6,7 @@ import { ButtonDelete, ButtonRegister } from "../atoms/ButtonRegister";
 const UrlAndTimeWrapper = styled.div`
   & .text-tit {
     margin-bottom: 5px;
+    font-size: 12px;
   }
 
   & input {
@@ -26,18 +27,13 @@ const UrlAndTimeWrapper = styled.div`
     .inputs-wrapper {
       display: flex;
       width: calc(100% - 100px);
+      max-width: 400px;
       flex-direction: column;
-      margin-right: 10px;
+      margin-right: 4px;
       gap: 8px;
     }
   }
 
-  & button {
-    width: 80px;
-    height: 44px;
-    padding: unset;
-    font-size: 15px;
-  }
   &.upload-comp .waring-message {
     color: ${colorPalette.purple700};
   }

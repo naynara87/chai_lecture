@@ -1,7 +1,6 @@
 import React, { useMemo } from "react";
 import styled from "@emotion/styled";
 import IconClose from "../../assets/images/icon/icon_close_black.svg";
-import { vh, vw } from "../../assets";
 import { Content, useContentMapper } from "../../core";
 import ModalBase from "./ModalBase";
 
@@ -22,7 +21,7 @@ const ModalContentsWrapper = styled.div`
   width: 100%;
 
   .conts-wrap:not(:first-of-type) {
-    margin-top: ${vw(60)};
+    margin-top: 6vmin;
   }
 `;
 
@@ -34,7 +33,7 @@ const ContentContainer = styled.div`
   justify-content: flex-start;
   width: 100%;
   height: 100%;
-  padding: ${vh(60)} ${vw(60)};
+  padding: 6vmin;
 
   &::-webkit-scrollbar-thumb {
     background-color: #c3c3c3;

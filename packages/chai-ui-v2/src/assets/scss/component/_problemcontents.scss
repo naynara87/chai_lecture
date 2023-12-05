@@ -12,8 +12,8 @@ $gray-color: #d6d7da;
   }
 
   .score-wrapper {
-    margin-top: vh(40);
-    padding: vh(22) 5vmin;
+    margin-top: 4vmin;
+    padding: 2.5vmin 5vmin;
     border-radius: 1vmin;
     background-color: color(gray-f5);
 
@@ -108,7 +108,7 @@ $gray-color: #d6d7da;
 // 해석, 해설 영역
 // 내용이 없을 경우
 .empty-conts {
-  padding: vh(100) 3vmin;
+  padding: 10vmin 3vmin;
   text-align: center;
 
   .img {
@@ -116,14 +116,14 @@ $gray-color: #d6d7da;
   }
 
   .emp-ttl {
-    margin-top: vh(30);
+    margin-top: 3vmin;
     font-weight: 600;
     font-size: var(--head4);
     line-height: 1.3;
   }
 
   .emp-txt {
-    margin-top: vh(20);
+    margin-top: 2vmin;
     font-size: var(--font-size-32);
     line-height: 1.3;
   }
@@ -144,7 +144,7 @@ $gray-color: #d6d7da;
   }
 
   .tab-iframe-wrap {
-    margin-top: vh(40);
+    margin-top: 5vmin;
   }
 
   .tab-title {
@@ -156,7 +156,7 @@ $gray-color: #d6d7da;
     width: 100%;
     padding: 2vmin 3vmin;
     border: 1px solid color(gray-db);
-    border-radius: var(--small-radius);
+    border-radius: 1vmin;
     background-color: color(gray-f5);
     font-size: var(--font-size-20);
     text-align: left;
@@ -164,7 +164,7 @@ $gray-color: #d6d7da;
     &.active {
       @include bg-url(icon, "icon_arrow_up_darkgray.svg");
 
-      border-radius: var(--small-radius) var(--small-radius) 0 0;
+      border-radius: 1vmin 1vmin 0 0;
     }
   }
 
@@ -172,10 +172,10 @@ $gray-color: #d6d7da;
     // @include scrollbar;
 
     width: 100%;
-    height: vh(430);
+    height: 45vmin;
     border: 1px solid color(gray-db);
     border-top: 0;
-    border-radius: 0 0 var(--small-radius) var(--small-radius);
+    border-radius: 0 0 1vmin 1vmin;
 
     iframe {
       width: 100%;

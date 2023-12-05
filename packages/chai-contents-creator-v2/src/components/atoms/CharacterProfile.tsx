@@ -28,10 +28,10 @@ const CharacterNameInput = styled.input`
 `;
 
 const CharacterImgWrap = styled.div`
-  width: 36px;
-  height: 36px;
+  width: 6vmin;
+  height: 6vmin;
   border: 2px solid #ffffff;
-  box-shadow: 0px 4px 0px rgba(88, 88, 88, 0.2);
+  box-shadow: 0px 0.4vmin 0px rgba(88, 88, 88, 0.2);
   border-radius: 50%;
   overflow: hidden;
 

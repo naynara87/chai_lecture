@@ -5,16 +5,18 @@ import { ButtonRegister, ButtonDelete } from "../atoms/ButtonRegister";
 
 const UrlTextWrapper = styled.div`
   margin-top: 10px;
+  width: 100%;
 
   & .text-tit {
     margin-bottom: 5px;
+    font-size: 12px;
   }
 
   & input {
     width: calc(100% - 100px);
     max-width: 400px;
     height: 44px;
-    margin-right: 10px;
+    margin-right: 4px;
     padding: 12px 13px;
     box-sizing: border-box;
     border-radius: 8px;
@@ -37,7 +39,8 @@ interface WarningMessageProps {
   isInputOk: boolean;
 }
 const WarningMessage = styled.p<WarningMessageProps>`
-  color: ${({isInputOk}) => isInputOk ? colorPalette.purple700 : colorPalette.red700};
+  color: ${({ isInputOk }) =>
+    isInputOk ? colorPalette.purple700 : colorPalette.red700};
 `;
 
 interface ButtonProps {
@@ -94,7 +97,9 @@ const SpeakingTimeInputWrapper = ({ onSubmit, defaultText }: ButtonProps) => {
         <ButtonDelete onClick={deleteTime}>제거</ButtonDelete>
       </form>
       {message && (
-        <WarningMessage className="waring-message" isInputOk={isUpload}>{message}</WarningMessage>
+        <WarningMessage className="waring-message" isInputOk={isUpload}>
+          {message}
+        </WarningMessage>
       )}
     </UrlTextWrapper>
   );

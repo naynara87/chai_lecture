@@ -7,7 +7,6 @@ import {
   ComponentButtonRadiBorderMain,
   ComponentButtonRadiFillMain,
   ModalBase,
-  vh,
   WordsCarouselContentData,
 } from "chai-ui-v2";
 import "swiper/css";
@@ -24,7 +23,7 @@ import useSafeKey from "../../hooks/useSafeKey";
 const WordsCardWrapper = styled.div`
   overflow: auto;
   position: relative;
-  max-height: ${vh(300)};
+  max-height: 30vmin;
   margin-bottom: 16px;
   padding: 40px 24px 24px;
   border-radius: 8px;
@@ -98,9 +97,9 @@ const ModalInner = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 416px;
+  width: 70vmin;
   padding: 24px;
-  border-radius: 30px;
+  border-radius: 3vmin;
   background-color: ${colorPalette.white};
   transform: translate(-50%, -50%);
 
@@ -113,7 +112,7 @@ const ModalInner = styled.div`
   .swiper-pagination-bullet {
     width: 8px;
     height: 8px;
-    margin: 0 vw(9) !important;
+    margin: 0 1vmin !important;
     background-color: ${colorPalette.gray600};
     opacity: 1;
     line-height: 1;
@@ -137,13 +136,11 @@ const ModalVocaContainer = styled.div`
   }
   .btn-radi-border-main,
   .btn-radi-fill-main {
-    width: 180px;
-    height: 48px;
-    line-height: 48px;
+    width: 48%;
     font-size: 16px;
     font-weight: 700;
     min-width: unset;
-    margin-top: 8px;
+    margin-top: 3vmin;
   }
 
   .btns-wrap {
@@ -158,7 +155,6 @@ const ModalVocaContainer = styled.div`
 
 const SwiperWrapper = styled.div`
   position: relative;
-  bottom: 1em;
 `;
 
 const PageButton = styled.button`

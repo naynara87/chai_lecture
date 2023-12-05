@@ -20,7 +20,9 @@ const NotiWrapper = styled.ul`
 `;
 
 const NotiList = styled.li`
-  width: 22%;
+  flex: 1;
+  max-width: 32vmin;
+  min-width: 22%;
 `;
 
 const TextBubbleWrap = styled.div`

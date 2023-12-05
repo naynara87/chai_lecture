@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { vw } from "../../assets";
 import { AudioAndWordsCarouselContentData, useGlobalAudio } from "../../core";
 import IconDictionaryButton from "../atoms/Button/IconDictionaryButton";
 import { LayoutModalVoca } from "../modal";
@@ -10,7 +9,7 @@ import { v4 as uuidv4 } from "uuid";
 const AudioAndWordsWrap = styled.div`
   display: flex;
   justify-content: center;
-  gap: ${vw(30)};
+  gap: 3vmin;
 `;
 
 export interface AudioAndWordsCarouselComponentProps {

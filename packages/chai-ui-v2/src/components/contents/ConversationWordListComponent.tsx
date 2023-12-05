@@ -99,14 +99,16 @@ const ConversationWordListComponent = ({
 
   return (
     <div className={`voca-note-container ${isVocaNoteOpen ? "active" : ""}`}>
-      <h3 className="voca-title">
-        {contents.data.title || "회화 단어 목록"}
+      <div className="voca-header">
         <ImgCharacterComponent
           characterType="kkungiHello"
           characterAlt="꿍이윙크인사"
         />
+        <h3 className="voca-title">
+          {contents.data.title || "회화 단어 목록"}
+        </h3>
         <ComponentButtonRoundArrow onClick={handleClickVocaNoteButton} />
-      </h3>
+      </div>
       <ul className="voca-list-wrap">{mainContents}</ul>
     </div>
   );

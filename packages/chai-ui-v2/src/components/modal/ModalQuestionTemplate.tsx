@@ -1,7 +1,6 @@
 import React from "react";
 import IconClose from "../../assets/images/icon/icon_close_black.svg";
 import styled from "@emotion/styled";
-import { vw, vh } from "../../assets";
 import ModalBase from "./ModalBase";
 
 interface ModalQuestionProps {
@@ -20,11 +19,11 @@ const ModalQuestionWrapper = styled.div`
   width: 100%;
 
   .question-tit-wrapper {
-    padding: ${vh(20)} ${vw(80)};
+    padding: 3vmin 8vmin;
     background: #edeff5;
     border-radius: 999px;
-    font-size: ${vw(36)};
-    margin-bottom: ${vh(30)};
+    font-size: 3.6vmin;
+    margin-bottom: 3vmin;
     & b {
       color: #6673a3;
       font-weight: 700;
@@ -33,21 +32,21 @@ const ModalQuestionWrapper = styled.div`
 
   .question-cont-wrapper {
     background-color: #f5f5f5;
-    border-radius: ${vw(20)};
-    padding: ${vh(50)} ${vw(50)};
-    width: ${vw(1084)};
-    height: ${vh(572)};
-    margin-bottom: ${vh(30)};
-    border-radius: ${vw(20)};
+    border-radius: 2vmin;
+    padding: 5vmin;
+    width: 108vmin;
+    height: 60vmin;
+    margin-bottom: 3vmin;
+    border-radius: 2vmin;
     overflow: auto;
 
     .question-sub {
-      font-size: ${vw(28)};
+      font-size: 2.8vmin;
       font-weight: 700;
-      margin-bottom: ${vh(50)};
+      margin-bottom: 5vmin;
     }
     .question-cont {
-      font-size: ${vw(22)};
+      font-size: 2.2vmin;
       font-weight: 400;
       white-space: pre-line;
     }
@@ -55,12 +54,12 @@ const ModalQuestionWrapper = styled.div`
 `;
 
 const ButtonStart = styled.button`
-  padding: ${vh(24)} ${vw(75)};
+  padding: 3vmin 7.5vmin;
   margin-left: auto;
   background: #6673a3;
   color: white;
-  border-radius: ${vw(100)};
-  font-size: ${vw(24)};
+  border-radius: 10vmin;
+  font-size: 2.4vmin;
   font-weight: 700;
   transition: all 0.3s;
 

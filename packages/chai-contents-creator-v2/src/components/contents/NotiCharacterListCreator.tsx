@@ -17,7 +17,7 @@ import useSafeKey from "../../hooks/useSafeKey";
 
 const NotiCharacterWrapper = styled.div`
   position: relative;
-  padding-top: 60px;
+  padding-top: 4vmin;
   text-align: center;
 
   > .btn {

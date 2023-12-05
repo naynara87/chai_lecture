@@ -1,27 +1,27 @@
 import styled from "@emotion/styled";
 import React, { useCallback, useMemo, useState } from "react";
-import { colorPalette, vh, vw } from "../../assets";
+import { colorPalette } from "../../assets";
 import { ToggleSentenceListContentData } from "../../core";
 import { HtmlContentComponent } from "../atoms";
 import { ComponentToggle } from "../molecules";
 
 const ToggleTextWrapper = styled.div`
   > *:not(:first-of-type) {
-    margin-top: ${vh(40)};
+    margin-top: 3vmin;
   }
 
   .sentence:not(:first-of-type) {
-    margin-top: ${vh(40)};
+    margin-top: 3vmin;
   }
 
   .chinese {
     font-weight: 500;
-    font-size: ${vw(32)};
+    font-size: 3vmin
     line-height: 1.6;
   }
 
   .text {
-    font-size: ${vw(28)};
+    font-size: 2.6vmin
     line-height: 1.6;
     color: ${colorPalette.gray800};
   }

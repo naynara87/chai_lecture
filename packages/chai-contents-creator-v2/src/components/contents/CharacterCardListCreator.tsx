@@ -51,6 +51,9 @@ const TrainingWrapper = styled.div`
     background-color: ${colorPalette.gray200};
     background-size: auto;
   }
+  .training-end .white-wrap {
+    height: 60%;
+  }
 `;
 
 const ImageThumbWrap = styled.div`
@@ -83,21 +86,16 @@ const ImageThumb = styled.div`
 `;
 
 const TitleArea = styled.div`
-  padding-top: 4vmin;
+  padding-top: 24%;
   font-weight: 600;
-  font-size: 1.6vmin;
+  font-size: 2.6vmin;
   line-height: 1.5;
 `;
 
-const DescriptionArea = styled.div`
-  height: 100%;
-  padding-bottom: 2vh;
-`;
-
 const GradiWrap = styled.div`
-  min-height: 8.25vmin;
-  padding-bottom: 2.5vmin;
-  border-radius: 1vmin 1vmin 0 0;
+  min-height: 10vmin;
+  padding-bottom: 2vmin;
+  border-radius: 2vmin 2vmin 0 0;
   text-align: center;
   background-image: linear-gradient(to top, #e3e8ff 0%, #e9faff 100%);
 `;
@@ -414,7 +412,7 @@ const CharacterCardListCreator = ({
                     </TitleArea>
                   </GradiWrap>
                   <div className="white-wrap">
-                    <DescriptionArea
+                    <div
                       onClick={fucusTextEditor(index, "description")}
                       className="text-wrap"
                     >
@@ -428,7 +426,7 @@ const CharacterCardListCreator = ({
                         text={getText(index, "description")}
                         hasFontSize={false}
                       />
-                    </DescriptionArea>
+                    </div>
                     <div className="btns-wrap">
                       <ComponentButtonRadiFillMain
                         text="학습 요약"

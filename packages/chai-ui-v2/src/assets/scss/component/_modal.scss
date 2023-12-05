@@ -101,7 +101,7 @@
   &.wide-modal {
     display: block;
     width: 120vmin;
-    height: vh(900);
+    height: 90vmin;
   }
 }
 
@@ -154,7 +154,7 @@
   background-color: color(gray-f0);
   text-align: center;
   white-space: pre-wrap;
-  padding: 1em 2em;
+  padding: 5vmin;
   border-radius: calc($border-radius * 0.5);
 
   .dec {
@@ -197,7 +197,7 @@
     display: block;
     min-height: 30vmin;
     margin-bottom: 5vmin;
-    padding: 1em 2em;
+    padding: 5vmin;
   }
 
   .voca-wrap {

@@ -7,7 +7,6 @@ import {
 import { ComponentChoiceRole } from "../molecules";
 import RolePlayingComponent from "../contents/RolePlayingComponent";
 import styled from "@emotion/styled";
-import { vh } from "../../assets";
 import { ComponentButtonRadiBorderMain } from "../atoms";
 
 const GuideContentContainer = styled.div`
@@ -18,7 +17,7 @@ const GuideContentContainer = styled.div`
 
 const ActivityGuideCharacterComponentWrapper = styled.div``;
 const BtnWrapper = styled.div`
-  margin-top: ${vh(38)};
+  margin-top: 5vmin;
 `;
 
 interface TemplateRolePlayingProps extends TemplateProps {}

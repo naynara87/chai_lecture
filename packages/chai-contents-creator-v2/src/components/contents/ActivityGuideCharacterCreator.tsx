@@ -8,9 +8,11 @@ import { DraggableContentCommonProps } from "../../types/page";
 import TextEditorViewer from "../molecules/TextEditorViewer";
 
 export const CornerGuideWrapper = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 4vmin;
   & > img {
     width: 120px;
     height: 120px;
@@ -21,7 +23,7 @@ export const CornerGuideWrapper = styled.div`
 
 export const TextBubbleWrap = styled.div`
   position: relative;
-  width: 100%;
+  width: 80%;
   padding: 24px;
   border-radius: 8px;
   background-color: #eff1f5;
