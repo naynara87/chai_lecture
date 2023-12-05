@@ -149,7 +149,7 @@ const TextEditor = ({
         modules={{
           toolbar: [
             [{ font: Font.whitelist }],
-            [{ header: [1, 2, 3, false] }],
+            [{ header: [1, 2, 3, 4, false] }],
             ["bold"],
             [{ color: [] }, { background: [] }],
             [{ size: Size.whitelist }],
