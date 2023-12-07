@@ -1,4 +1,7 @@
 /* =================== base =================== */
+body {
+  background-color: #f0f0f0;
+}
 html,
 body,
 div,
@@ -174,4 +177,8 @@ h4 {
 }
 .font-20vmin {
   font-size: var(--font-size-20);
+}
+
+.text-center {
+  text-align: center;
 }
