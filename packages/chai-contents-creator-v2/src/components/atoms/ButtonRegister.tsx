@@ -9,7 +9,6 @@ export const ButtonRegister = styled.button`
   font-size: 14px;
   line-height: 20px;
   height: 44px;
-  margin-right: 4px;
 `;
 export const ButtonDelete = styled.button`
   padding: 12px 17px;

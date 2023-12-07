@@ -12,7 +12,7 @@ export const CornerGuideWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 4vmin;
+  padding-top: max(4vmin, 40px);
   & > img {
     width: 12vmin;
     height: 12vmin;
@@ -23,7 +23,8 @@ export const CornerGuideWrapper = styled.div`
 
 export const TextBubbleWrap = styled.div`
   position: relative;
-  width: 80%;
+  width: 100%;
+  max-width: fit-content;
   padding: 24px;
   border-radius: 8px;
   background-color: #eff1f5;

@@ -6,9 +6,9 @@ import { DraggableContentCommonProps } from "../../types/page";
 export const RecorderWrapper = styled.div`
   display: flex;
   padding: 0 24px;
-  width: 34vmin;
+  width: fit-content;
   padding: 1.5vmin 3vmin;
-  border-radius: 8px;
+  border-radius: 1vmin;
   border: 2px solid #dce6ff;
   align-items: center;
   margin: 0 auto;

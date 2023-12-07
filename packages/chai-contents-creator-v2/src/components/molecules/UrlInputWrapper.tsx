@@ -8,6 +8,7 @@ export interface UrlInputWrapperProps {
   urlInputWrapperCss?: SerializedStyles;
 }
 const UrlTextWrapper = styled.div<UrlInputWrapperProps>`
+  width: 100%;
   margin-top: 10px;
   flex: auto;
 
@@ -19,10 +20,9 @@ const UrlTextWrapper = styled.div<UrlInputWrapperProps>`
   }
 
   & input {
-    width: calc(100% - 100px);
-    max-width: 400px;
+    width: 100%;
+    max-width: 600px;
     height: 44px;
-    margin-right: 4px;
     padding: 13px 12px 14px 12px;
     box-sizing: border-box;
     border-radius: 8px;
@@ -30,6 +30,7 @@ const UrlTextWrapper = styled.div<UrlInputWrapperProps>`
     line-height: 17px;
     border: 1px solid #b6b6b6;
     flex-grow: 1;
+    flex: 1;
     &::placeholder {
       color: #b6b6b6;
     }
@@ -49,6 +50,8 @@ const WarningMessage = styled.p`
 
 const ContainerForm = styled.form`
   display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
 `;
 
 interface ButtonProps extends UrlInputWrapperProps {

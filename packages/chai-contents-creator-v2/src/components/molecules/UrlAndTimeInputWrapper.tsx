@@ -11,26 +11,27 @@ const UrlAndTimeWrapper = styled.div`
 
   & input {
     width: 100%;
-    max-width: 400px;
+    max-width: 600px;
     height: 44px;
     padding: 12px 13px;
     box-sizing: border-box;
     border-radius: 8px;
     font-size: 14px;
     border: 1px solid #b6b6b6;
+    flex: 1;
     &::placeholder {
       color: #b6b6b6;
     }
   }
   & form {
     display: flex;
+    gap: 4px;
     .inputs-wrapper {
       display: flex;
-      width: calc(100% - 100px);
-      max-width: 400px;
+      width: 100%;
+      max-width: 600px;
       flex-direction: column;
-      margin-right: 4px;
-      gap: 8px;
+      gap: 4px;
     }
   }
 

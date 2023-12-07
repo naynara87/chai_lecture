@@ -16,7 +16,7 @@ import useSafeKey from "../../hooks/useSafeKey";
 
 const ImageListWrapper = styled.ul`
   display: flex;
-  gap: 20px;
+  gap: 3vmin;
   margin: 0 auto;
 
   .caption-text {
@@ -35,19 +35,19 @@ const ImageList = styled.li`
 
 const ImageThumb = styled.div`
   max-width: 100%;
-  width: 20vmin;
-  height: 15vmin;
+  width: 28vmin;
+  height: 21vmin;
   background-color: #f0f0f0;
   position: relative;
   margin-bottom: 10px;
-  border-radius: 10px;
+  border-radius: 1vmin;
   overflow: hidden;
   .defaultImage {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 60px;
+    width: 30%;
   }
 `;
 
