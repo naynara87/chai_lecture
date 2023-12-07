@@ -47,10 +47,15 @@ const LayoutMultiPage = ({ page, setPageCompleted }: LayoutMultiPageProps) => {
         }}
         navigation
         spaceBetween={20}
-        // 768px 이하는 slidesPerView={1} , 이상은 slidesPerView={1.2}로 정의
         slidesPerView={1}
         centeredSlides
         onSlideChange={handleAudioReset}
+        breakpoints={{
+          1024: {
+            slidesPerView: 1.2,
+            spaceBetween: 10,
+          },
+        }}
       >
         {pages}
       </Swiper>
