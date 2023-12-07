@@ -104,7 +104,7 @@ $border-1: min(2px, 0.1vmin);
 $border-3: min(3px, 0.4vmin);
 
 .height_fit {
-  --ratio: 19 / 9;
+  --ratio: 22 / 9;
   --width: calc(var(--height) * var(--ratio));
   --height: min(80vw, calc(80vh * 0.9));
 }
@@ -114,6 +114,7 @@ $border-3: min(3px, 0.4vmin);
   --height: 70vmin;
   /* --height: calc(var(--width) * var(--ratio)); */
 }
+
 :root {
   --rem: 16;
   --header-height: 7vmin;

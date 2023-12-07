@@ -8,13 +8,14 @@
 .answer-sheet-wrapper {
   width: 100%;
   margin-top: 5vmin;
-  padding: 3vmin;
+  padding: 2vmin 3vmin 3vmin;
   border-radius: 3vmin;
   border: 1px solid color(sub);
   background-color: color(sub-light);
 
   .answer-sheet-title {
-    padding-bottom: 3vmin;
+    display: flex;
+    padding-bottom: 1.5vmin;
     font-weight: 600;
     font-size: 2.8vmin;
     color: color(main);

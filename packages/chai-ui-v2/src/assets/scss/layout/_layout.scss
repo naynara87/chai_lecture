@@ -1,19 +1,20 @@
 /* =================== layout =================== */
 .cai-main {
   height: 100vh;
+
   overflow: hidden;
   padding-top: $header-height;
   padding-bottom: $footer-height;
   background-color: color(gray-f0);
 }
 
-.layout-panel-wrap {
+.height_fit .layout-panel-wrap {
   width: 100%;
   max-width: var(--width);
   height: var(--height);
-  padding: 0 15px;
+  padding: 0 3vmin;
   margin: calc(
-      (100vh - calc(9 / 19 * var(--width))) * 0.5 - var(--header-height)
+      (99vh - calc(9 / 22 * var(--width))) * 0.5 - var(--header-height)
     )
     auto;
 }
@@ -41,7 +42,8 @@
   }
 
   .image-with-caption-wrapper .caption-wrap {
-    width: calc((22vmin * 4) / 3);
+    width: 100%;
+    color: #666;
   }
 }
 
@@ -60,7 +62,8 @@
     }
 
     .image-with-caption-wrapper .caption-wrap {
-      width: calc((10vmin * 4) / 3);
+      width: 100%;
+      color: #666;
     }
   }
 
@@ -71,7 +74,8 @@
   }
 
   .image-with-caption-wrapper .caption-wrap {
-    width: calc((22vmin * 4) / 3);
+    width: 100%;
+    color: #666;
   }
 }
 

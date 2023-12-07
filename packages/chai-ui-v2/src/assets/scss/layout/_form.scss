@@ -7,6 +7,7 @@ button:hover {
 .btns-wrap {
   @include flex-center {
     gap: 2vmin;
+    margin-bottom: 3vmin;
   }
 }
 
@@ -349,7 +350,7 @@ button:hover {
 
   @media (hover: hover) and (pointer: fine) {
     @include hover {
-      outline: 2px solid color(gray-ff);
+      outline: $border-1 solid color(gray-ff);
     }
   }
 

@@ -22,7 +22,7 @@ const CharacterWrap = styled.div`
 
 const CharacterNameInput = styled.input`
   background: none !important;
-  font-size: var(--font-size-22) !important;
+  font-size: var(--font-size-20) !important;
 
   &::placeholder {
     opacity: 0.6;

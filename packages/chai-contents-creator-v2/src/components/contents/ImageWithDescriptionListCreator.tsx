@@ -18,11 +18,10 @@ const ImageListCreatorWrapper = styled.div``;
 
 const ImageListWrapper = styled.ul`
   width: 100%;
-  max-width: 1000px;
   margin: 0 auto;
 
   .description-text {
-    flex-basis: 60%;
+    flex-basis: 50%;
     flex-grow: 0;
     flex-shrink: 0;
     padding-left: 20px;
@@ -36,7 +35,7 @@ const ImageListWrapper = styled.ul`
   }
 
   .image-wrap {
-    flex-basis: 40%;
+    flex-basis: 45%;
     flex-grow: 0;
     flex-shrink: 0;
     img {

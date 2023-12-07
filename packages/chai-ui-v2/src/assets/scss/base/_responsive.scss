@@ -6,30 +6,90 @@
 /* 1024px 이상 1919px 이하의 화면에 대한 스타일 */
 @media only screen and (max-width: 1919px) {
   /* 여기에 1024px 이상 1919px 이하의 화면에 적용할 스타일 작성 */
-}
-
-/* 768px 이상 1023px 이하의 중간 크기 화면에 대한 스타일 */
-@media only screen and (max-width: 1023px) {
-  /* 여기에 768px 이상 1023px 이하의 화면에 적용할 스타일 작성 */
-  .btn-round-icon-arrow {
-    width: 3vw;
-    height: 3vw;
-  }
-  .width_fit {
-    .voca-header {
-      flex-direction: column-reverse;
-      align-items: flex-start;
-      .voca-title {
-        padding: 2vmin 0;
-        font-size: 2vmin;
-      }
+  /* 모바일 대응 */
+  @supports (-webkit-touch-callout: none) {
+    .cai-main,
+    .modal-completed {
+      height: -webkit-fill-available;
+      height: fill-available;
     }
   }
 }
 
-/* 360px 이상 767px 이하의 작은 화면에 대한 스타일 */
-@media only screen and (max-width: 767px) {
-  /* 여기에 360px 이상 767px 이하의 화면에 적용할 스타일 작성 */
+/* 768px 이상 1024px 이하의 중간 크기 화면에 대한 스타일 */
+@media only screen and (max-width: 1024px) {
+  .btn-round-icon-arrow {
+    width: 3vw;
+    height: 3vw;
+  }
+  .cai-main {
+    height: 100%;
+    min-height: 100vh;
+    &.height_fit {
+      width: 100%;
+      .layout-panel-wrap {
+        margin: 2vmin auto 0;
+      }
+    }
+    &.width_fit {
+      .voca-header {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        .voca-title {
+          padding: 2vmin 0;
+          font-size: 2vmin;
+        }
+      }
+      .layout-panel-wrap {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        margin: var(--header-height) auto;
+      }
+    }
+  }
+  .cai-ft {
+    height: 10vmin;
+    padding-bottom: 2vmin;
+  }
+  .cai-nav-container {
+    bottom: 10vmin;
+  }
+}
+
+/* 360px 이상 768px 이하의 작은 화면에 대한 스타일 */
+@media (max-width: 768px) {
+  .cai-main {
+    height: 100%;
+
+    padding-top: 10vmin;
+    padding-bottom: 10vmin;
+
+    &.width_fit {
+      .layout-panel-wrap {
+        display: flex;
+        flex-direction: column;
+        margin: var(--header-height) auto;
+      }
+    }
+  }
+  @supports (-webkit-touch-callout: none) {
+    .cai-main {
+      min-height: -webkit-fill-available;
+      min-height: fill-available;
+    }
+  }
+  .cai-hd {
+    height: 10vmin;
+  }
+
+  .hd-conts-wrap .bg-wrap {
+    height: 10vmin;
+  }
+  .corner-name {
+    height: 10vmin;
+    line-height: 2.5;
+  }
 }
 
 @media only screen and (max-width: 359px) {

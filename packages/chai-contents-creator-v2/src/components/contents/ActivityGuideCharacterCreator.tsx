@@ -14,8 +14,8 @@ export const CornerGuideWrapper = styled.div`
   align-items: center;
   padding-top: 4vmin;
   & > img {
-    width: 120px;
-    height: 120px;
+    width: 12vmin;
+    height: 12vmin;
     background-size: 36px 36px;
     object-fit: cover;
   }

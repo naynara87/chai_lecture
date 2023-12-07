@@ -9,7 +9,7 @@ const UrlTextWrapper = styled.div`
 
   & .text-tit {
     margin-bottom: 5px;
-    font-size: 12px;
+    font-size: 1.6vmin;
   }
 
   & input {

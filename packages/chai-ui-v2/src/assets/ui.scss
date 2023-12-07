@@ -9,7 +9,6 @@
 @import "scss/base/base";
 @import "scss/base/font";
 @import "scss/base/helper";
-@import "scss/base/responsive";
 
 // 3. vendor
 @import "scss/vendor/lxPlayer";
@@ -46,4 +45,5 @@
 @import "scss/component/componentNextLesson";
 @import "scss/component/problemcontents";
 
-// 6. page
+// 6. responsive
+@import "scss/base/responsive";

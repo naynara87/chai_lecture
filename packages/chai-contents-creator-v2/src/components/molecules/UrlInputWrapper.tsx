@@ -36,6 +36,7 @@ const UrlTextWrapper = styled.div<UrlInputWrapperProps>`
   }
 
   &.upload-comp .waring-message {
+    font-size: 1.5vmin;
     color: ${colorPalette.purple700};
   }
 

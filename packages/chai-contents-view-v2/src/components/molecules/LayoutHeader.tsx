@@ -38,7 +38,9 @@ const HdContWrap = styled.div<HdContWrapProps>`
     props.cornerPercent > 99 ? props.lessonColor.main : "none"}; */
   transition: ${(props) =>
     props.cornerPercent > 99 ? "width 1000ms" : "width 1200ms"};
-  min-width: 17%;
+
+  min-width: fit-content;
+  padding-left: 3vmin;
 
   &:after {
     background-color: ${(props) => props.lessonColor.main};
@@ -47,7 +49,7 @@ const HdContWrap = styled.div<HdContWrapProps>`
   &:before {
     width: ${(props) =>
       props.cornerPercent > 99 ? "100%" : `${props.cornerPercent}%`};
-    min-width: 17%;
+    /* min-width: 17%; */
     background-color: ${(props) => props.lessonColor.main};
   }
 

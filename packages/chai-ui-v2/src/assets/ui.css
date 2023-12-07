@@ -8,7 +8,7 @@
 } */
 /* common size */
 .height_fit {
-  --ratio: 19 / 9;
+  --ratio: 22 / 9;
   --width: calc(var(--height) * var(--ratio));
   --height: min(80vw, calc(80vh * 0.9));
 }
@@ -146,6 +146,10 @@
 }
 
 /* =================== base =================== */
+body {
+  background-color: #f0f0f0;
+}
+
 html,
 body,
 div,
@@ -329,6 +333,10 @@ h4 {
   font-size: var(--font-size-20);
 }
 
+.text-center {
+  text-align: center;
+}
+
 /* =================== fonts =================== */
 /* ---------- notosanskr ---------- */
 @font-face {
@@ -438,39 +446,6 @@ h4 {
   text-align: justify;
 }
 
-/* 1920px 이상의 큰 화면에 대한 스타일 */
-@media only screen and (min-width: 1920px) {
-  /* 여기에 1920px 이상의 화면에 적용할 스타일 작성 */
-}
-/* 1024px 이상 1919px 이하의 화면에 대한 스타일 */
-@media only screen and (max-width: 1919px) {
-  /* 여기에 1024px 이상 1919px 이하의 화면에 적용할 스타일 작성 */
-}
-/* 768px 이상 1023px 이하의 중간 크기 화면에 대한 스타일 */
-@media only screen and (max-width: 1023px) {
-  /* 여기에 768px 이상 1023px 이하의 화면에 적용할 스타일 작성 */
-  .btn-round-icon-arrow {
-    width: 3vw;
-    height: 3vw;
-  }
-  .width_fit .voca-header {
-    flex-direction: column-reverse;
-    align-items: flex-start;
-  }
-  .width_fit .voca-header .voca-title {
-    padding: 2vmin 0;
-    font-size: 2vmin;
-  }
-}
-/* 360px 이상 767px 이하의 작은 화면에 대한 스타일 */
-@media only screen and (max-width: 767px) {
-  /* 여기에 360px 이상 767px 이하의 화면에 적용할 스타일 작성 */
-}
-@media only screen and (max-width: 359px) {
-  body {
-    display: none;
-  }
-}
 /* a wrapper element that tracks the mouse vertically */
 .vjs-thumbnail-holder {
   position: absolute;
@@ -3262,6 +3237,13 @@ video-js.vjs-ended .vjs-big-play-button {
 .video-js {
   height: 100vh;
 }
+@supports (-webkit-touch-callout: none) {
+  .video-js .video-js {
+    height: -webkit-fill-available;
+    height: -moz-available;
+    height: fill-available;
+  }
+}
 
 .video-js .vjs-big-vr-play-button {
   width: 100px;
@@ -3559,6 +3541,7 @@ button:hover {
   align-items: center;
   justify-content: center;
   gap: 2vmin;
+  margin-bottom: 3vmin;
 }
 
 .btn-icon {
@@ -3836,7 +3819,7 @@ button:hover {
 }
 @media (hover: hover) and (pointer: fine) {
   .ft-icon-btn:hover {
-    outline: 2px solid #ffffff;
+    outline: min(2px, 0.1vmin) solid #ffffff;
   }
 }
 .ft-icon-btn:disabled {
@@ -4236,7 +4219,6 @@ button:hover {
   bottom: 2vmin;
   left: 0;
   width: 100%;
-  height: 7vmin;
   padding: 0 3.5vmin;
   background-color: #ffffff;
 }
@@ -4294,12 +4276,12 @@ button:hover {
   background-color: #f0f0f0;
 }
 
-.layout-panel-wrap {
+.height_fit .layout-panel-wrap {
   width: 100%;
   max-width: var(--width);
   height: var(--height);
-  padding: 0 15px;
-  margin: calc((100vh - 0.4736842105 * var(--width)) * 0.5 - var(--header-height)) auto;
+  padding: 0 3vmin;
+  margin: calc((99vh - 0.4090909091 * var(--width)) * 0.5 - var(--header-height)) auto;
 }
 
 .width_fit .layout-panel-wrap {
@@ -4322,7 +4304,8 @@ button:hover {
   height: 22vmin;
 }
 .grid-h-5-5 .image-with-caption-wrapper .caption-wrap {
-  width: 29.3333333333vmin;
+  width: 100%;
+  color: #666;
 }
 
 .grid-h-3-7 {
@@ -4337,7 +4320,8 @@ button:hover {
   height: 10vmin;
 }
 .grid-h-3-7 .side-panel .image-with-caption-wrapper .caption-wrap {
-  width: 13.3333333333vmin;
+  width: 100%;
+  color: #666;
 }
 .grid-h-3-7 .image-with-caption-wrapper img,
 .grid-h-3-7 .image-with-description-wrapper img {
@@ -4345,7 +4329,8 @@ button:hover {
   height: 22vmin;
 }
 .grid-h-3-7 .image-with-caption-wrapper .caption-wrap {
-  width: 29.3333333333vmin;
+  width: 100%;
+  color: #666;
 }
 
 .layout-panel {
@@ -4668,6 +4653,7 @@ button:hover {
 }
 
 .swiper-button-prev {
+  position: fixed;
   width: 8vmin;
   height: 8vmin;
   border-radius: 50%;
@@ -4685,6 +4671,7 @@ button:hover {
 }
 
 .swiper-button-next {
+  position: fixed;
   width: 8vmin;
   height: 8vmin;
   border-radius: 50%;
@@ -5936,13 +5923,14 @@ button:hover {
 .answer-sheet-wrapper {
   width: 100%;
   margin-top: 5vmin;
-  padding: 3vmin;
+  padding: 2vmin 3vmin 3vmin;
   border-radius: 3vmin;
   border: 1px solid #d9d0ff;
   background-color: #f6f4ff;
 }
 .answer-sheet-wrapper .answer-sheet-title {
-  padding-bottom: 3vmin;
+  display: flex;
+  padding-bottom: 1.5vmin;
   font-weight: 600;
   font-size: 2.8vmin;
   color: #6e79bd;
@@ -6157,4 +6145,95 @@ button:hover {
   font-size: var(--font-size-24);
   line-height: 1.4;
   white-space: pre-line;
+}
+
+/* 1920px 이상의 큰 화면에 대한 스타일 */
+@media only screen and (min-width: 1920px) {
+  /* 여기에 1920px 이상의 화면에 적용할 스타일 작성 */
+}
+/* 1024px 이상 1919px 이하의 화면에 대한 스타일 */
+@media only screen and (max-width: 1919px) {
+  /* 여기에 1024px 이상 1919px 이하의 화면에 적용할 스타일 작성 */
+  /* 모바일 대응 */
+  @supports (-webkit-touch-callout: none) {
+    .cai-main,
+    .modal-completed {
+      height: -webkit-fill-available;
+      height: -moz-available;
+      height: fill-available;
+    }
+  }
+}
+/* 768px 이상 1024px 이하의 중간 크기 화면에 대한 스타일 */
+@media only screen and (max-width: 1024px) {
+  .btn-round-icon-arrow {
+    width: 3vw;
+    height: 3vw;
+  }
+  .cai-main {
+    height: 100%;
+    min-height: 100vh;
+  }
+  .cai-main.height_fit {
+    width: 100%;
+  }
+  .cai-main.height_fit .layout-panel-wrap {
+    margin: 2vmin auto 0;
+  }
+  .cai-main.width_fit .voca-header {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+  .cai-main.width_fit .voca-header .voca-title {
+    padding: 2vmin 0;
+    font-size: 2vmin;
+  }
+  .cai-main.width_fit .layout-panel-wrap {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    margin: var(--header-height) auto;
+  }
+  .cai-ft {
+    height: 10vmin;
+    padding-bottom: 2vmin;
+  }
+  .cai-nav-container {
+    bottom: 10vmin;
+  }
+}
+/* 360px 이상 768px 이하의 작은 화면에 대한 스타일 */
+@media (max-width: 768px) {
+  .cai-main {
+    height: 100%;
+    padding-top: 10vmin;
+    padding-bottom: 10vmin;
+  }
+  .cai-main.width_fit .layout-panel-wrap {
+    display: flex;
+    flex-direction: column;
+    margin: var(--header-height) auto;
+  }
+  @supports (-webkit-touch-callout: none) {
+    .cai-main {
+      min-height: -webkit-fill-available;
+      min-height: -moz-available;
+      min-height: fill-available;
+    }
+  }
+  .cai-hd {
+    height: 10vmin;
+  }
+  .hd-conts-wrap .bg-wrap {
+    height: 10vmin;
+  }
+  .corner-name {
+    height: 10vmin;
+    line-height: 2.5;
+  }
+}
+@media only screen and (max-width: 359px) {
+  body {
+    display: none;
+  }
 }/*# sourceMappingURL=ui.css.map */

@@ -32,7 +32,7 @@ const ImageWithDescriptionWrapper = styled.div`
   display: flex;
 
   & > div {
-    font-size: 28px;
+    font-size: 2.4vmin;
     font-weight: 400;
     overflow-x: auto;
   }

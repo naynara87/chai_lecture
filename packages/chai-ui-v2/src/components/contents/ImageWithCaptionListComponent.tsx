@@ -40,7 +40,7 @@ const ImageWithCaptionWrapper = styled.div`
   }
 
   .caption-wrap {
-    width: calc((20vh * 4) / 3);
+    text-align: center;
   }
 `;
 

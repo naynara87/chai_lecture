@@ -37,7 +37,7 @@ const TextEditorViewer = ({
   return (
     <>
       {!isFocused ? (
-        <TextViewer textViewerCss={textViewerCss}>
+        <TextViewer className="font-20vmin" textViewerCss={textViewerCss}>
           {text ? <HtmlContentComponent html={text} /> : defaultText}
         </TextViewer>
       ) : (

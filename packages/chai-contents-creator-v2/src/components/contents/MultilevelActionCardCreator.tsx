@@ -59,7 +59,7 @@ const MultilevelActionCard = styled.div`
 
     .caption-wrap {
       width: 100%;
-      max-width: 200px;
+      /* max-width: 200px; */
     }
   }
 `;

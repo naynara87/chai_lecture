@@ -22,7 +22,7 @@ const ImageListWrapper = styled.ul`
   .caption-text {
     margin-top: 20px;
     color: #666666;
-    font-size: 10px;
+    font-size: 1.5vmin;
     text-align: center;
   }
 `;

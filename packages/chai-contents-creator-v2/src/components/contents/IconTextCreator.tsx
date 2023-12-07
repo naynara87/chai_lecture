@@ -72,7 +72,7 @@ const IconTextCreator = ({
       <IconTextCreatorWrapper onClick={handleClickComponent}>
         <img src={iconTip} alt="" />
         {!isFocused ? (
-          <div>
+          <div className="font-20vmin">
             {text ? (
               <HtmlContentComponent html={text} />
             ) : (
