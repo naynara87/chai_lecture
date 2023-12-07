@@ -104,9 +104,9 @@ $border-1: min(2px, 0.1vmin);
 $border-3: min(3px, 0.4vmin);
 
 .height_fit {
-  --ratio: 22 / 9;
+  --ratio: 20 / 9;
   --width: calc(var(--height) * var(--ratio));
-  --height: min(80vw, calc(80vh * 0.9));
+  --height: calc(100vh - var(--footer-height) - var(--header-height) - 15vh);
 }
 .width_fit {
   --ratio: 9 / 19 !important;

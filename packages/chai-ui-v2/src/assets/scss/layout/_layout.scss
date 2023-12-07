@@ -1,33 +1,35 @@
 /* =================== layout =================== */
 .cai-main {
   height: 100vh;
-
   overflow: hidden;
   padding-top: $header-height;
   padding-bottom: $footer-height;
   background-color: color(gray-f0);
+
+  .layout-panel-wrap {
+    padding-right: 4vmin;
+    padding-left: 4vmin;
+  }
+}
+.height_fit {
+  .layout-panel-wrap {
+    width: 100%;
+    max-width: var(--width);
+    height: var(--height);
+    padding: 0 3vmin;
+    margin: calc(
+        (99vh - calc(9 / 20 * var(--width))) * 0.5 - var(--header-height)
+      )
+      auto;
+  }
 }
 
-.height_fit .layout-panel-wrap {
-  width: 100%;
-  max-width: var(--width);
-  height: var(--height);
-  padding: 0 3vmin;
-  margin: calc(
-      (99vh - calc(9 / 22 * var(--width))) * 0.5 - var(--header-height)
-    )
-    auto;
-}
-
-.width_fit .layout-panel-wrap {
-  width: var(--width);
-  height: var(--height);
-  margin: calc((100vh - var(--height)) * 0.5 - var(--header-height)) auto;
-}
-
-.swiper-slide .layout-panel-wrap {
-  width: 100%;
-  max-width: var(--width);
+.width_fit {
+  .layout-panel-wrap {
+    width: var(--width);
+    height: var(--height);
+    margin: calc((100vh - var(--height)) * 0.5 - var(--header-height)) auto;
+  }
 }
 
 .grid-h-5-5 {

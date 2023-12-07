@@ -1,11 +1,24 @@
 /* 1920px 이상의 큰 화면에 대한 스타일 */
 @media only screen and (min-width: 1920px) {
-  /* 여기에 1920px 이상의 화면에 적용할 스타일 작성 */
 }
 
-/* 1024px 이상 1919px 이하의 화면에 대한 스타일 */
+/*  1919px 이하의 화면에 대한 스타일 */
 @media only screen and (max-width: 1919px) {
-  /* 여기에 1024px 이상 1919px 이하의 화면에 적용할 스타일 작성 */
+  .height_fit {
+    .layout-panel-wrap {
+      transform: translateY(-3vmin);
+    }
+    .training-list-wrap {
+      margin-top: 9vmin;
+    }
+    .training-list .img-wrap {
+      width: 10vmin;
+      height: 10vmin;
+    }
+    .training-list .gradi-wrap {
+      padding-bottom: 1.5vmin;
+    }
+  }
   /* 모바일 대응 */
   @supports (-webkit-touch-callout: none) {
     .cai-main,
@@ -15,9 +28,31 @@
     }
   }
 }
-
+@media only screen and (max-width: 1366px) {
+  :root {
+    --footer-height: 10vmin;
+  }
+  .height_fit {
+    .ft-conts-wrap .txt {
+      margin: 0px 20vmin;
+    }
+  }
+  .cai-ft {
+    height: var(--footer-height);
+    /* padding-bottom: 2vmin; */
+  }
+  .cai-nav-container {
+    bottom: var(--footer-height);
+  }
+  .training-list {
+    height: 31vmin;
+  }
+}
 /* 768px 이상 1024px 이하의 중간 크기 화면에 대한 스타일 */
 @media only screen and (max-width: 1024px) {
+  :root {
+    --footer-height: 10vmin;
+  }
   .btn-round-icon-arrow {
     width: 3vw;
     height: 3vw;
@@ -27,9 +62,6 @@
     min-height: 100vh;
     &.height_fit {
       width: 100%;
-      .layout-panel-wrap {
-        margin: 2vmin auto 0;
-      }
     }
     &.width_fit {
       .voca-header {
@@ -49,11 +81,17 @@
     }
   }
   .cai-ft {
-    height: 10vmin;
-    padding-bottom: 2vmin;
+    height: var(--footer-height);
+    /* padding-bottom: 2vmin; */
   }
   .cai-nav-container {
-    bottom: 10vmin;
+    bottom: var(--footer-height);
+  }
+  .swiper-pagination {
+    height: calc(var(--footer-height) * 0.8);
+  }
+  .btn-ft-text {
+    /* height: calc(100% - 2vmin); */
   }
 }
 
