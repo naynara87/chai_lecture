@@ -38,6 +38,7 @@ const LayoutMultiPage = ({ page, setPageCompleted }: LayoutMultiPageProps) => {
   return (
     <div key={multiPageData.id} className="swiper-position-2">
       <Swiper
+        autoHeight={true}
         modules={[Pagination, Navigation]}
         pagination={{
           dynamicBullets: true,
@@ -46,7 +47,8 @@ const LayoutMultiPage = ({ page, setPageCompleted }: LayoutMultiPageProps) => {
         }}
         navigation
         spaceBetween={20}
-        slidesPerView={1.2}
+        // 768px 이하는 slidesPerView={1} , 이상은 slidesPerView={1.2}로 정의
+        slidesPerView={1}
         centeredSlides
         onSlideChange={handleAudioReset}
       >

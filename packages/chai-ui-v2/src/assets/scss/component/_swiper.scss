@@ -27,6 +27,7 @@
 }
 
 .swiper-button-prev {
+  position: fixed;
   width: 8vmin;
   height: 8vmin;
   border-radius: 50%;
@@ -46,6 +47,7 @@
 }
 
 .swiper-button-next {
+  position: fixed;
   width: 8vmin;
   height: 8vmin;
   border-radius: 50%;
