@@ -5,6 +5,7 @@ import { getPageListData } from "../api/lcms/lcms";
 import { queryKey } from "../constants/queryKey";
 import useAuth from "./useAuth";
 import { AxiosError } from "axios";
+import { DUMMY_DATA } from "../data/dummyData";
 
 type UsePageDataProps = {
   cornerId: ID;
@@ -17,7 +18,8 @@ const usePageData = ({ cornerId, pageId, lessonId }: UsePageDataProps) => {
   const { data: cornerDataResponse, refetch } = useQuery(
     [queryKey.lcmsCorner],
     () => {
-      return getPageListData(cornerId, lessonId);
+      return DUMMY_DATA;
+      // return getPageListData(cornerId, lessonId);
     },
     {
       enabled: isAuthorized && !!cornerId,
@@ -54,9 +56,12 @@ const usePageData = ({ cornerId, pageId, lessonId }: UsePageDataProps) => {
 
   const pageServerData = useMemo(() => {
     if (!pageId) return;
-    const page = cornerDataResponse?.data.body.data.find(
+    const page = cornerDataResponse?.body.data.find(
       (page) => page.page_id.toString() === pageId.toString(),
     );
+    // const page = cornerDataResponse?.data.body.data.find(
+    //   (page) => page.page_id.toString() === pageId.toString(),
+    // );
     if (!page) {
       return;
     }
