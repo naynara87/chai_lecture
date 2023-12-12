@@ -1,14 +1,9 @@
-import styled from "@emotion/styled";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useGlobalAudio, WordsCarouselContentData } from "../../core";
 import IconDictionaryButton from "../atoms/Button/IconDictionaryButton";
 import { LayoutModalVoca } from "../modal";
 import { v4 as uuidv4 } from "uuid";
 
-const WordsCarouselWrap = styled.div`
-  display: flex;
-  justify-content: center;
-`;
 export interface WordsCarouselComponentProps {
   contents: WordsCarouselContentData;
 }
@@ -50,7 +45,7 @@ const WordsCarouselComponent = ({ contents }: WordsCarouselComponentProps) => {
   }, [handleAudioReset]);
 
   return (
-    <WordsCarouselWrap>
+    <div className="flex-justify-center">
       <IconDictionaryButton
         onClickBtn={() => {
           setIsVocaModalOpen(true);
@@ -67,7 +62,7 @@ const WordsCarouselComponent = ({ contents }: WordsCarouselComponentProps) => {
         setIsModalOpen={setIsVocaModalOpen}
         contentsData={contents.data}
       />
-    </WordsCarouselWrap>
+    </div>
   );
 };
 

@@ -1,0 +1,233 @@
+/* =================== newStyled =================== */
+// 231207 기존 tsx에 styled된 css 정리
+
+// chai-ui-v2/src/components/atoms/TimerIcon.tsx
+.timer-img {
+  width: 3vmin;
+}
+
+// chai-ui-v2/src/components/contents/ActivityGuideCharacterComponent.tsx
+.cont-start-wrapper {
+  .text-bubble-wrap {
+    padding: 3vmin;
+    font-size: 2.2vmin;
+    font-weight: 400;
+    border-radius: 2vmin;
+  }
+
+  .character-wrap {
+    width: 100%;
+    max-width: 20vmin;
+    margin: 3.85vmin auto 0;
+    text-align: center;
+
+    .img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+// chai-ui-v2/src/components/contents/ContentsCardListComponent.tsx
+.contents-box-wrap {
+  .image-with-caption-wrapper img {
+    width: 20vmin;
+    height: 15vmin;
+  }
+}
+
+// chai-ui-v2/src/components/contents/CornerGuideCharacterComponent.tsx
+.cont-start-wrapper {
+  .text-bubble-wrap {
+    margin-top: 3vmin;
+    padding: 1em 2.5em;
+    font-size: 3vmin;
+    font-weight: 600;
+    border-radius: 10vmin;
+  }
+
+  .character-wrap {
+    width: 40vmin;
+    height: 40vmin;
+    margin: 5vmin auto 0;
+    text-align: center;
+
+    .img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+// chai-ui-v2/src/components/contents/DialogueSentenceBlank.tsx
+.blank-span {
+  min-height: 5vmin;
+  cursor: pointer;
+}
+
+// chai-ui-v2/src/components/contents/ImageWithCaptionListComponent.tsx
+.caption-list-image {
+  width: calc((20vh * 4) / 3);
+  height: 20vh;
+  border-radius: 1vmin;
+  -webkit-user-drag: none;
+  cursor: pointer;
+  object-fit: cover;
+}
+.image-with-caption-list {
+  .image-with-caption-wrapper {
+    > div {
+      margin-top: 1vmin;
+      color: $gray-66;
+      font-size: 2vmin;
+      font-weight: 400;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .caption-wrap {
+      text-align: center;
+    }
+  }
+}
+
+// chai-ui-v2/src/components/contents/ImageWithDescriptionListComponent.tsx
+.list-image {
+  flex-shrink: 0;
+  width: calc((20vh * 4) / 3);
+  height: 20vh;
+  margin-right: 4vmin;
+  border-radius: 1vmin;
+  -webkit-user-drag: none;
+  cursor: pointer;
+  object-fit: cover;
+}
+
+// chai-ui-v2/src/components/contents/MultiChoiceComponent.tsx
+.multi-choice-comp-container {
+  > div {
+    margin-top: 6vmin;
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+  }
+}
+
+// chai-ui-v2/src/components/contents/MultilevelActionCardComponent.tsx
+// chai-ui-v2/src/components/contents/MultilevelActionSentenceCardComponent.tsx
+// chai-ui-v2/src/components/molecules/ComponentStepSentenceCard.tsx
+.step-card-wrap {
+  .step-card {
+    > *:not(:first-of-type) {
+      margin-top: 3vmin;
+    }
+  }
+  // new-step-card는 새로 추가한 Class
+  .new-step-card {
+    .image-with-caption-wrapper {
+      img {
+        width: 100%;
+        max-width: 200px;
+        max-height: 150px;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+      }
+
+      .caption-wrap {
+        width: 100%;
+        max-width: 200px;
+      }
+    }
+
+    p,
+    span {
+      line-height: 1.4 !important;
+    }
+  }
+  // action-card는 새로 추가한 class
+  .action-card {
+    .image-with-caption-wrapper {
+      img {
+        height: auto;
+      }
+    }
+  }
+}
+
+// chai-ui-v2/src/components/contents/NotiCharacterListComponent.tsx
+.noti-wrapper {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 4vmin;
+  flex-wrap: wrap;
+  margin-top: 5vmin;
+}
+.noti-list {
+  flex: 1;
+  max-width: 32vmin;
+  min-width: 22%;
+
+  .image-wrap {
+    width: 20vmin;
+    height: 20vmin;
+
+    overflow: hidden;
+    margin: 6vmin auto 0;
+
+    & > img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+// packages/chai-ui-v2/src/components/contents/NumberingTextListComponent.tsx
+.numbering-text-list {
+  display: flex;
+  p {
+    font-weight: bold;
+    line-height: 1.4 !important;
+  }
+  span {
+    line-height: 1.4 !important;
+  }
+}
+
+// chai-ui-v2/src/components/contents/ToggleSentenceListComponent.tsx
+.toggle-text-wrapper {
+  > *:not(:first-of-type) {
+    margin-top: 3vmin;
+  }
+
+  .sentence:not(:first-of-type) {
+    margin-top: 3vmin;
+  }
+
+  .chinese {
+    font-size: 3vmin;
+    font-weight: 500;
+    line-height: 1.6;
+  }
+
+  .text {
+    color: $gray-66;
+    font-size: 2.6vmin;
+    line-height: 1.6;
+  }
+
+  .mean {
+    color: $gray-66;
+  }
+}
+
+// chai-ui-v2/src/components/modal/LayoutModalExit.tsx
+.modal-base-title {
+  .profile-img-wrap.overflow-visible .img {
+    transform: none;
+  }
+}

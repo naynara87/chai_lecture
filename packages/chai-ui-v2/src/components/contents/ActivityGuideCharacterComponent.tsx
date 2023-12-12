@@ -1,35 +1,7 @@
 import React, { useEffect } from "react";
 import { ActivityGuideCharacterContentData } from "../../core";
 import { HtmlContentComponent } from "../atoms";
-import styled from "@emotion/styled";
 import allCharacter from "../../assets/images/img/cha_all.png";
-
-const ContStartWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-
-  .text-bubble-wrap {
-    padding: 3vmin;
-    border-radius: 2vmin;
-    font-weight: 400;
-    font-size: 2.2vmin;
-  }
-
-  .character-wrap {
-    width: 100%;
-    max-width: 20vmin;
-    margin: 3.85vmin auto 0;
-    text-align: center;
-
-    .img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  }
-`;
 
 export interface ActivityGuideCharacterComponentProps {
   contents: ActivityGuideCharacterContentData;
@@ -59,7 +31,10 @@ const ActivityGuideCharacterComponent = ({
     }
   }, [layoutPanelHeight, thisComponentRef, characterWrapRef]);
   return (
-    <ContStartWrapper ref={thisComponentRef}>
+    <div
+      className="cont-start-wrapper flex-align-center flex-justify-center flex-direction-column"
+      ref={thisComponentRef}
+    >
       <div className="character-wrapper" ref={characterWrapRef}>
         <div className="text-bubble-wrap">
           <HtmlContentComponent html={contents.data.text} />
@@ -76,7 +51,7 @@ const ActivityGuideCharacterComponent = ({
           ></img>
         </div>
       </div>
-    </ContStartWrapper>
+    </div>
   );
 };
 

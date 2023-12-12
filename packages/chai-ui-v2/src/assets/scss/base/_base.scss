@@ -183,8 +183,46 @@ h4 {
   text-align: center;
 }
 
-.flex-align-center {
+// display
+.d-inline-block {
+  display: inline-block;
 }
+
+// flex
+.d-flex {
+  display: flex;
+}
+.flex-align-center {
+  display: flex;
+  align-items: center;
+}
+.flex-justify-center {
+  display: flex;
+  justify-content: center;
+}
+.flex-direction-column {
+  flex-direction: column;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+// gap
 .gap-3 {
   gap: 3vmin;
+}
+
+// margin
+.mb-5 {
+  margin-bottom: 5vmin;
+}
+
+// line-height
+.line-height-0 {
+  line-height: 0;
+}
+
+// overflow
+.overflow-visible {
+  overflow: visible;
 }

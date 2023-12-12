@@ -1,16 +1,9 @@
-import styled from "@emotion/styled";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { AudioAndWordsCarouselContentData, useGlobalAudio } from "../../core";
 import IconDictionaryButton from "../atoms/Button/IconDictionaryButton";
 import { LayoutModalVoca } from "../modal";
 import AudioComponent from "./AudioComponent";
 import { v4 as uuidv4 } from "uuid";
-
-const AudioAndWordsWrap = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 3vmin;
-`;
 
 export interface AudioAndWordsCarouselComponentProps {
   contents: AudioAndWordsCarouselContentData;
@@ -55,7 +48,7 @@ const AudioAndWordsCarouselComponent = ({
   }, [handleAudioReset]);
 
   return (
-    <AudioAndWordsWrap>
+    <div className="flex-justify-center gap-3">
       <AudioComponent
         contents={{
           id: "",
@@ -82,7 +75,7 @@ const AudioAndWordsCarouselComponent = ({
         setIsModalOpen={setIsVocaModalOpen}
         contentsData={contents.data.wordCarouselContents}
       />
-    </AudioAndWordsWrap>
+    </div>
   );
 };
 

@@ -1,4 +1,3 @@
-import styled from "@emotion/styled";
 import React, {
   useCallback,
   useEffect,
@@ -23,10 +22,6 @@ import ComponentGrayLine from "../molecules/ComponentGrayLine";
 import { v4 as uuidv4 } from "uuid";
 import ImgProfileDefault from "../../assets/images/img/img_profile_default.png";
 import { sortChoices } from "../../core/util/sortChoices";
-
-const BlankBox = styled.div`
-  cursor: pointer;
-`;
 
 type WordInOrderChoice = {
   text: string;
@@ -155,8 +150,8 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
         blankCount++;
         const blankIndex = blankCount;
         return (
-          <BlankBox
-            className={`blank text ${
+          <div
+            className={`blank text cursor-pointer ${
               !isShowAnswer && selectedBlankBox === blankIndex ? "active" : ""
             } ${answerCheckColor(contentIndex, blankIndex)}`}
             key={contentIndex}
@@ -174,7 +169,7 @@ const WordsInOrderComponent = ({ contents }: WordsInOrderComponentProps) => {
                 "\u00A0"
               )}
             </div>
-          </BlankBox>
+          </div>
         );
       } else {
         return (

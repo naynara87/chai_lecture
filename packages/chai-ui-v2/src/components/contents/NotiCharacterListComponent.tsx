@@ -10,21 +10,6 @@ export interface NotiCharacterListComponentProps {
   contents: NotiCharacterListContentData;
 }
 
-const NotiWrapper = styled.ul`
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  gap: 4vmin;
-  flex-wrap: wrap;
-  margin-top: 5vmin;
-`;
-
-const NotiList = styled.li`
-  flex: 1;
-  max-width: 32vmin;
-  min-width: 22%;
-`;
-
 const TextBubbleWrap = styled.div`
   display: flex;
   justify-content: center;
@@ -55,46 +40,32 @@ const TextBubbleWrap = styled.div`
   }
 `;
 
-const ImageWrap = styled.div`
-  width: 20vmin;
-  height: 20vmin;
-
-  overflow: hidden;
-  margin: 6vmin auto 0;
-
-  & > img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-`;
-
 const NotiCharacterListComponent = ({
   contents,
 }: NotiCharacterListComponentProps) => {
   const notiCharacterList = useMemo(() => {
     return contents.data.map((notiCharacter, notiCharacterIndex) => {
       return (
-        <NotiList key={notiCharacterIndex}>
+        <li className="noti-list" key={notiCharacterIndex}>
           <TextBubbleWrap>
             <HtmlContentComponent html={notiCharacter.text} />
           </TextBubbleWrap>
 
-          <ImageWrap>
+          <div className="image-wrap">
             {/*
             NOTE: lsh dummyData에서 characterMapping 작업이 되어있지않아 우선 공통이미지로 넣었습니다.
             <img src={notiCharacter.character.src} alt="" />
             */}
             <img src={notiCharacter.character.src || ProfileDefault} alt="" />
-          </ImageWrap>
-        </NotiList>
+          </div>
+        </li>
       );
     });
   }, [contents.data]);
 
   return (
     <div>
-      <NotiWrapper>{notiCharacterList}</NotiWrapper>
+      <ul className="noti-wrapper">{notiCharacterList}</ul>
     </div>
   );
 };

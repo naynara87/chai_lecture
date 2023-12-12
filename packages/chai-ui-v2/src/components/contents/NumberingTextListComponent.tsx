@@ -3,17 +3,6 @@ import React, { useMemo } from "react";
 import { NumberingTextListContentData } from "../../core";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
 
-const NumberingTextList = styled.div`
-  display: flex;
-  p {
-    font-weight: bold;
-    line-height: 1.4 !important;
-  }
-  span {
-    line-height: 1.4 !important;
-  }
-`;
-
 interface NumberingTextProps {
   isWithSecondText: boolean;
 }
@@ -35,7 +24,7 @@ const NumberingTextListComponent = ({
         <li className="numbering-list" key={numberingTextIndex}>
           <span className="number">{numberingTextIndex + 1}</span>
           {/* key설명 - 저작도구에서 text2의 입력이 없어 text2가 생성되지 않고, text1 width: 100% */}
-          <NumberingTextList className="text">
+          <div className="text numbering-text-list">
             <NumberingText
               isWithSecondText={numberingText.secondText ? true : false}
             >
@@ -46,7 +35,7 @@ const NumberingTextListComponent = ({
                 <HtmlContentComponent html={numberingText.secondText} />
               </NumberingText>
             )}
-          </NumberingTextList>
+          </div>
         </li>
       );
     });

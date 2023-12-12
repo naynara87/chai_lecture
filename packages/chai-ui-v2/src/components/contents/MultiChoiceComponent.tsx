@@ -16,20 +16,9 @@ import ComponentGrayLine from "../molecules/ComponentGrayLine";
 import { v4 as uuidv4 } from "uuid";
 import ModalVideo from "../modal/ModalVideo";
 import { HtmlContentComponent } from "../atoms";
-import styled from "@emotion/styled";
 export interface MultiChoiceComponentProps {
   contents: MultiChoiceContentData;
 }
-
-const MultiChoiceCompContainer = styled.div`
-  > div {
-    margin-top: 6vmin;
-
-    &:first-of-type {
-      margin-top: 0;
-    }
-  }
-`;
 
 const MultiChoiceComponent = ({ contents }: MultiChoiceComponentProps) => {
   const [userChoice, setUserChoice] = useState<number | undefined>();
@@ -145,7 +134,7 @@ const MultiChoiceComponent = ({ contents }: MultiChoiceComponentProps) => {
   };
 
   return (
-    <MultiChoiceCompContainer>
+    <div className="multi-choice-comp-container">
       {contents.data.exampleContents && (
         <ComponentGrayLine contents={contents.data.exampleContents} />
       )}
@@ -169,7 +158,7 @@ const MultiChoiceComponent = ({ contents }: MultiChoiceComponentProps) => {
             : contents.data.quizPopup.data.incorrect.video?.src ?? ""
         }
       />
-    </MultiChoiceCompContainer>
+    </div>
   );
 };
 

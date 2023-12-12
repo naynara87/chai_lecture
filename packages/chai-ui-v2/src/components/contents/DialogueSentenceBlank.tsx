@@ -1,15 +1,9 @@
-import styled from "@emotion/styled";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { QuizSentenceContentData, useGlobalAudio } from "../../core";
 import { HtmlContentComponent } from "../atoms";
 import { SentenceInOrderChoice } from "../templates/TemplateQuizSentenceBlank";
 import { v4 as uuidv4 } from "uuid";
 import ImgProfileDefault from "../../assets/images/img/img_profile_default.png";
-
-const BlankSpan = styled.div`
-  min-height: 5vmin;
-  cursor: pointer;
-`;
 
 interface DialogueSentenceBlankProps {
   contents: QuizSentenceContentData["data"]["characters"];
@@ -181,8 +175,8 @@ const DialogueSentenceBlank = ({
                 blankCount++;
                 const blankIndex = blankCount;
                 return (
-                  <BlankSpan
-                    className={`blank-gray ${
+                  <div
+                    className={`blank-gray blank-span ${
                       selectedBlankBox === blankIndex ? "active" : ""
                     } ${answerCheckColor(
                       contentIndex,
@@ -199,7 +193,7 @@ const DialogueSentenceBlank = ({
                     <span className="text">
                       {userChoices[blankIndex].text.replace(/<[^>]*>?/g, "")}
                     </span>
-                  </BlankSpan>
+                  </div>
                 );
               } else {
                 return (

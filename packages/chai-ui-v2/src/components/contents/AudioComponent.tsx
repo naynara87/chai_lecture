@@ -8,12 +8,7 @@ import {
 import { ComponentButtonPlay } from "../atoms";
 import IconPauseFillButton from "../atoms/Button/IconPauseFillButton";
 import { v4 as uuidv4 } from "uuid";
-import styled from "@emotion/styled";
 
-const AudioWrap = styled.div`
-  display: flex;
-  justify-content: center;
-`;
 export interface AudioComponentProps {
   contents: AudioContentData;
 }
@@ -93,7 +88,7 @@ const AudioComponent = ({ contents }: AudioComponentProps) => {
     xapiPlayed,
   ]);
 
-  return <AudioWrap>{mainContents}</AudioWrap>;
+  return <div className="flex-justify-center">{mainContents}</div>;
 };
 
 export default AudioComponent;

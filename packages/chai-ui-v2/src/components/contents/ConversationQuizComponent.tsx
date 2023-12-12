@@ -12,11 +12,7 @@ import {
 } from "../atoms";
 import { LineRadioBoxes } from "../molecules";
 import { v4 as uuidv4 } from "uuid";
-import styled from "@emotion/styled";
 
-const ChineseTextSpan = styled.span`
-  display: inline-block;
-`;
 export interface ConversationQuizComponentProps {
   contents: ConversationQuizContentData;
   fullAudioId?: string;
@@ -217,13 +213,13 @@ const ConversationQuizComponent = ({
             <div className="chinese">
               {texts.map((text, index) => {
                 return text.indexOf("*") === -1 ? (
-                  <ChineseTextSpan key={index}>
+                  <span className="d-inline-block" key={index}>
                     <HtmlContentComponent
                       html={convertText(text, tags) ?? ""}
                     />
-                  </ChineseTextSpan>
+                  </span>
                 ) : (
-                  <ChineseTextSpan className="blank-gray" key={index}>
+                  <span className="inline-block blank-gray" key={index}>
                     {userChoices[contentIndex].text ? (
                       <HtmlContentComponent
                         html={userChoices[contentIndex].text ?? ""}
@@ -231,7 +227,7 @@ const ConversationQuizComponent = ({
                     ) : (
                       "\u00A0"
                     )}
-                  </ChineseTextSpan>
+                  </span>
                 );
               })}
             </div>
