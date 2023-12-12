@@ -1,35 +1,7 @@
-import styled from "@emotion/styled";
 import React, { useCallback, useMemo, useState } from "react";
 import { MultilevelActionCardContentData } from "../../core";
 import useContentMapper from "../../core/hooks/useContentMapper";
 import ComponentButtonStep from "../atoms/Button/ComponentButtonStep";
-
-const StepCard = styled.div`
-  > *:not(:first-of-type) {
-    margin-top: 3vmin;
-  }
-
-  .image-with-caption-wrapper {
-    img {
-      width: 100%;
-      height: auto;
-      max-width: 200px;
-      max-height: 150px;
-      aspect-ratio: 4 / 3;
-      object-fit: cover;
-    }
-
-    .caption-wrap {
-      width: 100%;
-      max-width: 200px;
-    }
-  }
-
-  p,
-  span {
-    line-height: 1.4 !important;
-  }
-`;
 
 export interface MultilevelActionCardComponentProps {
   contents: MultilevelActionCardContentData;
@@ -62,14 +34,14 @@ const MultilevelActionCardComponent = ({
 
   return (
     <div className="step-card-wrap">
-      <StepCard className={`step-card step${step + 1}`}>
+      <div className={`step-card new-step-card action-card step${step + 1}`}>
         <>{multiLevelContents}</>
         {contents.data[step + 1] && (
           <div>
             <ComponentButtonStep onClick={handleClickStepButton} />
           </div>
         )}
-      </StepCard>
+      </div>
     </div>
   );
 };

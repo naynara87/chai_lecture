@@ -1,4 +1,3 @@
-import styled from "@emotion/styled";
 import React, {
   useCallback,
   useEffect,
@@ -19,10 +18,6 @@ import {
 import { v4 as uuidv4 } from "uuid";
 import IconReturnButton from "../atoms/Button/IconReturnButton";
 import ComponentProgress from "../atoms/ComponentProgress";
-
-const ButtonWrapper = styled.div`
-  line-height: 0;
-`;
 
 type RecordedAudioState = "not-recorded" | "recorded" | "playing" | "stopped";
 
@@ -231,13 +226,13 @@ const AudioRecorder = ({ contents, handleEndRecord }: AudioRecorderProps) => {
   return (
     <div>
       <div className="record-btn-wrap">
-        <ButtonWrapper>
+        <div className="line-height-0">
           <div className="record-btn-flex-wrap">
             {recordedAudioState === "not-recorded"
               ? renderRecordingAudioIcon
               : renderRecordedAudioIcon}
           </div>
-        </ButtonWrapper>
+        </div>
       </div>
     </div>
   );

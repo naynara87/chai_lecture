@@ -8,26 +8,6 @@ export interface ImageWithDescriptionListProps {
   contents: ImageWithDescriptionListContentData;
 }
 
-const ImageWithDescriptionListWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const ImageWithDescriptionList = styled.div`
-  margin-bottom: 5vmin;
-`;
-
-const ListImage = styled.img`
-  flex-shrink: 0;
-  width: calc((20vh * 4) / 3);
-  height: 20vh;
-  margin-right: 4vmin;
-  border-radius: 1vmin;
-  -webkit-user-drag: none;
-  cursor: pointer;
-  object-fit: cover;
-`;
-
 const ImageWithDescriptionWrapper = styled.div`
   display: flex;
 
@@ -52,9 +32,10 @@ const ImageWithDescriptionListComponent = ({
     return contents.data.map(
       (imageWithDescription, imageWithDescriptionIndex) => {
         return (
-          <ImageWithDescriptionList key={imageWithDescriptionIndex}>
+          <div className="mb-5" key={imageWithDescriptionIndex}>
             <ImageWithDescriptionWrapper className="image-with-description-wrapper">
-              <ListImage
+              <img
+                className="list-image"
                 src={imageWithDescription.src}
                 alt=""
                 onClick={() => {
@@ -63,14 +44,14 @@ const ImageWithDescriptionListComponent = ({
               />
               <HtmlContentComponent html={imageWithDescription.description} />
             </ImageWithDescriptionWrapper>
-          </ImageWithDescriptionList>
+          </div>
         );
       },
     );
   }, [contents.data]);
 
   return (
-    <ImageWithDescriptionListWrapper>
+    <div className="d-flex flex-direction-column">
       {imageWithDescriptionList}
       <ModalImage
         isModalOpen={isModalOpen}
@@ -78,7 +59,7 @@ const ImageWithDescriptionListComponent = ({
         imageSrc={imageSrc}
         isImageModal={true}
       />
-    </ImageWithDescriptionListWrapper>
+    </div>
   );
 };
 

@@ -1,4 +1,3 @@
-import styled from "@emotion/styled";
 import React, {
   useCallback,
   useEffect,
@@ -13,8 +12,6 @@ import effectSoundSEA02 from "../../assets/effectSounds/SEA02.mp3";
 import effectSoundSEA01 from "../../assets/effectSounds/SEA01.mp3";
 import { v4 as uuidv4 } from "uuid";
 import { ImgCharacterComponent } from "../atoms";
-
-const RepeatSpeak = styled.div``;
 
 export interface SpeakingComponentProps {
   contents: SpeakingContentData;
@@ -185,9 +182,7 @@ const SpeakingComponent = ({
     globalAudioId,
   ]);
 
-  return (
-    <RepeatSpeak className="repeat-speak-wrapper">{repeatSpeak}</RepeatSpeak>
-  );
+  return <div className="repeat-speak-wrapper">{repeatSpeak}</div>;
 };
 
 export default SpeakingComponent;

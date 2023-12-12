@@ -11,18 +11,6 @@ import { v4 as uuidv4 } from "uuid";
 import IconPauseFillButton from "../atoms/Button/IconPauseFillButton";
 import { ComponentButtonPlay } from "../atoms";
 
-const ContentsBoxWrap = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 3vmin;
-
-  .image-with-caption-wrapper img {
-    width: 20vmin;
-    height: 15vmin;
-  }
-`;
-
 interface TextBoxProps {
   isAccent: boolean;
 }
@@ -220,7 +208,11 @@ const ContentsCardListComponent = ({
     xapiPlayed,
   ]);
 
-  return <ContentsBoxWrap>{textBoxes}</ContentsBoxWrap>;
+  return (
+    <div className="contents-box-wrap flex-justify-center flex-wrap gap-3">
+      {textBoxes}
+    </div>
+  );
 };
 
 export default ContentsCardListComponent;

@@ -9,9 +9,6 @@ import IconRight from "../../../assets/images/icon/icon_problem_o.svg";
 import IconWrong from "../../../assets/images/icon/icon_problem_x.svg";
 import { QuizData, TemplateQuestionData, isDevEnv } from "../../../core";
 import { HtmlContentComponent } from "../../atoms";
-import styled from "@emotion/styled";
-
-const ContentsIframeWrapper = styled.div``;
 
 interface ComponentProblemCommentaryProps {
   quizPageIdx: number;
@@ -96,9 +93,7 @@ const ComponentProblemCommentary = ({
           >
             문제 {isShowContent ? "닫기" : "열기"}
           </button>
-          <ContentsIframeWrapper
-            className={`tab-conts-wrapper ${isShowContent ? "" : "none"}`}
-          >
+          <div className={`tab-conts-wrapper ${isShowContent ? "" : "none"}`}>
             {quizTemplateData.contents && (
               <iframe
                 src={quizTemplateData.contents.data.interact_url}
@@ -112,7 +107,7 @@ const ComponentProblemCommentary = ({
                 ref={iframeRef}
               ></iframe>
             )}
-          </ContentsIframeWrapper>
+          </div>
         </div>
         {quizTemplateData.contents && (
           <div className="comment-list-wrap">
