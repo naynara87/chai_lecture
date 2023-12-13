@@ -1,13 +1,8 @@
-import styled from "@emotion/styled";
 import React, { useEffect, useMemo, useState } from "react";
 import { QuizSentenceContentData } from "../../core";
 import { sortChoices } from "../../core/util/sortChoices";
 import { HtmlContentComponent } from "../atoms";
 import { SentenceInOrderChoice } from "../templates/TemplateQuizSentenceBlank";
-
-const BoxWrap = styled.div`
-  width: 100%;
-`;
 
 interface LineCheckBoxesProps {
   contents: QuizSentenceContentData["data"]["characters"];
@@ -60,7 +55,7 @@ const LineCheckBoxes = ({
         return userChoice.text === sentence.sentence;
       });
       return (
-        <BoxWrap className="inp-grp" key={sentenceIndex}>
+        <div className="inp-grp w-100" key={sentenceIndex}>
           <input
             type="checkbox"
             name={`answer${sentenceIndex}`}
@@ -93,7 +88,7 @@ const LineCheckBoxes = ({
               <HtmlContentComponent html={sentence.sentence} />
             </span>
           </label>
-        </BoxWrap>
+        </div>
       );
     });
   }, [

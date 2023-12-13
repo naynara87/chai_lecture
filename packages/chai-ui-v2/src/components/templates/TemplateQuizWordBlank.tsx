@@ -1,4 +1,3 @@
-import styled from "@emotion/styled";
 import React from "react";
 import { ImgTemp01Component } from "../atoms";
 import ComponentButtonPlay from "../atoms/ComponentButtonPlay";
@@ -8,32 +7,6 @@ import { ComponentContsInfo } from "../molecules";
 import QuizWordBlankAnswers from "../molecules/QuizWordBlankAnswers";
 import QuizWordBlankChoices from "../molecules/QuizWordBlankChoices";
 
-const QuizContainer = styled.form`
-  .quiz-question-wrap {
-    .btn-icon {
-      margin-top: 4vmin;
-    }
-  }
-
-  .hori-answer-wrap .inp-grp {
-    flex-basis: auto;
-  }
-
-  .label-chck-line .text {
-    font-size: 2vmin;
-  }
-
-  > .btns-wrap {
-    max-width: 50%;
-    margin: 2vmin auto;
-
-    .btn {
-      padding: 0.5em 1em;
-      font-size: 2.6vmin;
-    }
-  }
-`;
-
 const TemplateQuizWordBlank = () => {
   return (
     <div className="layout-panel-wrap grid-h-3-7">
@@ -41,7 +14,10 @@ const TemplateQuizWordBlank = () => {
         <ComponentContsInfo text="단어를 올바른 순서에 맞게 선택해 문장을 완성해 보세요." />
       </div>
       <div className="layout-panel wide-panel">
-        <QuizContainer method="post" className="quiz-container">
+        <form
+          method="post"
+          className="quiz-container quiz-container-word-blank"
+        >
           <div className="quiz-question-wrap">
             <ImgTemp01Component />
             <div className="btns-wrap">
@@ -56,7 +32,7 @@ const TemplateQuizWordBlank = () => {
             <ComponentButtonRadiBorderMain text="다시하기" />
             <ComponentButtonRadiFillMain text="정답확인" />
           </div>
-        </QuizContainer>
+        </form>
       </div>
     </div>
   );

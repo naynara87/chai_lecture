@@ -1,4 +1,3 @@
-import styled from "@emotion/styled";
 import React, {
   useCallback,
   useEffect,
@@ -23,40 +22,6 @@ import {
 import ModalVideo from "../modal/ModalVideo";
 import { v4 as uuidv4 } from "uuid";
 import DialogueSentenceBlank from "../contents/DialogueSentenceBlank";
-
-const DialogueContainer = styled.div`
-  .blank-gray {
-    margin-right: 2%;
-    min-width: 40%;
-    max-width: 100%;
-    text-align: left;
-  }
-
-  .conversation-wrap .chinese {
-    display: inline;
-    word-break: break-all;
-    font-weight: 400;
-  }
-
-  .txt-wrap {
-    display: flex;
-    flex-wrap: wrap;
-  }
-`;
-
-const QuizContainer = styled.form`
-  .hori-answer-wrap .inp-grp {
-    flex-basis: 100%;
-  }
-
-  ~ .btns-wrap {
-    margin-top: 5vmin;
-  }
-`;
-
-const AnswerContainer = styled.div`
-  flex-direction: column;
-`;
 
 export type SentenceInOrderChoice = {
   text: string;
@@ -185,7 +150,7 @@ const TemplateQuizSentenceBlank = ({
   }, [getContentComponent, thisPage]);
 
   return (
-    <DialogueContainer className="layout-panel-wrap grid-h-5-5">
+    <div className="layout-panel-wrap grid-h-5-5 dialogue-container dialogue-container-quiz-sentence-blank">
       <div className="layout-panel side-panel conversation-panel-wrap">
         {thisPage.titleContents && titleContents}
         {/* 230217 회화영역 */}
@@ -207,8 +172,8 @@ const TemplateQuizSentenceBlank = ({
         </div>
       </div>
       <div className="layout-panel wide-panel">
-        <QuizContainer method="post" className="quiz-container">
-          <AnswerContainer className="quiz-answer-wrap hori-answer-wrap">
+        <form method="post" className="quiz-container">
+          <div className="quiz-answer-wrap hori-answer-wrap flex-direction-column">
             {thisPage.mainContents && (
               <LineCheckBoxes
                 contents={thisPage.mainContents.data.characters}
@@ -220,8 +185,8 @@ const TemplateQuizSentenceBlank = ({
                 isShowAnswer={isShowAnswer}
               />
             )}
-          </AnswerContainer>
-        </QuizContainer>
+          </div>
+        </form>
         <div className="btns-wrap">
           <ComponentButtonRadiBorderMain
             text="다시하기"
@@ -259,7 +224,7 @@ const TemplateQuizSentenceBlank = ({
           />
         </>
       )}
-    </DialogueContainer>
+    </div>
   );
 };
 

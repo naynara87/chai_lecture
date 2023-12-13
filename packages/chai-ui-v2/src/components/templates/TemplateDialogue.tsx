@@ -1,4 +1,3 @@
-import styled from "@emotion/styled";
 import React, {
   useCallback,
   useEffect,
@@ -18,12 +17,6 @@ import ConversationComponent from "../contents/ConversationComponent";
 import IconTextComponent from "../contents/IconTextComponent";
 import { v4 as uuidv4 } from "uuid";
 import FullAudioComponent from "../contents/FullAudioComponent";
-
-const DialogueContainer = styled.div`
-  .repeat-speak-wrapper {
-    margin-top: 3vmin;
-  }
-`;
 
 interface TemplateDialogueProps extends TemplateProps {}
 
@@ -183,7 +176,7 @@ const TemplateDialogue = ({
   }, [thisPage.rightContents, thisPage.type]);
 
   return (
-    <DialogueContainer className="layout-panel-wrap grid-h-3-7">
+    <div className="layout-panel-wrap grid-h-3-7 dialogue-container mt-3">
       <div className="layout-panel side-panel">
         <div className="cont-info-wrap">
           <>
@@ -197,7 +190,7 @@ const TemplateDialogue = ({
         {/* 230216 회화의 제목이 있을 때에만 사용 */}
         {contents}
       </div>
-    </DialogueContainer>
+    </div>
   );
 };
 

@@ -1,8 +1,5 @@
-import styled from "@emotion/styled";
 import React from "react";
 import { ID } from "../../core";
-
-const ToggleLabel = styled.label``;
 
 interface DialogueToggle {
   handleClickOptions: (optionType: "pronunciation" | "meaning") => void;
@@ -20,7 +17,7 @@ const DialogueToggle = ({ handleClickOptions, contentId }: DialogueToggle) => {
           id={`input1${contentId}`}
           className="toggle-input none"
         />
-        <ToggleLabel
+        <label
           htmlFor={`input1${contentId}`}
           className="toggle-label"
           onClick={() => {
@@ -28,7 +25,7 @@ const DialogueToggle = ({ handleClickOptions, contentId }: DialogueToggle) => {
           }}
         >
           <span className="txt">보이기</span>
-        </ToggleLabel>
+        </label>
       </div>
       <div className="inp-toggle-wrap">
         <span className="toggle-name">해석</span>
@@ -38,7 +35,7 @@ const DialogueToggle = ({ handleClickOptions, contentId }: DialogueToggle) => {
           id={`input2${contentId}`}
           className="toggle-input none"
         />
-        <ToggleLabel
+        <label
           htmlFor={`input2${contentId}`}
           className="toggle-label"
           onClick={() => {
@@ -46,7 +43,7 @@ const DialogueToggle = ({ handleClickOptions, contentId }: DialogueToggle) => {
           }}
         >
           <span className="txt">보이기</span>
-        </ToggleLabel>
+        </label>
       </div>
     </div>
   );

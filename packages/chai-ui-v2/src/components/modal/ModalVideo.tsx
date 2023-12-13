@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "@emotion/styled";
 import IconClose from "../../assets/images/icon/icon_close_white.svg";
 import ModalBase from "./ModalBase";
 import { ComponentVideo } from "../contents";
@@ -9,40 +8,6 @@ interface ModalVideoProps {
   isModalOpen: boolean;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
-
-const ModalVideoOnly = styled.div`
-  .base-modal {
-    width: auto;
-    max-width: 60vw;
-    height: auto;
-    max-height: 80vh;
-    padding: 0;
-    padding-top: 50px;
-    border-radius: 0;
-    background-color: transparent;
-  }
-
-  .btn-close-modal {
-    top: 0;
-    right: 0;
-  }
-
-  .player-wrap {
-    border-radius: 0;
-  }
-`;
-
-const ModalVideoWrapper = styled.div`
-  text-align: center;
-  width: 100%;
-`;
-
-const ModalInnerBox = styled.div`
-  z-index: 2;
-  width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-`;
 
 const ModalVideo = ({
   isModalOpen,
@@ -55,15 +20,15 @@ const ModalVideo = ({
 
   return (
     <ModalBase open={isModalOpen} onClose={handleClose}>
-      <ModalVideoOnly>
+      <div className="modal-video-only">
         <div className="modal active">
           <div className="modal-container base-modal">
             <div className="base-wrapper">
               <button className="btn-close-modal" onClick={handleClose}>
                 <img src={IconClose} alt="닫기" />
               </button>
-              <ModalVideoWrapper>
-                <ModalInnerBox>
+              <div className="modal-video-wrapper w-100 text-center">
+                <div className="normal-modal-inner-box modal-video-inner-box">
                   <ComponentVideo
                     content={{
                       id: "1",
@@ -72,12 +37,12 @@ const ModalVideo = ({
                     }}
                     isModal={true}
                   />
-                </ModalInnerBox>
-              </ModalVideoWrapper>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </ModalVideoOnly>
+      </div>
     </ModalBase>
   );
 };

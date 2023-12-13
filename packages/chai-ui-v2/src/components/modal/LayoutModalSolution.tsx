@@ -1,6 +1,4 @@
-import styled from "@emotion/styled";
 import React, { useCallback, useMemo } from "react";
-import { colorPalette } from "../../assets";
 import ComponentButtonRadiBorderMain from "../atoms/ComponentButtonRadiBorderMain";
 import ComponentButtonRadiFillMain from "../atoms/ComponentButtonRadiFillMain";
 import CharacterProfile from "../../assets/images/img/cha_profile01.png";
@@ -12,22 +10,6 @@ import ModalBase from "./ModalBase";
 // const RightColor = "#5BD37D";
 // const WrongColor = "#EC5757";
 // const TextColor = "#222222";
-
-const ModalBaseTitle = styled.div`
-  .ttl {
-    /* NOTE: 오답일땐 오답 컬러, 정답일 땐 정답 컬러 */
-    color: ${colorPalette.black};
-  }
-`;
-
-const ModalBaseContents = styled.div`
-  /* NOTE: dec 의 height 가 36.3333333333vh(436px을 vh로 변경)이상일 때 추가됨 */
-  justify-content: flex-start;
-
-  ~ .btns-wrap {
-    width: 100%;
-  }
-`;
 
 interface LayoutModalSolutionProps {
   contents: QuizPopupModalContentData;
@@ -94,13 +76,13 @@ const LayoutModalSolution = ({
         <div className="modal-container base-modal">
           <div className="base-wrapper">
             {/* 제목영역 */}
-            <ModalBaseTitle className="base-ttl">
+            <div className="base-ttl">
               <div className="profile-img-wrap">
                 <img src={modalCharacter} alt="프로필" />
               </div>
               <div className="txt-wrap">
                 {/* 간지 */}
-                <div className="ttl">
+                <div className="ttl gray-22">
                   <HtmlContentComponent
                     html={
                       isCorrect
@@ -119,9 +101,9 @@ const LayoutModalSolution = ({
                   />
                 </div>
               </div>
-            </ModalBaseTitle>
+            </div>
             {/* 내용영역 */}
-            <ModalBaseContents className="base-conts">
+            <div className="base-conts flex-justify-start layout-modal-solution-base-conts">
               <div className="dec">
                 <HtmlContentComponent
                   html={
@@ -131,7 +113,7 @@ const LayoutModalSolution = ({
                   }
                 />
               </div>
-            </ModalBaseContents>
+            </div>
 
             {/* NOTE: 설명 - 버튼이 하나만 들어갈 수도 있음 */}
             <div className="btns-wrap">{buttons}</div>

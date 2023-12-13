@@ -1,18 +1,8 @@
-import styled from "@emotion/styled";
 import React from "react";
 import Confetti from "react-confetti";
 import { characterType, LessonMeta, ProgressData } from "../../core";
 import useLessonCompletedCharacterMapper from "../../core/hooks/useLessonCompletedCharacterMapper";
 import { ImgCharacterComponent } from "../atoms";
-
-const ModalCompletedWrapper = styled.div`
-  canvas {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-`;
 
 interface ModalCompletedProps {
   lessonCode: LessonMeta["colorTypeCd"];
@@ -48,7 +38,7 @@ const ModalCompleted = ({
   };
 
   return (
-    <ModalCompletedWrapper className="modal modal-completed">
+    <div className="modal modal-completed">
       <div className="modal-bg"></div>
       <div className="modal-container">
         <ImgCharacterComponent
@@ -73,7 +63,7 @@ const ModalCompleted = ({
         </button>
         <Confetti numberOfPieces={300} />
       </div>
-    </ModalCompletedWrapper>
+    </div>
   );
 };
 

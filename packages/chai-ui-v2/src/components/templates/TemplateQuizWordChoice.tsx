@@ -1,9 +1,6 @@
-import styled from "@emotion/styled";
 import React from "react";
 import ComponentButtonPlay from "../atoms/ComponentButtonPlay";
 import { ComponentContsInfo } from "../molecules";
-
-const QuizContainer = styled.form``;
 
 const TemplateQuizWordChoice = () => {
   return (
@@ -16,7 +13,7 @@ const TemplateQuizWordChoice = () => {
         />
       </div>
       <div className="layout-panel wide-panel">
-        <QuizContainer method="post" className="quiz-container">
+        <form method="post" className="quiz-container">
           <div className="quiz-question-wrap">
             <div className="btns-wrap">
               <ComponentButtonPlay />
@@ -53,7 +50,7 @@ const TemplateQuizWordChoice = () => {
               </label>
             </div>
           </div>
-        </QuizContainer>
+        </form>
       </div>
     </div>
   );

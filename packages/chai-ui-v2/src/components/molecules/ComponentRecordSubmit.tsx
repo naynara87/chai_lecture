@@ -1,4 +1,3 @@
-import styled from "@emotion/styled";
 import React from "react";
 import { ComponentButtonRadiFillMain } from "../atoms";
 import { ComponentRecordButton } from "../molecules";
@@ -6,11 +5,9 @@ import ImgProfileDefaultComponent from "../atoms/ImgProfileDefaultComponent";
 import IconLight from "../../assets/images/icon/icon_light_navy.svg";
 import ComponentText from "./ComponentText";
 
-const FinishRecordWrapper = styled.div``;
-
 const ComponentRecordSubmit = () => {
   return (
-    <FinishRecordWrapper className="finish-record-wrapper">
+    <div className="finish-record-wrapper">
       <div className="gray-line">
         <ul className="conversation-wrapper">
           {/* speech bubble */}
@@ -65,7 +62,7 @@ const ComponentRecordSubmit = () => {
           <ComponentText />
         </div>
       </div>
-    </FinishRecordWrapper>
+    </div>
   );
 };
 

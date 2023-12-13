@@ -1,39 +1,9 @@
-import styled from "@emotion/styled";
 import React from "react";
 import TempImage1 from "../../assets/images/img/temp_profile05.png";
 
-const CultureListWrapper = styled.div`
-  .culture-list {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-
-    &:not(:first-of-type) {
-      margin-top: 5vmin;
-    }
-
-    .img-wrap {
-      overflow: hidden;
-      flex-shrink: 0;
-      width: 35vmin;
-      border-radius: 1vmin;
-
-      > img {
-        width: 100%;
-      }
-    }
-
-    .text {
-      width: 100%;
-      padding-left: 4vmin;
-      font-size: 2.8vmin;
-    }
-  }
-`;
-
 const ComponentCultureList = () => {
   return (
-    <CultureListWrapper>
+    <div className="culture-list-wrapper">
       <ul className="culture-list-wrap">
         {/* 반복영역 */}
         <li className="culture-list">
@@ -50,7 +20,7 @@ const ComponentCultureList = () => {
           <p className="text">{`대롱을 꽂아 입으로 바람을 불어넣고 소스를 바른 후, 갈고리에 걸어 약 3~4시간 동안 훈제한 요리입니다.`}</p>
         </li>
       </ul>
-    </CultureListWrapper>
+    </div>
   );
 };
 

@@ -1,19 +1,12 @@
 import styled from "@emotion/styled";
 import React, { useMemo, useState } from "react";
 import { ImageWithCaptionListContentData } from "../../core";
-import { colorPalette } from "../../assets";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
 import { ModalImage } from "../modal";
 
 export interface ImageWithCaptionListProps {
   contents: ImageWithCaptionListContentData;
 }
-
-const ImageWithCaptionListWrapper = styled.div`
-  display: flex;
-  gap: 3vmin;
-  justify-content: center;
-`;
 
 export const CaptionListImage = styled.img`
   border-radius: 1vmin;
@@ -22,26 +15,6 @@ export const CaptionListImage = styled.img`
   width: calc((20vh * 4) / 3);
   height: 20vh;
   object-fit: cover;
-`;
-
-const ImageWithCaptionList = styled.div``;
-
-const ImageWithCaptionWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  > div {
-    margin-top: 1vmin;
-    font-size: 2vmin;
-    font-weight: 400;
-    line-height: 1.5;
-    text-align: center;
-    color: ${colorPalette.gray800};
-  }
-
-  .caption-wrap {
-    text-align: center;
-  }
 `;
 
 const ImageWithCaptionListComponent = ({
@@ -58,11 +31,8 @@ const ImageWithCaptionListComponent = ({
   const imageWithDescriptionList = useMemo(() => {
     return contents.data.map((imageWithCaption, imageWithCaptionIndex) => {
       return (
-        <ImageWithCaptionList
-          key={imageWithCaptionIndex}
-          className="image-with-caption-list"
-        >
-          <ImageWithCaptionWrapper className="image-with-caption-wrapper">
+        <div key={imageWithCaptionIndex} className="image-with-caption-list">
+          <div className="image-with-caption-wrapper d-flex flex-direction-column">
             <CaptionListImage
               src={imageWithCaption.src}
               alt=""
@@ -75,14 +45,14 @@ const ImageWithCaptionListComponent = ({
                 <HtmlContentComponent html={imageWithCaption.caption} />
               </div>
             )}
-          </ImageWithCaptionWrapper>
-        </ImageWithCaptionList>
+          </div>
+        </div>
       );
     });
   }, [contents.data]);
 
   return (
-    <ImageWithCaptionListWrapper>
+    <div className="flex-justify-center gap-3">
       {imageWithDescriptionList}
       <ModalImage
         isModalOpen={isModalOpen}
@@ -90,7 +60,7 @@ const ImageWithCaptionListComponent = ({
         imageSrc={imageSrc}
         isImageModal={true}
       />
-    </ImageWithCaptionListWrapper>
+    </div>
   );
 };
 

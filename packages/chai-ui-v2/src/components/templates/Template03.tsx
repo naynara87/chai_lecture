@@ -1,4 +1,3 @@
-import styled from "@emotion/styled";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   getElementHeight,
@@ -8,14 +7,6 @@ import {
 } from "../../core";
 
 interface Template03Props extends TemplateProps {}
-
-const GuideContentContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  overflow-x: hidden;
-  overflow-y: auto;
-`;
 
 const Template03 = ({ template, setPageCompleted }: Template03Props) => {
   const thisPage = template as Template_H_3_7Data;
@@ -73,12 +64,12 @@ const Template03 = ({ template, setPageCompleted }: Template03Props) => {
 
   return (
     <div className="layout-panel-wrap grid-h-3-7">
-      <GuideContentContainer
-        className="layout-panel side-panel"
+      <div
+        className="layout-panel side-panel guide-content-container flex-justify-center flex-direction-column overflow-x-hidden overflow-y-auto"
         ref={leftContentsContainerRef}
       >
         {leftContents}
-      </GuideContentContainer>
+      </div>
       <div className="layout-panel wide-panel">{rightContents}</div>
     </div>
   );

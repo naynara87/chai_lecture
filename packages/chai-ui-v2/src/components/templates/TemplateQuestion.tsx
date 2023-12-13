@@ -1,4 +1,3 @@
-import styled from "@emotion/styled";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import {
   ID,
@@ -10,27 +9,7 @@ import {
 import { LocalStorage } from "../../core";
 import { useParams } from "react-router-dom";
 import ArrowIcon from "../../assets/images/icon/icon_stick_arrow_right_white.svg";
-import { colorPalette } from "../../assets";
 
-const QuestionPanel = styled.div`
-  padding: 0;
-  overflow-y: hidden;
-`;
-
-const LoadingTextContainer = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
-`;
-
-const LoadingText = styled.div`
-  font-size: 3.2vmin;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateY(-50%) translateX(-50%);
-  color: ${colorPalette.gray700};
-`;
 interface TemplateQuestionProps extends TemplateProps {
   handleClickCheckScore?: () => void;
   handleClickCheckAnswer?: () => void;
@@ -117,11 +96,11 @@ const TemplateQuestion = ({
       <div className="question-number">{`${
         pageIdx !== undefined ? pageIdx + 1 : 0
       }번`}</div>
-      <QuestionPanel className="layout-panel iframe-panel">
+      <div className="layout-panel iframe-panel question-panel">
         {!isLoaded && (
-          <LoadingTextContainer>
-            <LoadingText>준비 중입니다.</LoadingText>
-          </LoadingTextContainer>
+          <div className="loading-text-container">
+            <div className="loading-text">준비 중입니다.</div>
+          </div>
         )}
         {thisPage.contents && (
           <iframe
@@ -141,7 +120,7 @@ const TemplateQuestion = ({
             scrolling="no"
           ></iframe>
         )}
-      </QuestionPanel>
+      </div>
       {toViewScoreButton}
     </div>
   );

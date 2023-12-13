@@ -15,12 +15,6 @@ import ArrowButton from "../atoms/Button/ArrowButton";
 import { css } from "@emotion/react";
 import { colorPalette } from "../../assets";
 
-const Page = styled.div`
-  background-color: white;
-  color: black;
-  width: 100%;
-`;
-
 const SlideCard = styled.div`
   background-color: #eeeeee;
   border-radius: 10px;
@@ -166,7 +160,7 @@ const LayoutModalVoca = ({
                 <ImgVocaComponent />
               </div>
             </div>
-            <Page>
+            <div className="page">
               <SwiperWrapper>
                 {showPrevButton && (
                   <ArrowButton
@@ -207,7 +201,7 @@ const LayoutModalVoca = ({
                   {slideContents}
                 </Swiper>
               </SwiperWrapper>
-            </Page>
+            </div>
           </div>
         </div>
       </div>
