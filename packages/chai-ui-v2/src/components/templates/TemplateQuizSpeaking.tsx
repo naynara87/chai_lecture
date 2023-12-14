@@ -1,21 +1,7 @@
-import styled from "@emotion/styled";
 import React, { useEffect, useMemo } from "react";
 import { TemplateProps, TemplateQuizSpeakingData } from "../../core";
 import FinalSpeakingComponent from "../contents/FinalSpeakingComponent";
 import { ActivityGuideCharacterComponent } from "../contents";
-
-const DialogueContainer = styled.div`
-  .repeat-speak-wrapper {
-    margin-top: 3vmin;
-  }
-`;
-
-const GuideContentContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-const ActivityGuideCharacterComponentWrapper = styled.div``;
 
 interface TemplateQuizSpeakingProps extends TemplateProps {}
 
@@ -50,12 +36,9 @@ const TemplateQuizSpeaking = ({
     return thisPage.leftContents.map((leftContent) => {
       if (leftContent.type === "activityGuideCharacter") {
         return (
-          <ActivityGuideCharacterComponentWrapper
-            key={leftContent.id}
-            ref={guideContentWrapperRef}
-          >
+          <div key={leftContent.id} ref={guideContentWrapperRef}>
             <ActivityGuideCharacterComponent contents={leftContent} />
-          </ActivityGuideCharacterComponentWrapper>
+          </div>
         );
       }
     });
@@ -66,19 +49,19 @@ const TemplateQuizSpeaking = ({
   }, [setPageCompleted]);
 
   return (
-    <DialogueContainer className="layout-panel-wrap grid-h-3-7">
-      <GuideContentContainer
-        className="layout-panel side-panel"
+    <div className="layout-panel-wrap grid-h-3-7 dialogue-container dialogue-container-quiz-speaking">
+      <div
+        className="layout-panel side-panel flex-align-center flex-justify-center"
         ref={guideContentContainerRef}
       >
         {leftContents}
-      </GuideContentContainer>
+      </div>
       <div className="layout-panel wide-panel conversation-panel-wrap">
         {thisPage.rightContents && (
           <FinalSpeakingComponent contents={thisPage.rightContents} />
         )}
       </div>
-    </DialogueContainer>
+    </div>
   );
 };
 

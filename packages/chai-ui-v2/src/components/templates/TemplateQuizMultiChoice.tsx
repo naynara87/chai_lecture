@@ -1,18 +1,7 @@
-import styled from "@emotion/styled";
 import React, { useEffect, useMemo } from "react";
 import { TemplateProps, TemplateQuizMultiChoiceData } from "../../core";
 import { ActivityGuideCharacterComponent } from "../contents";
 import MultiChoiceComponent from "../contents/MultiChoiceComponent";
-
-const QuizContainer = styled.div``;
-
-const GuideContentContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const ActivityGuideCharacterComponentWrapper = styled.div``;
 
 interface TemplateQuizMultiChoiceProps extends TemplateProps {}
 
@@ -51,12 +40,9 @@ const TemplateQuizMultiChoice = ({
     return thisPage.leftContents.map((leftContent) => {
       if (leftContent.type === "activityGuideCharacter") {
         return (
-          <ActivityGuideCharacterComponentWrapper
-            key={leftContent.id}
-            ref={guideContentWrapperRef}
-          >
+          <div key={leftContent.id} ref={guideContentWrapperRef}>
             <ActivityGuideCharacterComponent contents={leftContent} />
-          </ActivityGuideCharacterComponentWrapper>
+          </div>
         );
       }
     });
@@ -64,19 +50,19 @@ const TemplateQuizMultiChoice = ({
 
   return (
     <div className="layout-panel-wrap grid-h-3-7">
-      <GuideContentContainer
+      <div
         ref={guideContentContainerRef}
-        className="layout-panel side-panel"
+        className="layout-panel side-panel flex-align-center flex-justify-center"
       >
         {leftContents}
-      </GuideContentContainer>
+      </div>
       <div className="layout-panel wide-panel">
-        <QuizContainer className="quiz-container">
+        <div className="quiz-container">
           {thisPage.multiChoice && (
             <MultiChoiceComponent contents={thisPage.multiChoice} />
           )}
           {/* <GrayRadioBoxes /> */}
-        </QuizContainer>
+        </div>
       </div>
     </div>
   );

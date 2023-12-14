@@ -1,12 +1,9 @@
-import styled from "@emotion/styled";
 import React from "react";
 import { ComponentButtonRadiFillMain } from "../atoms";
 
-const TemplateProblemWrapper = styled.div``;
-
 const TemplateProblem = () => {
   return (
-    <TemplateProblemWrapper>
+    <div className="template-problem-wrapper">
       {/* problem header */}
       {/* end problem header */}
       {/* problem main layout */}
@@ -43,7 +40,7 @@ const TemplateProblem = () => {
         </div>
       </main>
       {/* end problem main layout */}
-    </TemplateProblemWrapper>
+    </div>
   );
 };
 

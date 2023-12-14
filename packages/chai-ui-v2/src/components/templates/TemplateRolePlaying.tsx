@@ -6,19 +6,7 @@ import {
 } from "../contents";
 import { ComponentChoiceRole } from "../molecules";
 import RolePlayingComponent from "../contents/RolePlayingComponent";
-import styled from "@emotion/styled";
 import { ComponentButtonRadiBorderMain } from "../atoms";
-
-const GuideContentContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const ActivityGuideCharacterComponentWrapper = styled.div``;
-const BtnWrapper = styled.div`
-  margin-top: 5vmin;
-`;
 
 interface TemplateRolePlayingProps extends TemplateProps {}
 
@@ -74,12 +62,12 @@ const TemplateRolePlaying = ({
             />
           )}
           {isShowNextPageButton && (
-            <BtnWrapper className="btns-wrap">
+            <div className="btns-wrap mt-5">
               <ComponentButtonRadiBorderMain
                 text="다음 학습으로 넘어가기"
                 onClickBtn={handleClickNextPage}
               />
-            </BtnWrapper>
+            </div>
           )}
         </div>
       </div>
@@ -113,20 +101,18 @@ const TemplateRolePlaying = ({
   const rolePlayingLayout = useMemo(() => {
     return (
       <div className="layout-panel-wrap grid-h-3-7">
-        <GuideContentContainer
-          className="layout-panel side-panel"
+        <div
+          className="layout-panel side-panel flex-align-center flex-justify-center"
           ref={guideContentContainerRef}
         >
           {thisPage.guideContent && (
-            <ActivityGuideCharacterComponentWrapper
-              ref={guideContentWrapperRef}
-            >
+            <div ref={guideContentWrapperRef}>
               <ActivityGuideCharacterComponent
                 contents={thisPage.guideContent}
               />
-            </ActivityGuideCharacterComponentWrapper>
+            </div>
           )}
-        </GuideContentContainer>
+        </div>
         <div className="layout-panel wide-panel">
           {thisPage.rolePlayingContents && thisPage.characters && (
             <RolePlayingComponent

@@ -8,7 +8,7 @@
   }
 
   position: relative;
-  min-height: 10vmin;
+  min-height: 7vmin;
   padding: 2vmin 3vmin;
   border-radius: 2vmin;
   background-color: color(gray-f5);
@@ -21,7 +21,8 @@
     @include circle(3.3vmin);
 
     position: absolute;
-    top: 3.2vmin;
+    top: 50%;
+    transform: translateY(-50%);
     background-color: color(main);
     font-weight: 600;
     font-size: 2.2vmin;

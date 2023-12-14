@@ -1,13 +1,10 @@
-import styled from "@emotion/styled";
 import React from "react";
 import { ImgCharacterComponent } from "../atoms";
 import ComponentButtonFillBlackMini from "../atoms/ComponentButtonFillBlackMini";
 
-const DescriptionBubble = styled.div``;
-
 const ComponentDescriptionBubble = () => {
   return (
-    <DescriptionBubble className="description-bubble-container">
+    <div className="description-bubble-container">
       <ImgCharacterComponent
         characterType="didiSmile"
         characterAlt="디디미소"
@@ -20,7 +17,7 @@ const ComponentDescriptionBubble = () => {
           <ComponentButtonFillBlackMini text="확인" />
         </div>
       </div>
-    </DescriptionBubble>
+    </div>
   );
 };
 

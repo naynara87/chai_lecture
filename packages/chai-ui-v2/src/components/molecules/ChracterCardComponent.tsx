@@ -1,12 +1,7 @@
-import styled from "@emotion/styled";
 import React, { useMemo, useState } from "react";
 import ChaProfile01 from "../../assets/images/img/cha_profile01.png";
 import { Content } from "../../core";
 import { ComponentButtonRadiFillMain, HtmlContentComponent } from "../atoms";
-
-const ImgWrap = styled.div`
-  overflow: hidden;
-`;
 
 interface CharacterCardComponentProps {
   characterCard: {
@@ -37,7 +32,7 @@ const CharacterCardComponent = ({
     <li className={`training-list ${characterCardOff}`}>
       <div className="gradi-wrap">
         <div className="gradi-conts-wrap">
-          <ImgWrap className="img-wrap">
+          <div className="img-wrap overflow-hidden">
             <img
               src={
                 characterCard.character.src
@@ -47,7 +42,7 @@ const CharacterCardComponent = ({
               alt=""
               className="img"
             />
-          </ImgWrap>
+          </div>
           <p className="title">
             <HtmlContentComponent html={characterCard.title} />
           </p>

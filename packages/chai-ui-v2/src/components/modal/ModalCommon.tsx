@@ -1,8 +1,4 @@
-import styled from "@emotion/styled";
 import React, { ReactElement } from "react";
-
-const ModalBase = styled.div``;
-const ModalBackground = styled.div``;
 
 interface ModalCommonProps {
   children: ReactElement | ReactElement[];
@@ -26,18 +22,16 @@ const ModalCommon = ({
   };
 
   return (
-    <ModalBase className={`modal ${open ? "active" : ""}`}>
-      <ModalBackground className="modal-bg" onClick={handleClose} />
+    <div className={`modal ${open ? "active" : ""}`}>
+      <div className="modal-bg" onClick={handleClose}></div>
       <div
-        className={`modal-container base-modal ${wideModal ? "wide-modal" : ""
-          } ${vocaModal ? "voca-modal" : ""
-          }`}
+        className={`modal-container base-modal ${
+          wideModal ? "wide-modal" : ""
+        } ${vocaModal ? "voca-modal" : ""}`}
       >
-        <div className="base-wrapper">
-          {children}
-        </div>
+        <div className="base-wrapper">{children}</div>
       </div>
-    </ModalBase>
+    </div>
   );
 };
 

@@ -1,17 +1,6 @@
-import styled from "@emotion/styled";
 import React, { useMemo } from "react";
 import { ID, RolePlayingCharacter } from "../../core";
 import { ComponentButtonRadiFillMain, ImgTemp01Component } from "../atoms";
-
-const ChoiceRoleWrapper = styled.div`
-  .btn-wrap {
-    text-align: center;
-    .btn {
-      width: 47vmin;
-      margin-top: 6vmin;
-    }
-  }
-`;
 
 interface ComponentChoiceRoleProps {
   characterList: RolePlayingCharacter[];
@@ -43,9 +32,9 @@ const ComponentChoiceRole = ({
   }, [characterList, onClickSelectCharacter]);
 
   return (
-    <ChoiceRoleWrapper className="choice-role-wrapper">
+    <div className="choice-role-wrapper">
       <ul className="choice-role-list-wrap">{characters}</ul>
-    </ChoiceRoleWrapper>
+    </div>
   );
 };
 

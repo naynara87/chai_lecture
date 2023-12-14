@@ -1,49 +1,7 @@
-import styled from "@emotion/styled";
 import React, { useEffect, useMemo } from "react";
 import { TemplateProps, TemplateQuizWordsInOrderData } from "../../core";
 import { ActivityGuideCharacterComponent } from "../contents";
 import WordsInOrderComponent from "../contents/WordsInOrderComponent";
-
-const QuizContainer = styled.div`
-  .quiz-question-wrap {
-    .btn-icon {
-      margin-top: 4vmin;
-    }
-  }
-
-  .conversation-wrap .img-wrap {
-    margin-right: 0;
-  }
-
-  .hori-answer-wrap .inp-grp {
-    flex-basis: auto;
-  }
-
-  .label-chck-line .text {
-    font-size: 2vmin;
-  }
-
-  .conversation-wrap:not(:first-of-type) {
-    margin-top: 0;
-  }
-
-  > .btns-wrap {
-    max-width: 50%;
-    margin: 3vmin auto;
-
-    .btn {
-      font-size: 2.6vmin;
-    }
-  }
-`;
-
-const GuideContentContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const ActivityGuideCharacterComponentWrapper = styled.div``;
 
 interface TemplateQuizDialogueWordArrayProps extends TemplateProps {}
 
@@ -82,12 +40,9 @@ const TemplateQuizDialogueWordArray = ({
     return thisPage.leftContents.map((leftContent) => {
       if (leftContent.type === "activityGuideCharacter") {
         return (
-          <ActivityGuideCharacterComponentWrapper
-            key={leftContent.id}
-            ref={guideContentWrapperRef}
-          >
+          <div key={leftContent.id} ref={guideContentWrapperRef}>
             <ActivityGuideCharacterComponent contents={leftContent} />
-          </ActivityGuideCharacterComponentWrapper>
+          </div>
         );
       }
     });
@@ -95,18 +50,18 @@ const TemplateQuizDialogueWordArray = ({
 
   return (
     <div className="layout-panel-wrap grid-h-3-7">
-      <GuideContentContainer
+      <div
         ref={guideContentContainerRef}
-        className="layout-panel side-panel"
+        className="layout-panel side-panel flex-align-center flex-justify-center"
       >
         {leftContents}
-      </GuideContentContainer>
+      </div>
       <div className="layout-panel wide-panel">
-        <QuizContainer className="quiz-container">
+        <div className="quiz-container quiz-container-word-array">
           {thisPage.wordsInOrder && (
             <WordsInOrderComponent contents={thisPage.wordsInOrder} />
           )}
-        </QuizContainer>
+        </div>
       </div>
     </div>
   );

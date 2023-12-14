@@ -1,12 +1,8 @@
-import styled from "@emotion/styled";
 import React from "react";
-
-const WordCardWrapper = styled.div`
-`;
 
 const ComponentWordCard = () => {
   return (
-    <WordCardWrapper className="word-card-wrapper">
+    <div className="word-card-wrapper">
       <ul className="word-card-list">
         <li className="word-card">
           <p className="text">{`在`}</p>
@@ -29,7 +25,7 @@ const ComponentWordCard = () => {
           <small className="text-sm">{`cǎigòu`}</small>
         </li>
       </ul>
-    </WordCardWrapper>
+    </div>
   );
 };
 

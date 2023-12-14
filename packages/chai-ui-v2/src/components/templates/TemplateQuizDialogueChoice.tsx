@@ -1,15 +1,10 @@
-import styled from "@emotion/styled";
 import React from "react";
 import ImgProfileDefaultComponent from "../atoms/ImgProfileDefaultComponent";
 import ImgTemp01Component from "../atoms/ImgTemp01Component";
 
-const DialogueContainer = styled.div``;
-
-const QuizContainer = styled.form``;
-
 const TemplateQuizDialogueChoice = () => {
   return (
-    <DialogueContainer className="layout-panel-wrap grid-h-5-5">
+    <div className="layout-panel-wrap grid-h-5-5 dialogue-container">
       <div className="layout-panel side-panel conversation-panel-wrap">
         {/* 230217 회화영역 */}
         <ul className="conversation-wrapper">
@@ -59,7 +54,7 @@ const TemplateQuizDialogueChoice = () => {
         </ul>
       </div>
       <div className="layout-panel wide-panel">
-        <QuizContainer method="post" className="quiz-container">
+        <form method="post" className="quiz-container">
           <div className="quiz-question-wrap">
             <p className="text-md">{`麻婆豆腐是哪个省的传统名菜？`}</p>
           </div>
@@ -87,9 +82,9 @@ const TemplateQuizDialogueChoice = () => {
               </label>
             </div>
           </div>
-        </QuizContainer>
+        </form>
       </div>
-    </DialogueContainer>
+    </div>
   );
 };
 
