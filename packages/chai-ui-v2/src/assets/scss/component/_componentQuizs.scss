@@ -85,9 +85,8 @@
   }
 
   .inp-grp {
-    flex-basis: calc(50% - 2vmin);
-    flex-shrink: 0;
-    flex-grow: 0;
+    /* flex: 1; */
+    min-width: 30%;
   }
 }
 

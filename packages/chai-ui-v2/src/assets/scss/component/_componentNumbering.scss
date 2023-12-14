@@ -1,4 +1,7 @@
 /* =================== componentNumbering =================== */
+.numbering-wrapper {
+  /* margin-top: 3vmin; */
+}
 .numbering-list {
   @include flex {
     @include flex-op(flex-start, space-between);
@@ -6,12 +9,12 @@
 
   position: relative;
   min-height: 10vmin;
-  padding: 3vmin 4vmin;
+  padding: 2vmin 3vmin;
   border-radius: 2vmin;
   background-color: color(gray-f5);
 
   &:not(:first-of-type) {
-    margin-top: 3vmin;
+    margin-top: 2vmin;
   }
 
   .number {

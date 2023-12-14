@@ -1,11 +1,11 @@
 /* =================== componentDescriptionBubble =================== */
 .description-bubble-container {
   @include flex-center {
-    gap: 1vmin;
+    gap: 2vmin;
   }
 
   > .img {
-    height: 10vmin;
+    height: 8vmin;
   }
 }
 

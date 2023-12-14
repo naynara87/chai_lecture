@@ -64,14 +64,6 @@
       width: 100%;
     }
     &.width_fit {
-      .voca-header {
-        flex-direction: column-reverse;
-        align-items: flex-start;
-        .voca-title {
-          padding: 2vmin 0;
-          font-size: 2vmin;
-        }
-      }
       .layout-panel-wrap {
         display: flex;
         flex-direction: column;

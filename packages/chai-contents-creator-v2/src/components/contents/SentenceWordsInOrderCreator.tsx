@@ -37,20 +37,20 @@ const QuestionWrapper = styled.div`
   flex-direction: column;
   width: 100%;
   &:not(:last-child) {
-    margin-bottom: 8px;
+    margin-bottom: 1.3vmin;
   }
 `;
 
 const QuestionTextBox = styled.p`
-  padding: 13px 24px;
+  padding: 1vmin 1.5vmin;
   color: #666666;
   background-color: #f5f5f5;
   font-weight: 700;
-  font-size: 12px;
+  font-size: 1vmin;
   line-height: 1.5;
-  border-radius: 8px;
+  border-radius: 0.5vmin;
   border: 1px solid #c9c9c9;
-  margin-bottom: 10px;
+  margin-bottom: 0.5vmin;
 `;
 
 const QuestionButtonWrapper = styled.div`

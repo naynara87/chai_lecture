@@ -19,7 +19,9 @@ const ModalScrollArea = styled.div`
 
 const ModalContentsWrapper = styled.div`
   width: 100%;
-
+  & > div:not(:last-child) {
+    margin-bottom: 3vmin;
+  }
   .conts-wrap:not(:first-of-type) {
     margin-top: 6vmin;
   }

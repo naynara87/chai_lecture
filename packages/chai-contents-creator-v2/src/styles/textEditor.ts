@@ -187,6 +187,7 @@ const QlSizeHasNotFontSize = css`
 export const TextEditorWrapper = styled.div<TextEditorWrapperProps>`
   width: 100%;
   background-color: ${colorPalette.white};
+  margin: 5px 0;
 
   .ql-container {
     ${({ minHeight }) => (minHeight ? `min-height: ${minHeight}px;` : "")}

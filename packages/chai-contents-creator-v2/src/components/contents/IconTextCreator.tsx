@@ -12,8 +12,8 @@ export const IconTextCreatorWrapper = styled.div`
   width: 100%;
 
   > img {
-    width: 4.4vmin;
-    height: 4.4vmin;
+    width: 4vmin;
+    height: 4vmin;
     margin-right: 1vmin;
   }
 

@@ -20,8 +20,9 @@ const ContentBox = styled.div<TextBoxProps>`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 100%;
-  max-width: 20vmin;
+  width: fit-content;
+  max-width: 28vmin;
+  min-width: 20vmin;
   height: 25vmin;
   padding: 2vmin 3vmin;
   border: min(4px, 0.3vmin) solid ${colorPalette.subblue};

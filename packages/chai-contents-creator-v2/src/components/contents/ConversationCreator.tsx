@@ -45,7 +45,7 @@ export const CharacterNameInput = styled.input`
 `;
 
 export const ConversationList = styled.li`
-  width: 100%;
+  width: calc(100% - 46px);
   padding: 2vmin;
   border-radius: 2vmin;
   background-color: #f6f4ff;
@@ -57,6 +57,7 @@ export const ConversationList = styled.li`
       flex: 1;
     }
     .txt-wrap > div {
+      margin: 0px;
       margin-top: 10px;
     }
   }

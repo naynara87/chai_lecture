@@ -12,7 +12,7 @@ const NumberingTextCreatorWrapper = styled.div`
   width: 100%;
 `;
 const NumberingListWrapper = styled.ul`
-  padding-bottom: 24px;
+  /* padding-bottom: 24px; */
 `;
 
 const NumberingList = styled.li`

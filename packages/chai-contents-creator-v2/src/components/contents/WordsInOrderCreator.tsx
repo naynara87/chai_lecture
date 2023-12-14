@@ -40,13 +40,14 @@ interface AnswerBoxProps {
 
 const AnswerBox = styled.div<AnswerBoxProps>`
   width: ${(props) => (props.isFocus ? "auto" : "15vmin")};
-  height: auto;
-  min-height: 20vmin;
-  padding: 2vmin;
+  height: fit-content;
+  min-height: 15vmin;
+  font-size: 2vmin;
+  padding: 1vmin;
   background-color: #f5f5f5;
   border: 1px solid #c9c9c9;
-  border-radius: 8px;
-  margin-bottom: 8px;
+  border-radius: 0.5vmin;
+  margin-bottom: 0.5vmin;
 `;
 
 const textViewerCss = css`

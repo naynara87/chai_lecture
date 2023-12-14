@@ -16,7 +16,7 @@
     align-items: flex-start;
   }
 
-  gap: 3vmin;
+  gap: 4vmin;
 
   &:not(:first-of-type) {
     margin-top: 3vmin;
@@ -75,11 +75,16 @@
   }
 
   .pinyin {
+    color: color(gray-66);
     font-size: var(--font-size-28);
   }
 
   .mean {
-    font-size: var(--font-size-24);
+    color: color(gray-66);
+    font-size: var(--font-size-28);
+  }
+  .text {
+    word-break: break-word;
   }
 
   &.blank {

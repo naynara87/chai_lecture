@@ -34,6 +34,7 @@ interface CharacterAndContentProps {
 }
 const CharacterAndContent = styled.div<CharacterAndContentProps>`
   display: flex;
+  gap: 3vmin;
   ${({ reverse }) =>
     reverse ? `flex-direction: row-reverse;` : `flex-direction: row;`}
   justify-content: space-between;

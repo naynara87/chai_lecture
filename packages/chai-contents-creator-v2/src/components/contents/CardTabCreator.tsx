@@ -41,7 +41,7 @@ const CheckBoxContainer = styled.div`
 
 const TabTitleWrap = styled.div`
   .tab-title-wrap {
-    border-radius: 10px;
+    border-radius: 1vmin;
     background-color: ${colorPalette.bubblegray};
 
     &.disabled {
@@ -50,7 +50,7 @@ const TabTitleWrap = styled.div`
   }
 
   .tab-title {
-    border-radius: 10px;
+    border-radius: 1vmin;
     font-size: 16px;
     background-color: ${colorPalette.bubblegray};
 

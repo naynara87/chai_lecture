@@ -22,10 +22,10 @@ const ModalContainer = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 60vw;
-  height: 75vh;
-  padding: 3vh 3vw;
-  border-radius: 1.5vw;
+  width: 100vmin;
+  height: 75vmin;
+  padding: 3vmin;
+  border-radius: 2vmin;
   background-color: ${colorPalette.white};
   transform: translate(-50%, -50%);
 `;
@@ -38,8 +38,8 @@ const ButtonContainer = styled.div`
 
 const BtnCloseModal = styled.button`
   position: absolute;
-  top: 0;
-  right: 0;
+  top: -1.5vmin;
+  right: -1.5vmin;
 `;
 
 const ModalPositionCss = css`
@@ -54,7 +54,7 @@ const ContentContainer = styled.div`
   justify-content: flex-start;
   height: calc(100% - 30px);
   overflow: auto;
-  padding-top: 16px;
+  margin-top: 16px;
 `;
 
 export interface ModalCharacterCardListProps

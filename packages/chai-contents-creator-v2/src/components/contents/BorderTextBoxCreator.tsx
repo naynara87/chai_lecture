@@ -7,9 +7,9 @@ import TextEditorViewer from "../molecules/TextEditorViewer";
 const BorderTextBoxWrapper = styled.div`
   border: min(2px, 0.1vmin) solid ${colorPalette.gray800};
   width: 100%;
-  max-width: 90vw;
+  max-width: calc(100% - 46px);
   border-radius: 20px;
-  padding: 5vmin;
+  padding: 2vmin;
   text-align: left;
 `;
 

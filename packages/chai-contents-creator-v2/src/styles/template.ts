@@ -133,26 +133,25 @@ export const CreateEditMain = styled.div`
   & .btn-comp-select {
     color: ${colorPalette.purple700};
     background: ${colorPalette.white};
-    border-radius: 50px;
+    border-radius: 2em;
     border: 1px solid #dbe1ff;
-    width: 90px;
-    height: 30px;
-    line-height: 30px;
-    font-size: 10px;
+    max-width: 100px;
+    width: 100px;
+    padding: 0.5vmin;
+    font-size: 12px;
     font-weight: 500;
   }
 `;
 
 export const BtnSelectComponent = styled.button`
+  width: 100px;
+  padding: 0.5vmin;
   color: ${colorPalette.purple700};
-  background: ${colorPalette.white};
-  border-radius: 50px;
-  border: 1px solid #dbe1ff;
-  width: 90px;
-  height: 30px;
-  line-height: 30px;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 500;
+  border: 1px solid #dbe1ff;
+  border-radius: 2em;
+  background: ${colorPalette.white};
 `;
 
 export const CreateAddBtn = styled.button`

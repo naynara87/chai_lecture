@@ -32,7 +32,7 @@ const ActivityGuideCharacterComponent = ({
   }, [layoutPanelHeight, thisComponentRef, characterWrapRef]);
   return (
     <div
-      className="cont-start-wrapper flex-align-center flex-justify-center flex-direction-column"
+      className="cont-start-wrapper flex-align-center flex-justify-center flex-direction-column activity"
       ref={thisComponentRef}
     >
       <div className="character-wrapper" ref={characterWrapRef}>

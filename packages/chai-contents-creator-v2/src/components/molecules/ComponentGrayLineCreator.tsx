@@ -16,12 +16,15 @@ const TopArea = styled.div`
   justify-content: flex-end;
   margin-bottom: 24px;
   position: relative;
+  .btn-comp-select {
+    position: absolute;
+    right: -16px;
+    top: -16px;
+  }
   & .btn-text {
-    width: 90px;
-    height: 35px;
-    border-radius: 50px;
-    padding: 8px 16px;
-    font-size: 10px;
+    border-radius: 2em;
+    padding: 0.5vmin 1vmin;
+    font-size: 12px;
     font-weight: 500;
     white-space: nowrap;
     margin-bottom: unset;

@@ -5,13 +5,12 @@ const ButtonBorder = styled.button`
   width: fit-content;
   height: 36px;
   margin-bottom: 8px;
-  padding: 11px 21px 10px 20px;
+  padding: 0.5vmin 1vmin;
   border: 1px solid #dbe1ff;
-  border-radius: 4px;
+  border-radius: 0.5vmin;
   background-color: ${colorPalette.white};
   color: #7686d4;
-  font-size: 10px;
-  line-height: 14px;
+  font-size: 12px;
   font-weight: 500;
   text-align: center;
   appearance: none;

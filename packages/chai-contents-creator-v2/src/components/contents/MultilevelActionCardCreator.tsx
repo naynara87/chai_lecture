@@ -28,11 +28,14 @@ const MultilevelActionContentContainer = styled.div`
 const MultilevelActionCardWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 90%;
+  width: calc(100% - 46px);
 `;
 const MultilevelActionCardList = styled.div`
   display: flex;
   gap: 16px;
+  margin: 0 auto;
+  max-width: 72vmin;
+  width: 100%;
 `;
 const MultilevelActionCard = styled.div`
   display: flex;
@@ -68,12 +71,15 @@ const TopArea = styled.div`
   justify-content: flex-end;
   margin-bottom: 24px;
   position: relative;
+  .btn-comp-select {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
   & .btn-text {
-    width: 90px;
-    height: 35px;
-    border-radius: 50px;
-    padding: 8px 16px;
-    font-size: 10px;
+    border-radius: 2em;
+    padding: 0.5vmin 1vmin;
+    font-size: 12px;
     font-weight: 500;
     white-space: nowrap;
     margin-bottom: unset;
@@ -81,13 +87,14 @@ const TopArea = styled.div`
 `;
 const AddStep = styled.button`
   height: 50px;
-  margin-bottom: 8px;
+  margin: 1vmin;
   padding: 14px 16px;
   border: 1px solid ${colorPalette.subblue};
   background-color: ${colorPalette.white};
   color: ${colorPalette.mainlight};
   font-size: 14px;
   font-weight: 500;
+  border-radius: 1vmin;
   text-align: center;
   appearance: none;
   outline: none;
@@ -96,7 +103,7 @@ const AddStep = styled.button`
 const DashedBar = styled.div`
   height: 0px;
   border: 1px dashed #7686d5;
-  margin: 24vh;
+  margin: 3vmin;
 `;
 
 /**

@@ -35,14 +35,16 @@ import RolePlayingConversationItem from "../molecules/RolePlayingConversationIte
 
 const ComponentWrapper = styled.div`
   :not(:last-child) {
-    margin-bottom: 24px;
+    margin-bottom: 1vmin;
   }
 `;
 
 const characterWrapCss = css`
   margin-top: 0 !important;
+  flex-direction: column;
+  align-items: center;
   :not(:last-child) {
-    margin-bottom: 24px;
+    margin-bottom: 2vmin;
   }
 `;
 
@@ -434,21 +436,23 @@ const CreateTemplateRolePlaying = ({
               <AddButton onClick={() => addCharacter(characterList.length)}>
                 화자 추가
               </AddButton>
-              {characterList &&
-                characterList.map((character, index) => {
-                  return (
-                    <CharacterCreator
-                      key={character.id}
-                      wrapperCss={characterWrapCss}
-                      characterUrl={character.src}
-                      onImageUrlSubmit={changeCharacterImage(index)}
-                      onSaveCharacterNameInput={changeCharacterName(index)}
-                      onDeleteCharacter={() => deleteCharacter(index)}
-                      urlInputWrapperCss={urlInputWrapperCss}
-                      characterName={character.name}
-                    />
-                  );
-                })}
+              <div className="d-flex gap-3 flex-justify-center flex-wrap">
+                {characterList &&
+                  characterList.map((character, index) => {
+                    return (
+                      <CharacterCreator
+                        key={character.id}
+                        wrapperCss={characterWrapCss}
+                        characterUrl={character.src}
+                        onImageUrlSubmit={changeCharacterImage(index)}
+                        onSaveCharacterNameInput={changeCharacterName(index)}
+                        onDeleteCharacter={() => deleteCharacter(index)}
+                        urlInputWrapperCss={urlInputWrapperCss}
+                        characterName={character.name}
+                      />
+                    );
+                  })}
+              </div>
             </ComponentWrapper>
           </DashBoxAreaWrapper>
         </CreateEditMain>

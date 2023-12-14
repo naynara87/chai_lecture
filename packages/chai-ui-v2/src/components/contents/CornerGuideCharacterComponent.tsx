@@ -30,7 +30,7 @@ const CornerGuideCharacterComponent = ({
   }, [layoutPanelHeight, thisComponentRef, characterWrapRef]);
   return (
     <div
-      className="cont-start-wrapper flex-align-center flex-justify-center flex-direction-column"
+      className="cont-start-wrapper flex-align-center flex-justify-center flex-direction-column corner"
       ref={thisComponentRef}
     >
       <div className="character-wrapper" ref={characterWrapRef}>

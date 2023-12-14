@@ -18,11 +18,11 @@ const ImageListWrapper = styled.ul`
   display: flex;
   gap: 3vmin;
   margin: 0 auto;
-
   .caption-text {
-    margin-top: 20px;
+    width: 28vmin;
+    margin-top: 1vmin;
     color: #666666;
-    font-size: 1.5vmin;
+    font-size: 16px;
     text-align: center;
   }
 `;
@@ -39,7 +39,7 @@ const ImageThumb = styled.div`
   height: 21vmin;
   background-color: #f0f0f0;
   position: relative;
-  margin-bottom: 10px;
+  margin: 0 auto 10px;
   border-radius: 1vmin;
   overflow: hidden;
   .defaultImage {
@@ -59,8 +59,8 @@ const ImageWithCaptionListCreatorWrapper = styled.div`
 const DeleteButtonWrapper = styled.div`
   z-index: 3;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 2px;
+  right: 7px;
 `;
 
 /**
@@ -235,14 +235,12 @@ const ImageWithCaptionListCreator = ({
                   onSubmit={setImageUrl(index)}
                   defaultText={thisContent.data?.[index].src}
                 />
-                <div onClick={focusTextEditor(index)}>
+                <div className="caption-text" onClick={focusTextEditor(index)}>
                   <TextEditorViewer
                     isFocused={isTextEditorFocused(index)}
                     text={thisContent.data?.[index].caption ?? ""}
                     setText={setText(index)}
-                    defaultText={
-                      <p className="caption-text">캡션을 입력해주세요.</p>
-                    }
+                    defaultText={<p>캡션을 입력해주세요.</p>}
                     hasFontSize={false}
                   />
                 </div>

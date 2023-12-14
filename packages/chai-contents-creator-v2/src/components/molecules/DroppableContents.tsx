@@ -7,7 +7,7 @@ import { ContentCommonProps } from "../../types/page";
 
 const DroppableContainer = styled.div`
   width: 100%;
-  min-height: 40px;
+  min-height: 1vmin;
 
   & .hamburg-menu li:not(:first-of-type) {
     display: none;

@@ -12,11 +12,12 @@ export const CornerGuideWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: max(4vmin, 40px);
+  padding-top: 1vmin;
   & > img {
     width: 12vmin;
     height: 12vmin;
-    background-size: 36px 36px;
+    background-size: 4vmin;
+    margin-top: 1vmin;
     object-fit: cover;
   }
 `;
@@ -29,7 +30,7 @@ export const TextBubbleWrap = styled.div`
   border-radius: 8px;
   background-color: #eff1f5;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 2vmin;
   text-align: center;
   margin-bottom: 46px;
 
@@ -40,8 +41,8 @@ export const TextBubbleWrap = styled.div`
     position: absolute;
     top: 100%;
     left: 50%;
-    width: 38px;
-    height: 37px;
+    width: 3vmin;
+    height: 2.5vmin;
     transform: translateX(-50%);
   }
 `;

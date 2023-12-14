@@ -10,6 +10,10 @@ const LeftContentContainer = styled.div`
   display: flex;
   align-items: center;
   height: 100%;
+  & > div {
+    margin: 0 auto;
+    width: 100%;
+  }
 `;
 
 const CreateTemplateQuizMultiChoice = ({

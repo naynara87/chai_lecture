@@ -33,6 +33,11 @@ const ImgRound = styled.div`
 
 const AnswerBoxWrap = styled.div`
   display: flex;
+  gap: 2vmin;
+  margin-top: 1vmin;
+  .inp-grp {
+    flex: 1;
+  }
 `;
 
 const AnswerBox = styled.div`
@@ -40,7 +45,7 @@ const AnswerBox = styled.div`
   border: 0.2vmin solid #c9c9c9;
   background-color: #fff;
   border-radius: 2vmin;
-  font-size: 1.5vmin;
+  font-size: 2vmin;
 
   &:first-of-type {
     margin-right: 1vmin;

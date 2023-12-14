@@ -28,7 +28,7 @@ import useSafeKey from "../../hooks/useSafeKey";
 
 const TrainingWrapper = styled.div`
   .training-create-wrap {
-    margin-bottom: 50px;
+    margin-bottom: 5vmin;
   }
 
   .training-list-wrap {
@@ -37,6 +37,11 @@ const TrainingWrapper = styled.div`
 
   .training-list {
     position: relative;
+    margin-bottom: 1vmin;
+    .training-list {
+      width: 35vmin;
+      margin: 0 auto;
+    }
   }
 
   .btn-delete {
@@ -52,7 +57,15 @@ const TrainingWrapper = styled.div`
     background-size: auto;
   }
   .training-end .white-wrap {
-    height: 60%;
+    height: 65%;
+    gap: 1vmin;
+    overflow-y: a;
+    .text-wrap {
+      padding: 2vmin;
+    }
+    .btns-wrap {
+      margin-bottom: 0;
+    }
   }
 `;
 
@@ -80,8 +93,8 @@ const ImageThumb = styled.div`
     width: 60px;
   }
   & > img.empty-image {
-    width: 60px;
-    height: 60px;
+    width: 5vmin;
+    height: 5vmin;
   }
 `;
 
@@ -90,13 +103,13 @@ const TitleArea = styled.div`
   font-weight: 600;
   font-size: 2.6vmin;
   line-height: 1.5;
+  text-align: center;
 `;
 
 const GradiWrap = styled.div`
   min-height: 10vmin;
   padding-bottom: 2vmin;
   border-radius: 2vmin 2vmin 0 0;
-  text-align: center;
   background-image: linear-gradient(to top, #e3e8ff 0%, #e9faff 100%);
 `;
 

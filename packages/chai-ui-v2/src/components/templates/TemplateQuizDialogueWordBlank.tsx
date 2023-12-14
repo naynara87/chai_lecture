@@ -74,7 +74,8 @@ const DialogueContainer = styled.div`
   .wide-panel {
     .btns-wrap {
       max-width: 50%;
-      margin: 3vmin auto 0;
+      width: 30vmin;
+      margin: 5vmin auto 0;
     }
   }
 `;

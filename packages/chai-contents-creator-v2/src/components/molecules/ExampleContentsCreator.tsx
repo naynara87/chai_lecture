@@ -3,8 +3,8 @@ import IconLight from "chai-ui-v2/dist/assets/images/icon/icon_light_navy.svg";
 import TextEditorViewer from "../molecules/TextEditorViewer";
 
 const ExampleContentsWrapper = styled.div`
-  padding: 16px;
-  border-radius: 20px;
+  padding: 1.5vmin;
+  border-radius: 2vmin;
   border: 1px solid #d9d0ff;
   background-color: #f6f4ff;
   width: 50vmin;
@@ -16,12 +16,12 @@ const ExampleTitleWrapper = styled.div`
 
   margin-bottom: 8px;
   & > img {
-    margin-right: 12px;
-    width: 20px;
-    height: 20px;
+    margin-right: 1vmin;
+    width: 2vmin;
+    height: 2vmin;
   }
   & > p {
-    font-size: 12px;
+    font-size: 2vmin;
     line-height: 1;
     font-weight: 700;
     color: #6e79bd;
@@ -30,8 +30,8 @@ const ExampleTitleWrapper = styled.div`
 
 const ExampleTextWrapper = styled.div`
   background-color: #ffffff;
-  padding: 24px;
-  border-radius: 10px;
+  padding: 2vmin;
+  border-radius: 0.5vmin;
   & > p {
     font-size: 12px;
     font-weight: 400;

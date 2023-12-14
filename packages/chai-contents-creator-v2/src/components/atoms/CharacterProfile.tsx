@@ -11,16 +11,15 @@ const CharacterContainer = styled.div<CharacterContainerProps>`
   flex-direction: column;
   align-items: center;
   margin: 0 8px;
+  width: 10vmin;
   ${({ customCSS }) => customCSS}
 `;
 
 const CharacterNameInput = styled.input`
-  margin-top: 6px;
+  margin-top: 1vmin;
   background: none !important;
-  font-size: 12px;
-  line-height: 16px;
+  font-size: 2vmin;
   text-align: center;
-  width: 63px;
 
   &::placeholder {
     opacity: 0.6;
@@ -28,9 +27,9 @@ const CharacterNameInput = styled.input`
 `;
 
 const CharacterImgWrap = styled.div`
-  width: 6vmin;
-  height: 6vmin;
-  border: 2px solid #ffffff;
+  width: 10vmin;
+  height: 10vmin;
+  border: 0.6vmin solid #ffffff;
   box-shadow: 0px 0.4vmin 0px rgba(88, 88, 88, 0.2);
   border-radius: 50%;
   overflow: hidden;

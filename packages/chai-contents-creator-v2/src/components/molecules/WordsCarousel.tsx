@@ -41,10 +41,12 @@ const WordsCardWrapper = styled.div`
     margin-bottom: 16px;
   }
   .icon-play {
-    width: 40px;
-    height: 40px;
-    border-radius: 8px;
+    display: block;
+    width: 4vmin;
+    height: 4vmin;
+    border-radius: 1vmin;
     box-shadow: 0px 4px 0px rgba(88, 88, 88, 0.2);
+    margin: 1vmin auto;
   }
 `;
 
@@ -136,7 +138,7 @@ const ModalVocaContainer = styled.div`
   }
   .btn-radi-border-main,
   .btn-radi-fill-main {
-    width: 48%;
+    /* width: 48%; */
     font-size: 16px;
     font-weight: 700;
     min-width: unset;
@@ -148,7 +150,7 @@ const ModalVocaContainer = styled.div`
     gap: 10px;
 
     .btn {
-      margin-bottom: 5px;
+      margin-bottom: 1vmin;
     }
   }
 `;

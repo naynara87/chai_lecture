@@ -16,11 +16,18 @@ const MultiChoiceWrapper = styled.div`
   margin-top: 8px;
 
   > div {
-    margin-top: 5vmin;
+    margin-bottom: 3vmin;
 
     &:first-of-type {
       margin-top: 0;
     }
+  }
+  .gray-line {
+    min-height: 5vmin;
+    padding: 1vmin;
+  }
+  .label-chck-gray {
+    font-size: 2vmin;
   }
 `;
 
@@ -41,7 +48,7 @@ export const AnswerCheckText = styled.span`
 export const AnswerInput = styled.input`
   vertical-align: middle;
   appearance: none;
-  border: $border-3 solid #c9c9c9;
+  border: min(3px, 0.4vmin) solid #c9c9c9;
   border-radius: 50%;
   margin-right: 5px;
   width: 1em;

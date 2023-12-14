@@ -100,8 +100,9 @@
 
   &.wide-modal {
     display: block;
-    width: 120vmin;
-    height: 90vmin;
+    width: 98vmin;
+    height: 70vmin;
+    max-width: 100%;
   }
 }
 

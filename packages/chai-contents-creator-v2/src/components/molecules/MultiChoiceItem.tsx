@@ -11,8 +11,8 @@ interface ChoiceLabelProps {
 
 const ChoiceLabel = styled.label<ChoiceLabelProps>`
   height: 100%;
-  padding: 2vmin 4vmin;
-  margin-bottom: 8px;
+  padding: 2vmin 1vmin;
+  margin-bottom: 1vmin;
   ${(props) =>
     props.isFocus && `height:auto; display:flex; align-items: center;`}
 `;

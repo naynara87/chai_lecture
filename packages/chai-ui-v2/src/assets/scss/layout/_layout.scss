@@ -112,8 +112,8 @@
     font-weight: 600;
     font-size: var(--font-size-26);
     & > img {
-      width: 5vmin;
-      height: 5vmin;
+      width: 4vmin;
+      height: 4vmin;
       margin-right: 1vmin;
     }
   }
@@ -146,4 +146,8 @@
   border-radius: 2vmin;
   background-color: color(gray-c9);
   position: relative;
+}
+
+.ql-toolbar.ql-snow {
+  text-align: left;
 }

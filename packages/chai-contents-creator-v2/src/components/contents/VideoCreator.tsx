@@ -9,12 +9,12 @@ import { ComponentVideo, VideoContentData } from "chai-ui-v2";
 const VideoWrapper = styled.div``;
 
 const VideoThumb = styled.div`
-  width: 230px;
-  height: 230px;
+  width: 23vmin;
+  height: 23vmin;
   background-color: #f0f0f0;
   position: relative;
-  margin-bottom: 10px;
-  border-radius: 10px;
+  border-radius: 0.5vmin;
+  margin: 0 auto;
   & > img {
     position: absolute;
     top: 50%;

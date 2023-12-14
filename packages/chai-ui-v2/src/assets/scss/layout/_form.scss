@@ -7,7 +7,12 @@ button:hover {
 .btns-wrap {
   @include flex-center {
     gap: 2vmin;
-    margin-bottom: 3vmin;
+    /* margin-bottom: 3vmin; */
+  }
+
+  & > .btn-radi-fill-main,
+  & > .btn-radi-border-main {
+    flex: 1;
   }
 }
 
@@ -206,7 +211,7 @@ button:hover {
   @extend %btn;
   @extend %btn-interaction;
 
-  min-width: 50%;
+  /* min-width: 50%; */
   padding: 0.5em 1em;
   border: 0.4vmin solid color(gray-f0);
   border-radius: 2em;
@@ -235,7 +240,7 @@ button:hover {
   @extend %btn;
   @extend %btn-interaction;
 
-  min-width: 36%;
+  max-width: 50%;
   padding: 0.5em 1em;
   border: 1px solid color(main);
   border-radius: 10vmin;
@@ -490,6 +495,7 @@ button:hover {
   box-shadow: $btn-shadow;
   transition: all 0.2s;
   cursor: pointer;
+  font-size: 3vmin;
 
   @include hover {
     background-color: color(gray-f0);
@@ -499,7 +505,6 @@ button:hover {
   .text {
     position: relative;
     display: inline-block;
-    font-size: var(--font-size-36);
   }
 }
 

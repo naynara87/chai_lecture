@@ -8,8 +8,7 @@ export const ModalInner = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  /* max-width: 420px; */
-  width: 60vmin;
+  width: 54vmin;
   padding: 20px;
   border-radius: 20px;
   background-color: ${colorPalette.white};

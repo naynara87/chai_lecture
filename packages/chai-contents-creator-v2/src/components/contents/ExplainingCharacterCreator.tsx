@@ -18,13 +18,13 @@ const ExplainingWrapper = styled.div`
 `;
 const ExplainingTextWrapper = styled.div`
   display: flex;
-  margin-top: 30px;
+  margin: 3vmin auto 0;
 
   & > img {
-    width: 120px;
-    height: 120px;
-    background-size: 36px 36px;
-    margin-right: 28px;
+    width: 12vmin;
+    height: 12vmin;
+    background-size: 5vmin;
+    margin-right: 3vmin;
     object-fit: cover;
   }
 `;
@@ -32,17 +32,16 @@ const ExplainingTextWrapper = styled.div`
 const ExplainingTextListWrapper = styled.ul`
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  width: calc(100% - 150px);
+  gap: 1.3vmin;
 `;
 
 const ExplainingText = styled.div`
   position: relative;
-  padding: 16px 30px;
-  border-radius: 60px;
+  padding: 1vmin 2vmin;
+  border-radius: 2em;
   background-color: #eff1f5;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 2vmin;
   text-align: left;
   &::before {
     content: "";
@@ -166,7 +165,11 @@ const ExplainingCharacterCreator = ({
       pasteContent={pasteContent}
     >
       <ExplainingWrapper>
-        <UrlInputWrapper typeText="이미지" onSubmit={setUrl}></UrlInputWrapper>
+        <UrlInputWrapper
+          className="mx-auto"
+          typeText="이미지"
+          onSubmit={setUrl}
+        ></UrlInputWrapper>
         <ExplainingTextWrapper onClick={(e) => setFocusedId(e, content.id)}>
           {url ? (
             <img src={thisContent.data.character.src} alt="" />

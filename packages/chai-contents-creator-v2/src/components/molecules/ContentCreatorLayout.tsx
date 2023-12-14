@@ -23,7 +23,7 @@ interface ContentCreatorContainerProps {
 
 const ContentCreatorContainer = styled.div<ContentCreatorContainerProps>`
   display: inline-flex;
-  margin-bottom: 3vmin;
+  margin: 1vmin 0;
   width: ${(props) => props.isContainerFullWidth && "100%"};
   width: 100%;
   /* border: 1px solid red; */
@@ -68,6 +68,7 @@ const IconWrapper = styled.span<IconWrapperProps>`
 
 const ContentsContainer = styled.div`
   width: 100%;
+  font-size: 2vmin;
 `;
 
 interface ContentCreatorLayoutProps extends ContentCreatorWrapperProps {

@@ -9,13 +9,16 @@ export interface UrlInputWrapperProps {
 }
 const UrlTextWrapper = styled.div<UrlInputWrapperProps>`
   width: 100%;
-  margin-top: 10px;
   flex: auto;
+  max-width: 60vmin;
+  min-width: 35%;
+  /* margin: 0 auto; */
 
   & .text-tit {
+    margin-top: 1vmin;
     margin-bottom: 5px;
     font-size: 12px;
-    line-height: 17px;
+    line-height: 1.6;
     font-weight: 500;
   }
 
@@ -58,6 +61,7 @@ interface ButtonProps extends UrlInputWrapperProps {
   typeText: string;
   onSubmit?: (src: string, index?: number) => void;
   defaultText?: string;
+  className?: string;
 }
 
 const UrlInputWrapper = ({
@@ -65,6 +69,7 @@ const UrlInputWrapper = ({
   onSubmit,
   defaultText,
   urlInputWrapperCss,
+  className,
 }: ButtonProps) => {
   const [message, setMessage] = useState<string>("");
   const [isUpload, setIsUpload] = useState<boolean>(false);
@@ -104,7 +109,9 @@ const UrlInputWrapper = ({
 
   return (
     <UrlTextWrapper
-      className={`${isUpload ? "upload-comp" : ""} url-Wrapper`}
+      className={`${isUpload ? "upload-comp" : ""} url-Wrapper ${
+        className ? className : ""
+      }`}
       // className="url-wrapper"
       urlInputWrapperCss={urlInputWrapperCss}
     >
