@@ -42,6 +42,7 @@ const QuestionWrapper = styled.div`
 `;
 
 const QuestionTextBox = styled.p`
+  font-size: 16px !important;
   padding: 1vmin 1.5vmin;
   color: #666666;
   background-color: #f5f5f5;

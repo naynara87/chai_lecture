@@ -55,11 +55,11 @@ const AnswerBox = styled.div`
 const AnswerInput = styled.input`
   vertical-align: middle;
   appearance: none;
-  border: max(2px, 0.1em) solid #c9c9c9;
+  border: max(2px, 0.2vmin) solid #c9c9c9;
   border-radius: 50%;
-  margin-right: 5px;
-  width: 1em;
-  height: 1em;
+  margin-right: 0.5vmin;
+  width: 1vmin;
+  height: 1vmin;
   position: relative;
 
   &:checked {
@@ -72,8 +72,8 @@ const AnswerInput = styled.input`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 8px;
-    height: 8px;
+    width: 1vmin;
+    height: 1vmin;
     border-radius: 50%;
     background: #7686d4;
   }

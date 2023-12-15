@@ -23,7 +23,7 @@ const MultiChoiceWrapper = styled.div`
     }
   }
   .gray-line {
-    min-height: 5vmin;
+    min-height: 7vmin;
     padding: 1vmin;
   }
   .label-chck-gray {

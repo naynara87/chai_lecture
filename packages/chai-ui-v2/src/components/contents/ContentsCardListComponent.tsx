@@ -21,7 +21,7 @@ const ContentBox = styled.div<TextBoxProps>`
   justify-content: center;
   flex-direction: column;
   width: fit-content;
-  max-width: 28vmin;
+  max-width: 32vmin;
   min-width: 20vmin;
   height: 25vmin;
   padding: 2vmin 3vmin;

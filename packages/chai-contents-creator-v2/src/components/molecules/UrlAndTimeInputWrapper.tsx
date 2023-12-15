@@ -36,8 +36,9 @@ const UrlAndTimeWrapper = styled.div`
   }
 
   &.upload-comp .waring-message {
-    font-size: 1.5vmin;
+    font-size: 12px;
     color: ${colorPalette.purple700};
+    margin-top: 5px;
   }
 `;
 

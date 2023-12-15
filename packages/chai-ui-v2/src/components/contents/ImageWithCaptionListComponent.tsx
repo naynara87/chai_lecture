@@ -12,8 +12,8 @@ export const CaptionListImage = styled.img`
   border-radius: 1vmin;
   -webkit-user-drag: none;
   cursor: pointer;
-  width: calc((20vh * 4) / 3);
-  height: 20vh;
+  width: calc((28vmin * 4) / 3);
+  height: 28vmin;
   object-fit: cover;
 `;
 
