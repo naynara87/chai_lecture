@@ -1,0 +1,59 @@
+.voca-modal-swiper-wrapper {
+  position: relative;
+  bottom: 1em;
+
+  .swiper-button-prev {
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+  }
+
+  .swiper-button-next {
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+  }
+}
+
+.voca-slide-card {
+  background-color: #eeeeee;
+  border-radius: 10px;
+  color: black;
+}
+
+.arrow-button-left {
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+  width: 6vmin;
+  height: 6vmin;
+  border-radius: 50%;
+  background-color: #6E79BD;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 6.74286px 0px rgba(88, 88, 88, 0.2);
+  left: 0;
+  transform: translate(-50%, -50%);
+}
+
+.arrow-button-right {
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+  width: 6vmin;
+  height: 6vmin;
+  border-radius: 50%;
+  background-color: #6E79BD;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 6.74286px 0px rgba(88, 88, 88, 0.2);
+  right: 0;
+  transform: translate(50%, -50%);
+}
+
+.arrow-icons {
+  width: 1.8vmin;
+  height: 3vmin;
+}

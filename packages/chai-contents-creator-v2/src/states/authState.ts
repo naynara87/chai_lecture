@@ -2,5 +2,5 @@ import { atom } from "recoil";
 
 export const authState = atom<boolean>({
   key: "creatorAuthState",
-  default: true,
+  default: false,
 });
