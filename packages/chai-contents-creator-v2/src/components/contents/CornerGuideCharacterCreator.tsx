@@ -24,8 +24,8 @@ const TextBubbleWrap = styled.div`
   position: relative;
   width: 100%;
   max-width: fit-content;
-  padding: 24px 40px;
-  border-radius: 50px;
+  padding: 1em 2em;
+  border-radius: 2em;
   background-color: #eff1f5;
   font-weight: 400;
   font-size: 2vmin;

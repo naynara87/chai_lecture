@@ -8,7 +8,7 @@ export const ModalInner = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 54vmin;
+  width: 62vmin;
   padding: 20px;
   border-radius: 20px;
   background-color: ${colorPalette.white};
@@ -78,7 +78,7 @@ export const DescriptionWrapper = styled.div`
   padding: 20px;
   border-radius: 8px;
   background-color: ${colorPalette.gray200};
-  font-size: 12px;
+  font-size: 16px;
 `;
 
 export const TitleCss = css`

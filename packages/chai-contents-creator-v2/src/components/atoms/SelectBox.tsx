@@ -12,6 +12,7 @@ interface OptionItemProps {
 }
 const OptionItem = styled.div<OptionItemProps>`
   font-size: 12px;
+  line-height: 2;
   ${({ optionCss }) => optionCss}
 `;
 

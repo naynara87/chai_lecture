@@ -20,7 +20,7 @@ const VideoThumb = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 60px;
+    width: 30%;
   }
 `;
 
@@ -71,6 +71,7 @@ const VideoCreator = ({
           </VideoThumb>
         )}
         <UrlInputWrapper
+          className="mx-auto"
           typeText="비디오"
           onSubmit={handleSubmitUrl}
           defaultText={thisContent.data.src}

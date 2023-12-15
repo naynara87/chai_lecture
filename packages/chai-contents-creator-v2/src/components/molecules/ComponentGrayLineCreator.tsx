@@ -9,6 +9,8 @@ import DroppableContents from "./DroppableContents";
 
 const GrayLineWrap = styled.div`
   width: 100%;
+  padding: 1vmin;
+  min-height: 60px;
 `;
 
 const TopArea = styled.div`
@@ -18,8 +20,8 @@ const TopArea = styled.div`
   position: relative;
   .btn-comp-select {
     position: absolute;
-    right: -16px;
-    top: -16px;
+    right: 0;
+    top: -0;
   }
   & .btn-text {
     border-radius: 2em;

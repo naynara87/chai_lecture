@@ -7,7 +7,7 @@ export const RecorderWrapper = styled.div`
   display: flex;
   padding: 0 24px;
   width: fit-content;
-  padding: 1.5vmin 3vmin;
+  padding: 1.5vmin 3vmin 1.5vmin 2vmin;
   border-radius: 1vmin;
   border: 2px solid #dce6ff;
   align-items: center;

@@ -22,15 +22,12 @@ const NumberingList = styled.li`
   align-items: flex-start;
 
   &:not(:last-child) {
-    margin-bottom: 16px;
+    margin-bottom: 1vmin;
   }
 
   .number {
-    position: relative;
-    top: unset;
-    left: unset;
-    flex-shrink: 0;
-    margin-right: 16px;
+    top: 2vmin;
+    transform: translate(0);
   }
 
   .btn-delete {
@@ -44,7 +41,8 @@ const NumberingList = styled.li`
 const TextWrap = styled.div`
   display: flex;
   width: 100%;
-  gap: 16px;
+  gap: 1vmin;
+  margin-left: 5vmin;
   .text1 {
     width: 50%;
   }

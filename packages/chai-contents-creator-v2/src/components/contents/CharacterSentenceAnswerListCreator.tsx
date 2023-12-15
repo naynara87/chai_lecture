@@ -8,13 +8,13 @@ const CharacterSentenceAnswerListWrapper = styled.div`
 `;
 
 const CharacterSentenceAnswer = styled.p`
-  padding: 16px 24px;
+  padding: 1vmin 1.5vmin;
   border: 1px solid #c9c9c9;
-  border-radius: 8px;
+  border-radius: 0.5vmin;
   box-shadow: 0px 4px 0px rgba(88, 88, 88, 0.2);
   color: #666666;
   font-weight: 700;
-  font-size: 12px;
+  font-size: 16px;
   line-height: 1.5;
   text-align: center;
 `;

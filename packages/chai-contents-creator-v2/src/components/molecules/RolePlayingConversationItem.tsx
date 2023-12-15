@@ -20,13 +20,13 @@ interface ConversationItemProps {
   backgroundColor: string;
 }
 const ConversationItem = styled.div<ConversationItemProps>`
-  padding: 16px;
-  border-radius: 8px;
+  padding: 2vmin;
+  border-radius: 0.5vmin;
   flex-grow: 1;
   background-color: ${({ backgroundColor }) => backgroundColor};
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 1vmin;
 `;
 
 interface CharacterAndContentProps {
@@ -39,6 +39,9 @@ const CharacterAndContent = styled.div<CharacterAndContentProps>`
     reverse ? `flex-direction: row-reverse;` : `flex-direction: row;`}
   justify-content: space-between;
   flex-grow: 1;
+  .text-tit {
+    margin-top: 0;
+  }
 `;
 
 const DeleteButtonContainer = styled.div`
