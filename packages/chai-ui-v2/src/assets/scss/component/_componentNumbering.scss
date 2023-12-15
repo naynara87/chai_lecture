@@ -1,4 +1,9 @@
-/* =================== componentNumbering =================== */
+/*
+------------------------------
+  : componentNumbering.scss :
+------------------------------
+*/
+
 .numbering-wrapper {
   /* margin-top: 3vmin; */
 }
@@ -21,8 +26,8 @@
     @include circle(3.3vmin);
 
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 2.2vmin;
+    /* transform: translateY(-50%); */
     background-color: color(main);
     font-weight: 600;
     font-size: 2.2vmin;

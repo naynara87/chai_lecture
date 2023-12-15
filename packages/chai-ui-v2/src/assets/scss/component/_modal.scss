@@ -1,4 +1,9 @@
-/* =================== modal =================== */
+/*
+------------------ 
+  : modal.scss :
+------------------ 
+*/
+
 .modal {
   overflow: hidden;
   z-index: z(modal);
@@ -131,12 +136,12 @@
 
   .ttl {
     font-weight: 600;
-    font-size: var(--head2);
+    font-size: $head2;
   }
 
   .txt {
     font-weight: 600;
-    font-size: var(--font-size-32);
+    font-size: $font-size-32;
     color: color(gray-80);
   }
 }
@@ -145,7 +150,7 @@
   @include flex-center;
   @include scrollbar;
 
-  font-size: var(--font-size-28);
+  font-size: $font-size-28;
   overflow: auto;
   flex-direction: column;
   touch-action: pan-y;
@@ -160,7 +165,7 @@
 
   .dec {
     line-height: 1.6;
-    font-size: var(--font-size-28);
+    font-size: $font-size-28;
   }
 
   .btn-icon {
@@ -211,18 +216,18 @@
 
   .chinese {
     font-weight: 600;
-    font-size: var(--head2);
+    font-size: $head2;
     text-align: left;
   }
 
   .pinyin {
-    font-size: var(--font-size-36);
+    font-size: $font-size-36;
     color: color(gray-66);
     text-align: left;
   }
 
   .mean {
-    font-size: var(--font-size-36);
+    font-size: $font-size-36;
     color: color(gray-66);
     text-align: left;
   }

@@ -1,4 +1,9 @@
-/* =================== componentContsinfo =================== */
+/*
+---------------------------------
+  : componentContsinfo.scss :
+---------------------------------
+*/
+
 .cont-info-wrap {
   @include flex-center {
     flex-direction: column;
@@ -41,7 +46,7 @@
   border-radius: $border-pill-radius;
   background-color: color(bubble-gray);
   font-weight: 500;
-  font-size: var(--font-size-36);
+  font-size: $font-size-36;
   text-align: center;
 
   @include make-after {

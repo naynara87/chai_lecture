@@ -1,4 +1,9 @@
-/* =================== componentRepeatSpeak =================== */
+/*
+------------------------------
+  : componentRepeatSpeak.scss :
+------------------------------
+*/
+
 .repeat-speak-wrapper {
   @include flex-col {
     @include flex-op(center, center);

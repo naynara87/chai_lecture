@@ -1,4 +1,9 @@
-/* =================== newStyled =================== */
+/*
+-------------------- 
+  : newStyled.scss :
+-------------------- 
+*/
+
 // 231207 기존 tsx에 styled된 css 정리
 
 // chai-ui-v2/src/components/atoms/TimerIcon.tsx
@@ -104,6 +109,9 @@
 
     &:first-of-type {
       margin-top: 0;
+    }
+    .hori-answer-wrap .inp-grp {
+      flex: 1;
     }
   }
 }
@@ -693,6 +701,7 @@
 
 // chai-ui-v2/src/components/templates/TemplateQuizSentenceBlank.tsx
 .dialogue-container-quiz-sentence-blank {
+  gap: 1vmin;
   .blank-gray {
     margin-right: 2%;
     min-width: 40%;

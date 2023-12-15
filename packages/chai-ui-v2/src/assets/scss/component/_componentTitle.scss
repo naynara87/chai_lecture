@@ -1,9 +1,14 @@
-/* =================== componentTitle =================== */
+/*
+------------------------------
+  : componentTitle.scss :
+------------------------------
+*/
+
 .conts-ttl {
   position: relative;
   padding-left: 6vmin;
   font-weight: 600;
-  font-size: var(--font-size-26);
+  font-size: $font-size-26;
   @include make-before {
     @include bg-url(icon, "icon_tip.svg");
     @include bg-op($s: 100% 100%);

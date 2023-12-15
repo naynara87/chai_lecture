@@ -1,3 +1,9 @@
+/*
+---------------------
+  : responsive.scss :
+---------------------
+*/
+
 /* 1920px 이상의 큰 화면에 대한 스타일 */
 @media only screen and (min-width: 1920px) {
 }
@@ -38,11 +44,11 @@
     }
   }
   .cai-ft {
-    height: var(--footer-height);
+    height: $footer-height;
     /* padding-bottom: 2vmin; */
   }
   .cai-nav-container {
-    bottom: var(--footer-height);
+    bottom: $footer-height;
   }
   .training-list {
     height: 31vmin;
@@ -68,19 +74,19 @@
         display: flex;
         flex-direction: column;
         height: auto;
-        margin: var(--header-height) auto;
+        margin: $header-height auto;
       }
     }
   }
   .cai-ft {
-    height: var(--footer-height);
+    height: $footer-height;
     /* padding-bottom: 2vmin; */
   }
   .cai-nav-container {
-    bottom: var(--footer-height);
+    bottom: $footer-height;
   }
   .swiper-pagination {
-    height: calc(var(--footer-height) * 0.8);
+    height: calc($footer-height * 0.8);
   }
   .btn-ft-text {
     /* height: calc(100% - 2vmin); */
@@ -99,7 +105,7 @@
       .layout-panel-wrap {
         display: flex;
         flex-direction: column;
-        margin: var(--header-height) auto;
+        margin: $header-height auto;
       }
     }
   }

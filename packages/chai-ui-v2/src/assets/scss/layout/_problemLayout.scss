@@ -1,4 +1,8 @@
-/* =================== problemLayout =================== */
+/*
+---------------------------
+  : problemLayout.scss :
+---------------------------
+*/
 $cont-padding: 4vmin;
 $main-light-color: #e3e3e7;
 $main-color: #6673a3;
@@ -18,13 +22,13 @@ $gray-color: #d6d7da;
 
 .problem-hd-ttl {
   font-weight: 600;
-  font-size: var(--font-size-26);
+  font-size: $font-size-26;
   color: color(gray-ff);
 }
 
 .problem-hd-timer {
   font-weight: 400;
-  font-size: var(--font-size-26);
+  font-size: $font-size-26;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -90,7 +94,7 @@ $gray-color: #d6d7da;
     display: block;
     margin-bottom: 1vmin;
     font-weight: 600;
-    font-size: var(--font-size-20);
+    font-size: $font-size-20;
     color: color(gray-ff);
     text-align: center;
   }
@@ -110,7 +114,7 @@ $gray-color: #d6d7da;
   border-radius: 0.5vmin;
   background-color: $main-color;
   font-weight: 500;
-  font-size: var(--font-size-24);
+  font-size: $font-size-24;
   line-height: 1.6;
   color: color(gray-ff);
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
@@ -160,7 +164,7 @@ $gray-color: #d6d7da;
   border-radius: 1vmin;
   background-color: $gray-color;
   font-weight: 500;
-  font-size: var(--font-size-24);
+  font-size: $font-size-24;
   color: color(gray-80);
   text-align: center;
 
@@ -180,7 +184,7 @@ $gray-color: #d6d7da;
   padding: 1.4vmin 2.5vmin;
   border-radius: 1vmin;
   background-color: $main-light-color;
-  font-size: var(--font-size-24);
+  font-size: $font-size-24;
 
   > b {
     color: $main-color;
@@ -200,7 +204,7 @@ $gray-color: #d6d7da;
   border: 1px solid color(gray-db);
   border-radius: 1vmin;
   background-color: color(gray-ff);
-  font-size: var(--font-size-24);
+  font-size: $font-size-24;
   transition: all 0.2s;
 
   img {
@@ -226,7 +230,7 @@ $gray-color: #d6d7da;
   border: 1px solid color(gray-db);
   border-radius: 10vmin;
   background-color: color(gray-ff);
-  font-size: var(--font-size-22);
+  font-size: $font-size-22;
   letter-spacing: -2vmin;
   transition: all 0.2s;
 
@@ -248,7 +252,7 @@ $gray-color: #d6d7da;
   border: 1px solid color(gray-80);
   border-radius: 1vmin;
   background-color: color(gray-80);
-  font-size: var(--font-size-22);
+  font-size: $font-size-22;
   color: color(gray-ff);
   transition: all 0.2s;
 

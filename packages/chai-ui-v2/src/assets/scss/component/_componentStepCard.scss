@@ -1,4 +1,9 @@
-/* =================== componentStepCard =================== */
+/*
+------------------------------
+  : componentStepCard.scss :
+------------------------------
+*/
+
 .step-card {
   @include flex-center {
     flex-direction: column;
@@ -62,20 +67,20 @@
   text-align: center;
 
   > div {
-    font-size: var(--font-size-32);
+    font-size: $font-size-32;
   }
 
   .text {
-    font-size: var(--font-size-28);
+    font-size: $font-size-28;
   }
 
   .chinese {
-    font-size: var(--head3);
+    font-size: $head3;
   }
 
   .pinyin {
     margin-top: 2vmin;
-    font-size: var(--font-size-28);
+    font-size: $font-size-28;
   }
 
   &.step2 {

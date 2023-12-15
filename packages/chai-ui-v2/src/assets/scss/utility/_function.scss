@@ -1,3 +1,9 @@
+/*
+---------------------
+  : function.scss :
+---------------------
+*/
+
 // color: color(text);
 @function color($color) {
   @return map-get($color-set, $color);
@@ -16,11 +22,3 @@
 @function z($layer) {
   @return map-get($zIndex-set, $layer);
 }
-
-/* @function vw($px) {
-  @return $px / 2000 * 100vw;
-}
-
-@function vh($px) {
-  @return $px / 1200 * 100vh;
-} */

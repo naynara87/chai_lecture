@@ -37,7 +37,7 @@ export const ConversationWrapper = styled.ul``;
 
 export const CharacterNameInput = styled.input`
   background: none !important;
-  font-size: var(--font-size-20) !important;
+  font-size: $font-size-20 !important;
 
   &::placeholder {
     opacity: 0.6;

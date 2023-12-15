@@ -1,19 +1,75 @@
+/*
+---------------------
+    : CSS Table :
+---------------------
+
+1. utility 
+function
+variable
+mixin
+extend
+
+// 2. base 
+base
+font
+helper
+topbar
+
+// 3. vendor 
+lxPlayer
+
+// 4. layout 
+animation
+form
+header
+footer
+layout
+problemLayout
+
+// 5. component
+swiper
+modal
+componentContsinfo
+componentTitle
+componentGrayLine
+componentRecordButton
+componentVideo
+componentRepeatSpeak
+componentVocaNote
+templateConversation
+componentRoleplay
+componentChoiceRole
+componentQuizs
+componentTraining
+componentNumbering
+componentStepCard
+componentWordCard
+componentDescriptionBubble
+componentTabContents
+componentRecordSubmit
+componentNextLesson
+problemcontents
+newStyled //신규추가
+
+====== 6. responsive ======
+responsive
+
+----------------------
+*/
+
 @charset 'utf-8';
-// 1. utility
+
 @import "scss/utility/function";
 @import "scss/utility/variable";
 @import "scss/utility/mixin";
 @import "scss/utility/extend";
 
-// 2. base
 @import "scss/base/base";
 @import "scss/base/font";
 @import "scss/base/helper";
 
-// 3. vendor
 @import "scss/vendor/lxPlayer";
 
-// 4. layout
 @import "scss/layout/animation";
 @import "scss/layout/form";
 @import "scss/layout/header";
@@ -21,7 +77,6 @@
 @import "scss/layout/layout";
 @import "scss/layout/problemLayout";
 
-// 5. component
 @import "scss/component/swiper";
 @import "scss/component/modal";
 @import "scss/component/componentContsinfo";
@@ -44,7 +99,6 @@
 @import "scss/component/componentRecordSubmit";
 @import "scss/component/componentNextLesson";
 @import "scss/component/problemcontents";
+@import "scss/component/newStyled";
 
-// 6. responsive
 @import "scss/base/responsive";
-@import "scss/component/_newStyled";

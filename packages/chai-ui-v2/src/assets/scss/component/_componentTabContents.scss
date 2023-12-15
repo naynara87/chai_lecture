@@ -1,4 +1,9 @@
-/* =================== componentTabContents =================== */
+/*
+--------------------------------
+  : componentTabContents.scss :
+--------------------------------
+*/
+
 .tab-contents-container {
   height: 100%;
 
@@ -54,7 +59,7 @@
   padding: 1em;
   border: $border-1 solid color(gray-db);
   border-radius: 2vmin;
-  font-size: var(--font-size-26);
+  font-size: $font-size-26;
   white-space: pre-line;
 
   &:not(:first-of-type) {

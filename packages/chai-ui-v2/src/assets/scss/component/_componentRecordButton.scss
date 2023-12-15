@@ -1,4 +1,9 @@
-/* =================== componentRecordButton =================== */
+/*
+------------------------------
+  : componentRecordButton.scss :
+------------------------------
+*/
+
 .record-btn-wrap {
   position: relative;
   max-width: 44vmin;
@@ -18,9 +23,9 @@
     background-color: color(gray-ff);
 
     .btn-icon {
-      width: 5.5vmin;
-      height: 5.5vmin;
-      border-radius: 1.4vmin;
+      width: 5vmin;
+      height: 5vmin;
+      border-radius: 1.1vmin;
     }
 
     .txt {
@@ -33,5 +38,8 @@
     top: 50%;
     left: 100%;
     transform: translate(2vmin, -54%);
+    width: 4.5vmin;
+    height: 4.5vmin;
+    border-radius: 1vmin;
   }
 }

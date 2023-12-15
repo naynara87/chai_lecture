@@ -1,4 +1,9 @@
-/* =================== problemcontents =================== */
+/*
+------------------------------
+  : problemcontents.scss :
+------------------------------
+*/
+
 $main-color: #6673a3;
 $main-light-color: #e3e3e7;
 $gray-color: #d6d7da;
@@ -7,7 +12,7 @@ $gray-color: #d6d7da;
 .problem-user-info-wrap {
   .user-title {
     font-weight: 400;
-    font-size: var(--font-size-32);
+    font-size: $font-size-32;
     line-height: 1.3;
   }
 
@@ -18,12 +23,12 @@ $gray-color: #d6d7da;
     background-color: color(gray-f5);
 
     .score {
-      font-size: var(--font-size-32);
+      font-size: $font-size-32;
       line-height: 1.3;
       text-align: center;
 
       > b {
-        font-size: var(--head3);
+        font-size: $head3;
         color: $main-color;
       }
     }
@@ -64,7 +69,7 @@ $gray-color: #d6d7da;
       padding: 0.5vmin 0;
       background-color: color(gray-f5);
       font-weight: 400;
-      font-size: var(--font-size-20);
+      font-size: $font-size-20;
       line-height: 1.3;
       text-align: center;
     }
@@ -118,13 +123,13 @@ $gray-color: #d6d7da;
   .emp-ttl {
     margin-top: 3vmin;
     font-weight: 600;
-    font-size: var(--head4);
+    font-size: $head4;
     line-height: 1.3;
   }
 
   .emp-txt {
     margin-top: 2vmin;
-    font-size: var(--font-size-32);
+    font-size: $font-size-32;
     line-height: 1.3;
   }
 }
@@ -133,7 +138,7 @@ $gray-color: #d6d7da;
 .problem-commentary-wrap {
   .com-ttl {
     line-height: 1;
-    font-size: var(--font-size-32);
+    font-size: $font-size-32;
 
     > img {
       width: auto;
@@ -158,7 +163,7 @@ $gray-color: #d6d7da;
     border: 1px solid color(gray-db);
     border-radius: 1vmin;
     background-color: color(gray-f5);
-    font-size: var(--font-size-20);
+    font-size: $font-size-20;
     text-align: left;
 
     &.active {
@@ -202,13 +207,13 @@ $gray-color: #d6d7da;
     padding: 1vmin;
     background-color: color(gray-f5);
     font-weight: 500;
-    font-size: var(--font-size-22);
+    font-size: $font-size-22;
     line-height: 1.3;
     text-align: center;
   }
 
   .comment-dec {
-    font-size: var(--font-size-24);
+    font-size: $font-size-24;
     line-height: 1.4;
     white-space: pre-line;
   }

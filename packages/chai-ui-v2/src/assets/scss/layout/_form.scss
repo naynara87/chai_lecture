@@ -1,4 +1,9 @@
-/* =================== form =================== */
+/*
+---------------------
+  : form.scss :
+---------------------
+*/
+
 button:hover {
   opacity: 1;
 }
@@ -42,9 +47,9 @@ button:hover {
 
 .btn-icon-mini {
   flex: none;
-  width: 4.5vmin;
-  height: 4.5vmin;
-  border-radius: 1vmin;
+  width: 5vmin;
+  height: 5vmin;
+  border-radius: 1.3vmin;
   background-position: center center;
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -198,7 +203,7 @@ button:hover {
   border-radius: 1vmin;
   background-color: color(gray-56);
   font-weight: 600;
-  font-size: var(--font-size-22);
+  font-size: $font-size-22;
   color: color(gray-ff);
   box-shadow: $btn-shadow;
 
@@ -216,7 +221,7 @@ button:hover {
   border: 0.4vmin solid color(gray-f0);
   border-radius: 2em;
   font-weight: 600;
-  font-size: var(--font-size-26);
+  font-size: $font-size-26;
   color: color(main);
   box-shadow: $btn-shadow;
 
@@ -246,12 +251,13 @@ button:hover {
   border-radius: 10vmin;
   background-color: color(main);
   font-weight: 600;
-  font-size: var(--font-size-26);
+  font-size: $font-size-26;
   color: color(gray-ff);
   box-shadow: $btn-shadow;
 
   @at-root .modal & {
     width: 100%;
+    max-width: 100%;
   }
 
   @include hover {
@@ -278,7 +284,7 @@ button:hover {
   background-color: color(orange-500);
   line-height: 1;
   font-weight: 600;
-  font-size: var(--font-size-22);
+  font-size: $font-size-22;
   color: color(gray-ff);
   box-shadow: $btn-shadow;
 
@@ -301,7 +307,7 @@ button:hover {
   background-color: color(gray-56);
   line-height: 1;
   font-weight: 600;
-  font-size: var(--font-size-22);
+  font-size: $font-size-22;
   color: color(gray-ff);
   box-shadow: $btn-shadow;
 
@@ -408,7 +414,7 @@ button:hover {
   padding: 0 3vmin;
   border: 1px solid color(gray-db);
   border-radius: 2vmin;
-  font-size: var(--font-size-28);
+  font-size: $font-size-28;
 
   &::placeholder {
     color: color(gray-80);
@@ -560,7 +566,7 @@ button:hover {
 
   .text-sm {
     display: block;
-    font-size: var(--font-size-22);
+    font-size: $font-size-22;
     color: color(gray-80);
   }
 }

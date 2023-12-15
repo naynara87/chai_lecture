@@ -1,4 +1,9 @@
-/* =================== templateConversation =================== */
+/*
+---------------------------------
+  : templateConversation.scss :
+---------------------------------
+*/
+
 // 230220 component roleplay와 공통으로 사용됨
 .conversation-panel-wrap {
   .toggles-wrapper,
@@ -65,23 +70,23 @@
   .name {
     width: 100%;
     margin-top: 1vmin;
-    font-size: var(--font-size-22);
+    font-size: $font-size-22;
     color: color(gray-66);
     text-align: center;
   }
 
   .chinese {
-    font-size: var(--font-size-36);
+    font-size: $font-size-36;
   }
 
   .pinyin {
     color: color(gray-66);
-    font-size: var(--font-size-28);
+    font-size: $font-size-28;
   }
 
   .mean {
     color: color(gray-66);
-    font-size: var(--font-size-28);
+    font-size: $font-size-28;
   }
   .text {
     word-break: break-word;
