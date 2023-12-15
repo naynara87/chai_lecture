@@ -40,6 +40,13 @@ html {
   scroll-behavior: smooth;
 }
 
+h1,
+h2,
+h3,
+h4 {
+  font-weight: normal;
+}
+
 a {
   outline: 0;
   background-color: transparent;
@@ -79,35 +86,31 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-/* 에디터 초기값 */
-.ql-toolbar {
-  line-height: 1;
-}
-.ql-editor {
-  padding: 6px 12px;
-}
+
 /* Reset img */
 img {
   max-width: 100%;
   height: auto;
 }
 
-.Toastify__toast {
-  padding: 0 !important;
-  margin-bottom: 1rem;
-}
-
-.Toastify__toast-body {
-  padding: 0 !important;
-  margin: 0;
-
-  & > div {
-    width: 100%;
-  }
-}
-
 :root {
   --toastify-toast-min-height: 0 !important;
+}
+
+/* 노출되지 않을 영역 */
+.none {
+  display: none !important;
+}
+
+/* 보이진 않지만 리딩되는 영역 */
+.voice-only {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  color: transparent;
 }
 
 .btn-wrap {
@@ -117,157 +120,4 @@ img {
   > button:not(:first-of-type) {
     margin-left: 3vmin;
   }
-}
-
-/* lx-player color */
-
-c1 {
-  color: #222;
-}
-c2 {
-  color: #6070cf;
-}
-c3 {
-  color: #f65555;
-}
-c4 {
-  color: #666;
-}
-
-/* font-size */
-h1,
-h2,
-h3,
-h4 {
-  font-weight: normal;
-}
-.font-head1 {
-  font-size: var(--head1);
-}
-
-.font-head2 {
-  font-size: var(--head2);
-}
-
-.font-head3 {
-  font-size: var(--head3);
-}
-
-.font-head4 {
-  font-size: var(--head4);
-}
-
-.font-36vmin {
-  font-size: var(--font-size-36);
-}
-.font-32vmin {
-  font-size: var(--font-size-32);
-}
-.font-28vmin {
-  font-size: var(--font-size-28);
-}
-.font-26vmin {
-  font-size: var(--font-size-26);
-}
-.font-24vmin {
-  font-size: var(--font-size-24);
-}
-.font-22vmin {
-  font-size: var(--font-size-22);
-}
-.font-20vmin {
-  font-size: var(--font-size-20);
-}
-
-/* color */
-.gray-22 {
-  color: #222;
-}
-
-/* line-height */
-.line-height-0 {
-  line-height: 0;
-}
-
-/* text-align */
-.text-center {
-  text-align: center;
-}
-
-/* white-space */
-.pre-line {
-  white-space: pre-line;
-}
-
-/* display */
-.d-inline-block {
-  display: inline-block;
-}
-
-/* flex */
-.d-flex {
-  display: flex;
-}
-.flex-align-center {
-  display: flex;
-  align-items: center;
-}
-.flex-justify-start {
-  justify-content: flex-start;
-}
-.flex-justify-center {
-  display: flex;
-  justify-content: center;
-}
-.flex-direction-column {
-  flex-direction: column;
-}
-.flex-wrap {
-  flex-wrap: wrap;
-}
-
-/* gap */
-.gap-3 {
-  gap: 3vmin;
-}
-
-/* width */
-.w-50 {
-  width: 50%;
-}
-.w-100 {
-  width: 100%;
-}
-
-/* height */
-.h-100 {
-  height: 100%;
-}
-
-/* margin */
-.mt-3 {
-  margin-top: 3vmin;
-}
-.mt-5 {
-  margin-top: 5vmin;
-}
-.mb-3 {
-  margin-bottom: 3vmin;
-}
-.mb-5 {
-  margin-bottom: 5vmin;
-}
-
-/* overflow */
-.overflow-visible {
-  overflow: visible;
-}
-.overflow-hidden {
-  overflow: hidden;
-}
-.overflow-x-hidden {
-  overflow-x: hidden;
-}
-.overflow-y-auto {
-  overflow-y: auto;
 }
