@@ -94,6 +94,14 @@ img {
 }
 
 :root {
+  --rem: 16;
+  --header-height: 7vmin;
+  --footer-height: 7vmin;
+  --bg-color: #f0f0f0;
+  --top-color: #f89e9e;
+  --bottom-color: #565656;
+
+  /* toastify-size */
   --toastify-toast-min-height: 0 !important;
 }
 

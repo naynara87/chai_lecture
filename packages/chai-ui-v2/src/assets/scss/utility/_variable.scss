@@ -1,3 +1,4 @@
+//color
 $content-dark: #505a99; // fix
 $content: #6e79bd; // fix
 $content-light: #959fdc; // fix
@@ -82,49 +83,16 @@ $path-set: (
   img: "./images/img/",
 );
 
-/* common size */
-$header-height: 7vmin;
-$footer-height: 7vmin;
+// common size
 
-$line-height: 2.3;
-
-$border-pill-radius: 2em;
-
-$box-shadow: 0 3px 20px rgba(0, 0, 0, 0.15);
-$btn-shadow: 0 0.6vmin 0 rgba(88, 88, 88, 0.2);
-$active-shadow: 0 0.5vmin 0 rgba(88, 88, 88, 0.2),
-  inset 0 0.4vmin 0 rgba(88, 88, 88, 0.2);
-
-$border-radius: 2.6vmin;
-$main-radius: 3vmin;
-$inner-radius: 2vmin;
-$small-radius: 1vmin;
-
-$border-1: min(2px, 0.1vmin);
-$border-3: min(3px, 0.4vmin);
-
-.height_fit {
-  --ratio: 20 / 9;
-  --width: calc(var(--height) * var(--ratio));
-  --height: calc(100vh - var(--footer-height) - var(--header-height) - 15vh);
-}
-.width_fit {
-  --ratio: 9 / 19 !important;
-  --width: 98vmin;
-  --height: 70vmin;
-  /* --height: calc(var(--width) * var(--ratio)); */
-}
-/* Heights & Widths*/
-
-$header-height: 7vmin;
-$footer-height: 7vmin;
 $line-height: 2.3;
 
 $bg-color: #f0f0f0;
 $top-color: #f89e9e;
 $bottom-color: #565656;
 
-$box-shadow: 0 3px 20px rgba(0, 0, 0, 0.15);
+$layout-panel-shadow: 0.2vmin 0.6vmin 1vmin rgba(0, 0, 0, 0.15);
+$box-shadow: 0 0.3vmin 20px rgba(0, 0, 0, 0.15);
 $btn-shadow: 0 0.6vmin 0 rgba(88, 88, 88, 0.2);
 $active-shadow: 0 0.5vmin 0 rgba(88, 88, 88, 0.2),
   inset 0 0.4vmin 0 rgba(88, 88, 88, 0.2);
@@ -138,7 +106,7 @@ $border-pill-radius: 2em;
 $border-1: min(2px, 0.1vmin);
 $border-3: min(3px, 0.4vmin);
 
-/* font-size */
+// font-size
 $head1: 7vmin;
 $head2: 6vmin;
 $head3: 5vmin;
@@ -151,63 +119,14 @@ $font-size-24: 2.4vmin;
 $font-size-22: 2.2vmin;
 $font-size-20: 2vmin;
 
-:root {
-  --rem: 16;
-  --header-height: 7vmin;
-  --footer-height: 7vmin;
-  --bg-color: #f0f0f0;
-  --top-color: #f89e9e;
-  --bottom-color: #565656;
-
-  /* font-size */
-  --head1: 7vmin;
-  --head2: 6vmin;
-  --head3: 5vmin;
-  --head4: 4vmin;
-  --font-size-36: 3.6vmin;
-  --font-size-32: 3.2vmin;
-  --font-size-28: 2.8vmin;
-  --font-size-26: 2.6vmin;
-  --font-size-24: 2.4vmin;
-  --font-size-22: 2.2vmin;
-  --font-size-20: 2vmin;
-
-  /* color */
-  --content-dark: $content-dark;
-  --content: $content;
-  --content-light: $content-light;
-  --sub-purple: $sub-purple;
-  --sub-lightpurple: $sub-lightpurple;
-  --sub-blue: $sub-blue;
-  --bubble-red: $bubble-red;
-  --bubble-yellow: $bubble-yellow;
-  --bubble-green: $bubble-green;
-  --bubble-blue: $bubble-blue;
-  --bubble-gray: $bubble-gray;
-  --red-600: $red-600;
-  --blue-300: $blue-300;
-  --blue-400: $blue-400;
-  --blue-500: $blue-500;
-  --purple-200: $purple-200;
-  --green-500: $green-500;
-  --orange-300: $range-300;
-  --orange-400: $orange-400;
-  --orange-500: $orange-500;
-  --orange-600: $orange-600;
-  --orange-700: $orange-700;
-  --gray-22: $gray-22;
-  --gray-56: $gray-56;
-  --gray-66: $ray-66;
-  --gray-80: $gray-80;
-  --gray-c9: $gray-c9;
-  --gray-db: $gray-db;
-  --gray-f0: $gray-f0;
-  --gray-f5: $gray-f5;
-  --gray-ff: $gray-ff;
-
-  --btn-shadow: $btn-shadow;
-
-  --main-radius: $main-radius;
-  --inner-radius: $inner-radius;
-  --small-radius: $small-radius;
+/* 화면에 따른 layer-size */
+.height_fit {
+  --ratio: 20 / 9;
+  --width: calc(var(--height) * var(--ratio));
+  --height: calc(100vh - var(--footer-height) - var(--header-height) - 15vh);
+}
+.width_fit {
+  --ratio: 9 / 19 !important;
+  --width: 98vmin;
+  --height: 70vmin;
 }
