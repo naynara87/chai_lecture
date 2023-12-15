@@ -2,8 +2,8 @@
 .cai-main {
   height: 100vh;
   overflow: hidden;
-  padding-top: $header-height;
-  padding-bottom: $footer-height;
+  padding-top: var(--header-height);
+  padding-bottom: var(--footer-height);
   background-color: color(gray-f0);
 
   .layout-panel-wrap {
@@ -91,7 +91,7 @@
   padding: 5vmin;
   border-radius: calc($border-radius * 0.5);
   background-color: color(gray-ff);
-  box-shadow: 2px 6px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: $layout-panel-shadow;
 
   &.pd-40 {
     padding: 4vmin;
@@ -110,7 +110,7 @@
     display: flex;
     align-items: flex-start;
     font-weight: 600;
-    font-size: var(--font-size-26);
+    font-size: $font-size-26;
     & > img {
       width: 4vmin;
       height: 4vmin;
@@ -124,7 +124,7 @@
     border-radius: 2vmin;
     padding: 1em 2em;
     text-align: left;
-    font-size: var(--font-size-26);
+    font-size: $font-size-26;
   }
 
   .description-bubble-container:not(:first-of-type),

@@ -11,7 +11,7 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: $footer-height;
+  height: var(--footer-height);
   background-color: color(gray-56);
 }
 
@@ -44,7 +44,7 @@
   z-index: z(nav);
   position: fixed;
   top: auto;
-  bottom: $footer-height;
+  bottom: var(--footer-height);
   left: 0;
   transform: translateY(100%);
   transition: transform 0.3s;

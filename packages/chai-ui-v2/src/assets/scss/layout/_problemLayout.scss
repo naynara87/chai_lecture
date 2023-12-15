@@ -42,7 +42,7 @@ $gray-color: #d6d7da;
 
 // main layout style
 .problem-main {
-  padding-top: $header-height;
+  padding-top: var(--header-height);
   padding-bottom: 0;
 
   .problem-top-button-wrapper {

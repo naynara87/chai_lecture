@@ -12,7 +12,7 @@ $flag-width: 42px;
   top: 0;
   left: 0;
   width: 100%;
-  height: $header-height;
+  height: var(--header-height);
 }
 
 .hd-conts-wrap {
@@ -51,7 +51,7 @@ $flag-width: 42px;
     left: auto;
     right: 0;
     width: $flag-width;
-    height: $header-height;
+    height: var(--header-height);
   }
 
   .bg-flag {
@@ -115,7 +115,7 @@ $flag-width: 42px;
 
 .corner-name {
   display: inline-block;
-  height: $header-height;
+  height: var(--header-height);
   font-weight: 600;
   font-size: 3vmin;
   color: color(gray-ff);
