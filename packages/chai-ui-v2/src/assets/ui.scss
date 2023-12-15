@@ -9,18 +9,18 @@ variable
 mixin
 extend
 
-// 2. base 
+2. base 
 base
 font
 helper
 topbar
 
-// 3. vendor 
+3. vendor 
 lxPlayer
 editor
 toastify
 
-// 4. layout 
+4. layout 
 animation
 form
 header
@@ -28,7 +28,7 @@ footer
 layout
 problemLayout
 
-// 5. component
+5. component
 swiper
 modal
 componentContsinfo
@@ -53,10 +53,8 @@ componentNextLesson
 problemcontents
 newStyled //신규추가
 
-====== 6. responsive ======
+6. responsive
 responsive
-
-----------------------
 */
 
 @charset 'utf-8';
@@ -72,7 +70,7 @@ responsive
 
 @import "scss/vendor/lxPlayer";
 @import "scss/vendor/editor";
-@import "scss/vendor/tostify";
+@import "scss/vendor/toastify";
 
 @import "scss/layout/animation";
 @import "scss/layout/form";
