@@ -1,4 +1,3 @@
-import { RecorderWrapper } from "./AudioRecorderCreator";
 import IconMic from "chai-ui-v2/dist/assets/images/icon/icon_mic.svg";
 import styled from "@emotion/styled";
 import { DraggableContentCommonProps } from "../../types/page";
@@ -81,10 +80,10 @@ const FinalSpeakingContentCreator = ({
           deleteComponent={deleteComponent}
           handleOnDragEnd={handleOnDragEnd}
         />
-        <RecorderWrapper>
+        <div className="recorder-wrapper">
           <img src={IconMic} alt="" />
           <p>녹음을 시작해 보세요.</p>
-        </RecorderWrapper>
+        </div>
         <div onClick={(e) => setFocusedId(e, thisContent.id)}>
           <ExampleContentsCreator
             setText={setText}

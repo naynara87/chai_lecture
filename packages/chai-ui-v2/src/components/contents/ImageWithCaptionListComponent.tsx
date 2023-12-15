@@ -1,4 +1,3 @@
-import styled from "@emotion/styled";
 import React, { useMemo, useState } from "react";
 import { ImageWithCaptionListContentData } from "../../core";
 import HtmlContentComponent from "../atoms/HtmlContentComponent";
@@ -7,15 +6,6 @@ import { ModalImage } from "../modal";
 export interface ImageWithCaptionListProps {
   contents: ImageWithCaptionListContentData;
 }
-
-export const CaptionListImage = styled.img`
-  border-radius: 1vmin;
-  -webkit-user-drag: none;
-  cursor: pointer;
-  width: calc((28vmin * 4) / 3);
-  height: 28vmin;
-  object-fit: cover;
-`;
 
 const ImageWithCaptionListComponent = ({
   contents,
@@ -33,7 +23,8 @@ const ImageWithCaptionListComponent = ({
       return (
         <div key={imageWithCaptionIndex} className="image-with-caption-list">
           <div className="image-with-caption-wrapper d-flex flex-direction-column">
-            <CaptionListImage
+            <img
+              className="caption-list-image"
               src={imageWithCaption.src}
               alt=""
               onClick={() => {
