@@ -2,7 +2,6 @@ import React, { useEffect, useMemo, useState } from "react";
 import ImgVocaComponent from "../atoms/ImgVocaComponent";
 import IconClose from "../../assets/images/icon/icon_close_black.svg";
 import { useGlobalAudio, WordsCarouselContentData } from "../../core";
-import styled from "@emotion/styled";
 import { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -12,62 +11,6 @@ import { HtmlContentComponent } from "../atoms";
 import AudioComponent from "../contents/AudioComponent";
 import ModalBase from "./ModalBase";
 import ArrowButton from "../atoms/Button/ArrowButton";
-import { css } from "@emotion/react";
-import { colorPalette } from "../../assets";
-
-const SlideCard = styled.div`
-  background-color: #eeeeee;
-  border-radius: 10px;
-  color: black;
-`;
-
-const SwiperWrapper = styled.div`
-  position: relative;
-  bottom: 1em;
-
-  .swiper-button-prev {
-    top: 50%;
-    transform: translateY(-50%);
-    display: none;
-  }
-
-  .swiper-button-next {
-    top: 50%;
-    transform: translateY(-50%);
-    display: none;
-  }
-`;
-
-const ArrowButtonCommonCss = css`
-  position: absolute;
-  top: 50%;
-  z-index: 10;
-  width: 6vmin;
-  height: 6vmin;
-  border-radius: 50%;
-  background-color: ${colorPalette.main};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0px 6.74286px 0px rgba(88, 88, 88, 0.2);
-`;
-
-const ArrowIconCss = css`
-  width: 1.8vmin;
-  height: 3vmin;
-`;
-
-const ArrowButtonLeftCss = css`
-  ${ArrowButtonCommonCss};
-  left: 0;
-  transform: translate(-50%, -50%);
-`;
-
-const ArrowButtonRightCss = css`
-  ${ArrowButtonCommonCss};
-  right: 0;
-  transform: translate(50%, -50%);
-`;
 
 interface LayoutModalVocaProps {
   isModalOpen: boolean;
@@ -99,7 +42,7 @@ const LayoutModalVoca = ({
     return contentsData.words.map((word, wordIndex) => {
       return (
         <SwiperSlide key={wordIndex}>
-          <SlideCard>
+          <div className="voca-slide-card">
             <div className="base-conts">
               <div className="voca-wrap">
                 <HtmlContentComponent html={word.word} />
@@ -117,7 +60,7 @@ const LayoutModalVoca = ({
                 />
               )}
             </div>
-          </SlideCard>
+          </div>
         </SwiperSlide>
       );
     });
@@ -161,20 +104,20 @@ const LayoutModalVoca = ({
               </div>
             </div>
             <div className="page">
-              <SwiperWrapper>
+              <div className="voca-modal-swiper-wrapper">
                 {showPrevButton && (
                   <ArrowButton
                     direction="left"
-                    customCss={ArrowButtonLeftCss}
-                    iconCss={ArrowIconCss}
+                    className="arrow-button-left"
+                    iconClassName="arrow-icons"
                     onClickBtn={handleClickPrevSlide}
                   />
                 )}
                 {showNextButton && (
                   <ArrowButton
                     direction="right"
-                    customCss={ArrowButtonRightCss}
-                    iconCss={ArrowIconCss}
+                    className="arrow-button-right"
+                    iconClassName="arrow-icons"
                     onClickBtn={handleClickNextSlide}
                   />
                 )}
@@ -200,7 +143,7 @@ const LayoutModalVoca = ({
                 >
                   {slideContents}
                 </Swiper>
-              </SwiperWrapper>
+              </div>
             </div>
           </div>
         </div>

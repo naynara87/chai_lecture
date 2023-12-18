@@ -7,6 +7,7 @@ import styled from "@emotion/styled";
 
 interface IconImgProps {
   iconCss?: SerializedStyles;
+  iconClassName?: string;
 }
 const IconImg = styled.img<IconImgProps>`
   ${({ iconCss }) => iconCss};
@@ -20,14 +21,15 @@ interface ArrowButtonProps
 const ArrowButton = ({
   direction,
   iconCss,
+  iconClassName,
   ...iconBtnProps
 }: ArrowButtonProps) => {
   return (
     <IconButton {...iconBtnProps}>
       {direction === "left" ? (
-        <IconImg src={IconLeft} alt="arrow_left" iconCss={iconCss} />
+        <IconImg src={IconLeft} alt="arrow_left" iconCss={iconCss} className={iconClassName} />
       ) : (
-        <IconImg src={IconRight} alt="arrow_right" iconCss={iconCss} />
+        <IconImg src={IconRight} alt="arrow_right" iconCss={iconCss} className={iconClassName} />
       )}
     </IconButton>
   );
