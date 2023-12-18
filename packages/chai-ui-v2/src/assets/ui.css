@@ -3847,7 +3847,7 @@ button:hover {
   text-indent: -10rem;
   color: transparent;
   text-align: left;
-  box-shadow: 0 0.6vmin 0 rgba(88, 88, 88, 0.2);
+  box-shadow: 0 min(5px, 0.6vmin) 0 rgba(88, 88, 88, 0.2);
   /* transition: $transition-all-03s; */
 }
 .btn-icon .icon {
@@ -3954,7 +3954,7 @@ button:hover {
   height: 4vmin;
   border-radius: 50%;
   background-color: #ffffff;
-  box-shadow: 0 0.6vmin 0 rgba(88, 88, 88, 0.2);
+  box-shadow: 0 min(5px, 0.6vmin) 0 rgba(88, 88, 88, 0.2);
 }
 .active .btn-round-icon-arrow .icon {
   transform: rotate(180deg);
@@ -3983,7 +3983,7 @@ button:hover {
   font-weight: 600;
   font-size: 2.2vmin;
   color: #ffffff;
-  box-shadow: 0 0.6vmin 0 rgba(88, 88, 88, 0.2);
+  box-shadow: 0 min(5px, 0.6vmin) 0 rgba(88, 88, 88, 0.2);
 }
 .btn-fill-black:hover {
   background-color: #222222;
@@ -3997,7 +3997,7 @@ button:hover {
   font-weight: 600;
   font-size: 2.6vmin;
   color: #6e79bd;
-  box-shadow: 0 0.6vmin 0 rgba(88, 88, 88, 0.2);
+  box-shadow: 0 min(5px, 0.6vmin) 0 rgba(88, 88, 88, 0.2);
 }
 .btn-radi-border-main:before {
   letter-spacing: -0.04em;
@@ -4019,7 +4019,7 @@ button:hover {
   font-weight: 600;
   font-size: 2.6vmin;
   color: #ffffff;
-  box-shadow: 0 0.6vmin 0 rgba(88, 88, 88, 0.2);
+  box-shadow: 0 min(5px, 0.6vmin) 0 rgba(88, 88, 88, 0.2);
 }
 .modal .btn-radi-fill-main {
   width: 100%;
@@ -4045,7 +4045,7 @@ button:hover {
   font-weight: 600;
   font-size: 2.2vmin;
   color: #ffffff;
-  box-shadow: 0 0.6vmin 0 rgba(88, 88, 88, 0.2);
+  box-shadow: 0 min(5px, 0.6vmin) 0 rgba(88, 88, 88, 0.2);
 }
 .btn-radi-fill-orange:before {
   letter-spacing: -0.04em;
@@ -4064,7 +4064,7 @@ button:hover {
   font-weight: 600;
   font-size: 2.2vmin;
   color: #ffffff;
-  box-shadow: 0 0.6vmin 0 rgba(88, 88, 88, 0.2);
+  box-shadow: 0 min(5px, 0.6vmin) 0 rgba(88, 88, 88, 0.2);
 }
 .btn-radi-fill-black-mini:before {
   letter-spacing: -0.04em;
@@ -4082,7 +4082,7 @@ button:hover {
   background-color: #ffffff;
   font-weight: 600;
   font-size: 2.4vmin;
-  box-shadow: 0 0.6vmin 0 rgba(88, 88, 88, 0.2);
+  box-shadow: 0 min(5px, 0.6vmin) 0 rgba(88, 88, 88, 0.2);
 }
 @media (hover: hover) and (pointer: fine) {
   .btn-step:hover {
@@ -4236,7 +4236,7 @@ button:hover {
   border-radius: 2vmin;
   background-color: #f5f5f5;
   text-align: center;
-  box-shadow: 0 0.6vmin 0 rgba(88, 88, 88, 0.2);
+  box-shadow: 0 min(5px, 0.6vmin) 0 rgba(88, 88, 88, 0.2);
   transition: all 0.3s;
   cursor: pointer;
   font-size: 3.2vmin;
@@ -4278,7 +4278,7 @@ button:hover {
   padding: 1.5vmin 3vmin;
   border: min(3px, 0.4vmin) solid #dbdbdb;
   border-radius: 1vmin;
-  box-shadow: 0 0.6vmin 0 rgba(88, 88, 88, 0.2);
+  box-shadow: 0 min(5px, 0.6vmin) 0 rgba(88, 88, 88, 0.2);
   text-align: center;
   cursor: pointer;
 }
@@ -4417,7 +4417,7 @@ button:hover {
   background-color: #ffffff;
   font-weight: 600;
   font-size: 2.4vmin;
-  box-shadow: 0 0.3vmin 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 min(3px, 0.4vmin) 2vmin rgba(0, 0, 0, 0.15);
   white-space: nowrap;
 }
 .hd-cha-wrap.first-half .img {
@@ -4802,7 +4802,7 @@ button:hover {
   font-size: 2.4vmin;
   line-height: 1.6;
   color: #ffffff;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 min(3px, 0.4vmin) 2vmin rgba(0, 0, 0, 0.15);
   transform: translateX(-6vmin);
   white-space: pre-line;
 }
@@ -5011,6 +5011,59 @@ button:hover {
 .swiper-position-2 .swiper-pagination {
   position: relative;
   bottom: calc(var(--height) * 0.06);
+}
+
+.voca-modal-swiper-wrapper {
+  position: relative;
+  bottom: 1em;
+}
+.voca-modal-swiper-wrapper .swiper-button-prev,
+.voca-modal-swiper-wrapper .swiper-button-next {
+  top: 50%;
+  transform: translateY(-50%);
+  display: none;
+}
+
+.voca-slide-card {
+  border-radius: 1vmin;
+  color: black;
+}
+
+.arrow-button-left {
+  background-color: #6e79bd;
+  position: absolute;
+  z-index: 10;
+  width: 6vmin;
+  height: 6vmin;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 50%;
+  left: 0;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 min(5px, 0.6vmin) 0 rgba(88, 88, 88, 0.2);
+}
+
+.arrow-button-right {
+  background-color: #6e79bd;
+  position: absolute;
+  z-index: 10;
+  width: 6vmin;
+  height: 6vmin;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 50%;
+  right: 0;
+  transform: translate(50%, -50%);
+  box-shadow: 0 min(5px, 0.6vmin) 0 rgba(88, 88, 88, 0.2);
+}
+
+.arrow-icons {
+  width: 1.8vmin;
+  height: 3vmin;
 }
 
 /*
@@ -5626,7 +5679,7 @@ button:hover {
   z-index: 2;
   position: relative;
   border: min(5px, 0.6vmin) solid #ffffff;
-  box-shadow: 0 0.6vmin 0 rgba(88, 88, 88, 0.2);
+  box-shadow: 0 min(5px, 0.6vmin) 0 rgba(88, 88, 88, 0.2);
 }
 .conversation-wrap .profile {
   width: 100%;
@@ -7277,61 +7330,4 @@ button:hover {
   body {
     display: none;
   }
-}
-.voca-modal-swiper-wrapper {
-  position: relative;
-  bottom: 1em;
-}
-.voca-modal-swiper-wrapper .swiper-button-prev {
-  top: 50%;
-  transform: translateY(-50%);
-  display: none;
-}
-.voca-modal-swiper-wrapper .swiper-button-next {
-  top: 50%;
-  transform: translateY(-50%);
-  display: none;
-}
-
-.voca-slide-card {
-  background-color: #eeeeee;
-  border-radius: 10px;
-  color: black;
-}
-
-.arrow-button-left {
-  position: absolute;
-  top: 50%;
-  z-index: 10;
-  width: 6vmin;
-  height: 6vmin;
-  border-radius: 50%;
-  background-color: #6E79BD;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0px 6.74286px 0px rgba(88, 88, 88, 0.2);
-  left: 0;
-  transform: translate(-50%, -50%);
-}
-
-.arrow-button-right {
-  position: absolute;
-  top: 50%;
-  z-index: 10;
-  width: 6vmin;
-  height: 6vmin;
-  border-radius: 50%;
-  background-color: #6E79BD;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0px 6.74286px 0px rgba(88, 88, 88, 0.2);
-  right: 0;
-  transform: translate(50%, -50%);
-}
-
-.arrow-icons {
-  width: 1.8vmin;
-  height: 3vmin;
 }/*# sourceMappingURL=ui.css.map */

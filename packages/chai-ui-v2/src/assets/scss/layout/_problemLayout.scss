@@ -117,7 +117,7 @@ $gray-color: #d6d7da;
   font-size: $font-size-24;
   line-height: 1.6;
   color: color(gray-ff);
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: $box-shadow;
   transform: translateX(-6vmin);
   white-space: pre-line;
 }
