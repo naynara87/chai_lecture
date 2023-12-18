@@ -1,33 +1,9 @@
-import styled from "@emotion/styled";
 import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 import IconMic from "chai-ui-v2/dist/assets/images/icon/icon_mic.svg";
 import { DraggableContentCommonProps } from "../../types/page";
 
-export const RecorderWrapper = styled.div`
-  display: flex;
-  padding: 0 24px;
-  width: fit-content;
-  padding: 1.5vmin 3vmin 1.5vmin 2vmin;
-  border-radius: 1vmin;
-  border: 2px solid #dce6ff;
-  align-items: center;
-  margin: 0 auto;
-  & img {
-    width: 5vmin;
-    height: 5vmin;
-    box-shadow: 0px 6px 0px rgba(88, 88, 88, 0.2);
-    border-radius: 1vmin;
-    margin-right: 2vmin;
-    cursor: pointer;
-  }
-  & p {
-    font-size: 2vmin;
-  }
-`;
-
 const AudioRecorderCreator = ({
   content,
-
   deleteContent,
   copyContent,
   pasteContent,
@@ -47,10 +23,10 @@ const AudioRecorderCreator = ({
       copyContent={copyContent}
       pasteContent={pasteContent}
     >
-      <RecorderWrapper>
+      <div className="recorder-wrapper">
         <img src={IconMic} alt="" />
         <p>녹음을 시작해 보세요.</p>
-      </RecorderWrapper>
+      </div>
     </ContentCreatorLayout>
   );
 };

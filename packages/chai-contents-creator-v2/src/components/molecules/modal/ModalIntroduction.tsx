@@ -12,14 +12,8 @@ import TextEditorViewer from "../TextEditorViewer";
 import { MODAL_CONTENT_EDITOR_HEIGHT } from "../../../constants/style";
 import {
   ContentEditorCss,
-  DescriptionWrapper,
-  ImageThumb,
-  ModalInner,
-  ModalIntroductionContainer,
   SubTitleCss,
-  TextEditorViewerWrapper,
   TitleCss,
-  TitleWrap,
 } from "../../../styles/modal";
 
 const pageIntroductionDefaultData: PageIntroduction = {
@@ -155,18 +149,18 @@ const ModalIntroduction = ({
       onClose={handleClose}
       closeOnBackgroundClick={closeOnBackgroundClick}
     >
-      <ModalInner>
-        <ModalIntroductionContainer>
+      <div className="modal-inner">
+        <div className="modal-introduction-container">
           <div className="flex-start-wrap">
-            <ImageThumb>
+            <div className="image-thumb">
               {/* 이미지를 넣으면 src가 해당 이미지의 src로 변경됨 */}
               <img
                 src={profileUrl ? profileUrl : ImageIcon}
                 alt="캐릭터 프로필"
               />
-            </ImageThumb>
-            <TitleWrap>
-              <TextEditorViewerWrapper onClick={focusThisEditor("title")}>
+            </div>
+            <div className="title-wrap">
+              <div onClick={focusThisEditor("title")}>
                 <TextEditorViewer
                   text={title}
                   setText={setTitle}
@@ -174,8 +168,8 @@ const ModalIntroduction = ({
                   textViewerCss={TitleCss}
                   hasFontSize={false}
                 />
-              </TextEditorViewerWrapper>
-              <TextEditorViewerWrapper onClick={focusThisEditor("subTitle")}>
+              </div>
+              <div onClick={focusThisEditor("subTitle")}>
                 <TextEditorViewer
                   text={subTitle}
                   setText={setSubTitle}
@@ -183,8 +177,8 @@ const ModalIntroduction = ({
                   textViewerCss={SubTitleCss}
                   hasFontSize={false}
                 />
-              </TextEditorViewerWrapper>
-            </TitleWrap>
+              </div>
+            </div>
           </div>
           <UrlInputWrapper
             typeText="이미지"
@@ -192,7 +186,7 @@ const ModalIntroduction = ({
             defaultText={profileUrl}
           />
           {/* 본문 */}
-          <DescriptionWrapper onClick={focusThisEditor("contents")}>
+          <div className="description-wrapper" onClick={focusThisEditor("contents")}>
             <TextEditorViewer
               text={contents}
               setText={setContents}
@@ -201,7 +195,7 @@ const ModalIntroduction = ({
               editorMinHeight={MODAL_CONTENT_EDITOR_HEIGHT}
               hasFontSize={false}
             />
-          </DescriptionWrapper>
+          </div>
           <UrlInputWrapper
             typeText="효과음"
             onSubmit={handleSoundEffectUrlInput}
@@ -214,8 +208,8 @@ const ModalIntroduction = ({
             />
             <ComponentButtonRadiFillMain text="저장" onClickBtn={handleSave} />
           </div>
-        </ModalIntroductionContainer>
-      </ModalInner>
+        </div>
+      </div>
     </ModalBase>
   );
 };

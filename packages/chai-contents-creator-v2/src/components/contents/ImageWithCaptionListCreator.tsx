@@ -4,7 +4,6 @@ import ImageIcon from "../../assets/images/icon/icon_image.svg";
 import UrlInputWrapper from "../molecules/UrlInputWrapper";
 import { DraggableContentCommonProps } from "../../types/page";
 import {
-  CaptionListImage,
   ImageWithCaptionListContentData,
   useToast,
 } from "chai-ui-v2";
@@ -222,7 +221,8 @@ const ImageWithCaptionListCreator = ({
                 </DeleteButtonWrapper>
                 <ImageThumb>
                   {getThisContentImageSrc(index) ? (
-                    <CaptionListImage
+                    <img
+                      className="caption-list-image"
                       src={getThisContentImageSrc(index)}
                       alt=""
                     />
