@@ -8,7 +8,6 @@ export { default as ActivityGuideCharacterComponent } from "./ActivityGuideChara
 export { default as IconTextComponent } from "./IconTextComponent";
 export {
   default as ImageWithCaptionListComponent,
-  CaptionListImage,
 } from "./ImageWithCaptionListComponent";
 export { default as ImageWithDescriptionListComponent } from "./ImageWithDescriptionListComponent";
 export { default as MultilevelActionCardComponent } from "./MultilevelActionCardComponent";
