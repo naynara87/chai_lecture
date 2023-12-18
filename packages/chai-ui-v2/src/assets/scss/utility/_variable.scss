@@ -89,14 +89,8 @@ $path-set: (
   img: "./images/img/",
 );
 
-// common size
-
-$line-height: 2.3;
-
-$bg-color: #f0f0f0;
-$top-color: #f89e9e;
-$bottom-color: #565656;
-
+//common size
+//radius 수치
 $border-radius: 2.6vmin;
 
 $main-radius: 3vmin;
@@ -116,7 +110,7 @@ $button-mini-radius: 1.3vmin;
 
 $border-pill-radius: 2em;
 
-//border두께
+//border 수치
 $border-1: min(2px, 0.1vmin);
 $border-2: min(2px, 0.2vmin);
 $border-3: min(3px, 0.4vmin);
@@ -124,6 +118,7 @@ $border-5: min(5px, 0.5vmin);
 $border-6: min(5px, 0.6vmin);
 $border-7: min(7px, 0.7vmin);
 
+//그림자 수치
 $layout-panel-shadow: 0.2vmin 0.6vmin 1vmin rgba(0, 0, 0, 0.15);
 $box-shadow: 0 $border-3 2vmin rgba(0, 0, 0, 0.15);
 $btn-shadow: 0 $border-6 0 rgba(88, 88, 88, 0.2);
@@ -132,6 +127,7 @@ $active-shadow: 0 $border-5 0 rgba(88, 88, 88, 0.2),
 $inset-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.2);
 $swiper-shadow: 0px 1px 3px rgba(95, 95, 95, 0.5);
 
+//transition 수치
 $transition-all-03s: all 0.3s;
 $transition-all-02s: all 0.2s;
 
