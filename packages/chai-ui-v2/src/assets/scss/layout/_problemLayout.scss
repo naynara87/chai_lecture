@@ -14,7 +14,7 @@ $gray-color: #d6d7da;
   background-color: $main-color;
 
   .hd-conts-wrap {
-    @include flex-btw;
+    @include flex-between;
 
     padding: 0 $cont-padding;
   }
@@ -27,11 +27,11 @@ $gray-color: #d6d7da;
 }
 
 .problem-hd-timer {
-  font-weight: 400;
-  font-size: $font-size-26;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: 400;
+  font-size: $font-size-26;
   color: color(gray-ff);
 
   > img {
@@ -88,7 +88,7 @@ $gray-color: #d6d7da;
   background-color: $main-color;
   transform: translateX(50%);
   box-shadow: 0 0.6vmin 2vmin rgba(120, 127, 153, 0.6);
-  transition: all 0.3s;
+  transition: $transition-all-03s;
 
   > span {
     display: block;
@@ -124,7 +124,7 @@ $gray-color: #d6d7da;
 
 // pagination style
 .problem-top-button-wrapper {
-  @include flex-btw {
+  @include flex-between {
     gap: 5vmin;
   }
 
@@ -137,7 +137,7 @@ $gray-color: #d6d7da;
 }
 
 .top-button-right {
-  @include flex-btw;
+  @include flex-between;
 
   width: 70%;
 }
@@ -160,8 +160,8 @@ $gray-color: #d6d7da;
   min-width: 6.2vmin;
   height: 6.2vmin;
   padding: 0 1.5vmin;
-  border: 1px solid color(gray-f0);
-  border-radius: 1vmin;
+  border: $border-1 solid color(gray-f0);
+  border-radius: $small-radius;
   background-color: $gray-color;
   font-weight: 500;
   font-size: $font-size-24;
@@ -182,7 +182,7 @@ $gray-color: #d6d7da;
 
 .problem-title-wrap {
   padding: 1.4vmin 2.5vmin;
-  border-radius: 1vmin;
+  border-radius: $small-radius;
   background-color: $main-light-color;
   font-size: $font-size-24;
 
@@ -201,11 +201,11 @@ $gray-color: #d6d7da;
 
   height: 5.5vmin;
   padding: 1vmin 2vmin;
-  border: 1px solid color(gray-db);
+  border: $border-1 solid color(gray-db);
   border-radius: 1vmin;
   background-color: color(gray-ff);
   font-size: $font-size-24;
-  transition: all 0.2s;
+  transition: $transition-all-02s;
 
   img {
     width: 1.8vmin;
@@ -227,12 +227,12 @@ $gray-color: #d6d7da;
   width: 100%;
   height: 5.5vmin;
   padding: 1.2vmin 2.7vmin;
-  border: 1px solid color(gray-db);
-  border-radius: 10vmin;
+  border: $border-1 solid color(gray-db);
+  border-radius: 1$border-pill-radius;
   background-color: color(gray-ff);
   font-size: $font-size-22;
   letter-spacing: -2vmin;
-  transition: all 0.2s;
+  transition: $transition-all-02s;
 
   @include hover {
     border-color: $main-color;
@@ -249,12 +249,12 @@ $gray-color: #d6d7da;
 
   height: 5.5vmin;
   padding: 1vmin 2vmin;
-  border: 1px solid color(gray-80);
-  border-radius: 1vmin;
+  border: $border-1 solid color(gray-80);
+  border-radius: $small-radius;
   background-color: color(gray-80);
   font-size: $font-size-22;
   color: color(gray-ff);
-  transition: all 0.2s;
+  transition: $transition-all-02s;
 
   img {
     width: 2vmin;

@@ -12,12 +12,12 @@
 }
 
 .swiper-pagination-bullet {
-  opacity: 1;
-  width: 2vmin;
-  height: 2vmin;
+  @include square(2vmin);
+
+  line-height: 1;
   margin: 0 1vmin !important;
   background-color: color(gray-c9);
-  line-height: 1;
+  opacity: 1;
 }
 
 .swiper-pagination-bullet-active {
@@ -28,9 +28,9 @@
 
 .swiper-button-prev {
   position: fixed;
-  width: 8vmin;
-  height: 8vmin;
-  border-radius: 50%;
+
+  @include circle(8vmin);
+
   background-color: color(gray-80);
   box-shadow: 0px 1px 3px rgba(95, 95, 95, 0.5);
 
@@ -48,9 +48,8 @@
 
 .swiper-button-next {
   position: fixed;
-  width: 8vmin;
-  height: 8vmin;
-  border-radius: 50%;
+  @include circle(8vmin);
+
   background-color: color(gray-80);
   box-shadow: 0px 1px 3px rgba(95, 95, 95, 0.5);
 

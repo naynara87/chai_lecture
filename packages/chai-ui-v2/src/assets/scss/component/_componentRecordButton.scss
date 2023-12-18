@@ -11,14 +11,13 @@
   margin: 3vmin auto;
 
   .record-btn-flex-wrap {
-    @include flex {
-      @include flex-op(center, flex-start);
+    display: flex;
+    @include flex-op(center, flex-start);
 
-      gap: 2vmin;
-    }
+    gap: 2vmin;
 
     padding: 2vmin 3.5vmin;
-    border: 0.2vmin solid color(blue-300);
+    border: $border-2 solid color(blue-300);
     border-radius: 2vmin;
     background-color: color(gray-ff);
 
@@ -29,7 +28,7 @@
     }
 
     .txt {
-      font-size: 2.4vmin;
+      font-size: $font-size-24;
     }
   }
 
@@ -40,6 +39,6 @@
     transform: translate(2vmin, -54%);
     width: 4.5vmin;
     height: 4.5vmin;
-    border-radius: 1vmin;
+    border-radius: $small-radius;
   }
 }

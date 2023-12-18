@@ -25,7 +25,7 @@
   .txt {
     margin: 0 10vmin;
     font-weight: 400;
-    font-size: 2vmin;
+    font-size: $font-size-20;
     color: color(gray-ff);
 
     b {
@@ -83,7 +83,7 @@
   .btn {
     padding: 0.5em 1em;
     font-weight: 400;
-    font-size: 2.4vmin;
+    font-size: $font-size-24;
   }
 }
 
@@ -97,7 +97,7 @@
 
 .cai-nav-list {
   margin-bottom: 1.6vmin;
-  border: 0.2vmin solid color(gray-db);
+  border: $border-2 solid color(gray-db);
   border-radius: $border-radius * 0.5;
 
   .cai-nav-link {
@@ -106,7 +106,7 @@
     width: 40vmin;
     height: 7vmin;
     font-weight: 600;
-    font-size: 2.4vmin;
+    font-size: $font-size-24;
     /* transition: all 0.2s; */
   }
 

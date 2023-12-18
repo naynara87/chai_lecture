@@ -4,57 +4,57 @@
 ---------------------
 */
 
-// size
-@mixin circle($s) {
-  width: $s;
-  height: $s;
+//원모양
+@mixin circle($size) {
+  width: $size;
+  height: $size;
   border-radius: 50%;
   @content;
 }
 
-@mixin rounded($s, $r: 2vmin) {
-  width: $s;
-  height: $s;
-  border-radius: $r;
+//라운드모양
+@mixin rounded($size, $radius: 2vmin) {
+  width: $size;
+  height: $size;
+  border-radius: $radius;
   @content;
 }
 
-@mixin square($s) {
-  width: $s;
-  height: $s;
+//정사각형모양
+@mixin square($size) {
+  width: $size;
+  height: $size;
+  @content;
 }
 
+//full size
 @mixin full {
   width: 100%;
   height: 100%;
 }
 
-// flex items
-@mixin flex($d: flex) {
-  display: $d;
-  @content;
+// flex operate system
+@mixin flex-op($align-items: null, $justify-content: null) {
+  align-items: $align-items;
+  justify-content: $justify-content;
 }
 
-@mixin flex-col($d: flex) {
-  display: $d;
-  flex-direction: column;
-  @content;
-}
-
-@mixin flex-op($ai: null, $jc: null) {
-  align-items: $ai;
-  justify-content: $jc;
-}
-
-@mixin flex-center($d: flex) {
-  display: $d;
+@mixin flex-center($display: flex) {
+  display: $display;
   @include flex-op(center, center);
 
   @content;
 }
 
-@mixin flex-btw($d: flex) {
-  display: $d;
+@mixin flex-end($display: flex) {
+  display: $display;
+  @include flex-op(center, end);
+
+  @content;
+}
+
+@mixin flex-between($display: flex) {
+  display: $display;
   @include flex-op(center, space-between);
 
   @content;
@@ -65,44 +65,44 @@
   background-image: urlPath($path, $img);
 }
 
-@mixin bg-op($p: center center, $s: auto, $r: no-repeat) {
+@mixin bg-op($position: center center, $size: auto, $repeat: no-repeat) {
   background: {
-    position: $p;
-    size: $s;
-    repeat: $r;
+    position: $position;
+    size: $size;
+    repeat: $repeat;
   }
 }
 
-// bafore, after
-@mixin make-before($c: "", $d: block) {
+// bafore, after 작업시
+@mixin make-before($content: "", $display: block) {
   &:before {
-    content: $c;
-    display: $d;
+    content: $content;
+    display: $display;
 
     @content;
   }
 }
 
-@mixin make-after($c: "", $d: block) {
+@mixin make-after($content: "", $display: block) {
   &:after {
-    content: $c;
-    display: $d;
+    content: $content;
+    display: $display;
 
     @content;
   }
 }
 
-@mixin make-virtual($c: "", $d: block) {
+@mixin make-virtual($content: "", $display: block) {
   &:before {
-    content: $c;
-    display: $d;
+    content: $content;
+    display: $display;
 
     @content;
   }
 
   &:after {
-    content: $c;
-    display: $d;
+    content: $content;
+    display: $display;
 
     @content;
   }
@@ -119,26 +119,42 @@
   box-shadow: none;
 }
 
+//hover시
 @mixin hover {
   &:hover {
     @content;
   }
 }
 
-@mixin gradiant($d: to top, $start: #e3e8ff 0%, $end: #e9faff 100%) {
-  background-image: linear-gradient($d, $start, $end);
+//그라데이션 세팅
+@mixin gradiant($deg: to top, $start: #e3e8ff 0%, $end: #e9faff 100%) {
+  background-image: linear-gradient($deg, $start, $end);
 }
 
-@mixin scrollbar($c: #e2e2e2, $sub-c: #c3c3c3, $r: 1vmin, $s: 1vmin) {
+//스크롤바
+@mixin scrollbar(
+  $color: #e2e2e2,
+  $sub-color: #c3c3c3,
+  $radius: 1vmin,
+  $size: 1vmin
+) {
   &::-webkit-scrollbar {
-    width: $s;
-    height: $s;
-    background-color: $c;
-    border-radius: $r;
+    width: $size;
+    height: $size;
+    background-color: $color;
+    border-radius: $radius;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: $sub-c;
-    border-radius: $r;
+    background-color: $sub-color;
+    border-radius: $radius;
   }
+}
+
+// 중앙으로 띄우기
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

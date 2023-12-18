@@ -19,7 +19,7 @@
   padding-left: 2vmin;
 
   @include make-before {
-    @include bg-op($p: left center, $s: 100% 100%);
+    @include bg-op($position: left center, $size: 100% 100%);
     @include bg-url(icon, "icon_bubble_tail.svg");
 
     position: absolute;
@@ -31,17 +31,17 @@
   }
 
   .bubble-conts {
-    @include flex-btw;
+    @include flex-between;
 
     max-width: 90vmin;
     min-height: 10vh;
     padding: 3vmin 4vmin;
-    border-radius: 6vmin;
+    border-radius: $border-pill-radius;
     background-color: color(bubble-gray);
     transition: width 0.3s;
 
     .text {
-      font-size: 2.6vmin;
+      font-size: $font-size-26;
       line-height: 1.5;
       white-space: pre-line;
     }

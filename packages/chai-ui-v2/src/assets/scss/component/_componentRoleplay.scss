@@ -24,7 +24,7 @@
     width: 66vmin; //계산식
     margin-top: 2vmin;
     padding: 2.5vmin 4vmin;
-    border-radius: 0 3vmin 3vmin 3vmin;
+    border-radius: $bubble-left-radius;
 
     .btn {
       margin-bottom: 1vmin;
@@ -35,7 +35,7 @@
     flex-direction: row-reverse;
 
     .bubble-wrap {
-      border-radius: 3vmin 0 3vmin 3vmin;
+      border-radius: $bubble-right-radius;
     }
 
     .name {

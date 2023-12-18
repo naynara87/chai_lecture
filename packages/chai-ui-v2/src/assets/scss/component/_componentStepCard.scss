@@ -16,22 +16,22 @@
   min-height: 44vmin;
   margin: 0 auto;
   padding: 5vmin 7vmin;
-  border: 0.3vmin solid color(sub-blue);
-  border-radius: 3vmin;
+  border: $border-3 solid color(sub-blue);
+  border-radius: $border-radius;
   transition: width 0.2s, height 0.2s;
 
   > div {
-    font-size: 4vmin;
+    font-size: $head4;
   }
 
   .chinese {
     font-weight: 600;
-    font-size: 7vmin;
+    font-size: $head1;
     line-height: 1;
   }
 
   .pinyin {
-    font-size: 4vmin;
+    font-size: $head4;
     line-height: 1;
   }
 
@@ -63,7 +63,7 @@
 .step-card.sentence-card {
   width: 50vmin;
   min-height: 40vmin;
-  padding: 3vmin 4vmin;
+  padding: 3vmin;
   text-align: center;
 
   > div {

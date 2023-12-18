@@ -5,10 +5,9 @@
 */
 
 .cont-info-wrap {
-  @include flex-center {
-    flex-direction: column;
-  }
+  @include flex-center;
 
+  flex-direction: column;
   overflow: auto;
   height: 100%;
 
@@ -30,12 +29,12 @@
 
   .btns-wrap {
     display: block;
-    margin-bottom: 5vmin;
     text-align: center;
+    margin-bottom: 5vmin;
 
     .txt {
       margin-top: 2vmin;
-      font-size: 2.2vmin;
+      font-size: $font-size-22;
     }
   }
 }
@@ -51,7 +50,7 @@
 
   @include make-after {
     @include bg-url(icon, "icon_contsinfo_tail.svg");
-    @include bg-op($s: 100%);
+    @include bg-op($size: 100%);
 
     position: absolute;
     top: 99%;

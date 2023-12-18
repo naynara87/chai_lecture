@@ -4,11 +4,11 @@
 ---------------------
 */
 
-/* 1920px 이상의 큰 화면에 대한 스타일 */
+// 1920px 이상의 큰 화면에 대한 스타일
 @media only screen and (min-width: 1920px) {
 }
 
-/*  1919px 이하의 화면에 대한 스타일 */
+// 1919px 이하의 화면에 대한 스타일
 @media only screen and (max-width: 1919px) {
   .height_fit {
     .layout-panel-wrap {
@@ -25,7 +25,7 @@
       padding-bottom: 1.5vmin;
     }
   }
-  /* 모바일 대응 */
+  // 모바일 대응
   @supports (-webkit-touch-callout: none) {
     .cai-main,
     .modal-completed {
@@ -48,13 +48,13 @@
     /* padding-bottom: 2vmin; */
   }
   .cai-nav-container {
-    bottom: $footer-height;
+    bottom: var(--footer-height);
   }
   .training-list {
     height: 31vmin;
   }
 }
-/* 768px 이상 1024px 이하의 중간 크기 화면에 대한 스타일 */
+// 768px 이상 1024px 이하의 중간 크기 화면에 대한 스타일
 @media only screen and (max-width: 1024px) {
   :root {
     --footer-height: 10vmin;
@@ -93,7 +93,7 @@
   }
 }
 
-/* 360px 이상 768px 이하의 작은 화면에 대한 스타일 */
+// 360px 이상 768px 이하의 작은 화면에 대한 스타일
 @media (max-width: 768px) {
   .cai-main {
     height: 100%;

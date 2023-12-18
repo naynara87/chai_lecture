@@ -1,3 +1,8 @@
+/*
+---------------------
+  : variable.scss :
+---------------------
+*/
 //color
 $content-dark: #505a99; // fix
 $content: #6e79bd; // fix
@@ -96,15 +101,35 @@ $box-shadow: 0 0.3vmin 20px rgba(0, 0, 0, 0.15);
 $btn-shadow: 0 0.6vmin 0 rgba(88, 88, 88, 0.2);
 $active-shadow: 0 0.5vmin 0 rgba(88, 88, 88, 0.2),
   inset 0 0.4vmin 0 rgba(88, 88, 88, 0.2);
+$inset-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.2);
 
 $border-radius: 2.6vmin;
+
 $main-radius: 3vmin;
+$bubble-left-radius: 0 3vmin 3vmin 3vmin;
+$bubble-right-radius: 3vmin 0 3vmin 3vmin;
+
 $inner-radius: 2vmin;
+$inner-top-radius: $inner-radius $inner-radius 0 0;
+$inner-bottom-radius: 0 0 $inner-radius $inner-radius;
+
 $small-radius: 1vmin;
+$small-top-radius: $small-radius $small-radius 0 0;
+$small-bottom-radius: 0 0 $small-radius $small-radius;
+
+$button-radius: 2vmin;
+$button-mini-radius: 1.3vmin;
+
 $border-pill-radius: 2em;
 
 $border-1: min(2px, 0.1vmin);
+$border-2: min(2px, 0.2vmin);
 $border-3: min(3px, 0.4vmin);
+$border-6: min(5px, 0.6vmin);
+$border-7: min(7px, 0.7vmin);
+
+$transition-all-03s: all 0.3s;
+$transition-all-02s: all 0.2s;
 
 // font-size
 $head1: 7vmin;
@@ -120,13 +145,20 @@ $font-size-22: 2.2vmin;
 $font-size-20: 2vmin;
 
 /* 화면에 따른 layer-size */
+// window가 세로보다 가로가 길때 비율 변경
 .height_fit {
   --ratio: 20 / 9;
   --width: calc(var(--height) * var(--ratio));
   --height: calc(100vh - var(--footer-height) - var(--header-height) - 15vh);
+  --margin: calc(
+      (99vh - calc(9 / 20 * var(--width))) * 0.5 - var(--header-height)
+    )
+    auto;
 }
+// window가 가로보다 세로가 길때 비율 변경
 .width_fit {
   --ratio: 9 / 19 !important;
   --width: 98vmin;
   --height: 70vmin;
+  --margin: calc((100vh - var(--height)) * 0.5 - var(--header-height)) auto;
 }

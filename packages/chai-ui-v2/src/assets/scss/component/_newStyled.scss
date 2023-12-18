@@ -261,8 +261,8 @@
   top: 50%;
   left: 50%;
   width: 90%;
-  max-width: 376px;
-  padding: 20px;
+  max-width: 50vmin;
+  padding: 2vmin;
   background-color: $gray-ff;
   border-radius: 10px;
   transform: translate(-50%, -50%);
@@ -438,7 +438,7 @@
   font-weight: 700;
   background: #6673a3;
   border-radius: 10vmin;
-  transition: all 0.3s;
+  transition: $transition-all-03s;
 
   &:hover,
   &:focus {

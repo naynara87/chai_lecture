@@ -19,7 +19,7 @@ $gray-color: #d6d7da;
   .score-wrapper {
     margin-top: 4vmin;
     padding: 2.5vmin 5vmin;
-    border-radius: 1vmin;
+    border-radius: $small-radius;
     background-color: color(gray-f5);
 
     .score {
@@ -35,7 +35,7 @@ $gray-color: #d6d7da;
 
     .btn:after {
       @include circle(3vmin);
-      @include bg-op($s: 1vmin);
+      @include bg-op($size: 1vmin);
 
       content: "";
       background-image: url("data:image/svg+xml,%3Csvg width='14' height='22' viewBox='0 0 14 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 2L11 11.0075L2 20.015' stroke='white' stroke-width='3.4375' stroke-linecap='round'/%3E%3C/svg%3E%0A");
@@ -47,9 +47,8 @@ $gray-color: #d6d7da;
 
 // 문제 채점버튼
 .problem-grade-wrap {
-  @include flex {
-    flex-wrap: wrap;
-  }
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .problem-grade {
@@ -60,7 +59,7 @@ $gray-color: #d6d7da;
     @extend %btn;
     @include full;
 
-    border: 1px solid color(gray-db);
+    border: $border-1 solid color(gray-db);
     border-right-width: 0px;
     border-top-width: 0px;
 
@@ -154,14 +153,14 @@ $gray-color: #d6d7da;
 
   .tab-title {
     @extend %btn;
-    @include bg-op($p: right 3vmin center, $s: 2.4vmin);
+    @include bg-op($position: right 3vmin center, $size: 2.4vmin);
     @include bg-url(icon, "icon_arrow_down_darkgray.svg");
 
     display: block;
     width: 100%;
     padding: 2vmin 3vmin;
-    border: 1px solid color(gray-db);
-    border-radius: 1vmin;
+    border: $border-1 solid color(gray-db);
+    border-radius: $small-radius;
     background-color: color(gray-f5);
     font-size: $font-size-20;
     text-align: left;
@@ -169,7 +168,7 @@ $gray-color: #d6d7da;
     &.active {
       @include bg-url(icon, "icon_arrow_up_darkgray.svg");
 
-      border-radius: 1vmin 1vmin 0 0;
+      border-radius: $small-top-radius;
     }
   }
 
@@ -178,9 +177,9 @@ $gray-color: #d6d7da;
 
     width: 100%;
     height: 45vmin;
-    border: 1px solid color(gray-db);
+    border: $border-1 solid color(gray-db);
     border-top: 0;
-    border-radius: 0 0 1vmin 1vmin;
+    border-radius: $small-bottom-radius;
 
     iframe {
       width: 100%;
@@ -193,9 +192,8 @@ $gray-color: #d6d7da;
   margin-top: 3vmin;
 
   .comment-list {
-    @include flex {
-      @include flex-op(flex-start, flex-start);
-    }
+    display: flex;
+    @include flex-op(flex-start, flex-start);
 
     margin-top: 4vmin;
   }

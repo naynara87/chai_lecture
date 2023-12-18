@@ -5,10 +5,9 @@
 */
 
 .next-lesson-wrapper {
-  @include flex {
-    justify-content: center;
-    gap: 5vmin;
-  }
+  display: flex;
+  justify-content: center;
+  gap: 5vmin;
 
   .lesson-list {
     width: 42vmin;

@@ -15,10 +15,10 @@
 .choice-role-list {
   width: 25vmin;
   padding: 4vmin;
-  border: 1px solid color(gray-db);
+  border: $border-1 solid color(gray-db);
   border-radius: 2vmin;
   text-align: center;
-  transition: all 0.2s;
+  transition: $transition-all-02s;
 
   .img-wrap {
     @include circle(14vmin);
@@ -41,13 +41,13 @@
   .name {
     margin-top: 2vmin;
     font-weight: 600;
-    font-size: 3vmin;
+    font-size: $font-size-28;
   }
 
   .btn {
     min-width: 100%;
     width: 100%;
     margin-top: 2vmin;
-    font-size: 2.4vmin;
+    font-size: $font-size-24;
   }
 }

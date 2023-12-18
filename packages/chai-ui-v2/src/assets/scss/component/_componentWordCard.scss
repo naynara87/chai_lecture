@@ -13,8 +13,8 @@
 
 .word-card {
   padding: 6vmin 7vmin;
-  border: 3px solid color(bubble-blue);
-  border-radius: 3vmin;
+  border: $border-3 solid color(bubble-blue);
+  border-radius: $border-radius;
   text-align: center;
 
   &.active {

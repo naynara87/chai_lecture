@@ -17,10 +17,8 @@
 .conversation-wrap {
   @extend %speak-interaction;
 
-  @include flex {
-    align-items: flex-start;
-  }
-
+  display: flex;
+  align-items: flex-start;
   gap: 4vmin;
 
   &:not(:first-of-type) {
@@ -32,8 +30,8 @@
 
   .img-wrap {
     flex-shrink: 0;
-    width: 10vmin;
-    height: 10vmin;
+    @include square(10vmin);
+
     margin: 0 auto;
 
     &:before,
@@ -48,7 +46,7 @@
     overflow: hidden;
     z-index: z(two);
     position: relative;
-    border: 0.6vmin solid color(gray-ff);
+    border: $border-6 solid color(gray-ff);
     box-shadow: $btn-shadow;
   }
 

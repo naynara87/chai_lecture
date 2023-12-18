@@ -4,15 +4,15 @@
 ---------------------
 */
 
+/*  button 스타일 */
+
 button:hover {
   opacity: 1;
 }
 
-// =================== button style
 .btns-wrap {
   @include flex-center {
     gap: 2vmin;
-    /* margin-bottom: 3vmin; */
   }
 
   & > .btn-radi-fill-main,
@@ -26,11 +26,9 @@ button:hover {
   @extend %btn;
   @extend %btn-interaction;
 
-  width: 8vmin;
-  height: 8vmin;
-  border-radius: 2vmin;
+  @include rounded(8vmin);
 
-  @include bg-op($s: 100% 100%);
+  @include bg-op($size: 100% 100%);
 
   overflow: hidden;
   display: inline-block;
@@ -38,7 +36,7 @@ button:hover {
   color: transparent;
   text-align: left;
   box-shadow: $btn-shadow;
-  /* transition: all 0.3s; */
+  /* transition: $transition-all-03s; */
 
   .icon {
     @include full;
@@ -47,14 +45,12 @@ button:hover {
 
 .btn-icon-mini {
   flex: none;
-  width: 5vmin;
-  height: 5vmin;
-  border-radius: 1.3vmin;
-  background-position: center center;
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
+
+  @include rounded(5vmin, $button-mini-radius);
+  @include bg-op($position: center center, $size: 100%, $repeat: no-repeat);
+
   overflow: hidden;
-  text-indent: -10rem;
+  text-indent: -9999px;
   color: transparent;
   text-align: left;
   box-shadow: 0 0.6vmin 0 rgba(88, 88, 88, 0.2);
@@ -199,8 +195,8 @@ button:hover {
 
   width: 100%;
   height: 8vmin;
-  border: 1px solid color(gray-56);
-  border-radius: 1vmin;
+  border: $border-1 solid color(gray-56);
+  border-radius: $small-radius;
   background-color: color(gray-56);
   font-weight: 600;
   font-size: $font-size-22;
@@ -218,7 +214,7 @@ button:hover {
 
   /* min-width: 50%; */
   padding: 0.5em 1em;
-  border: 0.4vmin solid color(gray-f0);
+  border: $border-3 solid color(gray-f0);
   border-radius: 2em;
   font-weight: 600;
   font-size: $font-size-26;
@@ -247,8 +243,8 @@ button:hover {
 
   max-width: 50%;
   padding: 0.5em 1em;
-  border: 1px solid color(main);
-  border-radius: 10vmin;
+  border: $border-1 solid color(main);
+  border-radius: $border-pill-radius;
   background-color: color(main);
   font-weight: 600;
   font-size: $font-size-26;
@@ -279,8 +275,8 @@ button:hover {
 
   width: 10vmin;
   height: 4.6vmin;
-  border: 1px solid color(orange-500);
-  border-radius: 10vmin;
+  border: $border-1 solid color(orange-500);
+  border-radius: $border-pill-radius;
   background-color: color(orange-500);
   line-height: 1;
   font-weight: 600;
@@ -302,8 +298,8 @@ button:hover {
 
   width: 12vmin;
   padding: 0.5em 1em;
-  border: 1px solid color(gray-56);
-  border-radius: 10vmin;
+  border: $border-1 solid color(gray-56);
+  border-radius: $border-pill-radius;
   background-color: color(gray-56);
   line-height: 1;
   font-weight: 600;
@@ -323,11 +319,11 @@ button:hover {
   width: 25vmin;
   max-width: 282px;
   padding: 0.5em 1em;
-  border: 2px solid color(gray-db);
-  border-radius: 10vmin;
+  border: $border-2 solid color(gray-db);
+  border-radius: $border-pill-radius;
   background-color: color(gray-ff);
   font-weight: 600;
-  font-size: 2.4vmin;
+  font-size: $font-size-24;
   box-shadow: $btn-shadow;
 
   @media (hover: hover) and (pointer: fine) {
@@ -347,12 +343,11 @@ button:hover {
 // footer buttons
 .ft-icon-btn {
   @extend %btn;
-
   @include circle(5vmin);
 
   @include flex-center;
 
-  border: 1px solid color(gray-ff);
+  border: $border-1 solid color(gray-ff);
   box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
 
   > img {
@@ -383,7 +378,7 @@ button:hover {
   height: 100%;
   padding: 0 2em;
   font-weight: 600;
-  font-size: 3vmin;
+  font-size: $font-size-32;
   color: color(gray-ff);
 
   .icon {
@@ -412,8 +407,8 @@ button:hover {
   width: 100%;
   height: 8.8vmin;
   padding: 0 3vmin;
-  border: 1px solid color(gray-db);
-  border-radius: 2vmin;
+  border: $border-1 solid color(gray-db);
+  border-radius: $inner-radius;
   font-size: $font-size-28;
 
   &::placeholder {
@@ -440,7 +435,7 @@ button:hover {
   display: flex;
   align-items: center;
   font-weight: 400;
-  font-size: 2vmin;
+  font-size: $font-size-20;
 }
 
 .toggle-label {
@@ -449,10 +444,10 @@ button:hover {
   width: 7vmin;
   height: 4vmin;
   margin-left: 2vmin;
-  border-radius: 2vmin;
+  border-radius: $border-pill-radius;
   background-color: color(gray-c9);
-  transition: all 0.3s;
-  box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.2);
+  transition: $transition-all-03s;
+  box-shadow: $inset-shadow;
 
   @include make-after {
     @include circle(3vmin);
@@ -462,7 +457,7 @@ button:hover {
     left: 0.5vmin;
     background-color: #ffffff;
     transform: translateY(-50%);
-    transition: all 0.3s;
+    transition: $transition-all-03s;
     box-shadow: $layout-panel-shadow;
   }
 
@@ -494,14 +489,14 @@ button:hover {
   width: 100%;
   min-height: 2vmin;
   padding: 2vmin 3vmin;
-  border: 0.4vmin solid color(gray-f0);
+  border: $border-3 solid color(gray-f0);
   border-radius: 2vmin;
   background-color: color(gray-f5);
   text-align: center;
   box-shadow: $btn-shadow;
-  transition: all 0.2s;
+  transition: $transition-all-03s;
   cursor: pointer;
-  font-size: 3vmin;
+  font-size: $font-size-32;
 
   @include hover {
     background-color: color(gray-f0);
@@ -546,7 +541,7 @@ button:hover {
   display: block;
   padding: 1.5vmin 3vmin;
   border: $border-3 solid color(gray-db);
-  border-radius: 1vmin;
+  border-radius: $small-radius;
   box-shadow: $btn-shadow;
   text-align: center;
   cursor: pointer;
@@ -560,7 +555,7 @@ button:hover {
     position: relative;
     display: block;
     font-weight: 600;
-    font-size: 2.6vmin;
+    font-size: $font-size-26;
     color: color(gray-80);
   }
 
@@ -573,7 +568,7 @@ button:hover {
 
 .inp-chck-line:disabled ~ .label-chck-line {
   border-color: color(gray-db);
-  transition: all 0.2s;
+  transition: $transition-all-02s;
   cursor: default;
 
   .text,

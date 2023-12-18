@@ -11,7 +11,7 @@
   font-size: $font-size-26;
   @include make-before {
     @include bg-url(icon, "icon_tip.svg");
-    @include bg-op($s: 100% 100%);
+    @include bg-op($size: 100% 100%);
 
     position: absolute;
     top: 0.4vmin;

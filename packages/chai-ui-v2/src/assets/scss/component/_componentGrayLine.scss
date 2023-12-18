@@ -6,7 +6,7 @@
 
 .gray-line {
   padding: 3vmin 3vmin;
-  border: 1px solid color(gray-db);
+  border: $border-1 solid color(gray-db);
   border-radius: calc($border-radius * 0.5);
   font-size: 1.6vmin;
   line-height: 1.6;
