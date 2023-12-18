@@ -57,9 +57,9 @@ const AnswerInput = styled.input`
   appearance: none;
   border: max(2px, 0.2vmin) solid #c9c9c9;
   border-radius: 50%;
+  width: 2vmin;
+  height: 2vmin;
   margin-right: 0.5vmin;
-  width: 1vmin;
-  height: 1vmin;
   position: relative;
 
   &:checked {

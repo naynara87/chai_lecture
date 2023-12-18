@@ -21,7 +21,7 @@ const ExampleTitleWrapper = styled.div`
     height: 2vmin;
   }
   & > p {
-    font-size: 2vmin;
+    font-size: 1.8vmin;
     line-height: 1;
     font-weight: 700;
     color: #6e79bd;

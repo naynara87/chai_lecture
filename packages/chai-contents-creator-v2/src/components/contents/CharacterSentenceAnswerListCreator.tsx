@@ -8,6 +8,7 @@ const CharacterSentenceAnswerListWrapper = styled.div`
 `;
 
 const CharacterSentenceAnswer = styled.p`
+  min-height: 5vmin;
   padding: 1vmin 1.5vmin;
   border: 1px solid #c9c9c9;
   border-radius: 0.5vmin;

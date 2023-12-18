@@ -8,9 +8,9 @@ const CheckBox = styled.div`
   font-size: 12px;
   cursor: pointer;
   & > img {
-    width: 16px;
-    height: 16px;
-    margin-right: 8px;
+    width: 2vmin;
+    height: 2vmin;
+    margin-right: 0.5vmin;
   }
   cursor: pointer;
 `;

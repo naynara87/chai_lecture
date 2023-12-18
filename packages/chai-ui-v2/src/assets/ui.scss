@@ -13,7 +13,7 @@ extend
 base
 font
 helper
-topbar
+animation
 
 3. vendor 
 lxPlayer
@@ -21,7 +21,6 @@ editor
 toastify
 
 4. layout 
-animation
 form
 header
 footer
@@ -67,12 +66,12 @@ responsive
 @import "scss/base/base";
 @import "scss/base/font";
 @import "scss/base/helper";
+@import "scss/base/animation";
 
 @import "scss/vendor/lxPlayer";
 @import "scss/vendor/editor";
 @import "scss/vendor/toastify";
 
-@import "scss/layout/animation";
 @import "scss/layout/form";
 @import "scss/layout/header";
 @import "scss/layout/footer";
@@ -103,4 +102,4 @@ responsive
 @import "scss/component/problemcontents";
 @import "scss/component/newStyled";
 
-@import "scss/base/responsive";
+@import "scss/layout/responsive";

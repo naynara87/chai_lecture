@@ -49,7 +49,7 @@ const ModalConfirm = ({
             {description}
           </p>
         </div>
-        <div className="d-flex gap-3 w-100">
+        <div className="d-flex gap-2 w-100">
           <button
             className="modal-confirm-text modal-button modal-border-button"
             onClick={_handleClickLeftButton}

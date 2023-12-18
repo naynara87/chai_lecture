@@ -20,7 +20,7 @@ interface ConversationItemProps {
   backgroundColor: string;
 }
 const ConversationItem = styled.div<ConversationItemProps>`
-  padding: 2vmin;
+  padding: 1vmin 2vmin 2vmin 2vmin;
   border-radius: 0.5vmin;
   flex-grow: 1;
   background-color: ${({ backgroundColor }) => backgroundColor};
