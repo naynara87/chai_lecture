@@ -6,7 +6,8 @@ import ContentCreatorLayout from "../molecules/ContentCreatorLayout";
 import TextEditorViewer from "../molecules/TextEditorViewer";
 
 const TextCreatorWrapper = styled.div`
-  min-width: 240px;
+  /* min-width: 240px; */
+  margin-right: 8px;
 `;
 
 /**

@@ -28,7 +28,7 @@ const MultilevelActionContentContainer = styled.div`
 const MultilevelActionCardWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: calc(100% - 46px);
+  width: 100%;
 `;
 const MultilevelActionCardList = styled.div`
   display: flex;
@@ -39,7 +39,6 @@ const MultilevelActionCardList = styled.div`
 `;
 const MultilevelActionCard = styled.div`
   display: flex;
-  max-width: 30vw;
   width: 100%;
   min-height: 134px;
   flex-direction: column;
@@ -86,15 +85,15 @@ const TopArea = styled.div`
   }
 `;
 const AddStep = styled.button`
+  width: 268px;
   height: 50px;
-  margin: 1vmin;
+  margin: 0 auto;
   padding: 14px 16px;
   border: 1px solid ${colorPalette.subblue};
   background-color: ${colorPalette.white};
   color: ${colorPalette.mainlight};
   font-size: 14px;
   font-weight: 500;
-  border-radius: 1vmin;
   text-align: center;
   appearance: none;
   outline: none;

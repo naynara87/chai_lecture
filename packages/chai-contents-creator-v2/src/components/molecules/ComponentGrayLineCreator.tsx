@@ -21,7 +21,7 @@ const TopArea = styled.div`
   .btn-comp-select {
     position: absolute;
     right: 0;
-    top: -0;
+    top: 0;
   }
   & .btn-text {
     border-radius: 2em;

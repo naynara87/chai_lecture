@@ -45,7 +45,7 @@ export const CharacterNameInput = styled.input`
 `;
 
 export const ConversationList = styled.li`
-  width: calc(100% - 46px);
+  width: 100%;
   padding: 2vmin;
   border-radius: 2vmin;
   background-color: #f6f4ff;

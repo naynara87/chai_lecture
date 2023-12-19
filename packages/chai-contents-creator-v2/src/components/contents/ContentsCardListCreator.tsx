@@ -28,6 +28,7 @@ import DroppableContents from "../molecules/DroppableContents";
 
 const MultilevelActionCardWrapper = styled.div``;
 const MultilevelActionCardList = styled.div`
+  width: 100%;
   display: flex;
   gap: 16px;
   flex-wrap: wrap;

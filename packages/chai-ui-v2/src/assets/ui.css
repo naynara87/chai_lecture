@@ -5322,6 +5322,110 @@ button:hover {
   font-size: 2.8vmin;
 }
 
+.modal-inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  width: 54vmin;
+  padding: 2vmin;
+  border-radius: 2vmin;
+  background-color: #ffffff;
+}
+
+.modal-introduction-container .flex-start-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.modal-introduction-container .url-wrapper {
+  width: 70%;
+}
+.modal-introduction-container .btns-wrap {
+  gap: 1vmin;
+  margin-top: 15px;
+}
+.modal-introduction-container .btns-wrap .btn {
+  min-width: 1px;
+  width: 100%;
+  height: 48px;
+  font-size: 16px;
+}
+
+.image-thumb {
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.image-thumb > img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.title-wrap {
+  padding: 0 16px;
+  text-align: left;
+}
+.title-wrap .title {
+  font-size: 2.4vmin;
+  font-weight: 600;
+}
+.title-wrap .sub-title {
+  margin-top: 6px;
+  font-weight: 600;
+  color: #808080;
+}
+
+.description-wrapper {
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  height: 220px;
+  margin-top: 1vmin;
+  padding: 2vmin;
+  border-radius: 1vmin;
+  background-color: #f0f0f0;
+  font-size: 12px;
+}
+
+.caption-list-image {
+  border-radius: 1vmin;
+  -webkit-user-drag: none;
+  cursor: pointer;
+  width: 40vmin;
+  height: 30vmin;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.recorder-wrapper {
+  display: flex;
+  padding: 0 24px;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 1.5vmin 3vmin;
+  border-radius: 1vmin;
+  border: min(2px, 0.2vmin) solid #dce6ff;
+  align-items: center;
+  margin: 0 auto;
+}
+.recorder-wrapper img {
+  width: 5vmin;
+  height: 5vmin;
+  box-shadow: 0 min(5px, 0.5vmin) 0 rgba(88, 88, 88, 0.2), inset 0 min(3px, 0.4vmin) 0 rgba(88, 88, 88, 0.2);
+  border-radius: 1vmin;
+  margin-right: 2vmin;
+  cursor: pointer;
+}
+.recorder-wrapper p {
+  font-size: 2vmin;
+}
+
 /*
 ---------------------------------
   : componentContsinfo.scss :
@@ -5374,11 +5478,11 @@ button:hover {
   background-size: 100%;
   background-repeat: no-repeat;
   position: absolute;
-  top: 99%;
   left: 50%;
+  transform: translateX(-50%);
+  top: 99%;
   width: 3vmin;
   height: 3vmin;
-  transform: translateX(-50%);
 }
 
 /*
@@ -5415,12 +5519,12 @@ button:hover {
   padding: 3vmin 3vmin;
   border: min(2px, 0.1vmin) solid #dbdbdb;
   border-radius: 1.3vmin;
-  font-size: 1.6vmin;
+  font-size: 2vmin;
   line-height: 1.6;
   white-space: pre-line;
 }
 .gray-line > div:not(:first-of-type) {
-  margin-top: -2.6vmin;
+  margin-top: 2.6vmin;
 }
 .gray-line .image-with-caption-wrapper img {
   width: 20vmin;
@@ -5825,8 +5929,8 @@ button:hover {
 .choice-role-list .btn {
   min-width: 100%;
   width: 100%;
-  margin-top: 2vmin;
   font-size: 2.4vmin;
+  margin-top: 2vmin;
 }
 
 /*
@@ -6641,9 +6745,9 @@ button:hover {
 .cont-start-wrapper.corner .text-bubble-wrap {
   margin-top: 3vmin;
   padding: 1em 2.5em;
-  font-size: 3vmin;
+  font-size: 2.8vmin;
   font-weight: 600;
-  border-radius: 10vmin;
+  border-radius: 2em;
 }
 .cont-start-wrapper.corner .character-wrap {
   width: 38vmin;
@@ -6677,8 +6781,8 @@ button:hover {
 
 .list-image {
   flex-shrink: 0;
-  width: 26.6666666667vh;
-  height: 20vh;
+  width: 33.3333333333vmin;
+  height: 25vmin;
   margin-right: 4vmin;
   border-radius: 1vmin;
   -webkit-user-drag: none;
@@ -6723,8 +6827,8 @@ button:hover {
 .noti-wrapper {
   display: flex;
   align-items: flex-end;
-  flex-wrap: wrap;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 4vmin;
   margin-top: 5vmin;
 }
@@ -6765,7 +6869,7 @@ button:hover {
   margin-top: 3vmin;
 }
 .toggle-text-wrapper .chinese {
-  font-size: 3vmin;
+  font-size: 3.2vmin;
   font-weight: 500;
   line-height: 1.6;
 }
@@ -6775,7 +6879,7 @@ button:hover {
   line-height: 1.6;
 }
 .toggle-text-wrapper .mean {
-  color: #666666;
+  color: cloor(gray-66);
 }
 
 .modal-base-title .profile-img-wrap.overflow-visible .img {
@@ -6788,8 +6892,8 @@ button:hover {
 
 .page {
   width: 100%;
-  color: black;
-  background-color: white;
+  color: #222222;
+  background-color: #222222;
 }
 
 .modal-completed canvas {
@@ -6803,18 +6907,18 @@ button:hover {
   position: absolute;
   top: 50%;
   left: 50%;
+  transform: translate(-50%, -50%);
   width: 90%;
   max-width: 50vmin;
   padding: 2vmin;
   background-color: #ffffff;
-  border-radius: 10px;
-  transform: translate(-50%, -50%);
+  border-radius: 1vmin;
 }
 
 .modal-confirm-title {
   margin-bottom: 20px;
   color: #222222;
-  font-size: 24px;
+  font-size: 2.4vmin;
   font-weight: 700;
   line-height: 1.6;
   text-align: center;
@@ -6826,19 +6930,19 @@ button:hover {
   padding: 14px 10px;
   font-weight: 500;
   font-size: 14px;
-  border-radius: 8px;
+  border-radius: 1.3vmin;
   line-height: 1;
 }
 
 .modal-button.modal-border-button {
   color: #565656;
-  border: 1px solid #d6d6d6;
+  border: min(2px, 0.1vmin) solid #d6d6d6;
 }
 
 .modal-button.modal-color-button {
   color: #ffffff;
   background-color: #7984c3;
-  border: 1px solid #7984c3;
+  border: min(2px, 0.1vmin) solid #7984c3;
 }
 
 .normal-modal-inner-box {
@@ -6905,8 +7009,8 @@ button:hover {
 .content-container {
   display: flex;
   align-items: flex-start;
-  flex-direction: column;
   justify-content: flex-start;
+  flex-direction: column;
   width: 100%;
   height: 100%;
   padding: 6vmin;
@@ -6920,13 +7024,13 @@ button:hover {
   width: 1vmin;
   height: 1vmin;
   background-color: #e2e2e2;
-  border-radius: 1vmin;
+  border-radius: 2em;
 }
 
 .modal-question-wrapper {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
   width: 100%;
 }
 .modal-question-wrapper .question-tit-wrapper {
@@ -6934,7 +7038,7 @@ button:hover {
   padding: 3vmin 8vmin;
   font-size: 3.6vmin;
   background: #edeff5;
-  border-radius: 999px;
+  border-radius: 2em;
 }
 .modal-question-wrapper .question-tit-wrapper b {
   color: #6673a3;
@@ -6967,7 +7071,7 @@ button:hover {
   font-size: 2.4vmin;
   font-weight: 700;
   background: #6673a3;
-  border-radius: 10vmin;
+  border-radius: 2em;
   transition: all 0.3s;
 }
 .button-start:hover, .button-start:focus {
@@ -6984,9 +7088,9 @@ button:hover {
 
 .cont-start-wrapper .text-bubble-wrap {
   padding: 1em 2.5em;
-  font-size: 3vmin;
+  font-size: 3.2vmin;
   font-weight: 600;
-  border-radius: 10vmin;
+  border-radius: 2em;
 }
 .cont-start-wrapper .character-wrap {
   width: 20vmin;
@@ -7082,9 +7186,9 @@ button:hover {
   position: absolute;
   top: 50%;
   left: 50%;
+  transform: translate(-50%, -50%);
   color: #808080;
   font-size: 3.2vmin;
-  transform: translateY(-50%) translateX(-50%);
 }
 
 .dialogue-container-sentence-blank .conversation-wrap {
@@ -7138,13 +7242,13 @@ button:hover {
   top: 50%;
   left: auto;
   right: -4vmin;
+  transform: translate(100%, -50%);
   width: 5vmin;
   height: 5vmin;
+  background-position: center center;
+  background-size: auto;
   background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100% 100%;
   background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M0 30C0 46.5375 13.4625 60 30 60C46.5375 60 60 46.5375 60 30C60 13.4625 46.5375 0 30 0C13.4625 0 0 13.4625 0 30ZM9.99995 30.0004C9.99995 41.0254 18.975 50.0004 30 50.0004C41.025 50.0004 50 41.0254 50 30.0004C50 18.9754 41.025 10.0004 30 10.0004C18.975 10.0004 9.99995 18.9754 9.99995 30.0004Z' fill='%235FC996'/%3E%3C/svg%3E%0A");
-  transform: translate(100%, -50%);
 }
 .dialogue-container-word-blank .answer-wrong .quiz-answer-wrap {
   position: relative;
@@ -7156,13 +7260,13 @@ button:hover {
   top: 50%;
   left: auto;
   right: -4vmin;
+  transform: translate(100%, -50%);
   width: 5.2vmin;
   height: 5.2vmin;
+  background-position: center center;
+  background-size: auto;
   background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100% 100%;
   background-image: url("data:image/svg+xml,%3Csvg width='58' height='58' viewBox='0 0 58 58' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8.08447 55.3384L29 34.4229L49.9155 55.3384C50.6474 56.0703 51.5685 56.5 52.627 56.5C53.6855 56.5 54.6065 56.0703 55.3384 55.3384C56.0703 54.6065 56.5 53.6855 56.5 52.627C56.5 51.5685 56.0703 50.6474 55.3384 49.9155L34.4229 29L55.3384 8.08447C56.0703 7.35257 56.5 6.43154 56.5 5.37302C56.5 4.3145 56.0703 3.39346 55.3384 2.66156C54.6065 1.92967 53.6855 1.5 52.627 1.5C51.5685 1.5 50.6474 1.92967 49.9155 2.66156L29 23.5771L8.08447 2.66156C7.35257 1.92967 6.43154 1.5 5.37302 1.5C4.31449 1.5 3.39346 1.92967 2.66156 2.66156C1.92967 3.39346 1.5 4.31449 1.5 5.37302C1.5 6.43154 1.92967 7.35257 2.66156 8.08447L23.5771 29L2.66156 49.9155C1.92967 50.6474 1.5 51.5685 1.5 52.627C1.5 53.6855 1.92967 54.6065 2.66156 55.3384C3.39346 56.0703 4.3145 56.5 5.37302 56.5C6.43154 56.5 7.35257 56.0703 8.08447 55.3384Z' fill='%23ED8914' stroke='%23ED8914' stroke-width='3'/%3E%3C/svg%3E%0A");
-  transform: translate(100%, -50%);
 }
 .dialogue-container-word-blank .wide-panel .btns-wrap {
   max-width: 50%;

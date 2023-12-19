@@ -68,7 +68,7 @@ const DeleteButtonWrapper = styled.div`
 const ImageList = styled.li`
   display: flex;
   width: 100%;
-  margin-bottom: 40px;
+  margin-bottom: 3vmin;
   position: relative;
 `;
 

@@ -31,15 +31,19 @@ const MultilevelActionCardWrapper = styled.div`
 const MultilevelActionCardList = styled.div`
   display: flex;
   gap: 16px;
+  width: 100%;
+  margin: 0 auto;
+  max-width: 60vw;
+  width: 100%;
 `;
 const MultilevelActionCard = styled.div`
   display: flex;
-  max-width: 50vw;
   width: 100%;
   min-height: 134px;
   flex-direction: column;
   padding: 8px;
   padding-bottom: 16px;
+  margin: 0 auto;
   border: 3px solid #d6e9ff;
   border-radius: 16px;
   &.important-card {
@@ -53,8 +57,8 @@ const TopArea = styled.div`
   position: relative;
   .btn-comp-select {
     position: absolute;
-    right: -16px;
-    top: -16px;
+    right: 0;
+    top: 0;
   }
   & .btn-text {
     border-radius: 2em;
@@ -79,7 +83,7 @@ const AddStep = styled.button`
   appearance: none;
   outline: none;
   box-shadow: none;
-  margin: 0 auto 8px;
+  margin: 0 auto;
 `;
 const DashedBar = styled.div`
   height: 0px;

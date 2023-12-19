@@ -6,7 +6,9 @@ import UrlInputWrapper from "../molecules/UrlInputWrapper";
 import { DraggableContentCommonProps } from "../../types/page";
 import { ComponentVideo, VideoContentData } from "chai-ui-v2";
 
-const VideoWrapper = styled.div``;
+const VideoWrapper = styled.div`
+  max-width: 100%;
+`;
 
 const VideoThumb = styled.div`
   width: 23vmin;
