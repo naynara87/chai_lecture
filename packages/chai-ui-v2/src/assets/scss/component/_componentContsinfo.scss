@@ -53,10 +53,10 @@
     @include bg-op($size: 100%);
 
     position: absolute;
+    @include absolute-x-center;
+
     top: 99%;
-    left: 50%;
     width: 3vmin;
     height: 3vmin;
-    transform: translateX(-50%);
   }
 }

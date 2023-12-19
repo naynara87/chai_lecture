@@ -279,3 +279,112 @@
     font-size: $font-size-28;
   }
 }
+
+.modal-inner {
+  @include absolute-center;
+
+  overflow: hidden;
+  width: 54vmin;
+  padding: 2vmin;
+  border-radius: $inner-radius;
+  background-color: color(gray-ff);
+}
+
+.modal-introduction-container {
+  .flex-start-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .url-wrapper {
+    width: 70%;
+  }
+
+  .btns-wrap {
+    gap: 1vmin;
+    margin-top: 15px;
+
+    .btn {
+      min-width: 1px;
+      width: 100%;
+      height: 48px;
+      font-size: 16px;
+    }
+  }
+}
+
+.image-thumb {
+  position: relative;
+  @include square(80px);
+
+  > img {
+    @include full;
+
+    object-fit: cover;
+  }
+}
+
+.title-wrap {
+  padding: 0 16px;
+  text-align: left;
+
+  .title {
+    font-size: $font-size-24;
+    font-weight: 600;
+  }
+
+  .sub-title {
+    margin-top: 6px;
+    font-weight: 600;
+    color: color(gray-80);
+  }
+}
+
+.description-wrapper {
+  overflow: auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  width: 100%;
+  height: 220px;
+  margin-top: 1vmin;
+  padding: 2vmin;
+  border-radius: $small-radius;
+  background-color: #f0f0f0;
+  font-size: 12px;
+}
+
+$caption-img: 30vmin; //캡션 이미지 사이즈
+.caption-list-image {
+  border-radius: 1vmin;
+  -webkit-user-drag: none;
+  cursor: pointer;
+  width: calc(($caption-img * 4) / 3);
+  height: $caption-img;
+  object-fit: cover;
+}
+
+.recorder-wrapper {
+  display: flex;
+  padding: 0 24px;
+  width: fit-content;
+  padding: 1.5vmin 3vmin;
+  border-radius: 1vmin;
+  border: $border-2 solid #dce6ff;
+  align-items: center;
+  margin: 0 auto;
+  & img {
+    width: 5vmin;
+    height: 5vmin;
+    box-shadow: $active-shadow;
+    border-radius: 1vmin;
+    margin-right: 2vmin;
+    cursor: pointer;
+  }
+  & p {
+    font-size: 2vmin;
+  }
+}
