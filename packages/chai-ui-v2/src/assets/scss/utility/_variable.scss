@@ -37,6 +37,16 @@ $gray-f0: #f0f0f0; // fix
 $gray-f5: #f5f5f5; // fix
 $gray-ff: #ffffff; // fix
 
+$scrollbar-thumb: #c3c3c3;
+$scrollbar: #e2e2e2;
+
+$modal-border-button: #d6d6d6;
+$modal-color-button: #7984c3;
+
+//문제은행
+$question-primary: #6673a3;
+$question-bg: #edeff5;
+
 $color-set: (
   main: $content,
   main-dark: $content-dark,
@@ -150,6 +160,15 @@ $font-size-20: 2vmin;
 $regular: 400;
 $medium: 500;
 $bold: 600;
+$bolder: 700;
+
+//padding
+$modal-inner-padding: 2vmin;
+$btn-padding: 0.5em 1em;
+
+//margin
+$mx-auto: 0 auto;
+
 /* 화면에 따른 layer-size */
 // window가 세로보다 가로가 길때 비율 변경
 .height_fit {

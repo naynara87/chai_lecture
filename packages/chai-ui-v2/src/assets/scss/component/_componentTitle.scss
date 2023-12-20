@@ -7,7 +7,7 @@
 .conts-ttl {
   position: relative;
   padding-left: 6vmin;
-  font-weight: 600;
+  font-weight: $bold;
   font-size: $font-size-26;
   @include make-before {
     @include bg-url(icon, "icon_tip.svg");

@@ -18,7 +18,7 @@
 
     padding: 2vmin 3.5vmin;
     border: $border-2 solid color(blue-300);
-    border-radius: 2vmin;
+    border-radius: $button-radius;
     background-color: color(gray-ff);
 
     .btn-icon {

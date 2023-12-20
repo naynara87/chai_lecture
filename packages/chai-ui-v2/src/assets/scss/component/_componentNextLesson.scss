@@ -17,8 +17,8 @@
     @include flex-center;
 
     min-height: 30vmin;
-    font-weight: 600;
-    font-size: 3.2vmin;
+    font-weight: $bold;
+    font-size: $font-size-32;
     white-space: pre-line;
   }
 

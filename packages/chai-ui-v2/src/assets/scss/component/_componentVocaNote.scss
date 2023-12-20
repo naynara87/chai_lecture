@@ -47,7 +47,7 @@
     width: calc(100% - 4vmin);
     padding: 2vmin 0;
     font-size: $font-size-22;
-    font-weight: 500;
+    font-weight: $medium;
     background-color: color(purple-200);
   }
   .img {
@@ -83,7 +83,7 @@
   } */
 
   b {
-    font-weight: 600;
+    font-weight: $bold;
     font-size: $font-size-24;
     color: color(text);
   }

@@ -24,7 +24,7 @@
   }
 
   .text-bubble-wrap {
-    margin: 0 auto;
+    margin: $mx-auto;
   }
 
   .btns-wrap {
@@ -44,7 +44,7 @@
   padding: 4vmin 6vmin;
   border-radius: $border-pill-radius;
   background-color: color(bubble-gray);
-  font-weight: 500;
+  font-weight: $medium;
   font-size: $font-size-36;
   text-align: center;
 

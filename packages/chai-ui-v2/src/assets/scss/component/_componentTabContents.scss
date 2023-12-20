@@ -40,7 +40,7 @@
     &.active {
       background-color: color(main);
       color: color(gray-ff);
-      font-weight: 600;
+      font-weight: $bold;
     }
   }
 }

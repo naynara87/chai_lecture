@@ -131,12 +131,12 @@
   }
 
   .ttl {
-    font-weight: 600;
+    font-weight: $bold;
     font-size: $head2;
   }
 
   .txt {
-    font-weight: 600;
+    font-weight: $bold;
     font-size: $font-size-32;
     color: color(gray-80);
   }
@@ -206,7 +206,7 @@
     margin-bottom: 5vmin;
     margin-right: auto;
     line-height: 1.5;
-    font-size: 2.4vmin;
+    font-size: $font-size-24;
     text-align: left;
   }
 
@@ -254,7 +254,7 @@
 
     .text {
       z-index: z(two) + 1;
-      font-weight: 600;
+      font-weight: $bold;
       font-size: $font-size-28;
       margin-top: 1vmin;
       color: color(gray-ff);
@@ -275,7 +275,7 @@
     padding: 0.5vmin 1vmin;
     border-radius: $border-pill-radius;
     background-color: color(gray-ff);
-    font-weight: 600;
+    font-weight: $bold;
     font-size: $font-size-28;
   }
 }
@@ -336,7 +336,7 @@
 
   .sub-title {
     margin-top: 6px;
-    font-weight: 600;
+    font-weight: $bold;
     color: color(gray-80);
   }
 }
@@ -353,13 +353,13 @@
   margin-top: 1vmin;
   padding: 2vmin;
   border-radius: $small-radius;
-  background-color: #f0f0f0;
+  background-color: color(gray-f0);
   font-size: 12px;
 }
 
 $caption-img: 30vmin; //캡션 이미지 사이즈
 .caption-list-image {
-  border-radius: 1vmin;
+  border-radius: $small-radius;
   -webkit-user-drag: none;
   cursor: pointer;
   width: calc(($caption-img * 4) / 3);
@@ -372,15 +372,15 @@ $caption-img: 30vmin; //캡션 이미지 사이즈
   padding: 0 24px;
   width: fit-content;
   padding: 1.5vmin 3vmin;
-  border-radius: 1vmin;
-  border: $border-2 solid #dce6ff;
+  border-radius: $small-radius;
+  border: $border-2 solid color(blue-300);
   align-items: center;
   margin: 0 auto;
   & img {
     width: 5vmin;
     height: 5vmin;
     box-shadow: $active-shadow;
-    border-radius: 1vmin;
+    border-radius: $small-radius;
     margin-right: 2vmin;
     cursor: pointer;
   }

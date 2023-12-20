@@ -5,14 +5,14 @@
 */
 
 .quiz-container {
-  margin: 0 auto;
+  margin: $mx-auto;
 }
 
 .quiz-question-wrap {
   padding: 4vmin;
   border: $border-1 solid color(gray-db);
   border-radius: $inner-radius;
-  font-weight: 600;
+  font-weight: $bold;
   text-align: center;
   white-space: pre-line;
 
@@ -27,7 +27,7 @@
 
   .text-sm {
     margin-top: 3vmin;
-    font-weight: 400;
+    font-weight: $regular;
     font-size: $font-size-28;
     color: color(gray-80);
   }
@@ -55,7 +55,7 @@
   border: $border-3 solid color(gray-c9);
   border-radius: $small-radius;
   background-color: color(gray-f5);
-  font-weight: 600;
+  font-weight: $bold;
   font-size: $font-size-28;
   color: color(main);
   text-align: center;
@@ -104,13 +104,13 @@
 
   .text {
     display: inline-block;
-    font-weight: 600;
+    font-weight: $bold;
     font-size: $font-size-20;
     text-align: center;
 
     .sm {
       display: block;
-      font-weight: 400;
+      font-weight: $regular;
     }
   }
 

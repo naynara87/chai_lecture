@@ -175,3 +175,11 @@
   left: 50%;
   transform: translateX(-50%);
 }
+
+//텍스트 숨기기
+@mixin text-hide {
+  overflow: hidden;
+  text-indent: -9999px;
+  color: transparent;
+  text-align: left;
+}

@@ -5,7 +5,6 @@
 */
 
 .cai-ft {
-  z-index: z(header);
   position: fixed;
   top: auto;
   bottom: 0;
@@ -13,23 +12,25 @@
   width: 100%;
   height: var(--footer-height);
   background-color: color(gray-56);
+  z-index: z(header);
 }
 
 .ft-conts-wrap {
-  @include flex-center;
+  position: relative;
   @include full;
 
+  @include flex-center;
+
   z-index: z(double);
-  position: relative;
 
   .txt {
     margin: 0 10vmin;
-    font-weight: 400;
-    font-size: $font-size-20;
     color: color(gray-ff);
+    font-size: $font-size-20;
+    font-weight: $regular;
 
     b {
-      font-weight: 600;
+      font-weight: $bold;
     }
 
     small {
@@ -41,32 +42,31 @@
 
 // nav
 .cai-nav-container {
-  z-index: z(nav);
   position: fixed;
   top: auto;
   bottom: var(--footer-height);
   left: 0;
   transform: translateY(100%);
   transition: transform 0.3s;
+  z-index: z(nav);
 
   &.active {
     transform: none;
   }
-
-  .img {
-    z-index: z(zero);
+  d .img {
     position: absolute;
     top: 0;
     left: 4vmin;
     width: 20vmin;
     transform: translateY(-60%);
+    z-index: z(zero);
   }
 }
 
 .cai-nav-wrap {
   position: relative;
   height: 60vmin;
-  border-radius: 2vmin 2vmin 0 0;
+  border-radius: $inner-top-radius;
   background-color: color(gray-ff);
   box-shadow: 0 0 34px rgba(0, 0, 0, 0.1);
 
@@ -81,8 +81,8 @@
   }
 
   .btn {
-    padding: 0.5em 1em;
-    font-weight: 400;
+    padding: $btn-padding;
+    font-weight: $regular;
     font-size: $font-size-24;
   }
 }
@@ -105,7 +105,7 @@
 
     width: 40vmin;
     height: 7vmin;
-    font-weight: 600;
+    font-weight: $bold;
     font-size: $font-size-24;
     /* transition: all 0.2s; */
   }

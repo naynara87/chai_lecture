@@ -16,7 +16,7 @@
   .text-bubble-wrap {
     padding: 3vmin;
     font-size: $font-size-22;
-    font-weight: 400;
+    font-weight: $regular;
     border-radius: $inner-radius;
   }
 
@@ -46,7 +46,7 @@
     margin-top: 3vmin;
     padding: 1em 2.5em;
     font-size: $font-size-28;
-    font-weight: 600;
+    font-weight: $bold;
     border-radius: $border-pill-radius;
   }
 
@@ -75,7 +75,7 @@
       margin-top: 1vmin;
       color: color(gray-66);
       font-size: $font-size-20;
-      font-weight: 400;
+      font-weight: $regular;
       line-height: 1.5;
       text-align: center;
     }
@@ -184,7 +184,7 @@ $list-image-height: 25vmin;
 .numbering-text-list {
   display: flex;
   p {
-    font-weight: 400;
+    font-weight: $regular;
     line-height: 1.4 !important;
   }
   span {
@@ -204,7 +204,7 @@ $list-image-height: 25vmin;
 
   .chinese {
     font-size: $font-size-32;
-    font-weight: 500;
+    font-weight: $medium;
     line-height: 1.6;
   }
 
@@ -256,15 +256,15 @@ $list-image-height: 25vmin;
 
   width: 90%;
   max-width: 50vmin;
-  padding: 2vmin;
+  padding: $modal-inner-padding;
   background-color: color(gray-ff);
   border-radius: $small-radius;
 }
 .modal-confirm-title {
-  margin-bottom: 20px;
+  margin-bottom: 2vmin;
   color: color(gray-22);
   font-size: $font-size-24;
-  font-weight: 700;
+  font-weight: $bolder;
   line-height: 1.6;
   text-align: center;
   white-space: pre-line;
@@ -272,20 +272,21 @@ $list-image-height: 25vmin;
 .modal-button {
   width: 100%;
   padding: 14px 10px;
-  font-weight: 500;
+  font-weight: $medium;
   font-size: 14px;
   border-radius: $button-mini-radius;
   line-height: 1;
 }
 .modal-button.modal-border-button {
   color: $gray-56;
-  border: $border-1 solid #d6d6d6;
+  border: $border-1 solid $modal-border-button;
 }
 .modal-button.modal-color-button {
   color: $gray-ff;
-  background-color: #7984c3;
-  border: $border-1 solid #7984c3;
+  background-color: $modal-color-button;
+  border: $border-1 solid $modal-color-button;
 }
+s
 
 // chai-ui-v2/src/components/modal/ModalImage.tsx
 // chai-ui-v2/src/components/modal/ModalVideo.tsx
@@ -372,15 +373,15 @@ $list-image-height: 25vmin;
   overflow: auto;
 
   &::-webkit-scrollbar-thumb {
-    background-color: #c3c3c3;
-    border-radius: 1vmin;
+    background-color: $scrollbar-thumb;
+    border-radius: $border-pill-radius;
   }
 
   &::-webkit-scrollbar {
     width: 1vmin;
     height: 1vmin;
-    background-color: #e2e2e2;
-    border-radius: 2em;
+    background-color: $scrollbar;
+    border-radius: $border-pill-radius;
   }
 }
 
@@ -395,11 +396,11 @@ $list-image-height: 25vmin;
     margin-bottom: 3vmin;
     padding: 0.5em 2em;
     font-size: $font-size-32;
-    background: #edeff5;
-    border-radius: 2em;
+    background: $question-bg;
+    border-radius: $border-pill-radius;
     & b {
-      color: #6673a3;
-      font-weight: 700;
+      color: $question-primary;
+      font-weight: $bolder;
     }
   }
 
@@ -408,19 +409,19 @@ $list-image-height: 25vmin;
     max-height: 50vmin;
     margin-bottom: 3vmin;
     padding: 4vmin;
-    background-color: #f5f5f5;
-    border-radius: 2vmin;
+    background-color: color(gray-f5);
+    border-radius: $inner-radius;
     overflow: auto;
     @include scrollbar;
 
     .question-sub {
       font-size: $font-size-26;
-      font-weight: 700;
+      font-weight: $bolder;
       margin-bottom: 3vmin;
     }
     .question-cont {
       font-size: $font-size-22;
-      font-weight: 400;
+      font-weight: $regular;
       white-space: pre-line;
     }
   }
@@ -430,10 +431,10 @@ $list-image-height: 25vmin;
   padding: 1vmin 5vmin;
   color: $gray-ff;
   font-size: $font-size-24;
-  font-weight: 700;
-  background: #6673a3;
+  font-weight: $bolder;
+  background: $question-primary;
   border-radius: $border-pill-radius;
-  transition: background-color 0.3s;
+  transition: $transition-btn;
 
   &:hover,
   &:focus {
@@ -457,7 +458,7 @@ $list-image-height: 25vmin;
   .text-bubble-wrap {
     padding: 1em 2.5em;
     font-size: $font-size-32;
-    font-weight: 600;
+    font-weight: $bold;
     border-radius: $border-pill-radius;
   }
 
@@ -505,8 +506,8 @@ $list-image-height: 25vmin;
 .image-component {
   max-width: 60vmin;
   max-height: 34vmin;
-  margin: 0 auto;
-  border-radius: 1vmin;
+  margin: $mx-auto;
+  border-radius: $small-radius;
   text-align: center;
 
   img {
@@ -545,16 +546,16 @@ $list-image-height: 25vmin;
 
     &.lg {
       font-size: $head3;
-      font-weight: 600;
+      font-weight: $bold;
     }
 
     &.bold {
-      font-weight: 600;
+      font-weight: $bold;
     }
 
     &.bold-ttl {
       font-size: $font-size-32;
-      font-weight: 600;
+      font-weight: $bold;
     }
   }
 }
@@ -566,8 +567,7 @@ $list-image-height: 25vmin;
 }
 .loading-text-container {
   position: relative;
-  width: 100%;
-  height: 100%;
+  @include full;
 }
 .loading-text {
   @include absolute-center;
@@ -674,10 +674,8 @@ $list-image-height: 25vmin;
         left: auto;
         right: -4vmin;
         transform: translate(100%, -50%);
-
         width: 5.2vmin;
         height: 5.2vmin;
-
         @include bg-op;
 
         background-image: url("data:image/svg+xml,%3Csvg width='58' height='58' viewBox='0 0 58 58' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8.08447 55.3384L29 34.4229L49.9155 55.3384C50.6474 56.0703 51.5685 56.5 52.627 56.5C53.6855 56.5 54.6065 56.0703 55.3384 55.3384C56.0703 54.6065 56.5 53.6855 56.5 52.627C56.5 51.5685 56.0703 50.6474 55.3384 49.9155L34.4229 29L55.3384 8.08447C56.0703 7.35257 56.5 6.43154 56.5 5.37302C56.5 4.3145 56.0703 3.39346 55.3384 2.66156C54.6065 1.92967 53.6855 1.5 52.627 1.5C51.5685 1.5 50.6474 1.92967 49.9155 2.66156L29 23.5771L8.08447 2.66156C7.35257 1.92967 6.43154 1.5 5.37302 1.5C4.31449 1.5 3.39346 1.92967 2.66156 2.66156C1.92967 3.39346 1.5 4.31449 1.5 5.37302C1.5 6.43154 1.92967 7.35257 2.66156 8.08447L23.5771 29L2.66156 49.9155C1.92967 50.6474 1.5 51.5685 1.5 52.627C1.5 53.6855 1.92967 54.6065 2.66156 55.3384C3.39346 56.0703 4.3145 56.5 5.37302 56.5C6.43154 56.5 7.35257 56.0703 8.08447 55.3384Z' fill='%23ED8914' stroke='%23ED8914' stroke-width='3'/%3E%3C/svg%3E%0A");
@@ -706,7 +704,7 @@ $list-image-height: 25vmin;
   .conversation-wrap .chinese {
     display: inline;
     word-break: break-all;
-    font-weight: 400;
+    font-weight: $regular;
   }
 
   .txt-wrap {
@@ -753,7 +751,7 @@ $list-image-height: 25vmin;
     margin: 2vmin auto;
 
     .btn {
-      padding: 0.5em 1em;
+      padding: $btn-padding;
       font-size: $font-size-26;
     }
   }

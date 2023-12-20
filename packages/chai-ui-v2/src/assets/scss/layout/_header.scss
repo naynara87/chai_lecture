@@ -60,7 +60,7 @@ $flag-width: 42px;
     top: 50%;
     left: auto;
     right: -2.5vmin;
-    border-radius: 1vmin;
+    border-radius: $small-radius;
     transform: translate(-50%, -50%) rotate(45deg);
   }
 }
@@ -80,10 +80,10 @@ $flag-width: 42px;
   .txt {
     position: absolute;
     top: 1.5em;
-    padding: 0.5em 1em;
+    padding: $btn-padding;
     border-radius: $border-pill-radius;
     background-color: color(gray-ff);
-    font-weight: 600;
+    font-weight: $bold;
     font-size: $font-size-24;
     box-shadow: $box-shadow;
     white-space: nowrap;
@@ -116,8 +116,8 @@ $flag-width: 42px;
 .corner-name {
   display: inline-block;
   height: var(--header-height);
-  font-weight: 600;
-  font-size: 3vmin;
+  font-weight: $bold;
+  font-size: $font-size-28;
   color: color(gray-ff);
   vertical-align: top;
   padding: 0.4em 0;

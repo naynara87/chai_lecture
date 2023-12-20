@@ -30,7 +30,7 @@ $gray-color: #d6d7da;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: 400;
+  font-weight: $regular;
   font-size: $font-size-26;
   color: color(gray-ff);
 
@@ -87,10 +87,8 @@ $gray-color: #d6d7da;
   bottom: 4vmin;
   left: auto;
   right: 0;
-  display: flex;
-  align-items: center;
+  @include flex-center;
   flex-direction: column;
-  justify-content: center;
 
   background-color: $main-color;
   transform: translateX(50%);
@@ -100,7 +98,7 @@ $gray-color: #d6d7da;
   > span {
     display: block;
     margin-bottom: 1vmin;
-    font-weight: 600;
+    font-weight: $bold;
     font-size: $font-size-20;
     color: color(gray-ff);
     text-align: center;
@@ -124,7 +122,7 @@ $gray-color: #d6d7da;
   padding: 0.7vmin 1.5vmin;
   border-radius: 0.5vmin;
   background-color: $main-color;
-  font-weight: 500;
+  font-weight: $medium;
   font-size: $font-size-24;
   line-height: 1.6;
   color: color(gray-ff);
@@ -160,7 +158,7 @@ $gray-color: #d6d7da;
   gap: 2vmin;
   height: 9vmin;
   padding: 0 $cont-padding;
-  border-radius: 1vmin;
+  border-radius: $small-radius;
   background-color: $main-light-color;
 }
 

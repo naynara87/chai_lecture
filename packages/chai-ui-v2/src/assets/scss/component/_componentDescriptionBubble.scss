@@ -23,11 +23,11 @@
     @include bg-url(icon, "icon_bubble_tail.svg");
 
     position: absolute;
-    top: 50%;
+    @include absolute-y-center;
+
     left: 0.3vmin;
     width: 2.3vmin;
     height: 2.4vmin;
-    transform: translateY(-50%);
   }
 
   .bubble-conts {
