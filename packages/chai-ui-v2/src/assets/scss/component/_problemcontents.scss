@@ -18,7 +18,7 @@ $gray-color: #d6d7da;
 
   .score-wrapper {
     margin-top: 4vmin;
-    padding: 2.5vmin 5vmin;
+    padding: 2.5vmin;
     border-radius: $small-radius;
     background-color: color(gray-f5);
 
@@ -53,7 +53,7 @@ $gray-color: #d6d7da;
 
 .problem-grade {
   flex-basis: 20%;
-  height: 11vmin;
+  height: 10vmin;
 
   .btn-grade {
     @extend %btn;
@@ -76,7 +76,7 @@ $gray-color: #d6d7da;
     .img-wrap {
       @include flex-center;
 
-      height: 8vmin;
+      height: 64%;
 
       img {
         width: 3vmin;
@@ -112,7 +112,7 @@ $gray-color: #d6d7da;
 // 해석, 해설 영역
 // 내용이 없을 경우
 .empty-conts {
-  padding: 10vmin 3vmin;
+  padding: 8vmin 3vmin;
   text-align: center;
 
   .img {
@@ -149,26 +149,27 @@ $gray-color: #d6d7da;
 
   .tab-iframe-wrap {
     margin-top: 5vmin;
+    border: $border-1 solid color(gray-db);
+    border-radius: $small-radius;
+    overflow: hidden;
   }
 
   .tab-title {
     @extend %btn;
+
     @include bg-op($position: right 3vmin center, $size: 2.4vmin);
+
     @include bg-url(icon, "icon_arrow_down_darkgray.svg");
 
     display: block;
     width: 100%;
     padding: 2vmin 3vmin;
-    border: $border-1 solid color(gray-db);
-    border-radius: $small-radius;
     background-color: color(gray-f5);
     font-size: $font-size-20;
     text-align: left;
 
     &.active {
       @include bg-url(icon, "icon_arrow_up_darkgray.svg");
-
-      border-radius: $small-top-radius;
     }
   }
 
@@ -177,10 +178,7 @@ $gray-color: #d6d7da;
 
     width: 100%;
     height: 45vmin;
-    border: $border-1 solid color(gray-db);
-    border-top: 0;
-    border-radius: $small-bottom-radius;
-
+    border-top: $border-1 solid color(gray-db);
     iframe {
       width: 100%;
       height: 100%;

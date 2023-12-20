@@ -41,9 +41,21 @@ const ComponentProblemPagination = ({
       <Swiper
         loop={false}
         pagination={false}
-        slidesPerView={20}
+        slidesPerView={10}
+        spaceBetween={0}
         slidesPerGroup={1}
         scrollbar={{ draggable: true }}
+        breakpoints={{
+          600: {
+            slidesPerView: 10,
+          },
+          1024: {
+            slidesPerView: 20,
+          },
+          1920: {
+            slidesPerView: 20,
+          },
+        }}
         className="problem-top-button-wrapper pagination-wrapper"
       >
         {pagination}

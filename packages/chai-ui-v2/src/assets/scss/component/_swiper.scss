@@ -69,10 +69,17 @@
   .swiper-pagination {
     position: relative;
     bottom: calc(var(--height) * 0.06);
+    gap: 2vmin;
+  }
+
+  .pagination-wrapper {
+    padding: 1.2vmin 4vmin;
+    height: auto;
   }
 
   .swiper-wrapper {
-    padding: 14px 0;
+    /* width: 6vmin;
+    height: 6vmin; */
   }
 
   .swiper-slide:not(.swiper-slide-active) {

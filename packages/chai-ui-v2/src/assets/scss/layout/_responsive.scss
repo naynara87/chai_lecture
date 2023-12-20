@@ -25,6 +25,23 @@
       padding-bottom: 1.5vmin;
     }
   }
+  .problem-main.height_fit {
+    .layout-panel-wrap {
+      height: 68vmin;
+      transform: translateY(1vmin);
+    }
+  }
+  .swiper-position-3 {
+    .pagination-wrapper {
+      padding: 1.2vmin 2vmin;
+      height: auto;
+    }
+    .problem-pagination {
+      height: 5vmin;
+      min-width: 5vmin;
+      font-size: 2.2vmin;
+    }
+  }
   // 모바일 대응
   @supports (-webkit-touch-callout: none) {
     .cai-main,
@@ -34,6 +51,16 @@
     }
   }
 }
+@media only screen and (max-width: 1919px) {
+  .swiper-position-3 {
+    .problem-pagination {
+      height: 4.4vmin;
+      min-width: 4.4vmin;
+      font-size: 2.2vmin;
+    }
+  }
+}
+
 @media only screen and (max-width: 1366px) {
   :root {
     --footer-height: 10vmin;
@@ -52,6 +79,13 @@
   }
   .training-list {
     height: 31vmin;
+  }
+  .swiper-position-3 .pagination-wrapper {
+    .problem-pagination {
+      height: 4vmin;
+      min-width: 4vmin;
+      font-size: 2vmin;
+    }
   }
 }
 // 768px 이상 1024px 이하의 중간 크기 화면에 대한 스타일
@@ -88,8 +122,13 @@
   .swiper-pagination {
     height: calc(var(--footer-height) * 0.8);
   }
-  .btn-ft-text {
-    /* height: calc(100% - 2vmin); */
+
+  .swiper-position-3 .pagination-wrapper {
+    .problem-pagination {
+      height: 7vmin;
+      min-width: 7vmin;
+      font-size: 2.4vmin;
+    }
   }
 }
 
@@ -107,8 +146,27 @@
         flex-direction: column;
         margin: var(--header-height) auto;
       }
+      &.problem-main {
+        .layout-panel-wrap {
+          max-width: 90%;
+          margin-top: 5vmin;
+        }
+        .question-number {
+          top: -3vmin;
+          left: 6vmin;
+        }
+        .question-panel {
+          padding: 0;
+          overflow-y: hidden;
+          height: 75vh;
+        }
+      }
+    }
+    .btn-problem-white {
+      padding: 1vmin;
     }
   }
+
   @supports (-webkit-touch-callout: none) {
     .cai-main {
       min-height: -webkit-fill-available;

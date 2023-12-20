@@ -9,7 +9,7 @@ const NavigationWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 0 10vmin;
+  padding: 0 1vmin;
   transform: translateY(-50%);
 `;
 

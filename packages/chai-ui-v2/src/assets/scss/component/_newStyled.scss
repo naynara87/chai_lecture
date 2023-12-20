@@ -393,8 +393,8 @@ $list-image-height: 25vmin;
 
   .question-tit-wrapper {
     margin-bottom: 3vmin;
-    padding: 3vmin 8vmin;
-    font-size: $font-size-36;
+    padding: 0.5em 2em;
+    font-size: $font-size-32;
     background: #edeff5;
     border-radius: 2em;
     & b {
@@ -404,18 +404,19 @@ $list-image-height: 25vmin;
   }
 
   .question-cont-wrapper {
-    width: 108vmin;
-    height: 60vmin;
+    width: 100%;
+    max-height: 50vmin;
     margin-bottom: 3vmin;
-    padding: 5vmin;
+    padding: 4vmin;
     background-color: #f5f5f5;
     border-radius: 2vmin;
     overflow: auto;
+    @include scrollbar;
 
     .question-sub {
-      font-size: $font-size-28;
+      font-size: $font-size-26;
       font-weight: 700;
-      margin-bottom: 5vmin;
+      margin-bottom: 3vmin;
     }
     .question-cont {
       font-size: $font-size-22;
@@ -426,13 +427,13 @@ $list-image-height: 25vmin;
 }
 .button-start {
   margin-left: auto;
-  padding: 3vmin 7.5vmin;
+  padding: 1vmin 5vmin;
   color: $gray-ff;
   font-size: $font-size-24;
   font-weight: 700;
   background: #6673a3;
   border-radius: $border-pill-radius;
-  transition: $transition-all-03s;
+  transition: background-color 0.3s;
 
   &:hover,
   &:focus {

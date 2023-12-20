@@ -46,23 +46,25 @@ $gray-color: #d6d7da;
   padding-bottom: 0;
 
   .problem-top-button-wrapper {
-    width: 161vmin;
+    max-width: 90%;
+    width: 150vmin;
     margin: 3vmin auto 0;
-    // overflow-x: scroll;
-
     &::-webkit-scrollbar {
       display: none;
     }
   }
 
   .pagination-wrapper {
-    gap: 1.5vmin;
+    gap: 1vmin;
   }
 
   .layout-panel-wrap {
     position: relative;
-    height: calc(100% - 7vh - 14vh);
-    margin-top: 3vmin;
+    max-width: 90%;
+    width: 150vmin;
+    height: 60vmin;
+    margin: 3vmin auto 0;
+    padding: 0;
   }
 
   .btn-radi-border-main {
@@ -70,7 +72,7 @@ $gray-color: #d6d7da;
   }
 
   .grid-h-3-7 .layout-panel {
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 }
 
@@ -85,6 +87,11 @@ $gray-color: #d6d7da;
   bottom: 4vmin;
   left: auto;
   right: 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
   background-color: $main-color;
   transform: translateX(50%);
   box-shadow: 0 0.6vmin 2vmin rgba(120, 127, 153, 0.6);
@@ -102,12 +109,16 @@ $gray-color: #d6d7da;
   @include hover {
     background-color: $main-dark-color;
   }
+  > img {
+    max-width: 100%;
+    width: 4vmin;
+  }
 }
 
 // question number style
 .question-number {
   position: absolute;
-  top: 6vmin;
+  top: 5vmin;
   left: 0;
   min-width: 13vmin;
   padding: 0.7vmin 1.5vmin;
@@ -125,7 +136,7 @@ $gray-color: #d6d7da;
 // pagination style
 .problem-top-button-wrapper {
   @include flex-between {
-    gap: 5vmin;
+    gap: 4vmin;
   }
 
   width: 100%;
@@ -146,7 +157,7 @@ $gray-color: #d6d7da;
   @include flex-op(center, flex-start);
 
   overflow-x: auto;
-  gap: 2v, om;
+  gap: 2vmin;
   height: 9vmin;
   padding: 0 $cont-padding;
   border-radius: 1vmin;
@@ -157,9 +168,9 @@ $gray-color: #d6d7da;
   @extend %btn;
 
   flex-shrink: 0;
-  min-width: 6.2vmin;
-  height: 6.2vmin;
-  padding: 0 1.5vmin;
+  height: 6vmin;
+  min-width: 6vmin;
+  padding: 0 1vmin;
   border: $border-1 solid color(gray-f0);
   border-radius: $small-radius;
   background-color: $gray-color;
@@ -205,7 +216,7 @@ $gray-color: #d6d7da;
   border-radius: 1vmin;
   background-color: color(gray-ff);
   font-size: $font-size-24;
-  transition: $transition-all-02s;
+  transition: $transition-btn;
 
   img {
     width: 1.8vmin;
@@ -223,16 +234,16 @@ $gray-color: #d6d7da;
   @include flex-center {
     gap: 1vmin;
   }
-
+  max-width: 28vmin;
   width: 100%;
-  height: 5.5vmin;
-  padding: 1.2vmin 2.7vmin;
+  margin: 0 auto;
+  padding: 1.2vmin 2.5vmin;
   border: $border-1 solid color(gray-db);
-  border-radius: 1$border-pill-radius;
+  border-radius: $border-pill-radius;
   background-color: color(gray-ff);
   font-size: $font-size-22;
-  letter-spacing: -2vmin;
-  transition: $transition-all-02s;
+  letter-spacing: -2px;
+  transition: $transition-btn;
 
   @include hover {
     border-color: $main-color;
@@ -254,7 +265,7 @@ $gray-color: #d6d7da;
   background-color: color(gray-80);
   font-size: $font-size-22;
   color: color(gray-ff);
-  transition: $transition-all-02s;
+  transition: $transition-btn;
 
   img {
     width: 2vmin;
@@ -262,5 +273,40 @@ $gray-color: #d6d7da;
 
   @include hover {
     background-color: color(gray-56);
+  }
+}
+
+//main
+.cai-main {
+  &.width_fit {
+    &.problem-main {
+      .layout-panel-wrap {
+        height: 60vmin;
+        margin: 5vmin auto 0;
+        padding: 0;
+      }
+      .question-number {
+        top: -3vmin;
+        left: 6vmin;
+      }
+      .question-panel {
+        padding: 0;
+        overflow-y: hidden;
+      }
+      .btn-problem {
+        width: 12vmin;
+        height: 12vmin;
+        bottom: 0;
+        right: 3vmin;
+        transform: translateY(50%);
+      }
+    }
+  }
+  &.height_fit {
+    &.problem-main {
+      .layout-panel-wrap {
+        height: 68vmin;
+      }
+    }
   }
 }

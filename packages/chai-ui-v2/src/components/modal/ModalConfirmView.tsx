@@ -5,10 +5,10 @@ import { colorPalette } from "../../assets";
 
 export const ConfirmModalButton = styled.button`
   width: 50%;
-  border-radius: 10vmin;
+  border-radius: 2em;
   font-weight: 700;
-  font-size: 3vmin;
-  padding: 0.5em 1em;
+  font-size: 2.6vmin;
+  padding: 1vmin;
 `;
 
 interface ConfirmModalBorderButtonProps {
@@ -38,16 +38,16 @@ export const ConfirmModalInnerBox = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  padding: 4vmin 3vmin;
+  padding: 5vmin;
   border-radius: 3vmin;
-  width: 100%;
-  max-width: 80vmin;
+  /* width: 100%;
+  max-width: 80vmin; */
   background-color: ${colorPalette.white};
   transform: translate(-50%, -50%);
 `;
 
 export const ConfirmInnerTextContainer = styled.div`
-  margin-bottom: 2vmin;
+  margin-bottom: 3vmin;
 `;
 
 export const ConfirmModalTitle = styled.h2`

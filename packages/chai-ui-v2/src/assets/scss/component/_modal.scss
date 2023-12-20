@@ -102,9 +102,9 @@
 
   &.wide-modal {
     display: block;
-    width: 98vmin;
-    height: 70vmin;
-    max-width: 100%;
+    width: 104vmin;
+    height: 78vmin;
+    max-width: 98%;
   }
 }
 
@@ -272,7 +272,7 @@
     width: 10%;
     min-width: 17vmin;
     margin-top: 5vmin;
-    padding: 0.5em 1em;
+    padding: 0.5vmin 1vmin;
     border-radius: $border-pill-radius;
     background-color: color(gray-ff);
     font-weight: 600;
