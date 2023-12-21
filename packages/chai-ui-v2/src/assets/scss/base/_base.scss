@@ -101,6 +101,12 @@ img {
   --top-color: #f89e9e;
   --bottom-color: #565656;
 
+  // 폰트를 부드럽게 렌더링하기 위한 속성
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
   /* toastify-size */
   --toastify-toast-min-height: 0 !important;
 }
